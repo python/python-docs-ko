@@ -1,0 +1,1770 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2001-2017, Python Software Foundation
+# This file is distributed under the same license as the Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Python 3.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-23 11:56+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (http://python.flowdas.com)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.1\n"
+
+#: ../Doc/reference/import.rst:6
+msgid "The import system"
+msgstr "임포트 시스템"
+
+#: ../Doc/reference/import.rst:10
+msgid ""
+"Python code in one :term:`module` gains access to the code in another "
+"module by the process of :term:`importing` it.  The :keyword:`import` "
+"statement is the most common way of invoking the import machinery, but it"
+" is not the only way.  Functions such as :func:`importlib.import_module` "
+"and built-in :func:`__import__` can also be used to invoke the import "
+"machinery."
+msgstr ""
+"한 :term:`모듈 <module>` 에 있는 파이썬 코드는 :term:`임포팅 <importing>` 이라는 프로세스를 통해 "
+"다른 모듈에 있는 코드들에 대한 접근권을 얻는다. :keyword:`import` 문은 임포트 절차를 일으키는 가장 흔한 "
+"방법이지만, 유일한 방법은 아니다. :func:`importlib.import_module` 같은 함수나 내장 "
+":func:`__import__` 도 임포트 절차를 일으키는데 사용될 수 있다."
+
+#: ../Doc/reference/import.rst:16
+msgid ""
+"The :keyword:`import` statement combines two operations; it searches for "
+"the named module, then it binds the results of that search to a name in "
+"the local scope.  The search operation of the :keyword:`import` statement"
+" is defined as a call to the :func:`__import__` function, with the "
+"appropriate arguments. The return value of :func:`__import__` is used to "
+"perform the name binding operation of the :keyword:`import` statement.  "
+"See the :keyword:`import` statement for the exact details of that name "
+"binding operation."
+msgstr ""
+":keyword:`import` 문은 두 가지 연산을 합친 것이다; 먼저 이름이 가리키는 모듈을 찾은 후에, 그 검색의 결과를 지역 "
+"스코프의 이름에 연결한다. :keyword:`import` 문의 검색 연산은 적절한 인자들로 :func:`__import__` 함수를"
+" 호출하는 것으로 정의된다. :func:`__import__` 의 반환 값은 :keyword:`import` 문의 이름 연결 연산을 "
+"수행하는 데 사용된다. 이 이름 연결 연산의 정확한 세부사항에 대해서는 :keyword:`import` 문을 보면 된다."
+
+#: ../Doc/reference/import.rst:25
+msgid ""
+"A direct call to :func:`__import__` performs only the module search and, "
+"if found, the module creation operation.  While certain side-effects may "
+"occur, such as the importing of parent packages, and the updating of "
+"various caches (including :data:`sys.modules`), only the "
+":keyword:`import` statement performs a name binding operation."
+msgstr ""
+":func:`__import__` 의 직접 호출은 모듈을 찾고, 발견된다면, 모듈을 만드는 연산만을 수행한다. 부모 패키지를 "
+"임포트하거나 여러 캐시(:data:`sys.modules` 를 포함한다)를 갱신하는 것과 같은 부수적인 효과들이 일어날 수 있기는 "
+"하지만, 오직 :keyword:`import` 문만이 이름 연결 연산을 수행한다."
+
+#: ../Doc/reference/import.rst:31
+msgid ""
+"When calling :func:`__import__` as part of an import statement, the "
+"standard builtin :func:`__import__` is called. Other mechanisms for "
+"invoking the import system (such as :func:`importlib.import_module`) may "
+"choose to subvert :func:`__import__` and use its own solution to "
+"implement import semantics."
+msgstr ""
+"import 문의 일부로 :func:`__import__` 를 호출할 때, 표준 내장 :func:`__import__` 가 "
+"호출된다. 임포트 시스템을 호출하는 다른 메커니즘 (:func:`importlib.import_module` 같은)은 "
+":func:`__import__` 를 사용하지 않고 임포트 개념을 구현하기 위한 자신의 방법을 사용할 수 있다."
+
+#: ../Doc/reference/import.rst:37
+msgid ""
+"When a module is first imported, Python searches for the module and if "
+"found, it creates a module object [#fnmo]_, initializing it.  If the "
+"named module cannot be found, a :exc:`ModuleNotFoundError` is raised.  "
+"Python implements various strategies to search for the named module when "
+"the import machinery is invoked.  These strategies can be modified and "
+"extended by using various hooks described in the sections below."
+msgstr ""
+"모듈이 처음 임포트 될 때, 파이썬은 모듈을 검색하고, 발견된다면, 모듈 객체를 만들고 [#fnmo]_, 초기화한다. 만약 그 "
+"이름의 모듈을 발견할 수 없다면, :exc:`ModuleNotFoundError` 를 일으킨다. 파이썬은 임포트 절차가 호출될 "
+"때 이름 붙여진 모듈을 찾는 다양한 전략을 구현한다. 이 전략들은 다음 섹션에서 설명하는 여러 가지 훅을 통해 수정되고 확장될 수 "
+"있다."
+
+#: ../Doc/reference/import.rst:44
+msgid ""
+"The import system has been updated to fully implement the second phase of"
+" :pep:`302`. There is no longer any implicit import machinery - the full "
+"import system is exposed through :data:`sys.meta_path`. In addition, "
+"native namespace package support has been implemented (see :pep:`420`)."
+msgstr ""
+"임포트 시스템은 :pep:`302` 의 두 번째 단계를 완전히 구현하도록 개정되었다. 이제 묵시적인 임포트 절차는 없다 - 전체 "
+"임포트 시스템이 :data:`sys.meta_path` 을 통해 노출된다. 여기에 더해, 네이티브(native) 이름 공간 패키지의 "
+"지원이 구현되었다 (:pep:`420` 을 보라)."
+
+#: ../Doc/reference/import.rst:52
+msgid ":mod:`importlib`"
+msgstr ":mod:`importlib`"
+
+#: ../Doc/reference/import.rst:54
+msgid ""
+"The :mod:`importlib` module provides a rich API for interacting with the "
+"import system.  For example :func:`importlib.import_module` provides a "
+"recommended, simpler API than built-in :func:`__import__` for invoking "
+"the import machinery.  Refer to the :mod:`importlib` library "
+"documentation for additional detail."
+msgstr ""
+":mod:`importlib` 모듈은 임포트 시스템과 상호 작용하기 위한 풍부한 API를 제공한다. 예를 들어, "
+":func:`importlib.import_module` 는 임포트 절차를 구동하는 데 있어 내장 :func:`__import__` "
+"에 비해 권장되고, 더 간단한 API를 제공한다. 더 상세한 내용은 :mod:`importlib` 라이브러리 도큐멘테이션을 "
+"참고하면 된다."
+
+#: ../Doc/reference/import.rst:63
+msgid "Packages"
+msgstr "패키지(package)"
+
+#: ../Doc/reference/import.rst:68
+msgid ""
+"Python has only one type of module object, and all modules are of this "
+"type, regardless of whether the module is implemented in Python, C, or "
+"something else.  To help organize modules and provide a naming hierarchy,"
+" Python has a concept of :term:`packages <package>`."
+msgstr ""
+"파이썬은 한 가지 종류의 모듈 객체만 갖고 있고, 모든 모듈은 모듈이 파이썬이나 C나 그 밖의 다른 어떤 방법으로 구현되었는지와 상관없이"
+" 이 형이다. 모듈을 조직화하고 이름 계층구조를 제공하기 위해, 파이썬은 :term:`패키지 <package>` 라는 개념을 갖고 "
+"있다."
+
+#: ../Doc/reference/import.rst:73
+msgid ""
+"You can think of packages as the directories on a file system and modules"
+" as files within directories, but don't take this analogy too literally "
+"since packages and modules need not originate from the file system.  For "
+"the purposes of this documentation, we'll use this convenient analogy of "
+"directories and files.  Like file system directories, packages are "
+"organized hierarchically, and packages may themselves contain "
+"subpackages, as well as regular modules."
+msgstr ""
+"패키지를 파일 시스템에 있는 디렉터리라고 생각할 수 있지만, 패키지와 모듈이 파일시스템으로부터 올 필요는 없으므로 이 비유를 "
+"너무 문자 그대로 해석하지 말아야 한다. 이 문서의 목적상, 디렉터리와 파일이라는 비유를 사용할 것이다. 파일 시스템 디렉터리처럼,"
+" 패키지는 계층적으로 조직화하고, 패키지는 보통 모듈뿐만 아니라 서브 패키지도 포함할 수 있다."
+
+#: ../Doc/reference/import.rst:81
+msgid ""
+"It's important to keep in mind that all packages are modules, but not all"
+" modules are packages.  Or put another way, packages are just a special "
+"kind of module.  Specifically, any module that contains a ``__path__`` "
+"attribute is considered a package."
+msgstr ""
+"모든 패키지가 모듈이라는 것을 기억하는 것이 중요하다. 하지만 모든 모듈이 패키지인 것은 아니다. 다른 식으로 표현하면, 패키지는 "
+"특별한 종류의 모듈이다. 구체적으로, ``__path__`` 어트리뷰트를 포함하는 모든 모듈은 패키지로 취급된다."
+
+#: ../Doc/reference/import.rst:86
+msgid ""
+"All modules have a name.  Subpackage names are separated from their "
+"parent package name by dots, akin to Python's standard attribute access "
+"syntax.  Thus you might have a module called :mod:`sys` and a package "
+"called :mod:`email`, which in turn has a subpackage called "
+":mod:`email.mime` and a module within that subpackage called "
+":mod:`email.mime.text`."
+msgstr ""
+"모든 모듈은 이름이 있다. 서브 패키지 이름은 파이썬의 표준 어트리뷰트 액세스 문법을 따라, 부모 패키지 이름과 점(dot)으로 "
+"구분된다. 그래서 :mod:`sys` 라고 불리는 모듈과 :mod:`email` 이라고 불리는 패키지가 있을 수 있다. email "
+"은 다시 서브 패키지 :mod:`email.mime` 을 갖고, 이 서브 패키지 내에 모듈 :mod:`email.mime.text` 가"
+" 있을 수 있다."
+
+#: ../Doc/reference/import.rst:94
+msgid "Regular packages"
+msgstr "정규 패키지"
+
+#: ../Doc/reference/import.rst:99
+msgid ""
+"Python defines two types of packages, :term:`regular packages <regular "
+"package>` and :term:`namespace packages <namespace package>`.  Regular "
+"packages are traditional packages as they existed in Python 3.2 and "
+"earlier. A regular package is typically implemented as a directory "
+"containing an ``__init__.py`` file.  When a regular package is imported, "
+"this ``__init__.py`` file is implicitly executed, and the objects it "
+"defines are bound to names in the package's namespace.  The "
+"``__init__.py`` file can contain the same Python code that any other "
+"module can contain, and Python will add some additional attributes to the"
+" module when it is imported."
+msgstr ""
+"파이썬은 두 가지 종류의 패키지를 정의한다, :term:`정규 패키지 <regular package>` 와 :term:`이름 공간 "
+"패키지 <namespace package>`. 정규 패키지는 파이썬 3.2와 그 이전에 존재하던 전통적인 패키지다. 정규 패키지는"
+" 보통 ``__init__.py`` 파일을 가진 디렉터리로 구현된다. 정규 패키지가 임포트될 때, 이 "
+"``__init__.py`` 파일이 묵시적으로 실행되고, 그것이 정의하는 객체들이 패키지의 이름 공간의 이름들도 연결된다. "
+"``__init__.py`` 파일은 다른 모듈들이 가질 수 있는 것과 같은 파이썬 코드를 포함할 수 있고, 파이썬은 임포트될 때 "
+"모듈에 몇 가지 어트리뷰트를 추가한다."
+
+#: ../Doc/reference/import.rst:109
+msgid ""
+"For example, the following file system layout defines a top level "
+"``parent`` package with three subpackages::"
+msgstr "예를 들어, 다음과 같은 파일시스템 배치는 최상위 ``parent`` 패키지와 세 개의 서브 패키지를 정의한다::"
+
+#: ../Doc/reference/import.rst:121
+msgid ""
+"Importing ``parent.one`` will implicitly execute ``parent/__init__.py`` "
+"and ``parent/one/__init__.py``.  Subsequent imports of ``parent.two`` or "
+"``parent.three`` will execute ``parent/two/__init__.py`` and "
+"``parent/three/__init__.py`` respectively."
+msgstr ""
+"``parent.one`` 을 임포트하면 ``parent/__init__.py`` 과 "
+"``parent/one/__init__.py`` 을 묵시적으로 실행한다. 뒤이은 ``parent.two`` 와 "
+"``parent.three`` 의 임포트는 각각 ``parent/two/__init__.py`` 와 "
+"``parent/three/__init__.py`` 를 실행한다."
+
+#: ../Doc/reference/import.rst:128
+msgid "Namespace packages"
+msgstr "이름 공간 패키지"
+
+#: ../Doc/reference/import.rst:134
+msgid ""
+"A namespace package is a composite of various :term:`portions <portion>`,"
+" where each portion contributes a subpackage to the parent package.  "
+"Portions may reside in different locations on the file system.  Portions "
+"may also be found in zip files, on the network, or anywhere else that "
+"Python searches during import.  Namespace packages may or may not "
+"correspond directly to objects on the file system; they may be virtual "
+"modules that have no concrete representation."
+msgstr ""
+"이름 공간 패키지는 여러 가지 :term:`포션 <portion>` 들의 복합체인데, 각 포션들은 부모 패키지의 서브 패키지로 이바지한다."
+" 포션들은 파일시스템의 다른 위치에 놓일 수 있다. 포션들은 zip 파일이나 네트워크나 파이썬이 임포트할 때 검색하는 어떤 다른 "
+"장소에서 발견될 수 있다. 이름 공간 패키지는 파일시스템의 객체와 직접적인 상관관계가 있을 수도 있고 그렇지 않을 수도 있다; "
+"구체적인 형태가 없는 가상 모듈일 수도 있다."
+
+#: ../Doc/reference/import.rst:142
+msgid ""
+"Namespace packages do not use an ordinary list for their ``__path__`` "
+"attribute. They instead use a custom iterable type which will "
+"automatically perform a new search for package portions on the next "
+"import attempt within that package if the path of their parent package "
+"(or :data:`sys.path` for a top level package) changes."
+msgstr ""
+"이름 공간 패키지는 ``__path__`` 어트리뷰트로 일반적인 리스트를 사용하지 않는다. 대신에 특별한 이터러블 형을 사용하는데, "
+"그 패키지 내의 다음 임포트 시도에서 그것의 부모 패키지(또는 최상위 패키지의 경우 :data:`sys.path`) 의 경로가 "
+"변했으면 패키지 포션에 대한 새 검색을 자동으로 수행하게 된다."
+
+#: ../Doc/reference/import.rst:148
+msgid ""
+"With namespace packages, there is no ``parent/__init__.py`` file.  In "
+"fact, there may be multiple ``parent`` directories found during import "
+"search, where each one is provided by a different portion.  Thus "
+"``parent/one`` may not be physically located next to ``parent/two``.  In "
+"this case, Python will create a namespace package for the top-level "
+"``parent`` package whenever it or one of its subpackages is imported."
+msgstr ""
+"이름 공간 패키지의 경우, ``parent/__init__.py`` 파일이 없다. 사실, 임포트 검색 동안 여러 개의 ``parent`"
+" 디렉터리가 발견될 수 있고, 각각의 것은 다른 포션들에 의해 제공된다. 그래서 ``parent/one`` 은 물리적으로 "
+"``parent/two`` 옆에 위치하지 않을 수 있다. 이 경우, 파이썬은 자신 또는 서브 패키지 중 어느 하나가 임포트 될 때마다"
+" 최상위 ``parent`` 패키지를 위한 이름 공간 패키지를 만든다."
+
+#: ../Doc/reference/import.rst:155
+msgid "See also :pep:`420` for the namespace package specification."
+msgstr "이름 공간 패키지의 규격은 :pep:`420` 을 참고하라."
+
+#: ../Doc/reference/import.rst:159
+msgid "Searching"
+msgstr "검색"
+
+#: ../Doc/reference/import.rst:161
+msgid ""
+"To begin the search, Python needs the :term:`fully qualified <qualified "
+"name>` name of the module (or package, but for the purposes of this "
+"discussion, the difference is immaterial) being imported.  This name may "
+"come from various arguments to the :keyword:`import` statement, or from "
+"the parameters to the :func:`importlib.import_module` or "
+":func:`__import__` functions."
+msgstr ""
+"검색을 시작하기 위해, 파이썬은 임포트될 모듈(또는 패키지, 하지만 이 논의에서 차이점은 중요하지 않다)의 완전히 "
+":term:`정규화된 이름 <qualified name>` 을 필요로 한다. 이 이름은 :keyword:`import` 문으로 "
+"제공된 여러 인자나, :func:`importlib.import_module` 나 :func:`__import__` 함수로 전달된 "
+"파라미터들로부터 온다."
+
+#: ../Doc/reference/import.rst:167
+msgid ""
+"This name will be used in various phases of the import search, and it may"
+" be the dotted path to a submodule, e.g. ``foo.bar.baz``.  In this case, "
+"Python first tries to import ``foo``, then ``foo.bar``, and finally "
+"``foo.bar.baz``. If any of the intermediate imports fail, a "
+":exc:`ModuleNotFoundError` is raised."
+msgstr ""
+"이 이름은 임포트 검색의 여러 단계에서 사용되는데, 서브 모듈로 가는 점으로 구분된 경로일 수 있다, 예를 들어 "
+"``foo.bar.baz``. 이 경우에, 파이썬은 먼저 ``foo`` 를, 그다음에 ``foo.bar`` 를, 마지막으로 "
+"``foo.bar.baz`` 를 임포트하려고 시도한다. 만약 중간 임포트가 어느 하나라도 실패한다면 "
+":exc:`ModuleNotFoundError` 가 발생한다."
+
+#: ../Doc/reference/import.rst:174
+msgid "The module cache"
+msgstr "모듈 캐시"
+
+#: ../Doc/reference/import.rst:179
+msgid ""
+"The first place checked during import search is :data:`sys.modules`.  "
+"This mapping serves as a cache of all modules that have been previously "
+"imported, including the intermediate paths.  So if ``foo.bar.baz`` was "
+"previously imported, :data:`sys.modules` will contain entries for "
+"``foo``, ``foo.bar``, and ``foo.bar.baz``.  Each key will have as its "
+"value the corresponding module object."
+msgstr ""
+"임포트 검색 도중 처음으로 검사되는 장소는 :data:`sys.modules` 다. 이 매핑은 중간 경로들을 포함해서 전에 임포트된"
+" 모든 모듈의 캐시로 기능한다. 그래서 만약 ``foo.bar.baz`` 가 앞서 임포트 되었다면, "
+":data:`sys.modules` 는 ``foo``, ``foo.bar``, ``foo.bar.baz`` 항목들을 포함한다. 각 "
+"키에 대응하는 값들은 모듈 객체다."
+
+#: ../Doc/reference/import.rst:186
+msgid ""
+"During import, the module name is looked up in :data:`sys.modules` and if"
+" present, the associated value is the module satisfying the import, and "
+"the process completes.  However, if the value is ``None``, then a "
+":exc:`ModuleNotFoundError` is raised.  If the module name is missing, "
+"Python will continue searching for the module."
+msgstr ""
+"임포트하는 동안, 모듈 이름을 :data:`sys.modules` 에서 찾고, 만약 있다면 해당 값이 임포트를 만족하는 모듈이고, "
+"프로세스는 완료된다. 하지만 값이 ``None`` 이면, :exc:`ModuleNotFoundError`  를 일으킨다. 만약 모듈"
+" 이름이 없다면, 파이썬은 모듈 검색을 계속 진행한다."
+
+#: ../Doc/reference/import.rst:192
+msgid ""
+":data:`sys.modules` is writable.  Deleting a key may not destroy the "
+"associated module (as other modules may hold references to it), but it "
+"will invalidate the cache entry for the named module, causing Python to "
+"search anew for the named module upon its next import. The key can also "
+"be assigned to ``None``, forcing the next import of the module to result "
+"in a :exc:`ModuleNotFoundError`."
+msgstr ""
+":data:`sys.modules` 은 쓰기가 허락된다. 키를 삭제해도 해당 모듈을 파괴하지는 않지만(다른 모듈들이 아직 그 모듈에"
+" 대한 참조를 유지하고 있을 수 있으므로), 해당 이름의 모듈에 대한 캐시를 무효화해서, 다음 임포트때 파이썬으로 하여금 그 "
+"모듈을 다시 찾도록 만든다. 키에는 ``None`` 을 대입할 수도 있는데, 다음 임포트 때 "
+":exc:`ModuleNotFoundError` 가 일어나도록 만든다."
+
+#: ../Doc/reference/import.rst:199
+msgid ""
+"Beware though, as if you keep a reference to the module object, "
+"invalidate its cache entry in :data:`sys.modules`, and then re-import the"
+" named module, the two module objects will *not* be the same. By "
+"contrast, :func:`importlib.reload` will reuse the *same* module object, "
+"and simply reinitialise the module contents by rerunning the module's "
+"code."
+msgstr ""
+"모듈 객체에 대한 참조를 유지한다면, :data:`sys.modules` 의 캐시 항목을 무효로 한 후 다시 임포트하면 두 모듈 "
+"객체는 같은 것이 아니게 됨에 주의해야 한다. 반면에 :func:`importlib.reload` 는 같은 모듈 객체를 재사용하고, "
+"간단하게 모듈의 코드를 다시 실행해서 모듈의 내용을 다시 초기화한다."
+
+#: ../Doc/reference/import.rst:207
+msgid "Finders and loaders"
+msgstr "파인더(finder)와 로더(loader)"
+
+#: ../Doc/reference/import.rst:214
+msgid ""
+"If the named module is not found in :data:`sys.modules`, then Python's "
+"import protocol is invoked to find and load the module.  This protocol "
+"consists of two conceptual objects, :term:`finders <finder>` and "
+":term:`loaders <loader>`. A finder's job is to determine whether it can "
+"find the named module using whatever strategy it knows about. Objects "
+"that implement both of these interfaces are referred to as "
+":term:`importers <importer>` - they return themselves when they find that"
+" they can load the requested module."
+msgstr ""
+"모듈이 :data:`sys.modules` 에서 발견되지 않으면, 모듈을 찾아서 로드하기 위해 파이썬의 임포트 프로토콜이 구동된다."
+" 이 프로토콜은 두 개의 개념적 객체들로 구성되어 있다, :term:`파인더 <finder>` 와 :term:`로더 "
+"<loader>`. 파인더의 일은 자신이 알고 있는 전략을 사용해, 주어진 이름의 모듈을 찾을 수 있는지 결정하는 것이다. 두 "
+"인터페이스 모두를 구현한 객체들을 :term:`임포터 <importer>` 라고 부른다 - 요청한 모듈을 로딩할 수 있다고 판단할 "
+"때 자신을 돌려준다."
+
+#: ../Doc/reference/import.rst:222
+msgid ""
+"Python includes a number of default finders and importers.  The first one"
+" knows how to locate built-in modules, and the second knows how to locate"
+" frozen modules.  A third default finder searches an :term:`import path` "
+"for modules.  The :term:`import path` is a list of locations that may "
+"name file system paths or zip files.  It can also be extended to search "
+"for any locatable resource, such as those identified by URLs."
+msgstr ""
+"파이썬은 여러 가지 기본 파인더들과 임포터들을 포함하고 있다. 첫 번째 것은 내장 모듈들의 위치를 찾을 수 있고, 두 번째 것은 프로즌 "
+"모듈(frozen module)의 위치를 찾을 수 있고, 세 번째 것은 모듈을 :term:`임포트 경로 <import path>` "
+"에서 검색한다. :term:`임포트 경로 <import path>` 는 파일 시스템의 경로나 zip 파일을 가리키는 위치들의 "
+"목록이다. 그것은 URL로 식별될 수 있는 것들처럼, 위치가 지정될 수 있는 자원들을 검색하도록 확장될 수 있다."
+
+#: ../Doc/reference/import.rst:229
+msgid ""
+"The import machinery is extensible, so new finders can be added to extend"
+" the range and scope of module searching."
+msgstr "임포트 절차는 확장 가능해서, 모듈 검색의 범위를 확대하기       위해 새 파인더를 추가할 수 있다."
+
+#: ../Doc/reference/import.rst:232
+msgid ""
+"Finders do not actually load modules.  If they can find the named module,"
+" they return a :dfn:`module spec`, an encapsulation of the module's "
+"import-related information, which the import machinery then uses when "
+"loading the module."
+msgstr ""
+"파인더는 실제로 모듈을 로드하지는 않는다. 주어진 이름의 모듈을 찾으면 임포트와 관련된 정보들을 요약한 :dfn:`모듈 스펙 "
+"(module spec)` 을 돌려주는데, 임포트 절차는 모듈을 로딩할 때 이것을 사용하게 된다."
+
+#: ../Doc/reference/import.rst:236
+msgid ""
+"The following sections describe the protocol for finders and loaders in "
+"more detail, including how you can create and register new ones to extend"
+" the import machinery."
+msgstr ""
+"다음 섹션은 파인더와 로더의 프로토콜에 대해 좀 더 자세히 설명하는데, 임포트 절차를 확장하기 위해 어떻게 새로운 것들을 만들고 "
+"등록하는지를 포함한다."
+
+#: ../Doc/reference/import.rst:240
+msgid ""
+"In previous versions of Python, finders returned :term:`loaders <loader>`"
+" directly, whereas now they return module specs which *contain* loaders. "
+"Loaders are still used during import but have fewer responsibilities."
+msgstr ""
+"이전 버전의 파이썬에서, 파인더가 :term:`로더 <loader>` 를 직접 돌려주었지만, 이제는 로더를 *포함하고* 있는 모듈 "
+"스펙을 돌려준다. 임포트 도중 로더가 아직 사용되기는 하지만 그 역할은 축소되었다."
+
+#: ../Doc/reference/import.rst:246
+msgid "Import hooks"
+msgstr "임포트 훅(import hooks)"
+
+#: ../Doc/reference/import.rst:256
+msgid ""
+"The import machinery is designed to be extensible; the primary mechanism "
+"for this are the *import hooks*.  There are two types of import hooks: "
+"*meta hooks* and *import path hooks*."
+msgstr ""
+"임포트 절차는 확장할 수 있도록 설계되었다; 일차적인 메커니즘은 *임포트 훅(import hook)* 이다. 두 가지 종류의 임포트 "
+"훅이 있다: *메타 훅(meta hook)* 과 *임포트 경로 훅(import path hook)*."
+
+#: ../Doc/reference/import.rst:260
+msgid ""
+"Meta hooks are called at the start of import processing, before any other"
+" import processing has occurred, other than :data:`sys.modules` cache "
+"look up. This allows meta hooks to override :data:`sys.path` processing, "
+"frozen modules, or even built-in modules.  Meta hooks are registered by "
+"adding new finder objects to :data:`sys.meta_path`, as described below."
+msgstr ""
+"메타 훅은 임포트 처리의 처음에, :data:`sys.modules` 캐시 조회를 제외한 다른 임포트 처리들이 시작되기 전에 "
+"호출된다. 이것은 메타 훅이 :data:`sys.path` 처리, 프로즌 모듈, 내장 모듈들을 재정의할 수 있게 한다. 다음에 "
+"설명하듯이, 메타 훅은 :data:`sys.meta_path` 에 새 파인더 객체를 추가하는 방법으로 등록할 수 있다."
+
+#: ../Doc/reference/import.rst:266
+msgid ""
+"Import path hooks are called as part of :data:`sys.path` (or "
+"``package.__path__``) processing, at the point where their associated "
+"path item is encountered.  Import path hooks are registered by adding new"
+" callables to :data:`sys.path_hooks` as described below."
+msgstr ""
+"임포트 경로 훅은 :data:`sys.path` (혹은 ``package.__path__``) 처리 일부로, 관련된 경로 항목을 "
+"만나는 시점에 호출된다. 다음에 설명하듯이, 임포트 경로 훅은 :data:`sys.path_hooks` 에 새 콜러블을 추가하는 "
+"방법으로 등록할 수 있다."
+
+#: ../Doc/reference/import.rst:273
+msgid "The meta path"
+msgstr "메타 경로(meta path)"
+
+#: ../Doc/reference/import.rst:279
+msgid ""
+"When the named module is not found in :data:`sys.modules`, Python next "
+"searches :data:`sys.meta_path`, which contains a list of meta path finder"
+" objects.  These finders are queried in order to see if they know how to "
+"handle the named module.  Meta path finders must implement a method "
+"called :meth:`~importlib.abc.MetaPathFinder.find_spec()` which takes "
+"three arguments: a name, an import path, and (optionally) a target "
+"module.  The meta path finder can use any strategy it wants to determine "
+"whether it can handle the named module or not."
+msgstr ""
+"주어진 이름의 모듈을 :data:`sys.modules` 에서 찾을 수 없을 때, 파이썬은 :data:`sys.meta_path` "
+"를 검색하는데, 메타 경로 파인더 객체들의 목록을 포함하고 있다. 이 파인더들이 주어진 이름의 모듈을 처리하는 방법을 알고 있는지 "
+"확인하도록 요청한다. 메타 경로 파인더들은 :meth:`~importlib.abc.MetaPathFinder.find_spec()`"
+" 라는 이름의 메서드를 구현해야만 하는데, 세 개의 인자를 받아들인다: 이름, 임포트 경로, (생략 가능한) 타깃(target) "
+"모듈. 메타 경로 파인더는 주어진 이름의 모듈을 처리할 수 있는지를 결정하기 위해 어떤 전략이건 사용할 수 있다."
+
+#: ../Doc/reference/import.rst:288
+msgid ""
+"If the meta path finder knows how to handle the named module, it returns "
+"a spec object.  If it cannot handle the named module, it returns "
+"``None``.  If :data:`sys.meta_path` processing reaches the end of its "
+"list without returning a spec, then a :exc:`ModuleNotFoundError` is "
+"raised.  Any other exceptions raised are simply propagated up, aborting "
+"the import process."
+msgstr ""
+"만약 메타 경로 파인더가 주어진 이름의 모듈을 처리하는 법을 안다면, 스펙 객체를 돌려준다. 그럴 수 없다면 ``None`` 을 "
+"돌려준다. 만약 :data:`sys.meta_path` 처리가 스펙을 돌려주지 못하고 목록의 끝에 도달하면, "
+":exc:`ModuleNotFoundError` 를 일으킨다. 발생하는 다른 예외들은 그냥 확산시키고, 임포트 프로세스를 중단한다."
+
+#: ../Doc/reference/import.rst:294
+msgid ""
+"The :meth:`~importlib.abc.MetaPathFinder.find_spec()` method of meta path"
+" finders is called with two or three arguments.  The first is the fully "
+"qualified name of the module being imported, for example ``foo.bar.baz``."
+" The second argument is the path entries to use for the module search.  "
+"For top-level modules, the second argument is ``None``, but for "
+"submodules or subpackages, the second argument is the value of the parent"
+" package's ``__path__`` attribute. If the appropriate ``__path__`` "
+"attribute cannot be accessed, a :exc:`ModuleNotFoundError` is raised.  "
+"The third argument is an existing module object that will be the target "
+"of loading later. The import system passes in a target module only during"
+" reload."
+msgstr ""
+"메타 경로 파인더의 :meth:`~importlib.abc.MetaPathFinder.find_spec()` 메서드는 두 개나 세 개의"
+" 인자로 호출된다. 첫 번째 인자는 모듈의 완전히 정규화된 이름(fully qualified name)이다, 예를 들어 "
+"``foo.bar.baz``. 두 번째 인자는 모듈 검색에 사용할 경로 엔트리다. 최상위 모듈이 경우 두 번째 인자는 "
+"``None`` 이지만, 서브 모듈이나 서브 패키지의 경우 두 번째 인자는 부모 패키지의 ``__path__`` 어트리뷰트 값이다. "
+"만약 적절한 ``__path__`` 어트리뷰트를 참조할 수 없으면 :exc:`ModuleNotFoundError` 를 일으킨다. "
+"세 번째 인자는 이미 존재하는 모듈 객체인데, 뒤에서 로딩할 대상이 된다. 임포트 시스템은 다시 로드(reload)할 때만 타깃을 전달한다."
+
+#: ../Doc/reference/import.rst:305
+msgid ""
+"The meta path may be traversed multiple times for a single import "
+"request. For example, assuming none of the modules involved has already "
+"been cached, importing ``foo.bar.baz`` will first perform a top level "
+"import, calling ``mpf.find_spec(\"foo\", None, None)`` on each meta path "
+"finder (``mpf``). After ``foo`` has been imported, ``foo.bar`` will be "
+"imported by traversing the meta path a second time, calling "
+"``mpf.find_spec(\"foo.bar\", foo.__path__, None)``. Once ``foo.bar`` has "
+"been imported, the final traversal will call "
+"``mpf.find_spec(\"foo.bar.baz\", foo.bar.__path__, None)``."
+msgstr ""
+"메타 경로는 한 번의 임포트 요청에 대해 여러 번 탐색 될 수 있다. 예를 들어, 대상 모듈들이 아무것도 캐싱 되지 않았다고 할 때, "
+"``foo.bar.baz`` 를 임포트 하려면, 먼저 각 메타 경로 파인더 (``mpf``)들에 대해 "
+"``mpf.find_spec(\"foo\", None, None)`` 를 호출해서 최상위 임포트를 수행한다. ``foo`` 가 "
+"임포트 된 후에, 메타 경로를 두 번째 탐색해서 ``foo.bar`` 를 임포트 하는데, "
+"``mpf.find_spec(\"foo.bar\", foo.__path__, None)`` 를 호출한다. 일단 ``foo.bar``"
+" 가 임포트 되면, 마지막 탐색은 ``mpf.find_spec(\"foo.bar.baz\", foo.bar.__path__, "
+"None)`` 를 호출한다."
+
+#: ../Doc/reference/import.rst:315
+msgid ""
+"Some meta path finders only support top level imports. These importers "
+"will always return ``None`` when anything other than ``None`` is passed "
+"as the second argument."
+msgstr ""
+"어떤 메타 경로 파인더들은 오직 최상위 임포트만 지원한다. 이런 임포터들은 두 번째 인자로 ``None`` 이 아닌 것이 오면 항상"
+" ``None`` 을 돌려준다."
+
+#: ../Doc/reference/import.rst:319
+msgid ""
+"Python's default :data:`sys.meta_path` has three meta path finders, one "
+"that knows how to import built-in modules, one that knows how to import "
+"frozen modules, and one that knows how to import modules from an "
+":term:`import path` (i.e. the :term:`path based finder`)."
+msgstr ""
+"파이썬의 기본 :data:`sys.meta_path` 는 세 개의 메타 경로 파인더를 갖고 있다. 하나는 내장 모듈을 임포트하는 "
+"법을 알고, 하나는 프로즌 모듈을 임포트하는 법을 알고, 하나는 :term:`임포트 경로 <import path>` 에서 모듈을 "
+"임포트하는 법을 안다(즉 :term:`경로 기반 파인더 <path based finder>`)."
+
+#: ../Doc/reference/import.rst:324
+msgid ""
+"The :meth:`~importlib.abc.MetaPathFinder.find_spec` method of meta path "
+"finders replaced :meth:`~importlib.abc.MetaPathFinder.find_module`, which"
+" is now deprecated.  While it will continue to work without change, the "
+"import machinery will try it only if the finder does not implement "
+"``find_spec()``."
+msgstr ""
+"메타 경로 파인더의 :meth:`~importlib.abc.MetaPathFinder.find_spec` 메서드가 이제 "
+"디프리케이트된(deprecated) :meth:`~importlib.abc.MetaPathFinder.find_module` 을 "
+"대체한다. 변경 없이도 동작하기는 하지만, 임포트 절차는 파인더가 ``find_spec()`` 을 구현하지 않았을 때만 "
+"``find_module()`` 을 사용한다."
+
+#: ../Doc/reference/import.rst:333
+msgid "Loading"
+msgstr "로딩(loading)"
+
+#: ../Doc/reference/import.rst:335
+msgid ""
+"If and when a module spec is found, the import machinery will use it (and"
+" the loader it contains) when loading the module.  Here is an "
+"approximation of what happens during the loading portion of import::"
+msgstr ""
+"모듈 스펙이 발견되면, 임포트 절차는 모듈을 로딩할 때 그것(그것이 가진 로더도)을 사용한다. 여기에 임포트의 로딩 "
+"과정 동안 일어나는 일에 대한 대략적인 그림이 있다::"
+
+#: ../Doc/reference/import.rst:370
+msgid "Note the following details:"
+msgstr "다음과 같은 세부 사항에 주의해야 한다:"
+
+#: ../Doc/reference/import.rst:372
+msgid ""
+"If there is an existing module object with the given name in "
+":data:`sys.modules`, import will have already returned it."
+msgstr "만약 주어진 이름의 모듈이 :data:`sys.modules` 에 있다면, 임포트는 이미 그걸 돌려줬다."
+
+#: ../Doc/reference/import.rst:375
+msgid ""
+"The module will exist in :data:`sys.modules` before the loader executes "
+"the module code.  This is crucial because the module code may (directly "
+"or indirectly) import itself; adding it to :data:`sys.modules` beforehand"
+" prevents unbounded recursion in the worst case and multiple loading in "
+"the best."
+msgstr ""
+"로더가 모듈을 실행하기 전에 모듈은 :data:`sys.modules` 에 자리를 잡는다. 이것은 필수적인데 모듈이 (직접적 혹은"
+" 간접적으로) 자신을 임포트할 수 있기 때문이다; 먼저 :data:`sys.modules` 에 추가함으로써 최악의 상황에 제한 없는"
+" 재귀(recursion)를 방지하고, 최선의 상황에 여러 번 로딩되는 것을 막는다."
+
+#: ../Doc/reference/import.rst:381
+msgid ""
+"If loading fails, the failing module -- and only the failing module -- "
+"gets removed from :data:`sys.modules`.  Any module already in the "
+":data:`sys.modules` cache, and any module that was successfully loaded as"
+" a side-effect, must remain in the cache.  This contrasts with reloading "
+"where even the failing module is left in :data:`sys.modules`."
+msgstr ""
+"로딩이 실패하면, 실패한 모듈(오직 실패한 모듈만)은 :data:`sys.modules` 에서 삭제된다. "
+":data:`sys.modules` 캐시에 이미 있는 모듈과 부수적 효과로 성공적으로 로딩된 모듈들은 캐시에 남아있어야만 한다. 이는"
+" 실패한 모듈조차 :data:`sys.modules` 에 남아있게 되는 리로딩과 대비된다."
+
+#: ../Doc/reference/import.rst:387
+msgid ""
+"After the module is created but before execution, the import machinery "
+"sets the import-related module attributes (\"_init_module_attrs\" in the "
+"pseudo-code example above), as summarized in a :ref:`later section "
+"<import-mod-attrs>`."
+msgstr ""
+"모듈이 만들어졌지만, 아직 실행되기 전에, :ref:`뒤의 섹션 <import-mod-attrs>` 에서 요약되듯이, 임포트 절차는 "
+"임포트 관련 모듈 어트리뷰트들을 설정한다(위의 의사 코드 예에서 \\“_init_module_attrs\\”)."
+
+#: ../Doc/reference/import.rst:392
+msgid ""
+"Module execution is the key moment of loading in which the module's "
+"namespace gets populated.  Execution is entirely delegated to the loader,"
+" which gets to decide what gets populated and how."
+msgstr ""
+"모듈 실행은 로딩에서 모듈의 이름 공간이 채워지는 결정적 순간이다. 실행은 전적으로 로더에 위임되는데, 로더가 어떤 것이 어떻게 "
+"채워져야 하는지 결정한다."
+
+#: ../Doc/reference/import.rst:396
+msgid ""
+"The module created during loading and passed to exec_module() may not be "
+"the one returned at the end of import [#fnlo]_."
+msgstr "로딩 동안 만들어지고 exec_module() 로 전달되는 모듈은 임포트의 끝에 반환되는 것이 아닐 수 있다 [#fnlo]_."
+
+#: ../Doc/reference/import.rst:399
+msgid ""
+"The import system has taken over the boilerplate responsibilities of "
+"loaders.  These were previously performed by the "
+":meth:`importlib.abc.Loader.load_module` method."
+msgstr ""
+"임포트 시스템이 기초 공사에 대한 로더의 책임을 들고 갔다. 이것들은 전에는 "
+":meth:`importlib.abc.Loader.load_module` 메서드에서 수행되었다."
+
+#: ../Doc/reference/import.rst:405
+msgid "Loaders"
+msgstr "로더"
+
+#: ../Doc/reference/import.rst:407
+msgid ""
+"Module loaders provide the critical function of loading: module "
+"execution. The import machinery calls the "
+":meth:`importlib.abc.Loader.exec_module` method with a single argument, "
+"the module object to execute.  Any value returned from "
+":meth:`~importlib.abc.Loader.exec_module` is ignored."
+msgstr ""
+"모듈 로더는 로딩의 결정적인 기능을 제공한다: 모듈 실행. 임포트 절차는 하나의 인자로 "
+":meth:`importlib.abc.Loader.exec_module` 메서드를 호출하는데, 실행할 모듈 객체가 전달된다. "
+":meth:`~importlib.abc.Loader.exec_module` 이 돌려주는 값은 무시된다."
+
+#: ../Doc/reference/import.rst:412
+msgid "Loaders must satisfy the following requirements:"
+msgstr "로더는 다음과 같은 요구 조건들을 만족해야 한다:"
+
+#: ../Doc/reference/import.rst:414
+msgid ""
+"If the module is a Python module (as opposed to a built-in module or a "
+"dynamically loaded extension), the loader should execute the module's "
+"code in the module's global name space (``module.__dict__``)."
+msgstr ""
+"만약 모듈이 파이썬 모듈(내장 모듈이나 동적으로 로딩되는 확장이 아니라)이면, 로더는 모듈의 코드를 모듈의 전역 "
+"이름 공간(``module.__dict__``)에서 실행해야 한다."
+
+#: ../Doc/reference/import.rst:418
+msgid ""
+"If the loader cannot execute the module, it should raise an "
+":exc:`ImportError`, although any other exception raised during "
+":meth:`~importlib.abc.Loader.exec_module` will be propagated."
+msgstr ""
+"만약 로더가 모듈을 실행하지 못하면, :exc:`ImportError` 를 일으켜야 한다. 하지만 "
+":meth:`~importlib.abc.Loader.exec_module` 동안 발생하는 다른 예외도 전파된다."
+
+#: ../Doc/reference/import.rst:422
+msgid ""
+"In many cases, the finder and loader can be the same object; in such "
+"cases the :meth:`~importlib.abc.MetaPathFinder.find_spec` method would "
+"just return a spec with the loader set to ``self``."
+msgstr ""
+"많은 경우에, 파인더와 로더는 같은 객체다; 그런 경우 "
+":meth:`~importlib.abc.MetaPathFinder.find_spec` 메서드는 로더가 ``self`` 로 설정된 "
+"스펙을 돌려준다."
+
+#: ../Doc/reference/import.rst:426
+msgid ""
+"Module loaders may opt in to creating the module object during loading by"
+" implementing a :meth:`~importlib.abc.Loader.create_module` method. It "
+"takes one argument, the module spec, and returns the new module object to"
+" use during loading.  ``create_module()`` does not need to set any "
+"attributes on the module object.  If the method returns ``None``, the "
+"import machinery will create the new module itself."
+msgstr ""
+"모듈 로더는 :meth:`~importlib.abc.Loader.create_module` 메서드를 구현함으로써 로딩하는 동안 모듈"
+" 객체를 만드는 일에 개입할 수 있다. 하나의 인자, 모듈 스펙, 을 받아들이고 로딩 중 사용할 모듈 객체를 돌려준다. "
+"``create_module()`` 은 모듈 객체의 어트리뷰트를 설정할 필요는 없다. 만약 메서드가 ``None`` 을 돌려주면, "
+"임포트 절차는 새 모듈을 스스로 만든다."
+
+#: ../Doc/reference/import.rst:433
+msgid "The :meth:`~importlib.abc.Loader.create_module` method of loaders."
+msgstr "로더의 :meth:`~importlib.abc.Loader.create_module` 메서드."
+
+#: ../Doc/reference/import.rst:436
+msgid ""
+"The :meth:`~importlib.abc.Loader.load_module` method was replaced by "
+":meth:`~importlib.abc.Loader.exec_module` and the import machinery "
+"assumed all the boilerplate responsibilities of loading."
+msgstr ""
+":meth:`~importlib.abc.Loader.load_module` 메서드는 "
+":meth:`~importlib.abc.Loader.exec_module` 로 대체되었고, 임포트 절차가 로딩의 공통 "
+"코드(boilerplate)에 대한 책임을 진다."
+
+#: ../Doc/reference/import.rst:441
+msgid ""
+"For compatibility with existing loaders, the import machinery will use "
+"the ``load_module()`` method of loaders if it exists and the loader does "
+"not also implement ``exec_module()``.  However, ``load_module()`` has "
+"been deprecated and loaders should implement ``exec_module()`` instead."
+msgstr ""
+"이미 존재하는 로더들과의 호환을 위해, 임포트 절차는 ``load_module()`` 메서드가 존재하고, "
+"``exec_module()`` 을 구현하지 않았으면 ``load_module()`` 을 사용한다. 하지만 "
+"``load_module()`` 은 디프리케이트되었다. 로더는 대신 ``exec_module()`` 를 구현해야 한다."
+
+#: ../Doc/reference/import.rst:446
+msgid ""
+"The ``load_module()`` method must implement all the boilerplate loading "
+"functionality described above in addition to executing the module.  All "
+"the same constraints apply, with some additional clarification:"
+msgstr ""
+"``load_module()`` 메서드는 모듈을 실행하는 것 외에 위에서 언급한 모든 공통(boilerplate) 로딩 기능을 "
+"구현해야만 한다. 같은 제약들이 모두 적용되는데, 추가적인 설명을 붙여보면:"
+
+#: ../Doc/reference/import.rst:450
+msgid ""
+"If there is an existing module object with the given name in "
+":data:`sys.modules`, the loader must use that existing module. "
+"(Otherwise, :func:`importlib.reload` will not work correctly.)  If the "
+"named module does not exist in :data:`sys.modules`, the loader must "
+"create a new module object and add it to :data:`sys.modules`."
+msgstr ""
+"만약 :data:`sys.modules` 에 주어진 이름의 모듈 객체가 이미 존재하면, 로더는 반드시 그 객체를 사용해야 한다. "
+"(그렇지 않으면, :func:`importlib.reload` 이 올바로 동작하지 않게 된다.) 만약 "
+":data:`sys.modules` 에 주어진 이름의 모듈이 없으면, 로더는 새 모듈객체를 만들고 "
+":data:`sys.modules` 에 추가해야 한다."
+
+#: ../Doc/reference/import.rst:456
+msgid ""
+"The module *must* exist in :data:`sys.modules` before the loader executes"
+" the module code, to prevent unbounded recursion or multiple loading."
+msgstr ""
+"제한 없는 재귀와 여러 번 로딩되는 것을 방지하기 위해, 로더가 모듈 코드를 실행하기 전에 모듈이 :data:`sys.modules` "
+"에 존재해야 한다."
+
+#: ../Doc/reference/import.rst:460
+msgid ""
+"If loading fails, the loader must remove any modules it has inserted into"
+" :data:`sys.modules`, but it must remove **only** the failing module(s), "
+"and only if the loader itself has loaded the module(s) explicitly."
+msgstr ""
+"만약 로딩이 실패하면, 로더는 :data:`sys.modules` 에 삽입한 모듈들을 제거해야 하는데, 실패한 모듈만을 "
+"제거해야 하고, 로더가 그 모듈을 직접 명시적으로 로드한 경우에만 그래야 한다."
+
+#: ../Doc/reference/import.rst:465
+msgid ""
+"A :exc:`DeprecationWarning` is raised when ``exec_module()`` is defined "
+"but ``create_module()`` is not."
+msgstr ""
+"``exec_module()`` 이 정의되었지만 ``create_module()`` 이 정의되지 않으면 "
+":exc:`DeprecationWarning` 이 발생한다."
+
+#: ../Doc/reference/import.rst:469
+msgid ""
+"An :exc:`ImportError` is raised when ``exec_module()`` is defined but "
+"``create_module()`` is not."
+msgstr ""
+"``exec_module()`` 이 정의되었지만 ``create_module()`` 이 정의되지 않으면 "
+":exc:`ImportError` 를 일으킨다."
+
+#: ../Doc/reference/import.rst:474
+msgid "Submodules"
+msgstr "서브 모듈"
+
+#: ../Doc/reference/import.rst:476
+msgid ""
+"When a submodule is loaded using any mechanism (e.g. ``importlib`` APIs, "
+"the ``import`` or ``import-from`` statements, or built-in "
+"``__import__()``) a binding is placed in the parent module's namespace to"
+" the submodule object. For example, if package ``spam`` has a submodule "
+"``foo``, after importing ``spam.foo``, ``spam`` will have an attribute "
+"``foo`` which is bound to the submodule.  Let's say you have the "
+"following directory structure::"
+msgstr ""
+"어떤 메커니즘으로든 (예를 들어, ``importlib`` API들, ``import`` 나 ``import-from`` 문, 내장 "
+"``__import__()``) 서브 모듈이 로드될 때, 서브 모듈 객체로의 연결은 부모 모듈의 이름 공간에 이루어진다. 예를 들어, "
+"패키지 ``spam`` 이 서브 모듈 ``foo`` 를 가지면, ``spam.foo`` 를 임포트한 후에는 ``spam`` 이 "
+"서브 모듈에 연결된 어트리뷰트 ``foo`` 를 갖게 된다. 다음과 같은 디렉터리 구조로 되어 있다고 하자::"
+
+#: ../Doc/reference/import.rst:488
+msgid "and ``spam/__init__.py`` has the following lines in it::"
+msgstr "그리고 ``spam/__init__.py`` 가 다음과 같은 줄들을 포함한다고 하자::"
+
+#: ../Doc/reference/import.rst:493
+msgid ""
+"then executing the following puts a name binding to ``foo`` and ``bar`` "
+"in the ``spam`` module::"
+msgstr "그러면 다음과 같이 실행하면 ``spam`` 모듈에 ``foo`` 와 ``bar`` 에 대한 이름 연결이 일어난다."
+
+#: ../Doc/reference/import.rst:502
+msgid ""
+"Given Python's familiar name binding rules this might seem surprising, "
+"but it's actually a fundamental feature of the import system.  The "
+"invariant holding is that if you have ``sys.modules['spam']`` and "
+"``sys.modules['spam.foo']`` (as you would after the above import), the "
+"latter must appear as the ``foo`` attribute of the former."
+msgstr ""
+"파이썬의 익숙한 이름 연결 규칙에서 볼 때 의외의 결과로 보일 수 있다. 하지만 실제로는 임포트 시스템의 근본적인 기능이다. 불변의 "
+"규칙은 이렇다: 만약 ``sys.modules['spam']`` 과 ``sys.modules['spam.foo']`` 가 있다면 "
+"(위의 임포트 이후의 상태가 그러하다), 뒤에 있는 것은 반드시 앞에 있는 것의 ``foo`` 어트리뷰트가 되어야 한다."
+
+#: ../Doc/reference/import.rst:509
+msgid "Module spec"
+msgstr "모듈 스펙"
+
+#: ../Doc/reference/import.rst:511
+msgid ""
+"The import machinery uses a variety of information about each module "
+"during import, especially before loading.  Most of the information is "
+"common to all modules.  The purpose of a module's spec is to encapsulate "
+"this import-related information on a per-module basis."
+msgstr ""
+"임포트 절차는 임포트 동안 각 모듈에 대한 다양한 정보들을 사용한다, 특히 로딩 전에. 대부분 정보는 모든 모듈의 공통이다. 모듈"
+" 스펙의 목적은 이 임포트 관련 정보를 모듈별로 요약하는 것이다."
+
+#: ../Doc/reference/import.rst:516
+msgid ""
+"Using a spec during import allows state to be transferred between import "
+"system components, e.g. between the finder that creates the module spec "
+"and the loader that executes it.  Most importantly, it allows the import "
+"machinery to perform the boilerplate operations of loading, whereas "
+"without a module spec the loader had that responsibility."
+msgstr ""
+"임포트 동안 스펙을 사용하면 상태가 임포트 시스템의 구성 요소들로 전달될 수 있다, 예를 들어 모듈 스펙을 만드는 파인더와 그것을 "
+"실행하는 로더 간에. 가장 중요한 것은, 임포트 절차가 로딩의 공통 연산(boilerplate operation)을 수행할 수 있도록"
+" 하는 것이다. 모듈 스펙이 없다면 로더가 모든 책임을 지게 된다."
+
+#: ../Doc/reference/import.rst:522
+msgid ""
+"The module's spec is exposed as the ``__spec__`` attribute on a module "
+"object. See :class:`~importlib.machinery.ModuleSpec` for details on the "
+"contents of the module spec."
+msgstr ""
+"모듈의 스펙은 모듈 객체의 ``__spec__`` 어트리뷰트로 노출된다. 모듈 스펙의 내용에 대한 세부 "
+"사항은 :class:`~importlib.machinery.ModuleSpec` 을 보면 된다."
+
+#: ../Doc/reference/import.rst:531
+msgid "Import-related module attributes"
+msgstr "임포트 관련 모듈 어트리뷰트"
+
+#: ../Doc/reference/import.rst:533
+msgid ""
+"The import machinery fills in these attributes on each module object "
+"during loading, based on the module's spec, before the loader executes "
+"the module."
+msgstr "임포트 절차는 로딩하는 동안 로더가 모듈을 실행하기 전에 모듈의 스팩에 기초해서 각 모듈 객체에 이 어트리뷰트들을 채워 넣는다."
+
+#: ../Doc/reference/import.rst:539
+msgid ""
+"The ``__name__`` attribute must be set to the fully-qualified name of the"
+" module.  This name is used to uniquely identify the module in the import"
+" system."
+msgstr ""
+"``__name__`` 어트리뷰트는 모듈의 완전히 정규화된(fully-qualified) 이름으로 설정되어야 한다. 이 이름은 "
+"임포트 시스템이 모듈을 유일하게(uniquely) 식별하는 데 사용된다."
+
+#: ../Doc/reference/import.rst:545
+msgid ""
+"The ``__loader__`` attribute must be set to the loader object that the "
+"import machinery used when loading the module.  This is mostly for "
+"introspection, but can be used for additional loader-specific "
+"functionality, for example getting data associated with a loader."
+msgstr ""
+"``__loader__`` 어트리뷰트는 모듈을 로드할 때 임포트 절차가 사용한 로더 객체로 설정되어야 한다. 이것은 주로 "
+"인트로스펙션(introspection)을 위한 것이지만, 추가적인 로더에 국한된 기능들을 위한 것이기도 하다, 예를 들어 로더와 "
+"결합한 데이터를 얻는 것이 있다."
+
+#: ../Doc/reference/import.rst:552
+msgid ""
+"The module's ``__package__`` attribute must be set.  Its value must be a "
+"string, but it can be the same value as its ``__name__``.  When the "
+"module is a package, its ``__package__`` value should be set to its "
+"``__name__``.  When the module is not a package, ``__package__`` should "
+"be set to the empty string for top-level modules, or for submodules, to "
+"the parent package's name.  See :pep:`366` for further details."
+msgstr ""
+"모듈의 ``__package__`` 어트리뷰트는 반드시 설정되어야 한다. 값은 문자열이어야 하는데, ``__name__`` 과 같은"
+" 값일 수 있다. 모듈이 패키지일 때, ``__package__`` 값은 ``__name__`` 으로 설정되어야 한다. 모듈이 "
+"패키지가 아닐 때, 최상위 모듈이면 빈 문자열로 설정되고, 서브 모듈아면 부모 패키지의 이름으로 설정되어야 한다. 더 "
+"상세한 내용은 :pep:`366` 을 참고하면 된다."
+
+#: ../Doc/reference/import.rst:560
+msgid ""
+"This attribute is used instead of ``__name__`` to calculate explicit "
+"relative imports for main modules, as defined in :pep:`366`. It is "
+"expected to have the same value as ``__spec__.parent``."
+msgstr ""
+":pep:`366` 에 정의되어 있듯이, 메인 모듈에서 명시적인 상대 임포트를 계산할 때 ``__name__`` 대신 이 "
+"어트리뷰트가 사용된다. ``__spec__.parent`` 과 같은 값일 것으로 기대된다."
+
+#: ../Doc/reference/import.rst:564
+msgid ""
+"The value of ``__package__`` is expected to be the same as "
+"``__spec__.parent``."
+msgstr "``__package__`` 의 값이 ``__spec__.parent`` 과 같을 것으로 기대된다."
+
+#: ../Doc/reference/import.rst:570
+msgid ""
+"The ``__spec__`` attribute must be set to the module spec that was used "
+"when importing the module. Setting ``__spec__`` appropriately applies "
+"equally to :ref:`modules initialized during interpreter startup "
+"<programs>`.  The one exception is ``__main__``, where ``__spec__`` is "
+":ref:`set to None in some cases <main_spec>`."
+msgstr ""
+"``__spec__`` 어트리뷰트는 모듈을 임포트할 때 사용한 모듈 스펙으로 설정되어야 한다. ``__spec__`` 을 적절히 "
+"설정하는 것은 :ref:`인터프리터가 구동되는 동안 초기화되는 모듈들 <programs>` 에도 마찬가지로 적용된다. 한가지 예외는"
+" ``__main__`` 인데, 어떤 경우에 ``__spec__`` 이 :ref:`어떤 경우에 None 으로 설정된다 "
+"<main_spec>`."
+
+#: ../Doc/reference/import.rst:576
+msgid ""
+"When ``__package__`` is not defined, ``__spec__.parent`` is used as a "
+"fallback."
+msgstr "``__package__`` 가 정의되지 않으면, 대체물로 ``__spec__.parent`` 가 사용된다."
+
+#: ../Doc/reference/import.rst:581
+msgid ""
+"``__spec__.parent`` is used as a fallback when ``__package__`` is not "
+"defined."
+msgstr "``__package__`` 가 정의되지 않으면, 대체물로 ``__spec__.parent`` 가 사용된다."
+
+#: ../Doc/reference/import.rst:587
+msgid ""
+"If the module is a package (either regular or namespace), the module "
+"object's ``__path__`` attribute must be set.  The value must be iterable,"
+" but may be empty if ``__path__`` has no further significance. If "
+"``__path__`` is not empty, it must produce strings when iterated over. "
+"More details on the semantics of ``__path__`` are given :ref:`below "
+"<package-path-rules>`."
+msgstr ""
+"모듈이 패키지면 (정규 또는 이름 공간), 모듈 객체의 ``__path__`` 어트리뷰트가 반드시 설정되어야 한다. 값은 "
+"이터러블이어야 하는데, ``__path__`` 가 더는 의미가 없으면 빈 이터러블일 수 있다. 만약 ``__path__``"
+" 가 비어있지 않다면, 탐색할 때 문자열을 제공해야 한다. ``__path__`` 의 의미에 관한 자세한 내용은 :ref:`아래에 "
+"<package-path-rules>` 나온다."
+
+#: ../Doc/reference/import.rst:594
+msgid "Non-package modules should not have a ``__path__`` attribute."
+msgstr "패키지가 아닌 모듈은 ``__path__`` 어트리뷰트가 없어야 한다."
+
+#: ../Doc/reference/import.rst:599
+msgid ""
+"``__file__`` is optional. If set, this attribute's value must be a "
+"string.  The import system may opt to leave ``__file__`` unset if it has "
+"no semantic meaning (e.g. a module loaded from a database)."
+msgstr ""
+"``__file__`` 은 생략될 수 있다. 만약 설정되면, 이 어트리뷰트의 값은 문자열이어야 한다. 임포트 시스템은 의미가 없을"
+" 때(예를 들어 데이터베이스에서 로드된 모듈) ``__file__`` 을 설정하지 않을 수 있다."
+
+#: ../Doc/reference/import.rst:603
+msgid ""
+"If ``__file__`` is set, it may also be appropriate to set the "
+"``__cached__`` attribute which is the path to any compiled version of the"
+" code (e.g. byte-compiled file). The file does not need to exist to set "
+"this attribute; the path can simply point to where the compiled file "
+"would exist (see :pep:`3147`)."
+msgstr ""
+"만약 ``__file__`` 이 설정되면, ``__cached__`` 역시 설정하는 것이 적절할 수 있는데, 코드의 컴파일된 "
+"버전(예를 들어, 바이트 컴파일된 파일)을 가리키는 경로다. 이 어트리뷰트를 설정하기 위해 파일이 꼭 존재해야 할 필요는 없다; 경로는"
+" 단순히 컴파일된 파일이 있어야 할 곳을 가리킬 수 있다(:pep:`3147` 을 보라)."
+
+#: ../Doc/reference/import.rst:609
+msgid ""
+"It is also appropriate to set ``__cached__`` when ``__file__`` is not "
+"set.  However, that scenario is quite atypical.  Ultimately, the loader "
+"is what makes use of ``__file__`` and/or ``__cached__``.  So if a loader "
+"can load from a cached module but otherwise does not load from a file, "
+"that atypical scenario may be appropriate."
+msgstr ""
+"``__file__`` 이 설정되지 않을 때도, ``__cached__`` 를 설정하는 것이 적절할 수 있다. 하지만, 그런 "
+"시나리오는 아주 예외적이다. 궁극적으로, 로더가 ``__file__`` 이나 ``__cached__`` 혹은 둘 모두를 사용한다. "
+"그래서 로더가 캐싱된 모듈을 로드할 수는 있지만, 파일로부터 직접 로드할 수 없다면, 예외적인 시나리오가 적절할 수 있다."
+
+#: ../Doc/reference/import.rst:618
+msgid "module.__path__"
+msgstr "module.__path__"
+
+#: ../Doc/reference/import.rst:620
+msgid ""
+"By definition, if a module has a ``__path__`` attribute, it is a package,"
+" regardless of its value."
+msgstr "정의 때문에, 모듈이 ``__path__`` 를 가지면, 그 값과 관계없이 이 모듈은 패키지다."
+
+#: ../Doc/reference/import.rst:623
+msgid ""
+"A package's ``__path__`` attribute is used during imports of its "
+"subpackages. Within the import machinery, it functions much the same as "
+":data:`sys.path`, i.e. providing a list of locations to search for "
+"modules during import. However, ``__path__`` is typically much more "
+"constrained than :data:`sys.path`."
+msgstr ""
+"패키지의 ``__path__`` 어트리뷰트는 서브 패키지를 로딩할 때 사용한다. 임포트 절차 내에서, 임포트하는 동안 모듈을 검색할 "
+"위치들의 목록을 제공한다는 점에서 :data:`sys.path` 와 같은 기능을 갖는다. 하지만 ``__path__`` 는 보통 "
+":data:`sys.path` 보다 제약 조건이 많다."
+
+#: ../Doc/reference/import.rst:629
+msgid ""
+"``__path__`` must be an iterable of strings, but it may be empty. The "
+"same rules used for :data:`sys.path` also apply to a package's "
+"``__path__``, and :data:`sys.path_hooks` (described below) are consulted "
+"when traversing a package's ``__path__``."
+msgstr ""
+"``__path__`` 는 문자열의 이터러블이지만, 비어있을 수 있다. :data:`sys.path` 과 같은 규칙이 패키지의 "
+"``__path__`` 에도 적용되고, 패키지의 ``__path__`` 를 탐색하는 동안 :data:`sys.path_hooks` "
+"(아래에서 설명한다)에게 의견을 묻는다."
+
+#: ../Doc/reference/import.rst:634
+msgid ""
+"A package's ``__init__.py`` file may set or alter the package's "
+"``__path__`` attribute, and this was typically the way namespace packages"
+" were implemented prior to :pep:`420`.  With the adoption of :pep:`420`, "
+"namespace packages no longer need to supply ``__init__.py`` files "
+"containing only ``__path__`` manipulation code; the import machinery "
+"automatically sets ``__path__`` correctly for the namespace package."
+msgstr ""
+"패키지의 ``__init__.py`` 파일은 패키지의 ``__path__`` 어트리뷰트를 설정하거나 변경할 수 있고, 이것이 "
+":pep:`420` 이전에 이름 공간 패키지를 구현하는 방법으로 사용됐다. :pep:`420` 의 도입으로 인해, 이름 공간 "
+"패키지가 ``__path__`` 조작 코드만을 포함하는 ``__init__.py`` 파일을 제공할 필요가 없어졌다; 임포트 절차가 "
+"자동으로 이름 공간 패키지를 위한 ``__path__`` 를 설정한다."
+
+#: ../Doc/reference/import.rst:642
+msgid "Module reprs"
+msgstr "모듈 repr"
+
+#: ../Doc/reference/import.rst:644
+msgid ""
+"By default, all modules have a usable repr, however depending on the "
+"attributes set above, and in the module's spec, you can more explicitly "
+"control the repr of module objects."
+msgstr ""
+"기본적으로, 모든 모듈은 사용할만한 repr 을 갖고 있다. 하지만 위의 어트리뷰트들과 모듈 스펙에 있는 것들에 따라, 모듈 객체의"
+" repr 을 좀 더 명시적으로 제어할 수 있다."
+
+#: ../Doc/reference/import.rst:648
+msgid ""
+"If the module has a spec (``__spec__``), the import machinery will try to"
+" generate a repr from it.  If that fails or there is no spec, the import "
+"system will craft a default repr using whatever information is available "
+"on the module.  It will try to use the ``module.__name__``, "
+"``module.__file__``, and ``module.__loader__`` as input into the repr, "
+"with defaults for whatever information is missing."
+msgstr ""
+"모듈이 스펙(``__spec__``)을 가지면, 임포트 절차는 그것으로부터 repr 을 만들려고 시도한다. 그것이 실패하거나 "
+"스펙이 없으면, 임포트 시스템은 모듈에서 제공되는 것들로 기본 repr 을 구성한다. ``module.__name__``, "
+"``module.__file__``, ``module.__loader__`` 을 repr 의 입력으로 사용하려고 시도하는데, 빠진 "
+"정보는 기본값으로 채운다."
+
+#: ../Doc/reference/import.rst:655
+msgid "Here are the exact rules used:"
+msgstr "사용되고 있는 정확한 규칙은 이렇다:"
+
+#: ../Doc/reference/import.rst:657
+msgid ""
+"If the module has a ``__spec__`` attribute, the information in the spec "
+"is used to generate the repr.  The \"name\", \"loader\", \"origin\", and "
+"\"has_location\" attributes are consulted."
+msgstr ""
+"모듈이 ``__spec__`` 어트리뷰트를 가지면, 스펙에 있는 정보로 repr 을 생성한다. \\“name\\”, "
+"\\“loader\\”, \\“origin\\”, \\“has_location\\” 어트리뷰트들이 사용된다."
+
+#: ../Doc/reference/import.rst:661
+msgid ""
+"If the module has a ``__file__`` attribute, this is used as part of the "
+"module's repr."
+msgstr "모듈이 ``__file__`` 어트리뷰트를 가지면, 모듈의 repr 의 일부로 사용된다."
+
+#: ../Doc/reference/import.rst:664
+msgid ""
+"If the module has no ``__file__`` but does have a ``__loader__`` that is "
+"not ``None``, then the loader's repr is used as part of the module's "
+"repr."
+msgstr ""
+"모듈이 ``__file__`` 어트리뷰트를 갖지 않지만 ``None`` 이 아닌 ``__loader__`` 를 가지면, 로더의 "
+"repr 이 모듈의 repr 의 일부로 사용된다."
+
+#: ../Doc/reference/import.rst:667
+msgid "Otherwise, just use the module's ``__name__`` in the repr."
+msgstr "그렇지 않으면, repr 에 모듈의 ``__name__`` 을 사용한다."
+
+#: ../Doc/reference/import.rst:669
+msgid ""
+"Use of :meth:`loader.module_repr() <importlib.abc.Loader.module_repr>` "
+"has been deprecated and the module spec is now used by the import "
+"machinery to generate a module repr."
+msgstr ""
+":meth:`loader.module_repr() <importlib.abc.Loader.module_repr>` 의 사용이 "
+"디프리케이트 되었고 이제 모듈 repr 를 만드는데 임포트 절차에 의해 모듈 스펙이 사용된다."
+
+#: ../Doc/reference/import.rst:674
+msgid ""
+"For backward compatibility with Python 3.3, the module repr will be "
+"generated by calling the loader's "
+":meth:`~importlib.abc.Loader.module_repr` method, if defined, before "
+"trying either approach described above.  However, the method is "
+"deprecated."
+msgstr ""
+"파이썬 3.3과의 과거 호환성을 위해, 위에서 설명한 방법들을 시도하기 전에, 만약 정의되어 있으면, 로더의 "
+":meth:`~importlib.abc.Loader.module_repr` 메서드를 호출해서 모듈 repr 을 만든다. 하지만, 그"
+" 메서드는 디프리케이트 되었다."
+
+#: ../Doc/reference/import.rst:681
+msgid "The Path Based Finder"
+msgstr "경로 기반 파인더"
+
+#: ../Doc/reference/import.rst:686
+msgid ""
+"As mentioned previously, Python comes with several default meta path "
+"finders. One of these, called the :term:`path based finder` "
+"(:class:`~importlib.machinery.PathFinder`), searches an :term:`import "
+"path`, which contains a list of :term:`path entries <path entry>`.  Each "
+"path entry names a location to search for modules."
+msgstr ""
+"앞에서 언급했듯이, 파이썬은 여러 기본 메타 경로 파인더들을 갖고 있다. 이 중 하나는, :term:`경로 기반 파인더 <path "
+"based finder>` (:class:`~importlib.machinery.PathFinder`) 라고 불리는데, "
+":term:`경로 엔트리 <path entry>` 들의 목록을 담고 있는 :term:`임포트 경로 <import path>` 를 "
+"검색한다. 각 경로 엔트리는 모듈을 찾을 곳을 가리킨다."
+
+#: ../Doc/reference/import.rst:692
+msgid ""
+"The path based finder itself doesn't know how to import anything. "
+"Instead, it traverses the individual path entries, associating each of "
+"them with a path entry finder that knows how to handle that particular "
+"kind of path."
+msgstr ""
+"경로 기반 파인더 자신은 뭔가를 임포트하는 법에 대해서는 아는 것이 없다. 대신에, 각 경로 엔트리를 탐색하면서, 각각을 구체적인 "
+"경로 엔트리를 다루는 법을 아는 경로 엔트리 파인더와 관련시킨다."
+
+#: ../Doc/reference/import.rst:696
+msgid ""
+"The default set of path entry finders implement all the semantics for "
+"finding modules on the file system, handling special file types such as "
+"Python source code (``.py`` files), Python byte code (``.pyc`` files) and"
+" shared libraries (e.g. ``.so`` files). When supported by the "
+":mod:`zipimport` module in the standard library, the default path entry "
+"finders also handle loading all of these file types (other than shared "
+"libraries) from zipfiles."
+msgstr ""
+"경로 엔트리 파인더의 기본 집합은 파일 시스템에서 모듈을 찾는데 필요한 모든 개념을 구현하는데, 파이썬 소스 코드(``.py`` "
+"파일들), 파이썬 바이트 코드(``.pyc`` 파일들), 공유 라이브러리(예를 들어 ``.so`` 파일들)와 같은 특수 파일형들을 "
+"처리한다. 표준라이브러리의 :mod:`zipimport` 모듈의 지원을 받으면, 기본 경로 엔트리 파인더는 이 모든 파일들(공유 "
+"라이브러리를 제외한 것들)을 zip 파일들로부터 로딩한다."
+
+#: ../Doc/reference/import.rst:703
+msgid ""
+"Path entries need not be limited to file system locations.  They can "
+"refer to URLs, database queries, or any other location that can be "
+"specified as a string."
+msgstr ""
+"경로 엔트리가 파일 시스템의 위치로 제한될 필요는 없다. URL이나 데이터베이스 조회나 문자열로 지정될 수 있는 어떤 위치도 "
+"가능하다."
+
+#: ../Doc/reference/import.rst:707
+msgid ""
+"The path based finder provides additional hooks and protocols so that you"
+" can extend and customize the types of searchable path entries.  For "
+"example, if you wanted to support path entries as network URLs, you could"
+" write a hook that implements HTTP semantics to find modules on the web."
+"  This hook (a callable) would return a :term:`path entry finder` "
+"supporting the protocol described below, which was then used to get a "
+"loader for the module from the web."
+msgstr ""
+"경로 기반 파인더는 검색 가능한 경로 엔트리의 유형을 확장하고 커스터마이즈할 수 있도록 하는 추가의 훅과 프로토콜을 제공한다. 예를"
+" 들어, 네트워크 URL을 경로 엔트리로 지원하고 싶다면, 웹에서 모듈을 찾는 HTTP 개념을 구현하는 훅을 작성할 수 있다. 이"
+" 훅 (콜러블)은 아래에서 설명하는 프로토콜을 지원하는 :term:`경로 엔트리 파인더 <path entry finder>` 를 "
+"돌려주는데, 웹에 있는 모듈을 위한 로더를 얻는 데 사용된다."
+
+#: ../Doc/reference/import.rst:715
+msgid ""
+"A word of warning: this section and the previous both use the term "
+"*finder*, distinguishing between them by using the terms :term:`meta path"
+" finder` and :term:`path entry finder`.  These two types of finders are "
+"very similar, support similar protocols, and function in similar ways "
+"during the import process, but it's important to keep in mind that they "
+"are subtly different. In particular, meta path finders operate at the "
+"beginning of the import process, as keyed off the :data:`sys.meta_path` "
+"traversal."
+msgstr ""
+"경고의 글: 이 섹션과 앞에 나온 것들은 모두 파인더라는 용어를 사용하는데, :term:`메타 경로 파인더 <meta path "
+"finder>` 와 :term:`경로 엔트리 파인더 <path entry finder>` 라는 용어를 사용해서 구분한다. 이 두 "
+"종류의 파인더는 매우 유사해서 비슷한 프로토콜을 지원하고 임포트 절차에서 비슷한 방식으로 기능한다. 하지만 이것들이 미묘하게 "
+"다르다는 것을 기억하는 것이 중요하다. 특히, 메타 경로 파인더는 임포트 절차의 처음에 개입하는데, "
+":data:`sys.meta_path` 탐색을 통해 들어온다."
+
+#: ../Doc/reference/import.rst:723
+msgid ""
+"By contrast, path entry finders are in a sense an implementation detail "
+"of the path based finder, and in fact, if the path based finder were to "
+"be removed from :data:`sys.meta_path`, none of the path entry finder "
+"semantics would be invoked."
+msgstr ""
+"반면에, 경로 엔트리 파인더는 경로 기반 파인더의 구현 상세인데, 사실 경로 기반 파인더가 :data:`sys.meta_path` "
+"로 부터 제거되면, 경로 엔트리 파인더의 개념은 일절 호출되지 않는다."
+
+#: ../Doc/reference/import.rst:730
+msgid "Path entry finders"
+msgstr "경로 엔트리 파인더"
+
+#: ../Doc/reference/import.rst:738
+msgid ""
+"The :term:`path based finder` is responsible for finding and loading "
+"Python modules and packages whose location is specified with a string "
+":term:`path entry`.  Most path entries name locations in the file system,"
+" but they need not be limited to this."
+msgstr ""
+":term:`경로 기반 파인더 <path based finder>` 는 위치가 문자열 :term:`경로 엔트리 <path "
+"entry>` 로 지정된 파이썬 모듈과 패키지를 찾고 로드하는 책임을 진다. 대부분의 경로 엔트리는 파일 시스템의 위치를 가리키지만,"
+" 이것으로 한정될 필요는 없다."
+
+#: ../Doc/reference/import.rst:743
+msgid ""
+"As a meta path finder, the :term:`path based finder` implements the "
+":meth:`~importlib.abc.MetaPathFinder.find_spec` protocol previously "
+"described, however it exposes additional hooks that can be used to "
+"customize how modules are found and loaded from the :term:`import path`."
+msgstr ""
+"메타 경로 파인더로서, :term:`경로 기반 파인더 <path based finder>` 는 앞에서 설명한 "
+":meth:`~importlib.abc.MetaPathFinder.find_spec` 프로토콜을 구현한다. 하지만 모듈이 "
+":term:`임포트 경로 <import path>` 에서 어떻게 발견되고 로드되는지는 커스터마이즈하는데 사용될 수 있는 추가의 "
+"훅을 제공한다."
+
+#: ../Doc/reference/import.rst:748
+msgid ""
+"Three variables are used by the :term:`path based finder`, "
+":data:`sys.path`, :data:`sys.path_hooks` and "
+":data:`sys.path_importer_cache`.  The ``__path__`` attributes on package "
+"objects are also used.  These provide additional ways that the import "
+"machinery can be customized."
+msgstr ""
+":term:`경로 기반 파인더 <path based finder>` 는 세 개의 변수를 사용한다, :data:`sys.path`, "
+":data:`sys.path_hooks`, :data:`sys.path_importer_cache`. 패키지 객체의 "
+"``__path__`` 어트리뷰트 또한 사용된다. 이것들은 임포트 절차를 커스터마이즈할 수 있는 추가의 방법을 제공한다."
+
+#: ../Doc/reference/import.rst:753
+msgid ""
+":data:`sys.path` contains a list of strings providing search locations "
+"for modules and packages.  It is initialized from the :data:`PYTHONPATH` "
+"environment variable and various other installation- and implementation-"
+"specific defaults.  Entries in :data:`sys.path` can name directories on "
+"the file system, zip files, and potentially other \"locations\" (see the "
+":mod:`site` module) that should be searched for modules, such as URLs, or"
+" database queries.  Only strings and bytes should be present on "
+":data:`sys.path`; all other data types are ignored.  The encoding of "
+"bytes entries is determined by the individual :term:`path entry finders "
+"<path entry finder>`."
+msgstr ""
+":data:`sys.path` 는 모듈과 패키지의 검색 위치를 제공하는 문자열의 목록을 포함한다. :data:`PYTHONPATH`"
+" 환경 변수와 여러 가지 설치와 구현 특정 기본값들로부터 초기화된다. :data:`sys.path` 에 있는 엔트리들은 파일 시스템의 "
+"디렉터리와 zip 파일을 가리키고, 그밖에 잠재적으로 모듈 검색에 사용될 수 있는 \"장소들\"(:mod:`site` 모듈을 "
+"보라)을 가리킬 수 있는데, URL이나 데이터베이스 조회 같은 것들이다. :data:`sys.path` 에는 문자열과 바이트열만 "
+"있어야 한다; 다른 모든 형은 무시된다. 바이트열의 인코딩은 개별 :term:`경로 엔트리 파인더 <path entry "
+"finder>` 들에 의해 결정된다."
+
+#: ../Doc/reference/import.rst:764
+msgid ""
+"The :term:`path based finder` is a :term:`meta path finder`, so the "
+"import machinery begins the :term:`import path` search by calling the "
+"path based finder's :meth:`~importlib.machinery.PathFinder.find_spec` "
+"method as described previously.  When the ``path`` argument to "
+":meth:`~importlib.machinery.PathFinder.find_spec` is given, it will be a "
+"list of string paths to traverse - typically a package's ``__path__`` "
+"attribute for an import within that package.  If the ``path`` argument is"
+" ``None``, this indicates a top level import and :data:`sys.path` is "
+"used."
+msgstr ""
+":term:`경로 기반 파인더 <path based finder>` 는 :term:`메타 경로 파인더 <meta path "
+"finder>` 이기 때문에, 앞에서 설명했듯이 임포트 절차는 경로 기반 파인더의 "
+":meth:`~importlib.machinery.PathFinder.find_spec` 메서드를 호출하는 것으로 "
+":term:`임포트 경로 <import path>` 검색을 시작한다. "
+":meth:`~importlib.machinery.PathFinder.find_spec` 에 제공되는 ``path`` 인자는 탐색할"
+" 문자열 경로들의 리스트다 - 보통 패키지 내에서 임포트할 경우 패키지의 ``__path__`` 어트리뷰트. ``path`` 인자가"
+" ``None`` 이면, 최상위 임포트를 뜻하고 :data:`sys.path` 가 사용된다."
+
+#: ../Doc/reference/import.rst:773
+msgid ""
+"The path based finder iterates over every entry in the search path, and "
+"for each of these, looks for an appropriate :term:`path entry finder` "
+"(:class:`~importlib.abc.PathEntryFinder`) for the path entry.  Because "
+"this can be an expensive operation (e.g. there may be `stat()` call "
+"overheads for this search), the path based finder maintains a cache "
+"mapping path entries to path entry finders.  This cache is maintained in "
+":data:`sys.path_importer_cache` (despite the name, this cache actually "
+"stores finder objects rather than being limited to :term:`importer` "
+"objects). In this way, the expensive search for a particular :term:`path "
+"entry` location's :term:`path entry finder` need only be done once.  User"
+" code is free to remove cache entries from "
+":data:`sys.path_importer_cache` forcing the path based finder to perform "
+"the path entry search again [#fnpic]_."
+msgstr ""
+"경로 기반 파인더는 검색 경로의 모든 엔트리를 탐색하고, 개별 엔트리마다 적절한 :term:`경로 엔트리 파인더 <path "
+"entry finder>` (:class:`~importlib.abc.PathEntryFinder`)를 찾는다. 이것은 비용이 "
+"많이 드는 연산일 수 있기 때문에(예를 들어, 이 검색을 위해 `stat()` 호출로 인한 부하가 있을 수 있다), 경로 기반 "
+"파인더는 경로 엔트리를 경로 엔트리 파인더로 매핑하는 캐시를 관리한다. 이 캐시는 "
+":data:`sys.path_importer_cache` 에 유지된다 (이름에도 불구하고, 이 캐시는 :term:`임포터 "
+"<importer>` 객체로 제한되지 않고 실제로는 파인더 객체를 저장한다). 이런 방법으로, 특정 :term:`경로 엔트리 "
+"<path entry>` 위치의 :term:`경로 엔트리 파인더 <path entry finder>` 의 비싼 검색은 오직 한 번만 "
+"수행된다. 사용자 코드가 :data:`sys.path_importer_cache` 의 캐시 엔트리를 삭제해서 경로 기반 파인더가 그"
+" 경로 엔트리를 다시 검색하도록 하는 것이 허락된다 [#fnpic]_."
+
+#: ../Doc/reference/import.rst:786
+msgid ""
+"If the path entry is not present in the cache, the path based finder "
+"iterates over every callable in :data:`sys.path_hooks`.  Each of the "
+":term:`path entry hooks <path entry hook>` in this list is called with a "
+"single argument, the path entry to be searched.  This callable may either"
+" return a :term:`path entry finder` that can handle the path entry, or it"
+" may raise :exc:`ImportError`.  An :exc:`ImportError` is used by the path"
+" based finder to signal that the hook cannot find a :term:`path entry "
+"finder` for that :term:`path entry`.  The exception is ignored and "
+":term:`import path` iteration continues.  The hook should expect either a"
+" string or bytes object; the encoding of bytes objects is up to the hook "
+"(e.g. it may be a file system encoding, UTF-8, or something else), and if"
+" the hook cannot decode the argument, it should raise :exc:`ImportError`."
+msgstr ""
+"경로 엔트리가 캐시에 없으면, 경로 기반 파인더는 :data:`sys.path_hooks` 에 있는 모든 콜러블들을 탐색한다. 이 "
+"목록의 각 :term:`경로 엔트리 훅 <path entry hook>` 은 검색할 경로 엔트리 인자 한 개를 사용해서 호출된다. 이"
+" 콜러블은 경로 엔트리를 다룰 수 있는 :term:`경로 엔트리 파인더 <path entry finder>` 를 돌려주거나, "
+":exc:`ImportError` 를 발생시킬 수 있다. :exc:`ImportError` 는 경로 기반 파인더가 어떤 훅이 주어진"
+" :term:`경로 엔트리 <path entry>` 를 위한 :term:`경로 엔트리 파인더 <path entry finder>` "
+"를 발견할 수 없음을 알리는 데 사용한다. 이 예외는 무시되고 :term:`임포트 경로 <import path>` 탐색은 계속된다. "
+"훅은 문자열이나 바이트열을 기대해야 한다; 바이트열의 인코딩은 훅이 결정하고(예를 들어, 파일 시스템 인코딩이나 UTF-8 이나 "
+"그 밖의 다른 것일 수 있다), 만약 훅이 인자를 디코딩할 수 없으면 :exc:`ImportError` 를 일으켜야 한다."
+
+#: ../Doc/reference/import.rst:800
+msgid ""
+"If :data:`sys.path_hooks` iteration ends with no :term:`path entry "
+"finder` being returned, then the path based finder's "
+":meth:`~importlib.machinery.PathFinder.find_spec` method will store "
+"``None`` in :data:`sys.path_importer_cache` (to indicate that there is no"
+" finder for this path entry) and return ``None``, indicating that this "
+":term:`meta path finder` could not find the module."
+msgstr ""
+"만약 :data:`sys.path_hooks` 탐색이 아무런 :term:`경로 엔트리 파인더 <path entry finder>` "
+"를 돌려주지 못하면, 경로 기반 파인더의 :meth:`~importlib.machinery.PathFinder.find_spec` "
+"메서드는 :data:`sys.path_importer_cache` 에 ``None`` 을 저장하고(이 경로 엔트리를 위한 파인더가 "
+"없음을 가리키기 위해), ``None`` 을 돌려줘서 이 :term:`메타 경로 파인더 <meta path finder>` 가 "
+"모듈을 찾을 수 없음을 알린다."
+
+#: ../Doc/reference/import.rst:807
+msgid ""
+"If a :term:`path entry finder` *is* returned by one of the :term:`path "
+"entry hook` callables on :data:`sys.path_hooks`, then the following "
+"protocol is used to ask the finder for a module spec, which is then used "
+"when loading the module."
+msgstr ""
+"만약 :data:`sys.path_hooks` 에 있는 어느 하나의 :term:`경로 엔트리 훅 <path entry hook>` "
+"콜러블이 :term:`경로 엔트리 파인더 <path entry finder>` 를 *돌려주면*, 파인더에 모듈 스펙을 요청하기 "
+"위해 다음에 나오는 프로토콜이 사용된다. 모듈 스펙은 모듈을 로딩할 때 사용된다."
+
+#: ../Doc/reference/import.rst:812
+msgid ""
+"The current working directory -- denoted by an empty string -- is handled"
+" slightly differently from other entries on :data:`sys.path`. First, if "
+"the current working directory is found to not exist, no value is stored "
+"in :data:`sys.path_importer_cache`. Second, the value for the current "
+"working directory is looked up fresh for each module lookup. Third, the "
+"path used for :data:`sys.path_importer_cache` and returned by "
+":meth:`importlib.machinery.PathFinder.find_spec` will be the actual "
+"current working directory and not the empty string."
+msgstr ""
+"현재 작업 디렉터리(current working directory) -- 빈 문자열로 표현된다 -- 는 "
+":data:`sys.path` 에 있는 다른 엔트리들과 약간 다르게 취급된다. 첫째로, 현재 작업 디렉터리가 존재하지 않음이 "
+"발견되면 :data:`sys.path_importer_cache` 에는 아무런 값도 저장되지 않는다. 둘째로, 현재 작업 디렉터리는"
+" 각 모듈 조회 때마다 다시 확인된다. 셋째로, :data:`sys.path_importer_cache` 에 사용되는 경로와 "
+":meth:`importlib.machinery.PathFinder.find_spec` 가 돌려주는 경로는 빈 문자열이 아니라 실제"
+" 현재 작업 디렉터리가 된다."
+
+#: ../Doc/reference/import.rst:822
+msgid "Path entry finder protocol"
+msgstr "경로 엔트리 파인더 프로토콜"
+
+#: ../Doc/reference/import.rst:824
+msgid ""
+"In order to support imports of modules and initialized packages and also "
+"to contribute portions to namespace packages, path entry finders must "
+"implement the :meth:`~importlib.abc.PathEntryFinder.find_spec` method."
+msgstr ""
+"모듈과 초기화된 패키지의 임포트를 지원하고 이름 공간 패키지에 포션으로 이바지하기 위해, 경로 엔트리 파인더는 "
+":meth:`~importlib.abc.PathEntryFinder.find_spec` 메서드를 구현해야 한다."
+
+#: ../Doc/reference/import.rst:828
+msgid ""
+":meth:`~importlib.abc.PathEntryFinder.find_spec` takes two argument, the "
+"fully qualified name of the module being imported, and the (optional) "
+"target module.  ``find_spec()`` returns a fully populated spec for the "
+"module. This spec will always have \"loader\" set (with one exception)."
+msgstr ""
+":meth:`~importlib.abc.PathEntryFinder.find_spec` 은 두 개의 인자를 받아들인다, 임포트할 "
+"모듈의 완전히 정규화된 이름과 (생략 가능한) 타깃 모듈. ``find_spec()`` 은 값이 완전히 채워진 모듈의 스펙을 "
+"돌려준다. 이 스펙은 항상 \"loader\" 가 설정된다(한가지 예외가 있다)."
+
+#: ../Doc/reference/import.rst:833
+msgid ""
+"To indicate to the import machinery that the spec represents a namespace "
+":term:`portion`. the path entry finder sets \"loader\" on the spec to "
+"``None`` and \"submodule_search_locations\" to a list containing the "
+"portion."
+msgstr ""
+"스펙이 이름 공간의 :term:`포션 <portion>` 을 표현한다는 것을 임포트 절차에 알리기 위해, 경로 엔트리 파인더는 스펙의 "
+"\"loader\" 를 ``None`` 으로 설정하고 \"submodule_search_locations\" 를 포션을 포함하는 "
+"목록으로 설정한다."
+
+#: ../Doc/reference/import.rst:838
+msgid ""
+":meth:`~importlib.abc.PathEntryFinder.find_spec` replaced "
+":meth:`~importlib.abc.PathEntryFinder.find_loader` and "
+":meth:`~importlib.abc.PathEntryFinder.find_module`, both of which are now"
+" deprecated, but will be used if ``find_spec()`` is not defined."
+msgstr ""
+":meth:`~importlib.abc.PathEntryFinder.find_spec` 이 "
+":meth:`~importlib.abc.PathEntryFinder.find_loader` 와 "
+":meth:`~importlib.abc.PathEntryFinder.find_module` 를 대체하는데, 둘 다 이제 "
+"디프리케이트되었다, ``find_spec()`` 이 정의되지 않으면 이것들을 사용한다."
+
+#: ../Doc/reference/import.rst:844
+msgid ""
+"Older path entry finders may implement one of these two deprecated "
+"methods instead of ``find_spec()``.  The methods are still respected for "
+"the sake of backward compatibility.  However, if ``find_spec()`` is "
+"implemented on the path entry finder, the legacy methods are ignored."
+msgstr ""
+"예전의 경로 엔트리 파인더는 ``find_spec()`` 대신에 이 두 개의 디프리케이트된 메서드들을 구현할 수 있다. 이 "
+"메서드들은 과거 호환성 때문에 아직도 사용된다. 하지만, ``find_spec()`` 이 경로 엔트리 파인더에 구현되면, 예전 "
+"메서드들은 무시된다."
+
+#: ../Doc/reference/import.rst:849
+msgid ""
+":meth:`~importlib.abc.PathEntryFinder.find_loader` takes one argument, "
+"the fully qualified name of the module being imported.  ``find_loader()``"
+" returns a 2-tuple where the first item is the loader and the second item"
+" is a namespace :term:`portion`.  When the first item (i.e. the loader) "
+"is ``None``, this means that while the path entry finder does not have a "
+"loader for the named module, it knows that the path entry contributes to "
+"a namespace portion for the named module.  This will almost always be the"
+" case where Python is asked to import a namespace package that has no "
+"physical presence on the file system.  When a path entry finder returns "
+"``None`` for the loader, the second item of the 2-tuple return value must"
+" be a sequence, although it can be empty."
+msgstr ""
+":meth:`~importlib.abc.PathEntryFinder.find_loader` 는 하나의 인자를 받아들인다, 임포트되는"
+" 모듈의 완전히 정규화된 이름. ``find_loader()`` 는 2-튜플을 돌려주는데, 첫 번째 항목은 로더이고 두 번째 항목은 이름 공간 "
+":term:`포션 <portion>` 이다. 첫 번째 항목(즉 로더)이 ``None`` 이면, 경로 엔트리 파인더가 주어진 이름의 "
+"모듈에 대한 로더를 제공하지는 못하지만, 경로 엔트리가 주어진 이름의 모듈에 대한 이름 공간 포션에 이바지함을 안다는 뜻이다. 이것은"
+" 거의 항상, 파이썬이 파일 시스템에 물리적으로 존재하지 않는 이름 공간 패키지를 임포트하도록 요구되는 경우다. 경로 엔트리 파인더가"
+" 로더로 ``None`` 을 돌려줄 때, 2-튜플의 두 번째 항목은 시퀀스여야 하는데 비어있을 수도 있다."
+
+#: ../Doc/reference/import.rst:861
+msgid ""
+"If ``find_loader()`` returns a non-``None`` loader value, the portion is "
+"ignored and the loader is returned from the path based finder, "
+"terminating the search through the path entries."
+msgstr ""
+"``find_loader()`` 가 ``None`` 이 아닌 로더 값을 돌려주면, 그 포션은 무시되고 경로 기반 파인더가 로더를 "
+"돌려주며 경로 엔트리 검색을 종료한다."
+
+#: ../Doc/reference/import.rst:865
+msgid ""
+"For backwards compatibility with other implementations of the import "
+"protocol, many path entry finders also support the same, traditional "
+"``find_module()`` method that meta path finders support. However path "
+"entry finder ``find_module()`` methods are never called with a ``path`` "
+"argument (they are expected to record the appropriate path information "
+"from the initial call to the path hook)."
+msgstr ""
+"임포트 프로토콜의 다른 구현들과의 과거 호환성을 위해, 많은 경로 엔트리 파인더들은 메타 경로 파인더가 지원하는 것과 같고 전통적인"
+" ``find_module()`` 메서드 또한 지원한다. 하지만 경로 엔트리 파인더 ``find_module()`` 메서드는 결코 "
+"``path`` 인자로 호출되지 않는다 (그것들은 경로 훅의 최초 호출 때 적절한 경로 정보를 기록해둘 것으로 기대된다)."
+
+#: ../Doc/reference/import.rst:872
+msgid ""
+"The ``find_module()`` method on path entry finders is deprecated, as it "
+"does not allow the path entry finder to contribute portions to namespace "
+"packages.  If both ``find_loader()`` and ``find_module()`` exist on a "
+"path entry finder, the import system will always call ``find_loader()`` "
+"in preference to ``find_module()``."
+msgstr ""
+"경로 엔트리 파인더의 ``find_module()`` 메서드는 경로 엔트리 파인더가 이름 공간 패키지에 포션으로 이바지하는 것을 "
+"허락하지 않기 때문에 디프리케이트 되었다. 만약 경로 엔트리 파인더에 ``find_loader()`` 와 "
+"``find_module()`` 이 모두 존재하면, 임포트 시스템은 항상 ``find_module()`` 대신 "
+"``find_loader()`` 를 호출한다."
+
+#: ../Doc/reference/import.rst:880
+msgid "Replacing the standard import system"
+msgstr "표준 임포트 시스템 교체하기"
+
+#: ../Doc/reference/import.rst:882
+msgid ""
+"The most reliable mechanism for replacing the entire import system is to "
+"delete the default contents of :data:`sys.meta_path`, replacing them "
+"entirely with a custom meta path hook."
+msgstr ""
+"임포트 시스템 전체를 교체하기 위한 가장 신뢰성 있는 메커니즘은 :data:`sys.meta_path` 의 기본값들을 모두 삭제하고,"
+" 새로 만든 메타 경로 훅들로 채우는 것이다."
+
+#: ../Doc/reference/import.rst:886
+msgid ""
+"If it is acceptable to only alter the behaviour of import statements "
+"without affecting other APIs that access the import system, then "
+"replacing the builtin :func:`__import__` function may be sufficient. This"
+" technique may also be employed at the module level to only alter the "
+"behaviour of import statements within that module."
+msgstr ""
+"만약 임포트 시스템을 액세스하는 다른 API들에 영향을 주지 않고, 단지 임포트 문의 동작만을 변경해도 좋다면, 내장 "
+":func:`__import__` 함수를 교체하는 것으로 충분할 수도 있다. 이 기법은 특정 모듈 내에서의 임포트 문의 동작만을 "
+"변경하도록 모듈 수준에서 적용될 수도 있다."
+
+#: ../Doc/reference/import.rst:892
+msgid ""
+"To selectively prevent import of some modules from a hook early on the "
+"meta path (rather than disabling the standard import system entirely), it"
+" is sufficient to raise :exc:`ModuleNotFoundError` directly from "
+":meth:`~importlib.abc.MetaPathFinder.find_spec` instead of returning "
+"``None``. The latter indicates that the meta path search should continue,"
+" while raising an exception terminates it immediately."
+msgstr ""
+"메타 경로의 앞쪽에 있는 훅에서 어떤 모듈의 임포트를 선택적으로 막으려면(표준 임포트 시스템을 완전히 비활성화하는 대신), "
+":meth:`~importlib.abc.MetaPathFinder.find_spec` 에서 ``None`` 을 돌려주는 대신, "
+":exc:`ModuleNotFoundError` 를 일으키는 것으로 충분하다. 전자는 메타 경로 검색을 계속해야 한다는 것을 지시하는"
+" 반면, 예외를 일으키면 즉시 종료시킨다."
+
+#: ../Doc/reference/import.rst:901
+msgid "Special considerations for __main__"
+msgstr "__main__ 에 대한 특별한 고려"
+
+#: ../Doc/reference/import.rst:903
+msgid ""
+"The :mod:`__main__` module is a special case relative to Python's import "
+"system.  As noted :ref:`elsewhere <programs>`, the ``__main__`` module is"
+" directly initialized at interpreter startup, much like :mod:`sys` and "
+":mod:`builtins`.  However, unlike those two, it doesn't strictly qualify "
+"as a built-in module.  This is because the manner in which ``__main__`` "
+"is initialized depends on the flags and other options with which the "
+"interpreter is invoked."
+msgstr ""
+":mod:`__main__` 모듈은 파이썬의 임포트 시스템에서 특별한 경우다. :ref:`다른 곳에서 <programs>` "
+"언급했듯이, ``__main__`` 모듈은 :mod:`sys` 와 :mod:`builtins` 처럼 인터프리터 시작 때 직접 "
+"초기화된다. 하지만, 이 두 개와는 다르게, 이것은 엄밀하게 내장 모듈로 취급되지 않는다. 이것은 ``__main__`` 이 "
+"초기화되는 방식이 인터프리터를 실행할 때 주는 플래그와 다른 옵션들에 영향을 받기 때문이다."
+
+#: ../Doc/reference/import.rst:914
+msgid "__main__.__spec__"
+msgstr "__main__.__spec__"
+
+#: ../Doc/reference/import.rst:916
+msgid ""
+"Depending on how :mod:`__main__` is initialized, ``__main__.__spec__`` "
+"gets set appropriately or to ``None``."
+msgstr ""
+":mod:`__main__` 이 어떻게 초기화되는지에 따라, ``__main__.__spec__`` 은 적절히 설정되기도 하고 "
+"``None`` 으로 설정되기도 한다."
+
+#: ../Doc/reference/import.rst:919
+msgid ""
+"When Python is started with the :option:`-m` option, ``__spec__`` is set "
+"to the module spec of the corresponding module or package. ``__spec__`` "
+"is also populated when the ``__main__`` module is loaded as part of "
+"executing a directory, zipfile or other :data:`sys.path` entry."
+msgstr ""
+"파이썬이 :option:`-m` 옵션으로 시작하면, ``__spec__`` 은 해당하는 모듈이나 패키지의 모듈 스팩으로 설정된다. 또한"
+" ``__spec__`` 은 ``__main__`` 모듈이 디렉터리나 zip 파일이나 다른 :data:`sys.path` 엔트리를 "
+"실행하는 일부로 로드될 때 그 내용이 채워진다."
+
+#: ../Doc/reference/import.rst:924
+msgid ""
+"In :ref:`the remaining cases <using-on-interface-options>` "
+"``__main__.__spec__`` is set to ``None``, as the code used to populate "
+"the :mod:`__main__` does not correspond directly with an importable "
+"module:"
+msgstr ""
+":ref:`나머지 경우 <using-on-interface-options>` 에는 ``__main__.__spec__`` 은 "
+"``None`` 으로 설정되는데, :mod:`__main__` 을 채우는데 사용된 코드가 임포트 가능한 모듈에 직접 대응하지"
+" 않기 때문이다:"
+
+#: ../Doc/reference/import.rst:928
+msgid "interactive prompt"
+msgstr "대화형 프롬프트"
+
+#: ../Doc/reference/import.rst:929
+msgid "-c switch"
+msgstr "-c 스위치"
+
+#: ../Doc/reference/import.rst:930
+msgid "running from stdin"
+msgstr "표준 입력으로 실행"
+
+#: ../Doc/reference/import.rst:931
+msgid "running directly from a source or bytecode file"
+msgstr "소스 파일이나 바이트 코드 파일로부터 직접 실행"
+
+#: ../Doc/reference/import.rst:933
+msgid ""
+"Note that ``__main__.__spec__`` is always ``None`` in the last case, "
+"*even if* the file could technically be imported directly as a module "
+"instead. Use the :option:`-m` switch if valid module metadata is desired "
+"in :mod:`__main__`."
+msgstr ""
+"마지막 경우에 ``__main__.__spec__`` 이 항상 ``None`` 임에 주의해야 한다. 설사 그 파일이 기술적으로 "
+"모듈로 임포트 될 수 있어도 그렇다. :mod:`__main__` 에 올바른 모듈 메타데이터가 필요하다면 :option:`-m` "
+"스위치를 사용해야 한다."
+
+#: ../Doc/reference/import.rst:938
+msgid ""
+"Note also that even when ``__main__`` corresponds with an importable "
+"module and ``__main__.__spec__`` is set accordingly, they're still "
+"considered *distinct* modules. This is due to the fact that blocks "
+"guarded by ``if __name__ == \"__main__\":`` checks only execute when the "
+"module is used to populate the ``__main__`` namespace, and not during "
+"normal import."
+msgstr ""
+"또한 ``__main__`` 이 임포트 가능한 모듈에 대응되고, ``__main__.__spec__`` 이 적절히 "
+"설정되었다 하더라도, 이 둘은 여전히 *다른* 모듈로 취급됨에 주의해야 한다. 이것은 ``if __name__ == "
+"\"__main__\":`` 검사로 둘러싸인 블록이 모듈이 ``__main__`` 이름 공간을 채울 때만 실행되고, "
+"일반적인 임포트 때는 실행되지 않는다는 사실 때문이다. "
+
+#: ../Doc/reference/import.rst:946
+msgid "Open issues"
+msgstr "열린 이슈들"
+
+#: ../Doc/reference/import.rst:948
+msgid "XXX It would be really nice to have a diagram."
+msgstr "XXX 도표가 있으면 정말 좋겠다."
+
+#: ../Doc/reference/import.rst:950
+msgid ""
+"XXX * (import_machinery.rst) how about a section devoted just to the "
+"attributes of modules and packages, perhaps expanding upon or supplanting"
+" the related entries in the data model reference page?"
+msgstr ""
+"XXX * (import_machinery.rst) 모듈과 패키지의 어트리뷰트들에만 할당된 섹션은 어떨까? 아마도 데이터 모델 "
+"레퍼런스 페이지에 있는 관련 항목들을 확장하거나 대체해야 할 것이다."
+
+#: ../Doc/reference/import.rst:954
+msgid ""
+"XXX runpy, pkgutil, et al in the library manual should all get \"See "
+"Also\" links at the top pointing to the new import system section."
+msgstr ""
+"XXX 라이브러리 설명서의 runpy, pkgutil 등등은 새 임포트 시스템 섹션으로 가는 \"See Also\" 링크를 처음에 "
+"붙여야만 한다."
+
+#: ../Doc/reference/import.rst:957
+msgid ""
+"XXX Add more explanation regarding the different ways in which "
+"``__main__`` is initialized?"
+msgstr "XXX ``__main__`` 이 초기화되는 다른 방법들에 대한 설명을 더 붙여야 하나?"
+
+#: ../Doc/reference/import.rst:960
+msgid ""
+"XXX Add more info on ``__main__`` quirks/pitfalls (i.e. copy from "
+":pep:`395`)."
+msgstr "XXX ``__main__`` 의 까다로움/어려움에 대한 정보를 추가하자 (즉 :pep:`395` 의 사본)"
+
+#: ../Doc/reference/import.rst:965
+msgid "References"
+msgstr "참고문헌"
+
+#: ../Doc/reference/import.rst:967
+msgid ""
+"The import machinery has evolved considerably since Python's early days."
+"  The original `specification for packages "
+"<https://www.python.org/doc/essays/packages/>`_ is still available to "
+"read, although some details have changed since the writing of that "
+"document."
+msgstr ""
+"임포트 절차는 파이썬의 초창기부터 상당히 변해왔다. 문서를 작성한 이후에 약간의 세부사항이 변경되었기는 하지만, 최초의 `패키지 "
+"규격 <https://www.python.org/doc/essays/packages/>`_ 은 아직 읽을 수 있도록 남아있다."
+
+#: ../Doc/reference/import.rst:972
+msgid ""
+"The original specification for :data:`sys.meta_path` was :pep:`302`, with"
+" subsequent extension in :pep:`420`."
+msgstr ":data:`sys.meta_path` 의 최초 규격은 :pep:`302` 이고, 뒤이은 확장은 :pep:`420` 이다."
+
+#: ../Doc/reference/import.rst:975
+msgid ""
+":pep:`420` introduced :term:`namespace packages <namespace package>` for "
+"Python 3.3.  :pep:`420` also introduced the :meth:`find_loader` protocol "
+"as an alternative to :meth:`find_module`."
+msgstr ""
+":pep:`420` 은 파이썬 3.3 에 :term:`이름 공간 패키지 <namespace package>` 를 도입했다. PEP "
+"420은 :meth:`find_module` 의 대안으로 :meth:`find_loader` 프로토콜 역시 도입했다."
+
+#: ../Doc/reference/import.rst:979
+msgid ""
+":pep:`366` describes the addition of the ``__package__`` attribute for "
+"explicit relative imports in main modules."
+msgstr ""
+":pep:`366` 은 메인 모듈에서의 명시적인 상태 임포트를 위한 ``__package__`` 어트리뷰트의 추가에 관해 설명하고 "
+"있다."
+
+#: ../Doc/reference/import.rst:982
+msgid ""
+":pep:`328` introduced absolute and explicit relative imports and "
+"initially proposed ``__name__`` for semantics :pep:`366` would eventually"
+" specify for ``__package__``."
+msgstr ""
+":pep:`328` 은 절대와 명시적인 상대 임포트들 도입하고 :pep:`366` 이 결국 ``__package__`` 를 지정하게"
+" 되는 개념을 초기에 ``__name__`` 으로 제안했다."
+
+#: ../Doc/reference/import.rst:986
+msgid ":pep:`338` defines executing modules as scripts."
+msgstr ":pep:`338` 은 모듈을 스크립트로 실행하는 것을 정의한다."
+
+#: ../Doc/reference/import.rst:988
+msgid ""
+":pep:`451` adds the encapsulation of per-module import state in spec "
+"objects.  It also off-loads most of the boilerplate responsibilities of "
+"loaders back onto the import machinery.  These changes allow the "
+"deprecation of several APIs in the import system and also addition of new"
+" methods to finders and loaders."
+msgstr ""
+":pep:`451` 은 스팩 객체에 모듈별 임포트 상태를 요약하는 것을 추가한다. 로더들에 주어졌던 대부분의 공통 코드 책임들을 "
+"임포트 절차로 옮기기도 했다. 이 변경은 임포트 시스템의 여러 API 들을 디프리케이트하도록 만들었고, 파인더와 로더에 새 "
+"메서드들을 추가하기도 했다."
+
+#: ../Doc/reference/import.rst:995
+msgid "Footnotes"
+msgstr "각주"
+
+#: ../Doc/reference/import.rst:996
+msgid "See :class:`types.ModuleType`."
+msgstr ":class:`types.ModuleType` 을 보라."
+
+#: ../Doc/reference/import.rst:998
+msgid ""
+"The importlib implementation avoids using the return value directly. "
+"Instead, it gets the module object by looking the module name up in "
+":data:`sys.modules`.  The indirect effect of this is that an imported "
+"module may replace itself in :data:`sys.modules`.  This is "
+"implementation-specific behavior that is not guaranteed to work in other "
+"Python implementations."
+msgstr ""
+"importlib 구현은 반환 값을 직접 사용하지 않는다. 대신에, :data:`sys.modules` 에서 모듈 이름을 조회해서 "
+"모듈을 얻는다. 이것의 간접적인 효과는 임포트되는 모듈이 :data:`sys.modules` 에 있는 자신을 바꿀 수 있다는 "
+"것이다. 이것은 구현 상세 동작이고 다른 파이썬 구현에서 동작한다고 보장되지 않는다."
+
+#: ../Doc/reference/import.rst:1005
+msgid ""
+"In legacy code, it is possible to find instances of "
+":class:`imp.NullImporter` in the :data:`sys.path_importer_cache`.  It is "
+"recommended that code be changed to use ``None`` instead.  See "
+":ref:`portingpythoncode` for more details."
+msgstr ""
+"예전 코드에서, :data:`sys.path_importer_cache` 에서 :class:`imp.NullImporter` 의 "
+"인스턴스를 찾는 것이 가능하다. 코드가 대신 ``None`` 을 사용하도록 변경할 것을 권고한다. 더 자세한 내용은 "
+":ref:`portingpythoncode` 를 참고하라."
