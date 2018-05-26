@@ -33,7 +33,7 @@ def git_clone(repository, directory, branch=None):
 
 def prepare_env():
     if not os.path.exists('cpython'):
-        git_clone('git@github.com:python/cpython.git', 'cpython', VERSION)
+        git_clone('https://github.com/python/cpython.git', 'cpython', VERSION)
 
     locale_dir = os.path.join('cpython', 'locale', 'ko', 'LC_MESSAGES')
     if not os.path.exists(locale_dir):
