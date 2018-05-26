@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-26 18:49+0900\n"
+"POT-Creation-Date: 2018-05-26 11:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,7 +255,7 @@ msgid ""
 ":c:type:`PyObject\\*`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:152 ../Doc/c-api/arg.rst:557
+#: ../Doc/c-api/arg.rst:156
 msgid "``u`` (:class:`str`) [Py_UNICODE \\*]"
 msgstr ""
 
@@ -270,53 +270,60 @@ msgid ""
 "code points; if it does, a :exc:`ValueError` exception is raised."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:157 ../Doc/c-api/arg.rst:562
+#: ../Doc/c-api/arg.rst:157 ../Doc/c-api/arg.rst:166 ../Doc/c-api/arg.rst:174
+#: ../Doc/c-api/arg.rst:182
+msgid ""
+"Part of the old-style :c:type:`Py_UNICODE` API; please migrate to using "
+":c:func:`PyUnicode_AsWideCharString`."
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:165
 msgid "``u#`` (:class:`str`) [Py_UNICODE \\*, int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:155
+#: ../Doc/c-api/arg.rst:159
 msgid ""
 "This variant on ``u`` stores into two C variables, the first one a "
 "pointer to a Unicode data buffer, the second one its length.  This "
 "variant allows null code points."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:161
+#: ../Doc/c-api/arg.rst:173
 msgid "``Z`` (:class:`str` or ``None``) [Py_UNICODE \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:160
+#: ../Doc/c-api/arg.rst:168
 msgid ""
 "Like ``u``, but the Python object may also be ``None``, in which case the"
 " :c:type:`Py_UNICODE` pointer is set to *NULL*."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:165
+#: ../Doc/c-api/arg.rst:181
 msgid "``Z#`` (:class:`str` or ``None``) [Py_UNICODE \\*, int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:164
+#: ../Doc/c-api/arg.rst:176
 msgid ""
 "Like ``u#``, but the Python object may also be ``None``, in which case "
 "the :c:type:`Py_UNICODE` pointer is set to *NULL*."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:170
+#: ../Doc/c-api/arg.rst:186
 msgid "``U`` (:class:`str`) [PyObject \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:168
+#: ../Doc/c-api/arg.rst:184
 msgid ""
 "Requires that the Python object is a Unicode object, without attempting "
 "any conversion.  Raises :exc:`TypeError` if the object is not a Unicode "
 "object.  The C variable may also be declared as :c:type:`PyObject\\*`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:176
+#: ../Doc/c-api/arg.rst:192
 msgid "``w*`` (read-write :term:`bytes-like object`) [Py_buffer]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:173
+#: ../Doc/c-api/arg.rst:189
 msgid ""
 "This format accepts any object which implements the read-write buffer "
 "interface. It fills a :c:type:`Py_buffer` structure provided by the "
@@ -324,17 +331,17 @@ msgid ""
 "call :c:func:`PyBuffer_Release` when it is done with the buffer."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:193
+#: ../Doc/c-api/arg.rst:209
 msgid "``es`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:179
+#: ../Doc/c-api/arg.rst:195
 msgid ""
 "This variant on ``s`` is used for encoding Unicode into a character "
 "buffer. It only works for encoded data without embedded NUL bytes."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:182
+#: ../Doc/c-api/arg.rst:198
 msgid ""
 "This format requires two arguments.  The first is only used as input, and"
 " must be a :c:type:`const char\\*` which points to the name of an "
@@ -346,7 +353,7 @@ msgid ""
 "specified by the first argument."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:190
+#: ../Doc/c-api/arg.rst:206
 msgid ""
 ":c:func:`PyArg_ParseTuple` will allocate a buffer of the needed size, "
 "copy the encoded data into this buffer and adjust *\\*buffer* to "
@@ -354,33 +361,33 @@ msgid ""
 "calling :c:func:`PyMem_Free` to free the allocated buffer after use."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:198
+#: ../Doc/c-api/arg.rst:214
 msgid ""
 "``et`` (:class:`str`, :class:`bytes` or :class:`bytearray`) [const char "
 "\\*encoding, char \\*\\*buffer]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:196
+#: ../Doc/c-api/arg.rst:212
 msgid ""
 "Same as ``es`` except that byte string objects are passed through without"
 " recoding them.  Instead, the implementation assumes that the byte string"
 " object uses the encoding passed in as parameter."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:229
+#: ../Doc/c-api/arg.rst:245
 msgid ""
 "``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, int "
 "\\*buffer_length]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:201
+#: ../Doc/c-api/arg.rst:217
 msgid ""
 "This variant on ``s#`` is used for encoding Unicode into a character "
 "buffer. Unlike the ``es`` format, this variant allows input data which "
 "contains NUL characters."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:205
+#: ../Doc/c-api/arg.rst:221
 msgid ""
 "It requires three arguments.  The first is only used as input, and must "
 "be a :c:type:`const char\\*` which points to the name of an encoding as a"
@@ -394,11 +401,11 @@ msgid ""
 "buffer."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:215
+#: ../Doc/c-api/arg.rst:231
 msgid "There are two modes of operation:"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:217
+#: ../Doc/c-api/arg.rst:233
 msgid ""
 "If *\\*buffer* points a *NULL* pointer, the function will allocate a "
 "buffer of the needed size, copy the encoded data into this buffer and set"
@@ -407,7 +414,7 @@ msgid ""
 " after usage."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:222
+#: ../Doc/c-api/arg.rst:238
 msgid ""
 "If *\\*buffer* points to a non-*NULL* pointer (an already allocated "
 "buffer), :c:func:`PyArg_ParseTuple` will use this location as the buffer "
@@ -416,186 +423,186 @@ msgid ""
 "it.  If the buffer is not large enough, a :exc:`ValueError` will be set."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:228
+#: ../Doc/c-api/arg.rst:244
 msgid ""
 "In both cases, *\\*buffer_length* is set to the length of the encoded "
 "data without the trailing NUL byte."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:234
+#: ../Doc/c-api/arg.rst:250
 msgid ""
 "``et#`` (:class:`str`, :class:`bytes` or :class:`bytearray`) [const char "
 "\\*encoding, char \\*\\*buffer, int \\*buffer_length]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:232
+#: ../Doc/c-api/arg.rst:248
 msgid ""
 "Same as ``es#`` except that byte string objects are passed through "
 "without recoding them. Instead, the implementation assumes that the byte "
 "string object uses the encoding passed in as parameter."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:237
+#: ../Doc/c-api/arg.rst:253
 msgid "Numbers"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:241
+#: ../Doc/c-api/arg.rst:257
 msgid "``b`` (:class:`int`) [unsigned char]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:240
+#: ../Doc/c-api/arg.rst:256
 msgid ""
 "Convert a nonnegative Python integer to an unsigned tiny int, stored in a"
 " C :c:type:`unsigned char`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:245 ../Doc/c-api/arg.rst:583
+#: ../Doc/c-api/arg.rst:261 ../Doc/c-api/arg.rst:600
 msgid "``B`` (:class:`int`) [unsigned char]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:244
+#: ../Doc/c-api/arg.rst:260
 msgid ""
 "Convert a Python integer to a tiny int without overflow checking, stored "
 "in a C :c:type:`unsigned char`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:248 ../Doc/c-api/arg.rst:577
+#: ../Doc/c-api/arg.rst:264 ../Doc/c-api/arg.rst:594
 msgid "``h`` (:class:`int`) [short int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:248
+#: ../Doc/c-api/arg.rst:264
 msgid "Convert a Python integer to a C :c:type:`short int`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:252 ../Doc/c-api/arg.rst:586
+#: ../Doc/c-api/arg.rst:268 ../Doc/c-api/arg.rst:603
 msgid "``H`` (:class:`int`) [unsigned short int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:251
+#: ../Doc/c-api/arg.rst:267
 msgid ""
 "Convert a Python integer to a C :c:type:`unsigned short int`, without "
 "overflow checking."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:255 ../Doc/c-api/arg.rst:571
+#: ../Doc/c-api/arg.rst:271 ../Doc/c-api/arg.rst:588
 msgid "``i`` (:class:`int`) [int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:255
+#: ../Doc/c-api/arg.rst:271
 msgid "Convert a Python integer to a plain C :c:type:`int`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:259 ../Doc/c-api/arg.rst:589
+#: ../Doc/c-api/arg.rst:275 ../Doc/c-api/arg.rst:606
 msgid "``I`` (:class:`int`) [unsigned int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:258
+#: ../Doc/c-api/arg.rst:274
 msgid ""
 "Convert a Python integer to a C :c:type:`unsigned int`, without overflow "
 "checking."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:262 ../Doc/c-api/arg.rst:580
+#: ../Doc/c-api/arg.rst:278 ../Doc/c-api/arg.rst:597
 msgid "``l`` (:class:`int`) [long int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:262
+#: ../Doc/c-api/arg.rst:278
 msgid "Convert a Python integer to a C :c:type:`long int`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:266 ../Doc/c-api/arg.rst:592
+#: ../Doc/c-api/arg.rst:282 ../Doc/c-api/arg.rst:609
 msgid "``k`` (:class:`int`) [unsigned long]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:265
+#: ../Doc/c-api/arg.rst:281
 msgid ""
 "Convert a Python integer to a C :c:type:`unsigned long` without overflow "
 "checking."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:269 ../Doc/c-api/arg.rst:595
+#: ../Doc/c-api/arg.rst:285 ../Doc/c-api/arg.rst:612
 msgid "``L`` (:class:`int`) [long long]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:269
+#: ../Doc/c-api/arg.rst:285
 msgid "Convert a Python integer to a C :c:type:`long long`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:273 ../Doc/c-api/arg.rst:598
+#: ../Doc/c-api/arg.rst:289 ../Doc/c-api/arg.rst:615
 msgid "``K`` (:class:`int`) [unsigned long long]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:272
+#: ../Doc/c-api/arg.rst:288
 msgid ""
 "Convert a Python integer to a C :c:type:`unsigned long long` without "
 "overflow checking."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:276 ../Doc/c-api/arg.rst:601
+#: ../Doc/c-api/arg.rst:292 ../Doc/c-api/arg.rst:618
 msgid "``n`` (:class:`int`) [Py_ssize_t]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:276
+#: ../Doc/c-api/arg.rst:292
 msgid "Convert a Python integer to a C :c:type:`Py_ssize_t`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:283
+#: ../Doc/c-api/arg.rst:299
 msgid "``c`` (:class:`bytes` or :class:`bytearray` of length 1) [char]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:279
+#: ../Doc/c-api/arg.rst:295
 msgid ""
 "Convert a Python byte, represented as a :class:`bytes` or "
 ":class:`bytearray` object of length 1, to a C :c:type:`char`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:282
+#: ../Doc/c-api/arg.rst:298
 msgid "Allow :class:`bytearray` objects."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:287 ../Doc/c-api/arg.rst:609
+#: ../Doc/c-api/arg.rst:303 ../Doc/c-api/arg.rst:626
 msgid "``C`` (:class:`str` of length 1) [int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:286
+#: ../Doc/c-api/arg.rst:302
 msgid ""
 "Convert a Python character, represented as a :class:`str` object of "
 "length 1, to a C :c:type:`int`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:290 ../Doc/c-api/arg.rst:615
+#: ../Doc/c-api/arg.rst:306 ../Doc/c-api/arg.rst:632
 msgid "``f`` (:class:`float`) [float]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:290
+#: ../Doc/c-api/arg.rst:306
 msgid "Convert a Python floating point number to a C :c:type:`float`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:293 ../Doc/c-api/arg.rst:612
+#: ../Doc/c-api/arg.rst:309 ../Doc/c-api/arg.rst:629
 msgid "``d`` (:class:`float`) [double]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:293
+#: ../Doc/c-api/arg.rst:309
 msgid "Convert a Python floating point number to a C :c:type:`double`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:296
+#: ../Doc/c-api/arg.rst:312
 msgid "``D`` (:class:`complex`) [Py_complex]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:296
+#: ../Doc/c-api/arg.rst:312
 msgid "Convert a Python complex number to a C :c:type:`Py_complex` structure."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:299
+#: ../Doc/c-api/arg.rst:315
 msgid "Other objects"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:304 ../Doc/c-api/arg.rst:626
+#: ../Doc/c-api/arg.rst:320 ../Doc/c-api/arg.rst:643
 msgid "``O`` (object) [PyObject \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:302
+#: ../Doc/c-api/arg.rst:318
 msgid ""
 "Store a Python object (without any conversion) in a C object pointer.  "
 "The C program thus receives the actual object that was passed.  The "
@@ -603,11 +610,11 @@ msgid ""
 "*NULL*."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:311
+#: ../Doc/c-api/arg.rst:327
 msgid "``O!`` (object) [*typeobject*, PyObject \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:307
+#: ../Doc/c-api/arg.rst:323
 msgid ""
 "Store a Python object in a C object pointer.  This is similar to ``O``, "
 "but takes two C arguments: the first is the address of a Python type "
@@ -617,11 +624,11 @@ msgid ""
 "raised."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:336 ../Doc/c-api/arg.rst:640
+#: ../Doc/c-api/arg.rst:352 ../Doc/c-api/arg.rst:657
 msgid "``O&`` (object) [*converter*, *anything*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:316
+#: ../Doc/c-api/arg.rst:332
 msgid ""
 "Convert a Python object to a C variable through a *converter* function.  "
 "This takes two arguments: the first is a function, the second is the "
@@ -629,7 +636,7 @@ msgid ""
 "\\*`.  The *converter* function in turn is called as follows::"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:323
+#: ../Doc/c-api/arg.rst:339
 msgid ""
 "where *object* is the Python object to be converted and *address* is the "
 ":c:type:`void\\*` argument that was passed to the "
@@ -639,7 +646,7 @@ msgid ""
 " and leave the content of *address* unmodified."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:329
+#: ../Doc/c-api/arg.rst:345
 msgid ""
 "If the *converter* returns ``Py_CLEANUP_SUPPORTED``, it may get called a "
 "second time if the argument parsing eventually fails, giving the "
@@ -648,15 +655,15 @@ msgid ""
 "have the same value as in the original call."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:335
+#: ../Doc/c-api/arg.rst:351
 msgid "``Py_CLEANUP_SUPPORTED`` was added."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:345
+#: ../Doc/c-api/arg.rst:361
 msgid "``p`` (:class:`bool`) [int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:339
+#: ../Doc/c-api/arg.rst:355
 msgid ""
 "Tests the value passed in for truth (a boolean **p**\\ redicate) and "
 "converts the result to its equivalent C true/false integer value. Sets "
@@ -665,18 +672,18 @@ msgid ""
 "information about how Python tests values for truth."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:350 ../Doc/c-api/arg.rst:643
+#: ../Doc/c-api/arg.rst:366 ../Doc/c-api/arg.rst:660
 msgid "``(items)`` (:class:`tuple`) [*matching-items*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:348
+#: ../Doc/c-api/arg.rst:364
 msgid ""
 "The object must be a Python sequence whose length is the number of format"
 " units in *items*.  The C arguments must correspond to the individual "
 "format units in *items*.  Format units for sequences may be nested."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:352
+#: ../Doc/c-api/arg.rst:368
 msgid ""
 "It is possible to pass \"long\" integers (integers whose value exceeds "
 "the platform's :const:`LONG_MAX`) however no proper range checking is "
@@ -685,17 +692,17 @@ msgid ""
 "semantics are inherited from downcasts in C --- your mileage may vary)."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:358
+#: ../Doc/c-api/arg.rst:374
 msgid ""
 "A few other characters have a meaning in a format string.  These may not "
 "occur inside nested parentheses.  They are:"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:366
+#: ../Doc/c-api/arg.rst:382
 msgid "``|``"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:362
+#: ../Doc/c-api/arg.rst:378
 msgid ""
 "Indicates that the remaining arguments in the Python argument list are "
 "optional. The C variables corresponding to optional arguments should be "
@@ -704,11 +711,11 @@ msgid ""
 "corresponding C variable(s)."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:375
+#: ../Doc/c-api/arg.rst:391
 msgid "``$``"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:369
+#: ../Doc/c-api/arg.rst:385
 msgid ""
 ":c:func:`PyArg_ParseTupleAndKeywords` only: Indicates that the remaining "
 "arguments in the Python argument list are keyword-only.  Currently, all "
@@ -716,35 +723,35 @@ msgid ""
 "always be specified before ``$`` in the format string."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:380
+#: ../Doc/c-api/arg.rst:396
 msgid "``:``"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:378
+#: ../Doc/c-api/arg.rst:394
 msgid ""
 "The list of format units ends here; the string after the colon is used as"
 " the function name in error messages (the \"associated value\" of the "
 "exception that :c:func:`PyArg_ParseTuple` raises)."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:385
+#: ../Doc/c-api/arg.rst:401
 msgid "``;``"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:383
+#: ../Doc/c-api/arg.rst:399
 msgid ""
 "The list of format units ends here; the string after the semicolon is "
 "used as the error message *instead* of the default error message.  ``:`` "
 "and ``;`` mutually exclude each other."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:387
+#: ../Doc/c-api/arg.rst:403
 msgid ""
 "Note that any Python object references which are provided to the caller "
 "are *borrowed* references; do not decrement their reference count!"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:390
+#: ../Doc/c-api/arg.rst:406
 msgid ""
 "Additional arguments passed to these functions must be addresses of "
 "variables whose type is determined by the format string; these are used "
@@ -754,7 +761,7 @@ msgid ""
 "corresponding format unit in that case."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:396
+#: ../Doc/c-api/arg.rst:412
 msgid ""
 "For the conversion to succeed, the *arg* object must match the format and"
 " the format must be exhausted.  On success, the :c:func:`PyArg_Parse\\*` "
@@ -765,24 +772,24 @@ msgid ""
 "left untouched."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:405
+#: ../Doc/c-api/arg.rst:421
 msgid "API Functions"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:409
+#: ../Doc/c-api/arg.rst:425
 msgid ""
 "Parse the parameters of a function that takes only positional parameters "
 "into local variables.  Returns true on success; on failure, it returns "
 "false and raises the appropriate exception."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:416
+#: ../Doc/c-api/arg.rst:432
 msgid ""
 "Identical to :c:func:`PyArg_ParseTuple`, except that it accepts a va_list"
 " rather than a variable number of arguments."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:422
+#: ../Doc/c-api/arg.rst:438
 msgid ""
 "Parse the parameters of a function that takes both positional and keyword"
 " parameters into local variables.  The *keywords* argument is a "
@@ -792,26 +799,26 @@ msgid ""
 "exception."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:429
+#: ../Doc/c-api/arg.rst:445
 msgid ""
 "Added support for :ref:`positional-only parameters <positional-"
 "only_parameter>`."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:436
+#: ../Doc/c-api/arg.rst:452
 msgid ""
 "Identical to :c:func:`PyArg_ParseTupleAndKeywords`, except that it "
 "accepts a va_list rather than a variable number of arguments."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:442
+#: ../Doc/c-api/arg.rst:458
 msgid ""
 "Ensure that the keys in the keywords argument dictionary are strings.  "
 "This is only needed if :c:func:`PyArg_ParseTupleAndKeywords` is not used,"
 " since the latter already does this check."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:452
+#: ../Doc/c-api/arg.rst:468
 msgid ""
 "Function used to deconstruct the argument lists of \"old-style\" "
 "functions --- these are functions which use the :const:`METH_OLDARGS` "
@@ -822,7 +829,7 @@ msgid ""
 " however, and may continue to be used for that purpose."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:463
+#: ../Doc/c-api/arg.rst:479
 msgid ""
 "A simpler form of parameter retrieval which does not use a format string "
 "to specify the types of the arguments.  Functions which use this method "
@@ -840,23 +847,23 @@ msgid ""
 "set if there was a failure."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:477
+#: ../Doc/c-api/arg.rst:493
 msgid ""
 "This is an example of the use of this function, taken from the sources "
 "for the :mod:`_weakref` helper module for weak references::"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:493
+#: ../Doc/c-api/arg.rst:509
 msgid ""
 "The call to :c:func:`PyArg_UnpackTuple` in this example is entirely "
 "equivalent to this call to :c:func:`PyArg_ParseTuple`::"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:501
+#: ../Doc/c-api/arg.rst:517
 msgid "Building values"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:505
+#: ../Doc/c-api/arg.rst:521
 msgid ""
 "Create a new value based on a format string similar to those accepted by "
 "the :c:func:`PyArg_Parse\\*` family of functions and a sequence of "
@@ -864,7 +871,7 @@ msgid ""
 "exception will be raised if *NULL* is returned."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:510
+#: ../Doc/c-api/arg.rst:526
 msgid ""
 ":c:func:`Py_BuildValue` does not always build a tuple.  It builds a tuple"
 " only if its format string contains two or more format units.  If the "
@@ -874,7 +881,7 @@ msgid ""
 " string."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:516
+#: ../Doc/c-api/arg.rst:532
 msgid ""
 "When memory buffers are passed as parameters to supply data to build "
 "objects, as for the ``s`` and ``s#`` formats, the required data is "
@@ -885,7 +892,7 @@ msgid ""
 ":c:func:`free` for that memory once :c:func:`Py_BuildValue` returns."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:524
+#: ../Doc/c-api/arg.rst:540
 msgid ""
 "In the following description, the quoted form is the format unit; the "
 "entry in (round) parentheses is the Python object type that the format "
@@ -893,174 +900,182 @@ msgid ""
 " value(s) to be passed."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:528
+#: ../Doc/c-api/arg.rst:544
 msgid ""
 "The characters space, tab, colon and comma are ignored in format strings "
 "(but not within format units such as ``s#``).  This can be used to make "
 "long format strings a tad more readable."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:534
+#: ../Doc/c-api/arg.rst:550
 msgid "``s`` (:class:`str` or ``None``) [char \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:533
+#: ../Doc/c-api/arg.rst:549
 msgid ""
 "Convert a null-terminated C string to a Python :class:`str` object using "
 "``'utf-8'`` encoding. If the C string pointer is *NULL*, ``None`` is "
 "used."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:539
+#: ../Doc/c-api/arg.rst:555
 msgid "``s#`` (:class:`str` or ``None``) [char \\*, int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:537
+#: ../Doc/c-api/arg.rst:553
 msgid ""
 "Convert a C string and its length to a Python :class:`str` object using "
 "``'utf-8'`` encoding. If the C string pointer is *NULL*, the length is "
 "ignored and ``None`` is returned."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:543
+#: ../Doc/c-api/arg.rst:559
 msgid "``y`` (:class:`bytes`) [char \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:542
+#: ../Doc/c-api/arg.rst:558
 msgid ""
 "This converts a C string to a Python :class:`bytes` object.  If the C "
 "string pointer is *NULL*, ``None`` is returned."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:547
+#: ../Doc/c-api/arg.rst:563
 msgid "``y#`` (:class:`bytes`) [char \\*, int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:546
+#: ../Doc/c-api/arg.rst:562
 msgid ""
 "This converts a C string and its lengths to a Python object.  If the C "
 "string pointer is *NULL*, ``None`` is returned."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:550
+#: ../Doc/c-api/arg.rst:566
 msgid "``z`` (:class:`str` or ``None``) [char \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:550 ../Doc/c-api/arg.rst:565
+#: ../Doc/c-api/arg.rst:566 ../Doc/c-api/arg.rst:582
 msgid "Same as ``s``."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:553
+#: ../Doc/c-api/arg.rst:569
 msgid "``z#`` (:class:`str` or ``None``) [char \\*, int]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:553 ../Doc/c-api/arg.rst:568
+#: ../Doc/c-api/arg.rst:569 ../Doc/c-api/arg.rst:585
 msgid "Same as ``s#``."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:556
-msgid ""
-"Convert a null-terminated buffer of Unicode (UCS-2 or UCS-4) data to a "
-"Python Unicode object.  If the Unicode buffer pointer is *NULL*, ``None``"
-" is returned."
-msgstr ""
-
-#: ../Doc/c-api/arg.rst:560
-msgid ""
-"Convert a Unicode (UCS-2 or UCS-4) data buffer and its length to a Python"
-" Unicode object.   If the Unicode buffer pointer is *NULL*, the length is"
-" ignored and ``None`` is returned."
-msgstr ""
-
-#: ../Doc/c-api/arg.rst:565
-msgid "``U`` (:class:`str` or ``None``) [char \\*]"
-msgstr ""
-
-#: ../Doc/c-api/arg.rst:568
-msgid "``U#`` (:class:`str` or ``None``) [char \\*, int]"
-msgstr ""
-
-#: ../Doc/c-api/arg.rst:571
-msgid "Convert a plain C :c:type:`int` to a Python integer object."
-msgstr ""
-
 #: ../Doc/c-api/arg.rst:574
-msgid "``b`` (:class:`int`) [char]"
+msgid "``u`` (:class:`str`) [wchar_t \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:574
-msgid "Convert a plain C :c:type:`char` to a Python integer object."
+#: ../Doc/c-api/arg.rst:572
+msgid ""
+"Convert a null-terminated :c:type:`wchar_t` buffer of Unicode (UTF-16 or "
+"UCS-4) data to a Python Unicode object.  If the Unicode buffer pointer is"
+" *NULL*, ``None`` is returned."
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:579
+msgid "``u#`` (:class:`str`) [wchar_t \\*, int]"
 msgstr ""
 
 #: ../Doc/c-api/arg.rst:577
+msgid ""
+"Convert a Unicode (UTF-16 or UCS-4) data buffer and its length to a "
+"Python Unicode object.   If the Unicode buffer pointer is *NULL*, the "
+"length is ignored and ``None`` is returned."
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:582
+msgid "``U`` (:class:`str` or ``None``) [char \\*]"
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:585
+msgid "``U#`` (:class:`str` or ``None``) [char \\*, int]"
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:588
+msgid "Convert a plain C :c:type:`int` to a Python integer object."
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:591
+msgid "``b`` (:class:`int`) [char]"
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:591
+msgid "Convert a plain C :c:type:`char` to a Python integer object."
+msgstr ""
+
+#: ../Doc/c-api/arg.rst:594
 msgid "Convert a plain C :c:type:`short int` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:580
+#: ../Doc/c-api/arg.rst:597
 msgid "Convert a C :c:type:`long int` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:583
+#: ../Doc/c-api/arg.rst:600
 msgid "Convert a C :c:type:`unsigned char` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:586
+#: ../Doc/c-api/arg.rst:603
 msgid "Convert a C :c:type:`unsigned short int` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:589
+#: ../Doc/c-api/arg.rst:606
 msgid "Convert a C :c:type:`unsigned int` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:592
+#: ../Doc/c-api/arg.rst:609
 msgid "Convert a C :c:type:`unsigned long` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:595
+#: ../Doc/c-api/arg.rst:612
 msgid "Convert a C :c:type:`long long` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:598
+#: ../Doc/c-api/arg.rst:615
 msgid "Convert a C :c:type:`unsigned long long` to a Python integer object."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:601
+#: ../Doc/c-api/arg.rst:618
 msgid "Convert a C :c:type:`Py_ssize_t` to a Python integer."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:605
+#: ../Doc/c-api/arg.rst:622
 msgid "``c`` (:class:`bytes` of length 1) [char]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:604
+#: ../Doc/c-api/arg.rst:621
 msgid ""
 "Convert a C :c:type:`int` representing a byte to a Python :class:`bytes` "
 "object of length 1."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:608
+#: ../Doc/c-api/arg.rst:625
 msgid ""
 "Convert a C :c:type:`int` representing a character to Python :class:`str`"
 " object of length 1."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:612
+#: ../Doc/c-api/arg.rst:629
 msgid "Convert a C :c:type:`double` to a Python floating point number."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:615
+#: ../Doc/c-api/arg.rst:632
 msgid "Convert a C :c:type:`float` to a Python floating point number."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:618
+#: ../Doc/c-api/arg.rst:635
 msgid "``D`` (:class:`complex`) [Py_complex \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:618
+#: ../Doc/c-api/arg.rst:635
 msgid "Convert a C :c:type:`Py_complex` structure to a Python complex number."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:621
+#: ../Doc/c-api/arg.rst:638
 msgid ""
 "Pass a Python object untouched (except for its reference count, which is "
 "incremented by one).  If the object passed in is a *NULL* pointer, it is "
@@ -1070,26 +1085,26 @@ msgid ""
 "been raised yet, :exc:`SystemError` is set."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:629
+#: ../Doc/c-api/arg.rst:646
 msgid "``S`` (object) [PyObject \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:629
+#: ../Doc/c-api/arg.rst:646
 msgid "Same as ``O``."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:634
+#: ../Doc/c-api/arg.rst:651
 msgid "``N`` (object) [PyObject \\*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:632
+#: ../Doc/c-api/arg.rst:649
 msgid ""
 "Same as ``O``, except it doesn't increment the reference count on the "
 "object. Useful when the object is created by a call to an object "
 "constructor in the argument list."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:637
+#: ../Doc/c-api/arg.rst:654
 msgid ""
 "Convert *anything* to a Python object through a *converter* function.  "
 "The function is called with *anything* (which should be compatible with "
@@ -1097,42 +1112,59 @@ msgid ""
 "object, or *NULL* if an error occurred."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:643
+#: ../Doc/c-api/arg.rst:660
 msgid ""
 "Convert a sequence of C values to a Python tuple with the same number of "
 "items."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:646
+#: ../Doc/c-api/arg.rst:663
 msgid "``[items]`` (:class:`list`) [*matching-items*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:646
+#: ../Doc/c-api/arg.rst:663
 msgid ""
 "Convert a sequence of C values to a Python list with the same number of "
 "items."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:651
+#: ../Doc/c-api/arg.rst:668
 msgid "``{items}`` (:class:`dict`) [*matching-items*]"
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:649
+#: ../Doc/c-api/arg.rst:666
 msgid ""
 "Convert a sequence of C values to a Python dictionary.  Each pair of "
 "consecutive C values adds one item to the dictionary, serving as key and "
 "value, respectively."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:653
+#: ../Doc/c-api/arg.rst:670
 msgid ""
 "If there is an error in the format string, the :exc:`SystemError` "
 "exception is set and *NULL* returned."
 msgstr ""
 
-#: ../Doc/c-api/arg.rst:658
+#: ../Doc/c-api/arg.rst:675
 msgid ""
 "Identical to :c:func:`Py_BuildValue`, except that it accepts a va_list "
 "rather than a variable number of arguments."
 msgstr ""
+
+#~ msgid ""
+#~ "Convert a null-terminated buffer of "
+#~ "Unicode (UCS-2 or UCS-4) data to a"
+#~ " Python Unicode object.  If the "
+#~ "Unicode buffer pointer is *NULL*, "
+#~ "``None`` is returned."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Convert a Unicode (UCS-2 or UCS-4) "
+#~ "data buffer and its length to a"
+#~ " Python Unicode object.   If the "
+#~ "Unicode buffer pointer is *NULL*, the"
+#~ " length is ignored and ``None`` is"
+#~ " returned."
+#~ msgstr ""
 

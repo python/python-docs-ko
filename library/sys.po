@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-26 18:49+0900\n"
+"POT-Creation-Date: 2018-05-26 11:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -882,7 +882,7 @@ msgstr ""
 msgid "See :pep:`525` for more details."
 msgstr ""
 
-#: ../Doc/library/sys.rst:611 ../Doc/library/sys.rst:1134
+#: ../Doc/library/sys.rst:611 ../Doc/library/sys.rst:1149
 msgid ""
 "This function has been added on a provisional basis (see :pep:`411` for "
 "details.)"
@@ -892,11 +892,11 @@ msgstr ""
 msgid "Returns ``None``, or a wrapper set by :func:`set_coroutine_wrapper`."
 msgstr ""
 
-#: ../Doc/library/sys.rst:619 ../Doc/library/sys.rst:1170
+#: ../Doc/library/sys.rst:619 ../Doc/library/sys.rst:1185
 msgid "See :pep:`492` for more details."
 msgstr ""
 
-#: ../Doc/library/sys.rst:623 ../Doc/library/sys.rst:1174
+#: ../Doc/library/sys.rst:623 ../Doc/library/sys.rst:1189
 msgid ""
 "This function has been added on a provisional basis (see :pep:`411` for "
 "details.)  Use it only for debugging purposes."
@@ -1057,11 +1057,11 @@ msgid ""
 "representation of integers.  The attributes are read only."
 msgstr ""
 
-#: ../Doc/library/sys.rst:731 ../Doc/library/sys.rst:1260
+#: ../Doc/library/sys.rst:731 ../Doc/library/sys.rst:1275
 msgid "Attribute"
 msgstr ""
 
-#: ../Doc/library/sys.rst:731 ../Doc/library/sys.rst:1260
+#: ../Doc/library/sys.rst:731 ../Doc/library/sys.rst:1275
 msgid "Explanation"
 msgstr ""
 
@@ -1409,22 +1409,82 @@ msgid ""
 " source code profiler in Python.  See chapter :ref:`profile` for more "
 "information on the Python profiler.  The system's profile function is "
 "called similarly to the system's trace function (see :func:`settrace`), "
-"but it isn't called for each executed line of code (only on call and "
-"return, but the return event is reported even when an exception has been "
-"set).  The function is thread-specific, but there is no way for the "
-"profiler to know about context switches between threads, so it does not "
-"make sense to use this in the presence of multiple threads. Also, its "
-"return value is not used, so it can simply return ``None``."
+"but it is called with different events, for example it isn't called for "
+"each executed line of code (only on call and return, but the return event"
+" is reported even when an exception has been set). The function is "
+"thread-specific, but there is no way for the profiler to know about "
+"context switches between threads, so it does not make sense to use this "
+"in the presence of multiple threads. Also, its return value is not used, "
+"so it can simply return ``None``."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1018
+#: ../Doc/library/sys.rst:1015
+msgid ""
+"Profile functions should have three arguments: *frame*, *event*, and "
+"*arg*. *frame* is the current stack frame.  *event* is a string: "
+"``'call'``, ``'return'``, ``'c_call'``, ``'c_return'``, or "
+"``'c_exception'``. *arg* depends on the event type."
+msgstr ""
+
+#: ../Doc/library/sys.rst:1020 ../Doc/library/sys.rst:1097
+msgid "The events have the following meaning:"
+msgstr ""
+
+#: ../Doc/library/sys.rst:1024 ../Doc/library/sys.rst:1102
+msgid "``'call'``"
+msgstr ""
+
+#: ../Doc/library/sys.rst:1023
+msgid ""
+"A function is called (or some other code block entered).  The profile "
+"function is called; *arg* is ``None``."
+msgstr ""
+
+#: ../Doc/library/sys.rst:1029 ../Doc/library/sys.rst:1115
+msgid "``'return'``"
+msgstr ""
+
+#: ../Doc/library/sys.rst:1027
+msgid ""
+"A function (or other code block) is about to return.  The profile "
+"function is called; *arg* is the value that will be returned, or ``None``"
+" if the event is caused by an exception being raised."
+msgstr ""
+
+#: ../Doc/library/sys.rst:1033
+msgid "``'c_call'``"
+msgstr ""
+
+#: ../Doc/library/sys.rst:1032
+msgid ""
+"A C function is about to be called.  This may be an extension function or"
+" a built-in.  *arg* is the C function object."
+msgstr ""
+
+#: ../Doc/library/sys.rst:1036
+msgid "``'c_return'``"
+msgstr ""
+
+#: ../Doc/library/sys.rst:1036
+msgid "A C function has returned. *arg* is the C function object."
+msgstr ""
+
+#: ../Doc/library/sys.rst:1038
+msgid "``'c_exception'``"
+msgstr ""
+
+#: ../Doc/library/sys.rst:1039
+msgid "A C function has raised an exception.  *arg* is the C function object."
+msgstr ""
+
+#: ../Doc/library/sys.rst:1043
 msgid ""
 "Set the maximum depth of the Python interpreter stack to *limit*.  This "
 "limit prevents infinite recursion from causing an overflow of the C stack"
 " and crashing Python."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1022
+#: ../Doc/library/sys.rst:1047
 msgid ""
 "The highest possible limit is platform-dependent.  A user may need to set"
 " the limit higher when they have a program that requires deep recursion "
@@ -1432,19 +1492,19 @@ msgid ""
 "care, because a too-high limit can lead to a crash."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1027
+#: ../Doc/library/sys.rst:1052
 msgid ""
 "If the new limit is too low at the current recursion depth, a "
 ":exc:`RecursionError` exception is raised."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1030
+#: ../Doc/library/sys.rst:1055
 msgid ""
 "A :exc:`RecursionError` exception is now raised if the new limit is too "
 "low at the current recursion depth."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1037
+#: ../Doc/library/sys.rst:1062
 msgid ""
 "Set the interpreter's thread switch interval (in seconds).  This "
 "floating-point value determines the ideal duration of the \"timeslices\" "
@@ -1455,7 +1515,7 @@ msgid ""
 "doesn't have its own scheduler."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1054
+#: ../Doc/library/sys.rst:1079
 msgid ""
 "Set the system's trace function, which allows you to implement a Python "
 "source code debugger in Python.  The function is thread-specific; for a "
@@ -1463,15 +1523,15 @@ msgid ""
 ":func:`settrace` for each thread being debugged."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1059
+#: ../Doc/library/sys.rst:1084
 msgid ""
 "Trace functions should have three arguments: *frame*, *event*, and *arg*."
 " *frame* is the current stack frame.  *event* is a string: ``'call'``, "
-"``'line'``, ``'return'``, ``'exception'``, ``'c_call'``, ``'c_return'``, "
-"or ``'c_exception'``. *arg* depends on the event type."
+"``'line'``, ``'return'`` or ``'exception'``.  *arg* depends on the event "
+"type."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1064
+#: ../Doc/library/sys.rst:1089
 msgid ""
 "The trace function is invoked (with *event* set to ``'call'``) whenever a"
 " new local scope is entered; it should return a reference to a local "
@@ -1479,33 +1539,25 @@ msgid ""
 "be traced."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1068
+#: ../Doc/library/sys.rst:1093
 msgid ""
 "The local trace function should return a reference to itself (or to "
 "another function for further tracing in that scope), or ``None`` to turn "
 "off tracing in that scope."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1072
-msgid "The events have the following meaning:"
-msgstr ""
-
-#: ../Doc/library/sys.rst:1077
-msgid "``'call'``"
-msgstr ""
-
-#: ../Doc/library/sys.rst:1075
+#: ../Doc/library/sys.rst:1100
 msgid ""
 "A function is called (or some other code block entered).  The global "
 "trace function is called; *arg* is ``None``; the return value specifies "
 "the local trace function."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1084
+#: ../Doc/library/sys.rst:1109
 msgid "``'line'``"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1080
+#: ../Doc/library/sys.rst:1105
 msgid ""
 "The interpreter is about to execute a new line of code or re-execute the "
 "condition of a loop.  The local trace function is called; *arg* is "
@@ -1514,11 +1566,7 @@ msgid ""
 "works."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1090
-msgid "``'return'``"
-msgstr ""
-
-#: ../Doc/library/sys.rst:1087
+#: ../Doc/library/sys.rst:1112
 msgid ""
 "A function (or other code block) is about to return.  The local trace "
 "function is called; *arg* is the value that will be returned, or ``None``"
@@ -1526,54 +1574,28 @@ msgid ""
 "function's return value is ignored."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1095
+#: ../Doc/library/sys.rst:1120
 msgid "``'exception'``"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1093
+#: ../Doc/library/sys.rst:1118
 msgid ""
 "An exception has occurred.  The local trace function is called; *arg* is "
 "a tuple ``(exception, value, traceback)``; the return value specifies the"
 " new local trace function."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1099
-msgid "``'c_call'``"
-msgstr ""
-
-#: ../Doc/library/sys.rst:1098
-msgid ""
-"A C function is about to be called.  This may be an extension function or"
-" a built-in.  *arg* is the C function object."
-msgstr ""
-
-#: ../Doc/library/sys.rst:1102
-msgid "``'c_return'``"
-msgstr ""
-
-#: ../Doc/library/sys.rst:1102
-msgid "A C function has returned. *arg* is the C function object."
-msgstr ""
-
-#: ../Doc/library/sys.rst:1105
-msgid "``'c_exception'``"
-msgstr ""
-
-#: ../Doc/library/sys.rst:1105
-msgid "A C function has raised an exception.  *arg* is the C function object."
-msgstr ""
-
-#: ../Doc/library/sys.rst:1107
+#: ../Doc/library/sys.rst:1122
 msgid ""
 "Note that as an exception is propagated down the chain of callers, an "
 "``'exception'`` event is generated at each level."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1110
+#: ../Doc/library/sys.rst:1125
 msgid "For more information on code and frame objects, refer to :ref:`types`."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1114
+#: ../Doc/library/sys.rst:1129
 msgid ""
 "The :func:`settrace` function is intended only for implementing "
 "debuggers, profilers, coverage tools and the like.  Its behavior is part "
@@ -1581,7 +1603,7 @@ msgid ""
 "definition, and thus may not be available in all Python implementations."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1121
+#: ../Doc/library/sys.rst:1136
 msgid ""
 "Accepts two optional keyword arguments which are callables that accept an"
 " :term:`asynchronous generator iterator` as an argument. The *firstiter* "
@@ -1590,7 +1612,7 @@ msgid ""
 "generator is about to be garbage collected."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1127
+#: ../Doc/library/sys.rst:1142
 msgid ""
 "See :pep:`525` for more details, and for a reference example of a "
 "*finalizer* method see the implementation of "
@@ -1598,7 +1620,7 @@ msgid ""
 ":source:`Lib/asyncio/base_events.py`"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1140
+#: ../Doc/library/sys.rst:1155
 msgid ""
 "Allows intercepting creation of :term:`coroutine` objects (only ones that"
 " are created by an :keyword:`async def` function; generators decorated "
@@ -1606,86 +1628,86 @@ msgid ""
 "intercepted)."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1145
+#: ../Doc/library/sys.rst:1160
 msgid "The *wrapper* argument must be either:"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1147
+#: ../Doc/library/sys.rst:1162
 msgid "a callable that accepts one argument (a coroutine object);"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1148
+#: ../Doc/library/sys.rst:1163
 msgid "``None``, to reset the wrapper."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1150
+#: ../Doc/library/sys.rst:1165
 msgid ""
 "If called twice, the new wrapper replaces the previous one.  The function"
 " is thread-specific."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1153
+#: ../Doc/library/sys.rst:1168
 msgid ""
 "The *wrapper* callable cannot define new coroutines directly or "
 "indirectly::"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1168
+#: ../Doc/library/sys.rst:1183
 msgid "See also :func:`get_coroutine_wrapper`."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1179
+#: ../Doc/library/sys.rst:1194
 msgid ""
 "Changes the default filesystem encoding and errors mode to 'mbcs' and "
 "'replace' respectively, for consistency with versions of Python prior to "
 "3.6."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1182
+#: ../Doc/library/sys.rst:1197
 msgid ""
 "This is equivalent to defining the "
 ":envvar:`PYTHONLEGACYWINDOWSFSENCODING` environment variable before "
 "launching Python."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1185
+#: ../Doc/library/sys.rst:1200
 msgid "Availability: Windows"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1187
+#: ../Doc/library/sys.rst:1202
 msgid "See :pep:`529` for more details."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1194
+#: ../Doc/library/sys.rst:1209
 msgid ""
 ":term:`File objects <file object>` used by the interpreter for standard "
 "input, output and errors:"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1197
+#: ../Doc/library/sys.rst:1212
 msgid ""
 "``stdin`` is used for all interactive input (including calls to "
 ":func:`input`);"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1199
+#: ../Doc/library/sys.rst:1214
 msgid ""
 "``stdout`` is used for the output of :func:`print` and :term:`expression`"
 " statements and for the prompts of :func:`input`;"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1201
+#: ../Doc/library/sys.rst:1216
 msgid "The interpreter's own prompts and its error messages go to ``stderr``."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1203
+#: ../Doc/library/sys.rst:1218
 msgid ""
 "These streams are regular :term:`text files <text file>` like those "
 "returned by the :func:`open` function.  Their parameters are chosen as "
 "follows:"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1207
+#: ../Doc/library/sys.rst:1222
 msgid ""
 "The character encoding is platform-dependent.  Under Windows, if the "
 "stream is interactive (that is, if its :meth:`isatty` method returns "
@@ -1694,27 +1716,27 @@ msgid ""
 ":meth:`locale.getpreferredencoding`)."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1212
+#: ../Doc/library/sys.rst:1227
 msgid ""
 "Under all platforms though, you can override this value by setting the "
 ":envvar:`PYTHONIOENCODING` environment variable before starting Python."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1215
+#: ../Doc/library/sys.rst:1230
 msgid ""
 "When interactive, standard streams are line-buffered.  Otherwise, they "
 "are block-buffered like regular text files.  You can override this value "
 "with the :option:`-u` command-line option."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1221
+#: ../Doc/library/sys.rst:1236
 msgid ""
 "To write or read binary data from/to the standard streams, use the "
 "underlying binary :data:`~io.TextIOBase.buffer` object.  For example, to "
 "write bytes to :data:`stdout`, use ``sys.stdout.buffer.write(b'abc')``."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1225
+#: ../Doc/library/sys.rst:1240
 msgid ""
 "However, if you are writing a library (and do not control in which "
 "context its code will be executed), be aware that the standard streams "
@@ -1722,7 +1744,7 @@ msgid ""
 " not support the :attr:`~io.BufferedIOBase.buffer` attribute."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1235
+#: ../Doc/library/sys.rst:1250
 msgid ""
 "These objects contain the original values of ``stdin``, ``stderr`` and "
 "``stdout`` at the start of the program.  They are used during "
@@ -1730,7 +1752,7 @@ msgid ""
 "no matter if the ``sys.std*`` object has been redirected."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1240
+#: ../Doc/library/sys.rst:1255
 msgid ""
 "It can also be used to restore the actual files to known working file "
 "objects in case they have been overwritten with a broken object.  "
@@ -1738,7 +1760,7 @@ msgid ""
 "stream before replacing it, and restore the saved object."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1246
+#: ../Doc/library/sys.rst:1261
 msgid ""
 "Under some conditions ``stdin``, ``stdout`` and ``stderr`` as well as the"
 " original values ``__stdin__``, ``__stdout__`` and ``__stderr__`` can be "
@@ -1746,63 +1768,63 @@ msgid ""
 "connected to a console and Python apps started with :program:`pythonw`."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1254
+#: ../Doc/library/sys.rst:1269
 msgid ""
 "A :term:`struct sequence` holding information about the thread "
 "implementation."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1262
+#: ../Doc/library/sys.rst:1277
 msgid ":const:`name`"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1262
+#: ../Doc/library/sys.rst:1277
 msgid "Name of the thread implementation:"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1264
+#: ../Doc/library/sys.rst:1279
 msgid "``'nt'``: Windows threads"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1265
+#: ../Doc/library/sys.rst:1280
 msgid "``'pthread'``: POSIX threads"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1266
+#: ../Doc/library/sys.rst:1281
 msgid "``'solaris'``: Solaris threads"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1268
+#: ../Doc/library/sys.rst:1283
 msgid ":const:`lock`"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1268
+#: ../Doc/library/sys.rst:1283
 msgid "Name of the lock implementation:"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1270
+#: ../Doc/library/sys.rst:1285
 msgid "``'semaphore'``: a lock uses a semaphore"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1271
+#: ../Doc/library/sys.rst:1286
 msgid "``'mutex+cond'``: a lock uses a mutex and a condition variable"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1273
+#: ../Doc/library/sys.rst:1288
 msgid "``None`` if this information is unknown"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1275
+#: ../Doc/library/sys.rst:1290
 msgid ":const:`version`"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1275
+#: ../Doc/library/sys.rst:1290
 msgid ""
 "Name and version of the thread library. It is a string, or ``None`` if "
 "these informations are unknown."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1284
+#: ../Doc/library/sys.rst:1299
 msgid ""
 "When this variable is set to an integer value, it determines the maximum "
 "number of levels of traceback information printed when an unhandled "
@@ -1811,7 +1833,7 @@ msgid ""
 "value are printed."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1292
+#: ../Doc/library/sys.rst:1307
 msgid ""
 "A string containing the version number of the Python interpreter plus "
 "additional information on the build number and compiler used.  This "
@@ -1820,13 +1842,13 @@ msgid ""
 "and the functions provided by the :mod:`platform` module."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1301
+#: ../Doc/library/sys.rst:1316
 msgid ""
 "The C API version for this interpreter.  Programmers may find this useful"
 " when debugging version conflicts between Python and extension modules."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1307
+#: ../Doc/library/sys.rst:1322
 msgid ""
 "A tuple containing the five components of the version number: *major*, "
 "*minor*, *micro*, *releaselevel*, and *serial*.  All values except "
@@ -1837,18 +1859,18 @@ msgid ""
 "is equivalent to ``sys.version_info.major`` and so on."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1315
+#: ../Doc/library/sys.rst:1330
 msgid "Added named component attributes."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1320
+#: ../Doc/library/sys.rst:1335
 msgid ""
 "This is an implementation detail of the warnings framework; do not modify"
 " this value.  Refer to the :mod:`warnings` module for more information on"
 " the warnings framework."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1327
+#: ../Doc/library/sys.rst:1342
 msgid ""
 "The version number used to form registry keys on Windows platforms. This "
 "is stored as string resource 1000 in the Python DLL.  The value is "
@@ -1858,28 +1880,61 @@ msgid ""
 "Windows."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1336
+#: ../Doc/library/sys.rst:1351
 msgid ""
 "A dictionary of the various implementation-specific flags passed through "
 "the :option:`-X` command-line option.  Option names are either mapped to "
 "their values, if given explicitly, or to :const:`True`.  Example:"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1352
+#: ../Doc/library/sys.rst:1367
 msgid ""
 "This is a CPython-specific way of accessing options passed through "
 ":option:`-X`.  Other implementations may export them through other means,"
 " or not at all."
 msgstr ""
 
-#: ../Doc/library/sys.rst:1360
+#: ../Doc/library/sys.rst:1375
 msgid "Citations"
 msgstr ""
 
-#: ../Doc/library/sys.rst:1361
+#: ../Doc/library/sys.rst:1376
 msgid ""
 "ISO/IEC 9899:1999.  \"Programming languages -- C.\"  A public draft of "
 "this standard is available at http://www.open-"
 "std.org/jtc1/sc22/wg14/www/docs/n1256.pdf\\ ."
 msgstr ""
+
+#~ msgid ""
+#~ "Set the system's profile function, which"
+#~ " allows you to implement a Python "
+#~ "source code profiler in Python.  See "
+#~ "chapter :ref:`profile` for more information"
+#~ " on the Python profiler.  The "
+#~ "system's profile function is called "
+#~ "similarly to the system's trace function"
+#~ " (see :func:`settrace`), but it isn't "
+#~ "called for each executed line of "
+#~ "code (only on call and return, but"
+#~ " the return event is reported even"
+#~ " when an exception has been set)."
+#~ "  The function is thread-specific, "
+#~ "but there is no way for the "
+#~ "profiler to know about context switches"
+#~ " between threads, so it does not "
+#~ "make sense to use this in the "
+#~ "presence of multiple threads. Also, its"
+#~ " return value is not used, so "
+#~ "it can simply return ``None``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Trace functions should have three "
+#~ "arguments: *frame*, *event*, and *arg*. "
+#~ "*frame* is the current stack frame.  "
+#~ "*event* is a string: ``'call'``, "
+#~ "``'line'``, ``'return'``, ``'exception'``, "
+#~ "``'c_call'``, ``'c_return'``, or ``'c_exception'``."
+#~ " *arg* depends on the event type."
+#~ msgstr ""
 
