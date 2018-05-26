@@ -26,14 +26,14 @@ def shell(cmd, capture=False, chdir=None):
 
 
 def git_clone(repository, directory, branch=None):
-    shell("git clone --depth 1 --no-single-branch {} {}".format(repository, directory))
+    if not os.path.exists(directory):
+        shell("git clone --depth 1 --no-single-branch {} {}".format(repository, directory))
     if branch:
         shell("git -C {} checkout {}".format(directory, branch))
-
+    shell("git -C {} pull".format(directory))
 
 def prepare_env():
-    if not os.path.exists('cpython'):
-        git_clone('https://github.com/python/cpython.git', 'cpython', VERSION)
+    git_clone('https://github.com/python/cpython.git', 'cpython', VERSION)
 
     locale_dir = os.path.join('cpython', 'locale', 'ko', 'LC_MESSAGES')
     if not os.path.exists(locale_dir):
