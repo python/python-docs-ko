@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Hae-sun Park <haesunrpark@gmail.com>\n"
+"Language-Team: Korean (http://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../Doc/library/numbers.rst:2
 msgid ":mod:`numbers` --- Numeric abstract base classes"
-msgstr ""
+msgstr ":mod:`numbers` --- 숫자 추상 베이스 클래스"
 
 #: ../Doc/library/numbers.rst:7
 msgid "**Source code:** :source:`Lib/numbers.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/numbers.py`"
 
 #: ../Doc/library/numbers.rst:11
 msgid ""
@@ -32,6 +32,11 @@ msgid ""
 "define more operations.  None of the types defined in this module can be "
 "instantiated."
 msgstr ""
+":mod:`numbers` 모듈(:pep:`3141`)은 숫자에 대한 "
+":term:`추상 베이스 클래스 <abstract base class>` 의 계층 구조를 정의합니다. "
+"계층 구조가 깊어질수록 더 많은 연산이 정의되어 있습니다. "
+"이 모듈에 정의된 모든 형은 인스턴스로 만들 수 없습니다."
+
 
 #: ../Doc/library/numbers.rst:18
 msgid ""
@@ -39,10 +44,12 @@ msgid ""
 "argument *x* is a number, without caring what kind, use ``isinstance(x, "
 "Number)``."
 msgstr ""
+"숫자 계층의 최상위 클래스입니다. 형에 상관없이 "
+"인자 *x* 가 숫자인지 확인하려면 ``isinstance(x, Number)`` 를 사용하세요."
 
 #: ../Doc/library/numbers.rst:23
 msgid "The numeric tower"
-msgstr ""
+msgstr "숫자 계층"
 
 #: ../Doc/library/numbers.rst:27
 msgid ""
@@ -53,26 +60,34 @@ msgid ""
 ":meth:`conjugate`, ``==``, and ``!=``. All except ``-`` and ``!=`` are "
 "abstract."
 msgstr ""
+"이 서브 클래스는 복소수를 표현하고 내장 :class:`complex` 형에 사용되는 연산을 포함합니다. "
+"여기에는 :class:`complex` 와 :class:`bool` 형으로의 변환과 "
+":attr:`.real`, :attr:`.imag`, ``+``, ``-``, ``*``, ``/``, :func:`abs`, "
+":meth:`conjugate`, ``==``, ``!=`` 이 포함됩니다. "
+"``-`` 와 ``!=`` 를 제외하고는 모두 추상 메서드입니다. "
 
 #: ../Doc/library/numbers.rst:35
 msgid "Abstract. Retrieves the real component of this number."
-msgstr ""
+msgstr "프로퍼티(추상 메서드). 복소수의 실수부를 반환합니다."
 
 #: ../Doc/library/numbers.rst:39
 msgid "Abstract. Retrieves the imaginary component of this number."
-msgstr ""
+msgstr "프로퍼티(추상 메서드). 복소수의 허수부를 반환합니다."
 
 #: ../Doc/library/numbers.rst:43
 msgid ""
 "Abstract. Returns the complex conjugate. For example, "
 "``(1+3j).conjugate() == (1-3j)``."
 msgstr ""
+"추상 메서드. 켤레 복소수를 반환합니다. 예를 들어 "
+"``(1+3j).conjugate() == (1-3j)`` 입니다."
 
 #: ../Doc/library/numbers.rst:48
 msgid ""
 "To :class:`Complex`, :class:`Real` adds the operations that work on real "
 "numbers."
 msgstr ""
+":class:`Real` 클래스는 :class:`Complex` 클래스에 실수 연산을 추가합니다."
 
 #: ../Doc/library/numbers.rst:51
 msgid ""
@@ -80,12 +95,17 @@ msgid ""
 ":func:`round`, :func:`math.floor`, :func:`math.ceil`, :func:`divmod`, "
 "``//``, ``%``, ``<``, ``<=``, ``>``, and ``>=``."
 msgstr ""
+"간단히 요약하면 :class:`float` 로의 변환과 :func:`math.trunc`, "
+":func:`round`, :func:`math.floor`, :func:`math.ceil`, :func:`divmod`, "
+"``//``, ``%``, ``<``, ``<=``, ``>``, ``>=`` 가 포함됩니다."
 
 #: ../Doc/library/numbers.rst:55
 msgid ""
 "Real also provides defaults for :func:`complex`, :attr:`~Complex.real`, "
 ":attr:`~Complex.imag`, and :meth:`~Complex.conjugate`."
 msgstr ""
+"이 클래스는 또한 :func:`complex`, :attr:`~Complex.real`, "
+":attr:`~Complex.imag`, :meth:`~Complex.conjugate` 를 위한 기본값을 제공합니다."
 
 #: ../Doc/library/numbers.rst:61
 msgid ""
@@ -93,10 +113,13 @@ msgid ""
 ":attr:`~Rational.denominator` properties, which should be in lowest "
 "terms. With these, it provides a default for :func:`float`."
 msgstr ""
+":class:`Real` 의 하위 형이고 :attr:`~Rational.numerator` 와 "
+":attr:`~Rational.denominator` 프로퍼티가 추가됩니다. "
+"이 프로퍼티는 기약 분수의 값이어야 합니다. 또한 :func:`float` 함수를 위한 기본값으로 사용됩니다."
 
 #: ../Doc/library/numbers.rst:68 ../Doc/library/numbers.rst:72
 msgid "Abstract."
-msgstr ""
+msgstr "프로퍼티(추상 메서드)"
 
 #: ../Doc/library/numbers.rst:77
 msgid ""
@@ -105,10 +128,14 @@ msgid ""
 ":attr:`~Rational.denominator`.  Adds abstract methods for ``**`` and bit-"
 "string operations: ``<<``, ``>>``, ``&``, ``^``, ``|``, ``~``."
 msgstr ""
+":class:`Rational` 의 하위 형이고 :class:`int` 클래스로 변환 기능이 추가됩니다. "
+":func:`float`, :attr:`~Rational.numerator`, :attr:`~Rational.denominator` 를 "
+"위한 기본값을 제공합니다. ``**`` 를 위한 메서드와 비트 연산 "
+"``<<``, ``>>``, ``&``, ``^``, ``|``, ``~`` 를 추가합니다."
 
 #: ../Doc/library/numbers.rst:84
 msgid "Notes for type implementors"
-msgstr ""
+msgstr "형 구현을 위한 주의 사항"
 
 #: ../Doc/library/numbers.rst:86
 msgid ""
@@ -117,10 +144,13 @@ msgid ""
 "extensions of the real numbers. For example, :class:`fractions.Fraction` "
 "implements :func:`hash` as follows::"
 msgstr ""
+"구현자는 동일한 숫자가 같게 취급되고 같은 값으로 해싱되도록 해야 합니다. "
+"만약 종류가 다른 실수의 하위 형이 있는 경우 조금 까다로울 수 있습니다. "
+"예를 들어 :class:`fractions.Fraction` 클래스는 :func:`hash` 함수를 다음과 같이 구현합니다::"
 
 #: ../Doc/library/numbers.rst:105
 msgid "Adding More Numeric ABCs"
-msgstr ""
+msgstr "더 많은 숫자 추상 베이스 클래스(ABC) 추가"
 
 #: ../Doc/library/numbers.rst:107
 msgid ""
@@ -128,10 +158,13 @@ msgid ""
 " poor hierarchy if it precluded the possibility of adding those. You can "
 "add ``MyFoo`` between :class:`Complex` and :class:`Real` with::"
 msgstr ""
+"물론 숫자를 위한 ABC를 추가하는 것이 가능합니다. "
+"그렇지 않으면 엉망으로 상속 계층이 구현될 것입니다. "
+":class:`Complex` 와 :class:`Real` 사이에 다음과 같이 ``MyFoo`` 를 추가할 수 있습니다::"
 
 #: ../Doc/library/numbers.rst:119
 msgid "Implementing the arithmetic operations"
-msgstr ""
+msgstr "산술 연산 구현"
 
 #: ../Doc/library/numbers.rst:121
 msgid ""
@@ -141,6 +174,10 @@ msgid ""
 " do the operation there. For subtypes of :class:`Integral`, this means "
 "that :meth:`__add__` and :meth:`__radd__` should be defined as::"
 msgstr ""
+"다른 형에 대한 연산은 두 인자의 형에 관해 알고 있는 구현을 호출하거나 "
+"두 인자를 가장 비슷한 내장 형으로 변환하여 연산을 하도록 산술 연산을 구현하는 것이 좋습니다. "
+":class:`Integral` 클래스의 하위 형일 경우에 :meth:`__add__` 와 :meth:`__radd__` "
+"메서드는 다음과 같이 정의되어야 함을 의미합니다::"
 
 #: ../Doc/library/numbers.rst:152
 msgid ""
@@ -150,10 +187,14 @@ msgid ""
 "will be an instance of ``A``, which is a subtype of :class:`Complex` (``a"
 " : A <: Complex``), and ``b : B <: Complex``. I'll consider ``a + b``:"
 msgstr ""
+":class:`Complex` 클래스의 서브클래스에는 다섯 가지의 서로 다른 혼합 형 연산이 있습니다. "
+"위의 코드에서 ``MyIntegral`` 와 ``OtherTypeIKnowAbout`` 를 제외한 나머지를 기본구조라고 하겠습니다. "
+"``a`` 는 :class:`Complex` 의 하위 형인 ``A`` 의 인스턴스입니다(즉 ``a : A <: Complex`` 입니다). "
+"비슷하게 ``b : B <: Complex`` 입니다. ``a + b`` 인 경우를 생각해 보겠습니다:"
 
 #: ../Doc/library/numbers.rst:159
 msgid "If ``A`` defines an :meth:`__add__` which accepts ``b``, all is well."
-msgstr ""
+msgstr "만약 ``A`` 가 ``b`` 를 받는 :meth:`__add__` 메서드를 정의했다면 모든 것이 문제없이 처리됩니다."
 
 #: ../Doc/library/numbers.rst:161
 msgid ""
@@ -163,18 +204,26 @@ msgid ""
 ":const:`NotImplemented` from :meth:`__add__`. (Or ``A`` may not implement"
 " :meth:`__add__` at all.)"
 msgstr ""
+"``A`` 가 기본구조 코드로 진입하고 :meth:`__add__` 로부터 어떤 값을 반환한다면 "
+"``B`` 가 똑똑하게 정의한 :meth:`__radd__` 메서드를 놓칠 수 있습니다. "
+"이를 피하려면 기본구조는 :meth:`__add__` 에서 :const:`NotImplemented` 를 반환해야 합니다. "
+"(또는 ``A`` 가 :meth:`__add__` 메서드를 전혀 구현하지 않을 수도 있습니다.)"
 
 #: ../Doc/library/numbers.rst:167
 msgid ""
 "Then ``B``'s :meth:`__radd__` gets a chance. If it accepts ``a``, all is "
 "well."
 msgstr ""
+"그다음 ``B`` 의 :meth:`__radd__` 메서드가 기회를 얻습니다. "
+"이 메서드가 ``a`` 를 받을 수 있다면 모든 것이 문제 없이 처리됩니다."
 
 #: ../Doc/library/numbers.rst:169
 msgid ""
 "If it falls back to the boilerplate, there are no more possible methods "
 "to try, so this is where the default implementation should live."
 msgstr ""
+"기본구조 코드로 돌아온다면 더 이상 시도해 볼 수 있는 메서드가 없기 때문에 "
+"기본적으로 수행될 구현을 작성해야 합니다."
 
 #: ../Doc/library/numbers.rst:172
 msgid ""
@@ -182,6 +231,9 @@ msgid ""
 "ok, because it was implemented with knowledge of ``A``, so it can handle "
 "those instances before delegating to :class:`Complex`."
 msgstr ""
+"만약 ``B <: A`` 라면 파이썬은 ``A.__add__`` 메서드 전에 ``B.__radd__`` 를 시도합니다. "
+"``A`` 에 대해서 알고 ``B`` 가 구현되었기 때문에 이런 행동은 문제없습니다. "
+"따라서 :class:`Complex` 에 위임하기 전에 이 인스턴스를 처리할 수 있습니다."
 
 #: ../Doc/library/numbers.rst:177
 msgid ""
@@ -190,6 +242,9 @@ msgid ""
 " built in :class:`complex`, and both :meth:`__radd__` s land there, so "
 "``a+b == b+a``."
 msgstr ""
+"만약 어떤 것도 공유하지 않는 ``A <: Complex`` 와 ``B <: Real`` 라면 "
+"적절한 공유 연산(shared operation)은 내장 :class:`complex` 클래스에 연관된 것입니다.  "
+"양쪽의 :meth:`__radd__` 메서드가 여기에 해당하므로 ``a+b == b+a`` 가 됩니다."
 
 #: ../Doc/library/numbers.rst:182
 msgid ""
@@ -198,4 +253,6 @@ msgid ""
 "and reverse instances of any given operator. For example, "
 ":class:`fractions.Fraction` uses::"
 msgstr ""
-
+"대부분 주어진 어떤 형에 대한 연산은 매우 비슷하기 때문에, "
+"주어진 연산의 정방향(forward) 인스턴스와 역방향(reverse) 인스턴스를 생성하는 헬퍼 함수를 정의하는 것이 유용합니다. "
+"예를 들어 :class:`fractions.Fraction` 클래스는 다음과 같이 사용합니다::"
