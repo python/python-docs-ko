@@ -2,7 +2,7 @@
 import os
 import subprocess
 
-VERSION = '3.6'
+VERSION = '3.7'
 
 
 def shell(cmd, capture=False, chdir=None):
@@ -44,7 +44,7 @@ def prepare_env():
 def build():
     doc_dir = os.path.join('cpython', 'Doc')
     shell(
-        "make VENVDIR=../../venv SPHINXOPTS='-D locale_dirs=../locale -D language=ko -D gettext_compact=0' autobuild-stable-html",
+        "make VENVDIR=../../venv SPHINXOPTS='-D locale_dirs=../locale -D language=ko -D gettext_compact=0' autobuild-dev-html",
         chdir=doc_dir)
 
 
