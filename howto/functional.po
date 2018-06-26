@@ -381,13 +381,15 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:179
 msgid "Iterators"
-msgstr ""
+msgstr "이터레이터"
 
 #: ../Doc/howto/functional.rst:181
 msgid ""
 "I'll start by looking at a Python language feature that's an important "
 "foundation for writing functional-style programs: iterators."
 msgstr ""
+"함수형 방식의 프로그램을 작성하는 중요한 토대가 되는 파이썬 언어의 이터레이터라는 "
+"기능을 살펴보겠습니다."
 
 #: ../Doc/howto/functional.rst:184
 msgid ""
@@ -400,6 +402,12 @@ msgid ""
 "though; it's perfectly reasonable to write an iterator that produces an "
 "infinite stream of data."
 msgstr ""
+"이터레이터는 데이터 스트림을 나타내는 객체입니다. 이 객체는 한 번에 한 요소씩 데이터를 반환합니다. "
+"파이썬 이터레이터는 반드시 :meth:`~iterator.__next__` 라는 메서드를 지원해야 합니다. 이 "
+"메서드는 인수를 취하지 않고 항상 스트림의 다음 요소를 반환합니다. 만약 스트림에 더는 요소가 "
+"없다면, :meth:`~iterator.__next__` 는 :exc:`StopIteration` 예외를 발생시켜야 "
+"합니다. 이터레이터가 유한할 필요는 없습니다. 무한한 데이터 스트림을 생성하는 이터레이터를 작성하는 "
+"것도 합리적인 방법입니다."
 
 #: ../Doc/howto/functional.rst:192
 msgid ""
@@ -410,10 +418,14 @@ msgid ""
 "common being lists and dictionaries.  An object is called "
 ":term:`iterable` if you can get an iterator for it."
 msgstr ""
+"내장 함수 :func:`iter` 는 임의의 객체를 취하여 객체의 내용이나 요소를 반환하는 이터레이터를 "
+"반환합니다. 객체가 이터레이션을 지원하지 않으면 :exc:`TypeError` 를 발생시킵니다. 파이썬의 "
+"내장 데이터 유형 중 일부는 가장 일반적인 리스트이자 딕셔너리인 이터레이션을 지원합니다. "
+"이터레이터를 얻을 수 있는 객체는 :term:`이터러블 <iterable>` 이라고 불립니다."
 
 #: ../Doc/howto/functional.rst:199
 msgid "You can experiment with the iteration interface manually:"
-msgstr ""
+msgstr "수동으로 이터레이션 인터페이스를 실험해볼 수 있습니다."
 
 #: ../Doc/howto/functional.rst:217
 msgid ""
@@ -422,18 +434,25 @@ msgid ""
 "in Y``, Y must be an iterator or some object for which :func:`iter` can "
 "create an iterator.  These two statements are equivalent::"
 msgstr ""
+"파이썬은 여러 다른 컨텍스트에서 이터러블 객체를 기대하며, 가장 중요한 것은 :keyword:`for` "
+"문입니다. ``for X in Y`` 문에서 Y는 반드시 이터레이터 혹은 :func:`iter` 가 "
+"이터레이터를 생성할 수 있는 객체이어야 합니다. 다음 두 문장은 같은 의미입니다."
 
 #: ../Doc/howto/functional.rst:229
 msgid ""
 "Iterators can be materialized as lists or tuples by using the "
 ":func:`list` or :func:`tuple` constructor functions:"
 msgstr ""
+"이터레이터는 :func:`list` 또는 :func:`tuple` 생성자 함수를 사용하여 리스트나 "
+"튜플로 나타낼 수 있습니다."
 
 #: ../Doc/howto/functional.rst:238
 msgid ""
 "Sequence unpacking also supports iterators: if you know an iterator will "
 "return N elements, you can unpack them into an N-tuple:"
 msgstr ""
+"시퀀스 언패킹 또한 이터레이터를 지원합니다. 이터레이터가 N개의 요소를 반환한다는 것을 알고 있다면, "
+"그것들을 N-튜플로 언패킹할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:247
 msgid ""
@@ -446,6 +465,12 @@ msgid ""
 "appears in the stream, the ``\"in\"`` and ``\"not in\"`` operators won't "
 "return either."
 msgstr ""
+":func:`max` 및 :func:`min` 과 같은 내장 함수는 하나의 이터레이터 인수를 취할 수 있으며 "
+"가장 큰 혹은 가장 작은 요소를 반환합니다. ``\"in\"`` 과 ``\"not in\"`` 연산자 또한 "
+"이터레이터를 지원합니다. 이터레이터가 반환한 스트림에서 X가 발견되면 ``X in iterator`` 는 "
+"참입니다. 이터레이터가 무한하다면 명백한 문제를 발견할 수 있습니다. :func:`max` 와 "
+":func:`min` 는 영원히 결과를 반환하지 않으며, 요소 X가 스트림에서 나타나지 않으면 "
+"``\"in\"`` 과 ``\"not in\"`` 연산자 역시 영원히 결과를 반환하지 않을 것입니다."
 
 #: ../Doc/howto/functional.rst:255
 msgid ""
@@ -457,6 +482,11 @@ msgid ""
 "need to do something different with the same stream, you'll have to "
 "create a new iterator."
 msgstr ""
+"이터레이터에서는 오직 앞으로만 나아갈 수 있다는 점에 유의하세요. 이전 요소를 가져오거나, "
+"이터레이터를 재설정하거나, 사본을 만들 방법은 없습니다. 이터레이터 객체는 선택적으로 이러한 추가 "
+"기능을 제공할 수 있지만, 이터레이터 프로토콜은 :meth:`~iterator.__next__` 메서드만 "
+"명시해두었습니다. 함수는 모든 이터레이터의 출력을 소비할 수 있으므로 같은 스트림에서 다른 작업을 "
+"수행해야 하는 경우 새로운 이터레이터를 만들어야 합니다."
 
 #: ../Doc/howto/functional.rst:265
 msgid "Data Types That Support Iterators"
