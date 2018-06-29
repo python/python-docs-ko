@@ -490,7 +490,7 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:265
 msgid "Data Types That Support Iterators"
-msgstr ""
+msgstr "이터레이터를 지원하는 데이터 유형"
 
 #: ../Doc/howto/functional.rst:267
 msgid ""
@@ -498,18 +498,22 @@ msgid ""
 "Python sequence type, such as strings, will automatically support "
 "creation of an iterator."
 msgstr ""
+"리스트와 튜플이 이터레이터를 어떻게 지원하는지 이미 살펴보았습니다. 실제로 문자열과 같은 파이썬 "
+"시퀀스 유형은 이터레이터의 생성을 자동으로 지원합니다."
 
 #: ../Doc/howto/functional.rst:271
 msgid ""
 "Calling :func:`iter` on a dictionary returns an iterator that will loop "
 "over the dictionary's keys::"
 msgstr ""
+":func:`iter` 를 딕셔너리에 적용하면 딕셔너리의 키를 반복하는 이터레이터를 반환합니다."
 
 #: ../Doc/howto/functional.rst:291
 msgid ""
 "Note that the order is essentially random, because it's based on the hash"
 " ordering of the objects in the dictionary."
 msgstr ""
+"딕셔너리 내에 있는 객체의 해시 순서에 기반하기 때문에 순서는 기본적으로 무작위입니다."
 
 #: ../Doc/howto/functional.rst:294
 msgid ""
@@ -519,12 +523,18 @@ msgid ""
 ":meth:`~dict.values` or :meth:`~dict.items` methods to get an appropriate"
 " iterator."
 msgstr ""
+":func:`iter` 를 딕셔너리에 적용하는 것은 항상 키를 반복하지만, 딕셔너리에는 다른 "
+"이터레이터를 반환하는 메서드가 있습니다. 값이나 키/값 쌍을 반복하는 경우에는 명시적으로 "
+":meth:`~dict.values` 혹은 :meth:`~dict.items` 메서드를 사용하여 적절한 이터레이터를 "
+"얻을 수 있습니다."
 
 #: ../Doc/howto/functional.rst:300
 msgid ""
 "The :func:`dict` constructor can accept an iterator that returns a finite"
 " stream of ``(key, value)`` tuples:"
 msgstr ""
+":func:`dict` 생성자는 ``(키, 값)`` 튜플의 유한한 스트림을 반환하는 이터레이터를 받을 수 "
+"있습니다."
 
 #: ../Doc/howto/functional.rst:307
 msgid ""
@@ -532,16 +542,19 @@ msgid ""
 ":meth:`~io.TextIOBase.readline` method until there are no more lines in "
 "the file.  This means you can read each line of a file like this::"
 msgstr ""
+"또한 파일은 더는 새로운 줄이 없을 때까지 :meth:`~io.TextIOBase.readline` 메서드를 "
+"호출하여 이터레이션을 지원합니다. 즉, 다음과 같이 파일의 각 행을 읽을 수 있습니다."
 
 #: ../Doc/howto/functional.rst:315
 msgid ""
 "Sets can take their contents from an iterable and let you iterate over "
 "the set's elements::"
 msgstr ""
+"집합은 이터러블에서 내용을 가져와서 집합의 요소를 반복할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:325
 msgid "Generator expressions and list comprehensions"
-msgstr ""
+msgstr "제너레이터 표현식과 리스트 컴프리헨션"
 
 #: ../Doc/howto/functional.rst:327
 msgid ""
@@ -551,6 +564,9 @@ msgid ""
 "strip off trailing whitespace from each line or extract all the strings "
 "containing a given substring."
 msgstr ""
+"이터레이터의 출력에 대한 두 가지 일반적인 연산은 1) 모든 요소에 대해 일부 연산을 수행하고, 2) "
+"어떤 조건을 만족하는 요소의 하위 집합을 선택하는 것입니다. 예를 들어 문자열 리스트가 있으면 각 "
+"줄에서 후미 공백을 제거하거나, 주어진 하위 문자열을 포함하는 모든 문자열을 추출할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:333
 msgid ""
@@ -560,10 +576,14 @@ msgid ""
 "(https://www.haskell.org/).  You can strip all the whitespace from a "
 "stream of strings with the following code::"
 msgstr ""
+"리스트 컴프리헨션과 제너레이터 표현식(줄임말: \"listcomps\" 및 \"genexps\")은 함수형 "
+"프로그래밍 언어 하스켈(https://www.haskell.org/)에서 빌린 이러한 작업을 위한 간결한 "
+"표기법입니다. 다음 코드를 사용하여 문자열 스트림에서 모든 공백을 제거할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:346
 msgid "You can select only certain elements by adding an ``\"if\"`` condition::"
 msgstr ""
+"``\"if\"`` 조건을 추가하여 특정 요소만 선택할 수도 있습니다."
 
 #: ../Doc/howto/functional.rst:351
 msgid ""
@@ -575,6 +595,11 @@ msgid ""
 " an infinite stream or a very large amount of data.  Generator "
 "expressions are preferable in these situations."
 msgstr ""
+"리스트 컴프리헨션을 사용하면 파이썬 리스트를 얻을 수 있습니다. ``stripped_list`` 는 "
+"이터레이터가 아닌 결과 행을 담고 있는 리스트입니다. 제너레이터 표현식은 필요에 따라 값을 계산하는 "
+"이터레이터를 반환하며 모든 값을 한 번에 구체화할 필요가 없습니다. 즉, 무한 스트림이나 매우 많은 "
+"양의 데이터를 반환하는 이터레이터로 작업하는 경우 리스트 컴프리헨션은 유용하지 않습니다. 제너레이터 "
+"표현식은 이러한 상황에서 유용합니다."
 
 #: ../Doc/howto/functional.rst:358
 msgid ""
@@ -582,12 +607,15 @@ msgid ""
 "comprehensions are surrounded by square brackets (\"[]\").  Generator "
 "expressions have the form::"
 msgstr ""
+"제너레이터 표현식은 괄호(\"()\")로 묶여 있으며 리스트 컴프리헨션은 대괄호(\"[]\")로 묶여 "
+"있습니다. 제너레이터 표현식은 다음과 같은 형식입니다."
 
 #: ../Doc/howto/functional.rst:371
 msgid ""
 "Again, for a list comprehension only the outside brackets are different "
 "(square brackets instead of parentheses)."
 msgstr ""
+"다시 말하면, 리스트 컴프리헨션을 위해서는 바깥쪽 괄호만 다릅니다(괄호 대신 대괄호)."
 
 #: ../Doc/howto/functional.rst:374
 msgid ""
@@ -596,6 +624,9 @@ msgid ""
 "``expression`` is only evaluated and added to the result when "
 "``condition`` is true."
 msgstr ""
+"생성된 출력의 요소는 ``expression`` 의 연속적인 값이 될 것입니다. ``if`` 절은 "
+"모두 선택적입니다. ``expression`` 은 ``condition`` 이 참일 때만 "
+"평가되고 결과에 추가됩니다."
 
 #: ../Doc/howto/functional.rst:378
 msgid ""
@@ -604,6 +635,8 @@ msgid ""
 "create an iterator that will be immediately passed to a function you can "
 "write::"
 msgstr ""
+"제너레이터 표현식은 항상 괄호 안에 작성해야 하지만 함수 호출을 알리는 괄호도 포함됩니다. 함수에 "
+"즉시 전달되는 반복자를 만들고 싶다면 다음과 같이 작성할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:384
 msgid ""
@@ -614,12 +647,17 @@ msgid ""
 "``sequence3`` is then looped over for each resulting pair of elements "
 "from ``sequence1`` and ``sequence2``."
 msgstr ""
+"``for...in`` 절은 반복할 시퀀스를 포함합니다. 시퀀스는 왼쪽에서 오른쪽으로 반복되며 병렬로 "
+"처리되지 **않기** 때문에 같은 길이일 필요는 없습니다. ``sequence1`` 의 각 요소에 대해 "
+"``sequence2`` 는 처음부터 반복됩니다. ``sequence3`` 은 ``sequence1`` 과 "
+"``sequence2`` 의 각 결과 쌍에 대해 반복됩니다."
 
 #: ../Doc/howto/functional.rst:390
 msgid ""
 "To put it another way, a list comprehension or generator expression is "
 "equivalent to the following Python code::"
 msgstr ""
+"다른 식으로 표현하면, 리스트 컴프리헨션 혹은 제너레이터 표현식은 다음 파이썬 코드와 같습니다."
 
 #: ../Doc/howto/functional.rst:407
 msgid ""
@@ -628,6 +666,9 @@ msgid ""
 "product of the lengths of all the sequences.  If you have two lists of "
 "length 3, the output list is 9 elements long:"
 msgstr ""
+"이것은 여러 개의 ``for...in`` 절이 있지만 ``if`` 절이 없을 때 결과 출력의 길이가 모든 "
+"시퀀스 길이의 곱과 같음을 의미합니다. 길이가 3인 두 개의 리스트가 있는 경우 출력 목록의 길이는 "
+"9개입니다."
 
 #: ../Doc/howto/functional.rst:419
 msgid ""
@@ -636,6 +677,8 @@ msgid ""
 "parentheses.  The first list comprehension below is a syntax error, while"
 " the second one is correct::"
 msgstr ""
+"파이썬 문법의 모호함을 피하고자, ``expression`` 이 튜플을 생성하고 있다면, 괄호로 묶어야 "
+"합니다. 아래의 첫 번째 리스트 컴프리헨션은 구문 오류이며, 두 번째는 올바릅니다."
 
 #: ../Doc/howto/functional.rst:430
 msgid "Generators"
