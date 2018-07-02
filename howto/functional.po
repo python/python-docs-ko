@@ -682,7 +682,7 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:430
 msgid "Generators"
-msgstr ""
+msgstr "제너레이터"
 
 #: ../Doc/howto/functional.rst:432
 msgid ""
@@ -690,6 +690,8 @@ msgid ""
 "writing iterators.  Regular functions compute a value and return it, but "
 "generators return an iterator that returns a stream of values."
 msgstr ""
+"제너레이터는 이터레이터를 작성하는 작업을 단순화하는 특별한 클래스의 함수입니다. 일반 함수는 값을 "
+"계산하여 반환하지만, 제너레이터는 값의 스트림을 반환하는 이터레이터를 반환합니다."
 
 #: ../Doc/howto/functional.rst:436
 msgid ""
@@ -703,10 +705,16 @@ msgid ""
 "later resume the function where it left off?  This is what generators "
 "provide; they can be thought of as resumable functions."
 msgstr ""
+"파이썬이나 C에서 정규 함수 호출이 어떻게 작동하는지 잘 알고 있을 것입니다. 함수를 호출하면 "
+"지역 변수가 생성되는 비공개 이름 공간이 생깁니다. 함수가 ``return`` 문에 도달하면 지역 변수가 "
+"소멸하고 그 값이 호출자에게 반환됩니다. 같은 함수를 나중에 호출하면 새로운 비공개 이름 공간과 "
+"새로운 지역 변수 집합이 만들어집니다. 그러나 지역 변수가 함수를 빠져나갈 때 버려지지 않으면 "
+"어떻게 될까요? 나중에 중단했던 곳에서 함수를 다시 시작할 수 있다면 어떨까요? 이것이 제너레이터가 "
+"제공하는 것입니다. 그들은 재개 가능한 함수라고 생각할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:445
 msgid "Here's the simplest example of a generator function:"
-msgstr ""
+msgstr "다음은 제너레이터 함수의 가장 간단한 예입니다."
 
 #: ../Doc/howto/functional.rst:451
 msgid ""
@@ -714,6 +722,8 @@ msgid ""
 "function; this is detected by Python's :term:`bytecode` compiler which "
 "compiles the function specially as a result."
 msgstr ""
+":keyword:`yield` 키워드를 포함하는 함수는 제너레이터 함수입니다. 이것은 파이썬의 "
+":term:`bytecode` 컴파일러에 의해 감지됩니다. 이 컴파일러는 결과를 함수로 컴파일합니다."
 
 #: ../Doc/howto/functional.rst:455
 msgid ""
@@ -726,16 +736,23 @@ msgid ""
 "local variables are preserved.  On the next call to the generator's "
 ":meth:`~generator.__next__` method, the function will resume executing."
 msgstr ""
+"제너레이터 함수를 호출하면 단일 값을 반환하지 않습니다. 대신 이터레이터 프로토콜을 지원하는 "
+"제너레이터 객체를 반환합니다. ``yield`` 표현식을 실행하면 제너레이터는 ``return`` 문과 "
+"비슷한 ``i`` 의 값을 출력합니다. ``yield`` 와 ``return`` 의 큰 차이점은 ``yield`` "
+"에 도달하면 제너레이터의 실행 상태가 일시 중단되고 지역 변수가 보존된다는 것입니다. 제너레이터의 "
+":meth:`~generator.__next__` 메서드가 다음에 실행될 때, 함수가 다시 실행됩니다."
 
 #: ../Doc/howto/functional.rst:464
 msgid "Here's a sample usage of the ``generate_ints()`` generator:"
-msgstr ""
+msgstr "다음은 ``generate_ints()`` 제너레이터의 사용 예입니다."
 
 #: ../Doc/howto/functional.rst:481
 msgid ""
 "You could equally write ``for i in generate_ints(5)``, or ``a,b,c = "
 "generate_ints(3)``."
 msgstr ""
+"여러분은 똑같이 ``for i in generate_ints(5)`` 또는 "
+"``a,b,c = generate_ints(3)`` 라고 쓸 수 있습니다."
 
 #: ../Doc/howto/functional.rst:484
 msgid ""
@@ -745,6 +762,9 @@ msgid ""
 "the function is reached, the procession of values ends and the generator "
 "cannot yield any further values."
 msgstr ""
+"제너레이터 함수 내에서, ``return value`` 는 :meth:`~generator.__next__` 메서드에서 "
+"``StopIteration(value)`` 를 발생시킵니다. 이런 일이 발생하거나 함수의 맨 아래에 도달하면 "
+"값의 행렬이 끝나고 제너레이터는 더는 값을 산출할 수 없습니다."
 
 #: ../Doc/howto/functional.rst:489
 msgid ""
@@ -755,6 +775,11 @@ msgid ""
 "method increment ``self.count`` and return it. However, for a moderately "
 "complicated generator, writing a corresponding class can be much messier."
 msgstr ""
+"직접 클래스를 작성하고 제너레이터의 모든 지역 변수를 인스턴스 변수로 저장하여 제너레이터의 효과를 "
+"수동으로 얻을 수 있습니다. 예를 들어, 정수 리스트를 반환하는 것은 ``self.count`` 를 0으로 "
+"설정하고 :meth:`~iterator.__next__` 메서드로 ``self.count`` 를 증가시켜 반환하는 "
+"식으로 수행할 수 있습니다. 그러나, 다소 복잡한 제너레이터의 경우에는 해당 클래스를 작성하는 것이 "
+"훨씬 더 복잡할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:497
 msgid ""
@@ -763,6 +788,9 @@ msgid ""
 "interesting examples.  Here's one generator that implements an in-order "
 "traversal of a tree using generators recursively. ::"
 msgstr ""
+"파이썬의 라이브러리인 :source:`Lib/test/test_generators.py` 에 포함된 테스트 묶음에는 "
+"더 많은 흥미로운 예제들이 있습니다. 제너레이터를 재귀적으로 사용하여 트리를 순차적으로 순회하는 "
+"것을 구현하는 하나의 제너레이터가 있습니다."
 
 #: ../Doc/howto/functional.rst:513
 msgid ""
@@ -772,6 +800,9 @@ msgid ""
 "knight to every square of an NxN chessboard without visiting any square "
 "twice)."
 msgstr ""
+"``test_generators.py`` 의 다른 두 가지 예는, N-여왕 문제(NxN 체스판에 서로 다른 "
+" 왕비를 위협할 수 없도록 N개의 왕비를 배치하는 문제)와 기사의 여행(나이트가 NxN 체스판의 모든 "
+"칸을 정확히 한 번씩 갈 수 있도록 하는 방법을 찾는 문제)입니다."
 
 #: ../Doc/howto/functional.rst:521
 msgid "Passing values into a generator"
