@@ -806,7 +806,7 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:521
 msgid "Passing values into a generator"
-msgstr ""
+msgstr "제너레이터에 값 전달하기"
 
 #: ../Doc/howto/functional.rst:523
 msgid ""
@@ -817,6 +817,10 @@ msgid ""
 "global variable or by passing in some mutable object that callers then "
 "modify, but these approaches are messy."
 msgstr ""
+"파이썬 2.4 및 그 이전 버전에서 제너레이터는 출력만 생성했습니다. 제너레이터의 코드가 이터레이터를 "
+"만들기 위해 호출된 후에는 그 실행이 다시 시작될 때 함수에 새로운 정보를 전달할 방법이 없었습니다. "
+"제너레이터가 전역 변수를 보거나 호출자가 수정할 수 있는 변경 가능한 객체를 전달함으로써 이 기능을 "
+"해킹할 수 있지만, 이러한 접근법은 지저분한 방식입니다."
 
 #: ../Doc/howto/functional.rst:530
 msgid ""
@@ -824,6 +828,8 @@ msgid ""
 ":keyword:`yield` became an expression, returning a value that can be "
 "assigned to a variable or otherwise operated on::"
 msgstr ""
+"파이썬 2.5에서는 제너레이터에 값을 전달하는 간단한 방법이 있습니다. :keyword:`yield` 는 "
+"표현식이 되어 변수에 할당하거나 다른 식으로 조작할 수 있는 값을 반환합니다."
 
 #: ../Doc/howto/functional.rst:536
 msgid ""
@@ -832,6 +838,8 @@ msgid ""
 " above example. The parentheses aren't always necessary, but it's easier "
 "to always add them instead of having to remember when they're needed."
 msgstr ""
+"위 예제처럼 반환 값으로 무엇인가를 할 때 ``yield`` 표현식 주위에 **항상** 괄호를 넣는 것이 "
+"좋습니다. 괄호는 항상 필요한 것은 아니지만 필요한 시점을 기억하지 않고 항상 추가하기가 더 쉽습니다."
 
 #: ../Doc/howto/functional.rst:541
 msgid ""
@@ -841,6 +849,10 @@ msgid ""
 "This means you can write ``val = yield i`` but have to use parentheses "
 "when there's an operation, as in ``val = (yield i) + 12``.)"
 msgstr ""
+"(:pep:`342` 는 정확한 규칙을 설명합니다. 이것은 할당의 오른쪽에 있는 최상위 표현식에서 "
+"발생하는 경우를 제외하고 항상 ``yield`` 표현식을 괄호로 묶어야 한다는 것입니다. "
+"``val = yield i`` 라고 쓸 수도 있지만, ``val = (yield i) + 12`` 처럼 연산이 "
+"있을 때는 괄호를 써야합니다.)"
 
 #: ../Doc/howto/functional.rst:547
 msgid ""
@@ -850,16 +862,22 @@ msgid ""
 ":meth:`~generator.__next__` method is called, the ``yield`` returns "
 "``None``."
 msgstr ""
+"값은 :meth:`send(value) <generator.send>` 메서드를 호출하여 제너레이터로 보내집니다. "
+"이 메서드는 제너레이터의 코드를 다시 시작하고 ``yield`` 표현식은 지정된 값을 반환합니다. 만약 "
+"정규 :meth:`~generator.__next__` 메서드가 호출되면 ``yield`` 는 ``None`` 을 "
+"반환합니다."
 
 #: ../Doc/howto/functional.rst:552
 msgid ""
 "Here's a simple counter that increments by 1 and allows changing the "
 "value of the internal counter."
 msgstr ""
+"다음은 1씩 증가하며 내부 카운터값을 변경할 수 있는 간단한 카운터입니다."
 
 #: ../Doc/howto/functional.rst:567
 msgid "And here's an example of changing the counter:"
 msgstr ""
+"다음은 카운터 변경의 예시입니다."
 
 #: ../Doc/howto/functional.rst:584
 msgid ""
@@ -868,12 +886,16 @@ msgid ""
 "you're sure that the :meth:`~generator.send` method will be the only "
 "method used to resume your generator function."
 msgstr ""
+"``yield`` 가 종종 ``None`` 을 반환할 것이므로, 항상 이 경우를 확인해야 합니다. "
+":meth:`~generator.send` 메서드가 제너레이터 함수를 다시 시작하는데 사용되는 유일한 "
+"메서드가 아니라면, 표현식에서 값을 사용하지 마세요."
 
 #: ../Doc/howto/functional.rst:589
 msgid ""
 "In addition to :meth:`~generator.send`, there are two other methods on "
 "generators:"
 msgstr ""
+":meth:`~generator.send` 외에도 제너레이터에 대한 두 가지 다른 메서드가 있습니다."
 
 #: ../Doc/howto/functional.rst:592
 msgid ""
@@ -881,6 +903,9 @@ msgid ""
 " to raise an exception inside the generator; the exception is raised by "
 "the ``yield`` expression where the generator's execution is paused."
 msgstr ""
+":meth:`throw(type, value=None, traceback=None) <generator.throw>` 는 "
+"제너레이터 내에서 예외를 발생시키는 데 사용됩니다. 예외는 제너레이터의 실행이 일시 중지된 "
+"``yield`` 표현식에 의해 발생합니다."
 
 #: ../Doc/howto/functional.rst:596
 msgid ""
@@ -892,6 +917,11 @@ msgid ""
 " will also be called by Python's garbage collector when the generator is "
 "garbage-collected."
 msgstr ""
+":meth:`~generator.close` 는 생성자 내에서 :exc:`GeneratorExit` 예외를 발생시켜 "
+"이터레이션을 종료합니다. 이 예외가 발생하면 제너레이터의 코드는 :exc:`GeneratorExit` "
+"또는 :exc:`StopIteration` 을 발생시켜야 합니다. 예외를 받고도 다른 작업을 하는 것은 "
+"금지되어 있으며 :exc:`RuntimeError` 를 촉발합니다. :meth:`~generator.close` 는 "
+"제너레이터가 가비지로 수거될 때 파이썬의 가비지 수거기에 의해 호출될 것입니다."
 
 #: ../Doc/howto/functional.rst:604
 msgid ""
@@ -899,12 +929,17 @@ msgid ""
 "suggest using a ``try: ... finally:`` suite instead of catching "
 ":exc:`GeneratorExit`."
 msgstr ""
+":exc:`GeneratorExit` 이 발생할 때 정리 작업을 위한 코드를 실행해야 한다면 "
+":exc:`GeneratorExit` 를 잡는 대신 ``try: ... finally:`` 를 사용하는 것이 "
+"좋습니다."
 
 #: ../Doc/howto/functional.rst:607
 msgid ""
 "The cumulative effect of these changes is to turn generators from one-way"
 " producers of information into both producers and consumers."
 msgstr ""
+"이러한 변화의 누적 효과는 제너레이터를 일방적인 정보 생산자에서 생산자와 소비자 모두로 전환하는 "
+"것입니다."
 
 #: ../Doc/howto/functional.rst:610
 msgid ""
@@ -914,6 +949,9 @@ msgid ""
 "coroutines can be entered, exited, and resumed at many different points "
 "(the ``yield`` statements)."
 msgstr ""
+"제너레이터는 **코루틴** 이 되어 더 일반적인 형태의 서브루틴이 됩니다. 서브루틴은 한 지점에서 "
+"시작되고 다른 한 지점(함수의 맨 위와 ``return`` 문)에서 빠져나옵니다. 그러나 여러 다른 "
+"지점에서 코루틴을 시작하고 빠져나오고 다시 시작할 수 있습니다(``yield`` 문)."
 
 #: ../Doc/howto/functional.rst:617
 msgid "Built-in functions"
