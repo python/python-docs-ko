@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2018-05-16 22:54+0900\n"
+"Last-Translator: SeomGi, Han <iandmyhand@gmail.com>\n"
+"Language-Team: Korean (http://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:3
 msgid "Functional Programming HOWTO"
-msgstr ""
+msgstr "함수형 프로그래밍 입문서"
 
 #: ../Doc/howto/functional.rst
 msgid "Author"
-msgstr ""
+msgstr "저자"
 
 #: ../Doc/howto/functional.rst:5
 msgid "A. M. Kuchling"
@@ -45,10 +45,14 @@ msgid ""
 "such as :term:`iterator`\\s and :term:`generator`\\s and relevant library"
 " modules such as :mod:`itertools` and :mod:`functools`."
 msgstr ""
+"이 문서에서는, 함수형 방식으로 프로그램을 구현하는데 적합한 파이썬의 특성에 대해 알아볼 것입니다. "
+"함수형 프로그래밍의 개념을 소개한 뒤에, :term:`이터레이터 <iterator>` , "
+":term:`제너레이터 <generator>` 와 같은 언어의 특성과 :mod:`itertools` , "
+":mod:`functools` 와 같은 관련 라이브러리 모듈을 살펴볼 것입니다."
 
 #: ../Doc/howto/functional.rst:16
 msgid "Introduction"
-msgstr ""
+msgstr "소개"
 
 #: ../Doc/howto/functional.rst:18
 msgid ""
@@ -56,12 +60,16 @@ msgid ""
 "you're just interested in learning about Python language features, skip "
 "to the next section on :ref:`functional-howto-iterators`."
 msgstr ""
+"이 절에서는 함수형 프로그래밍의 기본적인 개념을 설명합니다. 만약 단순히 파이썬의 언어적 특성에 "
+"관해서만 관심이 있으시다면, :ref:`functional-howto-iterators` 절로 건너뛰세요."
 
 #: ../Doc/howto/functional.rst:22
 msgid ""
 "Programming languages support decomposing problems in several different "
 "ways:"
 msgstr ""
+"프로그래밍 언어들은 다음과 같이 각각 다른 방식으로 문제를 더 작은 부분으로 분할하는 방법을 "
+"지원합니다."
 
 #: ../Doc/howto/functional.rst:24
 msgid ""
@@ -69,6 +77,8 @@ msgid ""
 "instructions that tell the computer what to do with the program's input."
 "  C, Pascal, and even Unix shells are procedural languages."
 msgstr ""
+"대부분의 프로그래밍 언어들은 **절차적** 입니다. 프로그램은 컴퓨터에 프로그램의 입력을 어떻게 "
+"할지 알려주는 명령 목록입니다. C, 파스칼, 유닉스 셸과 같은 것들은 절차적 언어입니다."
 
 #: ../Doc/howto/functional.rst:28
 msgid ""
@@ -79,6 +89,10 @@ msgid ""
 "set you want to retrieve, and the SQL engine decides whether to scan "
 "tables or use indexes, which subclauses should be performed first, etc."
 msgstr ""
+"**선언적** 언어에서는 해결해야 할 문제를 설명하는 명세서를 작성하고, 언어 구현은 계산을 "
+"효과적으로 수행하는 방법을 파악합니다. SQL은 가장 친숙한 선언적 언어입니다. SQL 질의는 검색하고 "
+"싶은 데이터 세트를 설명하고, SQL 엔진은 테이블을 스캔하거나 인덱스를 사용할 것인지, 어떤 하위 "
+"구문을 먼저 수행해야 하는지 등을 결정합니다."
 
 #: ../Doc/howto/functional.rst:35
 msgid ""
@@ -88,6 +102,10 @@ msgid ""
 "languages.  C++ and Python are languages that support object-oriented "
 "programming, but don't force the use of object-oriented features."
 msgstr ""
+"**객체지향** 프로그램은 객체들의 컬렉션을 다룹니다. 객체는 내부적인 상태를 갖고 있으며 이 "
+"내부적인 상태를 어떤 방식으로 가져오거나 수정하는 메서드를 제공합니다. 스몰토크와 자바는 객체지향 "
+"언어입니다. C++ 와 파이썬은 객체지향 프로그래밍을 지원하는 언어이지만, 객체 지향적인 특성들을 "
+"사용하도록 강제하지는 않습니다."
 
 #: ../Doc/howto/functional.rst:41
 msgid ""
@@ -97,6 +115,10 @@ msgid ""
 "Well-known functional languages include the ML family (Standard ML, "
 "OCaml, and other variants) and Haskell."
 msgstr ""
+"**함수형** 프로그래밍은 함수들의 세트로 문제를 분해합니다. 이상적으로 말하면, 함수들은 입력을 "
+"받아서 출력을 만들어내기만 하며, 주어진 입력에 대해 생성된 출력에 영향을 끼칠만한 어떠한 내부적인 "
+"상태도 가지지 않습니다. 잘 알려진 함수형 언어로는 ML 계열(Standard ML, OCaml 및 다른 "
+"변형)과 하스켈이 있습니다."
 
 #: ../Doc/howto/functional.rst:47
 msgid ""
@@ -110,6 +132,12 @@ msgid ""
 " different approaches; the GUI might be object-oriented while the "
 "processing logic is procedural or functional, for example."
 msgstr ""
+"일부 컴퓨터 언어의 설계자들은 프로그래밍에 대한 한 가지의 특별한 접근 방식을 강조합니다. 이것은 "
+"종종 다른 접근 방식으로 프로그램을 작성하는 것을 어렵게 만듭니다. 다른 언어들은 다양한 접근 방법을 "
+"지원하는 다중 패러다임 언어입니다. Lisp, C++, 파이썬 등은 다중 패러다임 언어입니다. 이러한 "
+"언어에서는 절차적, 객체 지향적 혹은 함수형으로 프로그램이나 라이브러리를 작성할 수 있습니다. "
+"거대한 프로그램에서, 각 구역은 서로 다른 접근 방법을 사용하여 작성될 수 있습니다. 예를 들어 처리 "
+"로직이 절차적 혹은 함수형으로 작성되었을 때, GUI는 객체 지향적으로 작성될 수 있습니다."
 
 #: ../Doc/howto/functional.rst:58
 msgid ""
@@ -122,6 +150,11 @@ msgid ""
 " get updated as a program runs; every function's output must only depend "
 "on its input."
 msgstr ""
+"함수형 프로그램에서, 입력은 여러 함수의 세트를 통해 흘러 다닙니다. 각 함수는 입력으로부터 동작해서 "
+"출력을 만들어냅니다. 함수형 방식은 내부 상태를 수정하거나 함수의 반환 값에서 보이지 않는 다른 "
+"변경사항들을 만드는 부작용이 있는 함수를 사용하지 않습니다. 부작용이 전혀 없는 함수를 "
+"**순수 함수** 라고 합니다. 부작용을 피한다는 것은 프로그램이 실행될 때 수정될 수 있는 자료 구조를 "
+"사용하지 않는다는 의미입니다. 모든 함수의 출력은 입력에만 의존해야 합니다."
 
 #: ../Doc/howto/functional.rst:66
 msgid ""
@@ -133,6 +166,11 @@ msgid ""
 "useful value; they're only called for their side effects of sending some "
 "text to the screen or pausing execution for a second."
 msgstr ""
+"어떤 언어는 순수성에 대해 매우 엄격하며, ``a=3`` 혹은 ``c = a + b`` 와 같은 대입문조차 "
+"없지만, 모든 부작용을 피하는 것은 어렵습니다. 화면에 출력하거나 디스크 파일에 쓰는 작업은 부작용을 "
+"만들어낼 수 있습니다. 예를 들어, 파이썬에서 :func:`print` 혹은 :func:`time.sleep` "
+"함수를 호출하면 의미 없는 값을 반환합니다. 이 함수들은 화면에 문자열을 보내거나 잠시 동안 실행을 "
+"일시 중지하는 작업과 같은 부작용을 호출할 뿐입니다."
 
 #: ../Doc/howto/functional.rst:74
 msgid ""
@@ -143,6 +181,10 @@ msgid ""
 "assignments to local variables, but won't modify global variables or have"
 " other side effects."
 msgstr ""
+"함수형 방식으로 작성된 파이썬 프로그램은 보통 극단적으로 모든 I/O 혹은 대입문을 회피하는 방식으로 "
+"나아가지는 않습니다. 대신 함수형처럼 보이는 인터페이스를 제공하며 내부적으로는 함수형이 아닌 "
+"기능들을 사용합니다. 예를 들어 함수의 구현은 여전히 지역 변수에 값을 할당하는 방식이 사용되지만 "
+"전역 변수를 수정하거나 다른 부작용을 발생시키지는 않습니다."
 
 #: ../Doc/howto/functional.rst:80
 msgid ""
@@ -156,6 +198,11 @@ msgid ""
 "instances representing objects in your application (e-mail messages, "
 "transactions, etc.)."
 msgstr ""
+"함수형 프로그래밍은 객체 지향 프로그래밍의 반대라고 생각할 수 있습니다. 객체는 내부 상태들을 갖고 "
+"있으며 이 상태들을 수정할 수 있는 메서드의 호출 모음이 포함된 작은 캡슐이며, 프로그램은 올바른 "
+"상태 변경 집합을 구성합니다. 함수형 프로그래밍은 가능한 한 상태 변경을 피하고자 하며 함수 간의 "
+"데이터 흐름을 사용합니다. 파이썬에서는 응용 프로그램의 객체를 나타내는 인스턴스(이메일 메시지, "
+"트랜잭션 등)를 가져와서 반환하는 함수를 작성함으로써 두 가지 접근 방식을 결합할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:89
 msgid ""
@@ -163,32 +210,35 @@ msgid ""
 "should you avoid objects and side effects?  There are theoretical and "
 "practical advantages to the functional style:"
 msgstr ""
+"함수형 설계는 동작 방식에 이상한 제약이 있는 것처럼 보일 수 있습니다. 왜 객체와 부작용을 "
+"피해야만 할까요? 함수형 방식은 이론적으로도, 실질적으로도 다음과 같은 장점이 있습니다."
 
 #: ../Doc/howto/functional.rst:93
 msgid "Formal provability."
-msgstr ""
+msgstr "공식적인 증명."
 
 #: ../Doc/howto/functional.rst:94
 msgid "Modularity."
-msgstr ""
+msgstr "모듈성."
 
 #: ../Doc/howto/functional.rst:95
 msgid "Composability."
-msgstr ""
+msgstr "결합성."
 
 #: ../Doc/howto/functional.rst:96
 msgid "Ease of debugging and testing."
-msgstr ""
+msgstr "디버깅과 테스트 용이성."
 
 #: ../Doc/howto/functional.rst:100
 msgid "Formal provability"
-msgstr ""
+msgstr "공식적인 증명"
 
 #: ../Doc/howto/functional.rst:102
 msgid ""
 "A theoretical benefit is that it's easier to construct a mathematical "
 "proof that a functional program is correct."
 msgstr ""
+"이론적인 장점은 함수형 프로그램이 정확하다는 수학적 증명을 만드는 것이 더 쉽다는 것입니다."
 
 #: ../Doc/howto/functional.rst:105
 msgid ""
@@ -199,6 +249,10 @@ msgid ""
 "looks right; the goal is instead a rigorous proof that a program produces"
 " the right result for all possible inputs."
 msgstr ""
+"오랫동안 연구자들은 수학적으로 프로그램이 정확하다는 것을 증명하는 방법을 찾는 데 관심을 "
+"보여왔습니다. 이것은 수많은 입력에 대해 프로그램을 테스트하고 출력이 정확하다고 결론짓거나, "
+"프로그램의 소스코드를 읽어보고 코드가 올바르다고 결론짓는 것과는 다릅니다. 그들의 목표는 입력 "
+"가능한 모든 것에 대해 프로그램이 올바른 결과를 산출한다는 엄격한 증거를 찾는 것입니다."
 
 #: ../Doc/howto/functional.rst:112
 msgid ""
@@ -211,6 +265,11 @@ msgid ""
 "which point the invariants should match the desired conditions on the "
 "program's output."
 msgstr ""
+"프로그램이 올바른지 증명하기 위해 사용하는 기술은 항상 참인 **불변 변수**, 입력 데이터의 특성, "
+"프로그램의 변수의 특성을 작성하는 것입니다. 각 코드 행에 대해, 그 행이 실행되기 **전에** 불변 "
+"변수 X와 Y가 참이라면, 그 행이 실행된 **후에** 약간 다른 불변 변수 X' 및 Y'가 참이라는 것을 "
+"보여줍니다. 이 작업은 프로그램이 종료될 때까지 계속되며, 종료 시점에서 불변 변수는 프로그램의 "
+"출력으로써 원하는 조건과 일치해야만 합니다."
 
 #: ../Doc/howto/functional.rst:120
 msgid ""
@@ -219,6 +278,9 @@ msgid ""
 "break invariants that were true before the assignment without producing "
 "any new invariants that can be propagated onward."
 msgstr ""
+"함수형 프로그래밍에서 값 할당을 피하려는 이유는 값 할당이 이러한 기법을 활용하는 것을 어렵게 "
+"만들기 때문입니다. 값 할당은, 전달이 가능한 새로운 불변 변수를 만들어내지 않는 값 할당 이전에 "
+"불변 변수가 참이었다는 점을 무너뜨릴 수 있습니다."
 
 #: ../Doc/howto/functional.rst:125
 msgid ""
@@ -231,10 +293,16 @@ msgid ""
 "there would then be the question of verifying the proof; maybe there's an"
 " error in it, and you wrongly believe you've proved the program correct."
 msgstr ""
+"불행하게도, 정확한 프로그램임을 증명하는 것은 실제로는 비실용적이며 파이썬 소프트웨어와 관련이 "
+"없습니다. 사소한 프로그램일지라도 여러 페이지 분량의 증명이 필요합니다. 적당히 복잡한 프로그램에 "
+"대한 정확성의 증명은 엄청난 양일 것이며, 매일 사용하는 프로그램 (파이썬 인터프리터, XML 파서, "
+"웹 브라우저)의 정확성은 거의 증명이 불가능할 수도 있습니다. 만약 증명을 작성하거나 만들었더라도, "
+"그 증명이 검증된 것인지 의구심이 들 것입니다. 어쩌면 그 증명에 오류가 있을 수도 있고, 프로그램의 "
+"정확성이 증명되었다고 잘못 믿고 있을 수도 있습니다."
 
 #: ../Doc/howto/functional.rst:136
 msgid "Modularity"
-msgstr ""
+msgstr "모듈성"
 
 #: ../Doc/howto/functional.rst:138
 msgid ""
@@ -245,14 +313,18 @@ msgid ""
 "transformation.  Small functions are also easier to read and to check for"
 " errors."
 msgstr ""
+"함수형 프로그래밍의 실질적인 이점은 문제를 작은 조각으로 분해하도록 강제한다는 점입니다. 결과적으로 "
+"프로그램은 더욱 모듈화가 됩니다. 복잡한 변환을 수행하는 거대한 함수보다, 한 가지 작업을 수행하는 "
+"작은 함수를 명시하고 작성하기가 더 쉽습니다. 작은 함수는 읽기에도 더 쉽고 오류를 확인하기도 "
+"쉽습니다."
 
 #: ../Doc/howto/functional.rst:146
 msgid "Ease of debugging and testing"
-msgstr ""
+msgstr "디버깅과 테스트 용이성"
 
 #: ../Doc/howto/functional.rst:148
 msgid "Testing and debugging a functional-style program is easier."
-msgstr ""
+msgstr "함수형 방식 프로그램은 테스트하고 디버깅하는 것이 더 쉽습니다."
 
 #: ../Doc/howto/functional.rst:150
 msgid ""
@@ -262,6 +334,9 @@ msgid ""
 " intermediate inputs and outputs to quickly isolate the function that's "
 "responsible for a bug."
 msgstr ""
+"일반적으로 함수가 작고 분명하게 명시되기 때문에 디버깅이 단순화됩니다. 프로그램이 동작하지 "
+"않는다면, 각 함수는 데이터가 올바른지 확인할 수 있는 접점이 됩니다. 중간 지점의 입력과 출력을 "
+"살펴보면 버그가 있는 함수를 빠르게 분간할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:155
 msgid ""
@@ -270,10 +345,13 @@ msgid ""
 " before running a test; instead you only have to synthesize the right "
 "input and then check that the output matches expectations."
 msgstr ""
+"각 함수는 잠재적으로 단위 테스트의 대상이기 때문에 테스트가 더 쉽습니다. 함수는 테스트를 실행하기 "
+"전에 복제해야 하는 시스템 상태에 의존하지 않습니다. 올바른 입력에 집중하고 결과가 예상과 "
+"일치하는지 확인만 하면 됩니다."
 
 #: ../Doc/howto/functional.rst:162
 msgid "Composability"
-msgstr ""
+msgstr "결합성"
 
 #: ../Doc/howto/functional.rst:164
 msgid ""
@@ -285,6 +363,10 @@ msgid ""
 " a function that takes a filename and returns its contents, can be "
 "applied to many different situations."
 msgstr ""
+"함수형 방식의 프로그램을 만들 때, 다양한 입력과 출력으로 여러 가지 함수를 작성하게 됩니다. 이러한 "
+"함수 중 일부는 불가피하게 특정 응용 프로그램에 특화될 수 있지만, 대체로 다양한 프로그램에서 "
+"유용하게 사용할 수 있습니다. 예를 들어 디렉토리 경로를 받아서 그 디렉토리 내의 모든 XML 파일을 "
+"반환하는 함수나, 혹은 파일명을 받아서 그 내용을 반환하는 함수는 다양한 상황에 적용할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:171
 msgid ""
@@ -293,16 +375,21 @@ msgid ""
 "configuration and writing a few functions specialized for the current "
 "task."
 msgstr ""
+"시간이 흐르면, 여러분은 개인적인 유틸리티 라이브러리를 구성하게 될 것입니다. 보통, 새로운 "
+"구성으로 기존 함수를 배치하고 현재 작업에 특화된 몇 가지 기능만을 작성해서 새로운 프로그램을 "
+"구성하게 됩니다."
 
 #: ../Doc/howto/functional.rst:179
 msgid "Iterators"
-msgstr ""
+msgstr "이터레이터"
 
 #: ../Doc/howto/functional.rst:181
 msgid ""
 "I'll start by looking at a Python language feature that's an important "
 "foundation for writing functional-style programs: iterators."
 msgstr ""
+"함수형 방식의 프로그램을 작성하는 중요한 토대가 되는 파이썬 언어의 이터레이터라는 "
+"기능을 살펴보겠습니다."
 
 #: ../Doc/howto/functional.rst:184
 msgid ""
@@ -315,6 +402,12 @@ msgid ""
 "though; it's perfectly reasonable to write an iterator that produces an "
 "infinite stream of data."
 msgstr ""
+"이터레이터는 데이터 스트림을 나타내는 객체입니다. 이 객체는 한 번에 한 요소씩 데이터를 반환합니다. "
+"파이썬 이터레이터는 반드시 :meth:`~iterator.__next__` 라는 메서드를 지원해야 합니다. 이 "
+"메서드는 인수를 취하지 않고 항상 스트림의 다음 요소를 반환합니다. 만약 스트림에 더는 요소가 "
+"없다면, :meth:`~iterator.__next__` 는 :exc:`StopIteration` 예외를 발생시켜야 "
+"합니다. 이터레이터가 유한할 필요는 없습니다. 무한한 데이터 스트림을 생성하는 이터레이터를 작성하는 "
+"것도 합리적인 방법입니다."
 
 #: ../Doc/howto/functional.rst:192
 msgid ""
@@ -325,10 +418,14 @@ msgid ""
 "common being lists and dictionaries.  An object is called "
 ":term:`iterable` if you can get an iterator for it."
 msgstr ""
+"내장 함수 :func:`iter` 는 임의의 객체를 취하여 객체의 내용이나 요소를 반환하는 이터레이터를 "
+"반환합니다. 객체가 이터레이션을 지원하지 않으면 :exc:`TypeError` 를 발생시킵니다. 파이썬의 "
+"내장 데이터 유형 중 일부는 가장 일반적인 리스트이자 딕셔너리인 이터레이션을 지원합니다. "
+"이터레이터를 얻을 수 있는 객체는 :term:`이터러블 <iterable>` 이라고 불립니다."
 
 #: ../Doc/howto/functional.rst:199
 msgid "You can experiment with the iteration interface manually:"
-msgstr ""
+msgstr "수동으로 이터레이션 인터페이스를 실험해볼 수 있습니다."
 
 #: ../Doc/howto/functional.rst:217
 msgid ""
@@ -337,18 +434,25 @@ msgid ""
 "in Y``, Y must be an iterator or some object for which :func:`iter` can "
 "create an iterator.  These two statements are equivalent::"
 msgstr ""
+"파이썬은 여러 다른 컨텍스트에서 이터러블 객체를 기대하며, 가장 중요한 것은 :keyword:`for` "
+"문입니다. ``for X in Y`` 문에서 Y는 반드시 이터레이터 혹은 :func:`iter` 가 "
+"이터레이터를 생성할 수 있는 객체이어야 합니다. 다음 두 문장은 같은 의미입니다."
 
 #: ../Doc/howto/functional.rst:229
 msgid ""
 "Iterators can be materialized as lists or tuples by using the "
 ":func:`list` or :func:`tuple` constructor functions:"
 msgstr ""
+"이터레이터는 :func:`list` 또는 :func:`tuple` 생성자 함수를 사용하여 리스트나 "
+"튜플로 나타낼 수 있습니다."
 
 #: ../Doc/howto/functional.rst:238
 msgid ""
 "Sequence unpacking also supports iterators: if you know an iterator will "
 "return N elements, you can unpack them into an N-tuple:"
 msgstr ""
+"시퀀스 언패킹 또한 이터레이터를 지원합니다. 이터레이터가 N개의 요소를 반환한다는 것을 알고 있다면, "
+"그것들을 N-튜플로 언패킹할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:247
 msgid ""
@@ -361,6 +465,12 @@ msgid ""
 "appears in the stream, the ``\"in\"`` and ``\"not in\"`` operators won't "
 "return either."
 msgstr ""
+":func:`max` 및 :func:`min` 과 같은 내장 함수는 하나의 이터레이터 인수를 취할 수 있으며 "
+"가장 큰 혹은 가장 작은 요소를 반환합니다. ``\"in\"`` 과 ``\"not in\"`` 연산자 또한 "
+"이터레이터를 지원합니다. 이터레이터가 반환한 스트림에서 X가 발견되면 ``X in iterator`` 는 "
+"참입니다. 이터레이터가 무한하다면 명백한 문제를 발견할 수 있습니다. :func:`max` 와 "
+":func:`min` 는 영원히 결과를 반환하지 않으며, 요소 X가 스트림에서 나타나지 않으면 "
+"``\"in\"`` 과 ``\"not in\"`` 연산자 역시 영원히 결과를 반환하지 않을 것입니다."
 
 #: ../Doc/howto/functional.rst:255
 msgid ""
@@ -372,10 +482,15 @@ msgid ""
 "need to do something different with the same stream, you'll have to "
 "create a new iterator."
 msgstr ""
+"이터레이터에서는 오직 앞으로만 나아갈 수 있다는 점에 유의하세요. 이전 요소를 가져오거나, "
+"이터레이터를 재설정하거나, 사본을 만들 방법은 없습니다. 이터레이터 객체는 선택적으로 이러한 추가 "
+"기능을 제공할 수 있지만, 이터레이터 프로토콜은 :meth:`~iterator.__next__` 메서드만 "
+"명시해두었습니다. 함수는 모든 이터레이터의 출력을 소비할 수 있으므로 같은 스트림에서 다른 작업을 "
+"수행해야 하는 경우 새로운 이터레이터를 만들어야 합니다."
 
 #: ../Doc/howto/functional.rst:265
 msgid "Data Types That Support Iterators"
-msgstr ""
+msgstr "이터레이터를 지원하는 데이터 유형"
 
 #: ../Doc/howto/functional.rst:267
 msgid ""
@@ -383,18 +498,22 @@ msgid ""
 "Python sequence type, such as strings, will automatically support "
 "creation of an iterator."
 msgstr ""
+"리스트와 튜플이 이터레이터를 어떻게 지원하는지 이미 살펴보았습니다. 실제로 문자열과 같은 파이썬 "
+"시퀀스 유형은 이터레이터의 생성을 자동으로 지원합니다."
 
 #: ../Doc/howto/functional.rst:271
 msgid ""
 "Calling :func:`iter` on a dictionary returns an iterator that will loop "
 "over the dictionary's keys::"
 msgstr ""
+":func:`iter` 를 딕셔너리에 적용하면 딕셔너리의 키를 반복하는 이터레이터를 반환합니다."
 
 #: ../Doc/howto/functional.rst:291
 msgid ""
 "Note that the order is essentially random, because it's based on the hash"
 " ordering of the objects in the dictionary."
 msgstr ""
+"딕셔너리 내에 있는 객체의 해시 순서에 기반하기 때문에 순서는 기본적으로 무작위입니다."
 
 #: ../Doc/howto/functional.rst:294
 msgid ""
@@ -404,12 +523,18 @@ msgid ""
 ":meth:`~dict.values` or :meth:`~dict.items` methods to get an appropriate"
 " iterator."
 msgstr ""
+":func:`iter` 를 딕셔너리에 적용하는 것은 항상 키를 반복하지만, 딕셔너리에는 다른 "
+"이터레이터를 반환하는 메서드가 있습니다. 값이나 키/값 쌍을 반복하는 경우에는 명시적으로 "
+":meth:`~dict.values` 혹은 :meth:`~dict.items` 메서드를 사용하여 적절한 이터레이터를 "
+"얻을 수 있습니다."
 
 #: ../Doc/howto/functional.rst:300
 msgid ""
 "The :func:`dict` constructor can accept an iterator that returns a finite"
 " stream of ``(key, value)`` tuples:"
 msgstr ""
+":func:`dict` 생성자는 ``(키, 값)`` 튜플의 유한한 스트림을 반환하는 이터레이터를 받을 수 "
+"있습니다."
 
 #: ../Doc/howto/functional.rst:307
 msgid ""
@@ -417,16 +542,19 @@ msgid ""
 ":meth:`~io.TextIOBase.readline` method until there are no more lines in "
 "the file.  This means you can read each line of a file like this::"
 msgstr ""
+"또한 파일은 더는 새로운 줄이 없을 때까지 :meth:`~io.TextIOBase.readline` 메서드를 "
+"호출하여 이터레이션을 지원합니다. 즉, 다음과 같이 파일의 각 행을 읽을 수 있습니다."
 
 #: ../Doc/howto/functional.rst:315
 msgid ""
 "Sets can take their contents from an iterable and let you iterate over "
 "the set's elements::"
 msgstr ""
+"집합은 이터러블에서 내용을 가져와서 집합의 요소를 반복할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:325
 msgid "Generator expressions and list comprehensions"
-msgstr ""
+msgstr "제너레이터 표현식과 리스트 컴프리헨션"
 
 #: ../Doc/howto/functional.rst:327
 msgid ""
@@ -436,6 +564,9 @@ msgid ""
 "strip off trailing whitespace from each line or extract all the strings "
 "containing a given substring."
 msgstr ""
+"이터레이터의 출력에 대한 두 가지 일반적인 연산은 1) 모든 요소에 대해 일부 연산을 수행하고, 2) "
+"어떤 조건을 만족하는 요소의 하위 집합을 선택하는 것입니다. 예를 들어 문자열 리스트가 있으면 각 "
+"줄에서 후미 공백을 제거하거나, 주어진 하위 문자열을 포함하는 모든 문자열을 추출할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:333
 msgid ""
@@ -445,10 +576,14 @@ msgid ""
 "(https://www.haskell.org/).  You can strip all the whitespace from a "
 "stream of strings with the following code::"
 msgstr ""
+"리스트 컴프리헨션과 제너레이터 표현식(줄임말: \"listcomps\" 및 \"genexps\")은 함수형 "
+"프로그래밍 언어 하스켈(https://www.haskell.org/)에서 빌린 이러한 작업을 위한 간결한 "
+"표기법입니다. 다음 코드를 사용하여 문자열 스트림에서 모든 공백을 제거할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:346
 msgid "You can select only certain elements by adding an ``\"if\"`` condition::"
 msgstr ""
+"``\"if\"`` 조건을 추가하여 특정 요소만 선택할 수도 있습니다."
 
 #: ../Doc/howto/functional.rst:351
 msgid ""
@@ -460,6 +595,11 @@ msgid ""
 " an infinite stream or a very large amount of data.  Generator "
 "expressions are preferable in these situations."
 msgstr ""
+"리스트 컴프리헨션을 사용하면 파이썬 리스트를 얻을 수 있습니다. ``stripped_list`` 는 "
+"이터레이터가 아닌 결과 행을 담고 있는 리스트입니다. 제너레이터 표현식은 필요에 따라 값을 계산하는 "
+"이터레이터를 반환하며 모든 값을 한 번에 구체화할 필요가 없습니다. 즉, 무한 스트림이나 매우 많은 "
+"양의 데이터를 반환하는 이터레이터로 작업하는 경우 리스트 컴프리헨션은 유용하지 않습니다. 제너레이터 "
+"표현식은 이러한 상황에서 유용합니다."
 
 #: ../Doc/howto/functional.rst:358
 msgid ""
@@ -467,12 +607,15 @@ msgid ""
 "comprehensions are surrounded by square brackets (\"[]\").  Generator "
 "expressions have the form::"
 msgstr ""
+"제너레이터 표현식은 괄호(\"()\")로 묶여 있으며 리스트 컴프리헨션은 대괄호(\"[]\")로 묶여 "
+"있습니다. 제너레이터 표현식은 다음과 같은 형식입니다."
 
 #: ../Doc/howto/functional.rst:371
 msgid ""
 "Again, for a list comprehension only the outside brackets are different "
 "(square brackets instead of parentheses)."
 msgstr ""
+"다시 말하면, 리스트 컴프리헨션을 위해서는 바깥쪽 괄호만 다릅니다(괄호 대신 대괄호)."
 
 #: ../Doc/howto/functional.rst:374
 msgid ""
@@ -481,6 +624,9 @@ msgid ""
 "``expression`` is only evaluated and added to the result when "
 "``condition`` is true."
 msgstr ""
+"생성된 출력의 요소는 ``expression`` 의 연속적인 값이 될 것입니다. ``if`` 절은 "
+"모두 선택적입니다. ``expression`` 은 ``condition`` 이 참일 때만 "
+"평가되고 결과에 추가됩니다."
 
 #: ../Doc/howto/functional.rst:378
 msgid ""
@@ -489,6 +635,8 @@ msgid ""
 "create an iterator that will be immediately passed to a function you can "
 "write::"
 msgstr ""
+"제너레이터 표현식은 항상 괄호 안에 작성해야 하지만 함수 호출을 알리는 괄호도 포함됩니다. 함수에 "
+"즉시 전달되는 반복자를 만들고 싶다면 다음과 같이 작성할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:384
 msgid ""
@@ -499,12 +647,17 @@ msgid ""
 "``sequence3`` is then looped over for each resulting pair of elements "
 "from ``sequence1`` and ``sequence2``."
 msgstr ""
+"``for...in`` 절은 반복할 시퀀스를 포함합니다. 시퀀스는 왼쪽에서 오른쪽으로 반복되며 병렬로 "
+"처리되지 **않기** 때문에 같은 길이일 필요는 없습니다. ``sequence1`` 의 각 요소에 대해 "
+"``sequence2`` 는 처음부터 반복됩니다. ``sequence3`` 은 ``sequence1`` 과 "
+"``sequence2`` 의 각 결과 쌍에 대해 반복됩니다."
 
 #: ../Doc/howto/functional.rst:390
 msgid ""
 "To put it another way, a list comprehension or generator expression is "
 "equivalent to the following Python code::"
 msgstr ""
+"다른 식으로 표현하면, 리스트 컴프리헨션 혹은 제너레이터 표현식은 다음 파이썬 코드와 같습니다."
 
 #: ../Doc/howto/functional.rst:407
 msgid ""
@@ -513,6 +666,9 @@ msgid ""
 "product of the lengths of all the sequences.  If you have two lists of "
 "length 3, the output list is 9 elements long:"
 msgstr ""
+"이것은 여러 개의 ``for...in`` 절이 있지만 ``if`` 절이 없을 때 결과 출력의 길이가 모든 "
+"시퀀스 길이의 곱과 같음을 의미합니다. 길이가 3인 두 개의 리스트가 있는 경우 출력 목록의 길이는 "
+"9개입니다."
 
 #: ../Doc/howto/functional.rst:419
 msgid ""
@@ -521,10 +677,12 @@ msgid ""
 "parentheses.  The first list comprehension below is a syntax error, while"
 " the second one is correct::"
 msgstr ""
+"파이썬 문법의 모호함을 피하고자, ``expression`` 이 튜플을 생성하고 있다면, 괄호로 묶어야 "
+"합니다. 아래의 첫 번째 리스트 컴프리헨션은 구문 오류이며, 두 번째는 올바릅니다."
 
 #: ../Doc/howto/functional.rst:430
 msgid "Generators"
-msgstr ""
+msgstr "제너레이터"
 
 #: ../Doc/howto/functional.rst:432
 msgid ""
@@ -532,6 +690,8 @@ msgid ""
 "writing iterators.  Regular functions compute a value and return it, but "
 "generators return an iterator that returns a stream of values."
 msgstr ""
+"제너레이터는 이터레이터를 작성하는 작업을 단순화하는 특별한 클래스의 함수입니다. 일반 함수는 값을 "
+"계산하여 반환하지만, 제너레이터는 값의 스트림을 반환하는 이터레이터를 반환합니다."
 
 #: ../Doc/howto/functional.rst:436
 msgid ""
@@ -545,10 +705,16 @@ msgid ""
 "later resume the function where it left off?  This is what generators "
 "provide; they can be thought of as resumable functions."
 msgstr ""
+"파이썬이나 C에서 정규 함수 호출이 어떻게 작동하는지 잘 알고 있을 것입니다. 함수를 호출하면 "
+"지역 변수가 생성되는 비공개 이름 공간이 생깁니다. 함수가 ``return`` 문에 도달하면 지역 변수가 "
+"소멸하고 그 값이 호출자에게 반환됩니다. 같은 함수를 나중에 호출하면 새로운 비공개 이름 공간과 "
+"새로운 지역 변수 집합이 만들어집니다. 그러나 지역 변수가 함수를 빠져나갈 때 버려지지 않으면 "
+"어떻게 될까요? 나중에 중단했던 곳에서 함수를 다시 시작할 수 있다면 어떨까요? 이것이 제너레이터가 "
+"제공하는 것입니다. 그들은 재개 가능한 함수라고 생각할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:445
 msgid "Here's the simplest example of a generator function:"
-msgstr ""
+msgstr "다음은 제너레이터 함수의 가장 간단한 예입니다."
 
 #: ../Doc/howto/functional.rst:451
 msgid ""
@@ -556,6 +722,8 @@ msgid ""
 "function; this is detected by Python's :term:`bytecode` compiler which "
 "compiles the function specially as a result."
 msgstr ""
+":keyword:`yield` 키워드를 포함하는 함수는 제너레이터 함수입니다. 이것은 파이썬의 "
+":term:`bytecode` 컴파일러에 의해 감지됩니다. 이 컴파일러는 결과를 함수로 컴파일합니다."
 
 #: ../Doc/howto/functional.rst:455
 msgid ""
@@ -568,16 +736,23 @@ msgid ""
 "local variables are preserved.  On the next call to the generator's "
 ":meth:`~generator.__next__` method, the function will resume executing."
 msgstr ""
+"제너레이터 함수를 호출하면 단일 값을 반환하지 않습니다. 대신 이터레이터 프로토콜을 지원하는 "
+"제너레이터 객체를 반환합니다. ``yield`` 표현식을 실행하면 제너레이터는 ``return`` 문과 "
+"비슷한 ``i`` 의 값을 출력합니다. ``yield`` 와 ``return`` 의 큰 차이점은 ``yield`` "
+"에 도달하면 제너레이터의 실행 상태가 일시 중단되고 지역 변수가 보존된다는 것입니다. 제너레이터의 "
+":meth:`~generator.__next__` 메서드가 다음에 실행될 때, 함수가 다시 실행됩니다."
 
 #: ../Doc/howto/functional.rst:464
 msgid "Here's a sample usage of the ``generate_ints()`` generator:"
-msgstr ""
+msgstr "다음은 ``generate_ints()`` 제너레이터의 사용 예입니다."
 
 #: ../Doc/howto/functional.rst:481
 msgid ""
 "You could equally write ``for i in generate_ints(5)``, or ``a,b,c = "
 "generate_ints(3)``."
 msgstr ""
+"여러분은 똑같이 ``for i in generate_ints(5)`` 또는 "
+"``a,b,c = generate_ints(3)`` 라고 쓸 수 있습니다."
 
 #: ../Doc/howto/functional.rst:484
 msgid ""
@@ -587,6 +762,9 @@ msgid ""
 "the function is reached, the procession of values ends and the generator "
 "cannot yield any further values."
 msgstr ""
+"제너레이터 함수 내에서, ``return value`` 는 :meth:`~generator.__next__` 메서드에서 "
+"``StopIteration(value)`` 를 발생시킵니다. 이런 일이 발생하거나 함수의 맨 아래에 도달하면 "
+"값의 행렬이 끝나고 제너레이터는 더는 값을 산출할 수 없습니다."
 
 #: ../Doc/howto/functional.rst:489
 msgid ""
@@ -597,6 +775,11 @@ msgid ""
 "method increment ``self.count`` and return it. However, for a moderately "
 "complicated generator, writing a corresponding class can be much messier."
 msgstr ""
+"직접 클래스를 작성하고 제너레이터의 모든 지역 변수를 인스턴스 변수로 저장하여 제너레이터의 효과를 "
+"수동으로 얻을 수 있습니다. 예를 들어, 정수 리스트를 반환하는 것은 ``self.count`` 를 0으로 "
+"설정하고 :meth:`~iterator.__next__` 메서드로 ``self.count`` 를 증가시켜 반환하는 "
+"식으로 수행할 수 있습니다. 그러나, 다소 복잡한 제너레이터의 경우에는 해당 클래스를 작성하는 것이 "
+"훨씬 더 복잡할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:497
 msgid ""
@@ -605,6 +788,9 @@ msgid ""
 "interesting examples.  Here's one generator that implements an in-order "
 "traversal of a tree using generators recursively. ::"
 msgstr ""
+"파이썬의 라이브러리인 :source:`Lib/test/test_generators.py` 에 포함된 테스트 묶음에는 "
+"더 많은 흥미로운 예제들이 있습니다. 제너레이터를 재귀적으로 사용하여 트리를 순차적으로 순회하는 "
+"것을 구현하는 하나의 제너레이터가 있습니다."
 
 #: ../Doc/howto/functional.rst:513
 msgid ""
@@ -614,10 +800,13 @@ msgid ""
 "knight to every square of an NxN chessboard without visiting any square "
 "twice)."
 msgstr ""
+"``test_generators.py`` 의 다른 두 가지 예는, N-여왕 문제(NxN 체스판에 서로 다른 "
+" 왕비를 위협할 수 없도록 N개의 왕비를 배치하는 문제)와 기사의 여행(나이트가 NxN 체스판의 모든 "
+"칸을 정확히 한 번씩 갈 수 있도록 하는 방법을 찾는 문제)입니다."
 
 #: ../Doc/howto/functional.rst:521
 msgid "Passing values into a generator"
-msgstr ""
+msgstr "제너레이터에 값 전달하기"
 
 #: ../Doc/howto/functional.rst:523
 msgid ""
@@ -628,6 +817,10 @@ msgid ""
 "global variable or by passing in some mutable object that callers then "
 "modify, but these approaches are messy."
 msgstr ""
+"파이썬 2.4 및 그 이전 버전에서 제너레이터는 출력만 생성했습니다. 제너레이터의 코드가 이터레이터를 "
+"만들기 위해 호출된 후에는 그 실행이 다시 시작될 때 함수에 새로운 정보를 전달할 방법이 없었습니다. "
+"제너레이터가 전역 변수를 보거나 호출자가 수정할 수 있는 변경 가능한 객체를 전달함으로써 이 기능을 "
+"해킹할 수 있지만, 이러한 접근법은 지저분한 방식입니다."
 
 #: ../Doc/howto/functional.rst:530
 msgid ""
@@ -635,6 +828,8 @@ msgid ""
 ":keyword:`yield` became an expression, returning a value that can be "
 "assigned to a variable or otherwise operated on::"
 msgstr ""
+"파이썬 2.5에서는 제너레이터에 값을 전달하는 간단한 방법이 있습니다. :keyword:`yield` 는 "
+"표현식이 되어 변수에 할당하거나 다른 식으로 조작할 수 있는 값을 반환합니다."
 
 #: ../Doc/howto/functional.rst:536
 msgid ""
@@ -643,6 +838,8 @@ msgid ""
 " above example. The parentheses aren't always necessary, but it's easier "
 "to always add them instead of having to remember when they're needed."
 msgstr ""
+"위 예제처럼 반환 값으로 무엇인가를 할 때 ``yield`` 표현식 주위에 **항상** 괄호를 넣는 것이 "
+"좋습니다. 괄호는 항상 필요한 것은 아니지만 필요한 시점을 기억하지 않고 항상 추가하기가 더 쉽습니다."
 
 #: ../Doc/howto/functional.rst:541
 msgid ""
@@ -652,6 +849,10 @@ msgid ""
 "This means you can write ``val = yield i`` but have to use parentheses "
 "when there's an operation, as in ``val = (yield i) + 12``.)"
 msgstr ""
+"(:pep:`342` 는 정확한 규칙을 설명합니다. 이것은 할당의 오른쪽에 있는 최상위 표현식에서 "
+"발생하는 경우를 제외하고 항상 ``yield`` 표현식을 괄호로 묶어야 한다는 것입니다. "
+"``val = yield i`` 라고 쓸 수도 있지만, ``val = (yield i) + 12`` 처럼 연산이 "
+"있을 때는 괄호를 써야합니다.)"
 
 #: ../Doc/howto/functional.rst:547
 msgid ""
@@ -661,16 +862,22 @@ msgid ""
 ":meth:`~generator.__next__` method is called, the ``yield`` returns "
 "``None``."
 msgstr ""
+"값은 :meth:`send(value) <generator.send>` 메서드를 호출하여 제너레이터로 보내집니다. "
+"이 메서드는 제너레이터의 코드를 다시 시작하고 ``yield`` 표현식은 지정된 값을 반환합니다. 만약 "
+"정규 :meth:`~generator.__next__` 메서드가 호출되면 ``yield`` 는 ``None`` 을 "
+"반환합니다."
 
 #: ../Doc/howto/functional.rst:552
 msgid ""
 "Here's a simple counter that increments by 1 and allows changing the "
 "value of the internal counter."
 msgstr ""
+"다음은 1씩 증가하며 내부 카운터값을 변경할 수 있는 간단한 카운터입니다."
 
 #: ../Doc/howto/functional.rst:567
 msgid "And here's an example of changing the counter:"
 msgstr ""
+"다음은 카운터 변경의 예시입니다."
 
 #: ../Doc/howto/functional.rst:584
 msgid ""
@@ -679,12 +886,16 @@ msgid ""
 "you're sure that the :meth:`~generator.send` method will be the only "
 "method used to resume your generator function."
 msgstr ""
+"``yield`` 가 종종 ``None`` 을 반환할 것이므로, 항상 이 경우를 확인해야 합니다. "
+":meth:`~generator.send` 메서드가 제너레이터 함수를 다시 시작하는데 사용되는 유일한 "
+"메서드가 아니라면, 표현식에서 값을 사용하지 마세요."
 
 #: ../Doc/howto/functional.rst:589
 msgid ""
 "In addition to :meth:`~generator.send`, there are two other methods on "
 "generators:"
 msgstr ""
+":meth:`~generator.send` 외에도 제너레이터에 대한 두 가지 다른 메서드가 있습니다."
 
 #: ../Doc/howto/functional.rst:592
 msgid ""
@@ -692,6 +903,9 @@ msgid ""
 " to raise an exception inside the generator; the exception is raised by "
 "the ``yield`` expression where the generator's execution is paused."
 msgstr ""
+":meth:`throw(type, value=None, traceback=None) <generator.throw>` 는 "
+"제너레이터 내에서 예외를 발생시키는 데 사용됩니다. 예외는 제너레이터의 실행이 일시 중지된 "
+"``yield`` 표현식에 의해 발생합니다."
 
 #: ../Doc/howto/functional.rst:596
 msgid ""
@@ -703,6 +917,11 @@ msgid ""
 " will also be called by Python's garbage collector when the generator is "
 "garbage-collected."
 msgstr ""
+":meth:`~generator.close` 는 생성자 내에서 :exc:`GeneratorExit` 예외를 발생시켜 "
+"이터레이션을 종료합니다. 이 예외가 발생하면 제너레이터의 코드는 :exc:`GeneratorExit` "
+"또는 :exc:`StopIteration` 을 발생시켜야 합니다. 예외를 받고도 다른 작업을 하는 것은 "
+"금지되어 있으며 :exc:`RuntimeError` 를 촉발합니다. :meth:`~generator.close` 는 "
+"제너레이터가 가비지로 수거될 때 파이썬의 가비지 수거기에 의해 호출될 것입니다."
 
 #: ../Doc/howto/functional.rst:604
 msgid ""
@@ -710,12 +929,17 @@ msgid ""
 "suggest using a ``try: ... finally:`` suite instead of catching "
 ":exc:`GeneratorExit`."
 msgstr ""
+":exc:`GeneratorExit` 이 발생할 때 정리 작업을 위한 코드를 실행해야 한다면 "
+":exc:`GeneratorExit` 를 잡는 대신 ``try: ... finally:`` 를 사용하는 것이 "
+"좋습니다."
 
 #: ../Doc/howto/functional.rst:607
 msgid ""
 "The cumulative effect of these changes is to turn generators from one-way"
 " producers of information into both producers and consumers."
 msgstr ""
+"이러한 변화의 누적 효과는 제너레이터를 일방적인 정보 생산자에서 생산자와 소비자 모두로 전환하는 "
+"것입니다."
 
 #: ../Doc/howto/functional.rst:610
 msgid ""
@@ -725,6 +949,9 @@ msgid ""
 "coroutines can be entered, exited, and resumed at many different points "
 "(the ``yield`` statements)."
 msgstr ""
+"제너레이터는 **코루틴** 이 되어 더 일반적인 형태의 서브루틴이 됩니다. 서브루틴은 한 지점에서 "
+"시작되고 다른 한 지점(함수의 맨 위와 ``return`` 문)에서 빠져나옵니다. 그러나 여러 다른 "
+"지점에서 코루틴을 시작하고 빠져나오고 다시 시작할 수 있습니다(``yield`` 문)."
 
 #: ../Doc/howto/functional.rst:617
 msgid "Built-in functions"
