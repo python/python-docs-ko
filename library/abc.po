@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-26 11:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../Doc/library/abc.rst:2
 msgid ":mod:`abc` --- Abstract Base Classes"
-msgstr ""
+msgstr ":mod:`abc` --- 추상 베이스 클래스"
 
 #: ../Doc/library/abc.rst:11
 msgid "**Source code:** :source:`Lib/abc.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/abc.py`"
 
 #: ../Doc/library/abc.rst:15
 msgid ""
@@ -33,6 +33,9 @@ msgid ""
 ":pep:`3141` and the :mod:`numbers` module regarding a type hierarchy for "
 "numbers based on ABCs.)"
 msgstr ""
+"이 모듈은, :pep:`3119`\\에서 설명된 대로, 파이썬에서 :term:`추상 베이스 클래스 <abstract base "
+"class>` (ABC) 를 정의하기 위한 기반 구조를 제공합니다; 이것이 왜 파이썬에 추가되었는지는 PEP를 참조하십시오. (ABC를 "
+"기반으로 하는 숫자의 형 계층 구조에 관해서는 :pep:`3141`\\과 :mod:`numbers` 모듈을 참고하십시오.)"
 
 #: ../Doc/library/abc.rst:20
 msgid ""
@@ -42,6 +45,9 @@ msgid ""
 "whether a class or instance provides a particular interface, for example,"
 " is it hashable or a mapping."
 msgstr ""
+":mod:`collections` 모듈은 ABC로부터 파생된 몇 가지 구상(concrete) 클래스를 가지고 있습니다; 이것은 물론 더 "
+"파생될 수 있습니다. 또한, :mod:`collections.abc` 서브 모듈에는 클래스나 인스턴스가 특정 인터페이스를 (예를 들어, "
+"해시 가능이나 매핑) 제공하는지 검사하는 데 사용할 수 있는 ABC가 있습니다."
 
 #: ../Doc/library/abc.rst:27
 msgid ""
@@ -49,6 +55,8 @@ msgid ""
 " a helper class :class:`ABC` to alternatively define ABCs through "
 "inheritance:"
 msgstr ""
+"이 모듈은 ABC를 정의하기 위한 메타 클래스 :class:`ABCMeta`\\와 상속을 통해 ABC를 정의하는 대안적 방법을 제공하는 "
+"도우미 클래스 :class:`ABC`\\를 제공합니다:"
 
 #: ../Doc/library/abc.rst:32
 msgid ""
@@ -56,6 +64,8 @@ msgid ""
 "class, an abstract base class can be created by simply deriving from "
 ":class:`ABC` avoiding sometimes confusing metaclass usage, for example::"
 msgstr ""
+":class:`ABCMeta`\\를 메타 클래스로 가지는 도우미 클래스. 이 클래스를 사용하면, 때로 혼란스러운 메타 클래스를 사용하지 "
+"않고, 추상 베이스 클래스를 간단히 :class:`ABC`\\에서 파생시켜서 만들 수 있습니다. 예를 들어::"
 
 #: ../Doc/library/abc.rst:41
 msgid ""
@@ -65,10 +75,13 @@ msgid ""
 " One may also define an abstract base class by passing the metaclass "
 "keyword and using :class:`ABCMeta` directly, for example::"
 msgstr ""
+":class:`ABC` 의 형은 여전히 :class:`ABCMeta` 이므로, :class:`ABC`\\를 상속할 때는 메타 클래스 "
+"사용에 관한 일반적인 주의가 필요한데, 다중 상속이 메타 클래스 충돌을 일으킬 수 있기 때문입니다. metaclass 키워드를 전달하고 "
+":class:`ABCMeta`\\를 직접 사용해서 추상 베이스 클래스를 정의할 수도 있습니다, 예를 들어::"
 
 #: ../Doc/library/abc.rst:57
 msgid "Metaclass for defining Abstract Base Classes (ABCs)."
-msgstr ""
+msgstr "추상 베이스 클래스 (ABC)를 정의하기 위한 메타 클래스."
 
 #: ../Doc/library/abc.rst:59
 msgid ""
@@ -81,34 +94,39 @@ msgid ""
 "nor will method implementations defined by the registering ABC be "
 "callable (not even via :func:`super`). [#]_"
 msgstr ""
+"이 메타 클래스를 사용하여 ABC를 만듭니다. ABC는 직접 서브 클래싱 될 수 있으며 믹스 인 클래스의 역할을 합니다. 관련 없는 구상"
+" 클래스(심지어 내장 클래스도)와 관련 없는 ABC를 \"가상 서브 클래스\"로 등록 할 수 있습니다 -- 이들과 이들의 서브 클래스는 "
+"내장 :func:`issubclass` 함수에 의해 등록하는 ABC의 서브 클래스로 간주합니다. 하지만 등록하는 ABC는 그들의 MRO "
+"(메서드 결정 순서)에 나타나지 않을 것이고, 등록하는 ABC가 정의한 메서드 구현도 호출할 수 없을 것입니다 "
+"(:func:`super`\\를 통해서도 가능하지 않습니다). [#]_"
 
 #: ../Doc/library/abc.rst:68
 msgid ""
 "Classes created with a metaclass of :class:`ABCMeta` have the following "
 "method:"
-msgstr ""
+msgstr ":class:`ABCMeta`\\를 메타 클래스로 생성된 클래스는 다음과 같은 메서드를 가집니다:"
 
 #: ../Doc/library/abc.rst:72
 msgid "Register *subclass* as a \"virtual subclass\" of this ABC. For example::"
-msgstr ""
+msgstr "이 ABC의 \"가상 서브 클래스\"로 *subclass* 를 등록합니다. 예를 들면::"
 
 #: ../Doc/library/abc.rst:85
 msgid "Returns the registered subclass, to allow usage as a class decorator."
-msgstr ""
+msgstr "클래스 데코레이터로 사용할 수 있도록, 등록된 subclass 돌려줍니다."
 
 #: ../Doc/library/abc.rst:88
 msgid ""
 "To detect calls to :meth:`register`, you can use the "
 ":func:`get_cache_token` function."
-msgstr ""
+msgstr ":meth:`register` 호출을 감지하려면, :func:`get_cache_token` 함수를 사용할 수 있습니다."
 
 #: ../Doc/library/abc.rst:92
 msgid "You can also override this method in an abstract base class:"
-msgstr ""
+msgstr "추상 베이스 클래스에서 다음 메서드를 재정의할 수도 있습니다:"
 
 #: ../Doc/library/abc.rst:96
 msgid "(Must be defined as a class method.)"
-msgstr ""
+msgstr "(반드시 클래스 메서드로 정의되어야 합니다.)"
 
 #: ../Doc/library/abc.rst:98
 msgid ""
@@ -118,6 +136,9 @@ msgid ""
 "consider a subclass of the ABC.  (This class method is called from the "
 ":meth:`__subclasscheck__` method of the ABC.)"
 msgstr ""
+"*subclass* 를 이 ABC의 서브 클래스로 간주할지를 검사합니다. 이것은, ABC의 서브 클래스로 취급하고 싶은 클래스마다 "
+":meth:`register`\\를 호출할 필요 없이, ``issubclass`` 의 행동을 더 사용자 정의할 수 있음을 의미합니다. "
+"(이 클래스 메서드는 ABC의 :meth:`__subclasscheck__` 메서드에서 호출됩니다.)"
 
 #: ../Doc/library/abc.rst:104
 msgid ""
@@ -128,12 +149,15 @@ msgid ""
 "``NotImplemented``, the subclass check is continued with the usual "
 "mechanism."
 msgstr ""
+"이 메서드는 ``True``, ``False`` 또는 ``NotImplemented`` 를 반환해야 합니다. ``True`` 를 "
+"반환하면, *subclass* 를 이 ABC의 서브 클래스로 간주합니다. ``False`` 를 반환하면, *subclass* 를 ABC의"
+" 서브 클래스로 간주하지 않습니다. ``NotImplemented`` 를 반환하면, 서브 클래스 검사가 일반적인 메커니즘으로 계속됩니다."
 
 #: ../Doc/library/abc.rst:114
 msgid ""
 "For a demonstration of these concepts, look at this example ABC "
 "definition::"
-msgstr ""
+msgstr "이러한 개념들의 시연으로, 이 예제 ABC 정의를 보십시오::"
 
 #: ../Doc/library/abc.rst:143
 msgid ""
@@ -143,6 +167,9 @@ msgid ""
 " method is also part of the ``MyIterable`` abstract base class, but it "
 "does not have to be overridden in non-abstract derived classes."
 msgstr ""
+"ABC ``MyIterable`` 은 추상 메서드로 :meth:`~iterator.__iter__` 라는 표준 이터러블 메서드를 "
+"정의합니다. 여기에 제공된 구현은 여전히 ​​서브 클래스에서 호출 할 수 있습니다. :meth:`get_iterator` 메서드 또한 "
+"``MyIterable`` 추상 베이스 클래스의 일부이지만, 추상이 아닌 파생 클래스에서 재정의될 필요는 없습니다."
 
 #: ../Doc/library/abc.rst:149
 msgid ""
@@ -151,6 +178,9 @@ msgid ""
 ":attr:`~object.__dict__` (or in that of one of its base classes, accessed"
 " via the :attr:`~class.__mro__` list) is considered a ``MyIterable`` too."
 msgstr ""
+"여기에 정의된 :meth:`__subclasshook__` 클래스 메서드는 자신의 (또는 그것의 :attr:`~class.__mro__`"
+" 리스트를 통해 액세스 되는 베이스 클래스 중 하나의) :attr:`~object.__dict__` 에 "
+":meth:`~iterator.__iter__` 메서드를 가진 모든 클래스도 ``MyIterable`` 로 간주한다고 말합니다."
 
 #: ../Doc/library/abc.rst:154
 msgid ""
@@ -161,14 +191,18 @@ msgid ""
 "Note that this will not make ``get_iterator`` available as a method of "
 "``Foo``, so it is provided separately."
 msgstr ""
+"마지막으로, 마지막 줄은, ``Foo`` 가 :meth:`~iterator.__iter__` 메서드를 정의하지는 않았음에도 불구하고 "
+"(이것은 :meth:`__len__` 과 :meth:`__getitem__` 로 정의되는 이전 스타일의 이터러블 프로토콜을 사용합니다),"
+" ``MyIterable`` 의 가상 서브 클래스로 만듭니다. 이렇게 하면 ``get_iterator`` 가 ``Foo`` 의 메서드로 "
+"사용할 수 있지 않으므로, 별도로 제공됩니다."
 
 #: ../Doc/library/abc.rst:163
 msgid "The :mod:`abc` module also provides the following decorator:"
-msgstr ""
+msgstr ":mod:`abc` 모듈은 다음 데코레이터도 제공합니다:"
 
 #: ../Doc/library/abc.rst:167
 msgid "A decorator indicating abstract methods."
-msgstr ""
+msgstr "추상 메서드를 나타내는 데코레이터."
 
 #: ../Doc/library/abc.rst:169
 msgid ""
@@ -180,6 +214,10 @@ msgid ""
 ":func:`abstractmethod` may be used to declare abstract methods for "
 "properties and descriptors."
 msgstr ""
+"이 데코레이터를 사용하려면 클래스의 메타 클래스가 :class:`ABCMeta` 이거나 여기에서 파생된 것이어야 합니다. "
+":class:`ABCMeta` 에서 파생된 메타 클래스를 가진 클래스는 모든 추상 메서드와 프로퍼티가 재정의되지 않는 한 인스턴스로 만들"
+" 수 없습니다. 추상 메서드는 일반적인 'super' 호출 메커니즘을 사용하여 호출 할 수 있습니다. "
+":func:`abstractmethod` 는 프로퍼티와 디스크립터에 대한 추상 메서드를 선언하는 데 사용될 수 있습니다."
 
 #: ../Doc/library/abc.rst:176
 msgid ""
@@ -189,6 +227,9 @@ msgid ""
 "using regular inheritance; \"virtual subclasses\" registered with the "
 "ABC's :meth:`register` method are not affected."
 msgstr ""
+"클래스에 추상 메서드를 동적으로 추가하거나, 메서드나 클래스가 작성된 후에 추상화 상태를 수정하려고 시도하는 것은 지원되지 않습니다. "
+":func:`abstractmethod` 는 정규 상속을 사용하여 파생된 서브 클래스에만 영향을 줍니다; ABC의 "
+":meth:`register` 메서드로 등록된 \"가상 서브 클래스\" 는 영향을 받지 않습니다."
 
 #: ../Doc/library/abc.rst:182
 msgid ""
@@ -196,6 +237,8 @@ msgid ""
 "descriptors, it should be applied as the innermost decorator, as shown in"
 " the following usage examples::"
 msgstr ""
+":func:`abstractmethod` 가 다른 메서드 디스크립터와 함께 적용될 때, 다음 사용 예제와 같이 가장 안쪽의 데코레이터로 "
+"적용되어야 합니다::"
 
 #: ../Doc/library/abc.rst:216
 msgid ""
@@ -206,6 +249,9 @@ msgid ""
 "abstract. For example, Python's built-in property does the equivalent "
 "of::"
 msgstr ""
+"추상 베이스 클래스 장치와 정확하게 상호 작용하기 위해서, 디스크립터는 :attr:`__isabstractmethod__` 를 사용하여 "
+"자신을 추상으로 식별해야 합니다. 일반적으로 이 어트리뷰트는 디스크립터를 구성하는 데 사용된 메서드 중 어느 하나라도 추상이면 "
+"``True`` 여야 합니다. 예를 들어, 파이썬의 내장 프로퍼티는 다음과 동등한 일을 합니다::"
 
 #: ../Doc/library/abc.rst:231
 msgid ""
@@ -215,40 +261,53 @@ msgid ""
 "end-point for a super-call in a framework that uses cooperative multiple-"
 "inheritance."
 msgstr ""
+"자바 추상 메서드와 달리, 이 추상 메서드는 구현을 가질 수 있습니다. 이 구현은 그것을 재정의하는 클래스에서 :func:`super` "
+"메커니즘을 통해 호출 할 수 있습니다. 이는 협업적 다중 상속을 사용하는 프레임 워크에서 super-호출의 종점으로 유용 할 수 "
+"있습니다."
 
 #: ../Doc/library/abc.rst:239
 msgid "The :mod:`abc` module also supports the following legacy decorators:"
-msgstr ""
+msgstr ":mod:`abc` 모듈은 다음 레거시 데코레이터도 지원합니다:"
 
 #: ../Doc/library/abc.rst:244
 msgid ""
 "It is now possible to use :class:`classmethod` with "
 ":func:`abstractmethod`, making this decorator redundant."
 msgstr ""
+"이제 :class:`classmethod` 와 :func:`abstractmethod` 를 함께 사용할 수 있어서, 이 데코레이터는 필요"
+" 없습니다."
 
 #: ../Doc/library/abc.rst:248
 msgid ""
 "A subclass of the built-in :func:`classmethod`, indicating an abstract "
 "classmethod. Otherwise it is similar to :func:`abstractmethod`."
 msgstr ""
+"내장 :func:`classmethod` 의 서브 클래스로, 추상 classmethod를 나타냅니다. 그 외에는 "
+":func:`abstractmethod` 와 유사합니다."
 
 #: ../Doc/library/abc.rst:251
 msgid ""
 "This special case is deprecated, as the :func:`classmethod` decorator is "
 "now correctly identified as abstract when applied to an abstract method::"
 msgstr ""
+":func:`classmethod` 데코레이터가 이제 추상 메서드에 적용될 때 추상으로 정확하게 식별되기 때문에, 이 특별한 경우는 "
+"폐지되었습니다.::"
 
 #: ../Doc/library/abc.rst:265
 msgid ""
 "It is now possible to use :class:`staticmethod` with "
 ":func:`abstractmethod`, making this decorator redundant."
 msgstr ""
+"이제 :class:`staticmethod` 와 :func:`abstractmethod` 를 함께 사용할 수 있어서, 이 데코레이터는 "
+"필요 없습니다."
 
 #: ../Doc/library/abc.rst:269
 msgid ""
 "A subclass of the built-in :func:`staticmethod`, indicating an abstract "
 "staticmethod. Otherwise it is similar to :func:`abstractmethod`."
 msgstr ""
+"내장 :func:`staticmethod` 의 서브 클래스로, 추상 staticmethod를 나타냅니다. 그 외에는 "
+":func:`abstractmethod` 와 유사합니다."
 
 #: ../Doc/library/abc.rst:272
 msgid ""
@@ -256,6 +315,8 @@ msgid ""
 " now correctly identified as abstract when applied to an abstract "
 "method::"
 msgstr ""
+":func:`staticmethod` 데코레이터가 이제 추상 메서드에 적용될 때 추상으로 정확하게 식별되기 때문에, 이 특별한 경우는 "
+"폐지되었습니다.::"
 
 #: ../Doc/library/abc.rst:285
 msgid ""
@@ -263,18 +324,23 @@ msgid ""
 ":meth:`property.setter` and :meth:`property.deleter` with "
 ":func:`abstractmethod`, making this decorator redundant."
 msgstr ""
+"이제 :class:`property`, :meth:`property.getter`, :meth:`property.setter`, "
+":meth:`property.deleter` 와 :func:`abstractmethod` 를 함께 사용할 수 있어서, 이 데코레이터는 "
+"필요 없습니다."
 
 #: ../Doc/library/abc.rst:290
 msgid ""
 "A subclass of the built-in :func:`property`, indicating an abstract "
 "property."
-msgstr ""
+msgstr "내장 :func:`property` 의 서브 클래스로, 추상 property를 나타냅니다."
 
 #: ../Doc/library/abc.rst:293
 msgid ""
 "This special case is deprecated, as the :func:`property` decorator is now"
 " correctly identified as abstract when applied to an abstract method::"
 msgstr ""
+":func:`property` 데코레이터가 이제 추상 메서드에 적용될 때 추상으로 정확하게 식별되기 때문에, 이 특별한 경우는 "
+"폐지되었습니다.::"
 
 #: ../Doc/library/abc.rst:303
 msgid ""
@@ -282,20 +348,22 @@ msgid ""
 "read-write abstract property by appropriately marking one or more of the "
 "underlying methods as abstract::"
 msgstr ""
+"위의 예제는 읽기 전용 프로퍼티를 정의합니다; 하나나 그 이상의 하부 메서드를 추상으로 적절하게 표시하여 읽기-쓰기 추상 프로퍼티를 "
+"정의할 수도 있습니다::"
 
 #: ../Doc/library/abc.rst:317
 msgid ""
 "If only some components are abstract, only those components need to be "
 "updated to create a concrete property in a subclass::"
-msgstr ""
+msgstr "일부 구성 요소만 추상인 경우, 서브 클래스에서 구상 프로퍼티를 만들기 위해서는 해당 구성 요소만 갱신하면 됩니다::"
 
 #: ../Doc/library/abc.rst:326
 msgid "The :mod:`abc` module also provides the following functions:"
-msgstr ""
+msgstr ":mod:`abc` 모듈은 또한 다음과 같은 기능을 제공합니다 :"
 
 #: ../Doc/library/abc.rst:330
 msgid "Returns the current abstract base class cache token."
-msgstr ""
+msgstr "현재의 추상 베이스 클래스 캐시 토큰을 반환합니다."
 
 #: ../Doc/library/abc.rst:332
 msgid ""
@@ -304,29 +372,15 @@ msgid ""
 "virtual subclasses. The token changes with every call to "
 ":meth:`ABCMeta.register` on any ABC."
 msgstr ""
+"토큰은 가상 서브 클래스를 위한 추상 베이스 클래스 캐시의 현재 버전을 식별하는 (동등성 검사를 지원하는) 불투명 객체입니다. 임의의 "
+"ABC에서 :meth:`ABCMeta.register` 가 호출될 때마다 토큰이 변경됩니다."
 
 #: ../Doc/library/abc.rst:340
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/abc.rst:341
 msgid ""
 "C++ programmers should note that Python's virtual base class concept is "
 "not the same as C++'s."
-msgstr ""
-
-#~ msgid "The :mod:`abc` module also provides the following decorators:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Using this function requires that the"
-#~ " class's metaclass is :class:`ABCMeta` or"
-#~ " is derived from it. A class "
-#~ "that has a metaclass derived from "
-#~ ":class:`ABCMeta` cannot be instantiated unless"
-#~ " all of its abstract methods and "
-#~ "properties are overridden. The abstract "
-#~ "properties can be called using any "
-#~ "of the normal 'super' call mechanisms."
-#~ msgstr ""
-
+msgstr "C++ 프로그래머는 파이썬의 가상 베이스 클래스 개념이 C++과 다르다는 것을 알아야 합니다."
