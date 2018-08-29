@@ -1088,7 +1088,7 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:735
 msgid "The itertools module"
-msgstr ""
+msgstr "itertools 모듈"
 
 #: ../Doc/howto/functional.rst:737
 msgid ""
@@ -1096,30 +1096,37 @@ msgid ""
 "as well as functions for combining several iterators.  This section will "
 "introduce the module's contents by showing small examples."
 msgstr ""
+":mod:`itertools` 모듈은 공통적으로 사용되는 많은 이터레이터와 몇몇 이터레이터를 결합하기 위한 함수를 포함합니다. 이 절에서는 작은 예제를 보여줌으로써 모듈의 내용을 소개합니다."
 
 #: ../Doc/howto/functional.rst:741
 msgid "The module's functions fall into a few broad classes:"
 msgstr ""
+"모듈의 기능은 몇 가지 광범위한 클래스로 분류됩니다."
 
 #: ../Doc/howto/functional.rst:743
 msgid "Functions that create a new iterator based on an existing iterator."
 msgstr ""
+"기존 이터레이터를 기반으로 새로운 이터레이터를 만드는 함수."
 
 #: ../Doc/howto/functional.rst:744
 msgid "Functions for treating an iterator's elements as function arguments."
 msgstr ""
+"이터레이터의 요소를 함수 인수로 처리하는 함수."
 
 #: ../Doc/howto/functional.rst:745
 msgid "Functions for selecting portions of an iterator's output."
 msgstr ""
+"이터레이터의 출력 부분을 선택하는 함수."
 
 #: ../Doc/howto/functional.rst:746
 msgid "A function for grouping an iterator's output."
 msgstr ""
+"이터레이터의 출력을 분류하는 함수."
 
 #: ../Doc/howto/functional.rst:749
 msgid "Creating new iterators"
 msgstr ""
+"새로운 이터레이터 만들기"
 
 #: ../Doc/howto/functional.rst:751
 msgid ""
@@ -1128,6 +1135,9 @@ msgid ""
 "starting number, which defaults to 0, and the interval between numbers, "
 "which defaults to 1::"
 msgstr ""
+":func:`itertools.count(start, step) <itertools.count>` 는 균등하게 간격을 둔 "
+"값들의 무한한 스트림을 반환합니다. 선택적으로 기본값이 0인 시작 번호와 기본값이 1인 숫자 사이의 "
+"간격을 제공할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:762
 msgid ""
@@ -1136,6 +1146,9 @@ msgid ""
 "its elements from first to last.  The new iterator will repeat these "
 "elements infinitely. ::"
 msgstr ""
+":func:`itertools.cycle(iter) <itertools.cycle>` 은 제공된 이터러블의 내용 "
+"사본을 저장하고 처음부터 마지막까지 요소를 반환하는 새로운 이터레이터를 반환합니다. 새로운 "
+"이터레이터는 이러한 요소를 무한히 반복합니다."
 
 #: ../Doc/howto/functional.rst:769
 msgid ""
@@ -1143,6 +1156,8 @@ msgid ""
 "provided element *n* times, or returns the element endlessly if *n* is "
 "not provided. ::"
 msgstr ""
+":func:`itertools.repeat(elem, [n]) <itertools.repeat>` 는 제공된 요소를 "
+"*n* 번 반환하거나, *n* 이 제공되지 않으면 끝없이 요소를 반환합니다."
 
 #: ../Doc/howto/functional.rst:777
 msgid ""
@@ -1151,6 +1166,9 @@ msgid ""
 "the first iterator, then all the elements of the second, and so on, until"
 " all of the iterables have been exhausted. ::"
 msgstr ""
+":func:`itertools.chain(iterA, iterB, ...) <itertools.chain>` 은 임의의 수의 "
+"이터러블을 입력으로 취하여, 첫 번째 이터러블의 모든 요소를 반환한 다음 두 번째 요소의 모든 요소를 "
+"반환하고, 모든 이터러블이 다 소모될 때까지 이 동작을 반복합니다."
 
 #: ../Doc/howto/functional.rst:785
 msgid ""
@@ -1162,6 +1180,11 @@ msgid ""
 "string and list slicing, you can't use negative values for *start*, "
 "*stop*, or *step*. ::"
 msgstr ""
+":func:`itertools.islice(iter, [start], stop, [step]) <itertools.islice>` 는 "
+"이터레이터의 조각인 스트림을 반환합니다. 단일 *stop* 인수를 사용하면 첫 번째 *stop* 요소가 "
+"반환됩니다. 시작 인덱스를 지정하면 *stop-start* 요소가 생기고, *step* 에 값을 지정하면 요소는 "
+"그에 따라 생략됩니다. 파이썬의 문자열 및 리스트 슬라이싱과 달리, *start*, *stop*, *step* 에 "
+"음수값을 사용할 수 없습니다."
 
 #: ../Doc/howto/functional.rst:799
 msgid ""
@@ -1173,10 +1196,15 @@ msgid ""
 "is large and one of the new iterators is consumed more than the others. "
 "::"
 msgstr ""
+":func:`itertools.tee(iter, [n]) <itertools.tee>` 는 이터레이터를 복제합니다. "
+"원본 이터레이터의 내용을 모두 반환하는 *n* 개의 독립적인 이터레이터를 반환합니다. *n* 에 대한 "
+"값을 제공하지 않으면 기본값은 2입니다. 이터레이터를 복제하려면 원본 이터레이터의 일부 내용을 "
+"저장해야 하므로 이터레이터가 크고 새로운 이터레이터 중 하나가 다른 것보다 많이 소비된다면 이것은 "
+"상당한 메모리를 소비할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:818
 msgid "Calling functions on elements"
-msgstr ""
+msgstr "요소에 대한 함수 호출"
 
 #: ../Doc/howto/functional.rst:820
 msgid ""
@@ -1187,6 +1215,11 @@ msgid ""
 " <operator.attrgetter>` (returns a callable that fetches the ``.id`` "
 "attribute)."
 msgstr ""
+":mod:`operator` 모듈은 파이썬의 연산자에 대응하는 함수 집합을 포함합니다. 예를 들어 
+":func:`operator.add(a, b) <operator.add>` (두 개의 값을 더하기), "
+":func:`operator.ne(a, b) <operator.ne>` (``a != b`` 와 동일) 및 "
+":func:`operator.attrgetter('id') <operator.attrgetter>` "
+"(``.id`` 속성을 가져오는 콜러블을 반환)와 같은 함수가 있습니다."
 
 #: ../Doc/howto/functional.rst:826
 msgid ""
@@ -1194,16 +1227,19 @@ msgid ""
 "the iterable will return a stream of tuples, and calls *func* using these"
 " tuples as the arguments::"
 msgstr ""
+":func:`itertools.starmap(func, iter) <itertools.starmap>` 은 이터러블이 "
+"튜플의 스트림을 반환할 것이라고 가정하고, 이 튜플을 인수로 사용하여 *func* 를 호출합니다."
 
 #: ../Doc/howto/functional.rst:838
 msgid "Selecting elements"
-msgstr ""
+msgstr "요소 선택하기"
 
 #: ../Doc/howto/functional.rst:840
 msgid ""
 "Another group of functions chooses a subset of an iterator's elements "
 "based on a predicate."
 msgstr ""
+"또 다른 함수 모음은 술어에 기초하여 이터러블 요소의 하위 집합을 선택합니다."
 
 #: ../Doc/howto/functional.rst:843
 msgid ""
@@ -1211,6 +1247,8 @@ msgid ""
 " the opposite of :func:`filter`, returning all elements for which the "
 "predicate returns false::"
 msgstr ""
+":func:`itertools.filterfalse(predicate, iter) <itertools.filterfalse>` 는 "
+":func:`filter` 의 반대이며, 술어가 거짓을 반환하는 모든 요소를 반환합니다."
 
 #: ../Doc/howto/functional.rst:850
 msgid ""
@@ -1219,6 +1257,9 @@ msgid ""
 "predicate returns false, the iterator will signal the end of its results."
 " ::"
 msgstr ""
+":func:`itertools.takewhile(predicate, iter) <itertools.takewhile>` 은 "
+"술어가 참을 반환하는 한 요소를 반환합니다. 술어가 거짓을 반환하면 이터레이터는 결과의 종료를 "
+"알립니다."
 
 #: ../Doc/howto/functional.rst:863
 msgid ""
@@ -1226,6 +1267,8 @@ msgid ""
 "discards elements while the predicate returns true, and then returns the "
 "rest of the iterable's results. ::"
 msgstr ""
+":func:`itertools.dropwhile(predicate, iter) <itertools.dropwhile>` 은 "
+"술어가 참을 반환하는 동안 요소를 버리고, 나머지 이터러블의 결과를 반환합니다."
 
 #: ../Doc/howto/functional.rst:873
 msgid ""
@@ -1234,6 +1277,9 @@ msgid ""
 "corresponding element of *selectors* is true, stopping whenever either "
 "one is exhausted::"
 msgstr ""
+":func:`itertools.compress(data, selectors) <itertools.compress>` 는 "
+"두 개의 이터레이터를 취하고 *셀렉터* 의 해당 요소가 참인 *데이터* 의 요소만을 반환하고, "
+"한쪽이 고갈될 때마다 중단합니다."
 
 #: ../Doc/howto/functional.rst:882
 msgid "Combinatoric functions"
