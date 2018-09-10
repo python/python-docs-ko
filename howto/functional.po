@@ -1383,7 +1383,7 @@ msgstr ""
 
 #: ../Doc/howto/functional.rst:988
 msgid "The functools module"
-msgstr ""
+msgstr "functools 모듈"
 
 #: ../Doc/howto/functional.rst:990
 msgid ""
@@ -1392,6 +1392,9 @@ msgid ""
 "input and returns a new function.  The most useful tool in this module is"
 " the :func:`functools.partial` function."
 msgstr ""
+"파이썬 2.5의 :mod:`functools` 모듈은 고차원 함수를 포함하고 있습니다. **고차 함수** 는 "
+"하나 이상의 함수를 입력으로 사용하고 새로운 함수를 반환합니다. 이 모듈에서 가장 유용한 도구는 "
+":func:`functools.partial` 함수입니다."
 
 #: ../Doc/howto/functional.rst:995
 msgid ""
@@ -1402,6 +1405,10 @@ msgid ""
 "you're filling in a value for one of ``f()``'s parameters.  This is "
 "called \"partial function application\"."
 msgstr ""
+"함수형 방식으로 작성된 프로그램의 경우, 일부 매개 변수가 채워진 기존 함수의 변형이 필요한 경우가 "
+"있습니다. 파이썬 함수 ``f(a, b, c)`` 를 고려해보세요. 파이썬 함수인 ``f(1, b, c)`` 에 "
+"해당하는 새로운 함수 ``g(b, c)`` 를 만들 수 있습니다. 이를 \"부분적 함수 응용 프로그램\" "
+"이라고 합니다."
 
 #: ../Doc/howto/functional.rst:1001
 msgid ""
@@ -1410,10 +1417,14 @@ msgid ""
 "resulting object is callable, so you can just call it to invoke "
 "``function`` with the filled-in arguments."
 msgstr ""
+":func:`~functools.partial` 의 생성자는 "
+"``(function, arg1, arg2, ..., kwarg1=value1, kwarg2=value2)`` 와 같은 "
+"인수를 취합니다. 결과 객체는 호출할 수 있으므로, 채워진 인수로 ``function`` 을 "
+"실행하기 위해서는 결과 객체를 호출하면 됩니다."
 
 #: ../Doc/howto/functional.rst:1006
 msgid "Here's a small but realistic example::"
-msgstr ""
+msgstr "작지만 현실적인 예가 있습니다."
 
 #: ../Doc/howto/functional.rst:1018
 msgid ""
@@ -1430,6 +1441,14 @@ msgid ""
 "starting point and ``func(initial_value, A)`` is the first calculation. "
 "::"
 msgstr ""
+":func:`functools.reduce(func, iter, [initial_value]) <functools.reduce>` 는 "
+"모든 이터러블 요소에 대해 누적 연산을 수행하므로 무한 이터러블에 적용할 수 없습니다. *func* 는 "
+"두 요소를 사용하여 하나의 값을 반환하는 함수이어야 합니다. :func:`functools.reduce` 는 "
+"이터레이터가 반환한 처음 두 요소 A와 B를 취해 ``func(A, B)`` 를 계산합니다. 그다음 세 번째 "
+"요소인 C를 취해 ``func(func(A, B), C)`` 를 계산하고, 이 결과를 반환된 네 번째 요소와 "
+"결합해 이터러블이 소진될 때까지 계속합니다. 이터러블이 값을 반환하지 않으면 :exc:`TypeError` "
+"예외가 발생합니다. 초기값이 제공되면 시작점으로 사용되며 ``func(initial_value, A)`` 가 "
+"첫 번째로 계산됩니다."
 
 #: ../Doc/howto/functional.rst:1042
 msgid ""
@@ -1437,12 +1456,17 @@ msgid ""
 " up all the elements of the iterable.  This case is so common that "
 "there's a special built-in called :func:`sum` to compute it:"
 msgstr ""
+":func:`operator.add` 를 :func:`functools.reduce` 와 함께 사용하면 이터러블의 "
+"모든 요소가 추가됩니다. 이 경우는 매우 일반적이어서 :func:`sum` 이라는 특수 내장 함수가 "
+"제공됩니다."
 
 #: ../Doc/howto/functional.rst:1054
 msgid ""
 "For many uses of :func:`functools.reduce`, though, it can be clearer to "
 "just write the obvious :keyword:`for` loop::"
 msgstr ""
+"그렇지만 :func:`functools.reduce` 를 여러 번 사용하는 경우, 명백한 :keyword:`for` "
+"루프만 작성하는 것이 더 명확할 수 있습니다."
 
 #: ../Doc/howto/functional.rst:1066
 msgid ""
@@ -1452,6 +1476,9 @@ msgid ""
 ":func:`accumulate` returns an iterator that also yields each partial "
 "result::"
 msgstr ""
+"관련 함수는 :func:`itertools.accumulate(iterable, func=operator.add) "
+"<itertools.accumulate>` 입니다. 같은 계산을 수행하지만, 최종 결과만 반환하는 대신 "
+":func:`accumulate` 는 각 부분 결과를 반환하는 이터레이터를 반환합니다."
 
 #: ../Doc/howto/functional.rst:1079
 msgid "The operator module"
