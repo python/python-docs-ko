@@ -1538,18 +1538,22 @@ msgstr ""
 #: ../Doc/howto/functional.rst:1098
 msgid "Small functions and the lambda expression"
 msgstr ""
+"작은 함수와 람다식"
 
 #: ../Doc/howto/functional.rst:1100
 msgid ""
 "When writing functional-style programs, you'll often need little "
 "functions that act as predicates or that combine elements in some way."
 msgstr ""
+"함수형 방식의 프로그램을 작성할 때, 술어로 동작하거나 어떤 식으로든 요소를 결합하는 "
+"작은 함수가 필요할 것입니다."
 
 #: ../Doc/howto/functional.rst:1103
 msgid ""
 "If there's a Python built-in or a module function that's suitable, you "
 "don't need to define a new function at all::"
 msgstr ""
+"파이썬 내장 함수나 적당한 모듈 함수가 있다면, 새로운 함수를 정의할 필요가 전혀 없습니다."
 
 #: ../Doc/howto/functional.rst:1109
 msgid ""
@@ -1559,18 +1563,24 @@ msgid ""
 " parameters, and creates an anonymous function that returns the value of "
 "the expression::"
 msgstr ""
+"필요한 기능이 없다면 작성해야 합니다. 작은 함수를 작성하는 한 가지 방법은 :keyword:`lambda` "
+"문을 사용하는 것입니다. ``lambda`` 는 여러 매개 변수와 이들 매개 변수를 결합하는 표현식을 취해 "
+"표현식의 값을 반환하는 익명의 함수를 만듭니다."
 
 #: ../Doc/howto/functional.rst:1118
 msgid ""
 "An alternative is to just use the ``def`` statement and define a function"
 " in the usual way::"
 msgstr ""
+"다른 방법은 ``def`` 문을 사용하고 일반적인 방식으로 함수를 정의하는 것입니다."
 
 #: ../Doc/howto/functional.rst:1127
 msgid ""
 "Which alternative is preferable?  That's a style question; my usual "
 "course is to avoid using ``lambda``."
 msgstr ""
+"어떤 대안이 바람직할까요? 이것은 스타일에 대한 질문입니다. 필자가 평소에 사용하는 방법은 "
+"``lambda`` 사용을 피하는 것입니다."
 
 #: ../Doc/howto/functional.rst:1130
 msgid ""
@@ -1582,6 +1592,11 @@ msgid ""
 "expression that's hard to read.  Quick, what's the following code doing? "
 "::"
 msgstr ""
+"필자가 선호하는 방식에 대한 이유 중 하나는 ``lambda`` 가 정의할 수 있는 기능이 상당히 "
+"제한적이기 때문입니다. 결과는 단일 표현식으로 계산할 수 있어야 합니다. 즉, "
+"``if... elif... else`` 비교 또는 ``try... except`` 문을 가질 수 없습니다. "
+"``lambda`` 문에서 너무 많은 것을 하려고 하면, 읽기 어려운 복잡한 표현으로 끝날 것입니다. "
+"다음 코드가 무엇을 하는지 빠르게 알아보세요."
 
 #: ../Doc/howto/functional.rst:1140
 msgid ""
@@ -1589,54 +1604,68 @@ msgid ""
 " figure out what's going on.  Using a short nested ``def`` statements "
 "makes things a little bit better::"
 msgstr ""
+"여러분은 이해할 수 있지만, 어떻게 동작하는지 이해하기 위해 표현식을 풀어내는 데 시간이 걸립니다. "
+"짧게 중첩된 ``def`` 문을 사용하면 좀 더 나은 것을 만들 수 있습니다."
 
 #: ../Doc/howto/functional.rst:1150
 msgid "But it would be best of all if I had simply used a ``for`` loop::"
 msgstr ""
+"그러나 단순히 ``for`` 루프를 사용했다면 가장 좋았을 것입니다."
 
 #: ../Doc/howto/functional.rst:1156
 msgid "Or the :func:`sum` built-in and a generator expression::"
 msgstr ""
+"혹은 :func:`sum` 내장 함수와 제너레이터 표현식이었어도 좋았을 것입니다."
 
 #: ../Doc/howto/functional.rst:1160
 msgid ""
 "Many uses of :func:`functools.reduce` are clearer when written as ``for``"
 " loops."
 msgstr ""
+":func:`functools.reduce` 를 사용하는 많은 경우, ``for`` 루프와 같은 용도로 "
+"작성되었을 때 더 명확합니다."
 
 #: ../Doc/howto/functional.rst:1162
 msgid ""
 "Fredrik Lundh once suggested the following set of rules for refactoring "
 "uses of ``lambda``:"
 msgstr ""
+"프레더릭 룬트(Fredrik Lundh)는 한때 ``lambda`` 사용법의 리팩토링을 위해 다음과 같은 "
+"규칙 집합을 제안했습니다."
 
 #: ../Doc/howto/functional.rst:1165
 msgid "Write a lambda function."
-msgstr ""
+msgstr "람다 함수를 작성하세요."
 
 #: ../Doc/howto/functional.rst:1166
 msgid "Write a comment explaining what the heck that lambda does."
 msgstr ""
+"람다가 하는 일에 관해 설명하는 글을 쓰세요."
 
 #: ../Doc/howto/functional.rst:1167
 msgid ""
 "Study the comment for a while, and think of a name that captures the "
 "essence of the comment."
 msgstr ""
+"잠깐 설명을 검토하고 설명의 본질을 포착하는 이름을 생각해보세요."
 
 #: ../Doc/howto/functional.rst:1169
 msgid "Convert the lambda to a def statement, using that name."
 msgstr ""
+"해당 이름을 사용하여 람다를 def 문으로 변환합니다."
 
 #: ../Doc/howto/functional.rst:1170
 msgid "Remove the comment."
 msgstr ""
+"설명을 삭제하세요."
 
 #: ../Doc/howto/functional.rst:1172
 msgid ""
 "I really like these rules, but you're free to disagree about whether this"
 " lambda-free style is better."
 msgstr ""
+"필자는 이 규칙을 정말 좋아하지만, 여러분은 이렇게 람다가 없는 방식이 더 나은지에 대해 동의하지 "
+"않을 수 있습니다."
 
 #: ../Doc/howto/functional.rst:1177
 msgid "Revision History and Acknowledgements"
