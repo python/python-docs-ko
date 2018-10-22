@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-26 11:10+0900\n"
+"POT-Creation-Date: 2018-10-23 06:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -608,12 +608,13 @@ msgstr ""
 "동등합니다."
 
 #: ../Doc/tutorial/classes.rst:389
+#, fuzzy
 msgid ""
 "If you still don't understand how methods work, a look at the "
-"implementation can perhaps clarify matters.  When an instance attribute "
-"is referenced that isn't a data attribute, its class is searched.  If the"
-" name denotes a valid class attribute that is a function object, a method"
-" object is created by packing (pointers to) the instance object and the "
+"implementation can perhaps clarify matters.  When a non-data attribute of"
+" an instance is referenced, the instance's class is searched.  If the "
+"name denotes a valid class attribute that is a function object, a method "
+"object is created by packing (pointers to) the instance object and the "
 "function object just found together in an abstract object: this is the "
 "method object.  When the method object is called with an argument list, a"
 " new argument list is constructed from the instance object and the "
@@ -990,6 +991,15 @@ msgstr ""
 
 #: ../Doc/tutorial/classes.rst:706
 msgid ""
+"The above example would work even if ``MappingSubclass`` were to "
+"introduce a ``__update`` identifier since it is replaced with "
+"``_Mapping__update`` in the ``Mapping`` class  and "
+"``_MappingSubclass__update`` in the ``MappingSubclass`` class "
+"respectively."
+msgstr ""
+
+#: ../Doc/tutorial/classes.rst:711
+msgid ""
 "Note that the mangling rules are designed mostly to avoid accidents; it "
 "still is possible to access or modify a variable that is considered "
 "private.  This can even be useful in special circumstances, such as in "
@@ -998,7 +1008,7 @@ msgstr ""
 "뒤섞기 규칙은 대체로 사고를 피하고자 설계되었다는 것에 주의하세요; 여전히 비공개로 취급되는 변수들을 액세스하거나 수정할 수 "
 "있습니다. 이것은 디버거와 같은 특별한 상황에서 쓸모 있기조차 합니다."
 
-#: ../Doc/tutorial/classes.rst:710
+#: ../Doc/tutorial/classes.rst:715
 msgid ""
 "Notice that code passed to ``exec()`` or ``eval()`` does not consider the"
 " classname of the invoking class to be the current class; this is similar"
@@ -1012,11 +1022,11 @@ msgstr ""
 "``__dict__`` 를 직접 참조할 때뿐만 아니라, ``getattr()``, ``setattr()``, "
 "``delattr()`` 에도 적용됩니다."
 
-#: ../Doc/tutorial/classes.rst:721
+#: ../Doc/tutorial/classes.rst:726
 msgid "Odds and Ends"
 msgstr "잡동사니"
 
-#: ../Doc/tutorial/classes.rst:723
+#: ../Doc/tutorial/classes.rst:728
 msgid ""
 "Sometimes it is useful to have a data type similar to the Pascal "
 "\"record\" or C \"struct\", bundling together a few named data items.  An"
@@ -1025,7 +1035,7 @@ msgstr ""
 "때로 몇몇 이름 붙은 데이터 항목들을 함께 묶어주는 파스칼의 \"record\" 나 C의 \"struct\" 와 유사한 데이터형을 "
 "갖는 것이 쓸모 있습니다. 빈 클래스 정의가 훌륭히 할 수 있는 일입니다::"
 
-#: ../Doc/tutorial/classes.rst:737
+#: ../Doc/tutorial/classes.rst:742
 msgid ""
 "A piece of Python code that expects a particular abstract data type can "
 "often be passed a class that emulates the methods of that data type "
@@ -1038,7 +1048,7 @@ msgstr ""
 "있습니다. 예를 들어, 파일 객체로부터 데이터를 포맷하는 함수가 있을 때, 대신 문자열 버퍼에서 데이터를 읽는 메서드 "
 ":meth:`read` 와 :meth:`!readline` 을 제공하는 클래스를 정의한 후 인자로 전달할 수 있습니다."
 
-#: ../Doc/tutorial/classes.rst:748
+#: ../Doc/tutorial/classes.rst:753
 msgid ""
 "Instance method objects have attributes, too: ``m.__self__`` is the "
 "instance object with the method :meth:`m`, and ``m.__func__`` is the "
@@ -1047,17 +1057,17 @@ msgstr ""
 "인스턴스 메서드 객체도 어트리뷰트를 갖습니다: ``m.__self__`` 는 메서드 :meth:`m` 과 결합한 인스턴스 객체이고,"
 " ``m.__func__`` 는 메서드에 상응하는 함수 객체입니다."
 
-#: ../Doc/tutorial/classes.rst:756
+#: ../Doc/tutorial/classes.rst:761
 msgid "Iterators"
 msgstr "이터레이터"
 
-#: ../Doc/tutorial/classes.rst:758
+#: ../Doc/tutorial/classes.rst:763
 msgid ""
 "By now you have probably noticed that most container objects can be "
 "looped over using a :keyword:`for` statement::"
 msgstr "지금쯤 아마도 여러분은 대부분의 컨테이너 객체들을 :keyword:`for` 문으로 루핑할 수 있음을 눈치챘을 것입니다::"
 
-#: ../Doc/tutorial/classes.rst:772
+#: ../Doc/tutorial/classes.rst:777
 msgid ""
 "This style of access is clear, concise, and convenient.  The use of "
 "iterators pervades and unifies Python.  Behind the scenes, the "
@@ -1078,7 +1088,7 @@ msgstr ""
 "내장 함수를 사용해서 :meth:`~iterator.__next__` 메서드를 호출할 수 있습니다; 이 예는 이 모든 것들이 어떻게"
 " 동작하는지 보여줍니다::"
 
-#: ../Doc/tutorial/classes.rst:797
+#: ../Doc/tutorial/classes.rst:802
 msgid ""
 "Having seen the mechanics behind the iterator protocol, it is easy to add"
 " iterator behavior to your classes.  Define an :meth:`__iter__` method "
@@ -1091,11 +1101,11 @@ msgstr ""
 "클래스가 :meth:`__next__` 를 정의하면, :meth:`__iter__` 는 그냥 ``self`` 를 돌려줄 수 "
 "있습니다."
 
-#: ../Doc/tutorial/classes.rst:834
+#: ../Doc/tutorial/classes.rst:839
 msgid "Generators"
 msgstr "제너레이터"
 
-#: ../Doc/tutorial/classes.rst:836
+#: ../Doc/tutorial/classes.rst:841
 msgid ""
 ":term:`Generator`\\s are a simple and powerful tool for creating "
 "iterators.  They are written like regular functions but use the "
@@ -1109,7 +1119,7 @@ msgstr ""
 "제너레이터는 떠난 곳에서 실행을 재개합니다 (모든 데이터 값들과 어떤 문장이 마지막으로 실행되었는지 기억합니다). 예는 제너레이터를"
 " 사소할 정도로 쉽게 만들 수 있음을 보여줍니다::"
 
-#: ../Doc/tutorial/classes.rst:857
+#: ../Doc/tutorial/classes.rst:862
 msgid ""
 "Anything that can be done with generators can also be done with class-"
 "based iterators as described in the previous section.  What makes "
@@ -1119,7 +1129,7 @@ msgstr ""
 "제너레이터로 할 수 있는 모든 것은 앞 절에서 설명했듯이 클래스 기반 이터레이터로도 할 수 있습니다. 제너레이터가 간단한 이유는 "
 ":meth:`__iter__` 와 :meth:`~generator.__next__` 메서드가 저절로 만들어지기 때문입니다."
 
-#: ../Doc/tutorial/classes.rst:862
+#: ../Doc/tutorial/classes.rst:867
 msgid ""
 "Another key feature is that the local variables and execution state are "
 "automatically saved between calls.  This made the function easier to "
@@ -1129,7 +1139,7 @@ msgstr ""
 "또 하나의 주요 기능은 지역 변수들과 실행 상태가 호출 간에 자동으로 보관된다는 것입니다. 이것은 ``self.index`` 나 "
 "``self.data`` 와 같은 인스턴스 변수를 사용하는 접근법에 비교해 함수를 쓰기 쉽고 명료하게 만듭니다."
 
-#: ../Doc/tutorial/classes.rst:867
+#: ../Doc/tutorial/classes.rst:872
 msgid ""
 "In addition to automatic method creation and saving program state, when "
 "generators terminate, they automatically raise :exc:`StopIteration`. In "
@@ -1139,11 +1149,11 @@ msgstr ""
 "자동 메서드 생성과 프로그램 상태의 저장에 더해, 제너레이터가 종료할 때 자동으로 :exc:`StopIteration` 을 "
 "일으킵니다. 조합하면, 이 기능들이 일반 함수를 작성하는 것만큼 이터레이터를 만들기 쉽게 만듭니다."
 
-#: ../Doc/tutorial/classes.rst:876
+#: ../Doc/tutorial/classes.rst:881
 msgid "Generator Expressions"
 msgstr "제너레이터 표현식"
 
-#: ../Doc/tutorial/classes.rst:878
+#: ../Doc/tutorial/classes.rst:883
 msgid ""
 "Some simple generators can be coded succinctly as expressions using a "
 "syntax similar to list comprehensions but with parentheses instead of "
@@ -1157,15 +1167,15 @@ msgstr ""
 "있습니다. 이 표현식들은 둘러싸는 함수가 제너레이터를 즉시 사용하는 상황을 위해 설계되었습니다. 제너레이터 표현식은 완전한 "
 "제너레이터 정의보다 간결하지만, 융통성은 떨어지고, 비슷한 리스트 컴프리헨션보다 메모리를 덜 쓰는 경향이 있습니다."
 
-#: ../Doc/tutorial/classes.rst:885
+#: ../Doc/tutorial/classes.rst:890
 msgid "Examples::"
 msgstr "예::"
 
-#: ../Doc/tutorial/classes.rst:909
+#: ../Doc/tutorial/classes.rst:914
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../Doc/tutorial/classes.rst:910
+#: ../Doc/tutorial/classes.rst:915
 msgid ""
 "Except for one thing.  Module objects have a secret read-only attribute "
 "called :attr:`~object.__dict__` which returns the dictionary used to "
