@@ -94,11 +94,11 @@ msgid ""
 msgstr ""
 "기본적으로 2to3는 :ref:`미리 정의된 변환자 <2to3-fixers>` 를 사용하여 실행됩니다. :option:`!-l` 옵션을 사용하면 "
 "사용 가능한 모든 변환자를 볼 수 있습니다. 특정 변환자만 명시적으로 설정하고 싶으시면 :option:`!-f` 를 사용하시면 됩니다. 마찬가지로 :option:`!-x` "
-"옵션으로 특정 변환자를 끌 수도 있습니다. 다음 예는 ``imports`` 와 ``has_key`` 변환자만 사용한 것입니다."
+"옵션으로 특정 변환자를 비활성화할 수도 있습니다. 다음 예는 ``imports`` 와 ``has_key`` 변환자만 사용한 것입니다."
 
 #: ../Doc/library/2to3.rst:70
 msgid "This command runs every fixer except the ``apply`` fixer:"
-msgstr "다은 명령어는 ``apply`` 변환자만 끈 것입니다."
+msgstr "다음은 ``apply`` 변환자만 빼고 모든 변환자를 실행하는 명령어입니다."
 
 #: ../Doc/library/2to3.rst:76
 msgid ""
@@ -200,7 +200,7 @@ msgstr ""
 
 #: ../Doc/library/2to3.rst:132
 msgid "Will cause a converted file named ``example.py3`` to be written."
-msgstr "이것은 출력 파일의 이름을 ``example.py3`` 로 만들어 줍니다."
+msgstr "이 명령어 출력 파일의 이름을 ``example.py3`` 로 만들어 줍니다."
 
 #: ../Doc/library/2to3.rst:134
 msgid "The :option:`!--add-suffix` option was added."
@@ -222,7 +222,7 @@ msgid ""
 "detail."
 msgstr ""
 "변환되는 코드의 각각 단계는 변환자 안에 캡슐화되어 있습니다. ``2to3 -l`` 명령어를 실행하면 변환자 목록을 "
-"보실 수 있습니다. :ref:`위에 적어놓은 것 <2to3-using>`과 같이, 각 변환자는 개별적으로 활성화/비활성화를 "
+"보실 수 있습니다. :ref:`위에 적어놓은 것 <2to3-using>` 과 같이, 각 변환자는 개별적으로 활성화/비활성화를 "
 "할 수 있습니다. 변환자들에 대한 자세한 설명이 아래에 있습니다."
 
 #: ../Doc/library/2to3.rst:156
@@ -351,7 +351,8 @@ msgstr ""
 ":meth:`dict.iterkeys` 는 :meth:`dict.keys` 로, :meth:`dict.itervalues` 는 :meth:`dict.values` "
 "로 변환됩니다. 마찬가지로 :meth:`dict.viewitems`, :meth:`dict.viewkeys`, :meth:`dict.viewvalues` 는 "
 "각각 :meth:`dict.items`, :meth:`dict.keys`, :meth:`dict.values` 로 변환됩니다. "
-":meth:`dict.items`, :meth:`dict.keys`, :meth:`dict.values`의 기존 사용은 :class:`list`을 사용하도록 바뀝니다."
+":meth:`dict.items`, :meth:`dict.keys`, :meth:`dict.values` 의 기존 사용은 :class:`list` "
+"로 감싸도록 바뀝니다."
 
 #: ../Doc/library/2to3.rst:214
 msgid "Converts ``except X, T`` to ``except X as T``."
@@ -377,7 +378,7 @@ msgstr ":attr:`sys.exitfunc` 대입이 :mod:`atexit` 모듈을 사용하도록 �
 
 #: ../Doc/library/2to3.rst:232
 msgid "Wraps :func:`filter` usage in a :class:`list` call."
-msgstr ":func:`filter` 함수 사용은 :class:`list` 를 사용하도록 바뀝니다."
+msgstr ":func:`filter` 함수 사용은 :class:`list` 로 도록 바뀝니다."
 
 
 #: ../Doc/library/2to3.rst:236
@@ -408,18 +409,21 @@ msgid ""
 "``while 1`` becomes ``while True``.  This fixer also tries to make use of"
 " :func:`sorted` in appropriate places.  For example, this block ::"
 msgstr ""
+"이 선택적인 변환자는 파이썬 코드의 이디엄들을 변환해줍니다. ``type(x) is SomeClass`` 나 ``type(x) == SomeClass`` "
+"같은 타입 비교는 ``isinstance(x, SomeClass)`` 로 변환합니다. ``while 1` 는 ``while True`` 로 변환합니다. "
+"또한 이 변환자는 :func:`sorted` 가 올바른 위치에 사용될 수 있도록 수정합니다. 예를 들어 다음 코드는 ::"
 
 #: ../Doc/library/2to3.rst:262
 msgid "is changed to ::"
-msgstr ""
+msgstr " 아래와 같이 변경됩니다. ::"
 
 #: ../Doc/library/2to3.rst:268
 msgid "Detects sibling imports and converts them to relative imports."
-msgstr ""
+msgstr "같은 단계 경로의 임포트를 찾아 상대 경로 임포트로 변경합니다."
 
 #: ../Doc/library/2to3.rst:272
 msgid "Handles module renames in the standard library."
-msgstr ""
+msgstr "표준 라이브러리에 있는 모듈의 이름 변경 사항을 처리합니다."
 
 #: ../Doc/library/2to3.rst:276
 msgid ""
@@ -427,14 +431,16 @@ msgid ""
 "from the :2to3fixer:`imports` fixer only because of technical "
 "limitations."
 msgstr ""
+"표준 라이브러리에 있는 또 다른 모듈의 이름 변경 사항을 처리합니다. 기술적인 제한 사항 때문에 :2to3fixer:`imports` "
+"변환자와 분리했습니다."
 
 #: ../Doc/library/2to3.rst:281
 msgid "Converts ``input(prompt)`` to ``eval(input(prompt))``."
-msgstr ""
+msgstr "``input(prompt)`` 를 ``eval(input(prompt))`` 로 변경합니다."
 
 #: ../Doc/library/2to3.rst:285
 msgid "Converts :func:`intern` to :func:`sys.intern`."
-msgstr ""
+msgstr ":func:`intern` 를 :func:`sys.intern` 로 변경합니다."
 
 #: ../Doc/library/2to3.rst:289
 msgid ""
@@ -443,6 +449,9 @@ msgid ""
 "int)`` and ``isinstance(x, (int, float, int))`` is converted to "
 "``isinstance(x, (int, float))``."
 msgstr ""
+":func:`isinstance` 의 두번째 인자에서 중복된 타입을 수정합니다. 예를 들어 ``isinstance(x, (int, int))`` "
+"는 ``isinstance(x, int)`` 로, ``isinstance(x, (int, float, int))`` 는 ``isinstance(x, (int, float))`` "
+"로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:296
 msgid ""
@@ -450,6 +459,8 @@ msgid ""
 " :func:`itertools.imap`.  Imports of :func:`itertools.ifilterfalse` are "
 "also changed to :func:`itertools.filterfalse`."
 msgstr ""
+":func:`itertools.ifilter`,  :func:`itertools.izip`, :func:`itertools.imap` "
+"임포트를 제거합니다. :func:`itertools.ifilterfalse` 임포트는 :func:`itertools.filterfalse` 로 바뀝니다."
 
 #: ../Doc/library/2to3.rst:302
 msgid ""
@@ -458,10 +469,13 @@ msgid ""
 ":func:`itertools.ifilterfalse` is changed to "
 ":func:`itertools.filterfalse`."
 msgstr ""
+":func:`itertools.ifilter`, :func:`itertools.izip`, :func:`itertools.imap` 는 "
+"각각 그것에 맞는 내장 함수로 변경됩니다. :func:`itertools.ifilterfalse` 는 :func:`itertools.filterfalse` "
+"로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:308
 msgid "Renames :class:`long` to :class:`int`."
-msgstr ""
+msgstr ":class:`long` 는 :class:`int` 로 바뀝니다."
 
 #: ../Doc/library/2to3.rst:312
 msgid ""
@@ -469,22 +483,28 @@ msgid ""
 "x)`` to ``list(x)``.  Using ``from future_builtins import map`` disables "
 "this fixer."
 msgstr ""
+":func:`map` 은 :class:`list` 로 감싸도록 바뀝니다. ``map(None, x)`` 는 ``list(x)`` 로 "
+"바뀝니다. ``from future_builtins import map`` 를 사용하면 이 변환자가 비활성화됩니다."
 
 #: ../Doc/library/2to3.rst:318
 msgid ""
 "Converts the old metaclass syntax (``__metaclass__ = Meta`` in the class "
 "body) to the new (``class X(metaclass=Meta)``)."
 msgstr ""
+"구식의 메타 클래스 문법(클래스 바디에 ``__metaclass__ = Meta`` 를 사용)을 새로운 문법(``class X(metaclass=Meta)``)"
+"으로 변경합니다."
 
 #: ../Doc/library/2to3.rst:323
 msgid ""
 "Fixes old method attribute names.  For example, ``meth.im_func`` is "
 "converted to ``meth.__func__``."
 msgstr ""
+"구식의 메서드 어트리뷰트 이름을 수정합니다. 예를 들어 ``meth.im_func`` 는 ``meth.__func__`` "
+"로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:328
 msgid "Converts the old not-equal syntax, ``<>``, to ``!=``."
-msgstr ""
+msgstr "구식의 부등호 문법인 ``<>`` 을 ``!=`` 로 변경합니다. "
 
 #: ../Doc/library/2to3.rst:332
 msgid ""
