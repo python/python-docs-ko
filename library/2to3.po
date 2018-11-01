@@ -235,7 +235,7 @@ msgstr ""
 
 #: ../Doc/library/2to3.rst:161
 msgid "Replaces deprecated :mod:`unittest` method names with the correct ones."
-msgstr "더 이상 사용되지 않는 :mod:`unittest` 메서드 이름을 올바른 것으로 변경합니다."
+msgstr "더 이상 사용되지 않을 :mod:`unittest` 메서드 이름을 올바른 것으로 변경합니다."
 
 #: ../Doc/library/2to3.rst:164 ../Doc/library/2to3.rst:352
 msgid "From"
@@ -351,7 +351,7 @@ msgstr ""
 ":meth:`dict.iterkeys` 는 :meth:`dict.keys` 로, :meth:`dict.itervalues` 는 :meth:`dict.values` "
 "로 변환됩니다. 마찬가지로 :meth:`dict.viewitems`, :meth:`dict.viewkeys`, :meth:`dict.viewvalues` 는 "
 "각각 :meth:`dict.items`, :meth:`dict.keys`, :meth:`dict.values` 로 변환됩니다. "
-":meth:`dict.items`, :meth:`dict.keys`, :meth:`dict.values` 의 기존 사용은 :class:`list` "
+"기존의 :meth:`dict.items`, :meth:`dict.keys`, :meth:`dict.values` 의 사용은 :class:`list` "
 "로 감싸도록 바뀝니다."
 
 #: ../Doc/library/2to3.rst:214
@@ -378,7 +378,7 @@ msgstr ":attr:`sys.exitfunc` 대입이 :mod:`atexit` 모듈을 사용하도록 �
 
 #: ../Doc/library/2to3.rst:232
 msgid "Wraps :func:`filter` usage in a :class:`list` call."
-msgstr ":func:`filter` 함수 사용은 :class:`list` 로 도록 바뀝니다."
+msgstr ":func:`filter` 함수 사용은 :class:`list` 로 감싸도록 바뀝니다."
 
 
 #: ../Doc/library/2to3.rst:236
@@ -512,14 +512,16 @@ msgid ""
 ":func:`next` function.  It also renames :meth:`next` methods to "
 ":meth:`~iterator.__next__`."
 msgstr ""
+"이터레이터 사용인 :meth:`~iterator.next` 메서드는 :func:`next` 함수로 변경됩니다. "
+"또한 :meth:`next` 메서드는 :meth:`~iterator.__next__` 로 바뀝니다."
 
 #: ../Doc/library/2to3.rst:338
 msgid "Renames :meth:`__nonzero__` to :meth:`~object.__bool__`."
-msgstr ""
+msgstr ":meth:`__nonzero__` 를 :meth:`~object.__bool__` 로 변경합니다."
 
 #: ../Doc/library/2to3.rst:342
 msgid "Converts octal literals into the new syntax."
-msgstr ""
+msgstr "8진수 리터럴은 새 문법으로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:346
 msgid ""
@@ -528,6 +530,8 @@ msgid ""
 "``import`` statements are added, e.g. ``import collections.abc``.  The "
 "following mapping are made:"
 msgstr ""
+":mod:`operator` 모듈에 있는 다양한 함수 호출이 그것에 동일하게 대응하는 다른 함수 호출로 변경됩니다. "
+"``import collections.abc`` 와 같이 필요하다면 ``import`` 구문도 추가됩니다. 다음과 같이 변경됩니다."
 
 #: ../Doc/library/2to3.rst:354
 msgid "``operator.isCallable(obj)``"
@@ -590,10 +594,12 @@ msgid ""
 "Add extra parenthesis where they are required in list comprehensions.  "
 "For example, ``[x for x in 1, 2]`` becomes ``[x for x in (1, 2)]``."
 msgstr ""
+"리스트 컴프리헨션 안에 괄호가 필요한 경우 추가합니다. 예를 들어 ``[x for x in 1, 2]`` 는 "
+"``[x for x in (1, 2)]`` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:370
 msgid "Converts the ``print`` statement to the :func:`print` function."
-msgstr ""
+msgstr "``print`` 구문은 :func:`print` 함수로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:374
 msgid ""
@@ -602,68 +608,73 @@ msgid ""
 "will be incorrect because substituting tuples for exceptions has been "
 "removed in 3.0."
 msgstr ""
+"``raise E, V`` 는 ``raise E(V)`` 로, ``raise E, V, T`` 는 ``raise E(V).with_traceback(T)`` "
+"로 변경됩니다. 만약 ``E`` 가 튜플인 경우, 변환된 결과물은 동작하지 않을 것입니다. 왜냐하면 튜플이 예외를 대체하는 "
+"것은 3.0부터 사라졌기 때문입니다. "
 
 #: ../Doc/library/2to3.rst:380
 msgid "Converts :func:`raw_input` to :func:`input`."
-msgstr ""
+msgstr ":func:`raw_input` 는 :func:`input` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:384
 msgid "Handles the move of :func:`reduce` to :func:`functools.reduce`."
-msgstr ""
+msgstr ":func:`reduce` 는 :func:`functools.reduce` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:388
 msgid "Converts :func:`reload` to :func:`importlib.reload`."
-msgstr ""
+msgstr ":func:`reload` 는 :func:`importlib.reload` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:392
 msgid "Changes :data:`sys.maxint` to :data:`sys.maxsize`."
-msgstr ""
+msgstr ":data:`sys.maxint` 는 :data:`sys.maxsize` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:396
 msgid "Replaces backtick repr with the :func:`repr` function."
-msgstr ""
+msgstr "백틱 repr는 :func:`repr` 함수로 바뀝니다."
 
 #: ../Doc/library/2to3.rst:400
 msgid ""
 "Replaces use of the :class:`set` constructor with set literals.  This "
 "fixer is optional."
-msgstr ""
+msgstr ":class:`set` 생성자는 집합 리터럴로 바뀝니다. 이 변환자는 선택적입니다."
 
 #: ../Doc/library/2to3.rst:405
 msgid "Renames :exc:`StandardError` to :exc:`Exception`."
-msgstr ""
+msgstr ":exc:`StandardError` 는 :exc:`Exception` 로 바뀝니다."
 
 #: ../Doc/library/2to3.rst:409
 msgid ""
 "Changes the deprecated :data:`sys.exc_value`, :data:`sys.exc_type`, "
 ":data:`sys.exc_traceback` to use :func:`sys.exc_info`."
 msgstr ""
+"더 이상 사용되지 않을 :data:`sys.exc_value`, :data:`sys.exc_type`, :data:`sys.exc_traceback` "
+"는 :func:`sys.exc_info` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:414
 msgid "Fixes the API change in generator's :meth:`throw` method."
-msgstr ""
+msgstr "제너레이터 :meth:`throw` 메서드의 API 변경 사항을 반영합니다."
 
 #: ../Doc/library/2to3.rst:418
 msgid ""
 "Removes implicit tuple parameter unpacking.  This fixer inserts temporary"
 " variables."
-msgstr ""
+msgstr "묵시적으로 튜플 인자를 언패킹하는 것을 제거합니다. 이로 인해 이 변환자는 임시 변수를 추가합니다."
 
 #: ../Doc/library/2to3.rst:423
 msgid ""
 "Fixes code broken from the removal of some members in the :mod:`types` "
 "module."
-msgstr ""
+msgstr ":mod:`types` 모듈에서 몇몇 멤버가 삭제되어 코드가 동작하지 않던 것을 수정합니다."
 
 #: ../Doc/library/2to3.rst:428
 msgid "Renames :class:`unicode` to :class:`str`."
-msgstr ""
+msgstr ":class:`unicode` 는 :class:`str` 로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:432
 msgid ""
 "Handles the rename of :mod:`urllib` and :mod:`urllib2` to the "
 ":mod:`urllib` package."
-msgstr ""
+msgstr ":mod:`urllib` 와 :mod:`urllib2` 는 :mod:`urllib` 패키지로 변경됩니다."
 
 #: ../Doc/library/2to3.rst:437
 msgid ""
