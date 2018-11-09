@@ -32,7 +32,7 @@ msgid ""
 "methods>`.)"
 msgstr ""
 "(당신이 이미 테스트 기본 개념에 친숙하다면, :ref:`assert 메서드 목록 <assert-methods>` "
-"을 건너 뛰어도 좋습니다."
+"을 건너 뛰어도 좋습니다.)"
 
 #: ../Doc/library/unittest.rst:19
 msgid ""
@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 ":mod:`unittest` 단위 테스트 프레임워크는 본래 JUnit으로부터 영감을 받고 다른 언어의 주요 "
 "단위 테스트 프레임워크와 비슷한 특징을 가지고 있습니다. 이것은 테스트 자동화, 테스트를 위한 "
-"설치(setup)와 종료(shutdown) 코드 공유, 여러 테스트를 컬렉션에 종합하기, 테스트와 리포트 프레임워크의 "
+"사전 설정(setup)와 종료(shutdown) 코드 공유, 여러 테스트를 컬렉션에 종합하기, 테스트와 리포트 프레임워크의 "
 "분리 등을 지원합니다."
 
 #: ../Doc/library/unittest.rst:25
@@ -386,7 +386,7 @@ msgid ""
 "the test name using :meth:`fnmatch.fnmatchcase`; otherwise simple case-"
 "sensitive substring matching is used."
 msgstr ""
-"와일드 카드 문자 (``*``) 를 포함한 패턴은 :meth:`fnmatch.fnmatchcase` 를 사용하여 "
+"와일드 카드 문자(``*``)를 포함한 패턴은 :meth:`fnmatch.fnmatchcase` 를 사용하여 "
 "그에 부합하는 테스트 이름을 찾고; 그렇지 않은 경우 단순히 대소문자를 구별하는 부분 문자열 일치가 "
 "사용됩니다."
 
@@ -464,12 +464,12 @@ msgid ""
 "``discover`` sub-command must be used explicitly."
 msgstr ""
 "단축형인 ``python -m unittest`` 는 ``python -m unittest discover`` 와 동일합니다."
-"테스트 탐색에 인자를 전달하고 싶을 때는 ``discover`` 부명령어(sub-command)를 명시적으로 "
+"테스트 탐색에 인자를 전달하고 싶을 때는 ``discover`` 하위-명령어(sub-command)를 명시적으로 "
 "사용해야 합니다."
 
 #: ../Doc/library/unittest.rst:281
 msgid "The ``discover`` sub-command has the following options:"
-msgstr "``discover`` 부명령어는 다음과 같은 옵션을 가지고 있습니다:"
+msgstr "``discover`` 하위-명령어는 다음과 같은 옵션을 가지고 있습니다:"
 
 #: ../Doc/library/unittest.rst:287
 msgid "Verbose output"
@@ -604,12 +604,16 @@ msgid ""
 ":meth:`~TestCase.setUp`, which the testing framework will automatically "
 "call for every single test we run::"
 msgstr ""
+"테스트는 매우 많지만 그것을 위한 사전 설정은 계속 반복될 수 있습니다. 다행히, :meth:`~TestCase.setUp` "
+"메서드를 작성하여 사전 설정 코드를 밖으로 분리해낼 수 있습니다. 테스트 프레임워크가 1개의 테스트마다 매번 "
+"자동으로 이것을 호출할 것입니다."
 
 #: ../Doc/library/unittest.rst:389
 msgid ""
 "The order in which the various tests will be run is determined by sorting"
 " the test method names with respect to the built-in ordering for strings."
 msgstr ""
+"다양한 테스트가 실행될 순서는 테스트 메서드의 이름을 가지고 내장된 문자열 정렬 순서에 의하여 결정될 것입니다."
 
 #: ../Doc/library/unittest.rst:393
 msgid ""
@@ -617,18 +621,23 @@ msgid ""
 "is running, the framework will consider the test to have suffered an "
 "error, and the test method will not be executed."
 msgstr ""
+"만약 :meth:`~TestCase.setUp` 메서드가 테스트 실행 중에 예외를 발생한다면 프레임워크는 테스트에 "
+"오류가 있는 것으로 간주하여 테스트 메서드를 실행하지 않을 것입니다."
 
 #: ../Doc/library/unittest.rst:397
 msgid ""
 "Similarly, we can provide a :meth:`~TestCase.tearDown` method that tidies"
 " up after the test method has been run::"
 msgstr ""
+"마찬가지로 테스트가 실행되고 나서 정리하기 위해 :meth:`~TestCase.tearDown` 메서드를 제공합니다."
 
 #: ../Doc/library/unittest.rst:409
 msgid ""
 "If :meth:`~TestCase.setUp` succeeded, :meth:`~TestCase.tearDown` will be "
 "run whether the test method succeeded or not."
 msgstr ""
+"만약 :meth:`~TestCase.setUp` 이 성공했다면, 테스트가 성공했든 실패했든 상관없이 "
+":meth:`~TestCase.tearDown` 이 불릴 것입니다."
 
 #: ../Doc/library/unittest.rst:412
 msgid ""
@@ -638,6 +647,10 @@ msgid ""
 ":meth:`~TestCase.setUp`, :meth:`~TestCase.tearDown`, and "
 ":meth:`~TestCase.__init__` will be called once per test."
 msgstr ""
+"이와 같은 테스트를 위한 실행 환경을 :dfn:`test fixture` 라고 부릅니다. 개별 테스트 메서드를 "
+"실행하기 위해 고유한 테스트 픽스쳐에 해당하는 새로운 테스트 케이스 인스턴스가 생성됩니다. 따라서 "
+":meth:`~TestCase.setUp`, :meth:`~TestCase.tearDown`, :meth:`~TestCase.__init__` 는 "
+"테스트 당 1 번씩 실행됩니다."
 
 #: ../Doc/library/unittest.rst:418
 msgid ""
@@ -648,12 +661,17 @@ msgid ""
 ":func:`unittest.main` will do the right thing and collect all the "
 "module's test cases for you and execute them."
 msgstr ""
+"테스트하려는 기능에 따라 테스트 케이스 구현을 같이 묶어 테스트하는 것을 추천합니다. 이것을 위해 "
+":mod:`unittest` 는 매커니즘을 제공합니다: :dfn:`test suite`, 이것은 :mod:`unittest` 의 "
+":class:`TestSuite` 클래스에 해당합니다. 대부분의 경우 :func:`unittest.main` 이 테스트를 "
+"실행하기 위해 모듈의 모든 테스트 케이스를 수집하여 적절한 행동을 취할 것입니다."
 
 #: ../Doc/library/unittest.rst:425
 msgid ""
 "However, should you want to customize the building of your test suite, "
 "you can do it yourself::"
 msgstr ""
+"그러나 당신이 테스트 묶음을 사용자 정의하고 싶다면 그것을 직접 만들어야 합니다::"
 
 #: ../Doc/library/unittest.rst:438
 msgid ""
@@ -662,44 +680,50 @@ msgid ""
 "there are several advantages to placing the test code in a separate "
 "module, such as :file:`test_widget.py`:"
 msgstr ""
+"당신은 테스트 케이스와 테스트 묶음의 정의를 테스트하려는 코드와 같은 모듈(예를 들어 file:`widget.py`)에 "
+"넣을 수 있습니다, 그러나 테스트 코드를 분리된 모듈(예를 들어 :file:`test_widget.py`)에 넣으면 "
+"몇가지 이점이 있습니다:"
 
 #: ../Doc/library/unittest.rst:443
 msgid "The test module can be run standalone from the command line."
-msgstr ""
+msgstr "테스트 모듈이 명령행에서 독립적으로 작동할 수 있습니다."
 
 #: ../Doc/library/unittest.rst:445
 msgid "The test code can more easily be separated from shipped code."
-msgstr ""
+msgstr "테스트 코드가 배포될 코드와 쉽게 분리될 수 있습니다."
 
 #: ../Doc/library/unittest.rst:447
 msgid ""
 "There is less temptation to change test code to fit the code it tests "
 "without a good reason."
 msgstr ""
+"충분한 이유 없이 테스트하려는 코드에 맞춰서 테스트 코드를 바꾸려는 유혹이 덜 합니다."
 
 #: ../Doc/library/unittest.rst:450
 msgid "Test code should be modified much less frequently than the code it tests."
-msgstr ""
+msgstr "테스트 코드가 테스트하려는 코드에 비해 훨씬 덜 빈번하게 수정되어야만 합니다."
 
 #: ../Doc/library/unittest.rst:452
 msgid "Tested code can be refactored more easily."
-msgstr ""
+msgstr "테스트될 코드는 더 쉽게 리팩토링할 수 있습니다."
 
 #: ../Doc/library/unittest.rst:454
 msgid ""
 "Tests for modules written in C must be in separate modules anyway, so why"
 " not be consistent?"
 msgstr ""
+"C 로 작성된 모듈의 테스트 코드는 반드시 분리된 모듈에 위치해야 합니다, 따라서 일관성을 지키는 것이 "
+"어떨까요?"
 
 #: ../Doc/library/unittest.rst:457
 msgid ""
 "If the testing strategy changes, there is no need to change the source "
 "code."
-msgstr ""
+msgstr "만약 테스트 전략이 바뀌더라도 원본 코드를 바꿀 필요가 없습니다."
 
 #: ../Doc/library/unittest.rst:463
 msgid "Re-using old test code"
-msgstr ""
+msgstr "이전의 테스트 코드를 다시 사용하기"
 
 #: ../Doc/library/unittest.rst:465
 msgid ""
@@ -707,6 +731,8 @@ msgid ""
 "like to run from :mod:`unittest`, without converting every old test "
 "function to a :class:`TestCase` subclass."
 msgstr ""
+"어떤 사용자들은 이전의 모든 테스트 함수를 :class:`TestCase` 서브 클래스로 변경하는 작업 없이 "
+"기존의 테스트 코드를 :mod:`unittest` 로 실행하고 싶어할 것입니다."
 
 #: ../Doc/library/unittest.rst:469
 msgid ""
@@ -714,16 +740,21 @@ msgid ""
 "class. This subclass of :class:`TestCase` can be used to wrap an existing"
 " test function.  Set-up and tear-down functions can also be provided."
 msgstr ""
+"이러한 이유 때문에 :mod:`unittest` 는 :class:`FunctionTestCase` 클래스를 제공합니다. "
+"이 :class:`TestCase` 의 서브 클래스는 기존 테스트 함수를 감싸는데 사용할 수 있습니다. "
+"사전 설정과 정리 함수 또한 같이 사용할 수 있습니다."
 
 #: ../Doc/library/unittest.rst:473
 msgid "Given the following test function::"
-msgstr ""
+msgstr "다음과 같은 테스트 함수가 주어졌습니다::"
 
 #: ../Doc/library/unittest.rst:480
 msgid ""
 "one can create an equivalent test case instance as follows, with optional"
 " set-up and tear-down methods::"
 msgstr ""
+"다음과 같이 동일한 테스트 케이스 인스턴스를 생성할 수 있습니다. 별도로 사전 설정과 정리 메서드를 함께 "
+"설정했습니다."
 
 #: ../Doc/library/unittest.rst:489
 msgid ""
@@ -733,6 +764,9 @@ msgid ""
 ":class:`TestCase` subclasses will make future test refactorings "
 "infinitely easier."
 msgstr ""
+":class:`FunctionTestCase` 를 사용하여 기존 테스트를 :mod:`unittest`\\ -기반 시스템으로 "
+"빠르게 변경할 수 있을지라도 이 방법을 추천하지는 않습니다. 시간을 들여서 적절한 :class:`TestCase` "
+"서브 클래스를 작성하는 것이 미래에 있을 테스트 리팩토링을 대단히 쉽게 만들어줄 것입니다."
 
 #: ../Doc/library/unittest.rst:494
 msgid ""
@@ -742,10 +776,13 @@ msgid ""
 ":class:`unittest.TestSuite` instances from the existing :mod:`doctest`\\ "
 "-based tests."
 msgstr ""
+"어떤 경우에는 :mod:`doctest` 모듈을 사용하여 기존 테스트가 작성되었을 수도 있습니다. 만약 그렇다면 "
+":mod:`doctest` 가 제공하는 :class:`DocTestSuite` 클래스를 사용하여 기존의 :mod:`doctest`\\ "
+"-기반 테스트로부터 :class:`unittest.TestSuite` 인스턴스를 자동으로 만들 수 있습니다."
 
 #: ../Doc/library/unittest.rst:503
 msgid "Skipping tests and expected failures"
-msgstr ""
+msgstr "테스트 건너뛰기와 예상된 실패"
 
 #: ../Doc/library/unittest.rst:507
 msgid ""
@@ -754,34 +791,41 @@ msgid ""
 "failure,\" a test that is broken and will fail, but shouldn't be counted "
 "as a failure on a :class:`TestResult`."
 msgstr ""
+"단위 테스트는 테스트 중에서 개별 테스트 메서드나 심지어 전체 클래스를 건너뛸 수 있는 기능을 제공합니다. "
+"게다가 테스트를 \"예상된 실패\"로 표시하는 기능도 지원합니다, 테스트가 망가져서 실패하더라도 그것을 "
+":class:`TestResult` 에 실패라고 기록하지 않습니다."
 
 #: ../Doc/library/unittest.rst:512
 msgid ""
 "Skipping a test is simply a matter of using the :func:`skip` "
 ":term:`decorator` or one of its conditional variants."
 msgstr ""
+"테스트 건너뛰기는 단순히 :func:`skip` :term:`decorator` 또는 그것의 조건문 변형 중 하나를 "
+"사용하면 됩니다."
 
 #: ../Doc/library/unittest.rst:515
 msgid "Basic skipping looks like this::"
-msgstr ""
+msgstr "기본적인 건너뛰기는 다음과 같습니다::"
 
 #: ../Doc/library/unittest.rst:534
 msgid "This is the output of running the example above in verbose mode::"
-msgstr ""
+msgstr "아래는 위의 예를 상세 모드로 실행했을 때의 출력입니다."
 
 #: ../Doc/library/unittest.rst:545
 msgid "Classes can be skipped just like methods::"
-msgstr ""
+msgstr "클래스도 메서드와 같이 건너뛰기가 가능합니다::"
 
 #: ../Doc/library/unittest.rst:552
 msgid ""
 ":meth:`TestCase.setUp` can also skip the test.  This is useful when a "
 "resource that needs to be set up is not available."
 msgstr ""
+":meth:`TestCase.setUp` 또한 테스트를 건너뛸 수 있습니다. 이것은 사전 설정해야할 자원이 "
+"사용 가능하지 않을 때 유용하게 쓸 수 있습니다."
 
 #: ../Doc/library/unittest.rst:555
 msgid "Expected failures use the :func:`expectedFailure` decorator. ::"
-msgstr ""
+msgstr "예상된 실패는 :func:`expectedFailure` 데코레이터를 사용합니다. ::"
 
 #: ../Doc/library/unittest.rst:562
 msgid ""
@@ -790,40 +834,47 @@ msgid ""
 "decorator skips the test unless the passed object has a certain "
 "attribute::"
 msgstr ""
+"자신만의 건너뛰기 데코레이터를 만드는 것은 쉽습니다. 테스트를 건너뛰고 싶을 때 :func:`skip` 를 "
+"호출하도록 데코레이터를 만들면 됩니다. 다음의 데코레이터는 특정 어트리뷰트가 있는 객체가 전달되지 않으면 "
+"테스트를 건너뜁니다::"
 
 #: ../Doc/library/unittest.rst:571
 msgid "The following decorators implement test skipping and expected failures:"
-msgstr ""
+msgstr "다음 데코레이터들은 테스트 건너뛰기와 예상된 실패를 구현합니다::"
 
 #: ../Doc/library/unittest.rst:575
 msgid ""
 "Unconditionally skip the decorated test.  *reason* should describe why "
 "the test is being skipped."
 msgstr ""
+"조건없이 데코레이트된 테스트를 건너뜁니다. 왜 이 테스트가 건너뛰어 졌는지 *이유*를 설명해야 합니다."
 
 #: ../Doc/library/unittest.rst:580
 msgid "Skip the decorated test if *condition* is true."
-msgstr ""
+msgstr "*조건*이 참이면 데코레이트된 테스트를 건너뜁니다."
 
 #: ../Doc/library/unittest.rst:584
 msgid "Skip the decorated test unless *condition* is true."
-msgstr ""
+msgstr "*조건*이 참이 아니면 데코레이트된 테스트를 건너뜁니다."
 
 #: ../Doc/library/unittest.rst:588
 msgid ""
 "Mark the test as an expected failure.  If the test fails when run, the "
 "test is not counted as a failure."
 msgstr ""
+"테스트가 예상된 실패라는 표시를 합니다. 만약 테스트가 실행 중에 실패하더라도 실패로 처리하지 않습니다."
 
 #: ../Doc/library/unittest.rst:593
 msgid "This exception is raised to skip a test."
-msgstr ""
+msgstr "이 예외는 테스트를 건너뛰기 위해서 발생됩니다."
 
 #: ../Doc/library/unittest.rst:595
 msgid ""
 "Usually you can use :meth:`TestCase.skipTest` or one of the skipping "
 "decorators instead of raising this directly."
 msgstr ""
+"보통은 이 예외를 직접 발생하기 보다는 :meth:`TestCase.skipTest` 나 건너뛰기 데코레이터를 "
+"사용할 수 있습니다."
 
 #: ../Doc/library/unittest.rst:598
 msgid ""
@@ -833,10 +884,14 @@ msgid ""
 "Skipped modules will not have :func:`setUpModule` or "
 ":func:`tearDownModule` run."
 msgstr ""
+"건너뛰는 테스트는 테스트 전후로 :meth:`~TestCase.setUp` 나 :meth:`~TestCase.tearDown` 를 "
+"실행하지 않을 것입니다. 건너뛰는 클래스는 :meth:`~TestCase.setUpClass` 나 "
+":meth:`~TestCase.tearDownClass` 를 실행하지 않을 것입니다. 건너뛰는 모듈은 "
+":func:`setUpModule` 이나 :func:`tearDownModule` 을 실행하지 않을 것입니다."
 
 #: ../Doc/library/unittest.rst:606
 msgid "Distinguishing test iterations using subtests"
-msgstr ""
+msgstr "부분 테스트(subtest)를 사용하여 테스트 반복 구별짖기"
 
 #: ../Doc/library/unittest.rst:610
 msgid ""
@@ -845,14 +900,17 @@ msgid ""
 " the body of a test method using the :meth:`~TestCase.subTest` context "
 "manager."
 msgstr ""
+"당신의 테스트 중 일부는 오직 매우 작은 부분, 예를 들어 몇몇의 매개변수, 만 다를 수 있습니다. "
+"단위 테스트는 :meth:`~TestCase.subTest` 컨텍스트 관리자를 사용하여 테스트 메서드의 바디 안에서 "
+"그것들은 구별짖게 해줍니다."
 
 #: ../Doc/library/unittest.rst:614
 msgid "For example, the following test::"
-msgstr ""
+msgstr "예를 들어, 다음 테스트::"
 
 #: ../Doc/library/unittest.rst:626
 msgid "will produce the following output::"
-msgstr ""
+msgstr "는 다음의 출력을 만듭니다::"
 
 #: ../Doc/library/unittest.rst:652
 msgid ""
@@ -860,18 +918,20 @@ msgid ""
 "and the error would be less easy to diagnose because the value of ``i`` "
 "wouldn't be displayed::"
 msgstr ""
+"부분 테스트를 사용하지 않는다면 테스트 실행은 첫 번째 실패 후에 중단될 것이고 ``i`` 값이 표시되지 "
+"않기 때문에 에러를 진단하는데 쉽지 않을 것입니다."
 
 #: ../Doc/library/unittest.rst:668
 msgid "Classes and functions"
-msgstr ""
+msgstr "클래스와 함수"
 
 #: ../Doc/library/unittest.rst:670
 msgid "This section describes in depth the API of :mod:`unittest`."
-msgstr ""
+msgstr "이 절은 :mod:`unittest` 의 API를 심도있게 설명합니다."
 
 #: ../Doc/library/unittest.rst:676
 msgid "Test cases"
-msgstr ""
+msgstr "테스트 케이스"
 
 #: ../Doc/library/unittest.rst:680
 msgid ""
@@ -882,6 +942,10 @@ msgid ""
 "runner to allow it to drive the tests, and methods that the test code can"
 " use to check for and report various kinds of failure."
 msgstr ""
+":class:`TestCase` 클래스의 인스턴스는 :mod:`unittest` 세계에서 논리적인 테스트 단위에 해당합니다. "
+"이 클래스는 베이스 클래스로서 구체 서브 클래스에서 구현된 특정 테스트들과 함께 사용되길 의도되었습니다. "
+"이 클래스는 테스트 실행자가 테스트를 실행할 수 있는 인터페이스를 구현하고 테스트 코드가 검사하고 다양한 "
+"실패를 보고할 수 있는 메서드를 구현합니다."
 
 #: ../Doc/library/unittest.rst:687
 msgid ""
@@ -890,6 +954,9 @@ msgid ""
 "neither change the *methodName* nor reimplement the default ``runTest()``"
 " method."
 msgstr ""
+":class:`TestCase` 의 각 인스턴스는 하나의 베이스 메서드: *methodName* 라는 이름의 메서드를 "
+"실행할 것입니다. 대부분의 :class:`TestCase` 사용에서 당신은 *methodName*을 바꾸거나 기본 "
+"``runTest()`` 메서드를 재구현하지 않을 것입니다."
 
 #: ../Doc/library/unittest.rst:692
 msgid ""
@@ -897,6 +964,8 @@ msgid ""
 "*methodName*. This makes it easier to experiment with :class:`TestCase` "
 "from the interactive interpreter."
 msgstr ""
+"*methodName* 제공 없이도 :class:`TestCase` 를 성공적으로 인스턴트화할 수 있습니다. "
+"이것은 대화형 인터프리터에서 :class:`TestCase` 로 쉽게 실험을 할 수 있게 합니다."
 
 #: ../Doc/library/unittest.rst:697
 msgid ""
@@ -905,10 +974,13 @@ msgid ""
 "conditions and report failures, and some inquiry methods allowing "
 "information about the test itself to be gathered."
 msgstr ""
+":class:`TestCase` 인스턴스는 3가지 메서드 그룹을 제공합니다: 한 그룹은 테스트를 실행하는데 "
+"사용되고, 다른 한 그룹은 조건을 확인하고 실패를 보고하는 테스트 구현으로 사용되고, 몇몇의 조회 "
+"메서드는 테스트 자체에 관한 정보를 수집할 수 있게 해줍니다."
 
 #: ../Doc/library/unittest.rst:702
 msgid "Methods in the first group (running the test) are:"
-msgstr ""
+msgstr "첫 번째 그룹 (테스트 실행) 안에 메서드는:"
 
 #: ../Doc/library/unittest.rst:706
 msgid ""
@@ -918,6 +990,9 @@ msgid ""
 "an error rather than a test failure. The default implementation does "
 "nothing."
 msgstr ""
+"테스트 픽스쳐를 준비하기 위해 불리는 메서드입니다. 이 메서드는 테스트 메서드를 부르기 바로 직전에 "
+"불립니다: :exc:`AssertionError` 또는 :exc:`SkipTest` 이외의 이 메서드에서 발생한 모든 예외는 "
+"테스트 실패가 아닌 오류로 간주됩니다. 기본 구현은 아무것도 하지 않습니다."
 
 #: ../Doc/library/unittest.rst:714
 msgid ""
@@ -931,6 +1006,11 @@ msgid ""
 " called if the :meth:`setUp` succeeds, regardless of the outcome of the "
 "test method. The default implementation does nothing."
 msgstr ""
+"테스트 메서드가 불리고 결과가 기록되고 나서 바로 다음에 불리는 메서드입니다. 테스트 메서드가 예외를 발생했더라도 "
+"이 메서드는 불립니다, 따라서 서브 클래스의 구현은 내부 상태를 확인하는데 특별히 주의를 기울여야 합니다. "
+":exc:`AssertionError` 또는 :exc:`SkipTest` 이외의 이 메서드에서 발생하는 모든 예외는 "
+"테스트 실패가 아닌 오류로 간주됩니다 (따라서 보고된 오류의 총 숫자가 증가합니다). 이 메서드는 테스트 "
+"메서드의 결과물에 영향받지 않고 :meth:`setUp` 이 성공했을 때만 불립니다. 기본 구현은 아무것도 하지 않습니다."
 
 #: ../Doc/library/unittest.rst:727
 msgid ""
@@ -938,10 +1018,12 @@ msgid ""
 "``setUpClass`` is called with the class as the only argument and must be "
 "decorated as a :func:`classmethod`::"
 msgstr ""
+"개별 클래스의 테스트들이 실행되기 전에 불리는 클래스 메서드입니다. `setUpClass`` 는 클래스만 인자로 "
+"받아 호출되고 :func:`classmethod` 로 데코레이트해야 합니다::"
 
 #: ../Doc/library/unittest.rst:735 ../Doc/library/unittest.rst:750
 msgid "See `Class and Module Fixtures`_ for more details."
-msgstr ""
+msgstr "더 자세한 것은 `Class and Module Fixtures`_ 를 보십시오."
 
 #: ../Doc/library/unittest.rst:742
 msgid ""
@@ -949,6 +1031,8 @@ msgid ""
 "``tearDownClass`` is called with the class as the only argument and must "
 "be decorated as a :meth:`classmethod`::"
 msgstr ""
+"개별 클래스의 테스트들이 실행되고 난 뒤에 불리는 클래스 메서드입니다. ``tearDownClass`` 는 "
+"클래스만 인자로 받아 호출되고 :func:`classmethod` 로 데코레이트해야 합니다::"
 
 #: ../Doc/library/unittest.rst:757
 msgid ""
@@ -957,24 +1041,30 @@ msgid ""
 "result object is created (by calling the :meth:`defaultTestResult` "
 "method) and used. The result object is returned to :meth:`run`'s caller."
 msgstr ""
+"테스트를 실행하고, *result* 인자로 전달된 :class:`TestResult` 에 결과를 수집합니다. "
+"만약 *result* 인자가 전달안되거나 ``None`` 이라면 임시 결과 객체를 생성하여 (:meth:`defaultTestResult` "
+"메서드를 불러서) 사용합니다. :meth:`run` 호출자에게 결과 객체를 반환합니다."
 
 #: ../Doc/library/unittest.rst:763
 msgid ""
 "The same effect may be had by simply calling the :class:`TestCase` "
 "instance."
-msgstr ""
+msgstr "단순히 :class:`TestCase` 인스턴스를 호출하는 것으로 같은 효과를 볼 수 있습니다."
 
 #: ../Doc/library/unittest.rst:766
 msgid ""
 "Previous versions of ``run`` did not return the result. Neither did "
 "calling an instance."
 msgstr ""
+"기존 버전의 ``run`` 은 결과를 반환하지 않았습니다. 인스턴스 호출 또한 그렇지 않았습니다."
 
 #: ../Doc/library/unittest.rst:772
 msgid ""
 "Calling this during a test method or :meth:`setUp` skips the current "
 "test.  See :ref:`unittest-skipping` for more information."
 msgstr ""
+"테스트 메서드나 :meth:`setUp` 에서 이것을 호출하면 현재 테스트를 건너뜁니다. 자세한 정보는 "
+":ref:`unittest-skipping` 를 보십시오."
 
 #: ../Doc/library/unittest.rst:780
 msgid ""
@@ -983,16 +1073,19 @@ msgid ""
 "displayed whenever a subtest fails, allowing you to identify them "
 "clearly."
 msgstr ""
+"둘러싼 코드 블록을 부분 테스트로써 실행하는 컨텍스트 관리자를 반환합니다. *msg* 와 *params* 는 "
+"생략 가능합니다, 부분 테스트가 실패할 때마다 임의의 값이 표시되어 이것을 명확히 알아보게 해줍니다."
 
 #: ../Doc/library/unittest.rst:785
 msgid ""
 "A test case can contain any number of subtest declarations, and they can "
 "be arbitrarily nested."
 msgstr ""
+"테스트 케이스는 여러 개의 부분 테스트 선언을 포함할 수 있고, 그것들은 자유롭게 중첩될 수 있습니다."
 
 #: ../Doc/library/unittest.rst:788
 msgid "See :ref:`subtests` for more information."
-msgstr ""
+msgstr "자세한 정보는 :ref:`subtests` 를 보십시오."
 
 #: ../Doc/library/unittest.rst:795
 msgid ""
@@ -1000,6 +1093,8 @@ msgid ""
 "raised by the test to be propagated to the caller, and can be used to "
 "support running tests under a debugger."
 msgstr ""
+"결과를 수집하지 않고 테스트를 실행합니다. 이것은 테스트에서 발생한 예외가 호출자로 전파될 수 있게 "
+"해서, 디버거 수행 중에 테스트를 실행할 때 사용될 수 있습니다."
 
 #: ../Doc/library/unittest.rst:801
 msgid ""
@@ -1007,21 +1102,24 @@ msgid ""
 "and report failures.  The following table lists the most commonly used "
 "methods (see the tables below for more assert methods):"
 msgstr ""
+":class:`TestCase` 클래스는 값을 검사하고 실패를 보고하기 위해 몇개의 assert 메서드를 "
+"제공합니다. 아래 표는 보통 많이 사용되는 메서드들입니다. (더 많은 assert 메서드는 표 아래를 "
+"보십시오):"
 
 #: ../Doc/library/unittest.rst:806 ../Doc/library/unittest.rst:928
 #: ../Doc/library/unittest.rst:1120 ../Doc/library/unittest.rst:1247
 msgid "Method"
-msgstr ""
+msgstr "메서드"
 
 #: ../Doc/library/unittest.rst:806 ../Doc/library/unittest.rst:928
 #: ../Doc/library/unittest.rst:1120
 msgid "Checks that"
-msgstr ""
+msgstr "검사하는 내용"
 
 #: ../Doc/library/unittest.rst:806 ../Doc/library/unittest.rst:928
 #: ../Doc/library/unittest.rst:1120 ../Doc/library/unittest.rst:1247
 msgid "New in"
-msgstr ""
+msgstr "추가된 버전"
 
 #: ../Doc/library/unittest.rst:808
 msgid ":meth:`assertEqual(a, b) <TestCase.assertEqual>`"
@@ -1145,12 +1243,17 @@ msgid ""
 ":meth:`assertRaisesRegex`, :meth:`assertWarns`, :meth:`assertWarnsRegex` "
 "only when they are used as a context manager."
 msgstr ""
+"모든 assert 함수는 *msg* 인자를 받을 수 있습니다, 만약 그것이 전달되었다면 실패 시 에러 메시지로 "
+"사용됩니다 (:data:`longMessage` 도 참고하십시오). :meth:`assertRaises`, "
+":meth:`assertRaisesRegex`, :meth:`assertWarns`, :meth:`assertWarnsRegex` 가 "
+"컨텍스트 관리자로써 사용될 때만 그것들에게 *msg* 키워드 인자를 전달할 수 있다는 점을 주의하십시오."
 
 #: ../Doc/library/unittest.rst:853
 msgid ""
 "Test that *first* and *second* are equal.  If the values do not compare "
 "equal, the test will fail."
 msgstr ""
+"*first*와 *second*가 같은지 테스트합니다. 비교한 값이 같지 않으면 테스트는 실패할 것입니다."
 
 #: ../Doc/library/unittest.rst:856
 msgid ""
@@ -1161,26 +1264,32 @@ msgid ""
 "message (see also the :ref:`list of type-specific methods <type-specific-"
 "methods>`)."
 msgstr ""
+"추가로, 만약 *first*와 *second*가 정확히 같은 형(type)이고 list, tuple, dict, set, "
+"frozenset, str 이거나 :meth:`addTypeEqualityFunc` 에 등록된 서브 클래스 형 중 하나일 "
+"경우 더 유용한 기본 에러 메시지를 생성하기 위해 형특화(type-specific) 동등 함수가 불릴 것입니다 "
+"(:ref:`형특화 메서드 목록 <type-specific-methods>`\\을 참고하세요)."
 
 #: ../Doc/library/unittest.rst:863
 msgid "Added the automatic calling of type-specific equality function."
-msgstr ""
+msgstr "형특화 동등 함수가 자동으로 불리는 것이 추가"
 
 #: ../Doc/library/unittest.rst:866
 msgid ""
 ":meth:`assertMultiLineEqual` added as the default type equality function "
 "for comparing strings."
 msgstr ""
+"문자열 비교를 위해서 :meth:`assertMultiLineEqual` 를 기본 형특화 동등 함수에 추가"
 
 #: ../Doc/library/unittest.rst:873
 msgid ""
 "Test that *first* and *second* are not equal.  If the values do compare "
 "equal, the test will fail."
 msgstr ""
+"*first*와 *second*가 같지 않은지 테스트합니다, 비교한 값이 같으면 테스트는 실패할 것입니다."
 
 #: ../Doc/library/unittest.rst:879
 msgid "Test that *expr* is true (or false)."
-msgstr ""
+msgstr "*expr* 가 참 (또는 거짓)인지 테스트합니다."
 
 #: ../Doc/library/unittest.rst:881
 msgid ""
@@ -1190,20 +1299,25 @@ msgid ""
 "``assertEqual(a, b)`` instead of ``assertTrue(a == b)``), because they "
 "provide a better error message in case of failure."
 msgstr ""
+"이것은 ``bool(expr) is True`` 와 동등하고 ``expr is True`` 와 동등하지 않는 것에 "
+"주의하십시오 (나중 것을 위해선 ``assertIs(expr, True)`` 를 사용하십시오). 더 구체적인 "
+"메서드가 사용가능할 때는 이 메서드를 지양해야 합니다 (예, ``assertTrue(a == b)`` 대신에 "
+"``assertEqual(a, b)``), 왜냐하면 실패의 경우에 구체적인 메서드가 더 나은 에러 메시지를 제공하기 "
+"때문입니다."
 
 #: ../Doc/library/unittest.rst:891
 msgid ""
 "Test that *first* and *second* evaluate (or don't evaluate) to the same "
 "object."
-msgstr ""
+msgstr "*first*와 *second*가 같은 객체로 평가되는지 (아닌지) 테스트합니다."
 
 #: ../Doc/library/unittest.rst:900
 msgid "Test that *expr* is (or is not) ``None``."
-msgstr ""
+msgstr "*expr* 이 ``None`` 인지 (아닌지) 테스트합니다."
 
 #: ../Doc/library/unittest.rst:908
 msgid "Test that *first* is (or is not) in *second*."
-msgstr ""
+msgstr "*first* 가 *second* 안에 있는지 (아닌지) 테스트합니다."
 
 #: ../Doc/library/unittest.rst:916
 msgid ""
@@ -1211,12 +1325,16 @@ msgid ""
 " or a tuple of classes, as supported by :func:`isinstance`). To check for"
 " the exact type, use :func:`assertIs(type(obj), cls) <assertIs>`."
 msgstr ""
+"*obj* 가 *cls* (:func:`isinstance` 가 지원하는 것처럼 클래스 또는 클래스의 튜플)의 인스턴스인지 "
+"(아닌지) 테스트합니다. 정확한 형 검사를 위해 :func:`assertIs(type(obj), cls) <assertIs>` 를 "
+"사용하십시오."
 
 #: ../Doc/library/unittest.rst:924
 msgid ""
 "It is also possible to check the production of exceptions, warnings, and "
 "log messages using the following methods:"
 msgstr ""
+"다음의 메서드를 사용하여 예외, 경고, 로그 메시지의 발생을 검사할 수 있습니다:"
 
 #: ../Doc/library/unittest.rst:930
 msgid ":meth:`assertRaises(exc, fun, *args, **kwds) <TestCase.assertRaises>`"
@@ -1224,7 +1342,7 @@ msgstr ""
 
 #: ../Doc/library/unittest.rst:930
 msgid "``fun(*args, **kwds)`` raises *exc*"
-msgstr ""
+msgstr "``fun(*args, **kwds)``\\가 *exc*를 발생"
 
 #: ../Doc/library/unittest.rst:933
 msgid ""
@@ -1234,7 +1352,7 @@ msgstr ""
 
 #: ../Doc/library/unittest.rst:933
 msgid "``fun(*args, **kwds)`` raises *exc* and the message matches regex *r*"
-msgstr ""
+msgstr "``fun(*args, **kwds)``\\가 *exc*를 발생하고 메시지가 정규표현식 *r* 에 부합"
 
 #: ../Doc/library/unittest.rst:936
 msgid ":meth:`assertWarns(warn, fun, *args, **kwds) <TestCase.assertWarns>`"
@@ -1242,7 +1360,7 @@ msgstr ""
 
 #: ../Doc/library/unittest.rst:936
 msgid "``fun(*args, **kwds)`` raises *warn*"
-msgstr ""
+msgstr "``fun(*args, **kwds)``\\가 *warn*를 발생"
 
 #: ../Doc/library/unittest.rst:939
 msgid ""
@@ -1252,7 +1370,7 @@ msgstr ""
 
 #: ../Doc/library/unittest.rst:939
 msgid "``fun(*args, **kwds)`` raises *warn* and the message matches regex *r*"
-msgstr ""
+msgstr "``fun(*args, **kwds)``\\가 *warn*을 발생하고 메시지가 정규표현식 *r* 에 부합"
 
 #: ../Doc/library/unittest.rst:942
 msgid ":meth:`assertLogs(logger, level) <TestCase.assertLogs>`"
@@ -1260,7 +1378,7 @@ msgstr ""
 
 #: ../Doc/library/unittest.rst:942
 msgid "The ``with`` block logs on *logger* with minimum *level*"
-msgstr ""
+msgstr "``with`` 블록이 최소 *level*로 *logger*에 로그를 남김"
 
 #: ../Doc/library/unittest.rst:942
 msgid "3.4"
