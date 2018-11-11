@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../Doc/library/difflib.rst:2
 msgid ":mod:`difflib` --- Helpers for computing deltas"
-msgstr ""
+msgstr ":mod:`difflib` --- 델타 계산을 위한 도우미"
 
 #: ../Doc/library/difflib.rst:11
 msgid "**Source code:** :source:`Lib/difflib.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/difflib.py`"
 
 #: ../Doc/library/difflib.rst:20
 msgid ""
@@ -33,6 +33,9 @@ msgid ""
 "diffs. For comparing directories and files, see also, the :mod:`filecmp` "
 "module."
 msgstr ""
+"이 모듈은 시퀀스 비교를 위한 클래스와 함수를 제공합니다. 예를 들어 파일을 비교하는 데 사용할 수 있으며, HTML 및 "
+"문맥(context)과 통합(unified) diff를 비롯한 다양한 형식의 차이 정보를 생성할 수 있습니다. 디렉터리와 파일을 "
+"비교하려면, :mod:`filecmp` 모듈을 참조하십시오."
 
 #: ../Doc/library/difflib.rst:28
 msgid ""
@@ -49,6 +52,13 @@ msgid ""
 "This does not yield minimal edit sequences, but does tend to yield "
 "matches that \"look right\" to people."
 msgstr ""
+"이것은 시퀀스 요소가 :term:`해시 가능 <hashable>`\\이기만 하다면, 모든 형의 시퀀스 쌍을 비교할 수 있는 유연한 "
+"클래스입니다. 기본 알고리즘은 1980년대 후반에 Ratcliff와 Obershelp가 '게슈탈트 패턴 매칭(gestalt pattern"
+" matching)'이라는 과장된 이름으로 발표한 알고리즘까지 거슬러 올라가는데, 그보다는 약간 더 공을 들였습니다. 아이디어는 "
+"\"정크\" 요소가 없는 가장 긴 연속적으로 일치하는 서브 시퀀스를 찾는 것입니다; 이러한 \"정크\" 요소는 빈 줄이나 공백과 같은 "
+"어떤 의미에서는 흥미롭지 않은 요소들입니다. (정크 처리는 Ratcliff와 Obershelp 알고리즘의 확장입니다.) 그런 다음 같은 "
+"아이디어를 일치하는 서브 시퀀스의 왼쪽과 오른쪽에 있는 시퀀스 조각에 재귀적으로 적용합니다. 이것이 최소 편집 시퀀스를 산출하지는 "
+"않지만, 사람들에게 \"그럴듯해 보이는\" 일치를 산출하는 경향이 있습니다."
 
 #: ../Doc/library/difflib.rst:40
 msgid ""
@@ -58,6 +68,10 @@ msgid ""
 "expected-case behavior dependent in a complicated way on how many "
 "elements the sequences have in common; best case time is linear."
 msgstr ""
+"**타이밍:** 기본 Ratcliff-Obershelp 알고리즘은 최악의 상황(worst case)에 세제곱 시간이고, "
+"평균적으로(expected case) 제곱 시간입니다. :class:`SequenceMatcher`\\는 최악의 상황에 제곱 시간이며, "
+"평균적인 동작은 시퀀스에 공통으로 포함된 요소의 수에 따라 복잡한 방식으로 달라집니다; 최상의 경우(best cast)는 선형 "
+"시간입니다."
 
 #: ../Doc/library/difflib.rst:46
 #, python-format
@@ -72,10 +86,15 @@ msgid ""
 "``autojunk`` argument to ``False`` when creating the "
 ":class:`SequenceMatcher`."
 msgstr ""
+"**자동 정크 휴리스틱:** :class:`SequenceMatcher`\\는 특정 시퀀스 항목을 자동으로 정크로 처리하는 경험적 방법을"
+" 지원합니다. 경험적 방법은 개별 항목이 시퀀스에 나타나는 횟수를 계산합니다. (첫 번째 항목 이후의) 중복된 항목이 시퀀스의 1% "
+"이상을 차지하고 시퀀스의 길이가 최소 200항목 이상이면, 이 항목은 \"흔한\" 것으로 표시되고 시퀀스 일치를 위해 정크로 처리됩니다."
+" 이 경험적 방법은 :class:`SequenceMatcher`\\를 만들 때 ``autojunk`` 인자를 ``False``\\로 "
+"설정하여 끌 수 있습니다."
 
 #: ../Doc/library/difflib.rst:54 ../Doc/library/difflib.rst:383
 msgid "The *autojunk* parameter."
-msgstr ""
+msgstr "*autojunk* 매개 변수."
 
 #: ../Doc/library/difflib.rst:60
 msgid ""
@@ -84,50 +103,52 @@ msgid ""
 ":class:`SequenceMatcher` both to compare sequences of lines, and to "
 "compare sequences of characters within similar (near-matching) lines."
 msgstr ""
+"이것은 텍스트 줄의 시퀀스를 비교하고, 사람이 읽을 수 있는 차이 또는 델타를 생성하는 클래스입니다. Differ는 줄의 시퀀스를 "
+"비교하고, 유사한 (거의 일치하는) 줄 내의 문자 시퀀스를 비교하는데 :class:`SequenceMatcher`\\를 사용합니다."
 
 #: ../Doc/library/difflib.rst:65
 msgid "Each line of a :class:`Differ` delta begins with a two-letter code:"
-msgstr ""
+msgstr ":class:`Differ` 델타의 각 줄은 2자 코드로 시작합니다:"
 
 #: ../Doc/library/difflib.rst:68
 msgid "Code"
-msgstr ""
+msgstr "코드"
 
 #: ../Doc/library/difflib.rst:68 ../Doc/library/difflib.rst:489
 msgid "Meaning"
-msgstr ""
+msgstr "뜻"
 
 #: ../Doc/library/difflib.rst:70
 msgid "``'- '``"
-msgstr ""
+msgstr "``'- '``"
 
 #: ../Doc/library/difflib.rst:70
 msgid "line unique to sequence 1"
-msgstr ""
+msgstr "시퀀스 1에만 있는 줄"
 
 #: ../Doc/library/difflib.rst:72
 msgid "``'+ '``"
-msgstr ""
+msgstr "``'+ '``"
 
 #: ../Doc/library/difflib.rst:72
 msgid "line unique to sequence 2"
-msgstr ""
+msgstr "시퀀스 2에만 있는 줄"
 
 #: ../Doc/library/difflib.rst:74
 msgid "``'  '``"
-msgstr ""
+msgstr "``'  '``"
 
 #: ../Doc/library/difflib.rst:74
 msgid "line common to both sequences"
-msgstr ""
+msgstr "두 시퀀스에 공통인 줄"
 
 #: ../Doc/library/difflib.rst:76
 msgid "``'? '``"
-msgstr ""
+msgstr "``'? '``"
 
 #: ../Doc/library/difflib.rst:76
 msgid "line not present in either input sequence"
-msgstr ""
+msgstr "두 입력 시퀀스에 없는 줄"
 
 #: ../Doc/library/difflib.rst:79
 msgid ""
@@ -135,6 +156,8 @@ msgid ""
 "differences, and were not present in either input sequence. These lines "
 "can be confusing if the sequences contain tab characters."
 msgstr ""
+"'``?``\\'로 시작하는 줄은, 시선을 줄 내의 차이로 유도하려고 시도하며, 두 입력 시퀀스 어디에도 나타나지 않습니다. 이 줄은 "
+"시퀀스에 탭 문자가 포함되면 혼동을 줄 수 있습니다."
 
 #: ../Doc/library/difflib.rst:86
 msgid ""
@@ -143,26 +166,30 @@ msgid ""
 "text with inter-line and intra-line change highlights.  The table can be "
 "generated in either full or contextual difference mode."
 msgstr ""
+"이 클래스는 HTML 표를 (또는 표를 포함하는 완전한 HTML 파일을) 만드는 데 사용할 수 있습니다. 이 HTML은 줄 간과 줄 내의"
+" 변경을 강조하면서, 텍스트를 나란히 줄 단위로 비교하여 보여줍니다. 표는 전체 또는 문맥 차이 모드로 생성될 수 있습니다."
 
 #: ../Doc/library/difflib.rst:91
 msgid "The constructor for this class is:"
-msgstr ""
+msgstr "이 클래스의 생성자는 다음과 같습니다:"
 
 #: ../Doc/library/difflib.rst:96
 msgid "Initializes instance of :class:`HtmlDiff`."
-msgstr ""
+msgstr ":class:`HtmlDiff`\\의 인스턴스를 초기화합니다."
 
 #: ../Doc/library/difflib.rst:98
 msgid ""
 "*tabsize* is an optional keyword argument to specify tab stop spacing and"
 " defaults to ``8``."
-msgstr ""
+msgstr "*tabsize*\\는 탭 간격을 지정하는 선택적 키워드 인자이며 기본값은 ``8``\\입니다."
 
 #: ../Doc/library/difflib.rst:101
 msgid ""
 "*wrapcolumn* is an optional keyword to specify column number where lines "
 "are broken and wrapped, defaults to ``None`` where lines are not wrapped."
 msgstr ""
+"*wrapcolumn*\\는 줄이 자동 줄 넘김 되는 열 번호를 지정하는 선택적 키워드로, 줄을 자동 줄 넘김 하지 않는 "
+"``None``\\이 기본값입니다."
 
 #: ../Doc/library/difflib.rst:104
 msgid ""
@@ -171,10 +198,13 @@ msgid ""
 "HTML differences).  See :func:`ndiff` documentation for argument default "
 "values and descriptions."
 msgstr ""
+"*linejunk* 와 *charjunk*\\는 :func:`ndiff`\\(:class:`HtmlDiff`\\가 나란히 배치된 HTML"
+" 차이를 만드는 데 사용됩니다)로 전달되는 선택적 키워드 인자입니다. 인자 기본값과 설명은 :func:`ndiff` 설명서를 "
+"참조하십시오."
 
 #: ../Doc/library/difflib.rst:108
 msgid "The following methods are public:"
-msgstr ""
+msgstr "다음과 같은 메서드가 공개됩니다:"
 
 #: ../Doc/library/difflib.rst:113
 msgid ""
@@ -182,12 +212,16 @@ msgid ""
 "string which is a complete HTML file containing a table showing line by "
 "line differences with inter-line and intra-line changes highlighted."
 msgstr ""
+"*fromlines* 와 *tolines*\\(문자열의 리스트)를 비교하고, 줄 간 및 줄 내부의 변경을 강조하면서, 줄 단위로 차이를 "
+"보여주는 표를 포함하는 완전한 HTML 파일을 문자열로 반환합니다."
 
 #: ../Doc/library/difflib.rst:117
 msgid ""
 "*fromdesc* and *todesc* are optional keyword arguments to specify from/to"
 " file column header strings (both default to an empty string)."
 msgstr ""
+"*fromdesc* 와 *todesc*\\는 from/to 파일 열 헤더 문자열을 지정하는 선택적 키워드 인자입니다 (기본값은 모두 빈 "
+"문자열입니다)."
 
 #: ../Doc/library/difflib.rst:120
 msgid ""
@@ -201,12 +235,20 @@ msgid ""
 " to zero would cause the \"next\" hyperlinks to place the next difference"
 " highlight at the top of the browser without any leading context)."
 msgstr ""
+"*context* 와 *numlines*\\는 모두 선택적 키워드 인자입니다. 문맥 차이를 표시하려면 *context*\\를 "
+"``True``\\로 설정하십시오, 그렇지 않으면 기본값은 전체 파일을 표시하는 ``False``\\입니다. *numlines*\\의 "
+"기본값은 ``5``\\입니다. *context*\\가 ``True`` 일 때, *numlines*\\는 차이 하이라이트를 둘러싸는 문맥 "
+"줄의 수를 제어합니다. *context*\\가 ``False``\\면 *numlines*\\는 \"next\" 하이퍼 링크를 사용할 때 "
+"차이 하이라이트 앞에 표시되는 줄 수를 제어합니다 (0으로 설정하면 \"next\" 하이퍼 링크가 다음 차이 하이라이트를 아무런 선행 "
+"문맥 줄 없이 브라우저의 맨 위에 놓도록 합니다)."
 
 #: ../Doc/library/difflib.rst:130
 msgid ""
 "*charset* keyword-only argument was added.  The default charset of HTML "
 "document changed from ``'ISO-8859-1'`` to ``'utf-8'``."
 msgstr ""
+"*charset* 키워드 전용 인자가 추가되었습니다. HTML 문서의 기본 문자 집합이 ``'ISO-8859-1'``\\에서 "
+"``'utf-8'``\\로 변경되었습니다."
 
 #: ../Doc/library/difflib.rst:136
 msgid ""
@@ -214,24 +256,28 @@ msgid ""
 "string which is a complete HTML table showing line by line differences "
 "with inter-line and intra-line changes highlighted."
 msgstr ""
+"*fromlines* 와 *tolines*\\(문자열의 리스트)를 비교하고, 줄 간 및 줄 내부의 변경을 강조하면서, 줄 단위로 차이를 "
+"보여주는 완전한 HTML 표를 문자열로 반환합니다."
 
 #: ../Doc/library/difflib.rst:140
 msgid ""
 "The arguments for this method are the same as those for the "
 ":meth:`make_file` method."
-msgstr ""
+msgstr "이 메서드의 인자는 :meth:`make_file` 메서드의 인자와 같습니다."
 
 #: ../Doc/library/difflib.rst:143
 msgid ""
 ":file:`Tools/scripts/diff.py` is a command-line front-end to this class "
 "and contains a good example of its use."
-msgstr ""
+msgstr ":file:`Tools/scripts/diff.py`\\는 이 클래스의 명령 줄 프런트엔드며, 좋은 사용 예를 담고 있습니다."
 
 #: ../Doc/library/difflib.rst:149
 msgid ""
 "Compare *a* and *b* (lists of strings); return a delta (a "
 ":term:`generator` generating the delta lines) in context diff format."
 msgstr ""
+"*a*\\와 *b*\\(문자열의 리스트)를 비교합니다; 델타(델타 줄을 생성하는 :term:`제너레이터 <generator>`)를 문맥 "
+"diff 형식으로 반환합니다."
 
 #: ../Doc/library/difflib.rst:152
 msgid ""
@@ -240,6 +286,8 @@ msgid ""
 "before/after style.  The number of context lines is set by *n* which "
 "defaults to three."
 msgstr ""
+"문맥 diff는 단지 변경된 줄과 몇 줄의 문맥만을 더해서 표시하는 간결한 방법입니다. 변경 사항은 이전/이후 스타일로 표시됩니다. 문맥"
+" 줄의 수는 *n*\\에 의해 설정되며 기본값은 3입니다."
 
 #: ../Doc/library/difflib.rst:156
 msgid ""
@@ -249,12 +297,17 @@ msgid ""
 "use with :func:`io.IOBase.writelines` since both the inputs and outputs "
 "have trailing newlines."
 msgstr ""
+"기본적으로, diff 제어 줄(``***``\\나 ``---``\\가 포함된 것)은 끝에 줄 넘김을 붙여 만들어집니다. 이것은 "
+":func:`io.IOBase.readlines`\\로 만들어진 입력이 :func:`io.IOBase.writelines`\\와 함께 "
+"사용하기에 적합한 diff를 생성하도록 하는 데 유용합니다. 왜냐하면, 입력과 출력 모두 끝에 줄 넘김이 있기 때문입니다."
 
 #: ../Doc/library/difflib.rst:162 ../Doc/library/difflib.rst:293
 msgid ""
 "For inputs that do not have trailing newlines, set the *lineterm* "
 "argument to ``\"\"`` so that the output will be uniformly newline free."
 msgstr ""
+"끝에 줄 넘김이 없는 입력이면, *lineterm* 인자를 ``\"\"``\\로 설정해서 출력에 일관되게 줄 넘김이 포함되지 않게 "
+"하십시오."
 
 #: ../Doc/library/difflib.rst:165 ../Doc/library/difflib.rst:296
 msgid ""
@@ -264,10 +317,13 @@ msgid ""
 "modification times are normally expressed in the ISO 8601 format. If not "
 "specified, the strings default to blanks."
 msgstr ""
+"문맥 diff 형식에는 일반적으로 파일명과 수정 시간에 대한 헤더가 있습니다. 이들 중 일부 또는 전부는 *fromfile*, "
+"*tofile*, *fromfiledate* 및 *tofiledate*\\에 문자열을 사용하여 지정될 수 있습니다. 수정 시간은 "
+"일반적으로 ISO 8601 형식으로 표현됩니다. 지정하지 않으면, 문자열들의 기본값은 빈 문자열입니다."
 
 #: ../Doc/library/difflib.rst:188 ../Doc/library/difflib.rst:317
 msgid "See :ref:`difflib-interface` for a more detailed example."
-msgstr ""
+msgstr "더욱 자세한 예제는 :ref:`difflib-interface`\\를 참조하십시오."
 
 #: ../Doc/library/difflib.rst:193
 msgid ""
@@ -276,12 +332,14 @@ msgid ""
 "*possibilities* is a list of sequences against which to match *word* "
 "(typically a list of strings)."
 msgstr ""
+"최상의 \"충분히 좋은\" 일치의 리스트를 반환합니다. *word*\\는 근접 일치가 목표로 하는 시퀀스(일반적으로 문자열)며, "
+"*possibilities*\\는 *word*\\와 일치시킬 시퀀스의 리스트입니다 (일반적으로 문자열의 리스트)."
 
 #: ../Doc/library/difflib.rst:197
 msgid ""
 "Optional argument *n* (default ``3``) is the maximum number of close "
 "matches to return; *n* must be greater than ``0``."
-msgstr ""
+msgstr "선택적 인자 *n*\\(기본값 ``3``)은 반환할 근접 일치의 최대 개수입니다; *n*\\는 ``0``\\보다 커야 합니다."
 
 #: ../Doc/library/difflib.rst:200
 msgid ""
@@ -289,24 +347,30 @@ msgid ""
 "1]. Possibilities that don't score at least that similar to *word* are "
 "ignored."
 msgstr ""
+"선택적 인자 *cutoff*\\(기본값 ``0.6``)는 [0, 1] 범위의 float입니다. *word*\\와의 유사성 점수가 이 "
+"값보다 적은 possibilities는 무시됩니다."
 
 #: ../Doc/library/difflib.rst:203
 msgid ""
 "The best (no more than *n*) matches among the possibilities are returned "
 "in a list, sorted by similarity score, most similar first."
 msgstr ""
+"possibilities 중에서 가장 좋은 (최대 *n* 개의) 일치가 리스트로 반환되는데, 유사성 점수로 정렬되어 있고 가장 유사한 "
+"것이 먼저 나옵니다."
 
 #: ../Doc/library/difflib.rst:219
 msgid ""
 "Compare *a* and *b* (lists of strings); return a :class:`Differ`\\ -style"
 " delta (a :term:`generator` generating the delta lines)."
 msgstr ""
+"*a*\\와 *b*\\(문자열의 리스트)를 비교합니다; :class:`Differ`\\ -스타일 델타(델타 줄을 생성하는 "
+":term:`제너레이터 <generator>`)를 반환합니다."
 
 #: ../Doc/library/difflib.rst:222
 msgid ""
 "Optional keyword parameters *linejunk* and *charjunk* are filtering "
 "functions (or ``None``):"
-msgstr ""
+msgstr "선택적 키워드 매개 변수 *linejunk* 와 *charjunk*\\는 필터링 함수(또는 ``None``)입니다:"
 
 #: ../Doc/library/difflib.rst:225
 msgid ""
@@ -318,6 +382,10 @@ msgid ""
 "class does a dynamic analysis of which lines are so frequent as to "
 "constitute noise, and this usually works better than using this function."
 msgstr ""
+"*linejunk*: 단일 문자열 인자를 받아들이고 문자열이 정크면 참을 반환하고, 그렇지 않으면 거짓을 반환하는 함수입니다. 기본값은 "
+"``None``\\입니다. 모듈 수준의 함수 :func:`IS_LINE_JUNK`\\도 있는데, 최대로 한 개의 파운드 "
+"문자(``'#'``)를 제외하고 눈에 보이는 문자가 없는 줄을 걸러냅니다 -- 하지만 하부 :class:`SequenceMatcher` "
+"클래스는 어떤 줄이 잡음으로 볼만큼 자주 등장하는지 동적으로 분석하고, 이것이 보통 이 함수를 사용하는 것보다 효과적입니다."
 
 #: ../Doc/library/difflib.rst:233
 msgid ""
@@ -327,16 +395,19 @@ msgid ""
 "whitespace characters (a blank or tab; it's a bad idea to include newline"
 " in this!)."
 msgstr ""
+"*charjunk*: 문자(길이 1의 문자열)를 받아들이고, 문자가 정크면 참을 반환하고, 그렇지 않으면 거짓을 반환하는 함수입니다. "
+"기본값은 모듈 수준의 함수 :func:`IS_CHARACTER_JUNK`\\인데, 공백 문자(스페이스나 탭; 줄 넘김 문자를 포함하는 "
+"것은 좋은 생각이 아닙니다)를 걸러냅니다."
 
 #: ../Doc/library/difflib.rst:238
 msgid ""
 ":file:`Tools/scripts/ndiff.py` is a command-line front-end to this "
 "function."
-msgstr ""
+msgstr ":file:`Tools/scripts/ndiff.py`\\는 이 함수에 대한 명령 줄 프런트엔드 입니다."
 
 #: ../Doc/library/difflib.rst:256
 msgid "Return one of the two sequences that generated a delta."
-msgstr ""
+msgstr "델타를 만든 두 시퀀스 중 하나를 반환합니다."
 
 #: ../Doc/library/difflib.rst:258
 msgid ""
@@ -344,16 +415,20 @@ msgid ""
 "extract lines originating from file 1 or 2 (parameter *which*), stripping"
 " off line prefixes."
 msgstr ""
+":meth:`Differ.compare` 나 :func:`ndiff`\\로 만들어진 *sequence*\\가 주어지면, 파일 1이나 "
+"2(매개 변수 *which*)에서 원래 제공되었던 줄을 추출하고, 줄 접두어를 제거합니다."
 
 #: ../Doc/library/difflib.rst:262
 msgid "Example:"
-msgstr ""
+msgstr "예:"
 
 #: ../Doc/library/difflib.rst:279
 msgid ""
 "Compare *a* and *b* (lists of strings); return a delta (a "
 ":term:`generator` generating the delta lines) in unified diff format."
 msgstr ""
+"*a*\\와 *b*\\(문자열의 리스트)를 비교합니다; 델타(델타 줄을 생성하는 :term:`제너레이터 <generator>`)를 통합 "
+"diff 형식으로 반환합니다."
 
 #: ../Doc/library/difflib.rst:282
 msgid ""
@@ -362,6 +437,8 @@ msgid ""
 "style (instead of separate before/after blocks).  The number of context "
 "lines is set by *n* which defaults to three."
 msgstr ""
+"통합(unified) diff는 단지 변경된 줄과 몇 줄의 문맥만을 더해서 표시하는 간결한 방법입니다. 변경 사항은 (별도의 이전/이후 "
+"블록 대신) 인라인 스타일로 표시됩니다. 문맥 줄의 수는 *n*\\에 의해 설정되며 기본값은 3입니다."
 
 #: ../Doc/library/difflib.rst:287
 msgid ""
@@ -371,6 +448,9 @@ msgid ""
 "suitable for use with :func:`io.IOBase.writelines` since both the inputs "
 "and outputs have trailing newlines."
 msgstr ""
+"기본적으로, diff 제어 줄(``---``, ``+++`` 또는 ``@@``\\가 포함된 것)은 끝에 줄 넘김을 붙여 만들어집니다. "
+"이것은 :func:`io.IOBase.readlines`\\로 만들어진 입력이 :func:`io.IOBase.writelines`\\와 "
+"함께 사용하기에 적합한 diff를 생성하도록 하는 데 유용합니다. 왜냐하면, 입력과 출력 모두 끝에 줄 넘김이 있기 때문입니다."
 
 #: ../Doc/library/difflib.rst:321
 msgid ""
@@ -379,6 +459,9 @@ msgid ""
 "*dfunc* must be a callable, typically either :func:`unified_diff` or "
 ":func:`context_diff`."
 msgstr ""
+"*a*\\와 *b*\\(바이트열 객체의 리스트)를 *dfunc*\\를 사용하여 비교합니다; *dfunc*\\가 반환하는 형식으로 델타 "
+"줄(역시 바이트열)의 시퀀스를 산출합니다. *dfunc*\\는 콜러블이어야하며, 보통 :func:`unified_diff` 나 "
+":func:`context_diff`\\입니다."
 
 #: ../Doc/library/difflib.rst:326
 msgid ""
@@ -389,6 +472,10 @@ msgid ""
 " *dfunc* is then converted back to bytes, so the delta lines that you "
 "receive have the same unknown/inconsistent encodings as *a* and *b*."
 msgstr ""
+"알 수 없거나 일관성 없는 인코딩의 데이터를 비교할 수 있게 합니다. *n*\\를 제외한 모든 입력은 바이트열 객체여야 합니다, str이"
+" 아닙니다. 모든 입력(*n* 제외)을 str로 무손실 변환하고, ``dfunc(a, b, fromfile, tofile, "
+"fromfiledate, tofiledate, n, lineterm)``\\를 호출하는 방식으로 작동합니다. *dfunc*\\의 출력은 "
+"다시 바이트로 변환되므로, 여러분이 얻는 델타 줄은 *a*\\와 *b* 처럼 알 수 없고/일관성 없는 인코딩을 갖습니다."
 
 #: ../Doc/library/difflib.rst:337
 msgid ""
@@ -397,6 +484,9 @@ msgid ""
 "Used as a default for parameter *linejunk* in :func:`ndiff` in older "
 "versions."
 msgstr ""
+"무시할 수 있는 줄이면 참을 반환합니다. *line*\\이 빈 줄이거나 하나의 ``'#'``\\를 포함하면, 줄 *line*\\은 무시할"
+" 수 있습니다, 그렇지 않으면 무시할 수 없습니다. 이전 버전의 :func:`ndiff`\\에서 매개 변수 *linejunk*\\의 "
+"기본값으로 사용되었습니다."
 
 #: ../Doc/library/difflib.rst:344
 msgid ""
@@ -404,12 +494,17 @@ msgid ""
 " *ch* is a space or tab, otherwise it is not ignorable.  Used as a "
 "default for parameter *charjunk* in :func:`ndiff`."
 msgstr ""
+"무시할 수 있는 문자면 참을 반환합니다. *ch*\\가 스페이스나 탭이면 문자 *ch*\\는 무시할 수 있습니다, 그렇지 않으면 무시할 "
+"수 없습니다. :func:`ndiff`\\에서 매개 변수 *charjunk*\\의 기본값으로 사용됩니다."
 
 #: ../Doc/library/difflib.rst:352
 msgid ""
 "`Pattern Matching: The Gestalt Approach <http://www.drdobbs.com/database"
 "/pattern-matching-the-gestalt-approach/184407970>`_"
 msgstr ""
+"`Pattern Matching: The Gestalt Approach "
+"<http://www.drdobbs.com/database/pattern-matching-the-gestalt-"
+"approach/184407970>`_"
 
 #: ../Doc/library/difflib.rst:352
 msgid ""
@@ -417,14 +512,16 @@ msgid ""
 " This was published in `Dr. Dobb's Journal <http://www.drdobbs.com/>`_ in"
 " July, 1988."
 msgstr ""
+"John W. Ratcliff와 D. E. Metzener의 비슷한 알고리즘에 관한 토론. 이것은 1988년 7월 `Dr. Dobb's "
+"Journal <http://www.drdobbs.com/>`_\\에 출판되었습니다."
 
 #: ../Doc/library/difflib.rst:359
 msgid "SequenceMatcher Objects"
-msgstr ""
+msgstr "SequenceMatcher 객체"
 
 #: ../Doc/library/difflib.rst:361
 msgid "The :class:`SequenceMatcher` class has this constructor:"
-msgstr ""
+msgstr ":class:`SequenceMatcher` 클래스는 다음과 같은 생성자를 갖습니다:"
 
 #: ../Doc/library/difflib.rst:366
 msgid ""
@@ -434,12 +531,15 @@ msgid ""
 "for *isjunk* is equivalent to passing ``lambda x: 0``; in other words, no"
 " elements are ignored. For example, pass::"
 msgstr ""
+"선택 인자 *isjunk*\\는 ``None``\\(기본값)이거나, 시퀀스 요소를 받아서 요소가 \"정크\" 이고, 무시되어야 하는 "
+"경우에만 참을 반환하는 하나의 인자 함수여야 합니다. *isjunk*\\에 ``None``\\을 전달하는 것은, ``lambda x: "
+"0``\\를 전달하는 것과 같습니다; 즉, 아무 요소도 무시하지 않습니다. 예를 들어,::"
 
 #: ../Doc/library/difflib.rst:374
 msgid ""
 "if you're comparing lines as sequences of characters, and don't want to "
 "synch up on blanks or hard tabs."
-msgstr ""
+msgstr "줄을 문자의 시퀀스로 비교하고, 스페이스와 탭을 무시하고 싶으면, 위와 같은 것을 전달하면 됩니다."
 
 #: ../Doc/library/difflib.rst:377
 msgid ""
@@ -447,12 +547,14 @@ msgid ""
 "default to empty strings.  The elements of both sequences must be "
 ":term:`hashable`."
 msgstr ""
+"선택적 인자 *a* 와 *b*\\는 비교할 시퀀스입니다; 둘 다 빈 문자열이 기본값입니다. 두 시퀀스의 요소는 모두 :term:`해시 "
+"가능 <hashable>`\\해야 합니다."
 
 #: ../Doc/library/difflib.rst:380
 msgid ""
 "The optional argument *autojunk* can be used to disable the automatic "
 "junk heuristic."
-msgstr ""
+msgstr "선택적 인자 *autojunk*\\는 자동 정크 휴리스틱을 비활성화하는 데 사용할 수 있습니다."
 
 #: ../Doc/library/difflib.rst:386
 msgid ""
@@ -463,18 +565,22 @@ msgid ""
 "list of positions where they occur. All three are reset whenever *b* is "
 "reset with :meth:`set_seqs` or :meth:`set_seq2`."
 msgstr ""
+"SequenceMatcher 객체는 세 개의 데이터 어트리뷰트를 갖습니다: *bjunk*\\는 *isjunk*\\가 ``True`` 인 "
+"*b* 요소의 집합입니다; *bpopular*\\는 휴리스틱(비활성화하지 않았다면)에서 흔하다고 판단되는 정크가 아닌 요소의 집합입니다;"
+" *b2j*\\는 *b*\\의 나머지 요소를 그들이 나타난 위치의 리스트로 매핑하는 dict입니다. *b*\\가 "
+":meth:`set_seqs` 나 :meth:`set_seq2`\\로 재설정 될 때마다 세 개 모두 재설정됩니다."
 
 #: ../Doc/library/difflib.rst:393
 msgid "The *bjunk* and *bpopular* attributes."
-msgstr ""
+msgstr "*bjunk* 및 *bpopular* 어트리뷰트"
 
 #: ../Doc/library/difflib.rst:396
 msgid ":class:`SequenceMatcher` objects have the following methods:"
-msgstr ""
+msgstr ":class:`SequenceMatcher` 객체에는 다음과 같은 메서드가 있습니다:"
 
 #: ../Doc/library/difflib.rst:400
 msgid "Set the two sequences to be compared."
-msgstr ""
+msgstr "비교할 두 시퀀스를 설정합니다."
 
 #: ../Doc/library/difflib.rst:402
 msgid ""
@@ -484,22 +590,25 @@ msgid ""
 "and call :meth:`set_seq1` repeatedly, once for each of the other "
 "sequences."
 msgstr ""
+":class:`SequenceMatcher`\\는 두 번째 시퀀스에 대한 자세한 정보를 계산하고 캐시 하므로, 많은 시퀀스에 대해 하나의"
+" 시퀀스를 비교하려면, :meth:`set_seq2`\\를 사용하여 자주 사용되는 시퀀스를 한 번 설정하고, "
+":meth:`set_seq1`\\를 다른 시퀀스 각각에 대해 한 번 반복적으로 호출하십시오."
 
 #: ../Doc/library/difflib.rst:410
 msgid ""
 "Set the first sequence to be compared.  The second sequence to be "
 "compared is not changed."
-msgstr ""
+msgstr "비교할 첫 번째 시퀀스를 설정합니다. 비교할 두 번째 시퀀스는 변경되지 않습니다."
 
 #: ../Doc/library/difflib.rst:416
 msgid ""
 "Set the second sequence to be compared.  The first sequence to be "
 "compared is not changed."
-msgstr ""
+msgstr "비교할 두 번째 시퀀스를 설정합니다. 비교할 첫 번째 시퀀스는 변경되지 않습니다."
 
 #: ../Doc/library/difflib.rst:422
 msgid "Find longest matching block in ``a[alo:ahi]`` and ``b[blo:bhi]``."
-msgstr ""
+msgstr "``a[alo:ahi]`` 와 ``b[blo:bhi]``\\에서 가장 긴 일치 블록을 찾습니다."
 
 #: ../Doc/library/difflib.rst:424
 msgid ""
@@ -512,6 +621,12 @@ msgid ""
 "in *a*, and of all those maximal matching blocks that start earliest in "
 "*a*, return the one that starts earliest in *b*."
 msgstr ""
+"*isjunk*\\가 생략되거나 ``None`` 이면, :meth:`find_longest_match`\\는 ``a[i:i+k]``\\가"
+" ``b[j:j+k]``\\와 같은 ``(i, j, k)``\\를 반환하는데, 여기서 ``alo <= i <= i+k <= ahi`` "
+"이고 ``blo <= j <= j+k <= bhi`` 입니다. 이 조건을 만족시키는 모든 ``(i', j', k')``\\에 대해, 추가"
+" 조건 ``k >= k'``, ``i <= i'`` 와 ``i == i'`` 면 ``j <= j'`` 도 만족합니다. 즉, 모든 최대 "
+"일치 블록 중에서 *a*\\에서 가장 먼저 시작하는 블록을 반환하고, *a*\\에서 가장 먼저 시작하는 모든 최대 일치 블록 중에서 "
+"*b*\\에서 가장 먼저 시작하는 블록을 반환합니다."
 
 #: ../Doc/library/difflib.rst:437
 msgid ""
@@ -522,6 +637,9 @@ msgid ""
 " matches on junk except as identical junk happens to be adjacent to an "
 "interesting match."
 msgstr ""
+"*isjunk*\\가 제공되면, 먼저 가장 긴 일치 블록이 상기와 같이 결정되지만, 정크 요소가 블록에 나타나지 않아야 한다는 추가 "
+"제약이 있습니다. 그런 다음 그 블록의 좌우에서 정크 요소만 일치시켜 가능한 한 최대로 확장합니다. 그래서 결과 블록은 흥미로운 일치와 "
+"인접하게 같은 정크가 등장할 때를 제외하고는, 정크와 일치하지 않습니다."
 
 #: ../Doc/library/difflib.rst:444
 msgid ""
@@ -530,14 +648,17 @@ msgid ""
 "of the second sequence directly.  Instead only the ``'abcd'`` can match, "
 "and matches the leftmost ``'abcd'`` in the second sequence:"
 msgstr ""
+"여기에 이전과 같은 예가 있지만, 스페이스를 정크로 간주합니다. 이렇게 하면 ``' abcd'``\\가 두 번째 시퀀스의 끝에 있는 "
+"``' abcd'``\\와 직접 일치하지 않게 됩니다. 대신 ``'abcd'`` 만 일치 할 수 있으며, 두 번째 시퀀스에서 가장 왼쪽의"
+" ``'abcd'``\\와 일치합니다:"
 
 #: ../Doc/library/difflib.rst:453
 msgid "If no blocks match, this returns ``(alo, blo, 0)``."
-msgstr ""
+msgstr "일치하는 블록이 없으면 ``(alo, blo, 0)``\\를 반환합니다."
 
 #: ../Doc/library/difflib.rst:455
 msgid "This method returns a :term:`named tuple` ``Match(a, b, size)``."
-msgstr ""
+msgstr "이 메서드는 :term:`네임드 튜플 <named tuple>` ``Match(a, b, size)``\\를 반환합니다."
 
 #: ../Doc/library/difflib.rst:460
 msgid ""
@@ -545,6 +666,8 @@ msgid ""
 "of the form ``(i, j, n)``, and means that ``a[i:i+n] == b[j:j+n]``.  The "
 "triples are monotonically increasing in *i* and *j*."
 msgstr ""
+"일치하는 서브 시퀀스를 기술하는 3-튜플의 리스트를 반환합니다. 각 3-튜플은 ``(i, j, n)`` 형식이며, ``a[i:i+n] "
+"== b[j:j+n]``\\를 뜻합니다. 3-튜플은 *i*\\와 *j*\\에 대해 단조 증가합니다."
 
 #: ../Doc/library/difflib.rst:464
 msgid ""
@@ -554,6 +677,10 @@ msgid ""
 "triple in the list, then ``i+n != i'`` or ``j+n != j'``; in other words, "
 "adjacent triples always describe non-adjacent equal blocks."
 msgstr ""
+"마지막 3-튜플은 더미이며, ``(len(a), len(b), 0)`` 값을 가집니다. ``n == 0`` 인 유일한 3-튜플입니다. "
+"``(i, j, n)``\\와 ``(i', j', n')``\\가 리스트에서 인접한 3-튜플이고, 두 번째가 리스트의 마지막 3-튜플이 "
+"아니면 ``i+n != i'`` 또는 ``j+n != j'``\\입니다; 즉, 인접 3-튜플은 항상 인접하지 않은 같은 블록을 "
+"나타냅니다."
 
 #: ../Doc/library/difflib.rst:481
 msgid ""
@@ -562,56 +689,59 @@ msgid ""
 " == 0``, and remaining tuples have *i1* equal to the *i2* from the "
 "preceding tuple, and, likewise, *j1* equal to the previous *j2*."
 msgstr ""
+"*a*\\를 *b*\\로 변환하는 방법을 설명하는 5-튜플의 리스트를 반환합니다. 각 튜플은 ``(tag, i1, i2, j1, "
+"j2)`` 형식입니다. 첫 번째 튜플은 ``i1 == j1 == 0`` 이고, 나머지 튜플에서는 *i1*\\이 이전 튜플의 *i2*\\와"
+" 같고, 마찬가지로 *j1*\\은 이전 *j2*\\와 같습니다."
 
 #: ../Doc/library/difflib.rst:486
 msgid "The *tag* values are strings, with these meanings:"
-msgstr ""
+msgstr "*tag* 값은 문자열이고, 이런 의미입니다:"
 
 #: ../Doc/library/difflib.rst:489
 msgid "Value"
-msgstr ""
+msgstr "값"
 
 #: ../Doc/library/difflib.rst:491
 msgid "``'replace'``"
-msgstr ""
+msgstr "``'replace'``"
 
 #: ../Doc/library/difflib.rst:491
 msgid "``a[i1:i2]`` should be replaced by ``b[j1:j2]``."
-msgstr ""
+msgstr "``a[i1:i2]``\\를 ``b[j1:j2]``\\로 치환해야 합니다."
 
 #: ../Doc/library/difflib.rst:494
 msgid "``'delete'``"
-msgstr ""
+msgstr "``'delete'``"
 
 #: ../Doc/library/difflib.rst:494
 msgid "``a[i1:i2]`` should be deleted.  Note that ``j1 == j2`` in this case."
-msgstr ""
+msgstr "``a[i1:i2]``\\를 삭제해야 합니다. 이때 ``j1 == j2`` 임을 유의하십시오."
 
 #: ../Doc/library/difflib.rst:497
 msgid "``'insert'``"
-msgstr ""
+msgstr "``'insert'``"
 
 #: ../Doc/library/difflib.rst:497
 msgid ""
 "``b[j1:j2]`` should be inserted at ``a[i1:i1]``. Note that ``i1 == i2`` "
 "in this case."
-msgstr ""
+msgstr "``b[j1:j2]``\\을 ``a[i1:i1]``\\에 삽입해야 합니다. 이때 ``i1 == i2`` 임을 유의하십시오."
 
 #: ../Doc/library/difflib.rst:501
 msgid "``'equal'``"
-msgstr ""
+msgstr "``'equal'``"
 
 #: ../Doc/library/difflib.rst:501
 msgid "``a[i1:i2] == b[j1:j2]`` (the sub-sequences are equal)."
-msgstr ""
+msgstr "``a[i1:i2] == b[j1:j2]`` (서브 시퀀스가 같습니다)."
 
 #: ../Doc/library/difflib.rst:505
 msgid "For example::"
-msgstr ""
+msgstr "예를 들면::"
 
 #: ../Doc/library/difflib.rst:522
 msgid "Return a :term:`generator` of groups with up to *n* lines of context."
-msgstr ""
+msgstr "최대 *n* 줄의 문맥을 갖는 그룹의 :term:`제너레이터 <generator>`\\를 반환합니다."
 
 #: ../Doc/library/difflib.rst:524
 msgid ""
@@ -619,16 +749,18 @@ msgid ""
 "splits out smaller change clusters and eliminates intervening ranges "
 "which have no changes."
 msgstr ""
+":meth:`get_opcodes`\\에서 반환된 그룹으로 출발해서, 이 메서드는 더 작은 변경 클러스터로 나누고, 변경 사항이 없는 "
+"중간 범위를 제거합니다."
 
 #: ../Doc/library/difflib.rst:528
 msgid "The groups are returned in the same format as :meth:`get_opcodes`."
-msgstr ""
+msgstr "그룹은 :meth:`get_opcodes`\\와 같은 형식으로 반환됩니다."
 
 #: ../Doc/library/difflib.rst:533
 msgid ""
 "Return a measure of the sequences' similarity as a float in the range [0,"
 " 1]."
-msgstr ""
+msgstr "[0, 1]의 범위의 float로 시퀀스 유사성 척도를 돌려줍니다."
 
 #: ../Doc/library/difflib.rst:536
 msgid ""
@@ -636,6 +768,8 @@ msgid ""
 "number of matches, this is 2.0\\*M / T. Note that this is ``1.0`` if the "
 "sequences are identical, and ``0.0`` if they have nothing in common."
 msgstr ""
+"T가 두 시퀀스의 요소의 총 개수이고, M은 일치 개수일 때, 척도는 2.0\\*M / T입니다. 시퀀스가 같으면 ``1.0``\\이고,"
+" 공통 요소가 없으면 ``0.0``\\입니다."
 
 #: ../Doc/library/difflib.rst:540
 msgid ""
@@ -644,14 +778,17 @@ msgid ""
 "want to try :meth:`quick_ratio` or :meth:`real_quick_ratio` first to get "
 "an upper bound."
 msgstr ""
+":meth:`get_matching_blocks` 나 :meth:`get_opcodes`\\가 아직 호출되지 않았으면, 계산하는 데 "
+"비용이 많이 듭니다. 이럴 때, :meth:`quick_ratio` 나 :meth:`real_quick_ratio`\\를 먼저 시도하여 "
+"상한값을 얻을 수 있습니다."
 
 #: ../Doc/library/difflib.rst:548
 msgid "Return an upper bound on :meth:`ratio` relatively quickly."
-msgstr ""
+msgstr "비교적 빨리 :meth:`ratio`\\의 상한을 반환합니다."
 
 #: ../Doc/library/difflib.rst:553
 msgid "Return an upper bound on :meth:`ratio` very quickly."
-msgstr ""
+msgstr "아주 빨리 :meth:`ratio`\\의 상한을 반환합니다."
 
 #: ../Doc/library/difflib.rst:556
 msgid ""
@@ -660,14 +797,17 @@ msgid ""
 "although :meth:`quick_ratio` and :meth:`real_quick_ratio` are always at "
 "least as large as :meth:`ratio`:"
 msgstr ""
+"총 문자 수에 대한 일치 비율을 반환하는 세 가지 메서드는 서로 다른 수준의 근삿값 때문에 다른 결과를 줄 수 있습니다. 하지만 "
+":meth:`quick_ratio` 와 :meth:`real_quick_ratio`\\는 항상 최소한 :meth:`ratio`\\만큼 큰"
+" 값을 줍니다:"
 
 #: ../Doc/library/difflib.rst:573
 msgid "SequenceMatcher Examples"
-msgstr ""
+msgstr "SequenceMatcher 예제"
 
 #: ../Doc/library/difflib.rst:575
 msgid "This example compares two strings, considering blanks to be \"junk\":"
-msgstr ""
+msgstr "이 예제에서는 공백을 \"정크\"로 간주하여, 두 문자열을 비교합니다:"
 
 #: ../Doc/library/difflib.rst:581
 msgid ""
@@ -675,12 +815,14 @@ msgid ""
 "sequences.  As a rule of thumb, a :meth:`ratio` value over 0.6 means the "
 "sequences are close matches:"
 msgstr ""
+":meth:`ratio`\\는 [0, 1] 범위의 float를 반환하여, 시퀀스의 유사성을 측정합니다. 경험적으로, "
+":meth:`ratio` 값이 0.6 이상이면 시퀀스가 근접하게 일치함을 뜻합니다:"
 
 #: ../Doc/library/difflib.rst:588
 msgid ""
 "If you're only interested in where the sequences match, "
 ":meth:`get_matching_blocks` is handy:"
-msgstr ""
+msgstr "시퀀스가 일치하는 부분에만 관심이 있다면, :meth:`get_matching_blocks`\\가 유용합니다:"
 
 #: ../Doc/library/difflib.rst:597
 msgid ""
@@ -688,12 +830,14 @@ msgid ""
 "always a dummy, ``(len(a), len(b), 0)``, and this is the only case in "
 "which the last tuple element (number of elements matched) is ``0``."
 msgstr ""
+":meth:`get_matching_blocks`\\에 의해 반환된 마지막 튜플은 항상 더미인 ``(len(a), len(b), "
+"0)``\\이며, 이는 마지막 튜플 요소(일치하는 요소의 수)가 ``0`` 인 유일한 경우입니다."
 
 #: ../Doc/library/difflib.rst:601
 msgid ""
 "If you want to know how to change the first sequence into the second, use"
 " :meth:`get_opcodes`:"
-msgstr ""
+msgstr "첫 번째 시퀀스를 두 번째 시퀀스로 변경하는 방법을 알고 싶다면, :meth:`get_opcodes`\\를 사용하십시오:"
 
 #: ../Doc/library/difflib.rst:612
 msgid ""
@@ -701,6 +845,8 @@ msgid ""
 "simple code building on :class:`SequenceMatcher` can be used to do useful"
 " work."
 msgstr ""
+"이 모듈의 :func:`get_close_matches` 함수는 :class:`SequenceMatcher`\\를 사용한 간단한 코드 "
+"작성을 통해 유용한 작업을 수행하는 방법을 보여줍니다."
 
 #: ../Doc/library/difflib.rst:616
 msgid ""
@@ -708,10 +854,12 @@ msgid ""
 "<https://code.activestate.com/recipes/576729/>`_ for a small application "
 "built with :class:`SequenceMatcher`."
 msgstr ""
+":class:`SequenceMatcher`\\로 만들어진 작은 응용 프로그램을 위한 `간단한 버전 관리 조리법 "
+"<https://code.activestate.com/recipes/576729/>`_."
 
 #: ../Doc/library/difflib.rst:624
 msgid "Differ Objects"
-msgstr ""
+msgstr "Differ 객체"
 
 #: ../Doc/library/difflib.rst:626
 msgid ""
@@ -722,16 +870,19 @@ msgid ""
 "preserves some notion of locality, at the occasional cost of producing a "
 "longer diff."
 msgstr ""
+":class:`Differ`\\가 만든 델타는 **최소** diff라고 주장하지 않음에 유의하십시오. 반대로, 최소 diff는 종종 반 "
+"직관적인데, 가능한 모든 곳에서 일치를 취하기 때문입니다. 때로 우발적으로 100페이지가 떨어진 곳에서 일치시키기도 합니다. 동기화 "
+"지점을 인접한 일치로 제한하면 가끔 더 긴 diff를 만드는 대신 일종의 지역성을 보존합니다."
 
 #: ../Doc/library/difflib.rst:632
 msgid "The :class:`Differ` class has this constructor:"
-msgstr ""
+msgstr ":class:`Differ` 클래스에는 다음과 같은 생성자가 있습니다:"
 
 #: ../Doc/library/difflib.rst:637
 msgid ""
 "Optional keyword parameters *linejunk* and *charjunk* are for filter "
 "functions (or ``None``):"
-msgstr ""
+msgstr "선택적 키워드 매개 변수 *linejunk* 와 *charjunk*\\는 필터 함수(또는 ``None``)를 위한 것입니다:"
 
 #: ../Doc/library/difflib.rst:640
 msgid ""
@@ -739,6 +890,8 @@ msgid ""
 " true if the string is junk.  The default is ``None``, meaning that no "
 "line is considered junk."
 msgstr ""
+"*linejunk*: 단일 문자열 인자를 받아들이고 문자열이 정크면 참을 반환하는 함수입니다. 기본값은 ``None``\\이며, 이는 "
+"어떤 줄도 정크로 간주하지 않음을 의미합니다."
 
 #: ../Doc/library/difflib.rst:644
 msgid ""
@@ -746,6 +899,8 @@ msgid ""
 " of length 1), and returns true if the character is junk. The default is "
 "``None``, meaning that no character is considered junk."
 msgstr ""
+"*charjunk*: 문자(길이 1의 문자열)를 받아들이고, 문자가 정크면 참을 반환하는 함수입니다. 기본값은 ``None``\\이며, "
+"이는 어떤 문자도 정크로 간주하지 않음을 의미합니다."
 
 #: ../Doc/library/difflib.rst:648
 msgid ""
@@ -754,16 +909,19 @@ msgid ""
 "description of the :meth:`~SequenceMatcher.find_longest_match` method's "
 "*isjunk* parameter for an explanation."
 msgstr ""
+"이러한 정크 필터링 함수는 차이점을 찾기 위한 일치 속도를 높이고 차이가 나는 줄이나 문자를 무시하지 않습니다. 설명이 필요하면 "
+":meth:`~SequenceMatcher.find_longest_match` 메서드의 *isjunk* 매개 변수에 대한 설명을 "
+"읽으십시오."
 
 #: ../Doc/library/difflib.rst:654
 msgid ":class:`Differ` objects are used (deltas generated) via a single method:"
-msgstr ""
+msgstr ":class:`Differ` 객체는 단일 메서드를 통해 사용됩니다 (델타가 만들어집니다):"
 
 #: ../Doc/library/difflib.rst:659
 msgid ""
 "Compare two sequences of lines, and generate the delta (a sequence of "
 "lines)."
-msgstr ""
+msgstr "줄의 시퀀스 두 개를 비교하고, 델타(줄의 시퀀스)를 만듭니다."
 
 #: ../Doc/library/difflib.rst:661
 msgid ""
@@ -774,10 +932,13 @@ msgid ""
 "printed as-is via the :meth:`~io.IOBase.writelines` method of a file-like"
 " object."
 msgstr ""
+"각 시퀀스는 줄 넘김으로 끝나는 개별 단일 줄 문자열을 포함해야 합니다. 이러한 시퀀스는 파일류 객체의 "
+":meth:`~io.IOBase.readlines` 메서드로 얻을 수 있습니다. 생성된 델타 역시 파일류 객체의 "
+":meth:`~io.IOBase.writelines` 메서드를 통해 그대로 인쇄될 수 있도록 줄 넘김으로 끝나는 문자열로 구성됩니다."
 
 #: ../Doc/library/difflib.rst:672
 msgid "Differ Example"
-msgstr ""
+msgstr "Differ 예제"
 
 #: ../Doc/library/difflib.rst:674
 msgid ""
@@ -786,10 +947,12 @@ msgid ""
 "also be obtained from the :meth:`~io.BaseIO.readlines` method of file-"
 "like objects):"
 msgstr ""
+"이 예제는 두 개의 텍스트를 비교합니다. 먼저 텍스트를 설정하는데, 줄 넘김 문자로 끝나는 개별 단일 줄 문자열의 시퀀스입니다 (이러한 "
+"시퀀스는 파일류 객체의 :meth:`~io.BaseIO.readlines` 메서드로도 얻을 수 있습니다):"
 
 #: ../Doc/library/difflib.rst:693
 msgid "Next we instantiate a Differ object:"
-msgstr ""
+msgstr "다음으로 Differ 객체의 인스턴스를 만듭니다:"
 
 #: ../Doc/library/difflib.rst:697
 msgid ""
@@ -797,22 +960,24 @@ msgid ""
 "functions to filter out line and character \"junk.\"  See the "
 ":meth:`Differ` constructor for details."
 msgstr ""
+":class:`Differ` 객체의 인스턴스를 만들 때, 줄과 문자 \"정크\"를 필터링하는 함수를 전달할 수 있음에 유의하십시오. "
+"자세한 내용은 :meth:`Differ` 생성자를 참조하십시오."
 
 #: ../Doc/library/difflib.rst:701
 msgid "Finally, we compare the two:"
-msgstr ""
+msgstr "마지막으로, 두 개를 비교합니다:"
 
 #: ../Doc/library/difflib.rst:705
 msgid "``result`` is a list of strings, so let's pretty-print it:"
-msgstr ""
+msgstr "``result``\\는 문자열의 리스트이므로, 예쁜 인쇄를 해봅시다:"
 
 #: ../Doc/library/difflib.rst:720
 msgid "As a single multi-line string it looks like this:"
-msgstr ""
+msgstr "여러 줄이 포함된 하나의 문자열로 만들면 이렇게 보입니다:"
 
 #: ../Doc/library/difflib.rst:739
 msgid "A command-line interface to difflib"
-msgstr ""
+msgstr "difflib의 명령 줄 인터페이스"
 
 #: ../Doc/library/difflib.rst:741
 msgid ""
@@ -820,4 +985,5 @@ msgid ""
 "It is also contained in the Python source distribution, as "
 ":file:`Tools/scripts/diff.py`."
 msgstr ""
-
+"이 예제는 difflib를 사용하여 ``diff``\\와 유사한 유틸리티를 만드는 방법을 보여줍니다. 이것은 파이썬 소스 배포판에 "
+":file:`Tools/scripts/diff.py`\\로 포함되어 있습니다."
