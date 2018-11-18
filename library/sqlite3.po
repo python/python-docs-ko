@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 06:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../Doc/library/sqlite3.rst:2
 msgid ":mod:`sqlite3` --- DB-API 2.0 interface for SQLite databases"
-msgstr ""
+msgstr ":mod:`sqlite3` --- SQLite 데이터베이스용 DB-API 2.0 인터페이스"
 
 #: ../Doc/library/sqlite3.rst:9
 msgid "**Source code:** :source:`Lib/sqlite3/`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/sqlite3/`"
 
 #: ../Doc/library/sqlite3.rst:13
 msgid ""
@@ -34,6 +33,10 @@ msgid ""
 "possible to prototype an application using SQLite and then port the code "
 "to a larger database such as PostgreSQL or Oracle."
 msgstr ""
+"SQLite는 별도의 서버 프로세스가 필요 없고 SQL 질의 언어의 비표준 변형을 사용하여 데이터베이스에 액세스할 수 있는 경량 디스크 "
+"기반 데이터베이스를 제공하는 C 라이브러리입니다. 일부 응용 프로그램은 내부 데이터 저장을 위해 SQLite를 사용할 수 있습니다. "
+"SQLite를 사용하여 응용 프로그램을 프로토타입 한 다음 PostgreSQL 이나 Oracle과 같은 더 큰 데이터베이스로 코드를 "
+"이식할 수도 있습니다."
 
 #: ../Doc/library/sqlite3.rst:20
 msgid ""
@@ -41,6 +44,8 @@ msgid ""
 "interface compliant with the DB-API 2.0 specification described by "
 ":pep:`249`."
 msgstr ""
+"sqlite3 모듈은 Gerhard Häring이 썼습니다. :pep:`249`\\에서 설명하는 DB-API 2.0 명세를 준수하는 "
+"SQL 인터페이스를 제공합니다."
 
 #: ../Doc/library/sqlite3.rst:23
 msgid ""
@@ -48,12 +53,14 @@ msgid ""
 "that represents the database.  Here the data will be stored in the "
 ":file:`example.db` file::"
 msgstr ""
+"모듈을 사용하려면, 먼저 데이터베이스를 나타내는 :class:`Connection` 객체를 만들어야 합니다. 여기서 데이터는 "
+":file:`example.db` 파일에 저장됩니다 ::"
 
 #: ../Doc/library/sqlite3.rst:30
 msgid ""
 "You can also supply the special name ``:memory:`` to create a database in"
 " RAM."
-msgstr ""
+msgstr "특수 이름 ``:memory:``\\를 제공하여 램에 데이터베이스를 만들 수도 있습니다."
 
 #: ../Doc/library/sqlite3.rst:32
 msgid ""
@@ -61,12 +68,14 @@ msgid ""
 "object and call its :meth:`~Cursor.execute` method to perform SQL "
 "commands::"
 msgstr ""
+"일단 :class:`Connection`\\를 얻으면, :class:`Cursor` 객체를 만들고 "
+":meth:`~Cursor.execute` 메서드를 호출하여 SQL 명령을 수행할 수 있습니다.::"
 
 #: ../Doc/library/sqlite3.rst:51
 msgid ""
 "The data you've saved is persistent and is available in subsequent "
 "sessions::"
-msgstr ""
+msgstr "저장한 데이터는 영구적이며 이후 세션에서 사용할 수 있습니다::"
 
 #: ../Doc/library/sqlite3.rst:57
 msgid ""
@@ -76,6 +85,9 @@ msgid ""
 " to an SQL injection attack (see https://xkcd.com/327/ for humorous "
 "example of what can go wrong)."
 msgstr ""
+"일반적으로 SQL 연산은 파이썬 변수의 값을 사용해야 합니다. 파이썬의 문자열 연산을 사용하여 질의를 조합해서는 안 됩니다. 그렇게 하는"
+" 것은 안전하지 않기 때문입니다; 프로그램이 SQL 인젝션 공격에 취약하게 만듭니다 (잘못될 수 있는 유머러스한 예를 보려면 "
+"https://xkcd.com/327/ 를 참조하십시오)."
 
 #: ../Doc/library/sqlite3.rst:62
 #, python-format
@@ -86,6 +98,9 @@ msgid ""
 "method.  (Other database modules may use a different placeholder, such as"
 " ``%s`` or ``:1``.) For example::"
 msgstr ""
+"대신 DB-API의 매개 변수 치환을 사용하십시오. 값을 사용하고자 할 때마다 ``?``\\를 자리 표시자로 넣은 다음, 커서의 "
+":meth:`~Cursor.execute` 메서드에 두 번째 인자로 값들의 튜플을 제공하십시오. (다른 데이터베이스 모듈은 다른 자리 "
+"표시자를 사용할 수 있습니다, 가령 ``%s`` 나 ``:1``.) 예를 들면::"
 
 #: ../Doc/library/sqlite3.rst:84
 msgid ""
@@ -94,76 +109,79 @@ msgid ""
 ":meth:`~Cursor.fetchone` method to retrieve a single matching row, or "
 "call :meth:`~Cursor.fetchall` to get a list of the matching rows."
 msgstr ""
+"SELECT 문을 실행한 후 데이터를 꺼내려면, 커서를 :term:`이터레이터 <iterator>`\\로 취급하거나, 커서의 "
+":meth:`~Cursor.fetchone` 메서드를 호출하여 일치하는 단일 행을 꺼내거나, "
+":meth:`~Cursor.fetchall`\\를 호출하여 일치하는 행의 리스트를 가져올 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:89
 msgid "This example uses the iterator form::"
-msgstr ""
+msgstr "이 예제는 이터레이터 방식을 사용합니다::"
 
 #: ../Doc/library/sqlite3.rst:104
 msgid "https://github.com/ghaering/pysqlite"
-msgstr ""
+msgstr "https://github.com/ghaering/pysqlite"
 
 #: ../Doc/library/sqlite3.rst:103
 msgid ""
 "The pysqlite web page -- sqlite3 is developed externally under the name "
 "\"pysqlite\"."
-msgstr ""
+msgstr "pysqlite 웹 페이지 -- sqlite3은 \"pysqlite\"라는 이름으로 외부에서 개발되었습니다."
 
 #: ../Doc/library/sqlite3.rst:108
 msgid "https://www.sqlite.org"
-msgstr ""
+msgstr "https://www.sqlite.org"
 
 #: ../Doc/library/sqlite3.rst:107
 msgid ""
 "The SQLite web page; the documentation describes the syntax and the "
 "available data types for the supported SQL dialect."
-msgstr ""
+msgstr "SQLite 웹 페이지; 설명서는 지원되는 SQL 언어에 대한 문법과 사용 가능한 데이터형을 설명합니다."
 
 #: ../Doc/library/sqlite3.rst:111
 msgid "https://www.w3schools.com/sql/"
-msgstr ""
+msgstr "https://www.w3schools.com/sql/"
 
 #: ../Doc/library/sqlite3.rst:111
 msgid "Tutorial, reference and examples for learning SQL syntax."
-msgstr ""
+msgstr "SQL 문법 학습을 위한 자습서, 레퍼런스 및 예제"
 
 #: ../Doc/library/sqlite3.rst:113
 msgid ":pep:`249` - Database API Specification 2.0"
-msgstr ""
+msgstr ":pep:`249` - 데이터베이스 API 명세 2.0"
 
 #: ../Doc/library/sqlite3.rst:114
 msgid "PEP written by Marc-André Lemburg."
-msgstr ""
+msgstr "Marc-André Lemburg가 작성한 PEP."
 
 #: ../Doc/library/sqlite3.rst:120
 msgid "Module functions and constants"
-msgstr ""
+msgstr "모듈 함수와 상수"
 
 #: ../Doc/library/sqlite3.rst:125
 msgid ""
 "The version number of this module, as a string. This is not the version "
 "of the SQLite library."
-msgstr ""
+msgstr "이 모듈의 버전 번호(문자열). SQLite 라이브러리의 버전이 아닙니다."
 
 #: ../Doc/library/sqlite3.rst:131
 msgid ""
 "The version number of this module, as a tuple of integers. This is not "
 "the version of the SQLite library."
-msgstr ""
+msgstr "이 모듈의 버전 번호(정수들의 튜플). SQLite 라이브러리의 버전이 아닙니다."
 
 #: ../Doc/library/sqlite3.rst:137
 msgid "The version number of the run-time SQLite library, as a string."
-msgstr ""
+msgstr "런타임 SQLite 라이브러리의 버전 번호(문자열)."
 
 #: ../Doc/library/sqlite3.rst:142
 msgid "The version number of the run-time SQLite library, as a tuple of integers."
-msgstr ""
+msgstr "런타임 SQLite 라이브러리의 버전 번호(정수들의 튜플)."
 
 #: ../Doc/library/sqlite3.rst:147 ../Doc/library/sqlite3.rst:160
 msgid ""
 "This constant is meant to be used with the *detect_types* parameter of "
 "the :func:`connect` function."
-msgstr ""
+msgstr "이 상수는 :func:`connect` 함수의 *detect_types* 매개 변수에 사용됩니다."
 
 #: ../Doc/library/sqlite3.rst:150
 msgid ""
@@ -174,6 +192,10 @@ msgid ""
 "column, it will look into the converters dictionary and use the converter"
 " function registered for that type there."
 msgstr ""
+"이것을 설정하면 :mod:`sqlite3` 모듈은 반환되는 각 열에 대해 선언된 형을 구문 분석합니다. 선언된 형의 첫 번째 단어를 구문"
+" 분석합니다, 즉 \"integer primary key\"에서는 \"integer\"를, \"number (10)\"에서는 "
+"\"number\"를 구문 분석합니다. 그런 다음 해당 열에 대해, 변환기 딕셔너리를 조사하고 그 형에 대해 등록된 변환기 함수를 "
+"사용합니다."
 
 #: ../Doc/library/sqlite3.rst:163
 msgid ""
@@ -187,12 +209,19 @@ msgid ""
 "then we will parse out everything until the first blank for the column "
 "name: the column name would simply be \"x\"."
 msgstr ""
+"이것을 설정하면 SQLite 인터페이스는 반환되는 각 열의 열 이름을 구문 분석합니다. 거기에서 [mytype] 형태의 문자열을 찾은 "
+"다음 'mytype'을 열의 형으로 결정합니다. 변환기 딕셔너리에서 'mytype' 항목을 찾은 다음 거기에 있는 변환기 함수를 사용하여"
+" 값을 반환하려고 시도합니다. :attr:`Cursor.description`\\에서 발견되는 열 이름은 열 이름의 첫 번째 단어일 "
+"뿐입니다. 즉, SQL에서 ``'as \"x [datetime]\"'``\\와 같은 것을 사용하면, 열 이름의 첫 번째 공백까지 모든 "
+"것을 구문 분석합니다: 열 이름은 단순히 \"x\" 가 됩니다."
 
 #: ../Doc/library/sqlite3.rst:175
 msgid ""
 "Opens a connection to the SQLite database file *database*. By default "
 "returns a :class:`Connection` object, unless a custom *factory* is given."
 msgstr ""
+"SQLite 데이터베이스 파일 *database*\\에 대한 연결을 엽니다. 사용자 정의 *factory*\\가 주어지지 않는 한, "
+"기본적으로 :class:`Connection` 객체를 반환합니다."
 
 #: ../Doc/library/sqlite3.rst:178
 msgid ""
@@ -201,6 +230,9 @@ msgid ""
 "opened. You can use ``\":memory:\"`` to open a database connection to a "
 "database that resides in RAM instead of on disk."
 msgstr ""
+"*database*\\는 열릴 데이터베이스 파일의 경로명(절대 혹은 현재 작업 디렉터리에 대한 상대)을 제공하는 :term:`경로류 객체"
+" <path-like object>`\\입니다. ``\":memory:\"``\\를 사용하여 디스크 대신 램(RAM)에 있는 "
+"데이터베이스에 대한 데이터베이스 연결을 열 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:183
 msgid ""
@@ -210,6 +242,9 @@ msgid ""
 " connection should wait for the lock to go away until raising an "
 "exception. The default for the timeout parameter is 5.0 (five seconds)."
 msgstr ""
+"데이터베이스가 여러 연결을 통해 액세스 되고, 프로세스 중 하나가 데이터베이스를 수정할 때, 해당 트랜잭션이 커밋될 때까지 SQLite "
+"데이터베이스가 잠깁니다. *timeout* 매개 변수는 예외를 일으키기 전에 잠금이 해제되기를 연결이 기다려야 하는 시간을 지정합니다. "
+"timeout 매개 변수의 기본값은 5.0(5초)입니다."
 
 #: ../Doc/library/sqlite3.rst:189
 msgid ""
@@ -217,6 +252,8 @@ msgid ""
 ":attr:`~Connection.isolation_level` property of :class:`Connection` "
 "objects."
 msgstr ""
+"*isolation_level* 매개 변수는 :class:`Connection` 객체의 "
+":attr:`~Connection.isolation_level` 프로퍼티를 참조하십시오."
 
 #: ../Doc/library/sqlite3.rst:192
 msgid ""
@@ -226,6 +263,9 @@ msgid ""
 "**converters** registered with the module-level "
 ":func:`register_converter` function allow you to easily do that."
 msgstr ""
+"SQLite는 기본적으로 TEXT, INTEGER, REAL, BLOB 및 NULL 형만 지원합니다. 다른 형을 사용하려면 직접 지원을 "
+"추가해야 합니다. *detect_types* 매개 변수와 모듈 수준 :func:`register_converter` 함수로 등록된 사용자"
+" 정의 **변환기**\\를 사용하면 쉽게 할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:197
 msgid ""
@@ -233,6 +273,8 @@ msgid ""
 "it to any combination of :const:`PARSE_DECLTYPES` and "
 ":const:`PARSE_COLNAMES` to turn type detection on."
 msgstr ""
+"*detect_types*\\의 기본값은 0입니다 (즉, 형 감지가 없습니다). :const:`PARSE_DECLTYPES`\\와 "
+":const:`PARSE_COLNAMES`\\의 조합으로 설정하여 형 감지를 켤 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:201
 msgid ""
@@ -242,6 +284,9 @@ msgid ""
 "threads with the same connection writing operations should be serialized "
 "by the user to avoid data corruption."
 msgstr ""
+"기본적으로 *check_same_thread*\\는 :const:`True`\\며, 만들고 있는 스레드 만 이 연결을 사용할 수 "
+"있습니다. :const:`False`\\로 설정하면 반환된 연결을 여러 스레드에서 공유할 수 있습니다. 여러 스레드에서 같은 연결을 "
+"사용할 때, 데이터 손상을 피하려면 쓰기 연산을 사용자가 직렬화해야 합니다."
 
 #: ../Doc/library/sqlite3.rst:206
 msgid ""
@@ -250,10 +295,13 @@ msgid ""
 " class and make :func:`connect` use your class instead by providing your "
 "class for the *factory* parameter."
 msgstr ""
+"기본적으로, :mod:`sqlite3` 모듈은 connect 호출에 :class:`Connection` 클래스를 사용합니다. 그러나, "
+":class:`Connection` 클래스의 서브 클래스를 만들고 *factory* 매개 변수에 클래스를 제공하면 "
+":func:`connect`\\가 그 클래스를 사용하게 할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:211
 msgid "Consult the section :ref:`sqlite3-types` of this manual for details."
-msgstr ""
+msgstr "자세한 내용은 이 설명서의 섹션 :ref:`sqlite3-types`\\을 참조하십시오."
 
 #: ../Doc/library/sqlite3.rst:213
 msgid ""
@@ -262,6 +310,9 @@ msgid ""
 "that are cached for the connection, you can set the *cached_statements* "
 "parameter. The currently implemented default is to cache 100 statements."
 msgstr ""
+":mod:`sqlite3` 모듈은 내부적으로 SQL 구문 분석 오버헤드를 피하고자 명령문 캐시를 사용합니다. 연결에 대해 캐시 되는 "
+"명령문의 수를 명시적으로 설정하려면, *cached_statements* 매개 변수를 설정할 수 있습니다. 현재 구현된 기본값은 "
+"100개의 명령문을 캐시 하는 것입니다."
 
 #: ../Doc/library/sqlite3.rst:218
 msgid ""
@@ -269,6 +320,8 @@ msgid ""
 "specify options. For example, to open a database in read-only mode you "
 "can use::"
 msgstr ""
+"*uri*\\가 참이면 *database*\\는 URI로 해석됩니다. 이렇게 하면 옵션을 지정할 수 있습니다. 예를 들어, 읽기 전용 "
+"모드로 데이터베이스를 열려면 다음과 같이 할 수 있습니다::"
 
 #: ../Doc/library/sqlite3.rst:224
 msgid ""
@@ -276,14 +329,16 @@ msgid ""
 "options, can be found in the `SQLite URI documentation "
 "<https://www.sqlite.org/uri.html>`_."
 msgstr ""
+"인식되는 옵션 목록을 포함하여, 이 기능에 대한 자세한 내용은 `SQLite URI documentation "
+"<https://www.sqlite.org/uri.html>`_\\에서 찾을 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:227
 msgid "Added the *uri* parameter."
-msgstr ""
+msgstr "*uri* 매개 변수가 추가되었습니다."
 
 #: ../Doc/library/sqlite3.rst:230
 msgid "*database* can now also be a :term:`path-like object`, not only a string."
-msgstr ""
+msgstr "*database*\\는 이제 문자열뿐만 아니라 :term:`경로류 객체 <path-like object>` 일 수도 있습니다."
 
 #: ../Doc/library/sqlite3.rst:236
 msgid ""
@@ -294,6 +349,10 @@ msgid ""
 "*typename* and the name of the type in your query are matched in case-"
 "insensitive manner."
 msgstr ""
+"데이터베이스의 바이트열을 사용자 정의 파이썬 형으로 변환할 수 있는 콜러블을 등록합니다. 콜러블은 형 *typename* 인 모든 "
+"데이터베이스 값에 대해 호출됩니다. 형 감지 작동 방식에 대해서는 :func:`connect` 함수의 매개 변수 "
+"*detect_types*\\를 참고하십시오. *typename*\\과 질의의 형 이름은 대/소문자를 구분하지 않고 일치시킴에 "
+"유의하십시오."
 
 #: ../Doc/library/sqlite3.rst:245
 msgid ""
@@ -302,6 +361,9 @@ msgid ""
 "parameter the Python value, and must return a value of the following "
 "types: int, float, str or bytes."
 msgstr ""
+"사용자 정의 파이썬 형 *type*\\을 SQLite의 지원되는 형 중 하나로 변환할 수 있는 콜러블을 등록합니다. 콜러블 "
+"*callable*\\은 단일 매개 변수로 파이썬 값을 받아들이고 다음 형들의 값을 반환해야 합니다: int, float, str 또는 "
+"bytes."
 
 #: ../Doc/library/sqlite3.rst:253
 msgid ""
@@ -310,10 +372,12 @@ msgid ""
 "is syntactically correct, only that there are no unclosed string literals"
 " and the statement is terminated by a semicolon."
 msgstr ""
+"문자열 *sql*\\에 세미콜론으로 끝나는 하나 이상의 완전한 SQL 문이 포함되어 있으면 :const:`True`\\를 반환합니다. "
+"SQL이 문법적으로 올바른지 확인하지는 않습니다. 닫히지 않은 문자열 리터럴이 없고 명령문이 세미콜론으로 끝나는지만 확인합니다."
 
 #: ../Doc/library/sqlite3.rst:258
 msgid "This can be used to build a shell for SQLite, as in the following example:"
-msgstr ""
+msgstr "이것은 다음 예제와 같이, SQLite 용 셸을 만드는데 사용할 수 있습니다:"
 
 #: ../Doc/library/sqlite3.rst:266
 msgid ""
@@ -323,14 +387,17 @@ msgid ""
 " you will get tracebacks from callbacks on ``sys.stderr``. Use "
 ":const:`False` to disable the feature again."
 msgstr ""
+"기본적으로 사용자 정의 함수, 집계(aggregates), 변환기, 인가(authorizer) 콜백 등에서는 트레이스백을 얻지 못합니다."
+" 디버깅하려면 *flag*\\를 ``True``\\로 설정하여 이 함수를 호출할 수 있습니다. 그러면, ``sys.stderr``\\로 "
+"콜백의 트레이스백을 얻게 됩니다. 기능을 다시 비활성화하려면 :const:`False`\\를 사용하십시오."
 
 #: ../Doc/library/sqlite3.rst:276
 msgid "Connection Objects"
-msgstr ""
+msgstr "Connection 객체"
 
 #: ../Doc/library/sqlite3.rst:280
 msgid "A SQLite database connection has the following attributes and methods:"
-msgstr ""
+msgstr "SQLite 데이터베이스 연결에는 다음과 같은 어트리뷰트와 메서드가 있습니다:"
 
 #: ../Doc/library/sqlite3.rst:284
 msgid ""
@@ -339,12 +406,17 @@ msgid ""
 "See section :ref:`sqlite3-controlling-transactions` for a more detailed "
 "explanation."
 msgstr ""
+"현재의 기본 격리 수준을 가져오거나 설정합니다. 자동 커밋 모드를 뜻하는 :const:`None` 이나 \"DEFERRED\", "
+"\"IMMEDIATE\" 또는 \"EXCLUSIVE\" 중 하나입니다. 자세한 설명은 :ref:`sqlite3-controlling-"
+"transactions` 절을 참조하십시오."
 
 #: ../Doc/library/sqlite3.rst:290
 msgid ""
 ":const:`True` if a transaction is active (there are uncommitted changes),"
 " :const:`False` otherwise.  Read-only attribute."
 msgstr ""
+"트랜잭션이 활성화 상태면(커밋되지 않은 변경 사항이 있으면) :const:`True`, 그렇지 않으면 :const:`False`. 읽기 "
+"전용 어트리뷰트."
 
 #: ../Doc/library/sqlite3.rst:297
 msgid ""
@@ -352,6 +424,8 @@ msgid ""
 "supplied, this must be a callable returning an instance of "
 ":class:`Cursor` or its subclasses."
 msgstr ""
+"cursor 메서드는 단일 선택적 매개 변수 *factory*\\를 받아들입니다. 제공되면, 이것은 :class:`Cursor` 나 그 "
+"서브 클래스의 인스턴스를 반환하는 콜러블이어야 합니다."
 
 #: ../Doc/library/sqlite3.rst:303
 msgid ""
@@ -361,12 +435,15 @@ msgid ""
 "the data you've written to the database, please check you didn't forget "
 "to call this method."
 msgstr ""
+"이 메서드는 현재 트랜잭션을 커밋합니다. 이 메서드를 호출하지 않으면, 마지막 ``commit()`` 호출 이후에 수행한 작업은 다른 "
+"데이터베이스 연결에서 볼 수 없습니다. 데이터베이스에 기록한 데이터가 왜 보이지 않는지 궁금하면, 이 메서드를 호출하는 것을 잊지 "
+"않았는지 확인하십시오."
 
 #: ../Doc/library/sqlite3.rst:310
 msgid ""
 "This method rolls back any changes to the database since the last call to"
 " :meth:`commit`."
-msgstr ""
+msgstr "이 메서드는 마지막 :meth:`commit` 호출 이후의 데이터베이스에 대한 모든 변경 사항을 되돌립니다."
 
 #: ../Doc/library/sqlite3.rst:315
 msgid ""
@@ -375,6 +452,8 @@ msgid ""
 "connection without calling :meth:`commit` first, your changes will be "
 "lost!"
 msgstr ""
+"데이터베이스 연결을 닫습니다. 자동으로 :meth:`commit`\\을 호출하지 않음에 유의하십시오. :meth:`commit`\\를 "
+"먼저 호출하지 않고 데이터베이스 연결을 닫으면 변경 사항이 손실됩니다!"
 
 #: ../Doc/library/sqlite3.rst:321
 msgid ""
@@ -383,6 +462,8 @@ msgid ""
 ":meth:`~Cursor.execute` method with the *parameters* given, and returns "
 "the cursor."
 msgstr ""
+"이것은 비표준 바로 가기인데, :meth:`~Connection.cursor` 메서드를 호출하여 커서 객체를 만들고, 지정된 "
+"*parameters*\\를 사용하여 커서의 :meth:`~Cursor.execute` 메서드를 호출한 다음, 커서를 반환합니다."
 
 #: ../Doc/library/sqlite3.rst:328
 msgid ""
@@ -391,6 +472,8 @@ msgid ""
 ":meth:`~Cursor.executemany` method with the *parameters* given, and "
 "returns the cursor."
 msgstr ""
+"이것은 비표준 바로 가기인데, :meth:`~Connection.cursor` 메서드를 호출하여 커서 객체를 만들고, 지정된 "
+"*parameters*\\를 사용하여 커서의 :meth:`~Cursor.executemany` 메서드를 호출한 다음, 커서를 반환합니다."
 
 #: ../Doc/library/sqlite3.rst:335
 msgid ""
@@ -399,6 +482,9 @@ msgid ""
 ":meth:`~Cursor.executescript` method with the given *sql_script*, and "
 "returns the cursor."
 msgstr ""
+"이것은 비표준 바로 가기인데, :meth:`~Connection.cursor` 메서드를 호출하여 커서 객체를 만들고, 지정된 "
+"*sql_script*\\를 사용하여 커서의 :meth:`~Cursor.executescript` 메서드를 호출한 다음, 커서를 "
+"반환합니다."
 
 #: ../Doc/library/sqlite3.rst:342
 msgid ""
@@ -408,21 +494,24 @@ msgid ""
 "take any number of arguments), and *func* is a Python callable that is "
 "called as the SQL function."
 msgstr ""
+"나중에 함수 이름 *name*\\으로 SQL 문에서 사용할 수 있는 사용자 정의 함수를 만듭니다. *num_params*\\는 함수가 "
+"받아들이는 매개 변수의 수입니다 (*num_params*\\가 -1이면 함수는 임의의 인자를 취할 수 있습니다). *func*\\는 "
+"SQL 함수로 호출되는 파이썬 콜러블입니다."
 
 #: ../Doc/library/sqlite3.rst:348
 msgid ""
 "The function can return any of the types supported by SQLite: bytes, str,"
 " int, float and ``None``."
-msgstr ""
+msgstr "함수는 SQLite가 지원하는 모든 형을 반환할 수 있습니다: bytes, str, int, float 및 ``None``."
 
 #: ../Doc/library/sqlite3.rst:351 ../Doc/library/sqlite3.rst:368
 #: ../Doc/library/sqlite3.rst:482 ../Doc/library/sqlite3.rst:632
 msgid "Example:"
-msgstr ""
+msgstr "예:"
 
 #: ../Doc/library/sqlite3.rst:358
 msgid "Creates a user-defined aggregate function."
-msgstr ""
+msgstr "사용자 정의 집계(aggregate) 함수를 만듭니다."
 
 #: ../Doc/library/sqlite3.rst:360
 msgid ""
@@ -431,12 +520,16 @@ msgid ""
 "may take any number of arguments), and a ``finalize`` method which will "
 "return the final result of the aggregate."
 msgstr ""
+"매개 변수의 수 *num_params*\\(*num_params*\\가 -1이면 함수는 임의의 인자를 취할 수 있습니다)를 받아들이며, "
+"집계 클래스는 ``step`` 메서드와 집계의 최종 결과를 반환하는 ``finalize`` 메서드를 구현해야 합니다."
 
 #: ../Doc/library/sqlite3.rst:365
 msgid ""
 "The ``finalize`` method can return any of the types supported by SQLite: "
 "bytes, str, int, float and ``None``."
 msgstr ""
+"``finalize`` 메서드는 SQLite가 지원하는 모든 형을 반환할 수 있습니다: bytes, str, int, float 및 "
+"``None``."
 
 #: ../Doc/library/sqlite3.rst:375
 msgid ""
@@ -447,24 +540,27 @@ msgid ""
 " sorting (ORDER BY in SQL) so your comparisons don't affect other SQL "
 "operations."
 msgstr ""
+"지정된 *name* 과 *callable*\\로 정렬법(collation)을 만듭니다. 콜러블에는 두 개의 문자열 인자가 전달됩니다. "
+"첫째가 둘째보다 작은 순서면 -1, 같은 순서면 0, 첫째가 둘째보다 큰 순서면 1을 반환 해야 합니다. 이것은 정렬(SQL의 ORDER"
+" BY)을 제어하므로, 여러분의 비교는 다른 SQL 연산에 영향을 주지 않습니다."
 
 #: ../Doc/library/sqlite3.rst:381
 msgid ""
 "Note that the callable will get its parameters as Python bytestrings, "
 "which will normally be encoded in UTF-8."
-msgstr ""
+msgstr "콜러블 객체는 보통 UTF-8로 인코딩된 파이썬 바이트열로 매개 변수를 가져옵니다."
 
 #: ../Doc/library/sqlite3.rst:384
 msgid ""
 "The following example shows a custom collation that sorts \"the wrong "
 "way\":"
-msgstr ""
+msgstr "다음 예제는 \"잘못된 방법\"으로 정렬하는 사용자 정의 정렬법을 보여줍니다:"
 
 #: ../Doc/library/sqlite3.rst:388
 msgid ""
 "To remove a collation, call ``create_collation`` with ``None`` as "
 "callable::"
-msgstr ""
+msgstr "정렬법을 제거하려면 callable에 ``None``\\을 사용해서 ``create_collation``\\를 호출하십시오::"
 
 #: ../Doc/library/sqlite3.rst:395
 msgid ""
@@ -472,6 +568,8 @@ msgid ""
 "that might be executing on the connection. The query will then abort and "
 "the caller will get an exception."
 msgstr ""
+"연결에서 실행 중일 수 있는 모든 질의를 중단하려면, 이 메서드를 다른 스레드에서 호출할 수 있습니다. 그러면 질의가 중단되고 호출자는 "
+"예외를 받습니다."
 
 #: ../Doc/library/sqlite3.rst:402
 msgid ""
@@ -482,6 +580,10 @@ msgid ""
 "an error and :const:`SQLITE_IGNORE` if the column should be treated as a "
 "NULL value. These constants are available in the :mod:`sqlite3` module."
 msgstr ""
+"이 루틴은 콜백을 등록합니다. 콜백은 데이터베이스의 테이블 열에 액세스할 때마다 호출됩니다. 콜백은 액세스가 허용되면 "
+":const:`SQLITE_OK`\\를 반환하고, 전체 SQL 문을 에러를 일으키며 중단해야 하면 "
+":const:`SQLITE_DENY`\\를, 열을 NULL 값으로 처리하려면 :const:`SQLITE_IGNORE`\\를 반환해야 "
+"합니다. 이 상수들은 :mod:`sqlite3` 모듈에 있습니다."
 
 #: ../Doc/library/sqlite3.rst:409
 msgid ""
@@ -493,6 +595,10 @@ msgid ""
 "responsible for the access attempt or :const:`None` if this access "
 "attempt is directly from input SQL code."
 msgstr ""
+"콜백의 첫 번째 인자는 어떤 종류의 연산이 인가받으려 하는지를 나타냅니다. 두 번째와 세 번째 인자는 첫 번째 인자에 따라 인자이거나 "
+":const:`None`\\이 됩니다. 네 번째 인자는 해당하면 데이터베이스 이름(\"main\", \"temp\" 등)입니다. 다섯 "
+"번째 인자는 액세스 시도를 담당하는 가장 안쪽의 트리거나 뷰의 이름이거나, 이 액세스 시도가 입력 SQL 코드에서 직접 발생했으면 "
+":const:`None`\\입니다."
 
 #: ../Doc/library/sqlite3.rst:416
 msgid ""
@@ -501,6 +607,8 @@ msgid ""
 "depending on the first one. All necessary constants are available in the "
 ":mod:`sqlite3` module."
 msgstr ""
+"첫 번째 인자에 가능한 값과 첫 번째 인자에 의존하는 두 번째 및 세 번째 인자의 의미에 대해서는 SQLite 문서를 참조하십시오. "
+"필요한 모든 상수는 :mod:`sqlite3` 모듈에 있습니다."
 
 #: ../Doc/library/sqlite3.rst:423
 msgid ""
@@ -509,12 +617,14 @@ msgid ""
 " get called from SQLite during long-running operations, for example to "
 "update a GUI."
 msgstr ""
+"이 루틴은 콜백을 등록합니다. 콜백은 SQLite 가상 머신의 매 *n*\\개의 명령어마다 호출됩니다. 장시간 실행되는 작업 중에 "
+"SQLite로부터 호출되기를 원할 때 유용합니다, 예를 들어 GUI를 갱신하는데 사용할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:428
 msgid ""
 "If you want to clear any previously installed progress handler, call the "
 "method with :const:`None` for *handler*."
-msgstr ""
+msgstr "이전에 설치된 모든 진행 처리기를 지우려면 *handler*\\로 :const:`None`\\을 사용하여 메서드를 호출하십시오."
 
 #: ../Doc/library/sqlite3.rst:431
 msgid ""
@@ -522,12 +632,13 @@ msgid ""
 "currently executing query and cause it to raise an "
 ":exc:`OperationalError` exception."
 msgstr ""
+"처리기 함수에서 0이 아닌 값을 반환하면 현재 실행 중인 질의가 종료되고 :exc:`OperationalError` 예외가 발생합니다."
 
 #: ../Doc/library/sqlite3.rst:438
 msgid ""
 "Registers *trace_callback* to be called for each SQL statement that is "
 "actually executed by the SQLite backend."
-msgstr ""
+msgstr "SQLite 백 엔드가 실제로 실행하는 각 SQL 문마다 호출할 *trace_callback*\\을 등록합니다."
 
 #: ../Doc/library/sqlite3.rst:441
 msgid ""
@@ -538,10 +649,13 @@ msgid ""
 "management of the Python module and the execution of triggers defined in "
 "the current database."
 msgstr ""
+"콜백에 전달되는 유일한 인자는 실행 중인 문장(문자열)입니다. 콜백의 반환 값은 무시됩니다. 백 엔드는 "
+":meth:`Cursor.execute` 메서드에 전달된 명령문만 실행하는 것은 아님에 유의하시기 바랍니다. 다른 소스로는 파이썬 모듈의"
+" 트랜잭션 관리와 현재 데이터베이스에 정의된 트리거의 실행이 있습니다."
 
 #: ../Doc/library/sqlite3.rst:447
 msgid "Passing :const:`None` as *trace_callback* will disable the trace callback."
-msgstr ""
+msgstr ":const:`None`\\을 *trace_callback*\\로 전달하면 추적 콜백을 비활성화합니다."
 
 #: ../Doc/library/sqlite3.rst:454
 msgid ""
@@ -550,10 +664,13 @@ msgid ""
 "aggregates or whole new virtual table implementations.  One well-known "
 "extension is the fulltext-search extension distributed with SQLite."
 msgstr ""
+"이 루틴은 SQLite 엔진이 공유 라이브러리에서 SQLite 확장을 로드하는 것을 허용/불허합니다. SQLite 확장은 새 함수, 집계"
+" 또는 완전히 새로운 가상 테이블 구현을 정의할 수 있습니다. 잘 알려진 확장 중 하나는 SQLite와 함께 배포되는 전체 텍스트 검색 "
+"확장입니다."
 
 #: ../Doc/library/sqlite3.rst:459 ../Doc/library/sqlite3.rst:471
 msgid "Loadable extensions are disabled by default. See [#f1]_."
-msgstr ""
+msgstr "로드 가능한 확장은 기본적으로 비활성화되어 있습니다. [#f1]_\\를 보세요."
 
 #: ../Doc/library/sqlite3.rst:467
 msgid ""
@@ -561,6 +678,8 @@ msgid ""
 " enable extension loading with :meth:`enable_load_extension` before you "
 "can use this routine."
 msgstr ""
+"이 루틴은 공유 라이브러리에서 SQLite 확장을 로드합니다. 이 루틴을 사용하려면 먼저 "
+":meth:`enable_load_extension`\\로 확장 로드를 활성화해야 합니다."
 
 #: ../Doc/library/sqlite3.rst:477
 msgid ""
@@ -569,6 +688,8 @@ msgid ""
 "way, you can implement more advanced ways of returning results, such  as "
 "returning an object that can also access columns by name."
 msgstr ""
+"이 어트리뷰트를 커서와 원본 행을 튜플로 받아들이고 실제 결과 행을 반환하는 콜러블로 변경할 수 있습니다. 이렇게 하면, 이름으로 열을 "
+"액세스할 수 있는 객체를 반환하는 것과 같이, 결과를 반환하는 더 고급 방식을 구현할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:486
 msgid ""
@@ -579,6 +700,10 @@ msgid ""
 "memory overhead. It will probably be better than your own custom "
 "dictionary-based approach or even a db_row based solution."
 msgstr ""
+"튜플을 반환하는 것으로 충분하지 않고 열에 대한 이름 기반 액세스를 원하면, :attr:`row_factory`\\를 고도로 최적화된 "
+":class:`sqlite3.Row` 형으로 설정하는 것을 고려해야 합니다. :class:`Row`\\는 메모리 오버헤드가 거의 없이 "
+"열에 대해 인덱스 기반과 대소 문자를 구분하지 않는 이름 기반 액세스를 제공합니다. 아마도 여러분 자신의 사용자 정의 딕셔너리 기반 "
+"접근법이나 심지어 db_row 기반 해법보다 더 좋을 것입니다."
 
 #: ../Doc/library/sqlite3.rst:498
 msgid ""
@@ -587,22 +712,25 @@ msgid ""
 " the :mod:`sqlite3` module will return Unicode objects for ``TEXT``. If "
 "you want to return bytestrings instead, you can set it to :class:`bytes`."
 msgstr ""
+"이 어트리뷰트를 사용하면 ``TEXT`` 데이터형에 대해 반환되는 객체를 제어할 수 있습니다. 기본적으로, 이 어트리뷰트는 "
+":class:`str`\\로 설정되고 :mod:`sqlite3` 모듈은 ``TEXT``\\에 대해 유니코드 객체를 반환합니다. 대신 "
+"바이트열을 반환하려면, :class:`bytes`\\로 설정할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:503
 msgid ""
 "You can also set it to any other callable that accepts a single "
 "bytestring parameter and returns the resulting object."
-msgstr ""
+msgstr "하나의 바이트열 매개 변수를 받아들이고 결과 객체를 반환하는 다른 콜러블 객체로 설정할 수도 있습니다."
 
 #: ../Doc/library/sqlite3.rst:506
 msgid "See the following example code for illustration:"
-msgstr ""
+msgstr "예시를 위해 다음 예제 코드를 참조하십시오:"
 
 #: ../Doc/library/sqlite3.rst:513
 msgid ""
 "Returns the total number of database rows that have been modified, "
 "inserted, or deleted since the database connection was opened."
-msgstr ""
+msgstr "데이터베이스 연결이 열린 후 수정, 삽입 또는 삭제된 데이터베이스 행의 총수를 반환합니다."
 
 #: ../Doc/library/sqlite3.rst:519
 msgid ""
@@ -611,10 +739,12 @@ msgid ""
 "provides the same capabilities as the :kbd:`.dump` command in the "
 ":program:`sqlite3` shell."
 msgstr ""
+"SQL 텍스트 형식으로 데이터베이스를 덤프하는 이터레이터를 반환합니다. 나중에 복원할 수 있도록 메모리 데이터베이스를 저장할 때 "
+"유용합니다. 이 함수는 :program:`sqlite3` 셸의 :kbd:`.dump` 명령과 같은 기능을 제공합니다."
 
 #: ../Doc/library/sqlite3.rst:524
 msgid "Example::"
-msgstr ""
+msgstr "예::"
 
 #: ../Doc/library/sqlite3.rst:537
 msgid ""
@@ -623,6 +753,8 @@ msgid ""
 "copy will be written into the mandatory argument *target*, that must be "
 "another :class:`Connection` instance."
 msgstr ""
+"이 메서드는 SQLite 데이터베이스의 백업을 만드는데, 다른 클라이언트가 액세스하고 있거나 같은 연결로 동시에 액세스하고 있어도 "
+"됩니다. 복사본은 필수 인자 *target*\\에 기록되며, 이것은 다른 :class:`Connection` 인스턴스여야 합니다."
 
 #: ../Doc/library/sqlite3.rst:542
 msgid ""
@@ -630,6 +762,8 @@ msgid ""
 "entire database is copied in a single step; otherwise the method performs"
 " a loop copying up to *pages* pages at a time."
 msgstr ""
+"기본적으로, 또는 *pages*\\가 ``0`` 이나 음의 정수이면, 전체 데이터베이스가 단일 단계로 복사됩니다; 그렇지 않으면 이 "
+"메서드는 한 번에 최대 *pages* 페이지만큼 복사하는 루프를 수행합니다."
 
 #: ../Doc/library/sqlite3.rst:546
 msgid ""
@@ -639,6 +773,9 @@ msgid ""
 "*remaining* number of pages still to be copied and the *total* number of "
 "pages."
 msgstr ""
+"*progress*\\가 지정되면, ``None`` 또는 매 이터레이션마다 세 개의 정수 인자로 실행되는 콜러블 객체여야 합니다. 세 "
+"인자는 각각 직전 이터레이션의 *상태(status)*, 아직 복사해야 할 *남은(remaining)* 페이지 수, *전체(total)* "
+"페이지 수입니다."
 
 #: ../Doc/library/sqlite3.rst:551
 msgid ""
@@ -648,6 +785,9 @@ msgid ""
 "the name specified after the ``AS`` keyword in an ``ATTACH DATABASE`` "
 "statement for an attached database."
 msgstr ""
+"*name* 인자는 복사할 데이터베이스 이름을 지정합니다: main 데이터베이스를 나타내는 ``\"main\"``, 기본값, 임시 "
+"데이터베이스를 나타내는 ``\"temp\"`` 또는 첨부된 데이터베이스를 위한 ``ATTACH DATABASE`` 문에서 ``AS`` "
+"키워드 뒤에 지정된 이름을 포함하는 문자열이어야 합니다."
 
 #: ../Doc/library/sqlite3.rst:557
 msgid ""
@@ -655,26 +795,28 @@ msgid ""
 "successive attempts to backup remaining pages, can be specified either as"
 " an integer or a floating point value."
 msgstr ""
+"*sleep* 인자는 남은 페이지를 백업하는 연속적인 시도 사이에서 잠잘 시간을 초 단위로 지정하며, 정수 또는 부동 소수점 값으로 "
+"지정할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:561
 msgid "Example 1, copy an existing database into another::"
-msgstr ""
+msgstr "예제 1, 기존 데이터베이스를 다른 데이터베이스로 복사::"
 
 #: ../Doc/library/sqlite3.rst:572
 msgid "Example 2, copy an existing database into a transient copy::"
-msgstr ""
+msgstr "예제 2, 기존 데이터베이스를 임시 복사본으로 복사::"
 
 #: ../Doc/library/sqlite3.rst:580
 msgid "Availability: SQLite 3.6.11 or higher"
-msgstr ""
+msgstr "가용성: SQLite 3.6.11 이상"
 
 #: ../Doc/library/sqlite3.rst:588
 msgid "Cursor Objects"
-msgstr ""
+msgstr "Cursor 객체"
 
 #: ../Doc/library/sqlite3.rst:592
 msgid "A :class:`Cursor` instance has the following attributes and methods."
-msgstr ""
+msgstr ":class:`Cursor` 인스턴스에는 다음과 같은 어트리뷰트와 메서드가 있습니다."
 
 #: ../Doc/library/sqlite3.rst:596
 msgid ""
@@ -683,10 +825,12 @@ msgid ""
 " two kinds of placeholders: question marks (qmark style) and named "
 "placeholders (named style)."
 msgstr ""
+"SQL 문을 실행합니다. SQL 문을 매개 변수화(즉, SQL 리터럴 대신 자리 표시자)할 수 있습니다. :mod:`sqlite3` "
+"모듈은 두 가지 자리 표시자를 지원합니다: 물음표(qmark 스타일)와 이름있는 자리 표시자(named 스타일)."
 
 #: ../Doc/library/sqlite3.rst:601
 msgid "Here's an example of both styles:"
-msgstr ""
+msgstr "다음은 두 스타일의 예입니다:"
 
 #: ../Doc/library/sqlite3.rst:605
 msgid ""
@@ -695,6 +839,8 @@ msgid ""
 " Use :meth:`executescript` if you want to execute multiple SQL statements"
 " with one call."
 msgstr ""
+":meth:`execute`\\는 단일 SQL 문만 실행합니다. 하나 이상의 명령문을 실행하려고 하면 :exc:`.Warning`\\이 "
+"발생합니다. 하나의 호출로 여러 SQL 문을 실행하려면 :meth:`executescript`\\를 사용하십시오."
 
 #: ../Doc/library/sqlite3.rst:613
 msgid ""
@@ -703,10 +849,12 @@ msgid ""
 "allows using an :term:`iterator` yielding parameters instead of a "
 "sequence."
 msgstr ""
+"시퀀스 *seq_of_parameters*\\에 있는 모든 매개 변수 시퀀스나 매핑에 대해 SQL 명령을 실행합니다. "
+":mod:`sqlite3` 모듈은 시퀀스 대신 매개 변수를 산출하는 :term:`이터레이터 <iterator>`\\도 허용합니다."
 
 #: ../Doc/library/sqlite3.rst:619
 msgid "Here's a shorter example using a :term:`generator`:"
-msgstr ""
+msgstr "다음은 :term:`제너레이터 <generator>`\\를 사용하는 간단한 예입니다:"
 
 #: ../Doc/library/sqlite3.rst:626
 msgid ""
@@ -714,22 +862,25 @@ msgid ""
 "statements at once. It issues a ``COMMIT`` statement first, then executes"
 " the SQL script it gets as a parameter."
 msgstr ""
+"이것은 한 번에 여러 SQL 문을 실행하기 위한 비표준 편의 메서드입니다. 먼저 ``COMMIT`` 문을 실행한 다음, 매개 변수로 "
+"가져온 SQL 스크립트를 실행합니다."
 
 #: ../Doc/library/sqlite3.rst:630
 msgid "*sql_script* can be an instance of :class:`str`."
-msgstr ""
+msgstr "*sql_script*\\는 :class:`str`\\의 인스턴스가 될 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:639
 msgid ""
 "Fetches the next row of a query result set, returning a single sequence, "
 "or :const:`None` when no more data is available."
 msgstr ""
+"질의 결과 집합의 다음 행을 가져옵니다. 단일 시퀀스를 반환하거나, 데이터가 더 없을 때 :const:`None`\\을 반환합니다."
 
 #: ../Doc/library/sqlite3.rst:645
 msgid ""
 "Fetches the next set of rows of a query result, returning a list.  An "
 "empty list is returned when no more rows are available."
-msgstr ""
+msgstr "질의 결과의 다음 행 집합을 가져와서, 리스트를 반환합니다. 행이 더 없으면 빈 목록이 반환됩니다."
 
 #: ../Doc/library/sqlite3.rst:648
 msgid ""
@@ -739,6 +890,9 @@ msgid ""
 " as indicated by the size parameter. If this is not possible due to the "
 "specified number of rows not being available, fewer rows may be returned."
 msgstr ""
+"호출 당 가져오는 행의 수는 *size* 매개 변수로 지정됩니다. 지정되어 않으면, 커서의 arraysize가 가져올 행의 수를 "
+"결정합니다. 이 메서드는 size 매개 변수가 나타내는 수만큼의 행을 가져오려고 해야 합니다. 지정된 수의 행이 없어서 이것이 가능하지 "
+"않다면, 더 적은 행이 반환될 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:654
 msgid ""
@@ -747,6 +901,9 @@ msgid ""
 "arraysize attribute. If the *size* parameter is used, then it is best for"
 " it to retain the same value from one :meth:`fetchmany` call to the next."
 msgstr ""
+"*size* 매개 변수와 관련된 성능 고려 사항이 있습니다. 최적의 성능을 위해서, 일반적으로 arraysize 어트리뷰트를 사용하는 "
+"것이 가장 좋습니다. *size* 매개 변수가 사용되면, :meth:`fetchmany` 호출마다 같은 값을 유지하는 것이 가장 "
+"좋습니다."
 
 #: ../Doc/library/sqlite3.rst:661
 msgid ""
@@ -754,10 +911,12 @@ msgid ""
 "that the cursor's arraysize attribute can affect the performance of this "
 "operation. An empty list is returned when no rows are available."
 msgstr ""
+"질의 결과의 모든 (남은) 행을 가져와서 리스트를 반환합니다. 커서의 arraysize 어트리뷰트는 이 연산의 성능에 영향을 줄 수 "
+"있습니다. 행이 없으면 빈 리스트가 반환됩니다."
 
 #: ../Doc/library/sqlite3.rst:667
 msgid "Close the cursor now (rather than whenever ``__del__`` is called)."
-msgstr ""
+msgstr "(``__del__``\\이 호출 될 때가 아니라) 지금 커서를 닫습니다."
 
 #: ../Doc/library/sqlite3.rst:669
 msgid ""
@@ -765,6 +924,7 @@ msgid ""
 ":exc:`ProgrammingError` exception will be raised if any operation is "
 "attempted with the cursor."
 msgstr ""
+"이 시점부터는 커서를 사용할 수 없습니다; 커서로 어떤 연산이건 시도하면 :exc:`ProgrammingError` 예외가 발생합니다."
 
 #: ../Doc/library/sqlite3.rst:674
 msgid ""
@@ -772,12 +932,14 @@ msgid ""
 "implements this attribute, the database engine's own support for the "
 "determination of \"rows affected\"/\"rows selected\" is quirky."
 msgstr ""
+":mod:`sqlite3` 모듈의 :class:`Cursor` 클래스가 이 어트리뷰트를 구현하지만, \"영향을 받는 행\"/\"선택된 "
+"행\"의 판단을 위한 데이터베이스 엔진 자체 지원은 기이합니다."
 
 #: ../Doc/library/sqlite3.rst:678
 msgid ""
 "For :meth:`executemany` statements, the number of modifications are "
 "summed up into :attr:`rowcount`."
-msgstr ""
+msgstr ":meth:`executemany` 문에서, 수정 횟수는 :attr:`rowcount`\\에 합산됩니다."
 
 #: ../Doc/library/sqlite3.rst:681
 msgid ""
@@ -788,12 +950,17 @@ msgid ""
 "determine the number of rows a query produced until all rows were "
 "fetched."
 msgstr ""
+"파이썬 DB API 스펙에 따라, :attr:`rowcount` 어트리뷰트는 커서에서 ``executeXX()``\\가 수행되지 않았거나"
+" 마지막 연산의 행 개수가 인터페이스에 의해 결정되지 않는 경우 -1입니다. 이런 경우는 ``SELECT`` 문을 포함하는데, 모든 행을"
+" 가져올 때까지 질의가 생성 한 행 수를 결정할 수 없기 때문입니다."
 
 #: ../Doc/library/sqlite3.rst:687
 msgid ""
 "With SQLite versions before 3.6.5, :attr:`rowcount` is set to 0 if you "
 "make a ``DELETE FROM table`` without any condition."
 msgstr ""
+"3.6.5 이전의 SQLite 버전에서는, 조건 없이 ``DELETE FROM table``\\을 하면 "
+":attr:`rowcount`\\가 0으로 설정됩니다."
 
 #: ../Doc/library/sqlite3.rst:692
 msgid ""
@@ -803,16 +970,19 @@ msgid ""
 "``REPLACE`` or when :meth:`executemany` is called, :attr:`lastrowid` is "
 "set to :const:`None`."
 msgstr ""
+"이 읽기 전용 어트리뷰트는 마지막으로 수정된 행의 rowid를 제공합니다. :meth:`execute` 메서드를 사용하여 "
+"``INSERT`` 나 ``REPLACE`` 문을 실행했을 때만 설정됩니다. ``INSERT`` 나 ``REPLACE`` 이외의 연산이나"
+" :meth:`executemany`\\가 호출될 때, :attr:`lastrowid`\\는 :const:`None`\\으로 설정됩니다."
 
 #: ../Doc/library/sqlite3.rst:698
 msgid ""
 "If the ``INSERT`` or ``REPLACE`` statement failed to insert the previous "
 "successful rowid is returned."
-msgstr ""
+msgstr "``INSERT`` 나 ``REPLACE`` 문이 삽입에 실패하면, 이전의 성공적인 rowid가 반환됩니다."
 
 #: ../Doc/library/sqlite3.rst:701
 msgid "Added support for the ``REPLACE`` statement."
-msgstr ""
+msgstr "``REPLACE`` 문에 대한 지원이 추가되었습니다."
 
 #: ../Doc/library/sqlite3.rst:706
 msgid ""
@@ -820,6 +990,8 @@ msgid ""
 ":meth:`fetchmany`. The default value is 1 which means a single row would "
 "be fetched per call."
 msgstr ""
+":meth:`fetchmany`\\에 의해 반환되는 행의 수를 제어하는 읽기/쓰기 어트리뷰트. 기본값은 1입니다. 이는 호출 당 하나의 "
+"행을 가져오는 것을 뜻합니다."
 
 #: ../Doc/library/sqlite3.rst:711
 msgid ""
@@ -827,10 +999,12 @@ msgid ""
 "remain compatible with the Python DB API, it returns a 7-tuple for each "
 "column where the last six items of each tuple are :const:`None`."
 msgstr ""
+"이 읽기 전용 어트리뷰트는 마지막 질의의 열 이름을 제공합니다. 파이썬 DB API와의 호환성을 유지하기 위해, 각 열마다 7-튜플을 "
+"반환하는데, 각 튜플의 마지막 6개 항목은 :const:`None` 입니다."
 
 #: ../Doc/library/sqlite3.rst:715
 msgid "It is set for ``SELECT`` statements without any matching rows as well."
-msgstr ""
+msgstr "일치하는 행이 없는 ``SELECT`` 문에도 설정됩니다."
 
 #: ../Doc/library/sqlite3.rst:719
 msgid ""
@@ -839,10 +1013,13 @@ msgid ""
 " calling :meth:`con.cursor() <Connection.cursor>` will have a "
 ":attr:`connection` attribute that refers to *con*::"
 msgstr ""
+"이 읽기 전용 어트리뷰트는 :class:`Cursor` 객체가 사용하는 SQLite 데이터베이스 :class:`Connection`\\을"
+" 제공합니다. :meth:`con.cursor() <Connection.cursor>`\\를 호출하여 생성된 :class:`Cursor`"
+" 객체는 *con*\\을 참조하는 :attr:`connection` 어트리뷰트를 가집니다::"
 
 #: ../Doc/library/sqlite3.rst:732
 msgid "Row Objects"
-msgstr ""
+msgstr "Row 객체"
 
 #: ../Doc/library/sqlite3.rst:736
 msgid ""
@@ -850,54 +1027,58 @@ msgid ""
 ":attr:`~Connection.row_factory` for :class:`Connection` objects. It tries"
 " to mimic a tuple in most of its features."
 msgstr ""
+":class:`Row` 인스턴스는 :class:`Connection` 객체에 대해 고도로 최적화된 "
+":attr:`~Connection.row_factory` 역할을 합니다. 대부분 기능에서 튜플을 모방하려고 합니다."
 
 #: ../Doc/library/sqlite3.rst:740
 msgid ""
 "It supports mapping access by column name and index, iteration, "
 "representation, equality testing and :func:`len`."
-msgstr ""
+msgstr "열 이름과 인덱스에 의한 매핑 액세스와, 이터레이션, 표현(repr), 동등성 검사 및 :func:`len`\\을 지원합니다."
 
 #: ../Doc/library/sqlite3.rst:743
 msgid ""
 "If two :class:`Row` objects have exactly the same columns and their "
 "members are equal, they compare equal."
-msgstr ""
+msgstr "두 개의 :class:`Row` 객체가 정확히 같은 열을 갖고 그 구성원이 같으면 같다고 비교됩니다."
 
 #: ../Doc/library/sqlite3.rst:748
 msgid ""
 "This method returns a list of column names. Immediately after a query, it"
 " is the first member of each tuple in :attr:`Cursor.description`."
 msgstr ""
+"이 메서드는 열 이름 리스트를 반환합니다. 질의 직후, :attr:`Cursor.description`\\에 있는 각 튜플의 첫 번째 "
+"멤버입니다."
 
 #: ../Doc/library/sqlite3.rst:751
 msgid "Added support of slicing."
-msgstr ""
+msgstr "슬라이싱 지원이 추가되었습니다."
 
 #: ../Doc/library/sqlite3.rst:754
 msgid "Let's assume we initialize a table as in the example given above::"
-msgstr ""
+msgstr "위에서 주어진 예제에서처럼 테이블을 초기화한다고 가정해 봅시다::"
 
 #: ../Doc/library/sqlite3.rst:766
 msgid "Now we plug :class:`Row` in::"
-msgstr ""
+msgstr "이제 우리는 :class:`Row`\\를 연결합니다::"
 
 #: ../Doc/library/sqlite3.rst:798
 msgid "Exceptions"
-msgstr ""
+msgstr "예외"
 
 #: ../Doc/library/sqlite3.rst:802
 msgid "A subclass of :exc:`Exception`."
-msgstr ""
+msgstr ":exc:`Exception`\\의 서브 클래스."
 
 #: ../Doc/library/sqlite3.rst:806
 msgid ""
 "The base class of the other exceptions in this module.  It is a subclass "
 "of :exc:`Exception`."
-msgstr ""
+msgstr "이 모듈에 있는 다른 예외의 베이스 클래스. :exc:`Exception`\\의 서브 클래스입니다."
 
 #: ../Doc/library/sqlite3.rst:811
 msgid "Exception raised for errors that are related to the database."
-msgstr ""
+msgstr "데이터베이스와 관련된 에러에 대해 발생하는 예외."
 
 #: ../Doc/library/sqlite3.rst:815
 msgid ""
@@ -905,6 +1086,8 @@ msgid ""
 "affected, e.g. a foreign key check fails.  It is a subclass of "
 ":exc:`DatabaseError`."
 msgstr ""
+"데이터베이스의 관계형 무결성이 영향을 받을 때 발생하는 예외. 예를 들어, 외부 키(foreign key) 검사가 실패할 때. "
+":exc:`DatabaseError`\\의 서브 클래스입니다."
 
 #: ../Doc/library/sqlite3.rst:820
 msgid ""
@@ -912,6 +1095,8 @@ msgid ""
 "exists, syntax error in the SQL statement, wrong number of parameters "
 "specified, etc.  It is a subclass of :exc:`DatabaseError`."
 msgstr ""
+"프로그래밍 에러에 대한 예외, 예를 들어, 테이블을 찾을 수 없거나 이미 존재 함, SQL 문의 문법 에러, 지정된 매개 변수 개수가 "
+"잘못됨 등. :exc:`DatabaseError`\\의 서브 클래스입니다."
 
 #: ../Doc/library/sqlite3.rst:826
 msgid ""
@@ -921,6 +1106,8 @@ msgid ""
 "transaction could not be processed, etc.  It is a subclass of "
 ":exc:`DatabaseError`."
 msgstr ""
+"데이터베이스 연산과 관련되고 프로그래머의 제어하에 있지 않은 에러에 관한 오류. 예를 들어, 예기치 않은 단절이 발생하거나, 데이터 소스"
+" 이름을 찾을 수 없거나, 트랜잭션이 진행될 수 없을 때 등. :exc:`DatabaseError`\\의 서브 클래스입니다."
 
 #: ../Doc/library/sqlite3.rst:833
 msgid ""
@@ -929,80 +1116,84 @@ msgid ""
 "method on a connection that does not support transaction or has "
 "transactions turned off.  It is a subclass of :exc:`DatabaseError`."
 msgstr ""
+"데이터베이스에서 지원하지 않는 메서드나 데이터베이스 API가 사용될 때 발생하는 예외. 예를 들어, 트랜잭션을 지원하지 않는 연결에서 "
+":meth:`~Connection.rollback` 메서드를 호출할 때. :exc:`DatabaseError`\\의 서브 클래스입니다."
 
 #: ../Doc/library/sqlite3.rst:842
 msgid "SQLite and Python types"
-msgstr ""
+msgstr "SQLite 와 파이썬 형"
 
 #: ../Doc/library/sqlite3.rst:846
 msgid "Introduction"
-msgstr ""
+msgstr "소개"
 
 #: ../Doc/library/sqlite3.rst:848
 msgid ""
 "SQLite natively supports the following types: ``NULL``, ``INTEGER``, "
 "``REAL``, ``TEXT``, ``BLOB``."
 msgstr ""
+"SQLite는 기본적으로 다음 형을 지원합니다: ``NULL``, ``INTEGER``, ``REAL``, ``TEXT``, "
+"``BLOB``."
 
 #: ../Doc/library/sqlite3.rst:851
 msgid "The following Python types can thus be sent to SQLite without any problem:"
-msgstr ""
+msgstr "따라서 다음과 같은 파이썬 형을 아무 문제 없이 SQLite로 보낼 수 있습니다:"
 
 #: ../Doc/library/sqlite3.rst:854 ../Doc/library/sqlite3.rst:871
 msgid "Python type"
-msgstr ""
+msgstr "파이썬 형"
 
 #: ../Doc/library/sqlite3.rst:854 ../Doc/library/sqlite3.rst:871
 msgid "SQLite type"
-msgstr ""
+msgstr "SQLite 형"
 
 #: ../Doc/library/sqlite3.rst:856 ../Doc/library/sqlite3.rst:873
 msgid ":const:`None`"
-msgstr ""
+msgstr ":const:`None`"
 
 #: ../Doc/library/sqlite3.rst:856 ../Doc/library/sqlite3.rst:873
 msgid "``NULL``"
-msgstr ""
+msgstr "``NULL``"
 
 #: ../Doc/library/sqlite3.rst:858 ../Doc/library/sqlite3.rst:875
 msgid ":class:`int`"
-msgstr ""
+msgstr ":class:`int`"
 
 #: ../Doc/library/sqlite3.rst:858 ../Doc/library/sqlite3.rst:875
 msgid "``INTEGER``"
-msgstr ""
+msgstr "``INTEGER``"
 
 #: ../Doc/library/sqlite3.rst:860 ../Doc/library/sqlite3.rst:877
 msgid ":class:`float`"
-msgstr ""
+msgstr ":class:`float`"
 
 #: ../Doc/library/sqlite3.rst:860 ../Doc/library/sqlite3.rst:877
 msgid "``REAL``"
-msgstr ""
+msgstr "``REAL``"
 
 #: ../Doc/library/sqlite3.rst:862
 msgid ":class:`str`"
-msgstr ""
+msgstr ":class:`str`"
 
 #: ../Doc/library/sqlite3.rst:862 ../Doc/library/sqlite3.rst:879
 msgid "``TEXT``"
-msgstr ""
+msgstr "``TEXT``"
 
 #: ../Doc/library/sqlite3.rst:864 ../Doc/library/sqlite3.rst:882
 msgid ":class:`bytes`"
-msgstr ""
+msgstr ":class:`bytes`"
 
 #: ../Doc/library/sqlite3.rst:864 ../Doc/library/sqlite3.rst:882
 msgid "``BLOB``"
-msgstr ""
+msgstr "``BLOB``"
 
 #: ../Doc/library/sqlite3.rst:868
 msgid "This is how SQLite types are converted to Python types by default:"
-msgstr ""
+msgstr "이것은 SQLite 형이 기본적으로 파이썬 형으로 변환되는 방법입니다:"
 
 #: ../Doc/library/sqlite3.rst:879
 msgid "depends on :attr:`~Connection.text_factory`, :class:`str` by default"
-msgstr ""
+msgstr ":attr:`~Connection.text_factory`\\에 따라 다릅니다, 기본적으로 :class:`str`."
 
 #: ../Doc/library/sqlite3.rst:885
 msgid ""
@@ -1011,10 +1202,13 @@ msgid ""
 "adaptation, and you can let the :mod:`sqlite3` module convert SQLite "
 "types to different Python types via converters."
 msgstr ""
+":mod:`sqlite3` 모듈의 형 시스템은 두 가지 방식으로 확장 가능합니다: 객체 어댑터를 통해 SQLite 데이터베이스에 추가 "
+"파이썬 형을 저장할 수 있으며 변환기를 통해 :mod:`sqlite3` 모듈에서 SQLite 형을 다른 파이썬 형으로 변환할 수 "
+"있습니다."
 
 #: ../Doc/library/sqlite3.rst:892
 msgid "Using adapters to store additional Python types in SQLite databases"
-msgstr ""
+msgstr "어댑터를 사용하여 SQLite 데이터베이스에 추가 파이썬 형을 저장하기"
 
 #: ../Doc/library/sqlite3.rst:894
 msgid ""
@@ -1023,22 +1217,26 @@ msgid ""
 "to one of the sqlite3 module's supported types for SQLite: one of "
 "NoneType, int, float, str, bytes."
 msgstr ""
+"앞에서 설명한 것처럼, SQLite는 기본적으로 제한된 형 집합만 지원합니다. SQLite에 다른 파이썬 형을 사용하려면, SQLite에"
+" 대해 sqlite3 모듈이 지원하는 형 중 하나로 **어댑트** 해야 합니다: NoneType, int, float, str, "
+"bytes 중 하나."
 
 #: ../Doc/library/sqlite3.rst:899
 msgid ""
 "There are two ways to enable the :mod:`sqlite3` module to adapt a custom "
 "Python type to one of the supported ones."
 msgstr ""
+":mod:`sqlite3` 모듈이 사용자 정의 파이썬 형을, 지원되는 형 중 하나로 어댑트하도록 만드는 두 가지 방법이 있습니다."
 
 #: ../Doc/library/sqlite3.rst:904
 msgid "Letting your object adapt itself"
-msgstr ""
+msgstr "객체가 스스로 어댑트하도록 하기"
 
 #: ../Doc/library/sqlite3.rst:906
 msgid ""
 "This is a good approach if you write the class yourself. Let's suppose "
 "you have a class like this::"
-msgstr ""
+msgstr "여러분이 스스로 클래스를 작성한다면 이것이 좋은 접근법입니다. 다음과 같은 클래스가 있다고 가정해 봅시다::"
 
 #: ../Doc/library/sqlite3.rst:913
 msgid ""
@@ -1049,10 +1247,14 @@ msgid ""
 "``__conform__(self, protocol)`` which must return the converted value. "
 "The parameter *protocol* will be :class:`PrepareProtocol`."
 msgstr ""
+"이제 Point를 단일 SQLite 열에 저장하려고 합니다. 먼저 포인트를 나타내는데 사용할 지원되는 형 중 하나를 선택해야 합니다. "
+"str을 사용하고 좌표를 세미콜론으로 분리하기로 합시다. 그런 다음 여러분의 클래스에 변환된 값을 반환하는 "
+"``__conform__(self, protocol)`` 메서드를 제공해야 합니다. 매개 변수 *protocol*\\은 "
+":class:`PrepareProtocol`\\이 됩니다."
 
 #: ../Doc/library/sqlite3.rst:923
 msgid "Registering an adapter callable"
-msgstr ""
+msgstr "어댑터 콜러블 등록하기"
 
 #: ../Doc/library/sqlite3.rst:925
 msgid ""
@@ -1060,6 +1262,8 @@ msgid ""
 "the string representation and register the function with "
 ":meth:`register_adapter`."
 msgstr ""
+"또 다른 가능성은 형을 문자열 표현으로 변환하는 함수를 만들고. 그 함수를 :meth:`register_adapter`\\로 등록하는 "
+"것입니다."
 
 #: ../Doc/library/sqlite3.rst:930
 msgid ""
@@ -1068,10 +1272,13 @@ msgid ""
 "suppose we want to store :class:`datetime.datetime` objects not in ISO "
 "representation, but as a Unix timestamp."
 msgstr ""
+":mod:`sqlite3` 모듈에는 파이썬의 내장 :class:`datetime.date` 와 "
+":class:`datetime.datetime` 형에 대한 두 개의 기본 어댑터가 있습니다. 이제 "
+":class:`datetime.datetime` 객체를 ISO 표현이 아닌 유닉스 타임스탬프로 저장하려고 한다고 가정해 봅시다."
 
 #: ../Doc/library/sqlite3.rst:939
 msgid "Converting SQLite values to custom Python types"
-msgstr ""
+msgstr "SQLite 값을 사용자 정의 파이썬 형으로 변환하기"
 
 #: ../Doc/library/sqlite3.rst:941
 msgid ""
@@ -1079,42 +1286,46 @@ msgid ""
 "make it really useful we need to make the Python to SQLite to Python "
 "roundtrip work."
 msgstr ""
+"어댑터를 작성하면 사용자 정의 파이썬 형을 SQLite로 보낼 수 있습니다. 그러나 실제로 유용하게 사용하려면 파이썬에서 SQLite를 "
+"거쳐 다시 파이썬으로 돌아오는 순환이 동작하게 할 필요가 있습니다."
 
 #: ../Doc/library/sqlite3.rst:944
 msgid "Enter converters."
-msgstr ""
+msgstr "변환기를 사용하십시오."
 
 #: ../Doc/library/sqlite3.rst:946
 msgid ""
 "Let's go back to the :class:`Point` class. We stored the x and y "
 "coordinates separated via semicolons as strings in SQLite."
-msgstr ""
+msgstr ":class:`Point` 클래스로 돌아갑시다. 세미콜론으로 분리된 x와 y 좌표를 SQLite에 문자열로 저장했습니다."
 
 #: ../Doc/library/sqlite3.rst:949
 msgid ""
 "First, we'll define a converter function that accepts the string as a "
 "parameter and constructs a :class:`Point` object from it."
-msgstr ""
+msgstr "먼저, 문자열을 매개 변수로 받아들이고 이것으로부터 :class:`Point` 객체를 만드는 변환기 함수를 정의합니다."
 
 #: ../Doc/library/sqlite3.rst:954
 msgid ""
 "Converter functions **always** get called with a :class:`bytes` object, "
 "no matter under which data type you sent the value to SQLite."
-msgstr ""
+msgstr "변환기 함수는 **항상** SQLite로 보낸 값의 데이터형에 상관없이 :class:`bytes` 객체로 호출됩니다."
 
 #: ../Doc/library/sqlite3.rst:963
 msgid ""
 "Now you need to make the :mod:`sqlite3` module know that what you select "
 "from the database is actually a point. There are two ways of doing this:"
 msgstr ""
+"이제 :mod:`sqlite3` 모듈이 데이터베이스에서 select 한 것이 실제로 Point임을 알게 해야 합니다. 이렇게 하는 두 "
+"가지 방법이 있습니다:"
 
 #: ../Doc/library/sqlite3.rst:966
 msgid "Implicitly via the declared type"
-msgstr ""
+msgstr "선언된 형을 통해 묵시적으로"
 
 #: ../Doc/library/sqlite3.rst:968
 msgid "Explicitly via the column name"
-msgstr ""
+msgstr "열 이름을 통해 명시적으로"
 
 #: ../Doc/library/sqlite3.rst:970
 msgid ""
@@ -1122,20 +1333,24 @@ msgid ""
 " entries for the constants :const:`PARSE_DECLTYPES` and "
 ":const:`PARSE_COLNAMES`."
 msgstr ""
+"두 가지 방법은 섹션 :ref:`sqlite3-module-contents` 의 상수 :const:`PARSE_DECLTYPES` 와 "
+":const:`PARSE_COLNAMES`\\에 대한 항목에서 설명합니다."
 
 #: ../Doc/library/sqlite3.rst:973
 msgid "The following example illustrates both approaches."
-msgstr ""
+msgstr "다음 예는 두 가지 접근법을 보여줍니다."
 
 #: ../Doc/library/sqlite3.rst:979
 msgid "Default adapters and converters"
-msgstr ""
+msgstr "기본 어댑터와 변환기"
 
 #: ../Doc/library/sqlite3.rst:981
 msgid ""
 "There are default adapters for the date and datetime types in the "
 "datetime module. They will be sent as ISO dates/ISO timestamps to SQLite."
 msgstr ""
+"datetime 모듈의 date와 datetime 형에 대한 기본 어댑터가 있습니다. 이것들은 ISO 날짜/ISO 타임스탬프로 "
+"SQLite로 보내집니다."
 
 #: ../Doc/library/sqlite3.rst:984
 msgid ""
@@ -1143,6 +1358,8 @@ msgid ""
 ":class:`datetime.date` and under the name \"timestamp\" for "
 ":class:`datetime.datetime`."
 msgstr ""
+"기본 변환기는 :class:`datetime.date`\\는 \"date\"라는 이름으로, "
+":class:`datetime.datetime`\\은 \"timestamp\"라는 이름으로 등록됩니다."
 
 #: ../Doc/library/sqlite3.rst:988
 msgid ""
@@ -1150,10 +1367,12 @@ msgid ""
 "fiddling in most cases. The format of the adapters is also compatible "
 "with the experimental SQLite date/time functions."
 msgstr ""
+"이런 방법으로, 대부분 추가 작업 없이 파이썬의 날짜/타임스탬프를 사용할 수 있습니다. 어댑터의 형식은 실험적인 SQLite 날짜/시간 "
+"함수와도 호환됩니다."
 
 #: ../Doc/library/sqlite3.rst:992
 msgid "The following example demonstrates this."
-msgstr ""
+msgstr "다음 예제는 이를 보여줍니다."
 
 #: ../Doc/library/sqlite3.rst:996
 msgid ""
@@ -1161,16 +1380,19 @@ msgid ""
 "numbers, its value will be truncated to microsecond precision by the "
 "timestamp converter."
 msgstr ""
+"SQLite에 저장된 타임스탬프가 6자리보다 긴 소수부가 있으면, 그 값은 타임스탬프 변환기에 의해 마이크로초 정밀도로 잘립니다."
 
 #: ../Doc/library/sqlite3.rst:1004
 msgid "Controlling Transactions"
-msgstr ""
+msgstr "트랜잭션 제어"
 
 #: ../Doc/library/sqlite3.rst:1006
 msgid ""
 "The underlying ``sqlite3`` library operates in ``autocommit`` mode by "
 "default, but the Python :mod:`sqlite3` module by default does not."
 msgstr ""
+"하부 ``sqlite3`` 라이브러리는 기본적으로 ``autocommit`` 모드로 작동하지만, 파이썬 :mod:`sqlite3` 모듈은"
+" 기본적으로 그렇지 않습니다."
 
 #: ../Doc/library/sqlite3.rst:1009
 msgid ""
@@ -1179,6 +1401,9 @@ msgid ""
 "``autocommit`` mode, and a ``COMMIT``, a ``ROLLBACK``, or a ``RELEASE`` "
 "that ends the outermost transaction, turns ``autocommit`` mode back on."
 msgstr ""
+"``autocommit`` 모드는 데이터베이스를 수정하는 명령문이 즉시 적용됨을 뜻합니다. ``BEGIN`` 이나 "
+"``SAVEPOINT`` 문은 ``autocommit`` 모드를 비활성화하고, 가장 바깥쪽 트랜잭션을 끝내는 ``COMMIT``, "
+"``ROLLBACK`` 또는 ``RELEASE``\\는 ``autocommit`` 모드를 다시 켭니다."
 
 #: ../Doc/library/sqlite3.rst:1014
 msgid ""
@@ -1186,6 +1411,9 @@ msgid ""
 "implicitly before a Data Modification Language (DML) statement (i.e. "
 "``INSERT``/``UPDATE``/``DELETE``/``REPLACE``)."
 msgstr ""
+"기본적으로 파이썬 :mod:`sqlite3` 모듈은 데이터 조작 언어(DML - Data Modification Language) 문 "
+"(즉, ``INSERT``/``UPDATE``/``DELETE``/``REPLACE``) 앞에 암묵적으로 ``BEGIN`` 문을 "
+"넣습니다."
 
 #: ../Doc/library/sqlite3.rst:1018
 msgid ""
@@ -1196,6 +1424,10 @@ msgid ""
 "used, which is equivalent to specifying ``DEFERRED``.  Other possible "
 "values are ``IMMEDIATE`` and ``EXCLUSIVE``."
 msgstr ""
+":func:`connect` 호출의 *isolation_level* 매개 변수를 통해, 또는 연결의 "
+":attr:`isolation_level` 프로퍼티를 통해, :mod:`sqlite3`\\가 묵시적으로 실행하는 ``BEGIN`` 문의 "
+"종류를 제어할 수 있습니다. *isolation_level*\\을 지정하지 않으면, 단순한 ``BEGIN``\\이 사용되며, 이는 "
+"``DEFERRED``\\를 지정하는 것과 같습니다. 가능한 다른 값은 ``IMMEDIATE`` 와 ``EXCLUSIVE``\\입니다."
 
 #: ../Doc/library/sqlite3.rst:1025
 msgid ""
@@ -1206,20 +1438,24 @@ msgid ""
 "explicitly issuing ``BEGIN``, ``ROLLBACK``, ``SAVEPOINT``, and "
 "``RELEASE`` statements in your code."
 msgstr ""
+":attr:`isolation_level`\\를 ``None``\\로 설정하여 :mod:`sqlite3` 모듈의 묵시적 트랜잭션 관리를 "
+"비활성화할 수 있습니다. 그러면 하부 ``sqlite3`` 라이브러리가 ``autocommit`` 모드로 작동합니다. 그런 다음 코드에서"
+" ``BEGIN``, ``ROLLBACK``, ``SAVEPOINT`` 및 ``RELEASE`` 문을 명시적으로 실행하여 트랜잭션 상태를"
+" 완전히 제어할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:1031
 msgid ""
 ":mod:`sqlite3` used to implicitly commit an open transaction before DDL "
 "statements.  This is no longer the case."
-msgstr ""
+msgstr ":mod:`sqlite3`\\는 DDL 문 앞에서 열린 트랜잭션을 묵시적으로 커밋했습니다. 더는 그렇지 않습니다."
 
 #: ../Doc/library/sqlite3.rst:1037
 msgid "Using :mod:`sqlite3` efficiently"
-msgstr ""
+msgstr "효율적으로 :mod:`sqlite3` 사용하기"
 
 #: ../Doc/library/sqlite3.rst:1041
 msgid "Using shortcut methods"
-msgstr ""
+msgstr "바로 가기 메서드 사용하기"
 
 #: ../Doc/library/sqlite3.rst:1043
 msgid ""
@@ -1232,26 +1468,33 @@ msgid ""
 "statement and iterate over it directly using only a single call on the "
 ":class:`Connection` object."
 msgstr ""
+":class:`Connection` 객체의 비표준 :meth:`execute`, :meth:`executemany` 및 "
+":meth:`executescript` 메서드를 사용하면, (종종 불필요한) :class:`Cursor` 객체를 명시적으로 만들 필요가 "
+"없으므로, 코드를 더 간결하게 작성할 수 있습니다. 대신, :class:`Cursor` 객체가 묵시적으로 만들어지며 이러한 바로 가기 "
+"메서드는 커서 객체를 반환합니다. 이런 방법으로, :class:`Connection` 객체에 대한 단일 호출만 사용하여 "
+"``SELECT`` 문을 실행하고 직접 이터레이트할 수 있습니다."
 
 #: ../Doc/library/sqlite3.rst:1055
 msgid "Accessing columns by name instead of by index"
-msgstr ""
+msgstr "인덱스 대신 이름으로 열 액세스하기"
 
 #: ../Doc/library/sqlite3.rst:1057
 msgid ""
 "One useful feature of the :mod:`sqlite3` module is the built-in "
 ":class:`sqlite3.Row` class designed to be used as a row factory."
 msgstr ""
+":mod:`sqlite3` 모듈의 유용한 기능 중 하나는 행 팩토리로 사용하도록 설계된 내장 :class:`sqlite3.Row` "
+"클래스입니다."
 
 #: ../Doc/library/sqlite3.rst:1060
 msgid ""
 "Rows wrapped with this class can be accessed both by index (like tuples) "
 "and case-insensitively by name:"
-msgstr ""
+msgstr "이 클래스로 감싼 행은 인덱스(튜플처럼)와 대소 문자를 구분하지 않는 이름으로 액세스할 수 있습니다:"
 
 #: ../Doc/library/sqlite3.rst:1067
 msgid "Using the connection as a context manager"
-msgstr ""
+msgstr "컨텍스트 관리자로 연결 사용하기"
 
 #: ../Doc/library/sqlite3.rst:1069
 msgid ""
@@ -1259,14 +1502,16 @@ msgid ""
 "commit or rollback transactions.  In the event of an exception, the "
 "transaction is rolled back; otherwise, the transaction is committed:"
 msgstr ""
+"연결 객체는 트랜잭션을 자동으로 커밋하거나 롤백하는 컨텍스트 관리자로 사용할 수 있습니다. 예외가 발생하면, 트랜잭션이 롤백 됩니다; "
+"그렇지 않으면 트랜잭션이 커밋 됩니다:"
 
 #: ../Doc/library/sqlite3.rst:1078
 msgid "Common issues"
-msgstr ""
+msgstr "일반적인 문제"
 
 #: ../Doc/library/sqlite3.rst:1081
 msgid "Multithreading"
-msgstr ""
+msgstr "다중 스레드"
 
 #: ../Doc/library/sqlite3.rst:1083
 msgid ""
@@ -1275,16 +1520,20 @@ msgid ""
 "cursors between threads. If you still try to do so, you will get an "
 "exception at runtime."
 msgstr ""
+"이전 SQLite 버전에서는 스레드 간에 연결을 공유하는 데 문제가 있었습니다. 이것이 파이썬 모듈이 스레드 간에 연결과 커서를 "
+"공유하도록 허용하지 않는 이유입니다. 여전히 그렇게 하려고 하면 실행 시간에 예외가 발생합니다."
 
 #: ../Doc/library/sqlite3.rst:1087
 msgid ""
 "The only exception is calling the :meth:`~Connection.interrupt` method, "
 "which only makes sense to call from a different thread."
 msgstr ""
+"유일한 예외는 :meth:`~Connection.interrupt` 메서드를 호출하는 것입니다. 이 메서드는 다른 스레드에서 호출해야만 "
+"합니다."
 
 #: ../Doc/library/sqlite3.rst:1091
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/sqlite3.rst:1092
 msgid ""
@@ -1293,74 +1542,6 @@ msgid ""
 "which are compiled without this feature. To get loadable extension "
 "support, you must pass --enable-loadable-sqlite-extensions to configure."
 msgstr ""
-
-#~ msgid "http://www.w3schools.com/sql/"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Opens a connection to the SQLite "
-#~ "database file *database*. You can use"
-#~ " ``\":memory:\"`` to open a database "
-#~ "connection to a database that resides"
-#~ " in RAM instead of on disk."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Registers a callable to convert a "
-#~ "bytestring from the database into a "
-#~ "custom Python type. The callable will"
-#~ " be invoked for all database values"
-#~ " that are of the type *typename*. "
-#~ "Confer the parameter *detect_types* of "
-#~ "the :func:`connect` function for how the"
-#~ " type detection works. Note that the"
-#~ " case of *typename* and the name "
-#~ "of the type in your query must "
-#~ "match!"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Get or set the current isolation "
-#~ "level. :const:`None` for autocommit mode "
-#~ "or one of \"DEFERRED\", \"IMMEDIATE\" or"
-#~ " \"EXCLUSIVE\". See section :ref:`sqlite3"
-#~ "-controlling-transactions` for a more "
-#~ "detailed explanation."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "By default, the :mod:`sqlite3` module "
-#~ "opens transactions implicitly before a "
-#~ "Data Modification Language (DML)  statement"
-#~ " (i.e. ``INSERT``/``UPDATE``/``DELETE``/``REPLACE``)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "You can control which kind of "
-#~ "``BEGIN`` statements sqlite3 implicitly "
-#~ "executes (or none at all) via the"
-#~ " *isolation_level* parameter to the "
-#~ ":func:`connect` call, or via the "
-#~ ":attr:`isolation_level` property of connections."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If you want **autocommit mode**, then"
-#~ " set :attr:`isolation_level` to ``None``."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Otherwise leave it at its default, "
-#~ "which will result in a plain "
-#~ "\"BEGIN\" statement, or set it to "
-#~ "one of SQLite's supported isolation "
-#~ "levels: \"DEFERRED\", \"IMMEDIATE\" or "
-#~ "\"EXCLUSIVE\"."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The current transaction state is exposed"
-#~ " through the :attr:`Connection.in_transaction` "
-#~ "attribute of the connection object."
-#~ msgstr ""
-
+"기본적으로 sqlite3 모듈은 로드 가능한 확장을 지원하도록 빌드되지 않습니다. 일부 플랫폼(특히 맥 OS X)에는 이 기능 없이 "
+"컴파일된 SQLite 라이브러리가 있기 때문입니다. 로드 가능한 확장 지원을 받으려면, configure에 --enable-"
+"loadable-sqlite-extensions를 전달해야 합니다."
