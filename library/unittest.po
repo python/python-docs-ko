@@ -106,7 +106,7 @@ msgid ""
 "graphical interface, a textual interface, or return a special value to "
 "indicate the results of executing the tests."
 msgstr ""
-":dfn:`테스트 실행자 (test runner)` 는 테스트 실행을 조율하고 테스트 결과를 유저에게 제공하는 "
+":dfn:`테스트 실행자 (test runner)` 는 테스트 실행을 조율하고 테스트 결과를 사용자에게 제공하는 "
 "역할을 하는 컴포넌트입니다. 실행자는 테스트 실행 결과를 보여주기 위해 그래픽 인터페이스, 텍스트 인터페이스를 "
 "사용하거나 특별한 값을 반환할 수도 있습니다. "
 
@@ -2646,7 +2646,7 @@ msgid ""
 msgstr ""
 "임포트 시에 :exc:`SkipTest` 가 발생한 모듈은 에러가 아닌, 건너뛰기로 기록됩니다. 탐색은 "
 ":term:`이름 공간 패키지 <namespace package>` 를 지원합니다. 임포트되기 전에 경로들이 "
-"정렬되어 파일 시스템의 순서의 근간이 파일 이름에 의존하지 않더라도 실행 결과가 같도록 합니다."
+"정렬되어 파일 시스템의 정렬 순서가 파일 이름에 의존하지 않더라도 실행 결과가 같도록 합니다."
 
 #: ../Doc/library/unittest.rst:1740
 msgid ""
@@ -2867,7 +2867,7 @@ msgid ""
 "keyboard.  Interactive tools which provide :class:`TestRunner` "
 "implementations can use this in a similar manner."
 msgstr ""
-"예를 들어, 유저가 키보드로 중단 신호를 보낼 때 테스트 프레임워크를 중단하기 위해 "
+"예를 들어, 사용자가 키보드로 중단 신호를 보낼 때 테스트 프레임워크를 중단하기 위해 "
 ":class:`TextTestRunner` 가 이 기능을 사용합니다. :class:`TestRunner` 구현을 "
 "제공하는 대화형 도구는 비슷한 방법으로 이것을 사용할 수 있습니다."
 
@@ -3306,6 +3306,8 @@ msgid ""
 "the package. (``standard_tests`` will only contain tests collected from "
 ":file:`__init__.py`.)"
 msgstr ""
+"이것은 패키지의 모든 테스트에 해당하는 :class:`TestSuite` 를 반환해야 합니다. (``standard_tests`` 는 "
+"오직 :file:`__init__.py` 로부터 수집된 테스트만 포함할 것입니다."
 
 #: ../Doc/library/unittest.rst:2174
 msgid ""
@@ -3313,16 +3315,21 @@ msgid ""
 "continue (and potentially modify) test discovery. A 'do nothing' "
 "``load_tests`` function for a test package would look like::"
 msgstr ""
+"패턴이 load_tests로 전달되기 때문에 패키지는 테스트 검색을 계속 진행 (그리고 잠재적으로 수정) "
+"할 수 있습니다. 테스트 패키지를 위해서 '아무것도 하지 않는' ``load_tests`` 함수는 다음과 같을 "
+"것입니다::"
 
 #: ../Doc/library/unittest.rst:2185
 msgid ""
 "Discovery no longer checks package names for matching *pattern* due to "
 "the impossibility of package names matching the default pattern."
 msgstr ""
+"패키지 이름이 기본 패턴과 일치하는 것이 불가능하기 때문에 탐색이 더이상 *pattern* 일치를 위해서 "
+"패키지 이름을 검사하지 않습니다."
 
 #: ../Doc/library/unittest.rst:2192
 msgid "Class and Module Fixtures"
-msgstr ""
+msgstr "클래스와 모듈 픽스쳐"
 
 #: ../Doc/library/unittest.rst:2194
 msgid ""
@@ -3331,6 +3338,9 @@ msgid ""
 ":meth:`tearDownClass` from the previous class (if there is one) is "
 "called, followed by :meth:`setUpClass` from the new class."
 msgstr ""
+"클래스와 모듈 단계의 픽스쳐는 :class:`TestSuite` 에 구현되어 있습니다. 테스트 묶음이 "
+"새로운 클래스의 테스트를 만나면 (만약 존재한다면) 이전 클래스의 :meth:`tearDownClass` "
+"가 호출되고, 이어 새로운 클래스의 :meth:`setUpClass` 가 호출됩니다."
 
 #: ../Doc/library/unittest.rst:2199
 msgid ""
@@ -3338,12 +3348,16 @@ msgid ""
 "then ``tearDownModule`` from the previous module is run, followed by "
 "``setUpModule`` from the new module."
 msgstr ""
+"마찬가지로 만약 테스트가 이전 테스트와 다른 모듈의 것이라면 이전 모듈의 ``tearDownModule`` 이 "
+"실행되고, 이어 새로운 모듈의 ``setUpModule`` 이 호출됩니다."
 
 #: ../Doc/library/unittest.rst:2203
 msgid ""
 "After all the tests have run the final ``tearDownClass`` and "
 "``tearDownModule`` are run."
 msgstr ""
+"모든 테스트가 실행된 뒤에 마지막으로 ``tearDownClass`` 와 ``tearDownModule`` 이 "
+"실행됩니다."
 
 #: ../Doc/library/unittest.rst:2206
 msgid ""
@@ -3351,6 +3365,8 @@ msgid ""
 " test parallelization and they break test isolation. They should be used "
 "with care."
 msgstr ""
+"공유하는 픽스쳐의 경우 테스트 병렬화와 같은 [잠재적인] 기능과 잘 동작하지 않고 이것은 테스트 "
+"분리를 망가트립니다. 이것을 주의 깊게 사용해야 합니다."
 
 #: ../Doc/library/unittest.rst:2209
 msgid ""
@@ -3362,6 +3378,10 @@ msgid ""
 "shared fixture functions may be called multiple times in a single test "
 "run."
 msgstr ""
+"단위 테스트의 테스트 로더에 의해 생성된 테스트들의 기본 정렬 순서는 동일한 모듈과 클래스의 모든 "
+"테스트를 그룹화하는 것입니다. 이것은 ``setUpClass`` / ``setUpModule`` (등) 이 클래스와 "
+"모듈 별로 정확하게 1번씩 호출되게 할 것입니다. 만약 당신이 무작위로 순서를 정하여, 다른 모듈과 클래스의 "
+"테스트가 서로 인접하다면, 이 공유 픽스처 함수는 1번의 테스트 실행에서 여러번 호출 될 수 있습니다."
 
 #: ../Doc/library/unittest.rst:2216
 msgid ""
@@ -3369,6 +3389,8 @@ msgid ""
 "ordering. A ``BaseTestSuite`` still exists for frameworks that don't want"
 " to support shared fixtures."
 msgstr ""
+"공유 픽스처는 비표준 정렬 순서를 사용하는 테스트 묶음과 같이 작동하는 것을 의도하지 않습니다."
+"공유 픽스처를 지원하길 원치 않는 프레임워크를 위해서 ``BaseTestSuite`` 가 여전히 존재합니다."
 
 #: ../Doc/library/unittest.rst:2220
 msgid ""
@@ -3379,14 +3401,18 @@ msgid ""
 "you are just using the standard unittest test runner then this detail "
 "doesn't matter, but if you are a framework author it may be relevant."
 msgstr ""
+"공유 픽스처 함수 중 1개에서 발생한 예외가 있다면, 테스트를 에러로 보고됩니다. 해당 테스트 인스턴스가 "
+"없기 때문에 에러를 나타내기 위해 ``_ErrorHolder`` 객체 (:class:`TestCase` 와 같은 인터페이스를 "
+"가진) 가 생성됩니다. 당신이 그저 표준 단위 테스트의 테스트 실행자를 사용한다면 이 세부 항목은 중요하지 "
+"않습니다, 그러나 당신이 프레임워크의 저자라면 이것은 관련이 있을 수 있습니다."
 
 #: ../Doc/library/unittest.rst:2229
 msgid "setUpClass and tearDownClass"
-msgstr ""
+msgstr "setUpClass 와 tearDownClass"
 
 #: ../Doc/library/unittest.rst:2231
 msgid "These must be implemented as class methods::"
-msgstr ""
+msgstr "이것들은 반드시 클래스 메서드로 구현되어야 합니다::"
 
 #: ../Doc/library/unittest.rst:2244
 msgid ""
@@ -3394,6 +3420,8 @@ msgid ""
 "called then you must call up to them yourself. The implementations in "
 ":class:`TestCase` are empty."
 msgstr ""
+"만약 당신이 베이스 클래스의 ``setUpClass`` 와 ``tearDownClass`` 를 호출하고 싶다면 "
+"당신이 그것을 직접 호출해야만 합니다. :class:`TestCase` 의 구현은 비어있습니다."
 
 #: ../Doc/library/unittest.rst:2248
 msgid ""
@@ -3403,14 +3431,18 @@ msgid ""
 "is a :exc:`SkipTest` exception then the class will be reported as having "
 "been skipped instead of as an error."
 msgstr ""
+"만약 ``setUpClass`` 중에 예외가 발생한다면 클래스의 테스트는 실행되지 않고 ``tearDownClass`` "
+"는 실행되지 않습니다. 건너뛴 클래스는 ``setUpClass`` 또는 ``tearDownClass`` 가 실행되지 "
+"않을 것입니다. 만약 예외가 :exc:`SkipTest` 예외라면 클래스는 에러 대신 건너뛰어졌다고 보고될 "
+"것입니다."
 
 #: ../Doc/library/unittest.rst:2256
 msgid "setUpModule and tearDownModule"
-msgstr ""
+msgstr "setUpModule 과 tearDownModule"
 
 #: ../Doc/library/unittest.rst:2258
 msgid "These should be implemented as functions::"
-msgstr ""
+msgstr "이것들은 함수로 구현되어야 합니다::"
 
 #: ../Doc/library/unittest.rst:2266
 msgid ""
@@ -3419,10 +3451,13 @@ msgid ""
 " exception is a :exc:`SkipTest` exception then the module will be "
 "reported as having been skipped instead of as an error."
 msgstr ""
+"만약 ``setUpModule`` 중에 예외가 발생한다면 모듈의 테스트는 실행되지 않고 ``tearDownModule`` "
+"는 실행되지 않습니다. 만약 예외가 :exc:`SkipTest` 예외라면 모듈은 에러 대신 건너뛰어졌다고 보고될 "
+"것입니다."
 
 #: ../Doc/library/unittest.rst:2273
 msgid "Signal Handling"
-msgstr ""
+msgstr "신호 처리하기"
 
 #: ../Doc/library/unittest.rst:2277
 msgid ""
@@ -3434,6 +3469,11 @@ msgid ""
 " far. A second control-c will raise a :exc:`KeyboardInterrupt` in the "
 "usual way."
 msgstr ""
+"단위 테스트의 :option:`-c/--catch <unittest -c>` 명령행 옵션은, :func:`unittest.main()` 의 "
+"``catchbreak`` 매개 변수와 함께, 테스트 실행 중에 control-C 를 사용하기 편하게 처리하도록 합니다. "
+"중단 신호 잡기를 활성화 하면 control-C 는 현재 실행 중인 테스트를 완료하고, 그러면 테스트 실행이 끝나고 "
+"이제까지의 모든 결과를 보고할 것입니다. 두 번째 control-c 는 평소와 같이 :exc:`KeyboardInterrupt` "
+"를 발생할 것입니다."
 
 #: ../Doc/library/unittest.rst:2284
 msgid ""
@@ -3447,12 +3487,20 @@ msgid ""
 "control-c handling disabled the :func:`removeHandler` decorator can be "
 "used."
 msgstr ""
+"control-c 신호 처리기는 자체 :const:`signal.SIGINT` 처리기를 설치하는 코드 또는 "
+"테스트와의 호환성을 유지하려고 노력합니다. 만약 ``unittest`` 처리기가 불리지만 그것이 "
+"설치된 :const:`signal.SIGINT` 처리기가 아니면, 즉 그것이 테스트 중에 시스템에 의해 "
+"대체되고 위임된다면, 그것은 기본 처리기를 호출합니다. 이것은 철치된 처리기를 대체하고 그것에 "
+"위임하는 코드의 일반적으로 기대되는 동작일 것입니다. ``unittest`` control-c 처리를 개별 "
+"테스트 별로 비활성화하고 싶을 때 :func:`removeHandler` 데코레이터를 사용할 수 있습니다."
 
 #: ../Doc/library/unittest.rst:2293
 msgid ""
 "There are a few utility functions for framework authors to enable "
 "control-c handling functionality within test frameworks."
 msgstr ""
+"프레임워크 작성자가 테스트 프레임워크에서 control-c 처리 기능을 활성화하기 위해 "
+"몇가지 유틸리티 함수가 있습니다."
 
 #: ../Doc/library/unittest.rst:2298
 msgid ""
@@ -3460,6 +3508,9 @@ msgid ""
 "(usually in response to the user pressing control-c) all registered "
 "results have :meth:`~TestResult.stop` called."
 msgstr ""
+"control-c 처리기를 설치합니다. :const:`signal.SIGINT` 를 받았을 때 (보통 사용자가 "
+"control-c 를 눌렀을 때의 응답으로써) 모든 등록된 결과에 :meth:`~TestResult.stop` 이 "
+"호출됩니다."
 
 #: ../Doc/library/unittest.rst:2305
 msgid ""
@@ -3467,6 +3518,8 @@ msgid ""
 " a result stores a weak reference to it, so it doesn't prevent the result"
 " from being garbage collected."
 msgstr ""
+"control-c 처리를 위해서 :class:`TestResult` 객체를 등록합니다. 결과 등록은 그것의 약한 "
+"참조를 저장합니다, 그래서 결과가 가비지 수거가 되지 않는 것을 막습니다."
 
 #: ../Doc/library/unittest.rst:2309
 msgid ""
@@ -3475,6 +3528,8 @@ msgid ""
 " all results they create independently of whether or not handling is "
 "enabled."
 msgstr ""
+"만약 control-c 처리가 활성화되지 않았다면 :class:`TestResult` 객체 등록은 부작용이 없습니다, "
+"그래서 테스트 프레임워크는 처리가 가능한지 여부와 관계없이 자신이 만든 모든 결과를 무조건 등록할 수 있습니다."
 
 #: ../Doc/library/unittest.rst:2316
 msgid ""
@@ -3482,6 +3537,8 @@ msgid ""
 ":meth:`~TestResult.stop` will no longer be called on that result object "
 "in response to a control-c."
 msgstr ""
+"등록한 결과를 제거합니다. 결과가 제거되고 나면 control-c 에 대한 응답으로 결과 객체의 "
+":meth:`~TestResult.stop` 를 더 이상 호출하지 않게 됩니다."
 
 #: ../Doc/library/unittest.rst:2323
 msgid ""
@@ -3490,3 +3547,6 @@ msgid ""
 "decorator to temporarily remove the handler while the test is being "
 "executed::"
 msgstr ""
+"인자 없이 호출된 경우 이 함수는 만약 control-c 처리기가 설치되었다면 그것을 제거합니다. "
+"또한 이 함수는 테스트 실행 중에 임시로 처리기를 제거하기 위해 테스트 데코레이터로써 사용될 "
+"수도 있습니다::"
