@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-26 11:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/c-api/buffer.rst:11
 msgid "Buffer Protocol"
-msgstr ""
+msgstr "버퍼 프로토콜"
 
 #: ../Doc/c-api/buffer.rst:18
 msgid ""
@@ -29,6 +28,9 @@ msgid ""
 "Third-party libraries may define their own types for special purposes, "
 "such as image processing or numeric analysis."
 msgstr ""
+"파이썬에서 사용할 수 있는 어떤 객체는 하부 메모리 배열 또는 *버퍼*\\에 대한 액세스를 감쌉니다. 이러한 객체에는 내장 "
+":class:`bytes` 와 :class:`bytearray`, 그리고 :class:`array.array`\\와 같은 일부 확장형이 "
+"포함됩니다. 제삼자 라이브러리도 이미지 처리나 수치 해석과 같은 특수한 용도로 자체 형을 정의할 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:24
 msgid ""
@@ -37,12 +39,16 @@ msgid ""
 " then desirable, in some situations, to access that buffer directly and "
 "without intermediate copying."
 msgstr ""
+"이러한 형은 각각 고유의 의미가 있지만, (아마도) 큰 메모리 버퍼에 의해 뒷받침되는 공통된 특징을 공유합니다. 어떤 상황에서는 중간 "
+"복사 없이 직접 버퍼에 액세스하는 것이 바람직합니다."
 
 #: ../Doc/c-api/buffer.rst:29
 msgid ""
 "Python provides such a facility at the C level in the form of the "
 ":ref:`buffer protocol <bufferobjects>`.  This protocol has two sides:"
 msgstr ""
+"파이썬은 C 수준에서 :ref:`버퍼 프로토콜 <bufferobjects>` 형식으로 이러한 기능을 제공합니다. 이 프로토콜에는 두 가지"
+" 측면이 있습니다:"
 
 #: ../Doc/c-api/buffer.rst:34
 msgid ""
@@ -50,12 +56,16 @@ msgid ""
 "allows objects of that type to expose information about their underlying "
 "buffer. This interface is described in the section :ref:`buffer-structs`;"
 msgstr ""
+"생산자 측에서는, 형이 \"버퍼 인터페이스\"를 내보낼 수 있는데, 그 형의 객체가 하부 버퍼의 정보를 노출할 수 있게 합니다. 이 "
+"인터페이스는 :ref:`buffer-structs` 절에서 설명됩니다."
 
 #: ../Doc/c-api/buffer.rst:38
 msgid ""
 "on the consumer side, several means are available to obtain a pointer to "
 "the raw underlying data of an object (for example a method parameter)."
 msgstr ""
+"소비자 측에서는, 객체의 원시 하부 데이터에 대한 포인터를 얻기 위해 여러 가지 방법을 사용할 수 있습니다 (예를 들어 메서드 매개 "
+"변수)."
 
 #: ../Doc/c-api/buffer.rst:41
 msgid ""
@@ -64,6 +74,8 @@ msgid ""
 "example, the elements exposed by an :class:`array.array` can be multi-"
 "byte values."
 msgstr ""
+":class:`bytes` 와 :class:`bytearray`\\와 같은 간단한 객체는 하부 버퍼를 바이트 지향 형식으로 노출합니다. "
+"다른 형태도 가능합니다; 예를 들어, :class:`array.array`\\에 의해 노출되는 요소는 멀티 바이트 값이 될 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:45
 msgid ""
@@ -76,22 +88,28 @@ msgid ""
 "their argument.  The buffer interface allows objects to selectively allow"
 " or reject exporting of read-write and read-only buffers."
 msgstr ""
+"버퍼 인터페이스의 소비자 예는 파일 객체의 :meth:`~io.BufferedIOBase.write` 메서드입니다: 버퍼 인터페이스를 "
+"통해 일련의 바이트를 내보낼 수 있는 모든 객체는 파일에 기록될 수 있습니다. :meth:`write`\\가 전달된 객체의 내부 내용에 "
+"대한 읽기 전용 액세스만 필요하지만, :meth:`~io.BufferedIOBase.readinto`\\와 같은 다른 메서드는 인자의 "
+"내용에 쓰기 액세스가 필요합니다. 버퍼 인터페이스는 객체가 읽기-쓰기와 읽기 전용 버퍼를 선택적으로 허용하거나 거부할 수 있도록 합니다."
 
 #: ../Doc/c-api/buffer.rst:53
 msgid ""
 "There are two ways for a consumer of the buffer interface to acquire a "
 "buffer over a target object:"
-msgstr ""
+msgstr "버퍼 인터페이스의 소비자가 대상 객체에 대해 버퍼를 얻는 방법에는 두 가지가 있습니다:"
 
 #: ../Doc/c-api/buffer.rst:56
 msgid "call :c:func:`PyObject_GetBuffer` with the right parameters;"
-msgstr ""
+msgstr "올바른 매개 변수로 :c:func:`PyObject_GetBuffer`\\를 호출합니다;"
 
 #: ../Doc/c-api/buffer.rst:58
 msgid ""
 "call :c:func:`PyArg_ParseTuple` (or one of its siblings) with one of the "
 "``y*``, ``w*`` or ``s*`` :ref:`format codes <arg-parsing>`."
 msgstr ""
+"``y*``, ``w*`` 또는 ``s*`` :ref:`형식 코드 <arg-parsing>` 중 하나를 사용하여 "
+":c:func:`PyArg_ParseTuple`\\(또는 그 형제 중 하나)을 호출합니다."
 
 #: ../Doc/c-api/buffer.rst:61
 msgid ""
@@ -99,10 +117,12 @@ msgid ""
 "isn't needed anymore.  Failure to do so could lead to various issues such"
 " as resource leaks."
 msgstr ""
+"두 경우 모두, 버퍼가 더는 필요하지 않으면 :c:func:`PyBuffer_Release`\\를 호출해야 합니다. 그렇게 하지 않으면 "
+"자원 누수와 같은 다양한 문제가 발생할 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:69
 msgid "Buffer structure"
-msgstr ""
+msgstr "버퍼 구조체"
 
 #: ../Doc/c-api/buffer.rst:71
 msgid ""
@@ -115,6 +135,11 @@ msgid ""
 "manipulation before passing to an operating system library, or it could "
 "be used to pass around structured data in its native, in-memory format."
 msgstr ""
+"버퍼 구조체(또는 단순히 \"버퍼\")는 다른 객체의 바이너리 데이터를 파이썬 프로그래머에게 노출하는 방법으로 유용합니다. 또한, 복사 "
+"없는(zero-copy) 슬라이싱 메커니즘으로 사용할 수 있습니다. 메모리 블록을 참조하는 능력을 사용해서, 임의의 데이터를 파이썬 "
+"프로그래머에게 아주 쉽게 노출할 수 있습니다. 메모리는 C 확장의 큰 상수 배열일 수 있으며, 운영 체제 라이브러리로 전달되기 전에 "
+"조작하기 위한 원시 메모리 블록일 수도 있고, 네이티브 인 메모리(in-memory) 형식으로 구조화된 데이터를 전달하는 데 사용될 수도"
+" 있습니다."
 
 #: ../Doc/c-api/buffer.rst:80
 msgid ""
@@ -124,6 +149,9 @@ msgid ""
 "wrapper around a buffer is needed, a :ref:`memoryview <memoryview-"
 "objects>` object can be created."
 msgstr ""
+"파이썬 인터프리터가 노출하는 대부분의 데이터형과 달리, 버퍼는 :c:type:`PyObject` 포인터가 아니라 단순한 C 구조체입니다."
+" 이를 통해 매우 간단하게 만들고 복사할 수 있습니다. 버퍼를 감싸는 일반 래퍼가 필요할 때는, :ref:`메모리 뷰 "
+"<memoryview-objects>` 객체를 만들 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:86
 msgid ""
@@ -131,6 +159,8 @@ msgid ""
 " Object Structures <buffer-structs>`. For obtaining a buffer, see "
 ":c:func:`PyObject_GetBuffer`."
 msgstr ""
+"제공하는(exporting) 객체를 작성하는 간단한 지침은 :ref:`버퍼 객체 구조체 <buffer-structs>`\\를 "
+"참조하십시오. 버퍼를 얻으려면, :c:func:`PyObject_GetBuffer`\\를 참조하십시오."
 
 #: ../Doc/c-api/buffer.rst:94
 msgid ""
@@ -140,12 +170,15 @@ msgid ""
 ":c:member:`~Py_buffer.strides` the value may point to the end of the "
 "memory block."
 msgstr ""
+"버퍼 필드에 의해 기술된 논리적 구조의 시작을 가리키는 포인터. 이것은 제공자(exporter)의 하부 물리적 메모리 블록 내의 모든 "
+"위치일 수 있습니다. 예를 들어, 음의 :c:member:`~Py_buffer.strides`\\를 사용하면 값이 메모리 블록의 끝을 "
+"가리킬 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:99
 msgid ""
 "For :term:`contiguous` arrays, the value points to the beginning of the "
 "memory block."
-msgstr ""
+msgstr ":term:`연속 <contiguous>` 배열의 경우, 값은 메모리 블록의 시작을 가리킵니다."
 
 #: ../Doc/c-api/buffer.rst:104
 msgid ""
@@ -154,6 +187,8 @@ msgid ""
 ":c:func:`PyBuffer_Release`. The field is the equivalent of the return "
 "value of any standard C-API function."
 msgstr ""
+"제공하는(exporting) 객체에 대한 새 참조. 참조는 소비자가 소유하고, :c:func:`PyBuffer_Release`\\에 의해"
+" 자동으로 감소하고 *NULL*\\로 설정됩니다. 이 필드는 표준 C-API 함수의 반환 값과 동등합니다."
 
 #: ../Doc/c-api/buffer.rst:109
 msgid ""
@@ -161,6 +196,9 @@ msgid ""
 ":c:func:`PyMemoryView_FromBuffer` or :c:func:`PyBuffer_FillInfo` this "
 "field is *NULL*. In general, exporting objects MUST NOT use this scheme."
 msgstr ""
+"특수한 경우로, :c:func:`PyMemoryView_FromBuffer` 나 :c:func:`PyBuffer_FillInfo`\\로 "
+"감싸진 *임시(temporary)* 버퍼의 경우, 이 필드는 *NULL*\\입니다. 일반적으로, 제공하는(exporting) 객체는 이 "
+"체계를 사용하지 않아야 합니다."
 
 #: ../Doc/c-api/buffer.rst:116
 msgid ""
@@ -169,6 +207,8 @@ msgid ""
 "length that the logical structure would have if it were copied to a "
 "contiguous representation."
 msgstr ""
+"``product(shape) * itemsize``. 연속 배열의 경우, 하부 메모리 블록의 길이입니다. 불연속 배열의 경우, 연속 "
+"표현으로 복사된다면 논리적 구조체가 갖게 될 길이입니다."
 
 #: ../Doc/c-api/buffer.rst:121
 msgid ""
@@ -177,12 +217,15 @@ msgid ""
 "In most cases such a request will be :c:macro:`PyBUF_SIMPLE` or "
 ":c:macro:`PyBUF_WRITABLE`."
 msgstr ""
+"``((char *)buf)[0] 에서 ((char *)buf)[len-1]`` 범위의 액세스는 연속성을 보장하는 요청으로 버퍼가 확보된"
+" 경우에만 유효합니다. 대부분 이러한 요청은 :c:macro:`PyBUF_SIMPLE` 또는 "
+":c:macro:`PyBUF_WRITABLE`\\입니다."
 
 #: ../Doc/c-api/buffer.rst:127
 msgid ""
 "An indicator of whether the buffer is read-only. This field is controlled"
 " by the :c:macro:`PyBUF_WRITABLE` flag."
-msgstr ""
+msgstr "버퍼가 읽기 전용인지를 나타내는 표시기입니다. 이 필드는 :c:macro:`PyBUF_WRITABLE` 플래그로 제어됩니다."
 
 #: ../Doc/c-api/buffer.rst:132
 msgid ""
@@ -190,6 +233,8 @@ msgid ""
 ":func:`struct.calcsize` called on non-NULL :c:member:`~Py_buffer.format` "
 "values."
 msgstr ""
+"단일 요소의 항목 크기(바이트)입니다. NULL이 아닌 :c:member:`~Py_buffer.format` 값에 호출된 "
+":func:`struct.calcsize` 값과 같습니다."
 
 #: ../Doc/c-api/buffer.rst:135
 msgid ""
@@ -198,6 +243,9 @@ msgid ""
 "to  *NULL*,  but :c:member:`~Py_buffer.itemsize` still has the value for "
 "the original format."
 msgstr ""
+"중요한 예외: 소비자가 :c:macro:`PyBUF_FORMAT` 플래그 없이 버퍼를 요청하면, "
+":c:member:`~Py_buffer.format`\\은 *NULL*\\로 설정되지만, "
+":c:member:`~Py_buffer.itemsize`\\는 여전히 원래 형식의 값을 갖습니다."
 
 #: ../Doc/c-api/buffer.rst:140
 msgid ""
@@ -205,6 +253,8 @@ msgid ""
 " * itemsize == len`` still holds and the consumer can use "
 ":c:member:`~Py_buffer.itemsize` to navigate the buffer."
 msgstr ""
+":c:member:`~Py_buffer.shape`\\이 있으면, ``product(shape) * itemsize == len`` "
+"동치가 계속 성립하고 소비자는 :c:member:`~Py_buffer.itemsize`\\를 사용하여 버퍼를 탐색할 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:144
 msgid ""
@@ -213,6 +263,9 @@ msgid ""
 "consumer must disregard :c:member:`~Py_buffer.itemsize` and assume "
 "``itemsize == 1``."
 msgstr ""
+":c:macro:`PyBUF_SIMPLE` 이나 :c:macro:`PyBUF_WRITABLE` 요청의 결과로 "
+":c:member:`~Py_buffer.shape`\\이 *NULL*\\이면, 소비자는 "
+":c:member:`~Py_buffer.itemsize`\\를 무시하고 ``itemsize == 1``\\로 가정해야 합니다."
 
 #: ../Doc/c-api/buffer.rst:150
 msgid ""
@@ -220,10 +273,12 @@ msgid ""
 " the contents of a single item. If this is *NULL*, ``\"B\"`` (unsigned "
 "bytes) is assumed."
 msgstr ""
+"단일 항목의 내용을 설명하는 :mod:`struct` 모듈 스타일 문법의 *NUL* 종료 문자열. 이것이 *NULL*\\이면, "
+"``\"B\"``\\(부호 없는 바이트)를 가정합니다."
 
 #: ../Doc/c-api/buffer.rst:154
 msgid "This field is controlled by the :c:macro:`PyBUF_FORMAT` flag."
-msgstr ""
+msgstr "이 필드는 :c:macro:`PyBUF_FORMAT` 플래그로 제어됩니다."
 
 #: ../Doc/c-api/buffer.rst:158
 msgid ""
@@ -233,6 +288,10 @@ msgid ""
 ":c:member:`~Py_buffer.strides` and :c:member:`~Py_buffer.suboffsets` MUST"
 " be *NULL*."
 msgstr ""
+"메모리가 n 차원 배열로 나타내는 차원 수. ``0``\\이면, :c:member:`~Py_buffer.buf`\\는 스칼라를 나타내는 "
+"단일 항목을 가리 킵니다. 이 경우, :c:member:`~Py_buffer.shape`, "
+":c:member:`~Py_buffer.strides` 및 :c:member:`~Py_buffer.suboffsets`\\는 반드시 "
+"*NULL* 이어야 합니다."
 
 #: ../Doc/c-api/buffer.rst:163
 msgid ""
@@ -241,6 +300,8 @@ msgid ""
 "dimensional buffers SHOULD be able to handle up to "
 ":c:macro:`PyBUF_MAX_NDIM` dimensions."
 msgstr ""
+"매크로 :c:macro:`PyBUF_MAX_NDIM`\\는 최대 차원 수를 64로 제한합니다. 제공자는 이 제한을 존중해야 하며, 다차원"
+" 버퍼의 소비자는 :c:macro:`PyBUF_MAX_NDIM` 차원까지 처리할 수 있어야 합니다."
 
 #: ../Doc/c-api/buffer.rst:169
 msgid ""
@@ -249,6 +310,9 @@ msgid ""
 "``shape[0] * ... * shape[ndim-1] * itemsize`` MUST be equal to "
 ":c:member:`~Py_buffer.len`."
 msgstr ""
+"n-차원 배열로 메모리의 모양을 나타내는 길이 :c:member:`~Py_buffer.ndim`\\의 "
+":c:type:`Py_ssize_t` 배열. ``shape[0] * ... * shape[ndim-1] * itemsize``\\는 "
+":c:member:`~Py_buffer.len`\\과 같아야 합니다."
 
 #: ../Doc/c-api/buffer.rst:174
 msgid ""
@@ -256,10 +320,12 @@ msgid ""
 "0`` requires special attention. See `complex arrays`_ for further "
 "information."
 msgstr ""
+"모양 값은 ``shape[n] >= 0``\\로 제한됩니다. ``shape[n] == 0``\\인 경우는 특별한 주의가 필요합니다. "
+"자세한 정보는 `복잡한 배열 <complex arrays_>`_\\을 참조하십시오."
 
 #: ../Doc/c-api/buffer.rst:178
 msgid "The shape array is read-only for the consumer."
-msgstr ""
+msgstr "shape 배열은 소비자에게 읽기 전용입니다."
 
 #: ../Doc/c-api/buffer.rst:182
 msgid ""
@@ -267,6 +333,8 @@ msgid ""
 "giving the number of bytes to skip to get to a new element in each "
 "dimension."
 msgstr ""
+"각 차원에서 새 요소를 가져오기 위해 건너뛸 바이트 수를 제공하는 길이 :c:member:`~Py_buffer.ndim`\\의 "
+":c:type:`Py_ssize_t` 배열."
 
 #: ../Doc/c-api/buffer.rst:186
 msgid ""
@@ -274,10 +342,12 @@ msgid ""
 " positive, but a consumer MUST be able to handle the case ``strides[n] <="
 " 0``. See `complex arrays`_ for further information."
 msgstr ""
+"스트라이드 값은 임의의 정수일 수 있습니다. 일반 배열의 경우, 스트라이드는 보통 양수이지만, 소비자는 ``strides[n] <= "
+"0``\\인 경우를 처리할 수 있어야 합니다. 자세한 내용은 `복잡한 배열 <complex arrays_>`_\\을 참조하십시오."
 
 #: ../Doc/c-api/buffer.rst:190
 msgid "The strides array is read-only for the consumer."
-msgstr ""
+msgstr "strides 배열은 소비자에게 읽기 전용입니다."
 
 #: ../Doc/c-api/buffer.rst:194
 msgid ""
@@ -288,12 +358,16 @@ msgid ""
 "indicates that no de-referencing should occur (striding in a contiguous "
 "memory block)."
 msgstr ""
+"길이 :c:member:`~Py_buffer.ndim`\\의 :c:type:`Py_ssize_t` 배열. ``suboffsets[n] "
+">= 0`` 면, n 번째 차원을 따라 저장된 값은 포인터이고 서브 오프셋 값은 역참조(de-referencing) 후 각 포인터에 더할"
+" 바이트 수를 나타냅니다. 음의 서브 오프셋 값은 역참조(de-referencing)가 발생하지 않아야 함을 나타냅니다 (연속 메모리 "
+"블록에서의 스트라이드)."
 
 #: ../Doc/c-api/buffer.rst:201
 msgid ""
 "If all suboffsets are negative (i.e. no de-referencing is needed, then "
 "this field must be NULL (the default value)."
-msgstr ""
+msgstr "모든 서브 오프셋이 음수면 (즉, 역참조가 필요하지 않으면), 이 필드는 NULL(기본값) 이어야 합니다."
 
 #: ../Doc/c-api/buffer.rst:204
 msgid ""
@@ -301,10 +375,12 @@ msgid ""
 "(PIL). See `complex arrays`_ for further information how to access "
 "elements of such an array."
 msgstr ""
+"이 유형의 배열 표현은 파이썬 이미징 라이브러리(PIL)에서 사용됩니다. 이러한 배열 요소에 액세스하는 방법에 대한 자세한 내용은 "
+"`복잡한 배열 <complex arrays_>`_\\을 참조하십시오."
 
 #: ../Doc/c-api/buffer.rst:208
 msgid "The suboffsets array is read-only for the consumer."
-msgstr ""
+msgstr "suboffsets 배열은 소비자에게 읽기 전용입니다."
 
 #: ../Doc/c-api/buffer.rst:212
 msgid ""
@@ -314,10 +390,13 @@ msgid ""
 "freed when the buffer is released. The consumer MUST NOT alter this "
 "value."
 msgstr ""
+"이것은 제공하는(exporting) 객체에 의해 내부적으로 사용됩니다. 예를 들어, 이것은 제공자(exporter)가 정수로 다시 "
+"캐스팅할 수 있으며, 버퍼가 해제될 때 shape, strides 및 suboffsets 배열을 해제해야 하는지에 대한 플래그를 저장하는"
+" 데 사용됩니다. 소비자가 이 값을 변경해서는 안 됩니다."
 
 #: ../Doc/c-api/buffer.rst:221
 msgid "Buffer request types"
-msgstr ""
+msgstr "버퍼 요청 유형"
 
 #: ../Doc/c-api/buffer.rst:223
 msgid ""
@@ -326,16 +405,19 @@ msgid ""
 "logical structure of the memory can vary drastically, the consumer uses "
 "the *flags* argument to specify the exact buffer type it can handle."
 msgstr ""
+"버퍼는 대개 :c:func:`PyObject_GetBuffer`\\를 통해 제공하는(exporting) 객체로 버퍼 요청을 보내서 "
+"얻습니다. 메모리의 논리적 구조의 복잡성이 크게 다를 수 있으므로, 소비자는 처리할 수 있는 정확한 버퍼 유형을 지정하기 위해 "
+"*flags* 인자를 사용합니다."
 
 #: ../Doc/c-api/buffer.rst:228
 msgid ""
 "All :c:data:`Py_buffer` fields are unambiguously defined by the request "
 "type."
-msgstr ""
+msgstr "모든 :c:data:`Py_buffer` 필드는 요청 유형에 의해 모호하지 않게 정의됩니다."
 
 #: ../Doc/c-api/buffer.rst:232
 msgid "request-independent fields"
-msgstr ""
+msgstr "요청 독립적 필드"
 
 #: ../Doc/c-api/buffer.rst:233
 msgid ""
@@ -344,10 +426,13 @@ msgid ""
 ":c:member:`~Py_buffer.buf`, :c:member:`~Py_buffer.len`, "
 ":c:member:`~Py_buffer.itemsize`, :c:member:`~Py_buffer.ndim`."
 msgstr ""
+"다음 필드는 *flags*\\의 영향을 받지 않고 항상 올바른 값으로 채워져야 합니다: :c:member:`~Py_buffer.obj`,"
+" :c:member:`~Py_buffer.buf`, :c:member:`~Py_buffer.len`, "
+":c:member:`~Py_buffer.itemsize`, :c:member:`~Py_buffer.ndim`."
 
 #: ../Doc/c-api/buffer.rst:239
 msgid "readonly, format"
-msgstr ""
+msgstr "readonly, format"
 
 #: ../Doc/c-api/buffer.rst:243
 msgid ""
@@ -356,12 +441,17 @@ msgid ""
 "exporter MAY provide either a read-only or writable buffer, but the "
 "choice MUST be consistent for all consumers."
 msgstr ""
+":c:member:`~Py_buffer.readonly` 필드를 제어합니다. 설정되면, 제공자는 반드시 쓰기 가능한 버퍼를 제공하거나 "
+"실패를 보고해야 합니다. 그렇지 않으면, 제공자는 읽기 전용 버퍼나 쓰기 가능 버퍼를 제공할 수 있지만, 모든 소비자에 대해 일관성을 "
+"유지해야 합니다."
 
 #: ../Doc/c-api/buffer.rst:250
 msgid ""
 "Controls the :c:member:`~Py_buffer.format` field. If set, this field MUST"
 " be filled in correctly. Otherwise, this field MUST be *NULL*."
 msgstr ""
+":c:member:`~Py_buffer.format` 필드를 제어합니다. 설정되면, 이 필드를 올바르게 채워야 합니다. 그렇지 않으면, "
+"이 필드는 반드시 *NULL* 이어야 합니다."
 
 #: ../Doc/c-api/buffer.rst:254
 msgid ""
@@ -370,6 +460,9 @@ msgid ""
 ":c:macro:`PyBUF_WRITABLE` can be used as a stand-alone flag to request a "
 "simple writable buffer."
 msgstr ""
+":c:macro:`PyBUF_WRITABLE`\\은 다음 섹션의 모든 플래그와 \\| 될 수 있습니다. "
+":c:macro:`PyBUF_SIMPLE`\\이 0으로 정의되므로, :c:macro:`PyBUF_WRITABLE`\\은 독립형 플래그로 "
+"사용되어 간단한 쓰기 가능한 버퍼를 요청할 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:258
 msgid ""
@@ -377,10 +470,12 @@ msgid ""
 ":c:macro:`PyBUF_SIMPLE`. The latter already implies format ``B`` "
 "(unsigned bytes)."
 msgstr ""
+":c:macro:`PyBUF_FORMAT`\\은 :c:macro:`PyBUF_SIMPLE`\\을 제외한 임의의 플래그와 \\| 될 수 "
+"있습니다. PyBUF_SIMPLE은 이미 형식 ``B``\\(부호 없는 바이트)를 의미합니다."
 
 #: ../Doc/c-api/buffer.rst:263
 msgid "shape, strides, suboffsets"
-msgstr ""
+msgstr "shape, strides, suboffsets"
 
 #: ../Doc/c-api/buffer.rst:265
 msgid ""
@@ -388,26 +483,28 @@ msgid ""
 "decreasing order of complexity. Note that each flag contains all bits of "
 "the flags below it."
 msgstr ""
+"메모리의 논리 구조를 제어하는 플래그는 복잡도가 감소하는 순서로 나열됩니다. 각 플래그는 그 아래에 있는 플래그의 모든 비트를 "
+"포함합니다."
 
 #: ../Doc/c-api/buffer.rst:272 ../Doc/c-api/buffer.rst:296
 #: ../Doc/c-api/buffer.rst:321
 msgid "Request"
-msgstr ""
+msgstr "요청"
 
 #: ../Doc/c-api/buffer.rst:272 ../Doc/c-api/buffer.rst:296
 #: ../Doc/c-api/buffer.rst:321
 msgid "shape"
-msgstr ""
+msgstr "shape"
 
 #: ../Doc/c-api/buffer.rst:272 ../Doc/c-api/buffer.rst:296
 #: ../Doc/c-api/buffer.rst:321
 msgid "strides"
-msgstr ""
+msgstr "strides"
 
 #: ../Doc/c-api/buffer.rst:272 ../Doc/c-api/buffer.rst:296
 #: ../Doc/c-api/buffer.rst:321
 msgid "suboffsets"
-msgstr ""
+msgstr "suboffsets"
 
 #: ../Doc/c-api/buffer.rst:274 ../Doc/c-api/buffer.rst:276
 #: ../Doc/c-api/buffer.rst:278 ../Doc/c-api/buffer.rst:298
@@ -418,12 +515,12 @@ msgstr ""
 #: ../Doc/c-api/buffer.rst:333 ../Doc/c-api/buffer.rst:335
 #: ../Doc/c-api/buffer.rst:337
 msgid "yes"
-msgstr ""
+msgstr "yes"
 
 #: ../Doc/c-api/buffer.rst:274 ../Doc/c-api/buffer.rst:323
 #: ../Doc/c-api/buffer.rst:325
 msgid "if needed"
-msgstr ""
+msgstr "필요하면"
 
 #: ../Doc/c-api/buffer.rst:276 ../Doc/c-api/buffer.rst:278
 #: ../Doc/c-api/buffer.rst:280 ../Doc/c-api/buffer.rst:298
@@ -433,11 +530,11 @@ msgstr ""
 #: ../Doc/c-api/buffer.rst:333 ../Doc/c-api/buffer.rst:335
 #: ../Doc/c-api/buffer.rst:337
 msgid "NULL"
-msgstr ""
+msgstr "NULL"
 
 #: ../Doc/c-api/buffer.rst:287
 msgid "contiguity requests"
-msgstr ""
+msgstr "연속성 요청"
 
 #: ../Doc/c-api/buffer.rst:289
 msgid ""
@@ -445,27 +542,29 @@ msgid ""
 " with and without stride information. Without stride information, the "
 "buffer must be C-contiguous."
 msgstr ""
+"C 나 포트란 :term:`연속성 <contiguous>`\\을 명시적으로 요청할 수 있는데, 스트라이드 정보를 포함하기도 그렇지 않기도"
+" 합니다. 스트라이드 정보가 없으면, 버퍼는 C-연속이어야 합니다."
 
 #: ../Doc/c-api/buffer.rst:296 ../Doc/c-api/buffer.rst:321
 msgid "contig"
-msgstr ""
+msgstr "연속성"
 
 #: ../Doc/c-api/buffer.rst:298 ../Doc/c-api/buffer.rst:304
 #: ../Doc/c-api/buffer.rst:335 ../Doc/c-api/buffer.rst:337
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #: ../Doc/c-api/buffer.rst:300
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: ../Doc/c-api/buffer.rst:302
 msgid "C or F"
-msgstr ""
+msgstr "C 또는 F"
 
 #: ../Doc/c-api/buffer.rst:309
 msgid "compound requests"
-msgstr ""
+msgstr "복합 요청"
 
 #: ../Doc/c-api/buffer.rst:311
 msgid ""
@@ -473,6 +572,8 @@ msgid ""
 "in the previous section. For convenience, the buffer protocol provides "
 "frequently used combinations as single flags."
 msgstr ""
+"모든 가능한 요청은 앞 절의 플래그 조합에 의해 완전히 정의됩니다. 편의상, 버퍼 프로토콜은 자주 사용되는 조합을 단일 플래그로 "
+"제공합니다."
 
 #: ../Doc/c-api/buffer.rst:315
 msgid ""
@@ -480,38 +581,40 @@ msgid ""
 "would have to call :c:func:`PyBuffer_IsContiguous` to determine "
 "contiguity."
 msgstr ""
+"다음 표에서 *U*\\는 정의되지 않은 연속성을 나타냅니다. 소비자는 연속성을 판단하기 위해 "
+":c:func:`PyBuffer_IsContiguous`\\를 호출해야 합니다."
 
 #: ../Doc/c-api/buffer.rst:321
 msgid "readonly"
-msgstr ""
+msgstr "readonly"
 
 #: ../Doc/c-api/buffer.rst:321
 msgid "format"
-msgstr ""
+msgstr "format"
 
 #: ../Doc/c-api/buffer.rst:323 ../Doc/c-api/buffer.rst:325
 #: ../Doc/c-api/buffer.rst:327 ../Doc/c-api/buffer.rst:329
 #: ../Doc/c-api/buffer.rst:331 ../Doc/c-api/buffer.rst:333
 msgid "U"
-msgstr ""
+msgstr "U"
 
 #: ../Doc/c-api/buffer.rst:323 ../Doc/c-api/buffer.rst:327
 #: ../Doc/c-api/buffer.rst:331 ../Doc/c-api/buffer.rst:335
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../Doc/c-api/buffer.rst:325 ../Doc/c-api/buffer.rst:329
 #: ../Doc/c-api/buffer.rst:333 ../Doc/c-api/buffer.rst:337
 msgid "1 or 0"
-msgstr ""
+msgstr "1 또는 0"
 
 #: ../Doc/c-api/buffer.rst:342
 msgid "Complex arrays"
-msgstr ""
+msgstr "복잡한 배열"
 
 #: ../Doc/c-api/buffer.rst:345
 msgid "NumPy-style: shape and strides"
-msgstr ""
+msgstr "NumPy-스타일: shape과 strides"
 
 #: ../Doc/c-api/buffer.rst:347
 msgid ""
@@ -519,6 +622,9 @@ msgid ""
 ":c:member:`~Py_buffer.itemsize`, :c:member:`~Py_buffer.ndim`, "
 ":c:member:`~Py_buffer.shape` and :c:member:`~Py_buffer.strides`."
 msgstr ""
+"NumPy 스타일 배열의 논리적 구조는 :c:member:`~Py_buffer.itemsize`, "
+":c:member:`~Py_buffer.ndim`, :c:member:`~Py_buffer.shape` 및 "
+":c:member:`~Py_buffer.strides`\\로 정의됩니다."
 
 #: ../Doc/c-api/buffer.rst:350
 msgid ""
@@ -528,6 +634,10 @@ msgid ""
 ":c:member:`~Py_buffer.shape` and :c:member:`~Py_buffer.strides` are "
 "*NULL*."
 msgstr ""
+"``ndim == 0``\\이면, :c:member:`~Py_buffer.buf`\\가 가리키는 메모리 위치가 "
+":c:member:`~Py_buffer.itemsize` 크기의 스칼라로 해석됩니다. 이 경우, "
+":c:member:`~Py_buffer.shape` 과 :c:member:`~Py_buffer.strides`\\는 모두 "
+"*NULL*\\입니다."
 
 #: ../Doc/c-api/buffer.rst:354
 msgid ""
@@ -535,12 +645,16 @@ msgid ""
 "a standard n-dimensional C-array. Otherwise, the consumer must access an "
 "n-dimensional array as follows:"
 msgstr ""
+":c:member:`~Py_buffer.strides`\\가 *NULL*\\이면, 배열은 표준 n-차원 C 배열로 해석됩니다. 그렇지 "
+"않으면, 소비자는 다음과 같이 n-차원 배열에 액세스해야 합니다:"
 
 #: ../Doc/c-api/buffer.rst:358
 msgid ""
 "``ptr = (char *)buf + indices[0] * strides[0] + ... + indices[n-1] * "
 "strides[n-1]`` ``item = *((typeof(item) *)ptr);``"
 msgstr ""
+"``ptr = (char *)buf + indices[0] * strides[0] + ... + indices[n-1] * "
+"strides[n-1]`` ``item = *((typeof(item) *)ptr);``"
 
 #: ../Doc/c-api/buffer.rst:362
 msgid ""
@@ -548,10 +662,12 @@ msgid ""
 "within the actual memory block. An exporter can check the validity of a "
 "buffer with this function:"
 msgstr ""
+"위에서 언급했듯이, :c:member:`~Py_buffer.buf`\\는 실제 메모리 블록 내의 모든 위치를 가리킬 수 있습니다. "
+"제공자(exporter)는 이 함수로 버퍼의 유효성을 검사 할 수 있습니다:"
 
 #: ../Doc/c-api/buffer.rst:396
 msgid "PIL-style: shape, strides and suboffsets"
-msgstr ""
+msgstr "PIL-스타일: shape, strides 및 suboffsets"
 
 #: ../Doc/c-api/buffer.rst:398
 msgid ""
@@ -563,6 +679,11 @@ msgid ""
 " can be embedded at the start of :c:member:`~Py_buffer.buf`, pointing to "
 "two ``char x[2][3]`` arrays that can be located anywhere in memory."
 msgstr ""
+"일반 항목 외에도, PIL 스타일 배열에는 차원의 다음 요소를 가져오기 위해 따라야 하는 포인터가 포함될 수 있습니다. 예를 들어, 일반"
+" 3-차원 C 배열 ``char v[2][2][3]``\\는 2개의 2-차원 배열을 가리키는 2개의 포인터 배열로 볼 수도 있습니다: "
+"``char (*v[2])[2][3]``. suboffsets 표현에서, 이 두 포인터는 "
+":c:member:`~Py_buffer.buf`\\의 시작 부분에 임베드 될 수 있는데, 메모리의 어느 위치 에나 배치될 수 있는 두 "
+"개의 ``char x[2][3]`` 배열을 가리킵니다."
 
 #: ../Doc/c-api/buffer.rst:407
 msgid ""
@@ -570,10 +691,12 @@ msgid ""
 "pointed to by an N-dimensional index when there are both non-NULL strides"
 " and suboffsets::"
 msgstr ""
+"다음은 NULL이 아닌 strides와 suboffsets가 있을 때, N-차원 인덱스가 가리키는 N-차원 배열의 요소에 대한 포인터를 "
+"반환하는 함수입니다::"
 
 #: ../Doc/c-api/buffer.rst:426
 msgid "Buffer-related functions"
-msgstr ""
+msgstr "버퍼 관련 함수"
 
 #: ../Doc/c-api/buffer.rst:430
 msgid ""
@@ -581,6 +704,8 @@ msgid ""
 "When ``1`` is returned, it doesn't guarantee that "
 ":c:func:`PyObject_GetBuffer` will succeed."
 msgstr ""
+"*obj*\\가 버퍼 인터페이스를 지원하면 ``1``\\을 반환하고, 그렇지 않으면 ``0``\\을 반환합니다. ``1``\\이 반환될 "
+"때, :c:func:`PyObject_GetBuffer`\\가 성공할 것이라고 보장하지는 않습니다."
 
 #: ../Doc/c-api/buffer.rst:437
 msgid ""
@@ -589,6 +714,9 @@ msgid ""
 ":c:data:`PyExc_BufferError`, set :c:member:`view->obj` to *NULL* and "
 "return ``-1``."
 msgstr ""
+"*flags*\\에 지정된 대로 *view*\\를 채우도록 *exporter*\\에게 요청을 보냅니다. 제공자(exporter)가 정확한"
+" 유형의 버퍼를 제공할 수 없다면, :c:data:`PyExc_BufferError`\\를 일으키고, "
+":c:member:`view->obj`\\를 *NULL*\\로 설정하고, ``-1``\\를 반환해야 합니다."
 
 #: ../Doc/c-api/buffer.rst:442
 msgid ""
@@ -598,6 +726,10 @@ msgid ""
 "this object instead of *exporter* (See :ref:`Buffer Object Structures "
 "<buffer-structs>`)."
 msgstr ""
+"성공하면, *view*\\를 채우고, :c:member:`view->obj`\\를 *exporter*\\에 대한 새 참조로 설정하고, "
+"0을 반환합니다. 요청을 단일 객체로 리디렉션하는 연결된(chained) 버퍼 공급자의 경우, "
+":c:member:`view->obj`\\는 *exporter* 대신 이 객체를 참조할 수 있습니다 (:ref:`버퍼 객체 구조체 "
+"<buffer-structs>`\\를 보세요)."
 
 #: ../Doc/c-api/buffer.rst:447
 msgid ""
@@ -606,6 +738,9 @@ msgid ""
 ":c:func:`free`. Thus, after the consumer is done with the buffer, "
 ":c:func:`PyBuffer_Release` must be called exactly once."
 msgstr ""
+":c:func:`PyObject_GetBuffer`\\에 대한 성공적인 호출은 :c:func:`PyBuffer_Release`\\에 대한"
+" 호출과 쌍을 이루어야 합니다, :c:func:`malloc`\\과 :c:func:`free`\\와 유사합니다. 따라서, 소비자가 버퍼로"
+" 작업한 후에는, :c:func:`PyBuffer_Release`\\를 정확히 한 번 호출해야 합니다."
 
 #: ../Doc/c-api/buffer.rst:455
 msgid ""
@@ -613,18 +748,22 @@ msgid ""
 ":c:member:`view->obj`. This function MUST be called when the buffer is no"
 " longer being used, otherwise reference leaks may occur."
 msgstr ""
+"버퍼 *view*\\를 해제하고 :c:member:`view->obj`\\에 대한 참조 횟수를 감소시킵니다. 버퍼가 더는 사용되지 않을 "
+"때, 이 함수를 반드시 호출해야 합니다. 그렇지 않으면 참조 누수가 발생할 수 있습니다."
 
 #: ../Doc/c-api/buffer.rst:459
 msgid ""
 "It is an error to call this function on a buffer that was not obtained "
 "via :c:func:`PyObject_GetBuffer`."
-msgstr ""
+msgstr ":c:func:`PyObject_GetBuffer`\\를 통해 얻지 않은 버퍼에 이 함수를 호출하는 것은 에러입니다."
 
 #: ../Doc/c-api/buffer.rst:465
 msgid ""
 "Return the implied :c:data:`~Py_buffer.itemsize` from "
 ":c:data:`~Py_buffer.format`. This function is not yet implemented."
 msgstr ""
+":c:data:`~Py_buffer.format`\\이 암시하는 :c:data:`~Py_buffer.itemsize`\\를 반환합니다. "
+"이 함수는 아직 구현되지 않았습니다."
 
 #: ../Doc/c-api/buffer.rst:471
 msgid ""
@@ -632,6 +771,9 @@ msgid ""
 "``'C'``) or Fortran-style (*order* is ``'F'``) :term:`contiguous` or "
 "either one (*order* is ``'A'``).  Return ``0`` otherwise."
 msgstr ""
+"*view*\\로 정의된 메모리가 C 스타일(*order*\\가 ``'C'``)이나 포트란 스타일(*order*\\가 ``'F'``) "
+":term:`연속 <contiguous>`\\이거나 둘 중 하나(*order*\\가 ``'A'``)면 ``1``\\을 반환합니다. 그렇지"
+" 않으면 ``0``\\을 반환합니다."
 
 #: ../Doc/c-api/buffer.rst:478
 msgid ""
@@ -639,10 +781,13 @@ msgid ""
 "*order* can be ``'C'`` or ``'F'`` (for C-style or Fortran-style "
 "ordering). ``0`` is returned on success, ``-1`` on error."
 msgstr ""
+"*src*\\에 있는 *len* 바이트를 *buf*\\에 연속 표현으로 복사합니다. *order*\\는 ``'C'`` 또는 "
+"``'F'``\\(C 스타일 또는 포트란 스타일 순서)일 수 있습니다. 성공하면 ``0``\\이 반환되고, 에러가 있으면 "
+"``-1``\\이 반환됩니다."
 
 #: ../Doc/c-api/buffer.rst:482
 msgid "This function fails if *len* != *src->len*."
-msgstr ""
+msgstr "이 함수는 *len* != *src->len*\\이면 실패합니다."
 
 #: ../Doc/c-api/buffer.rst:487
 msgid ""
@@ -650,6 +795,9 @@ msgid ""
 "(C-style if *order* is ``'C'`` or Fortran-style if *order* is ``'F'``) "
 "array of the given shape with the given number of bytes per element."
 msgstr ""
+"*strides* 배열을 주어진 요소당 바이트 수와 주어진 shape 으로 :term:`연속 <contiguous>` "
+"(*order*\\가 ``'C'``\\면 C 스타일, *order*\\가 ``'F'``\\면 포트란 스타일) 배열의 바이트 스트라이드로 "
+"채웁니다."
 
 #: ../Doc/c-api/buffer.rst:494
 msgid ""
@@ -657,6 +805,8 @@ msgid ""
 " *len* with writability set according to *readonly*. *buf* is interpreted"
 " as a sequence of unsigned bytes."
 msgstr ""
+"*readonly*\\에 따라 쓰기 가능성이 설정된 *len* 크기의 *buf*\\를 노출하려는 제공자(exporter)에 대한 버퍼 "
+"요청을 처리합니다. *buf*\\는 부호 없는 바이트의 시퀀스로 해석됩니다."
 
 #: ../Doc/c-api/buffer.rst:498
 msgid ""
@@ -664,6 +814,9 @@ msgid ""
 "fills in *view* as specified by flags, unless *buf* has been designated "
 "as read-only and :c:macro:`PyBUF_WRITABLE` is set in *flags*."
 msgstr ""
+"*flags* 인자는 요청 유형을 나타냅니다. 이 함수는 *buf*\\가 읽기 전용으로 지정되고 "
+":c:macro:`PyBUF_WRITABLE`\\이 *flags*\\에 설정되어 있지 않으면, 항상 플래그가 지정하는 대로 "
+"*view*\\를 채웁니다."
 
 #: ../Doc/c-api/buffer.rst:502
 msgid ""
@@ -671,6 +824,9 @@ msgid ""
 "and return 0. Otherwise, raise :c:data:`PyExc_BufferError`, set "
 ":c:member:`view->obj` to *NULL* and return ``-1``;"
 msgstr ""
+"성공하면, :c:member:`view->obj`\\를 *exporter*\\에 대한 새 참조로 설정하고, 0을 반환합니다. 그렇지 "
+"않으면, :c:data:`PyExc_BufferError`\\를 일으키고, :c:member:`view->obj`\\를 *NULL*\\로"
+" 설정한 다음 ``-1``\\을 반환합니다."
 
 #: ../Doc/c-api/buffer.rst:506
 msgid ""
@@ -678,4 +834,6 @@ msgid ""
 "structs>`, *exporter* MUST be set to the exporting object and *flags* "
 "must be passed unmodified. Otherwise, *exporter* MUST be NULL."
 msgstr ""
-
+"이 함수가 :ref:`getbufferproc <buffer-structs>`\\의 일부로 사용되면, *exporter*\\가 "
+"제공하는(exporting) 객체로 설정되어야 하고, *flags*\\는 수정되지 않은 채로 전달되어야 합니다. 그렇지 않으면 "
+"*exporter*\\가 NULL이어야 합니다."
