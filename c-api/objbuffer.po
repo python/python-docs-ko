@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/c-api/objbuffer.rst:4
 msgid "Old Buffer Protocol"
-msgstr ""
+msgstr "낡은 버퍼 프로토콜"
 
 #: ../Doc/c-api/objbuffer.rst:8
 msgid ""
@@ -30,6 +29,9 @@ msgid ""
 "don't give you control over the lifetime of the resources acquired when a"
 " buffer is exported."
 msgstr ""
+"이 함수는 파이썬 2에서 \"낡은 버퍼 프로토콜\" API 일부분이었습니다. 파이썬 3에서는 이 프로토콜이 더는 존재하지 않지만 2.x "
+"코드 이식을 쉽게 하도록 함수들은 여전히 노출됩니다. 이들은 :ref:`새 버퍼 프로토콜 <bufferobjects>`\\를 둘러싼 "
+"호환성 래퍼 역할을 하지만, 버퍼를 제공할 때 얻은 자원의 수명을 제어할 수는 없습니다."
 
 #: ../Doc/c-api/objbuffer.rst:15
 msgid ""
@@ -39,6 +41,9 @@ msgid ""
 " an object, and :c:func:`PyBuffer_Release` when the buffer view can be "
 "released."
 msgstr ""
+"따라서, :c:func:`PyObject_GetBuffer`\\(또는 ``y*`` 나 ``w*`` :ref:`포맷 코드 <arg-"
+"parsing>`\\를 사용하는 :c:func:`PyArg_ParseTuple` 계열의 함수)를 호출하여 개체에 대한 버퍼 뷰를 "
+"가져오고, 버퍼 뷰를 해제할 수 있을 때 :c:func:`PyBuffer_Release`\\를 호출하는 것이 좋습니다."
 
 #: ../Doc/c-api/objbuffer.rst:23
 msgid ""
@@ -48,6 +53,10 @@ msgid ""
 "the memory location and *buffer_len* to the buffer length.  Returns "
 "``-1`` and sets a :exc:`TypeError` on error."
 msgstr ""
+"문자 기반 입력으로 사용할 수 있는 읽기 전용 메모리 위치에 대한 포인터를 반환합니다. *obj* 인자는 단일 세그먼트 문자 버퍼 "
+"인터페이스를 지원해야 합니다. 성공하면, ``0``\\을 반환하고, *buffer*\\를 메모리 위치로 설정하고, "
+"*buffer_len*\\을 버퍼 길이로 설정합니다. 에러 시에, ``-1``\\을 반환하고, :exc:`TypeError`\\를 "
+"설정합니다."
 
 #: ../Doc/c-api/objbuffer.rst:32
 msgid ""
@@ -57,12 +66,16 @@ msgid ""
 "location and *buffer_len* to the buffer length.  Returns ``-1`` and sets "
 "a :exc:`TypeError` on error."
 msgstr ""
+"임의의 데이터를 포함하는 읽기 전용 메모리 위치에 대한 포인터를 반환합니다. *obj* 인자는 단일 세그먼트 읽기 가능 버퍼 인터페이스를"
+" 지원해야 합니다. 성공하면, ``0``\\을 반환하고, *buffer*\\를 메모리 위치로 설정하고, *buffer_len*\\을 버퍼"
+" 길이로 설정합니다. 에러 시에, ``-1``\\을 반환하고, :exc:`TypeError`\\를 설정합니다."
 
 #: ../Doc/c-api/objbuffer.rst:41
 msgid ""
 "Returns ``1`` if *o* supports the single-segment readable buffer "
 "interface. Otherwise returns ``0``."
 msgstr ""
+"*o*\\가 단일 세그먼트 읽기 가능 버퍼 인터페이스를 지원하면 ``1``\\을 반환합니다. 그렇지 않으면, ``0``\\을 반환합니다."
 
 #: ../Doc/c-api/objbuffer.rst:47
 msgid ""
@@ -71,4 +84,6 @@ msgid ""
 "returns ``0``, sets *buffer* to the memory location and *buffer_len* to "
 "the buffer length.  Returns ``-1`` and sets a :exc:`TypeError` on error."
 msgstr ""
-
+"쓰기 가능한 메모리 위치에 대한 포인터를 반환합니다. *obj* 인자는 단일 세그먼트, 문자 버퍼 인터페이스를 지원해야 합니다. "
+"성공하면, ``0``\\을 반환하고, *buffer*\\를 메모리 위치로 설정하고, *buffer_len*\\을 버퍼 길이로 설정합니다."
+" 에러 시에, ``-1``\\을 반환하고, :exc:`TypeError`\\를 설정합니다."
