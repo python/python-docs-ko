@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/c-api/stable.rst:7
 msgid "Stable Application Binary Interface"
-msgstr ""
+msgstr "안정적인 응용 프로그램 바이너리 인터페이스"
 
 #: ../Doc/c-api/stable.rst:9
 msgid ""
@@ -28,6 +27,8 @@ msgid ""
 "than changing existing API or removing API (although some interfaces do "
 "get removed after being deprecated first)."
 msgstr ""
+"관례에 따라, 파이썬의 C API는 모든 배포마다 변경될 것입니다. 대부분 변경은 소스 호환되며, 일반적으로 기존 API를 변경하거나 "
+"API를 제거하지 않고 API를 추가하기만 합니다 (일부 인터페이스는 먼저 폐지된 후에 제거됩니다)."
 
 #: ../Doc/c-api/stable.rst:14
 msgid ""
@@ -41,6 +42,10 @@ msgid ""
 "with a specific pythonXY.dll and need to be recompiled to link with a "
 "newer one."
 msgstr ""
+"아쉽게도, API 호환성은 ABI(바이너리 호환성)로 확장되지 않습니다. 그 이유는 기본적으로 구조체 정의가 진화하기 때문인데, 새로운 "
+"필드를 추가하거나 필드의 형을 바꾸면 API가 손상되지는 않지만, ABI가 손상될 수 있습니다. 결과적으로, 확장 모듈은 파이썬 배포마다"
+" 다시 컴파일해야 합니다 (영향을 받는 인터페이스가 사용되지 않는 경우 유닉스에서는 예외일 수 있습니다). 또한, 윈도우에서 확장 모듈은"
+" 특정 pythonXY.dll과 링크되고 최신 모듈과 링크하기 위해 다시 컴파일할 필요가 있습니다."
 
 #: ../Doc/c-api/stable.rst:23
 msgid ""
@@ -50,6 +55,9 @@ msgid ""
 " then become hidden from the extension module; in return, a module is "
 "built that works on any 3.x version (x>=2) without recompilation."
 msgstr ""
+"파이썬 3.2부터, API 일부가 안정적인 ABI를 보장하도록 선언되었습니다. 이 API( \"제한된 API\"라고 합니다)를 사용하고자"
+" 하는 확장 모듈은 ``Py_LIMITED_API``\\를 정의해야 합니다. 그러면 인터프리터의 세부 정보는 확장 모듈에 숨겨집니다; 그"
+" 대가로, 재컴파일 없이 모든 3.x 버전(x>=2)에서 작동하는 모듈이 빌드됩니다."
 
 #: ../Doc/c-api/stable.rst:29
 msgid ""
@@ -61,6 +69,10 @@ msgid ""
 "subsequent Python releases, but fail to load (because of missing symbols)"
 " on the older releases."
 msgstr ""
+"어떤 경우에는, 안정적인 ABI를 새로운 기능으로 확장해야 합니다. 이러한 새로운 API를 사용하고자 하는 확장 모듈은 지원하고자 하는 "
+"최소 파이썬 버전의 ``PY_VERSION_HEX`` 값(:ref:`apiabiversion` 참조)으로 "
+"``Py_LIMITED_API``\\를 설정해야 합니다 (예를 들어, 파이썬 3.3의 경우 ``0x03030000``). 이러한 모듈은 "
+"모든 후속 파이썬 배포에서 작동하지만, 이전 배포에서 (심볼 누락으로 인해)로드하지 못합니다."
 
 #: ../Doc/c-api/stable.rst:36
 msgid ""
@@ -69,4 +81,5 @@ msgid ""
 "are not part of the limited API are marked as \"Not part of the limited "
 "API.\""
 msgstr ""
-
+"파이썬 3.2부터, 제한된 API에서 사용할 수 있는 함수 집합이 :pep:`384`\\에 문서로 만들어져 있습니다. C API "
+"설명서에서, 제한된 API 일부가 아닌 API 요소는 \"제한된 API 일부가 아닙니다.\"로 표시됩니다."
