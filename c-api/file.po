@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/c-api/file.rst:6
 msgid "File Objects"
-msgstr ""
+msgstr "파일 객체"
 
 #: ../Doc/c-api/file.rst:10
 msgid ""
@@ -32,6 +31,10 @@ msgid ""
 "internal error reporting in the interpreter; third-party code is advised "
 "to access the :mod:`io` APIs instead."
 msgstr ""
+"이 API는 C 표준 라이브러리의 버퍼링 된 I/O (:c:type:`FILE\\*`) 지원에 의존하는 내장 파일 객체에 대한 파이썬 2"
+" C API의 최소 에뮬레이션입니다. 파이썬 3에서, 파일과 스트림은 새로운 :mod:`io` 모듈을 사용합니다. 이 모듈은 운영 체제의"
+" 저수준 버퍼링 되지 않은 I/O 위에 여러 계층을 정의합니다. 아래에서 설명하는 함수는 이러한 새로운 API에 대한 편리한 C "
+"래퍼이며, 주로 인터프리터의 내부 오류 보고를 위한 것입니다; 제삼자 코드는 대신 :mod:`io` API에 액세스하는 것이 좋습니다."
 
 #: ../Doc/c-api/file.rst:22
 msgid ""
@@ -42,6 +45,10 @@ msgid ""
 "*NULL* on failure. For a more comprehensive description of the arguments,"
 " please refer to the :func:`io.open` function documentation."
 msgstr ""
+"이미 열려있는 파일의 파일 기술자 *fd*\\로 파이썬 파일 객체를 만듭니다. 인자 *name*, *encoding*, *errors* "
+"및 *newline*\\은 기본값을 사용하기 위해 *NULL* 일 수 있습니다; *buffering*\\은 기본값을 사용하기 위해 "
+"*-1* 일 수 있습니다. *name*\\은 무시되고, 이전 버전과의 호환성을 위해 유지됩니다. 실패 시 *NULL*\\를 반환합니다. "
+"인자에 대한 더 자세한 설명은 :func:`io.open` 함수 설명서를 참조하십시오."
 
 #: ../Doc/c-api/file.rst:31
 msgid ""
@@ -49,10 +56,12 @@ msgid ""
 "level file descriptors can produce various issues (such as unexpected "
 "ordering of data)."
 msgstr ""
+"파이썬 스트림이 자체적인 버퍼링 계층을 가지고 있으므로, OS 수준의 파일 기술자와 혼합하면 여러 예기치 못한 문제가 발생할 수 있습니다"
+" (가령 데이터의 예상치 못한 순서)."
 
 #: ../Doc/c-api/file.rst:35
 msgid "Ignore *name* attribute."
-msgstr ""
+msgstr "*name* 어트리뷰트를 무시합니다."
 
 #: ../Doc/c-api/file.rst:41
 msgid ""
@@ -62,6 +71,9 @@ msgid ""
 "return an integer, which is returned as the file descriptor value.  Sets "
 "an exception and returns ``-1`` on failure."
 msgstr ""
+"*p*\\와 관련된 파일 기술자를 :c:type:`int`\\로 반환합니다. 객체가 정수면, 값이 반환됩니다. 그렇지 않으면 객체의 "
+":meth:`~io.IOBase.fileno` 메서드가 있으면 호출됩니다; 메서드는 반드시 정수를 반환해야 하고, 그 값이 파일 기술자 "
+"값으로 반환됩니다. 실패하면 예외를 설정하고 ``-1``\\을 반환합니다."
 
 #: ../Doc/c-api/file.rst:52
 msgid ""
@@ -75,6 +87,11 @@ msgid ""
 "one line is read regardless of length, but :exc:`EOFError` is raised if "
 "the end of the file is reached immediately."
 msgstr ""
+"``p.readline([n])``\\과 동등합니다. 이 함수는 객체 *p*\\에서 한 줄을 읽습니다. *p*\\는 파일 객체나 "
+":meth:`~io.IOBase.readline` 메서드가 있는 임의의 객체일 수 있습니다. *n*\\이 ``0``\\이면, 줄의 길이와"
+" 관계없이 정확히 한 줄을 읽습니다. *n*\\이 ``0``\\보다 크면, *n* 바이트 이상을 파일에서 읽지 않습니다; 불완전한 줄이 "
+"반환될 수 있습니다. 두 경우 모두, 파일 끝에 즉시 도달하면 빈 문자열이 반환됩니다. 그러나 *n*\\이 ``0``\\보다 작으면, "
+"길이와 관계없이 한 줄을 읽지만, 파일 끝에 즉시 도달하면 :exc:`EOFError`\\가 발생합니다."
 
 #: ../Doc/c-api/file.rst:67
 msgid ""
@@ -83,10 +100,14 @@ msgid ""
 " is written instead of the :func:`repr`.  Return ``0`` on success or "
 "``-1`` on failure; the appropriate exception will be set."
 msgstr ""
+"객체 *obj*\\를 파일 객체 *p*\\에 씁니다. *flags*\\에서 지원되는 유일한 플래그는 "
+":const:`Py_PRINT_RAW`\\입니다; 주어지면, :func:`repr` 대신 객체의 :func:`str`\\이 기록됩니다. "
+"성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다; 적절한 예외가 설정됩니다."
 
 #: ../Doc/c-api/file.rst:75
 msgid ""
 "Write string *s* to file object *p*.  Return ``0`` on success or ``-1`` "
 "on failure; the appropriate exception will be set."
 msgstr ""
-
+"문자열 *s*\\를 파일 객체 *p*\\에 씁니다. 성공하면 ``0``\\을 반환하고, 실패하면 ``-1``\\을 반환합니다; 적절한 "
+"예외가 설정됩니다."
