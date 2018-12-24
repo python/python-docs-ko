@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../Doc/library/codeop.rst:2
 msgid ":mod:`codeop` --- Compile Python code"
-msgstr ""
+msgstr ":mod:`codeop` --- 파이썬 코드 컴파일"
 
 #: ../Doc/library/codeop.rst:10
 msgid "**Source code:** :source:`Lib/codeop.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/codeop.py`"
 
 #: ../Doc/library/codeop.rst:14
 msgid ""
@@ -33,32 +32,36 @@ msgid ""
 "want to include such a loop in your program you probably want to use the "
 ":mod:`code` module instead."
 msgstr ""
+":mod:`codeop` 모듈은 :mod:`code` 모듈에서와같이 파이썬 읽기-평가-인쇄 루프를 에뮬레이트 할 수 있는 유틸리티를 "
+"제공합니다. 결과적으로, 모듈을 직접 사용하고 싶지 않을 것입니다; 여러분의 프로그램에 이러한 루프를 포함 시키려면 대신 "
+":mod:`code` 모듈을 사용하는 것이 좋습니다."
 
 #: ../Doc/library/codeop.rst:20
 msgid "There are two parts to this job:"
-msgstr ""
+msgstr "이 작업에는 두 가지 부분이 있습니다:"
 
 #: ../Doc/library/codeop.rst:22
 msgid ""
 "Being able to tell if a line of input completes a Python  statement: in "
 "short, telling whether to print '``>>>``' or '``...``' next."
 msgstr ""
+"입력 줄이 파이썬 문장을 완성하는지 알려주는 것: 간단히 말해서, '``>>>``' 나 '``...``' 를 다음에 인쇄할지 알려주기."
 
 #: ../Doc/library/codeop.rst:25
 msgid ""
 "Remembering which future statements the user has entered, so  subsequent "
 "input can be compiled with these in effect."
-msgstr ""
+msgstr "사용자가 입력한 퓨처 문을 기억해서, 후속 입력을 컴파일할 때 이것들이 효과가 있도록 하기."
 
 #: ../Doc/library/codeop.rst:28
 msgid ""
 "The :mod:`codeop` module provides a way of doing each of these things, "
 "and a way of doing them both."
-msgstr ""
+msgstr ":mod:`codeop` 모듈은 이들을 각각 수행하는 방법과 이들을 모두 수행하는 방법을 제공합니다."
 
 #: ../Doc/library/codeop.rst:31
 msgid "To do just the former:"
-msgstr ""
+msgstr "단지 전자를 수행하려면:"
 
 #: ../Doc/library/codeop.rst:35
 msgid ""
@@ -68,6 +71,10 @@ msgid ""
 "to ``'<input>'``. Returns ``None`` if *source* is *not* valid Python "
 "code, but is a prefix of valid Python code."
 msgstr ""
+"*source*\\를 컴파일하려고 시도합니다. *source*\\는 파이썬 코드의 문자열이어야 하며, *source*\\가 유효한 파이썬"
+" 코드면 코드 객체를 반환합니다. 이 경우, 코드 객체의 filename 어트리뷰트는 *filename*\\가 되는데, 기본값은 "
+"``'<input>'``\\입니다. *source*\\가 *유효한 파이썬 코드가 *아니지만* 유효한 파이썬 코드의 앞부분이면 "
+"``None``\\을 반환합니다."
 
 #: ../Doc/library/codeop.rst:41
 msgid ""
@@ -75,6 +82,8 @@ msgid ""
 ":exc:`SyntaxError` is raised if there is invalid Python syntax, and "
 ":exc:`OverflowError` or :exc:`ValueError` if there is an invalid literal."
 msgstr ""
+"*source*\\에 문제가 있으면, 예외가 발생합니다. 유효하지 않은 파이썬 구문이 있으면 :exc:`SyntaxError`\\가 "
+"발생하고, 유효하지 않은 리터럴이 있으면 :exc:`OverflowError` 나 :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/codeop.rst:45
 msgid ""
@@ -83,6 +92,9 @@ msgid ""
 "(``'eval'``).  Any other value will cause :exc:`ValueError` to  be "
 "raised."
 msgstr ""
+"*symbol* 인자는 *source*\\가 문장(``'single'``, 기본값)으로 컴파일되는지, :term:`표현식 "
+"<expression>`\\(``'eval'``)으로 컴파일되는지 결정합니다. 다른 값을 지정하면 :exc:`ValueError`\\가 "
+"발생합니다."
 
 #: ../Doc/library/codeop.rst:51
 msgid ""
@@ -93,6 +105,9 @@ msgid ""
 "arbitrary garbage. This will be fixed once the API for the parser is "
 "better."
 msgstr ""
+"구문 분석기가 source의 끝에 도달하기 전에 성공적인 결과로 구문 분석을 중지하는 것이 가능합니다 (하지만 대체로 그렇지 않습니다);"
+" 이 경우, 뒤따르는 기호는 에러를 유발하는 대신 무시 될 수 있습니다. 예를 들어, 백 슬래시 뒤에 두 개의 개행이 오면 그 뒤에 "
+"임의의 가비지가 올 수 있습니다. 구문 분석기를 위한 API가 개선되면 이 문제가 해결될 것입니다."
 
 #: ../Doc/library/codeop.rst:60
 msgid ""
@@ -102,6 +117,9 @@ msgid ""
 ":mod:`__future__` statement, the instance 'remembers' and compiles all "
 "subsequent program texts with the statement in force."
 msgstr ""
+"이 클래스의 인스턴스는 내장 함수 :func:`compile`\\와 같은 서명의 :meth:`__call__` 메서드를 갖지만, "
+"인스턴스가 :mod:`__future__` 문을 포함하는 프로그램 텍스트를 컴파일하면 인스턴스가 이를 '기억'\\하고 모든 후속 프로그램"
+" 텍스트를 이 문장의 효과 아래에서 컴파일한다는 차이점이 있습니다."
 
 #: ../Doc/library/codeop.rst:69
 msgid ""
@@ -111,4 +129,6 @@ msgid ""
 " instance 'remembers' and compiles all subsequent program texts with the "
 "statement in force."
 msgstr ""
-
+"이 클래스의 인스턴스는 :func:`compile_command`\\와 같은 서명의 :meth:`__call__` 메서드를 갖습니다; "
+"차이점은, 인스턴스가 ``__future__`` 문을 포함하는 프로그램 텍스트를 컴파일하면 인스턴스가 이를 '기억'\\하고 모든 후속 "
+"프로그램 텍스트를 이 문장의 효과 아래에서 컴파일한다는 것입니다."
