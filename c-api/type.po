@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-25 10:27+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,17 +18,17 @@ msgstr ""
 
 #: ../Doc/c-api/type.rst:6
 msgid "Type Objects"
-msgstr ""
+msgstr "형 객체"
 
 #: ../Doc/c-api/type.rst:13
 msgid "The C structure of the objects used to describe built-in types."
-msgstr ""
+msgstr "내장형을 기술하는 데 사용되는 객체의 C 구조체."
 
 #: ../Doc/c-api/type.rst:18
 msgid ""
 "This is the type object for type objects; it is the same object as "
 ":class:`type` in the Python layer."
-msgstr ""
+msgstr "이것은 형 객체의 형 객체입니다; 파이썬 계층의 :class:`type`\\과 같은 객체입니다."
 
 #: ../Doc/c-api/type.rst:24
 msgid ""
@@ -37,16 +36,17 @@ msgid ""
 "types derived from the standard type object.  Return false in all other "
 "cases."
 msgstr ""
+"객체 *o*\\가 표준형 객체에서 파생된 형의 인스턴스를 포함하여 형 객체면 참을 반환합니다. 다른 모든 경우 거짓을 반환합니다."
 
 #: ../Doc/c-api/type.rst:30
 msgid ""
 "Return true if the object *o* is a type object, but not a subtype of the "
 "standard type object.  Return false in all other cases."
-msgstr ""
+msgstr "객체 *o*\\가 형 객체이지만, 표준형 객체의 서브 형이 아니면 참을 반환합니다. 다른 모든 경우 거짓을 반환합니다."
 
 #: ../Doc/c-api/type.rst:36
 msgid "Clear the internal lookup cache. Return the current version tag."
-msgstr ""
+msgstr "내부 조회 캐시를 지웁니다. 현재의 버전 태그를 반환합니다."
 
 #: ../Doc/c-api/type.rst:40
 msgid ""
@@ -56,10 +56,13 @@ msgid ""
 " to :c:member:`~PyTypeObject.tp_flags` itself is not part of the limited "
 "API."
 msgstr ""
+"*type*\\의 :c:member:`~PyTypeObject.tp_flags` 멤버를 반환합니다. 이 함수는 주로 "
+"`Py_LIMITED_API`\\와 함께 사용하기 위한 것입니다; 개별 플래그 비트는 파이썬 배포 간에 안정적인 것으로 보장되지만, "
+":c:member:`~PyTypeObject.tp_flags` 자체에 대한 액세스는 제한된 API 일부가 아닙니다."
 
 #: ../Doc/c-api/type.rst:47
 msgid "The return type is now ``unsigned long`` rather than ``long``."
-msgstr ""
+msgstr "반환형은 이제 ``long``\\이 아니라 ``unsigned long``\\입니다."
 
 #: ../Doc/c-api/type.rst:53
 msgid ""
@@ -67,22 +70,26 @@ msgid ""
 "subtypes.  This function must be called after any manual modification of "
 "the attributes or base classes of the type."
 msgstr ""
+"형과 그것의 모든 서브 형에 대한 내부 검색 캐시를 무효로 합니다. 형의 어트리뷰트나 베이스 클래스를 수동으로 수정한 후에는 이 함수를 "
+"호출해야 합니다."
 
 #: ../Doc/c-api/type.rst:60
 msgid ""
 "Return true if the type object *o* sets the feature *feature*.  Type "
 "features are denoted by single bit flags."
-msgstr ""
+msgstr "형 객체 *o*\\가 기능 *feature*\\를 설정하면 참을 반환합니다. 형 기능은 단일 비트 플래그로 표시됩니다."
 
 #: ../Doc/c-api/type.rst:66
 msgid ""
 "Return true if the type object includes support for the cycle detector; "
 "this tests the type flag :const:`Py_TPFLAGS_HAVE_GC`."
 msgstr ""
+"형 객체가 순환 검출기에 대한 지원을 포함하고 있으면 참을 반환합니다. 이것은 형 플래그 "
+":const:`Py_TPFLAGS_HAVE_GC`\\를 검사합니다."
 
 #: ../Doc/c-api/type.rst:72
 msgid "Return true if *a* is a subtype of *b*."
-msgstr ""
+msgstr "*a*\\가 *b*\\의 서브 형이면 참을 반환합니다."
 
 #: ../Doc/c-api/type.rst:74
 msgid ""
@@ -91,6 +98,9 @@ msgid ""
 ":c:func:`PyObject_IsSubclass` to do the same check that "
 ":func:`issubclass` would do."
 msgstr ""
+"이 함수는 실제 서브 형만 검사합니다. 즉, :meth:`~class.__subclasscheck__`\\가 *b*\\에 대해 호출되지 "
+"않습니다. :func:`issubclass`\\가 수행하는 것과 같은 검사를 하려면 "
+":c:func:`PyObject_IsSubclass`\\를 호출하십시오."
 
 #: ../Doc/c-api/type.rst:82
 msgid ""
@@ -98,6 +108,8 @@ msgid ""
 " object.  Use Python's default memory allocation mechanism to allocate a "
 "new instance and initialize all its contents to *NULL*."
 msgstr ""
+"형 객체의 :c:member:`~PyTypeObject.tp_alloc` 슬롯을 위한 일반 처리기. 파이썬의 기본 메모리 할당 메커니즘을"
+" 사용하여 새 인스턴스를 할당하고 모든 내용을 *NULL*\\로 초기화합니다."
 
 #: ../Doc/c-api/type.rst:88
 msgid ""
@@ -105,6 +117,8 @@ msgid ""
 "object.  Create a new instance using the type's "
 ":c:member:`~PyTypeObject.tp_alloc` slot."
 msgstr ""
+"형 객체의 :c:member:`~PyTypeObject.tp_new` 슬롯을 위한 일반 처리기. 형의 "
+":c:member:`~PyTypeObject.tp_alloc` 슬롯을 사용하여 새 인스턴스를 만듭니다."
 
 #: ../Doc/c-api/type.rst:93
 msgid ""
@@ -113,12 +127,14 @@ msgid ""
 "inherited slots from a type's base class.  Return ``0`` on success, or "
 "return ``-1`` and sets an exception on error."
 msgstr ""
+"형 개체를 마무리합니다. 초기화를 완료하려면 모든 형 객체에 대해 이 메서드를 호출해야 합니다. 이 함수는 형의 베이스 클래스에서 상속된"
+" 슬롯을 추가합니다. 성공 시 ``0``\\을 반환하고, 오류 시 ``-1``\\을 반환하고 예외를 설정합니다."
 
 #: ../Doc/c-api/type.rst:100
 msgid ""
 "Creates and returns a heap type object from the *spec* passed to the "
 "function."
-msgstr ""
+msgstr "함수에 전달된 *spec*\\으로 힙 형 객체를 만들고 반환합니다."
 
 #: ../Doc/c-api/type.rst:104
 msgid ""
@@ -127,6 +143,8 @@ msgid ""
 "tuple as base types. This allows the caller to reference other heap types"
 " as base types."
 msgstr ""
+"*spec*\\으로 힙 형 객체를 만들고 반환합니다. 이 외에도, 생성된 힙 형에는 *bases* 튜플에 포함된 모든 형이 베이스형으로 "
+"포함됩니다. 이를 통해 호출자는 다른 힙 형을 베이스형으로 참조할 수 있습니다."
 
 #: ../Doc/c-api/type.rst:112
 msgid ""
@@ -135,4 +153,5 @@ msgid ""
 "function was called with invalid parameters. Callers will typically cast "
 "the result pointer into the appropriate function type."
 msgstr ""
-
+"지정된 슬롯에 저장된 함수 포인터를 반환합니다. 결과가 *NULL*\\이면, 슬롯이 *NULL*\\이거나 함수가 유효하지 않은 매개 "
+"변수로 호출되었음을 나타냅니다. 호출자는 일반적으로 결과 포인터를 적절한 함수 형으로 캐스팅합니다."
