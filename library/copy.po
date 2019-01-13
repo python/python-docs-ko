@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../Doc/library/copy.rst:2
 msgid ":mod:`copy` --- Shallow and deep copy operations"
-msgstr ":mod:`copy` --- 얕은 복사와 깊은 복사 연산자"
+msgstr ":mod:`copy` --- 얕은 복사와 깊은 복사 연산"
 
 #: ../Doc/library/copy.rst:7
 msgid "**Source code:** :source:`Lib/copy.py`"
@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "파이썬에서 대입문은 객체를 복사하지 않고, 대상과 객체 사이에 바인딩을 만듭니다."
 "가변(mutable) 컬렉션 또는 가변(mutable) 항목들을 포함한 컬렉션의 경우"
-"그 컬렉션의 사본은 컬렉션을 변경하지 않는 하나의 사본을 필요로 하는 경우가 있습니다."
-"이 모듈은 일반적인 얕은 복사와 깊은 복사 연산자를 제공합니다. (아래 설명 참고)"
+"때로 컬렉션을 변경하지 않고 사본을 변경하기 위해 복사가 필요합니다.
+"이 모듈은 일반적인 얕은 복사와 깊은 복사 연산을 제공합니다. (아래 설명 참고)"
 
 #: ../Doc/library/copy.rst:18
 msgid "Interface summary:"
@@ -52,14 +52,15 @@ msgstr "*x*의 깊은 사본을 반환합니다."
 
 #: ../Doc/library/copy.rst:32
 msgid "Raised for module specific errors."
-msgstr "모듈 특정 에러의 경우 해당 함수가 발생됩니다."
+msgstr "모듈 특정 에러의 경우 발생됩니다."
 
 #: ../Doc/library/copy.rst:35
 msgid ""
 "The difference between shallow and deep copying is only relevant for "
 "compound objects (objects that contain other objects, like lists or class"
 " instances):"
-msgstr "얕은 복사와 깊은 복사의 차이점은 복합 객체에만 관련이 있습니다. (리스트 또는 클래스 인스턴스들과 같은 다른 객체를 포함한 객체)"
+msgstr ""
+"얕은 복사와 깊은 복사의 차이점은 복합 객체(리스트 또는 클래스 인스턴스들과 같은 다른 객체를 포함한 객체)와 관련 있습니다."
 
 #: ../Doc/library/copy.rst:38
 msgid ""
@@ -67,14 +68,15 @@ msgid ""
 " possible) inserts *references* into it to the objects found in the "
 "original."
 msgstr ""
-"*얕은 복사* 새로운 복합 객체를 만들고, 원본에 있는 객체에 *참조*를 삽입합니다. (가능한 범위까지)"
+"*얕은 복사*는 새로운 복합 객체를 만들고,"
+"(가능한 범위까지) 원본 객체를 가리키는 참조를 새로운 복합 객체에 삽입합니다."
 
 #: ../Doc/library/copy.rst:41
 msgid ""
 "A *deep copy* constructs a new compound object and then, recursively, "
 "inserts *copies* into it of the objects found in the original."
 msgstr ""
-"*깊은 복사* 새로운 복합 객체를 만들고, 재귀적으로 원본에 있는 객체를 *사본*에 삽입합니다."
+"*깊은 복사* 새로운 복합 객체를 만들고, 재귀적으로 원본에 있는 객체에 *사본*을 삽입합니다."
 
 #: ../Doc/library/copy.rst:44
 msgid ""
@@ -95,25 +97,25 @@ msgid ""
 "Because deep copy copies everything it may copy too much, such as data "
 "which is intended to be shared between copies."
 msgstr ""
-"왜냐하면 깊은 복사는 복사본 간에 공유할 데이터와 같은 모든 것들을 너무 많이 복사할 수 있기 때문입니다."
+"왜냐하면 깊은 복사는 복사본 간에 공유할 의도가 있는 데이터와 같은 너무 많은 모든 것을 복사 할 수 있기 때문입니다."
 
 #: ../Doc/library/copy.rst:53
 msgid "The :func:`deepcopy` function avoids these problems by:"
-msgstr ":func:`deepcopy` 함수는 다음과 같은 문제들을 피할 수 있습니다.:"
+msgstr ":func:`deepcopy` 함수는 다음과 같은 방법으로 이 문제들을 피합니다.:"
 
 #: ../Doc/library/copy.rst:55
 msgid ""
 "keeping a ``memo`` dictionary of objects already copied during the "
 "current copying pass; and"
 msgstr ""
-"현재 복사 패스 중에 이미 복사된 객체의 ``memo`` 딕셔너리를 가지고 있습니다.;"
+"현재 복사 패스 중에 이미 복사된 객체의 ``memo`` 딕셔너리를 가지고 있습니다.; 그리고"
 
 #: ../Doc/library/copy.rst:58
 msgid ""
 "letting user-defined classes override the copying operation or the set of"
 " components copied."
 msgstr ""
-"사용자 정의 클래스는 복사 연산자 또는 복사된 구성요소를 재정의하도록 합니다."
+"사용자 정의 클래스가 복사 연산자 또는 복사된 구성요소 집합을 재정의하도록 합니다."
 
 #: ../Doc/library/copy.rst:61
 msgid ""
@@ -124,7 +126,7 @@ msgid ""
 "treated by the :mod:`pickle` module."
 msgstr ""
 "이 모듈은 모듈, 메서드, 스택 트레이스, 스택 프레임, 파일, 소켓, 윈도우, 배열과 같은 유형들은 복사하지 않습니다."
-"원래 객체를 변화시키지 않고 반환함으로써; 함수와 클래스를 \"복사\"합니다. (얕고 깊게)"
+"원래 객체를 변화시키지 않고 반환함으로써; 함수와 클래스를 (얕고 깊게) \"복사\"합니다."
 "이것은 :mod:`pickle` 모듈로 처리되는 방식과 호환됩니다."
 
 #: ../Doc/library/copy.rst:66
@@ -133,9 +135,9 @@ msgid ""
 "of lists by assigning a slice of the entire list, for example, "
 "``copied_list = original_list[:]``."
 msgstr ""
-"딕셔너리의 얕은 복사는 :meth:`dict.copy`를 사용하여 복사할 수 있으며,"
-"``copied_list = original_list[:]`` 처럼 전체 리스트의 일부를 대입하여 리스트를 복사할 수도 있습니다."
-
+"딕셔너리의 얕은 복사는 :meth:`dict.copy`를 사용하여 복사할 수 있습니다."
+"그리고 리스트의 얕은 복사는 예를 들어 ``copied_list = original_list[:]`` 처럼"
+"전체 리스트의 일부를 대입하여 리스트를 복사할 수도 있습니다."
 
 #: ../Doc/library/copy.rst:72
 msgid ""
@@ -144,9 +146,9 @@ msgid ""
 "information on these methods.  In fact, the :mod:`copy` module uses the "
 "registered pickle functions from the :mod:`copyreg` module."
 msgstr ""
-"클래스는 pickling을 제어하는데 사용되는 복사를 제어하기 위해 같은 인터페이스를 사용할 수 있습니다."
+"클래스는 pickling을 제어하기 위해 사용하는 것과 같은 인터페이스를 사용하여 복사를 제어할 수 있습니다."
 "이러한 메서드들의 정보는 :mod:`pickle` 모듈 설명을 참고하세요."
-"실제로 :mod:`copy` 모듈은 :mod:`copyreg` 모듈에 등록된 pickle 함수를 사용합니다."
+"실제로 :mod:`copy` 모듈은 :mod:`copyreg` 모듈에 등록된 피클 함수를 사용합니다."
 
 #: ../Doc/library/copy.rst:81
 msgid ""
@@ -161,8 +163,8 @@ msgid ""
 msgstr ""
 "클래스가 자체적으로 복사 구현을 정의하기 위해선, "
 ":meth:`__copy__` 와 :meth:`__deepcopy__` 같은 특수 메서드를 정의할 수 있습니다."
-"전자는 얕은 복사 연산자를 실행하기 위해 호출됩니다.; 추가적인 인자를 전달 하지 않습니다."
-"후자는 깊은 복사 연산자를 실행하기 위해 호출됩니다.; ``memo`` 딕셔너리가 하나의 인자로 전달됩니다. "
+"전자는 얕은 복사 연산을 실행하기 위해 호출됩니다.; 추가적인 인자를 전달 하지 않습니다."
+"후자는 깊은 복사 연산을 실행하기 위해 호출됩니다.; ``memo`` 딕셔너리가 하나의 인자로 전달됩니다. "
 ":meth:`__deepcopy__` 구현에서 구성요소의 깊은 복사를 만들기 위해선,"
 "구성요소를 첫 번째 인자로 하고 memo 딕셔너리를 두 번째 인자로 하여 :func:`deepcopy` 함수를 호출해야 합니다."
 
@@ -175,29 +177,4 @@ msgid ""
 "Discussion of the special methods used to support object state retrieval "
 "and restoration."
 msgstr ""
-"특수 메서드에 관한 논의는 객체의 상태 검색과 복원을 지원합니다."
-
-#~ msgid ""
-#~ "keeping a \"memo\" dictionary of objects"
-#~ " already copied during the current "
-#~ "copying pass; and"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In order for a class to define "
-#~ "its own copy implementation, it can "
-#~ "define special methods :meth:`__copy__` and"
-#~ " :meth:`__deepcopy__`.  The former is "
-#~ "called to implement the shallow copy "
-#~ "operation; no additional arguments are "
-#~ "passed. The latter is called to "
-#~ "implement the deep copy operation; it"
-#~ " is passed one argument, the memo "
-#~ "dictionary.  If the :meth:`__deepcopy__` "
-#~ "implementation needs to make a deep "
-#~ "copy of a component, it should "
-#~ "call the :func:`deepcopy` function with "
-#~ "the component as first argument and "
-#~ "the memo dictionary as second argument."
-#~ msgstr ""
-
+"객체 상태 조회와 복원을 지원하는데 사용되는 특수 메서드에 관한 논의"
