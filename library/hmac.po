@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-30 09:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,15 +18,15 @@ msgstr ""
 
 #: ../Doc/library/hmac.rst:2
 msgid ":mod:`hmac` --- Keyed-Hashing for Message Authentication"
-msgstr ""
+msgstr ":mod:`hmac` --- 메시지 인증을 위한 키 해싱"
 
 #: ../Doc/library/hmac.rst:10
 msgid "**Source code:** :source:`Lib/hmac.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/hmac.py`"
 
 #: ../Doc/library/hmac.rst:14
 msgid "This module implements the HMAC algorithm as described by :rfc:`2104`."
-msgstr ""
+msgstr "이 모듈은 :rfc:`2104`\\에서 설명한 대로 HMAC 알고리즘을 구현합니다."
 
 #: ../Doc/library/hmac.rst:19
 msgid ""
@@ -37,6 +36,10 @@ msgid ""
 "the HMAC object to use. It supports any name suitable to "
 ":func:`hashlib.new` and defaults to the :data:`hashlib.md5` constructor."
 msgstr ""
+"새로운 hmac 객체를 반환합니다. *key*\\는 비밀 키를 제공하는 바이트열이나 바이트 배열(bytearray) 객체입니다. "
+"*msg*\\가 있으면, ``update(msg)`` 메서드 호출이 수행됩니다. *digestmod*\\는 다이제스트 이름, 다이제스트 "
+"생성자 또는 HMAC 객체가 사용할 모듈입니다. :func:`hashlib.new`\\에 적합한 모든 이름을 지원하며 기본값은 "
+":data:`hashlib.md5` 생성자입니다."
 
 #: ../Doc/library/hmac.rst:25
 msgid ""
@@ -44,10 +47,12 @@ msgid ""
 "be of any type supported by :mod:`hashlib`. Parameter *digestmod* can be "
 "the name of a hash algorithm."
 msgstr ""
+"매개 변수 *key*\\는 바이트열 또는 바이트 배열 객체일 수 있습니다. 매개 변수 *msg*\\는 :mod:`hashlib`\\가 "
+"지원하는 모든 형이 될 수 있습니다. 매개 변수 *digestmod*\\는 해시 알고리즘의 이름이 될 수 있습니다."
 
 #: ../Doc/library/hmac.rst:31
 msgid "MD5 as implicit default digest for *digestmod* is deprecated."
-msgstr ""
+msgstr "*digestmod*\\에 대한 묵시적 기본 다이제스트로서의 MD5는 폐지되었습니다."
 
 #: ../Doc/library/hmac.rst:36
 msgid ""
@@ -57,6 +62,9 @@ msgid ""
 "fit into memory. The parameters *key*, *msg*, and *digest* have the same "
 "meaning as in :func:`~hmac.new`."
 msgstr ""
+"주어진 비밀 *key* 와 *digest*\\로 *msg*\\의 다이제스트를 반환합니다. 이 함수는 ``HMAC(key, msg, "
+"digest).digest()``\\와 동등하지만, 최적화된 C 나 인라인 구현을 사용해서, 메모리에 맞는 메시지에는 더 빠릅니다. 매개"
+" 변수 *key*, *msg* 및 *digest*\\는 :func:`~hmac.new`\\에서와 같은 뜻입니다."
 
 #: ../Doc/library/hmac.rst:42
 msgid ""
@@ -64,10 +72,12 @@ msgid ""
 "used when *digest* is a string and name of a digest algorithm, which is "
 "supported by OpenSSL."
 msgstr ""
+"CPython 구현 세부 사항, 최적화된 C 구현은 *digest*\\가 문자열이고 OpenSSL에서 지원하는 다이제스트 알고리즘의 "
+"이름일 때만 사용됩니다."
 
 #: ../Doc/library/hmac.rst:49
 msgid "An HMAC object has the following methods:"
-msgstr ""
+msgstr "HMAC 객체에는 다음과 같은 메서드가 있습니다:"
 
 #: ../Doc/library/hmac.rst:53
 msgid ""
@@ -75,10 +85,12 @@ msgid ""
 "single call with the concatenation of all the arguments: ``m.update(a); "
 "m.update(b)`` is equivalent to ``m.update(a + b)``."
 msgstr ""
+"hmac 객체를 *msg*\\로 갱신합니다. 반복되는 호출은 모든 인자를 이어붙인 단일 호출과 동등합니다: ``m.update(a); "
+"m.update(b)``\\는 ``m.update(a + b)``\\와 동등합니다."
 
 #: ../Doc/library/hmac.rst:57
 msgid "Parameter *msg* can be of any type supported by :mod:`hashlib`."
-msgstr ""
+msgstr "매개 변수 *msg*\\는 :mod:`hashlib`\\가 지원하는 모든 형이 될 수 있습니다."
 
 #: ../Doc/library/hmac.rst:63
 msgid ""
@@ -87,6 +99,8 @@ msgid ""
 "the digest given to the constructor.  It may contain non-ASCII bytes, "
 "including NUL bytes."
 msgstr ""
+"지금까지 :meth:`update` 메서드로 전달된 바이트들의 다이제스트를 반환합니다. 이 바이트열 객체는 생성자에게 주어진 다이제스트의"
+" *digest_size*\\와 길이가 같습니다. NUL 바이트를 포함하여 비 ASCII 바이트를 포함할 수 있습니다."
 
 #: ../Doc/library/hmac.rst:70
 msgid ""
@@ -95,6 +109,8 @@ msgid ""
 ":func:`compare_digest` function instead of the ``==`` operator to reduce "
 "the vulnerability to timing attacks."
 msgstr ""
+"검증 루틴에서 :meth:`digest`\\의 출력을 외부에서 제공되는 다이제스트와 비교할 때, ``==`` 연산자 대신 "
+":func:`compare_digest` 함수를 사용하여 타이밍 공격의 취약점을 줄이는 것이 좋습니다."
 
 #: ../Doc/library/hmac.rst:78
 msgid ""
@@ -102,6 +118,8 @@ msgid ""
 "length containing only hexadecimal digits.  This may be used to exchange "
 "the value safely in email or other non-binary environments."
 msgstr ""
+"다이제스트가 16진수만 포함하는 길이가 두 배인 문자열로 반환된다는 점을 제외하고는 :meth:`digest`\\와 같습니다. 이것은 "
+"전자 메일이나 기타 비 바이너리 환경에서 값을 안전하게 교환하는 데 사용될 수 있습니다."
 
 #: ../Doc/library/hmac.rst:84
 msgid ""
@@ -110,6 +128,8 @@ msgid ""
 ":func:`compare_digest` function instead of the ``==`` operator to reduce "
 "the vulnerability to timing attacks."
 msgstr ""
+"검증 루틴에서 :meth:`hexdigest`\\의 출력을 외부에서 제공되는 다이제스트와 비교할 때, ``==`` 연산자 대신 "
+":func:`compare_digest` 함수를 사용하여 타이밍 공격의 취약점을 줄이는 것이 좋습니다."
 
 #: ../Doc/library/hmac.rst:92
 msgid ""
@@ -117,26 +137,28 @@ msgid ""
 "efficiently compute the digests of strings that share a common initial "
 "substring."
 msgstr ""
+"hmac 객체의 복사본(\"클론\")을 반환합니다. 이것은 공통 초기 서브 스트링을 공유하는 문자열들의 다이제스트를 효율적으로 계산하는 "
+"데 사용할 수 있습니다."
 
 #: ../Doc/library/hmac.rst:96
 msgid "A hash object has the following attributes:"
-msgstr ""
+msgstr "hmac 객체에는 다음과 같은 어트리뷰트가 있습니다:"
 
 #: ../Doc/library/hmac.rst:100
 msgid "The size of the resulting HMAC digest in bytes."
-msgstr ""
+msgstr "결과 HMAC 다이제스트의 크기(바이트)."
 
 #: ../Doc/library/hmac.rst:104
 msgid "The internal block size of the hash algorithm in bytes."
-msgstr ""
+msgstr "해시 알고리즘의 내부 블록 크기(바이트)."
 
 #: ../Doc/library/hmac.rst:110
 msgid "The canonical name of this HMAC, always lowercase, e.g. ``hmac-md5``."
-msgstr ""
+msgstr "이 HMAC의 규범적 이름, 항상 소문자, 예를 들어 ``hmac-md5``."
 
 #: ../Doc/library/hmac.rst:115
 msgid "This module also provides the following helper function:"
-msgstr ""
+msgstr "이 모듈은 또한 다음 도우미 함수를 제공합니다:"
 
 #: ../Doc/library/hmac.rst:119
 msgid ""
@@ -146,6 +168,10 @@ msgid ""
 "same type: either :class:`str` (ASCII only, as e.g. returned by "
 ":meth:`HMAC.hexdigest`), or a :term:`bytes-like object`."
 msgstr ""
+"``a == b``\\를 반환합니다. 이 함수는 내용 기반의 단락(short circuiting) 동작을 피함으로써 타이밍 분석을 "
+"방지하도록 설계된 접근법을 사용해서 암호화에 적합하게 만듭니다. *a*\\와 *b*\\는 모두 같은 형이어야 합니다: "
+":class:`str` (ASCII만, 예를 들어 :meth:`HMAC.hexdigest`\\에 의해 반환된 것과 같은 것) 이나 "
+":term:`바이트열류 객체 <bytes-like object>`."
 
 #: ../Doc/library/hmac.rst:127
 msgid ""
@@ -153,12 +179,13 @@ msgid ""
 "attack could theoretically reveal information about the types and lengths"
 " of *a* and *b*—but not their values."
 msgstr ""
+"*a*\\와 *b*\\의 길이가 다르거나 에러가 발생하면, 타이밍 공격이 이론적으로는 *a* 와 *b*\\의 형과 길이에 관한 정보를 "
+"드러낼 수 있습니다 - 하지만 그 값은 아닙니다."
 
 #: ../Doc/library/hmac.rst:137
 msgid "Module :mod:`hashlib`"
-msgstr ""
+msgstr "모듈 :mod:`hashlib`"
 
 #: ../Doc/library/hmac.rst:138
 msgid "The Python module providing secure hash functions."
-msgstr ""
-
+msgstr "안전한 해시 함수를 제공하는 파이썬 모듈."
