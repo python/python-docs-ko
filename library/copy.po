@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-25 10:27+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: KaHee, Yu <yuygh131@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../Doc/library/copy.rst:2
 msgid ":mod:`copy` --- Shallow and deep copy operations"
-msgstr ""
+msgstr ":mod:`copy` --- 얕은 복사와 깊은 복사 연산"
 
 #: ../Doc/library/copy.rst:7
 msgid "**Source code:** :source:`Lib/copy.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/copy.py`"
 
 #: ../Doc/library/copy.rst:11
 msgid ""
@@ -33,22 +33,26 @@ msgid ""
 "copy without changing the other. This module provides generic shallow and"
 " deep copy operations (explained below)."
 msgstr ""
+"파이썬에서 대입문은 객체를 복사하지 않고, 대상과 객체 사이에 바인딩을 만듭니다."
+"가변(mutable) 컬렉션 또는 가변(mutable) 항목들을 포함한 컬렉션의 경우"
+"때로 컬렉션을 변경하지 않고 사본을 변경하기 위해 복사가 필요합니다."
+"이 모듈은 일반적인 얕은 복사와 깊은 복사 연산을 제공합니다. (아래 설명 참고)"
 
 #: ../Doc/library/copy.rst:18
 msgid "Interface summary:"
-msgstr ""
+msgstr "인터페이스 요약:"
 
 #: ../Doc/library/copy.rst:22
 msgid "Return a shallow copy of *x*."
-msgstr ""
+msgstr "*x*\\의 얕은 사본을 반환합니다."
 
 #: ../Doc/library/copy.rst:27
 msgid "Return a deep copy of *x*."
-msgstr ""
+msgstr "*x*\\의 깊은 사본을 반환합니다."
 
 #: ../Doc/library/copy.rst:32
 msgid "Raised for module specific errors."
-msgstr ""
+msgstr "모듈 특정 에러의 경우 발생됩니다."
 
 #: ../Doc/library/copy.rst:35
 msgid ""
@@ -56,6 +60,8 @@ msgid ""
 "compound objects (objects that contain other objects, like lists or class"
 " instances):"
 msgstr ""
+"얕은 복사와 깊은 복사의 차이점은"
+"복합 객체(리스트 또는 클래스 인스턴스들과 같은 다른 객체를 포함한 객체)에만 유효합니다."
 
 #: ../Doc/library/copy.rst:38
 msgid ""
@@ -63,46 +69,56 @@ msgid ""
 " possible) inserts *references* into it to the objects found in the "
 "original."
 msgstr ""
+"*얕은 복사*\\는 새로운 복합 객체를 만들고,"
+"(가능한 범위까지) 원본 객체를 가리키는 참조를 새로운 복합 객체에 삽입합니다."
 
 #: ../Doc/library/copy.rst:41
 msgid ""
 "A *deep copy* constructs a new compound object and then, recursively, "
 "inserts *copies* into it of the objects found in the original."
 msgstr ""
+"*깊은 복사*\\는 새로운 복합 객체를 만들고,"
+"재귀적으로 원본 객체의 *사본*\\을 새로 만든 복합 객체에 삽입합니다."
 
 #: ../Doc/library/copy.rst:44
 msgid ""
 "Two problems often exist with deep copy operations that don't exist with "
 "shallow copy operations:"
 msgstr ""
+"깊은 복사 연산은 얕은 복사 연산에는 없는 두 가지 문제가 있습니다:"
 
 #: ../Doc/library/copy.rst:47
 msgid ""
 "Recursive objects (compound objects that, directly or indirectly, contain"
 " a reference to themselves) may cause a recursive loop."
 msgstr ""
+"재귀 객체(직접적 또는 간접적으로 자신에 대한 참조를 포함하는 복합 객체)는 순환 루프의 원인이 될 수 있습니다."
 
 #: ../Doc/library/copy.rst:50
 msgid ""
 "Because deep copy copies everything it may copy too much, such as data "
 "which is intended to be shared between copies."
 msgstr ""
+"깊은 복사는 모든 것을 복사하기 때문에, 지나치게 많이 복사할 수 있습니다. "
+"가령, 복사본 간에 공유할 의도가 있는 것까지도."
 
 #: ../Doc/library/copy.rst:53
 msgid "The :func:`deepcopy` function avoids these problems by:"
-msgstr ""
+msgstr ":func:`deepcopy` 함수는 다음과 같은 방법으로 이 문제들을 피합니다:"
 
 #: ../Doc/library/copy.rst:55
 msgid ""
 "keeping a ``memo`` dictionary of objects already copied during the "
 "current copying pass; and"
 msgstr ""
+"현재 복사 패스 중에 이미 복사된 객체의 ``memo`` 딕셔너리를 가지고 있습니다; 그리고"
 
 #: ../Doc/library/copy.rst:58
 msgid ""
 "letting user-defined classes override the copying operation or the set of"
 " components copied."
 msgstr ""
+"사용자 정의 클래스가 복사 연산 또는 복사된 구성요소 집합을 재정의하도록 합니다."
 
 #: ../Doc/library/copy.rst:61
 msgid ""
@@ -112,6 +128,9 @@ msgid ""
 "original object unchanged; this is compatible with the way these are "
 "treated by the :mod:`pickle` module."
 msgstr ""
+"이 모듈은 모듈, 메서드, 스택 트레이스, 스택 프레임, 파일, 소켓, 윈도우, 배열과 같은 유형들은 복사하지 않습니다."
+"원래 객체를 변화시키지 않고 반환함으로써 함수와 클래스를 (얕고 깊게) \"복사\" 합니다;"
+"이것은 :mod:`pickle` 모듈로 처리되는 방식과 호환됩니다."
 
 #: ../Doc/library/copy.rst:66
 msgid ""
@@ -119,6 +138,9 @@ msgid ""
 "of lists by assigning a slice of the entire list, for example, "
 "``copied_list = original_list[:]``."
 msgstr ""
+"딕셔너리의 얕은 복사는 :meth:`dict.copy`\\를 사용하여 복사할 수 있습니다."
+"그리고 리스트의 얕은 복사는 예를 들어 ``copied_list = original_list[:]`` 처럼"
+"전체 리스트의 슬라이스를 대입하여 리스트를 복사할 수도 있습니다."
 
 #: ../Doc/library/copy.rst:72
 msgid ""
@@ -127,6 +149,9 @@ msgid ""
 "information on these methods.  In fact, the :mod:`copy` module uses the "
 "registered pickle functions from the :mod:`copyreg` module."
 msgstr ""
+"클래스는 피클링을 제어하기 위해 사용하는 것과 같은 인터페이스를 사용하여 복사를 제어할 수 있습니다."
+"이러한 메서드들의 정보는 :mod:`pickle` 모듈 설명을 참고하세요."
+"실제로 :mod:`copy` 모듈은 :mod:`copyreg` 모듈에 등록된 피클 함수를 사용합니다."
 
 #: ../Doc/library/copy.rst:81
 msgid ""
@@ -139,38 +164,20 @@ msgid ""
 "component, it should call the :func:`deepcopy` function with the "
 "component as first argument and the memo dictionary as second argument."
 msgstr ""
+"클래스가 자체적으로 복사 구현을 정의하기 위해선, "
+":meth:`__copy__` 와 :meth:`__deepcopy__` 같은 특수 메서드를 정의할 수 있습니다."
+"전자는 얕은 복사 연산을 실행하기 위해 호출됩니다; 추가적인 인자를 전달 하지 않습니다."
+"후자는 깊은 복사 연산을 실행하기 위해 호출됩니다; ``memo`` 딕셔너리가 하나의 인자로 전달됩니다. "
+":meth:`__deepcopy__` 구현에서 구성요소의 깊은 복사를 만들기 위해선,"
+"구성요소를 첫 번째 인자로 하고 memo 딕셔너리를 두 번째 인자로 하여 :func:`deepcopy` 함수를 호출해야 합니다."
 
 #: ../Doc/library/copy.rst:93
 msgid "Module :mod:`pickle`"
-msgstr ""
+msgstr "모듈 :mod:`pickle`"
 
 #: ../Doc/library/copy.rst:93
 msgid ""
 "Discussion of the special methods used to support object state retrieval "
 "and restoration."
 msgstr ""
-
-#~ msgid ""
-#~ "keeping a \"memo\" dictionary of objects"
-#~ " already copied during the current "
-#~ "copying pass; and"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In order for a class to define "
-#~ "its own copy implementation, it can "
-#~ "define special methods :meth:`__copy__` and"
-#~ " :meth:`__deepcopy__`.  The former is "
-#~ "called to implement the shallow copy "
-#~ "operation; no additional arguments are "
-#~ "passed. The latter is called to "
-#~ "implement the deep copy operation; it"
-#~ " is passed one argument, the memo "
-#~ "dictionary.  If the :meth:`__deepcopy__` "
-#~ "implementation needs to make a deep "
-#~ "copy of a component, it should "
-#~ "call the :func:`deepcopy` function with "
-#~ "the component as first argument and "
-#~ "the memo dictionary as second argument."
-#~ msgstr ""
-
+"객체 상태 조회와 복원을 지원하는데 사용되는 특수 메서드에 관한 논의"
