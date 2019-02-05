@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/library/marshal.rst:2
 msgid ":mod:`marshal` --- Internal Python object serialization"
-msgstr ""
+msgstr ":mod:`marshal` --- 내부 파이썬 객체 직렬화"
 
 #: ../Doc/library/marshal.rst:10
 msgid ""
@@ -30,6 +29,9 @@ msgid ""
 "of the format are undocumented on purpose; it may change between Python "
 "versions (although it rarely does). [#]_"
 msgstr ""
+"이 모듈은 바이너리 형식으로 파이썬 값을 읽고 쓸 수 있는 함수를 포함합니다. 형식은 파이썬에만 국한되지만, 기계 아키텍처 문제에는 "
+"독립적입니다 (예를 들어, 파이썬 값을 PC의 파일에 기록하고 파일을 Sun으로 보낸 다음, 그곳에서 다시 읽을 수 있습니다). 형식의 "
+"세부 사항은 의도적으로 설명하지 않습니다; 파이썬 버전 간에 변경될 수 있습니다 (드물긴 하지만). [#]_"
 
 #: ../Doc/library/marshal.rst:21
 msgid ""
@@ -44,6 +46,12 @@ msgid ""
 "comparable, version independence is guaranteed, and pickle supports a "
 "substantially wider range of objects than marshal."
 msgstr ""
+"이것은 범용 \"지속성\" 모듈이 아닙니다. 범용 지속성과 RPC 호출을 통한 파이썬 객체의 전송에 대해서는, "
+":mod:`pickle`\\과 :mod:`shelve` 모듈을 참조하십시오. :mod:`marshal` 모듈은 주로 "
+":file:`.pyc` 파일의 파이썬 모듈에 대한 \"의사 컴파일된\" 코드 읽기와 쓰기를 지원하기 위해 존재합니다. 따라서, 파이썬 "
+"관리자는 필요에 따라 이전 버전과 호환되지 않는 방식으로 마샬 형식을 수정할 수 있는 권한을 갖습니다. 파이썬 객체를 직렬화하고 역 "
+"직렬화하는 데는, 대신 :mod:`pickle` 모듈을 사용하십시오 -- 성능은 비슷하고, 버전 독립성이 보장되며, pickle은 "
+"marshal보다 훨씬 넓은 범위의 객체를 지원합니다."
 
 #: ../Doc/library/marshal.rst:33
 msgid ""
@@ -51,6 +59,8 @@ msgid ""
 "or maliciously constructed data.  Never unmarshal data received from an "
 "untrusted or unauthenticated source."
 msgstr ""
+":mod:`marshal` 모듈은 잘못되었거나 악의적으로 구성된 데이터에 대해 보안성을 갖추려는 것이 아닙니다. 신뢰할 수 없거나 "
+"인증되지 않은 출처에서 받은 데이터를 역 마샬 하지 마십시오."
 
 #: ../Doc/library/marshal.rst:39
 msgid ""
@@ -66,22 +76,30 @@ msgid ""
 "marshalled and unmarshalled. For format *version* lower than 3, recursive"
 " lists, sets and dictionaries cannot be written (see below)."
 msgstr ""
+"모든 파이썬 객체 형이 지원되는 것은 아닙니다; 일반적으로, 파이썬의 특정 실행에 무관한 값을 가진 객체만 이 모듈에서 쓰고 읽을 수 "
+"있습니다. 다음 형이 지원됩니다: 논릿값, 정수, 부동 소수점 수, 복소수, 문자열, 바이트열, 바이트 배열, 튜플, 리스트, 집합, "
+"frozenset, 딕셔너리 및 코드 객체, 여기서 튜플, 리스트, 집합, frozenset 및 딕셔너리는 포함된 값이 자체적으로 지원될"
+" 때만 지원됩니다. 싱글톤 :const:`None`, :const:`Ellipsis` 및 :exc:`StopIteration`\\도 "
+"마샬과 역 마샬 될 수 있습니다. 형식 *version*\\이 3보다 작으면, 재귀적인 리스트, 집합 및 딕셔너리를 기록할 수 없습니다 "
+"(아래를 참조하십시오)."
 
 #: ../Doc/library/marshal.rst:51
 msgid ""
 "There are functions that read/write files as well as functions operating "
 "on bytes-like objects."
-msgstr ""
+msgstr "파일을 읽고 쓰는 함수는 물론 바이트열류 객체에서 작동하는 함수도 있습니다."
 
 #: ../Doc/library/marshal.rst:54
 msgid "The module defines these functions:"
-msgstr ""
+msgstr "모듈은 다음 함수를 정의합니다:"
 
 #: ../Doc/library/marshal.rst:59
 msgid ""
 "Write the value on the open file.  The value must be a supported type.  "
 "The file must be a writeable :term:`binary file`."
 msgstr ""
+"열린 파일에 값을 기록합니다. value는 지원되는 형이어야 합니다. 파일은 쓰기 가능한 :term:`바이너리 파일 <binary "
+"file>` 이어야 합니다."
 
 #: ../Doc/library/marshal.rst:62
 msgid ""
@@ -90,12 +108,14 @@ msgid ""
 "written to the file.  The object will not be properly read back by "
 ":func:`load`."
 msgstr ""
+"value가 지원되지 않는 형이면 (또는 지원되지 않는 형의 객체를 담고 있다면) :exc:`ValueError` 예외가 발생합니다 "
+"--- 하지만, 찌꺼기 데이터도 파일에 기록됩니다. :func:`load`\\로 객체를 제대로 읽을 수 없습니다."
 
 #: ../Doc/library/marshal.rst:66
 msgid ""
 "The *version* argument indicates the data format that ``dump`` should use"
 " (see below)."
-msgstr ""
+msgstr "*version* 인자는 ``dump``\\가 사용해야 하는 데이터 형식을 나타냅니다 (아래를 참조하십시오)."
 
 #: ../Doc/library/marshal.rst:72
 msgid ""
@@ -104,6 +124,9 @@ msgid ""
 " marshal format), raise :exc:`EOFError`, :exc:`ValueError` or "
 ":exc:`TypeError`.  The file must be a readable :term:`binary file`."
 msgstr ""
+"열린 파일에서 하나의 값을 읽고 그것을 반환합니다. 유효한 값을 읽히지 않으면 (예를 들어, 데이터가 다른 파이썬 버전의 호환되지 않는 "
+"마샬 형식이라서) :exc:`EOFError`, :exc:`ValueError` 또는 :exc:`TypeError`\\를 발생시킵니다. "
+"파일은 읽을 수 있는 :term:`바이너리 파일 <binary file>` 이어야 합니다."
 
 #: ../Doc/library/marshal.rst:79
 msgid ""
@@ -111,6 +134,8 @@ msgid ""
 ":func:`dump`, :func:`load` will substitute ``None`` for the "
 "unmarshallable type."
 msgstr ""
+"지원하지 않는 형을 포함하는 객체가 :func:`dump`\\로 마샬 되었으면, :func:`load`\\는 역 마샬이 불가능한 형을 "
+"``None``\\으로 치환합니다."
 
 #: ../Doc/library/marshal.rst:85
 msgid ""
@@ -119,12 +144,14 @@ msgid ""
 "exception if value has (or contains an object that has) an unsupported "
 "type."
 msgstr ""
+"``dump(value, file)``\\에 의해 파일에 기록될 바이트열 객체를 반환합니다. value는 지원되는 형이어야 합니다. "
+"value가 지원되지 않는 형이면 (또는 지원되지 않는 형의 객체를 담고 있다면) :exc:`ValueError` 예외를 발생시킵니다."
 
 #: ../Doc/library/marshal.rst:89
 msgid ""
 "The *version* argument indicates the data format that ``dumps`` should "
 "use (see below)."
-msgstr ""
+msgstr "*version* 인자는 ``dumps``\\가 사용해야 하는 데이터 형식을 나타냅니다 (아래를 참조하십시오)."
 
 #: ../Doc/library/marshal.rst:95
 msgid ""
@@ -132,10 +159,13 @@ msgid ""
 "found, raise :exc:`EOFError`, :exc:`ValueError` or :exc:`TypeError`.  "
 "Extra bytes in the input are ignored."
 msgstr ""
+":term:`바이트열류 객체 <bytes-like object>`\\를 값으로 변환합니다. 유효한 값이 없으면 "
+":exc:`EOFError`, :exc:`ValueError` 또는 :exc:`TypeError`\\를 발생시킵니다. 입력의 여분의 "
+"바이트는 무시됩니다."
 
 #: ../Doc/library/marshal.rst:100
 msgid "In addition, the following constants are defined:"
-msgstr ""
+msgstr "또한, 다음 상수가 정의됩니다:"
 
 #: ../Doc/library/marshal.rst:104
 msgid ""
@@ -144,10 +174,12 @@ msgid ""
 "format for floating point numbers. Version 3 adds support for object "
 "instancing and recursion. The current version is 4."
 msgstr ""
+"모듈이 사용하는 형식을 나타냅니다. 버전 0은 역사적인 형식이고, 버전 1은 인턴 된 문자열을 공유하고, 버전 2는 부동 소수점 숫자에 "
+"바이너리 형식을 사용합니다. 버전 3에서는 객체 인스턴스 화와 재귀에 대한 지원이 추가되었습니다. 현재 버전은 4입니다."
 
 #: ../Doc/library/marshal.rst:112
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/marshal.rst:113
 msgid ""
@@ -158,4 +190,6 @@ msgid ""
 "(in an RPC buffer for instance) and \"unmarshalling\" for the reverse "
 "process."
 msgstr ""
-
+"이 모듈의 이름은 (다른 것 중에서도) Modula-3의 설계자가 사용하는 약간의 용어에서 유래합니다. 이들은 자급적(self-"
+"contained) 형식으로 데이터를 전달하는 데 \"마샬링(marshalling)\"이라는 용어를 사용합니다. 엄밀히 말하면, "
+"\"마샬\"은 내부의 어떤 데이터를 외부 형식(예를 들어 RPC 버퍼에)으로 변환하는 것을, \"역 마샬\"은 그 반대 절차를 뜻합니다."
