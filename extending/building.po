@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (http://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,13 +18,15 @@ msgstr ""
 
 #: ../Doc/extending/building.rst:7
 msgid "Building C and C++ Extensions"
-msgstr ""
+msgstr "C와 C++ 확장 빌드하기"
 
 #: ../Doc/extending/building.rst:9
 msgid ""
 "A C extension for CPython is a shared library (e.g. a ``.so`` file on "
 "Linux, ``.pyd`` on Windows), which exports an *initialization function*."
 msgstr ""
+"CPython의 C 확장은 *초기화 함수*\\를 내보내는 공유 라이브러리입니다 (예를 들어, 리눅스는 ``.so``, 윈도우는 "
+"``.pyd``)."
 
 #: ../Doc/extending/building.rst:12
 msgid ""
@@ -34,16 +35,20 @@ msgid ""
 "appropriate extension. When using distutils, the correct filename is "
 "generated automatically."
 msgstr ""
+"임포트 할 수 있으려면, 공유 라이브러리가 :envvar:`PYTHONPATH`\\에 있어야 하며, 모듈 이름을 따라 적절한 확장자를 "
+"붙여서 이름 지어야 합니다. distutils를 사용하면, 올바른 파일 이름이 자동으로 생성됩니다."
 
 #: ../Doc/extending/building.rst:16
 msgid "The initialization function has the signature:"
-msgstr ""
+msgstr "초기화 함수는 다음과 같은 서명을 갖습니다:"
 
 #: ../Doc/extending/building.rst:20
 msgid ""
 "It returns either a fully-initialized module, or a :c:type:`PyModuleDef` "
 "instance. See :ref:`initializing-modules` for details."
 msgstr ""
+"완전히 초기화된 모듈이나 :c:type:`PyModuleDef` 인스턴스를 반환합니다. 자세한 내용은 :ref:`initializing-"
+"modules`\\을 참조하십시오."
 
 #: ../Doc/extending/building.rst:25
 msgid ""
@@ -54,6 +59,10 @@ msgid ""
 "is ``PyInitU_<modulename>``, with ``<modulename>`` encoded using Python's"
 " *punycode* encoding with hyphens replaced by underscores. In Python::"
 msgstr ""
+"ASCII로만 이루어진 이름을 가진 모듈의 경우, 함수의 이름을 ``PyInit_<modulename>``\\이어야 합니다. 여기서 "
+"``<modulename>``\\을 모듈의 이름으로 치환합니다. :ref:`multi-phase-initialization`\\를 사용할"
+" 때 ASCII가 아닌 모듈 이름이 허용됩니다. 이 경우, 초기화 함수 이름은 ``PyInitU_<modulename>``\\이며 "
+"``<modulename>``\\은 파이썬의 *punycode* 인코딩으로 인코딩되고 하이픈을 밑줄로 대체합니다. 파이썬에서::"
 
 #: ../Doc/extending/building.rst:39
 msgid ""
@@ -63,10 +72,13 @@ msgid ""
 "only the function corresponding to the filename is found. See the "
 "*\"Multiple modules in one library\"* section in :pep:`489` for details."
 msgstr ""
+"여러 초기화 함수를 정의하여 단일 공유 라이브러리에서 여러 모듈을 내보낼 수 있습니다. 그러나, 이들을 임포트 하려면 심볼릭 링크나 "
+"사용자 정의 임포터를 사용해야 합니다. 기본적으로 파일 이름에 해당하는 함수만 발견되기 때문입니다. 자세한 내용은 "
+":pep:`489`\\의 *\"한 라이브러리에 여러 모듈\"* 절을 참조하십시오."
 
 #: ../Doc/extending/building.rst:49
 msgid "Building C and C++ Extensions with distutils"
-msgstr ""
+msgstr "distutils로 C와 C++ 확장 빌드하기"
 
 #: ../Doc/extending/building.rst:53
 msgid ""
@@ -74,16 +86,20 @@ msgid ""
 "Python. Since distutils also supports creation of binary packages, users "
 "don't necessarily need a compiler and distutils to install the extension."
 msgstr ""
+"확장 모듈은 파이썬에 포함된 distutils를 사용하여 빌드할 수 있습니다. distutils가 바이너리 패키지의 생성을 지원하기 "
+"때문에, 사용자는 확장을 설치하기 위해 꼭 컴파일러와 distutils가 필요하지는 않습니다."
 
 #: ../Doc/extending/building.rst:57
 msgid ""
 "A distutils package contains a driver script, :file:`setup.py`. This is a"
 " plain Python file, which, in the most simple case, could look like this:"
 msgstr ""
+"distutils 패키지에는 드라이버 스크립트인 :file:`setup.py`\\가 들어 있습니다. 이것은 평범한 파이썬 파일인데, "
+"대부분 간단한 경우에 이런 식입니다:"
 
 #: ../Doc/extending/building.rst:73
 msgid "With this :file:`setup.py`, and a file :file:`demo.c`, running ::"
-msgstr ""
+msgstr "이 :file:`setup.py`\\와 파일 :file:`demo.c`\\로 다음을 실행하면 ::"
 
 #: ../Doc/extending/building.rst:77
 msgid ""
@@ -92,6 +108,9 @@ msgid ""
 "module file will end up in a subdirectory :file:`build/lib.system`, and "
 "may have a name like :file:`demo.so` or :file:`demo.pyd`."
 msgstr ""
+":file:`demo.c`\\를 컴파일하고, :file:`build` 디렉터리에 ``demo``\\라는 확장 모듈을 생성합니다. 시스템에"
+" 따라, 모듈 파일은 :file:`build/lib.system` 하위 디렉터리에 들어가고, :file:`demo.so`\\나 "
+":file:`demo.pyd`\\와 같은 이름을 가질 수 있습니다."
 
 #: ../Doc/extending/building.rst:82
 msgid ""
@@ -105,6 +124,11 @@ msgid ""
 "learn more about the features of distutils; this section explains "
 "building extension modules only."
 msgstr ""
+":file:`setup.py`\\에서, 모든 실행은 ``setup`` 함수를 호출하여 수행됩니다. 이것은 다양한 키워드 인자를 "
+"받아들입니다. 위의 예에서는 일부만 사용합니다. 구체적으로, 이 예는 패키지를 빌드하기 위한 메타 정보를 지정하고 패키지의 내용을 "
+"지정합니다. 일반적으로, 패키지는 파이썬 소스 모듈, 문서, 서브 패키지 등과 같은 추가 모듈이 포함됩니다. distutils의 기능에 "
+"대한 자세한 내용은 :ref:`distutils-index`\\의 distutils 설명서를 참조하십시오; 이 절에서는 확장 모듈을 "
+"빌드하는 것만 설명합니다."
 
 #: ../Doc/extending/building.rst:91
 msgid ""
@@ -116,6 +140,10 @@ msgid ""
 "defines an extension named ``demo`` which is build by compiling a single "
 "source file, :file:`demo.c`."
 msgstr ""
+"드라이버 스크립트를 더 잘 구조화하기 위해, :func:`setup`\\에 대한 인자를 미리 계산하는 것이 일반적입니다. 위의 예에서, "
+":func:`~distutils.core.setup`\\에 대한 ``ext_modules`` 인자는 확장 모듈의 리스트며, 각 모듈은 "
+":class:`~distutils.extension.Extension`\\의 인스턴스입니다. 이 예에서, 인스턴스는 단일 소스 파일 "
+":file:`demo.c`\\를 컴파일하여 빌드하는 ``demo``\\라는 확장을 정의합니다."
 
 #: ../Doc/extending/building.rst:99
 msgid ""
@@ -123,6 +151,8 @@ msgid ""
 "preprocessor defines and libraries may be needed. This is demonstrated in"
 " the example below."
 msgstr ""
+"많은 경우, 확장을 빌드하는 것은 더 복잡합니다. 왜냐하면, 추가적인 전처리기 정의와 라이브러리가 필요할 수 있기 때문입니다. 이는 "
+"아래에서 예시합니다."
 
 #: ../Doc/extending/building.rst:127
 msgid ""
@@ -134,32 +164,36 @@ msgid ""
 "compiler. For example, on Unix, this may result in the compilation "
 "commands ::"
 msgstr ""
+"이 예에서, :func:`~distutils.core.setup`\\는 추가 메타 정보로 호출되며, 배포 패키지를 빌드해야 할 때 "
+"권장됩니다. 확장 자체에 대해서는, 전처리기 정의, 인클루드 디렉터리, 라이브러리 디렉터리 및 라이브러리를 지정합니다. 컴파일러에 따라,"
+" distutils는 이 정보를 다양한 방법으로 컴파일러에 전달합니다. 예를 들어, 유닉스에서는 다음과 같은 컴파일 명령으로 이어질 수 "
+"있습니다 ::"
 
 #: ../Doc/extending/building.rst:139
 msgid ""
 "These lines are for demonstration purposes only; distutils users should "
 "trust that distutils gets the invocations right."
-msgstr ""
+msgstr "이 줄은 예시 목적일 뿐입니다; distutils 사용자는 distutils가 올바르게 호출한다고 믿어야 합니다."
 
 #: ../Doc/extending/building.rst:146
 msgid "Distributing your extension modules"
-msgstr ""
+msgstr "확장 모듈 배포하기"
 
 #: ../Doc/extending/building.rst:148
 msgid ""
 "When an extension has been successfully build, there are three ways to "
 "use it."
-msgstr ""
+msgstr "확장이 성공적으로 빌드되면, 이를 사용하는 세 가지 방법이 있습니다."
 
 #: ../Doc/extending/building.rst:150
 msgid ""
 "End-users will typically want to install the module, they do so by "
 "running ::"
-msgstr ""
+msgstr "최종 사용자는 보통 모듈을 설치하고 싶을 것이고, 다음을 실행합니다 ::"
 
 #: ../Doc/extending/building.rst:154
 msgid "Module maintainers should produce source packages; to do so, they run ::"
-msgstr ""
+msgstr "모듈 관리자는 소스 패키지를 생성해야 합니다; 그러려면, 이렇게 실행합니다 ::"
 
 #: ../Doc/extending/building.rst:158
 msgid ""
@@ -167,6 +201,8 @@ msgid ""
 "distribution; this is done through a :file:`MANIFEST.in` file; see "
 ":ref:`manifest` for details."
 msgstr ""
+"때에 따라, 추가 파일을 소스 배포에 포함해야 합니다; 이 작업은 :file:`MANIFEST.in` 파일을 통해 수행됩니다; 자세한 "
+"내용은 :ref:`manifest`\\를 참조하십시오."
 
 #: ../Doc/extending/building.rst:161
 msgid ""
@@ -174,4 +210,5 @@ msgid ""
 "also create binary distributions. Depending on the platform, one of the "
 "following commands can be used to do so. ::"
 msgstr ""
-
+"소스 배포가 성공적으로 빌드되면, 관리자는 바이너리 배포도 만들 수 있습니다. 플랫폼에 따라, 이를 위해 다음 명령 중 하나를 사용할 수"
+" 있습니다. ::"
