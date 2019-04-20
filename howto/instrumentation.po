@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 06:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,19 +18,19 @@ msgstr ""
 
 #: ../Doc/howto/instrumentation.rst:7
 msgid "Instrumenting CPython with DTrace and SystemTap"
-msgstr ""
+msgstr "DTrace와 SystemTap으로 CPython 계측하기"
 
 #: ../Doc/howto/instrumentation.rst
 msgid "author"
-msgstr ""
+msgstr "저자"
 
 #: ../Doc/howto/instrumentation.rst:9
 msgid "David Malcolm"
-msgstr ""
+msgstr "David Malcolm"
 
 #: ../Doc/howto/instrumentation.rst:10
 msgid "Łukasz Langa"
-msgstr ""
+msgstr "Łukasz Langa"
 
 #: ../Doc/howto/instrumentation.rst:12
 msgid ""
@@ -39,18 +38,20 @@ msgid ""
 "inspect what the processes on a computer system are doing.  They both use"
 " domain-specific languages allowing a user to write scripts which:"
 msgstr ""
+"DTrace와 SystemTap은 컴퓨터 시스템의 프로세스가 하는 일을 검사할 수 있는 모니터링 도구입니다. 둘 다 도메인 특정 언어를 "
+"사용하여 다음과 같은 작업을 하는 스크립트를 작성할 수 있도록 합니다:"
 
 #: ../Doc/howto/instrumentation.rst:16
 msgid "filter which processes are to be observed"
-msgstr ""
+msgstr "관찰할 프로세스를 걸러내기"
 
 #: ../Doc/howto/instrumentation.rst:17
 msgid "gather data from the processes of interest"
-msgstr ""
+msgstr "관심 있는 프로세스에서 자료를 수집하기"
 
 #: ../Doc/howto/instrumentation.rst:18
 msgid "generate reports on the data"
-msgstr ""
+msgstr "데이터에 대한 보고서를 생성하기"
 
 #: ../Doc/howto/instrumentation.rst:20
 msgid ""
@@ -59,6 +60,9 @@ msgid ""
 "script, making it easier to monitor what the CPython processes on a "
 "system are doing."
 msgstr ""
+"파이썬 3.6부터, CPython은 DTrace나 SystemTap 스크립트에서 볼 수 있는 "
+"\"마커(markers)\"(\"프로브(probes)\"라고도 합니다)를 내장하도록 빌드할 수 있어서, 시스템에서 CPython "
+"프로세스가 수행하고 있는 작업을 쉽게 관찰할 수 있습니다."
 
 #: ../Doc/howto/instrumentation.rst:27
 msgid ""
@@ -67,10 +71,12 @@ msgid ""
 "CPython. DTrace scripts can stop working or work incorrectly without "
 "warning when changing CPython versions."
 msgstr ""
+"DTrace 마커는 CPython 인터프리터의 구현 세부 사항입니다. CPython 버전 간의 프로브 호환성에 대한 보장은 없습니다. "
+"CPython 버전을 변경할 때 경고 없이 DTrace 스크립트가 작동하지 않거나 올바르게 작동하지 않을 수 있습니다."
 
 #: ../Doc/howto/instrumentation.rst:34
 msgid "Enabling the static markers"
-msgstr ""
+msgstr "정적 마커 활성화하기"
 
 #: ../Doc/howto/instrumentation.rst:36
 msgid ""
@@ -78,18 +84,20 @@ msgid ""
 "build CPython with the embedded markers for SystemTap, the SystemTap "
 "development tools must be installed."
 msgstr ""
+"macOS는 DTrace를 기본적으로 지원합니다. 리눅스에서는, SystemTap을 위한 마커를 내장하도록 CPython을 빌드하려면, "
+"SystemTap 개발 도구를 설치해야 합니다."
 
 #: ../Doc/howto/instrumentation.rst:40
 msgid "On a Linux machine, this can be done via::"
-msgstr ""
+msgstr "리눅스 기계에서, 이렇게 하면 됩니다::"
 
 #: ../Doc/howto/instrumentation.rst:44
 msgid "or::"
-msgstr ""
+msgstr "또는::"
 
 #: ../Doc/howto/instrumentation.rst:49
 msgid "CPython must then be configured ``--with-dtrace``:"
-msgstr ""
+msgstr "그런 다음 CPython은 ``--with-dtrace``\\로 구성되어야 합니다:"
 
 #: ../Doc/howto/instrumentation.rst:55
 msgid ""
@@ -97,22 +105,27 @@ msgid ""
 "process in the background and listing all probes made available by the "
 "Python provider::"
 msgstr ""
+"macOS에서, 배경에서 파이썬 프로세스를 실행하고 파이썬 공급자가 제공 한 모든 프로브를 나열하여 사용 가능한 DTrace 프로브를 "
+"나열할 수 있습니다::"
 
 #: ../Doc/howto/instrumentation.rst:72
 msgid ""
 "On Linux, you can verify if the SystemTap static markers are present in "
 "the built binary by seeing if it contains a \".note.stapsdt\" section."
 msgstr ""
+"리눅스에서, \".note.stapsdt\" 섹션이 있는지 확인하여 빌드 된 바이너리에 SystemTap 정적 마커가 있는지 확인할 수 "
+"있습니다."
 
 #: ../Doc/howto/instrumentation.rst:80
 msgid ""
 "If you've built Python as a shared library (with --enable-shared), you "
 "need to look instead within the shared library.  For example::"
 msgstr ""
+"파이썬을 공유 라이브러리(--enable-shared로)로 빌드했다면, 공유 라이브러리 내에서 대신 찾아야 합니다. 예를 들면::"
 
 #: ../Doc/howto/instrumentation.rst:86
 msgid "Sufficiently modern readelf can print the metadata::"
-msgstr ""
+msgstr "충분히 최신의 readelf는 메타 데이터를 인쇄할 수 있습니다::"
 
 #: ../Doc/howto/instrumentation.rst:123
 msgid ""
@@ -120,10 +133,12 @@ msgid ""
 "can patch strategically-placed machine code instructions to enable the "
 "tracing hooks used by a SystemTap script."
 msgstr ""
+"위의 메타 데이터에는 SystemTap 스크립트에서 사용되는 추적 훅을 활성화하도록 전략적으로 배치된 기계 코드 명령어를 패치하는 방법을"
+" 설명하는 SystemTap에 대한 정보가 포함되어 있습니다."
 
 #: ../Doc/howto/instrumentation.rst:129
 msgid "Static DTrace probes"
-msgstr ""
+msgstr "정적 DTrace 프로브"
 
 #: ../Doc/howto/instrumentation.rst:131
 msgid ""
@@ -132,18 +147,20 @@ msgid ""
 "function called \"start\". In other words, import-time function "
 "invocations are not going to be listed:"
 msgstr ""
+"다음 예제 DTrace 스크립트는 파이썬 스크립트의 호출/반환 계층 구조를 표시하는 데 사용할 수 있습니다. \"start\"라는 함수의"
+" 호출 내부에서만 추적합니다. 즉, 임포트 시점의 함수 호출은 나열되지 않습니다:"
 
 #: ../Doc/howto/instrumentation.rst:170 ../Doc/howto/instrumentation.rst:228
 msgid "It can be invoked like this::"
-msgstr ""
+msgstr "다음과 같은 식으로 호출할 수 있습니다::"
 
 #: ../Doc/howto/instrumentation.rst:174 ../Doc/howto/instrumentation.rst:234
 msgid "The output looks like this:"
-msgstr ""
+msgstr "출력은 이런 식입니다:"
 
 #: ../Doc/howto/instrumentation.rst:199
 msgid "Static SystemTap markers"
-msgstr ""
+msgstr "정적 SystemTap 마커"
 
 #: ../Doc/howto/instrumentation.rst:201
 msgid ""
@@ -151,34 +168,36 @@ msgid ""
 "markers directly.  This requires you to explicitly state the binary file "
 "containing them."
 msgstr ""
+"SystemTap 통합을 사용하는 저수준의 방법은 정적 마커를 직접 사용하는 것입니다. 이를 포함하는 바이너리 파일을 명시적으로 지정해야"
+" 합니다."
 
 #: ../Doc/howto/instrumentation.rst:205
 msgid ""
 "For example, this SystemTap script can be used to show the call/return "
 "hierarchy of a Python script:"
-msgstr ""
+msgstr "예를 들어, 이 SystemTap 스크립트는 파이썬 스크립트의 호출/반환 계층 구조를 표시하는 데 사용할 수 있습니다:"
 
 #: ../Doc/howto/instrumentation.rst:245
 msgid "where the columns are:"
-msgstr ""
+msgstr "이때 열은 다음과 같습니다:"
 
 #: ../Doc/howto/instrumentation.rst:247
 msgid "time in microseconds since start of script"
-msgstr ""
+msgstr "스크립트 시작으로부터 마이크로초 단위의 시간"
 
 #: ../Doc/howto/instrumentation.rst:249
 msgid "name of executable"
-msgstr ""
+msgstr "실행 파일의 이름"
 
 #: ../Doc/howto/instrumentation.rst:251
 msgid "PID of process"
-msgstr ""
+msgstr "프로세스의 PID"
 
 #: ../Doc/howto/instrumentation.rst:253
 msgid ""
 "and the remainder indicates the call/return hierarchy as the script "
 "executes."
-msgstr ""
+msgstr "나머지는 스크립트가 실행될 때 호출/반환 계층 구조를 나타냅니다."
 
 #: ../Doc/howto/instrumentation.rst:255
 msgid ""
@@ -186,24 +205,26 @@ msgid ""
 "within the libpython shared library, and the probe's dotted path needs to"
 " reflect this. For example, this line from the above example:"
 msgstr ""
+"CPython의 `--enable-shared` 빌드의 경우, 마커는 libpython 공유 라이브러리 내에 포함되어 있으며, 프로브의 "
+"점으로 구분된 경로는 이를 반영해야 합니다. 예를 들어, 위의 예제에서 다음과 같은 줄은:"
 
 #: ../Doc/howto/instrumentation.rst:263
 msgid "should instead read:"
-msgstr ""
+msgstr "대신 이렇게 되어야 합니다:"
 
 #: ../Doc/howto/instrumentation.rst:269
 msgid "(assuming a debug build of CPython 3.6)"
-msgstr ""
+msgstr "(CPython 3.6의 디버그 빌드를 가정하고 있습니다)"
 
 #: ../Doc/howto/instrumentation.rst:273
 msgid "Available static markers"
-msgstr ""
+msgstr "사용 가능한 정적 마커"
 
 #: ../Doc/howto/instrumentation.rst:279
 msgid ""
 "This marker indicates that execution of a Python function has begun. It "
 "is only triggered for pure-Python (bytecode) functions."
-msgstr ""
+msgstr "이 마커는 파이썬 함수의 실행이 시작되었음을 나타냅니다. 순수 파이썬 (바이트 코드) 함수에서만 트리거 됩니다."
 
 #: ../Doc/howto/instrumentation.rst:282
 msgid ""
@@ -211,22 +232,28 @@ msgid ""
 "tracing script as positional arguments, which must be accessed using "
 "``$arg1``, ``$arg2``, ``$arg3``:"
 msgstr ""
+"파일명, 함수 이름 및 줄 번호가 위치 인자로 추적 스크립트에 제공됩니다. ``$arg1``, ``$arg2``, ``$arg3``\\를"
+" 사용하여 액세스해야 합니다:"
 
 #: ../Doc/howto/instrumentation.rst:286
 msgid ""
 "``$arg1`` : ``(const char *)`` filename, accessible using "
 "``user_string($arg1)``"
 msgstr ""
+"``$arg1`` : ``(const char *)`` 파일명, ``user_string($arg1)``\\를 사용하여 액세스할 수 "
+"있습니다"
 
 #: ../Doc/howto/instrumentation.rst:288
 msgid ""
 "``$arg2`` : ``(const char *)`` function name, accessible using "
 "``user_string($arg2)``"
 msgstr ""
+"``$arg2`` : ``(const char *)`` 함수 이름, ``user_string($arg2)``\\를 사용하여 액세스할 수 "
+"있습니다"
 
 #: ../Doc/howto/instrumentation.rst:291
 msgid "``$arg3`` : ``int`` line number"
-msgstr ""
+msgstr "``$arg3`` : ``int`` 줄 번호"
 
 #: ../Doc/howto/instrumentation.rst:295
 msgid ""
@@ -235,10 +262,12 @@ msgid ""
 "via an exception).  It is only triggered for pure-Python (bytecode) "
 "functions."
 msgstr ""
+"이 마커는 :c:func:`function__entry`\\의 반대이며, 파이썬 함수의 실행이 종료되었음을 나타냅니다 "
+"(``return``\\를 통해서나 예외를 통해). 순수 파이썬 (바이트 코드) 함수에서만 트리거 됩니다."
 
 #: ../Doc/howto/instrumentation.rst:299
 msgid "The arguments are the same as for :c:func:`function__entry`"
-msgstr ""
+msgstr "인자는 :c:func:`function__entry`\\와 같습니다."
 
 #: ../Doc/howto/instrumentation.rst:303
 msgid ""
@@ -246,28 +275,32 @@ msgid ""
 "equivalent of line-by-line tracing with a Python profiler.  It is not "
 "triggered within C functions."
 msgstr ""
+"이 마커는 파이썬 줄이 실행되려고 함을 나타냅니다. 파이썬 프로파일러를 사용하는 줄 단위 추적과 동등합니다. C 함수 내에서는 트리거 "
+"되지 않습니다."
 
 #: ../Doc/howto/instrumentation.rst:307
 msgid "The arguments are the same as for :c:func:`function__entry`."
-msgstr ""
+msgstr "인자는 :c:func:`function__entry`\\와 같습니다."
 
 #: ../Doc/howto/instrumentation.rst:311
 msgid ""
 "Fires when the Python interpreter starts a garbage collection cycle. "
 "``arg0`` is the generation to scan, like :func:`gc.collect()`."
 msgstr ""
+"파이썬 인터프리터가 가비지 수집 사이클을 시작할 때 발생합니다. ``arg0``\\은 :func:`gc.collect()`\\처럼 스캔할"
+" 세대(generation)입니다."
 
 #: ../Doc/howto/instrumentation.rst:316
 msgid ""
 "Fires when the Python interpreter finishes a garbage collection cycle. "
 "``arg0`` is the number of collected objects."
-msgstr ""
+msgstr "파이썬 인터프리터가 가비지 수집 사이클을 끝낼 때 발생합니다. ``arg0``\\은 수집된 객체 수입니다."
 
 #: ../Doc/howto/instrumentation.rst:321
 msgid ""
 "Fires before :mod:`importlib` attempts to find and load the module. "
 "``arg0`` is the module name."
-msgstr ""
+msgstr ":mod:`importlib`\\가 모듈을 찾고 로드하기 전에 발생합니다. ``arg0``\\은 모듈 이름입니다."
 
 #: ../Doc/howto/instrumentation.rst:328
 msgid ""
@@ -275,10 +308,12 @@ msgid ""
 " is the module name, ``arg1`` indicates if module was successfully "
 "loaded."
 msgstr ""
+":mod:`importlib`\\의 모듈을 찾고 로드하는 함수가 호출 된 후에 발생합니다. ``arg0``\\은 모듈 이름이고, "
+"``arg1``\\은 모듈이 성공적으로 로드되었는지를 나타냅니다."
 
 #: ../Doc/howto/instrumentation.rst:336
 msgid "SystemTap Tapsets"
-msgstr ""
+msgstr "SystemTap 탭셋"
 
 #: ../Doc/howto/instrumentation.rst:338
 msgid ""
@@ -286,10 +321,12 @@ msgid ""
 "\"tapset\": SystemTap's equivalent of a library, which hides some of the "
 "lower-level details of the static markers."
 msgstr ""
+"SystemTap 통합을 사용하는 고수준의 방법은 \"탭셋(tapset)\"을 사용하는 것입니다: SystemTap의 라이브러리에 "
+"해당하는 것입니다, 정적 마커의 저수준 세부 정보를 숨깁니다."
 
 #: ../Doc/howto/instrumentation.rst:342
 msgid "Here is a tapset file, based on a non-shared build of CPython:"
-msgstr ""
+msgstr "다음은 CPython의 비공유 빌드에 기반한 탭셋 파일입니다:"
 
 #: ../Doc/howto/instrumentation.rst:365
 msgid ""
@@ -297,12 +334,14 @@ msgid ""
 "``/usr/share/systemtap/tapset``), then these additional probepoints "
 "become available:"
 msgstr ""
+"이 파일을 SystemTap의 tapset 디렉터리(예를 들어, ``/usr/share/systemtap/tapset``)에 설치하면, "
+"다음과 같은 추가 프로브 포인트를 사용할 수 있습니다:"
 
 #: ../Doc/howto/instrumentation.rst:371
 msgid ""
 "This probe point indicates that execution of a Python function has begun."
 " It is only triggered for pure-Python (bytecode) functions."
-msgstr ""
+msgstr "이 프로브 포인트는 파이썬 함수의 실행이 시작되었음을 나타냅니다. 순수 파이썬 (바이트 코드) 함수에서만 트리거 됩니다."
 
 #: ../Doc/howto/instrumentation.rst:376
 msgid ""
@@ -311,10 +350,12 @@ msgid ""
 "``return``, or via an exception).  It is only triggered for pure-Python "
 "(bytecode) functions."
 msgstr ""
+"이 프로브 포인트는 :c:func:`python.function.return`\\의 반대이며, 파이썬 함수의 실행이 종료되었음을 "
+"나타냅니다 (``return``\\를 통해서나 예외를 통해). 순수 파이썬 (바이트 코드) 함수에서만 트리거 됩니다."
 
 #: ../Doc/howto/instrumentation.rst:383
 msgid "Examples"
-msgstr ""
+msgstr "예제"
 
 #: ../Doc/howto/instrumentation.rst:384
 msgid ""
@@ -322,6 +363,8 @@ msgid ""
 " example given above of tracing the Python function-call hierarchy, "
 "without needing to directly name the static markers:"
 msgstr ""
+"이 SystemTap 스크립트는 위의 탭셋을 사용하여, 정적 마커의 이름을 직접 지정하지 않고도, 파이썬 함수 호출 계층 구조를 추적하는"
+" 위의 예제를 보다 명확하게 구현합니다.:"
 
 #: ../Doc/howto/instrumentation.rst:403
 msgid ""
@@ -329,33 +372,5 @@ msgid ""
 "all running CPython code, showing the top 20 most frequently-entered "
 "bytecode frames, each second, across the whole system:"
 msgstr ""
-
-#~ msgid ""
-#~ "For a `--enable-shared` build of "
-#~ "CPython, the markers are contained "
-#~ "within the libpython shared library, and"
-#~ " the probe's dotted path needs to "
-#~ "reflect this. For example, this line "
-#~ "from the above example::"
-#~ msgstr ""
-
-#~ msgid "should instead read::"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This probe point indicates that "
-#~ "execution of a Python function has "
-#~ "begun. It is only triggered for "
-#~ "pure-python (bytecode) functions."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This probe point is the converse "
-#~ "of :c:func:`python.function.return`, and indicates"
-#~ " that execution of a Python function"
-#~ " has ended (either via ``return``, or"
-#~ " via an exception).  It is only "
-#~ "triggered for pure-python (bytecode) "
-#~ "functions."
-#~ msgstr ""
-
+"다음 스크립트는 위의 탭셋을 사용하여 실행 중인 모든 CPython 코드의 top과 비슷한 보기를 제공합니다. 전체 시스템에서 1초마다 "
+"가장 자주 진입하는 바이트 코드 프레임 20개를 표시합니다:"
