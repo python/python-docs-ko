@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/library/fcntl.rst:2
 msgid ":mod:`fcntl` --- The ``fcntl`` and ``ioctl`` system calls"
-msgstr ""
+msgstr ":mod:`fcntl` --- ``fcntl``\\과 ``ioctl`` 시스템 호출"
 
 #: ../Doc/library/fcntl.rst:16
 msgid ""
@@ -28,6 +27,9 @@ msgid ""
 "routines.  For a complete description of these calls, see "
 ":manpage:`fcntl(2)` and :manpage:`ioctl(2)` Unix manual pages."
 msgstr ""
+"이 모듈은 파일 기술자에 대한 파일 제어와 I/O 제어를 수행합니다. :c:func:`fcntl`\\과 :c:func:`ioctl` "
+"유닉스 루틴에 대한 인터페이스입니다. 이 호출에 대한 자세한 설명은 :manpage:`fcntl(2)`\\과 "
+":manpage:`ioctl(2)` 유닉스 매뉴얼 페이지를 참조하십시오."
 
 #: ../Doc/library/fcntl.rst:21
 msgid ""
@@ -37,16 +39,19 @@ msgid ""
 "``sys.stdin`` itself, which provides a :meth:`~io.IOBase.fileno` that "
 "returns a genuine file descriptor."
 msgstr ""
+"이 모듈의 모든 함수는 첫 번째 인자로 파일 기술자 *fd*\\를 받아들입니다. 이것은 ``sys.stdin.fileno()``\\에 "
+"의해 반환된 것과 같은 정수 파일 기술자이거나 ``sys.stdin`` 자체와 같은 :class:`io.IOBase` 객체일 수 "
+"있습니다. 이 객체는 실제 파일 기술자를 반환하는 :meth:`~io.IOBase.fileno`\\를 제공합니다."
 
 #: ../Doc/library/fcntl.rst:27
 msgid ""
 "Operations in this module used to raise an :exc:`IOError` where they now "
 "raise an :exc:`OSError`."
-msgstr ""
+msgstr "이 모듈의 연산은 :exc:`IOError`\\를 발생시켰는데, 이제는 :exc:`OSError`\\를 발생시킵니다."
 
 #: ../Doc/library/fcntl.rst:32
 msgid "The module defines the following functions:"
-msgstr ""
+msgstr "이 모듈은 다음 함수를 정의합니다:"
 
 #: ../Doc/library/fcntl.rst:37
 msgid ""
@@ -67,16 +72,24 @@ msgid ""
 "system is larger than 1024 bytes, this is most likely to result in a "
 "segmentation violation or a more subtle data corruption."
 msgstr ""
+"파일 기술자 *fd*\\(:meth:`~io.IOBase.fileno` 메서드를 제공하는 파일 객체도 허용됩니다)에 대해 *cmd* "
+"연산을 수행합니다. *cmd*\\에 사용되는 값은 운영 체제에 따라 다르며, 관련 C 헤더 파일에 사용된 것과 같은 이름을 사용하여 "
+":mod:`fcntl` 모듈에서 상수로 제공됩니다. 인자 *arg*\\는 정숫값이나 :class:`bytes` 객체가 될 수 있습니다. "
+"정숫값일 때, 이 함수의 반환 값은 C :c:func:`fcntl` 호출의 정수 반환 값입니다. 인자가 바이트열일 때 바이너리 구조체를 "
+"나타냅니다, 예를 들어 :func:`struct.pack`\\으로 만든 것입니다. 바이너리 데이터는 주소가 C "
+":c:func:`fcntl` 호출에 전달될 버퍼로 복사됩니다. 호출 성공 후 반환 값은 버퍼 내용이며, :class:`bytes` 객체로"
+" 변환됩니다. 반환된 객체의 길이는 *arg* 인자의 길이와 같습니다. 이것은 1024바이트로 제한됩니다. 운영 체제에 의해 버퍼로 "
+"반환된 정보가 1024바이트보다 크면, 세그멘테이션 위반이나 더 미묘한 데이터 손상이 발생할 가능성이 큽니다."
 
 #: ../Doc/library/fcntl.rst:54
 msgid "If the :c:func:`fcntl` fails, an :exc:`OSError` is raised."
-msgstr ""
+msgstr ":c:func:`fcntl`\\이 실패하면, :exc:`OSError`\\가 발생합니다."
 
 #: ../Doc/library/fcntl.rst:59
 msgid ""
 "This function is identical to the :func:`~fcntl.fcntl` function, except "
 "that the argument handling is even more complicated."
-msgstr ""
+msgstr "이 함수는 인자 처리가 훨씬 더 복잡하다는 점을 제외하면, :func:`~fcntl.fcntl` 함수와 같습니다."
 
 #: ../Doc/library/fcntl.rst:62
 msgid ""
@@ -85,6 +98,8 @@ msgid ""
 " found in the :mod:`termios` module, under the same names as used in the "
 "relevant C header files."
 msgstr ""
+"*request* 매개 변수는 32비트에 맞출 수 있는 값으로 제한됩니다. *request* 인자로 사용하기 위한 추가 상수는 관련 C "
+"헤더 파일에서 사용된 것과 같은 이름으로 :mod:`termios` 모듈에서 제공됩니다."
 
 #: ../Doc/library/fcntl.rst:67
 msgid ""
@@ -92,18 +107,20 @@ msgid ""
 "read-only buffer interface (like :class:`bytes`) or an object supporting "
 "the read-write buffer interface (like :class:`bytearray`)."
 msgstr ""
+"매개 변수 *arg*\\는 정수, 읽기 전용 버퍼 인터페이스를 지원하는 (:class:`bytes` 같은) 객체 또는 읽기-쓰기 버퍼 "
+"인터페이스를 지원하는 (:class:`bytearray` 같은) 객체 중 하나일 수 있습니다."
 
 #: ../Doc/library/fcntl.rst:71
 msgid ""
 "In all but the last case, behaviour is as for the :func:`~fcntl.fcntl` "
 "function."
-msgstr ""
+msgstr "마지막 경우를 제외하고는, 동작이 :func:`~fcntl.fcntl` 함수와 같습니다."
 
 #: ../Doc/library/fcntl.rst:74
 msgid ""
 "If a mutable buffer is passed, then the behaviour is determined by the "
 "value of the *mutate_flag* parameter."
-msgstr ""
+msgstr "가변 버퍼가 전달되면, 동작은 *mutate_flag* 매개 변수의 값에 의해 결정됩니다."
 
 #: ../Doc/library/fcntl.rst:77
 msgid ""
@@ -112,6 +129,8 @@ msgid ""
 "is avoided -- so long as the buffer you pass is at least as long as what "
 "the operating system wants to put there, things should work."
 msgstr ""
+"거짓이면, 버퍼의 가변성은 무시되고 동작은 읽기 전용 버퍼일 때와 같습니다. 단, 위에서 언급한 1024바이트 제한은 피할 수 있습니다 "
+"-- 최소한 전달한 버퍼가 운영 체제가 원하는 만큼 길면 작동해야 합니다."
 
 #: ../Doc/library/fcntl.rst:82
 msgid ""
@@ -123,14 +142,18 @@ msgid ""
 "long it is first copied into a static buffer 1024 bytes long which is "
 "then passed to :func:`ioctl` and copied back into the supplied buffer."
 msgstr ""
+"*mutate_flag*\\가 참(기본값)이면, 버퍼가 (결과적으로) 하부 :func:`ioctl` 시스템 호출로 전달되고, 이 호출의 "
+"반환 코드는 호출하는 파이썬으로 다시 전달되고 버퍼의 새로운 내용은 :func:`ioctl`\\의 동작을 반영합니다. 이것은 약간 "
+"단순화한 설명인데, 제공된 버퍼가 1024바이트보다 작으면, 1024바이트 길이의 정적 버퍼에 먼저 복사된 다음, 이 정적 버퍼가 "
+":func:`ioctl`\\로 전달되고, 정적 버퍼를 제공된 버퍼로 다시 복사하기 때문입니다."
 
 #: ../Doc/library/fcntl.rst:90
 msgid "If the :c:func:`ioctl` fails, an :exc:`OSError` exception is raised."
-msgstr ""
+msgstr ":c:func:`ioctl`\\이 실패하면, :exc:`OSError` 예외가 발생합니다."
 
 #: ../Doc/library/fcntl.rst:92
 msgid "An example::"
-msgstr ""
+msgstr "예제::"
 
 #: ../Doc/library/fcntl.rst:108
 msgid ""
@@ -139,10 +162,13 @@ msgid ""
 "well). See the Unix manual :manpage:`flock(2)` for details.  (On some "
 "systems, this function is emulated using :c:func:`fcntl`.)"
 msgstr ""
+"파일 기술자 *fd*\\(:meth:`~io.IOBase.fileno` 메서드를 제공하는 파일 객체도 허용됩니다)\\에 대한 잠금 연산 "
+"*operation*\\을 수행합니다. 자세한 내용은 유닉스 매뉴얼 :manpage:`flock(2)`\\를 참조하십시오. (일부 "
+"시스템에서는, 이 함수가 :c:func:`fcntl`\\를 사용하여 에뮬레이트됩니다.)"
 
 #: ../Doc/library/fcntl.rst:113
 msgid "If the :c:func:`flock` fails, an :exc:`OSError` exception is raised."
-msgstr ""
+msgstr ":c:func:`flock`\\이 실패하면, :exc:`OSError` 예외가 발생합니다."
 
 #: ../Doc/library/fcntl.rst:118
 msgid ""
@@ -150,18 +176,20 @@ msgid ""
 "calls. *fd* is the file descriptor of the file to lock or unlock, and "
 "*cmd* is one of the following values:"
 msgstr ""
+"이것은 본질에서 :func:`~fcntl.fcntl` 잠금 호출에 대한 래퍼입니다. *fd*\\는 잠그거나 잠금 해제할 파일의 파일 "
+"기술자이고, *cmd*\\는 다음 값 중 하나입니다:"
 
 #: ../Doc/library/fcntl.rst:122
 msgid ":const:`LOCK_UN` -- unlock"
-msgstr ""
+msgstr ":const:`LOCK_UN` -- 잠금 해제"
 
 #: ../Doc/library/fcntl.rst:123
 msgid ":const:`LOCK_SH` -- acquire a shared lock"
-msgstr ""
+msgstr ":const:`LOCK_SH` -- 공유 잠금 획득"
 
 #: ../Doc/library/fcntl.rst:124
 msgid ":const:`LOCK_EX` -- acquire an exclusive lock"
-msgstr ""
+msgstr ":const:`LOCK_EX` -- 배타적 잠금 획득"
 
 #: ../Doc/library/fcntl.rst:126
 msgid ""
@@ -174,6 +202,11 @@ msgid ""
 "some systems, :const:`LOCK_EX` can only be used if the file descriptor "
 "refers to a file opened for writing."
 msgstr ""
+"*cmd*\\가 :const:`LOCK_SH`\\나 :const:`LOCK_EX` 일 때, 잠금 획득시 블로킹을 피하고자 "
+":const:`LOCK_NB`\\와 비트별 OR 될 수 있습니다. :const:`LOCK_NB`\\가 사용되고 잠금을 얻을 수 없을 때,"
+" :exc:`OSError`\\가 발생하고 *errno* 어트리뷰트가 :const:`EACCES`\\나 "
+":const:`EAGAIN`\\으로 설정됩니다 (운영 체제에 따라 다릅니다; 이식성을 위해서 두 값을 모두 확인하십시오). 적어도 일부 "
+"시스템에서, :const:`LOCK_EX`\\는 파일 기술자가 쓰기 위해 열린 파일을 참조할 때만 사용할 수 있습니다."
 
 #: ../Doc/library/fcntl.rst:135
 msgid ""
@@ -181,20 +214,22 @@ msgid ""
 " the lock starts, relative to *whence*, and *whence* is as with "
 ":func:`io.IOBase.seek`, specifically:"
 msgstr ""
+"*len*\\은 잠글 바이트 수, *start*\\는 *whence*\\가 정의하는 기준으로 잠금이 시작되는 바이트 오프셋이며 "
+"*whence*\\는 :func:`io.IOBase.seek`\\에서와 같은데, 구체적으로 다음과 같습니다:"
 
 #: ../Doc/library/fcntl.rst:139
 msgid ":const:`0` -- relative to the start of the file (:data:`os.SEEK_SET`)"
-msgstr ""
+msgstr ":const:`0` -- 파일의 시작에 상대적 (:data:`os.SEEK_SET`)"
 
 #: ../Doc/library/fcntl.rst:140
 msgid ""
 ":const:`1` -- relative to the current buffer position "
 "(:data:`os.SEEK_CUR`)"
-msgstr ""
+msgstr ":const:`1` -- 현재 버퍼 위치에 상대적 (:data:`os.SEEK_CUR`)"
 
 #: ../Doc/library/fcntl.rst:141
 msgid ":const:`2` -- relative to the end of the file (:data:`os.SEEK_END`)"
-msgstr ""
+msgstr ":const:`2` -- 파일의 끝에 상대적 (:data:`os.SEEK_END`)"
 
 #: ../Doc/library/fcntl.rst:143
 msgid ""
@@ -202,10 +237,12 @@ msgid ""
 "the file. The default for *len* is 0 which means to lock to the end of "
 "the file.  The default for *whence* is also 0."
 msgstr ""
+"*start*\\의 기본값은 파일 시작 부분에서 시작한다는 의미인 0입니다. *len*\\의 기본값은 파일 끝까지 잠그는 것을 의미하는 "
+"0입니다. *whence*\\의 기본값도 0입니다."
 
 #: ../Doc/library/fcntl.rst:147
 msgid "Examples (all on a SVR4 compliant system)::"
-msgstr ""
+msgstr "예제 (모두 SVR4 호환 시스템에서)::"
 
 #: ../Doc/library/fcntl.rst:157
 msgid ""
@@ -214,10 +251,13 @@ msgid ""
 "object.  The structure lay-out for the *lockdata* variable is system "
 "dependent --- therefore using the :func:`flock` call may be better."
 msgstr ""
+"첫 번째 예제에서 반환 값 변수 *rv*\\는 정숫값을 저장합니다; 두 번째 예제에서는 :class:`bytes` 객체를 저장합니다. "
+"*lockdata* 변수에 대한 구조체 배치는 시스템 종속적입니다 --- 그래서 :func:`flock` 호출을 사용하는 것이 더 좋을 "
+"수 있습니다."
 
 #: ../Doc/library/fcntl.rst:168
 msgid "Module :mod:`os`"
-msgstr ""
+msgstr "모듈 :mod:`os`"
 
 #: ../Doc/library/fcntl.rst:166
 msgid ""
@@ -226,4 +266,6 @@ msgid ""
 "function provides an alternative to the :func:`lockf` and :func:`flock` "
 "functions."
 msgstr ""
-
+"잠금 플래그 :data:`~os.O_SHLOCK`\\과 :data:`~os.O_EXLOCK`\\이 :mod:`os` 모듈에 있으면 "
+"(BSD에만 해당합니다), :func:`os.open` 함수는 :func:`lockf`\\와 :func:`flock` 함수의 대안을 "
+"제공합니다."
