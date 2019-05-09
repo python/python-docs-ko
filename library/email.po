@@ -3,27 +3,26 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 06:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.6.0\n"
 
 #: ../Doc/library/email.rst:2
 msgid ":mod:`email` --- An email and MIME handling package"
-msgstr ""
+msgstr ":mod:`email` --- 전자 메일과 MIME 처리 패키지"
 
 #: ../Doc/library/email.rst:11
 msgid "**Source code:** :source:`Lib/email/__init__.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/email/__init__.py`"
 
 #: ../Doc/library/email.rst:15
 msgid ""
@@ -35,13 +34,18 @@ msgid ""
 ":rfc:`6532`, as well as such MIME-related RFCs as :rfc:`2045`, "
 ":rfc:`2046`, :rfc:`2047`, :rfc:`2183`, and :rfc:`2231`."
 msgstr ""
+":mod:`email` 패키지는 전자 메일 메시지를 관리하기 위한 라이브러리입니다. 특히 SMTP (:rfc:`2821`), "
+"NNTP 또는 다른 서버로 전자 메일 메시지를 보내도록 설계되지 *않았*\\습니다; 그런 것들은 :mod:`smtplib`\\와 "
+":mod:`nntplib` 같은 모듈의 기능입니다. :mod:`email` 패키지는 :rfc:`5233`\\와 "
+":rfc:`6532`\\뿐만 아니라, :rfc:`2045`, :rfc:`2046`, :rfc:`2047`, :rfc:`2183` 및"
+" :rfc:`2231`\\와 같은 MIME 관련 RFC를 지원하여 가능한 최대로 RFC를 준수하려고 시도합니다."
 
 #: ../Doc/library/email.rst:23
 msgid ""
 "The overall structure of the email package can be divided into three "
 "major components, plus a fourth component that controls the behavior of "
 "the other components."
-msgstr ""
+msgstr "email 패키지의 전체 구조는 세 가지 주요 구성 요소와 다른 구성 요소의 동작을 제어하는 네 번째 구성 요소로 나눌 수 있습니다."
 
 #: ../Doc/library/email.rst:27
 msgid ""
@@ -55,6 +59,11 @@ msgid ""
 "their MIME subcomponents, the email object model is a tree structure of "
 "objects that all provide the :class:`~email.message.EmailMessage` API."
 msgstr ""
+"패키지의 중심 구성 요소는 전자 메일 메시지를 나타내는 \"객체 모델\"입니다. 응용 프로그램은 주로 "
+":mod:`~email.message` 서브 모듈에 정의된 객체 모델 인터페이스를 통해 패키지와 상호 작용합니다. 응용 프로그램은 "
+"이 API를 사용하여 기존 전자 메일에 대해 질문을 하거나, 새 전자 메일을 작성하거나, 같은 객체 모델 인터페이스를 사용하는 전자"
+" 메일 하위 구성 요소를 추가하거나 제거할 수 있습니다. 즉, 전자 메일 메시지와 MIME 하위 구성 요소의 특성에 따라, 전자 "
+"메일 객체 모델은 모두 :class:`~email.message.EmailMessage` API를 제공하는 객체의 트리 구조입니다."
 
 #: ../Doc/library/email.rst:37
 msgid ""
@@ -68,6 +77,12 @@ msgid ""
 " too easy to end up with messages that are not valid in one way or "
 "another.)"
 msgstr ""
+"패키지의 다른 두 가지 주요 구성 요소는 :mod:`~email.parser`\\와 "
+":mod:`~email.generator`\\입니다. 구문 분석기(parser)는 직렬화된 전자 메일 메시지(바이트 스트림)를 "
+"가져와 :class:`~email.message.EmailMessage` 객체의 트리로 변환합니다. 생성기(generator)는 "
+":class:`~email.message.EmailMessage`\\를 받아서 직렬화된 바이트 스트림으로 다시 변환합니다. (구문 "
+"분석기와 생성기는 텍스트 문자의 스트림도 처리하지만, 이 사용법은 유효하지 않은 메시지로 끝나기 쉬우므로 사용하지 않는 것이 "
+"좋습니다.)"
 
 #: ../Doc/library/email.rst:46
 msgid ""
@@ -83,6 +98,14 @@ msgid ""
 "generic email message to be parsed from disk, but to serialize it using "
 "standard SMTP settings when sending it to an email server."
 msgstr ""
+"제어 구성 요소는 :mod:`~email.policy` 모듈입니다. 모든 "
+":class:`~email.message.EmailMessage`, 모든 :mod:`~email.generator` 및 모든 "
+":mod:`~email.parser`\\에는 그것의 동작을 제어하는 연관된 :mod:`~email.policy` 객체가 있습니다. "
+"일반적으로 응용 프로그램은 :class:`~email.message.EmailMessage`\\가 만들어질 때 정책을 지정하기만 "
+"하면 되는데, :class:`~email.message.EmailMessage`\\를 직접 인스턴스로 만들어서 새 전자 메일을 "
+"만들거나, :mod:`~email.parser`\\를 사용하여 입력 스트림을 구문 분석할 때입니다. 그러나 메시지가 "
+":mod:`~email.generator`\\를 사용하여 직렬화될 때 정책을 변경할 수 있습니다. 이것은, 예를 들어, 범용 전자 "
+"메일 메시지를 디스크에서 구분 분석하지만, 전자 메일 서버로 보낼 때 표준 SMTP 설정을 사용하여 직렬화할 수 있도록 합니다."
 
 #: ../Doc/library/email.rst:58
 msgid ""
@@ -100,6 +123,13 @@ msgid ""
 "content types are used widely in modern internet software (not just "
 "email), this will be a familiar concept to many programmers."
 msgstr ""
+"email 패키지는 응용 프로그램으로부터 각종 관리적인 RFC의 세부 사항을 숨기기 위해 최선을 다합니다. 개념적으로 응용 "
+"프로그램은 전자 메일 메시지를 유니코드 텍스트와 바이너리 첨부 파일의 구조화 된 트리로 처리할 수 있어야 하며, 직렬화될 때 "
+"이것들이 어떻게 표시되는지 걱정할 필요가 없어야 합니다. 하지만, 실제로는, MIME 메시지와 그 구조, 특히 MIME \"콘텐츠 "
+"형식(content type)\"의 이름과 특성, 그리고 다중 부분 문서를 식별하는 방법을 관리하는 규칙 중 적어도 일부를 신경 쓸"
+" 필요가 종종 있습니다. 대부분, 이 지식은 더욱 복잡한 응용 프로그램에만 필요하며, 그럴 때도 그 구조가 어떻게 표현되는지에 대한"
+" 세부 사항이 아닌, 문제가 되는 고수준 구조에 관한 것이어야 합니다. MIME 콘텐츠 유형은 최신 인터넷 소프트웨어(전자 메일뿐만"
+" 아니라)에서 널리 사용되므로, 많은 프로그래머에게 익숙한 개념입니다."
 
 #: ../Doc/library/email.rst:71
 msgid ""
@@ -110,6 +140,10 @@ msgid ""
 "cover the :mod:`~email.policy` controls, which completes the treatment of"
 " the main components of the library."
 msgstr ""
+"다음 절에서는 :mod:`email` 패키지의 기능에 관해 설명합니다. 응용 프로그램에서 사용할 기본 인터페이스인 "
+":mod:`~email.message` 객체 모델부터 시작하여, :mod:`~email.parser`\\와 "
+":mod:`~email.generator` 구성 요소를 다룹니다. 그런 다음 :mod:`~email.policy` 제어를 다뤄서, "
+"라이브러리의 주요 구성 요소를 마무리합니다."
 
 #: ../Doc/library/email.rst:78
 msgid ""
@@ -122,12 +156,17 @@ msgid ""
 "producing non-trivial messages, but also document their extensibility "
 "APIs, which will be of interest to advanced applications."
 msgstr ""
+"다음 세 절에서는 패키지에서 발생할 수 있는 예외와 :mod:`~email.parser`\\가 감지할 수 있는 결함(RFC를 "
+"준수하지 않는)에 관해 설명합니다. 그런 다음 :mod:`~email.headerregistry`\\와 "
+":mod:`~email.contentmanager` 하위 구성 요소를 다룹니다. 이것들은 각각 헤더와 페이로드를 보다 자세하게 "
+"조작할 수 있는 도구를 제공합니다. 이 두 구성 요소는 모두 단순하지 않은 메시지를 소비하고 생성하는 것과 관련된 기능을 "
+"포함하지만, 고급 응용 프로그램이 관심을 가질 확장 API를 설명하기도 합니다."
 
 #: ../Doc/library/email.rst:87
 msgid ""
 "Following those is a set of examples of using the fundamental parts of "
 "the APIs covered in the preceding sections."
-msgstr ""
+msgstr "그다음은 이전 절에서 다룬 API의 기본 부분들을 사용하는 일련의 예제입니다."
 
 #: ../Doc/library/email.rst:90
 msgid ""
@@ -142,6 +181,12 @@ msgid ""
 "relevant for applications that are still using the "
 ":mod:`~email.policy.compat32` API for backward compatibility reasons."
 msgstr ""
+"앞의 내용은 email 패키지의 최신(유니코드 친화적인) API를 나타냅니다. "
+":class:`~email.message.Message` 클래스로 시작하는 나머지 절에서는 전자 메일 메시지가 표현되는 방법에 대한"
+" 세부 사항을 훨씬 직접 다루는 레거시 :data:`~email.policy.compat32` API를 다룹니다. "
+":data:`~email.policy.compat32` API는 응용 프로그램으로부터 RFC 세부 사항을 숨기지 *않습니다*\\만,"
+" 그 수준에서 작동해야 하는 응용 프로그램에는 유용한 도구가 될 수 있습니다. 이 설명서는 과거 호환성을 위해 여전히 "
+":mod:`~email.policy.compat32` API를 사용하는 응용 프로그램과도 관련이 있습니다."
 
 #: ../Doc/library/email.rst:100
 msgid ""
@@ -149,85 +194,65 @@ msgid ""
 ":class:`~email.message.EmailMessage`/:class:`~email.policy.EmailPolicy` "
 "API."
 msgstr ""
+"새로운 "
+":class:`~email.message.EmailMessage`/:class:`~email.policy.EmailPolicy` "
+"API를 홍보하기 위해 설명서가 재구성되고 다시 작성되었습니다."
 
 #: ../Doc/library/email.rst:105
 msgid "Contents of the :mod:`email` package documentation:"
-msgstr ""
+msgstr ":mod:`email` 패키지 설명서의 목차:"
 
 #: ../Doc/library/email.rst:120
 msgid "Legacy API:"
-msgstr ""
+msgstr "레거시 API:"
 
 #: ../Doc/library/email.rst:136
 msgid "Module :mod:`smtplib`"
-msgstr ""
+msgstr "모듈 :mod:`smtplib`"
 
 #: ../Doc/library/email.rst:136
 msgid "SMTP (Simple Mail Transport Protocol) client"
-msgstr ""
+msgstr "SMTP (Simple Mail Transport Protocol) 클라이언트"
 
 #: ../Doc/library/email.rst:139
 msgid "Module :mod:`poplib`"
-msgstr ""
+msgstr "모듈 :mod:`poplib`"
 
 #: ../Doc/library/email.rst:139
 msgid "POP (Post Office Protocol) client"
-msgstr ""
+msgstr "POP (Post Office Protocol) 클라이언트"
 
 #: ../Doc/library/email.rst:142
 msgid "Module :mod:`imaplib`"
-msgstr ""
+msgstr "모듈 :mod:`imaplib`"
 
 #: ../Doc/library/email.rst:142
 msgid "IMAP (Internet Message Access Protocol) client"
-msgstr ""
+msgstr "IMAP (Internet Message Access Protocol) 클라이언트"
 
 #: ../Doc/library/email.rst:145
 msgid "Module :mod:`nntplib`"
-msgstr ""
+msgstr "모듈 :mod:`nntplib`"
 
 #: ../Doc/library/email.rst:145
 msgid "NNTP (Net News Transport Protocol) client"
-msgstr ""
+msgstr "NNTP (Net News Transport Protocol) 클라이언트"
 
 #: ../Doc/library/email.rst:149
 msgid "Module :mod:`mailbox`"
-msgstr ""
+msgstr "모듈 :mod:`mailbox`"
 
 #: ../Doc/library/email.rst:148
 msgid ""
 "Tools for creating, reading, and managing collections of messages on disk"
 " using a variety standard formats."
-msgstr ""
+msgstr "다양한 표준 형식을 사용하여 디스크에 메시지 모음을 만들고, 읽고, 관리하는 도구."
 
 #: ../Doc/library/email.rst:151
 msgid "Module :mod:`smtpd`"
-msgstr ""
+msgstr "모듈 :mod:`smtpd`"
 
 #: ../Doc/library/email.rst:152
 msgid "SMTP server framework (primarily useful for testing)"
-msgstr ""
-
-#~ msgid "SMTP (Simple Mail Transport Protcol) client"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The forgoing represent the modern "
-#~ "(unicode friendly) API of the email "
-#~ "package. The remaining sections, starting "
-#~ "with the :class:`~email.message.Message` class, "
-#~ "cover the legacy :data:`~email.policy.compat32` "
-#~ "API that deals much more directly "
-#~ "with the details of how email "
-#~ "messages are represented.  The "
-#~ ":data:`~email.policy.compat32` API does *not* "
-#~ "hide the details of the RFCs from"
-#~ " the application, but for applications "
-#~ "that need to operate at that "
-#~ "level, they can be useful tools.  "
-#~ "This documentation is also relevant for"
-#~ " applications that are still using "
-#~ "the :mod:`~email.policy.compat32` API for "
-#~ "backward compatibility reasons."
-#~ msgstr ""
+msgstr "SMTP 서버 프레임워크 (주로 테스트에 유용합니다)"
 
