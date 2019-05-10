@@ -5,27 +5,9 @@
 
 번역팀에 문의가 있으신 분들은 https://www.flowdas.com/pages/python-docs-ko.html 를 참고 바랍니다.
 
-교정을 위한 프리뷰 빌드하기
----------------------------------------
+번역 작업을 위한 도구
+------------------------------
 
-프리뷰를 빌드하려면 git 와 docker 가 설치되어 있어야 합니다.
+번역 작업을 위해서는 git 를 다룰 수 있어야합니다. 
 
-먼저 저장소를 fork 한 후에, 작업 공간을 다음과 같은 절차로 준비합니다.
-
-::
-
-	python3.7 -m venv <work-dir>
-	cd <work-dir>
-	source bin/activate
-	pip install python-docs-ko
-	pdk init <your-python-docs-ko-fork>
-
-이제 ``<work_dir>/python-docs-ko`` 디렉터리에 여러분의 fork가 git clone 되었습니다.
-``*.po`` 파일을 번역합니다.
-
-빌드는 다음과 같은 명령을 사용합니다::
-
-	pdk build
-
-   
-이제 ``<work_dir>/html/index.html`` 를 브라우저로 열면 됩니다.
+작업을 지원하기 위한 도구에 관한 자세한 내용은 https://github.com/flowdas/python-docs-ko 를 참고하시기 바랍니다.
