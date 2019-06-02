@@ -3,27 +3,26 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-08 11:36+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.6.0\n"
 
 #: ../Doc/library/csv.rst:2
 msgid ":mod:`csv` --- CSV File Reading and Writing"
-msgstr ""
+msgstr ":mod:`csv` --- CSV 파일 읽기와 쓰기"
 
 #: ../Doc/library/csv.rst:9
 msgid "**Source code:** :source:`Lib/csv.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/csv.py`"
 
 #: ../Doc/library/csv.rst:17
 msgid ""
@@ -39,6 +38,12 @@ msgid ""
 " manipulate such data, hiding the details of reading and writing the data"
 " from the programmer."
 msgstr ""
+"소위 CSV (Comma Separated Values -- 쉼표로 구분된 값) 형식은 스프레드시트와 데이터베이스에 대한 가장 "
+"일반적인 가져오기 및 내보내기 형식입니다. CSV 형식은 :rfc:`4180`\\에서 표준화된 방식으로 형식을 기술하기 전에 여러 "
+"해 동안 사용되었습니다. 잘 정의된 표준이 없다는 것은 다른 애플리케이션에 의해 생성되고 소비되는 데이터에 미묘한 차이가 존재한다는"
+" 것을 의미합니다. 이러한 차이로 인해 여러 소스의 CSV 파일을 처리하는 것이 번거로울 수 있습니다. 그러나 분리 문자와 인용 "
+"문자가 다양하기는 해도, 전체 형식은 유사하여 프로그래머에게 데이터 읽기와 쓰기 세부 사항을 숨기면서도 이러한 데이터를 효율적으로 "
+"조작할 수 있는 단일 모듈을 작성하는 것이 가능합니다."
 
 #: ../Doc/library/csv.rst:28
 msgid ""
@@ -50,6 +55,10 @@ msgid ""
 "understood by other applications or define their own special-purpose CSV "
 "formats."
 msgstr ""
+":mod:`csv` 모듈은 CSV 형식의 표 형식 데이터를 읽고 쓰는 클래스를 구현합니다. 이 모듈은 프로그래머가 Excel에서 "
+"사용하는 CSV 형식에 대한 자세한 내용을 알지 못해도, \"Excel에서 선호하는 형식으로 이 데이터를 쓰세요\"나 "
+"\"Excel에서 생성된 이 파일의 데이터를 읽으세요\"라고 말할 수 있도록 합니다. 프로그래머는 다른 응용 프로그램에서 이해할 수"
+" 있는 CSV 형식을 기술하거나 자신만의 특수 용도 CSV 형식을 정의할 수 있습니다."
 
 #: ../Doc/library/csv.rst:35
 msgid ""
@@ -58,22 +67,25 @@ msgid ""
 "dictionary form using the :class:`DictReader` and :class:`DictWriter` "
 "classes."
 msgstr ""
+":mod:`csv` 모듈의 :class:`reader`\\와 :class:`writer` 객체는 시퀀스를 읽고 씁니다. 프로그래머는"
+" :class:`DictReader`\\와 :class:`DictWriter` 클래스를 사용하여 딕셔너리 형식으로 데이터를 읽고 쓸"
+" 수 있습니다."
 
 #: ../Doc/library/csv.rst:41
 msgid ":pep:`305` - CSV File API"
-msgstr ""
+msgstr ":pep:`305` - CSV File API"
 
 #: ../Doc/library/csv.rst:42
 msgid "The Python Enhancement Proposal which proposed this addition to Python."
-msgstr ""
+msgstr "파이썬에 이 모듈의 추가를 제안한 파이썬 개선 제안."
 
 #: ../Doc/library/csv.rst:48
 msgid "Module Contents"
-msgstr ""
+msgstr "모듈 내용"
 
 #: ../Doc/library/csv.rst:50
 msgid "The :mod:`csv` module defines the following functions:"
-msgstr ""
+msgstr ":mod:`csv` 모듈은 다음 함수를 정의합니다:"
 
 #: ../Doc/library/csv.rst:58
 msgid ""
@@ -91,6 +103,14 @@ msgid ""
 "parameters in the current dialect.  For full details about the dialect "
 "and formatting parameters, see section :ref:`csv-fmt-params`."
 msgstr ""
+"지정된 *csvfile*\\의 줄을 이터레이트 하는 판독기(reader) 객체를 반환합니다. *csvfile*\\은 "
+":term:`이터레이터 <iterator>` 프로토콜을 지원하고 :meth:`!__next__` 메서드가 호출될 때마다 문자열을 "
+"반환하는 객체여야 합니다 --- :term:`파일 객체 <file object>`\\와 리스트 객체 모두 적합합니다. "
+"*csvfile*\\가 파일 객체이면, ``newline=''``\\로 열렸어야 합니다. [1]_ 특정 CSV "
+"방언(dialect)에만 적용되는 파라미터 집합을 정의하는 데 사용되는 선택적 *dialect* 매개 변수를 지정할 수 있습니다. "
+":class:`Dialect` 클래스의 서브 클래스의 인스턴스이거나 :func:`list_dialects` 함수가 반환하는 문자열 "
+"중 하나일 수 있습니다. 다른 선택적 *fmtparams* 키워드 인자는 현재 방언의 개별 포매팅 파라미터를 대체 할 수 있습니다."
+" 방언과 포매팅 파라미터에 대한 자세한 내용은 :ref:`csv-fmt-params` 절을 참조하십시오."
 
 #: ../Doc/library/csv.rst:71
 msgid ""
@@ -99,11 +119,13 @@ msgid ""
 "``QUOTE_NONNUMERIC`` format option is specified (in which case unquoted "
 "fields are transformed into floats)."
 msgstr ""
+"csv 파일에서 읽은 각 행(row)은 문자열 리스트로 반환됩니다. ``QUOTE_NONNUMERIC`` 포맷 옵션을 지정하지 "
+"않으면 아무런 자동 데이터형 변환도 수행되지 않습니다 (지정하면 인용되지 않은 필드는 float로 변환됩니다)."
 
 #: ../Doc/library/csv.rst:75 ../Doc/library/csv.rst:105
 #: ../Doc/library/csv.rst:172 ../Doc/library/csv.rst:208
 msgid "A short usage example::"
-msgstr ""
+msgstr "간단한 사용 예::"
 
 #: ../Doc/library/csv.rst:88
 msgid ""
@@ -125,6 +147,16 @@ msgid ""
 "``cursor.fetch*`` call. All other non-string data are stringified with "
 ":func:`str` before being written."
 msgstr ""
+"지정된 파일류 객체에 분리된 문자열로 사용자의 데이터를 변환하는 기록기(writer) 객체를 반환합니다. *csvfile*\\은 "
+":func:`write` 메서드가 있는 모든 객체일 수 있습니다. *csvfile*\\이 파일 객체면, "
+"``newline=''``\\으로 열렸어야 합니다 [1]_. 특정 CSV 방언(dialect)에만 적용되는 파라미터 집합을 정의하는"
+" 데 사용되는 선택적 *dialect* 매개 변수를 지정할 수 있습니다. :class:`Dialect` 클래스의 서브 클래스의 "
+"인스턴스이거나 :func:`list_dialects` 함수가 반환하는 문자열 중 하나일 수 있습니다. 다른 선택적 "
+"*fmtparams* 키워드 인자는 현재 방언의 개별 포매팅 파라미터를 대체 할 수 있습니다. 방언과 포매팅 파라미터에 대한 자세한"
+" 내용은 :ref:`csv-fmt-params` 절을 참조하십시오. DB API를 구현하는 모듈과 가능한 한 쉽게 인터페이스 하기 "
+"위해, 값 :const:`None`\\은 빈 문자열로 기록됩니다. 이것은 가역 변환이 아니지만, ``cursor.fetch*`` "
+"호출에서 반환된 데이터를 전처리하지 않고도, SQL NULL 데이터값을 CSV 파일로 쉽게 덤프할 수 있습니다. 다른 모든 비 "
+"문자열 데이터는 기록 전에 :func:`str`\\로 문자열화 됩니다."
 
 #: ../Doc/library/csv.rst:117
 msgid ""
@@ -134,12 +166,18 @@ msgid ""
 "overriding parameters of the dialect. For full details about the dialect "
 "and formatting parameters, see section :ref:`csv-fmt-params`."
 msgstr ""
+"*dialect*\\를 *name*\\과 연관시킵니다. *name*\\은 문자열이어야 합니다. 방언은 "
+":class:`Dialect`\\의 서브 클래스 전달, *fmtparams* 키워드 인자 또는 둘 모두를 사용하여 지정할 수 "
+"있는데, 키워드 인자가 dialect의 매개 변수보다 우선합니다. 방언과 포매팅 파라미터에 대한 자세한 내용은 :ref:`csv-"
+"fmt-params` 절을 참조하십시오."
 
 #: ../Doc/library/csv.rst:126
 msgid ""
 "Delete the dialect associated with *name* from the dialect registry.  An "
 ":exc:`Error` is raised if *name* is not a registered dialect name."
 msgstr ""
+"방언(dialect) 등록소에서 *name*\\과 관련된 연관된 방언을 삭제합니다. *name*\\이 등록된 방언 이름이 아니면 "
+":exc:`Error`\\가 발생합니다."
 
 #: ../Doc/library/csv.rst:132
 msgid ""
@@ -147,20 +185,22 @@ msgid ""
 "*name* is not a registered dialect name.  This function returns an "
 "immutable :class:`Dialect`."
 msgstr ""
+"*name*\\과 연관된 방언을 반환합니다. *name*\\이 등록된 방언 이름이 아니면 :exc:`Error`\\가 발생합니다. "
+"이 함수는 불변 :class:`Dialect`\\를 반환합니다."
 
 #: ../Doc/library/csv.rst:138
 msgid "Return the names of all registered dialects."
-msgstr ""
+msgstr "등록된 모든 방언의 이름을 반환합니다."
 
 #: ../Doc/library/csv.rst:143
 msgid ""
 "Returns the current maximum field size allowed by the parser. If "
 "*new_limit* is given, this becomes the new limit."
-msgstr ""
+msgstr "구문 분석기가 허락하는 현재의 최대 필드 크기를 반환합니다. *new_limit*\\가 주어지면, 이것이 새로운 한계가 됩니다."
 
 #: ../Doc/library/csv.rst:147
 msgid "The :mod:`csv` module defines the following classes:"
-msgstr ""
+msgstr ":mod:`csv` 모듈은 다음 클래스를 정의합니다:"
 
 #: ../Doc/library/csv.rst:152
 msgid ""
@@ -169,6 +209,8 @@ msgid ""
 "<collections.OrderedDict>` whose keys are given by the optional "
 "*fieldnames* parameter."
 msgstr ""
+"일반 판독기처럼 작동하지만 각 행(row)의 정보를 키가 선택적 *fieldnames* 매개 변수로 지정된 "
+":mod:`OrderedDict <collections.OrderedDict>`\\로 매핑하는 객체를 만듭니다."
 
 #: ../Doc/library/csv.rst:156
 msgid ""
@@ -177,6 +219,9 @@ msgid ""
 "fieldnames.  Regardless of how the fieldnames are determined, the ordered"
 " dictionary preserves their original ordering."
 msgstr ""
+"*fieldnames* 매개 변수는 :term:`시퀀스 <sequence>`\\입니다. *fieldnames*\\를 생략하면, 파일"
+" *f*\\의 첫 번째 행에 있는 값들을 fieldnames로 사용합니다. 필드 이름이 어떻게 결정되는지와 관계없이, 순서 있는 "
+"딕셔너리는 원래 순서를 유지합니다."
 
 #: ../Doc/library/csv.rst:161
 msgid ""
@@ -185,16 +230,19 @@ msgid ""
 " to ``None``).  If a non-blank row has fewer fields than fieldnames, the "
 "missing values are filled-in with ``None``."
 msgstr ""
+"행에 fieldnames보다 많은 필드가 있으면, 나머지 데이터가 리스트에 저장되고 *restkey*\\(기본값은 "
+"``None``)로 지정된 필드 이름으로 저장됩니다. 비어 있지 않은 행에 fieldnames보다 필드 수가 적다면, 빠진 값은 "
+"``None``\\으로 채워집니다."
 
 #: ../Doc/library/csv.rst:166
 msgid ""
 "All other optional or keyword arguments are passed to the underlying "
 ":class:`reader` instance."
-msgstr ""
+msgstr "다른 모든 선택적 또는 키워드 인자는 하부 :class:`reader` 인스턴스에 전달됩니다."
 
 #: ../Doc/library/csv.rst:169
 msgid "Returned rows are now of type :class:`OrderedDict`."
-msgstr ""
+msgstr "반환된 행은 이제 :class:`OrderedDict` 형입니다."
 
 #: ../Doc/library/csv.rst:190
 msgid ""
@@ -211,12 +259,21 @@ msgid ""
 " values in the dictionary are ignored. Any other optional or keyword "
 "arguments are passed to the underlying :class:`writer` instance."
 msgstr ""
+"일반 기록기처럼 작동하지만 딕셔너리를 출력 행에 매핑하는 객체를 만듭니다. *fieldnames* 매개 변수는 키의 "
+":mod:`시퀀스 <collections.abc>`\\인데, :meth:`writerow` 메서드에 전달된 딕셔너리의 값이 *f* "
+"파일에 기록되는 순서를 식별합니다. 선택적 *restval* 매개 변수는 딕셔너리에 *fieldnames*\\의 키가 빠졌을 때 "
+"기록될 값을 지정합니다. :meth:`writerow` 메서드에 전달된 딕셔너리에 *fieldnames*\\에 없는 키가 포함되어 "
+"있으면, 선택적 *extrasaction* 매개 변수가 수행할 작업을 지시합니다. 기본값인 ``'raise'``\\로 설정되면, "
+":exc:`ValueError`\\가 발생합니다. ``'ignore'``\\로 설정하면, 딕셔너리의 추가 값이 무시됩니다. 다른 "
+"선택적 또는 키워드 인자는 하부 :class:`writer` 인스턴스에 전달됩니다."
 
 #: ../Doc/library/csv.rst:205
 msgid ""
 "Note that unlike the :class:`DictReader` class, the *fieldnames* "
 "parameter of the :class:`DictWriter` class is not optional."
 msgstr ""
+":class:`DictReader` 클래스와 달리 :class:`DictWriter` 클래스의 *fieldnames* 매개 변수는 "
+"선택 사항이 아닙니다."
 
 #: ../Doc/library/csv.rst:224
 msgid ""
@@ -224,12 +281,16 @@ msgid ""
 "its attributes, which are used to define the parameters for a specific "
 ":class:`reader` or :class:`writer` instance."
 msgstr ""
+":class:`Dialect` 클래스는 어트리뷰트에 주로 의존하는 컨테이너 클래스인데, 특정 :class:`reader`\\나 "
+":class:`writer` 인스턴스에 대한 파라미터를 정의하는 데 사용됩니다."
 
 #: ../Doc/library/csv.rst:231
 msgid ""
 "The :class:`excel` class defines the usual properties of an Excel-"
 "generated CSV file.  It is registered with the dialect name ``'excel'``."
 msgstr ""
+":class:`excel` 클래스는 Excel에서 생성한 CSV 파일의 일반적인 속성을 정의합니다. 방언 이름 "
+"``'excel'``\\로 등록됩니다."
 
 #: ../Doc/library/csv.rst:237
 msgid ""
@@ -237,6 +298,8 @@ msgid ""
 "generated TAB-delimited file.  It is registered with the dialect name "
 "``'excel-tab'``."
 msgstr ""
+":class:`excel_tab` 클래스는 Excel에서 생성된 TAB 구분 파일의 일반적인 속성을 정의합니다. 방언 이름 "
+"``'excel-tab'``\\으로 등록됩니다."
 
 #: ../Doc/library/csv.rst:243
 msgid ""
@@ -245,14 +308,16 @@ msgid ""
 "and quoting all fields.  It is registered with the dialect name "
 "``'unix'``."
 msgstr ""
+":class:`unix_dialect` 클래스는 유닉스 시스템에서 생성된 CSV 파일의 일반적인 속성을 정의합니다. 즉, "
+"``'\\n'``\\을 줄 종결자로 사용하고 모든 필드를 인용 처리합니다. 방언 이름 ``'unix'``\\로 등록됩니다."
 
 #: ../Doc/library/csv.rst:252
 msgid "The :class:`Sniffer` class is used to deduce the format of a CSV file."
-msgstr ""
+msgstr ":class:`Sniffer` 클래스는 CSV 파일의 형식을 추론하는 데 사용됩니다."
 
 #: ../Doc/library/csv.rst:254
 msgid "The :class:`Sniffer` class provides two methods:"
-msgstr ""
+msgstr ":class:`Sniffer` 클래스는 두 가지 메서드를 제공합니다:"
 
 #: ../Doc/library/csv.rst:258
 msgid ""
@@ -261,24 +326,28 @@ msgid ""
 "is given, it is interpreted as a string containing possible valid "
 "delimiter characters."
 msgstr ""
+"지정된 *sample*\\을 분석하고 발견된 파라미터를 반영하는 :class:`Dialect` 서브 클래스를 반환합니다. 선택적인 "
+"*delimiters* 매개 변수를 주면, 가능한 유효한 구분 문자를 포함하는 문자열로 해석됩니다."
 
 #: ../Doc/library/csv.rst:266
 msgid ""
 "Analyze the sample text (presumed to be in CSV format) and return "
 ":const:`True` if the first row appears to be a series of column headers."
 msgstr ""
+"sample 텍스트(CSV 형식으로 추정합니다)를 분석하고, 첫 번째 행이 일련의 열 머리글로 보이면 :const:`True`\\를"
+" 반환합니다."
 
 #: ../Doc/library/csv.rst:269
 msgid "An example for :class:`Sniffer` use::"
-msgstr ""
+msgstr ":class:`Sniffer` 사용 예::"
 
 #: ../Doc/library/csv.rst:278
 msgid "The :mod:`csv` module defines the following constants:"
-msgstr ""
+msgstr ":mod:`csv` 모듈은 다음 상수를 정의합니다:"
 
 #: ../Doc/library/csv.rst:282
 msgid "Instructs :class:`writer` objects to quote all fields."
-msgstr ""
+msgstr ":class:`writer` 객체에 모든 필드를 인용 처리하도록 지시합니다."
 
 #: ../Doc/library/csv.rst:287
 msgid ""
@@ -286,14 +355,16 @@ msgid ""
 "contain special characters such as *delimiter*, *quotechar* or any of the"
 " characters in *lineterminator*."
 msgstr ""
+":class:`writer` 객체에 *delimiter*, *quotechar* 또는 *lineterminator*\\에 들어있는 "
+"모든 문자와 같은 특수 문자를 포함하는 필드만 인용 처리하도록 지시합니다."
 
 #: ../Doc/library/csv.rst:294
 msgid "Instructs :class:`writer` objects to quote all non-numeric fields."
-msgstr ""
+msgstr ":class:`writer` 객체에 모든 숫자가 아닌 필드를 인용 처리하도록 지시합니다."
 
 #: ../Doc/library/csv.rst:296
 msgid "Instructs the reader to convert all non-quoted fields to type *float*."
-msgstr ""
+msgstr "판독기에 인용 처리되지 않은 모든 필드를 *float* 형으로 변환하도록 지시합니다."
 
 #: ../Doc/library/csv.rst:301
 msgid ""
@@ -303,24 +374,27 @@ msgid ""
 "raise :exc:`Error` if any characters that require escaping are "
 "encountered."
 msgstr ""
+":class:`writer` 객체에 필드를 절대 인용 처리하지 않도록 지시합니다. 출력 데이터에 현재 *delimiter*\\가 "
+"등장하면, 현재 *escapechar* 문자를 앞에 붙입니다. *escapechar*\\가 설정되지 않았을 때 작성기는 이스케이프 "
+"해야 하는 문자가 있으면 :exc:`Error`\\를 발생시킵니다."
 
 #: ../Doc/library/csv.rst:306
 msgid ""
 "Instructs :class:`reader` to perform no special processing of quote "
 "characters."
-msgstr ""
+msgstr ":class:`reader`\\에게 인용 문자의 특별한 처리를 수행하지 않도록 지시합니다."
 
 #: ../Doc/library/csv.rst:308
 msgid "The :mod:`csv` module defines the following exception:"
-msgstr ""
+msgstr ":mod:`csv` 모듈은 다음 예외를 정의합니다:"
 
 #: ../Doc/library/csv.rst:313
 msgid "Raised by any of the functions when an error is detected."
-msgstr ""
+msgstr "에러가 감지될 때 모든 함수가 발생시킵니다."
 
 #: ../Doc/library/csv.rst:318
 msgid "Dialects and Formatting Parameters"
-msgstr ""
+msgstr "방언과 포매팅 파라미터"
 
 #: ../Doc/library/csv.rst:320
 msgid ""
@@ -335,14 +409,20 @@ msgid ""
 "the same names as the attributes defined below for the :class:`Dialect` "
 "class."
 msgstr ""
+"입력과 출력 레코드의 형식을 더 쉽게 지정할 수 있도록, 특정 포매팅 파라미터가 함께 방언으로 묶입니다. 방언(dialect)은 "
+"특정 메서드 집합과 단일 :meth:`validate` 메서드가 있는 :class:`Dialect` 클래스의 서브 클래스입니다. "
+":class:`reader`\\나 :class:`writer` 객체를 만들 때, 프로그래머는 문자열이나 "
+":class:`Dialect` 클래스의 서브 클래스를 dialect 매개 변수로 지정할 수 있습니다. *dialect* 매개 변수에"
+" 추가하여, 또는 대신에, 프로그래머는 아래에서 :class:`Dialect` 클래스에 대해 정의된 어트리뷰트와 같은 이름을 갖는 "
+"개별 포매팅 매개 변수를 지정할 수 있습니다."
 
 #: ../Doc/library/csv.rst:330
 msgid "Dialects support the following attributes:"
-msgstr ""
+msgstr "방언은 다음 어트리뷰트를 지원합니다:"
 
 #: ../Doc/library/csv.rst:335
 msgid "A one-character string used to separate fields.  It defaults to ``','``."
-msgstr ""
+msgstr "필드를 구분하는 데 사용되는 한 문자로 된 문자열. 기본값은 ``','``\\입니다."
 
 #: ../Doc/library/csv.rst:340
 msgid ""
@@ -351,12 +431,17 @@ msgid ""
 " :const:`False`, the *escapechar* is used as a prefix to the *quotechar*."
 "  It defaults to :const:`True`."
 msgstr ""
+"필드 안에 나타나는 *quotechar*\\의 인스턴스를 인용 처리하는 방법을 제어합니다. :const:`True`\\일 때, "
+"문자를 두 개로 늘립니다. :const:`False`\\일 때, *escapechar*\\를 *quotechar*\\의 접두어로 "
+"사용합니다. 기본값은 :const:`True`\\입니다."
 
 #: ../Doc/library/csv.rst:345
 msgid ""
 "On output, if *doublequote* is :const:`False` and no *escapechar* is set,"
 " :exc:`Error` is raised if a *quotechar* is found in a field."
 msgstr ""
+"출력 시, *doublequote*\\가 :const:`False`\\이고 아무런 *escapechar*\\가 설정되지 않았으면, "
+"필드에 *quotechar*\\가 있으면 :exc:`Error`\\가 발생합니다."
 
 #: ../Doc/library/csv.rst:351
 msgid ""
@@ -366,12 +451,16 @@ msgid ""
 " special meaning from the following character. It defaults to "
 ":const:`None`, which disables escaping."
 msgstr ""
+"*quoting*\\이 :const:`QUOTE_NONE`\\으로 설정되었을 때 *delimiter*\\를, "
+"*doublequote*\\가 :const:`False`\\일 때 *quotechar*\\를 이스케이프 하는데 기록기가 사용하는 한"
+" 문자로 된 문자열. 판독 시에, *escapechar*\\는 뒤따르는 문자에서 특별한 의미를 제거합니다. 기본값은 "
+":const:`None`\\이며, 이스케이핑을 비활성화합니다."
 
 #: ../Doc/library/csv.rst:359
 msgid ""
 "The string used to terminate lines produced by the :class:`writer`. It "
 "defaults to ``'\\r\\n'``."
-msgstr ""
+msgstr ":class:`writer`\\에 의해 생성된 행을 종료하는 데 사용되는 문자열. 기본값은 ``'\\r\\n'``\\입니다."
 
 #: ../Doc/library/csv.rst:364
 msgid ""
@@ -379,6 +468,8 @@ msgid ""
 "``'\\n'`` as end-of-line, and ignores *lineterminator*. This behavior may"
 " change in the future."
 msgstr ""
+":class:`reader`\\는 ``'\\r'``\\이나 ``'\\n'``\\을 줄 종료로 인식하도록 하드 코딩되어 있으며, "
+"*lineterminator*\\를 무시합니다. 이 동작은 앞으로 변경될 수 있습니다."
 
 #: ../Doc/library/csv.rst:371
 msgid ""
@@ -386,6 +477,8 @@ msgid ""
 "characters, such as the *delimiter* or *quotechar*, or which contain new-"
 "line characters.  It defaults to ``'\"'``."
 msgstr ""
+"*delimiter*\\나 *quotechar*\\와 같은 특수 문자를 포함하거나 개행 문자를 포함하는 필드를 인용 처리하는 데 "
+"사용되는 한 문자라도 된 문자열. 기본값은 ``'\"'``\\입니다."
 
 #: ../Doc/library/csv.rst:378
 msgid ""
@@ -393,28 +486,37 @@ msgid ""
 "the reader.  It can take on any of the :const:`QUOTE_\\*` constants (see "
 "section :ref:`csv-contents`) and defaults to :const:`QUOTE_MINIMAL`."
 msgstr ""
+"언제 인용 기호를 기록기가 생성하고 판독기가 인식해야 하는지를 제어합니다. :const:`QUOTE_\\*` 상수 (:ref"
+":`csv-contents` 절을 참조하십시오) 중 하나를 취할 수 있으며 기본값은 "
+":const:`QUOTE_MINIMAL`\\입니다."
 
 #: ../Doc/library/csv.rst:385
 msgid ""
 "When :const:`True`, whitespace immediately following the *delimiter* is "
 "ignored. The default is :const:`False`."
 msgstr ""
+":const:`True`\\일 때, *delimiter* 바로 뒤에 오는 공백은 무시됩니다. 기본값은 "
+":const:`False`\\입니다."
 
 #: ../Doc/library/csv.rst:391
 msgid ""
 "When ``True``, raise exception :exc:`Error` on bad CSV input. The default"
 " is ``False``."
 msgstr ""
+"``True``\\일 때, 잘못된 CSV 입력에서 예외 :exc:`Error`\\를 발생시킵니다. 기본값은 "
+"``False``\\입니다."
 
 #: ../Doc/library/csv.rst:395
 msgid "Reader Objects"
-msgstr ""
+msgstr "판독기 객체"
 
 #: ../Doc/library/csv.rst:397
 msgid ""
 "Reader objects (:class:`DictReader` instances and objects returned by the"
 " :func:`reader` function) have the following public methods:"
 msgstr ""
+"판독기 객체(:class:`DictReader` 인스턴스와 :func:`reader` 함수에서 반환한 객체)에는 다음과 같은 공용 "
+"메서드가 있습니다:"
 
 #: ../Doc/library/csv.rst:402
 msgid ""
@@ -423,24 +525,27 @@ msgid ""
 ":class:`DictReader` instance), parsed according to the current dialect.  "
 "Usually you should call this as ``next(reader)``."
 msgstr ""
+"판독기의 이터러블 객체의 다음 행을 현재 방언에 따라 구문 분석하여 리스트(객체가 :func:`reader`\\에서 반환된 경우)나"
+" 딕셔너리(:class:`DictReader` 인스턴스인 경우)로 반환합니다. 보통 이것을 ``next(reader)``\\처럼 "
+"호출합니다."
 
 #: ../Doc/library/csv.rst:408
 msgid "Reader objects have the following public attributes:"
-msgstr ""
+msgstr "판독기 객체에는 다음과 같은 공용 어트리뷰트가 있습니다:"
 
 #: ../Doc/library/csv.rst:412
 msgid "A read-only description of the dialect in use by the parser."
-msgstr ""
+msgstr "구문 분석기가 사용 중인 방언의 읽기 전용 설명."
 
 #: ../Doc/library/csv.rst:417
 msgid ""
 "The number of lines read from the source iterator. This is not the same "
 "as the number of records returned, as records can span multiple lines."
-msgstr ""
+msgstr "소스 이터레이터에서 읽은 줄 수. 레코드가 여러 줄에 걸쳐 있을 수 있으므로, 이것은 반환된 레코드 수와 같지 않습니다."
 
 #: ../Doc/library/csv.rst:421
 msgid "DictReader objects have the following public attribute:"
-msgstr ""
+msgstr "DictReader 객체에는 다음과 같은 공용 어트리뷰트가 있습니다:"
 
 #: ../Doc/library/csv.rst:425
 msgid ""
@@ -448,10 +553,12 @@ msgid ""
 "initialized upon first access or when the first record is read from the "
 "file."
 msgstr ""
+"객체를 만들 때 매개 변수로 전달되지 않았으면, 이 어트리뷰트는 첫 번째 액세스 시나 파일에서 첫 번째 레코드를 읽을 때 "
+"초기화됩니다."
 
 #: ../Doc/library/csv.rst:432
 msgid "Writer Objects"
-msgstr ""
+msgstr "기록기 객체"
 
 #: ../Doc/library/csv.rst:434
 msgid ""
@@ -464,16 +571,21 @@ msgid ""
 "surrounded by parens. This may cause some problems for other programs "
 "which read CSV files (assuming they support complex numbers at all)."
 msgstr ""
+":class:`Writer` 객체(:class:`DictWriter` 인스턴스와 :func:`writer` 함수에서 반환한 "
+"객체)에는 다음과 같은 공용 메서드가 있습니다. *row*\\는 :class:`Writer` 객체의 경우 문자열이나 숫자의 "
+"이터러블이어야 하며, :class:`DictWriter` 객체의 경우 fieldnames를 (:func:`str`\\을 먼저 "
+"통과시킴으로써) 문자열이나 숫자로 매핑하는 딕셔너리이어야 합니다. 복소수는 괄호로 둘러싸여 기록됨에 유의하십시오. 이것은 CSV "
+"파일을 읽는 다른 프로그램에서 문제를 일으킬 수 있습니다 (복소수를 지원한다고 가정할 때)."
 
 #: ../Doc/library/csv.rst:445
 msgid ""
 "Write the *row* parameter to the writer's file object, formatted "
 "according to the current dialect."
-msgstr ""
+msgstr "*row* 매개 변수를 현재 방언에 따라 포매팅해서, 기록기의 파일 객체에 씁니다."
 
 #: ../Doc/library/csv.rst:448
 msgid "Added support of arbitrary iterables."
-msgstr ""
+msgstr "임의의 이터러블 지원 추가."
 
 #: ../Doc/library/csv.rst:453
 msgid ""
@@ -481,38 +593,40 @@ msgid ""
 "above) to the writer's file object, formatted according to the current "
 "dialect."
 msgstr ""
+"*rows*\\(위에서 설명한 *row* 객체의 이터러블)에 있는 모든 요소를 현재 방언에 따라 포매팅해서, 기록기의 파일 객체에 "
+"씁니다."
 
 #: ../Doc/library/csv.rst:457
 msgid "Writer objects have the following public attribute:"
-msgstr ""
+msgstr "기록기 객체에는 다음과 같은 공용 어트리뷰트가 있습니다:"
 
 #: ../Doc/library/csv.rst:462
 msgid "A read-only description of the dialect in use by the writer."
-msgstr ""
+msgstr "기록기가 사용 중인 방언의 읽기 전용 설명."
 
 #: ../Doc/library/csv.rst:465
 msgid "DictWriter objects have the following public method:"
-msgstr ""
+msgstr "DictWriter 객체의 공용 메서드는 다음과 같습니다:"
 
 #: ../Doc/library/csv.rst:470
 msgid "Write a row with the field names (as specified in the constructor)."
-msgstr ""
+msgstr "(생성자에 지정된 대로) 필드 이름을 담은 행을 기록합니다."
 
 #: ../Doc/library/csv.rst:478
 msgid "Examples"
-msgstr ""
+msgstr "예제"
 
 #: ../Doc/library/csv.rst:480
 msgid "The simplest example of reading a CSV file::"
-msgstr ""
+msgstr "CSV 파일을 읽는 가장 간단한 예::"
 
 #: ../Doc/library/csv.rst:488
 msgid "Reading a file with an alternate format::"
-msgstr ""
+msgstr "다른 형식의 파일 읽기::"
 
 #: ../Doc/library/csv.rst:496
 msgid "The corresponding simplest possible writing example is::"
-msgstr ""
+msgstr "대응하는 가장 간단한 쓰기 예는 다음과 같습니다::"
 
 #: ../Doc/library/csv.rst:503
 msgid ""
@@ -521,32 +635,35 @@ msgid ""
 " :func:`locale.getpreferredencoding`).  To decode a file using a "
 "different encoding, use the ``encoding`` argument of open::"
 msgstr ""
+"CSV 파일을 읽기로 여는 데 :func:`open`\\이 사용되므로, 파일은 기본적으로 시스템 기본 "
+"인코딩(:func:`locale.getpreferredencoding`\\를 참조하세요)을 사용하여 유니코드로 디코딩됩니다. 다른 "
+"인코딩을 사용하여 파일을 디코딩하려면 open의 ``encoding`` 인자를 사용하십시오::"
 
 #: ../Doc/library/csv.rst:514
 msgid ""
 "The same applies to writing in something other than the system default "
 "encoding: specify the encoding argument when opening the output file."
-msgstr ""
+msgstr "시스템 기본 인코딩 이외의 다른 것으로 쓸 때도 마찬가지입니다: 출력 파일을 열 때 encoding 인자를 지정하십시오."
 
 #: ../Doc/library/csv.rst:517
 msgid "Registering a new dialect::"
-msgstr ""
+msgstr "새로운 방언 등록하기::"
 
 #: ../Doc/library/csv.rst:524
 msgid ""
 "A slightly more advanced use of the reader --- catching and reporting "
 "errors::"
-msgstr ""
+msgstr "판독기의 약간 더 고급 사용 --- 에러 잡기와 보고::"
 
 #: ../Doc/library/csv.rst:536
 msgid ""
 "And while the module doesn't directly support parsing strings, it can "
 "easily be done::"
-msgstr ""
+msgstr "또한, 모듈이 문자열 구문 분석을 직접 지원하지는 않지만, 쉽게 수행할 수 있습니다::"
 
 #: ../Doc/library/csv.rst:545
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/csv.rst:546
 msgid ""
@@ -556,23 +673,7 @@ msgid ""
 " always be safe to specify ``newline=''``, since the csv module does its "
 "own (:term:`universal <universal newlines>`) newline handling."
 msgstr ""
-
-#~ msgid ""
-#~ "Note that unlike the :class:`DictReader` "
-#~ "class, the *fieldnames* parameter of the"
-#~ " :class:`DictWriter` is not optional.  "
-#~ "Since Python's :class:`dict` objects are "
-#~ "not ordered, there is not enough "
-#~ "information available to deduce the "
-#~ "order in which the row should be"
-#~ " written to file *f*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Write all the *rows* parameters (a "
-#~ "list of *row* objects as described "
-#~ "above) to the writer's file object, "
-#~ "formatted according to the current "
-#~ "dialect."
-#~ msgstr ""
-
+"``newline=''``\\을 지정하지 않으면, 따옴표 처리된 필드에 포함된 줄 넘김 문자가 올바르게 해석되지 않으며, 줄 끝 "
+"표시에 ``\\r\\n``\\을 사용하는 플랫폼에서 쓸 때 여분의 ``\\r``\\이 추가됩니다. csv 모듈은 자체 "
+"(:term:`유니버설 <universal newlines>`) 줄 넘김 처리를 하므로, ``newline=''``\\을 지정하는 "
+"것은 항상 안전합니다."
