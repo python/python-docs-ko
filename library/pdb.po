@@ -306,6 +306,12 @@ msgid ""
 "command syntax; the square brackets must not be typed.  Alternatives in "
 "the command syntax are separated by a vertical bar (``|``)."
 msgstr ""
+"디버거가 인식할 수 있는 명령이 아래 나열되어 있습니다. 대부분의 명령은 한두 문자로 단축될 수 있습니다. "
+"예를 들면, ``h(elp)``\\는 ``h`` 또는 ``help``\\로 help 명령을 입력할 때 사용할 수 있습니다. "
+"(하지만 ``he``\\, ``hel``\\, ``H``\\, ``Help`` 또는 ``HELP``\\는 사용할 수 없습니다.) "
+"인자는 반드시 명령과 공백(스페이스나 탭)으로 분리되어야 합니다. "
+"선택적 인자는 명령 문법에서 꺾쇠괄호(``[]``)로 감싸져있습니다. 꺾쇠괄호는 입력하지 않습니다. "
+"명령 문법에서 대체 가능한 인자는 세로 바(``|``)로 분리되어 있습니다."
 
 #: ../Doc/library/pdb.rst:216
 msgid ""
@@ -313,6 +319,8 @@ msgid ""
 "the last command was a :pdbcmd:`list` command, the next 11 lines are "
 "listed."
 msgstr ""
+"빈 줄을 입력하는 것은 마지막으로 입력된 명령이 반복됩니다. 예외: 만약 마지막 명령이 :pdbcmd:`list`\\명령이면, "
+"다음 11줄이 나열됩니다."
 
 #: ../Doc/library/pdb.rst:219
 msgid ""
@@ -324,6 +332,10 @@ msgid ""
 "exception occurs in such a statement, the exception name is printed but "
 "the debugger's state is not changed."
 msgstr ""
+"디버거가 인식하지 못하는 명령은 파이썬 문장으로 가정하고 디버깅중인 프로그램의 컨텍스트에서 실행됩니다. "
+"파이썬 문장 앞에 느낌표(``!``\\)를 붙여 사용할 수도 있습니다. "
+"이 방법은 디버깅 중인 프로그램을 검사하는 강력한 방법입니다. 변수를 변경하거나 함수를 호출하는 것도 가능합니다. "
+"이 문장에서 예외가 발생하면, 예외명은 출력되지만 디버거의 상태는 변경되지 않습니다."
 
 #: ../Doc/library/pdb.rst:227
 msgid ""
@@ -331,6 +343,8 @@ msgid ""
 "have parameters which allows one a certain level of adaptability to the "
 "context under examination."
 msgstr ""
+"디버거는 :ref:`aliases <debugger-aliases>`\\를 지원합니다. "
+"에일리어스는 검사 중인 컨텍스트에서 특정 수준의 적응성을 허용하는 매개변수를 가질 수 있습니다."
 
 #: ../Doc/library/pdb.rst:231
 msgid ""
@@ -340,6 +354,9 @@ msgid ""
 "applied to separating the commands; the input is split at the first "
 "``;;`` pair, even if it is in the middle of a quoted string."
 msgstr ""
+"한 줄에 여러 명령은 ``;;``\\로 구분하여 입력할 수 있습니다. "
+"(단일 ``;``\\는 파이썬 파서로 전달되는 한 줄에서, 여러 명령을 구분하기 위한 분리 기호이므로 사용되지 않습니다.) "
+"명령을 똑똑하게 분리하진 못합니다. 입력의 맨처음 ``;;``\\에서 나눠지며, 따옴표로 묶인 문자열 중간에 있더라도 나눠집니다."
 
 #: ../Doc/library/pdb.rst:241
 msgid ""
@@ -349,6 +366,9 @@ msgid ""
 "files exist, the one in the home directory is read first and aliases "
 "defined there can be overridden by the local file."
 msgstr ""
+"만약 파일 :file:`.pdbrc`\\가 사용자의 홈 디렉터리 또는 현재 디렉터리에 있으면, 디버거 프롬프트에서 "
+"입력된 것처럼 읽히고 실행됩니다. 이것은 특히 에일리어스에 유용합니다. 만약 두 파일이 모두 존재하면, "
+"홈 디렉터리에 있는 파일이 먼저 읽히고, 거기에 정의된 에일리어스는 로컬 파일에 의해 무시될 수 있습니다."
 
 #: ../Doc/library/pdb.rst:247
 msgid ""
@@ -356,6 +376,8 @@ msgid ""
 ":pdbcmd:`continue` or :pdbcmd:`next`.  Previously, these commands had no "
 "effect."
 msgstr ""
+":file:`.pdbrc`\\는 :pdbcmd:`continue`\\와 :pdbcmd:`next`\\같이 디버깅을 계속하는 명령을 포함할 수 있습니다. "
+"이전에는 이런 명령이 효과가 없었습니다."
 
 #: ../Doc/library/pdb.rst:255
 msgid ""
@@ -365,6 +387,10 @@ msgid ""
 "*command* argument must be an identifier, ``help exec`` must be entered "
 "to get help on the ``!`` command."
 msgstr ""
+"인자가 없는 경우에는 사용가능한 명령 리스트를 출력합니다. *명령*\\이 인자인 경우에는 해당 명령의 도움말을 출력합니다. "
+"``help pdb``\\는 전체 문서(:mod:`pdb` 모듈의 독스트링)를 표시합니다. "
+"*명령*\\인자는 반드시 식별자이어야 하기 때문에, ``!`` 명령의 도움말을 얻기 위해서 ``help exec``\\가 꼭 입력되어야 합니다."
+
 
 #: ../Doc/library/pdb.rst:263
 msgid ""
@@ -372,18 +398,22 @@ msgid ""
 "indicates the current frame, which determines the context of most "
 "commands."
 msgstr ""
+"가장 최근 프레임을 맨 아래로 하는 stack trace를 출력합니다. "
+"화살표는 현재 프레임을 나타내며, 대부분의 명령의 컨텍스트를 명확히 합니다."
 
 #: ../Doc/library/pdb.rst:268
 msgid ""
 "Move the current frame *count* (default one) levels down in the stack "
 "trace (to a newer frame)."
 msgstr ""
+"stack trace에서 현재 프레임을 *횟수*\\(기본 1) 단계 아래로 (새로운 프레임으로) 이동합니다."
 
 #: ../Doc/library/pdb.rst:273
 msgid ""
 "Move the current frame *count* (default one) levels up in the stack trace"
 " (to an older frame)."
 msgstr ""
+"stack trace에서 현재 프레임을 *횟수*\\(기본 1) 단계 위로 (이전 프레임으로) 이동합니다."
 
 #: ../Doc/library/pdb.rst:278
 msgid ""
@@ -395,6 +425,11 @@ msgid ""
 "each breakpoint is assigned a number to which all the other breakpoint "
 "commands refer."
 msgstr ""
+"*lineno*\\가 인자인 경우, 현재 파일의 해당 줄 번호에 브레이크를 설정합니다. "
+"*function*\\이 인자인 경우, 함수 내에서 첫번째 실행가능한 문장에서 브레이크를 설정합니다. "
+"줄 번호는 다른 파일(아마도 아직 로드되지 않은 파일)에 중단점을 지정하기 위해, 파일명과 콜론을 접두사로 사용할 수 있습니다. "
+"파일은 :data:`sys.path`\\에서 검색합니다. "
+"주의할 점은 각 중단점에 번호가 지정되며, 다른 모든 중단점 명령이 그 번호를 참조하게 됩니다."
 
 #: ../Doc/library/pdb.rst:285
 msgid ""
