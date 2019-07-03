@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-25 10:27+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,17 +18,17 @@ msgstr ""
 
 #: ../Doc/library/email.utils.rst:2
 msgid ":mod:`email.utils`: Miscellaneous utilities"
-msgstr ""
+msgstr ":mod:`email.utils`: 기타 유틸리티"
 
 #: ../Doc/library/email.utils.rst:7
 msgid "**Source code:** :source:`Lib/email/utils.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/email/utils.py`"
 
 #: ../Doc/library/email.utils.rst:11
 msgid ""
 "There are a couple of useful utilities provided in the :mod:`email.utils`"
 " module:"
-msgstr ""
+msgstr ":mod:`email.utils` 모듈에서 제공되는 몇 가지 유용한 유틸리티가 있습니다:"
 
 #: ../Doc/library/email.utils.rst:16
 msgid ""
@@ -44,6 +43,12 @@ msgid ""
 "negative value for *isdst* causes the ``localtime`` to attempt to divine "
 "whether summer time is in effect for the specified time."
 msgstr ""
+"지역 시간을 어웨어 datetime 객체로 반환합니다. 인자 없이 호출되면, 현재 시각을 반환합니다. 그렇지 않으면 *dt* 인자가"
+" :class:`~datetime.datetime` 인스턴스여야 하며, 시스템 시간대 데이터베이스에 따라 지역 시간대로 변환됩니다."
+" *dt*\\가 나이브하면 (즉, ``dt.tzinfo``\\가 ``None``\\이면), 지역 시간으로 간주합니다. 이 경우, "
+"*isdst*\\에 대한 양수나 0 값은 ``localtime`` 이 지정된 시간에 서머 타임(예를 들어, 일광 절약 시간)이 "
+"유효한지 그렇지 않은지를 처음에 가정하게 합니다. *isdst*\\에 대한 음수 값은 ``localtime`` 이 서머 타임이 "
+"지정된 시간에 유효한지를 결정하게 합니다."
 
 #: ../Doc/library/email.utils.rst:32
 msgid ""
@@ -55,10 +60,14 @@ msgid ""
 "but may be useful certain cases, such as a constructing distributed "
 "system that uses a consistent domain name across multiple hosts."
 msgstr ""
+":rfc:`2822`\\ -준수 :mailheader:`Message-ID` 헤더에 적합한 문자열을 반환합니다. 선택적인 "
+"*idstring*\\이 주어지면, 메시지 id의 고유성을 강화하는 데 사용되는 문자열입니다. 선택적인 *domain*\\이 "
+"주어지면, msgid의 '@' 다음 부분을 제공합니다. 기본값은 로컬 호스트 명입니다. 일반적으로 이 기본값을 재정의할 필요는 "
+"없지만, 여러 호스트에 걸쳐 일관된 도메인 이름을 사용하는 분산 시스템을 구성하는 경우와 같이 특정 경우에 유용할 수 있습니다."
 
 #: ../Doc/library/email.utils.rst:40
 msgid "Added the *domain* keyword."
-msgstr ""
+msgstr "*domain* 키워드가 추가되었습니다."
 
 #: ../Doc/library/email.utils.rst:44
 msgid ""
@@ -67,12 +76,14 @@ msgid ""
 "parsing and formatting they provide is done automatically by the header "
 "parsing machinery of the new API."
 msgstr ""
+"나머지 함수는 레거시 (``Compat32``) email API의 일부입니다. 이것들이 제공하는 구문 분석과 포매팅은 새 API의"
+" 헤더 구문 분석 장치가 자동으로 수행하므로, 새 API에서 이것들을 직접 사용할 필요는 없습니다."
 
 #: ../Doc/library/email.utils.rst:52
 msgid ""
 "Return a new string with backslashes in *str* replaced by two "
 "backslashes, and double quotes replaced by backslash-double quote."
-msgstr ""
+msgstr "*str*\\에 있는 역 슬래시를 두 개의 역 슬래시로 대체하고, 큰따옴표는 역 슬래시-큰따옴표로 대체한 새 문자열을 반환합니다."
 
 #: ../Doc/library/email.utils.rst:58
 msgid ""
@@ -80,6 +91,8 @@ msgid ""
 "ends and begins with double quotes, they are stripped off.  Likewise if "
 "*str* ends and begins with angle brackets, they are stripped off."
 msgstr ""
+"*str*\\의 *unquote 된* 버전인 새 문자열을 반환합니다. *str*\\가 큰따옴표로 끝나고 시작하면, 큰따옴표가 "
+"제거됩니다. 마찬가지로 *str*\\이 화살괄호(angle brackets)로 끝나고 시작하면, 제거됩니다."
 
 #: ../Doc/library/email.utils.rst:65
 msgid ""
@@ -89,6 +102,9 @@ msgid ""
 "that information, unless the parse fails, in which case a 2-tuple of "
 "``('', '')`` is returned."
 msgstr ""
+"address(:mailheader:`To`\\나 :mailheader:`Cc`\\와 같은 주소를 포함하는 필드의 값이어야 "
+"합니다)를 *realname*\\과 *email 주소* 구성 요소로 구문 분석합니다. 구문 분석에 실패하지 않는 한 해당 정보의 "
+"튜플을 반환합니다. 실패하면 ``('', '')``\\의 2-튜플이 반환됩니다."
 
 #: ../Doc/library/email.utils.rst:73
 msgid ""
@@ -97,6 +113,9 @@ msgid ""
 " :mailheader:`To` or :mailheader:`Cc` header.  If the first element of "
 "*pair* is false, then the second element is returned unmodified."
 msgstr ""
+":meth:`parseaddr`\\의 역, ``(realname, email_address)`` 형식의 2-튜플을 취해 "
+":mailheader:`To`\\나 :mailheader:`Cc` 헤더에 적합한 문자열 값을 반환합니다. *pair*\\의 첫 번째"
+" 요소가 거짓이면, 두 번째 요소는 수정되지 않은 채 반환됩니다."
 
 #: ../Doc/library/email.utils.rst:78
 msgid ""
@@ -105,10 +124,13 @@ msgid ""
 "non-ASCII characters.  Can be an instance of :class:`str` or a "
 ":class:`~email.charset.Charset`.  Defaults to ``utf-8``."
 msgstr ""
+"선택적 *charset*\\은 ``realname``\\에 비 ASCII 문자가 포함되어있을 때 ``realname``\\의 "
+":rfc:`2047` 인코딩에 사용될 문자 집합입니다. :class:`str`\\이나 "
+":class:`~email.charset.Charset`\\의 인스턴스가 될 수 있습니다. 기본값은 ``utf-8``\\입니다."
 
 #: ../Doc/library/email.utils.rst:83
 msgid "Added the *charset* option."
-msgstr ""
+msgstr "*charset* 옵션이 추가되었습니다."
 
 #: ../Doc/library/email.utils.rst:89
 msgid ""
@@ -118,6 +140,9 @@ msgid ""
 "<email.message.Message.get_all>`.  Here's a simple example that gets all "
 "the recipients of a message::"
 msgstr ""
+"이 메서드는 ``parseaddr()``\\에 의해 반환된 형식의 2-튜플 리스트를 반환합니다. *fieldvalues*\\는 "
+":meth:`Message.get_all <email.message.Message.get_all>`\\에 의해 반환될 수 있는 헤더"
+" 필드 값의 시퀀스입니다. 다음은 메시지의 모든 수신자를 얻는 간단한 예입니다::"
 
 #: ../Doc/library/email.utils.rst:105
 msgid ""
@@ -130,6 +155,11 @@ msgid ""
 "be returned.  Note that indexes 6, 7, and 8 of the result tuple are not "
 "usable."
 msgstr ""
+":rfc:`2822`\\의 규칙에 따라 날짜를 구문 분석하려고 시도합니다. 그러나, 일부 메일러는 지정된 대로 이 형식을 따르지 "
+"않으므로 :func:`parsedate`\\는 이러한 경우에 올바르게 추측하려고 합니다. *date*\\는 :rfc:`2822` "
+"날짜를 포함하는 문자열입니다 (가령 ``\"Mon, 20 Nov 1995 19:12:08 -0500\"``). 날짜 구문 분석에 "
+"성공하면, :func:`parsedate`\\는 :func:`time.mktime`\\에 직접 전달할 수 있는 9-튜플을 "
+"반환합니다; 그렇지 않으면, ``None``\\을 반환합니다. 결과 튜플의 인덱스 6, 7 및 8은 사용할 수 없음에 유의하십시오."
 
 #: ../Doc/library/email.utils.rst:116
 msgid ""
@@ -141,6 +171,10 @@ msgid ""
 "of the tuple returned is ``None``.  Note that indexes 6, 7, and 8 of the "
 "result tuple are not usable."
 msgstr ""
+":func:`parsedate`\\와 같은 기능을 수행하지만, ``None``\\이나 10-튜플을 반환합니다; 앞의 9개 요소는 "
+":func:`time.mktime`\\에 직접 전달할 수 있는 튜플을 구성하고, 열 번째 요소는 UTC(그리니치 표준 시의 공식 "
+"용어)로부터의 날짜의 시간대 오프셋입니다 [#]_. 입력 문자열에 시간대가 없으면, 반환되는 튜플의 마지막 요소는 "
+"``None``\\입니다. 결과 튜플의 인덱스 6, 7 및 8은 사용할 수 없음에 유의하십시오."
 
 #: ../Doc/library/email.utils.rst:126
 msgid ""
@@ -154,6 +188,12 @@ msgid ""
 "``datetime`` with the corresponding a :class:`~datetime.timezone` "
 ":class:`~datetime.tzinfo`."
 msgstr ""
+":func:`format_datetime`\\의 역. :func:`parsedate`\\와 같은 기능을 수행하지만, 성공 시에 "
+":mod:`~datetime.datetime`\\을 반환합니다. 입력 date의 시간대가 ``-0000``\\이면, "
+"``datetime``\\은 나이브 ``datetime``\\이 되고, date가 RFC를 준수하면 UTC로 시간이 표시되지만, "
+"date가 온 메시지의 실제 소스 시간대는 표시되지 않습니다. 입력 date에 다른 유효한 시간대 오프셋이 있으면, "
+"``datetime``\\은 해당 :class:`~datetime.timezone` "
+":class:`~datetime.tzinfo`\\가 있는 어웨어 ``datetime``\\이 됩니다."
 
 #: ../Doc/library/email.utils.rst:140
 msgid ""
@@ -161,10 +201,12 @@ msgid ""
 "(seconds since the Epoch).  If the timezone item in the tuple is "
 "``None``, assume local time."
 msgstr ""
+":func:`parsedate_tz`\\에 의해 반환된 10-튜플을 UTC 타임스탬프(Epoch 이후 초)로 바꿉니다. 튜플의 "
+"시간대 항목이 ``None``\\이면, 지역 시간으로 간주합니다."
 
 #: ../Doc/library/email.utils.rst:147
 msgid "Returns a date string as per :rfc:`2822`, e.g.::"
-msgstr ""
+msgstr ":rfc:`2822`\\에 따르는 날짜 문자열을 반환합니다, 예를 들어::"
 
 #: ../Doc/library/email.utils.rst:151
 msgid ""
@@ -172,6 +214,8 @@ msgid ""
 " :func:`time.gmtime` and :func:`time.localtime`, otherwise the current "
 "time is used."
 msgstr ""
+"선택적 *timeval*\\이 주어지면 :func:`time.gmtime`\\과 :func:`time.localtime`\\이 "
+"받아들이는 부동 소수점 시간 값입니다, 그렇지 않으면 현재 시각이 사용됩니다."
 
 #: ../Doc/library/email.utils.rst:155
 msgid ""
@@ -180,6 +224,8 @@ msgid ""
 "properly taking daylight savings time into account. The default is "
 "``False`` meaning UTC is used."
 msgstr ""
+"선택적 *localtime* 은, ``True``\\일 때, *timeval*\\을 해석하고, UTC 대신 일광 절약 시간을 적절히"
+" 고려하는 지역 시간대에 상대적인 날짜를 반환토록 하는 플래그입니다. 기본값은 UTC가 사용된다는 뜻인 ``False``\\입니다."
 
 #: ../Doc/library/email.utils.rst:160
 msgid ""
@@ -188,6 +234,9 @@ msgid ""
 "``-0000``. This is needed for some protocols (such as HTTP). This only "
 "applies when *localtime* is ``False``.  The default is ``False``."
 msgstr ""
+"선택적 *usegmt*\\는, ``True``\\일 때, 날짜 문자열의 시간대를 숫자 ``-0000`` 대신 ASCII 문자열 "
+"``GMT``\\로 출력하도록 하는 플래그입니다. 일부 프로토콜(가령 HTTP)에 필요합니다. 이것은 *localtime* 이 "
+"``False``\\일 때만 적용됩니다. 기본값은 ``False``\\입니다."
 
 #: ../Doc/library/email.utils.rst:168
 msgid ""
@@ -200,10 +249,15 @@ msgid ""
 " instead of the numeric timezone offset.  This provides a way to generate"
 " standards conformant HTTP date headers."
 msgstr ""
+"``formatdate``\\와 같지만, 입력이 :mod:`datetime` 인스턴스입니다. 나이브 datetime이면, \"소스 "
+"시간대에 대한 정보가 없는 UTC\"로 간주하며, 관습적으로 ``-0000``\\이 시간대로 사용됩니다. 어웨어 "
+"``datetime``\\이면, 숫자 시간대 오프셋이 사용됩니다. 오프셋이 0인 어웨어 시간대면, *usegmt*\\를 "
+"``True``\\로 설정해서 ``GMT`` 문자열을 숫자 시간대 오프셋 대신 사용할 수 있습니다. 이것은 표준을 준수하는 HTTP"
+" date 헤더를 생성하는 방법을 제공합니다."
 
 #: ../Doc/library/email.utils.rst:182
 msgid "Decode the string *s* according to :rfc:`2231`."
-msgstr ""
+msgstr ":rfc:`2231`\\에 따라 *s* 문자열을 디코드합니다."
 
 #: ../Doc/library/email.utils.rst:187
 msgid ""
@@ -213,6 +267,9 @@ msgid ""
 "*language* is not, the string is encoded using the empty string for "
 "*language*."
 msgstr ""
+":rfc:`2231`\\에 따라 *s* 문자열을 인코드합니다. 선택적인 *charset*\\과 *language*\\가 주어지면, "
+"사용할 문자 집합 이름과 언어 이름입니다. 둘 다 지정되지 않으면, *s*\\가 그대로 반환됩니다. *charset*\\이 "
+"주어졌지만, *language*\\가 지정되지 않으면, 문자열은 *language*\\에 대해 빈 문자열을 사용하여 인코딩됩니다."
 
 #: ../Doc/library/email.utils.rst:195
 msgid ""
@@ -225,12 +282,20 @@ msgid ""
 "*fallback_charset* specifies the character set to use if the one in the "
 ":rfc:`2231` header is not known by Python; it defaults to ``'us-ascii'``."
 msgstr ""
+"header 매개 변수가 :rfc:`2231`\\로 인코딩되었을 때, :meth:`Message.get_param "
+"<email.message.Message.get_param>`\\은 문자 집합, 언어 및 값이 포함된 3-튜플을 반환할 수 "
+"있습니다. :func:`collapse_rfc2231_value`\\는 이것을 유니코드 문자열로 변환합니다. 선택적 "
+"*errors*\\는 :class:`str`\\의 :func:`~str.encode` 메서드의 *errors* 인자로 전달됩니다; "
+"기본값은 ``'replace'``\\입니다. 선택적 *fallback_charset*\\은 :rfc:`2231` 헤더에 있는 것이 "
+"파이썬에 알려지지 않았을 때 사용할 문자 집합을 지정합니다; 기본값은 ``'us-ascii'``\\입니다."
 
 #: ../Doc/library/email.utils.rst:204
 msgid ""
 "For convenience, if the *value* passed to :func:`collapse_rfc2231_value` "
 "is not a tuple, it should be a string and it is returned unquoted."
 msgstr ""
+"편의상, :func:`collapse_rfc2231_value`\\에 전달된 *value*\\가 튜플이 아니면, 문자열이어야 하고 "
+"unquote 되어 반환됩니다."
 
 #: ../Doc/library/email.utils.rst:210
 msgid ""
@@ -238,10 +303,12 @@ msgid ""
 "of 2-tuples containing elements of the form ``(content-type, string-"
 "value)``."
 msgstr ""
+":rfc:`2231`\\에 따라 매개 변수 리스트를 디코드합니다. *params*\\는 ``(content-type, string-"
+"value)`` 형식의 요소를 포함하는 2-튜플의 시퀀스입니다."
 
 #: ../Doc/library/email.utils.rst:215
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/email.utils.rst:216
 msgid ""
@@ -249,4 +316,6 @@ msgid ""
 "the ``time.timezone`` variable for the same timezone; the latter variable"
 " follows the POSIX standard while this module follows :rfc:`2822`."
 msgstr ""
+"시간대 오프셋의 부호는 같은 시간대에 대한 ``time.timezone`` 변수의 부호와 반대임에 유의하십시오; 이 모듈이 "
+":rfc:`2822`\\를 따르지만, 후자의 변수는 POSIX 표준을 따릅니다."
 
