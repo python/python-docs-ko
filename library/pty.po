@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-26 18:49+0900\n"
+"POT-Creation-Date: 2019-07-15 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/pty.rst:2
 msgid ":mod:`pty` --- Pseudo-terminal utilities"
@@ -54,9 +54,9 @@ msgid ""
 "and *fd* is a file descriptor connected to the child's controlling "
 "terminal (and also to the child's standard input and output)."
 msgstr ""
-"포크. 자식의 제어 터미널을 의사 터미널에 연결합니다. 반환 값은 ``(pid, fd)``\\입니다. 자식은 *pid* 0을 받고, "
-"*fd*\\는 *유효하지 않음*\\에 유의하십시오. 부모의 반환 값은 자식의 *pid*\\이고, *fd*\\는 자식의 제어 터미널(또한,"
-" 자식의 표준 입력과 출력)에 연결된 파일 기술자입니다."
+"포크. 자식의 제어 터미널을 의사 터미널에 연결합니다. 반환 값은 ``(pid, fd)``\\입니다. 자식은 *pid* 0을 받고,"
+" *fd*\\는 *유효하지 않음*\\에 유의하십시오. 부모의 반환 값은 자식의 *pid*\\이고, *fd*\\는 자식의 제어 "
+"터미널(또한, 자식의 표준 입력과 출력)에 연결된 파일 기술자입니다."
 
 #: ../Doc/library/pty.rst:37
 msgid ""
@@ -65,42 +65,84 @@ msgid ""
 "descriptors ``(master, slave)``, for the master and the slave end, "
 "respectively."
 msgstr ""
-"가능하면 :func:`os.openpty`\\를 사용하고, 그렇지 않으면 일반 유닉스 시스템을 위한 에뮬레이션 코드를 사용해서 새로운 "
-"의사 터미널 쌍을 엽니다. 각각 마스터와 슬레이브인 파일 기술자 쌍 ``(master, slave)``\\를 반환합니다."
+"가능하면 :func:`os.openpty`\\를 사용하고, 그렇지 않으면 일반 유닉스 시스템을 위한 에뮬레이션 코드를 사용해서 "
+"새로운 의사 터미널 쌍을 엽니다. 각각 마스터와 슬레이브인 파일 기술자 쌍 ``(master, slave)``\\를 반환합니다."
 
 #: ../Doc/library/pty.rst:44
+#, fuzzy
 msgid ""
 "Spawn a process, and connect its controlling terminal with the current "
 "process's standard io. This is often used to baffle programs which insist"
-" on reading from the controlling terminal."
+" on reading from the controlling terminal. It is expected that the "
+"process spawned behind the pty will eventually terminate, and when it "
+"does *spawn* will return."
 msgstr ""
 "프로세스를 스폰하고, 그것의 제어 터미널을 현재 프로세스의 표준 입출력과 연결합니다. 이것은 종종 제어 터미널에서 읽으려고 하는 "
 "프로그램을 조절하는 데 사용됩니다."
 
-#: ../Doc/library/pty.rst:48
+#: ../Doc/library/pty.rst:50
 msgid ""
-"The functions *master_read* and *stdin_read* should be functions which "
-"read from a file descriptor. The defaults try to read 1024 bytes each "
-"time they are called."
+"The functions *master_read* and *stdin_read* are passed a file descriptor"
+" which they should read from, and they should always return a byte "
+"string. In order to force spawn to return before the child process exits "
+"an :exc:`OSError` should be thrown."
 msgstr ""
-"함수 *master_read*\\와 *stdin_read*\\는 파일 기술자로부터 읽는 함수여야 합니다. 기본값은 호출할 때마다 "
-"1024바이트를 읽으려고 합니다."
 
-#: ../Doc/library/pty.rst:52
+#: ../Doc/library/pty.rst:55
+msgid ""
+"The default implementation for both functions will read and return up to "
+"1024 bytes each time the function is called. The *master_read* callback "
+"is passed the pseudoterminal’s master file descriptor to read output from"
+" the child process, and *stdin_read* is passed file descriptor 0, to read"
+" from the parent process's standard input."
+msgstr ""
+
+#: ../Doc/library/pty.rst:61
+msgid ""
+"Returning an empty byte string from either callback is interpreted as an "
+"end-of-file (EOF) condition, and that callback will not be called after "
+"that. If *stdin_read* signals EOF the controlling terminal can no longer "
+"communicate with the parent process OR the child process. Unless the "
+"child process will quit without any input, *spawn* will then loop "
+"forever. If *master_read* signals EOF the same behavior results (on linux"
+" at least)."
+msgstr ""
+
+#: ../Doc/library/pty.rst:68
+msgid ""
+"If both callbacks signal EOF then *spawn* will probably never return, "
+"unless *select* throws an error on your platform when passed three empty "
+"lists. This is a bug, documented in `issue 26228 "
+"<https://bugs.python.org/issue26228>`_."
+msgstr ""
+
+#: ../Doc/library/pty.rst:73
 msgid ""
 ":func:`spawn` now returns the status value from :func:`os.waitpid` on the"
 " child process."
 msgstr "이제 :func:`spawn`\\은 자식 프로세스에 대한 :func:`os.waitpid`\\로부터 온 상태 값을 반환합니다."
 
-#: ../Doc/library/pty.rst:57
+#: ../Doc/library/pty.rst:78
 msgid "Example"
 msgstr "예제"
 
-#: ../Doc/library/pty.rst:61
+#: ../Doc/library/pty.rst:82
 msgid ""
 "The following program acts like the Unix command :manpage:`script(1)`, "
 "using a pseudo-terminal to record all input and output of a terminal "
 "session in a \"typescript\". ::"
 msgstr ""
-"다음 프로그램은 유닉스 명령 :manpage:`script(1)`\\과 유사하게 동작하며, 의사 터미널을 사용하여 터미널 세션의 모든 "
-"입력과 출력을 \"typescript\"에 기록합니다. ::"
+"다음 프로그램은 유닉스 명령 :manpage:`script(1)`\\과 유사하게 동작하며, 의사 터미널을 사용하여 터미널 세션의 "
+"모든 입력과 출력을 \"typescript\"에 기록합니다. ::"
+
+#~ msgid ""
+#~ "The functions *master_read* and *stdin_read*"
+#~ " should be functions which read from"
+#~ " a file descriptor. The defaults try"
+#~ " to read 1024 bytes each time "
+#~ "they are called."
+#~ msgstr ""
+#~ "함수 *master_read*\\와 *stdin_read*\\는 파일 기술자로부터"
+#~ " 읽는 함수여야 합니다. 기본값은 호출할 때마다 "
+#~ "1024바이트를 읽으려고 합니다."
+

@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-23 11:56+0900\n"
+"POT-Creation-Date: 2019-07-15 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/gettext.rst:2
 msgid ":mod:`gettext` --- Multilingual internationalization services"
@@ -29,10 +29,10 @@ msgstr ""
 msgid ""
 "The :mod:`gettext` module provides internationalization (I18N) and "
 "localization (L10N) services for your Python modules and applications. It"
-" supports both the GNU ``gettext`` message catalog API and a higher "
-"level, class-based API that may be more appropriate for Python files.  "
-"The interface described below allows you to write your module and "
-"application messages in one natural language, and provide a catalog of "
+" supports both the GNU :program:`gettext` message catalog API and a "
+"higher level, class-based API that may be more appropriate for Python "
+"files.  The interface described below allows you to write your module and"
+" application messages in one natural language, and provide a catalog of "
 "translated messages for running under different natural languages."
 msgstr ""
 
@@ -62,8 +62,8 @@ msgid ""
 "Bind the *domain* to the locale directory *localedir*.  More concretely, "
 ":mod:`gettext` will look for binary :file:`.mo` files for the given "
 "domain using the path (on Unix): "
-":file:`localedir/language/LC_MESSAGES/domain.mo`, where *languages* is "
-"searched for in the environment variables :envvar:`LANGUAGE`, "
+":file:`{localedir}/{language}/LC_MESSAGES/{domain}.mo`, where *languages*"
+" is searched for in the environment variables :envvar:`LANGUAGE`, "
 ":envvar:`LC_ALL`, :envvar:`LC_MESSAGES`, and :envvar:`LANG` respectively."
 msgstr ""
 
@@ -88,18 +88,18 @@ msgid ""
 "set to *domain*, which is returned."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:66
+#: ../Doc/library/gettext.rst:67
 msgid ""
 "Return the localized translation of *message*, based on the current "
 "global domain, language, and locale directory.  This function is usually "
 "aliased as :func:`_` in the local namespace (see examples below)."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:73
+#: ../Doc/library/gettext.rst:74
 msgid "Like :func:`.gettext`, but look the message up in the specified *domain*."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:78
+#: ../Doc/library/gettext.rst:79
 msgid ""
 "Like :func:`.gettext`, but consider plural forms. If a translation is "
 "found, apply the plural formula to *n*, and return the resulting message "
@@ -107,7 +107,7 @@ msgid ""
 "found, return *singular* if *n* is 1; return *plural* otherwise."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:83
+#: ../Doc/library/gettext.rst:84
 msgid ""
 "The Plural formula is taken from the catalog header. It is a C or Python "
 "expression that has a free variable *n*; the expression evaluates to the "
@@ -117,11 +117,11 @@ msgid ""
 "variety of languages."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:93
+#: ../Doc/library/gettext.rst:94
 msgid "Like :func:`ngettext`, but look the message up in the specified *domain*."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:101
+#: ../Doc/library/gettext.rst:102
 msgid ""
 "Equivalent to the corresponding functions without the ``l`` prefix "
 "(:func:`.gettext`, :func:`dgettext`, :func:`ngettext` and "
@@ -130,7 +130,7 @@ msgid ""
 "explicitly set with :func:`bind_textdomain_codeset`."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:109
+#: ../Doc/library/gettext.rst:110
 msgid ""
 "These functions should be avoided in Python 3, because they return "
 "encoded bytes.  It's much better to use alternatives which return Unicode"
@@ -142,36 +142,36 @@ msgid ""
 "their inherent problems and limitations."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:119
+#: ../Doc/library/gettext.rst:120
 msgid ""
 "Note that GNU :program:`gettext` also defines a :func:`dcgettext` method,"
 " but this was deemed not useful and so it is currently unimplemented."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:122
+#: ../Doc/library/gettext.rst:123
 msgid "Here's an example of typical usage for this API::"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:133
+#: ../Doc/library/gettext.rst:134
 msgid "Class-based API"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:135
+#: ../Doc/library/gettext.rst:136
 msgid ""
 "The class-based API of the :mod:`gettext` module gives you more "
 "flexibility and greater convenience than the GNU :program:`gettext` API."
 "  It is the recommended way of localizing your Python applications and "
-"modules.  :mod:`!gettext` defines a \"translations\" class which "
+"modules.  :mod:`!gettext` defines a :class:`GNUTranslations` class which "
 "implements the parsing of GNU :file:`.mo` format files, and has methods "
-"for returning strings. Instances of this \"translations\" class can also "
-"install themselves in the built-in namespace as the function :func:`_`."
+"for returning strings. Instances of this class can also install "
+"themselves in the built-in namespace as the function :func:`_`."
 msgstr ""
 
 #: ../Doc/library/gettext.rst:146
 msgid ""
 "This function implements the standard :file:`.mo` file search algorithm."
 "  It takes a *domain*, identical to what :func:`textdomain` takes.  "
-"Optional *localedir* is as in :func:`bindtextdomain`  Optional "
+"Optional *localedir* is as in :func:`bindtextdomain`. Optional "
 "*languages* is a list of strings, where each string is a language code."
 msgstr ""
 
@@ -207,15 +207,14 @@ msgstr ""
 
 #: ../Doc/library/gettext.rst:172
 msgid ""
-"Return a :class:`Translations` instance based on the *domain*, "
+"Return a :class:`*Translations` instance based on the *domain*, "
 "*localedir*, and *languages*, which are first passed to :func:`find` to "
 "get a list of the associated :file:`.mo` file paths.  Instances with "
 "identical :file:`.mo` file names are cached.  The actual class "
-"instantiated is either *class_* if provided, otherwise "
-":class:`GNUTranslations`.  The class's constructor must take a single "
-":term:`file object` argument.  If provided, *codeset* will change the "
-"charset used to encode translated strings in the "
-":meth:`~NullTranslations.lgettext` and "
+"instantiated is *class_* if provided, otherwise :class:`GNUTranslations`."
+"  The class's constructor must take a single :term:`file object` "
+"argument.  If provided, *codeset* will change the charset used to encode "
+"translated strings in the :meth:`~NullTranslations.lgettext` and "
 ":meth:`~NullTranslations.lngettext` methods."
 msgstr ""
 
@@ -290,7 +289,7 @@ msgstr ""
 
 #: ../Doc/library/gettext.rst:235
 msgid ""
-"No-op'd in the base class, this method takes file object *fp*, and reads "
+"No-op in the base class, this method takes file object *fp*, and reads "
 "the data from the file, initializing its message catalog.  If you have an"
 " unsupported message catalog file format, you should override this method"
 " to parse your format."
@@ -324,37 +323,39 @@ msgid ""
 "Overridden in derived classes."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:271 ../Doc/library/gettext.rst:392
+#: ../Doc/library/gettext.rst:271 ../Doc/library/gettext.rst:393
 msgid ""
 "These methods should be avoided in Python 3.  See the warning for the "
 ":func:`lgettext` function."
 msgstr ""
 
 #: ../Doc/library/gettext.rst:277
-msgid "Return the \"protected\" :attr:`_info` variable."
+msgid ""
+"Return the \"protected\" :attr:`_info` variable, a dictionary containing "
+"the metadata found in the message catalog file."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:282
+#: ../Doc/library/gettext.rst:283
 msgid "Return the encoding of the message catalog file."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:287
+#: ../Doc/library/gettext.rst:288
 msgid ""
 "Return the encoding used to return translated messages in "
 ":meth:`.lgettext` and :meth:`.lngettext`."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:293
+#: ../Doc/library/gettext.rst:294
 msgid "Change the encoding used to return translated messages."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:298
+#: ../Doc/library/gettext.rst:299
 msgid ""
 "This method installs :meth:`.gettext` into the built-in namespace, "
 "binding it to ``_``."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:301
+#: ../Doc/library/gettext.rst:302
 msgid ""
 "If the *names* parameter is given, it must be a sequence containing the "
 "names of functions you want to install in the builtins namespace in "
@@ -362,7 +363,7 @@ msgid ""
 "``'ngettext'``, ``'lgettext'`` and ``'lngettext'``."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:306
+#: ../Doc/library/gettext.rst:307
 msgid ""
 "Note that this is only one way, albeit the most convenient way, to make "
 "the :func:`_` function available to your application.  Because it affects"
@@ -371,17 +372,17 @@ msgid ""
 "they should use this code to make :func:`_` available to their module::"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:316
+#: ../Doc/library/gettext.rst:317
 msgid ""
 "This puts :func:`_` only in the module's global namespace and so only "
 "affects calls within this module."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:321
+#: ../Doc/library/gettext.rst:322
 msgid "The :class:`GNUTranslations` class"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:323
+#: ../Doc/library/gettext.rst:324
 msgid ""
 "The :mod:`gettext` module provides one additional class derived from "
 ":class:`NullTranslations`: :class:`GNUTranslations`.  This class "
@@ -389,44 +390,44 @@ msgid ""
 ":file:`.mo` files in both big-endian and little-endian format."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:328
+#: ../Doc/library/gettext.rst:329
 msgid ""
-":class:`GNUTranslations` parses optional meta-data out of the translation"
-" catalog.  It is convention with GNU :program:`gettext` to include meta-"
-"data as the translation for the empty string.  This meta-data is in "
+":class:`GNUTranslations` parses optional metadata out of the translation "
+"catalog. It is convention with GNU :program:`gettext` to include metadata"
+" as the translation for the empty string. This metadata is in "
 ":rfc:`822`\\ -style ``key: value`` pairs, and should contain the "
 "``Project-Id-Version`` key.  If the key ``Content-Type`` is found, then "
 "the ``charset`` property is used to initialize the \"protected\" "
 ":attr:`_charset` instance variable, defaulting to ``None`` if not found."
 "  If the charset encoding is specified, then all message ids and message "
 "strings read from the catalog are converted to Unicode using this "
-"encoding, else ASCII encoding is assumed."
+"encoding, else ASCII is assumed."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:338
+#: ../Doc/library/gettext.rst:339
 msgid ""
 "Since message ids are read as Unicode strings too, all :meth:`*gettext` "
 "methods will assume message ids as Unicode strings, not byte strings."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:341
+#: ../Doc/library/gettext.rst:342
 msgid ""
 "The entire set of key/value pairs are placed into a dictionary and set as"
 " the \"protected\" :attr:`_info` instance variable."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:344
+#: ../Doc/library/gettext.rst:345
 msgid ""
 "If the :file:`.mo` file's magic number is invalid, the major version "
 "number is unexpected, or if other problems occur while reading the file, "
 "instantiating a :class:`GNUTranslations` class can raise :exc:`OSError`."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:350
+#: ../Doc/library/gettext.rst:351
 msgid "The following methods are overridden from the base class implementation:"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:354
+#: ../Doc/library/gettext.rst:355
 msgid ""
 "Look up the *message* id in the catalog and return the corresponding "
 "message string, as a Unicode string.  If there is no entry in the catalog"
@@ -435,7 +436,7 @@ msgid ""
 "Otherwise, the *message* id is returned."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:363
+#: ../Doc/library/gettext.rst:364
 msgid ""
 "Do a plural-forms lookup of a message id.  *singular* is used as the "
 "message id for purposes of lookup in the catalog, while *n* is used to "
@@ -443,7 +444,7 @@ msgid ""
 "Unicode string."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:367
+#: ../Doc/library/gettext.rst:368
 msgid ""
 "If the message id is not found in the catalog, and a fallback is "
 "specified, the request is forwarded to the fallback's "
@@ -451,11 +452,11 @@ msgid ""
 "*singular* is returned, and *plural* is returned in all other cases."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:372
+#: ../Doc/library/gettext.rst:373
 msgid "Here is an example::"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:385
+#: ../Doc/library/gettext.rst:386
 msgid ""
 "Equivalent to :meth:`.gettext` and :meth:`.ngettext`, but the translation"
 " is returned as a byte string encoded in the preferred system encoding if"
@@ -463,46 +464,46 @@ msgid ""
 ":meth:`~NullTranslations.set_output_charset`."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:397
+#: ../Doc/library/gettext.rst:398
 msgid "Solaris message catalog support"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:399
+#: ../Doc/library/gettext.rst:400
 msgid ""
 "The Solaris operating system defines its own binary :file:`.mo` file "
 "format, but since no documentation can be found on this format, it is not"
 " supported at this time."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:405
+#: ../Doc/library/gettext.rst:406
 msgid "The Catalog constructor"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:409
+#: ../Doc/library/gettext.rst:410
 msgid ""
 "GNOME uses a version of the :mod:`gettext` module by James Henstridge, "
 "but this version has a slightly different API.  Its documented usage "
 "was::"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:417
+#: ../Doc/library/gettext.rst:418
 msgid ""
 "For compatibility with this older module, the function :func:`Catalog` is"
 " an alias for the :func:`translation` function described above."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:420
+#: ../Doc/library/gettext.rst:421
 msgid ""
 "One difference between this module and Henstridge's: his catalog objects "
 "supported access through a mapping API, but this appears to be unused and"
 " so is not currently supported."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:426
+#: ../Doc/library/gettext.rst:427
 msgid "Internationalizing your programs and modules"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:428
+#: ../Doc/library/gettext.rst:429
 msgid ""
 "Internationalization (I18N) refers to the operation by which a program is"
 " made aware of multiple languages.  Localization (L10N) refers to the "
@@ -511,27 +512,27 @@ msgid ""
 "Python programs, you need to take the following steps:"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:434
+#: ../Doc/library/gettext.rst:435
 msgid "prepare your program or module by specially marking translatable strings"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:436
+#: ../Doc/library/gettext.rst:437
 msgid ""
 "run a suite of tools over your marked files to generate raw messages "
 "catalogs"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:438
-msgid "create language specific translations of the message catalogs"
+#: ../Doc/library/gettext.rst:439
+msgid "create language-specific translations of the message catalogs"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:440
+#: ../Doc/library/gettext.rst:441
 msgid ""
 "use the :mod:`gettext` module so that message strings are properly "
 "translated"
 msgstr ""
 
-#: ../Doc/library/gettext.rst:442
+#: ../Doc/library/gettext.rst:443
 msgid ""
 "In order to prepare your code for I18N, you need to look at all the "
 "strings in your files.  Any string that needs to be translated should be "
@@ -606,8 +607,8 @@ msgstr ""
 #: ../Doc/library/gettext.rst:500
 msgid ""
 "If you are localizing your module, you must take care not to make global "
-"changes, e.g. to the built-in namespace.  You should not use the GNU "
-"``gettext`` API but instead the class-based API."
+"changes, e.g. to the built-in namespace. You should not use the GNU "
+":program:`gettext` API but instead the class-based API."
 msgstr ""
 
 #: ../Doc/library/gettext.rst:504
@@ -761,12 +762,12 @@ msgid ""
 "Linux it is :file:`/usr/share/locale`, but on Solaris it is "
 ":file:`/usr/lib/locale`. The :mod:`gettext` module does not try to "
 "support these system dependent defaults; instead its default is "
-":file:`sys.prefix/share/locale`. For this reason, it is always best to "
-"call :func:`bindtextdomain` with an explicit absolute path at the start "
-"of your application."
+":file:`{sys.prefix}/share/locale` (see :data:`sys.prefix`). For this "
+"reason, it is always best to call :func:`bindtextdomain` with an explicit"
+" absolute path at the start of your application."
 msgstr ""
 
-#: ../Doc/library/gettext.rst:659
+#: ../Doc/library/gettext.rst:660
 msgid "See the footnote for :func:`bindtextdomain` above."
 msgstr ""
 
@@ -823,5 +824,142 @@ msgstr ""
 #~ "no encoding was explicitly set with "
 #~ ":meth:`set_output_charset`. Overridden in derived"
 #~ " classes."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The :mod:`gettext` module provides "
+#~ "internationalization (I18N) and localization "
+#~ "(L10N) services for your Python modules"
+#~ " and applications. It supports both "
+#~ "the GNU ``gettext`` message catalog API"
+#~ " and a higher level, class-based "
+#~ "API that may be more appropriate "
+#~ "for Python files.  The interface "
+#~ "described below allows you to write "
+#~ "your module and application messages in"
+#~ " one natural language, and provide a"
+#~ " catalog of translated messages for "
+#~ "running under different natural languages."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Bind the *domain* to the locale "
+#~ "directory *localedir*.  More concretely, "
+#~ ":mod:`gettext` will look for binary "
+#~ ":file:`.mo` files for the given domain"
+#~ " using the path (on Unix): "
+#~ ":file:`localedir/language/LC_MESSAGES/domain.mo`, where "
+#~ "*languages* is searched for in the "
+#~ "environment variables :envvar:`LANGUAGE`, "
+#~ ":envvar:`LC_ALL`, :envvar:`LC_MESSAGES`, and "
+#~ ":envvar:`LANG` respectively."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The class-based API of the "
+#~ ":mod:`gettext` module gives you more "
+#~ "flexibility and greater convenience than "
+#~ "the GNU :program:`gettext` API.  It is"
+#~ " the recommended way of localizing "
+#~ "your Python applications and modules.  "
+#~ ":mod:`!gettext` defines a \"translations\" "
+#~ "class which implements the parsing of"
+#~ " GNU :file:`.mo` format files, and "
+#~ "has methods for returning strings. "
+#~ "Instances of this \"translations\" class "
+#~ "can also install themselves in the "
+#~ "built-in namespace as the function "
+#~ ":func:`_`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This function implements the standard "
+#~ ":file:`.mo` file search algorithm.  It "
+#~ "takes a *domain*, identical to what "
+#~ ":func:`textdomain` takes.  Optional *localedir* "
+#~ "is as in :func:`bindtextdomain`  Optional "
+#~ "*languages* is a list of strings, "
+#~ "where each string is a language "
+#~ "code."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Return a :class:`Translations` instance based"
+#~ " on the *domain*, *localedir*, and "
+#~ "*languages*, which are first passed to"
+#~ " :func:`find` to get a list of "
+#~ "the associated :file:`.mo` file paths.  "
+#~ "Instances with identical :file:`.mo` file "
+#~ "names are cached.  The actual class "
+#~ "instantiated is either *class_* if "
+#~ "provided, otherwise :class:`GNUTranslations`.  The"
+#~ " class's constructor must take a "
+#~ "single :term:`file object` argument.  If "
+#~ "provided, *codeset* will change the "
+#~ "charset used to encode translated "
+#~ "strings in the :meth:`~NullTranslations.lgettext`"
+#~ " and :meth:`~NullTranslations.lngettext` methods."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "No-op'd in the base class, this"
+#~ " method takes file object *fp*, and"
+#~ " reads the data from the file, "
+#~ "initializing its message catalog.  If "
+#~ "you have an unsupported message catalog"
+#~ " file format, you should override "
+#~ "this method to parse your format."
+#~ msgstr ""
+
+#~ msgid "Return the \"protected\" :attr:`_info` variable."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":class:`GNUTranslations` parses optional meta-"
+#~ "data out of the translation catalog."
+#~ "  It is convention with GNU "
+#~ ":program:`gettext` to include meta-data "
+#~ "as the translation for the empty "
+#~ "string.  This meta-data is in "
+#~ ":rfc:`822`\\ -style ``key: value`` pairs, "
+#~ "and should contain the ``Project-Id-"
+#~ "Version`` key.  If the key ``Content-"
+#~ "Type`` is found, then the ``charset``"
+#~ " property is used to initialize the"
+#~ " \"protected\" :attr:`_charset` instance "
+#~ "variable, defaulting to ``None`` if not"
+#~ " found.  If the charset encoding is"
+#~ " specified, then all message ids and"
+#~ " message strings read from the "
+#~ "catalog are converted to Unicode using"
+#~ " this encoding, else ASCII encoding "
+#~ "is assumed."
+#~ msgstr ""
+
+#~ msgid "create language specific translations of the message catalogs"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you are localizing your module, "
+#~ "you must take care not to make "
+#~ "global changes, e.g. to the built-"
+#~ "in namespace.  You should not use "
+#~ "the GNU ``gettext`` API but instead "
+#~ "the class-based API."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The default locale directory is system"
+#~ " dependent; for example, on RedHat "
+#~ "Linux it is :file:`/usr/share/locale`, but "
+#~ "on Solaris it is :file:`/usr/lib/locale`. "
+#~ "The :mod:`gettext` module does not try"
+#~ " to support these system dependent "
+#~ "defaults; instead its default is "
+#~ ":file:`sys.prefix/share/locale`. For this reason,"
+#~ " it is always best to call "
+#~ ":func:`bindtextdomain` with an explicit "
+#~ "absolute path at the start of your"
+#~ " application."
 #~ msgstr ""
 

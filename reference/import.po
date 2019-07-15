@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-25 10:27+0900\n"
+"POT-Creation-Date: 2019-07-15 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/reference/import.rst:6
 msgid "The import system"
@@ -1591,11 +1591,43 @@ msgstr ""
 ":exc:`ModuleNotFoundError` 를 일으키는 것으로 충분합니다. 전자는 메타 경로 검색을 계속해야 한다는 것을 "
 "지시하는 반면, 예외를 일으키면 즉시 종료시킵니다."
 
-#: ../Doc/reference/import.rst:926
+#: ../Doc/reference/import.rst:927
+msgid "Package Relative Imports"
+msgstr ""
+
+#: ../Doc/reference/import.rst:929
+msgid ""
+"Relative imports use leading dots. A single leading dot indicates a "
+"relative import, starting with the current package. Two or more leading "
+"dots indicate a relative import to the parent(s) of the current package, "
+"one level per dot after the first. For example, given the following "
+"package layout::"
+msgstr ""
+
+#: ../Doc/reference/import.rst:945
+msgid ""
+"In either ``subpackage1/moduleX.py`` or ``subpackage1/__init__.py``, the "
+"following are valid relative imports::"
+msgstr ""
+
+#: ../Doc/reference/import.rst:955
+msgid ""
+"Absolute imports may use either the ``import <>`` or ``from <> import "
+"<>`` syntax, but relative imports may only use the second form; the "
+"reason for this is that::"
+msgstr ""
+
+#: ../Doc/reference/import.rst:961
+msgid ""
+"should expose ``XXX.YYY.ZZZ`` as a usable expression, but .moduleY is not"
+" a valid expression."
+msgstr ""
+
+#: ../Doc/reference/import.rst:966
 msgid "Special considerations for __main__"
 msgstr "__main__ 에 대한 특별한 고려"
 
-#: ../Doc/reference/import.rst:928
+#: ../Doc/reference/import.rst:968
 msgid ""
 "The :mod:`__main__` module is a special case relative to Python's import "
 "system.  As noted :ref:`elsewhere <programs>`, the ``__main__`` module is"
@@ -1610,11 +1642,11 @@ msgstr ""
 "초기화됩니다. 하지만, 이 두 개와는 다르게, 이것은 엄밀하게 내장 모듈로 취급되지 않습니다. 이것은 ``__main__`` 이 "
 "초기화되는 방식이 인터프리터를 실행할 때 주는 플래그와 다른 옵션들에 영향을 받기 때문입니다."
 
-#: ../Doc/reference/import.rst:939
+#: ../Doc/reference/import.rst:979
 msgid "__main__.__spec__"
 msgstr "__main__.__spec__"
 
-#: ../Doc/reference/import.rst:941
+#: ../Doc/reference/import.rst:981
 msgid ""
 "Depending on how :mod:`__main__` is initialized, ``__main__.__spec__`` "
 "gets set appropriately or to ``None``."
@@ -1622,7 +1654,7 @@ msgstr ""
 ":mod:`__main__` 이 어떻게 초기화되는지에 따라, ``__main__.__spec__`` 은 적절히 설정되기도 하고 "
 "``None`` 으로 설정되기도 합니다."
 
-#: ../Doc/reference/import.rst:944
+#: ../Doc/reference/import.rst:984
 msgid ""
 "When Python is started with the :option:`-m` option, ``__spec__`` is set "
 "to the module spec of the corresponding module or package. ``__spec__`` "
@@ -1633,7 +1665,7 @@ msgstr ""
 " 또한 ``__spec__`` 은 ``__main__`` 모듈이 디렉터리나 zip 파일이나 다른 :data:`sys.path` "
 "엔트리를 실행하는 일부로 로드될 때 그 내용이 채워집니다."
 
-#: ../Doc/reference/import.rst:949
+#: ../Doc/reference/import.rst:989
 msgid ""
 "In :ref:`the remaining cases <using-on-interface-options>` "
 "``__main__.__spec__`` is set to ``None``, as the code used to populate "
@@ -1644,23 +1676,23 @@ msgstr ""
 "``None`` 으로 설정되는데, :mod:`__main__` 을 채우는데 사용된 코드가 임포트 가능한 모듈에 직접 대응하지 않기 "
 "때문입니다:"
 
-#: ../Doc/reference/import.rst:953
+#: ../Doc/reference/import.rst:993
 msgid "interactive prompt"
 msgstr "대화형 프롬프트"
 
-#: ../Doc/reference/import.rst:954
+#: ../Doc/reference/import.rst:994
 msgid ":option:`-c` option"
 msgstr ":option:`-c` 옵션"
 
-#: ../Doc/reference/import.rst:955
+#: ../Doc/reference/import.rst:995
 msgid "running from stdin"
 msgstr "표준 입력으로 실행"
 
-#: ../Doc/reference/import.rst:956
+#: ../Doc/reference/import.rst:996
 msgid "running directly from a source or bytecode file"
 msgstr "소스 파일이나 바이트 코드 파일로부터 직접 실행"
 
-#: ../Doc/reference/import.rst:958
+#: ../Doc/reference/import.rst:998
 msgid ""
 "Note that ``__main__.__spec__`` is always ``None`` in the last case, "
 "*even if* the file could technically be imported directly as a module "
@@ -1671,7 +1703,7 @@ msgstr ""
 "모듈로 임포트 될 수 있어도 그렇습니다. :mod:`__main__` 에 올바른 모듈 메타데이터가 필요하다면 :option:`-m`"
 " 스위치를 사용해야 합니다."
 
-#: ../Doc/reference/import.rst:963
+#: ../Doc/reference/import.rst:1003
 msgid ""
 "Note also that even when ``__main__`` corresponds with an importable "
 "module and ``__main__.__spec__`` is set accordingly, they're still "
@@ -1685,15 +1717,15 @@ msgstr ""
 "\"__main__\":`` 검사로 둘러싸인 블록이 모듈이 ``__main__`` 이름 공간을 채울 때만 실행되고, 일반적인 임포트"
 " 때는 실행되지 않는다는 사실 때문입니다. "
 
-#: ../Doc/reference/import.rst:971
+#: ../Doc/reference/import.rst:1011
 msgid "Open issues"
 msgstr "열린 이슈들"
 
-#: ../Doc/reference/import.rst:973
+#: ../Doc/reference/import.rst:1013
 msgid "XXX It would be really nice to have a diagram."
 msgstr "XXX 도표가 있으면 정말 좋겠다."
 
-#: ../Doc/reference/import.rst:975
+#: ../Doc/reference/import.rst:1015
 msgid ""
 "XXX * (import_machinery.rst) how about a section devoted just to the "
 "attributes of modules and packages, perhaps expanding upon or supplanting"
@@ -1702,7 +1734,7 @@ msgstr ""
 "XXX * (import_machinery.rst) 모듈과 패키지의 어트리뷰트들에만 할당된 섹션은 어떨까? 아마도 데이터 모델 "
 "레퍼런스 페이지에 있는 관련 항목들을 확장하거나 대체해야 할 것이다."
 
-#: ../Doc/reference/import.rst:979
+#: ../Doc/reference/import.rst:1019
 msgid ""
 "XXX runpy, pkgutil, et al in the library manual should all get \"See "
 "Also\" links at the top pointing to the new import system section."
@@ -1710,23 +1742,23 @@ msgstr ""
 "XXX 라이브러리 설명서의 runpy, pkgutil 등등은 새 임포트 시스템 섹션으로 가는 \"See Also\" 링크를 처음에 "
 "붙여야만 한다."
 
-#: ../Doc/reference/import.rst:982
+#: ../Doc/reference/import.rst:1022
 msgid ""
 "XXX Add more explanation regarding the different ways in which "
 "``__main__`` is initialized?"
 msgstr "XXX ``__main__`` 이 초기화되는 다른 방법들에 대한 설명을 더 붙여야 하나?"
 
-#: ../Doc/reference/import.rst:985
+#: ../Doc/reference/import.rst:1025
 msgid ""
 "XXX Add more info on ``__main__`` quirks/pitfalls (i.e. copy from "
 ":pep:`395`)."
 msgstr "XXX ``__main__`` 의 까다로움/어려움에 대한 정보를 추가하자 (즉 :pep:`395` 의 사본)"
 
-#: ../Doc/reference/import.rst:990
+#: ../Doc/reference/import.rst:1030
 msgid "References"
 msgstr "참고문헌"
 
-#: ../Doc/reference/import.rst:992
+#: ../Doc/reference/import.rst:1032
 msgid ""
 "The import machinery has evolved considerably since Python's early days."
 "  The original `specification for packages "
@@ -1737,13 +1769,13 @@ msgstr ""
 "임포트 절차는 파이썬의 초창기부터 상당히 변해왔습니다. 문서를 작성한 이후에 약간의 세부사항이 변경되었기는 하지만, 최초의 `패키지"
 " 규격 <https://www.python.org/doc/essays/packages/>`_ 은 아직 읽을 수 있도록 남아있습니다."
 
-#: ../Doc/reference/import.rst:997
+#: ../Doc/reference/import.rst:1037
 msgid ""
 "The original specification for :data:`sys.meta_path` was :pep:`302`, with"
 " subsequent extension in :pep:`420`."
 msgstr ":data:`sys.meta_path` 의 최초 규격은 :pep:`302` 이고, 뒤이은 확장은 :pep:`420` 입니다."
 
-#: ../Doc/reference/import.rst:1000
+#: ../Doc/reference/import.rst:1040
 msgid ""
 ":pep:`420` introduced :term:`namespace packages <namespace package>` for "
 "Python 3.3.  :pep:`420` also introduced the :meth:`find_loader` protocol "
@@ -1752,7 +1784,7 @@ msgstr ""
 ":pep:`420` 은 파이썬 3.3 에 :term:`이름 공간 패키지 <namespace package>` 를 도입했습니다. "
 "PEP 420은 :meth:`find_module` 의 대안으로 :meth:`find_loader` 프로토콜 역시 도입했습니다."
 
-#: ../Doc/reference/import.rst:1004
+#: ../Doc/reference/import.rst:1044
 msgid ""
 ":pep:`366` describes the addition of the ``__package__`` attribute for "
 "explicit relative imports in main modules."
@@ -1760,7 +1792,7 @@ msgstr ""
 ":pep:`366` 은 메인 모듈에서의 명시적인 상태 임포트를 위한 ``__package__`` 어트리뷰트의 추가에 관해 설명하고 "
 "있습니다."
 
-#: ../Doc/reference/import.rst:1007
+#: ../Doc/reference/import.rst:1047
 msgid ""
 ":pep:`328` introduced absolute and explicit relative imports and "
 "initially proposed ``__name__`` for semantics :pep:`366` would eventually"
@@ -1769,11 +1801,11 @@ msgstr ""
 ":pep:`328` 은 절대와 명시적인 상대 임포트들 도입하고 :pep:`366` 이 결국 ``__package__`` 를 지정하게"
 " 되는 개념을 초기에 ``__name__`` 으로 제안했습니다."
 
-#: ../Doc/reference/import.rst:1011
+#: ../Doc/reference/import.rst:1051
 msgid ":pep:`338` defines executing modules as scripts."
 msgstr ":pep:`338` 은 모듈을 스크립트로 실행하는 것을 정의합니다."
 
-#: ../Doc/reference/import.rst:1013
+#: ../Doc/reference/import.rst:1053
 msgid ""
 ":pep:`451` adds the encapsulation of per-module import state in spec "
 "objects.  It also off-loads most of the boilerplate responsibilities of "
@@ -1785,15 +1817,15 @@ msgstr ""
 "임포트 절차로 옮기기도 했습니다. 이 변경은 임포트 시스템의 여러 API 들을 폐지하도록 만들었고, 파인더와 로더에 새 메서드들을 "
 "추가하기도 했습니다."
 
-#: ../Doc/reference/import.rst:1020
+#: ../Doc/reference/import.rst:1060
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../Doc/reference/import.rst:1021
+#: ../Doc/reference/import.rst:1061
 msgid "See :class:`types.ModuleType`."
 msgstr ":class:`types.ModuleType` 을 보세요."
 
-#: ../Doc/reference/import.rst:1023
+#: ../Doc/reference/import.rst:1063
 msgid ""
 "The importlib implementation avoids using the return value directly. "
 "Instead, it gets the module object by looking the module name up in "
@@ -1806,7 +1838,7 @@ msgstr ""
 " 모듈을 얻습니다. 이것의 간접적인 효과는 임포트되는 모듈이 :data:`sys.modules` 에 있는 자신을 바꿀 수 있다는 "
 "것입니다. 이것은 구현 상세 동작이고 다른 파이썬 구현에서 동작한다고 보장되지 않습니다."
 
-#: ../Doc/reference/import.rst:1030
+#: ../Doc/reference/import.rst:1070
 msgid ""
 "In legacy code, it is possible to find instances of "
 ":class:`imp.NullImporter` in the :data:`sys.path_importer_cache`.  It is "
@@ -1816,3 +1848,4 @@ msgstr ""
 "예전 코드에서, :data:`sys.path_importer_cache` 에서 :class:`imp.NullImporter` 의 "
 "인스턴스를 찾는 것이 가능합니다. 코드가 대신 ``None`` 을 사용하도록 변경할 것을 권고합니다. 더 자세한 내용은 "
 ":ref:`portingpythoncode` 를 참조하세요."
+
