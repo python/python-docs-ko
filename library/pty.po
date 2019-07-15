@@ -69,7 +69,6 @@ msgstr ""
 "새로운 의사 터미널 쌍을 엽니다. 각각 마스터와 슬레이브인 파일 기술자 쌍 ``(master, slave)``\\를 반환합니다."
 
 #: ../Doc/library/pty.rst:44
-#, fuzzy
 msgid ""
 "Spawn a process, and connect its controlling terminal with the current "
 "process's standard io. This is often used to baffle programs which insist"
@@ -78,7 +77,8 @@ msgid ""
 "does *spawn* will return."
 msgstr ""
 "프로세스를 스폰하고, 그것의 제어 터미널을 현재 프로세스의 표준 입출력과 연결합니다. 이것은 종종 제어 터미널에서 읽으려고 하는 "
-"프로그램을 조절하는 데 사용됩니다."
+"프로그램을 조절하는 데 사용됩니다. pty 뒤에 스폰된 프로세스가 결국 종료할 것으로 기대하고, 그 때 *spawn*\\이 "
+"반환됩니다."
 
 #: ../Doc/library/pty.rst:50
 msgid ""
@@ -87,6 +87,8 @@ msgid ""
 "string. In order to force spawn to return before the child process exits "
 "an :exc:`OSError` should be thrown."
 msgstr ""
+"함수 *master_read*\\와 *stdin_read*\\는 그들이 읽어야 할 파일 기술자를 전달받고, 항상 바이트열을 반환해야"
+" 합니다. 자식 프로세스가 종료하기 전에 spawn이 강제로 반환되게 하려면 :exc:`OSError`\\를 발생시켜야 합니다."
 
 #: ../Doc/library/pty.rst:55
 msgid ""
@@ -96,6 +98,9 @@ msgid ""
 " the child process, and *stdin_read* is passed file descriptor 0, to read"
 " from the parent process's standard input."
 msgstr ""
+"두 함수의 기본 구현은 함수가 호출될 때마다 최대 1024바이트를 읽고 반환합니다. *master_read* 콜백으로 의사 터미널의"
+" 마스터 파일 기술자가 전달되어 자식 프로세스의 출력을 읽으며, *stdin_read*\\는 파일 기술자 0을 전달받아, 부모 "
+"프로세스의 표준 입력을 읽습니다."
 
 #: ../Doc/library/pty.rst:61
 msgid ""
@@ -107,6 +112,10 @@ msgid ""
 "forever. If *master_read* signals EOF the same behavior results (on linux"
 " at least)."
 msgstr ""
+"두 콜백 중 하나가 빈 바이트열을 반환하는 것은 파일 끝(EOF) 조건으로 해석되며, 그 이후로 해당 콜백은 호출되지 않습니다. "
+"*stdin_read*\\가 EOF 신호를 보내면 제어 터미널은 더는 부모 프로세스나 자식 프로세스와 통신할 수 없습니다. 자식 "
+"프로세스가 입력 없이 종료하지 않는 한, *spawn*\\은 영원히 반복됩니다. *master_read*\\가 EOF 신호를 보내면"
+" 같은 동작으로 이어집니다 (적어도 리눅스에서는)."
 
 #: ../Doc/library/pty.rst:68
 msgid ""
@@ -115,6 +124,9 @@ msgid ""
 "lists. This is a bug, documented in `issue 26228 "
 "<https://bugs.python.org/issue26228>`_."
 msgstr ""
+"두 콜백이 모두 EOF 신호를 보내면, *select*\\가 세 개의 빈 리스트를 전달할 때 플랫폼에서 에러를 일으키지 않는 한 "
+"*spawn*\\은 아마도 절대 반환하지 않습니다. 이것은 버그이고, `issue 26228 "
+"<https://bugs.python.org/issue26228>`_\\에서 설명하고 있습니다."
 
 #: ../Doc/library/pty.rst:73
 msgid ""
@@ -134,15 +146,4 @@ msgid ""
 msgstr ""
 "다음 프로그램은 유닉스 명령 :manpage:`script(1)`\\과 유사하게 동작하며, 의사 터미널을 사용하여 터미널 세션의 "
 "모든 입력과 출력을 \"typescript\"에 기록합니다. ::"
-
-#~ msgid ""
-#~ "The functions *master_read* and *stdin_read*"
-#~ " should be functions which read from"
-#~ " a file descriptor. The defaults try"
-#~ " to read 1024 bytes each time "
-#~ "they are called."
-#~ msgstr ""
-#~ "함수 *master_read*\\와 *stdin_read*\\는 파일 기술자로부터"
-#~ " 읽는 함수여야 합니다. 기본값은 호출할 때마다 "
-#~ "1024바이트를 읽으려고 합니다."
 
