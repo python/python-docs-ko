@@ -3,27 +3,26 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-23 06:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/site.rst:2
 msgid ":mod:`site` --- Site-specific configuration hook"
-msgstr ""
+msgstr ":mod:`site` --- 사이트별 구성 훅"
 
 #: ../Doc/library/site.rst:7
 msgid "**Source code:** :source:`Lib/site.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/site.py`"
 
 #: ../Doc/library/site.rst:13
 msgid ""
@@ -31,6 +30,8 @@ msgid ""
 "automatic import can be suppressed using the interpreter's :option:`-S` "
 "option."
 msgstr ""
+"**이 모듈은 초기화 중에 자동으로 임포트 됩니다.** 인터프리터의 :option:`-S` 옵션을 사용하여 자동 임포트를 억제할 수"
+" 있습니다."
 
 #: ../Doc/library/site.rst:18
 msgid ""
@@ -41,12 +42,15 @@ msgid ""
 " explicitly trigger the usual site-specific additions, call the "
 ":func:`site.main` function."
 msgstr ""
+":option:`-S`\\를 사용하지 않는 한, 이 모듈의 임포트는 사이트별 경로를 모듈 검색 경로에 추가하고 몇 가지 "
+"내장(builtins)을 추가합니다. 사용되었다면, 이 모듈은 모듈 검색 경로를 자동으로 수정하거나 내장을 추가하지 않고도 안전하게"
+" 임포트 할 수 있습니다. 일반적인 사이트별 추가를 명시적으로 트리거 하려면, :func:`site.main` 함수를 호출하십시오."
 
 #: ../Doc/library/site.rst:24
 msgid ""
 "Importing the module used to trigger paths manipulation even when using "
 ":option:`-S`."
-msgstr ""
+msgstr ":option:`-S`\\를 사용하는 경우에도 모듈을 임포트 하면 경로 조작을 트리거 했습니다."
 
 #: ../Doc/library/site.rst:31
 msgid ""
@@ -59,10 +63,15 @@ msgid ""
 "so, adds it to ``sys.path`` and also inspects the newly added path for "
 "configuration files."
 msgstr ""
+"머리와 꼬리 부분에서 최대 4개의 디렉터리를 구성하는 것으로 시작합니다. 머리 부분에는, ``sys.prefix``\\와 "
+"``sys.exec_prefix``\\를 사용합니다; 빈 머리는 건너뜁니다. 꼬리 부분에는, 빈 문자열을 사용하고 "
+":file:`lib/site-packages`\\(윈도우에서)나 :file:`lib/python{X.Y}/site-"
+"packages`\\(유닉스와 맥에서)를 사용합니다. 각 머리-꼬리 조합마다, 존재하는 디렉터리를 참조하는지 확인하고, 그렇다면 "
+"디렉터리를 ``sys.path``\\에 추가하고 새로 추가된 경로에서 구성 파일을 검사합니다."
 
 #: ../Doc/library/site.rst:40
 msgid "Support for the \"site-python\" directory has been removed."
-msgstr ""
+msgstr "\"site-python\" 디렉터리에 대한 지원이 제거되었습니다."
 
 #: ../Doc/library/site.rst:43
 msgid ""
@@ -87,6 +96,11 @@ msgid ""
 "beginning with ``#`` are skipped.  Lines starting with ``import`` "
 "(followed by space or tab) are executed."
 msgstr ""
+"경로 구성 파일은 이름이 :file:`{name}.pth` 인 파일이며, 위에서 언급한 4개의 디렉터리 중 하나에 존재합니다; "
+"내용은 ``sys.path``\\에 추가될 추가 항목(한 줄에 하나씩)입니다. 존재하지 않는 항목은 ``sys.path``\\에 "
+"추가되지 않으며, 항목이 파일이 아닌 디렉터리를 참조하는지 확인하지 않습니다. 어떤 항목도 ``sys.path``\\에 두 번 "
+"추가되지 않습니다. 빈 줄과 ``#``\\으로 시작하는 줄은 건너뜁니다. ``import``\\로 시작하는 (공백이나 탭이 "
+"뒤따르는) 줄은 실행됩니다."
 
 #: ../Doc/library/site.rst:64
 msgid ""
@@ -98,16 +112,22 @@ msgid ""
 "path configuration files, :file:`foo.pth` and :file:`bar.pth`.  Assume "
 ":file:`foo.pth` contains the following::"
 msgstr ""
+"예를 들어, ``sys.prefix``\\와 ``sys.exec_prefix``\\가 :file:`/usr/local`\\로 "
+"설정되었다고 가정하십시오. 그러면 파이썬 X.Y 라이브러리는 :file:`/usr/local/lib/python{X.Y}`\\에 "
+"설치되어 있습니다. 여기에 :file:`foo`, :file:`bar` 및 :file:`spam`\\이라는 세 개의 서브 "
+"디렉터리와, :file:`foo.pth`\\와 :file:`bar.pth`\\라는 두 개의 경로 구성 파일이 있는 서브 디렉터리 "
+":file:`/usr/local/lib/python{X.Y}/site-packages`\\가 있다고 가정하십시오. "
+":file:`foo.pth`\\에 다음이 포함되어 있고::"
 
 #: ../Doc/library/site.rst:78
 msgid "and :file:`bar.pth` contains::"
-msgstr ""
+msgstr ":file:`bar.pth`\\는 다음을 포함한다고 가정하십시오::"
 
 #: ../Doc/library/site.rst:84
 msgid ""
 "Then the following version-specific directories are added to "
 "``sys.path``, in this order::"
-msgstr ""
+msgstr "그러면 다음과 같은 버전 별 디렉터리가 이 순서대로 ``sys.path``\\에 추가됩니다::"
 
 #: ../Doc/library/site.rst:90
 msgid ""
@@ -117,6 +137,9 @@ msgid ""
 ":file:`spam` is omitted because it is not mentioned in either path "
 "configuration file."
 msgstr ""
+":file:`bletch`\\가 존재하지 않기 때문에 생략되었음에 유의하십시오; :file:`bar.pth`\\가 알파벳순으로 "
+":file:`foo.pth` 앞에 오기 때문에 :file:`bar` 디렉터리가 :file:`foo` 디렉터리보다 앞에 옵니다; "
+":file:`spam`\\은 경로 구성 파일에 언급되어 있지 않기 때문에 생략되었습니다."
 
 #: ../Doc/library/site.rst:97
 msgid ""
@@ -131,6 +154,13 @@ msgid ""
 ":mod:`sitecustomize` is ignored.  Any other exception causes a silent and"
 " perhaps mysterious failure of the process."
 msgstr ""
+"이러한 경로 조작 후, 임의의 사이트별 사용자 정의를 수행할 수 있는 :mod:`sitecustomize`\\라는 모듈을 임포트 "
+"하려고 시도합니다. 일반적으로 시스템 관리자가 site-packages 디렉터리에 만듭니다. 이 임포트가 "
+":exc:`ImportError`\\나 이것의 서브 클래스 예외로 실패하고, 예외의 :attr:`name` 어트리뷰트가 "
+"``'sitecustomize'``\\와 같으면, 조용히 무시됩니다. 윈도우에서 :file:`pythonw.exe`\\(IDLE을 "
+"시작하는 데 기본적으로 사용됩니다)처럼, 사용 가능한 출력 스트림 없이 파이썬을 시작하면, "
+":mod:`sitecustomize`\\의 출력 시도는 무시됩니다. 다른 예외는 절차의 조용한 그리고 아마도 정체불명의 실패로 "
+"이어집니다."
 
 #: ../Doc/library/site.rst:109
 msgid ""
@@ -143,6 +173,11 @@ msgid ""
 "the exception's :attr:`name` attribute equals to ``'usercustomize'``, it "
 "is silently ignored."
 msgstr ""
+"그런 다음, :data:`ENABLE_USER_SITE`\\가 참이면, 임의의 사용자별 사용자 정의를 수행할 수 있는 "
+":mod:`usercustomize`\\라는 모듈을 임포트 하려고 시도합니다. 이 파일은 사용자 site-packages "
+"디렉터리(아래를 보십시오)에 만들어지는 것이 관례입니다, :option:`-s`\\에 의해 비활성화되지 않는 한 "
+"``sys.path``\\의 일부입니다. 이 임포트가 :exc:`ImportError`\\나 이것의 서브 클래스 예외로 실패하고, "
+"예외의 :attr:`name` 어트리뷰트가 ``'usercustomize'``\\와 같으면, 조용히 무시됩니다."
 
 #: ../Doc/library/site.rst:117
 msgid ""
@@ -151,10 +186,13 @@ msgid ""
 "however the import of :mod:`sitecustomize` and :mod:`usercustomize` is "
 "still attempted."
 msgstr ""
+"유닉스가 아닌 일부 시스템에서는, ``sys.prefix``\\와 ``sys.exec_prefix``\\가 비어 있고, 경로 조작을"
+" 건너뜀에 유의하십시오; 하지만 :mod:`sitecustomize`\\와 :mod:`usercustomize` 임포트는 여전히 "
+"시도됩니다."
 
 #: ../Doc/library/site.rst:125
 msgid "Readline configuration"
-msgstr ""
+msgstr "Readline 구성"
 
 #: ../Doc/library/site.rst:127
 msgid ""
@@ -167,18 +205,24 @@ msgid ""
 "your :mod:`sitecustomize` or :mod:`usercustomize` module or your "
 ":envvar:`PYTHONSTARTUP` file."
 msgstr ""
+":mod:`readline`\\을 지원하는 시스템에서, 파이썬이 :ref:`대화형 모드 <tut-interactive>`\\로 "
+":option:`-S` 옵션 없이 시작되면, 이 모듈은 :mod:`rlcompleter` 모듈을 임포트하고 구성합니다. 기본 동작은"
+" 탭 완성을 활성화하고 :file:`~/.python_history`\\를 히스토리 저장 파일로 사용하는 것입니다. 이를 "
+"비활성화하려면, :mod:`sitecustomize`\\나 :mod:`usercustomize` 모듈 또는 "
+":envvar:`PYTHONSTARTUP` 파일에서 :data:`sys.__interactivehook__` 어트리뷰트를 삭제(또는"
+" 재정의)하십시오."
 
 #: ../Doc/library/site.rst:136
 msgid "Activation of rlcompleter and history was made automatic."
-msgstr ""
+msgstr "rlcompleter와 히스토리 활성화가 자동으로 이루어졌습니다."
 
 #: ../Doc/library/site.rst:141
 msgid "Module contents"
-msgstr ""
+msgstr "모듈 내용"
 
 #: ../Doc/library/site.rst:145
 msgid "A list of prefixes for site-packages directories."
-msgstr ""
+msgstr "site-packages 디렉터리의 접두사 리스트."
 
 #: ../Doc/library/site.rst:150
 msgid ""
@@ -189,6 +233,10 @@ msgid ""
 " reasons (mismatch between user or group id and effective id) or by an "
 "administrator."
 msgstr ""
+"사용자 site-packages 디렉터리의 상태를 나타내는 플래그. ``True``\\는 활성화되어 ``sys.path``\\에 "
+"추가되었음을 의미합니다. ``False``\\는 사용자 요청(:option:`-s`\\나 "
+":envvar:`PYTHONNOUSERSITE`\\로)에 의해 비활성화되었음을 의미합니다. ``None``\\은 보안상의 "
+"이유(사용자나 그룹 id와 유효(effective) id가 일치하지 않음)로 또는 관리자에 의해 비활성화되었음을 의미합니다."
 
 #: ../Doc/library/site.rst:160
 msgid ""
@@ -200,6 +248,12 @@ msgid ""
 "}\\\\site-packages` on Windows.  This directory is a site directory, "
 "which means that :file:`.pth` files in it will be processed."
 msgstr ""
+"실행 중인 파이썬의 사용자 site-packages 경로. :func:`getusersitepackages`\\가 아직 호출되지 "
+"않았으면 ``None``\\일 수 있습니다. 기본값은 유닉스와 비 프레임워크 맥 OS X 빌드의 경우 "
+":file:`~/.local/lib/python{X.Y}/site-packages`, 맥 프레임워크 빌드의 경우 "
+":file:`~/Library/Python/{X.Y}/lib/python/site-packages`, 윈도우의 경우 "
+":file:`{%APPDATA%}\\\\Python\\\\Python{XY}\\\\site-packages`\\입니다. 이 "
+"디렉터리는 사이트 디렉터리이며, 이는 그 안에 있는 :file:`.pth` 파일이 처리됨을 의미합니다."
 
 #: ../Doc/library/site.rst:171
 msgid ""
@@ -212,6 +266,12 @@ msgid ""
 "files, Python modules, etc. for the :ref:`user installation scheme <inst-"
 "alt-install-user>`. See also :envvar:`PYTHONUSERBASE`."
 msgstr ""
+"사용자 site-packages의 베이스 디렉터리에 대한 경로. :func:`getuserbase`\\가 아직 호출되지 않았으면 "
+"``None``\\일 수 있습니다. 기본값은 유닉스와 맥 OS X 비 프레임워크 빌드의 경우 :file:`~/.local`, 맥 "
+"프레임워크 빌드의 경우 :file:`~/Library/Python/{X.Y}`, 윈도우의 경우 "
+":file:`{%APPDATA%}\\\\Python`\\입니다. 이 값은 Distutils에서 :ref:`사용자 설치 스킴 "
+"<inst-alt-install-user>`\\의 스크립트, 데이터 파일, 파이썬 모듈 등의 설치 디렉터리를 계산하는 데 "
+"사용됩니다. :envvar:`PYTHONUSERBASE` 도 참조하십시오."
 
 #: ../Doc/library/site.rst:183
 msgid ""
@@ -220,10 +280,12 @@ msgid ""
 "imported, unless the Python interpreter was started with the :option:`-S`"
 " flag."
 msgstr ""
+"모든 표준 사이트별 디렉터리를 모듈 검색 경로에 추가합니다. 파이썬 인터프리터가 :option:`-S` 플래그로 시작되지 않았으면,"
+" 이 모듈이 임포트 될 때 이 함수가 자동으로 호출됩니다."
 
 #: ../Doc/library/site.rst:187
 msgid "This function used to be called unconditionally."
-msgstr ""
+msgstr "이 함수는 무조건 호출되었습니다."
 
 #: ../Doc/library/site.rst:193
 msgid ""
@@ -231,10 +293,12 @@ msgid ""
 "Typically used in :mod:`sitecustomize` or :mod:`usercustomize` (see "
 "above)."
 msgstr ""
+"sys.path에 디렉터리를 추가하고 :file:`.pth` 파일을 처리합니다. 일반적으로 "
+":mod:`sitecustomize`\\나 :mod:`usercustomize`\\에서 사용됩니다 (위를 참조하십시오)."
 
 #: ../Doc/library/site.rst:199
 msgid "Return a list containing all global site-packages directories."
-msgstr ""
+msgstr "모든 전역 site-packages 디렉터리를 포함하는 리스트를 반환합니다."
 
 #: ../Doc/library/site.rst:206
 msgid ""
@@ -242,6 +306,8 @@ msgid ""
 "not initialized yet, this function will also set it, respecting "
 ":envvar:`PYTHONUSERBASE`."
 msgstr ""
+"사용자 베이스 디렉터리 :data:`USER_BASE`\\의 경로를 반환합니다. 아직 초기화되지 않았으면, 이 함수는 "
+":envvar:`PYTHONUSERBASE`\\를 따라 설정합니다."
 
 #: ../Doc/library/site.rst:215
 msgid ""
@@ -249,12 +315,14 @@ msgid ""
 ":data:`USER_SITE`.  If it is not initialized yet, this function will also"
 " set it, respecting :envvar:`PYTHONNOUSERSITE` and :data:`USER_BASE`."
 msgstr ""
+"사용자별 site-packages 디렉터리 :data:`USER_SITE`\\의 경로를 반환합니다. 아직 초기화되지 않았으면, 이 "
+"함수는 :envvar:`PYTHONNOUSERSITE`\\와 :data:`USER_BASE`\\를 따라 설정합니다."
 
 #: ../Doc/library/site.rst:222
 msgid ""
 "The :mod:`site` module also provides a way to get the user directories "
 "from the command line:"
-msgstr ""
+msgstr ":mod:`site` 모듈은 명령 줄에서 사용자 디렉터리를 얻는 방법도 제공합니다:"
 
 #: ../Doc/library/site.rst:232
 msgid ""
@@ -263,20 +331,25 @@ msgid ""
 ":data:`USER_BASE` and whether the directory exists, then the same thing "
 "for :data:`USER_SITE`, and finally the value of :data:`ENABLE_USER_SITE`."
 msgstr ""
+"인자 없이 호출되면, 표준 출력에 :data:`sys.path`\\의 내용을 인쇄한 다음, :data:`USER_BASE`\\의 "
+"값과 디렉터리가 존재하는지를 인쇄하고, :data:`USER_SITE`\\에 대해 같은 것을 인쇄하고, 마지막으로 "
+":data:`ENABLE_USER_SITE`\\의 값을 인쇄합니다."
 
 #: ../Doc/library/site.rst:239
 msgid "Print the path to the user base directory."
-msgstr ""
+msgstr "사용자 베이스 디렉터리의 경로를 인쇄합니다."
 
 #: ../Doc/library/site.rst:243
 msgid "Print the path to the user site-packages directory."
-msgstr ""
+msgstr "사용자 site-packages 디렉터리의 경로를 인쇄합니다."
 
 #: ../Doc/library/site.rst:245
 msgid ""
 "If both options are given, user base and user site will be printed "
 "(always in this order), separated by :data:`os.pathsep`."
 msgstr ""
+"두 옵션이 모두 제공되면, :data:`os.pathsep`\\으로 구분하여, 사용자 베이스와 사용자 사이트를 (항상 이 순서대로)"
+" 인쇄합니다."
 
 #: ../Doc/library/site.rst:248
 msgid ""
@@ -285,54 +358,11 @@ msgid ""
 "disabled by the user, ``2`` if it is disabled for security reasons or by "
 "an administrator, and a value greater than 2 if there is an error."
 msgstr ""
+"어떤 옵션이건 제공되면, 스크립트는 다음 값 중 하나로 종료됩니다: 사용자 site-packages 디렉터리가 활성화되었으면 "
+"``0``, 사용자에 의해 비활성화되었으면 ``1``, 보안상의 이유나 관리자에 의해 비활성화되었으면 ``2``, 그리고 에러가 "
+"있으면 2보다 큰 값."
 
 #: ../Doc/library/site.rst:255
 msgid ":pep:`370` -- Per user site-packages directory"
-msgstr ""
-
-#~ msgid ""
-#~ "After these path manipulations, an "
-#~ "attempt is made to import a module"
-#~ " named :mod:`sitecustomize`, which can "
-#~ "perform arbitrary site-specific "
-#~ "customizations. It is typically created "
-#~ "by a system administrator in the "
-#~ "site-packages directory.  If this import"
-#~ " fails with an :exc:`ImportError` "
-#~ "exception, it is silently ignored.  If"
-#~ " Python is started without output "
-#~ "streams available, as with :file:`pythonw.exe`"
-#~ " on Windows (which is used by "
-#~ "default to start IDLE), attempted output"
-#~ " from :mod:`sitecustomize` is ignored. Any"
-#~ " exception other than :exc:`ImportError` "
-#~ "causes a silent and perhaps mysterious"
-#~ " failure of the process."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "After this, an attempt is made to"
-#~ " import a module named "
-#~ ":mod:`usercustomize`, which can perform "
-#~ "arbitrary user-specific customizations, if "
-#~ ":data:`ENABLE_USER_SITE` is true.  This file"
-#~ " is intended to be created in "
-#~ "the user site-packages directory (see"
-#~ " below), which is part of "
-#~ "``sys.path`` unless disabled by :option:`-s`."
-#~ "  An :exc:`ImportError` will be silently"
-#~ " ignored."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If any option is given, the script"
-#~ " will exit with one of these "
-#~ "values: ``O`` if the user site-"
-#~ "packages directory is enabled, ``1`` if"
-#~ " it was disabled by the user, "
-#~ "``2`` if it is disabled for "
-#~ "security reasons or by an administrator,"
-#~ " and a value greater than 2 if"
-#~ " there is an error."
-#~ msgstr ""
+msgstr ":pep:`370` -- 사용자별 site-packages 디렉터리"
 
