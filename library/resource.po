@@ -3,52 +3,51 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-25 10:27+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/resource.rst:2
 msgid ":mod:`resource` --- Resource usage information"
-msgstr ""
+msgstr ":mod:`resource` --- 자원 사용 정보"
 
 #: ../Doc/library/resource.rst:13
 msgid ""
 "This module provides basic mechanisms for measuring and controlling "
 "system resources utilized by a program."
-msgstr ""
+msgstr "이 모듈은 프로그램에서 사용하는 시스템 자원을 측정하고 제어하기 위한 기본 메커니즘을 제공합니다."
 
 #: ../Doc/library/resource.rst:16
 msgid ""
 "Symbolic constants are used to specify particular system resources and to"
 " request usage information about either the current process or its "
 "children."
-msgstr ""
+msgstr "기호 상수는 특정 시스템 자원을 지정하고 현재 프로세스나 그 자식들에 대한 사용 정보를 요청하는 데 사용됩니다."
 
 #: ../Doc/library/resource.rst:19
 msgid "An :exc:`OSError` is raised on syscall failure."
-msgstr ""
+msgstr "시스템 호출(syscall) 실패 시 :exc:`OSError`\\가 발생합니다."
 
 #: ../Doc/library/resource.rst:24
 msgid "A deprecated alias of :exc:`OSError`."
-msgstr ""
+msgstr "폐지된 :exc:`OSError`\\의 별칭."
 
 #: ../Doc/library/resource.rst:26
 msgid "Following :pep:`3151`, this class was made an alias of :exc:`OSError`."
-msgstr ""
+msgstr ":pep:`3151`\\에 따라, 이 클래스는 :exc:`OSError`\\의 별칭이 되었습니다."
 
 #: ../Doc/library/resource.rst:31
 msgid "Resource Limits"
-msgstr ""
+msgstr "자원 제한"
 
 #: ../Doc/library/resource.rst:33
 msgid ""
@@ -60,6 +59,10 @@ msgid ""
 "the soft limit, but not raised. (Only processes with the effective UID of"
 " the super-user can raise a hard limit.)"
 msgstr ""
+"아래 설명된 :func:`setrlimit` 함수를 사용하여 자원 사용량을 제한 할 수 있습니다. 각 자원은 제한의 쌍으로 "
+"제어됩니다: 소프트 제한과 하드 제한. 소프트 제한은 현재 제한이며, 시간이 지남에 따라 프로세스에 의해 낮아지거나 높아질 수 "
+"있습니다. 소프트 제한은 하드 제한을 초과할 수 없습니다. 하드 제한은 소프트 제한보다 큰 값으로 낮출 수 있지만, 높일 수는 "
+"없습니다. (슈퍼 유저의 유효 UID를 갖는 프로세스만 하드 제한을 높일 수 있습니다.)"
 
 #: ../Doc/library/resource.rst:41
 msgid ""
@@ -69,10 +72,13 @@ msgid ""
 "resources which cannot be checked or controlled by the operating system "
 "are not defined in this module for those platforms."
 msgstr ""
+"제한될 수 있는 구체적인 자원은 시스템에 따라 다릅니다. :manpage:`getrlimit(2)` 매뉴얼 페이지에 설명되어 "
+"있습니다. 아래에 나열된 자원은 하부 운영 체제에서 지원할 때 지원됩니다; 운영 체제에서 검사하거나 제어할 수 없는 자원은 해당 "
+"플랫폼에서는 이 모듈에서 정의되지 않습니다."
 
 #: ../Doc/library/resource.rst:50
 msgid "Constant used to represent the limit for an unlimited resource."
-msgstr ""
+msgstr "무제한 자원의 제한을 나타내는 데 사용되는 상수."
 
 #: ../Doc/library/resource.rst:55
 msgid ""
@@ -81,6 +87,9 @@ msgid ""
 "specified, or :exc:`error` if the underlying system call fails "
 "unexpectedly."
 msgstr ""
+"*resource*\\의 현재 소프트와 하드 제한인 튜플 ``(soft, hard)``\\를 반환합니다. 유효하지 않은 "
+"resource가 지정되면 :exc:`ValueError`\\가 발생하고, 하부 시스템 호출이 예기치 않게 실패하면 "
+":exc:`error`\\가 발생합니다."
 
 #: ../Doc/library/resource.rst:62
 msgid ""
@@ -89,6 +98,9 @@ msgid ""
 "value of :data:`~resource.RLIM_INFINITY` can be used to request a limit "
 "that is unlimited."
 msgstr ""
+"*resource*\\의 새로운 소비 제한을 설정합니다. *limits* 인자는 새로운 제한을 설명하는 두 정수의 튜플 "
+"``(soft, hard)``\\이어야 합니다. :data:`~resource.RLIM_INFINITY` 값을 사용하여 무제한 "
+"제한을 요청할 수 있습니다."
 
 #: ../Doc/library/resource.rst:67
 msgid ""
@@ -101,12 +113,17 @@ msgid ""
 ":exc:`ValueError` will still be raised if the requested limit exceeds the"
 " system imposed limit."
 msgstr ""
+"유효하지 않은 resource가 지정되거나, 새 소프트 제한이 하드 제한을 초과하거나, 프로세스가 하드 제한을 높이려고 시도하면 "
+":exc:`ValueError`\\가 발생합니다. 해당 자원의 하드나 시스템 제한이 무제한이 아닐 때 "
+":data:`~resource.RLIM_INFINITY` 제한을 지정하면 :exc:`ValueError`\\가 발생합니다. 슈퍼 "
+"유저의 유효 UID를 갖는 프로세스는 무제한을 포함하여 임의의 유효한 제한 값을 요청할 수 있지만, 요청된 제한이 시스템이 부과한 "
+"제한을 초과하면 :exc:`ValueError`\\가 여전히 발생합니다."
 
 #: ../Doc/library/resource.rst:76
 msgid ""
 "``setrlimit`` may also raise :exc:`error` if the underlying system call "
 "fails."
-msgstr ""
+msgstr "하부 시스템 호출이 실패하면 ``setrlimit``\\도 :exc:`error`\\를 발생시킬 수 있습니다."
 
 #: ../Doc/library/resource.rst:81
 msgid ""
@@ -116,6 +133,9 @@ msgid ""
 "*limits* have the same meaning as in :func:`setrlimit`, except that "
 "*limits* is optional."
 msgstr ""
+"하나의 함수에서 :func:`setrlimit`\\와 :func:`getrlimit`\\를 결합하고 임의 프로세스의 자원 제한을 "
+"가져오고 설정하도록 지원합니다. *pid*\\가 0이면, 호출은 현재 프로세스에 적용됩니다. *resource*\\와 "
+"*limits*\\는 *limits*\\가 선택적이라는 점을 제외하고 :func:`setrlimit`\\와 같은 의미입니다."
 
 #: ../Doc/library/resource.rst:87
 msgid ""
@@ -123,6 +143,8 @@ msgid ""
 "the process *pid*. When *limits* is given the *resource* limit of the "
 "process is set and the former resource limit is returned."
 msgstr ""
+"*limits*\\가 제공되지 않으면 함수는 프로세스 *pid*\\의 *resource* 제한을 반환합니다. *limits*\\가 "
+"제공되면 프로세스의 *resource* 제한이 설정되고 이전 자원 제한이 반환됩니다."
 
 #: ../Doc/library/resource.rst:91
 msgid ""
@@ -130,12 +152,14 @@ msgid ""
 ":exc:`PermissionError` when the user doesn't have ``CAP_SYS_RESOURCE`` "
 "for the process."
 msgstr ""
+"*pid*\\를 찾을 수 없으면 :exc:`ProcessLookupError`\\가 발생하고 사용자가 프로세스에 대해 "
+"``CAP_SYS_RESOURCE``\\가 없으면 :exc:`PermissionError`\\가 발생합니다."
 
 #: ../Doc/library/resource.rst:96
 msgid ""
 ":ref:`Availability <availability>`: Linux 2.6.36 or later with glibc 2.13"
 " or later."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: glibc 2.13 이상이 설치된 리눅스 2.6.36 이상."
 
 #: ../Doc/library/resource.rst:100
 msgid ""
@@ -143,6 +167,8 @@ msgid ""
 "the :func:`setrlimit` and :func:`getrlimit` functions described below. "
 "The values of these symbols are exactly the constants used by C programs."
 msgstr ""
+"이 기호들은 :func:`setrlimit`\\와 :func:`getrlimit` 함수를 사용하여 소비를 제어할 수 있는 아래 "
+"설명된 자원을 정의합니다. 이 기호의 값은 정확히 C 프로그램에서 사용하는 상수입니다."
 
 #: ../Doc/library/resource.rst:104
 msgid ""
@@ -152,6 +178,9 @@ msgid ""
 " differences --- symbols not defined for a platform will not be available"
 " from this module on that platform."
 msgstr ""
+":manpage:`getrlimit(2)`\\에 관한 유닉스 매뉴얼 페이지는 사용 가능한 자원을 나열합니다. 모든 시스템이 같은 "
+"자원을 나타내는 데 같은 기호나 같은 값을 사용하는 것은 아닙니다. 이 모듈은 플랫폼 차이를 감추려고 시도하지 않습니다 --- "
+"플랫폼에서 정의되지 않은 기호는 해당 플랫폼에서 이 모듈에서 제공되지 않습니다."
 
 #: ../Doc/library/resource.rst:113
 msgid ""
@@ -159,6 +188,8 @@ msgid ""
 "create. This may result in the creation of a partial core file if a "
 "larger core would be required to contain the entire process image."
 msgstr ""
+"현재 프로세스가 만들 수 있는 코어(core) 파일의 최대 크기 (바이트). 전체 프로세스 이미지를 담기 위해 더 큰 코어가 필요할"
+" 때 부분 코어 파일이 생성될 수 있습니다."
 
 #: ../Doc/library/resource.rst:120
 msgid ""
@@ -168,87 +199,90 @@ msgid ""
 "about how to catch this signal and do something useful, e.g. flush open "
 "files to disk.)"
 msgstr ""
+"프로세스가 사용할 수 있는 최대 프로세서 시간 (초). 이 제한을 초과하면, :const:`SIGXCPU` 시그널이 프로세스로 "
+"전송됩니다. (이 시그널을 포착하고, 열려있는 파일을 디스크로 플러시 하는 등 유용한 작업을 수행하는 방법에 대한 정보는 "
+":mod:`signal` 모듈 설명서를 참조하십시오.)"
 
 #: ../Doc/library/resource.rst:128
 msgid "The maximum size of a file which the process may create."
-msgstr ""
+msgstr "프로세스가 만들 수 있는 파일의 최대 크기."
 
 #: ../Doc/library/resource.rst:133
 msgid "The maximum size (in bytes) of the process's heap."
-msgstr ""
+msgstr "프로세스 힙(heap)의 최대 크기 (바이트)."
 
 #: ../Doc/library/resource.rst:138
 msgid ""
 "The maximum size (in bytes) of the call stack for the current process.  "
 "This only affects the stack of the main thread in a multi-threaded "
 "process."
-msgstr ""
+msgstr "현재 프로세스에 대한 호출 스택의 최대 크기 (바이트). 이것은 다중 스레드 프로세스에서 메인 스레드의 스택에만 영향을 줍니다."
 
 #: ../Doc/library/resource.rst:144
 msgid ""
 "The maximum resident set size that should be made available to the "
 "process."
-msgstr ""
+msgstr "프로세스에서 사용할 수 있는 최대 상주 집합(resident set) 크기."
 
 #: ../Doc/library/resource.rst:149
 msgid "The maximum number of processes the current process may create."
-msgstr ""
+msgstr "현재 프로세스가 만들 수 있는 최대 프로세스 수."
 
 #: ../Doc/library/resource.rst:154
 msgid "The maximum number of open file descriptors for the current process."
-msgstr ""
+msgstr "현재 프로세스에 대한 열린 파일 기술자의 최대 수."
 
 #: ../Doc/library/resource.rst:159
 msgid "The BSD name for :const:`RLIMIT_NOFILE`."
-msgstr ""
+msgstr ":const:`RLIMIT_NOFILE`\\의 BSD 이름."
 
 #: ../Doc/library/resource.rst:164
 msgid "The maximum address space which may be locked in memory."
-msgstr ""
+msgstr "메모리에 잠겨 있을 수 있는 최대 주소 공간."
 
 #: ../Doc/library/resource.rst:169
 msgid "The largest area of mapped memory which the process may occupy."
-msgstr ""
+msgstr "프로세스가 차지할 수 있는 가장 큰 매핑된 메모리(mapped memory) 영역."
 
 #: ../Doc/library/resource.rst:174
 msgid ""
 "The maximum area (in bytes) of address space which may be taken by the "
 "process."
-msgstr ""
+msgstr "프로세스에서 사용할 수 있는 주소 공간의 최대 영역 (바이트)."
 
 #: ../Doc/library/resource.rst:179
 msgid "The number of bytes that can be allocated for POSIX message queues."
-msgstr ""
+msgstr "POSIX 메시지 큐에 할당할 수 있는 바이트 수."
 
 #: ../Doc/library/resource.rst:182 ../Doc/library/resource.rst:219
 msgid ":ref:`Availability <availability>`: Linux 2.6.8 or later."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 리눅스 2.6.8 이상."
 
 #: ../Doc/library/resource.rst:188
 msgid "The ceiling for the process's nice level (calculated as 20 - rlim_cur)."
-msgstr ""
+msgstr "프로세스의 나이스(nice) 수준의 상한 (20 - rlim_cur로 계산됩니다)."
 
 #: ../Doc/library/resource.rst:191 ../Doc/library/resource.rst:200
 msgid ":ref:`Availability <availability>`: Linux 2.6.12 or later."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 리눅스 2.6.12 이상."
 
 #: ../Doc/library/resource.rst:197
 msgid "The ceiling of the real-time priority."
-msgstr ""
+msgstr "실시간 우선순위의 상한."
 
 #: ../Doc/library/resource.rst:206
 msgid ""
 "The time limit (in microseconds) on CPU time that a process can spend "
 "under real-time scheduling without making a blocking syscall."
-msgstr ""
+msgstr "프로세스가 블로킹 시스템 호출 없이 실시간 스케줄링 하에서 소비할 수 있는 CPU 시간의 시간제한 (마이크로초)."
 
 #: ../Doc/library/resource.rst:210
 msgid ":ref:`Availability <availability>`: Linux 2.6.25 or later."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 리눅스 2.6.25 이상."
 
 #: ../Doc/library/resource.rst:216
 msgid "The number of signals which the process may queue."
-msgstr ""
+msgstr "프로세스가 큐에 넣을 수 있는 시그널 수입니다."
 
 #: ../Doc/library/resource.rst:224
 msgid ""
@@ -256,11 +290,13 @@ msgid ""
 "limits the amount of network memory, and hence the amount of mbufs, that "
 "this user may hold at any time."
 msgstr ""
+"이 사용자의 소켓 버퍼 사용량의 최대 크기 (바이트). 이것은 이 사용자가 모든 시점에 보유할 수 있는 네트워크 메모리양과 "
+"mbuf들의 양을 제한합니다."
 
 #: ../Doc/library/resource.rst:229 ../Doc/library/resource.rst:240
 #: ../Doc/library/resource.rst:248
 msgid ":ref:`Availability <availability>`: FreeBSD 9 or later."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: FreeBSD 9 이상."
 
 #: ../Doc/library/resource.rst:234
 msgid ""
@@ -269,18 +305,21 @@ msgid ""
 "bit 1 of the vm.overcommit sysctl is set. Please see :manpage:`tuning(7)`"
 " for a complete description of this sysctl."
 msgstr ""
+"이 사용자 ID의 모든 프로세스에서 예약하거나 사용할 수 있는 스와프 공간의 최대 크기 (바이트). 이 제한은 "
+"vm.overcommit sysctl의 비트 1이 설정되었을 때만 적용됩니다. 이 sysctl에 대한 자세한 설명은 "
+":manpage:`tuning(7)`\\를 참조하십시오."
 
 #: ../Doc/library/resource.rst:245
 msgid "The maximum number of pseudo-terminals created by this user id."
-msgstr ""
+msgstr "이 사용자 ID로 만들어지는 최대 의사 터미널(pseudo-terminal) 수."
 
 #: ../Doc/library/resource.rst:252
 msgid "Resource Usage"
-msgstr ""
+msgstr "자원 사용량"
 
 #: ../Doc/library/resource.rst:254
 msgid "These functions are used to retrieve resource usage information:"
-msgstr ""
+msgstr "이 함수는 자원 사용량 정보를 조회하는 데 사용됩니다:"
 
 #: ../Doc/library/resource.rst:259
 msgid ""
@@ -289,6 +328,8 @@ msgid ""
 "parameter.  The *who* parameter should be specified using one of the "
 ":const:`RUSAGE_\\*` constants described below."
 msgstr ""
+"이 함수는 *who* 매개 변수에 지정된 대로 현재 프로세스나 그 자식이 소비한 자원을 설명하는 객체를 반환합니다. *who* 매개"
+" 변수는 아래에 설명된 :const:`RUSAGE_\\*` 상수 중 하나를 사용하여 지정해야 합니다."
 
 #: ../Doc/library/resource.rst:264
 msgid ""
@@ -298,12 +339,15 @@ msgid ""
 "are dependent on the clock tick internal, e.g. the amount of memory the "
 "process is using."
 msgstr ""
+"반환 값의 필드는 각각 특정 시스템 자원이 어떻게 사용되었는지를 설명합니다. 예를 들어, 사용자 모드로 실행에 든 시간이나 "
+"프로세스가 주 메모리에서 스와프된 횟수. 일부 값은 클록 틱(clock tick) 내부에 의존합니다, 예를 들어, 프로세스에서 사용"
+" 중인 메모리양."
 
 #: ../Doc/library/resource.rst:269
 msgid ""
 "For backward compatibility, the return value is also accessible as a "
 "tuple of 16 elements."
-msgstr ""
+msgstr "이전 버전과의 호환성을 위해, 반환 값은 16개 요소의 튜플로 액세스 할 수도 있습니다."
 
 #: ../Doc/library/resource.rst:272
 msgid ""
@@ -314,26 +358,29 @@ msgid ""
 ":manpage:`getrusage(2)` man page for detailed information about these "
 "values. A brief summary is presented here:"
 msgstr ""
+"반환 값의 필드 :attr:`ru_utime`\\과 :attr:`ru_stime`\\은 각각 사용자 모드에서 실행된 시간과 시스템 "
+"모드에서 실행된 시간을 나타내는 부동 소수점 값입니다. 나머지 값은 정수입니다. 이러한 값에 대한 자세한 내용은 "
+":manpage:`getrusage(2)` 매뉴얼 페이지를 참조하십시오. 간략한 요약은 다음과 같습니다:"
 
 #: ../Doc/library/resource.rst:279
 msgid "Index"
-msgstr ""
+msgstr "인덱스"
 
 #: ../Doc/library/resource.rst:279
 msgid "Field"
-msgstr ""
+msgstr "필드"
 
 #: ../Doc/library/resource.rst:279
 msgid "Resource"
-msgstr ""
+msgstr "자원"
 
 #: ../Doc/library/resource.rst:281
 msgid "``0``"
-msgstr ""
+msgstr "``0``"
 
 #: ../Doc/library/resource.rst:281
 msgid ":attr:`ru_utime`"
-msgstr ""
+msgstr ":attr:`ru_utime`"
 
 #: ../Doc/library/resource.rst:281
 msgid "time in user mode (float)"
@@ -341,11 +388,11 @@ msgstr ""
 
 #: ../Doc/library/resource.rst:283
 msgid "``1``"
-msgstr ""
+msgstr "``1``"
 
 #: ../Doc/library/resource.rst:283
 msgid ":attr:`ru_stime`"
-msgstr ""
+msgstr ":attr:`ru_stime`"
 
 #: ../Doc/library/resource.rst:283
 msgid "time in system mode (float)"
@@ -353,171 +400,171 @@ msgstr ""
 
 #: ../Doc/library/resource.rst:285
 msgid "``2``"
-msgstr ""
+msgstr "``2``"
 
 #: ../Doc/library/resource.rst:285
 msgid ":attr:`ru_maxrss`"
-msgstr ""
+msgstr ":attr:`ru_maxrss`"
 
 #: ../Doc/library/resource.rst:285
 msgid "maximum resident set size"
-msgstr ""
+msgstr "최대 상주 집합(resident set) 크기"
 
 #: ../Doc/library/resource.rst:287
 msgid "``3``"
-msgstr ""
+msgstr "``3``"
 
 #: ../Doc/library/resource.rst:287
 msgid ":attr:`ru_ixrss`"
-msgstr ""
+msgstr ":attr:`ru_ixrss`"
 
 #: ../Doc/library/resource.rst:287
 msgid "shared memory size"
-msgstr ""
+msgstr "공유 메모리 크기"
 
 #: ../Doc/library/resource.rst:289
 msgid "``4``"
-msgstr ""
+msgstr "``4``"
 
 #: ../Doc/library/resource.rst:289
 msgid ":attr:`ru_idrss`"
-msgstr ""
+msgstr ":attr:`ru_idrss`"
 
 #: ../Doc/library/resource.rst:289
 msgid "unshared memory size"
-msgstr ""
+msgstr "비공유 메모리 크기"
 
 #: ../Doc/library/resource.rst:291
 msgid "``5``"
-msgstr ""
+msgstr "``5``"
 
 #: ../Doc/library/resource.rst:291
 msgid ":attr:`ru_isrss`"
-msgstr ""
+msgstr ":attr:`ru_isrss`"
 
 #: ../Doc/library/resource.rst:291
 msgid "unshared stack size"
-msgstr ""
+msgstr "비공유 스택 크기"
 
 #: ../Doc/library/resource.rst:293
 msgid "``6``"
-msgstr ""
+msgstr "``6``"
 
 #: ../Doc/library/resource.rst:293
 msgid ":attr:`ru_minflt`"
-msgstr ""
+msgstr ":attr:`ru_minflt`"
 
 #: ../Doc/library/resource.rst:293
 msgid "page faults not requiring I/O"
-msgstr ""
+msgstr "I/O가 필요 없는 페이지 폴트(page fault)"
 
 #: ../Doc/library/resource.rst:295
 msgid "``7``"
-msgstr ""
+msgstr "``7``"
 
 #: ../Doc/library/resource.rst:295
 msgid ":attr:`ru_majflt`"
-msgstr ""
+msgstr ":attr:`ru_majflt`"
 
 #: ../Doc/library/resource.rst:295
 msgid "page faults requiring I/O"
-msgstr ""
+msgstr "I/O가 필요한 페이지 폴트(page fault)"
 
 #: ../Doc/library/resource.rst:297
 msgid "``8``"
-msgstr ""
+msgstr "``8``"
 
 #: ../Doc/library/resource.rst:297
 msgid ":attr:`ru_nswap`"
-msgstr ""
+msgstr ":attr:`ru_nswap`"
 
 #: ../Doc/library/resource.rst:297
 msgid "number of swap outs"
-msgstr ""
+msgstr "스와프(swap out) 수"
 
 #: ../Doc/library/resource.rst:299
 msgid "``9``"
-msgstr ""
+msgstr "``9``"
 
 #: ../Doc/library/resource.rst:299
 msgid ":attr:`ru_inblock`"
-msgstr ""
+msgstr ":attr:`ru_inblock`"
 
 #: ../Doc/library/resource.rst:299
 msgid "block input operations"
-msgstr ""
+msgstr "블록 입력 연산(block input operations)"
 
 #: ../Doc/library/resource.rst:301
 msgid "``10``"
-msgstr ""
+msgstr "``10``"
 
 #: ../Doc/library/resource.rst:301
 msgid ":attr:`ru_oublock`"
-msgstr ""
+msgstr ":attr:`ru_oublock`"
 
 #: ../Doc/library/resource.rst:301
 msgid "block output operations"
-msgstr ""
+msgstr "블록 출력 연산(block output operations)"
 
 #: ../Doc/library/resource.rst:303
 msgid "``11``"
-msgstr ""
+msgstr "``11``"
 
 #: ../Doc/library/resource.rst:303
 msgid ":attr:`ru_msgsnd`"
-msgstr ""
+msgstr ":attr:`ru_msgsnd`"
 
 #: ../Doc/library/resource.rst:303
 msgid "messages sent"
-msgstr ""
+msgstr "보낸 메시지"
 
 #: ../Doc/library/resource.rst:305
 msgid "``12``"
-msgstr ""
+msgstr "``12``"
 
 #: ../Doc/library/resource.rst:305
 msgid ":attr:`ru_msgrcv`"
-msgstr ""
+msgstr ":attr:`ru_msgrcv`"
 
 #: ../Doc/library/resource.rst:305
 msgid "messages received"
-msgstr ""
+msgstr "받은 메시지"
 
 #: ../Doc/library/resource.rst:307
 msgid "``13``"
-msgstr ""
+msgstr "``13``"
 
 #: ../Doc/library/resource.rst:307
 msgid ":attr:`ru_nsignals`"
-msgstr ""
+msgstr ":attr:`ru_nsignals`"
 
 #: ../Doc/library/resource.rst:307
 msgid "signals received"
-msgstr ""
+msgstr "받은 시그널"
 
 #: ../Doc/library/resource.rst:309
 msgid "``14``"
-msgstr ""
+msgstr "``14``"
 
 #: ../Doc/library/resource.rst:309
 msgid ":attr:`ru_nvcsw`"
-msgstr ""
+msgstr ":attr:`ru_nvcsw`"
 
 #: ../Doc/library/resource.rst:309
 msgid "voluntary context switches"
-msgstr ""
+msgstr "자발적 컨텍스트 전환(voluntary context switches)"
 
 #: ../Doc/library/resource.rst:311
 msgid "``15``"
-msgstr ""
+msgstr "``15``"
 
 #: ../Doc/library/resource.rst:311
 msgid ":attr:`ru_nivcsw`"
-msgstr ""
+msgstr ":attr:`ru_nivcsw`"
 
 #: ../Doc/library/resource.rst:311
 msgid "involuntary context switches"
-msgstr ""
+msgstr "비자발적 컨텍스트 전환(involuntary context switches)"
 
 #: ../Doc/library/resource.rst:314
 msgid ""
@@ -525,19 +572,21 @@ msgid ""
 "parameter is specified. It may also raise :exc:`error` exception in "
 "unusual circumstances."
 msgstr ""
+"유효하지 않은 *who* 매개 변수가 지정되면 이 함수는 :exc:`ValueError`\\를 발생시킵니다. 비정상적인 상황에서 "
+":exc:`error` 예외가 발생할 수도 있습니다."
 
 #: ../Doc/library/resource.rst:320
 msgid ""
 "Returns the number of bytes in a system page. (This need not be the same "
 "as the hardware page size.)"
-msgstr ""
+msgstr "시스템 페이지의 바이트 수를 반환합니다. (하드웨어 페이지 크기와 같을 필요는 없습니다.)"
 
 #: ../Doc/library/resource.rst:323
 msgid ""
 "The following :const:`RUSAGE_\\*` symbols are passed to the "
 ":func:`getrusage` function to specify which processes information should "
 "be provided for."
-msgstr ""
+msgstr "다음 :const:`RUSAGE_\\*` 기호는 :func:`getrusage` 함수에 전달되어 제공할 프로세스 정보를 지정합니다."
 
 #: ../Doc/library/resource.rst:329
 msgid ""
@@ -545,6 +594,8 @@ msgid ""
 "process, which is the sum of resources used by all threads in the "
 "process."
 msgstr ""
+"호출하는 프로세스가 소비한 자원을 요청하기 위해 :func:`getrusage`\\로 전달합니다. 이는 프로세스의 모든 스레드가 "
+"사용하는 자원의 합계입니다."
 
 #: ../Doc/library/resource.rst:335
 msgid ""
@@ -552,6 +603,8 @@ msgid ""
 "processes of the calling process which have been terminated and waited "
 "for."
 msgstr ""
+"호출하는 프로세스의 종료되어 기다리고 있는 자식 프로세스에서 소비한 자원을 요청하기 위해 :func:`getrusage`\\로 "
+"전달합니다."
 
 #: ../Doc/library/resource.rst:341
 msgid ""
@@ -559,28 +612,14 @@ msgid ""
 "current process and child processes.  May not be available on all "
 "systems."
 msgstr ""
+"현재 프로세스와 자식 프로세스 모두에서 소비한 자원을 요청하기 위해 :func:`getrusage`\\로 전달합니다. 모든 "
+"시스템에서 사용 가능한 것은 아닙니다."
 
 #: ../Doc/library/resource.rst:347
 msgid ""
 "Pass to :func:`getrusage` to request resources consumed by the current "
 "thread.  May not be available on all systems."
 msgstr ""
-
-#~ msgid "Availability: Linux 2.6.36 or later with glibc 2.13 or later"
-#~ msgstr ""
-
-#~ msgid "Availability: Linux 2.6.36 or later with glibc 2.13 or later."
-#~ msgstr ""
-
-#~ msgid "Availability: Linux 2.6.8 or later."
-#~ msgstr ""
-
-#~ msgid "Availability: Linux 2.6.12 or later."
-#~ msgstr ""
-
-#~ msgid "Availability: Linux 2.6.25 or later."
-#~ msgstr ""
-
-#~ msgid "Availability: FreeBSD 9 or later."
-#~ msgstr ""
+"현재 스레드가 소비한 자원을 요청하기 위해 :func:`getrusage`\\에 전달합니다. 모든 시스템에서 사용 가능한 것은 "
+"아닙니다."
 
