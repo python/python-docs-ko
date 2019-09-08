@@ -3,27 +3,26 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/xml.sax.reader.rst:2
 msgid ":mod:`xml.sax.xmlreader` --- Interface for XML parsers"
-msgstr ""
+msgstr ":mod:`xml.sax.xmlreader` --- XML 구문 분석기 인터페이스"
 
 #: ../Doc/library/xml.sax.reader.rst:10
 msgid "**Source code:** :source:`Lib/xml/sax/xmlreader.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/xml/sax/xmlreader.py`"
 
 #: ../Doc/library/xml.sax.reader.rst:14
 msgid ""
@@ -33,10 +32,13 @@ msgid ""
 ":func:`xml.sax.make_parser` with no arguments to create a new  parser "
 "object."
 msgstr ""
+"SAX 구문 분석기는 :class:`XMLReader` 인터페이스를 구현합니다. 이들은 함수 "
+":func:`create_parser`\\를 제공해야 하는 파이썬 모듈로 구현됩니다. 이 함수는 새로운 구문 분석기 객체를 만들기 "
+"위해 인자 없이 :func:`xml.sax.make_parser`\\에 의해 호출됩니다."
 
 #: ../Doc/library/xml.sax.reader.rst:22
 msgid "Base class which can be inherited by SAX parsers."
-msgstr ""
+msgstr "SAX 구문 분석기가 상속할 수 있는 베이스 클래스."
 
 #: ../Doc/library/xml.sax.reader.rst:27
 msgid ""
@@ -47,6 +49,10 @@ msgid ""
 "processed. So these interfaces should be used if the blocking behaviour "
 "of :meth:`parse` is not desirable."
 msgstr ""
+"때에 따라 입력 소스를 한 번에 구문 분석하지 않고 문서를 사용 가능할 때마다 청크로 공급하는 것이 바람직합니다. "
+"입력기(reader)는 일반적으로 전체 파일을 읽지 않고 덩어리로 읽습니다; 여전히 전체 문서가 처리될 때까지 "
+":meth:`parse`\\는 반환하지 않습니다. 따라서 :meth:`parse`\\의 블로킹 동작이 바람직하지 않을 때 이 "
+"인터페이스를 사용해야 합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:33
 msgid ""
@@ -55,12 +61,15 @@ msgid ""
 "to close the reset method must be called to make the parser ready to "
 "accept new data, either from feed or using the parse method."
 msgstr ""
+"구문 분석기가 인스턴스화 되면 즉시 feed 메서드에서 데이터를 받아들일 수 있습니다. 구문 분석이 close 호출로 완료된 후, "
+"구문 분석기가 feed나 parse 메서드를 사용하여 새 데이터를 받아들일 준비가 되도록 하려면 reset 메서드를 호출해야 "
+"합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:38
 msgid ""
 "Note that these methods must *not* be called during parsing, that is, "
 "after parse has been called and before it returns."
-msgstr ""
+msgstr "이러한 메서드들은 구문 분석 중, 즉 parse가 호출된 후 반환하기 전에 호출하지 *않아야* 합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:41
 msgid ""
@@ -68,6 +77,8 @@ msgid ""
 "interface using the feed, close and reset methods of the "
 "IncrementalParser interface as a convenience to SAX 2.0 driver writers."
 msgstr ""
+"기본적으로, 이 클래스는 SAX 2.0 드라이버 작성자의 편의를 위해 IncrementalParser 인터페이스의 feed, "
+"close 및 reset 메서드를 사용하여 XMLReader 인터페이스의 parse 메서드를 구현합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:48
 msgid ""
@@ -76,12 +87,15 @@ msgid ""
 "methods; at any other time, the results are unpredictable. If information"
 " is not available, methods may return ``None``."
 msgstr ""
+"SAX 이벤트를 문서 위치에 관련시키기 위한 인터페이스. 로케이터 객체는 DocumentHandler 메서드들을 호출하는 동안에만 "
+"유효한 결과를 반환합니다; 다른 때에는 결과를 예측할 수 없습니다. 정보가 없으면, 메서드는 ``None``\\을 반환할 수 "
+"있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:56
 msgid ""
 "Encapsulation of the information needed by the :class:`XMLReader` to read"
 " entities."
-msgstr ""
+msgstr "엔티티를 읽기 위해 :class:`XMLReader`\\에 필요한 정보의 캡슐화."
 
 #: ../Doc/library/xml.sax.reader.rst:59
 msgid ""
@@ -89,6 +103,8 @@ msgid ""
 "identifier, byte stream (possibly with character encoding information) "
 "and/or the character stream of an entity."
 msgstr ""
+"이 클래스는 공개 식별자, 시스템 식별자, 바이트 스트림 (문자 인코딩 정보도 포함할 수 있습니다) 및/또는 엔티티의 문자 스트림에"
+" 대한 정보를 포함할 수 있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:63
 msgid ""
@@ -96,6 +112,8 @@ msgid ""
 ":meth:`XMLReader.parse` method and for returning from "
 "EntityResolver.resolveEntity."
 msgstr ""
+"응용 프로그램은 :meth:`XMLReader.parse` 메서드에서 사용하고 "
+"EntityResolver.resolveEntity에서 반환하기 위해 이 클래스의 객체를 만듭니다."
 
 #: ../Doc/library/xml.sax.reader.rst:67
 msgid ""
@@ -104,6 +122,8 @@ msgid ""
 "passed to it from the application, although it may make copies and modify"
 " those."
 msgstr ""
+":class:`InputSource`\\는 응용 프로그램에 속하며, :class:`XMLReader`\\는 응용 프로그램에서 전달된"
+" :class:`InputSource` 객체를 수정할 수는 없지만, 복사하여 수정할 수는 있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:74
 msgid ""
@@ -116,6 +136,10 @@ msgid ""
 "like object containing a mapping from attribute names to attribute "
 "values."
 msgstr ""
+"이것은 :class:`Attributes` 인터페이스의 구현입니다 (:ref:`attributes-objects` 절을 "
+"참조하십시오). 이것은 :meth:`startElement` 호출에서 요소 어트리뷰트를 나타내는 딕셔너리류 객체입니다. 가장 유용한"
+" 딕셔너리 연산 외에도, 인터페이스에서 설명하는 여러 가지 메서드를 지원합니다. 이 클래스의 객체는 입력기(reader)가 "
+"인스턴스화 해야 합니다; *attrs*\\는 어트리뷰트 이름에서 어트리뷰트 값으로의 매핑을 포함하는 딕셔너리류 객체여야 합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:85
 msgid ""
@@ -127,14 +151,19 @@ msgid ""
 "implements the :class:`AttributesNS` interface (see section :ref"
 ":`attributes-ns-objects`)."
 msgstr ""
+":meth:`startElementNS`\\에 전달될 :class:`AttributesImpl`\\의 이름 공간(namespace)"
+" 인식 변형입니다. :class:`AttributesImpl`\\에서 파생되었지만, *namespaceURI*\\와 "
+"*localname*\\의 2-튜플로 구성된 어트리뷰트 이름을 이해합니다. 또한, 원본 문서에 나타나는 정규화 된 이름을 기대하는 "
+"여러 가지 메서드를 제공합니다. 이 클래스는 :class:`AttributesNS` 인터페이스를 구현합니다 (:ref"
+":`attributes-ns-objects` 절을 참조하십시오)."
 
 #: ../Doc/library/xml.sax.reader.rst:96
 msgid "XMLReader Objects"
-msgstr ""
+msgstr "XMLReader 객체"
 
 #: ../Doc/library/xml.sax.reader.rst:98
 msgid "The :class:`XMLReader` interface supports the following methods:"
-msgstr ""
+msgstr ":class:`XMLReader` 인터페이스는 다음과 같은 메서드를 지원합니다:"
 
 #: ../Doc/library/xml.sax.reader.rst:103
 msgid ""
@@ -147,11 +176,11 @@ msgstr ""
 
 #: ../Doc/library/xml.sax.reader.rst:109
 msgid "Added support of character streams."
-msgstr ""
+msgstr "문자 스트림 지원이 추가되었습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:115
 msgid "Return the current :class:`~xml.sax.handler.ContentHandler`."
-msgstr ""
+msgstr "현재 :class:`~xml.sax.handler.ContentHandler`\\를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:120
 msgid ""
@@ -159,10 +188,12 @@ msgid ""
 ":class:`~xml.sax.handler.ContentHandler` is set, content events will be "
 "discarded."
 msgstr ""
+"현재 :class:`~xml.sax.handler.ContentHandler`\\를 설정합니다. "
+":class:`~xml.sax.handler.ContentHandler`\\가 설정되지 않으면, 내용 이벤트가 버려집니다."
 
 #: ../Doc/library/xml.sax.reader.rst:127
 msgid "Return the current :class:`~xml.sax.handler.DTDHandler`."
-msgstr ""
+msgstr "현재 :class:`~xml.sax.handler.DTDHandler`\\를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:132
 msgid ""
@@ -170,10 +201,12 @@ msgid ""
 ":class:`~xml.sax.handler.DTDHandler` is set, DTD events will be "
 "discarded."
 msgstr ""
+"현재 :class:`~xml.sax.handler.DTDHandler`\\를 설정합니다. "
+":class:`~xml.sax.handler.DTDHandler`\\가 설정되지 않으면, DTD 이벤트가 버려집니다."
 
 #: ../Doc/library/xml.sax.reader.rst:139
 msgid "Return the current :class:`~xml.sax.handler.EntityResolver`."
-msgstr ""
+msgstr "현재 :class:`~xml.sax.handler.EntityResolver`\\를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:144
 msgid ""
@@ -182,10 +215,13 @@ msgid ""
 "external entity will result in opening the system identifier for the "
 "entity, and fail if it is not available."
 msgstr ""
+"현재 :class:`~xml.sax.handler.EntityResolver`\\를 설정합니다. "
+":class:`~xml.sax.handler.EntityResolver`\\가 설정되지 않으면, 외부 엔티티를 결정하려고 할 때 "
+"엔티티에 대한 시스템 식별자가 열리게 되고, 사용할 수 없으면 실패합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:152
 msgid "Return the current :class:`~xml.sax.handler.ErrorHandler`."
-msgstr ""
+msgstr "현재 :class:`~xml.sax.handler.ErrorHandler`\\를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:157
 msgid ""
@@ -193,10 +229,12 @@ msgid ""
 ":class:`~xml.sax.handler.ErrorHandler` is set, errors will be raised as "
 "exceptions, and warnings will be printed."
 msgstr ""
+"현재 에러 처리기를 설정합니다. :class:`~xml.sax.handler.ErrorHandler`\\가 설정되지 않으면, 에러는"
+" 예외를 발생시키고, 경고는 인쇄됩니다."
 
 #: ../Doc/library/xml.sax.reader.rst:163
 msgid "Allow an application to set the locale for errors and warnings."
-msgstr ""
+msgstr "응용 프로그램이 에러와 경고에 대한 로케일을 설정하도록 합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:165
 msgid ""
@@ -205,6 +243,8 @@ msgid ""
 " raise a SAX exception.  Applications may request a locale change in the "
 "middle of a parse."
 msgstr ""
+"SAX 구문 분석기는 에러와 경고에 대한 지역화를 제공하지 않아도 됩니다; 그러나, 요청된 로케일을 지원할 수 없으면 SAX 예외를"
+" 발생시켜야 합니다. 응용 프로그램은 구문 분석 중에 로케일 변경을 요청할 수 있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:172
 msgid ""
@@ -212,6 +252,9 @@ msgid ""
 "not recognized, :exc:`SAXNotRecognizedException` is raised. The well-"
 "known featurenames are listed in the module :mod:`xml.sax.handler`."
 msgstr ""
+"기능 *featurename*\\의 현재 설정을 반환합니다. 기능이 인식되지 않으면, "
+":exc:`SAXNotRecognizedException`\\이 발생합니다. 잘 알려진 기능 이름(featurename)은 모듈 "
+":mod:`xml.sax.handler`\\에 나열되어 있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:179
 msgid ""
@@ -219,6 +262,9 @@ msgid ""
 ":exc:`SAXNotRecognizedException` is raised. If the feature or its setting"
 " is not supported by the parser, *SAXNotSupportedException* is raised."
 msgstr ""
+"*featurename*\\을 *value*\\로 설정합니다. 기능이 인식되지 않으면, "
+":exc:`SAXNotRecognizedException`\\가 발생합니다. 구문 분석기가 기능이나 해당 설정을 지원하지 않으면 "
+"*SAXNotSupportedException*\\이 발생합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:186
 msgid ""
@@ -226,6 +272,9 @@ msgid ""
 "is not recognized, a :exc:`SAXNotRecognizedException` is raised. The "
 "well-known propertynames are listed in the module :mod:`xml.sax.handler`."
 msgstr ""
+"속성 *propertyname*\\의 현재 설정을 반환합니다. 속성이 인식되지 않으면 "
+":exc:`SAXNotRecognizedException`\\이 발생합니다. 잘 알려진 속성 이름은 모듈 "
+":mod:`xml.sax.handler`\\에 나열되어 있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:193
 msgid ""
@@ -234,20 +283,23 @@ msgid ""
 "setting is not supported by the parser, *SAXNotSupportedException* is "
 "raised."
 msgstr ""
+"*propertyname*\\을 *value*\\로 설정합니다. 속성이 인식되지 않으면 "
+":exc:`SAXNotRecognizedException`\\이 발생합니다. 구문 분석기가 속성이나 해당 설정을 지원하지 않으면 "
+"*SAXNotSupportedException*\\이 발생합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:201
 msgid "IncrementalParser Objects"
-msgstr ""
+msgstr "IncrementalParser 객체"
 
 #: ../Doc/library/xml.sax.reader.rst:203
 msgid ""
 "Instances of :class:`IncrementalParser` offer the following additional "
 "methods:"
-msgstr ""
+msgstr ":class:`IncrementalParser` 인스턴스는 다음과 같은 추가 메서드를 제공합니다:"
 
 #: ../Doc/library/xml.sax.reader.rst:208
 msgid "Process a chunk of *data*."
-msgstr ""
+msgstr "*data* 청크를 처리합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:213
 msgid ""
@@ -255,6 +307,8 @@ msgid ""
 "conditions that can be checked only at the end, invoke handlers, and may "
 "clean up resources allocated during parsing."
 msgstr ""
+"문서의 끝을 가정합니다. 끝에서만 확인할 수 있는 올바른 구성(well-formedness) 조건을 확인하고, 처리기를 호출하며 "
+"구문 분석 중에 할당된 자원을 정리할 수 있습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:220
 msgid ""
@@ -262,74 +316,78 @@ msgid ""
 "that it is ready to parse new documents. The results of calling parse or "
 "feed after close without calling reset are undefined."
 msgstr ""
+"이 메서드는 close가 호출된 후에 호출되어 새 문서를 구문 분석할 수 있도록 구문 분석기를 재설정합니다. reset을 호출하지 "
+"않고, close 후에 parse나 feed를 호출한 결과는 정의되지 않습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:228
 msgid "Locator Objects"
-msgstr ""
+msgstr "Locator 객체"
 
 #: ../Doc/library/xml.sax.reader.rst:230
 msgid "Instances of :class:`Locator` provide these methods:"
-msgstr ""
+msgstr ":class:`Locator` 인스턴스는 다음 메서드를 제공합니다:"
 
 #: ../Doc/library/xml.sax.reader.rst:235
 msgid "Return the column number where the current event begins."
-msgstr ""
+msgstr "현재 이벤트가 시작되는 열 번호를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:240
 msgid "Return the line number where the current event begins."
-msgstr ""
+msgstr "현재 이벤트가 시작되는 줄 번호를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:245
 msgid "Return the public identifier for the current event."
-msgstr ""
+msgstr "현재 이벤트의 공개 식별자를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:250
 msgid "Return the system identifier for the current event."
-msgstr ""
+msgstr "현재 이벤트의 시스템 식별자를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:256
 msgid "InputSource Objects"
-msgstr ""
+msgstr "InputSource 객체"
 
 #: ../Doc/library/xml.sax.reader.rst:261
 msgid "Sets the public identifier of this :class:`InputSource`."
-msgstr ""
+msgstr "이 :class:`InputSource`\\의 공개 식별자를 설정합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:266
 msgid "Returns the public identifier of this :class:`InputSource`."
-msgstr ""
+msgstr "이 :class:`InputSource`\\의 공개 식별자를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:271
 msgid "Sets the system identifier of this :class:`InputSource`."
-msgstr ""
+msgstr "이 :class:`InputSource`\\의 시스템 식별자를 설정합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:276
 msgid "Returns the system identifier of this :class:`InputSource`."
-msgstr ""
+msgstr "이 :class:`InputSource`\\의 시스템 식별자를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:281
 msgid "Sets the character encoding of this :class:`InputSource`."
-msgstr ""
+msgstr "이 :class:`InputSource`\\의 문자 인코딩을 설정합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:283
 msgid ""
 "The encoding must be a string acceptable for an XML encoding declaration "
 "(see section 4.3.3 of the XML recommendation)."
-msgstr ""
+msgstr "인코딩은 XML 인코딩 선언에 허용되는 문자열이어야 합니다 (XML 권장 사항의 4.3.3 절을 참조하십시오)."
 
 #: ../Doc/library/xml.sax.reader.rst:286
 msgid ""
 "The encoding attribute of the :class:`InputSource` is ignored if the "
 ":class:`InputSource` also contains a character stream."
 msgstr ""
+":class:`InputSource`\\에 문자 스트림도 포함되어 있으면 :class:`InputSource`\\의 인코딩 "
+"어트리뷰트는 무시됩니다."
 
 #: ../Doc/library/xml.sax.reader.rst:292
 msgid "Get the character encoding of this InputSource."
-msgstr ""
+msgstr "이 InputSource의 문자 인코딩을 가져옵니다."
 
 #: ../Doc/library/xml.sax.reader.rst:297
 msgid "Set the byte stream (a :term:`binary file`) for this input source."
-msgstr ""
+msgstr "이 입력 소스의 바이트 스트림(:term:`바이너리 파일 <binary file>`)을 설정합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:299
 msgid ""
@@ -337,26 +395,28 @@ msgid ""
 "specified, but it will use a byte stream in preference to opening a URI "
 "connection itself."
 msgstr ""
+"문자 스트림도 지정되어 있으면 SAX 구문 분석기는 이것을 무시하지만, URI 연결 자체를 여는 것보다 바이트 스트림을 먼저 "
+"사용합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:302
 msgid ""
 "If the application knows the character encoding of the byte stream, it "
 "should set it with the setEncoding method."
-msgstr ""
+msgstr "응용 프로그램이 바이트 스트림의 문자 인코딩을 알고 있으면, setEncoding 메서드로 설정해야 합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:308
 msgid "Get the byte stream for this input source."
-msgstr ""
+msgstr "이 입력 소스의 바이트 스트림을 가져옵니다."
 
 #: ../Doc/library/xml.sax.reader.rst:310
 msgid ""
 "The getEncoding method will return the character encoding for this byte "
 "stream, or ``None`` if unknown."
-msgstr ""
+msgstr "getEncoding 메서드는 이 바이트 스트림의 문자 인코딩을 반환하거나, 알 수 없으면 ``None``\\을 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:316
 msgid "Set the character stream (a :term:`text file`) for this input source."
-msgstr ""
+msgstr "이 입력 소스에 대한 문자 스트림(:term:`텍스트 파일 <text file>`)을 설정합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:318
 msgid ""
@@ -364,14 +424,16 @@ msgid ""
 "byte stream and will not attempt to open a URI connection to the system "
 "identifier."
 msgstr ""
+"문자 스트림이 지정되면 SAX 구문 분석기는 모든 바이트 스트림을 무시하고 시스템 식별자에 대한 URI 연결을 열려고 시도하지 "
+"않습니다."
 
 #: ../Doc/library/xml.sax.reader.rst:324
 msgid "Get the character stream for this input source."
-msgstr ""
+msgstr "이 입력 소스의 문자 스트림을 가져옵니다."
 
 #: ../Doc/library/xml.sax.reader.rst:330
 msgid "The :class:`Attributes` Interface"
-msgstr ""
+msgstr ":class:`Attributes` 인터페이스"
 
 #: ../Doc/library/xml.sax.reader.rst:332
 msgid ""
@@ -384,26 +446,32 @@ msgid ""
 ":meth:`~collections.abc.Mapping.values`.  The following methods are also "
 "provided:"
 msgstr ""
+":class:`Attributes` 객체는 메서드 :meth:`~collections.abc.Mapping.copy`, "
+":meth:`~collections.abc.Mapping.get`, :meth:`~object.__contains__`, "
+":meth:`~collections.abc.Mapping.items`, "
+":meth:`~collections.abc.Mapping.keys` 및 "
+":meth:`~collections.abc.Mapping.values`\\를 포함하는 :term:`매핑 프로토콜 "
+"<mapping>`\\의 일부를 구현합니다. 다음과 같은 메서드도 제공됩니다:"
 
 #: ../Doc/library/xml.sax.reader.rst:342
 msgid "Return the number of attributes."
-msgstr ""
+msgstr "어트리뷰트 수를 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:347
 msgid "Return the names of the attributes."
-msgstr ""
+msgstr "어트리뷰트의 이름을 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:352
 msgid "Returns the type of the attribute *name*, which is normally ``'CDATA'``."
-msgstr ""
+msgstr "어트리뷰트 *name*\\의 유형을 반환합니다. 일반적으로 ``'CDATA'``\\입니다."
 
 #: ../Doc/library/xml.sax.reader.rst:357
 msgid "Return the value of attribute *name*."
-msgstr ""
+msgstr "어트리뷰트 *name*\\의 값을 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:366
 msgid "The :class:`AttributesNS` Interface"
-msgstr ""
+msgstr ":class:`AttributesNS` 인터페이스"
 
 #: ../Doc/library/xml.sax.reader.rst:368
 msgid ""
@@ -411,24 +479,26 @@ msgid ""
 "section :ref:`attributes-objects`).  All methods supported by that "
 "interface are also available on :class:`AttributesNS` objects."
 msgstr ""
+"이 인터페이스는 :class:`Attributes` 인터페이스의 서브 형입니다 (:ref:`attributes-objects` 절을"
+" 참조하십시오). 그 인터페이스에서 지원하는 모든 메서드는 :class:`AttributesNS` 객체에서도 사용 가능합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:372
 msgid "The following methods are also available:"
-msgstr ""
+msgstr "다음과 같은 메서드도 제공됩니다:"
 
 #: ../Doc/library/xml.sax.reader.rst:377
 msgid "Return the value for a qualified name."
-msgstr ""
+msgstr "정규화된 이름(qualified name)의 값을 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:382
 msgid "Return the ``(namespace, localname)`` pair for a qualified *name*."
-msgstr ""
+msgstr "정규화된 *name*\\에 대한 ``(namespace, localname)`` 쌍을 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:387
 msgid "Return the qualified name for a ``(namespace, localname)`` pair."
-msgstr ""
+msgstr "``(namespace, localname)`` 쌍에 대한 정규화된 이름을 반환합니다."
 
 #: ../Doc/library/xml.sax.reader.rst:392
 msgid "Return the qualified names of all attributes."
-msgstr ""
+msgstr "모든 어트리뷰트의 정규화된 이름을 반환합니다."
 
