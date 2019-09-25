@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-15 15:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../Doc/library/xml.dom.minidom.rst:2
 msgid ":mod:`xml.dom.minidom` --- Minimal DOM implementation"
-msgstr ""
+msgstr ":mod:`xml.dom.minidom` --- 최소 DOM 구현"
 
 #: ../Doc/library/xml.dom.minidom.rst:11
 msgid "**Source code:** :source:`Lib/xml/dom/minidom.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/xml/dom/minidom.py`"
 
 #: ../Doc/library/xml.dom.minidom.rst:15
 msgid ""
@@ -34,6 +33,9 @@ msgid ""
 " the :mod:`xml.etree.ElementTree` module for their XML processing "
 "instead."
 msgstr ""
+":mod:`xml.dom.minidom`\\은 다른 언어와 유사한 API를 갖는 문서 객체 모델 인터페이스의 최소 구현입니다. "
+"전체(full) DOM보다 단순하고 훨씬 작고자 합니다. DOM에 아직 능숙하지 않은 사용자는 XML 처리에 대신 "
+":mod:`xml.etree.ElementTree` 모듈을 사용하는 것을 고려해야 합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:24
 msgid ""
@@ -41,18 +43,22 @@ msgid ""
 "constructed data.  If you need to parse untrusted or unauthenticated data"
 " see :ref:`xml-vulnerabilities`."
 msgstr ""
+":mod:`xml.dom.minidom` 모듈은 악의적으로 구성된 데이터로부터 안전하지 않습니다. 신뢰할 수 없거나 인증되지 않은 "
+"데이터를 구문 분석해야 하면 :ref:`xml-vulnerabilities`\\를 참조하십시오."
 
 #: ../Doc/library/xml.dom.minidom.rst:29
 msgid ""
 "DOM applications typically start by parsing some XML into a DOM.  With "
 ":mod:`xml.dom.minidom`, this is done through the parse functions::"
 msgstr ""
+"DOM 응용 프로그램은 일반적으로 일부 XML을 DOM으로 구문 분석하는 것으로 시작합니다. "
+":mod:`xml.dom.minidom`\\에서는, 구문 분석 함수를 통해 수행됩니다::"
 
 #: ../Doc/library/xml.dom.minidom.rst:41
 msgid ""
 "The :func:`parse` function can take either a filename or an open file "
 "object."
-msgstr ""
+msgstr ":func:`parse` 함수는 파일명이나 열린 파일 객체를 취할 수 있습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:46
 msgid ""
@@ -62,12 +68,15 @@ msgid ""
 "the parser and activate namespace support; other parser configuration "
 "(like setting an entity resolver) must have been done in advance."
 msgstr ""
+"주어진 입력에서 :class:`Document`\\를 반환합니다. *filename_or_file*\\은 파일명이나 파일류 객체일 "
+"수 있습니다. 제공되면, *parser*\\는 SAX2 구문 분석기 객체여야 합니다. 이 함수는 구문 분석기의 문서 처리기를 "
+"변경하고 이름 공간 지원을 활성화합니다; 다른 구문 분석기 구성(엔티티 해석기 설정과 같은)은 미리 수행되어 있어야 합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:52
 msgid ""
 "If you have XML in a string, you can use the :func:`parseString` function"
 " instead:"
-msgstr ""
+msgstr "문자열로 XML을 갖고 있다면, :func:`parseString` 함수를 대신 사용할 수 있습니다:"
 
 #: ../Doc/library/xml.dom.minidom.rst:58
 msgid ""
@@ -75,12 +84,14 @@ msgid ""
 "creates an :class:`io.StringIO` object for the string and passes that on "
 "to :func:`parse`."
 msgstr ""
+"*string*\\을 표현하는 :class:`Document`\\를 반환합니다. 이 메서드는 문자열에 대한 "
+":class:`io.StringIO` 객체를 만들고 이를 :func:`parse`\\에 전달합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:61
 msgid ""
 "Both functions return a :class:`Document` object representing the content"
 " of the document."
-msgstr ""
+msgstr "두 함수 모두 문서의 내용을 표현하는 :class:`Document` 객체를 반환합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:64
 msgid ""
@@ -92,6 +103,10 @@ msgid ""
 "functions return; it's simply that these functions do not provide a "
 "parser implementation themselves."
 msgstr ""
+":func:`parse`\\와 :func:`parseString` 함수가 하는 일은 임의의 SAX 구문 분석기에서 구문 분석 "
+"이벤트를 받아들일 수 있고 이를 DOM 트리로 변환하는 \"DOM 구축기(builder)\"를 XML 구문 분석기와 연결하는 "
+"것입니다. 함수의 이름은 오해의 소지가 있지만, 인터페이스를 배울 때 이해하기 쉽습니다. 이 함수가 반환되기 전에 문서 구문 분석이"
+" 완료됩니다; 단지 이 함수들이 구문 분석기 구현 자체를 제공하지는 않을 뿐입니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:71
 msgid ""
@@ -101,6 +116,10 @@ msgid ""
 "the :mod:`xml.dom.minidom` module.  Once you have a :class:`Document`, "
 "you can add child nodes to it to populate the DOM::"
 msgstr ""
+"\"DOM 구현\" 객체의 메서드를 호출하여 :class:`Document`\\를 만들 수도 있습니다. :mod:`xml.dom` "
+"패키지나 :mod:`xml.dom.minidom` 모듈에 있는 :func:`getDOMImplementation` 함수를 호출하여 "
+"이 객체를 얻을 수 있습니다. 일단 :class:`Document`\\를 얻으면, 자식 노드를 추가하여 DOM을 채울 수 "
+"있습니다::"
 
 #: ../Doc/library/xml.dom.minidom.rst:86
 msgid ""
@@ -111,6 +130,9 @@ msgid ""
 "element in the XML document: the one that holds all others.  Here is an "
 "example program::"
 msgstr ""
+"일단 DOM 문서 객체를 얻으면, 프로퍼티와 메서드를 통해 XML 문서의 일부에 액세스 할 수 있습니다. 이러한 프로퍼티들은 DOM"
+" 명세에 정의되어 있습니다. 문서 객체의 주 프로퍼티는 :attr:`documentElement` 프로퍼티입니다. XML 문서의 "
+"메인 엘리먼트를 제공합니다: 모든 다른 것들을 담는 것. 예제 프로그램은 다음과 같습니다::"
 
 #: ../Doc/library/xml.dom.minidom.rst:95
 msgid ""
@@ -121,20 +143,25 @@ msgid ""
 "essentially useless.  Otherwise, Python's garbage collector will "
 "eventually take care of the objects in the tree."
 msgstr ""
+"DOM 트리로의 작업이 끝나면, :meth:`unlink` 메서드를 선택적으로 호출하여 필요 없는 객체를 조기에 정리할 수 "
+"있습니다. :meth:`unlink`\\는 DOM API에 대한 :mod:`xml.dom.minidom`\\ 만의 확장이며 그 "
+"노드와 자손들을 실질적으로 쓸모없게 만듭니다. 그렇지 않으면, 파이썬의 가비지 수집기가 결국 트리의 객체를 처리하게 될 것입니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:104
 msgid ""
 "`Document Object Model (DOM) Level 1 Specification <https://www.w3.org/TR"
 "/REC-DOM-Level-1/>`_"
 msgstr ""
+"`Document Object Model (DOM) Level 1 Specification <https://www.w3.org/TR"
+"/REC-DOM-Level-1/>`_"
 
 #: ../Doc/library/xml.dom.minidom.rst:105
 msgid "The W3C recommendation for the DOM supported by :mod:`xml.dom.minidom`."
-msgstr ""
+msgstr ":mod:`xml.dom.minidom`\\이 지원하는 DOM에 대한 W3C 권장 사항."
 
 #: ../Doc/library/xml.dom.minidom.rst:111
 msgid "DOM Objects"
-msgstr ""
+msgstr "DOM 객체"
 
 #: ../Doc/library/xml.dom.minidom.rst:113
 msgid ""
@@ -142,6 +169,8 @@ msgid ""
 ":mod:`xml.dom` module documentation.  This section lists the differences "
 "between the API and :mod:`xml.dom.minidom`."
 msgstr ""
+"파이썬 용 DOM API의 정의는 :mod:`xml.dom` 모듈 설명서의 일부로 제공됩니다. 이 절은 그 API와 "
+":mod:`xml.dom.minidom`\\의 차이점을 나열합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:120
 msgid ""
@@ -153,6 +182,10 @@ msgid ""
 ":class:`Document` object, but may be called on child nodes to discard "
 "children of that node."
 msgstr ""
+"순환 GC가 없는 파이썬 버전에서 가비지 수집되도록 DOM 내의 내부 참조를 끊습니다. 순환 GC를 사용할 수 있더라도, 이를 "
+"사용하면 대량의 메모리를 더 빨리 사용할 수 있도록 하므로, 더 필요 없게 되는 즉시 DOM 객체에 대해 이를 호출하는 것이 "
+"좋습니다. :class:`Document` 객체에서만 호출하면 되지만, 해당 노드의 자식을 삭제하기 위해 자식 노드에서 호출할 수 "
+"있습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:127
 msgid ""
@@ -160,6 +193,8 @@ msgid ""
 " statement. The following code will automatically unlink *dom* when the "
 ":keyword:`!with` block is exited::"
 msgstr ""
+":keyword:`with` 문을 사용하면 이 메서드를 명시적으로 호출하지 않아도 됩니다. 다음 코드는 "
+":keyword:`!with` 블록이 종료될 때 *dom*\\을 자동으로 unlink 합니다::"
 
 #: ../Doc/library/xml.dom.minidom.rst:137
 msgid ""
@@ -170,18 +205,24 @@ msgid ""
 "to use for subnodes of the current one.  The *newl* parameter specifies "
 "the string to use to terminate newlines."
 msgstr ""
+"기록기(writer) 객체에 XML을 씁니다. 기록기는 입력으로 텍스트를 받지만 바이트열은 받지 않습니다, 파일 객체 인터페이스와 "
+"일치하는 :meth:`write` 메서드를 가져야 합니다. *indent* 매개 변수는 현재 노드의 들여쓰기입니다. "
+"*addindent* 매개 변수는 현재 노드의 서브 노드에 사용할 증분(incremental) 들여쓰기입니다. *newl* 매개 "
+"변수는 개행을 끝내는 데 사용할 문자열을 지정합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:144
 msgid ""
 "For the :class:`Document` node, an additional keyword argument *encoding*"
 " can be used to specify the encoding field of the XML header."
 msgstr ""
+":class:`Document` 노드의 경우, 추가 키워드 인자 *encoding*\\을 사용하여 XML 헤더의 인코딩 필드를 "
+"지정할 수 있습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:150
 msgid ""
 "Return a string or byte string containing the XML represented by the DOM "
 "node."
-msgstr ""
+msgstr "DOM 노드가 나타내는 XML이 포함된 문자열이나 바이트열을 반환합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:153
 msgid ""
@@ -191,6 +232,9 @@ msgid ""
 "specify an encoding. Encoding this string in an encoding other than UTF-8"
 " is likely incorrect, since UTF-8 is the default encoding of XML."
 msgstr ""
+"명시적인 *encoding* [1]_ 인자를 사용하면, 결과는 지정된 인코딩의 바이트열 입니다. *encoding* 인자가 없으면,"
+" 결과는 유니코드 문자열이며, 결과 문자열의 XML 선언은 인코딩을 지정하지 않습니다. UTF-8이 XML의 기본 인코딩이기 "
+"때문에, UTF-8 이외의 인코딩으로 이 문자열을 인코딩하는 것은 올바르지 않습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:162
 msgid ""
@@ -198,39 +242,43 @@ msgid ""
 "indentation string and defaults to a tabulator; *newl* specifies the "
 "string emitted at the end of each line and defaults to ``\\n``."
 msgstr ""
+"문서의 예쁘게 인쇄된 버전을 반환합니다. *indent*\\는 들여쓰기 문자열을 지정하고 기본값은 탭입니다; *newl*\\은 각 "
+"줄의 끝에서 방출되는 문자열을 지정하고 기본값은 ``\\n``\\입니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:166
 msgid ""
 "The *encoding* argument behaves like the corresponding argument of "
 ":meth:`toxml`."
-msgstr ""
+msgstr "*encoding* 인자는 :meth:`toxml`\\의 해당 인자처럼 동작합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:173
 msgid "DOM Example"
-msgstr ""
+msgstr "DOM 예제"
 
 #: ../Doc/library/xml.dom.minidom.rst:175
 msgid ""
 "This example program is a fairly realistic example of a simple program. "
 "In this particular case, we do not take much advantage of the flexibility"
 " of the DOM."
-msgstr ""
+msgstr "이 예제 프로그램은 간단한 프로그램의 상당히 현실적인 예입니다. 이 특별한 경우에, 우리는 DOM의 유연성을 크게 활용하지 않습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:184
 msgid "minidom and the DOM standard"
-msgstr ""
+msgstr "minidom과 DOM 표준"
 
 #: ../Doc/library/xml.dom.minidom.rst:186
 msgid ""
 "The :mod:`xml.dom.minidom` module is essentially a DOM 1.0-compatible DOM"
 " with some DOM 2 features (primarily namespace features)."
 msgstr ""
+":mod:`xml.dom.minidom` 모듈은 본질적으로 일부 DOM 2 기능(주로 이름 공간 기능)이 있는 DOM 1.0 호환 "
+"DOM입니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:189
 msgid ""
 "Usage of the DOM interface in Python is straight-forward.  The following "
 "mapping rules apply:"
-msgstr ""
+msgstr "파이썬에서 DOM 인터페이스의 사용법은 간단합니다. 다음과 같은 매핑 규칙이 적용됩니다:"
 
 #: ../Doc/library/xml.dom.minidom.rst:192
 msgid ""
@@ -240,6 +288,9 @@ msgid ""
 "support all operations (and attributes) from the base interfaces, plus "
 "any new operations."
 msgstr ""
+"인터페이스는 인스턴스 객체를 통해 액세스 됩니다. 응용 프로그램은 클래스를 직접 인스턴스로 만들어서는 안 됩니다; "
+":class:`Document` 객체에서 제공되는 생성자 함수를 사용해야 합니다. 파생 인터페이스는 베이스 인터페이스의 모든 "
+"연산(및 어트리뷰트)과 새로운 연산을 지원합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:197
 msgid ""
@@ -248,6 +299,8 @@ msgid ""
 "right). There are no optional arguments. ``void`` operations return "
 "``None``."
 msgstr ""
+"연산은 메서드로 사용됩니다. DOM은 :keyword:`in` 매개 변수만 사용하므로, 인자는 정상적인 순서(왼쪽에서 오른쪽으로)로"
+" 전달됩니다. 선택적 인자가 없습니다. ``void`` 연산은 ``None``\\을 반환합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:201
 msgid ""
@@ -257,12 +310,17 @@ msgid ""
 "  ``readonly`` attributes must not be changed; this is not enforced at "
 "runtime."
 msgstr ""
+"IDL 어트리뷰트는 인스턴스 어트리뷰트에 매핑됩니다. 파이썬 용 OMG IDL 언어 매핑과의 호환성을 위해, 접근자 메서드 "
+":meth:`_get_foo`\\와 :meth:`_set_foo`\\를 통해 어트리뷰트 ``foo``\\에 액세스할 수도 있습니다."
+" ``readonly`` 어트리뷰트는 변경하지 않아야 합니다; 실행 시간에 강제되지는 않습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:206
 msgid ""
 "The types ``short int``, ``unsigned int``, ``unsigned long long``, and "
 "``boolean`` all map to Python integer objects."
 msgstr ""
+"``short int``, ``unsigned int``, ``unsigned long long`` 및 ``boolean`` 형은 "
+"모두 파이썬 정수 객체에 매핑됩니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:209
 msgid ""
@@ -271,6 +329,9 @@ msgid ""
 "Values of type ``DOMString`` may also be ``None`` where allowed to have "
 "the IDL ``null`` value by the DOM specification from the W3C."
 msgstr ""
+"``DOMString`` 형은 파이썬 문자열에 매핑됩니다. :mod:`xml.dom.minidom`\\은 바이트열이나 문자열을 "
+"지원하지만, 일반적으로 문자열을 생성합니다. ``DOMString`` 형의 값은 W3C의 DOM 명세에 의해 IDL ``null``"
+" 값을 가질 수 있을 때 ``None``\\일 수도 있습니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:214
 msgid ""
@@ -278,6 +339,8 @@ msgid ""
 "``xml.dom.minidom.Node.PROCESSING_INSTRUCTION_NODE``); they must not be "
 "changed."
 msgstr ""
+"``const`` 선언은 해당 스코프에 있는 변수에 매핑됩니다 (예를 들어 "
+"``xml.dom.minidom.Node.PROCESSING_INSTRUCTION_NODE``); 변경되지 않아야 합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:217
 msgid ""
@@ -285,6 +348,9 @@ msgid ""
 "Instead, :mod:`xml.dom.minidom` uses standard Python exceptions such as "
 ":exc:`TypeError` and :exc:`AttributeError`."
 msgstr ""
+"``DOMException``\\은 현재 :mod:`xml.dom.minidom`\\에서 지원되지 않습니다. 대신, "
+":mod:`xml.dom.minidom`\\은 :exc:`TypeError`\\와 :exc:`AttributeError`\\와 같은"
+" 표준 파이썬 예외를 사용합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:221
 msgid ""
@@ -294,28 +360,31 @@ msgid ""
 "the official API.  They are, however, much more \"Pythonic\" than the "
 "interface defined in the W3C recommendations."
 msgstr ""
+":class:`NodeList` 객체는 파이썬의 내장 리스트 형을 사용하여 구현됩니다. 이러한 객체는 DOM 명세에 정의된 "
+"인터페이스를 제공하지만, 이전 버전의 파이썬에서는 공식 API를 지원하지 않습니다. 그러나 W3C 권장 사항에 정의된 인터페이스보다"
+" 훨씬 \"파이썬답습니다\"."
 
 #: ../Doc/library/xml.dom.minidom.rst:227
 msgid "The following interfaces have no implementation in :mod:`xml.dom.minidom`:"
-msgstr ""
+msgstr "다음 인터페이스는 :mod:`xml.dom.minidom`\\에서 구현되지 않습니다:"
 
 #: ../Doc/library/xml.dom.minidom.rst:229
 msgid ":class:`DOMTimeStamp`"
-msgstr ""
+msgstr ":class:`DOMTimeStamp`"
 
 #: ../Doc/library/xml.dom.minidom.rst:231
 msgid ":class:`EntityReference`"
-msgstr ""
+msgstr ":class:`EntityReference`"
 
 #: ../Doc/library/xml.dom.minidom.rst:233
 msgid ""
 "Most of these reflect information in the XML document that is not of "
 "general utility to most DOM users."
-msgstr ""
+msgstr "이들 대부분은 대부분의 DOM 사용자에게 일반적인 쓸모를 제공하지 않는 XML 문서의 정보를 반영합니다."
 
 #: ../Doc/library/xml.dom.minidom.rst:237
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/xml.dom.minidom.rst:238
 msgid ""
@@ -326,46 +395,9 @@ msgid ""
 "/#NT-EncodingDecl and https://www.iana.org/assignments/character-sets"
 "/character-sets.xhtml."
 msgstr ""
-
-#~ msgid ""
-#~ "You can avoid calling this method "
-#~ "explicitly by using the :keyword:`with` "
-#~ "statement. The following code will "
-#~ "automatically unlink *dom* when the "
-#~ ":keyword:`with` block is exited::"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Write XML to the writer object.  "
-#~ "The writer should have a :meth:`write`"
-#~ " method which matches that of the "
-#~ "file object interface.  The *indent* "
-#~ "parameter is the indentation of the "
-#~ "current node.  The *addindent* parameter "
-#~ "is the incremental indentation to use"
-#~ " for subnodes of the current one."
-#~ "  The *newl* parameter specifies the "
-#~ "string to use to terminate newlines."
-#~ msgstr ""
-
-#~ msgid ":class:`DocumentType`"
-#~ msgstr ""
-
-#~ msgid ":class:`DOMImplementation`"
-#~ msgstr ""
-
-#~ msgid ":class:`CharacterData`"
-#~ msgstr ""
-
-#~ msgid ":class:`CDATASection`"
-#~ msgstr ""
-
-#~ msgid ":class:`Notation`"
-#~ msgstr ""
-
-#~ msgid ":class:`Entity`"
-#~ msgstr ""
-
-#~ msgid ":class:`DocumentFragment`"
-#~ msgstr ""
+"XML 출력에 포함된 인코딩 이름은 적절한 표준을 준수해야 합니다. 예를 들어, XML 문서의 선언에서 \"UTF-8\"은 "
+"유효하지만, \"UTF8\"은 파이썬이 이를 인코딩 이름으로 받아들이더라도 유효하지 않습니다. "
+"https://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl 과 "
+"https://www.iana.org/assignments/character-sets/character-sets.xhtml 을 "
+"참조하십시오."
 
