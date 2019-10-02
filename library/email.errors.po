@@ -3,33 +3,32 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-08 11:36+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/email.errors.rst:2
 msgid ":mod:`email.errors`: Exception and Defect classes"
-msgstr ""
+msgstr ":mod:`email.errors`: 예외와 결함 클래스"
 
 #: ../Doc/library/email.errors.rst:7
 msgid "**Source code:** :source:`Lib/email/errors.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/email/errors.py`"
 
 #: ../Doc/library/email.errors.rst:11
 msgid ""
 "The following exception classes are defined in the :mod:`email.errors` "
 "module:"
-msgstr ""
+msgstr ":mod:`email.errors` 모듈에는 다음과 같은 예외 클래스가 정의되어 있습니다:"
 
 #: ../Doc/library/email.errors.rst:16
 msgid ""
@@ -37,6 +36,8 @@ msgid ""
 "can raise.  It is derived from the standard :exc:`Exception` class and "
 "defines no additional methods."
 msgstr ""
+"이것은 :mod:`email` 패키지가 발생시킬 수 있는 모든 예외의 베이스 클래스입니다. 표준 :exc:`Exception` "
+"클래스에서 파생되며 추가 메서드를 정의하지 않습니다."
 
 #: ../Doc/library/email.errors.rst:23
 msgid ""
@@ -45,6 +46,9 @@ msgid ""
 ":exc:`MessageError`.  This class is also used internally by the parser "
 "used by :mod:`~email.headerregistry`."
 msgstr ""
+"이것은 :class:`~email.parser.Parser` 클래스에서 발생하는 예외의 베이스 클래스입니다. "
+":exc:`MessageError`\\에서 파생됩니다. 이 클래스는 :mod:`~email.headerregistry`\\에서 "
+"사용하는 구문 분석기에서도 내부적으로 사용됩니다."
 
 #: ../Doc/library/email.errors.rst:31
 msgid ""
@@ -58,10 +62,16 @@ msgid ""
 " to be a continuation line that has no leading whitespace and looks like "
 "a header)."
 msgstr ""
+"메시지의 :rfc:`5322` 헤더를 구문 분석할 때 일부 에러 조건에서 발생합니다. 이 클래스는 "
+":exc:`MessageParseError`\\에서 파생됩니다. 메서드가 호출될 때 콘텐츠 유형을 알 수 없으면, "
+":meth:`~email.message.EmailMessage.set_boundary` 메서드는 이 에러를 발생시킵니다. "
+":class:`~email.header.Header`\\는 특정 base64 디코딩 에러와 내장된 헤더를 포함하는 것으로 보이는 "
+"헤더를 만들려고 할 때 (즉, 연장 줄(continuation line)이어야 할 곳에 선행 공백이 없고 헤더처럼 보이는 것이 있을"
+" 때) 이 에러를 발생시킬 수 있습니다."
 
 #: ../Doc/library/email.errors.rst:43
 msgid "Deprecated and no longer used."
-msgstr ""
+msgstr "폐지되었고 더는 사용되지 않습니다."
 
 #: ../Doc/library/email.errors.rst:48
 msgid ""
@@ -72,6 +82,11 @@ msgid ""
 "multiply inherits from :exc:`MessageError` and the built-in "
 ":exc:`TypeError`."
 msgstr ""
+":meth:`add_payload`\\를 사용하여 페이 로드가 :class:`~email.message.Message` 객체에 "
+"추가되었지만, 페이 로드가 이미 스칼라(scalar)이고 메시지의 :mailheader:`Content-Type` 메인 유형이 "
+":mimetype:`multipart`\\도 아니고 누락되지도 않았으면 발생합니다. "
+":exc:`MultipartConversionError`\\는 :exc:`MessageError`\\와 내장 "
+":exc:`TypeError`\\에서 다중 상속됩니다."
 
 #: ../Doc/library/email.errors.rst:54
 msgid ""
@@ -81,6 +96,10 @@ msgid ""
 "a class derived from :class:`~email.mime.nonmultipart.MIMENonMultipart` "
 "(e.g. :class:`~email.mime.image.MIMEImage`)."
 msgstr ""
+":meth:`Message.add_payload`\\는 폐지되었으므로, 실제로 이 예외는 거의 발생하지 않습니다. 그러나 "
+":class:`~email.mime.nonmultipart.MIMENonMultipart`\\에서 파생된 클래스(예를 들어 "
+":class:`~email.mime.image.MIMEImage`)의 인스턴스에서 "
+":meth:`~email.message.Message.attach` 메서드를 호출하면 예외가 발생할 수도 있습니다."
 
 #: ../Doc/library/email.errors.rst:62
 msgid ""
@@ -92,42 +111,54 @@ msgid ""
 "message object would have a defect, but the containing messages would "
 "not."
 msgstr ""
+"다음은 메시지를 구문 분석하는 동안 :class:`~email.parser.FeedParser`\\가 찾을 수 있는 결함 "
+"목록입니다. 문제가 발견된 메시지에 결함이 추가됨에 유의하십시오. 그래서, 예를 들어, "
+":mimetype:`multipart/alternative` 내에 중첩된 메시지에 잘못된 헤더가 있으면, 해당 중첩 메시지 객체가 "
+"결함을 갖게 되지만 포함하는 메시지는 그렇지 않습니다."
 
 #: ../Doc/library/email.errors.rst:68
 msgid ""
 "All defect classes are subclassed from "
 ":class:`email.errors.MessageDefect`."
-msgstr ""
+msgstr "모든 결함 클래스는 :class:`email.errors.MessageDefect`\\의 서브 클래스입니다."
 
 #: ../Doc/library/email.errors.rst:70
 msgid ""
 ":class:`NoBoundaryInMultipartDefect` -- A message claimed to be a "
 "multipart, but had no :mimetype:`boundary` parameter."
 msgstr ""
+":class:`NoBoundaryInMultipartDefect` -- 메시지가 멀티 파트라고 주장했지만, "
+":mimetype:`boundary` 파라미터가 없습니다."
 
 #: ../Doc/library/email.errors.rst:73
 msgid ""
 ":class:`StartBoundaryNotFoundDefect` -- The start boundary claimed in the"
 " :mailheader:`Content-Type` header was never found."
 msgstr ""
+":class:`StartBoundaryNotFoundDefect` -- :mailheader:`Content-Type` 헤더에서 "
+"주장하는 시작 경계를 찾지 못했습니다."
 
 #: ../Doc/library/email.errors.rst:76
 msgid ""
 ":class:`CloseBoundaryNotFoundDefect` -- A start boundary was found, but "
 "no corresponding close boundary was ever found."
 msgstr ""
+":class:`CloseBoundaryNotFoundDefect` -- 시작 경계가 발견되었지만, 해당하는 종료 경계가 발견되지 "
+"않았습니다."
 
 #: ../Doc/library/email.errors.rst:81
 msgid ""
 ":class:`FirstHeaderLineIsContinuationDefect` -- The message had a "
 "continuation line as its first header line."
 msgstr ""
+":class:`FirstHeaderLineIsContinuationDefect` -- 메시지의 첫 번째 헤더 줄에 연장 "
+"줄(continuation line)이 있습니다."
 
 #: ../Doc/library/email.errors.rst:84
 msgid ""
 ":class:`MisplacedEnvelopeHeaderDefect` - A \"Unix From\" header was found"
 " in the middle of a header block."
-msgstr ""
+msgstr ":class:`MisplacedEnvelopeHeaderDefect` - 헤더 블록 중간에 \"Unix From\" 헤더가 있습니다."
 
 #: ../Doc/library/email.errors.rst:87
 msgid ""
@@ -136,16 +167,18 @@ msgid ""
 "Parsing continues assuming that the line represents the first line of the"
 " body."
 msgstr ""
+":class:`MissingHeaderBodySeparatorDefect` - 헤더를 구문 분석하는 중에 선행 공백이 없지만 ':'"
+" 가 포함되지 않은 줄이 발견되었습니다. 그 줄이 본문의 첫 번째 줄을 나타내는 것으로 가정하여 구문 분석이 계속됩니다."
 
 #: ../Doc/library/email.errors.rst:93
 msgid ""
 ":class:`MalformedHeaderDefect` -- A header was found that was missing a "
 "colon, or was otherwise malformed."
-msgstr ""
+msgstr ":class:`MalformedHeaderDefect` -- 콜론이 없거나 다른 식으로 잘못된 헤더가 발견되었습니다."
 
 #: ../Doc/library/email.errors.rst:96
 msgid "This defect has not been used for several Python versions."
-msgstr ""
+msgstr "이 결함은 여러 파이썬 버전에서 사용되지 않았습니다."
 
 #: ../Doc/library/email.errors.rst:99
 msgid ""
@@ -155,6 +188,10 @@ msgid ""
 "method may return false even though its content type claims to be "
 ":mimetype:`multipart`."
 msgstr ""
+":class:`MultipartInvariantViolationDefect` -- 메시지가 "
+":mimetype:`multipart`\\라고 주장했지만, 서브 파트가 없습니다. 메시지에 이 결함이 있으면, 콘텐츠 유형이 "
+":mimetype:`multipart`\\라고 주장하더라도 "
+":meth:`~email.message.Message.is_multipart` 메서드는 거짓을 반환할 수 있음에 유의하십시오."
 
 #: ../Doc/library/email.errors.rst:104
 msgid ""
@@ -162,6 +199,8 @@ msgid ""
 "encoded bytes, the padding was not correct.  Enough padding is added to "
 "perform the decode, but the resulting decoded bytes may be invalid."
 msgstr ""
+":class:`InvalidBase64PaddingDefect` -- base64로 인코딩된 바이트열 블록을 디코딩할 때, 패딩이 "
+"올바르지 않습니다. 디코딩을 수행하기 위해 충분한 패딩이 추가되지만, 바이트열을 디코딩한 결과는 유효하지 않을 수 있습니다."
 
 #: ../Doc/library/email.errors.rst:108
 msgid ""
@@ -170,6 +209,8 @@ msgid ""
 "The characters are ignored, but the resulting decoded bytes may be "
 "invalid."
 msgstr ""
+":class:`InvalidBase64CharactersDefect` -- base64로 인코딩된 바이트열 블록을 디코딩할 때, "
+"base64 알파벳 이외의 문자가 발견되었습니다. 문자는 무시되지만, 바이트열을 디코딩한 결과는 유효하지 않을 수 있습니다."
 
 #: ../Doc/library/email.errors.rst:112
 msgid ""
@@ -177,4 +218,6 @@ msgid ""
 "encoded bytes, the number of non-padding base64 characters was invalid (1"
 " more than a multiple of 4).  The encoded block was kept as-is."
 msgstr ""
+":class:`InvalidBase64LengthDefect` -- base64로 인코딩된 바이트열 블록을 디코딩할 때, 비 패딩 "
+"base64 문자 수가 유효하지 않습니다 (4의 배수보다 1이 큽니다). 인코딩된 블록은 그대로 유지됩니다."
 
