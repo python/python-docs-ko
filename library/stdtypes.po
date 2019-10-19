@@ -42,7 +42,6 @@ msgstr ""
 " 자체를 반환하지 않고 ``None`` 을 반환합니다."
 
 #: ../Doc/library/stdtypes.rst:22
-#, fuzzy
 msgid ""
 "Some operations are supported by several object types; in particular, "
 "practically all objects can be compared for equality, tested for truth "
@@ -50,9 +49,9 @@ msgid ""
 "slightly different :func:`str` function).  The latter function is "
 "implicitly used when an object is written by the :func:`print` function."
 msgstr ""
-"일부 연산들은 여러 객체 형에서 지원됩니다; 특히 사실상 모든 객체를 비교하고, 논리값을 검사하고, (:func:`repr` 함수 "
-"또는 약간 다른 :func:`str` 함수를 사용해서) 문자열로 변환할 수 있습니다. 두 번째 함수는 :func:`print` "
-"함수로 객체를 쓸 때 묵시적으로 사용됩니다."
+"일부 연산들은 여러 객체 형에서 지원됩니다; 특히 사실상 모든 객체를 동등 비교하고, 논리값을 검사하고, (:func:`repr` "
+"함수 또는 약간 다른 :func:`str` 함수를 사용해서) 문자열로 변환할 수 있습니다. 두 번째 함수는 :func:`print`"
+" 함수로 객체를 쓸 때 묵시적으로 사용됩니다."
 
 #: ../Doc/library/stdtypes.rst:32
 msgid "Truth Value Testing"
@@ -307,6 +306,10 @@ msgid ""
 "sense; for example, they raise a :exc:`TypeError` exception when one of "
 "the arguments is a complex number."
 msgstr ""
+"서로 다른 숫자 형을 제외하고는 서로 다른 형의 객체들은 같다고 비교되지 않습니다. ``==`` 연산자는 항상 정의되지만, 일부 "
+"객체 형(예를 들어, 클래스 객체)의 경우 :keyword:`is`\\와 동등합니다. ``<``, ``<=``, ``>`` 및 "
+"``>=`` 연산자는 의미가 있는 경우에만 정의됩니다; 예를 들어, 인자 중 하나가 복소수이면 :exc:`TypeError` 예외가"
+" 발생합니다."
 
 #: ../Doc/library/stdtypes.rst:180
 msgid ""
@@ -351,7 +354,6 @@ msgid "Numeric Types --- :class:`int`, :class:`float`, :class:`complex`"
 msgstr "숫자 형 --- :class:`int`, :class:`float`, :class:`complex`"
 
 #: ../Doc/library/stdtypes.rst:214
-#, fuzzy
 msgid ""
 "There are three distinct numeric types: :dfn:`integers`, :dfn:`floating "
 "point numbers`, and :dfn:`complex numbers`.  In addition, Booleans are a "
@@ -371,8 +373,8 @@ msgstr ""
 "정밀도를 갖습니다. 실수는 보통 C의 :c:type:`double`\\을 사용해서 구현됩니다; 프로그램이 실행되고 있는 기계의 부동"
 " 소수점 숫자의 정밀도와 내부 표현에 관한 정보는 :data:`sys.float_info`\\에서 얻을 수 있습니다. 복소수는 각각"
 " 실수로 표현되는 실수부와 허수부를 가집니다. 복소수 *z* 에서 이들 부분을 추출하려면 ``z.real`` 과 ``z.imag``"
-" 를 사용하십시오. (표준 라이브러리는 추가적인 숫자 형들을 포함하는데, :mod:`fractions`\\는 유리수를, "
-":mod:`decimal` 은 사용자가 정의할 수 있는 정밀도로 부동 소수점 숫자를 다룹니다.)"
+" 를 사용하십시오. (표준 라이브러리는 추가적인 숫자 형들을 포함하는데, :mod:`fractions.Fraction`\\은 "
+"유리수를, :mod:`decimal.Decimal` 은 사용자가 정의할 수 있는 정밀도로 부동 소수점 숫자를 다룹니다.)"
 
 #: ../Doc/library/stdtypes.rst:236
 msgid ""
@@ -404,13 +406,12 @@ msgstr ""
 "만드는데 사용할 수 있습니다."
 
 #: ../Doc/library/stdtypes.rst:268
-#, fuzzy
 msgid ""
 "All numeric types (except complex) support the following operations (for "
 "priorities of the operations, see :ref:`operator-summary`):"
 msgstr ""
-"(복소수를 제외한) 모든 숫자 형은 다음과 같은 연산들을 지원하는데, 우선순위에 따라 오름차순 정렬되어 있습니다 (모든 숫자 연산은"
-" 비교 연산보다 높은 우선순위를 갖습니다):"
+"(복소수를 제외한) 모든 숫자 형은 다음과 같은 연산들을 지원합니다 (연산의 우선순위는 :ref:`operator-"
+"summary`\\를 참조하십시오):"
 
 #: ../Doc/library/stdtypes.rst:272
 msgid "Full documentation"
@@ -639,14 +640,13 @@ msgstr ""
 " 포함합니다."
 
 #: ../Doc/library/stdtypes.rst:353
-#, fuzzy
 msgid ""
 "See "
 "http://www.unicode.org/Public/12.1.0/ucd/extracted/DerivedNumericType.txt"
 " for a complete list of code points with the ``Nd`` property."
 msgstr ""
 "``Nd`` 속성을 가진 코드 포인트의 전체 목록을 보려면 "
-"http://www.unicode.org/Public/10.0.0/ucd/extracted/DerivedNumericType.txt"
+"http://www.unicode.org/Public/12.1.0/ucd/extracted/DerivedNumericType.txt"
 " 를 보십시오."
 
 #: ../Doc/library/stdtypes.rst:357
@@ -911,6 +911,8 @@ msgid ""
 "(whole numbers) is always the integer as the numerator and ``1`` as the "
 "denominator."
 msgstr ""
+"비율이 원래 정수와 정확히 같고 양의 분모를 갖는 정수 쌍을 돌려줍니다. 정수(whole numbers)의 정수 비율은 항상 분자가"
+" 그 정수이고 분모는 ``1``\\입니다."
 
 #: ../Doc/library/stdtypes.rst:553
 msgid "Additional Methods on Float"
@@ -1725,9 +1727,8 @@ msgid ""
 msgstr "선택적 인자 *i* 의 기본값은 ``-1`` 입니다. 그래서 기본적으로 마지막 항목이 제거되면서 반환됩니다."
 
 #: ../Doc/library/stdtypes.rst:1116
-#, fuzzy
 msgid ":meth:`remove` raises :exc:`ValueError` when *x* is not found in *s*."
-msgstr "*x* 가 *s* 에서 발견되지 않으면 ``remove`` 는 :exc:`ValueError` 를 일으킵니다."
+msgstr "*x* 가 *s* 에서 발견되지 않으면 :meth:`remove` 는 :exc:`ValueError` 를 일으킵니다."
 
 #: ../Doc/library/stdtypes.rst:1119
 msgid ""
@@ -1739,7 +1740,6 @@ msgstr ""
 " 것을 사용자에게 상기시키기 위해 뒤집힌 시퀀스를 돌려주지 않습니다."
 
 #: ../Doc/library/stdtypes.rst:1124
-#, fuzzy
 msgid ""
 ":meth:`clear` and :meth:`!copy` are included for consistency with the "
 "interfaces of mutable containers that don't support slicing operations "
@@ -1748,7 +1748,9 @@ msgid ""
 "mutable sequence classes provide it."
 msgstr ""
 ":meth:`clear`\\와 :meth:`!copy` 는 슬라이싱 연산을 지원하지 않는 (:class:`dict` 와 "
-":class:`set` 같은) 가변 컨테이너들의 인터페이스와 일관성을 유지하기 위해 포함됩니다"
+":class:`set` 같은) 가변 컨테이너들의 인터페이스와 일관성을 유지하기 위해 포함됩니다. :meth:`!copy`\\는 "
+":class:`collections.abc.MutableSequence` ABC 일부가 아니지만, 대부분 구상 가변 시퀀스 클래스는"
+" 이것을 제공합니다."
 
 #: ../Doc/library/stdtypes.rst:1130
 msgid ":meth:`clear` and :meth:`!copy` methods."
@@ -1901,7 +1903,7 @@ msgstr ""
 msgid ""
 "For sorting examples and a brief sorting tutorial, see "
 ":ref:`sortinghowto`."
-msgstr ""
+msgstr "정렬 예제와 간단한 정렬 자습서는 :ref:`sortinghowto`\\를 참조하십시오."
 
 #: ../Doc/library/stdtypes.rst:1213
 msgid ""
@@ -2346,6 +2348,8 @@ msgid ""
 " means that characters like digraphs will only have their first letter "
 "capitalized, instead of the full character."
 msgstr ""
+"이제 첫 번째 문자는 대문자가 아닌 제목 케이스로 바뀝니다. 이는 이중 문자(digraph)와 같은 문자는 전체 문자 대신 첫 "
+"문자만 대문자로 표시된다는 뜻입니다."
 
 #: ../Doc/library/stdtypes.rst:1520
 msgid ""
@@ -2591,18 +2595,16 @@ msgid ""
 msgstr "문자열이 섹션 section :ref:`identifiers` 의 언어 정의에 따른 유효한 식별자면 참을 돌려줍니다."
 
 #: ../Doc/library/stdtypes.rst:1714
-#, fuzzy
 msgid ""
 "Call :func:`keyword.iskeyword` to test whether string ``s`` is a reserved"
 " identifier, such as :keyword:`def` and :keyword:`class`."
 msgstr ""
-":keyword:`def` 나 :keyword:`class`\\와 같은 예약 식별자를 검사하려면 "
-":func:`keyword.iskeyword` 를 사용하십시오."
+"문자열 ``s``\\가 :keyword:`def` 나 :keyword:`class`\\와 같은 예약 식별자인지 검사하려면 "
+":func:`keyword.iskeyword` 를 호출하십시오."
 
 #: ../Doc/library/stdtypes.rst:1717
-#, fuzzy
 msgid "Example: ::"
-msgstr "예를 들면::"
+msgstr "예제: ::"
 
 #: ../Doc/library/stdtypes.rst:1730
 msgid ""
@@ -2644,13 +2646,10 @@ msgstr ""
 "출력되는 문자열의 처리에 영향을 주지 않습니다.)"
 
 #: ../Doc/library/stdtypes.rst:1757
-#, fuzzy
 msgid ""
 "Return true if there are only whitespace characters in the string and "
 "there is at least one character, false otherwise."
-msgstr ""
-"문자열 내의 모든 케이스 문자가 [4]_ 대문자이고, 적어도 하나의 케이스 문자가 존재하는 경우 참을 돌려주고, 그렇지 않으면 "
-"거짓을 돌려줍니다."
+msgstr "문자열 내에 공백 문자만 있고, 적어도 하나의 문자가 존재하는 경우 참을 돌려주고, 그렇지 않으면 거짓을 돌려줍니다."
 
 #: ../Doc/library/stdtypes.rst:1760
 msgid ""
@@ -2658,6 +2657,9 @@ msgid ""
 ":mod:`unicodedata`), either its general category is ``Zs`` (\"Separator, "
 "space\"), or its bidirectional class is one of ``WS``, ``B``, or ``S``."
 msgstr ""
+"유니코드 문자 데이터베이스(:mod:`unicodedata`\\를 참조하십시오)에서, 일반 범주(general category)가 "
+"``Zs``\\(\"Separator, space\")이거나 양방향 클래스(bidirectional class)가 ``WS``, "
+"``B`` 또는 ``S`` 중 하나이면 문자는 *공백(whitespace)*\\입니다."
 
 #: ../Doc/library/stdtypes.rst:1768
 msgid ""
@@ -3686,12 +3688,17 @@ msgid ""
 "controls the spacing.  Positive values calculate the separator position "
 "from the right, negative values from the left."
 msgstr ""
+"16진수 문자열을 더 읽기 쉽게 하려면, 출력에 포함할 단일 문자 분리자 *sep* 매개 변수를 지정할 수 있습니다. 기본적으로 각"
+" 바이트 사이에 삽입됩니다. 두 번째 선택적 *bytes_per_sep* 매개 변수는 간격을 제어합니다. 양수 값은 오른쪽에서, "
+"음수는 왼쪽에서 분리 기호 위치를 계산합니다."
 
 #: ../Doc/library/stdtypes.rst:2426
 msgid ""
 ":meth:`bytes.hex` now supports optional *sep* and *bytes_per_sep* "
 "parameters to insert separators between bytes in the hex output."
 msgstr ""
+"이제 :meth:`bytes.hex`\\는 16진수 출력의 바이트 사이에 구분 기호를 삽입하기 위해 선택적 *sep*\\과 "
+"*bytes_per_sep* 매개 변수를 지원합니다."
 
 #: ../Doc/library/stdtypes.rst:2430
 msgid ""
@@ -4753,6 +4760,10 @@ msgid ""
 "in-memory Fortran order is preserved. For non-contiguous views, the data "
 "is converted to C first. *order=None* is the same as *order='C'*."
 msgstr ""
+"*order*\\는 {'C', 'F', 'A'} 일 수 있습니다. *order*\\가 'C' 나 'F' 이면, 원래 배열의 데이터가"
+" C 나 포트란 순서로 변환됩니다. 연속 뷰의 경우, 'A' 는 물리적 메모리의 정확한 사본을 반환합니다. 특히, 메모리 내 포트란"
+" 순서가 보존됩니다. 연속적이지 않은 뷰의 경우, 데이터는 먼저 C로 변환됩니다. *order=None*\\은 "
+"*order='C'*\\와 같습니다."
 
 #: ../Doc/library/stdtypes.rst:3654
 msgid ""
@@ -4774,7 +4785,7 @@ msgstr ":meth:`tolist` 는 이제 :mod:`struct` 모듈 문법의 모든 단일 �
 msgid ""
 "Return a readonly version of the memoryview object.  The original "
 "memoryview object is unchanged. ::"
-msgstr ""
+msgstr "메모리 뷰 객체의 읽기 전용 버전을 반환합니다. 원래 메모리 뷰 객체는 변경되지 않습니다. ::"
 
 #: ../Doc/library/stdtypes.rst:3701
 msgid ""
@@ -4839,9 +4850,8 @@ msgid "Cast 1D/bytes to 3D/ints to 1D/signed char::"
 msgstr "1D/bytes 를 3D/ints 로 캐스트 한 후 다시 1D/signed char 로 캐스트::"
 
 #: ../Doc/library/stdtypes.rst:3807
-#, fuzzy
 msgid "Cast 1D/unsigned long to 2D/unsigned long::"
-msgstr "1D/unsigned char 를 2D/unsigned long 으로 캐스트::"
+msgstr "1D/unsigned long 을 2D/unsigned long 으로 캐스트::"
 
 #: ../Doc/library/stdtypes.rst:3821
 msgid "The source format is no longer restricted when casting to a byte view."
@@ -5316,9 +5326,8 @@ msgid ""
 msgstr "이것들은 딕셔너리가 지원하는 연산들입니다 (그러므로, 사용자 정의 매핑 형도 지원해야 합니다):"
 
 #: ../Doc/library/stdtypes.rst:4214
-#, fuzzy
 msgid "Return a list of all the keys used in the dictionary *d*."
-msgstr "딕셔너리 *d* 에 있는 항목의 수를 돌려줍니다."
+msgstr "딕셔너리 *d* 에 사용된 모든 키의 리스트를 돌려줍니다."
 
 #: ../Doc/library/stdtypes.rst:4218
 msgid "Return the number of items in the dictionary *d*."
@@ -5402,6 +5411,9 @@ msgid ""
 "object such as an empty list.  To get distinct values, use a :ref:`dict "
 "comprehension <dict>` instead."
 msgstr ""
+":meth:`fromkeys` 는 새로운 딕셔너리를 돌려주는 클래스 메서드입니다. *value* 의 기본값은 ``None`` "
+"입니다. 모든 값이 단일 인스턴스를 참조하므로, *value*\\가 빈 목록과 같은 가변 객체가 되는 것은 일반적으로 의미가 "
+"없습니다. 별개의 값을 얻으려면, 대신 :ref:`딕셔너리 컴프리헨션 <dict>`\\을 사용하십시오."
 
 #: ../Doc/library/stdtypes.rst:4291
 msgid ""
@@ -5460,11 +5472,10 @@ msgid ""
 msgstr "이제 LIFO 순서가 보장됩니다. 이전 버전에서는, :meth:`popitem`\\가 임의의 키/값 쌍을 반환합니다."
 
 #: ../Doc/library/stdtypes.rst:4326
-#, fuzzy
 msgid ""
 "Return a reverse iterator over the keys of the dictionary. This is a "
 "shortcut for ``reversed(d.keys())``."
-msgstr "딕셔너리의 키에 대한 이터레이터를 돌려줍니다. 이것은 ``iter(d.keys())`` 의 단축입니다."
+msgstr "딕셔너리의 키에 대한 역순 이터레이터를 돌려줍니다. 이것은 ``reversed(d.keys())`` 의 단축입니다."
 
 #: ../Doc/library/stdtypes.rst:4331
 msgid ""
@@ -5503,16 +5514,17 @@ msgid ""
 "will always return ``False``. This also applies when comparing "
 "``dict.values()`` to itself::"
 msgstr ""
+"한 ``dict.values()`` 뷰와 다른 ``dict.values()`` 뷰 간의 동등 비교는 항상 ``False``\\를 "
+"반환합니다. 이것은 ``dict.values()``\\를 자신과 비교할 때도 적용됩니다::"
 
 #: ../Doc/library/stdtypes.rst:4358
-#, fuzzy
 msgid ""
 "Dictionaries compare equal if and only if they have the same ``(key, "
 "value)`` pairs (regardless of ordering). Order comparisons ('<', '<=', "
 "'>=', '>') raise :exc:`TypeError`."
 msgstr ""
-"딕셔너리는 같은 ``(key, value)`` 쌍들을 가질 때, 그리고 그때만 같다고 비교됩니다. 순서 비교('<', '<=', "
-"'>=', '>')는 :exc:`TypeError` 를 일으킵니다."
+"딕셔너리는 (순서와 관계없이) 같은 ``(key, value)`` 쌍들을 가질 때, 그리고 그때만 같다고 비교됩니다. 순서 "
+"비교('<', '<=', '>=', '>')는 :exc:`TypeError` 를 일으킵니다."
 
 #: ../Doc/library/stdtypes.rst:4362
 msgid ""
@@ -5528,11 +5540,11 @@ msgstr "딕셔너리 순서는 삽입 순서임이 보장됩니다. 이 동작�
 
 #: ../Doc/library/stdtypes.rst:4384
 msgid "Dictionaries and dictionary views are reversible. ::"
-msgstr ""
+msgstr "딕셔너리와 딕셔너리 뷰는 뒤집을 수 있습니다. ::"
 
 #: ../Doc/library/stdtypes.rst:4396
 msgid "Dictionaries are now reversible."
-msgstr ""
+msgstr "딕셔너리는 이제 뒤집을 수 있습니다."
 
 #: ../Doc/library/stdtypes.rst:4401
 msgid ""
@@ -5607,12 +5619,11 @@ msgstr ""
 msgid ""
 "Return a reverse iterator over the keys, values or items of the "
 "dictionary. The view will be iterated in reverse order of the insertion."
-msgstr ""
+msgstr "딕셔너리의 키, 값 또는 항목에 대한 역방향 이터레이터를 반환합니다. 뷰는 삽입의 역순으로 이터레이트됩니다."
 
 #: ../Doc/library/stdtypes.rst:4448
-#, fuzzy
 msgid "Dictionary views are now reversible."
-msgstr "딕셔너리 뷰 객체"
+msgstr "딕셔너리 뷰는 이제 역 탐색할 수 있습니다."
 
 #: ../Doc/library/stdtypes.rst:4452
 msgid ""
@@ -6132,56 +6143,4 @@ msgid ""
 "To format only a tuple you should therefore provide a singleton tuple "
 "whose only element is the tuple to be formatted."
 msgstr "그래서, 튜플만을 포매팅하려면 포맷할 튜플 하나만을 포함하는 1-튜플을 제공해야 합니다."
-
-#~ msgid ""
-#~ "Objects of different types, except "
-#~ "different numeric types, never compare "
-#~ "equal. Furthermore, some types (for "
-#~ "example, function objects) support only "
-#~ "a degenerate notion of comparison where"
-#~ " any two objects of that type "
-#~ "are unequal.  The ``<``, ``<=``, ``>``"
-#~ " and ``>=`` operators will raise a"
-#~ " :exc:`TypeError` exception when comparing "
-#~ "a complex number with another built-"
-#~ "in numeric type, when the objects "
-#~ "are of different types that cannot "
-#~ "be compared, or in other cases "
-#~ "where there is no defined ordering."
-#~ msgstr ""
-#~ "서로 다른 숫자 형을 제외하고는 서로 다른 형의"
-#~ " 객체들은 같다고 비교되지 않습니다. 더 나아가, 어떤"
-#~ " 형들은 (예를 들어, 함수 객체) 그 형의 "
-#~ "모든 두 객체가 다르다고 비교되는 비교의 축약적인 "
-#~ "개념만을 지원합니다. ``<``, ``<=``, ``>``, ``>=``"
-#~ " 연산자들은 복소수를 다른 내장 숫자 형과 비교할 "
-#~ "때, 객체들이 비교될 수 없는 다른 형일 때,"
-#~ " 정의된 순서가 없을 때 :exc:`TypeError` 예외를"
-#~ " 일으킵니다."
-
-#~ msgid ""
-#~ "Return true if there are only "
-#~ "whitespace characters in the string and"
-#~ " there is at least one character, "
-#~ "false otherwise.  Whitespace characters  are"
-#~ " those characters defined in the "
-#~ "Unicode character database as \"Other\" "
-#~ "or \"Separator\" and those with "
-#~ "bidirectional property being one of "
-#~ "\"WS\", \"B\", or \"S\"."
-#~ msgstr ""
-#~ "문자열 내에 공백 문자만 있고, 적어도 하나의 "
-#~ "문자가 존재하는 경우 참을 돌려주고, 그렇지 않으면 "
-#~ "거짓을 돌려줍니다. 공백 문자는 유니코드 문자 데이터베이스에서"
-#~ " \"Other\" 나 \"Separator\"로 정의되고 양방향 "
-#~ "속성이 \"WS\", \"B\", \"S\" 중 하나인 "
-#~ "문자입니다."
-
-#~ msgid ""
-#~ ":meth:`fromkeys` is a class method that"
-#~ " returns a new dictionary. *value* "
-#~ "defaults to ``None``."
-#~ msgstr ""
-#~ ":meth:`fromkeys` 는 새로운 딕셔너리를 돌려주는 클래스"
-#~ " 메서드입니다. *value* 의 기본값은 ``None`` 입니다."
 

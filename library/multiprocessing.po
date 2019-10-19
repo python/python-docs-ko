@@ -124,9 +124,8 @@ msgstr ""
 "비해 다소 느립니다."
 
 #: ../Doc/library/multiprocessing.rst:105
-#, fuzzy
 msgid "Available on Unix and Windows.  The default on Windows and macOS."
-msgstr "유닉스 및 윈도우에서 사용 가능합니다. 윈도우의 기본값."
+msgstr "유닉스 및 윈도우에서 사용 가능합니다. 윈도우와 macOS의 기본값."
 
 #: ../Doc/library/multiprocessing.rst:114
 msgid "*fork*"
@@ -177,6 +176,8 @@ msgid ""
 "method should be considered unsafe as it can lead to crashes of the "
 "subprocess. See :issue:`33725`."
 msgstr ""
+"macOS에서, *spawn* 시작 방법이 이제 기본값입니다. *fork* 시작 방법은 서브 프로세스의 충돌로 이어질 수 있기 "
+"때문에, 안전하지 않은 것으로 간주해야 합니다. :issue:`33725`\\를 참조하십시오."
 
 #: ../Doc/library/multiprocessing.rst:133
 msgid ""
@@ -202,6 +203,13 @@ msgid ""
 "number of named semaphores, and shared memory segments occupy some space "
 "in the main memory.)"
 msgstr ""
+"유닉스에서 *spawn* 또는 *forkserver* 시작 방법을 사용하면 *자원 추적기* 프로세스 역시 시작되는데, 프로그램의 "
+"프로세스들이 만든 삭제되지 않은 이름있는 시스템 자원(가령 이름있는 세마포어나 "
+":class:`~multiprocessing.shared_memory.SharedMemory` 객체)을 추적합니다. 모든 프로세스가"
+" 종료된 후 자원 추적기는 남아있는 추적되는 객체들을 제거합니다. 일반적으로 아무것도 남아 있지 않아야 하지만, 프로세스가 시그널에"
+" 의해 죽으면 \"누수된\" 자원이 있을 수 있습니다. (누수된 세마포어나 공유 메모리 세그먼트는 다음 재부팅 때까지 자동으로 "
+"제거되지 않습니다. 두 객체 모두에게 이것은 문제가 되는데, 시스템이 제한된 수의 이름있는 세마포어만 허용하고, 공유 메모리 "
+"세그먼트는 주 메모리에 일정 공간을 차지하기 때문입니다.)"
 
 #: ../Doc/library/multiprocessing.rst:152
 msgid ""
@@ -453,14 +461,13 @@ msgstr ""
 "들면::"
 
 #: ../Doc/library/multiprocessing.rst:453
-#, fuzzy
 msgid ""
 "(If you try this it will actually output three full tracebacks "
 "interleaved in a semi-random fashion, and then you may have to stop the "
 "parent process somehow.)"
 msgstr ""
-"(이것을 시도해 보면 실제로 세 개의 전체 트레이스백이 어느 정도 임의로 번갈아 출력됩니다. 그런 다음 마스터 프로세스를 중지시켜야"
-" 할 수도 있습니다.)"
+"(이것을 시도해 보면 실제로 세 개의 전체 트레이스백이 어느 정도 임의로 번갈아 출력됩니다. 그런 다음 부모 프로세스를 중지시켜야 "
+"할 수도 있습니다.)"
 
 #: ../Doc/library/multiprocessing.rst:459
 msgid "Reference"
@@ -1026,7 +1033,7 @@ msgstr ""
 msgid ""
 "If the queue is closed, :exc:`ValueError` is raised instead of "
 ":exc:`AssertionError`."
-msgstr ""
+msgstr "큐가 닫혔으면, :exc:`AssertionError` 대신 :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/multiprocessing.rst:813
 msgid "Equivalent to ``put(obj, False)``."
@@ -1052,7 +1059,7 @@ msgstr ""
 msgid ""
 "If the queue is closed, :exc:`ValueError` is raised instead of "
 ":exc:`OSError`."
-msgstr ""
+msgstr "큐가 닫혔으면, :exc:`OSError` 대신 :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/multiprocessing.rst:831
 msgid "Equivalent to ``get(False)``."
@@ -1248,6 +1255,8 @@ msgid ""
 " the :func:`current_process`. For the main process, ``parent_process`` "
 "will be ``None``."
 msgstr ""
+":func:`current_process`\\의 부모 프로세스에 해당하는 :class:`Process` 객체를 반환합니다. 메인 "
+"프로세스에서, ``parent_process``\\는 ``None``\\입니다."
 
 #: ../Doc/library/multiprocessing.rst:963
 msgid ""
@@ -3034,7 +3043,7 @@ msgstr ""
 msgid ""
 "If the result is not ready, :exc:`ValueError` is raised instead of "
 ":exc:`AssertionError`."
-msgstr ""
+msgstr "결과가 준비되지 않았으면, :exc:`AssertionError` 대신 :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/multiprocessing.rst:2287
 msgid "The following example demonstrates the use of a pool::"
@@ -3811,33 +3820,4 @@ msgid ""
 "An example showing how to use queues to feed tasks to a collection of "
 "worker processes and collect the results:"
 msgstr "큐를 사용하여 작업을 작업자 프로세스 집단에 제공하고 결과를 수집하는 방법을 보여주는 예:"
-
-#~ msgid ""
-#~ "On Unix using the *spawn* or "
-#~ "*forkserver* start methods will also "
-#~ "start a *semaphore tracker* process "
-#~ "which tracks the unlinked named "
-#~ "semaphores created by processes of the"
-#~ " program.  When all processes have "
-#~ "exited the semaphore tracker unlinks any"
-#~ " remaining semaphores. Usually there should"
-#~ " be none, but if a process was"
-#~ " killed by a signal there may "
-#~ "be some \"leaked\" semaphores.  (Unlinking "
-#~ "the named semaphores is a serious "
-#~ "matter since the system allows only "
-#~ "a limited number, and they will "
-#~ "not be automatically unlinked until the"
-#~ " next reboot.)"
-#~ msgstr ""
-#~ "유닉스에서 *spawn* 또는 *forkserver* 시작 방법을 "
-#~ "사용하면 *세마포어 추적기* 프로세스 역시 시작되는데, "
-#~ "프로그램의 프로세스들이 만든 삭제되지 않은 이름있는 세마포어를"
-#~ " 추적합니다. 모든 프로세스가 종료된 후 세마포어 "
-#~ "추적기는 남아있는 세마포어를 제거합니다. 일반적으로 아무것도 "
-#~ "남아 있지 않아야 하지만, 프로세스가 시그널에 의해 "
-#~ "죽으면 \"누수된\" 세마포어가 있을 수 있습니다. (이름있는"
-#~ " 세마포어의 제거는 심각한 문제인데, 시스템이 제한된 "
-#~ "수만 허용하고 다음 재부팅 때까지 자동으로 제거되지 "
-#~ "않기 때문입니다.)"
 

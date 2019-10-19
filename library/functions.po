@@ -303,13 +303,14 @@ msgid ":func:`round`"
 msgstr ":func:`round`"
 
 #: ../Doc/library/functions.rst:45
-#, fuzzy
 msgid ""
 "Return the absolute value of a number.  The argument may be an integer or"
 " a floating point number.  If the argument is a complex number, its "
 "magnitude is returned. If *x* defines :meth:`__abs__`, ``abs(x)`` returns"
 " ``x.__abs__()``."
-msgstr "숫자의 절댓값을 돌려줍니다. 인자는 정수 또는 실수입니다. 인자가 복소수면 그 크기가 반환됩니다."
+msgstr ""
+"숫자의 절댓값을 돌려줍니다. 인자는 정수 또는 실수입니다. 인자가 복소수면 그 크기가 반환됩니다. *x*\\가 "
+":meth:`__abs__`\\를 정의하면, ``abs(x)``\\는 ``x.__abs__()``\\를 반환합니다."
 
 #: ../Doc/library/functions.rst:53
 msgid ""
@@ -404,6 +405,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``builtins.breakpoint`` with "
 "argument ``breakpointhook``."
 msgstr ""
+"``breakpointhook``\\을 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``builtins.breakpoint``\\를 발생시킵니다."
 
 #: ../Doc/library/functions.rst:139
 msgid ""
@@ -637,6 +640,10 @@ msgid ""
 "return code object has ``CO_COROUTINE`` set in ``co_code``, and can be "
 "interactively executed via ``await eval(code_object)``."
 msgstr ""
+"선택적 인자 *flags*\\는 컴파일된 소스가 최상위 수준 ``await``, ``async for`` 및 ``async "
+"with``\\를 포함할 수 있는지를 제어합니다. 비트 ``ast.PyCF_ALLOW_TOP_LEVEL_AWAIT``\\가 설정될 "
+"때, 반환 코드 객체는 ``co_code``\\에 ``CO_COROUTINE``\\이 설정되고, ``await "
+"eval(code_object)``\\를 통해 대화식으로 실행될 수 있습니다."
 
 #: ../Doc/library/functions.rst:268
 msgid ""
@@ -668,6 +675,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``compile`` with arguments "
 "``source``, ``filename``."
 msgstr ""
+"``source``, ``filename`` 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``compile``\\을 발생시킵니다."
 
 #: ../Doc/library/functions.rst:282
 msgid ""
@@ -675,6 +684,8 @@ msgid ""
 "``source`` and ``filename``. This event may also be raised by implicit "
 "compilation."
 msgstr ""
+"``source``\\와 ``filename``\\을 인자로 :ref:`감사 이벤트(auditing event) "
+"<auditing>` ``compile``\\을 발생시킵니다. 이 이벤트는 묵시적 컴파일로 인해 발생할 수도 있습니다."
 
 #: ../Doc/library/functions.rst:288
 msgid ""
@@ -715,6 +726,8 @@ msgid ""
 "``ast.PyCF_ALLOW_TOP_LEVEL_AWAIT`` can now be passed in flags to enable "
 "support for top-level ``await``, ``async for``, and ``async with``."
 msgstr ""
+"이제 ``ast.PyCF_ALLOW_TOP_LEVEL_AWAIT``\\를 flags로 전달하여 최상위 수준 ``await``, "
+"``async for`` 및 ``async with``\\를 지원할 수 있습니다."
 
 #: ../Doc/library/functions.rst:314
 msgid ""
@@ -740,6 +753,9 @@ msgid ""
 "back to :meth:`__float__`.  If ``__float__()`` is not defined then it "
 "falls back to :meth:`__index__`."
 msgstr ""
+"일반적인 파이썬 객체 ``x``\\에서, ``complex(x)``\\는 ``x.__complex__()``\\로 위임합니다. "
+"``__complex__()``\\가 정의되어 있지 않으면, :meth:`__float__`\\로 대체합니다. "
+"``__float__()``\\가 정의되어 있지 않으면, :meth:`__index__`\\로 대체합니다."
 
 #: ../Doc/library/functions.rst:330
 msgid ""
@@ -766,6 +782,8 @@ msgid ""
 "Falls back to :meth:`__index__` if :meth:`__complex__` and "
 ":meth:`__float__` are not defined."
 msgstr ""
+":meth:`__complex__`\\와 :meth:`__float__`\\가 정의되지 않으면 :meth:`__index__`\\로"
+" 대체합니다."
 
 #: ../Doc/library/functions.rst:347
 msgid ""
@@ -919,7 +937,6 @@ msgstr ""
 " *locals* 는 모든 매핑 객체가 될 수 있습니다."
 
 #: ../Doc/library/functions.rst:463
-#, fuzzy
 msgid ""
 "The *expression* argument is parsed and evaluated as a Python expression "
 "(technically speaking, a condition list) using the *globals* and *locals*"
@@ -941,13 +958,14 @@ msgstr ""
 ":mod:`builtins`\\의 딕셔너리에 대한 참조를 그 키로 삽입합니다. 이는 *expression* 이 일반적으로 표준 "
 ":mod:`builtins` 모듈에 대한 모든 액세스 권한을 가지며 제한된 환경이 전파됨을 뜻합니다. *locals* 딕셔너리를 "
 "생략하면 기본적으로 *globals* 딕셔너리가 사용됩니다. 두 딕셔너리가 모두 생략되면, 표현식은 :func:`eval` 이 "
-"호출되는 환경에서 실행됩니다. 반환 값은 계산된 표현식의 결과입니다. 문법 에러는 예외로 보고됩니다. 예:"
+"호출되는 환경에의 *globals*\\와 *locals*\\로 실행됩니다. *eval()*\\은 둘러싸는 환경에 있는 "
+":term:`중첩된 스코프 <nested scope>`\\(nonlocal)에 액세스할 수 없습니다."
 
 #: ../Doc/library/functions.rst:477
 msgid ""
 "The return value is the result of the evaluated expression. Syntax errors"
 " are reported as exceptions.  Example:"
-msgstr ""
+msgstr "반환 값은 계산된 표현식의 결과입니다. 문법 에러는 예외로 보고됩니다. 예:"
 
 #: ../Doc/library/functions.rst:484
 msgid ""
@@ -982,12 +1000,16 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``exec`` with argument "
 "``code_object``."
 msgstr ""
+"``code_object`` 인자로 :ref:`감사 이벤트(auditing event) <auditing>` ``exec``\\를 "
+"발생시킵니다."
 
 #: ../Doc/library/functions.rst:499 ../Doc/library/functions.rst:534
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``exec`` with the code object "
 "as the argument. Code compilation events may also be raised."
 msgstr ""
+"코드 객체를 인자로 :ref:`감사 이벤트(auditing event) <auditing>` ``exec``\\를 발생시킵니다. "
+"코드 컴파일 이벤트도 발생할 수 있습니다."
 
 #: ../Doc/library/functions.rst:506
 msgid ""
@@ -1008,7 +1030,6 @@ msgstr ""
 "안에서조차도 함수 정의 밖에서 사용될 수 없음에 유의하세요. 반환 값은 ``None`` 입니다."
 
 #: ../Doc/library/functions.rst:516
-#, fuzzy
 msgid ""
 "In all cases, if the optional parts are omitted, the code is executed in "
 "the current scope.  If only *globals* is provided, it must be a "
@@ -1020,10 +1041,11 @@ msgid ""
 "separate objects as *globals* and *locals*, the code will be executed as "
 "if it were embedded in a class definition."
 msgstr ""
-"모든 경우에, 선택적 부분을 생략하면, 현재 스코프에서 코드가 실행됩니다. *globals* 만 제공된 경우, 사전이어야 하며, "
-"전역과 지역 변수 모두에 사용됩니다. *globals* 및 *locals* 가 주어지면, 전역과 지역 변수에 각각 사용됩니다. "
-"제공되는 경우, *locals* 는 모든 매핑 객체가 될 수 있습니다. 모듈 수준에서, 전역과 지역은 같은 딕셔너리임을 기억하세요."
-" exec 가 *globals* 와 *locals* 로 별도의 객체를 받으면, 코드는 클래스 정의에 포함된 것처럼 실행됩니다."
+"모든 경우에, 선택적 부분을 생략하면, 현재 스코프에서 코드가 실행됩니다. *globals* 만 제공된 경우, (딕셔너리의 서브 "
+"클래스가 아닌) 딕셔너리여야 하며, 전역과 지역 변수 모두에 사용됩니다. *globals* 및 *locals* 가 주어지면, 전역과"
+" 지역 변수에 각각 사용됩니다. 제공되는 경우, *locals* 는 모든 매핑 객체가 될 수 있습니다. 모듈 수준에서, 전역과 "
+"지역은 같은 딕셔너리임을 기억하세요. exec 가 *globals* 와 *locals* 로 별도의 객체를 받으면, 코드는 클래스 "
+"정의에 포함된 것처럼 실행됩니다."
 
 #: ../Doc/library/functions.rst:526
 msgid ""
@@ -1131,12 +1153,13 @@ msgstr ""
 "float 범위를 벗어나면, :exc:`OverflowError` 가 발생합니다."
 
 #: ../Doc/library/functions.rst:601
-#, fuzzy
 msgid ""
 "For a general Python object ``x``, ``float(x)`` delegates to "
 "``x.__float__()``.  If ``__float__()`` is not defined then it falls back "
 "to :meth:`__index__`."
-msgstr "일반적인 파이썬 객체 ``x`` 의 경우, ``float (x)`` 는 ``x .__ float __ ()`` 로 위임합니다."
+msgstr ""
+"일반적인 파이썬 객체 ``x`` 의 경우, ``float(x)`` 는 ``x.__float__()`` 로 위임합니다. "
+"``__float__()``\\가 정의되지 않았으면, :meth:`__index__`\\로 대체합니다."
 
 #: ../Doc/library/functions.rst:605
 msgid "If no argument is given, ``0.0`` is returned."
@@ -1152,7 +1175,7 @@ msgstr "float 형은 :ref:`typesnumeric` 에 설명되어 있습니다."
 
 #: ../Doc/library/functions.rst:628
 msgid "Falls back to :meth:`__index__` if :meth:`__float__` is not defined."
-msgstr ""
+msgstr ":meth:`__float__`\\가 정의되지 않으면 :meth:`__index__`\\로 대체합니다."
 
 #: ../Doc/library/functions.rst:638
 msgid ""
@@ -1370,26 +1393,29 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``builtins.input`` with "
 "argument ``prompt``."
 msgstr ""
+"``prompt`` 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``builtins.input``\\을 발생시킵니다."
 
 #: ../Doc/library/functions.rst:788
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``builtins.input`` with "
 "argument ``prompt`` before reading input"
 msgstr ""
+"입력을 읽기 전에 ``prompt`` 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``builtins.input``\\을 발생시킵니다."
 
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``builtins.input/result`` with"
 " argument ``result``."
-msgstr ""
+msgstr "``result`` 인자로 감사 이벤트(auditing event) ``builtins.input/result``\\를 발생시킵니다."
 
 #: ../Doc/library/functions.rst:793
 msgid ""
 "Raises an auditing event ``builtins.input/result`` with the result after "
 "successfully reading input."
-msgstr ""
+msgstr "입력을 성공적으로 읽은 후 결과로 감사 이벤트 ``builtins.input/result``\\를 발생시킵니다."
 
 #: ../Doc/library/functions.rst:800
-#, fuzzy
 msgid ""
 "Return an integer object constructed from a number or string *x*, or "
 "return ``0`` if no arguments are given.  If *x* defines :meth:`__int__`, "
@@ -1400,6 +1426,7 @@ msgid ""
 msgstr ""
 "숫자 나 문자열 *x* 로 부터 만들어진 정수 객체를 돌려줍니다. 인자가 주어지지 않으면 ``0`` 을 돌려줍니다. *x* 가 "
 ":meth:`__int__` 를 정의하면, ``int(x)`` 는 ``x.__int__()`` 를 돌려줍니다. *x* 가 "
+":meth:`__index__` 를 정의하면, ``x.__index__()`` 를 돌려줍니다. *x* 가 "
 ":meth:`__trunc__` 를 정의하면, ``x.__trunc__()`` 를 돌려줍니다. 실수의 경우 이 함수는 0 향해 "
 "자릅니다."
 
@@ -1447,7 +1474,7 @@ msgstr ""
 
 #: ../Doc/library/functions.rst:835
 msgid "Falls back to :meth:`__index__` if :meth:`__int__` is not defined."
-msgstr ""
+msgstr ":meth:`__int__`\\가 정의되지 않으면, :meth:`__index__`\\로 대체합니다."
 
 #: ../Doc/library/functions.rst:841
 msgid ""
@@ -1610,7 +1637,7 @@ msgstr "*default* 키워드-전용 인자."
 
 #: ../Doc/library/functions.rst:948 ../Doc/library/functions.rst:985
 msgid "The *key* can be ``None``."
-msgstr ""
+msgstr "*key*\\는 ``None`` 일 수 있습니다."
 
 #: ../Doc/library/functions.rst:956
 msgid ""
@@ -1789,19 +1816,18 @@ msgid "``'+'``"
 msgstr "``'+'``"
 
 #: ../Doc/library/functions.rst:1071
-#, fuzzy
 msgid "open for updating (reading and writing)"
-msgstr "갱신(읽기 및 쓰기)용으로 디스크 파일을 엽니다"
+msgstr "갱신(읽기 및 쓰기)용으로 엽니다"
 
 #: ../Doc/library/functions.rst:1074
-#, fuzzy
 msgid ""
 "The default mode is ``'r'`` (open for reading text, synonym of ``'rt'``)."
 " Modes ``'w+'`` and ``'w+b'`` open and truncate the file.  Modes ``'r+'``"
 " and ``'r+b'`` open the file with no truncation."
 msgstr ""
-"기본 모드는 ``'r'`` 입니다 (텍스트를 읽는 용으로 엽니다, ``'rt'`` 의 동의어). 바이너리 읽기-쓰기 액세스의 "
-"경우는, 모드 ``'w+b'`` 는 파일을 열면서 0바이트로 자릅니다. ``'r+b'`` 는 자르지 않고 파일을 엽니다."
+"기본 모드는 ``'r'`` 입니다 (텍스트를 읽는 용으로 엽니다, ``'rt'`` 의 동의어). 모드 ``'w+'``\\와 "
+"``'w+b'`` 는 파일을 열고 자릅니다(truncate). 모드 ``'r+'``\\과 ``'r+b'`` 는 자르지 않고 파일을 "
+"엽니다."
 
 #: ../Doc/library/functions.rst:1078
 msgid ""
@@ -2064,12 +2090,14 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``open`` with arguments "
 "``file``, ``mode``, ``flags``."
 msgstr ""
+"``file``, ``mode``, ``flags`` 인자로 :ref:`감사 이벤트(auditing event) "
+"<auditing>` ``open``\\을 발생시킵니다."
 
 #: ../Doc/library/functions.rst:1231
 msgid ""
 "The ``mode`` and ``flags`` arguments may have been modified or inferred "
 "from the original call."
-msgstr ""
+msgstr "``mode``\\와 ``flags`` 인자는 원래 호출에서 수정되거나 추론되었을 수 있습니다."
 
 #: ../Doc/library/functions.rst:1237
 msgid "The *opener* parameter was added."
@@ -2140,9 +2168,11 @@ msgid ""
 " exp) % mod``). The two-argument form ``pow(base, exp)`` is equivalent to"
 " using the power operator: ``base**exp``."
 msgstr ""
+"*base* 의 *exp* 거듭제곱을 돌려줍니다; *mod* 가 있는 경우, *base* 의 *exp* 거듭제곱의 모듈로 *mod*"
+" 를 돌려줍니다 (``pow(base, exp) % mod`` 보다 더 빠르게 계산됩니다). 두 개의 인자 형식인 "
+"``pow(base, exp)`` 는 거듭제곱 연산자를 사용하는 것과 동등합니다: ``base**exp``."
 
 #: ../Doc/library/functions.rst:1282
-#, fuzzy
 msgid ""
 "The arguments must have numeric types.  With mixed operand types, the "
 "coercion rules for binary arithmetic operators apply.  For :class:`int` "
@@ -2154,8 +2184,7 @@ msgstr ""
 "인자는 숫자 형이어야 합니다. 피연산자들의 형이 다를 경우, 이 항 산술 연산자에 대한 코어션 규칙이 적용됩니다. "
 ":class:`int` 피연산자들의 경우, 결과는 두 번째 인자가 음수가 아닌 한 피연산자와 같은 형(코어션 후에)이 됩니다; 두 "
 "번째 인자가 음수면 모든 인자가 float로 변환되고 float 결과가 전달됩니다. 예를 들어, ``10**2`` 는 ``100``"
-" 을 반환하지만, ``10**-2``는 ``0.01`` 을 반환합니다. 두 번째 인자가 음수면 세 번째 인수는 생략해야 합니다. "
-"*z* 가 있는 경우, *x* 및 *y* 는 정수형이어야 하고, *y* 는 음수가 아니어야 합니다."
+" 을 반환하지만, ``10**-2``는 ``0.01`` 을 반환합니다."
 
 #: ../Doc/library/functions.rst:1289
 msgid ""
@@ -2165,10 +2194,14 @@ msgid ""
 "In that case, ``pow(inv_base, -exp, mod)`` is returned, where *inv_base* "
 "is an inverse to *base* modulo *mod*."
 msgstr ""
+":class:`int` 피연산자 *base* 및 *exp*\\의 경우, *mod*\\가 있으면, *mod*\\도 정수 형이어야 하고"
+" *mod*\\는 0이 아니어야 합니다. *mod*\\가 있고 *exp*\\가 음수면, *base*\\는 *mod*\\와 서로 "
+"소(relatively prime)여야 합니다. 이 경우, ``pow(inv_base, -exp, mod)``\\가 반환되며, "
+"여기서 *inv_base*\\는 *base* 모듈로 *mod*\\의 역입니다."
 
 #: ../Doc/library/functions.rst:1295
 msgid "Here's an example of computing an inverse for ``38`` modulo ``97``::"
-msgstr ""
+msgstr "다음은 ``38`` 모듈로 ``97``\\의 역을 계산하는 예입니다::"
 
 #: ../Doc/library/functions.rst:1302
 msgid ""
@@ -2176,12 +2209,14 @@ msgid ""
 "the second argument to be negative, permitting computation of modular "
 "inverses."
 msgstr ""
+":class:`int` 피연산자의 경우, ``pow``\\의 3 인자 형식은 이제 두 번째 인자가 음수가 되는 것을 허용하여, "
+"모듈러 역수를 계산할 수 있게 합니다."
 
 #: ../Doc/library/functions.rst:1307
 msgid ""
 "Allow keyword arguments.  Formerly, only positional arguments were "
 "supported."
-msgstr ""
+msgstr "키워드 인자를 허용합니다. 이전에는, 위치 인자만 지원되었습니다."
 
 #: ../Doc/library/functions.rst:1314
 msgid ""
@@ -2539,14 +2574,13 @@ msgstr ""
 " 를 보세요."
 
 #: ../Doc/library/functions.rst:1579
-#, fuzzy
 msgid ""
 "Sums *start* and the items of an *iterable* from left to right and "
 "returns the total.  The *iterable*'s items are normally numbers, and the "
 "start value is not allowed to be a string."
 msgstr ""
-"*start* 및 *iterable* 의 항목들을 왼쪽에서 오른쪽으로 합하고 합계를 돌려줍니다. *start* 의 기본값은 "
-"``0`` 입니다. *iterable* 의 항목은 일반적으로 숫자며 시작 값은 문자열이 될 수 없습니다."
+"*start* 및 *iterable* 의 항목들을 왼쪽에서 오른쪽으로 합하고 합계를 돌려줍니다. *iterable* 의 항목은 "
+"일반적으로 숫자며 시작 값은 문자열이 될 수 없습니다."
 
 #: ../Doc/library/functions.rst:1583
 msgid ""
@@ -2562,26 +2596,25 @@ msgstr ""
 "고려해보세요."
 
 #: ../Doc/library/functions.rst:1589
-#, fuzzy
 msgid "The *start* parameter can be specified as a keyword argument."
-msgstr "키워드 인자로만 지정해야 하는 두 개의 선택적 인자가 있습니다."
+msgstr "*start* 매개 변수는 키워드 인자로만 지정될 수 있습니다."
 
 #: ../Doc/library/functions.rst:1594
-#, fuzzy
 msgid ""
 "Return a proxy object that delegates method calls to a parent or sibling "
 "class of *type*.  This is useful for accessing inherited methods that "
 "have been overridden in a class."
 msgstr ""
 "메서드 호출을 *type* 의 부모나 형제 클래스에 위임하는 프락시 객체를 돌려줍니다. 이는 클래스에서 재정의된 상속 된 메서드를 "
-"액세스할 때 유용합니다. 검색 순서는 *type* 자체를 건너뛰는 것을 제외하면, :func:`getattr` 에 의해 사용된 "
-"순서와 같습니다."
+"액세스할 때 유용합니다."
 
 #: ../Doc/library/functions.rst:1598
 msgid ""
 "The *object-or-type* determines the :term:`method resolution order` to be"
 " searched.  The search starts from the class right after the *type*."
 msgstr ""
+"*object-or-type*\\은 검색할 :term:`메서드 결정 순서 <method resolution order>`\\를 "
+"결정합니다. *type* 직후 클래스에서 검색을 시작합니다."
 
 #: ../Doc/library/functions.rst:1602
 msgid ""
@@ -2589,16 +2622,18 @@ msgid ""
 " C -> A -> object`` and the value of *type* is ``B``, then :func:`super` "
 "searches ``C -> A -> object``."
 msgstr ""
+"예를 들어, *object-or-type*\\의 :attr:`~class.__mro__`\\가 ``D -> B -> C -> A "
+"-> object``\\이고 *type*\\의 값이 ``B``\\이면, :func:`super`\\는 ``C -> A -> "
+"object``\\를 검색합니다."
 
 #: ../Doc/library/functions.rst:1606
-#, fuzzy
 msgid ""
 "The :attr:`~class.__mro__` attribute of the *object-or-type* lists the "
 "method resolution search order used by both :func:`getattr` and "
 ":func:`super`.  The attribute is dynamic and can change whenever the "
 "inheritance hierarchy is updated."
 msgstr ""
-"*type* 의 :attr:`~class.__mro__` 어트리뷰트는 메서드 결정 검색 순서를 나열하는데 "
+"*object-or-type* 의 :attr:`~class.__mro__` 어트리뷰트는 메서드 결정 검색 순서를 나열하는데 "
 ":func:`getattr` 과 :func:`super` 에서 사용됩니다. 이 어트리뷰트는 동적이며 상속 계층 구조가 변경될 때마다"
 " 바뀔 수 있습니다."
 
@@ -2653,6 +2688,8 @@ msgid ""
 "lookups.  One possible use case for this is calling :term:`descriptor`\\s"
 " in a parent or sibling class."
 msgstr ""
+"메서드 조회 외에, :func:`super`\\는 어트리뷰트 조회에도 작동합니다. 한가지 가능한 사용 사례는 부모나 형제 클래스에 "
+"있는 :term:`디스크립터 <descriptor>`\\를 호출하는 것입니다."
 
 #: ../Doc/library/functions.rst:1642
 msgid ""
@@ -2943,20 +2980,4 @@ msgid ""
 msgstr ""
 "파서는 유닉스 스타일의 줄 종료 규칙만 받아들이는 것에 주의하세요. 파일에서 코드를 읽는 경우, 줄 넘김 변환 모드를 사용해서 "
 "윈도우나 맥 스타일 줄 넘김을 변환해야 합니다."
-
-#~ msgid ""
-#~ "Return *x* to the power *y*; if"
-#~ " *z* is present, return *x* to "
-#~ "the power *y*, modulo *z* (computed "
-#~ "more efficiently than ``pow(x, y) % "
-#~ "z``). The two-argument form ``pow(x, "
-#~ "y)`` is equivalent to using the "
-#~ "power operator: ``x**y``."
-#~ msgstr ""
-#~ "*x* 의 *y* 거듭제곱을 돌려줍니다; *z* 가 "
-#~ "있는 경우, *x* 의 *y* 거듭제곱의 모듈로 "
-#~ "*z* 를 돌려줍니다 (``pow(x, y) % z`` "
-#~ "보다 더 빠르게 계산됩니다). 두 개의 인자 형식인"
-#~ " ``pow (x, y)`` 는 거듭제곱 연산자를 "
-#~ "사용하는 것과 동등합니다: ``x ** y``."
 

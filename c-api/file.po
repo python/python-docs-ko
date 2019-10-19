@@ -98,7 +98,7 @@ msgstr ""
 msgid ""
 "Overrides the normal behavior of :func:`io.open_code` to pass its "
 "parameter through the provided handler."
-msgstr ""
+msgstr "제공된 handler를 통해 매개 변수를 전달하도록 :func:`io.open_code`\\의 일반적인 동작을 재정의합니다."
 
 #: ../Doc/c-api/file.rst:68
 msgid ""
@@ -106,6 +106,8 @@ msgid ""
 "*path, void *userData)`, where *path* is guaranteed to be "
 ":c:type:`PyUnicodeObject`."
 msgstr ""
+"handler는 형이 :c:type:`PyObject *(\\*)(PyObject *path, void *userData)`\\인 "
+"함수이며, 여기서 *path*\\는 :c:type:`PyUnicodeObject` 임이 보장됩니다."
 
 #: ../Doc/c-api/file.rst:71
 msgid ""
@@ -113,6 +115,8 @@ msgid ""
 "functions may be called from different runtimes, this pointer should not "
 "refer directly to Python state."
 msgstr ""
+"*userData* 포인터는 훅 함수로 전달됩니다. 훅 함수는 다른 런타임에서 호출될 수 있으므로, 이 포인터는 파이썬 상태를 직접"
+" 참조하면 안 됩니다."
 
 #: ../Doc/c-api/file.rst:75
 msgid ""
@@ -120,6 +124,8 @@ msgid ""
 "modules during its execution unless they are known to be frozen or "
 "available in ``sys.modules``."
 msgstr ""
+"이 훅은 의도적으로 임포트 중에 사용되므로, 고정되었거나(frozen) ``sys.modules``\\에 있다고 알려진 경우가 "
+"아니라면 훅 실행 중에 새로운 모듈을 임포트하는 것을 피하십시오."
 
 #: ../Doc/c-api/file.rst:79
 msgid ""
@@ -128,10 +134,12 @@ msgid ""
 "function returns -1 and sets an exception if the interpreter has been "
 "initialized."
 msgstr ""
+"일단 훅이 설정되면, 제거하거나 교체할 수 없으며, 이후의 :c:func:`PyFile_SetOpenCodeHook`\\에 대한 "
+"호출은 실패합니다. 실패 시, 함수는 -1을 반환하고 인터프리터가 초기화되었으면 예외를 설정합니다."
 
 #: ../Doc/c-api/file.rst:83
 msgid "This function is safe to call before :c:func:`Py_Initialize`."
-msgstr ""
+msgstr "이 함수는 :c:func:`Py_Initialize` 전에 호출해도 안전합니다."
 
 #: ../Doc/c-api/file.rst:93
 msgid ""

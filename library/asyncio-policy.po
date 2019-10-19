@@ -132,11 +132,12 @@ msgid "asyncio ships with the following built-in policies:"
 msgstr "asyncio에는 다음과 같은 내장 정책이 제공됩니다:"
 
 #: ../Doc/library/asyncio-policy.rst:94
-#, fuzzy
 msgid ""
 "The default asyncio policy.  Uses :class:`SelectorEventLoop` on Unix and "
 ":class:`ProactorEventLoop` on Windows."
-msgstr "기본 asyncio 정책. 유닉스와 윈도우 플랫폼 모두에서 :class:`SelectorEventLoop`\\를 사용합니다."
+msgstr ""
+"기본 asyncio 정책. 유닉스에서는 :class:`SelectorEventLoop`\\를, 윈도우에서는 "
+":class:`ProactorEventLoop`\\를 사용합니다."
 
 #: ../Doc/library/asyncio-policy.rst:97
 msgid ""
@@ -146,14 +147,13 @@ msgstr "수동으로 기본 정책을 설치할 필요는 없습니다. asyncio�
 
 #: ../Doc/library/asyncio-policy.rst:102
 msgid "On Windows, :class:`ProactorEventLoop` is now used by default."
-msgstr ""
+msgstr "윈도우에서, 이제 기본적으로 :class:`ProactorEventLoop`\\가 사용됩니다."
 
 #: ../Doc/library/asyncio-policy.rst:107
-#, fuzzy
 msgid ""
 "An alternative event loop policy that uses the :class:`SelectorEventLoop`"
 " event loop implementation."
-msgstr ":class:`ProactorEventLoop` 이벤트 루프 구현을 사용하는 대안 이벤트 루프 정책."
+msgstr ":class:`SelectorEventLoop` 이벤트 루프 구현을 사용하는 대안 이벤트 루프 정책."
 
 #: ../Doc/library/asyncio-policy.rst:110 ../Doc/library/asyncio-policy.rst:118
 msgid ":ref:`Availability <availability>`: Windows."
@@ -188,7 +188,6 @@ msgstr ""
 ":meth:`loop.subprocess_exec` 함수로 만들어집니다."
 
 #: ../Doc/library/asyncio-policy.rst:133
-#, fuzzy
 msgid ""
 "asyncio defines the :class:`AbstractChildWatcher` abstract base class, "
 "which child watchers should implement, and has four different "
@@ -197,8 +196,9 @@ msgid ""
 ":class:`FastChildWatcher`."
 msgstr ""
 "asyncio는 자식 관찰자가 구현해야 하는 :class:`AbstractChildWatcher` 추상 베이스 클래스를 정의하며, "
-":class:`SafeChildWatcher`\\(기본적으로 사용하도록 구성됩니다)와 "
-":class:`FastChildWatcher`\\의 두 가지 구현이 있습니다."
+"네 가지 구현이 있습니다: :class:`ThreadedChildWatcher` (기본적으로 사용하도록 구성됩니다), "
+":class:`MultiLoopChildWatcher`, :class:`SafeChildWatcher` 및 "
+":class:`FastChildWatcher`."
 
 #: ../Doc/library/asyncio-policy.rst:139
 msgid ""
@@ -277,13 +277,13 @@ msgstr "참고: loop는 ``None`` 일 수 있습니다."
 
 #: ../Doc/library/asyncio-policy.rst:191
 msgid "Return ``True`` if the watcher is ready to use."
-msgstr ""
+msgstr "감시자가 사용할 준비가 되면 ``True``\\를 반환합니다."
 
 #: ../Doc/library/asyncio-policy.rst:193
 msgid ""
 "Spawning a subprocess with *inactive* current child watcher raises "
 ":exc:`RuntimeError`."
-msgstr ""
+msgstr "*활성화되지 않은* 현재 자식 감시자를 사용하여 서브 프로세스를 스폰하면 :exc:`RuntimeError`\\가 발생합니다."
 
 #: ../Doc/library/asyncio-policy.rst:200
 msgid "Close the watcher."
@@ -299,25 +299,26 @@ msgstr "이 메서드는 하부 자원을 정리하기 위해 호출해야 합�
 msgid ""
 "This implementation starts a new waiting thread for every subprocess "
 "spawn."
-msgstr ""
+msgstr "이 구현은 모든 서브 프로세스 스폰에 대해 새로운 대기 스레드를 시작합니다."
 
 #: ../Doc/library/asyncio-policy.rst:209
 msgid ""
 "It works reliably even when the asyncio event loop is run in a non-main "
 "OS thread."
-msgstr ""
+msgstr "메인 외의 OS 스레드에서 asyncio 이벤트 루프가 실행되는 경우에도 신뢰성 있게 작동합니다."
 
 #: ../Doc/library/asyncio-policy.rst:211
-#, fuzzy
 msgid ""
 "There is no noticeable overhead when handling a big number of children "
 "(*O(1)* each time a child terminates), but stating a thread per process "
 "requires extra memory."
-msgstr "많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없습니다 (자식이 종료될 때마다 *O(1)*)."
+msgstr ""
+"많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없습니다만 (자식이 종료될 때마다 *O(1)*), 프로세스마다 하나의 스레드 "
+"상태를 유지하는 데 추가 메모리가 필요합니다."
 
 #: ../Doc/library/asyncio-policy.rst:214
 msgid "This watcher is used by default."
-msgstr ""
+msgstr "기본적으로 이 감시자가 사용됩니다."
 
 #: ../Doc/library/asyncio-policy.rst:220
 msgid ""
@@ -325,31 +326,31 @@ msgid ""
 "instantiation. That can break third-party code that installs a custom "
 "handler for `SIGCHLD`.  signal)."
 msgstr ""
+"이 구현은 인스턴스를 만들 때 :py:data:`SIGCHLD` 시그널 처리기를 등록합니다. `SIGCHLD` 시그널용 사용자 지정"
+" 처리기를 설치하는 제삼자 코드가 손상될 수 있습니다.)."
 
 #: ../Doc/library/asyncio-policy.rst:224 ../Doc/library/asyncio-policy.rst:242
-#, fuzzy
 msgid ""
 "The watcher avoids disrupting other code spawning processes by polling "
 "every process explicitly on a :py:data:`SIGCHLD` signal."
 msgstr ""
-"이 구현은 :py:data:`SIGCHLD` 시그널에 대해 명시적으로 모든 프로세스를 폴링하여 프로세스를 스포닝하는 다른 코드를 "
+"감시자는 :py:data:`SIGCHLD` 시그널에 대해 명시적으로 모든 프로세스를 폴링하여, 프로세스를 스포닝하는 다른 코드를 "
 "방해하지 않습니다."
 
 #: ../Doc/library/asyncio-policy.rst:227
 msgid ""
 "There is no limitation for running subprocesses from different threads "
 "once the watcher is installed."
-msgstr ""
+msgstr "감시자가 일단 설치되면 다른 스레드에서 서브 프로세스를 실행하는 데 제한이 없습니다."
 
 #: ../Doc/library/asyncio-policy.rst:230
-#, fuzzy
 msgid ""
 "The solution is safe but it has a significant overhead when handling a "
 "big number of processes (*O(n)* each time a :py:data:`SIGCHLD` is "
 "received)."
 msgstr ""
-"이것은 안전한 해법이지만 많은 수의 프로세스를 처리할 때 상당한 오버헤드가 있습니다 (:py:data:`SIGCHLD`\\가 수신될"
-" 때마다 *O(n)*)."
+"이 해법은 안전하지만 많은 수의 프로세스를 처리할 때 상당한 오버헤드가 있습니다 (:py:data:`SIGCHLD`\\가 수신될 "
+"때마다 *O(n)*)."
 
 #: ../Doc/library/asyncio-policy.rst:238
 msgid ""
@@ -357,6 +358,9 @@ msgid ""
 " :py:data:`SIGCHLD` signal. If the main thread has no running event loop "
 "another thread cannot spawn a subprocess (:exc:`RuntimeError` is raised)."
 msgstr ""
+"이 구현은 메인 스레드의 활성 이벤트 루프를 사용하여 :py:data:`SIGCHLD` 시그널을 처리합니다. 메인 스레드에 실행 "
+"중인 이벤트 루프가 없으면 다른 스레드는 서브 프로세스를 스폰할 수 없습니다 (:exc:`RuntimeError`\\가 "
+"발생합니다)."
 
 #: ../Doc/library/asyncio-policy.rst:245
 msgid ""
@@ -364,6 +368,8 @@ msgid ""
 "same *O(N)* complexity but requires a running event loop in the main "
 "thread to work."
 msgstr ""
+"이 해법은 :class:`MultiLoopChildWatcher`\\만큼 안전하고 같은 *O(N)* 복잡성을 갖고 있지만, "
+"작동하려면 메인 스레드에서 실행 중인 이벤트 루프가 필요합니다."
 
 #: ../Doc/library/asyncio-policy.rst:250
 msgid ""
@@ -384,7 +390,7 @@ msgstr "많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없�
 msgid ""
 "This solution requires a running event loop in the main thread to work, "
 "as :class:`SafeChildWatcher`."
-msgstr ""
+msgstr "이 해법은 :class:`SafeChildWatcher`\\처럼 작동하려면 메인 스레드에서 실행 중인 이벤트 루프가 필요합니다."
 
 #: ../Doc/library/asyncio-policy.rst:262
 msgid "Custom Policies"
@@ -398,7 +404,4 @@ msgid ""
 msgstr ""
 "새로운 이벤트 루프 정책을 구현하려면, :class:`DefaultEventLoopPolicy`\\의 서브 클래스를 만들고 사용자 "
 "정의 동작이 필요한 메서드를 재정의하는 것이 좋습니다, 예를 들어::"
-
-#~ msgid "asyncio uses this safe implementation by default."
-#~ msgstr "asyncio는 기본적으로 이 안전한 구현을 사용합니다."
 

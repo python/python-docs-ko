@@ -409,6 +409,9 @@ msgid ""
 "platforms. The address family is represented as a ``(node, port)`` tuple "
 "where the *node* and *port* are non-negative integers."
 msgstr ""
+":const:`AF_QIPCRTR`\\는 Qualcomm 플랫폼의 코 프로세서에서 실행되는 서비스와 통신하기 위한 리눅스 전용 소켓"
+" 기반 인터페이스입니다. 주소 패밀리는 ``(node, port)`` 튜플로 표현되는데, *node*\\와 *port*\\는 음수가"
+" 아닌 정수입니다."
 
 #: ../Doc/library/socket.rst:203
 msgid ""
@@ -627,7 +630,7 @@ msgstr ""
 
 #: ../Doc/library/socket.rst:378
 msgid "The :data:`CAN_BCM_CAN_FD_FRAME` flag is only available on Linux >= 4.8."
-msgstr ""
+msgstr ":data:`CAN_BCM_CAN_FD_FRAME` 플래그는 리눅스 >= 4.8 에서만 사용 가능합니다."
 
 #: ../Doc/library/socket.rst:384
 msgid ""
@@ -730,12 +733,11 @@ msgstr ""
 msgid ""
 "Constant for Qualcomm's IPC router protocol, used to communicate with "
 "service providing remote processors."
-msgstr ""
+msgstr "원격 프로세서를 제공하는 서비스와 통신하는 데 사용되는 Qualcomm의 IPC 라우터 프로토콜용 상수."
 
 #: ../Doc/library/socket.rst:499
-#, fuzzy
 msgid ":ref:`Availability <availability>`: Linux >= 4.7."
-msgstr ":ref:`가용성 <availability>` : 리눅스 >= 4.8."
+msgstr ":ref:`가용성 <availability>`: 리눅스 >= 4.7."
 
 #: ../Doc/library/socket.rst:502
 msgid "Functions"
@@ -795,6 +797,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.__new__`` with "
 "arguments ``self``, ``family``, ``type``, ``protocol``."
 msgstr ""
+"``self``, ``family``, ``type``, ``protocol``\\를 인자로 :ref:`감사 이벤트(auditing"
+" event) <auditing>` ``socket.__new__``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:534
 msgid "The AF_CAN family was added. The AF_RDS family was added."
@@ -912,7 +916,7 @@ msgstr "*source_address*\\가 추가되었습니다."
 msgid ""
 "Convenience function which creates a TCP socket bound to *address* (a "
 "2-tuple ``(host, port)``) and return the socket object."
-msgstr ""
+msgstr "*address*\\(2-튜플 ``(host, port)``)에 바인드 된 TCP 소켓을 만들고 소켓 객체를 반환하는 편리 함수."
 
 #: ../Doc/library/socket.rst:608
 msgid ""
@@ -921,6 +925,9 @@ msgid ""
 "reasonable value is chosen. *reuse_port* dictates whether to set the "
 ":data:`SO_REUSEPORT` socket option."
 msgstr ""
+"*family*\\는 :data:`AF_INET`\\이나 :data:`AF_INET6`\\여야 합니다. *backlog*\\는 "
+":meth:`socket.listen`\\에 전달된 대기열 크기입니다; ``0``\\이면 기본값으로 합리적인 값이 선택됩니다. "
+"*reuse_port*\\는 :data:`SO_REUSEPORT` 소켓 옵션을 설정할지를 나타냅니다."
 
 #: ../Doc/library/socket.rst:613
 msgid ""
@@ -934,6 +941,12 @@ msgid ""
 "functionality on platforms that enable it by default (e.g. Linux). This "
 "parameter can be used in conjunction with :func:`has_dualstack_ipv6`:"
 msgstr ""
+"*dualstack_ipv6*\\가 참이고 플랫폼이 이를 지원하면, 소켓은 IPv4와 IPv6 연결을 모두 받아들일 수 있습니다, "
+"그렇지 않으면 :exc:`ValueError`\\가 발생합니다. 대부분의 POSIX 플랫폼과 윈도우는 이 기능을 지원한다고 "
+"여겨집니다. 이 기능이 활성화되면, IPv4 연결이 이루어질 때 :meth:`socket.getpeername`\\이 반환하는 "
+"주소는 IPv4-매핑된 IPv6 주소로 표현된 IPv6 주소가 됩니다. *dualstack_ipv6*\\가 거짓이면, 기본적으로 이"
+" 기능을 활성화하는 플랫폼에서 (예를 들어, 리눅스), 이 기능을 명시적으로 비활성화합니다. 이 매개 변수는 "
+":func:`has_dualstack_ipv6`\\와 함께 사용할 수 있습니다:"
 
 #: ../Doc/library/socket.rst:635
 msgid ""
@@ -941,12 +954,14 @@ msgid ""
 " to immediately reuse previous sockets which were bound on the same "
 "*address* and remained in TIME_WAIT state."
 msgstr ""
+"POSIX 플랫폼에서 :data:`SO_REUSEADDR` 소켓 옵션은 같은 *address*\\에 바인드 되었고 TIME_WAIT"
+" 상태로 남아 있던 이전 소켓을 즉시 재사용하기 위해 설정됩니다."
 
 #: ../Doc/library/socket.rst:643
 msgid ""
 "Return ``True`` if the platform supports creating a TCP socket which can "
 "handle both IPv4 and IPv6 connections."
-msgstr ""
+msgstr "플랫폼이 IPv4와 IPv6 연결을 모두 처리할 수 있는 TCP 소켓을 만드는 것을 지원하면 ``True``\\를 반환합니다."
 
 #: ../Doc/library/socket.rst:650
 msgid ""
@@ -1062,6 +1077,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.getaddrinfo`` with "
 "arguments ``host``, ``port``, ``family``, ``type``, ``protocol``."
 msgstr ""
+"``host``, ``port``, ``family``, ``type``, ``protocol``\\을 인자로 :ref:`감사 "
+"이벤트(auditing event) <auditing>` ``socket.getaddrinfo``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:728
 msgid ""
@@ -1117,6 +1134,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.gethostbyname`` with "
 "argument ``hostname``."
 msgstr ""
+"``hostname``\\을 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.gethostbyname``\\을 발생시킵니다."
 
 #: ../Doc/library/socket.rst:768
 msgid ""
@@ -1148,6 +1167,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.gethostname`` with no"
 " arguments."
 msgstr ""
+"인자 없이 :ref:`감사 이벤트(auditing event) <auditing>` ``socket.gethostname``\\을 "
+"발생시킵니다."
 
 #: ../Doc/library/socket.rst:787
 msgid ""
@@ -1178,6 +1199,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.gethostbyaddr`` with "
 "argument ``ip_address``."
 msgstr ""
+"``ip_address``\\를 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.gethostbyaddr``\\을 발생시킵니다."
 
 #: ../Doc/library/socket.rst:806
 msgid ""
@@ -1205,13 +1228,15 @@ msgstr ""
 msgid ""
 "For more information about *flags* you can consult "
 ":manpage:`getnameinfo(3)`."
-msgstr ""
+msgstr "*flags*\\에 대한 자세한 내용은 :manpage:`getnameinfo(3)`\\을 참조하십시오."
 
 #: ../Doc/library/socket.rst:816
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.getnameinfo`` with "
 "argument ``sockaddr``."
 msgstr ""
+"``sockaddr``\\을 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.getnameinfo``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:820
 msgid ""
@@ -1240,6 +1265,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.getservbyname`` with "
 "arguments ``servicename``, ``protocolname``."
 msgstr ""
+"``servicename``, ``protocolname``\\을 인자로 :ref:`감사 이벤트(auditing event) "
+"<auditing>` ``socket.getservbyname``\\을 발생시킵니다."
 
 #: ../Doc/library/socket.rst:838
 msgid ""
@@ -1255,6 +1282,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.getservbyport`` with "
 "arguments ``port``, ``protocolname``."
 msgstr ""
+"``port``, ``protocolname``\\을 인자로 :ref:`감사 이벤트(auditing event) "
+"<auditing>` ``socket.getservbyport``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:847
 msgid ""
@@ -1505,6 +1534,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.sethostname`` with "
 "argument ``name``."
 msgstr ""
+"``name``\\을 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.sethostname``\\을 발생시킵니다."
 
 #: ../Doc/library/socket.rst:1030
 msgid ":ref:`Availability <availability>`: Unix."
@@ -1520,13 +1551,11 @@ msgstr ""
 
 #: ../Doc/library/socket.rst:1041 ../Doc/library/socket.rst:1055
 #: ../Doc/library/socket.rst:1069
-#, fuzzy
 msgid ":ref:`Availability <availability>`: Unix, Windows."
-msgstr ":ref:`가용성 <availability>`: 윈도우."
+msgstr ":ref:`가용성 <availability>`: 유닉스, 윈도우."
 
 #: ../Doc/library/socket.rst:1044 ../Doc/library/socket.rst:1058
 #: ../Doc/library/socket.rst:1072
-#, fuzzy
 msgid "Windows support was added."
 msgstr "윈도우 지원이 추가되었습니다."
 
@@ -1608,6 +1637,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.bind`` with arguments"
 " ``self``, ``address``."
 msgstr ""
+"``self``, ``address``\\을 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.bind``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:1117
 msgid ""
@@ -1672,6 +1703,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.connect`` with "
 "arguments ``self``, ``address``."
 msgstr ""
+"``self``, ``address``\\를 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.connect``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:1153
 msgid ""
@@ -2129,6 +2162,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.sendto`` with "
 "arguments ``self``, ``address``."
 msgstr ""
+"``self``, ``address``\\를 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.sendto``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:1521
 msgid ""
@@ -2175,6 +2210,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``socket.sendmsg`` with "
 "arguments ``self``, ``address``."
 msgstr ""
+"``self``, ``address``\\를 인자로 :ref:`감사 이벤트(auditing event) <auditing>` "
+"``socket.sendmsg``\\를 발생시킵니다."
 
 #: ../Doc/library/socket.rst:1563
 msgid ""
