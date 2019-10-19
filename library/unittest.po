@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 15:23+0900\n"
+"POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hyukhoon Kwon <unace2u@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -56,9 +56,10 @@ msgid "test fixture"
 msgstr "테스트 픽스쳐"
 
 #: ../Doc/library/unittest.rst:29
+#, fuzzy
 msgid ""
 "A :dfn:`test fixture` represents the preparation needed to perform one or"
-" more tests, and any associate cleanup actions.  This may involve, for "
+" more tests, and any associated cleanup actions.  This may involve, for "
 "example, creating temporary or proxy databases, directories, or starting "
 "a server process."
 msgstr ""
@@ -2042,7 +2043,124 @@ msgid ""
 " a time, so it can be called at any time."
 msgstr ":meth:`doCleanups`\\는 한 번에 하나씩 정리 함수 스택에서 메서드를 꺼내기 때문에 언제든지 호출될 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1462
+#: ../Doc/library/unittest.rst:1461
+#, fuzzy
+msgid ""
+"Add a function to be called after :meth:`tearDownClass` to cleanup "
+"resources used during the test class. Functions will be called in reverse"
+" order to the order they are added (:abbr:`LIFO (last-in, first-out)`). "
+"They are called with any arguments and keyword arguments passed into "
+":meth:`addClassCleanup` when they are added."
+msgstr ""
+"테스트 중에 사용된 자원을 정리하기 위해 :meth:`tearDown` 이후에 불리는 함수를 추가합니다. 함수들은 추가된 순서의 "
+"반대 순서대로 불리게 됩니다(:abbr:`LIFO(후입 선출법(last-in, first-out))`). 함수가 추가될 때 "
+":meth:`addCleanup`\\에 같이 전달된 위치 인자나 키워드 인자와 함께 호출됩니다. "
+
+#: ../Doc/library/unittest.rst:1467
+#, fuzzy
+msgid ""
+"If :meth:`setUpClass` fails, meaning that :meth:`tearDownClass` is not "
+"called, then any cleanup functions added will still be called."
+msgstr ""
+"만약 :meth:`setUp`\\이 실패한다면, 즉 :meth:`tearDown`\\이 불리지 않더라도, 정리 함수들은 여전히 "
+"불리게 될 것입니다."
+
+#: ../Doc/library/unittest.rst:1475
+#, fuzzy
+msgid ""
+"This method is called unconditionally after :meth:`tearDownClass`, or "
+"after :meth:`setUpClass` if :meth:`setUpClass` raises an exception."
+msgstr ""
+"이 메서드는 :meth:`tearDown` 이후나, :meth:`setUp`\\이 예외를 발생시키면 "
+":meth:`setUp`\\이후에 조건 없이 호출됩니다."
+
+#: ../Doc/library/unittest.rst:1478
+#, fuzzy
+msgid ""
+"It is responsible for calling all the cleanup functions added by "
+":meth:`addCleanupClass`. If you need cleanup functions to be called "
+"*prior* to :meth:`tearDownClass` then you can call "
+":meth:`doCleanupsClass` yourself."
+msgstr ""
+":meth:`addCleanup`\\에서 추가된 모든 정리 함수들을 호출하는 책임이 있습니다. 만약 정리 함수를 "
+":meth:`tearDown` *이전에* 불러야 할 필요가 있다면 :meth:`doCleanups`\\를 직접 부를 수 있습니다. "
+
+#: ../Doc/library/unittest.rst:1483
+#, fuzzy
+msgid ""
+":meth:`doCleanupsClass` pops methods off the stack of cleanup functions "
+"one at a time, so it can be called at any time."
+msgstr ":meth:`doCleanups`\\는 한 번에 하나씩 정리 함수 스택에서 메서드를 꺼내기 때문에 언제든지 호출될 수 있습니다."
+
+#: ../Doc/library/unittest.rst:1491
+msgid ""
+"This class provides an API similar to :class:`TestCase` and also accepts "
+"coroutines as test functions."
+msgstr ""
+
+#: ../Doc/library/unittest.rst:1498
+#, fuzzy
+msgid ""
+"Method called to prepare the test fixture. This is called after "
+":meth:`setUp`. This is called immediately before calling the test method;"
+" other than :exc:`AssertionError` or :exc:`SkipTest`, any exception "
+"raised by this method will be considered an error rather than a test "
+"failure. The default implementation does nothing."
+msgstr ""
+"테스트 픽스쳐를 준비하기 위해 호출되는 메서드입니다. 이 메서드는 테스트 메서드를 호출하기 바로 직전에 호출됩니다; "
+":exc:`AssertionError` 또는 :exc:`SkipTest`\\이외의 이 메서드에서 발생한 모든 예외는 테스트 실패가 "
+"아닌 오류로 간주합니다. 기본 구현은 아무것도 하지 않습니다."
+
+#: ../Doc/library/unittest.rst:1506
+#, fuzzy
+msgid ""
+"Method called immediately after the test method has been called and the "
+"result recorded.  This is called before :meth:`tearDown`. This is called "
+"even if the test method raised an exception, so the implementation in "
+"subclasses may need to be particularly careful about checking internal "
+"state.  Any exception, other than :exc:`AssertionError` or "
+":exc:`SkipTest`, raised by this method will be considered an additional "
+"error rather than a test failure (thus increasing the total number of "
+"reported errors). This method will only be called if the "
+":meth:`asyncSetUp` succeeds, regardless of the outcome of the test "
+"method. The default implementation does nothing."
+msgstr ""
+"테스트 메서드가 불리고 결과가 기록되고 나서 바로 다음에 호출되는 메서드입니다. 테스트 메서드가 예외를 발생했더라도 이 메서드는 "
+"불립니다, 따라서 서브 클래스의 구현은 내부 상태를 확인하는 데 특별히 주의를 기울여야 합니다. "
+":exc:`AssertionError` 또는 :exc:`SkipTest`\\이외의 이 메서드에서 발생하는 모든 예외는 테스트 실패가"
+" 아닌 오류로 간주합니다(따라서 보고된 오류의 총 숫자가 증가합니다). 이 메서드는 테스트 메서드의 결과물에 영향받지 않고 "
+":meth:`setUp`\\이 성공했을 때만 불립니다. 기본 구현은 아무것도 하지 않습니다."
+
+#: ../Doc/library/unittest.rst:1518
+msgid "This method accepts a coroutine that can be used as a cleanup function."
+msgstr ""
+
+#: ../Doc/library/unittest.rst:1522
+#, fuzzy
+msgid ""
+"Sets up a new event loop to run the test, collecting the result into the "
+":class:`TestResult` object passed as *result*.  If *result* is omitted or"
+" ``None``, a temporary result object is created (by calling the "
+":meth:`defaultTestResult` method) and used. The result object is returned"
+" to :meth:`run`'s caller. At the end of the test all the tasks in the "
+"event loop are cancelled."
+msgstr ""
+"테스트를 실행하고, *result* 인자로 전달된 :class:`TestResult`\\에 결과를 수집합니다. 만약 *result*"
+" 인자가 전달 안 되거나 ``None``\\이라면 임시 결과 객체를 (:meth:`defaultTestResult` 메서드를 "
+"불러서) 생성하여 사용합니다. :meth:`run` 호출자에게 결과 객체를 반환합니다."
+
+#: ../Doc/library/unittest.rst:1530
+msgid "An example illustrating the order::"
+msgstr ""
+
+#: ../Doc/library/unittest.rst:1566
+msgid ""
+"After running the test ``events`` would contain ``[\"setUp\", "
+"\"asyncSetUp\", \"test_response\", \"asyncTearDown\", \"tearDown\", "
+"\"cleanup\"]``"
+msgstr ""
+
+#: ../Doc/library/unittest.rst:1571
 msgid ""
 "This class implements the portion of the :class:`TestCase` interface "
 "which allows the test runner to drive the test, but does not provide the "
@@ -2055,11 +2173,11 @@ msgstr ""
 "생성할 때 사용할 수 있습니다, 이것은 레거시 테스트 코드가 :mod:`unittest`-기반 테스트 프레임워크에 통합될 수 있게 "
 "해줍니다."
 
-#: ../Doc/library/unittest.rst:1472
+#: ../Doc/library/unittest.rst:1581
 msgid "Deprecated aliases"
 msgstr "폐지된 에일리어스"
 
-#: ../Doc/library/unittest.rst:1474
+#: ../Doc/library/unittest.rst:1583
 msgid ""
 "For historical reasons, some of the :class:`TestCase` methods had one or "
 "more aliases that are now deprecated.  The following table lists the "
@@ -2068,123 +2186,123 @@ msgstr ""
 "역사적인 이유로 인해 :class:`TestCase` 메서드의 일부는 지금은 폐지된 에일리어스를 1개 또는 그 이상 가졌습니다. "
 "다음 표는 폐지된 에일리어스과 그에 맞는 올바른 이름을 나열합니다:"
 
-#: ../Doc/library/unittest.rst:1479
+#: ../Doc/library/unittest.rst:1588
 msgid "Method Name"
 msgstr "메서드 이름"
 
-#: ../Doc/library/unittest.rst:1479
+#: ../Doc/library/unittest.rst:1588
 msgid "Deprecated alias"
 msgstr "폐지된 에일리어스"
 
-#: ../Doc/library/unittest.rst:1481
+#: ../Doc/library/unittest.rst:1590
 msgid ":meth:`.assertEqual`"
 msgstr ":meth:`.assertEqual`"
 
-#: ../Doc/library/unittest.rst:1481
+#: ../Doc/library/unittest.rst:1590
 msgid "failUnlessEqual"
 msgstr "failUnlessEqual"
 
-#: ../Doc/library/unittest.rst:1481
+#: ../Doc/library/unittest.rst:1590
 msgid "assertEquals"
 msgstr "assertEquals"
 
-#: ../Doc/library/unittest.rst:1482
+#: ../Doc/library/unittest.rst:1591
 msgid ":meth:`.assertNotEqual`"
 msgstr ":meth:`.assertNotEqual`"
 
-#: ../Doc/library/unittest.rst:1482
+#: ../Doc/library/unittest.rst:1591
 msgid "failIfEqual"
 msgstr "failIfEqual"
 
-#: ../Doc/library/unittest.rst:1482
+#: ../Doc/library/unittest.rst:1591
 msgid "assertNotEquals"
 msgstr "assertNotEquals"
 
-#: ../Doc/library/unittest.rst:1483
+#: ../Doc/library/unittest.rst:1592
 msgid ":meth:`.assertTrue`"
 msgstr ":meth:`.assertTrue`"
 
-#: ../Doc/library/unittest.rst:1483
+#: ../Doc/library/unittest.rst:1592
 msgid "failUnless"
 msgstr "failUnless"
 
-#: ../Doc/library/unittest.rst:1483
+#: ../Doc/library/unittest.rst:1592
 msgid "assert\\_"
 msgstr "assert\\_"
 
-#: ../Doc/library/unittest.rst:1484
+#: ../Doc/library/unittest.rst:1593
 msgid ":meth:`.assertFalse`"
 msgstr ":meth:`.assertFalse`"
 
-#: ../Doc/library/unittest.rst:1484
+#: ../Doc/library/unittest.rst:1593
 msgid "failIf"
 msgstr "failIf"
 
-#: ../Doc/library/unittest.rst:1485
+#: ../Doc/library/unittest.rst:1594
 msgid ":meth:`.assertRaises`"
 msgstr ":meth:`.assertRaises`"
 
-#: ../Doc/library/unittest.rst:1485
+#: ../Doc/library/unittest.rst:1594
 msgid "failUnlessRaises"
 msgstr "failUnlessRaises"
 
-#: ../Doc/library/unittest.rst:1486
+#: ../Doc/library/unittest.rst:1595
 msgid ":meth:`.assertAlmostEqual`"
 msgstr ":meth:`.assertAlmostEqual`"
 
-#: ../Doc/library/unittest.rst:1486
+#: ../Doc/library/unittest.rst:1595
 msgid "failUnlessAlmostEqual"
 msgstr "failUnlessAlmostEqual"
 
-#: ../Doc/library/unittest.rst:1486
+#: ../Doc/library/unittest.rst:1595
 msgid "assertAlmostEquals"
 msgstr "assertAlmostEquals"
 
-#: ../Doc/library/unittest.rst:1487
+#: ../Doc/library/unittest.rst:1596
 msgid ":meth:`.assertNotAlmostEqual`"
 msgstr ":meth:`.assertNotAlmostEqual`"
 
-#: ../Doc/library/unittest.rst:1487
+#: ../Doc/library/unittest.rst:1596
 msgid "failIfAlmostEqual"
 msgstr "failIfAlmostEqual"
 
-#: ../Doc/library/unittest.rst:1487
+#: ../Doc/library/unittest.rst:1596
 msgid "assertNotAlmostEquals"
 msgstr "assertNotAlmostEquals"
 
-#: ../Doc/library/unittest.rst:1488
+#: ../Doc/library/unittest.rst:1597
 msgid ":meth:`.assertRegex`"
 msgstr ":meth:`.assertRegex`"
 
-#: ../Doc/library/unittest.rst:1488
+#: ../Doc/library/unittest.rst:1597
 msgid "assertRegexpMatches"
 msgstr "assertRegexpMatches"
 
-#: ../Doc/library/unittest.rst:1489
+#: ../Doc/library/unittest.rst:1598
 msgid ":meth:`.assertNotRegex`"
 msgstr ":meth:`.assertNotRegex`"
 
-#: ../Doc/library/unittest.rst:1489
+#: ../Doc/library/unittest.rst:1598
 msgid "assertNotRegexpMatches"
 msgstr "assertNotRegexpMatches"
 
-#: ../Doc/library/unittest.rst:1490
+#: ../Doc/library/unittest.rst:1599
 msgid ":meth:`.assertRaisesRegex`"
 msgstr ":meth:`.assertRaisesRegex`"
 
-#: ../Doc/library/unittest.rst:1490
+#: ../Doc/library/unittest.rst:1599
 msgid "assertRaisesRegexp"
 msgstr "assertRaisesRegexp"
 
-#: ../Doc/library/unittest.rst:1493
+#: ../Doc/library/unittest.rst:1602
 msgid "The fail* aliases listed in the second column have been deprecated."
 msgstr "두 번째 열에 나열된 fail* 에일리어스는 폐지되었습니다."
 
-#: ../Doc/library/unittest.rst:1495
+#: ../Doc/library/unittest.rst:1604
 msgid "The assert* aliases listed in the third column have been deprecated."
 msgstr "세 번째 열에 나열된 assert* 에일리어스는 폐지되었습니다."
 
-#: ../Doc/library/unittest.rst:1497
+#: ../Doc/library/unittest.rst:1606
 msgid ""
 "``assertRegexpMatches`` and ``assertRaisesRegexp`` have been renamed to "
 ":meth:`.assertRegex` and :meth:`.assertRaisesRegex`."
@@ -2192,17 +2310,17 @@ msgstr ""
 "``assertRegexpMatches``\\와 ``assertRaisesRegexp``\\는 "
 ":meth:`.assertRegex`\\와 :meth:`.assertRaisesRegex`\\로 이름이 변경되었습니다."
 
-#: ../Doc/library/unittest.rst:1500
+#: ../Doc/library/unittest.rst:1609
 msgid ""
 "The ``assertNotRegexpMatches`` name is deprecated in favor of "
 ":meth:`.assertNotRegex`."
 msgstr "``assertNotRegexpMatches`` 이름은 폐지되고 :meth:`.assertNotRegex`\\으로 대체합니다."
 
-#: ../Doc/library/unittest.rst:1506
+#: ../Doc/library/unittest.rst:1615
 msgid "Grouping tests"
 msgstr "테스트 분류"
 
-#: ../Doc/library/unittest.rst:1510
+#: ../Doc/library/unittest.rst:1619
 msgid ""
 "This class represents an aggregation of individual test cases and test "
 "suites. The class presents the interface needed by the test runner to "
@@ -2214,7 +2332,7 @@ msgstr ""
 "실행할 수 있기 위해 필요한 인터페이스를 제공합니다. :class:`TestSuite` 인스턴스를 실행하는 것은 테스트 묶음을 "
 "이터레이션하면서 각 테스트를 개별적으로 실행하는 것과 같습니다."
 
-#: ../Doc/library/unittest.rst:1515
+#: ../Doc/library/unittest.rst:1624
 msgid ""
 "If *tests* is given, it must be an iterable of individual test cases or "
 "other test suites that will be used to build the suite initially. "
@@ -2224,7 +2342,7 @@ msgstr ""
 "*tests*\\가 주어졌다면, 그것은 초기에 이 테스트 묶음을 만들 때 사용될 개별 테스트 케이스이거나 다른 테스트 묶음의 "
 "이터러블이어야 합니다. 나중에 컬렉션에 테스트 케이스나 테스트 묶음을 추가할 수 있는 추가 메서드가 제공됩니다."
 
-#: ../Doc/library/unittest.rst:1519
+#: ../Doc/library/unittest.rst:1628
 msgid ""
 ":class:`TestSuite` objects behave much like :class:`TestCase` objects, "
 "except they do not actually implement a test.  Instead, they are used to "
@@ -2236,11 +2354,11 @@ msgstr ""
 "않는 것이 다릅니다. 대신에, 이것은 다 같이 실행되어야 하는 테스트 그룹에 테스트들을 모으는 데 사용됩니다. "
 ":class:`TestSuite` 인스턴스에 테스트를 추가하기 위해 몇몇 추가적인 메서드를 사용할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1527
+#: ../Doc/library/unittest.rst:1636
 msgid "Add a :class:`TestCase` or :class:`TestSuite` to the suite."
 msgstr "테스트 묶음에 :class:`TestCase`\\나 :class:`TestSuite` 추가하기."
 
-#: ../Doc/library/unittest.rst:1532
+#: ../Doc/library/unittest.rst:1641
 msgid ""
 "Add all the tests from an iterable of :class:`TestCase` and "
 ":class:`TestSuite` instances to this test suite."
@@ -2248,17 +2366,17 @@ msgstr ""
 "이 테스트 묶음에 :class:`TestCase`\\와 :class:`TestSuite` 인스턴스의 이터러블에서 나온 모든 테스트를"
 " 추가하기."
 
-#: ../Doc/library/unittest.rst:1535
+#: ../Doc/library/unittest.rst:1644
 msgid ""
 "This is equivalent to iterating over *tests*, calling :meth:`addTest` for"
 " each element."
 msgstr "이것은 *tests*\\를 이터레이션하면서 각 요소에 대해 :meth:`addTest`\\를 호출하는 것과 같습니다."
 
-#: ../Doc/library/unittest.rst:1538
+#: ../Doc/library/unittest.rst:1647
 msgid ":class:`TestSuite` shares the following methods with :class:`TestCase`:"
 msgstr ":class:`TestSuite`\\는 다음 메서드를 :class:`TestCase`\\와 공유합니다:"
 
-#: ../Doc/library/unittest.rst:1543
+#: ../Doc/library/unittest.rst:1652
 msgid ""
 "Run the tests associated with this suite, collecting the result into the "
 "test result object passed as *result*.  Note that unlike "
@@ -2269,7 +2387,7 @@ msgstr ""
 ":meth:`TestCase.run`\\과 달리 :meth:`TestSuite.run`\\은 결과 객체가 반드시 전달되어야 합니다."
 " "
 
-#: ../Doc/library/unittest.rst:1551
+#: ../Doc/library/unittest.rst:1660
 msgid ""
 "Run the tests associated with this suite without collecting the result. "
 "This allows exceptions raised by the test to be propagated to the caller "
@@ -2278,13 +2396,13 @@ msgstr ""
 "결과를 수집하지 않고 이 테스트 묶음과 연관된 테스트를 실행합니다. 이것은 테스트에서 발생한 예외가 호출자로 전파될 수 있게 해서 "
 "디버거 환경에서 테스트를 실행할 때 사용될 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1558
+#: ../Doc/library/unittest.rst:1667
 msgid ""
 "Return the number of tests represented by this test object, including all"
 " individual tests and sub-suites."
 msgstr "이 테스트 객체에 해당하는 테스트 개수를 반환합니다, 모든 개별 테스트와 서브-테스트 묶음을 포함합니다."
 
-#: ../Doc/library/unittest.rst:1564
+#: ../Doc/library/unittest.rst:1673
 msgid ""
 "Tests grouped by a :class:`TestSuite` are always accessed by iteration. "
 "Subclasses can lazily provide tests by overriding :meth:`__iter__`. Note "
@@ -2304,7 +2422,7 @@ msgstr ""
 ":meth:`TestSuite._removeTestAtIndex`\\를 재정의한 서브 클래스를 사용하는 경우가 아니라면 이 메서드에"
 " 의해 반환된 테스트에 의존하면 안 됩니다."
 
-#: ../Doc/library/unittest.rst:1574
+#: ../Doc/library/unittest.rst:1683
 msgid ""
 "In earlier versions the :class:`TestSuite` accessed tests directly rather"
 " than through iteration, so overriding :meth:`__iter__` wasn't sufficient"
@@ -2313,7 +2431,7 @@ msgstr ""
 "이전 버전에서는 :class:`TestSuite`\\가 이터레이션을 사용하기보다는 직접 테스트에 접근했습니다, 따라서 "
 ":meth:`__iter__`\\를 재정의하는 것은 테스트를 제공하기에 충분하지 않았습니다."
 
-#: ../Doc/library/unittest.rst:1579
+#: ../Doc/library/unittest.rst:1688
 msgid ""
 "In earlier versions the :class:`TestSuite` held references to each "
 ":class:`TestCase` after :meth:`TestSuite.run`. Subclasses can restore "
@@ -2323,7 +2441,7 @@ msgstr ""
 ":class:`TestCase` 의 참조를 유지했습니다. 서브 클래스는 "
 ":meth:`TestSuite._removeTestAtIndex`\\를 재정의해서 이 동작을 복구할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1584
+#: ../Doc/library/unittest.rst:1693
 msgid ""
 "In the typical usage of a :class:`TestSuite` object, the :meth:`run` "
 "method is invoked by a :class:`TestRunner` rather than by the end-user "
@@ -2332,11 +2450,11 @@ msgstr ""
 ":class:`TestSuite` 객체의 전형적인 사용법은 최종 사용자 테스트 장치(harness)보다는 "
 ":class:`TestRunner`\\에 의해 :meth:`run` 메서드가 호출되는 것입니다."
 
-#: ../Doc/library/unittest.rst:1589
+#: ../Doc/library/unittest.rst:1698
 msgid "Loading and running tests"
 msgstr "테스트를 로드하고 실행하기"
 
-#: ../Doc/library/unittest.rst:1593
+#: ../Doc/library/unittest.rst:1702
 msgid ""
 "The :class:`TestLoader` class is used to create test suites from classes "
 "and modules.  Normally, there is no need to create an instance of this "
@@ -2349,11 +2467,11 @@ msgstr ""
 ":data:`unittest.defaultTestLoader` 인스턴스를 제공합니다. 그러나 서브 클래스나 인스턴스를 사용함으로 "
 "몇몇 변경 가능한 속성을 사용자 정의할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1599
+#: ../Doc/library/unittest.rst:1708
 msgid ":class:`TestLoader` objects have the following attributes:"
 msgstr ":class:`TestLoader` 객체는 다음 어트리뷰트를 가집니다:"
 
-#: ../Doc/library/unittest.rst:1604
+#: ../Doc/library/unittest.rst:1713
 msgid ""
 "A list of the non-fatal errors encountered while loading tests. Not reset"
 " by the loader at any point. Fatal errors are signalled by the relevant a"
@@ -2365,11 +2483,11 @@ msgstr ""
 " 치명적인 에러는 예외를 발생시키는 관련 메서드에 의해 신호가 발생하여 호출자에게 전달됩니다. 치명적이지 않은 에러는 실행 시에 "
 "원래 에러를 발생시킬 합성(synthetic) 테스트가 표시하기도 합니다."
 
-#: ../Doc/library/unittest.rst:1613
+#: ../Doc/library/unittest.rst:1722
 msgid ":class:`TestLoader` objects have the following methods:"
 msgstr ":class:`TestLoader` 객체는 다음 메서드를 가집니다:"
 
-#: ../Doc/library/unittest.rst:1618
+#: ../Doc/library/unittest.rst:1727
 msgid ""
 "Return a suite of all test cases contained in the :class:`TestCase`\\ "
 "-derived :class:`testCaseClass`."
@@ -2377,7 +2495,7 @@ msgstr ""
 ":class:`TestCase`\\에서 파생된 :class:`testCaseClass`\\에 포함된 모든 테스트 케이스의 묶음을 "
 "반환합니다."
 
-#: ../Doc/library/unittest.rst:1621
+#: ../Doc/library/unittest.rst:1730
 msgid ""
 "A test case instance is created for each method named by "
 ":meth:`getTestCaseNames`. By default these are the method names beginning"
@@ -2389,7 +2507,7 @@ msgstr ""
 " ``test``\\로 시작되는 메서드 이름입니다. 만약 :meth:`getTestCaseNames`\\가 아무 메서드도 반환하지 "
 "않지만, :meth:`runTest` 메서드가 구현되었다면 이 메서드를 위해서 1개의 테스트 케이스가 대신 생성됩니다."
 
-#: ../Doc/library/unittest.rst:1630
+#: ../Doc/library/unittest.rst:1739
 msgid ""
 "Return a suite of all test cases contained in the given module. This "
 "method searches *module* for classes derived from :class:`TestCase` and "
@@ -2399,7 +2517,7 @@ msgstr ""
 "주어진 모듈에 포함된 모든 테스트 케이스 묶음을 반환합니다. 이 메서드는 :class:`TestCase`\\에서 파생된 클래스를 "
 "찾기 위해 *module*\\을 검색하고 클래스에 정의된 각 테스트 메서드를 위해 클래스의 인스턴스를 생성합니다. "
 
-#: ../Doc/library/unittest.rst:1637
+#: ../Doc/library/unittest.rst:1746
 msgid ""
 "While using a hierarchy of :class:`TestCase`\\ -derived classes can be "
 "convenient in sharing fixtures and helper functions, defining test "
@@ -2411,7 +2529,7 @@ msgstr ""
 "인스턴스화를 하도록 의도되지 않은 베이스 클래스에 테스트 메서드를 정의하는 것은 이 메서드와 잘 작동하지 않습니다. 그러나 그렇게 "
 "하는 것이 픽스처들이 다르고 서브 클래스에서 정의될 경우에는 유용할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1643
+#: ../Doc/library/unittest.rst:1752
 msgid ""
 "If a module provides a ``load_tests`` function it will be called to load "
 "the tests. This allows modules to customize test loading. This is the "
@@ -2422,11 +2540,11 @@ msgstr ""
 "사용자 정의할 수 있도록 해줍니다. 이것은 `load_tests 프로토콜 <load_tests protocol_>`_\\입니다. "
 "*pattern* 인자는 ``load_tests``\\에 세 번째 인자로 전달됩니다."
 
-#: ../Doc/library/unittest.rst:1648
+#: ../Doc/library/unittest.rst:1757
 msgid "Support for ``load_tests`` added."
 msgstr "``load_tests`` 지원이 추가됨."
 
-#: ../Doc/library/unittest.rst:1651
+#: ../Doc/library/unittest.rst:1760
 msgid ""
 "The undocumented and unofficial *use_load_tests* default argument is "
 "deprecated and ignored, although it is still accepted for backward "
@@ -2437,11 +2555,11 @@ msgstr ""
 "위해 여전히 그것을 수용합니다. 이 메서드는 이제 ``load_tests``\\에 세 번째 인자로 전달되는 *pattern*\\을 "
 "오직 키워드 인자로써 수용합니다."
 
-#: ../Doc/library/unittest.rst:1660
+#: ../Doc/library/unittest.rst:1769
 msgid "Return a suite of all test cases given a string specifier."
 msgstr "문자열 지정자에 맞는 모든 테스트 케이스 묶음을 반환합니다."
 
-#: ../Doc/library/unittest.rst:1662
+#: ../Doc/library/unittest.rst:1771
 msgid ""
 "The specifier *name* is a \"dotted name\" that may resolve either to a "
 "module, a test case class, a test method within a test case class, a "
@@ -2457,7 +2575,7 @@ msgstr ""
 "적용됩니다; 즉, 테스트 케이스 클래스에 있는 메서드는 \"콜러블  객체\"보다는 \"테스트 케이스 클래스에 있는 테스트 "
 "메서드\"로 선택될 것입니다."
 
-#: ../Doc/library/unittest.rst:1670
+#: ../Doc/library/unittest.rst:1779
 msgid ""
 "For example, if you have a module :mod:`SampleTests` containing a "
 ":class:`TestCase`\\ -derived class :class:`SampleTestCase` with three "
@@ -2478,11 +2596,11 @@ msgstr ""
 "오직 :meth:`test_two` 테스트 메서드를 실행할 테스트 묶음을 반환할 것입니다. 지정자는 아직 임포트되지 않은 모듈이나 "
 "패키지를 가리킬 수 있습니다; 부작용(side-effect)으로써 그것들이 임포트될 것입니다."
 
-#: ../Doc/library/unittest.rst:1680
+#: ../Doc/library/unittest.rst:1789
 msgid "The method optionally resolves *name* relative to the given *module*."
 msgstr "이 메서드는 주어진 *module*\\에 상대적인 *name*\\을 선택적으로 해석할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1682
+#: ../Doc/library/unittest.rst:1791
 msgid ""
 "If an :exc:`ImportError` or :exc:`AttributeError` occurs while traversing"
 " *name* then a synthetic test that raises that error when run will be "
@@ -2492,7 +2610,7 @@ msgstr ""
 "만약 *name* 순회 중에 :exc:`ImportError`\\나 :exc:`AttributeError`\\가 발생한다면 실행할 "
 "때 그 에러를 일으키는 합성 테스트가 반환될 것입니다. 이 에러는 self.errors 에러 모임에 포함될 것입니다."
 
-#: ../Doc/library/unittest.rst:1691
+#: ../Doc/library/unittest.rst:1800
 msgid ""
 "Similar to :meth:`loadTestsFromName`, but takes a sequence of names "
 "rather than a single name.  The return value is a test suite which "
@@ -2501,7 +2619,7 @@ msgstr ""
 ":meth:`loadTestsFromName`\\와 비슷하지만, 1개의 이름이 아닌 이름의 시퀀스를 받습니다. 반환 값은 각 이름에"
 " 정의된 모든 테스트를 지원하는 테스트 묶음입니다."
 
-#: ../Doc/library/unittest.rst:1698
+#: ../Doc/library/unittest.rst:1807
 msgid ""
 "Return a sorted sequence of method names found within *testCaseClass*; "
 "this should be a subclass of :class:`TestCase`."
@@ -2509,7 +2627,7 @@ msgstr ""
 "*testCaseClass* 안에서 찾은 메서드 이름을 정렬된 시퀀스로 반환합니다; 이 클래스는 "
 ":class:`TestCase`\\의 서브 클래스이어야 합니다."
 
-#: ../Doc/library/unittest.rst:1704
+#: ../Doc/library/unittest.rst:1813
 msgid ""
 "Find all the test modules by recursing into subdirectories from the "
 "specified start directory, and return a TestSuite object containing them."
@@ -2521,7 +2639,7 @@ msgstr ""
 "반환합니다. *pattern*\\에 일치하는 테스트 파일만 로드될 것입니다. (셸 방식의 패턴 일치를 사용합니다.) 임포트 "
 "가능한(즉, 유효한 파이썬 식별자인) 모듈 이름만 로드될 것입니다."
 
-#: ../Doc/library/unittest.rst:1710
+#: ../Doc/library/unittest.rst:1819
 msgid ""
 "All test modules must be importable from the top level of the project. If"
 " the start directory is not the top level directory then the top level "
@@ -2530,7 +2648,7 @@ msgstr ""
 "모든 테스트 모듈은 반드시 프로젝트의 최상위 수준에서 임포트 가능해야 합니다. 만약 시작 디렉터리가 최상위 디렉터리가 아니라면 "
 "최상위 디렉터리를 따로 지정해야 합니다."
 
-#: ../Doc/library/unittest.rst:1714
+#: ../Doc/library/unittest.rst:1823
 msgid ""
 "If importing a module fails, for example due to a syntax error, then this"
 " will be recorded as a single error and discovery will continue.  If the "
@@ -2540,7 +2658,7 @@ msgstr ""
 "만약 모듈 임포트가 실패한다면, 예를 들어 문법 에러로 인해, 이것은 1개의 에러로 기록되고 탐색이 계속 진행될 것입니다. 만약 "
 ":exc:`SkipTest`\\가 발생해서 임포트가 실패했다면, 이것은 에러가 아닌 건너뛰기로 기록될 것입니다."
 
-#: ../Doc/library/unittest.rst:1719
+#: ../Doc/library/unittest.rst:1828
 msgid ""
 "If a package (a directory containing a file named :file:`__init__.py`) is"
 " found, the package will be checked for a ``load_tests`` function. If "
@@ -2554,7 +2672,7 @@ msgstr ""
 "tests, pattern)``\\가 불릴 것입니다. 만약 load_tests 함수 자체가 ``loader.discover``\\를"
 " 호출할지라도, 테스트 탐색은 실행 중에 패키지에 대한 테스트 검사를 한 번만 실행하도록 보장합니다."
 
-#: ../Doc/library/unittest.rst:1727
+#: ../Doc/library/unittest.rst:1836
 msgid ""
 "If ``load_tests`` exists then discovery does *not* recurse into the "
 "package, ``load_tests`` is responsible for loading all tests in the "
@@ -2563,7 +2681,7 @@ msgstr ""
 "만약 ``load_tests``\\가 존재한다면 탐색은 패키지 안을 재귀 탐색하지 *않습니다*. ``load_tests``\\가 "
 "패키지 안의 모든 테스트를 로드할 책임이 있습니다."
 
-#: ../Doc/library/unittest.rst:1731
+#: ../Doc/library/unittest.rst:1840
 msgid ""
 "The pattern is deliberately not stored as a loader attribute so that "
 "packages can continue discovery themselves. *top_level_dir* is stored so "
@@ -2574,11 +2692,11 @@ msgstr ""
 "*top_level_dir*\\는 저장되어 ``load_tests``\\가 ``loader.discover()``\\에게 이 인자를"
 " 건네줄 필요가 없습니다."
 
-#: ../Doc/library/unittest.rst:1736
+#: ../Doc/library/unittest.rst:1845
 msgid "*start_dir* can be a dotted module name as well as a directory."
 msgstr "*start_dir*\\는 디렉터리뿐만 아니라 점으로 구분된 모듈 이름이 될 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1740
+#: ../Doc/library/unittest.rst:1849
 msgid ""
 "Modules that raise :exc:`SkipTest` on import are recorded as skips,   not"
 " errors. Discovery works for :term:`namespace packages <namespace "
@@ -2590,7 +2708,7 @@ msgstr ""
 "패키지 <namespace package>`\\를 지원합니다. 임포트되기 전에 경로들이 정렬되어 파일 시스템의 정렬 순서가 파일 "
 "이름에 의존하지 않더라도 실행 순서가 같아지도록 합니다."
 
-#: ../Doc/library/unittest.rst:1748
+#: ../Doc/library/unittest.rst:1857
 msgid ""
 "Found packages are now checked for ``load_tests`` regardless of whether "
 "their path matches *pattern*, because it is impossible for a package name"
@@ -2599,25 +2717,25 @@ msgstr ""
 "이제 발견된 패키지는 그것의 경로가 *pattern*\\과 일치하는지 여부와 상관없이 ``load_tests``\\를 검사합니다, "
 "왜냐하면 패키지 이름이 기본 패턴과 일치하는 것이 불가능하기 때문입니다."
 
-#: ../Doc/library/unittest.rst:1754
+#: ../Doc/library/unittest.rst:1863
 msgid ""
 "The following attributes of a :class:`TestLoader` can be configured "
 "either by subclassing or assignment on an instance:"
 msgstr ":class:`TestLoader`\\의 다음 어트리뷰트들은 서브 클래스나 인스턴스에 대입을 통해 구성할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1760
+#: ../Doc/library/unittest.rst:1869
 msgid ""
 "String giving the prefix of method names which will be interpreted as "
 "test methods.  The default value is ``'test'``."
 msgstr "테스트 메서드로 해석할 메서드 이름의 접두사에 해당하는 문자열입니다. 기본값은 ``'test'`` 입니다."
 
-#: ../Doc/library/unittest.rst:1763
+#: ../Doc/library/unittest.rst:1872
 msgid ""
 "This affects :meth:`getTestCaseNames` and all the "
 ":meth:`loadTestsFrom\\*` methods."
 msgstr "이것은 :meth:`getTestCaseNames` 과 모든 :meth:`loadTestsFrom\\*` 메서드에 영향을 미칩니다."
 
-#: ../Doc/library/unittest.rst:1769
+#: ../Doc/library/unittest.rst:1878
 msgid ""
 "Function to be used to compare method names when sorting them in "
 ":meth:`getTestCaseNames` and all the :meth:`loadTestsFrom\\*` methods."
@@ -2625,7 +2743,7 @@ msgstr ""
 ":meth:`getTestCaseNames`\\와 모든 :meth:`loadTestsFrom\\*` 메서드에서 메서드 이름 정렬 "
 "시에 이름 비교하는 데 사용될 함수입니다."
 
-#: ../Doc/library/unittest.rst:1775
+#: ../Doc/library/unittest.rst:1884
 msgid ""
 "Callable object that constructs a test suite from a list of tests. No "
 "methods on the resulting object are needed.  The default value is the "
@@ -2634,11 +2752,11 @@ msgstr ""
 "테스트 목록에서 테스트 묶음을 생성하는 콜러블 객체입니다. 결과 객체에 어떤 메서드도 필요하지 않습니다. 기본값은 "
 ":class:`TestSuite` 클래스입니다."
 
-#: ../Doc/library/unittest.rst:1779 ../Doc/library/unittest.rst:1792
+#: ../Doc/library/unittest.rst:1888 ../Doc/library/unittest.rst:1901
 msgid "This affects all the :meth:`loadTestsFrom\\*` methods."
 msgstr "이것은 모든 :meth:`loadTestsFrom\\*` 메서드에 영향을 미칩니다."
 
-#: ../Doc/library/unittest.rst:1783
+#: ../Doc/library/unittest.rst:1892
 msgid ""
 "List of Unix shell-style wildcard test name patterns that test methods "
 "have to match to be included in test suites (see ``-v`` option)."
@@ -2646,7 +2764,7 @@ msgstr ""
 "테스트 묶음에 포함되기 위해서 테스트 메서드가 일치해야 할 유닉스 셸-방식의 와일드카드 테스트 이름 패턴 목록입니다(``-v`` "
 "옵션을 보십시오)."
 
-#: ../Doc/library/unittest.rst:1786
+#: ../Doc/library/unittest.rst:1895
 msgid ""
 "If this attribute is not ``None`` (the default), all test methods to be "
 "included in test suites must match one of the patterns in this list. Note"
@@ -2659,13 +2777,13 @@ msgstr ""
 "기억하십시오, 그래서 ``-v`` 옵션에 패턴을 건네주는 것과 달리, 간단한 부분 문자열 패턴은 ``*`` 와일드카드를 사용하도록 "
 "변경되어야 할 것입니다."
 
-#: ../Doc/library/unittest.rst:1799
+#: ../Doc/library/unittest.rst:1908
 msgid ""
 "This class is used to compile information about which tests have "
 "succeeded and which have failed."
 msgstr "어떤 테스트가 성공했고 어떤 테스트가 실패했는지에 관한 정보를 엮는데 사용되는 클래스입니다."
 
-#: ../Doc/library/unittest.rst:1802
+#: ../Doc/library/unittest.rst:1911
 msgid ""
 "A :class:`TestResult` object stores the results of a set of tests.  The "
 ":class:`TestCase` and :class:`TestSuite` classes ensure that results are "
@@ -2676,7 +2794,7 @@ msgstr ""
 ":class:`TestSuite` 클래스는 결과가 올바르게 기록되는 것을 보장합니다; 테스트 작성자가 테스트 결과를 기록하는 것에 "
 "대해서 걱정할 필요가 없습니다."
 
-#: ../Doc/library/unittest.rst:1807
+#: ../Doc/library/unittest.rst:1916
 msgid ""
 "Testing frameworks built on top of :mod:`unittest` may want access to the"
 " :class:`TestResult` object generated by running a set of tests for "
@@ -2687,7 +2805,7 @@ msgstr ""
 ":class:`TestResult` 객체에 접근하고 싶을 수도 있습니다; :meth:`TestRunner.run` 메서드는 이 "
 "목적을 위해 :class:`TestResult` 인스턴스를 반환합니다."
 
-#: ../Doc/library/unittest.rst:1812
+#: ../Doc/library/unittest.rst:1921
 msgid ""
 ":class:`TestResult` instances have the following attributes that will be "
 "of interest when inspecting the results of running a set of tests:"
@@ -2695,7 +2813,7 @@ msgstr ""
 ":class:`TestResult` 인스턴스는 테스트 실행 결과를 조사할 때 관심이 생길만한 다음과 같은 어트리뷰트를 가지고 "
 "있습니다."
 
-#: ../Doc/library/unittest.rst:1818
+#: ../Doc/library/unittest.rst:1927
 msgid ""
 "A list containing 2-tuples of :class:`TestCase` instances and strings "
 "holding formatted tracebacks. Each tuple represents a test which raised "
@@ -2704,7 +2822,7 @@ msgstr ""
 ":class:`TestCase` 인스턴스와 포맷된(formatted) 트레이스백 문자열로 구성된 2-튜플을 포함하는 목록입니다. 각"
 " 튜플은 예기치 못한 예외가 발생한 테스트에 해당합니다."
 
-#: ../Doc/library/unittest.rst:1824
+#: ../Doc/library/unittest.rst:1933
 msgid ""
 "A list containing 2-tuples of :class:`TestCase` instances and strings "
 "holding formatted tracebacks. Each tuple represents a test where a "
@@ -2714,13 +2832,13 @@ msgstr ""
 ":class:`TestCase` 인스턴스와 포맷된(formatted) 트레이스백 문자열로 구성된 2-튜플을 포함하는 목록입니다. 각"
 " 튜플은 :meth:`TestCase.assert\\*` 메서드를 사용하여 명시적으로 실패가 발생한 테스트에 해당합니다."
 
-#: ../Doc/library/unittest.rst:1830
+#: ../Doc/library/unittest.rst:1939
 msgid ""
 "A list containing 2-tuples of :class:`TestCase` instances and strings "
 "holding the reason for skipping the test."
 msgstr ":class:`TestCase` 인스턴스와 테스트 건너뛰기한 이유 문자열로 구성된 2-튜플을 포함하는 목록입니다."
 
-#: ../Doc/library/unittest.rst:1837
+#: ../Doc/library/unittest.rst:1946
 msgid ""
 "A list containing 2-tuples of :class:`TestCase` instances and strings "
 "holding formatted tracebacks.  Each tuple represents an expected failure "
@@ -2729,21 +2847,21 @@ msgstr ""
 ":class:`TestCase` 인스턴스와 포맷된(formatted) 트레이스백 문자열로 구성된 2-튜플을 포함하는 목록입니다. 각"
 " 튜플은 테스트 케이스의 예상된 실패에 해당합니다."
 
-#: ../Doc/library/unittest.rst:1843
+#: ../Doc/library/unittest.rst:1952
 msgid ""
 "A list containing :class:`TestCase` instances that were marked as "
 "expected failures, but succeeded."
 msgstr "예상된 실패로 표시되었지만 성공한 :class:`TestCase` 인스턴스를 포함하는 목록입니다."
 
-#: ../Doc/library/unittest.rst:1848
+#: ../Doc/library/unittest.rst:1957
 msgid "Set to ``True`` when the execution of tests should stop by :meth:`stop`."
 msgstr "테스트 실행이 :meth:`stop`\\에 의해 정지되어야 할 때 ``True``\\로 설정합니다."
 
-#: ../Doc/library/unittest.rst:1852
+#: ../Doc/library/unittest.rst:1961
 msgid "The total number of tests run so far."
 msgstr "이제까지 실행된 테스트 총 개수입니다."
 
-#: ../Doc/library/unittest.rst:1856
+#: ../Doc/library/unittest.rst:1965
 msgid ""
 "If set to true, ``sys.stdout`` and ``sys.stderr`` will be buffered in "
 "between :meth:`startTest` and :meth:`stopTest` being called. Collected "
@@ -2755,23 +2873,23 @@ msgstr ""
 ":meth:`stopTest` 호출 사이에서 버퍼링될 것입니다. 수집된 출력은 테스트가 실패하거나 에러가 발생한 경우에만 실제 "
 "``sys.stdout``\\와 ``sys.stderr``\\에 출력될 것입니다. 모든 출력은 실패 / 에러 메시지에도 첨부됩니다."
 
-#: ../Doc/library/unittest.rst:1865
+#: ../Doc/library/unittest.rst:1974
 msgid ""
 "If set to true :meth:`stop` will be called on the first failure or error,"
 " halting the test run."
 msgstr "참으로 설정하면 첫 번째 실패 또는 에러에서 :meth:`stop`\\이 호출될 것입니다."
 
-#: ../Doc/library/unittest.rst:1872
+#: ../Doc/library/unittest.rst:1981
 msgid "If set to true then local variables will be shown in tracebacks."
 msgstr "참으로 설정하면 지역 변수가 트레이스백에 보일 것입니다."
 
-#: ../Doc/library/unittest.rst:1878
+#: ../Doc/library/unittest.rst:1987
 msgid ""
 "Return ``True`` if all tests run so far have passed, otherwise returns "
 "``False``."
 msgstr "이제까지 실행한 모든 테스트가 성공했다면 ``True``\\를 반환하고, 그렇지 않으면 ``False``\\를 반환합니다."
 
-#: ../Doc/library/unittest.rst:1881
+#: ../Doc/library/unittest.rst:1990
 msgid ""
 "Returns ``False`` if there were any :attr:`unexpectedSuccesses` from "
 "tests marked with the :func:`expectedFailure` decorator."
@@ -2779,7 +2897,7 @@ msgstr ""
 ":func:`expectedFailure` 데코레이터로 표시된 테스트에서 :attr:`unexpectedSuccesses`\\가 "
 "있다면 ``False``\\를 반환합니다."
 
-#: ../Doc/library/unittest.rst:1887
+#: ../Doc/library/unittest.rst:1996
 msgid ""
 "This method can be called to signal that the set of tests being run "
 "should be aborted by setting the :attr:`shouldStop` attribute to "
@@ -2790,7 +2908,7 @@ msgstr ""
 "위한 용도로 이 메서드를 부를 수 있습니다. :class:`TestRunner` 객체는 이 신호를 존중하여 어떠한 추가 테스트 없이"
 " 반환해야 합니다."
 
-#: ../Doc/library/unittest.rst:1892
+#: ../Doc/library/unittest.rst:2001
 msgid ""
 "For example, this feature is used by the :class:`TextTestRunner` class to"
 " stop the test framework when the user signals an interrupt from the "
@@ -2801,7 +2919,7 @@ msgstr ""
 ":class:`TextTestRunner`\\가 이 기능을 사용합니다. :class:`TestRunner` 구현을 제공하는 대화형 "
 "도구는 비슷한 방법으로 이것을 사용할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:1897
+#: ../Doc/library/unittest.rst:2006
 msgid ""
 "The following methods of the :class:`TestResult` class are used to "
 "maintain the internal data structures, and may be extended in subclasses "
@@ -2812,25 +2930,25 @@ msgstr ""
 ":class:`TestResult` 클래스의 다음 메서드는 내부 자료 구조를 관리하려고 사용되고, 추가적인 보고 요구사항을 지원하기"
 " 위해 서브 클래스에서 확장할 수도 있습니다. 이것은 테스트가 실행 중에 대화형 보고를 지원하는 도구를 만들 때 특별히 유용합니다."
 
-#: ../Doc/library/unittest.rst:1905
+#: ../Doc/library/unittest.rst:2014
 msgid "Called when the test case *test* is about to be run."
 msgstr "테스트 케이스 *test*\\가 막 실행되려 할 때 호출됩니다."
 
-#: ../Doc/library/unittest.rst:1909
+#: ../Doc/library/unittest.rst:2018
 msgid ""
 "Called after the test case *test* has been executed, regardless of the "
 "outcome."
 msgstr "결과에 상관없이 테스트 케이스 *test*\\가 실행되고 나서 호출됩니다."
 
-#: ../Doc/library/unittest.rst:1914
+#: ../Doc/library/unittest.rst:2023
 msgid "Called once before any tests are executed."
 msgstr "모든 테스트가 실행되기 전에 1번 호출됩니다."
 
-#: ../Doc/library/unittest.rst:1921
+#: ../Doc/library/unittest.rst:2030
 msgid "Called once after all tests are executed."
 msgstr "모든 테스트가 실행되고 나서 1번 호출됩니다."
 
-#: ../Doc/library/unittest.rst:1928
+#: ../Doc/library/unittest.rst:2037
 msgid ""
 "Called when the test case *test* raises an unexpected exception. *err* is"
 " a tuple of the form returned by :func:`sys.exc_info`: ``(type, value, "
@@ -2839,7 +2957,7 @@ msgstr ""
 "테스트 케이스 *test*\\가 예기치 못한 예외를 발생한 경우 호출됩니다. *err*\\는 "
 ":func:`sys.exc_info`\\가 반환한 형식의 튜플입니다: ``(type, value, traceback)``\\."
 
-#: ../Doc/library/unittest.rst:1932
+#: ../Doc/library/unittest.rst:2041
 msgid ""
 "The default implementation appends a tuple ``(test, formatted_err)`` to "
 "the instance's :attr:`errors` attribute, where *formatted_err* is a "
@@ -2848,7 +2966,7 @@ msgstr ""
 "기본 구현은 ``(test, formatted_err)`` 튜플을 인스턴스의 :attr:`errors` 어트리뷰트에 추가합니다, "
 "여기서 *formatted_err*\\는 *err*\\에서 파생된 포맷한 트레이스백입니다."
 
-#: ../Doc/library/unittest.rst:1939
+#: ../Doc/library/unittest.rst:2048
 msgid ""
 "Called when the test case *test* signals a failure. *err* is a tuple of "
 "the form returned by :func:`sys.exc_info`: ``(type, value, traceback)``."
@@ -2856,7 +2974,7 @@ msgstr ""
 "테스트 케이스 *test*\\가 실패 신호를 보낸 경우 호출됩니다. *err*\\는 :func:`sys.exc_info`\\가 "
 "반환한 형식의 튜플입니다: ``(type, value, traceback)``\\."
 
-#: ../Doc/library/unittest.rst:1942
+#: ../Doc/library/unittest.rst:2051
 msgid ""
 "The default implementation appends a tuple ``(test, formatted_err)`` to "
 "the instance's :attr:`failures` attribute, where *formatted_err* is a "
@@ -2865,33 +2983,33 @@ msgstr ""
 "기본 구현은 ``(test, formatted_err)`` 튜플을 인스턴스의 :attr:`failures` 어트리뷰트에 추가합니다,"
 " 여기서 *formatted_err*\\는 *err*\\에서 파생된 포맷한 트레이스백입니다."
 
-#: ../Doc/library/unittest.rst:1949
+#: ../Doc/library/unittest.rst:2058
 msgid "Called when the test case *test* succeeds."
 msgstr "테스트 케이스 *test*\\가 성공하면 호출됩니다."
 
-#: ../Doc/library/unittest.rst:1951
+#: ../Doc/library/unittest.rst:2060
 msgid "The default implementation does nothing."
 msgstr "기본 구현은 아무것도 하지 않습니다."
 
-#: ../Doc/library/unittest.rst:1956
+#: ../Doc/library/unittest.rst:2065
 msgid ""
 "Called when the test case *test* is skipped.  *reason* is the reason the "
 "test gave for skipping."
 msgstr "테스트 케이스 *test*\\가 건너뛰어지면 호출됩니다. *reason*\\은 테스트가 준 건너뛰는 이유입니다."
 
-#: ../Doc/library/unittest.rst:1959
+#: ../Doc/library/unittest.rst:2068
 msgid ""
 "The default implementation appends a tuple ``(test, reason)`` to the "
 "instance's :attr:`skipped` attribute."
 msgstr "기본 구현은 ``(test, reason)`` 튜플을 인스턴스의 :attr:`skipped` 어트리뷰트에 추가합니다."
 
-#: ../Doc/library/unittest.rst:1965
+#: ../Doc/library/unittest.rst:2074
 msgid ""
 "Called when the test case *test* fails, but was marked with the "
 ":func:`expectedFailure` decorator."
 msgstr "테스트 케이스 *test*\\가 실패했지만 :func:`expectedFailure` 데코레이터로 표시된 경우 호출됩니다"
 
-#: ../Doc/library/unittest.rst:1968
+#: ../Doc/library/unittest.rst:2077
 msgid ""
 "The default implementation appends a tuple ``(test, formatted_err)`` to "
 "the instance's :attr:`expectedFailures` attribute, where *formatted_err* "
@@ -2900,19 +3018,19 @@ msgstr ""
 "기본 구현은 ``(test, formatted_err)`` 튜플을 인스턴스의 :attr:`expectedFailures` "
 "어트리뷰트에 추가합니다, 여기서 *formatted_err*\\는 *err*\\에서 파생된 포맷한 트레이스백입니다."
 
-#: ../Doc/library/unittest.rst:1975
+#: ../Doc/library/unittest.rst:2084
 msgid ""
 "Called when the test case *test* was marked with the "
 ":func:`expectedFailure` decorator, but succeeded."
 msgstr "테스트 케이스 *test*\\가 :func:`expectedFailure` 데코레이터로 표시되었지만, 성공한 경우 호출됩니다."
 
-#: ../Doc/library/unittest.rst:1978
+#: ../Doc/library/unittest.rst:2087
 msgid ""
 "The default implementation appends the test to the instance's "
 ":attr:`unexpectedSuccesses` attribute."
 msgstr "기본 구현은 테스트를 인스턴스의 :attr:`unexpectedSuccesses` 어트리뷰트에 추가합니다."
 
-#: ../Doc/library/unittest.rst:1984
+#: ../Doc/library/unittest.rst:2093
 msgid ""
 "Called when a subtest finishes.  *test* is the test case corresponding to"
 " the test method.  *subtest* is a custom :class:`TestCase` instance "
@@ -2921,7 +3039,7 @@ msgstr ""
 "부분 테스트가 완료되었을 때 호출됩니다. *test*\\는 테스트 메서드에 대응하는 테스트 케이스입니다. *subtest*\\는 "
 "부분 테스트를 설명하는 사용자 지정 :class:`TestCase` 인스턴스입니다."
 
-#: ../Doc/library/unittest.rst:1988
+#: ../Doc/library/unittest.rst:2097
 msgid ""
 "If *outcome* is :const:`None`, the subtest succeeded.  Otherwise, it "
 "failed with an exception where *outcome* is a tuple of the form returned "
@@ -2931,25 +3049,25 @@ msgstr ""
 "*outcome*\\은 :func:`sys.exc_info`\\가 반환한 형식의 튜플입니다: ``(type, value, "
 "traceback)``\\."
 
-#: ../Doc/library/unittest.rst:1992
+#: ../Doc/library/unittest.rst:2101
 msgid ""
 "The default implementation does nothing when the outcome is a success, "
 "and records subtest failures as normal failures."
 msgstr "기본 구현은 결과가 성공인 경우 아무것도 하지 않고 부분 테스트의 실패를 일반적인 실패로 기록합니다."
 
-#: ../Doc/library/unittest.rst:2000
+#: ../Doc/library/unittest.rst:2109
 msgid ""
 "A concrete implementation of :class:`TestResult` used by the "
 ":class:`TextTestRunner`."
 msgstr ":class:`TextTestRunner`\\에서 사용하는 :class:`TestResult`\\의 구체적인 구현입니다."
 
-#: ../Doc/library/unittest.rst:2003
+#: ../Doc/library/unittest.rst:2112
 msgid ""
 "This class was previously named ``_TextTestResult``. The old name still "
 "exists as an alias but is deprecated."
 msgstr "이 클래스는 이전에 ``_TextTestResult`` 이름이었습니다. 이 이름은 여전히 에일리어스로 존재하지만 폐지된 상태입니다."
 
-#: ../Doc/library/unittest.rst:2010
+#: ../Doc/library/unittest.rst:2119
 msgid ""
 "Instance of the :class:`TestLoader` class intended to be shared.  If no "
 "customization of the :class:`TestLoader` is needed, this instance can be "
@@ -2958,7 +3076,7 @@ msgstr ""
 "공유 목적의 :class:`TestLoader` 클래스의 인스턴스입니다. 만약 :class:`TestLoader`\\를 사용자 "
 "정의할 필요가 없다면, 계속 새로운 인스턴스를 생성하는 것 대신 이 인스턴스를 사용할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2018
+#: ../Doc/library/unittest.rst:2127
 msgid ""
 "A basic test runner implementation that outputs results to a stream. If "
 "*stream* is ``None``, the default, :data:`sys.stderr` is used as the "
@@ -2973,7 +3091,7 @@ msgstr ""
 "본질적으로 매우 간단합니다. 테스트 묶음을 실행하는 그래픽 애플리케이션은 대안 구현을 제공해야 합니다. 이러한 구현은 "
 "unittest에 기능이 추가될 때 실행자를 만드는 인터페이스가 변하기 때문에 ``**kwargs``\\를 받아들여야 합니다."
 
-#: ../Doc/library/unittest.rst:2025
+#: ../Doc/library/unittest.rst:2134
 msgid ""
 "By default this runner shows :exc:`DeprecationWarning`, "
 ":exc:`PendingDeprecationWarning`, :exc:`ResourceWarning` and "
@@ -2994,21 +3112,21 @@ msgstr ""
 ":option:`!-Wa` 옵션(:ref:`경고 제어 <using-on-warnings>`\\를 보십시오)을 사용하고 "
 "*warnings*\\를 ``None``\\으로 설정하여 이 동작을 오버라이드 할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2036
+#: ../Doc/library/unittest.rst:2145
 msgid "Added the ``warnings`` argument."
 msgstr "``warnings`` 인자 추가."
 
-#: ../Doc/library/unittest.rst:2039
+#: ../Doc/library/unittest.rst:2148
 msgid ""
 "The default stream is set to :data:`sys.stderr` at instantiation time "
 "rather than import time."
 msgstr "임포트 시간이 아닌 인스턴스화 시간에 기본 스트림이 :data:`sys.stderr`\\으로 설정됩니다."
 
-#: ../Doc/library/unittest.rst:2043
+#: ../Doc/library/unittest.rst:2152
 msgid "Added the tb_locals parameter."
 msgstr "tb_locals 매개변수 추가."
 
-#: ../Doc/library/unittest.rst:2048
+#: ../Doc/library/unittest.rst:2157
 msgid ""
 "This method returns the instance of ``TestResult`` used by :meth:`run`. "
 "It is not intended to be called directly, but can be overridden in "
@@ -3017,7 +3135,7 @@ msgstr ""
 "이 메서드는 :meth:`run`\\가 사용하는 ``TestResult`` 인스턴스를 반환합니다. 직접 호출하게 의도되지 않았지만,"
 " 사용자 정의 ``TestResult``\\를 제공하기 위해 서브 클래스에서 오버라이드할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2052
+#: ../Doc/library/unittest.rst:2161
 msgid ""
 "``_makeResult()`` instantiates the class or callable passed in the "
 "``TextTestRunner`` constructor as the ``resultclass`` argument. It "
@@ -3028,7 +3146,7 @@ msgstr ""
 " 콜러블을 인스턴스화합니다. 만약 ``resultclass``\\가 제공되지 않았다면 기본값은 "
 ":class:`TextTestResult` 입니다. 결과 클래스는 다음 인자와 함께 인스턴스화됩니다::"
 
-#: ../Doc/library/unittest.rst:2061
+#: ../Doc/library/unittest.rst:2170
 msgid ""
 "This method is the main public interface to the ``TextTestRunner``. This "
 "method takes a :class:`TestSuite` or :class:`TestCase` instance. A "
@@ -3039,7 +3157,7 @@ msgstr ""
 " :class:`TestCase` 인스턴스를 받습니다. :class:`TestResult`\\는 "
 ":func:`_makeResult`\\를 호출하여 생성하고 테스트가 실행되며 결과가 stdout에 출력됩니다."
 
-#: ../Doc/library/unittest.rst:2072
+#: ../Doc/library/unittest.rst:2181
 msgid ""
 "A command-line program that loads a set of tests from *module* and runs "
 "them; this is primarily for making test modules conveniently executable. "
@@ -3049,13 +3167,13 @@ msgstr ""
 "*module*\\에서 테스트 모음을 로드하고 실행하는 명령행 프로그램입니다; 이것은 주로 편리하게 실행 가능한 테스트 모듈을 "
 "만들기 위한 것입니다. 이 함수의 가장 간단한 사용은 테스트 스크립트 마지막에 다음과 같은 줄을 포함하는 것입니다::"
 
-#: ../Doc/library/unittest.rst:2080
+#: ../Doc/library/unittest.rst:2189
 msgid ""
 "You can run tests with more detailed information by passing in the "
 "verbosity argument::"
 msgstr "당신은 상세도 인자를 전달하여 좀 더 자세한 정보와 함께 테스트를 실행할 수 있습니다::"
 
-#: ../Doc/library/unittest.rst:2086
+#: ../Doc/library/unittest.rst:2195
 msgid ""
 "The *defaultTest* argument is either the name of a single test or an "
 "iterable of test names to run if no test names are specified via *argv*."
@@ -3066,7 +3184,7 @@ msgstr ""
 "이터러블입니다. 만약 이 인자가 지정되지 않거나 ``None``\\이면서 *argv*\\로 테스트 이름이 지정되지 않으면 "
 "*module* 안에서 찾은 모든 테스트가 실행됩니다."
 
-#: ../Doc/library/unittest.rst:2091
+#: ../Doc/library/unittest.rst:2200
 msgid ""
 "The *argv* argument can be a list of options passed to the program, with "
 "the first element being the program name.  If not specified or ``None``, "
@@ -3075,7 +3193,7 @@ msgstr ""
 "*argv* 인자는 프로그램에 전달된 옵션 목록이 될 수 있습니다, 첫 번째 요소는 프로그램 이름입니다. 만약 이 인자가 지정되지 "
 "않거나 ``None``\\이면, :data:`sys.argv` 값이 사용됩니다."
 
-#: ../Doc/library/unittest.rst:2095
+#: ../Doc/library/unittest.rst:2204
 msgid ""
 "The *testRunner* argument can either be a test runner class or an already"
 " created instance of it. By default ``main`` calls :func:`sys.exit` with "
@@ -3084,7 +3202,7 @@ msgstr ""
 "*testRunner* 인자는 테스트 실행자 클래스나 이미 생성된 테스트 실행자 인스턴스일 수 있습니다. 기본적으로 "
 "``main``\\은 실행한 테스트가 성공인지 실패인지를 나타내는 종료 코드와 함께 :func:`sys.exit`\\을 호출합니다."
 
-#: ../Doc/library/unittest.rst:2099
+#: ../Doc/library/unittest.rst:2208
 msgid ""
 "The *testLoader* argument has to be a :class:`TestLoader` instance, and "
 "defaults to :data:`defaultTestLoader`."
@@ -3092,7 +3210,7 @@ msgstr ""
 "*testLoader* 인자는 :class:`TestLoader` 인스턴스이어야 하고 기본값은 "
 ":data:`defaultTestLoader` 입니다."
 
-#: ../Doc/library/unittest.rst:2102
+#: ../Doc/library/unittest.rst:2211
 msgid ""
 "``main`` supports being used from the interactive interpreter by passing "
 "in the argument ``exit=False``. This displays the result on standard "
@@ -3101,7 +3219,7 @@ msgstr ""
 "``main``\\은 ``exit=False`` 인자를 전달하여 대화형 인터프리터에서 사용하는 것을 지원합니다. 이것은 "
 ":func:`sys.exit` 호출 없이 결과가 표준 출력에 표시됩니다::"
 
-#: ../Doc/library/unittest.rst:2109
+#: ../Doc/library/unittest.rst:2218
 msgid ""
 "The *failfast*, *catchbreak* and *buffer* parameters have the same effect"
 " as the same-name `command-line options`_."
@@ -3109,7 +3227,7 @@ msgstr ""
 "*failfast*, *catchbreak*, *buffer* 매개변수는 `명령행 옵션 <command-line "
 "options_>`_\\의 같은 이름과 같은 효과를 가지고 있습니다."
 
-#: ../Doc/library/unittest.rst:2112
+#: ../Doc/library/unittest.rst:2221
 msgid ""
 "The *warnings* argument specifies the :ref:`warning filter <warning-"
 "filter>` that should be used while running the tests.  If it's not "
@@ -3122,7 +3240,7 @@ msgstr ""
 "경우(:ref:`경고 제어 <using-on-warnings>`\\를 보십시오)에는 ``None``\\으로 남아 있고, 그렇지 않은"
 " 경우에는 ``'default'``\\로 설정됩니다."
 
-#: ../Doc/library/unittest.rst:2118
+#: ../Doc/library/unittest.rst:2227
 msgid ""
 "Calling ``main`` actually returns an instance of the ``TestProgram`` "
 "class. This stores the result of the tests run as the ``result`` "
@@ -3131,27 +3249,27 @@ msgstr ""
 "사실 ``main`` 호출은 ``TestProgram`` 클래스의 인스턴스를 반환합니다. 이것은 실행된 테스트의 결과를 "
 "``result`` 어트리뷰트에 저장합니다."
 
-#: ../Doc/library/unittest.rst:2121
+#: ../Doc/library/unittest.rst:2230
 msgid "The *exit* parameter was added."
 msgstr "*exit* 매개변수가 추가되었습니다."
 
-#: ../Doc/library/unittest.rst:2124
+#: ../Doc/library/unittest.rst:2233
 msgid ""
 "The *verbosity*, *failfast*, *catchbreak*, *buffer* and *warnings* "
 "parameters were added."
 msgstr "*verbosity*, *failfast*, *catchbreak*, *buffer*, *warnings* 매개변수가 추가되었습니다."
 
-#: ../Doc/library/unittest.rst:2128
+#: ../Doc/library/unittest.rst:2237
 msgid ""
 "The *defaultTest* parameter was changed to also accept an iterable of "
 "test names."
 msgstr "*defaultTest* 매개변수가 테스트 이름의 이터러블도 받을 수 있게 바뀌었습니다."
 
-#: ../Doc/library/unittest.rst:2134
+#: ../Doc/library/unittest.rst:2243
 msgid "load_tests Protocol"
 msgstr "load_tests 프로토콜"
 
-#: ../Doc/library/unittest.rst:2138
+#: ../Doc/library/unittest.rst:2247
 msgid ""
 "Modules or packages can customize how tests are loaded from them during "
 "normal test runs or test discovery by implementing a function called "
@@ -3160,7 +3278,7 @@ msgstr ""
 "``load_tests`` 라 불리는 함수를 구현함으로써 모듈이나 패키지는 일반 테스트 실행이나 테스트 탐색 중에 그것들로부터 "
 "테스트가 어떻게 로드될지를 사용자 정의할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2141
+#: ../Doc/library/unittest.rst:2250
 msgid ""
 "If a test module defines ``load_tests`` it will be called by "
 ":meth:`TestLoader.loadTestsFromModule` with the following arguments::"
@@ -3168,7 +3286,7 @@ msgstr ""
 "만약 테스트 모듈이 ``load_tests``\\를 정의했다면 그것은 다음 인자와 함께 "
 ":meth:`TestLoader.loadTestsFromModule`\\의해 호출될 것입니다::"
 
-#: ../Doc/library/unittest.rst:2146
+#: ../Doc/library/unittest.rst:2255
 msgid ""
 "where *pattern* is passed straight through from ``loadTestsFromModule``."
 "  It defaults to ``None``."
@@ -3176,11 +3294,11 @@ msgstr ""
 "여기서 *pattern*\\은 ``loadTestsFromModule``\\에서 바로 전달된 것입니다. 기본값은 "
 "``None``\\입니다."
 
-#: ../Doc/library/unittest.rst:2149
+#: ../Doc/library/unittest.rst:2258
 msgid "It should return a :class:`TestSuite`."
 msgstr "이것은 :class:`TestSuite`\\를 반환해야 합니다."
 
-#: ../Doc/library/unittest.rst:2151
+#: ../Doc/library/unittest.rst:2260
 msgid ""
 "*loader* is the instance of :class:`TestLoader` doing the loading. "
 "*standard_tests* are the tests that would be loaded by default from the "
@@ -3192,13 +3310,13 @@ msgstr ""
 " 기본적으로 로드될 테스트입니다. 테스트 모듈이 테스트 기본 모음에서 오직 테스트를 추가하거나 빼기를 원하는 것은 흔한 일입니다. "
 "세 번째 인자는 테스트 탐색의 일부로서 패키지를 로드할 때 사용됩니다."
 
-#: ../Doc/library/unittest.rst:2157
+#: ../Doc/library/unittest.rst:2266
 msgid ""
 "A typical ``load_tests`` function that loads tests from a specific set of"
 " :class:`TestCase` classes may look like::"
 msgstr "특정 :class:`TestCase` 클래스 모음에서 테스트를 로드하는 전형적인 ``load_tests`` 함수는 다음과 같습니다::"
 
-#: ../Doc/library/unittest.rst:2169
+#: ../Doc/library/unittest.rst:2278
 msgid ""
 "If discovery is started in a directory containing a package, either from "
 "the command line or by calling :meth:`TestLoader.discover`, then the "
@@ -3213,7 +3331,7 @@ msgstr ""
 "탐색은 그저 다른 디렉터리인 것처럼 패키지 안을 재귀 순회할 것입니다. 그렇지 않다면, 패키지의 테스트를 위한 탐색은 다음 인자와 "
 "함께 불리는 ``load_tests``\\에게 맡겨질 것입니다::"
 
-#: ../Doc/library/unittest.rst:2178
+#: ../Doc/library/unittest.rst:2287
 msgid ""
 "This should return a :class:`TestSuite` representing all the tests from "
 "the package. (``standard_tests`` will only contain tests collected from "
@@ -3222,7 +3340,7 @@ msgstr ""
 "이것은 패키지의 모든 테스트에 해당하는 :class:`TestSuite`\\를 반환해야 합니다. "
 "(``standard_tests``\\는 오직 :file:`__init__.py`\\로부터 수집된 테스트만 포함할 것입니다."
 
-#: ../Doc/library/unittest.rst:2182
+#: ../Doc/library/unittest.rst:2291
 msgid ""
 "Because the pattern is passed into ``load_tests`` the package is free to "
 "continue (and potentially modify) test discovery. A 'do nothing' "
@@ -3231,7 +3349,7 @@ msgstr ""
 "패턴이 load_tests로 전달되기 때문에 패키지는 테스트 검색을 계속 진행(그리고 잠재적으로 수정)할 수 있습니다. 테스트 "
 "패키지를 위해서 '아무것도 하지 않는' ``load_tests`` 함수는 다음과 같을 것입니다::"
 
-#: ../Doc/library/unittest.rst:2193
+#: ../Doc/library/unittest.rst:2302
 msgid ""
 "Discovery no longer checks package names for matching *pattern* due to "
 "the impossibility of package names matching the default pattern."
@@ -3239,11 +3357,11 @@ msgstr ""
 "패키지 이름이 기본 패턴과 일치하는 것이 불가능하기 때문에 탐색이 더는 *pattern* 일치를 위해서 패키지 이름을 검사하지 "
 "않습니다."
 
-#: ../Doc/library/unittest.rst:2200
+#: ../Doc/library/unittest.rst:2309
 msgid "Class and Module Fixtures"
 msgstr "클래스와 모듈 픽스쳐"
 
-#: ../Doc/library/unittest.rst:2202
+#: ../Doc/library/unittest.rst:2311
 msgid ""
 "Class and module level fixtures are implemented in :class:`TestSuite`. "
 "When the test suite encounters a test from a new class then "
@@ -3254,7 +3372,7 @@ msgstr ""
 "만나면(만약 존재한다면) 이전 클래스의 :meth:`tearDownClass` 가 호출되고, 이어 새로운 클래스의 "
 ":meth:`setUpClass`\\가 호출됩니다."
 
-#: ../Doc/library/unittest.rst:2207
+#: ../Doc/library/unittest.rst:2316
 msgid ""
 "Similarly if a test is from a different module from the previous test "
 "then ``tearDownModule`` from the previous module is run, followed by "
@@ -3263,13 +3381,13 @@ msgstr ""
 "마찬가지로 만약 테스트가 이전 테스트와 다른 모듈의 것이라면 이전 모듈의 ``tearDownModule``\\이 실행되고, 이어 "
 "새로운 모듈의 ``setUpModule``\\이 호출됩니다."
 
-#: ../Doc/library/unittest.rst:2211
+#: ../Doc/library/unittest.rst:2320
 msgid ""
 "After all the tests have run the final ``tearDownClass`` and "
 "``tearDownModule`` are run."
 msgstr "모든 테스트가 실행된 뒤에 마지막으로 ``tearDownClass``\\와 ``tearDownModule``\\이 실행됩니다."
 
-#: ../Doc/library/unittest.rst:2214
+#: ../Doc/library/unittest.rst:2323
 msgid ""
 "Note that shared fixtures do not play well with [potential] features like"
 " test parallelization and they break test isolation. They should be used "
@@ -3278,7 +3396,7 @@ msgstr ""
 "공유하는 픽스쳐의 경우 테스트 병렬화와 같은 [잠재적인] 기능과 잘 동작하지 않고 이것은 테스트 분리를 망가트립니다. 이것을 주의 "
 "깊게 사용해야 합니다."
 
-#: ../Doc/library/unittest.rst:2217
+#: ../Doc/library/unittest.rst:2326
 msgid ""
 "The default ordering of tests created by the unittest test loaders is to "
 "group all tests from the same modules and classes together. This will "
@@ -3293,7 +3411,7 @@ msgstr ""
 "것입니다. 만약 당신이 무작위로 순서를 정하여, 그래서 다른 모듈과 클래스의 테스트가 서로 인접한다면, 이 공유 픽스처 함수는 "
 "1번의 테스트 실행에서 여러 번 호출될 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2224
+#: ../Doc/library/unittest.rst:2333
 msgid ""
 "Shared fixtures are not intended to work with suites with non-standard "
 "ordering. A ``BaseTestSuite`` still exists for frameworks that don't want"
@@ -3302,7 +3420,7 @@ msgstr ""
 "공유 픽스처는 비표준 정렬 순서를 사용하는 테스트 묶음과 같이 작동하는 것을 의도하지 않습니다. 공유 픽스처를 지원하길 원치 않는 "
 "프레임워크를 위해서 ``BaseTestSuite``\\가 여전히 존재합니다."
 
-#: ../Doc/library/unittest.rst:2228
+#: ../Doc/library/unittest.rst:2337
 msgid ""
 "If there are any exceptions raised during one of the shared fixture "
 "functions the test is reported as an error. Because there is no "
@@ -3316,15 +3434,15 @@ msgstr ""
 "당신이 그저 표준 unittest의 테스트 실행자를 사용한다면 이 세부 항목은 중요하지 않습니다, 그러나 당신이 프레임워크의 "
 "저자라면 이것은 관련이 있을 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2237
+#: ../Doc/library/unittest.rst:2346
 msgid "setUpClass and tearDownClass"
 msgstr "setUpClass 와 tearDownClass"
 
-#: ../Doc/library/unittest.rst:2239
+#: ../Doc/library/unittest.rst:2348
 msgid "These must be implemented as class methods::"
 msgstr "이것들은 반드시 클래스 메서드로 구현되어야 합니다::"
 
-#: ../Doc/library/unittest.rst:2252
+#: ../Doc/library/unittest.rst:2361
 msgid ""
 "If you want the ``setUpClass`` and ``tearDownClass`` on base classes "
 "called then you must call up to them yourself. The implementations in "
@@ -3333,7 +3451,7 @@ msgstr ""
 "만약 당신이 베이스 클래스의 ``setUpClass``\\와 ``tearDownClass``\\를 호출하고 싶다면 당신이 그것을 "
 "직접 호출해야만 합니다. :class:`TestCase`\\의 구현은 비어있습니다."
 
-#: ../Doc/library/unittest.rst:2256
+#: ../Doc/library/unittest.rst:2365
 msgid ""
 "If an exception is raised during a ``setUpClass`` then the tests in the "
 "class are not run and the ``tearDownClass`` is not run. Skipped classes "
@@ -3345,15 +3463,15 @@ msgstr ""
 " 않습니다. 건너뛴 클래스는 ``setUpClass`` 또는 ``tearDownClass``\\가 실행되지 않을 것입니다. 만약 "
 "예외가 :exc:`SkipTest` 예외라면 클래스는 에러 대신 건너뛰어졌다고 보고될 것입니다."
 
-#: ../Doc/library/unittest.rst:2264
+#: ../Doc/library/unittest.rst:2373
 msgid "setUpModule and tearDownModule"
 msgstr "setUpModule 과 tearDownModule"
 
-#: ../Doc/library/unittest.rst:2266
+#: ../Doc/library/unittest.rst:2375
 msgid "These should be implemented as functions::"
 msgstr "이것들은 함수로 구현되어야 합니다::"
 
-#: ../Doc/library/unittest.rst:2274
+#: ../Doc/library/unittest.rst:2383
 msgid ""
 "If an exception is raised in a ``setUpModule`` then none of the tests in "
 "the module will be run and the ``tearDownModule`` will not be run. If the"
@@ -3363,11 +3481,63 @@ msgstr ""
 "만약 ``setUpModule`` 중에 예외가 발생한다면 모듈의 테스트는 실행되지 않고 ``tearDownModule`` 는 "
 "실행되지 않습니다. 만약 예외가 :exc:`SkipTest` 예외라면 모듈은 에러 대신 건너뛰어졌다고 보고될 것입니다."
 
-#: ../Doc/library/unittest.rst:2281
+#: ../Doc/library/unittest.rst:2388
+msgid ""
+"To add cleanup code that must be run even in the case of an exception, "
+"use ``addModuleCleanup``:"
+msgstr ""
+
+#: ../Doc/library/unittest.rst:2394
+#, fuzzy
+msgid ""
+"Add a function to be called after :func:`tearDownModule` to cleanup "
+"resources used during the test class. Functions will be called in reverse"
+" order to the order they are added (:abbr:`LIFO (last-in, first-out)`). "
+"They are called with any arguments and keyword arguments passed into "
+":meth:`addModuleCleanup` when they are added."
+msgstr ""
+"테스트 중에 사용된 자원을 정리하기 위해 :meth:`tearDown` 이후에 불리는 함수를 추가합니다. 함수들은 추가된 순서의 "
+"반대 순서대로 불리게 됩니다(:abbr:`LIFO(후입 선출법(last-in, first-out))`). 함수가 추가될 때 "
+":meth:`addCleanup`\\에 같이 전달된 위치 인자나 키워드 인자와 함께 호출됩니다. "
+
+#: ../Doc/library/unittest.rst:2400
+#, fuzzy
+msgid ""
+"If :meth:`setUpModule` fails, meaning that :func:`tearDownModule` is not "
+"called, then any cleanup functions added will still be called."
+msgstr ""
+"만약 :meth:`setUp`\\이 실패한다면, 즉 :meth:`tearDown`\\이 불리지 않더라도, 정리 함수들은 여전히 "
+"불리게 될 것입니다."
+
+#: ../Doc/library/unittest.rst:2408
+#, fuzzy
+msgid ""
+"This function is called unconditionally after :func:`tearDownModule`, or "
+"after :func:`setUpModule` if :func:`setUpModule` raises an exception."
+msgstr ""
+"이 메서드는 :meth:`tearDown` 이후나, :meth:`setUp`\\이 예외를 발생시키면 "
+":meth:`setUp`\\이후에 조건 없이 호출됩니다."
+
+#: ../Doc/library/unittest.rst:2411
+msgid ""
+"It is responsible for calling all the cleanup functions added by "
+":func:`addCleanupModule`. If you need cleanup functions to be called "
+"*prior* to :func:`tearDownModule` then you can call "
+":func:`doModuleCleanups` yourself."
+msgstr ""
+
+#: ../Doc/library/unittest.rst:2416
+#, fuzzy
+msgid ""
+":func:`doModuleCleanups` pops methods off the stack of cleanup functions "
+"one at a time, so it can be called at any time."
+msgstr ":meth:`doCleanups`\\는 한 번에 하나씩 정리 함수 스택에서 메서드를 꺼내기 때문에 언제든지 호출될 수 있습니다."
+
+#: ../Doc/library/unittest.rst:2422
 msgid "Signal Handling"
 msgstr "시그널 처리하기"
 
-#: ../Doc/library/unittest.rst:2285
+#: ../Doc/library/unittest.rst:2426
 msgid ""
 "The :option:`-c/--catch <unittest -c>` command-line option to unittest, "
 "along with the ``catchbreak`` parameter to :func:`unittest.main()`, "
@@ -3383,7 +3553,7 @@ msgstr ""
 " 테스트 실행이 끝나고 이제까지의 모든 결과를 보고할 것입니다. 두 번째 control-c는 평소와 같이 "
 ":exc:`KeyboardInterrupt`\\를 발생할 것입니다."
 
-#: ../Doc/library/unittest.rst:2292
+#: ../Doc/library/unittest.rst:2433
 msgid ""
 "The control-c handling signal handler attempts to remain compatible with "
 "code or tests that install their own :const:`signal.SIGINT` handler. If "
@@ -3401,13 +3571,13 @@ msgstr ""
 "처리기를 대체하고 위임하는 코드에 의해 일반적으로 기대되는 동작입니다. ``unittest`` control-c 처리를 개별 테스트"
 " 별로 비활성화하고 싶을 때는 :func:`removeHandler` 데코레이터를 사용할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2301
+#: ../Doc/library/unittest.rst:2442
 msgid ""
 "There are a few utility functions for framework authors to enable "
 "control-c handling functionality within test frameworks."
 msgstr "프레임워크 작성자가 테스트 프레임워크에서 control-c 처리 기능을 활성화하기 위해 몇 가지 유틸리티 함수가 있습니다."
 
-#: ../Doc/library/unittest.rst:2306
+#: ../Doc/library/unittest.rst:2447
 msgid ""
 "Install the control-c handler. When a :const:`signal.SIGINT` is received "
 "(usually in response to the user pressing control-c) all registered "
@@ -3416,7 +3586,7 @@ msgstr ""
 "control-c 처리기를 설치합니다. :const:`signal.SIGINT`\\를 받았을 때(보통 사용자가 control-c를 "
 "눌렀을 때의 응답으로써) 모든 등록된 결과에 :meth:`~TestResult.stop`\\이 호출됩니다."
 
-#: ../Doc/library/unittest.rst:2313
+#: ../Doc/library/unittest.rst:2454
 msgid ""
 "Register a :class:`TestResult` object for control-c handling. Registering"
 " a result stores a weak reference to it, so it doesn't prevent the result"
@@ -3425,7 +3595,7 @@ msgstr ""
 "control-c 처리를 위해서 :class:`TestResult` 객체를 등록합니다. 결과 등록은 그것의 약한 참조를 저장합니다,"
 " 그래서 결과가 가비지 수거되는 것을 막지 않습니다."
 
-#: ../Doc/library/unittest.rst:2317
+#: ../Doc/library/unittest.rst:2458
 msgid ""
 "Registering a :class:`TestResult` object has no side-effects if control-c"
 " handling is not enabled, so test frameworks can unconditionally register"
@@ -3435,7 +3605,7 @@ msgstr ""
 "만약 control-c 처리가 활성화되지 않았다면 :class:`TestResult` 객체 등록은 부작용이 없습니다, 그래서 테스트"
 " 프레임워크는 처리가 가능한지 여부와 관계없이 자신이 만든 모든 결과를 무조건 등록할 수 있습니다."
 
-#: ../Doc/library/unittest.rst:2324
+#: ../Doc/library/unittest.rst:2465
 msgid ""
 "Remove a registered result. Once a result has been removed then "
 ":meth:`~TestResult.stop` will no longer be called on that result object "
@@ -3444,7 +3614,7 @@ msgstr ""
 "등록한 결과를 제거합니다. 결과가 제거되고 나면 control-c에 대한 응답으로 결과 객체의 "
 ":meth:`~TestResult.stop`\\을 더는 호출하지 않게 됩니다."
 
-#: ../Doc/library/unittest.rst:2331
+#: ../Doc/library/unittest.rst:2472
 msgid ""
 "When called without arguments this function removes the control-c handler"
 " if it has been installed. This function can also be used as a test "

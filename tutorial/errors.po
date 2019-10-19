@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-25 10:27+0900\n"
+"POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/tutorial/errors.rst:5
 msgid "Errors and Exceptions"
@@ -229,9 +229,9 @@ msgid ""
 " an exception that wasn't raised by the code being protected by the "
 ":keyword:`!try` ... :keyword:`!except` statement."
 msgstr ""
-":keyword:`!else` 절의 사용이 :keyword:`try` 절에 코드를 추가하는 것보다 좋은데, :keyword:`!try`"
-" ... :keyword:`!except` 문에 의해 보호되고 있는 코드가 일으키지 않은 예외를 우연히 잡게 되는 것을 방지하기 "
-"때문입니다."
+":keyword:`!else` 절의 사용이 :keyword:`try` 절에 코드를 추가하는 것보다 좋은데, "
+":keyword:`!try` ... :keyword:`!except` 문에 의해 보호되고 있는 코드가 일으키지 않은 예외를 우연히 "
+"잡게 되는 것을 방지하기 때문입니다."
 
 #: ../Doc/tutorial/errors.rst:188
 msgid ""
@@ -361,24 +361,54 @@ msgstr ""
 
 #: ../Doc/tutorial/errors.rst:344
 msgid ""
-"A *finally clause* is always executed before leaving the :keyword:`try` "
-"statement, whether an exception has occurred or not. When an exception "
-"has occurred in the :keyword:`!try` clause and has not been handled by an"
-" :keyword:`except` clause (or it has occurred in an :keyword:`!except` or"
-" :keyword:`!else` clause), it is re-raised after the :keyword:`finally` "
-"clause has been executed.  The :keyword:`!finally` clause is also "
-"executed \"on the way out\" when any other clause of the :keyword:`!try` "
-"statement is left via a :keyword:`break`, :keyword:`continue` or "
-":keyword:`return` statement.  A more complicated example::"
+"If a :keyword:`finally` clause is present, the :keyword:`finally` clause "
+"will execute as the last task before the :keyword:`try` statement "
+"completes. The :keyword:`finally` clause runs whether or not the "
+":keyword:`try` statement produces an exception. The following points "
+"discuss more complex cases when an exception occurs:"
 msgstr ""
-"*finally 절* 은 예외의 발생 여부와 관계없이 :keyword:`try` 문을 떠날 때 항상 실행됩니다. "
-":keyword:`!try` 절에서 예외가 발생하고 :keyword:`except` 절에서 처리되지 않으면 (또는 "
-":keyword:`!except` 나 :keyword:`!else` 절에서 발생하면), :keyword:`finally` 절이 실행된 "
-"후에 다시 일으킵니다. :keyword:`!finally` 절은 :keyword:`!try` 문의 다른 모든 절에서 "
-":keyword:`break`, :keyword:`continue`, :keyword:`return` 문에 의해 \"빠져나가는 "
-"길에\" 도 실행됩니다. 더 복잡한 예는 이렇습니다::"
 
-#: ../Doc/tutorial/errors.rst:377
+#: ../Doc/tutorial/errors.rst:346
+msgid ""
+"If an exception occurs during execution of the :keyword:`!try` clause, "
+"the exception may be handled by an :keyword:`except` clause. If the "
+"exception is not handled by an :keyword:`except` clause, the exception is"
+" re-raised after the :keyword:`!finally` clause has been executed."
+msgstr ""
+
+#: ../Doc/tutorial/errors.rst:348
+msgid ""
+"An exception could occur during execution of an :keyword:`!except` or "
+":keyword:`!else` clause. Again, the exception is re-raised after the "
+":keyword:`!finally` clause has been executed."
+msgstr ""
+
+#: ../Doc/tutorial/errors.rst:350
+msgid ""
+"If the :keyword:`!try` statement reaches a :keyword:`break`, "
+":keyword:`continue` or :keyword:`return` statement, the "
+":keyword:`finally` clause will execute just prior to the "
+":keyword:`break`, :keyword:`continue` or :keyword:`return` statement's "
+"execution."
+msgstr ""
+
+#: ../Doc/tutorial/errors.rst:352
+msgid ""
+"If a :keyword:`finally` clause includes a :keyword:`return` statement, "
+"the :keyword:`finally` clause's :keyword:`return` statement will execute "
+"before, and instead of, the :keyword:`return` statement in a "
+":keyword:`try` clause."
+msgstr ""
+
+#: ../Doc/tutorial/errors.rst:354
+msgid "For example::"
+msgstr ""
+
+#: ../Doc/tutorial/errors.rst:365
+msgid "A more complicated example::"
+msgstr ""
+
+#: ../Doc/tutorial/errors.rst:390
 msgid ""
 "As you can see, the :keyword:`finally` clause is executed in any event.  "
 "The :exc:`TypeError` raised by dividing two strings is not handled by the"
@@ -386,10 +416,10 @@ msgid ""
 ":keyword:`!finally` clause has been executed."
 msgstr ""
 "보인 바와 같이, :keyword:`finally` 절은 모든 경우에 실행됩니다. 두 문자열을 나눠서 발생한 "
-":exc:`TypeError` 는 :keyword:`except` 절에 의해 처리되지 않고 :keyword:`!finally` 절이 "
-"실행된 후에 다시 일어납니다."
+":exc:`TypeError` 는 :keyword:`except` 절에 의해 처리되지 않고 :keyword:`!finally` 절이"
+" 실행된 후에 다시 일어납니다."
 
-#: ../Doc/tutorial/errors.rst:382
+#: ../Doc/tutorial/errors.rst:395
 msgid ""
 "In real world applications, the :keyword:`finally` clause is useful for "
 "releasing external resources (such as files or network connections), "
@@ -398,11 +428,11 @@ msgstr ""
 "실제 세상의 응용 프로그램에서, :keyword:`finally` 절은 외부 자원을 사용할 때, 성공적인지 아닌지와 관계없이, 그 "
 "자원을 반납하는 데 유용합니다 (파일이나 네트워크 연결 같은 것들)."
 
-#: ../Doc/tutorial/errors.rst:390
+#: ../Doc/tutorial/errors.rst:403
 msgid "Predefined Clean-up Actions"
 msgstr "미리 정의된 뒷정리 동작들"
 
-#: ../Doc/tutorial/errors.rst:392
+#: ../Doc/tutorial/errors.rst:405
 msgid ""
 "Some objects define standard clean-up actions to be undertaken when the "
 "object is no longer needed, regardless of whether or not the operation "
@@ -412,7 +442,7 @@ msgstr ""
 "어떤 객체들은 객체가 더 필요 없을 때 개입하는 표준 뒷정리 동작을 정의합니다. 그 객체를 사용하는 연산의 성공 여부와 "
 "관계없습니다. 파일을 열고 그 내용을 화면에 인쇄하려고 하는 다음 예를 보세요. ::"
 
-#: ../Doc/tutorial/errors.rst:400
+#: ../Doc/tutorial/errors.rst:413
 msgid ""
 "The problem with this code is that it leaves the file open for an "
 "indeterminate amount of time after this part of the code has finished "
@@ -425,7 +455,7 @@ msgstr ""
 "스크립트에서는 문제가 되지 않지만, 큰 응용 프로그램에서는 문제가 될 수 있습니다. :keyword:`with` 문은 파일과 같은 "
 "객체들이 즉시 올바르게 뒷정리 되도록 보장하는 방법을 제공합니다. ::"
 
-#: ../Doc/tutorial/errors.rst:410
+#: ../Doc/tutorial/errors.rst:423
 msgid ""
 "After the statement is executed, the file *f* is always closed, even if a"
 " problem was encountered while processing the lines. Objects which, like "
@@ -434,4 +464,35 @@ msgid ""
 msgstr ""
 "문장이 실행된 후에, 줄을 처리하는 데 문제가 발생하더라도, 파일 *f* 는 항상 닫힙니다. 파일과 같이, 미리 정의된 뒷정리 "
 "동작들을 제공하는 객체들은 그들의 설명서에서 이 사실을 설명합니다."
+
+#~ msgid ""
+#~ "A *finally clause* is always executed"
+#~ " before leaving the :keyword:`try` "
+#~ "statement, whether an exception has "
+#~ "occurred or not. When an exception "
+#~ "has occurred in the :keyword:`!try` "
+#~ "clause and has not been handled by"
+#~ " an :keyword:`except` clause (or it "
+#~ "has occurred in an :keyword:`!except` or"
+#~ " :keyword:`!else` clause), it is re-"
+#~ "raised after the :keyword:`finally` clause "
+#~ "has been executed.  The :keyword:`!finally`"
+#~ " clause is also executed \"on the "
+#~ "way out\" when any other clause of"
+#~ " the :keyword:`!try` statement is left "
+#~ "via a :keyword:`break`, :keyword:`continue` or"
+#~ " :keyword:`return` statement.  A more "
+#~ "complicated example::"
+#~ msgstr ""
+#~ "*finally 절* 은 예외의 발생 여부와 관계없이 "
+#~ ":keyword:`try` 문을 떠날 때 항상 실행됩니다. "
+#~ ":keyword:`!try` 절에서 예외가 발생하고 :keyword:`except`"
+#~ " 절에서 처리되지 않으면 (또는 :keyword:`!except` "
+#~ "나 :keyword:`!else` 절에서 발생하면), "
+#~ ":keyword:`finally` 절이 실행된 후에 다시 일으킵니다."
+#~ " :keyword:`!finally` 절은 :keyword:`!try` 문의 "
+#~ "다른 모든 절에서 :keyword:`break`, "
+#~ ":keyword:`continue`, :keyword:`return` 문에 의해 "
+#~ "\"빠져나가는 길에\" 도 실행됩니다. 더 복잡한 예는 "
+#~ "이렇습니다::"
 

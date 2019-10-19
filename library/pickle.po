@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-25 10:27+0900\n"
+"POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/pickle.rst:2
 msgid ":mod:`pickle` --- Python object serialization"
@@ -44,23 +44,37 @@ msgstr ""
 "피클링\" 입니다."
 
 #: ../Doc/library/pickle.rst:33
-msgid ""
-"The :mod:`pickle` module is not secure against erroneous or maliciously "
-"constructed data.  Never unpickle data received from an untrusted or "
-"unauthenticated source."
+msgid "The ``pickle`` module **is not secure**. Only unpickle data you trust."
 msgstr ""
-":mod:`pickle` 모듈은 잘못되었거나 악의적으로 생성된 데이터에 대해 안전하지 않습니다. 신뢰할 수 없거나 인증되지 않은 "
-"출처에서 받은 데이터를 절대로 역 피클 하지 마십시오."
+
+#: ../Doc/library/pickle.rst:35
+msgid ""
+"It is possible to construct malicious pickle data which will **execute "
+"arbitrary code during unpickling**. Never unpickle data that could have "
+"come from an untrusted source, or that could have been tampered with."
+msgstr ""
 
 #: ../Doc/library/pickle.rst:39
+msgid ""
+"Consider signing data with :mod:`hmac` if you need to ensure that it has "
+"not been tampered with."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:42
+msgid ""
+"Safer serialization formats such as :mod:`json` may be more appropriate "
+"if you are processing untrusted data. See :ref:`comparison-with-json`."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:47
 msgid "Relationship to other Python modules"
 msgstr "다른 파이썬 모듈과의 관계"
 
-#: ../Doc/library/pickle.rst:42
+#: ../Doc/library/pickle.rst:50
 msgid "Comparison with ``marshal``"
 msgstr "``marshal`` 과의 비교"
 
-#: ../Doc/library/pickle.rst:44
+#: ../Doc/library/pickle.rst:52
 msgid ""
 "Python has a more primitive serialization module called :mod:`marshal`, "
 "but in general :mod:`pickle` should always be the preferred way to "
@@ -71,13 +85,13 @@ msgstr ""
 "은 항상 파이썬 객체를 직렬화하기 위해 선호되는 방법이어야 합니다. :mod:`marshal` 은 주로 파이썬의 "
 ":file:`.pyc` 파일을 지원하기 위해 존재합니다."
 
-#: ../Doc/library/pickle.rst:49
+#: ../Doc/library/pickle.rst:57
 msgid ""
 "The :mod:`pickle` module differs from :mod:`marshal` in several "
 "significant ways:"
 msgstr ":mod:`pickle` 모듈은 :mod:`marshal`\\과 몇 가지 중요한 점에서 다릅니다:"
 
-#: ../Doc/library/pickle.rst:51
+#: ../Doc/library/pickle.rst:59
 msgid ""
 "The :mod:`pickle` module keeps track of the objects it has already "
 "serialized, so that later references to the same object won't be "
@@ -86,7 +100,7 @@ msgstr ""
 ":mod:`pickle` 모듈은 이미 직렬화된 객체를 추적하므로 나중에 같은 객체에 대한 참조가 다시 직렬화되지 않습니다. "
 ":mod:`marshal` 은 이렇게 하지 않습니다."
 
-#: ../Doc/library/pickle.rst:55
+#: ../Doc/library/pickle.rst:63
 msgid ""
 "This has implications both for recursive objects and object sharing.  "
 "Recursive objects are objects that contain references to themselves.  "
@@ -104,7 +118,7 @@ msgstr ""
 "모든 참조가 마스터 복사본을 가리키도록 만듭니다. 공유 객체는 공유된 상태로 유지되는데, 가변 객체의 경우 매우 중요할 수 "
 "있습니다."
 
-#: ../Doc/library/pickle.rst:64
+#: ../Doc/library/pickle.rst:72
 msgid ""
 ":mod:`marshal` cannot be used to serialize user-defined classes and their"
 " instances.  :mod:`pickle` can save and restore class instances "
@@ -115,7 +129,7 @@ msgstr ""
 "클래스 인스턴스를 투명하게 저장하고 복원할 수 있지만, 클래스 정의는 객체를 저장할 때와 같은 모듈에 존재하고 임포트 할 수 있어야"
 " 합니다."
 
-#: ../Doc/library/pickle.rst:69
+#: ../Doc/library/pickle.rst:77
 msgid ""
 "The :mod:`marshal` serialization format is not guaranteed to be portable "
 "across Python versions.  Because its primary job in life is to support "
@@ -127,16 +141,17 @@ msgid ""
 "to Python 3 type differences if your data is crossing that unique "
 "breaking change language boundary."
 msgstr ""
-":mod:`marshal` 직렬화 형식은 파이썬 버전 간에 이식성이 보장되지 않습니다. 가장 중요한 일은 :file:`.pyc` 파일을 "
-"지원하는 것이므로, 파이썬 구현자는 필요할 때 직렬화 형식을 과거 호환되지 않는 방식으로 변경할 권리를 갖습니다. "
-":mod:`pickle` 직렬화 형식은, 호환성 있는 피클 프로토콜이 선택되고 여러분의 데이터가 파이썬 2와 파이썬 3의 호환되지 않는 "
-"언어 경계를 가로지를 때 피클링과 역 피클링 코드가 두 파이썬 형의 차이점을 다루는 한, 파이썬 배포 간의 과거 호환성을 보장합니다."
+":mod:`marshal` 직렬화 형식은 파이썬 버전 간에 이식성이 보장되지 않습니다. 가장 중요한 일은 :file:`.pyc` "
+"파일을 지원하는 것이므로, 파이썬 구현자는 필요할 때 직렬화 형식을 과거 호환되지 않는 방식으로 변경할 권리를 갖습니다. "
+":mod:`pickle` 직렬화 형식은, 호환성 있는 피클 프로토콜이 선택되고 여러분의 데이터가 파이썬 2와 파이썬 3의 호환되지 "
+"않는 언어 경계를 가로지를 때 피클링과 역 피클링 코드가 두 파이썬 형의 차이점을 다루는 한, 파이썬 배포 간의 과거 호환성을 "
+"보장합니다."
 
-#: ../Doc/library/pickle.rst:79
+#: ../Doc/library/pickle.rst:90
 msgid "Comparison with ``json``"
 msgstr "``json`` 과의 비교"
 
-#: ../Doc/library/pickle.rst:81
+#: ../Doc/library/pickle.rst:92
 msgid ""
 "There are fundamental differences between the pickle protocols and `JSON "
 "(JavaScript Object Notation) <http://json.org>`_:"
@@ -144,7 +159,7 @@ msgstr ""
 "pickle 프로토콜과 `JSON (JavaScript Object Notation) <http://json.org>`_ 간에는 "
 "근본적인 차이가 있습니다:"
 
-#: ../Doc/library/pickle.rst:84
+#: ../Doc/library/pickle.rst:95
 msgid ""
 "JSON is a text serialization format (it outputs unicode text, although "
 "most of the time it is then encoded to ``utf-8``), while pickle is a "
@@ -153,39 +168,46 @@ msgstr ""
 "JSON은 텍스트 직렬화 형식(유니코드 텍스트를 출력하지만, 대개는 ``utf-8`` 으로 인코딩됩니다)인 반면, pickle은 "
 "바이너리 직렬화 형식입니다."
 
-#: ../Doc/library/pickle.rst:88
+#: ../Doc/library/pickle.rst:99
 msgid "JSON is human-readable, while pickle is not;"
 msgstr "JSON은 사람이 읽을 수 있지만, 피클은 그렇지 않습니다."
 
-#: ../Doc/library/pickle.rst:90
+#: ../Doc/library/pickle.rst:101
 msgid ""
 "JSON is interoperable and widely used outside of the Python ecosystem, "
 "while pickle is Python-specific;"
 msgstr "JSON은 상호 운용이 가능하며 파이썬 생태계 외부에서 널리 사용되는 반면, 피클은 파이썬으로만 한정됩니다."
 
-#: ../Doc/library/pickle.rst:93
+#: ../Doc/library/pickle.rst:104
+#, fuzzy
 msgid ""
 "JSON, by default, can only represent a subset of the Python built-in "
 "types, and no custom classes; pickle can represent an extremely large "
 "number of Python types (many of them automatically, by clever usage of "
 "Python's introspection facilities; complex cases can be tackled by "
-"implementing :ref:`specific object APIs <pickle-inst>`)."
+"implementing :ref:`specific object APIs <pickle-inst>`);"
 msgstr ""
 "JSON은, 기본적으로, 파이썬 내장형 일부만 표시할 수 있으며 사용자 정의 클래스는 표시할 수 없습니다; 피클은 매우 많은 수의 "
 "파이썬 형을 나타낼 수 있습니다 (그중 많은 것들은 파이썬의 인트로스펙션 기능을 영리하게 사용하여 자동으로; 복잡한 경우는 "
 ":ref:`특정 객체 API <pickle-inst>` 를 구현해서 해결할 수 있습니다)."
 
-#: ../Doc/library/pickle.rst:100
+#: ../Doc/library/pickle.rst:110
+msgid ""
+"Unlike pickle, deserializing untrusted JSON does not in itself create an "
+"arbitrary code execution vulnerability."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:114
 msgid ""
 "The :mod:`json` module: a standard library module allowing JSON "
 "serialization and deserialization."
 msgstr ":mod:`json` 모듈: JSON 직렬화와 역 직렬화를 가능하게 하는 표준 라이브러리 모듈."
 
-#: ../Doc/library/pickle.rst:107
+#: ../Doc/library/pickle.rst:121
 msgid "Data stream format"
 msgstr "데이터 스트림 형식"
 
-#: ../Doc/library/pickle.rst:112
+#: ../Doc/library/pickle.rst:126
 msgid ""
 "The data format used by :mod:`pickle` is Python-specific.  This has the "
 "advantage that there are no restrictions imposed by external standards "
@@ -197,7 +219,7 @@ msgstr ""
 "없음)과 같은 외부 표준에 의해 부과된 제약이 없다는 장점이 있습니다. 그러나 비 파이썬 프로그램은 피클 된 파이썬 객체를 재구성할"
 " 수 없다는 것을 의미합니다."
 
-#: ../Doc/library/pickle.rst:117
+#: ../Doc/library/pickle.rst:131
 msgid ""
 "By default, the :mod:`pickle` data format uses a relatively compact "
 "binary representation.  If you need optimal size characteristics, you can"
@@ -206,7 +228,7 @@ msgstr ""
 "기본적으로, :mod:`pickle` 데이터 포맷은 상대적으로 간결한 바이너리 표현을 사용합니다. 최적의 크기 특성이 필요하다면, "
 "피클 된 데이터를 효율적으로 :doc:`압축 <archiving>` 할 수 있습니다."
 
-#: ../Doc/library/pickle.rst:121
+#: ../Doc/library/pickle.rst:135
 msgid ""
 "The module :mod:`pickletools` contains tools for analyzing data streams "
 "generated by :mod:`pickle`.  :mod:`pickletools` source code has extensive"
@@ -215,7 +237,7 @@ msgstr ""
 "모듈 :mod:`pickletools` 에는 :mod:`pickle` 에 의해 생성된 데이터 스트림을 분석하는 도구가 있습니다. "
 ":mod:`pickletools` 소스 코드에는 피클 프로토콜에서 사용되는 옵코드(opcode)에 대한 광범위한 주석이 있습니다."
 
-#: ../Doc/library/pickle.rst:125
+#: ../Doc/library/pickle.rst:139
 msgid ""
 "There are currently 5 different protocols which can be used for pickling."
 " The higher the protocol used, the more recent the version of Python "
@@ -224,19 +246,19 @@ msgstr ""
 "현재 피클링에 쓸 수 있는 5가지 프로토콜이 있습니다. 사용된 프로토콜이 높을수록, 생성된 피클을 읽으려면 더 최신 파이썬 버전이 "
 "필요합니다."
 
-#: ../Doc/library/pickle.rst:129
+#: ../Doc/library/pickle.rst:143
 msgid ""
 "Protocol version 0 is the original \"human-readable\" protocol and is "
 "backwards compatible with earlier versions of Python."
 msgstr "프로토콜 버전 0은 최초의 \"사람이 읽을 수 있는\" 프로토콜이며 이전 버전의 파이썬과 과거 호환됩니다."
 
-#: ../Doc/library/pickle.rst:132
+#: ../Doc/library/pickle.rst:146
 msgid ""
 "Protocol version 1 is an old binary format which is also compatible with "
 "earlier versions of Python."
 msgstr "프로토콜 버전 1은 역시 이전 버전의 파이썬과 호환되는 오래된 바이너리 형식입니다."
 
-#: ../Doc/library/pickle.rst:135
+#: ../Doc/library/pickle.rst:149
 msgid ""
 "Protocol version 2 was introduced in Python 2.3.  It provides much more "
 "efficient pickling of :term:`new-style class`\\es.  Refer to :pep:`307` "
@@ -245,27 +267,29 @@ msgstr ""
 "프로토콜 버전 2는 파이썬 2.3에서 소개되었습니다. 그것은 훨씬 더 효율적인 :term:`뉴스타일 클래스 <new-style "
 "class>`\\의 피클링을 제공합니다. 프로토콜 2에 의해 개선된 사항에 대한 정보는 :pep:`307`\\을 참조하십시오."
 
-#: ../Doc/library/pickle.rst:139
+#: ../Doc/library/pickle.rst:153
+#, fuzzy
 msgid ""
 "Protocol version 3 was added in Python 3.0.  It has explicit support for "
-":class:`bytes` objects and cannot be unpickled by Python 2.x.  This is "
-"the default protocol, and the recommended protocol when compatibility "
-"with other Python 3 versions is required."
+":class:`bytes` objects and cannot be unpickled by Python 2.x.  This was "
+"the default protocol in Python 3.0--3.7."
 msgstr ""
 "프로토콜 버전 3은 파이썬 3.0에서 추가되었습니다. 명시적으로 :class:`bytes` 객체를 지원하며 파이썬 2.x에서 역 "
 "피클 될 수 없습니다. 이것은 기본 프로토콜이며, 다른 파이썬 3 버전과의 호환성이 필요한 경우 권장되는 프로토콜입니다."
 
-#: ../Doc/library/pickle.rst:144
+#: ../Doc/library/pickle.rst:157
+#, fuzzy
 msgid ""
 "Protocol version 4 was added in Python 3.4.  It adds support for very "
 "large objects, pickling more kinds of objects, and some data format "
-"optimizations.  Refer to :pep:`3154` for information about improvements "
-"brought by protocol 4."
+"optimizations.  It is the default protocol starting with Python 3.8. "
+"Refer to :pep:`3154` for information about improvements brought by "
+"protocol 4."
 msgstr ""
 "프로토콜 버전 4가 파이썬 3.4에 추가되었습니다. 매우 큰 객체, 더 많은 종류의 객체에 대한 피클링, 일부 데이터 형식 최적화에"
 " 대한 지원을 추가합니다. 프로토콜 4에 의해 개선된 사항에 대한 정보는 :pep:`3154`\\를 참조하십시오."
 
-#: ../Doc/library/pickle.rst:150
+#: ../Doc/library/pickle.rst:164
 msgid ""
 "Serialization is a more primitive notion than persistence; although "
 ":mod:`pickle` reads and writes file objects, it does not handle the issue"
@@ -285,11 +309,11 @@ msgstr ""
 "있습니다. :mod:`shelve` 모듈은 DBM 스타일의 데이터베이스 파일에 객체를 피클/역 피클 하는 간단한 인터페이스를 "
 "제공합니다."
 
-#: ../Doc/library/pickle.rst:163
+#: ../Doc/library/pickle.rst:177
 msgid "Module Interface"
 msgstr "모듈 인터페이스"
 
-#: ../Doc/library/pickle.rst:165
+#: ../Doc/library/pickle.rst:179
 msgid ""
 "To serialize an object hierarchy, you simply call the :func:`dumps` "
 "function. Similarly, to de-serialize a data stream, you call the "
@@ -301,11 +325,11 @@ msgstr ""
 "직렬화하려면 :func:`loads` 함수를 호출합니다. 그러나, 직렬화와 역 직렬화에 대한 더 많은 제어를 원하면, 각각 "
 ":class:`Pickler` 나 :class:`Unpickler` 객체를 만들 수 있습니다."
 
-#: ../Doc/library/pickle.rst:170
+#: ../Doc/library/pickle.rst:184
 msgid "The :mod:`pickle` module provides the following constants:"
 msgstr ":mod:`pickle` 모듈은 다음과 같은 상수를 제공합니다:"
 
-#: ../Doc/library/pickle.rst:175
+#: ../Doc/library/pickle.rst:189
 msgid ""
 "An integer, the highest :ref:`protocol version <pickle-protocols>` "
 "available.  This value can be passed as a *protocol* value to functions "
@@ -316,31 +340,156 @@ msgstr ""
 ":func:`dump`\\와 :func:`dumps` 그리고 :class:`Pickler` 생성자에 *protocol* 값으로 "
 "전달될 수 있습니다."
 
-#: ../Doc/library/pickle.rst:182
+#: ../Doc/library/pickle.rst:196
+#, fuzzy
 msgid ""
 "An integer, the default :ref:`protocol version <pickle-protocols>` used "
 "for pickling.  May be less than :data:`HIGHEST_PROTOCOL`.  Currently the "
-"default protocol is 3, a new protocol designed for Python 3."
+"default protocol is 4, first introduced in Python 3.4 and incompatible "
+"with previous versions."
 msgstr ""
 "정수, 피클링에 사용되는 기본 :ref:`프로토콜 버전 <pickle-protocols>`. "
 ":data:`HIGHEST_PROTOCOL` 보다 작을 수 있습니다. 현재 기본 프로토콜은 3인데, 파이썬 3 용으로 설계된 새로운"
 " 프로토콜입니다."
 
-#: ../Doc/library/pickle.rst:187
+#: ../Doc/library/pickle.rst:203
+msgid "The default protocol is 3."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:207
+msgid "The default protocol is 4."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:209
 msgid ""
 "The :mod:`pickle` module provides the following functions to make the "
 "pickling process more convenient:"
 msgstr ":mod:`pickle` 모듈은 피클링 절차를 보다 편리하게 하려고 다음과 같은 함수를 제공합니다:"
 
-#: ../Doc/library/pickle.rst:192
+#: ../Doc/library/pickle.rst:214
+#, fuzzy
 msgid ""
-"Write a pickled representation of *obj* to the open :term:`file object` "
-"*file*. This is equivalent to ``Pickler(file, protocol).dump(obj)``."
+"Write the pickled representation of the object *obj* to the open "
+":term:`file object` *file*.  This is equivalent to ``Pickler(file, "
+"protocol).dump(obj)``."
 msgstr ""
 "*obj* 의 피클 된 표현을 열린 :term:`파일 객체 <file object>` *file* 에 씁니다. 이것은 "
 "``Pickler(file, protocol).dump(obj)`` 와 동등합니다."
 
-#: ../Doc/library/pickle.rst:195 ../Doc/library/pickle.rst:297
+#: ../Doc/library/pickle.rst:218
+#, fuzzy
+msgid ""
+"Arguments *file*, *protocol*, *fix_imports* and *buffer_callback* have "
+"the same meaning as in the :class:`Pickler` constructor."
+msgstr "인자 *protocol* 과 *fix_imports* 는 :func:`dump`\\와 같은 의미입니다."
+
+#: ../Doc/library/pickle.rst:221 ../Doc/library/pickle.rst:232
+#: ../Doc/library/pickle.rst:324
+msgid "The *buffer_callback* argument was added."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:226
+#, fuzzy
+msgid ""
+"Return the pickled representation of the object *obj* as a :class:`bytes`"
+" object, instead of writing it to a file."
+msgstr "객체의 피클 된 표현을 파일에 쓰는 대신 :class:`bytes` 객체로 반환합니다."
+
+#: ../Doc/library/pickle.rst:229
+#, fuzzy
+msgid ""
+"Arguments *protocol*, *fix_imports* and *buffer_callback* have the same "
+"meaning as in the :class:`Pickler` constructor."
+msgstr "인자 *protocol* 과 *fix_imports* 는 :func:`dump`\\와 같은 의미입니다."
+
+#: ../Doc/library/pickle.rst:237
+#, fuzzy
+msgid ""
+"Read the pickled representation of an object from the open :term:`file "
+"object` *file* and return the reconstituted object hierarchy specified "
+"therein. This is equivalent to ``Unpickler(file).load()``."
+msgstr ""
+"열린 :term:`파일 객체 <file object>` *file* 에서 피클 된 객체 표현을 읽고, 그 안에 지정된 객체 계층 "
+"구조를 재구성하여 반환합니다. 이것은 ``Unpickler(file).load()`` 와 동등합니다."
+
+#: ../Doc/library/pickle.rst:241 ../Doc/library/pickle.rst:256
+#, fuzzy
+msgid ""
+"The protocol version of the pickle is detected automatically, so no "
+"protocol argument is needed.  Bytes past the pickled representation of "
+"the object are ignored."
+msgstr "피클의 프로토콜 버전이 자동으로 감지되므로 프로토콜 인자가 필요하지 않습니다. 피클 된 객체의 표현 뒤에 남는 바이트열은 무시됩니다."
+
+#: ../Doc/library/pickle.rst:245 ../Doc/library/pickle.rst:260
+msgid ""
+"Arguments *file*, *fix_imports*, *encoding*, *errors*, *strict* and "
+"*buffers* have the same meaning as in the :class:`Unpickler` constructor."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:248 ../Doc/library/pickle.rst:263
+#: ../Doc/library/pickle.rst:425
+msgid "The *buffers* argument was added."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:253
+msgid ""
+"Return the reconstituted object hierarchy of the pickled representation "
+"*bytes_object* of an object."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:267
+msgid "The :mod:`pickle` module defines three exceptions:"
+msgstr ":mod:`pickle` 모듈은 세 가지 예외를 정의합니다:"
+
+#: ../Doc/library/pickle.rst:271
+msgid ""
+"Common base class for the other pickling exceptions.  It inherits "
+":exc:`Exception`."
+msgstr "다른 피클링 예외의 공통 베이스 클래스입니다. :exc:`Exception`\\을 상속합니다."
+
+#: ../Doc/library/pickle.rst:276
+msgid ""
+"Error raised when an unpicklable object is encountered by "
+":class:`Pickler`. It inherits :exc:`PickleError`."
+msgstr ""
+":class:`Pickler` 가 피클 가능하지 않은 객체를 만날 때 발생하는 에러. :exc:`PickleError` 를 "
+"상속합니다."
+
+#: ../Doc/library/pickle.rst:279
+msgid ""
+"Refer to :ref:`pickle-picklable` to learn what kinds of objects can be "
+"pickled."
+msgstr "어떤 종류의 객체가 피클 될 수 있는지 배우려면 :ref:`pickle-picklable`\\를 참조하십시오."
+
+#: ../Doc/library/pickle.rst:284
+msgid ""
+"Error raised when there is a problem unpickling an object, such as a data"
+" corruption or a security violation.  It inherits :exc:`PickleError`."
+msgstr ""
+"데이터 손상 또는 보안 위반과 같이 객체를 역 피클 할 때 문제가 있으면 발생하는 에러. :exc:`PickleError` 를 "
+"상속합니다."
+
+#: ../Doc/library/pickle.rst:287
+msgid ""
+"Note that other exceptions may also be raised during unpickling, "
+"including (but not necessarily limited to) AttributeError, EOFError, "
+"ImportError, and IndexError."
+msgstr ""
+"역 피클링 중에 다른 예외도 발생할 수 있음에 유의하십시오. AttributeError, EOFError, ImportError, "
+"IndexError 등이 발생할 수 있지만, 이에 국한되지는 않습니다."
+
+#: ../Doc/library/pickle.rst:292
+#, fuzzy
+msgid ""
+"The :mod:`pickle` module exports three classes, :class:`Pickler`, "
+":class:`Unpickler` and :class:`PickleBuffer`:"
+msgstr ":mod:`pickle` 모듈은 두 개의 클래스를 노출합니다, :class:`Pickler`\\와 :class:`Unpickler`:"
+
+#: ../Doc/library/pickle.rst:297
+msgid "This takes a binary file for writing a pickle data stream."
+msgstr "피클 데이터 스트림을 쓸 바이너리 파일을 받아들입니다."
+
+#: ../Doc/library/pickle.rst:299
 msgid ""
 "The optional *protocol* argument, an integer, tells the pickler to use "
 "the given protocol; supported protocols are 0 to "
@@ -352,7 +501,7 @@ msgstr ""
 ":data:`HIGHEST_PROTOCOL` 입니다. 지정하지 않으면 기본값은 :data:`DEFAULT_PROTOCOL` 입니다."
 " 음수가 지정되면, :data:`HIGHEST_PROTOCOL` 이 선택됩니다."
 
-#: ../Doc/library/pickle.rst:200 ../Doc/library/pickle.rst:302
+#: ../Doc/library/pickle.rst:304
 msgid ""
 "The *file* argument must have a write() method that accepts a single "
 "bytes argument.  It can thus be an on-disk file opened for binary "
@@ -363,7 +512,7 @@ msgstr ""
 "디스크 상의 파일, :class:`io.BytesIO` 인스턴스 또는 이 인터페이스를 충족시키는 다른 사용자 정의 객체일 수 "
 "있습니다."
 
-#: ../Doc/library/pickle.rst:205 ../Doc/library/pickle.rst:307
+#: ../Doc/library/pickle.rst:309
 msgid ""
 "If *fix_imports* is true and *protocol* is less than 3, pickle will try "
 "to map the new Python 3 names to the old module names used in Python 2, "
@@ -372,137 +521,38 @@ msgstr ""
 "*fix_imports* 가 참이고 *protocol* 이 3보다 작으면, pickle은 새로운 파이썬 3 이름을 파이썬 2에서 "
 "사용된 이전 모듈 이름에 매핑하려고 시도하여, 파이썬 2에서 피클 데이터 스트림을 읽을 수 있도록 합니다."
 
-#: ../Doc/library/pickle.rst:211
-msgid ""
-"Return the pickled representation of the object as a :class:`bytes` "
-"object, instead of writing it to a file."
-msgstr "객체의 피클 된 표현을 파일에 쓰는 대신 :class:`bytes` 객체로 반환합니다."
-
-#: ../Doc/library/pickle.rst:214
-msgid ""
-"Arguments *protocol* and *fix_imports* have the same meaning as in "
-":func:`dump`."
-msgstr "인자 *protocol* 과 *fix_imports* 는 :func:`dump`\\와 같은 의미입니다."
-
-#: ../Doc/library/pickle.rst:219
-msgid ""
-"Read a pickled object representation from the open :term:`file object` "
-"*file* and return the reconstituted object hierarchy specified therein. "
-"This is equivalent to ``Unpickler(file).load()``."
-msgstr ""
-"열린 :term:`파일 객체 <file object>` *file* 에서 피클 된 객체 표현을 읽고, 그 안에 지정된 객체 계층 "
-"구조를 재구성하여 반환합니다. 이것은 ``Unpickler(file).load()`` 와 동등합니다."
-
-#: ../Doc/library/pickle.rst:223 ../Doc/library/pickle.rst:249
-msgid ""
-"The protocol version of the pickle is detected automatically, so no "
-"protocol argument is needed.  Bytes past the pickled object's "
-"representation are ignored."
-msgstr ""
-"피클의 프로토콜 버전이 자동으로 감지되므로 프로토콜 인자가 필요하지 않습니다. 피클 된 객체의 표현 뒤에 남는 바이트열은 무시됩니다."
-
-#: ../Doc/library/pickle.rst:227
-msgid ""
-"The argument *file* must have two methods, a read() method that takes an "
-"integer argument, and a readline() method that requires no arguments.  "
-"Both methods should return bytes.  Thus *file* can be an on-disk file "
-"opened for binary reading, an :class:`io.BytesIO` object, or any other "
-"custom object that meets this interface."
-msgstr ""
-"인자 *file* 에는 두 가지 메서드가 있어야 합니다, 정수 인자를 받아들이는 read() 메서드와 인자가 없는 "
-"readline() 메서드. 두 메서드 모두 바이트열를 반환해야 합니다. 따라서 *file* 은 바이너리 읽기를 위해 열린 디스크 "
-"상의 파일, :class:`io.BytesIO` 객체 또는 이 인터페이스를 만족하는 다른 사용자 정의 객체일 수 있습니다."
-
-#: ../Doc/library/pickle.rst:233 ../Doc/library/pickle.rst:253
-msgid ""
-"Optional keyword arguments are *fix_imports*, *encoding* and *errors*, "
-"which are used to control compatibility support for pickle stream "
-"generated by Python 2.  If *fix_imports* is true, pickle will try to map "
-"the old Python 2 names to the new names used in Python 3.  The *encoding*"
-" and *errors* tell pickle how to decode 8-bit string instances pickled by"
-" Python 2; these default to 'ASCII' and 'strict', respectively.  The "
-"*encoding* can be 'bytes' to read these 8-bit string instances as bytes "
-"objects. Using ``encoding='latin1'`` is required for unpickling NumPy "
-"arrays and instances of :class:`~datetime.datetime`, "
-":class:`~datetime.date` and :class:`~datetime.time` pickled by Python 2."
-msgstr ""
-"선택적 키워드 인자는 *fix_imports*, *encoding* 및 *errors* 인데, 파이썬 2에서 생성된 피클 스트림에 대한 "
-"호환성 지원을 제어하는 데 사용됩니다. *fix_imports* 가 참이면, pickle은 이전 파이썬 2 이름을 파이썬 3에서 사용된 "
-"새로운 이름으로 매핑하려고 합니다. *encoding* 과 *errors* 는 파이썬 2에 의해 피클 된 8비트 문자열 인스턴스를 "
-"디코딩하는 방법을 pickle에게 알려줍니다. 기본값은 각각 'ASCII'\\와 'strict' 입니다. *encoding* 은 "
-"'bytes' 가 될 수 있는데, 8비트 문자열 인스턴스를 바이트열 객체로 읽습니다. NumPy 배열과 파이썬 2에서 피클 된 "
-":class:`~datetime.datetime`, :class:`~datetime.date` 및 "
-":class:`~datetime.time` 인스턴스를 역 피클링하려면 ``encoding='latin1'``\\을 사용해야 합니다."
-
-#: ../Doc/library/pickle.rst:246
-msgid ""
-"Read a pickled object hierarchy from a :class:`bytes` object and return "
-"the reconstituted object hierarchy specified therein."
-msgstr ":class:`bytes` 객체에서 피클 된 객체 계층 구조를 읽고 그 안에 지정된 객체 계층 구조를 재구성하여 반환합니다."
-
-#: ../Doc/library/pickle.rst:265
-msgid "The :mod:`pickle` module defines three exceptions:"
-msgstr ":mod:`pickle` 모듈은 세 가지 예외를 정의합니다:"
-
-#: ../Doc/library/pickle.rst:269
-msgid ""
-"Common base class for the other pickling exceptions.  It inherits "
-":exc:`Exception`."
-msgstr "다른 피클링 예외의 공통 베이스 클래스입니다. :exc:`Exception`\\을 상속합니다."
-
-#: ../Doc/library/pickle.rst:274
-msgid ""
-"Error raised when an unpicklable object is encountered by "
-":class:`Pickler`. It inherits :exc:`PickleError`."
-msgstr ""
-":class:`Pickler` 가 피클 가능하지 않은 객체를 만날 때 발생하는 에러. :exc:`PickleError` 를 "
-"상속합니다."
-
-#: ../Doc/library/pickle.rst:277
-msgid ""
-"Refer to :ref:`pickle-picklable` to learn what kinds of objects can be "
-"pickled."
-msgstr "어떤 종류의 객체가 피클 될 수 있는지 배우려면 :ref:`pickle-picklable`\\를 참조하십시오."
-
-#: ../Doc/library/pickle.rst:282
-msgid ""
-"Error raised when there is a problem unpickling an object, such as a data"
-" corruption or a security violation.  It inherits :exc:`PickleError`."
-msgstr ""
-"데이터 손상 또는 보안 위반과 같이 객체를 역 피클 할 때 문제가 있으면 발생하는 에러. :exc:`PickleError` 를 "
-"상속합니다."
-
-#: ../Doc/library/pickle.rst:285
-msgid ""
-"Note that other exceptions may also be raised during unpickling, "
-"including (but not necessarily limited to) AttributeError, EOFError, "
-"ImportError, and IndexError."
-msgstr ""
-"역 피클링 중에 다른 예외도 발생할 수 있음에 유의하십시오. AttributeError, EOFError, ImportError, "
-"IndexError 등이 발생할 수 있지만, 이에 국한되지는 않습니다."
-
-#: ../Doc/library/pickle.rst:290
-msgid ""
-"The :mod:`pickle` module exports two classes, :class:`Pickler` and "
-":class:`Unpickler`:"
-msgstr ""
-":mod:`pickle` 모듈은 두 개의 클래스를 노출합니다, :class:`Pickler`\\와 :class:`Unpickler`:"
-
-#: ../Doc/library/pickle.rst:295
-msgid "This takes a binary file for writing a pickle data stream."
-msgstr "피클 데이터 스트림을 쓸 바이너리 파일을 받아들입니다."
-
 #: ../Doc/library/pickle.rst:313
 msgid ""
-"Write a pickled representation of *obj* to the open file object given in "
-"the constructor."
+"If *buffer_callback* is None (the default), buffer views are serialized "
+"into *file* as part of the pickle stream."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:316
+msgid ""
+"If *buffer_callback* is not None, then it can be called any number of "
+"times with a buffer view.  If the callback returns a false value (such as"
+" None), the given buffer is :ref:`out-of-band <pickle-oob>`; otherwise "
+"the buffer is serialized in-band, i.e. inside the pickle stream."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:321
+msgid ""
+"It is an error if *buffer_callback* is not None and *protocol* is None or"
+" smaller than 5."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:329
+#, fuzzy
+msgid ""
+"Write the pickled representation of *obj* to the open file object given "
+"in the constructor."
 msgstr "생성자에 주어진 열린 파일 객체에 *obj* 의 피클 된 표현을 씁니다."
 
-#: ../Doc/library/pickle.rst:318
+#: ../Doc/library/pickle.rst:334
 msgid "Do nothing by default.  This exists so a subclass can override it."
 msgstr "기본적으로 아무것도 하지 않습니다. 이것은 서브 클래스가 재정의할 수 있게 하려고 존재합니다."
 
-#: ../Doc/library/pickle.rst:320
+#: ../Doc/library/pickle.rst:336
 msgid ""
 "If :meth:`persistent_id` returns ``None``, *obj* is pickled as usual.  "
 "Any other value causes :class:`Pickler` to emit the returned value as a "
@@ -515,11 +565,11 @@ msgstr ""
 " 의미는 :meth:`Unpickler.persistent_load` 에 의해 정의되어야 합니다. "
 ":meth:`persistent_id` 에 의해 반환된 값 자체는 지속성 ID를 가질 수 없음에 유의하십시오."
 
-#: ../Doc/library/pickle.rst:326 ../Doc/library/pickle.rst:397
+#: ../Doc/library/pickle.rst:342 ../Doc/library/pickle.rst:443
 msgid "See :ref:`pickle-persistent` for details and examples of uses."
 msgstr "자세한 내용과 사용 예는 :ref:`pickle-persistent`\\를 참조하십시오."
 
-#: ../Doc/library/pickle.rst:330
+#: ../Doc/library/pickle.rst:346
 msgid ""
 "A pickler object's dispatch table is a registry of *reduction functions* "
 "of the kind which can be declared using :func:`copyreg.pickle`.  It is a "
@@ -531,7 +581,7 @@ msgstr ""
 " functions)* 의 등록소입니다. 키가 클래스이고 값이 환원 함수인 매핑입니다. 환원 함수는 관련 클래스의 단일 인자를 "
 "취하며 :meth:`__reduce__` 메서드와 같은 인터페이스를 따라야 합니다."
 
-#: ../Doc/library/pickle.rst:338
+#: ../Doc/library/pickle.rst:354
 msgid ""
 "By default, a pickler object will not have a :attr:`dispatch_table` "
 "attribute, and it will instead use the global dispatch table managed by "
@@ -547,11 +597,24 @@ msgstr ""
 ":class:`Pickler` 의 서브 클래스가 :attr:`dispatch_table` 어트리뷰트를 가지고 있다면, 이 클래스의 "
 "인스턴스를 위한 기본 디스패치 테이블로 사용됩니다."
 
-#: ../Doc/library/pickle.rst:347
+#: ../Doc/library/pickle.rst:363
 msgid "See :ref:`pickle-dispatch` for usage examples."
 msgstr "사용 예는 :ref:`pickle-dispatch`\\을 참조하십시오."
 
-#: ../Doc/library/pickle.rst:353
+#: ../Doc/library/pickle.rst:369
+msgid ""
+"Special reducer that can be defined in :class:`Pickler` subclasses. This "
+"method has priority over any reducer in the :attr:`dispatch_table`.  It "
+"should conform to the same interface as a :meth:`__reduce__` method, and "
+"can optionally return ``NotImplemented`` to fallback on "
+":attr:`dispatch_table`-registered reducers to pickle ``obj``."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:375
+msgid "For a detailed example, see :ref:`reducer_override`."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:381
 msgid ""
 "Deprecated. Enable fast mode if set to a true value.  The fast mode "
 "disables the usage of memo, therefore speeding the pickling process by "
@@ -563,63 +626,84 @@ msgstr ""
 "생성하지 않아 피클링 절차의 속도를 높입니다. 자신을 참조하는 객체에 사용되면 안 됩니다. 그렇지 않으면 "
 ":class:`Pickler` 가 무한 재귀에 빠집니다."
 
-#: ../Doc/library/pickle.rst:359
+#: ../Doc/library/pickle.rst:387
 msgid "Use :func:`pickletools.optimize` if you need more compact pickles."
 msgstr "더 간결한 피클이 필요하면 :func:`pickletools.optimize` 를 사용하십시오."
 
-#: ../Doc/library/pickle.rst:364
+#: ../Doc/library/pickle.rst:392
 msgid "This takes a binary file for reading a pickle data stream."
 msgstr "피클 데이터 스트림을 읽는 데 사용될 바이너리 파일을 받아들입니다."
 
-#: ../Doc/library/pickle.rst:366
+#: ../Doc/library/pickle.rst:394
 msgid ""
 "The protocol version of the pickle is detected automatically, so no "
 "protocol argument is needed."
 msgstr "피클의 프로토콜 버전이 자동으로 감지되므로 프로토콜 인자가 필요하지 않습니다."
 
-#: ../Doc/library/pickle.rst:369
+#: ../Doc/library/pickle.rst:397
 msgid ""
-"The argument *file* must have two methods, a read() method that takes an "
-"integer argument, and a readline() method that requires no arguments.  "
-"Both methods should return bytes.  Thus *file* can be an on-disk file "
-"object opened for binary reading, an :class:`io.BytesIO` object, or any "
-"other custom object that meets this interface."
+"The argument *file* must have three methods, a read() method that takes "
+"an integer argument, a readinto() method that takes a buffer argument and"
+" a readline() method that requires no arguments, as in the "
+":class:`io.BufferedIOBase` interface.  Thus *file* can be an on-disk file"
+" opened for binary reading, an :class:`io.BytesIO` object, or any other "
+"custom object that meets this interface."
 msgstr ""
-"인자 *file* 에는 두 가지 메서드가 있어야 합니다, 정수 인자를 받아들이는 read() 메서드와 인자가 없는 "
-"readline() 메서드. 두 메서드 모두 바이트열을 반환해야 합니다. 따라서 *file* 은 바이너리 읽기를 위해 열린 디스크 "
-"상의 파일 객체, :class:`io.BytesIO` 객체 또는 이 인터페이스를 만족하는 다른 사용자 정의 객체일 수 있습니다."
 
-#: ../Doc/library/pickle.rst:375
+#: ../Doc/library/pickle.rst:404
+#, fuzzy
 msgid ""
-"Optional keyword arguments are *fix_imports*, *encoding* and *errors*, "
-"which are used to control compatibility support for pickle stream "
-"generated by Python 2.  If *fix_imports* is true, pickle will try to map "
-"the old Python 2 names to the new names used in Python 3.  The *encoding*"
-" and *errors* tell pickle how to decode 8-bit string instances pickled by"
-" Python 2; these default to 'ASCII' and 'strict', respectively.  The "
-"*encoding* can be 'bytes' to read these 8-bit string instances as bytes "
-"objects."
+"The optional arguments *fix_imports*, *encoding* and *errors* are used to"
+" control compatibility support for pickle stream generated by Python 2. "
+"If *fix_imports* is true, pickle will try to map the old Python 2 names "
+"to the new names used in Python 3.  The *encoding* and *errors* tell "
+"pickle how to decode 8-bit string instances pickled by Python 2; these "
+"default to 'ASCII' and 'strict', respectively.  The *encoding* can be "
+"'bytes' to read these 8-bit string instances as bytes objects. Using "
+"``encoding='latin1'`` is required for unpickling NumPy arrays and "
+"instances of :class:`~datetime.datetime`, :class:`~datetime.date` and "
+":class:`~datetime.time` pickled by Python 2."
 msgstr ""
 "선택적 키워드 인자는 *fix_imports*, *encoding* 및 *errors* 인데, 파이썬 2에서 생성된 피클 스트림에 "
 "대한 호환성 지원을 제어하는 데 사용됩니다. *fix_imports* 가 참이면, pickle은 이전 파이썬 2 이름을 파이썬 "
 "3에서 사용된 새로운 이름으로 매핑하려고 합니다. *encoding* 과 *errors* 는 파이썬 2에 의해 피클 된 8비트 "
 "문자열 인스턴스를 디코딩하는 방법을 pickle에게 알려줍니다. 기본값은 각각 'ASCII'\\와 'strict' 입니다. "
-"*encoding* 은 'bytes' 가 될 수 있는데, 8비트 문자열 인스턴스를 바이트열 객체로 읽습니다."
+"*encoding* 은 'bytes' 가 될 수 있는데, 8비트 문자열 인스턴스를 바이트열 객체로 읽습니다. NumPy 배열과 "
+"파이썬 2에서 피클 된 :class:`~datetime.datetime`, :class:`~datetime.date` 및 "
+":class:`~datetime.time` 인스턴스를 역 피클링하려면 ``encoding='latin1'``\\을 사용해야 합니다."
 
-#: ../Doc/library/pickle.rst:385
+#: ../Doc/library/pickle.rst:415
 msgid ""
-"Read a pickled object representation from the open file object given in "
-"the constructor, and return the reconstituted object hierarchy specified "
-"therein.  Bytes past the pickled object's representation are ignored."
+"If *buffers* is None (the default), then all data necessary for "
+"deserialization must be contained in the pickle stream.  This means that "
+"the *buffer_callback* argument was None when a :class:`Pickler` was "
+"instantiated (or when :func:`dump` or :func:`dumps` was called)."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:420
+msgid ""
+"If *buffers* is not None, it should be an iterable of buffer-enabled "
+"objects that is consumed each time the pickle stream references an :ref"
+":`out-of-band <pickle-oob>` buffer view.  Such buffers have been given in"
+" order to the *buffer_callback* of a Pickler object."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:430
+#, fuzzy
+msgid ""
+"Read the pickled representation of an object from the open file object "
+"given in the constructor, and return the reconstituted object hierarchy "
+"specified therein.  Bytes past the pickled representation of the object "
+"are ignored."
 msgstr ""
 "생성자에 주어진 열린 파일 객체에서 피클 된 객체 표현을 읽고, 그 안에 지정된 객체 계층 구조를 재구성하여 반환합니다. 피클 된 "
 "객체의 표현 뒤에 남는 바이트열은 무시됩니다."
 
-#: ../Doc/library/pickle.rst:391
+#: ../Doc/library/pickle.rst:437
 msgid "Raise an :exc:`UnpicklingError` by default."
 msgstr "기본적으로 :exc:`UnpicklingError`\\를 발생시킵니다."
 
-#: ../Doc/library/pickle.rst:393
+#: ../Doc/library/pickle.rst:439
 msgid ""
 "If defined, :meth:`persistent_load` should return the object specified by"
 " the persistent ID *pid*.  If an invalid persistent ID is encountered, an"
@@ -628,7 +712,7 @@ msgstr ""
 "정의되면, :meth:`persistent_load` 는 지속성 ID *pid* 로 지정된 객체를 반환해야 합니다. 유효하지 않은 "
 "지속성 ID가 발견되면 :exc:`UnpicklingError`\\를 일으켜야 합니다."
 
-#: ../Doc/library/pickle.rst:401
+#: ../Doc/library/pickle.rst:447
 msgid ""
 "Import *module* if necessary and return the object called *name* from it,"
 " where the *module* and *name* arguments are :class:`str` objects.  Note,"
@@ -639,7 +723,7 @@ msgstr ""
 "인자는 :class:`str` 객체입니다. 그 이름이 제시하는 것과는 달리, :meth:`find_class` 는 함수를 찾는 "
 "데에도 사용됨에 유의하십시오."
 
-#: ../Doc/library/pickle.rst:406
+#: ../Doc/library/pickle.rst:452
 msgid ""
 "Subclasses may override this to gain control over what type of objects "
 "and how they can be loaded, potentially reducing security risks. Refer to"
@@ -648,45 +732,84 @@ msgstr ""
 "로드되는 객체의 형과 로드 방법을 제어하기 위해 서브 클래스는 이것을 재정의할 수 있고, 잠재적으로 보안 위험을 감소시킵니다. "
 "자세한 내용은 :ref:`pickle-restrict`\\를 참조하십시오."
 
-#: ../Doc/library/pickle.rst:414
+#: ../Doc/library/pickle.rst:456
+msgid ""
+"Raises an :ref:`auditing event <auditing>` ``pickle.find_class`` with "
+"arguments ``module``, ``name``."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:460
+msgid ""
+"A wrapper for a buffer representing picklable data.  *buffer* must be a "
+":ref:`buffer-providing <bufferobjects>` object, such as a :term:`bytes-"
+"like object` or a N-dimensional array."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:464
+msgid ""
+":class:`PickleBuffer` is itself a buffer provider, therefore it is "
+"possible to pass it to other APIs expecting a buffer-providing object, "
+"such as :class:`memoryview`."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:468
+msgid ""
+":class:`PickleBuffer` objects can only be serialized using pickle "
+"protocol 5 or higher.  They are eligible for :ref:`out-of-band "
+"serialization <pickle-oob>`."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:476
+msgid ""
+"Return a :class:`memoryview` of the memory area underlying this buffer. "
+"The returned object is a one-dimensional, C-contiguous memoryview with "
+"format ``B`` (unsigned bytes).  :exc:`BufferError` is raised if the "
+"buffer is neither C- nor Fortran-contiguous."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:483
+msgid "Release the underlying buffer exposed by the PickleBuffer object."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:489
 msgid "What can be pickled and unpickled?"
 msgstr "어떤 것이 피클 되고 역 피클 될 수 있을까요?"
 
-#: ../Doc/library/pickle.rst:416
+#: ../Doc/library/pickle.rst:491
 msgid "The following types can be pickled:"
 msgstr "다음 형을 피클 할 수 있습니다:"
 
-#: ../Doc/library/pickle.rst:418
+#: ../Doc/library/pickle.rst:493
 msgid "``None``, ``True``, and ``False``"
 msgstr "``None``, ``True`` 와 ``False``"
 
-#: ../Doc/library/pickle.rst:420
+#: ../Doc/library/pickle.rst:495
 msgid "integers, floating point numbers, complex numbers"
 msgstr "정수, 실수, 복소수"
 
-#: ../Doc/library/pickle.rst:422
+#: ../Doc/library/pickle.rst:497
 msgid "strings, bytes, bytearrays"
 msgstr "문자열, 바이트열, 바이트 배열(bytearray)"
 
-#: ../Doc/library/pickle.rst:424
+#: ../Doc/library/pickle.rst:499
 msgid "tuples, lists, sets, and dictionaries containing only picklable objects"
 msgstr "피클 가능한 객체만 포함하는 튜플, 리스트, 집합과 딕셔너리"
 
-#: ../Doc/library/pickle.rst:426
+#: ../Doc/library/pickle.rst:501
 msgid ""
 "functions defined at the top level of a module (using :keyword:`def`, not"
 " :keyword:`lambda`)"
 msgstr "모듈의 최상위 수준에서 정의된 함수 (:keyword:`lambda` 가 아니라 :keyword:`def` 를 사용하는)"
 
-#: ../Doc/library/pickle.rst:429
+#: ../Doc/library/pickle.rst:504
 msgid "built-in functions defined at the top level of a module"
 msgstr "모듈의 최상위 수준에서 정의된 내장 함수"
 
-#: ../Doc/library/pickle.rst:431
+#: ../Doc/library/pickle.rst:506
 msgid "classes that are defined at the top level of a module"
 msgstr "모듈의 최상위 수준에서 정의된 클래스"
 
-#: ../Doc/library/pickle.rst:433
+#: ../Doc/library/pickle.rst:508
 msgid ""
 "instances of such classes whose :attr:`~object.__dict__` or the result of"
 " calling :meth:`__getstate__` is picklable  (see section :ref:`pickle-"
@@ -695,7 +818,7 @@ msgstr ""
 "그런 클래스의 인스턴스 중에서 :attr:`~object.__dict__` 나 :meth:`__getstate__` 를 호출한 "
 "결과가 피클 가능한 것들 (자세한 내용은 :ref:`pickle-inst` 절을 참조하세요)."
 
-#: ../Doc/library/pickle.rst:437
+#: ../Doc/library/pickle.rst:512
 msgid ""
 "Attempts to pickle unpicklable objects will raise the "
 ":exc:`PicklingError` exception; when this happens, an unspecified number "
@@ -709,7 +832,7 @@ msgstr ""
 "재귀 깊이를 초과할 수 있고, 이때 :exc:`RecursionError` 가 발생합니다. "
 ":func:`sys.setrecursionlimit` 을 사용하여 이 제한을 조심스럽게 올릴 수 있습니다."
 
-#: ../Doc/library/pickle.rst:444
+#: ../Doc/library/pickle.rst:519
 msgid ""
 "Note that functions (built-in and user-defined) are pickled by \"fully "
 "qualified\" name reference, not by value. [#]_  This means that only the "
@@ -724,7 +847,7 @@ msgstr ""
 " 정의하는 모듈은 역 피클 환경에서 임포트 가능해야 하며, 모듈에는 그 이름의 객체가 있어야 합니다. 그렇지 않으면 예외가 "
 "발생합니다. [#]_"
 
-#: ../Doc/library/pickle.rst:451
+#: ../Doc/library/pickle.rst:526
 msgid ""
 "Similarly, classes are pickled by named reference, so the same "
 "restrictions in the unpickling environment apply.  Note that none of the "
@@ -734,13 +857,13 @@ msgstr ""
 "마찬가지로, 클래스는 이름 참조로 피클 되므로 역 피클링 환경에서 같은 제한이 적용됩니다. 클래스의 코드 나 데이터가 피클 되지 "
 "않음에 유의하세요. 그래서 다음 예제에서 클래스 어트리뷰트 ``attr`` 은 역 피클링 환경에서 복원되지 않습니다::"
 
-#: ../Doc/library/pickle.rst:461
+#: ../Doc/library/pickle.rst:536
 msgid ""
 "These restrictions are why picklable functions and classes must be "
 "defined in the top level of a module."
 msgstr "이러한 제한이 피클 가능한 함수와 클래스가 모듈의 최상위 수준에서 정의되어야 하는 이유입니다."
 
-#: ../Doc/library/pickle.rst:464
+#: ../Doc/library/pickle.rst:539
 msgid ""
 "Similarly, when class instances are pickled, their class's code and data "
 "are not pickled along with them.  Only the instance data are pickled.  "
@@ -756,19 +879,18 @@ msgstr ""
 "로드 할 수 있습니다. 여러 버전의 클래스에 걸치는 수명이 긴 객체를 만들 계획이라면, 클래스의 "
 ":meth:`__setstate__` 메서드로 적절한 변환을 할 수 있도록 객체에 버전 번호를 넣는 것이 좋습니다."
 
-#: ../Doc/library/pickle.rst:476
+#: ../Doc/library/pickle.rst:551
 msgid "Pickling Class Instances"
 msgstr "클래스 인스턴스 피클링"
 
-#: ../Doc/library/pickle.rst:480
+#: ../Doc/library/pickle.rst:555
 msgid ""
 "In this section, we describe the general mechanisms available to you to "
 "define, customize, and control how class instances are pickled and "
 "unpickled."
-msgstr ""
-"이 절에서는 클래스 인스턴스를 피클 및 역 피클 하는 방법을 정의, 사용자 정의 및 제어할 수 있는 일반적인 메커니즘을 설명합니다."
+msgstr "이 절에서는 클래스 인스턴스를 피클 및 역 피클 하는 방법을 정의, 사용자 정의 및 제어할 수 있는 일반적인 메커니즘을 설명합니다."
 
-#: ../Doc/library/pickle.rst:483
+#: ../Doc/library/pickle.rst:558
 msgid ""
 "In most cases, no additional code is needed to make instances picklable."
 "  By default, pickle will retrieve the class and the attributes of an "
@@ -783,13 +905,13 @@ msgstr ""
 "호출되지 *않습니다*. 기본 동작은, 먼저 초기화되지 않은 인스턴스를 만든 다음 저장된 어트리뷰트를 복원합니다. 다음 코드는 이 "
 "동작의 구현을 보여줍니다::"
 
-#: ../Doc/library/pickle.rst:498
+#: ../Doc/library/pickle.rst:573
 msgid ""
 "Classes can alter the default behaviour by providing one or several "
 "special methods:"
 msgstr "클래스는 다음과 같은 하나 이상의 특수 메서드를 제공하여 기본 동작을 변경할 수 있습니다:"
 
-#: ../Doc/library/pickle.rst:503
+#: ../Doc/library/pickle.rst:578
 msgid ""
 "In protocols 2 and newer, classes that implements the "
 ":meth:`__getnewargs_ex__` method can dictate the values passed to the "
@@ -803,7 +925,7 @@ msgstr ""
 "반환해야 합니다. *args* 는 위치 인자의 튜플이고 *kwargs* 는 이름있는 인자의 딕셔너리인데, 객체를 구성하는 데 "
 "사용됩니다. 그것들은 역 피클링 때 :meth:`__new__` 메서드로 전달될 것입니다."
 
-#: ../Doc/library/pickle.rst:511
+#: ../Doc/library/pickle.rst:586
 msgid ""
 "You should implement this method if the :meth:`__new__` method of your "
 "class requires keyword-only arguments.  Otherwise, it is recommended for "
@@ -812,11 +934,11 @@ msgstr ""
 "클래스의 :meth:`__new__` 메서드에 키워드 전용 인자가 필요하면 이 메서드를 구현해야 합니다. 그렇지 않으면 호환성을 "
 "위해 :meth:`__getnewargs__` 를 구현하는 것이 좋습니다."
 
-#: ../Doc/library/pickle.rst:515
+#: ../Doc/library/pickle.rst:590
 msgid ":meth:`__getnewargs_ex__` is now used in protocols 2 and 3."
 msgstr ":meth:`__getnewargs_ex__` 는 이제 프로토콜 2와 3에서 사용됩니다."
 
-#: ../Doc/library/pickle.rst:521
+#: ../Doc/library/pickle.rst:596
 msgid ""
 "This method serves a similar purpose as :meth:`__getnewargs_ex__`, but "
 "supports only positional arguments.  It must return a tuple of arguments "
@@ -826,13 +948,13 @@ msgstr ""
 "이 메서드는 :meth:`__getnewargs_ex__` 와 비슷한 목적을 수행하지만, 위치 인자만 지원합니다. 역 피클링 때 "
 ":meth:`__new__` 메서드에 전달될 인자의 튜플 ``args`` 를 반환해야 합니다."
 
-#: ../Doc/library/pickle.rst:525
+#: ../Doc/library/pickle.rst:600
 msgid ""
 ":meth:`__getnewargs__` will not be called if :meth:`__getnewargs_ex__` is"
 " defined."
 msgstr ":meth:`__getnewargs_ex__` 가 정의되면 :meth:`__getnewargs__` 는 호출되지 않습니다."
 
-#: ../Doc/library/pickle.rst:528
+#: ../Doc/library/pickle.rst:603
 msgid ""
 "Before Python 3.6, :meth:`__getnewargs__` was called instead of "
 ":meth:`__getnewargs_ex__` in protocols 2 and 3."
@@ -840,7 +962,7 @@ msgstr ""
 "파이썬 3.6 이전에는, 프로토콜 2와 3에서 :meth:`__getnewargs_ex__` 대신 "
 ":meth:`__getnewargs__` 가 호출되었습니다."
 
-#: ../Doc/library/pickle.rst:535
+#: ../Doc/library/pickle.rst:610
 msgid ""
 "Classes can further influence how their instances are pickled; if the "
 "class defines the method :meth:`__getstate__`, it is called and the "
@@ -854,7 +976,7 @@ msgstr ""
 ":meth:`__getstate__` 메서드가 없다면, 인스턴스의 :attr:`~object.__dict__` 가 평소와 같이 피클"
 " 됩니다."
 
-#: ../Doc/library/pickle.rst:544
+#: ../Doc/library/pickle.rst:619
 msgid ""
 "Upon unpickling, if the class defines :meth:`__setstate__`, it is called "
 "with the unpickled state.  In that case, there is no requirement for the "
@@ -865,7 +987,7 @@ msgstr ""
 " 경우 상태 객체가 딕셔너리일 필요는 없습니다. 그렇지 않으면, 피클 된 상태는 딕셔너리 여야하고 그 항목이 새 인스턴스의 "
 "딕셔너리에 삽입됩니다."
 
-#: ../Doc/library/pickle.rst:551
+#: ../Doc/library/pickle.rst:626
 msgid ""
 "If :meth:`__getstate__` returns a false value, the :meth:`__setstate__` "
 "method will not be called upon unpickling."
@@ -873,7 +995,7 @@ msgstr ""
 ":meth:`__getstate__` 가 거짓 값을 반환하면, :meth:`__setstate__` 메서드가 역 피클링 때 호출되지"
 " 않습니다."
 
-#: ../Doc/library/pickle.rst:555
+#: ../Doc/library/pickle.rst:630
 msgid ""
 "Refer to the section :ref:`pickle-state` for more information about how "
 "to use the methods :meth:`__getstate__` and :meth:`__setstate__`."
@@ -881,7 +1003,7 @@ msgstr ""
 ":meth:`__getstate__` 와 :meth:`__setstate__` 메서드를 사용하는 방법에 대한 더 자세한 정보는 "
 ":ref:`pickle-state` 절을 참조하십시오."
 
-#: ../Doc/library/pickle.rst:560
+#: ../Doc/library/pickle.rst:635
 msgid ""
 "At unpickling time, some methods like :meth:`__getattr__`, "
 ":meth:`__getattribute__`, or :meth:`__setattr__` may be called upon the "
@@ -896,7 +1018,7 @@ msgstr ""
 ":meth:`__getnewargs_ex__` 를 구현해야 합니다; 그렇지 않으면, :meth:`__new__` 도 "
 ":meth:`__init__` 도 호출되지 않습니다."
 
-#: ../Doc/library/pickle.rst:569
+#: ../Doc/library/pickle.rst:644
 msgid ""
 "As we shall see, pickle does not use directly the methods described "
 "above.  In fact, these methods are part of the copy protocol which "
@@ -908,7 +1030,7 @@ msgstr ""
 " 특수 메서드를 구현하는 복사 프로토콜의 일부입니다. 복사 프로토콜은 객체를 피클 하고 복사하는 데 필요한 데이터를 조회하기 위한 "
 "통일된 인터페이스를 제공합니다. [#]_"
 
-#: ../Doc/library/pickle.rst:575
+#: ../Doc/library/pickle.rst:650
 msgid ""
 "Although powerful, implementing :meth:`__reduce__` directly in your "
 "classes is error prone.  For this reason, class designers should use the "
@@ -922,7 +1044,7 @@ msgstr ""
 " :meth:`__setstate__`)를 사용해야 합니다. 하지만, 우리는 :meth:`__reduce__` 를 사용하는 것이 "
 "유일한 옵션이거나 더 효율적인 피클링을 제공하거나 혹은 둘 다인 경우를 보여줄 것입니다."
 
-#: ../Doc/library/pickle.rst:584
+#: ../Doc/library/pickle.rst:659
 msgid ""
 "The interface is currently defined as follows.  The :meth:`__reduce__` "
 "method takes no argument and shall return either a string or preferably a"
@@ -932,7 +1054,7 @@ msgstr ""
 "인터페이스는 현재 다음과 같이 정의됩니다. :meth:`__reduce__` 메서드는 아무런 인자도 받아들이지 않으며 문자열이나 "
 "바람직하게는 튜플을 반환합니다 (반환된 객체는 흔히 \"환원 값(reduce value)\"이라고 불립니다)."
 
-#: ../Doc/library/pickle.rst:588
+#: ../Doc/library/pickle.rst:663
 msgid ""
 "If a string is returned, the string should be interpreted as the name of "
 "a global variable.  It should be the object's local name relative to its "
@@ -942,28 +1064,29 @@ msgstr ""
 "문자열이 반환되면, 문자열은 전역 변수의 이름으로 해석되어야 합니다. 모듈에 상대적인 객체의 지역 이름이어야 합니다; pickle "
 "모듈은 객체의 모듈을 결정하기 위해 모듈 이름 공간을 검색합니다. 이 동작은 일반적으로 싱글톤에 유용합니다."
 
-#: ../Doc/library/pickle.rst:593
+#: ../Doc/library/pickle.rst:668
+#, fuzzy
 msgid ""
-"When a tuple is returned, it must be between two and five items long. "
+"When a tuple is returned, it must be between two and six items long. "
 "Optional items can either be omitted, or ``None`` can be provided as "
 "their value.  The semantics of each item are in order:"
 msgstr ""
 "튜플이 반환될 때는, 길이가 2나 5가 되어야 합니다. 선택적인 항목은 생략되거나 ``None`` 이 값으로 제공될 수 있습니다. "
 "각 항목의 의미는 순서대로 다음과 같습니다:"
 
-#: ../Doc/library/pickle.rst:599
+#: ../Doc/library/pickle.rst:674
 msgid ""
 "A callable object that will be called to create the initial version of "
 "the object."
 msgstr "객체의 초기 버전을 만들기 위해 호출할 콜러블 객체."
 
-#: ../Doc/library/pickle.rst:602
+#: ../Doc/library/pickle.rst:677
 msgid ""
 "A tuple of arguments for the callable object.  An empty tuple must be "
 "given if the callable does not accept any argument."
 msgstr "콜러블 객체에 대한 인자의 튜플. 콜러블 객체가 인자를 받아들이지 않으면 빈 튜플을 제공해야 합니다."
 
-#: ../Doc/library/pickle.rst:605
+#: ../Doc/library/pickle.rst:680
 msgid ""
 "Optionally, the object's state, which will be passed to the object's "
 ":meth:`__setstate__` method as previously described.  If the object has "
@@ -973,7 +1096,7 @@ msgstr ""
 "선택적으로, 객체의 상태. 앞에서 설명한 대로 객체의 :meth:`__setstate__` 메서드에 전달됩니다. 객체에 그런 "
 "메서드가 없다면, 그 값은 딕셔너리 여야 하며 객체의 :attr:`~object.__dict__` 어트리뷰트에 추가됩니다."
 
-#: ../Doc/library/pickle.rst:610
+#: ../Doc/library/pickle.rst:685
 msgid ""
 "Optionally, an iterator (and not a sequence) yielding successive items. "
 "These items will be appended to the object either using "
@@ -990,7 +1113,7 @@ msgstr ""
 "클래스에서 사용될 수 있습니다. (:meth:`append` 나 :meth:`extend` 중 어느 것이 사용되는지는 어떤 피클 "
 "프로토콜 버전이 사용되는가와 추가 할 항목의 수에 따라 달려있으므로 둘 다 지원되어야 합니다.)"
 
-#: ../Doc/library/pickle.rst:619
+#: ../Doc/library/pickle.rst:694
 msgid ""
 "Optionally, an iterator (not a sequence) yielding successive key-value "
 "pairs.  These items will be stored to the object using ``obj[key] = "
@@ -1001,7 +1124,20 @@ msgstr ""
 "사용하여 객체에 저장됩니다. 이것은 주로 딕셔너리 서브 클래스에 사용되지만, :meth:`__setitem__` 을 구현하는 한 "
 "다른 클래스에서 사용될 수 있습니다."
 
-#: ../Doc/library/pickle.rst:627
+#: ../Doc/library/pickle.rst:699
+msgid ""
+"Optionally, a callable with a ``(obj, state)`` signature. This callable "
+"allows the user to programmatically control the state-updating behavior "
+"of a specific object, instead of using ``obj``'s static "
+":meth:`__setstate__` method. If not ``None``, this callable will have "
+"priority over ``obj``'s :meth:`__setstate__`."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:705
+msgid "The optional sixth tuple item, ``(obj, state)``, was added."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:711
 msgid ""
 "Alternatively, a :meth:`__reduce_ex__` method may be defined.  The only "
 "difference is this method should take a single integer argument, the "
@@ -1016,11 +1152,11 @@ msgstr ""
 ":meth:`__reduce__` 는 자동으로 확장 버전의 동의어가 됩니다. 이 메서드의 주된 용도는 구형 파이썬 배포를 위해 과거"
 " 호환성 있는 환원 값을 제공하는 것입니다."
 
-#: ../Doc/library/pickle.rst:639
+#: ../Doc/library/pickle.rst:723
 msgid "Persistence of External Objects"
 msgstr "외부 객체의 지속성"
 
-#: ../Doc/library/pickle.rst:645
+#: ../Doc/library/pickle.rst:729
 msgid ""
 "For the benefit of object persistence, the :mod:`pickle` module supports "
 "the notion of a reference to an object outside the pickled data stream.  "
@@ -1032,10 +1168,11 @@ msgstr ""
 "이러한 객체는 지속성 ID에 의해 참조되며, 영숫자 문자열(프로토콜 0의 경우) [#]_ 또는 임의의 객체(모든 최신 프로토콜의 "
 "경우)여야 합니다."
 
-#: ../Doc/library/pickle.rst:651
+#: ../Doc/library/pickle.rst:735
+#, fuzzy
 msgid ""
 "The resolution of such persistent IDs is not defined by the :mod:`pickle`"
-" module; it will delegate this resolution to the user defined methods on "
+" module; it will delegate this resolution to the user-defined methods on "
 "the pickler and unpickler, :meth:`~Pickler.persistent_id` and "
 ":meth:`~Unpickler.persistent_load` respectively."
 msgstr ""
@@ -1043,11 +1180,12 @@ msgstr ""
 "메서드에 위임합니다, 각각 :meth:`~Pickler.persistent_id`\\와 "
 ":meth:`~Unpickler.persistent_load`."
 
-#: ../Doc/library/pickle.rst:656
+#: ../Doc/library/pickle.rst:740
+#, fuzzy
 msgid ""
-"To pickle objects that have an external persistent id, the pickler must "
+"To pickle objects that have an external persistent ID, the pickler must "
 "have a custom :meth:`~Pickler.persistent_id` method that takes an object "
-"as an argument and returns either ``None`` or the persistent id for that "
+"as an argument and returns either ``None`` or the persistent ID for that "
 "object. When ``None`` is returned, the pickler simply pickles the object "
 "as normal. When a persistent ID string is returned, the pickler will "
 "pickle that object, along with a marker so that the unpickler will "
@@ -1058,7 +1196,7 @@ msgstr ""
 " 피클러는 단순히 객체를 피클 합니다. 지속성 ID 문자열이 반환되면, 피클러는 마커와 함께 해당 객체를 피클 하여 역 피클러가 "
 "이를 지속성 ID로 인식하게 합니다."
 
-#: ../Doc/library/pickle.rst:663
+#: ../Doc/library/pickle.rst:747
 msgid ""
 "To unpickle external objects, the unpickler must have a custom "
 ":meth:`~Unpickler.persistent_load` method that takes a persistent ID "
@@ -1067,17 +1205,17 @@ msgstr ""
 "외부 객체를 역 피클 하려면, 역 피클러는 지속성 ID 객체를 받아들여 참조된 객체를 반환하는 사용자 정의 "
 ":meth:`~Unpickler.persistent_load` 메서드를 가져야 합니다."
 
-#: ../Doc/library/pickle.rst:667
+#: ../Doc/library/pickle.rst:751
 msgid ""
 "Here is a comprehensive example presenting how persistent ID can be used "
 "to pickle external objects by reference."
 msgstr "다음은 지속성 ID를 외부 객체를 참조로 피클 하는데 사용하는 방법을 보여주는 포괄적인 예입니다."
 
-#: ../Doc/library/pickle.rst:675
+#: ../Doc/library/pickle.rst:759
 msgid "Dispatch Tables"
 msgstr "디스패치 테이블"
 
-#: ../Doc/library/pickle.rst:677
+#: ../Doc/library/pickle.rst:761
 msgid ""
 "If one wants to customize pickling of some classes without disturbing any"
 " other code which depends on pickling, then one can create a pickler with"
@@ -1086,7 +1224,7 @@ msgstr ""
 "피클링에 의존하는 다른 코드를 방해하지 않고 일부 클래스의 피클링을 사용자 정의하려면, 사설 디스패치 테이블을 갖는 피클러를 만들 "
 "수 있습니다."
 
-#: ../Doc/library/pickle.rst:681
+#: ../Doc/library/pickle.rst:765
 msgid ""
 "The global dispatch table managed by the :mod:`copyreg` module is "
 "available as :data:`copyreg.dispatch_table`.  Therefore, one may choose "
@@ -1097,11 +1235,11 @@ msgstr ""
 " 사용 가능합니다. 그러므로, 사설 디스패치 테이블로 :data:`copyreg.dispatch_table` 의 수정된 복사본을 "
 "사용할 수 있습니다."
 
-#: ../Doc/library/pickle.rst:686
+#: ../Doc/library/pickle.rst:770
 msgid "For example ::"
 msgstr "예를 들면 ::"
 
-#: ../Doc/library/pickle.rst:693
+#: ../Doc/library/pickle.rst:777
 msgid ""
 "creates an instance of :class:`pickle.Pickler` with a private dispatch "
 "table which handles the ``SomeClass`` class specially.  Alternatively, "
@@ -1110,7 +1248,7 @@ msgstr ""
 "는 ``SomeClass`` 클래스를 특별히 처리하는 사설 디스패치 테이블을 갖는 :class:`pickle.Pickler` 의 "
 "인스턴스를 생성합니다. 또는, 코드 ::"
 
-#: ../Doc/library/pickle.rst:703
+#: ../Doc/library/pickle.rst:787
 msgid ""
 "does the same, but all instances of ``MyPickler`` will by default share "
 "the same dispatch table.  The equivalent code using the :mod:`copyreg` "
@@ -1119,11 +1257,11 @@ msgstr ""
 "가 같은 일을 하지만, ``MyPickler`` 의 모든 인스턴스는 기본적으로 같은 디스패치 테이블을 공유합니다. "
 ":mod:`copyreg` 모듈을 사용하는 동등한 코드는 다음과 같습니다 ::"
 
-#: ../Doc/library/pickle.rst:714
+#: ../Doc/library/pickle.rst:798
 msgid "Handling Stateful Objects"
 msgstr "상태 저장 객체 처리"
 
-#: ../Doc/library/pickle.rst:720
+#: ../Doc/library/pickle.rst:804
 msgid ""
 "Here's an example that shows how to modify pickling behavior for a class."
 " The :class:`TextReader` class opens a text file, and returns the line "
@@ -1140,15 +1278,184 @@ msgstr ""
 " 마지막 위치에서 읽기가 다시 시작됩니다. :meth:`__setstate__` 와 :meth:`__getstate__` 메서드가 "
 "이 행동을 구현하는 데 사용됩니다. ::"
 
-#: ../Doc/library/pickle.rst:766
+#: ../Doc/library/pickle.rst:850
 msgid "A sample usage might be something like this::"
 msgstr "사용 예는 다음과 같은 식입니다::"
 
-#: ../Doc/library/pickle.rst:781
+#: ../Doc/library/pickle.rst:864
+msgid "Custom Reduction for Types, Functions, and Other Objects"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:868
+msgid ""
+"Sometimes, :attr:`~Pickler.dispatch_table` may not be flexible enough. In"
+" particular we may want to customize pickling based on another criterion "
+"than the object's type, or we may want to customize the pickling of "
+"functions and classes."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:873
+msgid ""
+"For those cases, it is possible to subclass from the :class:`Pickler` "
+"class and implement a :meth:`~Pickler.reducer_override` method. This "
+"method can return an arbitrary reduction tuple (see :meth:`__reduce__`). "
+"It can alternatively return ``NotImplemented`` to fallback to the "
+"traditional behavior."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:878
+msgid ""
+"If both the :attr:`~Pickler.dispatch_table` and "
+":meth:`~Pickler.reducer_override` are defined, then "
+":meth:`~Pickler.reducer_override` method takes priority."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:883
+msgid ""
+"For performance reasons, :meth:`~Pickler.reducer_override` may not be "
+"called for the following objects: ``None``, ``True``, ``False``, and "
+"exact instances of :class:`int`, :class:`float`, :class:`bytes`, "
+":class:`str`, :class:`dict`, :class:`set`, :class:`frozenset`, "
+":class:`list` and :class:`tuple`."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:889
+msgid ""
+"Here is a simple example where we allow pickling and reconstructing a "
+"given class::"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:924
+msgid "Out-of-band Buffers"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:928
+msgid ""
+"In some contexts, the :mod:`pickle` module is used to transfer massive "
+"amounts of data.  Therefore, it can be important to minimize the number "
+"of memory copies, to preserve performance and resource consumption.  "
+"However, normal operation of the :mod:`pickle` module, as it transforms a"
+" graph-like structure of objects into a sequential stream of bytes, "
+"intrinsically involves copying data to and from the pickle stream."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:935
+msgid ""
+"This constraint can be eschewed if both the *provider* (the "
+"implementation of the object types to be transferred) and the *consumer* "
+"(the implementation of the communications system) support the out-of-band"
+" transfer facilities provided by pickle protocol 5 and higher."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:941
+msgid "Provider API"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:943
+msgid ""
+"The large data objects to be pickled must implement a "
+":meth:`__reduce_ex__` method specialized for protocol 5 and higher, which"
+" returns a :class:`PickleBuffer` instance (instead of e.g. a "
+":class:`bytes` object) for any large data."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:948
+msgid ""
+"A :class:`PickleBuffer` object *signals* that the underlying buffer is "
+"eligible for out-of-band data transfer.  Those objects remain compatible "
+"with normal usage of the :mod:`pickle` module.  However, consumers can "
+"also opt-in to tell :mod:`pickle` that they will handle those buffers by "
+"themselves."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:955
+msgid "Consumer API"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:957
+msgid ""
+"A communications system can enable custom handling of the "
+":class:`PickleBuffer` objects generated when serializing an object graph."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:960
+msgid ""
+"On the sending side, it needs to pass a *buffer_callback* argument to "
+":class:`Pickler` (or to the :func:`dump` or :func:`dumps` function), "
+"which will be called with each :class:`PickleBuffer` generated while "
+"pickling the object graph.  Buffers accumulated by the *buffer_callback* "
+"will not see their data copied into the pickle stream, only a cheap "
+"marker will be inserted."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:967
+msgid ""
+"On the receiving side, it needs to pass a *buffers* argument to "
+":class:`Unpickler` (or to the :func:`load` or :func:`loads` function), "
+"which is an iterable of the buffers which were passed to "
+"*buffer_callback*. That iterable should produce buffers in the same order"
+" as they were passed to *buffer_callback*.  Those buffers will provide "
+"the data expected by the reconstructors of the objects whose pickling "
+"produced the original :class:`PickleBuffer` objects."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:975
+msgid ""
+"Between the sending side and the receiving side, the communications "
+"system is free to implement its own transfer mechanism for out-of-band "
+"buffers. Potential optimizations include the use of shared memory or "
+"datatype-dependent compression."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:981
+#, fuzzy
+msgid "Example"
+msgstr "예제"
+
+#: ../Doc/library/pickle.rst:983
+msgid ""
+"Here is a trivial example where we implement a :class:`bytearray` "
+"subclass able to participate in out-of-band buffer pickling::"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:1007
+msgid ""
+"The reconstructor (the ``_reconstruct`` class method) returns the "
+"buffer's providing object if it has the right type.  This is an easy way "
+"to simulate zero-copy behaviour on this toy example."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:1011
+msgid ""
+"On the consumer side, we can pickle those objects the usual way, which "
+"when unserialized will give us a copy of the original object::"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:1020
+msgid ""
+"But if we pass a *buffer_callback* and then give back the accumulated "
+"buffers when unserializing, we are able to get back the original object::"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:1030
+msgid ""
+"This example is limited by the fact that :class:`bytearray` allocates its"
+" own memory: you cannot create a :class:`bytearray` instance that is "
+"backed by another object's memory.  However, third-party datatypes such "
+"as NumPy arrays do not have this limitation, and allow use of zero-copy "
+"pickling (or making as few copies as possible) when transferring between "
+"distinct processes or systems."
+msgstr ""
+
+#: ../Doc/library/pickle.rst:1037
+msgid ":pep:`574` -- Pickle protocol 5 with out-of-band data"
+msgstr ""
+
+#: ../Doc/library/pickle.rst:1043
 msgid "Restricting Globals"
 msgstr "전역 제한하기"
 
-#: ../Doc/library/pickle.rst:786
+#: ../Doc/library/pickle.rst:1048
 msgid ""
 "By default, unpickling will import any class or function that it finds in"
 " the pickle data.  For many applications, this behaviour is unacceptable "
@@ -1159,7 +1466,7 @@ msgstr ""
 "코드를 임포트하고 호출할 수 있으므로, 이 동작을 받아들일 수 없습니다. 이 손으로 만든 피클 데이터 스트림이 로드될 때 하는 일을"
 " 생각해보십시오::"
 
-#: ../Doc/library/pickle.rst:796
+#: ../Doc/library/pickle.rst:1058
 msgid ""
 "In this example, the unpickler imports the :func:`os.system` function and"
 " then apply the string argument \"echo hello world\".  Although this "
@@ -1169,7 +1476,7 @@ msgstr ""
 "이 예제에서, 역 피클러는 :func:`os.system` 함수를 임포트하고 문자열 인자 \"echo hello world\"를 "
 "적용합니다. 이 예제가 공격적이지는 않지만, 어떤 것들은 시스템을 손상할 수 있다고 상상하기 어렵지 않습니다."
 
-#: ../Doc/library/pickle.rst:800
+#: ../Doc/library/pickle.rst:1062
 msgid ""
 "For this reason, you may want to control what gets unpickled by "
 "customizing :meth:`Unpickler.find_class`.  Unlike its name suggests, "
@@ -1181,17 +1488,17 @@ msgstr ""
 "수 있습니다. 이름이 제안하는 것과는 달리, :meth:`Unpickler.find_class` 는 전역(즉, 클래스나 함수)이 "
 "요청될 때마다 호출됩니다. 따라서 전역을 완전히 금지하거나 안전한 부분집합으로 제한할 수 있습니다."
 
-#: ../Doc/library/pickle.rst:806
+#: ../Doc/library/pickle.rst:1068
 msgid ""
 "Here is an example of an unpickler allowing only few safe classes from "
 "the :mod:`builtins` module to be loaded::"
 msgstr "다음은 :mod:`builtins` 모듈에서 몇 가지 안전한 클래스만 로드되도록 허용하는 역 피클러의 예입니다::"
 
-#: ../Doc/library/pickle.rst:835
+#: ../Doc/library/pickle.rst:1097
 msgid "A sample usage of our unpickler working has intended::"
 msgstr "우리의 역 피클러 작업이 의도한 사용 예::"
 
-#: ../Doc/library/pickle.rst:854
+#: ../Doc/library/pickle.rst:1116
 msgid ""
 "As our examples shows, you have to be careful with what you allow to be "
 "unpickled.  Therefore if security is a concern, you may want to consider "
@@ -1201,11 +1508,11 @@ msgstr ""
 "예를 통해 알 수 있듯이, 역 피클을 허락하는 것에 주의를 기울여야 합니다. 따라서 보안이 중요하다면, "
 ":mod:`xmlrpc.client` 나 제삼자 솔루션의 마샬링 API 같은 대안을 고려할 수 있습니다."
 
-#: ../Doc/library/pickle.rst:861
+#: ../Doc/library/pickle.rst:1123
 msgid "Performance"
 msgstr "성능"
 
-#: ../Doc/library/pickle.rst:863
+#: ../Doc/library/pickle.rst:1125
 msgid ""
 "Recent versions of the pickle protocol (from protocol 2 and upwards) "
 "feature efficient binary encodings for several common features and built-"
@@ -1215,67 +1522,67 @@ msgstr ""
 "최신 버전의 피클 프로토콜(프로토콜 2 이상)은 몇 가지 공통 기능 및 내장형에 대한 효율적인 바이너리 인코딩을 제공합니다. 또한,"
 " :mod:`pickle` 모듈은 C로 작성된 투명한 최적화기를 가지고 있습니다."
 
-#: ../Doc/library/pickle.rst:871
+#: ../Doc/library/pickle.rst:1133
 msgid "Examples"
 msgstr "예제"
 
-#: ../Doc/library/pickle.rst:873
+#: ../Doc/library/pickle.rst:1135
 msgid "For the simplest code, use the :func:`dump` and :func:`load` functions. ::"
 msgstr "가장 간단한 코드로, :func:`dump`\\와 :func:`load` 함수를 사용하십시오. ::"
 
-#: ../Doc/library/pickle.rst:889
+#: ../Doc/library/pickle.rst:1151
 msgid "The following example reads the resulting pickled data. ::"
 msgstr "다음 예제는 결과로 나온 피클 데이터를 읽습니다. ::"
 
-#: ../Doc/library/pickle.rst:906
+#: ../Doc/library/pickle.rst:1168
 msgid "Module :mod:`copyreg`"
 msgstr "모듈 :mod:`copyreg`"
 
-#: ../Doc/library/pickle.rst:906
+#: ../Doc/library/pickle.rst:1168
 msgid "Pickle interface constructor registration for extension types."
 msgstr "확장형에 대한 피클 인터페이스 생성자 등록"
 
-#: ../Doc/library/pickle.rst:909
+#: ../Doc/library/pickle.rst:1171
 msgid "Module :mod:`pickletools`"
 msgstr "모듈 :mod:`pickletools`"
 
-#: ../Doc/library/pickle.rst:909
+#: ../Doc/library/pickle.rst:1171
 msgid "Tools for working with and analyzing pickled data."
 msgstr "피클 된 데이터로 작업하고 분석하는 도구."
 
-#: ../Doc/library/pickle.rst:912
+#: ../Doc/library/pickle.rst:1174
 msgid "Module :mod:`shelve`"
 msgstr "모듈 :mod:`shelve`"
 
-#: ../Doc/library/pickle.rst:912
+#: ../Doc/library/pickle.rst:1174
 msgid "Indexed databases of objects; uses :mod:`pickle`."
 msgstr "객체의 인덱싱 된 데이터베이스; :mod:`pickle`\\을 사용합니다."
 
-#: ../Doc/library/pickle.rst:915
+#: ../Doc/library/pickle.rst:1177
 msgid "Module :mod:`copy`"
 msgstr "모듈 :mod:`copy`"
 
-#: ../Doc/library/pickle.rst:915
+#: ../Doc/library/pickle.rst:1177
 msgid "Shallow and deep object copying."
 msgstr "얕거나 깊은 객체 복사."
 
-#: ../Doc/library/pickle.rst:917
+#: ../Doc/library/pickle.rst:1179
 msgid "Module :mod:`marshal`"
 msgstr "모듈 :mod:`marshal`"
 
-#: ../Doc/library/pickle.rst:918
+#: ../Doc/library/pickle.rst:1180
 msgid "High-performance serialization of built-in types."
 msgstr "내장형의 고성능 직렬화."
 
-#: ../Doc/library/pickle.rst:922
+#: ../Doc/library/pickle.rst:1184
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../Doc/library/pickle.rst:923
+#: ../Doc/library/pickle.rst:1185
 msgid "Don't confuse this with the :mod:`marshal` module"
 msgstr "이것을 :mod:`marshal` 모듈과 혼동하지 마십시오."
 
-#: ../Doc/library/pickle.rst:925
+#: ../Doc/library/pickle.rst:1187
 msgid ""
 "This is why :keyword:`lambda` functions cannot be pickled:  all "
 ":keyword:`!lambda` functions share the same name:  ``<lambda>``."
@@ -1283,7 +1590,7 @@ msgstr ""
 "이것이 :keyword:`!lambda` 함수가 pickle 될 수 없는 이유입니다: 모든 :keyword:`lambda` 함수는 "
 "같은 이름을 공유합니다: ``<lambda>``."
 
-#: ../Doc/library/pickle.rst:928
+#: ../Doc/library/pickle.rst:1190
 msgid ""
 "The exception raised will likely be an :exc:`ImportError` or an "
 ":exc:`AttributeError` but it could be something else."
@@ -1291,13 +1598,13 @@ msgstr ""
 "발생하는 예외는 :exc:`ImportError` 나 :exc:`AttributeError` 일 가능성이 크지만, 그 밖의 다른 "
 "것일 수 있습니다."
 
-#: ../Doc/library/pickle.rst:931
+#: ../Doc/library/pickle.rst:1193
 msgid ""
 "The :mod:`copy` module uses this protocol for shallow and deep copying "
 "operations."
 msgstr ":mod:`copy` 모듈은 얕거나 깊은 복사 연산에 이 프로토콜을 사용합니다."
 
-#: ../Doc/library/pickle.rst:934
+#: ../Doc/library/pickle.rst:1196
 msgid ""
 "The limitation on alphanumeric characters is due to the fact the "
 "persistent IDs, in protocol 0, are delimited by the newline character.  "
@@ -1306,3 +1613,90 @@ msgid ""
 msgstr ""
 "영숫자 문자의 제한은 프로토콜 0에서 지속성 ID가 개행 문자로 구분되기 때문입니다. 따라서 지속성 ID에 개행 문자가 포함되면 "
 "결과 피클을 읽을 수 없게 됩니다."
+
+#~ msgid ""
+#~ "The :mod:`pickle` module is not secure"
+#~ " against erroneous or maliciously "
+#~ "constructed data.  Never unpickle data "
+#~ "received from an untrusted or "
+#~ "unauthenticated source."
+#~ msgstr ""
+#~ ":mod:`pickle` 모듈은 잘못되었거나 악의적으로 생성된 데이터에"
+#~ " 대해 안전하지 않습니다. 신뢰할 수 없거나 인증되지"
+#~ " 않은 출처에서 받은 데이터를 절대로 역 피클 "
+#~ "하지 마십시오."
+
+#~ msgid ""
+#~ "The argument *file* must have two "
+#~ "methods, a read() method that takes "
+#~ "an integer argument, and a readline()"
+#~ " method that requires no arguments.  "
+#~ "Both methods should return bytes.  Thus"
+#~ " *file* can be an on-disk file"
+#~ " opened for binary reading, an "
+#~ ":class:`io.BytesIO` object, or any other "
+#~ "custom object that meets this interface."
+#~ msgstr ""
+#~ "인자 *file* 에는 두 가지 메서드가 있어야 "
+#~ "합니다, 정수 인자를 받아들이는 read() 메서드와 인자가"
+#~ " 없는 readline() 메서드. 두 메서드 모두 "
+#~ "바이트열를 반환해야 합니다. 따라서 *file* 은 바이너리"
+#~ " 읽기를 위해 열린 디스크 상의 파일, "
+#~ ":class:`io.BytesIO` 객체 또는 이 인터페이스를 만족하는"
+#~ " 다른 사용자 정의 객체일 수 있습니다."
+
+#~ msgid ""
+#~ "Read a pickled object hierarchy from "
+#~ "a :class:`bytes` object and return the"
+#~ " reconstituted object hierarchy specified "
+#~ "therein."
+#~ msgstr ":class:`bytes` 객체에서 피클 된 객체 계층 구조를 읽고 그 안에 지정된 객체 계층 구조를 재구성하여 반환합니다."
+
+#~ msgid ""
+#~ "The argument *file* must have two "
+#~ "methods, a read() method that takes "
+#~ "an integer argument, and a readline()"
+#~ " method that requires no arguments.  "
+#~ "Both methods should return bytes.  Thus"
+#~ " *file* can be an on-disk file"
+#~ " object opened for binary reading, an"
+#~ " :class:`io.BytesIO` object, or any other"
+#~ " custom object that meets this "
+#~ "interface."
+#~ msgstr ""
+#~ "인자 *file* 에는 두 가지 메서드가 있어야 "
+#~ "합니다, 정수 인자를 받아들이는 read() 메서드와 인자가"
+#~ " 없는 readline() 메서드. 두 메서드 모두 "
+#~ "바이트열을 반환해야 합니다. 따라서 *file* 은 바이너리"
+#~ " 읽기를 위해 열린 디스크 상의 파일 객체, "
+#~ ":class:`io.BytesIO` 객체 또는 이 인터페이스를 만족하는"
+#~ " 다른 사용자 정의 객체일 수 있습니다."
+
+#~ msgid ""
+#~ "Optional keyword arguments are *fix_imports*,"
+#~ " *encoding* and *errors*, which are "
+#~ "used to control compatibility support "
+#~ "for pickle stream generated by Python"
+#~ " 2.  If *fix_imports* is true, pickle"
+#~ " will try to map the old Python"
+#~ " 2 names to the new names used"
+#~ " in Python 3.  The *encoding* and "
+#~ "*errors* tell pickle how to decode "
+#~ "8-bit string instances pickled by Python"
+#~ " 2; these default to 'ASCII' and "
+#~ "'strict', respectively.  The *encoding* can"
+#~ " be 'bytes' to read these 8-bit "
+#~ "string instances as bytes objects."
+#~ msgstr ""
+#~ "선택적 키워드 인자는 *fix_imports*, *encoding* 및"
+#~ " *errors* 인데, 파이썬 2에서 생성된 피클 "
+#~ "스트림에 대한 호환성 지원을 제어하는 데 사용됩니다. "
+#~ "*fix_imports* 가 참이면, pickle은 이전 파이썬 "
+#~ "2 이름을 파이썬 3에서 사용된 새로운 이름으로 "
+#~ "매핑하려고 합니다. *encoding* 과 *errors* 는 "
+#~ "파이썬 2에 의해 피클 된 8비트 문자열 인스턴스를"
+#~ " 디코딩하는 방법을 pickle에게 알려줍니다. 기본값은 각각"
+#~ " 'ASCII'\\와 'strict' 입니다. *encoding* 은 "
+#~ "'bytes' 가 될 수 있는데, 8비트 문자열 "
+#~ "인스턴스를 바이트열 객체로 읽습니다."
+

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-25 10:27+0900\n"
+"POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/c-api/buffer.rst:11
 msgid "Buffer Protocol"
@@ -651,15 +651,7 @@ msgstr ""
 ":c:member:`~Py_buffer.strides`\\가 *NULL*\\이면, 배열은 표준 n-차원 C 배열로 해석됩니다. "
 "그렇지 않으면, 소비자는 다음과 같이 n-차원 배열에 액세스해야 합니다:"
 
-#: ../Doc/c-api/buffer.rst:358
-msgid ""
-"``ptr = (char *)buf + indices[0] * strides[0] + ... + indices[n-1] * "
-"strides[n-1]`` ``item = *((typeof(item) *)ptr);``"
-msgstr ""
-"``ptr = (char *)buf + indices[0] * strides[0] + ... + indices[n-1] * "
-"strides[n-1]`` ``item = *((typeof(item) *)ptr);``"
-
-#: ../Doc/c-api/buffer.rst:362
+#: ../Doc/c-api/buffer.rst:364
 msgid ""
 "As noted above, :c:member:`~Py_buffer.buf` can point to any location "
 "within the actual memory block. An exporter can check the validity of a "
@@ -668,11 +660,11 @@ msgstr ""
 "위에서 언급했듯이, :c:member:`~Py_buffer.buf`\\는 실제 메모리 블록 내의 모든 위치를 가리킬 수 있습니다. "
 "제공자(exporter)는 이 함수로 버퍼의 유효성을 검사 할 수 있습니다:"
 
-#: ../Doc/c-api/buffer.rst:396
+#: ../Doc/c-api/buffer.rst:398
 msgid "PIL-style: shape, strides and suboffsets"
 msgstr "PIL-스타일: shape, strides 및 suboffsets"
 
-#: ../Doc/c-api/buffer.rst:398
+#: ../Doc/c-api/buffer.rst:400
 msgid ""
 "In addition to the regular items, PIL-style arrays can contain pointers "
 "that must be followed in order to get to the next element in a dimension."
@@ -688,7 +680,7 @@ msgstr ""
 ":c:member:`~Py_buffer.buf`\\의 시작 부분에 임베드 될 수 있는데, 메모리의 어느 위치 에나 배치될 수 있는 "
 "두 개의 ``char x[2][3]`` 배열을 가리킵니다."
 
-#: ../Doc/c-api/buffer.rst:407
+#: ../Doc/c-api/buffer.rst:409
 msgid ""
 "Here is a function that returns a pointer to the element in an N-D array "
 "pointed to by an N-dimensional index when there are both non-NULL strides"
@@ -697,21 +689,22 @@ msgstr ""
 "다음은 NULL이 아닌 strides와 suboffsets가 있을 때, N-차원 인덱스가 가리키는 N-차원 배열의 요소에 대한 "
 "포인터를 반환하는 함수입니다::"
 
-#: ../Doc/c-api/buffer.rst:426
+#: ../Doc/c-api/buffer.rst:428
 msgid "Buffer-related functions"
 msgstr "버퍼 관련 함수"
 
-#: ../Doc/c-api/buffer.rst:430
+#: ../Doc/c-api/buffer.rst:432
 msgid ""
 "Return ``1`` if *obj* supports the buffer interface otherwise ``0``.  "
 "When ``1`` is returned, it doesn't guarantee that "
 ":c:func:`PyObject_GetBuffer` will succeed.  This function always "
 "succeeds."
 msgstr ""
-"*obj*\\가 버퍼 인터페이스를 지원하면 ``1``\\을 반환하고, 그렇지 않으면 ``0``\\을 반환합니다. ``1``\\이 반환될 "
-"때, :c:func:`PyObject_GetBuffer`\\가 성공할 것이라고 보장하지는 않습니다. 이 함수는 항상 성공합니다."
+"*obj*\\가 버퍼 인터페이스를 지원하면 ``1``\\을 반환하고, 그렇지 않으면 ``0``\\을 반환합니다. ``1``\\이 "
+"반환될 때, :c:func:`PyObject_GetBuffer`\\가 성공할 것이라고 보장하지는 않습니다. 이 함수는 항상 "
+"성공합니다."
 
-#: ../Doc/c-api/buffer.rst:437
+#: ../Doc/c-api/buffer.rst:439
 msgid ""
 "Send a request to *exporter* to fill in *view* as specified by  *flags*. "
 "If the exporter cannot provide a buffer of the exact type, it MUST raise "
@@ -722,7 +715,7 @@ msgstr ""
 "정확한 유형의 버퍼를 제공할 수 없다면, :c:data:`PyExc_BufferError`\\를 일으키고, "
 ":c:member:`view->obj`\\를 *NULL*\\로 설정하고, ``-1``\\를 반환해야 합니다."
 
-#: ../Doc/c-api/buffer.rst:442
+#: ../Doc/c-api/buffer.rst:444
 msgid ""
 "On success, fill in *view*, set :c:member:`view->obj` to a new reference "
 "to *exporter* and return 0. In the case of chained buffer providers that "
@@ -735,7 +728,7 @@ msgstr ""
 ":c:member:`view->obj`\\는 *exporter* 대신 이 객체를 참조할 수 있습니다 (:ref:`버퍼 객체 구조체 "
 "<buffer-structs>`\\를 보세요)."
 
-#: ../Doc/c-api/buffer.rst:447
+#: ../Doc/c-api/buffer.rst:449
 msgid ""
 "Successful calls to :c:func:`PyObject_GetBuffer` must be paired with "
 "calls to :c:func:`PyBuffer_Release`, similar to :c:func:`malloc` and "
@@ -746,7 +739,7 @@ msgstr ""
 " 대한 호출과 쌍을 이루어야 합니다, :c:func:`malloc`\\과 :c:func:`free`\\와 유사합니다. 따라서, "
 "소비자가 버퍼로 작업한 후에는, :c:func:`PyBuffer_Release`\\를 정확히 한 번 호출해야 합니다."
 
-#: ../Doc/c-api/buffer.rst:455
+#: ../Doc/c-api/buffer.rst:457
 msgid ""
 "Release the buffer *view* and decrement the reference count for "
 ":c:member:`view->obj`. This function MUST be called when the buffer is no"
@@ -755,13 +748,13 @@ msgstr ""
 "버퍼 *view*\\를 해제하고 :c:member:`view->obj`\\에 대한 참조 횟수를 감소시킵니다. 버퍼가 더는 사용되지 "
 "않을 때, 이 함수를 반드시 호출해야 합니다. 그렇지 않으면 참조 누수가 발생할 수 있습니다."
 
-#: ../Doc/c-api/buffer.rst:459
+#: ../Doc/c-api/buffer.rst:461
 msgid ""
 "It is an error to call this function on a buffer that was not obtained "
 "via :c:func:`PyObject_GetBuffer`."
 msgstr ":c:func:`PyObject_GetBuffer`\\를 통해 얻지 않은 버퍼에 이 함수를 호출하는 것은 에러입니다."
 
-#: ../Doc/c-api/buffer.rst:465
+#: ../Doc/c-api/buffer.rst:467
 msgid ""
 "Return the implied :c:data:`~Py_buffer.itemsize` from "
 ":c:data:`~Py_buffer.format`. This function is not yet implemented."
@@ -769,32 +762,51 @@ msgstr ""
 ":c:data:`~Py_buffer.format`\\이 암시하는 :c:data:`~Py_buffer.itemsize`\\를 "
 "반환합니다. 이 함수는 아직 구현되지 않았습니다."
 
-#: ../Doc/c-api/buffer.rst:471
+#: ../Doc/c-api/buffer.rst:473
 msgid ""
 "Return ``1`` if the memory defined by the *view* is C-style (*order* is "
 "``'C'``) or Fortran-style (*order* is ``'F'``) :term:`contiguous` or "
 "either one (*order* is ``'A'``).  Return ``0`` otherwise.  This function "
 "always succeeds."
 msgstr ""
-"*view*\\로 정의된 메모리가 C 스타일(*order*\\가 ``'C'``)이나 포트란 스타일(*order*\\가 ``'F'``) "
-":term:`연속 <contiguous>`\\이거나 둘 중 하나(*order*\\가 ``'A'``)면 ``1``\\을 반환합니다. 그렇지"
-" 않으면 ``0``\\을 반환합니다. 이 함수는 항상 성공합니다."
+"*view*\\로 정의된 메모리가 C 스타일(*order*\\가 ``'C'``)이나 포트란 스타일(*order*\\가 "
+"``'F'``) :term:`연속 <contiguous>`\\이거나 둘 중 하나(*order*\\가 ``'A'``)면 "
+"``1``\\을 반환합니다. 그렇지 않으면 ``0``\\을 반환합니다. 이 함수는 항상 성공합니다."
 
-#: ../Doc/c-api/buffer.rst:478
+#: ../Doc/c-api/buffer.rst:480
 msgid ""
-"Copy *len* bytes from *src* to its contiguous representation in *buf*. "
-"*order* can be ``'C'`` or ``'F'`` (for C-style or Fortran-style "
-"ordering). ``0`` is returned on success, ``-1`` on error."
+"Get the memory area pointed to by the *indices* inside the given *view*. "
+"*indices* must point to an array of ``view->ndim`` indices."
+msgstr ""
+
+#: ../Doc/c-api/buffer.rst:486
+#, fuzzy
+msgid ""
+"Copy contiguous *len* bytes from *buf* to *view*. *fort* can be ``'C'`` "
+"or ``'F'`` (for C-style or Fortran-style ordering). ``0`` is returned on "
+"success, ``-1`` on error."
 msgstr ""
 "*src*\\에 있는 *len* 바이트를 *buf*\\에 연속 표현으로 복사합니다. *order*\\는 ``'C'`` 또는 "
 "``'F'``\\(C 스타일 또는 포트란 스타일 순서)일 수 있습니다. 성공하면 ``0``\\이 반환되고, 에러가 있으면 "
 "``-1``\\이 반환됩니다."
 
-#: ../Doc/c-api/buffer.rst:482
+#: ../Doc/c-api/buffer.rst:493
+#, fuzzy
+msgid ""
+"Copy *len* bytes from *src* to its contiguous representation in *buf*. "
+"*order* can be ``'C'`` or ``'F'`` or ``'A'`` (for C-style or Fortran-"
+"style ordering or either one). ``0`` is returned on success, ``-1`` on "
+"error."
+msgstr ""
+"*src*\\에 있는 *len* 바이트를 *buf*\\에 연속 표현으로 복사합니다. *order*\\는 ``'C'`` 또는 "
+"``'F'``\\(C 스타일 또는 포트란 스타일 순서)일 수 있습니다. 성공하면 ``0``\\이 반환되고, 에러가 있으면 "
+"``-1``\\이 반환됩니다."
+
+#: ../Doc/c-api/buffer.rst:497
 msgid "This function fails if *len* != *src->len*."
 msgstr "이 함수는 *len* != *src->len*\\이면 실패합니다."
 
-#: ../Doc/c-api/buffer.rst:487
+#: ../Doc/c-api/buffer.rst:502
 msgid ""
 "Fill the *strides* array with byte-strides of a :term:`contiguous` "
 "(C-style if *order* is ``'C'`` or Fortran-style if *order* is ``'F'``) "
@@ -804,7 +816,7 @@ msgstr ""
 "(*order*\\가 ``'C'``\\면 C 스타일, *order*\\가 ``'F'``\\면 포트란 스타일) 배열의 바이트 "
 "스트라이드로 채웁니다."
 
-#: ../Doc/c-api/buffer.rst:494
+#: ../Doc/c-api/buffer.rst:509
 msgid ""
 "Handle buffer requests for an exporter that wants to expose *buf* of size"
 " *len* with writability set according to *readonly*. *buf* is interpreted"
@@ -813,7 +825,7 @@ msgstr ""
 "*readonly*\\에 따라 쓰기 가능성이 설정된 *len* 크기의 *buf*\\를 노출하려는 제공자(exporter)에 대한 "
 "버퍼 요청을 처리합니다. *buf*\\는 부호 없는 바이트의 시퀀스로 해석됩니다."
 
-#: ../Doc/c-api/buffer.rst:498
+#: ../Doc/c-api/buffer.rst:513
 msgid ""
 "The *flags* argument indicates the request type. This function always "
 "fills in *view* as specified by flags, unless *buf* has been designated "
@@ -823,7 +835,7 @@ msgstr ""
 ":c:macro:`PyBUF_WRITABLE`\\이 *flags*\\에 설정되어 있지 않으면, 항상 플래그가 지정하는 대로 "
 "*view*\\를 채웁니다."
 
-#: ../Doc/c-api/buffer.rst:502
+#: ../Doc/c-api/buffer.rst:517
 msgid ""
 "On success, set :c:member:`view->obj` to a new reference to *exporter* "
 "and return 0. Otherwise, raise :c:data:`PyExc_BufferError`, set "
@@ -833,7 +845,7 @@ msgstr ""
 " 않으면, :c:data:`PyExc_BufferError`\\를 일으키고, :c:member:`view->obj`\\를 "
 "*NULL*\\로 설정한 다음 ``-1``\\을 반환합니다."
 
-#: ../Doc/c-api/buffer.rst:506
+#: ../Doc/c-api/buffer.rst:521
 msgid ""
 "If this function is used as part of a :ref:`getbufferproc <buffer-"
 "structs>`, *exporter* MUST be set to the exporting object and *flags* "
@@ -842,3 +854,15 @@ msgstr ""
 "이 함수가 :ref:`getbufferproc <buffer-structs>`\\의 일부로 사용되면, *exporter*\\가 "
 "제공하는(exporting) 객체로 설정되어야 하고, *flags*\\는 수정되지 않은 채로 전달되어야 합니다. 그렇지 않으면 "
 "*exporter*\\가 NULL이어야 합니다."
+
+#~ msgid ""
+#~ "``ptr = (char *)buf + indices[0] *"
+#~ " strides[0] + ... + indices[n-1] *"
+#~ " strides[n-1]`` ``item = *((typeof(item) "
+#~ "*)ptr);``"
+#~ msgstr ""
+#~ "``ptr = (char *)buf + indices[0] *"
+#~ " strides[0] + ... + indices[n-1] *"
+#~ " strides[n-1]`` ``item = *((typeof(item) "
+#~ "*)ptr);``"
+
