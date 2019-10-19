@@ -6,7 +6,7 @@
 .. |progression| image:: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fpython.flowdas.com%2Fprogress.json
    :target: https://python.flowdas.com/
 
-현재 혹은 가까운 미래의 안정판만을 번역하고, 현재는 3.7입니다. 번역은 3.7 브랜치에 들어있고, master 브랜치에는 번역 작업을 보조하는 파일들이 들어있습니다.
+현재 혹은 가까운 미래의 안정판만을 번역하고, 현재는 3.8입니다. 번역은 3.8 브랜치에 들어있고, master 브랜치에는 번역 작업을 보조하는 파일들이 들어있습니다.
 
 번역팀에 문의가 있으신 분들은 https://www.flowdas.com/pages/python-docs-ko.html 를 참고 바랍니다.
 
