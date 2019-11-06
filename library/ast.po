@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../Doc/library/ast.rst:2
 msgid ":mod:`ast` --- Abstract Syntax Trees"
-msgstr ""
+msgstr ":mod:`ast` --- 추상 구문 트리"
 
 #: ../Doc/library/ast.rst:10
 msgid "**Source code:** :source:`Lib/ast.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/ast.py`"
 
 #: ../Doc/library/ast.rst:14
 msgid ""
@@ -32,6 +31,8 @@ msgid ""
 "with each Python release; this module helps to find out programmatically "
 "what the current grammar looks like."
 msgstr ""
+":mod:`ast` 모듈은 파이썬 응용 프로그램이 파이썬 추상 구문 문법의 트리를 처리하는 데 도움을 줍니다. 추상 구문 자체는 각"
+" 파이썬 릴리스마다 바뀔 수 있습니다; 이 모듈은 프로그래밍 방식으로 현재 문법의 모양을 찾는 데 도움이 됩니다."
 
 #: ../Doc/library/ast.rst:19
 msgid ""
@@ -42,10 +43,14 @@ msgid ""
 ":class:`ast.AST`.  An abstract syntax tree can be compiled into a Python "
 "code object using the built-in :func:`compile` function."
 msgstr ""
+":data:`ast.PyCF_ONLY_AST`\\를 플래그로 :func:`compile` 내장 함수에 전달하거나, 이 모듈에서 "
+"제공된 :func:`parse` 도우미를 사용하여 추상 구문 트리를 생성할 수 있습니다. 결과는 클래스가 모두 "
+":class:`ast.AST`\\에서 상속되는 객체들의 트리가 됩니다. 내장 :func:`compile` 함수를 사용하여 추상 구문"
+" 트리를 파이썬 코드 객체로 컴파일할 수 있습니다."
 
 #: ../Doc/library/ast.rst:27
 msgid "Node classes"
-msgstr ""
+msgstr "노드 클래스"
 
 #: ../Doc/library/ast.rst:31
 msgid ""
@@ -54,6 +59,9 @@ msgid ""
 ":ref:`below <abstract-grammar>`.  They are defined in the :mod:`_ast` C "
 "module and re-exported in :mod:`ast`."
 msgstr ""
+"이것은 모든 AST 노드 클래스의 베이스입니다. 실제 노드 클래스는 :file:`Parser/Python.asdl` 파일에서 "
+"파생되며, 이 파일의 내용은 :ref:`아래 <abstract-grammar>`\\에서 볼 수 있습니다. :mod:`_ast` C "
+"모듈에 정의되어 있으며 :mod:`ast`\\로 다시 내보내집니다."
 
 #: ../Doc/library/ast.rst:36
 msgid ""
@@ -66,12 +74,16 @@ msgid ""
 "side class is abstract: only instances of specific constructor nodes are "
 "ever created."
 msgstr ""
+"추상 문법의 각 좌변 심볼마다 하나의 클래스가 정의되어 있습니다 (예를 들어, :class:`ast.stmt`\\나 "
+":class:`ast.expr`). 또한, 우변의 생성자마다 하나의 클래스가 정의되어 있습니다; 이 클래스는 좌변 트리의 클래스에서"
+" 상속됩니다. 예를 들어, :class:`ast.BinOp`\\는 :class:`ast.expr`\\에서 상속됩니다. 대안을 갖는 "
+"생성 규칙(일명 \"합\")의 경우, 좌변 클래스는 추상입니다: 특정 생성자 노드의 인스턴스만 만들어집니다."
 
 #: ../Doc/library/ast.rst:49
 msgid ""
 "Each concrete class has an attribute :attr:`_fields` which gives the "
 "names of all child nodes."
-msgstr ""
+msgstr "각 구상 클래스에는 모든 자식 노드의 이름을 제공하는 어트리뷰트 :attr:`_fields`\\가 있습니다."
 
 #: ../Doc/library/ast.rst:52
 msgid ""
@@ -79,6 +91,8 @@ msgid ""
 "of the type as defined in the grammar.  For example, :class:`ast.BinOp` "
 "instances have an attribute :attr:`left` of type :class:`ast.expr`."
 msgstr ""
+"구상 클래스의 각 인스턴스에는 각 자식 노드마다 문법에 정의된 형의 어트리뷰트가 하나씩 있습니다. 예를 들어, "
+":class:`ast.BinOp` 인스턴스는 :class:`ast.expr` 형의 어트리뷰트 :attr:`left`\\를 갖습니다."
 
 #: ../Doc/library/ast.rst:56
 msgid ""
@@ -88,6 +102,9 @@ msgid ""
 " as Python lists.  All possible attributes must be present and have valid"
 " values when compiling an AST with :func:`compile`."
 msgstr ""
+"문법에서 이러한 어트리뷰트가 선택적으로 표시되면 (물음표를 사용해서), 값은 ``None``\\일 수 있습니다. 어트리뷰트가 0개 "
+"이상의 값을 가질 수 있으면 (애스터리스크로 표시됩니다), 값은 파이썬 리스트로 표현됩니다. :func:`compile`\\로 "
+"AST를 컴파일할 때 가능한 모든 어트리뷰트가 존재하고 유효한 값을 가져야 합니다."
 
 #: ../Doc/library/ast.rst:67
 msgid ""
@@ -100,6 +117,12 @@ msgid ""
 "first and last tokens that generated the node. The UTF-8 offset is "
 "recorded because the parser uses UTF-8 internally."
 msgstr ""
+":class:`ast.expr`\\과 :class:`ast.stmt` 서브 클래스의 인스턴스에는 :attr:`lineno`, "
+":attr:`col_offset`, :attr:`lineno` 및 :attr:`col_offset` 어트리뷰트가 있습니다. "
+":attr:`lineno`\\와 :attr:`end_lineno`\\는 소스 텍스트 스팬의 첫 번째와 마지막 줄 "
+"번호(1-인덱싱이라서 첫 번째 줄은 줄 1입니다)이고 :attr:`col_offset`\\과 "
+":attr:`end_col_offset`\\은 노드를 생성한 첫 번째와 마지막 토큰의 해당 UTF-8 바이트 오프셋입니다. 구문 "
+"분석기가 UTF-8을 내부적으로 사용하기 때문에 UTF-8 오프셋이 기록됩니다."
 
 #: ../Doc/library/ast.rst:75
 msgid ""
@@ -108,10 +131,13 @@ msgid ""
 "example one can get the source segment of a one-line expression node "
 "using ``source_line[node.col_offset : node.end_col_offset]``."
 msgstr ""
+"종료 위치는 컴파일러에 필요하지 않아서 선택 사항입니다. 종료 오프셋은 마지막 심볼 *뒤*\\입니다. 예를 들어 "
+"``source_line[node.col_offset : node.end_col_offset]``\\를 사용하여 한 줄 표현식 "
+"노드의 소스 세그먼트를 가져올 수 있습니다."
 
 #: ../Doc/library/ast.rst:80
 msgid "The constructor of a class :class:`ast.T` parses its arguments as follows:"
-msgstr ""
+msgstr ":class:`ast.T` 클래스의 생성자는 다음과 같이 인자를 구문 분석합니다:"
 
 #: ../Doc/library/ast.rst:82
 msgid ""
@@ -119,22 +145,24 @@ msgid ""
 "items in :attr:`T._fields`; they will be assigned as attributes of these "
 "names."
 msgstr ""
+"위치 인자가 있으면, :attr:`T._fields`\\에 있는 항목 수만큼 있어야 합니다; 이러한 이름의 어트리뷰트로 대입될 "
+"것입니다."
 
 #: ../Doc/library/ast.rst:84
 msgid ""
 "If there are keyword arguments, they will set the attributes of the same "
 "names to the given values."
-msgstr ""
+msgstr "키워드 인자가 있으면, 같은 이름의 어트리뷰트를 지정된 값으로 설정합니다."
 
 #: ../Doc/library/ast.rst:87
 msgid ""
 "For example, to create and populate an :class:`ast.UnaryOp` node, you "
 "could use ::"
-msgstr ""
+msgstr "예를 들어, :class:`ast.UnaryOp` 노드를 만들고 채우려면, 다음과 같이 할 수 있습니다 ::"
 
 #: ../Doc/library/ast.rst:99
 msgid "or the more compact ::"
-msgstr ""
+msgstr "또는 더 간결하게 ::"
 
 #: ../Doc/library/ast.rst:106
 msgid ""
@@ -143,30 +171,35 @@ msgid ""
 ":class:`ast.NameConstant` and :class:`ast.Ellipsis` are still available, "
 "but they will be removed in future Python releases."
 msgstr ""
+":class:`ast.Constant` 클래스는 이제 모든 상수에 사용됩니다; 이전 클래스 :class:`ast.Num`, "
+":class:`ast.Str`, :class:`ast.Bytes`, :class:`ast.NameConstant` 및 "
+":class:`ast.Ellipsis`\\는 계속 사용할 수 있지만, 향후 파이썬 릴리스에서 제거될 예정입니다."
 
 #: ../Doc/library/ast.rst:115
 msgid "Abstract Grammar"
-msgstr ""
+msgstr "추상 문법"
 
 #: ../Doc/library/ast.rst:117
 msgid "The abstract grammar is currently defined as follows:"
-msgstr ""
+msgstr "추상 문법은 현재 다음과 같이 정의됩니다:"
 
 #: ../Doc/library/ast.rst:124
 msgid ":mod:`ast` Helpers"
-msgstr ""
+msgstr ":mod:`ast` 도우미"
 
 #: ../Doc/library/ast.rst:126
 msgid ""
 "Apart from the node classes, the :mod:`ast` module defines these utility "
 "functions and classes for traversing abstract syntax trees:"
-msgstr ""
+msgstr "노드 클래스 외에도, :mod:`ast` 모듈은 추상 구문 트리를 탐색하기 위해 다음 유틸리티 함수와 클래스를 정의합니다:"
 
 #: ../Doc/library/ast.rst:131
 msgid ""
 "Parse the source into an AST node.  Equivalent to ``compile(source, "
 "filename, mode, ast.PyCF_ONLY_AST)``."
 msgstr ""
+"소스를 AST 노드로 구문 분석합니다. ``compile(source, filename, mode, "
+"ast.PyCF_ONLY_AST)``\\와 동등합니다."
 
 #: ../Doc/library/ast.rst:134
 msgid ""
@@ -180,6 +213,12 @@ msgid ""
 "as the ``type_ignores`` attribute of :class:`Module` (otherwise it is "
 "always an empty list)."
 msgstr ""
+"``type_comments=True``\\가 제공되면, 구문 분석기는 :pep:`484`\\와 :pep:`526`\\에 지정된 형"
+" 주석을 확인하고 반환하도록 수정됩니다. 이는 :func:`compile()`\\에 전달된 플래그에 "
+":data:`ast.PyCF_TYPE_COMMENTS`\\를 추가하는 것과 같습니다. 이것은 잘못 배치된 형 주석에 대한 문법 "
+"에러를 보고합니다. 이 플래그가 없으면, 형 주석은 무시되고, 선택한 AST 노드의 ``type_comment`` 필드는 항상 "
+"``None``\\입니다. 또한, ``# type: ignore`` 주석의 위치는 :class:`Module`\\의 "
+"``type_ignores`` 어트리뷰트로 반환됩니다 (그렇지 않으면 항상 빈 리스트입니다)."
 
 #: ../Doc/library/ast.rst:144
 msgid ""
@@ -187,6 +226,8 @@ msgid ""
 " to correspond to :pep:`484` \"signature type comments\", e.g. ``(str, "
 "int) -> List[str]``."
 msgstr ""
+"또한, ``mode``\\가 ``'func_type'``\\이면, 입력 문법은 :pep:`484` \"서명 형 주석\"에 따라 "
+"수정됩니다, 예를 들어 ``(str, int) -> List[str]``."
 
 #: ../Doc/library/ast.rst:148
 msgid ""
@@ -197,17 +238,22 @@ msgid ""
 "lowest supported version is ``(3, 4)``; the highest is "
 "``sys.version_info[0:2]``."
 msgstr ""
+"또한, ``feature_version``\\을 튜플 ``(major, minor)``\\로 설정하면 해당 파이썬 버전의 문법을 "
+"사용하여 구문 분석을 시도합니다. 현재 ``major``\\는 ``3``\\과 같아야 합니다. 예를 들어, "
+"``feature_version=(3, 4)``\\를 설정하면 변수 이름으로 ``async``\\와 ``await``\\를 사용할 "
+"수 있습니다. 가장 낮은 지원 버전은 ``(3, 4)``\\입니다; 가장 높은 것은 "
+"``sys.version_info[0:2]``\\입니다."
 
 #: ../Doc/library/ast.rst:156 ../Doc/library/ast.rst:177
 msgid ""
 "It is possible to crash the Python interpreter with a sufficiently "
 "large/complex string due to stack depth limitations in Python's AST "
 "compiler."
-msgstr ""
+msgstr "파이썬 AST 컴파일러의 스택 깊이 제한으로 인해 충분히 크고/복잡한 문자열로 파이썬 인터프리터가 충돌하도록 만들 수 있습니다."
 
 #: ../Doc/library/ast.rst:160
 msgid "Added ``type_comments``, ``mode='func_type'`` and ``feature_version``."
-msgstr ""
+msgstr "``type_comments``, ``mode='func_type'`` 및 ``feature_version``\\ 추가했습니다."
 
 #: ../Doc/library/ast.rst:166
 msgid ""
@@ -216,6 +262,9 @@ msgid ""
 "consist of the following Python literal structures: strings, bytes, "
 "numbers, tuples, lists, dicts, sets, booleans, and ``None``."
 msgstr ""
+"파이썬 리터럴 이나 컨테이너 디스플레이를 포함하는 표현식 노드나 문자열을 안전하게 평가합니다. 제공된 문자열이나 노드는 다음과 같은"
+" 파이썬 리터럴 구조로만 구성될 수 있습니다: 문자열, 바이트열, 숫자, 튜플, 리스트, 딕셔너리, 집합, 불리언 및 "
+"``None``."
 
 #: ../Doc/library/ast.rst:171
 msgid ""
@@ -224,10 +273,12 @@ msgid ""
 "is not capable of evaluating arbitrarily complex expressions, for example"
 " involving operators or indexing."
 msgstr ""
+"값을 직접 구문 분석할 필요 없이 신뢰할 수 없는 소스의 파이썬 값을 포함하는 문자열을 안전하게 평가하는 데 사용할 수 있습니다. "
+"예를 들어 연산자나 인덱싱이 개입한, 임의의 복잡한 표현식을 평가할 수 없습니다."
 
 #: ../Doc/library/ast.rst:181
 msgid "Now allows bytes and set literals."
-msgstr ""
+msgstr "이제 바이트열과 집합 리터럴을 허용합니다."
 
 #: ../Doc/library/ast.rst:187
 msgid ""
@@ -236,10 +287,14 @@ msgid ""
 ":class:`Module` node), or ``None`` if it has no docstring. If *clean* is "
 "true, clean up the docstring's indentation with :func:`inspect.cleandoc`."
 msgstr ""
+"주어진 *node*\\(:class:`FunctionDef`, :class:`AsyncFunctionDef`, "
+":class:`ClassDef` 또는 :class:`Module` 노드이어야 합니다)의 독스트링이나, 독스트링이 없으면 "
+"``None``\\을 반환합니다. *clean*\\이 참이면, :func:`inspect.cleandoc`\\으로 독스트링의 "
+"들여쓰기를 정리합니다."
 
 #: ../Doc/library/ast.rst:193
 msgid ":class:`AsyncFunctionDef` is now supported."
-msgstr ""
+msgstr ":class:`AsyncFunctionDef` 가 이제 지원됩니다."
 
 #: ../Doc/library/ast.rst:199
 msgid ""
@@ -248,12 +303,15 @@ msgid ""
 ":attr:`col_offset`, or :attr:`end_col_offset`) is missing, return "
 "``None``."
 msgstr ""
+"*node*\\를 생성한 *source*\\의 소스 코드 세그먼트를 가져옵니다. 일부 위치 정보(:attr:`lineno`, "
+":attr:`end_lineno`, :attr:`col_offset` 또는 :attr:`end_col_offset`)가 없으면, "
+"``None``\\을 반환합니다."
 
 #: ../Doc/library/ast.rst:203
 msgid ""
 "If *padded* is ``True``, the first line of a multi-line statement will be"
 " padded with spaces to match its original position."
-msgstr ""
+msgstr "*padded*\\가 ``True``\\이면, 여러 줄 문장의 첫 번째 줄은 원래 위치와 일치하도록 스페이스로 채워집니다."
 
 #: ../Doc/library/ast.rst:211
 msgid ""
@@ -264,6 +322,10 @@ msgid ""
 "setting them to the values of the parent node.  It works recursively "
 "starting at *node*."
 msgstr ""
+":func:`compile`\\로 노드 트리를 컴파일할 때, 컴파일러는 지원하는 모든 노드에 대해 :attr:`lineno`\\와 "
+":attr:`col_offset` 어트리뷰트를 기대합니다. 생성된 노드를 채울 때는 이것이 다소 지루하므로, 이 도우미는 이러한 "
+"어트리뷰트를 재귀적으로 아직 설정되지 않은 위치에 부모 노드의 값으로 설정하여 추가합니다. *node*\\부터 재귀적으로 "
+"작동합니다."
 
 #: ../Doc/library/ast.rst:220
 msgid ""
@@ -271,6 +333,8 @@ msgid ""
 "starting at *node* by *n*. This is useful to \"move code\" to a different"
 " location in a file."
 msgstr ""
+"*node*\\에서 시작하는 트리에서 각 노드의 줄 번호와 끝 줄 번호를 *n*\\만큼 증가시킵니다. 파일의 다른 위치로 \"코드를"
+" 이동\"하는 데 유용합니다."
 
 #: ../Doc/library/ast.rst:227
 msgid ""
@@ -278,18 +342,23 @@ msgid ""
 ":attr:`end_lineno`, and :attr:`end_col_offset`) from *old_node* to "
 "*new_node* if possible, and return *new_node*."
 msgstr ""
+"가능하면 소스 위치(:attr:`lineno`, :attr:`col_offset`, :attr:`end_lineno` 및 "
+":attr:`end_col_offset`)를 *old_node*\\에서 *new_node*\\로 복사하고, *new_node*\\를"
+" 반환합니다."
 
 #: ../Doc/library/ast.rst:234
 msgid ""
 "Yield a tuple of ``(fieldname, value)`` for each field in "
 "``node._fields`` that is present on *node*."
 msgstr ""
+"*node*\\에 존재하는 ``node._fields``\\의 각 필드에 대해 ``(fieldname, value)`` 튜플을 "
+"산출합니다."
 
 #: ../Doc/library/ast.rst:240
 msgid ""
 "Yield all direct child nodes of *node*, that is, all fields that are "
 "nodes and all items of fields that are lists of nodes."
-msgstr ""
+msgstr "*node*\\의 모든 직접 자식 노드, 즉 노드인 모든 필드와 노드 리스트인 필드의 모든 항목을 산출합니다."
 
 #: ../Doc/library/ast.rst:246
 msgid ""
@@ -297,6 +366,8 @@ msgid ""
 "(including *node* itself), in no specified order.  This is useful if you "
 "only want to modify nodes in place and don't care about the context."
 msgstr ""
+"*node*\\로 시작하는 트리(*node* 자체를 포함합니다)의 모든 자손 노드를 지정된 순서 없이 재귀적으로 산출합니다. 이는 "
+"노드를 제자리에서 수정하고 문맥을 신경 쓰지 않을 때 유용합니다."
 
 #: ../Doc/library/ast.rst:253
 msgid ""
@@ -304,12 +375,14 @@ msgid ""
 " visitor function for every node found.  This function may return a value"
 " which is forwarded by the :meth:`visit` method."
 msgstr ""
+"추상 구문 트리를 걷고 발견된 모든 노드에 대해 방문자 함수를 호출하는 노드 방문자 베이스 클래스. 이 함수는 "
+":meth:`visit` 메서드에 의해 전달되는 값을 반환할 수 있습니다."
 
 #: ../Doc/library/ast.rst:257
 msgid ""
 "This class is meant to be subclassed, with the subclass adding visitor "
 "methods."
-msgstr ""
+msgstr "이 클래스는 서브 클래싱하고자 하는 것이며, 서브 클래스는 방문자 메서드를 추가합니다."
 
 #: ../Doc/library/ast.rst:262
 msgid ""
@@ -317,10 +390,13 @@ msgid ""
 ":samp:`self.visit_{classname}` where *classname* is the name of the node "
 "class, or :meth:`generic_visit` if that method doesn't exist."
 msgstr ""
+"노드를 방문합니다. 기본 구현은 :samp:`self.visit_{classname}`\\이라는 메서드를 호출하는데, 여기서 "
+"*classname* 은 노드 클래스의 이름입니다. 또는 이 메서드가 없으면 :meth:`generic_visit`\\를 "
+"호출합니다."
 
 #: ../Doc/library/ast.rst:268
 msgid "This visitor calls :meth:`visit` on all children of the node."
-msgstr ""
+msgstr "이 방문자는 노드의 자식에 대해 :meth:`visit`\\를 호출합니다."
 
 #: ../Doc/library/ast.rst:270
 msgid ""
@@ -328,6 +404,8 @@ msgid ""
 " visited unless the visitor calls :meth:`generic_visit` or visits them "
 "itself."
 msgstr ""
+"방문자가 :meth:`generic_visit`\\를 호출하거나 직접 방문하지 않는 한, 사용자 정의 방문자 메서드가 있는 노드의 "
+"자식 노드는 방문 되지 않음에 유의하십시오."
 
 #: ../Doc/library/ast.rst:274
 msgid ""
@@ -335,6 +413,8 @@ msgid ""
 "during traversal.  For this a special visitor exists "
 "(:class:`NodeTransformer`) that allows modifications."
 msgstr ""
+"탐색 중에 노드에 변경 사항을 적용하려면 :class:`NodeVisitor`\\를 사용하지 마십시오. 이를 위해 수정을 허락하는 "
+"특수한 방문자(:class:`NodeTransformer`)가 있습니다."
 
 #: ../Doc/library/ast.rst:280
 msgid ""
@@ -343,12 +423,15 @@ msgid ""
 "and will not be called in future Python versions.  Add the "
 ":meth:`visit_Constant` method to handle all constant nodes."
 msgstr ""
+"메서드 :meth:`visit_Num`, :meth:`visit_Str`, :meth:`visit_Bytes`, "
+":meth:`visit_NameConstant` 및 :meth:`visit_Ellipsis`\\는 이제 폐지되었고 향후 파이썬 "
+"버전에서는 호출되지 않을 것입니다. 모든 상수 노드를 처리하려면 :meth:`visit_Constant` 메서드를 추가하십시오."
 
 #: ../Doc/library/ast.rst:288
 msgid ""
 "A :class:`NodeVisitor` subclass that walks the abstract syntax tree and "
 "allows modification of nodes."
-msgstr ""
+msgstr "추상 구문 트리를 걷고 노드 수정을 허락하는 :class:`NodeVisitor` 서브 클래스."
 
 #: ../Doc/library/ast.rst:291
 msgid ""
@@ -358,12 +441,15 @@ msgid ""
 "its location, otherwise it is replaced with the return value.  The return"
 " value may be the original node in which case no replacement takes place."
 msgstr ""
+":class:`NodeTransformer`\\는 AST를 걷고 방문자 메서드의 반환 값을 사용하여 이전 노드를 바꾸거나 "
+"제거합니다. 방문자 메서드의 반환 값이 ``None``\\이면, 노드가 그 위치에서 제거되고, 그렇지 않으면 반환 값으로 "
+"치환됩니다. 반환 값은 원래 노드일 수 있으며, 이때는 치환이 일어나지 않습니다."
 
 #: ../Doc/library/ast.rst:297
 msgid ""
 "Here is an example transformer that rewrites all occurrences of name "
 "lookups (``foo``) to ``data['foo']``::"
-msgstr ""
+msgstr "다음은 모든 이름 조회(``foo``)를 ``data['foo']``\\로 다시 쓰는 변환기 예제입니다::"
 
 #: ../Doc/library/ast.rst:309
 msgid ""
@@ -371,6 +457,8 @@ msgid ""
 "must either transform the child nodes yourself or call the "
 ":meth:`generic_visit` method for the node first."
 msgstr ""
+"작업 중인 노드에 자식 노드가 있으면 자식 노드를 직접 변환하거나 노드에 대한 :meth:`generic_visit` 메서드를 먼저"
+" 호출해야 함을 염두에 두십시오."
 
 #: ../Doc/library/ast.rst:313
 msgid ""
@@ -378,10 +466,12 @@ msgid ""
 "all statement nodes), the visitor may also return a list of nodes rather "
 "than just a single node."
 msgstr ""
+"문장의 컬렉션의 일부인 노드의 경우 (모든 문장 노드에 적용됩니다), 방문자는 단일 노드가 아닌 노드 리스트를 반환 할 수도 "
+"있습니다."
 
 #: ../Doc/library/ast.rst:317
 msgid "Usually you use the transformer like this::"
-msgstr ""
+msgstr "일반적으로 다음과 같이 변환기를 사용합니다::"
 
 #: ../Doc/library/ast.rst:324
 msgid ""
@@ -393,6 +483,10 @@ msgid ""
 "column offsets are not dumped by default.  If this is wanted, "
 "*include_attributes* can be set to true."
 msgstr ""
+"*node*\\에서 포맷된 트리 덤프를 반환합니다. 이것은 주로 디버깅 목적으로 유용합니다. *annotate_fields*\\가 "
+"참이면 (기본값), 반환된 문자열에 필드의 이름과 값이 표시됩니다. *annotate_fields*\\가 거짓이면, 모호하지 않은 "
+"필드 이름을 생략하여 결과 문자열이 더 간결해집니다. 줄 번호와 열 오프셋과 같은 어트리뷰트는 기본적으로 덤프 되지 않습니다. "
+"원한다면, *include_attributes*\\를 참으로 설정할 수 있습니다."
 
 #: ../Doc/library/ast.rst:334
 msgid ""
@@ -400,66 +494,6 @@ msgid ""
 "external documentation resource, has good details on working with Python "
 "ASTs."
 msgstr ""
-
-#~ msgid ""
-#~ "Return the docstring of the given "
-#~ "*node* (which must be a "
-#~ ":class:`FunctionDef`, :class:`ClassDef` or "
-#~ ":class:`Module` node), or ``None`` if it"
-#~ " has no docstring.  If *clean* is "
-#~ "true, clean up the docstring's "
-#~ "indentation with :func:`inspect.cleandoc`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "`Green Tree Snakes "
-#~ "<https://greentreesnakes.readthedocs.org/>`_, an external"
-#~ " documentation resource, has good details"
-#~ " on working with Python ASTs."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Instances of :class:`ast.expr` and "
-#~ ":class:`ast.stmt` subclasses have :attr:`lineno` "
-#~ "and :attr:`col_offset` attributes.  The "
-#~ ":attr:`lineno` is the line number of "
-#~ "source text (1-indexed so the first "
-#~ "line is line 1) and the "
-#~ ":attr:`col_offset` is the UTF-8 byte "
-#~ "offset of the first token that "
-#~ "generated the node.  The UTF-8 offset"
-#~ " is recorded because the parser uses"
-#~ " UTF-8 internally."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Increment the line number of each "
-#~ "node in the tree starting at "
-#~ "*node* by *n*. This is useful to"
-#~ " \"move code\" to a different "
-#~ "location in a file."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Copy source location (:attr:`lineno` and "
-#~ ":attr:`col_offset`) from *old_node* to "
-#~ "*new_node* if possible, and return "
-#~ "*new_node*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return a formatted dump of the "
-#~ "tree in *node*.  This is mainly "
-#~ "useful for debugging purposes.  The "
-#~ "returned string will show the names "
-#~ "and the values for fields.  This "
-#~ "makes the code impossible to evaluate,"
-#~ " so if evaluation is wanted "
-#~ "*annotate_fields* must be set to "
-#~ "``False``.  Attributes such as line "
-#~ "numbers and column offsets are not "
-#~ "dumped by default.  If this is "
-#~ "wanted, *include_attributes* can be set "
-#~ "to ``True``."
-#~ msgstr ""
+"`Green Tree Snakes <https://greentreesnakes.readthedocs.io/>`_, 파이썬 AST로 "
+"작업하는 것에 대한 자세한 내용이 있는 외부 문서 리소스."
 
