@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,15 +18,15 @@ msgstr ""
 
 #: ../Doc/library/email.headerregistry.rst:2
 msgid ":mod:`email.headerregistry`: Custom Header Objects"
-msgstr ""
+msgstr ":mod:`email.headerregistry`: 사용자 정의 헤더 객체"
 
 #: ../Doc/library/email.headerregistry.rst:10
 msgid "**Source code:** :source:`Lib/email/headerregistry.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/email/headerregistry.py`"
 
 #: ../Doc/library/email.headerregistry.rst:14
 msgid "[1]_"
-msgstr ""
+msgstr "[1]_"
 
 #: ../Doc/library/email.headerregistry.rst:16
 msgid ""
@@ -41,6 +40,12 @@ msgid ""
 " also provides an extension mechanism for applications to add their own "
 "custom header types."
 msgstr ""
+"헤더는 :class:`str`\\의 사용자 정의된 서브 클래스로 표현됩니다. 주어진 헤더를 표현하는 데 사용되는 특정 클래스는 "
+"헤더가 만들어질 때 :mod:`~email.policy`\\의 "
+":attr:`~email.policy.EmailPolicy.header_factory`\\에 의해 결정됩니다. 이 섹션에서는 "
+":RFC:`5322` 호환 전자 우편 메시지를 처리하기 위해 email 패키지가 구현한 특정 ``header_factory``\\에"
+" 관해 설명합니다. 다양한 헤더 유형에 대해 사용자 정의된 헤더 객체를 제공할 뿐만 아니라, 응용 프로그램에서 고유한 사용자 정의 "
+"헤더 유형을 추가할 수 있는 확장 메커니즘을 제공합니다."
 
 #: ../Doc/library/email.headerregistry.rst:25
 msgid ""
@@ -56,6 +61,13 @@ msgid ""
 "but interfaces are provided for modifying the default behavior for use by"
 " more complex applications."
 msgstr ""
+":data:`~email.policy.EmailPolicy`\\에서 파생된 정책 객체를 사용할 때, 모든 헤더는 "
+":class:`.HeaderRegistry`\\가 생성하며 마지막 베이스 클래스로 :class:`.BaseHeader`\\를 "
+"갖습니다. 각 헤더 클래스에는 헤더 유형에 따라 결정되는 추가 베이스 클래스가 있습니다. 예를 들어, 많은 헤더에는 다른 베이스 "
+"클래스로 :class:`.UnstructuredHeader` 클래스를 갖습니다. 헤더의 특수화된 두 번째 클래스는 "
+":class:`.HeaderRegistry`\\에 저장된 검색 테이블을 사용하여 헤더의 이름으로 결정됩니다. 이 모든 것은 일반적인"
+" 응용 프로그램에 대해 투명하게 관리되지만, 더욱 복잡한 응용 프로그램에서 사용할 수 있도록 기본 동작을 수정하기 위한 인터페이스가"
+" 제공됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:36
 msgid ""
@@ -64,6 +76,8 @@ msgid ""
 ":class:`.HeaderRegistry`, and finally the support classes used to "
 "represent the data parsed from structured headers."
 msgstr ""
+"아래 섹션은 먼저 헤더 베이스 클래스와 그들의 어트리뷰트를, 그다음으로 :class:`.HeaderRegistry`\\의 동작을 "
+"수정하기 위한 API를, 그리고 마지막으로 구조화된 헤더에서 구문 분석된 데이터를 나타내는 데 사용되는 지원 클래스에를 설명합니다."
 
 #: ../Doc/library/email.headerregistry.rst:44
 msgid ""
@@ -71,10 +85,12 @@ msgid ""
 ":attr:`~email.policy.EmailPolicy.header_factory` call.  The string value "
 "of any header object is the *value* fully decoded to unicode."
 msgstr ""
+"*name*\\과 *value*\\는 :attr:`~email.policy.EmailPolicy.header_factory` "
+"호출에서 ``BaseHeader``\\로 전달됩니다. 헤더 객체의 문자열 값은 유니코드로 완전히 디코딩된 *value*\\입니다."
 
 #: ../Doc/library/email.headerregistry.rst:48
 msgid "This base class defines the following read-only properties:"
-msgstr ""
+msgstr "이 베이스 클래스는 다음과 같은 읽기 전용 프로퍼티를 정의합니다:"
 
 #: ../Doc/library/email.headerregistry.rst:53
 msgid ""
@@ -83,6 +99,9 @@ msgid ""
 ":attr:`~email.policy.EmailPolicy.header_factory` call for *name*; that "
 "is, case is preserved."
 msgstr ""
+"헤더 이름(':' 앞의 필드 부분). 이것은 정확히 "
+":attr:`~email.policy.EmailPolicy.header_factory` 호출에 전달된 *name*\\에 대한 "
+"값입니다; 즉, 대소 문자가 유지됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:61
 msgid ""
@@ -91,6 +110,9 @@ msgid ""
 "complete about detecting compliance issues.  See the :mod:`~email.errors`"
 " module for a discussion of the types of defects that may be reported."
 msgstr ""
+"구문 분석 중 발견된 RFC 준수 문제를 보고하는 :exc:`~email.errors.HeaderDefect` 인스턴스 튜플. "
+"email 패키지는 규정 준수 문제 감지에 대해 완전해지려고 합니다. 보고될 수 있는 결함 유형에 대한 설명은 "
+":mod:`~email.errors` 모듈을 참조하십시오."
 
 #: ../Doc/library/email.headerregistry.rst:69
 msgid ""
@@ -99,6 +121,8 @@ msgid ""
 " for this attribute is ``None``; it is expected that specialized header "
 "classes will override this value as needed."
 msgstr ""
+"같은 ``name``\\을 가질 수 있는 이 유형의 최대 헤더 수. ``None`` 값은 무제한을 의미합니다. 이 어트리뷰트의 "
+"``BaseHeader`` 값은 ``None``\\입니다; 특수화된 헤더 클래스가 필요할 때 이 값을 재정의할 것으로 기대됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:74
 msgid ""
@@ -106,6 +130,8 @@ msgid ""
 " email library code and should not in general be called by application "
 "programs:"
 msgstr ""
+"``BaseHeader``\\는 또한 email 라이브러리 코드에 의해 호출되고 일반적으로 응용 프로그램이 호출해서는 안 되는 다음"
+" 메서드를 제공합니다:"
 
 #: ../Doc/library/email.headerregistry.rst:80
 msgid ""
@@ -116,6 +142,11 @@ msgid ""
 "binary data.  If :attr:`~email.policy.EmailPolicy.utf8` is ``False``, "
 "non-ASCII data will be :rfc:`2047` encoded."
 msgstr ""
+"*policy*\\에 따라 헤더를 올바르게 접는 데 필요한 :attr:`~email.policy.Policy.linesep` 문자를"
+" 포함하는 문자열을 반환합니다. 헤더는 임의의 바이너리 데이터를 포함할 수 없어서, ``8bit``\\의 "
+":attr:`~email.policy.Policy.cte_type`\\은 마치 ``7bit``\\인 것처럼 처리됩니다. "
+":attr:`~email.policy.EmailPolicy.utf8`\\이 ``False``\\이면, 비 ASCII 데이터는 "
+":rfc:`2047`\\로 인코딩됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:88
 msgid ""
@@ -125,6 +156,9 @@ msgid ""
 " the specialized class provide a :func:`classmethod` named ``parse``.  "
 "This method is called as follows::"
 msgstr ""
+"``BaseHeader`` 자체는 헤더 객체를 만드는 데 사용할 수 없습니다. 헤더 객체를 생성하기 위해 각 특수화된 헤더가 "
+"협력하는 프로토콜을 정의합니다. 특히 ``BaseHeader``\\는 특수화된 클래스가 ``parse``\\라는 "
+":func:`classmethod`\\를 제공할 것을 요구합니다. 이 메서드는 다음과 같이 호출됩니다::"
 
 #: ../Doc/library/email.headerregistry.rst:96
 msgid ""
@@ -138,6 +172,12 @@ msgid ""
 "correctly handle all valid unicode characters as well so that it can "
 "parse un-encoded header values."
 msgstr ""
+"``kwds``\\는 하나의 미리 초기화된 키 ``defects``\\를 포함하는 딕셔너리입니다. ``defects``\\는 빈 "
+"리스트입니다. parse 메서드는 감지된 결함을 이 리스트에 추가해야 합니다. 반환될 때, ``kwds`` 딕셔너리는 *반드시* "
+"적어도 키 ``decoded``\\와 ``defects``\\에 대한 값을 포함해야 합니다. ``decoded``\\는 헤더의 "
+"문자열 값이어야 합니다 (즉, 유니코드로 완전히 디코딩된 헤더 값). parse 메서드는 *string*\\이 콘텐츠 전송 인코딩된"
+" 파트를 포함할 수 있다고 가정해야 하지만, 인코딩되지 않은 헤더 값을 구문 분석할 수 있도록 모든 유효한 유니코드 문자도 올바르게"
+" 처리해야 합니다."
 
 #: ../Doc/library/email.headerregistry.rst:105
 msgid ""
@@ -147,6 +187,9 @@ msgid ""
 "provided by ``BaseHeader`` itself.  Such an ``init`` method should look "
 "like this::"
 msgstr ""
+"``BaseHeader``\\의 ``__new__``\\는 헤더 인스턴스를 만들고, ``init`` 메서드를 호출합니다. 특수화된 "
+"클래스가 ``BaseHeader`` 자체에서 제공하는 것 이상의 추가 어트리뷰트를 설정하려면 ``init`` 메서드 만 제공하면 "
+"됩니다. 이러한 ``init`` 메서드는 다음과 같아야 합니다::"
 
 #: ../Doc/library/email.headerregistry.rst:114
 msgid ""
@@ -155,6 +198,8 @@ msgid ""
 "contents of ``kw`` (and ``args``) passed to the ``BaseHeader`` ``init`` "
 "method."
 msgstr ""
+"즉, 특수화된 클래스가 ``kwds`` 딕셔너리에 추가하는 것은 제거해야 하고 처리해야 하며, ``kw``\\(및 "
+"``args``)의 나머지 내용은 ``BaseHeader`` ``init`` 메서드로 전달됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:121
 msgid ""
@@ -163,6 +208,8 @@ msgid ""
 "unstructured.  The classic example of an unstructured header is the "
 ":mailheader:`Subject` header."
 msgstr ""
+"\"구조화되지 않은\" 헤더는 :rfc:`5322`\\의 기본 헤더 유형입니다. 지정된 문법이 없는 헤더는 구조화되지 않은 것으로 "
+"취급됩니다. 구조화되지 않은 헤더의 전형적인 예는 :mailheader:`Subject` 헤더입니다."
 
 #: ../Doc/library/email.headerregistry.rst:126
 msgid ""
@@ -177,10 +224,16 @@ msgid ""
 "as defects for issues such as invalid characters within the encoded words"
 " or the non-encoded text."
 msgstr ""
+":rfc:`5322`\\에서, 구조화되지 않은 헤더는 ASCII 문자 집합에서 임의의 텍스트를 나열합니다. 그러나 "
+":rfc:`2047`\\은 비 ASCII 텍스트를 헤더 값 내에서 ASCII 문자로 인코딩하기 위한 :rfc:`5322` 호환 "
+"메커니즘을 가지고 있습니다. 인코딩된 단어를 포함하는 *value*\\가 생성자에 전달되면, "
+"``UnstructuredHeader`` 구문 분석기는 구조화되지 않은 텍스트의 :rfc:`2047` 규칙에 따라 인코딩된 단어를 "
+"유니코드로 변환합니다. 구문 분석기는 휴리스틱을 사용하여 특정 비 호환 인코딩된 단어를 디코딩하려고 시도합니다. 인코딩된 단어나 "
+"인코딩되지 않는 텍스트 내의 유효하지 않은 문자와 같은 문제에 대한 결함뿐만 아니라 이럴 때 결함을 등록합니다."
 
 #: ../Doc/library/email.headerregistry.rst:136
 msgid "This header type provides no additional attributes."
-msgstr ""
+msgstr "이 헤더 유형은 추가 어트리뷰트를 제공하지 않습니다."
 
 #: ../Doc/library/email.headerregistry.rst:141
 msgid ""
@@ -189,11 +242,13 @@ msgid ""
 "as recognizing a number of variant forms that are sometimes found \"in "
 "the wild\"."
 msgstr ""
+":rfc:`5322`\\는 전자 우편 헤더 내의 날짜에 대해 매우 구체적인 형식을 지정합니다. ``DateHeader`` 구문 "
+"분석기는 이 날짜 형식을 인식할 뿐만 아니라, \"야생\"에서 발견되는 다양한 변종 형식을 인식합니다."
 
 #: ../Doc/library/email.headerregistry.rst:146
 #: ../Doc/library/email.headerregistry.rst:188
 msgid "This header type provides the following additional attributes:"
-msgstr ""
+msgstr "이 헤더 유형은 다음과 같은 추가 어트리뷰트를 제공합니다:"
 
 #: ../Doc/library/email.headerregistry.rst:150
 msgid ""
@@ -207,12 +262,20 @@ msgid ""
 "``datetime`` that uses :class:`datetime.timezone` to record the timezone "
 "offset."
 msgstr ""
+"헤더 값이 한 양식이나 다른 양식의 유효한 날짜로 인식될 수 있으면, 이 어트리뷰트는 해당 날짜를 나타내는 "
+":class:`~datetime.datetime` 인스턴스가 포함됩니다. 입력 날짜의 시간대가 ``-0000``\\으로 지정되면 "
+"(UTC이지만 소스 시간대에 대한 정보는 포함하지 않음을 나타냅니다), :attr:`.datetime`\\은 나이브 "
+":class:`~datetime.datetime`\\이 됩니다. 특정 시간대 오프셋이 발견되면 (`+0000`\\을 포함합니다), "
+":attr:`.datetime`\\에는 :class:`datetime.timezone`\\을 사용하여 시간대 오프셋을 기록하는 "
+"어웨어 ``datetime``\\이 포함됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:160
 msgid ""
 "The ``decoded`` value of the header is determined by formatting the "
 "``datetime`` according to the :rfc:`5322` rules; that is, it is set to::"
 msgstr ""
+"헤더의 ``decoded`` 값은 :rfc:`5322` 규칙에 따라 ``datetime``\\을 포매팅해서 결정됩니다; 즉, 다음과"
+" 같이 설정됩니다::"
 
 #: ../Doc/library/email.headerregistry.rst:165
 msgid ""
@@ -220,6 +283,8 @@ msgid ""
 ":class:`~datetime.datetime` instance.  This means, for example, that the "
 "following code is valid and does what one would expect::"
 msgstr ""
+"``DateHeader``\\를 만들 때, *value*\\는 :class:`~datetime.datetime` 인스턴스일 수 "
+"있습니다. 이것은, 예를 들어, 다음 코드가 유효하고 기대하는 것을 수행함을 뜻합니다::"
 
 #: ../Doc/library/email.headerregistry.rst:171
 msgid ""
@@ -228,12 +293,15 @@ msgid ""
 "Much more useful is to use the :func:`~email.utils.localtime` function "
 "from the :mod:`~email.utils` module::"
 msgstr ""
+"이것은 나이브 ``datetime``\\이므로 UTC 타임스탬프로 해석되며 결괏값의 시간대는 ``-0000``\\입니다. "
+":mod:`~email.utils` 모듈의 :func:`~email.utils.localtime` 함수를 사용하는 것이 훨씬 더 "
+"유용합니다::"
 
 #: ../Doc/library/email.headerregistry.rst:178
 msgid ""
 "This example sets the date header to the current time and date using the "
 "current timezone offset."
-msgstr ""
+msgstr "이 예에서는 현재 시간대 오프셋을 사용하여 날짜 헤더를 현재 시간과 날짜로 설정합니다."
 
 #: ../Doc/library/email.headerregistry.rst:184
 msgid ""
@@ -241,6 +309,8 @@ msgid ""
 "``AddressHeader`` class provides a generic interface to any address "
 "header."
 msgstr ""
+"주소 헤더는 가장 복잡한 구조화된 헤더 유형 중 하나입니다. ``AddressHeader`` 클래스는 모든 주소 헤더에 대한 범용 "
+"인터페이스를 제공합니다."
 
 #: ../Doc/library/email.headerregistry.rst:193
 msgid ""
@@ -249,6 +319,8 @@ msgid ""
 "represented in this list as single-address ``Groups`` whose "
 ":attr:`~.Group.display_name` is ``None``."
 msgstr ""
+"헤더 값에서 찾은 주소와 그룹을 인코딩하는 :class:`.Group` 객체의 튜플. 그룹 일부가 아닌 주소는 이 목록에서 "
+":attr:`~.Group.display_name`\\이 ``None``\\인 단일 주소 ``Groups``\\로 표현됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:201
 msgid ""
@@ -258,6 +330,8 @@ msgid ""
 "at the point where the group occurs in the value (that is, the list of "
 "addresses is \"flattened\" into a one dimensional list)."
 msgstr ""
+"헤더 값의 모든 개별 주소를 인코딩하는 :class:`.Address` 객체의 튜플. 헤더 값이 그룹을 포함하면, 그룹의 개별 "
+"주소가 값에서 그룹이 발생하는 지점에서 목록에 포함됩니다 (즉, 주소 목록은 1차원 목록으로 \"평평하게\" 만들어집니다)."
 
 #: ../Doc/library/email.headerregistry.rst:207
 msgid ""
@@ -267,6 +341,10 @@ msgid ""
 "ing the :class:`str` value of the elements of the ``groups`` attribute "
 "with ``', '``."
 msgstr ""
+"헤더의 ``decoded`` 값에서는 모든 인코딩된 단어가 유니코드로 디코딩됩니다. "
+":class:`~encodings.idna`\\로 인코딩된 도메인 이름도 유니코드로 디코딩됩니다. ``decoded`` 값은 "
+"``groups`` 어트리뷰트 요소의 :class:`str` 값을 ``', '``\\로 :attr:`~str.join`\\하여 "
+"설정됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:213
 msgid ""
@@ -277,10 +355,13 @@ msgid ""
 "by using the list obtained from the ``groups`` attribute of the source "
 "header."
 msgstr ""
+":class:`.Address`\\와 :class:`.Group` 객체의 목록을 임의 조합한 목록을 주소 헤더의 값을 설정하는 데 "
+"사용할 수 있습니다. ``display_name``\\이 ``None``\\인 ``Group`` 객체는 단일 주소로 해석되므로, "
+"소스 헤더의 ``groups`` 어트리뷰트에서 얻은 목록을 사용하여 주소 목록을 그룹과 함께 그대로 복사할 수 있습니다."
 
 #: ../Doc/library/email.headerregistry.rst:222
 msgid "A subclass of :class:`.AddressHeader` that adds one additional attribute:"
-msgstr ""
+msgstr "하나의 추가 어트리뷰트를 추가하는 :class:`.AddressHeader`\\의 서브 클래스:"
 
 #: ../Doc/library/email.headerregistry.rst:228
 msgid ""
@@ -289,6 +370,8 @@ msgid ""
 "the RFC under the default :mod:`~email.policy`), accessing this attribute"
 " will result in a :exc:`ValueError`."
 msgstr ""
+"헤더 값으로 인코딩된 단일 주소. 헤더 값에 실제로 둘 이상의 주소가 포함될 때 (기본 :mod:`~email.policy`\\에서"
+" RFC 위반입니다), 이 어트리뷰트에 액세스하면 :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/email.headerregistry.rst:234
 msgid ""
@@ -296,6 +379,9 @@ msgid ""
 "``UniqueUnstructuredHeader``).  The only difference is that in the "
 "``Unique`` variant, :attr:`~.BaseHeader.max_count` is set to 1."
 msgstr ""
+"위의 많은 클래스에는 ``Unique`` 변형도 있습니다 (예를 들어, ``UniqueUnstructuredHeader``). "
+"유일한 차이점은 ``Unique`` 변형에서 :attr:`~.BaseHeader.max_count`\\가 1로 설정되어 있다는 "
+"것입니다."
 
 #: ../Doc/library/email.headerregistry.rst:241
 msgid ""
@@ -305,20 +391,23 @@ msgid ""
 "value per :rfc:`2045`, then the header object will have non-``None`` "
 "values for the following attributes:"
 msgstr ""
+":mailheader:`MIME-Version` 헤더에는 실제로 하나의 유효한 값만 있으며, 이는 ``1.0``\\입니다. 미래에 "
+"안전하기 위해, 이 헤더 클래스는 다른 유효한 버전 번호를 지원합니다. 버전 번호가 :rfc:`2045`\\에 따라 유효한 값을 "
+"가지면, 헤더 객체는 다음 어트리뷰트에 ``None``\\이 아닌 값을 갖습니다:"
 
 #: ../Doc/library/email.headerregistry.rst:249
 msgid ""
 "The version number as a string, with any whitespace and/or comments "
 "removed."
-msgstr ""
+msgstr "공백 및/또는 주석이 제거된 문자열 버전 번호."
 
 #: ../Doc/library/email.headerregistry.rst:254
 msgid "The major version number as an integer"
-msgstr ""
+msgstr "정수 주 버전 번호"
 
 #: ../Doc/library/email.headerregistry.rst:258
 msgid "The minor version number as an integer"
-msgstr ""
+msgstr "정수 부 버전 번호"
 
 #: ../Doc/library/email.headerregistry.rst:263
 msgid ""
@@ -328,40 +417,47 @@ msgid ""
 " This class serves as a base for all the MIME headers that take "
 "parameters."
 msgstr ""
+"MIME 헤더는 모두 접두사 'Content-'로 시작합니다. 각 특정 헤더에는 해당 헤더의 클래스에 설명된 특정 값이 있습니다. "
+"일부는 공통 형식을 가진 보조 파라미터 목록을 취할 수도 있습니다. 이 클래스는 파라미터를 취하는 모든 MIME 헤더의 베이스로 "
+"사용됩니다."
 
 #: ../Doc/library/email.headerregistry.rst:270
 msgid "A dictionary mapping parameter names to parameter values."
-msgstr ""
+msgstr "파라미터 이름을 파라미터값으로 매핑하는 딕셔너리."
 
 #: ../Doc/library/email.headerregistry.rst:275
 msgid ""
 "A :class:`ParameterizedMIMEHeader` class that handles the :mailheader"
 ":`Content-Type` header."
-msgstr ""
+msgstr ":mailheader:`Content-Type` 헤더를 처리하는 :class:`ParameterizedMIMEHeader` 클래스."
 
 #: ../Doc/library/email.headerregistry.rst:280
 msgid "The content type string, in the form ``maintype/subtype``."
-msgstr ""
+msgstr "``maintype/subtype`` 형식의 콘텐츠 유형 문자열."
 
 #: ../Doc/library/email.headerregistry.rst:289
 msgid ""
 "A :class:`ParameterizedMIMEHeader` class that handles the :mailheader"
 ":`Content-Disposition` header."
 msgstr ""
+":mailheader:`Content-Disposition` 헤더를 처리하는 "
+":class:`ParameterizedMIMEHeader` 클래스."
 
 #: ../Doc/library/email.headerregistry.rst:294
 msgid "``inline`` and ``attachment`` are the only valid values in common use."
-msgstr ""
+msgstr "``inline``\\과 ``attachment``\\가 일반적으로 사용되는 유일하게 유효한 값입니다."
 
 #: ../Doc/library/email.headerregistry.rst:299
 msgid "Handles the :mailheader:`Content-Transfer-Encoding` header."
-msgstr ""
+msgstr ":mailheader:`Content-Transfer-Encoding` 헤더를 처리합니다."
 
 #: ../Doc/library/email.headerregistry.rst:303
 msgid ""
 "Valid values are ``7bit``, ``8bit``, ``base64``, and ``quoted-"
 "printable``.  See :rfc:`2045` for more information."
 msgstr ""
+"유효한 값은 ``7bit``, ``8bit``, ``base64`` 및 ``quoted-printable``\\입니다. 자세한 "
+"정보는 :rfc:`2045`\\를 참조하십시오."
 
 #: ../Doc/library/email.headerregistry.rst:312
 msgid ""
@@ -375,59 +471,65 @@ msgid ""
 " the registry during initialization.  *base_class* is always the last "
 "class in the generated class's ``__bases__`` list."
 msgstr ""
+"기본적으로 :class:`~email.policy.EmailPolicy`\\에서 사용되는 팩토리입니다. "
+"``HeaderRegistry``\\는 *base_class*\\와 보유한 등록소에서 꺼낸 특수화된 클래스를 사용하여 헤더 "
+"인스턴스를 동적으로 만드는 데 사용되는 클래스를 구축합니다. 지정된 헤더 이름이 등록소에 나타나지 않으면, "
+"*default_class*\\에 의해 지정된 클래스가 특수화된 클래스로 사용됩니다. *use_default_map*\\이 "
+"``True``\\(기본값)이면, 헤더 이름에서 클래스로의 표준 매핑이 초기화 중에 등록소에 복사됩니다. "
+"*base_class*\\는 항상 생성된 클래스의 ``__bases__`` 목록에서 마지막 클래스입니다."
 
 #: ../Doc/library/email.headerregistry.rst:322
 msgid "The default mappings are:"
-msgstr ""
+msgstr "기본 매핑은 다음과 같습니다:"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "subject"
-msgstr ""
+msgstr "subject"
 
 #: ../Doc/library/email.headerregistry.rst:324
 msgid "UniqueUnstructuredHeader"
-msgstr ""
+msgstr "UniqueUnstructuredHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "date"
-msgstr ""
+msgstr "date"
 
 #: ../Doc/library/email.headerregistry.rst:325
 #: ../Doc/library/email.headerregistry.rst:327
 msgid "UniqueDateHeader"
-msgstr ""
+msgstr "UniqueDateHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "resent-date"
-msgstr ""
+msgstr "resent-date"
 
 #: ../Doc/library/email.headerregistry.rst:326
 msgid "DateHeader"
-msgstr ""
+msgstr "DateHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "orig-date"
-msgstr ""
+msgstr "orig-date"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "sender"
-msgstr ""
+msgstr "sender"
 
 #: ../Doc/library/email.headerregistry.rst:328
 msgid "UniqueSingleAddressHeader"
-msgstr ""
+msgstr "UniqueSingleAddressHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "resent-sender"
-msgstr ""
+msgstr "resent-sender"
 
 #: ../Doc/library/email.headerregistry.rst:329
 msgid "SingleAddressHeader"
-msgstr ""
+msgstr "SingleAddressHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "to"
-msgstr ""
+msgstr "to"
 
 #: ../Doc/library/email.headerregistry.rst:330
 #: ../Doc/library/email.headerregistry.rst:332
@@ -435,90 +537,90 @@ msgstr ""
 #: ../Doc/library/email.headerregistry.rst:336
 #: ../Doc/library/email.headerregistry.rst:338
 msgid "UniqueAddressHeader"
-msgstr ""
+msgstr "UniqueAddressHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "resent-to"
-msgstr ""
+msgstr "resent-to"
 
 #: ../Doc/library/email.headerregistry.rst:331
 #: ../Doc/library/email.headerregistry.rst:333
 #: ../Doc/library/email.headerregistry.rst:335
 #: ../Doc/library/email.headerregistry.rst:337
 msgid "AddressHeader"
-msgstr ""
+msgstr "AddressHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "cc"
-msgstr ""
+msgstr "cc"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "resent-cc"
-msgstr ""
+msgstr "resent-cc"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "bcc"
-msgstr ""
+msgstr "bcc"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "resent-bcc"
-msgstr ""
+msgstr "resent-bcc"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "from"
-msgstr ""
+msgstr "from"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "resent-from"
-msgstr ""
+msgstr "resent-from"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "reply-to"
-msgstr ""
+msgstr "reply-to"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "mime-version"
-msgstr ""
+msgstr "mime-version"
 
 #: ../Doc/library/email.headerregistry.rst:339
 msgid "MIMEVersionHeader"
-msgstr ""
+msgstr "MIMEVersionHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "content-type"
-msgstr ""
+msgstr "content-type"
 
 #: ../Doc/library/email.headerregistry.rst:340
 msgid "ContentTypeHeader"
-msgstr ""
+msgstr "ContentTypeHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "content-disposition"
-msgstr ""
+msgstr "content-disposition"
 
 #: ../Doc/library/email.headerregistry.rst:341
 msgid "ContentDispositionHeader"
-msgstr ""
+msgstr "ContentDispositionHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "content-transfer-encoding"
-msgstr ""
+msgstr "content-transfer-encoding"
 
 #: ../Doc/library/email.headerregistry.rst:342
 msgid "ContentTransferEncodingHeader"
-msgstr ""
+msgstr "ContentTransferEncodingHeader"
 
 #: ../Doc/library/email.headerregistry.rst
 msgid "message-id"
-msgstr ""
+msgstr "message-id"
 
 #: ../Doc/library/email.headerregistry.rst:343
 msgid "MessageIDHeader"
-msgstr ""
+msgstr "MessageIDHeader"
 
 #: ../Doc/library/email.headerregistry.rst:345
 msgid "``HeaderRegistry`` has the following methods:"
-msgstr ""
+msgstr "``HeaderRegistry``\\에는 다음과 같은 메서드가 있습니다:"
 
 #: ../Doc/library/email.headerregistry.rst:350
 msgid ""
@@ -527,10 +629,12 @@ msgid ""
 "along with *base_class*, to create the class used to instantiate headers "
 "that match *name*."
 msgstr ""
+"*name*\\은 매핑할 헤더의 이름입니다. 등록소에서 소문자로 변환됩니다. *cls*\\는 *name*\\과 일치하는 헤더를 "
+"인스턴스 화하는 데 사용되는 클래스를 만들기 위해 *base_class*\\와 함께 사용되는 특수 클래스입니다."
 
 #: ../Doc/library/email.headerregistry.rst:358
 msgid "Construct and return a class to handle creating a *name* header."
-msgstr ""
+msgstr "*name* 헤더 생성을 처리할 클래스를 구성하고 반환합니다."
 
 #: ../Doc/library/email.headerregistry.rst:363
 msgid ""
@@ -540,6 +644,9 @@ msgid ""
 "class's constructor, passing it the same argument list, and finally "
 "returns the class instance created thereby."
 msgstr ""
+"등록소에서 *name*\\과 연관된 특수화된 헤더를 꺼내고 (등록소에 *name*\\이 없으면 *default_class*\\를 "
+"사용해서), *base_class*\\와 결합하여 클래스를 생성하고, 생성된 클래스의 생성자를 같은 인자 목록을 전달해서 호출한 "
+"후, 마지막으로 이렇게 만들어진 클래스 인스턴스를 반환합니다."
 
 #: ../Doc/library/email.headerregistry.rst:370
 msgid ""
@@ -547,22 +654,24 @@ msgid ""
 "structured headers and can, in general, be used by an application program"
 " to construct structured values to assign to specific headers."
 msgstr ""
+"다음 클래스는 구조화된 헤더에서 구문 분석된 데이터를 나타내는 데 사용되는 클래스이며 일반적으로 응용 프로그램에서 특정 헤더에 "
+"지정할 구조화된 값을 대입하는 데 사용할 수 있습니다."
 
 #: ../Doc/library/email.headerregistry.rst:377
 msgid ""
 "The class used to represent an email address.  The general form of an "
 "address is::"
-msgstr ""
+msgstr "전자 우편 주소를 나타내는 데 사용되는 클래스. 주소의 일반적인 형식은 다음과 같습니다::"
 
 #: ../Doc/library/email.headerregistry.rst:382
 msgid "or::"
-msgstr ""
+msgstr "또는::"
 
 #: ../Doc/library/email.headerregistry.rst:386
 msgid ""
 "where each part must conform to specific syntax rules spelled out in "
 ":rfc:`5322`."
-msgstr ""
+msgstr "여기서 각 부분은 :rfc:`5322`\\에 명시된 특정 문법 규칙을 준수해야 합니다."
 
 #: ../Doc/library/email.headerregistry.rst:389
 msgid ""
@@ -573,21 +682,26 @@ msgid ""
 "and will be property encoded when serialized.  However, per the RFCs, "
 "unicode is *not* allowed in the username portion of the address."
 msgstr ""
+"편의상 *username*\\과 *domain* 대신 *addr_spec*\\을 지정할 수 있으며, 이 경우 "
+"*addr_spec*\\에서 *username*\\과 *domain*\\이 구문 분석됩니다. *addr_spec*\\은 올바르게 "
+"RFC 인용된 문자열(quoted string)이어야 합니다; 그렇지 않으면 ``Address``\\는 에러를 발생시킵니다. "
+"유니코드 문자는 허용되며 직렬화될 때 적절하게 인코딩됩니다. 그러나, RFC에 따라, 주소의 사용자 이름 부분에는 유니코드가 "
+"허용되지 *않습니다*."
 
 #: ../Doc/library/email.headerregistry.rst:398
 msgid ""
 "The display name portion of the address, if any, with all quoting "
 "removed.  If the address does not have a display name, this attribute "
 "will be an empty string."
-msgstr ""
+msgstr "모든 인용(quoting)이 제거된 주소의 표시 이름 부분 (있다면). 주소에 표시 이름이 없으면, 이 어트리뷰트는 빈 문자열입니다."
 
 #: ../Doc/library/email.headerregistry.rst:404
 msgid "The ``username`` portion of the address, with all quoting removed."
-msgstr ""
+msgstr "모든 인용(quoting)이 제거된 주소의 ``username`` 부분."
 
 #: ../Doc/library/email.headerregistry.rst:408
 msgid "The ``domain`` portion of the address."
-msgstr ""
+msgstr "주소의 ``domain`` 부분."
 
 #: ../Doc/library/email.headerregistry.rst:412
 msgid ""
@@ -595,6 +709,8 @@ msgid ""
 "as a bare address (the second form shown above).  This attribute is not "
 "mutable."
 msgstr ""
+"주소의 ``username@domain`` 부분, 단순 주소(위의 두 번째 형식)로 사용하기 위해 올바르게 "
+"인용(quoted)됩니다. 이 어트리뷰트는 불변입니다."
 
 #: ../Doc/library/email.headerregistry.rst:418
 msgid ""
@@ -602,6 +718,8 @@ msgid ""
 ":rfc:`5322` rules, but with no Content Transfer Encoding of any non-ASCII"
 " characters."
 msgstr ""
+"객체의 ``str`` 값은 :rfc:`5322` 규칙에 따라 인용된(quoted) 주소이지만, ASCII가 아닌 문자의 콘텐츠 전송"
+" 인코딩(Content Transfer Encoding)은 없습니다."
 
 #: ../Doc/library/email.headerregistry.rst:422
 msgid ""
@@ -609,12 +727,15 @@ msgid ""
 "``username`` and ``domain`` are both the empty string (or ``None``), then"
 " the string value of the ``Address`` is ``<>``."
 msgstr ""
+"SMTP(:rfc:`5321`)를 지원하기 위해, ``Address``\\는 한가지 특별한 경우를 처리합니다: "
+"``username``\\과 ``domain``\\이 모두 빈 문자열(또는 ``None``)이면, ``Address``\\의 문자열"
+" 값은 ``<>``\\입니다."
 
 #: ../Doc/library/email.headerregistry.rst:429
 msgid ""
 "The class used to represent an address group.  The general form of an "
 "address group is::"
-msgstr ""
+msgstr "주소 그룹을 표현하는 데 사용되는 클래스. 주소 그룹의 일반적인 형식은 다음과 같습니다::"
 
 #: ../Doc/library/email.headerregistry.rst:434
 msgid ""
@@ -624,6 +745,9 @@ msgid ""
 "*display_name* to ``None`` and providing a list of the single address as "
 "*addresses*."
 msgstr ""
+"그룹과 단일 주소의 혼합으로 구성된 주소 목록 처리의 편의를 위해, *display_name*\\을 ``None``\\으로 설정하고"
+" 단일 주소 목록을 *addresses*\\로 제공하여, ``Group``\\을 그룹의 일부가 아닌 단일 주소를 나타내는 데 사용할"
+" 수도 있습니다."
 
 #: ../Doc/library/email.headerregistry.rst:441
 msgid ""
@@ -631,12 +755,14 @@ msgid ""
 "exactly one ``Address`` in ``addresses``, then the ``Group`` represents a"
 " single address that is not in a group."
 msgstr ""
+"그룹의 ``display_name``. ``None``\\이고 ``addresses``\\에 정확히 하나의 "
+"``Address``\\가 있으면, ``Group``\\은 그룹에 속하지 않은 단일 주소를 나타냅니다."
 
 #: ../Doc/library/email.headerregistry.rst:447
 msgid ""
 "A possibly empty tuple of :class:`.Address` objects representing the "
 "addresses in the group."
-msgstr ""
+msgstr "그룹에 있는 주소를 나타내는 :class:`.Address` 객체의 비어있을 수 있는 튜플."
 
 #: ../Doc/library/email.headerregistry.rst:452
 msgid ""
@@ -646,14 +772,18 @@ msgid ""
 "``addresses`` list, the ``str`` value will be the same as the ``str`` of "
 "that single ``Address``."
 msgstr ""
+"``Group``\\의 ``str`` 값은 :rfc:`5322`\\에 따라 포맷되지만, ASCII가 아닌 문자의 콘텐츠 전송 "
+"인코딩(Content Transfer Encoding)은 없습니다. ``display_name``\\이 None이고 "
+"``addresses`` 목록에 단일 ``Address``\\가 있으면 ``str`` 값은 해당 단일 ``Address``\\의 "
+"``str``\\과 같습니다."
 
 #: ../Doc/library/email.headerregistry.rst:460
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/email.headerregistry.rst:461
 msgid ""
 "Originally added in 3.3 as a :term:`provisional module <provisional "
 "package>`"
-msgstr ""
+msgstr "원래 3.3에서 :term:`잠정적 모듈 <provisional package>`\\로 추가되었습니다."
 
