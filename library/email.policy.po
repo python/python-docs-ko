@@ -3,27 +3,26 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-26 18:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
 #: ../Doc/library/email.policy.rst:2
 msgid ":mod:`email.policy`: Policy Objects"
-msgstr ""
+msgstr ":mod:`email.policy`: 정책 객체"
 
 #: ../Doc/library/email.policy.rst:12
 msgid "**Source code:** :source:`Lib/email/policy.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/email/policy.py`"
 
 #: ../Doc/library/email.policy.rst:16
 msgid ""
@@ -39,12 +38,18 @@ msgid ""
 "servers that do not themselves follow the standards, or that implement "
 "extensions you want to use in ways that violate the standards."
 msgstr ""
+":mod:`email` 패키지의 주요 초점은 다양한 전자 우편과 MIME RFC에 설명된 대로 전자 우편 메시지를 처리하는 "
+"것입니다. 그러나 전자 우편 메시지의 일반적인 형식(각각 이름, 콜론, 값 순으로 구성된 헤더 필드의 블록, 빈 줄과 임의의 "
+"'본문' 이 뒤따르는 전체 블록)은 전자 우편 영역 밖에서도 용도가 발견되는 형식입니다. 이러한 용도 중 일부는 메인 전자 우편 "
+"RFC와 상당히 유사하지만, 일부는 그렇지 않습니다. 전자 우편으로 작업할 때에도, RFC의 엄격한 준수를 위반하는 것이 바람직할 "
+"때가 있습니다. 가령 표준을 따르지 않는 전자 우편 서버와 상호 운영되거나 표준을 위반하는 방식으로 사용하기 원하는 확장을 구현하는"
+" 전자 우편을 생성하는 경우가 그렇습니다."
 
 #: ../Doc/library/email.policy.rst:28
 msgid ""
 "Policy objects give the email package the flexibility to handle all these"
 " disparate use cases."
-msgstr ""
+msgstr "정책 객체는 email 패키지에 이러한 개별 사용 사례를 모두 처리 할 수 있는 유연성을 제공합니다."
 
 #: ../Doc/library/email.policy.rst:31
 msgid ""
@@ -54,6 +59,9 @@ msgid ""
 "and methods in the email package to alter the default behavior.  The "
 "settable values and their defaults are described below."
 msgstr ""
+":class:`Policy` 객체는 사용 중에 email 패키지의 다양한 구성 요소 동작을 제어하는 일련의 어트리뷰트와 메서드를 "
+"캡슐화합니다. :class:`Policy` 인스턴스는 email 패키지의 다양한 클래스와 메서드로 전달되어 기본 동작을 변경할 수 "
+"있습니다. 설정 가능한 값과 기본값은 아래에 설명되어 있습니다."
 
 #: ../Doc/library/email.policy.rst:37
 msgid ""
@@ -65,6 +73,10 @@ msgid ""
 "compatibility (in some cases, including bug compatibility) with the pre-"
 "Python3.3 version of the email package."
 msgstr ""
+"email 패키지의 모든 클래스에서 사용되는 기본 정책이 있습니다. 모든 :mod:`~email.parser` 클래스와 관련 편의 "
+"함수 및 :class:`~email.message.Message` 클래스의 경우, 이것은 사전 정의된 인스턴스 "
+":const:`compat32`\\를 통한 :class:`Compat32` 정책입니다. 이 정책은 파이썬 3.3 이전 버전의 "
+"email 패키지와 완전한 과거 호환성(어떤 경우에는, 버그 호환성을 포함합니다)을 제공합니다."
 
 #: ../Doc/library/email.policy.rst:44
 msgid ""
@@ -72,6 +84,8 @@ msgid ""
 ":class:`~email.message.EmailMessage` is the :class:`EmailPolicy` policy, "
 "via its pre-defined instance :data:`~default`."
 msgstr ""
+":class:`~email.message.EmailMessage`\\에 대한 *policy* 키워드의 기본값은 사전 정의된 인스턴스"
+" :data:`~default`\\를 통한 :class:`EmailPolicy` 정책입니다."
 
 #: ../Doc/library/email.policy.rst:48
 msgid ""
@@ -85,6 +99,11 @@ msgid ""
 "by default, but you can also pass a specific policy to the generator that"
 " will override the one stored on the message object."
 msgstr ""
+":class:`~email.message.Message`\\나 :class:`~email.message.EmailMessage` "
+"객체가 만들어질 때, 정책을 획득합니다. 메시지가 :mod:`~email.parser`\\로 만들어지면, 구문 분석기에 전달된 "
+"정책이 만들어지는 메시지가 사용하는 정책이 됩니다. 프로그램이 메시지를 만들면, 만들 때 정책을 지정할 수 있습니다. 메시지가 "
+":mod:`~email.generator`\\에 전달될 때, 제너레이터는 기본적으로 메시지의 정책을 사용하지만, 특정 정책을 "
+"제너레이터에 전달하여 메시지 객체에 저장된 정책을 재정의할 수도 있습니다."
 
 #: ../Doc/library/email.policy.rst:57
 msgid ""
@@ -94,6 +113,9 @@ msgid ""
 "explicitly which policy you want to use** when calling any of the classes"
 " and functions described in the :mod:`~email.parser` module."
 msgstr ""
+":mod:`email.parser` 클래스와 구문 분석기 편의 함수에 대한 *policy* 키워드의 기본값은 이후 버전의 파이썬에서"
+" **변경될 예정**\\입니다. 따라서 :mod:`~email.parser` 모듈에서 설명된 클래스와 함수를 호출할 때는 **항상 "
+"사용할 정책을 명시적으로 지정**\\해야 합니다."
 
 #: ../Doc/library/email.policy.rst:63
 msgid ""
@@ -107,6 +129,11 @@ msgid ""
 "that provide the standard behavior and the backward compatible behavior "
 "and features, respectively."
 msgstr ""
+"이 설명서의 첫 부분은 :const:`compat32`\\를 포함한 모든 정책 객체에 공통적인 기능을 정의하는 :term:`추상 "
+"베이스 클래스 <abstract base class>` 인 :class:`Policy`\\의 기능을 다룹니다. 여기에는 email "
+"패키지에 의해 내부적으로 호출되는 특정 훅 메서드가 포함되며, 사용자 정의 정책은 다른 동작을 얻기 위해 재정의할 수 있습니다. 두"
+" 번째 부분에서는 표준 동작과 이전 버전과 호환되는 동작과 기능을 각각 제공하는 훅을 구현하는 구상 클래스 "
+":class:`EmailPolicy`\\와 :class:`Compat32`\\를 설명합니다."
 
 #: ../Doc/library/email.policy.rst:72
 msgid ""
@@ -115,6 +142,8 @@ msgid ""
 "returning a new :class:`Policy` instance that is a copy of the original "
 "but with the specified attributes values changed."
 msgstr ""
+":class:`Policy` 인스턴스는 불변이지만, 복제할 수 있는데, 클래스 생성자와 같은 키워드 인자를 받아들이고 원본의 "
+"사본이지만 지정된 어트리뷰트 값이 변경된 새 :class:`Policy` 인스턴스를 반환합니다."
 
 #: ../Doc/library/email.policy.rst:77
 msgid ""
@@ -122,6 +151,8 @@ msgid ""
 "from a file on disk and pass it to the system ``sendmail`` program on a "
 "Unix system:"
 msgstr ""
+"예를 들어, 다음 코드를 사용하여 디스크의 파일에서 전자 우편 메시지를 읽고 유닉스 시스템의 시스템 ``sendmail`` "
+"프로그램으로 전달할 수 있습니다:"
 
 #: ../Doc/library/email.policy.rst:113
 msgid ""
@@ -130,6 +161,9 @@ msgid ""
 "feed into ``sendmail's`` ``stdin``, where the default policy would use "
 "``\\n`` line separators."
 msgstr ""
+"여기서 우리는 :class:`~email.generator.BytesGenerator`\\에게 ``sendmail``\\의 "
+"``stdin``\\으로 공급할 바이너리 문자열을 만들 때 RFC 올바른 줄 구분자 문자를 사용하도록 지시합니다. 기본 정책은 "
+"``\\n`` 줄 구분자를 사용합니다."
 
 #: ../Doc/library/email.policy.rst:118
 msgid ""
@@ -139,19 +173,22 @@ msgid ""
 " object from the previous example and writes the message to a file using "
 "the native line separators for the platform on which it is running::"
 msgstr ""
+"일부 email 패키지 메서드는 *policy* 키워드 인자를 받아들여, 해당 메서드에 대한 정책을 대체 할 수 있도록 합니다. "
+"예를 들어, 다음 코드는 이전 예제의 *msg* 객체의 :meth:`~email.message.Message.as_bytes` "
+"메서드를 사용하고 실행 중인 플랫폼의 기본 줄 구분자를 사용하여 메시지를 파일에 씁니다::"
 
 #: ../Doc/library/email.policy.rst:129
 msgid ""
 "Policy objects can also be combined using the addition operator, "
 "producing a policy object whose settings are a combination of the non-"
 "default values of the summed objects::"
-msgstr ""
+msgstr "더하기 연산자를 사용하여 정책 객체를 결합하여, 기본값이 아닌 설정이 합쳐진 조합으로 설정된 정책 객체를 생성할 수도 있습니다::"
 
 #: ../Doc/library/email.policy.rst:137
 msgid ""
 "This operation is not commutative; that is, the order in which the "
 "objects are added matters.  To illustrate::"
-msgstr ""
+msgstr "이 연산은 교환적(commutative)이지 않습니다; 즉, 객체가 더해지는 순서가 중요합니다. 예시하면 이렇습니다::"
 
 #: ../Doc/library/email.policy.rst:152
 msgid ""
@@ -160,6 +197,8 @@ msgid ""
 " as the implementation of the immutability property, the :meth:`clone` "
 "method, and the constructor semantics."
 msgstr ""
+"모든 정책 클래스의 :term:`추상 베이스 클래스 <abstract base class>`\\입니다. 불변 속성, "
+":meth:`clone` 메서드 및 생성자 시맨틱의 구현뿐만 아니라 몇 가지 간단한 메서드에 대한 기본 구현을 제공합니다."
 
 #: ../Doc/library/email.policy.rst:157
 msgid ""
@@ -169,12 +208,14 @@ msgid ""
 "the concrete class.  A value specified in the constructor will override "
 "the default value for the corresponding attribute."
 msgstr ""
+"정책 클래스의 생성자에는 다양한 키워드 인자가 전달될 수 있습니다. 지정할 수 있는 인자는 이 클래스의 메서드 이외의 프로퍼티, "
+"그리고 구상 클래스의 메서드 이외의 프로퍼티입니다. 생성자에 지정된 값은 해당 어트리뷰트의 기본값을 재정의합니다."
 
 #: ../Doc/library/email.policy.rst:163
 msgid ""
 "This class defines the following properties, and thus values for the "
 "following may be passed in the constructor of any policy class:"
-msgstr ""
+msgstr "이 클래스는 다음 프로퍼티를 정의합니다. 따라서, 모든 정책 클래스의 생성자에 다음에 대한 값이 전달될 수 있습니다:"
 
 #: ../Doc/library/email.policy.rst:169
 msgid ""
@@ -183,6 +224,8 @@ msgid ""
 "``0`` or :const:`None` indicates that no line wrapping should be done at "
 "all."
 msgstr ""
+"줄 종료 문자를 포함하지 않고, 직렬화된 출력에서 줄의 최대 길이. :rfc:`5322`\\에 따라 기본값은 78입니다. "
+"``0``\\이나 :const:`None` 값은 줄 바꿈을 전혀 수행하지 않아야 함을 나타냅니다."
 
 #: ../Doc/library/email.policy.rst:177
 msgid ""
@@ -190,16 +233,18 @@ msgid ""
 "default is ``\\n`` because that's the internal end-of-line discipline "
 "used by Python, though ``\\r\\n`` is required by the RFCs."
 msgstr ""
+"직렬화된 출력에서 줄을 종료하는 데 사용되는 문자열입니다. RFC는 ``\\r\\n``\\을 요구하지만, 기본값은 파이썬에서 "
+"사용하는 내부 줄 종료 규칙을 따라 ``\\n``\\입니다."
 
 #: ../Doc/library/email.policy.rst:184
 msgid ""
 "Controls the type of Content Transfer Encodings that may be or are "
 "required to be used.  The possible values are:"
-msgstr ""
+msgstr "사용해야 하는 콘텐츠 전송 인코딩(Content Transfer Encoding) 유형을 제어합니다. 가능한 값은 다음과 같습니다:"
 
 #: ../Doc/library/email.policy.rst:190
 msgid "``7bit``"
-msgstr ""
+msgstr "``7bit``"
 
 #: ../Doc/library/email.policy.rst:190
 msgid ""
@@ -207,10 +252,12 @@ msgid ""
 "necessary data will be encoded using either quoted-printable or base64 "
 "encoding."
 msgstr ""
+"모든 데이터는 \"7비트 클린\"(ASCII 전용)이어야 합니다. 즉, 필요하면 quoted-printable이나 base64 "
+"인코딩을 사용하여 데이터를 인코딩합니다."
 
 #: ../Doc/library/email.policy.rst:194
 msgid "``8bit``"
-msgstr ""
+msgstr "``8bit``"
 
 #: ../Doc/library/email.policy.rst:194
 msgid ""
@@ -219,6 +266,9 @@ msgid ""
 " and :attr:`~EmailPolicy.utf8` below for exceptions), but body parts may "
 "use the ``8bit`` CTE."
 msgstr ""
+"데이터는 7비트 클린으로 제한되지 않습니다. 헤더의 데이터는 여전히 ASCII 전용이어야 하므로 인코딩되지만 (예외는 아래 "
+":meth:`fold_binary`\\와 :attr:`~EmailPolicy.utf8`\\을 참조하십시오), 본문 부분은 "
+"``8bit`` CTE를 사용할 수 있습니다."
 
 #: ../Doc/library/email.policy.rst:200
 msgid ""
@@ -227,6 +277,9 @@ msgid ""
 "``Generator`` is operating under a policy that specifies "
 "``cte_type=8bit``, it will act as if ``cte_type`` is ``7bit``."
 msgstr ""
+"``8bit`` ``cte_type`` 값은 문자열이 바이너리 데이터를 포함할 수 없어서 ``Generator``\\가 아닌 "
+"``BytesGenerator``\\에서만 작동합니다. ``Generator``\\가 ``cte_type=8bit``\\를 지정하는"
+" 정책에 따라 작동하면, ``cte_type``\\이 ``7bit``\\인 것처럼 동작합니다."
 
 #: ../Doc/library/email.policy.rst:208
 msgid ""
@@ -234,6 +287,8 @@ msgid ""
 ":const:`False` (the default), defects will be passed to the "
 ":meth:`register_defect` method."
 msgstr ""
+":const:`True`\\이면, 만나는 모든 결함을 에러로 발생시킵니다. :const:`False`\\(기본값)이면, 결함은 "
+":meth:`register_defect` 메서드로 전달됩니다."
 
 #: ../Doc/library/email.policy.rst:215
 msgid ""
@@ -241,10 +296,12 @@ msgid ""
 " by putting a ``>`` in front of them. This parameter is used when the "
 "message is being serialized by a generator. Default: :const:`False`."
 msgstr ""
+":const:`True`\\이면, 본문에서 *\"From \"*\\으로 시작하는 줄은 ``>``\\를 앞에 배치하여 이스케이프 "
+"됩니다. 이 매개 변수는 제너레이터가 메시지를 직렬화할 때 사용됩니다. 기본값: :const:`False`."
 
 #: ../Doc/library/email.policy.rst:220
 msgid "The *mangle_from_* parameter."
-msgstr ""
+msgstr "*mangle_from_* 매개 변수."
 
 #: ../Doc/library/email.policy.rst:226
 msgid ""
@@ -252,12 +309,16 @@ msgid ""
 "the parser when building messages.  Defaults to ``None``, in which case "
 ":class:`~email.message.Message` is used."
 msgstr ""
+"새로운 빈 메시지 객체를 생성하기 위한 팩토리 함수. 메시지를 구축할 때 구분 분석기가 사용합니다. 기본값은 "
+"``None``\\이며, 이때 :class:`~email.message.Message`\\가 사용됩니다."
 
 #: ../Doc/library/email.policy.rst:232
 msgid ""
 "The following :class:`Policy` method is intended to be called by code "
 "using the email library to create policy instances with custom settings:"
 msgstr ""
+"다음 :class:`Policy` 메서드는 email 라이브러리를 사용하여 사용자 정의 설정으로 정책 인스턴스를 만드는 코드가 "
+"호출하기 위한 것입니다:"
 
 #: ../Doc/library/email.policy.rst:238
 msgid ""
@@ -265,6 +326,8 @@ msgid ""
 "values as the current instance, except where those attributes are given "
 "new values by the keyword arguments."
 msgstr ""
+"키워드 인자로 새로운 값이 부여되는 어트리뷰트를 제외하고, 어트리뷰트가 현재 인스턴스와 같은 값을 갖는 새로운 "
+":class:`Policy` 인스턴스를 반환합니다."
 
 #: ../Doc/library/email.policy.rst:243
 msgid ""
@@ -272,6 +335,8 @@ msgid ""
 "code, and are not intended to be called by an application using the email"
 " package. A custom policy must implement all of these methods."
 msgstr ""
+"나머지 :class:`Policy` 메서드는 email 패키지 코드에 의해 호출되며, email 패키지를 사용하는 응용 프로그램에 "
+"의해 호출되는 용도가 아닙니다. 사용자 정의 정책은 이 모든 메서드를 구현해야 합니다."
 
 #: ../Doc/library/email.policy.rst:250
 msgid ""
@@ -279,6 +344,8 @@ msgid ""
 "method, *defect* will always be a subclass of "
 ":class:`~email.errors.Defect`."
 msgstr ""
+"*obj*\\에서 찾은 *defect*\\를 처리합니다. email 패키지가 이 메서드를 호출할 때, *defect*\\는 항상 "
+":class:`~email.errors.Defect`\\의 서브 클래스입니다."
 
 #: ../Doc/library/email.policy.rst:254
 msgid ""
@@ -286,12 +353,17 @@ msgid ""
 "it is ``True``, *defect* is raised as an exception.  If it is ``False`` "
 "(the default), *obj* and *defect* are passed to :meth:`register_defect`."
 msgstr ""
+"기본 구현은 :attr:`raise_on_defect` 플래그를 확인합니다. ``True``\\이면, *defect*\\가 예외로 "
+"발생합니다. ``False``\\(기본값)이면 *obj*\\와 *defect*\\가 :meth:`register_defect`\\로"
+" 전달됩니다."
 
 #: ../Doc/library/email.policy.rst:261
 msgid ""
 "Register a *defect* on *obj*.  In the email package, *defect* will always"
 " be a subclass of :class:`~email.errors.Defect`."
 msgstr ""
+"*obj*\\에 *defect*\\를 등록합니다. email 패키지에서, *defect*\\는 항상 "
+":class:`~email.errors.Defect`\\의 서브 클래스입니다."
 
 #: ../Doc/library/email.policy.rst:264
 msgid ""
@@ -302,10 +374,15 @@ msgid ""
 "custom ``Message`` objects) should also provide such an attribute, "
 "otherwise defects in parsed messages will raise unexpected errors."
 msgstr ""
+"기본 구현은 *obj*\\의 ``defects`` 어트리뷰트의 ``append`` 메서드를 호출합니다. email 패키지가 "
+":attr:`handle_defect`\\를 호출할 때, *obj*\\는 일반적으로 ``append`` 메서드가 있는 "
+"``defects`` 어트리뷰트가 있습니다. email 패키지와 함께 사용되는 사용자 정의 객체 형(예를 들어, 사용자 정의 "
+"``Message`` 객체)도 이러한 어트리뷰트를 제공해야 합니다, 그렇지 않으면 구문 분석된 메시지의 결함이 예기치 않은 에러를 "
+"발생시킵니다."
 
 #: ../Doc/library/email.policy.rst:274
 msgid "Return the maximum allowed number of headers named *name*."
-msgstr ""
+msgstr "*name*\\이라는 헤더의 최대 허용 개수를 반환합니다."
 
 #: ../Doc/library/email.policy.rst:276
 msgid ""
@@ -315,6 +392,10 @@ msgid ""
 "name *name* greater than or equal to the value returned, a "
 ":exc:`ValueError` is raised."
 msgstr ""
+"헤더가 :class:`~email.message.EmailMessage`\\나 "
+":class:`~email.message.Message` 객체에 추가될 때 호출됩니다. 반환 값이 ``0``\\이나 "
+"``None``\\이 아니고, 반환 값보다 크거나 같은 수의 이름이 *name*\\인 헤더가 이미 있으면 "
+":exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/email.policy.rst:282
 msgid ""
@@ -326,10 +407,14 @@ msgid ""
 "which will faithfully produce as many headers as exist in the message "
 "being parsed.)"
 msgstr ""
+"``Message.__setitem__``\\의 기본 동작은 값을 헤더 리스트에 추가하는 것이므로, 깨닫지 못하는 사이에 중복 "
+"헤더를 만들기 쉽습니다. 이 메서드는 특정 헤더를 ``Message``\\에 프로그래밍 방식으로 추가할 수 있는 인스턴스의 수를 "
+"제한할 수 있도록 합니다. (이 제약은 구문 분석기가 보지 않습니다, 구문 분석기는 구문 분석 중인 메시지에 존재하는 수 만큼 "
+"헤더를 충실하게 생성합니다.)"
 
 #: ../Doc/library/email.policy.rst:290
 msgid "The default implementation returns ``None`` for all header names."
-msgstr ""
+msgstr "기본 구현은 모든 헤더 이름에 대해 ``None``\\을 반환합니다."
 
 #: ../Doc/library/email.policy.rst:295
 msgid ""
@@ -340,6 +425,9 @@ msgid ""
 "``(name, value)`` tuple that is to be stored in the ``Message`` to "
 "represent the parsed header."
 msgstr ""
+"email 패키지는 문자열 리스트로 이 메서드를 호출하며, 각 문자열은 구문 분석 중인 소스에서 발견된 줄 구분 문자로 끝납니다. "
+"첫 번째 줄에는 필드 헤더 이름과 구분자가 포함됩니다. 소스의 모든 공백이 유지됩니다. 이 메서드는 구문 분석된 헤더를 나타내기 "
+"위해 ``Message``\\에 저장될 ``(name, value)`` 튜플을 반환해야 합니다."
 
 #: ../Doc/library/email.policy.rst:302
 msgid ""
@@ -349,15 +437,18 @@ msgid ""
 "unfolded value (all line separator characters removed, but whitespace "
 "kept intact), stripped of leading whitespace."
 msgstr ""
+"구현이 기존 email 패키지 정책과의 호환성을 유지하기 원한다면, *name*\\은 대소 문자를 유지한 이름( '``:``' "
+"구분자까지의 모든 문자)이어야 하지만, *value*\\는 선행 공백이 제거되고 펼쳐진(unfolded) 값(모든 줄 구분자 문자는"
+" 제거하지만, 공백은 그대로 유지한)이어야 합니다."
 
 #: ../Doc/library/email.policy.rst:308
 msgid "*sourcelines* may contain surrogateescaped binary data."
-msgstr ""
+msgstr "*sourcelines*\\는 서로게이트 이스케이프 된 바이너리 데이터를 포함할 수 있습니다."
 
 #: ../Doc/library/email.policy.rst:310 ../Doc/library/email.policy.rst:326
 #: ../Doc/library/email.policy.rst:342
 msgid "There is no default implementation"
-msgstr ""
+msgstr "기본 구현이 없습니다"
 
 #: ../Doc/library/email.policy.rst:315
 msgid ""
@@ -367,6 +458,9 @@ msgid ""
 "parser).  The method should return the ``(name, value)`` tuple that is to"
 " be stored in the ``Message`` to represent the header."
 msgstr ""
+"email 패키지는 (구문 분석기가 만든 ``Message``\\가 아니라) 응용 프로그램이 ``Message``\\를 프로그래밍 "
+"방식으로 수정할 때, 응용 프로그램이 제공한 name과 value로 이 메서드를 호출합니다. 이 메서드는 헤더를 나타내기 위해 "
+"``Message``\\에 저장될 ``(name, value)`` 튜플을 반환해야 합니다."
 
 #: ../Doc/library/email.policy.rst:321
 msgid ""
@@ -375,6 +469,8 @@ msgid ""
 "string subclasses that do not change the content of the passed in "
 "arguments."
 msgstr ""
+"구현이 기존 email 패키지 정책과의 호환성을 유지하기 원한다면, *name*\\과 *value*\\는 전달된 인자의 내용을 "
+"변경하지 않는 문자열이나 문자열의 서브 클래스여야 합니다."
 
 #: ../Doc/library/email.policy.rst:331
 msgid ""
@@ -386,12 +482,18 @@ msgid ""
 "``Message``; the method is passed the specific name and value of the "
 "header destined to be returned to the application."
 msgstr ""
+"email 패키지는 응용 프로그램이 해당 헤더를 요청할 때 ``Message``\\에 현재 저장된 *name*\\과 "
+"*value*\\로 이 메서드를 호출하며, 메서드가 반환하는 것은 꺼내는 헤더의 값으로 응용 프로그램에 다시 전달됩니다. "
+"``Message``\\에 같은 이름을 가진 헤더가 두 개 이상 있을 수 있음에 유의하십시오; 이 메서드로는 응용 프로그램으로 "
+"반환될 헤더의 특정 이름과 값이 전달됩니다."
 
 #: ../Doc/library/email.policy.rst:339
 msgid ""
 "*value* may contain surrogateescaped binary data.  There should be no "
 "surrogateescaped binary data in the value returned by the method."
 msgstr ""
+"*value*\\는 서로게이트 이스케이프 된 바이너리 데이터를 포함할 수 있습니다. 이 메서드가 반환하는 값에는 서로게이트 "
+"이스케이프 된 바이너리 데이터가 없어야 합니다."
 
 #: ../Doc/library/email.policy.rst:347
 msgid ""
@@ -402,24 +504,32 @@ msgid ""
 "inserting :attr:`linesep` characters at the appropriate places.  See "
 ":rfc:`5322` for a discussion of the rules for folding email headers."
 msgstr ""
+"email 패키지는 지정된 헤더에 대해 ``Message``\\에 현재 저장된 *name*\\과 *value*\\로 이 메서드를 "
+"호출합니다. 이 메서드는 *name*\\을 *value*\\와 합치고 적절한 위치에 :attr:`linesep` 문자를 삽입하여 "
+"(정책 설정에 따라) 올바르게 \"접힌(folded)\" 헤더를 나타내는 문자열을 반환해야 합니다. 전자 우편 헤더 접기 규칙에 "
+"대한 설명은 :rfc:`5322`\\를 참조하십시오."
 
 #: ../Doc/library/email.policy.rst:354
 msgid ""
 "*value* may contain surrogateescaped binary data.  There should be no "
 "surrogateescaped binary data in the string returned by the method."
 msgstr ""
+"*value*\\는 서로게이트 이스케이프 된 바이너리 데이터를 포함할 수 있습니다. 메서드가 반환한 문자열에는 서로게이트 이스케이프"
+" 된 바이너리 데이터가 없어야 합니다."
 
 #: ../Doc/library/email.policy.rst:360
 msgid ""
 "The same as :meth:`fold`, except that the returned value should be a "
 "bytes object rather than a string."
-msgstr ""
+msgstr "반환 값이 문자열이 아니라 바이트열 객체여야 한다는 점을 제외하고는 :meth:`fold`\\와 같습니다."
 
 #: ../Doc/library/email.policy.rst:363
 msgid ""
 "*value* may contain surrogateescaped binary data.  These could be "
 "converted back into binary data in the returned bytes object."
 msgstr ""
+"*value*\\는 서로게이트 이스케이프 된 바이너리 데이터를 포함할 수 있습니다. 이들은 반환된 바이트열 객체에서 바이너리 "
+"데이터로 다시 변환될 수 있습니다."
 
 #: ../Doc/library/email.policy.rst:370
 msgid ""
@@ -427,6 +537,8 @@ msgid ""
 "fully compliant with the current email RFCs.  These include (but are not "
 "limited to) :rfc:`5322`, :rfc:`2047`, and the current MIME RFCs."
 msgstr ""
+"이 구상 :class:`Policy`\\는 현재 전자 우편 RFC를 완전히 준수하기 위한 동작을 제공합니다. 여기에는 "
+":rfc:`5322`, :rfc:`2047` 및 현재 MIME RFC가 포함되지만 이에 국한되지는 않습니다."
 
 #: ../Doc/library/email.policy.rst:374
 msgid ""
@@ -435,22 +547,27 @@ msgid ""
 "depend on the type of the field.  The parsing and folding algorithm fully"
 " implement :rfc:`2047` and :rfc:`5322`."
 msgstr ""
+"이 정책은 새로운 헤더 구문 분석과 접기(folding) 알고리즘을 추가합니다. 단순한 문자열 대신, 헤더는 필드 유형에 따라 "
+"달라지는 어트리뷰트를 가진 ``str`` 서브 클래스입니다. 구문 분석과 접기 알고리즘은 :rfc:`2047`\\과 "
+":rfc:`5322`\\를 완전히 구현합니다."
 
 #: ../Doc/library/email.policy.rst:379
 msgid ""
 "The default value for the :attr:`~email.policy.Policy.message_factory` "
 "attribute is :class:`~email.message.EmailMessage`."
 msgstr ""
+":attr:`~email.policy.Policy.message_factory` 어트리뷰트의 기본값은 "
+":class:`~email.message.EmailMessage`\\입니다."
 
 #: ../Doc/library/email.policy.rst:382
 msgid ""
 "In addition to the settable attributes listed above that apply to all "
 "policies, this policy adds the following additional attributes:"
-msgstr ""
+msgstr "모든 정책에 적용되는 위에 나열된 설정 가능 어트리뷰트 외에도, 이 정책은 다음과 같은 어트리뷰트를 추가합니다:"
 
 #: ../Doc/library/email.policy.rst:385
 msgid "[1]_"
-msgstr ""
+msgstr "[1]_"
 
 #: ../Doc/library/email.policy.rst:390
 msgid ""
@@ -460,6 +577,9 @@ msgid ""
 "in this way may be passed to SMTP servers that support the ``SMTPUTF8`` "
 "extension (:rfc:`6531`)."
 msgstr ""
+"``False``\\이면, :rfc:`5322`\\를 따르고 헤더에서 ASCII가 아닌 문자를 \"인코딩된 단어\"로 인코딩하여 "
+"지원합니다. ``True``\\이면, :rfc:`6532`\\를 따르고 헤더에 ``utf-8`` 인코딩을 사용합니다. 이러한 "
+"방식으로 포맷된 메시지는 ``SMTPUTF8`` 확장(:rfc:`6531`)을 지원하는 SMTP 서버로 전달될 수 있습니다."
 
 #: ../Doc/library/email.policy.rst:399
 msgid ""
@@ -469,36 +589,39 @@ msgid ""
 "when transforming the message back into serialized form.  The possible "
 "values are:"
 msgstr ""
+"``Message`` 객체의 헤더 값이 (프로그램이 설정하는 것과 대조적으로) :mod:`~email.parser`\\에서 온 "
+"것이면, 이 어트리뷰트는 메시지를 직렬화된 형식으로 다시 변환할 때 제너레이터가 그 값을 다시 접어야 하는지를 나타냅니다. 가능한 "
+"값은 다음과 같습니다:"
 
 #: ../Doc/library/email.policy.rst:406
 msgid "``none``"
-msgstr ""
+msgstr "``none``"
 
 #: ../Doc/library/email.policy.rst:406
 msgid "all source values use original folding"
-msgstr ""
+msgstr "모든 소스 값은 원래 접기를 사용합니다"
 
 #: ../Doc/library/email.policy.rst:408
 msgid "``long``"
-msgstr ""
+msgstr "``long``"
 
 #: ../Doc/library/email.policy.rst:408
 msgid ""
 "source values that have any line that is longer than ``max_line_length`` "
 "will be refolded"
-msgstr ""
+msgstr "``max_line_length``\\보다 긴 줄이 있는 소스 값은 다시 접힙니다."
 
 #: ../Doc/library/email.policy.rst:411
 msgid "``all``"
-msgstr ""
+msgstr "``all``"
 
 #: ../Doc/library/email.policy.rst:411
 msgid "all values are refolded."
-msgstr ""
+msgstr "모든 값이 다시 접힙니다."
 
 #: ../Doc/library/email.policy.rst:414
 msgid "The default is ``long``."
-msgstr ""
+msgstr "기본값은 ``long``\\입니다."
 
 #: ../Doc/library/email.policy.rst:419
 msgid ""
@@ -510,6 +633,11 @@ msgid ""
 ":RFC:`5322` header field types, and the major MIME header field stypes.  "
 "Support for additional custom parsing will be added in the future."
 msgstr ""
+"``name``\\과 ``value`` 두 개의 인자를 취하는 콜러블. 여기서 ``name``\\은 헤더 필드 이름이고 "
+"``value``\\는 펼쳐진 헤더 필드 값이며 해당 헤더를 나타내는 문자열 서브 클래스를 반환합니다. 다양한 주소와 날짜 "
+":RFC:`5322` 헤더 필드 유형과 주요 MIME 헤더 필드 유형에 대한 사용자 정의 구문 분석을 지원하는 기본 "
+"``header_factory``\\(:mod:`~email.headerregistry`\\를 참조하십시오)가 제공됩니다. 향후 "
+"추가 사용자 정의 구문 분석에 대한 지원이 추가될 것입니다."
 
 #: ../Doc/library/email.policy.rst:430
 msgid ""
@@ -522,12 +650,19 @@ msgid ""
 "additional arguments.  By default ``content_manager`` is set to "
 ":data:`~email.contentmanager.raw_data_manager`."
 msgstr ""
+"적어도 두 개의 메서드가 있는 객체: get_content와 set_content. "
+":class:`~email.message.EmailMessage` 객체의 "
+":meth:`~email.message.EmailMessage.get_content`\\나 "
+":meth:`~email.message.EmailMessage.set_content` 메서드가 호출될 때, 이 객체의 해당 메서드를"
+" 호출하는데, 메시지 객체를 첫 번째 인자로 전달하고 전달된 다른 인자와 키워드를 추가 인자로 전달합니다. 기본적으로 "
+"``content_manager``\\는 :data:`~email.contentmanager.raw_data_manager`\\로 "
+"설정됩니다."
 
 #: ../Doc/library/email.policy.rst:442 ../Doc/library/email.policy.rst:600
 msgid ""
 "The class provides the following concrete implementations of the abstract"
 " methods of :class:`Policy`:"
-msgstr ""
+msgstr "이 클래스는 다음과 같은 :class:`Policy`\\의 추상 메서드의 구상 구현을 제공합니다:"
 
 #: ../Doc/library/email.policy.rst:448
 msgid ""
@@ -535,6 +670,8 @@ msgid ""
 ":attr:`~email.headerregistry.BaseHeader.max_count` attribute of the "
 "specialized class used to represent the header with the given name."
 msgstr ""
+"지정된 이름의 헤더를 나타내는 데 사용되는 특수화된 클래스의 "
+":attr:`~email.headerregistry.BaseHeader.max_count` 어트리뷰트 값을 반환합니다."
 
 #: ../Doc/library/email.policy.rst:456 ../Doc/library/email.policy.rst:606
 msgid ""
@@ -543,6 +680,8 @@ msgid ""
 "the remainder of the first line, joining all subsequent lines together, "
 "and stripping any trailing carriage return or linefeed characters."
 msgstr ""
+"이름은 '``:``\\'까지의 모든 것으로 구문 분석되고 수정되지 않은 상태로 반환됩니다. 값은 첫 번째 줄의 나머지 부분에서 선행"
+" 공백을 제거한 후에 모든 후속 줄을 이어붙이고 후행 캐리지 리턴이나 줄 바꿈 문자를 제거하여 결정됩니다."
 
 #: ../Doc/library/email.policy.rst:464
 msgid ""
@@ -553,6 +692,10 @@ msgid ""
 "value.  In this case a ``ValueError`` is raised if the input value "
 "contains CR or LF characters."
 msgstr ""
+"이름은 변경되지 않고 반환됩니다. 입력값에 ``name`` 어트리뷰트가 있고 대소 문자를 무시하고 *name*\\과 일치하면, 값은"
+" 변경되지 않고 반환됩니다. 그렇지 않으면 *name*\\과 *value*\\는 ``header_factory``\\로 전달되고, "
+"결과 헤더 객체가 값으로 반환됩니다. 이 경우 입력값에 CR이나 LF 문자가 포함되어 있으면 ``ValueError``\\가 "
+"발생합니다."
 
 #: ../Doc/library/email.policy.rst:474
 msgid ""
@@ -562,6 +705,9 @@ msgid ""
 "object is returned.  Any surrogateescaped bytes get turned into the "
 "unicode unknown-character glyph."
 msgstr ""
+"값에 ``name`` 어트리뷰트가 있으면, 수정되지 않은 상태로 반환됩니다. 그렇지 않으면 *name*\\과 CR이나 LF 문자가 "
+"제거된 *value*\\가 ``header_factory``\\로 전달되고, 결과 헤더 객체가 반환됩니다. 서로게이트 이스케이프 된"
+" 바이트열은 유니코드 알 수 없는 문자 글리프(unknown-character glyph)로 바뀝니다."
 
 #: ../Doc/library/email.policy.rst:483
 msgid ""
@@ -574,6 +720,11 @@ msgid ""
 "``header_factory``.  Folding of a header object is done by calling its "
 "``fold`` method with the current policy."
 msgstr ""
+"헤더 접기는 :attr:`refold_source` 정책 설정에 의해 제어됩니다. 값은 ``name`` 어트리뷰트가 없을 때, "
+"그리고 그때만 '소스값'으로 간주합니다 (``name`` 어트리뷰트가 있다는 것은 헤더 객체나 그 일종이라는 뜻입니다). 정책에 "
+"따라 소스값을 다시 접어야 할 필요가 있으면, ``header_factory``\\에 *name*\\과 CR과 LF 문자가 제거된 "
+"*value*\\를 전달하여 헤더 객체로 변환됩니다. 헤더 객체의 접기는 현재 정책으로 ``fold`` 메서드를 호출하여 "
+"수행됩니다."
 
 #: ../Doc/library/email.policy.rst:492
 msgid ""
@@ -584,12 +735,18 @@ msgid ""
 "regardless of the ``refold_source`` setting, which causes the binary data"
 " to be CTE encoded using the ``unknown-8bit`` charset."
 msgstr ""
+"소스값은 :meth:`~str.splitlines`\\를 사용하여 줄로 분할됩니다. 값을 다시 접지 않으면, 정책의 "
+"``linesep``\\을 사용하여 줄을 다시 이어붙인 후에 반환합니다. ASCII가 아닌 바이너리 데이터가 포함된 줄은 "
+"예외입니다. 이 경우 ``refold_source`` 설정과 관계없이 값이 다시 접히는데, ``unknown-8bit`` 문자 "
+"집합을 사용하여 바이너리 데이터가 CTE로 인코딩됩니다."
 
 #: ../Doc/library/email.policy.rst:502
 msgid ""
 "The same as :meth:`fold` if :attr:`~Policy.cte_type` is ``7bit``, except "
 "that the returned value is bytes."
 msgstr ""
+":attr:`~Policy.cte_type`\\이 ``7bit``\\이면, 반환된 값이 바이트열인 것을 제외하고 "
+":meth:`fold`\\와 같습니다."
 
 #: ../Doc/library/email.policy.rst:505
 msgid ""
@@ -599,6 +756,9 @@ msgid ""
 "know whether the binary data consists of single byte characters or "
 "multibyte characters."
 msgstr ""
+":attr:`~Policy.cte_type`\\이 ``8bit``\\이면, ASCII가 아닌 바이너리 데이터는 다시 바이트열로 "
+"변환됩니다. 바이너리 데이터가 단일 바이트 문자와 멀티 바이트 문자 중 어는 것으로 구성되어 있는지 알 방법이 없어서, "
+"``refold_header`` 설정과 관계없이 바이너리 데이터가 있는 헤더는 다시 접히지 않습니다."
 
 #: ../Doc/library/email.policy.rst:512
 msgid ""
@@ -607,6 +767,9 @@ msgid ""
 "of these instances (in particular the ``HTTP`` instance) may be adjusted "
 "to conform even more closely to the RFCs relevant to their domains."
 msgstr ""
+"다음 :class:`EmailPolicy` 인스턴스는 특정 응용 프로그램 도메인에 적합한 기본값을 제공합니다. 향후 이러한 "
+"인스턴스들(특히 ``HTTP`` 인스턴스)의 동작은 그 들의 도메인과 관련된 RFC에 훨씬 더 가깝게 조정될 수 있음에 "
+"유의하십시오."
 
 #: ../Doc/library/email.policy.rst:520
 msgid ""
@@ -614,6 +777,8 @@ msgid ""
 "uses the standard Python ``\\n`` line endings rather than the RFC-correct"
 " ``\\r\\n``."
 msgstr ""
+"모든 기본값이 변경되지 않은 ``EmailPolicy`` 인스턴스. 이 정책은 RFC 올바른 ``\\r\\n``\\이 아닌 표준 "
+"파이썬 ``\\n`` 줄 종료를 사용합니다."
 
 #: ../Doc/library/email.policy.rst:527
 msgid ""
@@ -621,6 +786,8 @@ msgid ""
 "Like ``default``, but with ``linesep`` set to ``\\r\\n``, which is RFC "
 "compliant."
 msgstr ""
+"전자 우편 RFC를 준수하도록 메시지를 직렬화하는 데 적합합니다. ``default``\\와 유사하지만, ``linesep``\\이"
+" ``\\r\\n``\\으로 설정되어 RFC를 준수합니다."
 
 #: ../Doc/library/email.policy.rst:534
 msgid ""
@@ -630,12 +797,18 @@ msgid ""
 "sender or recipient addresses have non-ASCII characters (the "
 ":meth:`smtplib.SMTP.send_message` method handles this automatically)."
 msgstr ""
+":attr:`~EmailPolicy.utf8`\\가 ``True``\\라는 점을 제외하고, ``SMTP``\\와 같습니다. 헤더에 "
+"인코딩된 단어를 사용하지 않고 메시지를 메시지 저장소로 직렬화하는 데 유용합니다. SMTP 전송에는 발신자나 수신자 주소에 "
+"ASCII가 아닌 문자가 있을 때만 사용해야 합니다 (:meth:`smtplib.SMTP.send_message` 메서드는 이를 "
+"자동으로 처리합니다)."
 
 #: ../Doc/library/email.policy.rst:543
 msgid ""
 "Suitable for serializing headers with for use in HTTP traffic.  Like "
 "``SMTP`` except that ``max_line_length`` is set to ``None`` (unlimited)."
 msgstr ""
+"HTTP 트래픽에 사용하기 위해 헤더를 직렬화하는 데 적합합니다. ``max_line_length``\\가 "
+"``None``\\(무제한)으로 설정된 것을 제외하고, ``SMTP``\\와 유사합니다."
 
 #: ../Doc/library/email.policy.rst:549
 msgid ""
@@ -643,6 +816,8 @@ msgid ""
 "``raise_on_defect`` is set to ``True``.  This allows any policy to be "
 "made strict by writing::"
 msgstr ""
+"편의 인스턴스. ``raise_on_defect``\\가 ``True``\\로 설정된 것을 제외하고, ``default``\\와 "
+"같습니다. 다음과 같이 작성하여 모든 정책을 엄격하게 만들 수 있도록 합니다::"
 
 #: ../Doc/library/email.policy.rst:556
 msgid ""
@@ -650,18 +825,22 @@ msgid ""
 "API of the email package is changed from the Python 3.2 API in the "
 "following ways:"
 msgstr ""
+"이러한 모든 :class:`EmailPolicy <.EmailPolicy>`\\를 통해, email 패키지의 효과적인 API가 "
+"다음과 같은 방식으로 파이썬 3.2 API에서 변경됩니다:"
 
 #: ../Doc/library/email.policy.rst:559
 msgid ""
 "Setting a header on a :class:`~email.message.Message` results in that "
 "header being parsed and a header object created."
-msgstr ""
+msgstr ":class:`~email.message.Message`\\에서 헤더를 설정하면 해당 헤더가 구문 분석되고 헤더 객체가 만들어집니다."
 
 #: ../Doc/library/email.policy.rst:562
 msgid ""
 "Fetching a header value from a :class:`~email.message.Message` results in"
 " that header being parsed and a header object created and returned."
 msgstr ""
+":class:`~email.message.Message`\\에서 헤더 값을 가져오면 해당 헤더가 구문 분석되고 헤더 객체가 만들어져"
+" 반환됩니다."
 
 #: ../Doc/library/email.policy.rst:566
 msgid ""
@@ -670,6 +849,8 @@ msgid ""
 "folding algorithms, including knowing where encoded words are required "
 "and allowed."
 msgstr ""
+"모든 헤더 객체나 정책 설정으로 인해 다시 접힌 모든 헤더는 인코딩된 단어가 필요한 위치와 허용되는 위치를 포함하여 RFC 접기 "
+"알고리즘을 완전히 구현하는 알고리즘을 사용하여 접힙니다."
 
 #: ../Doc/library/email.policy.rst:571
 msgid ""
@@ -680,12 +861,16 @@ msgid ""
 "created, using a unicode string, and the policy will take care of "
 "converting the unicode string into the correct RFC encoded form."
 msgstr ""
+"응용 프로그램의 시각에서, 이것은 :class:`~email.message.EmailMessage`\\를 통해 얻은 모든 헤더가 "
+"추가 어트리뷰트가 있는 헤더 객체이며, 그것의 문자열 값은 헤더의 완전히 디코딩된 유니코드 값이 됨을 뜻합니다. 마찬가지로, "
+"유니코드 문자열을 사용하여 헤더에 새 값이나 새로 만들어진 헤더를 대입할 수 있으며, 정책은 유니코드 문자열을 올바른 RFC 인코딩"
+" 형식으로 변환합니다."
 
 #: ../Doc/library/email.policy.rst:578
 msgid ""
 "The header objects and their attributes are described in "
 ":mod:`~email.headerregistry`."
-msgstr ""
+msgstr "헤더 객체와 그들의 어트리뷰트는 :mod:`~email.headerregistry`\\에 설명되어 있습니다."
 
 #: ../Doc/library/email.policy.rst:585
 msgid ""
@@ -696,20 +881,23 @@ msgid ""
 "behavior of the email package is to maintain compatibility with Python "
 "3.2."
 msgstr ""
+"이 구상 :class:`Policy`\\는 과거 호환성 정책입니다. 파이썬 3.2에 있는 email 패키지의 동작을 흉내 냅니다. "
+":mod:`~email.policy` 모듈은 이 클래스의 인스턴스 :const:`compat32`\\도 정의하고, 기본 정책으로 "
+"사용합니다. 따라서 email 패키지의 기본 동작은 파이썬 3.2와의 호환성을 유지하는 것입니다."
 
 #: ../Doc/library/email.policy.rst:591
 msgid ""
 "The following attributes have values that are different from the "
 ":class:`Policy` default:"
-msgstr ""
+msgstr "다음 어트리뷰트는 :class:`Policy` 기본값과 다른 값을 갖습니다:"
 
 #: ../Doc/library/email.policy.rst:597
 msgid "The default is ``True``."
-msgstr ""
+msgstr "기본값은 ``True``\\입니다."
 
 #: ../Doc/library/email.policy.rst:614
 msgid "The name and value are returned unmodified."
-msgstr ""
+msgstr "이름과 값은 수정되지 않은 상태로 반환됩니다."
 
 #: ../Doc/library/email.policy.rst:619
 msgid ""
@@ -717,6 +905,8 @@ msgid ""
 ":class:`~email.header.Header` object using the ``unknown-8bit`` charset. "
 "Otherwise it is returned unmodified."
 msgstr ""
+"값에 바이너리 데이터가 포함되어 있으면, ``unknown-8bit`` 문자 집합을 사용하여 "
+":class:`~email.header.Header` 객체로 변환됩니다. 그렇지 않으면 수정되지 않은 상태로 반환됩니다."
 
 #: ../Doc/library/email.policy.rst:626
 msgid ""
@@ -725,6 +915,9 @@ msgid ""
 "each resulting line to the ``max_line_length``.  Non-ASCII binary data "
 "are CTE encoded using the ``unknown-8bit`` charset."
 msgstr ""
+":class:`~email.header.Header` 접기 알고리즘을 사용하여 헤더를 접습니다. 이 알고리즘은 값의 기존 줄 바꿈을"
+" 유지하고, 각 결과 줄을 ``max_line_length``\\로 줄 넘김 합니다. ASCII가 아닌 바이너리 데이터는 "
+"``unknown-8bit`` 문자 집합을 사용하여 CTE 인코딩됩니다."
 
 #: ../Doc/library/email.policy.rst:634
 msgid ""
@@ -735,20 +928,25 @@ msgid ""
 " charset.  Otherwise the original source header is used, with its "
 "existing line breaks and any (RFC invalid) binary data it may contain."
 msgstr ""
+":class:`~email.header.Header` 접기 알고리즘을 사용하여 헤더를 접습니다. 이 알고리즘은 값의 기존 줄 바꿈을"
+" 유지하고, 각 결과 줄을 ``max_line_length``\\로 줄 넘김 합니다. ``cte_type``\\이 "
+"``7bit``\\이면, ASCII가 아닌 바이너리 데이터는 ``unknown-8bit`` 문자 집합을 사용하여 CTE "
+"인코딩됩니다. 그렇지 않으면 원본 소스 헤더가 사용되는데, 기존 줄 바꿈과 임의의 (RFC 유효하지 않은) 바이너리 데이터가 포함될"
+" 수 있습니다."
 
 #: ../Doc/library/email.policy.rst:644
 msgid ""
 "An instance of :class:`Compat32`, providing  backward compatibility with "
 "the behavior of the email package in Python 3.2."
-msgstr ""
+msgstr "파이썬 3.2 email 패키지 동작과의 호환성을 제공하는 :class:`Compat32`\\의 인스턴스."
 
 #: ../Doc/library/email.policy.rst:649
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/email.policy.rst:650
 msgid ""
 "Originally added in 3.3 as a :term:`provisional feature <provisional "
 "package>`."
-msgstr ""
+msgstr "원래 3.3에 :term:`잠정적 기능 <provisional package>`\\으로 추가되었습니다."
 
