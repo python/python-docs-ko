@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/c-api/sys.rst:6
 msgid "Operating System Utilities"
-msgstr ""
+msgstr "운영 체제 유틸리티"
 
 #: ../Doc/c-api/sys.rst:10
 msgid ""
@@ -30,6 +29,10 @@ msgid ""
 ":class:`str` or :class:`bytes` object. Otherwise :exc:`TypeError` is "
 "raised and ``NULL`` is returned."
 msgstr ""
+"*path*\\에 대한 파일 시스템 표현을 반환합니다. 객체가 :class:`str`\\이나 :class:`bytes` 객체이면, "
+"참조 횟수가 증가합니다. 객체가 :class:`os.PathLike` 인터페이스를 구현하면, "
+":meth:`~os.PathLike.__fspath__`\\가 :class:`str`\\나 :class:`bytes` 객체일 때 "
+"반환됩니다. 그렇지 않으면, :exc:`TypeError`\\가 발생하고 ``NULL``\\이 반환됩니다."
 
 #: ../Doc/c-api/sys.rst:22
 msgid ""
@@ -40,6 +43,10 @@ msgid ""
 "the *filename* pointer is *NULL* or if the name is equal to one of the "
 "strings ``'<stdin>'`` or ``'???'``."
 msgstr ""
+"이름이 *filename*\\인 표준 I/O 파일 *fp*\\를 대화식으로 간주하면 참(0이 아닙니다)을 반환합니다. "
+"``isatty(fileno(fp))``\\가 참인 파일의 경우입니다. 전역 플래그 "
+":c:data:`Py_InteractiveFlag`\\가 참이면, 이 함수는 *filename* 포인터가 *NULL*\\이거나 "
+"이름이 문자열 ``'<stdin>'``\\이나 ``'???'`` 중 하나와 같을 때도 참을 반환합니다."
 
 #: ../Doc/c-api/sys.rst:31
 msgid ""
@@ -48,6 +55,8 @@ msgid ""
 "that clones the current process. Only available on systems where "
 ":c:func:`fork` is defined."
 msgstr ""
+"프로세스 포크 전에 내부 상태를 준비하는 함수. :c:func:`fork`\\나 현재 프로세스를 복제하는 유사한 함수를 호출하기 "
+"전에 호출해야 합니다. :c:func:`fork`\\가 정의된 시스템에서만 사용 가능합니다."
 
 #: ../Doc/c-api/sys.rst:41
 msgid ""
@@ -57,6 +66,9 @@ msgid ""
 "process cloning was successful. Only available on systems where "
 ":c:func:`fork` is defined."
 msgstr ""
+"프로세스 포크 후 일부 내부 상태를 갱신하는 함수. 프로세스 복제가 성공했는지와 관계없이, :c:func:`fork`\\나 현재 "
+"프로세스를 복제하는 유사한 함수를 호출한 후 부모 프로세스에서 호출해야 합니다. :c:func:`fork`\\가 정의된 시스템에서만"
+" 사용 가능합니다."
 
 #: ../Doc/c-api/sys.rst:52
 msgid ""
@@ -66,6 +78,9 @@ msgid ""
 "chance the process will call back into the Python interpreter. Only "
 "available on systems where :c:func:`fork` is defined."
 msgstr ""
+"프로세스 포크 후 내부 인터프리터 상태를 갱신하는 함수. :c:func:`fork`\\나 현재 프로세스를 복제하는 유사한 함수를 "
+"호출한 후, 프로세스가 파이썬 인터프리터를 다시 호출할 가능성이 있으면 자식 프로세스에서 호출해야 합니다. "
+":c:func:`fork`\\가 정의된 시스템에서만 사용 가능합니다."
 
 #: ../Doc/c-api/sys.rst:61
 msgid ""
@@ -73,6 +88,9 @@ msgid ""
 " be called by :c:func:`PyOS_BeforeFork()`, "
 ":c:func:`PyOS_AfterFork_Parent` and  :c:func:`PyOS_AfterFork_Child`."
 msgstr ""
+":func:`os.register_at_fork`\\를 사용하면 :c:func:`PyOS_BeforeFork()`, "
+":c:func:`PyOS_AfterFork_Parent` 및 :c:func:`PyOS_AfterFork_Child`\\에서 호출될 "
+"사용자 정의 파이썬 함수를 등록 할 수 있습니다."
 
 #: ../Doc/c-api/sys.rst:68
 msgid ""
@@ -81,10 +99,12 @@ msgid ""
 "be used. If a new executable is loaded into the new process, this "
 "function does not need to be called."
 msgstr ""
+"프로세스 포크 후 일부 내부 상태를 갱신하는 함수; 파이썬 인터프리터가 계속 사용된다면 새로운 프로세스에서 호출되어야 합니다. 새 "
+"실행 파일이 새 프로세스에 로드되면, 이 함수를 호출할 필요가 없습니다."
 
 #: ../Doc/c-api/sys.rst:73
 msgid "This function is superseded by :c:func:`PyOS_AfterFork_Child()`."
-msgstr ""
+msgstr "이 함수는 :c:func:`PyOS_AfterFork_Child()`\\로 대체되었습니다."
 
 #: ../Doc/c-api/sys.rst:79
 msgid ""
@@ -94,6 +114,9 @@ msgid ""
 ":const:`USE_STACKCHECK` will be defined automatically; you should never "
 "change the definition in your own code."
 msgstr ""
+"인터프리터에 스택 공간이 부족하면 참을 반환합니다. 이것은 신뢰성 있는 확인이지만, :const:`USE_STACKCHECK`\\이"
+" 정의되어 있을 때만 사용할 수 있습니다 (현재 마이크로소프트 Visual C++ 컴파일러를 사용하는 윈도우에서). "
+":const:`USE_STACKCHECK`\\은 자동으로 정의됩니다; 여러분 자신의 코드에서 정의를 변경해서는 안 됩니다."
 
 #: ../Doc/c-api/sys.rst:88
 msgid ""
@@ -102,6 +125,10 @@ msgid ""
 "those functions directly! :c:type:`PyOS_sighandler_t` is a typedef alias "
 "for :c:type:`void (\\*)(int)`."
 msgstr ""
+"시그널 *i*\\에 대한 현재 시그널 처리기를 반환합니다. 이것은 :c:func:`sigaction`\\이나 "
+":c:func:`signal`\\을 감싸는 얇은 래퍼입니다. 그 함수들을 직접 호출하지 마십시오! "
+":c:type:`PyOS_sighandler_t`\\는 :c:type:`void (\\*)(int)`\\의 typedef "
+"별칭입니다."
 
 #: ../Doc/c-api/sys.rst:96
 msgid ""
@@ -111,6 +138,10 @@ msgid ""
 ":c:type:`PyOS_sighandler_t` is a typedef alias for :c:type:`void "
 "(\\*)(int)`."
 msgstr ""
+"시그널 *i*\\의 시그널 처리기를 *h*\\로 설정합니다; 이전 시그널 처리기를 반환합니다. 이것은 "
+":c:func:`sigaction`\\이나 :c:func:`signal`\\을 감싸는 얇은 래퍼입니다. 그 함수들을 직접 호출하지 "
+"마십시오! :c:type:`PyOS_sighandler_t`\\는 :c:type:`void (\\*)(int)`\\의 typedef"
+" 별칭입니다."
 
 #: ../Doc/c-api/sys.rst:103
 msgid ""
@@ -120,22 +151,25 @@ msgid ""
 "can be decoded as a surrogate character, escape the bytes using the "
 "surrogateescape error handler instead of decoding them."
 msgstr ""
+":ref:`surrogateescape 에러 처리기 <surrogateescape>`\\를 사용하여 로케일 인코딩에서 바이트열을 "
+"디코딩합니다: 디코딩할 수 없는 바이트열은 U+DC80..U+DCFF 범위의 문자로 디코딩됩니다. 바이트 시퀀스를 서로게이트 문자로"
+" 디코딩 할 수 있으면, 이들을 디코딩하는 대신 surrogateescape 에러 처리기를 사용하여 바이트열를 이스케이프 합니다."
 
 #: ../Doc/c-api/sys.rst:109 ../Doc/c-api/sys.rst:155
 msgid "Encoding, highest priority to lowest priority:"
-msgstr ""
+msgstr "인코딩, 가장 높은 우선순위에서 가장 낮은 우선순위로:"
 
 #: ../Doc/c-api/sys.rst:111 ../Doc/c-api/sys.rst:157
 msgid "``UTF-8`` on macOS, Android, and VxWorks;"
-msgstr ""
+msgstr "``UTF-8``, 맥 OS, 안드로이드 및 VxWorks에서;"
 
 #: ../Doc/c-api/sys.rst:112 ../Doc/c-api/sys.rst:158
 msgid "``UTF-8`` on Windows if :c:data:`Py_LegacyWindowsFSEncodingFlag` is zero;"
-msgstr ""
+msgstr "``UTF-8``, :c:data:`Py_LegacyWindowsFSEncodingFlag`\\이 0일 때 윈도우에서;"
 
 #: ../Doc/c-api/sys.rst:113 ../Doc/c-api/sys.rst:159
 msgid "``UTF-8`` if the Python UTF-8 mode is enabled;"
-msgstr ""
+msgstr "``UTF-8``, 파이썬 UTF-8 모드가 활성화되었을 때;"
 
 #: ../Doc/c-api/sys.rst:114 ../Doc/c-api/sys.rst:160
 msgid ""
@@ -144,10 +178,13 @@ msgid ""
 "and :c:func:`mbstowcs` and :c:func:`wcstombs` functions uses the "
 "``ISO-8859-1`` encoding."
 msgstr ""
+"``ASCII``, ``LC_CTYPE`` 로케일이 ``\"C\"``\\이고, ``nl_langinfo(CODESET)``\\이 "
+"``ASCII`` 인코딩(또는 별칭)을 반환하고, :c:func:`mbstowcs`\\와 :c:func:`wcstombs` 함수가 "
+"``ISO-8859-1`` 인코딩을 사용할 때."
 
 #: ../Doc/c-api/sys.rst:118 ../Doc/c-api/sys.rst:164
 msgid "the current locale encoding."
-msgstr ""
+msgstr "현재 로케일 인코딩"
 
 #: ../Doc/c-api/sys.rst:120
 msgid ""
@@ -156,6 +193,9 @@ msgid ""
 "write the number of wide characters excluding the null character into "
 "``*size``"
 msgstr ""
+"새로 할당된 와이드 문자(wide character) 문자열에 대한 포인터를 반환합니다, 메모리를 해제하려면 "
+":c:func:`PyMem_RawFree`\\를 사용하십시오. size가 ``NULL``\\이 아니면, 널 문자를 제외한 와이드 "
+"문자 수를 ``*size``\\에 기록합니다."
 
 #: ../Doc/c-api/sys.rst:124
 msgid ""
@@ -163,34 +203,40 @@ msgid ""
 "is not ``NULL``, ``*size`` is set to ``(size_t)-1`` on memory error or "
 "set to ``(size_t)-2`` on decoding error."
 msgstr ""
+"디코딩 에러나 메모리 할당 에러 시 ``NULL``\\을 반환합니다. *size*\\가 ``NULL``\\이 아니면, 메모리 에러 "
+"시 ``*size``\\가 ``(size_t)-1``\\로 설정되고, 디코딩 에러 시 ``(size_t)-2``\\로 설정됩니다."
 
 #: ../Doc/c-api/sys.rst:128
 msgid ""
 "Decoding errors should never happen, unless there is a bug in the C "
 "library."
-msgstr ""
+msgstr "C 라이브러리에 버그가 없으면, 디코딩 에러가 발생하지 않아야 합니다."
 
 #: ../Doc/c-api/sys.rst:131
 msgid ""
 "Use the :c:func:`Py_EncodeLocale` function to encode the character string"
 " back to a byte string."
-msgstr ""
+msgstr "문자열을 바이트열로 다시 인코딩하려면 :c:func:`Py_EncodeLocale` 함수를 사용하십시오."
 
 #: ../Doc/c-api/sys.rst:136
 msgid ""
 "The :c:func:`PyUnicode_DecodeFSDefaultAndSize` and "
 ":c:func:`PyUnicode_DecodeLocaleAndSize` functions."
 msgstr ""
+":c:func:`PyUnicode_DecodeFSDefaultAndSize`\\와 "
+":c:func:`PyUnicode_DecodeLocaleAndSize` 함수."
 
 #: ../Doc/c-api/sys.rst:141 ../Doc/c-api/sys.rst:185
 msgid "The function now uses the UTF-8 encoding in the UTF-8 mode."
-msgstr ""
+msgstr "이 함수는 이제 UTF-8 모드에서 UTF-8 인코딩을 사용합니다."
 
 #: ../Doc/c-api/sys.rst:144 ../Doc/c-api/sys.rst:188
 msgid ""
 "The function now uses the UTF-8 encoding on Windows if "
 ":c:data:`Py_LegacyWindowsFSEncodingFlag` is zero;"
 msgstr ""
+"이 함수는 이제 윈도우에서 :c:data:`Py_LegacyWindowsFSEncodingFlag`\\가 0이면 UTF-8 인코딩을"
+" 사용합니다;"
 
 #: ../Doc/c-api/sys.rst:151
 msgid ""
@@ -198,10 +244,13 @@ msgid ""
 ":ref:`surrogateescape error handler <surrogateescape>`: surrogate "
 "characters in the range U+DC80..U+DCFF are converted to bytes 0x80..0xFF."
 msgstr ""
+":ref:`surrogateescape 에러 처리기 <surrogateescape>`\\를 사용하여 와이드 문자(wide "
+"character) 문자열을 로케일 인코딩으로 인코딩합니다: U+DC80..U+DCFF 범위의 서로게이트 문자는 바이트 "
+"0x80..0xFF로 변환됩니다."
 
 #: ../Doc/c-api/sys.rst:166
 msgid "The function uses the UTF-8 encoding in the Python UTF-8 mode."
-msgstr ""
+msgstr "이 함수는 파이썬 UTF-8 모드에서 UTF-8 인코딩을 사용합니다."
 
 #: ../Doc/c-api/sys.rst:168
 msgid ""
@@ -209,28 +258,34 @@ msgid ""
 ":c:func:`PyMem_Free` to free the memory. Return ``NULL`` on encoding "
 "error or memory allocation error"
 msgstr ""
+"새로 할당된 바이트열에 대한 포인터를 반환합니다, 메모리를 해제하려면 :c:func:`PyMem_Free`\\를 사용하십시오. "
+"인코딩 에러나 메모리 할당 에러 시 ``NULL``\\을 반환합니다"
 
 #: ../Doc/c-api/sys.rst:172
 msgid ""
 "If error_pos is not ``NULL``, ``*error_pos`` is set to ``(size_t)-1`` on "
 "success,  or set to the index of the invalid character on encoding error."
 msgstr ""
+"error_pos가 ``NULL``\\이 아니면, ``*error_pos``\\는 성공 시 ``(size_t)-1``\\로 "
+"설정되고, 인코딩 에러 시 유효하지 않은 문자의 인덱스로 설정됩니다."
 
 #: ../Doc/c-api/sys.rst:175
 msgid ""
 "Use the :c:func:`Py_DecodeLocale` function to decode the bytes string "
 "back to a wide character string."
-msgstr ""
+msgstr "바이트열을 와이드 문자 문자열로 다시 디코딩하려면 :c:func:`Py_DecodeLocale` 함수를 사용하십시오."
 
 #: ../Doc/c-api/sys.rst:180
 msgid ""
 "The :c:func:`PyUnicode_EncodeFSDefault` and "
 ":c:func:`PyUnicode_EncodeLocale` functions."
 msgstr ""
+":c:func:`PyUnicode_EncodeFSDefault`\\와 :c:func:`PyUnicode_EncodeLocale` "
+"함수."
 
 #: ../Doc/c-api/sys.rst:196
 msgid "System Functions"
-msgstr ""
+msgstr "시스템 함수"
 
 #: ../Doc/c-api/sys.rst:198
 msgid ""
@@ -239,12 +294,14 @@ msgid ""
 "thread's :mod:`sys` module's dict, which is contained in the internal "
 "thread state structure."
 msgstr ""
+":mod:`sys` 모듈의 기능을 C 코드에서 액세스 할 수 있게 하는 유틸리티 함수입니다. 모두 내부 스레드 상태 구조체에 포함된"
+" 현재 인터프리터 스레드의 :mod:`sys` 모듈의 딕셔너리에 작동합니다."
 
 #: ../Doc/c-api/sys.rst:204
 msgid ""
 "Return the object *name* from the :mod:`sys` module or *NULL* if it does "
 "not exist, without setting an exception."
-msgstr ""
+msgstr ":mod:`sys` 모듈에서 객체 *name*\\을 반환하거나, 존재하지 않으면 예외를 설정하지 않고 *NULL*\\을 반환합니다."
 
 #: ../Doc/c-api/sys.rst:209
 msgid ""
@@ -252,22 +309,28 @@ msgid ""
 " case *name* is deleted from the sys module. Returns ``0`` on success, "
 "``-1`` on error."
 msgstr ""
+"*v*\\가 *NULL*\\이 아닌 한 :mod:`sys` 모듈의 *name*\\을 *v*\\로 설정합니다. *NULL*\\이면 "
+"*name*\\은 sys 모듈에서 삭제됩니다. 성공하면 ``0``, 에러 시 ``-1``\\을 반환합니다."
 
 #: ../Doc/c-api/sys.rst:215
 msgid ""
 "Reset :data:`sys.warnoptions` to an empty list. This function may be "
 "called prior to :c:func:`Py_Initialize`."
 msgstr ""
+":data:`sys.warnoptions`\\를 빈 리스트로 재설정합니다. 이 함수는 :c:func:`Py_Initialize` "
+"이전에 호출할 수 있습니다."
 
 #: ../Doc/c-api/sys.rst:220
 msgid ""
 "Append *s* to :data:`sys.warnoptions`. This function must be called prior"
 " to :c:func:`Py_Initialize` in order to affect the warnings filter list."
 msgstr ""
+"*s*\\를 :data:`sys.warnoptions`\\에 추가합니다. 경고 필터 리스트에 영향을 주려면 "
+":c:func:`Py_Initialize` 이전에 이 함수를 호출해야 합니다."
 
 #: ../Doc/c-api/sys.rst:225
 msgid "Append *unicode* to :data:`sys.warnoptions`."
-msgstr ""
+msgstr "*unicode*\\를 :data:`sys.warnoptions`\\에 추가합니다."
 
 #: ../Doc/c-api/sys.rst:227
 msgid ""
@@ -277,6 +340,9 @@ msgid ""
 "called until enough of the runtime has been initialized to permit the "
 "creation of Unicode objects."
 msgstr ""
+"참고: 이 함수는 현재 CPython 구현 외부에서 사용할 수 없습니다. 효과가 있으려면 "
+":c:func:`Py_Initialize`\\에서 :mod:`warnings`\\를 묵시적으로 임포트 하기 전에 호출해야 하지만, "
+"유니코드 객체를 만들도록 허락할 수 있을 만큼 런타임이 충분히 초기화되기 전에는 호출할 수 없기 때문입니다."
 
 #: ../Doc/c-api/sys.rst:235
 msgid ""
@@ -284,12 +350,16 @@ msgid ""
 "should be a list of paths separated with the platform's search path "
 "delimiter (``:`` on Unix, ``;`` on Windows)."
 msgstr ""
+":data:`sys.path`\\를 플랫폼의 검색 경로 구분자(유닉스에서는 ``:``, 윈도우에서는 ``;``)로 구분된 경로 "
+"리스트여야 하는 *path*\\에서 찾은 경로의 리스트 객체로 설정합니다."
 
 #: ../Doc/c-api/sys.rst:241
 msgid ""
 "Write the output string described by *format* to :data:`sys.stdout`.  No "
 "exceptions are raised, even if truncation occurs (see below)."
 msgstr ""
+"*format*\\으로 기술되는 출력 문자열을 :data:`sys.stdout`\\에 기록합니다. 잘림이 발생하더라도 예외는 "
+"발생하지 않습니다 (아래를 참조하십시오)."
 
 #: ../Doc/c-api/sys.rst:244
 #, python-format
@@ -302,18 +372,26 @@ msgid ""
 "text does not exceed 1000 bytes.  Also watch out for \"%f\", which can "
 "print hundreds of digits for very large numbers."
 msgstr ""
+"*format*\\은 포맷된 출력 문자열의 총 크기를 1000바이트 이하로 제한해야 합니다 -- 1000바이트 이후에는, 출력 "
+"문자열이 잘립니다. 특히, 이것은 무제한 \"%s\" 포맷이 있어서는 안 됨을 의미합니다; \"%.<N>s\"를 사용하여 제한해야 "
+"합니다, 여기서 <N>은 <N>에 다른 포맷된 텍스트의 최대 크기를 더할 때 1000바이트를 초과하지 않도록 계산된 십진수입니다. "
+"또한 \"%f\"도 주의하십시오, 아주 큰 숫자는 수백 자리를 인쇄할 수 있습니다."
 
 #: ../Doc/c-api/sys.rst:252
 msgid ""
 "If a problem occurs, or :data:`sys.stdout` is unset, the formatted "
 "message is written to the real (C level) *stdout*."
 msgstr ""
+"문제가 발생하거나, :data:`sys.stdout`\\가 설정되어 있지 않으면, 포맷된 메시지는 실제(C 수준) "
+"*stdout*\\에 기록됩니다."
 
 #: ../Doc/c-api/sys.rst:257
 msgid ""
 "As :c:func:`PySys_WriteStdout`, but write to :data:`sys.stderr` or "
 "*stderr* instead."
 msgstr ""
+":c:func:`PySys_WriteStdout`\\과 같지만, 대신 :data:`sys.stderr`\\이나 *stderr*\\에"
+" 씁니다."
 
 #: ../Doc/c-api/sys.rst:262
 msgid ""
@@ -321,12 +399,16 @@ msgid ""
 ":c:func:`PyUnicode_FromFormatV` and don't truncate the message to an "
 "arbitrary length."
 msgstr ""
+"PySys_WriteStdout()과 유사한 함수이지만, 메시지를 :c:func:`PyUnicode_FromFormatV`\\를 "
+"사용하여 포맷하고 메시지를 임의의 길이로 자르지 않습니다."
 
 #: ../Doc/c-api/sys.rst:270
 msgid ""
 "As :c:func:`PySys_FormatStdout`, but write to :data:`sys.stderr` or "
 "*stderr* instead."
 msgstr ""
+":c:func:`PySys_FormatStdout`\\과 같지만, 대신 :data:`sys.stderr`\\이나 "
+"*stderr*\\에 씁니다."
 
 #: ../Doc/c-api/sys.rst:277
 msgid ""
@@ -334,6 +416,8 @@ msgid ""
 "options mapping as returned by :c:func:`PySys_GetXOptions`. This function"
 " may be called prior to :c:func:`Py_Initialize`."
 msgstr ""
+"*s*\\를 :option:`-X` 옵션 집합으로 구문 분석하고 :c:func:`PySys_GetXOptions`\\가 반환하는 "
+"현재 옵션 매핑에 추가합니다. 이 함수는 :c:func:`Py_Initialize` 이전에 호출할 수 있습니다."
 
 #: ../Doc/c-api/sys.rst:285
 msgid ""
@@ -341,12 +425,14 @@ msgid ""
 ":data:`sys._xoptions`.  On error, *NULL* is returned and an exception is "
 "set."
 msgstr ""
+":data:`sys._xoptions`\\와 유사하게, :option:`-X` 옵션의 현재 딕셔너리를 반환합니다. 에러가 발생하면,"
+" *NULL*\\이 반환되고 예외가 설정됩니다."
 
 #: ../Doc/c-api/sys.rst:294
 msgid ""
 "Raises an auditing event with any active hooks. Returns zero for success "
 "and non-zero with an exception set on failure."
-msgstr ""
+msgstr "모든 활성 훅으로 감사 이벤트를 발생시킵니다. 성공 시 0을 반환하고 실패 시 예외를 설정하여 0이 아닌 값을 반환합니다."
 
 #: ../Doc/c-api/sys.rst:297
 msgid ""
@@ -358,10 +444,14 @@ msgid ""
 "know whether arguments to this function will be consumed, using it may "
 "cause reference leaks.)"
 msgstr ""
+"훅이 추가되었으면, *format*\\과 기타 인자를 사용하여 전달할 튜플을 구성합니다. ``N`` 외에도, "
+":c:func:`Py_BuildValue`\\에서 사용된 것과 같은 포맷 문자를 사용할 수 있습니다. 빌드된 값이 튜플이 아니면, "
+"단일 요소 튜플에 추가됩니다. (``N`` 포맷 옵션은 참조를 소비하지만, 이 함수에 대한 인자가 소비될지를 알 방법이 없기 "
+"때문에, 사용하면 참조 누수가 발생할 수 있습니다.)"
 
 #: ../Doc/c-api/sys.rst:305
 msgid ":func:`sys.audit` performs the same function from Python code."
-msgstr ""
+msgstr ":func:`sys.audit`\\은 파이썬 코드와 동일한 기능을 수행합니다."
 
 #: ../Doc/c-api/sys.rst:312
 msgid ""
@@ -370,6 +460,8 @@ msgid ""
 "an error on failure. Hooks added through this API are called for all "
 "interpreters created by the runtime."
 msgstr ""
+"활성 감사 훅 컬렉션에 추가합니다. 성공하면 0을, 실패하면 0이 아닌 값을 반환합니다. 런타임이 초기화되었으면, 실패 시 에러도 "
+"설정합니다. 이 API를 통해 추가된 훅은 런타임이 만든 모든 인터프리터에 대해 호출됩니다."
 
 #: ../Doc/c-api/sys.rst:317
 msgid ""
@@ -378,6 +470,9 @@ msgid ""
 "silently abort the operation by raising an error subclassed from "
 ":class:`Exception` (other errors will not be silenced)."
 msgstr ""
+"이 함수는 :c:func:`Py_Initialize` 이전에 호출해도 안전합니다. 런타임 초기화 후 호출되면, 기존 감사 훅에 "
+"알리고 :class:`Exception`\\에서 서브 클래싱 된 에러를 발생 시켜 조용히 연산을 중단할 수 있습니다 (다른 에러는 "
+"억제되지(silenced) 않습니다)."
 
 #: ../Doc/c-api/sys.rst:322
 msgid ""
@@ -386,6 +481,9 @@ msgid ""
 ":c:type:`PyTupleObject`. The hook function is always called with the GIL "
 "held by the Python interpreter that raised the event."
 msgstr ""
+"훅 함수는 :c:type:`int (*)(const char *event, PyObject *args, void "
+"*userData)` 형입니다. 여기서 *args*\\는 :c:type:`PyTupleObject` 임이 보장됩니다. 훅 함수는 "
+"항상 이벤트를 발생시킨 파이썬 인터프리터가 GIL을 잡은 채로 호출됩니다."
 
 #: ../Doc/c-api/sys.rst:327
 msgid ""
@@ -393,6 +491,8 @@ msgid ""
 "functions may be called from different runtimes, this pointer should not "
 "refer directly to Python state."
 msgstr ""
+"*userData* 포인터는 훅 함수로 전달됩니다. 훅 함수는 다른 런타임에서 호출될 수 있어서, 이 포인터는 파이썬 상태를 직접 "
+"참조하면 안 됩니다."
 
 #: ../Doc/c-api/sys.rst:331
 msgid ""
@@ -400,10 +500,12 @@ msgid ""
 "runtime and standard library that raise events include the details in "
 "each function's documentation."
 msgstr ""
+"감사에 대한 자세한 설명은 :pep:`578`\\을 참조하십시오. 이벤트를 발생시키는 런타임과 표준 라이브러리의 함수에는 각 함수 "
+"설명서에 있는 세부 정보가 포함됩니다."
 
 #: ../Doc/c-api/sys.rst:341
 msgid "Process Control"
-msgstr ""
+msgstr "프로세스 제어"
 
 #: ../Doc/c-api/sys.rst:348
 msgid ""
@@ -414,6 +516,9 @@ msgid ""
 "corrupted.  On Unix, the standard C library function :c:func:`abort` is "
 "called which will attempt to produce a :file:`core` file."
 msgstr ""
+"치명적인 에러 메시지를 인쇄하고 프로세스를 죽입니다. 아무런 정리도 수행되지 않습니다. 이 함수는 파이썬 인터프리터를 계속 사용하는"
+" 것이 위험한 조건이 감지되었을 때만 호출해야 합니다; 예를 들어, 객체 관리가 손상된 것으로 보일 때. 유닉스에서는, 표준 C "
+"라이브러리 함수 :c:func:`abort`\\가 호출되어 :file:`core` 파일을 생성하려고 시도합니다."
 
 #: ../Doc/c-api/sys.rst:362
 msgid ""
@@ -422,10 +527,13 @@ msgid ""
 ":c:func:`Py_FinalizeEx` indicates an error, the exit status is set to "
 "120."
 msgstr ""
+"현재 프로세스를 종료합니다. 이것은 :c:func:`Py_FinalizeEx`\\를 호출한 다음 표준 C 라이브러리 함수 "
+"``exit(status)``\\를 호출합니다. :c:func:`Py_FinalizeEx`\\가 에러를 표시하면, 종료 상태는 "
+"120으로 설정됩니다."
 
 #: ../Doc/c-api/sys.rst:366
 msgid "Errors from finalization no longer ignored."
-msgstr ""
+msgstr "파이널리제이션에서의 에러가 더는 무시되지 않습니다."
 
 #: ../Doc/c-api/sys.rst:376
 msgid ""
@@ -438,4 +546,9 @@ msgid ""
 "Python's internal finalization will have completed before the cleanup "
 "function, no Python APIs should be called by *func*."
 msgstr ""
+":c:func:`Py_FinalizeEx`\\가 호출할 정리 함수를 등록합니다. 정리 함수는 인자 없이 호출되며 값을 반환하지 "
+"않아야 합니다. 최대 32개의 정리 함수를 등록할 수 있습니다. 등록이 성공하면, :c:func:`Py_AtExit`\\는 "
+"``0``\\을 반환합니다; 실패하면 ``-1``\\을 반환합니다. 마지막에 등록된 정리 함수가 먼저 호출됩니다. 각 정리 함수는 "
+"최대 한 번 호출됩니다. 정리 함수 전에 파이썬의 내부 파이널리제이션이 완료되기 때문에, *func*\\에서 파이썬 API를 "
+"호출하면 안 됩니다."
 
