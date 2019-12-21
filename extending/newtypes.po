@@ -8,39 +8,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-26 11:10+0900\n"
+"POT-Creation-Date: 2019-12-19 18:31+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.7.0\n"
 
-#: ../Doc/extending/newtypes.rst:5
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:7
 msgid "Defining Extension Types: Assorted Topics"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:9
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:11
 msgid ""
 "This section aims to give a quick fly-by on the various type methods you "
 "can implement and what they do."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:12
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:14
 msgid ""
 "Here is the definition of :c:type:`PyTypeObject`, with some fields only "
 "used in debug builds omitted:"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:18
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:20
 msgid ""
 "Now that's a *lot* of methods.  Don't worry too much though -- if you "
 "have a type you want to define, the chances are very good that you will "
 "only implement a handful of these."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:22
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:24
 msgid ""
 "As you probably expect by now, we're going to go over this and give more "
 "information about the various handlers.  We won't go in the order they "
@@ -50,14 +50,14 @@ msgid ""
 "values to suit your new type. ::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:31
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:33
 msgid ""
 "The name of the type -- as mentioned in the previous chapter, this will "
 "appear in various places, almost entirely for diagnostic purposes. Try to"
 " choose something that will be helpful in such a situation! ::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:37
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:39
 msgid ""
 "These fields tell the runtime how much memory to allocate when new "
 "objects of this type are created.  Python has some built-in support for "
@@ -66,23 +66,23 @@ msgid ""
 " with later. ::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:44
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:46
 msgid ""
 "Here you can put a string (or its address) that you want returned when "
 "the Python script references ``obj.__doc__`` to retrieve the doc string."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:47
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:49
 msgid ""
 "Now we come to the basic type methods -- the ones most extension types "
 "will implement."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:52
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:54
 msgid "Finalization and De-allocation"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:64
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:66
 msgid ""
 "This function is called when the reference count of the instance of your "
 "type is reduced to zero and the Python interpreter wants to reclaim it.  "
@@ -91,7 +91,7 @@ msgid ""
 "example of this function::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:81
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:83
 msgid ""
 "One important requirement of the deallocator function is that it leaves "
 "any pending exceptions alone.  This is important since deallocators are "
@@ -107,7 +107,7 @@ msgid ""
 ":c:func:`PyErr_Restore` functions::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:120
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:122
 msgid ""
 "There are limitations to what you can safely do in a deallocator "
 "function. First, if your type supports garbage collection (using "
@@ -122,22 +122,22 @@ msgid ""
 "crash."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:129
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:131
 msgid ""
 "Starting with Python 3.4, it is recommended not to put any complex "
 "finalization code in :c:member:`~PyTypeObject.tp_dealloc`, and instead "
 "use the new :c:member:`~PyTypeObject.tp_finalize` type method."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:134
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:136
 msgid ":pep:`442` explains the new finalization scheme."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:141
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:143
 msgid "Object Presentation"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:143
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:145
 msgid ""
 "In Python, there are two ways to generate a textual representation of an "
 "object: the :func:`repr` function, and the :func:`str` function.  (The "
@@ -145,14 +145,14 @@ msgid ""
 "optional."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:152
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:154
 msgid ""
 "The :c:member:`~PyTypeObject.tp_repr` handler should return a string "
 "object containing a representation of the instance for which it is "
 "called.  Here is a simple example::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:163
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:165
 msgid ""
 "If no :c:member:`~PyTypeObject.tp_repr` handler is specified, the "
 "interpreter will supply a representation that uses the type's "
@@ -160,7 +160,7 @@ msgid ""
 "the object."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:167
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:169
 msgid ""
 "The :c:member:`~PyTypeObject.tp_str` handler is to :func:`str` what the "
 ":c:member:`~PyTypeObject.tp_repr` handler described above is to "
@@ -172,25 +172,25 @@ msgid ""
 "instead."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:174
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:176
 msgid "Here is a simple example::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:186
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:188
 msgid "Attribute Management"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:188
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:190
 msgid ""
 "For every object which can support attributes, the corresponding type "
 "must provide the functions that control how the attributes are resolved."
 "  There needs to be a function which can retrieve attributes (if any are "
 "defined), and another to set attributes (if setting attributes is "
 "allowed).  Removing an attribute is a special case, for which the new "
-"value passed to the handler is *NULL*."
+"value passed to the handler is ``NULL``."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:194
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:196
 msgid ""
 "Python supports two pairs of attribute handlers; a type that supports "
 "attributes only needs to implement the functions for one pair.  The "
@@ -200,7 +200,7 @@ msgid ""
 "convenience. ::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:206
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:208
 msgid ""
 "If accessing attributes of an object is always a simple operation (this "
 "will be explained shortly), there are generic implementations which can "
@@ -211,69 +211,69 @@ msgid ""
 "new generic mechanism that is available."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:217
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:219
 msgid "Generic Attribute Management"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:219
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:221
 msgid ""
 "Most extension types only use *simple* attributes.  So, what makes the "
 "attributes simple?  There are only a couple of conditions that must be "
 "met:"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:222
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:224
 msgid ""
 "The name of the attributes must be known when :c:func:`PyType_Ready` is "
 "called."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:225
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:227
 msgid ""
 "No special processing is needed to record that an attribute was looked up"
 " or set, nor do actions need to be taken based on the value."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:228
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:230
 msgid ""
 "Note that this list does not place any restrictions on the values of the "
 "attributes, when the values are computed, or how relevant data is stored."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:231
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:233
 msgid ""
 "When :c:func:`PyType_Ready` is called, it uses three tables referenced by"
 " the type object to create :term:`descriptor`\\s which are placed in the "
 "dictionary of the type object.  Each descriptor controls access to one "
 "attribute of the instance object.  Each of the tables is optional; if all"
-" three are *NULL*, instances of the type will only have attributes that "
-"are inherited from their base type, and should leave the "
+" three are ``NULL``, instances of the type will only have attributes that"
+" are inherited from their base type, and should leave the "
 ":c:member:`~PyTypeObject.tp_getattro` and "
-":c:member:`~PyTypeObject.tp_setattro` fields *NULL* as well, allowing the"
-" base type to handle attributes."
+":c:member:`~PyTypeObject.tp_setattro` fields ``NULL`` as well, allowing "
+"the base type to handle attributes."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:239
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:241
 msgid "The tables are declared as three fields of the type object::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:245
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:247
 msgid ""
-"If :c:member:`~PyTypeObject.tp_methods` is not *NULL*, it must refer to "
-"an array of :c:type:`PyMethodDef` structures.  Each entry in the table is"
-" an instance of this structure::"
+"If :c:member:`~PyTypeObject.tp_methods` is not ``NULL``, it must refer to"
+" an array of :c:type:`PyMethodDef` structures.  Each entry in the table "
+"is an instance of this structure::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:256
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:258
 msgid ""
 "One entry should be defined for each method provided by the type; no "
 "entries are needed for methods inherited from a base type.  One "
 "additional entry is needed at the end; it is a sentinel that marks the "
 "end of the array.  The :attr:`ml_name` field of the sentinel must be "
-"*NULL*."
+"``NULL``."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:261
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:263
 msgid ""
 "The second table is used to define attributes which map directly to data "
 "stored in the instance.  A variety of primitive C types are supported, "
@@ -281,7 +281,7 @@ msgid ""
 "are defined as::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:273
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:275
 msgid ""
 "For each entry in the table, a :term:`descriptor` will be constructed and"
 " added to the type which will be able to extract a value from the "
@@ -292,53 +292,53 @@ msgid ""
 "attribute can be accessed."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:280
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:282
 msgid ""
 "The following flag constants are defined in :file:`structmember.h`; they "
 "may be combined using bitwise-OR."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:284
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:286
 msgid "Constant"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:284
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:286
 msgid "Meaning"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:286
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:288
 msgid ":const:`READONLY`"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:286
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:288
 msgid "Never writable."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:288
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:290
 msgid ":const:`READ_RESTRICTED`"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:288
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:290
 msgid "Not readable in restricted mode."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:290
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:292
 msgid ":const:`WRITE_RESTRICTED`"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:290
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:292
 msgid "Not writable in restricted mode."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:292
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:294
 msgid ":const:`RESTRICTED`"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:292
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:294
 msgid "Not readable or writable in restricted mode."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:301
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:303
 msgid ""
 "An interesting advantage of using the "
 ":c:member:`~PyTypeObject.tp_members` table to build descriptors that are "
@@ -349,17 +349,17 @@ msgid ""
 "attribute."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:307
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:309
 msgid ""
 "As with the :c:member:`~PyTypeObject.tp_methods` table, a sentinel entry "
-"with a :attr:`name` value of *NULL* is required."
+"with a :attr:`name` value of ``NULL`` is required."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:321
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:323
 msgid "Type-specific Attribute Management"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:323
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:325
 msgid ""
 "For simplicity, only the :c:type:`char\\*` version will be demonstrated "
 "here; the type of the name parameter is the only difference between the "
@@ -370,7 +370,7 @@ msgid ""
 "extend their functionality, you'll understand what needs to be done."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:331
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:333
 msgid ""
 "The :c:member:`~PyTypeObject.tp_getattr` handler is called when the "
 "object requires an attribute look-up.  It is called in the same "
@@ -378,25 +378,26 @@ msgid ""
 "called."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:335
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:337
 msgid "Here is an example::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:351
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:353
 msgid ""
 "The :c:member:`~PyTypeObject.tp_setattr` handler is called when the "
 ":meth:`__setattr__` or :meth:`__delattr__` method of a class instance "
 "would be called.  When an attribute should be deleted, the third "
-"parameter will be *NULL*.  Here is an example that simply raises an "
+"parameter will be ``NULL``.  Here is an example that simply raises an "
 "exception; if this were really all you wanted, the "
-":c:member:`~PyTypeObject.tp_setattr` handler should be set to *NULL*. ::"
+":c:member:`~PyTypeObject.tp_setattr` handler should be set to ``NULL``. "
+"::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:365
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:367
 msgid "Object Comparison"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:371
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:373
 msgid ""
 "The :c:member:`~PyTypeObject.tp_richcompare` handler is called when "
 "comparisons are needed.  It is analogous to the :ref:`rich comparison "
@@ -404,7 +405,7 @@ msgid ""
 ":c:func:`PyObject_RichCompare` and :c:func:`PyObject_RichCompareBool`."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:376
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:378
 msgid ""
 "This function is called with two Python objects and the operator as "
 "arguments, where the operator is one of ``Py_EQ``, ``Py_NE``, ``Py_LE``, "
@@ -412,27 +413,27 @@ msgid ""
 "with respect to the specified operator and return ``Py_True`` or "
 "``Py_False`` if the comparison is successful, ``Py_NotImplemented`` to "
 "indicate that comparison is not implemented and the other object's "
-"comparison method should be tried, or *NULL* if an exception was set."
+"comparison method should be tried, or ``NULL`` if an exception was set."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:384
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:386
 msgid ""
 "Here is a sample implementation, for a datatype that is considered equal "
 "if the size of an internal pointer is equal::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:414
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:416
 msgid "Abstract Protocol Support"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:416
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:418
 msgid ""
 "Python supports a variety of *abstract* 'protocols;' the specific "
 "interfaces provided to use these interfaces are documented in "
 ":ref:`abstract`."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:420
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:422
 msgid ""
 "A number of these abstract interfaces were defined early in the "
 "development of the Python implementation.  In particular, the number, "
@@ -443,12 +444,12 @@ msgid ""
 "referenced by the type object.  For newer protocols there are additional "
 "slots in the main type object, with a flag bit being set to indicate that"
 " the slots are present and should be checked by the interpreter.  (The "
-"flag bit does not indicate that the slot values are non-*NULL*. The flag "
-"may be set to indicate the presence of a slot, but a slot may still be "
-"unfilled.) ::"
+"flag bit does not indicate that the slot values are non-``NULL``. The "
+"flag may be set to indicate the presence of a slot, but a slot may still "
+"be unfilled.) ::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:435
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:437
 msgid ""
 "If you wish your object to be able to act like a number, a sequence, or a"
 " mapping object, then you place the address of a structure that "
@@ -459,13 +460,13 @@ msgid ""
 "directory of the Python source distribution. ::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:444
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:446
 msgid ""
 "This function, if you choose to provide it, should return a hash number "
 "for an instance of your data type. Here is a simple example::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:457
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:459
 msgid ""
 ":c:type:`Py_hash_t` is a signed integer type with a platform-varying "
 "width. Returning ``-1`` from :c:member:`~PyTypeObject.tp_hash` indicates "
@@ -473,7 +474,7 @@ msgid ""
 "hash computation is successful, as seen above."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:466
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:468
 msgid ""
 "This function is called when an instance of your data type is \"called\","
 " for example, if ``obj1`` is an instance of your data type and the Python"
@@ -481,48 +482,48 @@ msgid ""
 " handler is invoked."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:470
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:472
 msgid "This function takes three arguments:"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:472
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:474
 msgid ""
 "*self* is the instance of the data type which is the subject of the call."
 " If the call is ``obj1('hello')``, then *self* is ``obj1``."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:475
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:477
 msgid ""
 "*args* is a tuple containing the arguments to the call.  You can use "
 ":c:func:`PyArg_ParseTuple` to extract the arguments."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:478
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:480
 msgid ""
 "*kwds* is a dictionary of keyword arguments that were passed. If this is "
-"non-*NULL* and you support keyword arguments, use "
+"non-``NULL`` and you support keyword arguments, use "
 ":c:func:`PyArg_ParseTupleAndKeywords` to extract the arguments.  If you "
-"do not want to support keyword arguments and this is non-*NULL*, raise a "
-":exc:`TypeError` with a message saying that keyword arguments are not "
+"do not want to support keyword arguments and this is non-``NULL``, raise "
+"a :exc:`TypeError` with a message saying that keyword arguments are not "
 "supported."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:484
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:486
 msgid "Here is a toy ``tp_call`` implementation::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:510
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:512
 msgid ""
 "These functions provide support for the iterator protocol.  Both handlers"
 " take exactly one parameter, the instance for which they are being "
 "called, and return a new reference.  In the case of an error, they should"
-" set an exception and return *NULL*.  :c:member:`~PyTypeObject.tp_iter` "
-"corresponds to the Python :meth:`__iter__` method, while "
+" set an exception and return ``NULL``.  :c:member:`~PyTypeObject.tp_iter`"
+" corresponds to the Python :meth:`__iter__` method, while "
 ":c:member:`~PyTypeObject.tp_iternext` corresponds to the Python "
 ":meth:`~iterator.__next__` method."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:517
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:519
 msgid ""
 "Any :term:`iterable` object must implement the "
 ":c:member:`~PyTypeObject.tp_iter` handler, which must return an "
@@ -530,14 +531,14 @@ msgid ""
 "classes:"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:521
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:523
 msgid ""
 "For collections (such as lists and tuples) which can support multiple "
 "independent iterators, a new iterator should be created and returned by "
 "each call to :c:member:`~PyTypeObject.tp_iter`."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:524
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:526
 msgid ""
 "Objects which can only be iterated over once (usually due to side effects"
 " of iteration, such as file objects) can implement "
@@ -546,7 +547,7 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_iternext`  handler."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:529
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:531
 msgid ""
 "Any :term:`iterator` object should implement both "
 ":c:member:`~PyTypeObject.tp_iter` and "
@@ -555,72 +556,72 @@ msgid ""
 "to the iterator.  Its :c:member:`~PyTypeObject.tp_iternext` handler "
 "should return a new reference to the next object in the iteration, if "
 "there is one. If the iteration has reached the end, "
-":c:member:`~PyTypeObject.tp_iternext` may return *NULL* without setting "
-"an exception, or it may set :exc:`StopIteration` *in addition* to "
-"returning *NULL*; avoiding the exception can yield slightly better "
+":c:member:`~PyTypeObject.tp_iternext` may return ``NULL`` without setting"
+" an exception, or it may set :exc:`StopIteration` *in addition* to "
+"returning ``NULL``; avoiding the exception can yield slightly better "
 "performance.  If an actual error occurs, "
 ":c:member:`~PyTypeObject.tp_iternext` should always set an exception and "
-"return *NULL*."
+"return ``NULL``."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:545
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:547
 msgid "Weak Reference Support"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:547
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:549
 msgid ""
 "One of the goals of Python's weak reference implementation is to allow "
 "any type to participate in the weak reference mechanism without incurring"
 " the overhead on performance-critical objects (such as numbers)."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:552
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:554
 msgid "Documentation for the :mod:`weakref` module."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:554
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:556
 msgid ""
 "For an object to be weakly referencable, the extension type must do two "
 "things:"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:556
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:558
 msgid ""
 "Include a :c:type:`PyObject\\*` field in the C object structure dedicated"
 " to the weak reference mechanism.  The object's constructor should leave "
-"it *NULL* (which is automatic when using the default "
+"it ``NULL`` (which is automatic when using the default "
 ":c:member:`~PyTypeObject.tp_alloc`)."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:561
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:563
 msgid ""
 "Set the :c:member:`~PyTypeObject.tp_weaklistoffset` type member to the "
 "offset of the aforementioned field in the C object structure, so that the"
 " interpreter knows how to access and modify that field."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:565
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:567
 msgid ""
 "Concretely, here is how a trivial object structure would be augmented "
 "with the required field::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:573
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:575
 msgid "And the corresponding member in the statically-declared type object::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:581
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:583
 msgid ""
 "The only further addition is that ``tp_dealloc`` needs to clear any weak "
 "references (by calling :c:func:`PyObject_ClearWeakRefs`) if the field is "
-"non-*NULL*::"
+"non-``NULL``::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:597
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:599
 msgid "More Suggestions"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:599
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:601
 msgid ""
 "In order to learn how to implement any specific method for your new data "
 "type, get the :term:`CPython` source code.  Go to the :file:`Objects` "
@@ -629,26 +630,26 @@ msgid ""
 "the function you want to implement."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:605
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:607
 msgid ""
 "When you need to verify that an object is a concrete instance of the type"
 " you are implementing, use the :c:func:`PyObject_TypeCheck` function.  A "
 "sample of its use might be something like the following::"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:616
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:618
 msgid "Download CPython source releases."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:616
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:618
 msgid "https://www.python.org/downloads/source/"
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:618
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:620
 msgid "The CPython project on GitHub, where the CPython source code is developed."
 msgstr ""
 
-#: ../Doc/extending/newtypes.rst:619
+#: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes.rst:621
 msgid "https://github.com/python/cpython"
 msgstr ""
 
@@ -1897,5 +1898,187 @@ msgstr ""
 #~ "allowed and string subclasses could "
 #~ "allow cycles even if normal strings "
 #~ "don't."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "For every object which can support "
+#~ "attributes, the corresponding type must "
+#~ "provide the functions that control how"
+#~ " the attributes are resolved.  There "
+#~ "needs to be a function which can"
+#~ " retrieve attributes (if any are "
+#~ "defined), and another to set attributes"
+#~ " (if setting attributes is allowed).  "
+#~ "Removing an attribute is a special "
+#~ "case, for which the new value "
+#~ "passed to the handler is *NULL*."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When :c:func:`PyType_Ready` is called, it "
+#~ "uses three tables referenced by the "
+#~ "type object to create :term:`descriptor`\\s"
+#~ " which are placed in the dictionary"
+#~ " of the type object.  Each descriptor"
+#~ " controls access to one attribute of"
+#~ " the instance object.  Each of the"
+#~ " tables is optional; if all three "
+#~ "are *NULL*, instances of the type "
+#~ "will only have attributes that are "
+#~ "inherited from their base type, and "
+#~ "should leave the "
+#~ ":c:member:`~PyTypeObject.tp_getattro` and "
+#~ ":c:member:`~PyTypeObject.tp_setattro` fields *NULL* "
+#~ "as well, allowing the base type to"
+#~ " handle attributes."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :c:member:`~PyTypeObject.tp_methods` is not "
+#~ "*NULL*, it must refer to an array"
+#~ " of :c:type:`PyMethodDef` structures.  Each "
+#~ "entry in the table is an instance"
+#~ " of this structure::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "One entry should be defined for "
+#~ "each method provided by the type; "
+#~ "no entries are needed for methods "
+#~ "inherited from a base type.  One "
+#~ "additional entry is needed at the "
+#~ "end; it is a sentinel that marks"
+#~ " the end of the array.  The "
+#~ ":attr:`ml_name` field of the sentinel "
+#~ "must be *NULL*."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "As with the :c:member:`~PyTypeObject.tp_methods` "
+#~ "table, a sentinel entry with a "
+#~ ":attr:`name` value of *NULL* is "
+#~ "required."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The :c:member:`~PyTypeObject.tp_setattr` handler is"
+#~ " called when the :meth:`__setattr__` or "
+#~ ":meth:`__delattr__` method of a class "
+#~ "instance would be called.  When an "
+#~ "attribute should be deleted, the third"
+#~ " parameter will be *NULL*.  Here is"
+#~ " an example that simply raises an "
+#~ "exception; if this were really all "
+#~ "you wanted, the :c:member:`~PyTypeObject.tp_setattr`"
+#~ " handler should be set to *NULL*. "
+#~ "::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This function is called with two "
+#~ "Python objects and the operator as "
+#~ "arguments, where the operator is one "
+#~ "of ``Py_EQ``, ``Py_NE``, ``Py_LE``, ``Py_GT``,"
+#~ " ``Py_LT`` or ``Py_GT``.  It should "
+#~ "compare the two objects with respect "
+#~ "to the specified operator and return "
+#~ "``Py_True`` or ``Py_False`` if the "
+#~ "comparison is successful, ``Py_NotImplemented`` "
+#~ "to indicate that comparison is not "
+#~ "implemented and the other object's "
+#~ "comparison method should be tried, or"
+#~ " *NULL* if an exception was set."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A number of these abstract interfaces"
+#~ " were defined early in the "
+#~ "development of the Python implementation.  "
+#~ "In particular, the number, mapping, and"
+#~ " sequence protocols have been part of"
+#~ " Python since the beginning.  Other "
+#~ "protocols have been added over time."
+#~ "  For protocols which depend on "
+#~ "several handler routines from the type"
+#~ " implementation, the older protocols have"
+#~ " been defined as optional blocks of"
+#~ " handlers referenced by the type "
+#~ "object.  For newer protocols there are"
+#~ " additional slots in the main type"
+#~ " object, with a flag bit being "
+#~ "set to indicate that the slots are"
+#~ " present and should be checked by "
+#~ "the interpreter.  (The flag bit does "
+#~ "not indicate that the slot values "
+#~ "are non-*NULL*. The flag may be "
+#~ "set to indicate the presence of a"
+#~ " slot, but a slot may still be"
+#~ " unfilled.) ::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*kwds* is a dictionary of keyword "
+#~ "arguments that were passed. If this "
+#~ "is non-*NULL* and you support keyword"
+#~ " arguments, use :c:func:`PyArg_ParseTupleAndKeywords`"
+#~ " to extract the arguments.  If you"
+#~ " do not want to support keyword "
+#~ "arguments and this is non-*NULL*, raise"
+#~ " a :exc:`TypeError` with a message "
+#~ "saying that keyword arguments are not"
+#~ " supported."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "These functions provide support for the"
+#~ " iterator protocol.  Both handlers take "
+#~ "exactly one parameter, the instance for"
+#~ " which they are being called, and "
+#~ "return a new reference.  In the "
+#~ "case of an error, they should set"
+#~ " an exception and return *NULL*.  "
+#~ ":c:member:`~PyTypeObject.tp_iter` corresponds to the"
+#~ " Python :meth:`__iter__` method, while "
+#~ ":c:member:`~PyTypeObject.tp_iternext` corresponds to "
+#~ "the Python :meth:`~iterator.__next__` method."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Any :term:`iterator` object should implement"
+#~ " both :c:member:`~PyTypeObject.tp_iter` and "
+#~ ":c:member:`~PyTypeObject.tp_iternext`.  An iterator's "
+#~ ":c:member:`~PyTypeObject.tp_iter` handler should "
+#~ "return a new reference to the "
+#~ "iterator.  Its :c:member:`~PyTypeObject.tp_iternext` "
+#~ "handler should return a new reference"
+#~ " to the next object in the "
+#~ "iteration, if there is one. If the"
+#~ " iteration has reached the end, "
+#~ ":c:member:`~PyTypeObject.tp_iternext` may return "
+#~ "*NULL* without setting an exception, or"
+#~ " it may set :exc:`StopIteration` *in "
+#~ "addition* to returning *NULL*; avoiding "
+#~ "the exception can yield slightly better"
+#~ " performance.  If an actual error "
+#~ "occurs, :c:member:`~PyTypeObject.tp_iternext` should "
+#~ "always set an exception and return "
+#~ "*NULL*."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Include a :c:type:`PyObject\\*` field in "
+#~ "the C object structure dedicated to "
+#~ "the weak reference mechanism.  The "
+#~ "object's constructor should leave it "
+#~ "*NULL* (which is automatic when using"
+#~ " the default :c:member:`~PyTypeObject.tp_alloc`)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The only further addition is that "
+#~ "``tp_dealloc`` needs to clear any weak"
+#~ " references (by calling "
+#~ ":c:func:`PyObject_ClearWeakRefs`) if the field "
+#~ "is non-*NULL*::"
 #~ msgstr ""
 

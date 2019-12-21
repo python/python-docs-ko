@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-15 07:19+0900\n"
+"POT-Creation-Date: 2019-12-19 18:31+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ../Doc/c-api/gcsupport.rst:6
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:6
 msgid "Supporting Cyclic Garbage Collection"
 msgstr "순환 가비지 수집 지원"
 
-#: ../Doc/c-api/gcsupport.rst:8
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:8
 msgid ""
 "Python's support for detecting and collecting garbage which involves "
 "circular references requires support from object types which are "
@@ -33,7 +33,7 @@ msgstr ""
 " 지원이 필요합니다. 다른 객체에 대한 참조를 저장하지 않거나, 원자 형(가령 숫자나 문자열)에 대한 참조만 저장하는 형은 가비지 "
 "수집에 대한 어떤 명시적인 지원을 제공할 필요가 없습니다."
 
-#: ../Doc/c-api/gcsupport.rst:15
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:15
 msgid ""
 "To create a container type, the :c:member:`~PyTypeObject.tp_flags` field "
 "of the type object must include the :const:`Py_TPFLAGS_HAVE_GC` and "
@@ -46,18 +46,18 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_traverse` 처리기 구현을 제공해야 합니다. 형의 인스턴스가 가변이면, "
 ":c:member:`~PyTypeObject.tp_clear` 구현도 제공해야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:24
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:24
 msgid ""
 "Objects with a type with this flag set must conform with the rules "
 "documented here.  For convenience these objects will be referred to as "
 "container objects."
 msgstr "이 플래그가 설정된 형의 객체는 여기에 설명된 규칙을 준수해야 합니다. 편의를 위해 이러한 객체를 컨테이너 객체라고 하겠습니다."
 
-#: ../Doc/c-api/gcsupport.rst:28
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:28
 msgid "Constructors for container types must conform to two rules:"
 msgstr "컨테이너형의 생성자는 두 가지 규칙을 준수해야 합니다:"
 
-#: ../Doc/c-api/gcsupport.rst:30
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:30
 msgid ""
 "The memory for the object must be allocated using "
 ":c:func:`PyObject_GC_New` or :c:func:`PyObject_GC_NewVar`."
@@ -65,7 +65,7 @@ msgstr ""
 "객체의 메모리는 :c:func:`PyObject_GC_New` 나 :c:func:`PyObject_GC_NewVar`\\를 사용하여"
 " 할당해야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:33
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:33
 msgid ""
 "Once all the fields which may contain references to other containers are "
 "initialized, it must call :c:func:`PyObject_GC_Track`."
@@ -73,7 +73,7 @@ msgstr ""
 "다른 컨테이너에 대한 참조를 포함할 수 있는 모든 필드가 초기화되면, :c:func:`PyObject_GC_Track`\\를 "
 "호출해야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:39
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:39
 msgid ""
 "Analogous to :c:func:`PyObject_New` but for container objects with the "
 ":const:`Py_TPFLAGS_HAVE_GC` flag set."
@@ -81,7 +81,7 @@ msgstr ""
 ":c:func:`PyObject_New`\\와 유사하지만, :const:`Py_TPFLAGS_HAVE_GC` 플래그가 설정된 "
 "컨테이너 객체를 위한 것."
 
-#: ../Doc/c-api/gcsupport.rst:45
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:45
 msgid ""
 "Analogous to :c:func:`PyObject_NewVar` but for container objects with the"
 " :const:`Py_TPFLAGS_HAVE_GC` flag set."
@@ -89,16 +89,16 @@ msgstr ""
 ":c:func:`PyObject_NewVar`\\와 유사하지만, :const:`Py_TPFLAGS_HAVE_GC` 플래그가 설정된 "
 "컨테이너 객체를 위한 것."
 
-#: ../Doc/c-api/gcsupport.rst:51
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:51
 msgid ""
 "Resize an object allocated by :c:func:`PyObject_NewVar`.  Returns the "
-"resized object or *NULL* on failure.  *op* must not be tracked by the "
+"resized object or ``NULL`` on failure.  *op* must not be tracked by the "
 "collector yet."
 msgstr ""
 ":c:func:`PyObject_NewVar`\\에 의해 할당된 객체의 크기를 변경합니다. 크기가 조정된 객체나 실패하면 "
-"*NULL*\\을 반환합니다. *op*\\는 아직 수집기가 추적하지 않아야 합니다."
+"``NULL``\\을 반환합니다. *op*\\는 아직 수집기가 추적하지 않아야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:57
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:57
 msgid ""
 "Adds the object *op* to the set of container objects tracked by the "
 "collector.  The collector can run at unexpected times so objects must be "
@@ -110,23 +110,23 @@ msgstr ""
 "동안 객체가 유효해야 합니다. :c:member:`~PyTypeObject.tp_traverse` 처리기가 탐색하는 모든 필드가 "
 "유효해지면 호출해야 합니다, 보통 생성자의 끝부분 근처입니다."
 
-#: ../Doc/c-api/gcsupport.rst:64
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:64
 msgid ""
 "Similarly, the deallocator for the object must conform to a similar pair "
 "of rules:"
 msgstr "마찬가지로, 객체의 할당해제자(deallocator)는 비슷한 규칙 쌍을 준수해야 합니다:"
 
-#: ../Doc/c-api/gcsupport.rst:67
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:67
 msgid ""
 "Before fields which refer to other containers are invalidated, "
 ":c:func:`PyObject_GC_UnTrack` must be called."
 msgstr "다른 컨테이너를 참조하는 필드가 무효화 되기 전에, :c:func:`PyObject_GC_UnTrack`\\를 호출해야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:70
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:70
 msgid "The object's memory must be deallocated using :c:func:`PyObject_GC_Del`."
 msgstr "객체의 메모리는 :c:func:`PyObject_GC_Del`\\를 사용하여 할당 해제되어야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:75
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:75
 msgid ""
 "Releases memory allocated to an object using :c:func:`PyObject_GC_New` or"
 " :c:func:`PyObject_GC_NewVar`."
@@ -134,7 +134,7 @@ msgstr ""
 ":c:func:`PyObject_GC_New` 나 :c:func:`PyObject_GC_NewVar`\\를 사용하여 객체에 할당된 "
 "메모리를 해제합니다."
 
-#: ../Doc/c-api/gcsupport.rst:81
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:81
 msgid ""
 "Remove the object *op* from the set of container objects tracked by the "
 "collector.  Note that :c:func:`PyObject_GC_Track` can be called again on "
@@ -149,7 +149,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_traverse` 처리기에서 사용하는 필드가 무효화 되기 전에 객체에 대해 이 "
 "함수를 호출해야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:90
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:90
 msgid ""
 "The :c:func:`_PyObject_GC_TRACK` and :c:func:`_PyObject_GC_UNTRACK` "
 "macros have been removed from the public C API."
@@ -157,13 +157,13 @@ msgstr ""
 ":c:func:`_PyObject_GC_TRACK`\\과 :c:func:`_PyObject_GC_UNTRACK` 매크로는 공용 C "
 "API에서 제거되었습니다."
 
-#: ../Doc/c-api/gcsupport.rst:93
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:93
 msgid ""
 "The :c:member:`~PyTypeObject.tp_traverse` handler accepts a function "
 "parameter of this type:"
 msgstr ":c:member:`~PyTypeObject.tp_traverse` 처리기는 다음과 같은 형의 함수 매개 변수를 받아들입니다:"
 
-#: ../Doc/c-api/gcsupport.rst:98
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:98
 msgid ""
 "Type of the visitor function passed to the "
 ":c:member:`~PyTypeObject.tp_traverse` handler. The function should be "
@@ -178,26 +178,26 @@ msgstr ""
 "*arg*\\로 호출되어야 합니다. 파이썬 코어는 순환 가비지 탐지를 구현하기 위해 여러 방문자 함수를 사용합니다; 사용자가 자신의"
 " 방문자 함수를 작성해야 할 필요는 없습니다."
 
-#: ../Doc/c-api/gcsupport.rst:105
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:105
 msgid ""
 "The :c:member:`~PyTypeObject.tp_traverse` handler must have the following"
 " type:"
 msgstr ":c:member:`~PyTypeObject.tp_traverse` 처리기는 다음 형이어야 합니다:"
 
-#: ../Doc/c-api/gcsupport.rst:110
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:110
 msgid ""
 "Traversal function for a container object.  Implementations must call the"
 " *visit* function for each object directly contained by *self*, with the "
 "parameters to *visit* being the contained object and the *arg* value "
 "passed to the handler.  The *visit* function must not be called with a "
-"*NULL* object argument.  If *visit* returns a non-zero value that value "
-"should be returned immediately."
+"``NULL`` object argument.  If *visit* returns a non-zero value that value"
+" should be returned immediately."
 msgstr ""
 "컨테이너 객체의 탐색 함수입니다. 구현은 *self*\\에 직접 포함된 각 객체에 대해 *visit* 함수를 호출해야 하며, "
-"*visit*\\에 대한 매개 변수는 포함된 객체와 처리기로 전달된 *arg* 값입니다. *visit* 함수는 *NULL* "
+"*visit*\\에 대한 매개 변수는 포함된 객체와 처리기로 전달된 *arg* 값입니다. *visit* 함수는 ``NULL`` "
 "object 인자로 호출하면 안 됩니다. *visit*\\가 0이 아닌 값을 반환하면 그 값이 즉시 반환되어야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:117
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:117
 msgid ""
 "To simplify writing :c:member:`~PyTypeObject.tp_traverse` handlers, a "
 ":c:func:`Py_VISIT` macro is provided.  In order to use this macro, the "
@@ -209,25 +209,25 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_traverse` 구현은 인자의 이름을 정확히 *visit* 와 *arg*\\로 "
 "지정해야 합니다:"
 
-#: ../Doc/c-api/gcsupport.rst:124
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:124
 msgid ""
-"If *o* is not *NULL*, call the *visit* callback, with arguments *o* and "
-"*arg*.  If *visit* returns a non-zero value, then return it. Using this "
+"If *o* is not ``NULL``, call the *visit* callback, with arguments *o* and"
+" *arg*.  If *visit* returns a non-zero value, then return it. Using this "
 "macro, :c:member:`~PyTypeObject.tp_traverse` handlers look like::"
 msgstr ""
-"*o*\\가 *NULL*\\이 아니면, *o* 와 *arg* 인자로 *visit* 콜백을 호출합니다. *visit*\\가 0이 아닌"
-" 값을 반환하면, 그것을 반환합니다. 이 매크로를 사용하면, :c:member:`~PyTypeObject.tp_traverse` "
-"처리기가 다음과 같아집니다::"
+"*o*\\가 ``NULL``\\이 아니면, *o* 와 *arg* 인자로 *visit* 콜백을 호출합니다. *visit*\\가 0이 "
+"아닌 값을 반환하면, 그것을 반환합니다. 이 매크로를 사용하면, :c:member:`~PyTypeObject.tp_traverse`"
+" 처리기가 다음과 같아집니다::"
 
-#: ../Doc/c-api/gcsupport.rst:137
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:137
 msgid ""
 "The :c:member:`~PyTypeObject.tp_clear` handler must be of the "
-":c:type:`inquiry` type, or *NULL* if the object is immutable."
+":c:type:`inquiry` type, or ``NULL`` if the object is immutable."
 msgstr ""
 ":c:member:`~PyTypeObject.tp_clear` 처리기는 :c:type:`inquiry` 형이거나 객체가 불변이면 "
-"*NULL*\\이어야 합니다."
+"``NULL``\\이어야 합니다."
 
-#: ../Doc/c-api/gcsupport.rst:143
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/gcsupport.rst:143
 msgid ""
 "Drop references that may have created reference cycles.  Immutable "
 "objects do not have to define this method since they can never directly "
