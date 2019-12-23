@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-19 18:31+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:8
 msgid "The Very High Level Layer"
-msgstr ""
+msgstr "매우 고수준 계층"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:10
 msgid ""
@@ -27,6 +26,8 @@ msgid ""
 "given in a file or a buffer, but they will not let you interact in a more"
 " detailed way with the interpreter."
 msgstr ""
+"이 장의 함수들은 파일이나 버퍼에 제공된 파이썬 소스 코드를 실행할 수 있도록 하지만, 인터프리터와 더 세밀한 방식으로 상호 "
+"작용하도록 하지는 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:14
 msgid ""
@@ -35,6 +36,9 @@ msgid ""
 ":const:`Py_file_input`, and :const:`Py_single_input`.  These are "
 "described following the functions which accept them as parameters."
 msgstr ""
+"이러한 함수 중 일부는 문법의 시작 기호를 매개 변수로 받아들입니다. 사용 가능한 시작 기호는 "
+":const:`Py_eval_input`, :const:`Py_file_input` 및 "
+":const:`Py_single_input`\\입니다. 이것들은 이들을 매개 변수로 받아들이는 함수 뒤에 설명됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:19
 msgid ""
@@ -47,6 +51,10 @@ msgid ""
 " these functions if it is certain that they were created by the same "
 "library that the Python runtime is using."
 msgstr ""
+"또한 이 함수 중 일부는 :c:type:`FILE\\*` 매개 변수를 취합니다. 주의해서 다루어야 할 한 가지 문제는 다른 C "
+"라이브러리의 :c:type:`FILE` 구조체가 다르고, 호환되지 않을 수 있다는 것입니다. (적어도) 윈도우에서는, 동적으로 "
+"링크된 확장에서 실제로 다른 라이브러리를 사용할 수 있어서, :c:type:`FILE\\*` 매개 변수가 파이썬 런타임이 사용하고 "
+"있는 것과 같은 라이브러리에서 만들어진 것이 확실할 때만 이러한 함수에 전달되도록 주의해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:30
 msgid ""
@@ -61,6 +69,11 @@ msgid ""
 "exception, or ``2`` if the parameter list does not represent a valid "
 "Python command line."
 msgstr ""
+"표준 인터프리터의 메인 프로그램. 이것은 파이썬을 내장하는 프로그램을 위해 제공됩니다. *argc*\\와 *argv* 매개 변수는 "
+"C 프로그램의 :c:func:`main` 함수에 전달되는 것과 정확히 일치하도록 준비해야 합니다 (사용자의 로케일에 따라 "
+"wchar_t로 변환됩니다). 인자 목록이 수정될 수 있음에 유의해야 합니다 (하지만 인자 목록이 가리키는 문자열의 내용은 수정되지"
+" 않습니다). 인터프리터가 정상적으로 (즉, 예외 없이) 종료되면 반환 값은 ``0``, 예외로 인해 인터프리터가 종료되면 "
+"``1``, 매개 변수 목록이 유효한 파이썬 명령 줄을 나타내지 않으면 ``2``\\가 됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:40
 msgid ""
@@ -68,28 +81,36 @@ msgid ""
 "function will not return ``1``, but exit the process, as long as "
 "``Py_InspectFlag`` is not set."
 msgstr ""
+"처리되지 않은 :exc:`SystemExit`\\가 발생하면, 이 함수는 ``Py_InspectFlag``\\가 설정되어 있지 않은"
+" 한 ``1``\\을 반환하지 않고 프로세스를 종료함에 유의하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:47
 msgid "Similar to :c:func:`Py_Main` but *argv* is an array of bytes strings."
-msgstr ""
+msgstr ":c:func:`Py_Main`\\과 유사하지만 *argv*\\는 바이트 문자열의 배열입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:54
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_AnyFileExFlags` below, "
 "leaving *closeit* set to ``0`` and *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_AnyFileExFlags` 의 단순화된 인터페이스입니다. *closeit*\\은 ``0``\\으로"
+" *flags*\\는 ``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:60
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_AnyFileExFlags` below, "
 "leaving the *closeit* argument set to ``0``."
 msgstr ""
+"아래 :c:func:`PyRun_AnyFileExFlags` 의 단순화된 인터페이스입니다. 이것은 *closeit* 인자를 "
+"``0``\\으로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:66
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_AnyFileExFlags` below, "
 "leaving the *flags* argument set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_AnyFileExFlags` 의 단순화된 인터페이스입니다. 이것은 *flags* 인자를 "
+"``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:72
 msgid ""
@@ -100,12 +121,19 @@ msgid ""
 "encoding (:func:`sys.getfilesystemencoding`).  If *filename* is ``NULL``,"
 " this function uses ``\"???\"`` as the filename."
 msgstr ""
+"*fp*\\가 대화식 장치(콘솔이나 터미널 입력이나 유닉스 의사 터미널)와 연결된 파일을 가리키면, "
+":c:func:`PyRun_InteractiveLoop`\\의 값을 반환하고, 그렇지 않으면 "
+":c:func:`PyRun_SimpleFile`\\의 결과를 반환합니다. *filename*\\은 파일 시스템 "
+"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. *filename*\\이 "
+"``NULL``\\이면, 이 함수는 파일명으로 ``\"???\"``\\를 사용합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:82
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_SimpleStringFlags` "
 "below, leaving the :c:type:`PyCompilerFlags`\\* argument set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_SimpleStringFlags` 의 단순화된 인터페이스입니다. "
+":c:type:`PyCompilerFlags`\\* 인자를 ``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:88
 msgid ""
@@ -115,6 +143,9 @@ msgid ""
 "exception was raised.  If there was an error, there is no way to get the "
 "exception information. For the meaning of *flags*, see below."
 msgstr ""
+"*flags* 인자에 따라 :mod:`__main__` 모듈에서 *command*\\에 있는 파이썬 소스 코드를 실행합니다. "
+":mod:`__main__`\\이 존재하지 않으면 만듭니다. 성공하면 ``0``\\을, 예외가 발생하면 ``-1``\\을 "
+"반환합니다. 에러가 있으면, 예외 정보를 얻을 방법이 없습니다. *flags*\\의 의미는 아래를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:94
 msgid ""
@@ -122,18 +153,24 @@ msgid ""
 "function will not return ``-1``, but exit the process, as long as "
 "``Py_InspectFlag`` is not set."
 msgstr ""
+"처리되지 않은 :exc:`SystemExit`\\가 발생하면, 이 함수는 ``Py_InspectFlag``\\가 설정되어 있지 않은"
+" 한 ``-1``\\을 반환하지 않고 프로세스를 종료함에 유의하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:101
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_SimpleFileExFlags` "
 "below, leaving *closeit* set to ``0`` and *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_SimpleFileExFlags` 의 단순화된 인터페이스입니다. *closeit*\\을 "
+"``0``\\으로, *flags*\\를 ``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:107
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_SimpleFileExFlags` "
 "below, leaving *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_SimpleFileExFlags` 의 단순화된 인터페이스입니다. *flags*\\를 "
+"``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:113
 msgid ""
@@ -143,6 +180,10 @@ msgid ""
 "(:func:`sys.getfilesystemencoding`).  If *closeit* is true, the file is "
 "closed before PyRun_SimpleFileExFlags returns."
 msgstr ""
+":c:func:`PyRun_SimpleStringFlags` 와 비슷하지만, 메모리에 있는 문자열 대신 *fp*\\에서 파이썬 소스"
+" 코드를 읽습니다. *filename*\\은 파일의 이름이어야 하며, 파일 시스템 "
+"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. *closeit*\\이 참이면 "
+"PyRun_SimpleFileExFlags 가 반환하기 전에 파일이 닫힙니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:120
 msgid ""
@@ -150,12 +191,16 @@ msgid ""
 "\"rb\")``. Otherwise, Python may not handle script file with LF line "
 "ending correctly."
 msgstr ""
+"윈도우에서, *fp*\\는 바이너리 모드로 열어야 합니다 (예를 들어 ``fopen(filename, \"rb\")``). 그렇지 "
+"않으면, 파이썬은 LF 줄 종료가 있는 스크립트 파일을 올바르게 처리하지 못할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:126
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_InteractiveOneFlags` "
 "below, leaving *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_InteractiveOneFlags` 의 단순화된 인터페이스입니다. *flags*\\를 "
+"``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:132
 msgid ""
@@ -164,6 +209,9 @@ msgid ""
 "prompted using ``sys.ps1`` and ``sys.ps2``.  *filename* is decoded from "
 "the filesystem encoding (:func:`sys.getfilesystemencoding`)."
 msgstr ""
+"*flags* 인자에 따라 대화식 장치와 연관된 파일에서 단일 문장을 읽고 실행합니다. ``sys.ps1``\\과 "
+"``sys.ps2``\\를 사용하여 사용자에게 프롬프트 합니다. *filename*\\은 파일 시스템 "
+"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:137
 msgid ""
@@ -173,12 +221,17 @@ msgid ""
 "that :file:`errcode.h` is not included by :file:`Python.h`, so must be "
 "included specifically if needed.)"
 msgstr ""
+"입력이 성공적으로 실행될 때 ``0``\\을, 예외가 있으면 ``-1``\\을, 또는 구문 분석 에러가 있으면 파이썬의 일부로 "
+"배포된 :file:`errcode.h` 인클루드 파일에 있는 에러 코드를 반환합니다. (:file:`errcode.h`\\는 "
+":file:`Python.h`\\에서 인클루드하지 않기 때문에 필요하면 특별히 인클루드해야 함에 유의하십시오.)"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:146
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_InteractiveLoopFlags` "
 "below, leaving *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_InteractiveLoopFlags` 의 단순화된 인터페이스입니다. *flags*\\를 "
+"``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:152
 msgid ""
@@ -188,6 +241,10 @@ msgid ""
 "(:func:`sys.getfilesystemencoding`).  Returns ``0`` at EOF or a negative "
 "number upon failure."
 msgstr ""
+"EOF에 도달할 때까지 대화식 장치와 연관된 파일에서 문장을 읽고 실행합니다. ``sys.ps1``\\과 ``sys.ps2``\\를"
+" 사용하여 사용자에게 프롬프트 합니다. *filename*\\은 파일 시스템 "
+"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. EOF에서 ``0``\\을 반환하거나, "
+"실패하면 음수를 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:161
 msgid ""
@@ -198,6 +255,10 @@ msgid ""
 "interpreter's prompt with other event loops, as done in the "
 ":file:`Modules/_tkinter.c` in the Python source code."
 msgstr ""
+"프로토타입 ``int func(void)``\\인 함수를 가리키도록 설정할 수 있습니다. 이 함수는 파이썬의 인터프리터 프롬프트가 "
+"유휴 상태가 되고 터미널에서 사용자 입력을 기다리려고 할 때 호출됩니다. 반환 값은 무시됩니다. 이 훅을 재정의하는 것은 파이썬 "
+"소스 코드의 :file:`Modules/_tkinter.c`\\에서 한 것처럼 인터프리터의 프롬프트를 다른 이벤트 루프와 통합하는 "
+"데 사용될 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:172
 msgid ""
@@ -209,12 +270,19 @@ msgid ""
 "returning the resulting string.  For example, The :mod:`readline` module "
 "sets this hook to provide line-editing and tab-completion features."
 msgstr ""
+"프로토타입 ``char *func(FILE *stdin, FILE *stdout, char *prompt)``\\인 함수를 "
+"가리키도록 설정하여, 인터프리터의 프롬프트에서 단일 입력 줄을 읽는 데 사용되는 기본 함수를 재정의할 수 있습니다. 이 함수는 "
+"``NULL``\\이 아니면 문자열 *prompt*\\를 출력한 다음 제공된 표준 입력 파일에서 입력 줄을 읽고 결과 문자열을 "
+"반환할 것이라고 기대됩니다. 예를 들어, :mod:`readline` 모듈은 이 훅을 설정하여 줄 편집과 탭 완성 기능을 "
+"제공합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:181
 msgid ""
 "The result must be a string allocated by :c:func:`PyMem_RawMalloc` or "
 ":c:func:`PyMem_RawRealloc`, or ``NULL`` if an error occurred."
 msgstr ""
+"결과는 :c:func:`PyMem_RawMalloc`\\이나 :c:func:`PyMem_RawRealloc`\\으로 할당된 문자열 "
+"이거나, 에러가 발생했으면 ``NULL``\\이어야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:184
 msgid ""
@@ -222,6 +290,8 @@ msgid ""
 ":c:func:`PyMem_RawRealloc`, instead of being allocated by "
 ":c:func:`PyMem_Malloc` or :c:func:`PyMem_Realloc`."
 msgstr ""
+"결과는 :c:func:`PyMem_Malloc`\\이나 :c:func:`PyMem_Realloc`\\으로 할당하는 대신, "
+":c:func:`PyMem_RawMalloc`\\이나 :c:func:`PyMem_RawRealloc`\\으로 할당해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:192
 msgid ""
@@ -229,6 +299,8 @@ msgid ""
 ":c:func:`PyParser_SimpleParseStringFlagsFilename` below, leaving  "
 "*filename* set to ``NULL`` and *flags* set to ``0``."
 msgstr ""
+"아래 :c:func:`PyParser_SimpleParseStringFlagsFilename`\\의 단순화된 인터페이스입니다. "
+"*filename*\\을 ``NULL``\\로, *flags*\\를 ``0``\\으로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:199
 msgid ""
@@ -236,6 +308,8 @@ msgid ""
 ":c:func:`PyParser_SimpleParseStringFlagsFilename` below, leaving  "
 "*filename* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyParser_SimpleParseStringFlagsFilename`\\의 단순화된 인터페이스입니다. "
+"이것은 *filename*\\을 ``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:206
 msgid ""
@@ -245,24 +319,33 @@ msgid ""
 "fragment must be evaluated many times. *filename* is decoded from the "
 "filesystem encoding (:func:`sys.getfilesystemencoding`)."
 msgstr ""
+"*flags* 인자에 따라 시작 토큰 *start*\\를 사용하여 *str*\\에서 파이썬 소스 코드를 구문 분석합니다. 결과는 "
+"효율적으로 평가될 수 있는 코드 객체를 생성하는 데 사용될 수 있습니다. 코드 조각을 여러 번 평가해야 하는 경우에 유용합니다. "
+"*filename*\\은 파일 시스템 인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:215
 msgid ""
 "This is a simplified interface to :c:func:`PyParser_SimpleParseFileFlags`"
 " below, leaving *flags* set to ``0``."
 msgstr ""
+"아래 :c:func:`PyParser_SimpleParseFileFlags` 의 단순화된 인터페이스입니다. *flags*\\를 "
+"``0``\\으로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:221
 msgid ""
 "Similar to :c:func:`PyParser_SimpleParseStringFlagsFilename`, but the "
 "Python source code is read from *fp* instead of an in-memory string."
 msgstr ""
+":c:func:`PyParser_SimpleParseStringFlagsFilename`\\와 유사하지만, 파이썬 소스 코드는 "
+"메모리에 있는 문자열 대신 *fp*\\에서 읽습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:227
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_StringFlags` below, "
 "leaving *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_StringFlags`\\의 단순화된 인터페이스입니다. 이것은 *flags*\\를 "
+"``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:233
 msgid ""
@@ -272,30 +355,40 @@ msgid ""
 " implements the mapping protocol.  The parameter *start* specifies the "
 "start token that should be used to parse the source code."
 msgstr ""
+"*flags*\\로 지정된 컴파일러 플래그를 사용하여 *globals*\\과 *locals* 객체로 지정된 컨텍스트에서 "
+"*str*\\에서 파이썬 소스 코드를 실행합니다. *globals*\\는 딕셔너리이어야 합니다. *locals*\\는 매핑 "
+"프로토콜을 구현하는 모든 객체가 될 수 있습니다. 매개 변수 *start*\\는 소스 코드를 구문 분석하는 데 사용해야 하는 시작 "
+"토큰을 지정합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:239
 msgid ""
 "Returns the result of executing the code as a Python object, or ``NULL`` "
 "if an exception was raised."
-msgstr ""
+msgstr "코드를 실행한 결과를 파이썬 객체로 반환하거나, 예외가 발생하면 ``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:245
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_FileExFlags` below, "
 "leaving *closeit* set to ``0`` and *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_FileExFlags`\\의 단순화된 인터페이스입니다. *closeit*\\을 ``0``\\으로, "
+"*flags*\\를 ``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:251
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_FileExFlags` below, "
 "leaving *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`PyRun_FileExFlags`\\의 단순화된 인터페이스입니다. *flags*\\를 ``NULL``\\로 "
+"설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:257
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_FileExFlags` below, "
 "leaving *closeit* set to ``0``."
 msgstr ""
+"아래 :c:func:`PyRun_FileExFlags`\\의 단순화된 인터페이스입니다. *closeit*\\을 ``0``\\으로 "
+"설정된 상태로 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:263
 msgid ""
@@ -305,18 +398,26 @@ msgid ""
 "(:func:`sys.getfilesystemencoding`). If *closeit* is true, the file is "
 "closed before :c:func:`PyRun_FileExFlags` returns."
 msgstr ""
+":c:func:`PyRun_StringFlags`\\와 유사하지만, 파이썬 소스 코드는 메모리에 있는 문자열 대신 *fp*\\에서 "
+"읽습니다. *filename*\\은 파일명이어야 하며 파일 시스템 "
+"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. *closeit*\\이 참이면 "
+":c:func:`PyRun_FileExFlags`\\가 반환되기 전에 파일이 닫힙니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:272
 msgid ""
 "This is a simplified interface to :c:func:`Py_CompileStringFlags` below, "
 "leaving *flags* set to ``NULL``."
 msgstr ""
+"아래 :c:func:`Py_CompileStringFlags` 의 단순화된 인터페이스입니다. *flags*\\를 "
+"``NULL``\\로 설정된 상태로 유지합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:278
 msgid ""
 "This is a simplified interface to :c:func:`Py_CompileStringExFlags` "
 "below, with *optimize* set to ``-1``."
 msgstr ""
+"아래 :c:func:`Py_CompileStringExFlags` 의 단순화된 인터페이스입니다. *optimize*\\를 "
+"``-1``\\로 설정된 상태로 유지합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:284
 msgid ""
@@ -329,6 +430,11 @@ msgid ""
 ":exc:`SyntaxError` exception messages.  This returns ``NULL`` if the code"
 " cannot be parsed or compiled."
 msgstr ""
+"*str*\\에 있는 파이썬 소스 코드를 구문 분석하고 컴파일하여 결과 코드 객체를 반환합니다. 시작 토큰은 *start*\\로 "
+"주어집니다; 이것은 컴파일될 수 있는 코드를 제한하는 데 사용될 수 있으며 :const:`Py_eval_input`, "
+":const:`Py_file_input` 또는 :const:`Py_single_input`\\이어야 합니다. "
+"*filename*\\으로 지정된 파일명은 코드 객체를 구성하는 데 사용되며 트레이스백이나 :exc:`SyntaxError` 예외 "
+"메시지에 나타날 수 있습니다. 코드를 구문 분석할 수 없거나 컴파일할 수 없으면 ``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:292
 msgid ""
@@ -338,12 +444,17 @@ msgid ""
 "optimization; ``__debug__`` is true), ``1`` (asserts are removed, "
 "``__debug__`` is false) or ``2`` (docstrings are removed too)."
 msgstr ""
+"정수 *optimize*\\는 컴파일러의 최적화 수준을 지정합니다. ``-1`` 값은 :option:`-O` 옵션으로 주어진 것처럼"
+" 인터프리터의 최적화 수준을 선택합니다. 명시적 수준은 ``0`` (최적화 없음; ``__debug__``\\가 참), ``1`` "
+"(어서션이 제거되고 ``__debug__``\\가 거짓) 또는 ``2`` (독스트링도 제거됩니다)입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:303
 msgid ""
 "Like :c:func:`Py_CompileStringObject`, but *filename* is a byte string "
 "decoded from the filesystem encoding (:func:`os.fsdecode`)."
 msgstr ""
+":c:func:`Py_CompileStringObject`\\와 유사하지만, *filename*\\은 파일 시스템 "
+"인코딩(:func:`os.fsdecode`)으로 디코딩된 바이트 문자열입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:310
 msgid ""
@@ -351,6 +462,8 @@ msgid ""
 "the code object, and global and local variables.  The other arguments are"
 " set to ``NULL``."
 msgstr ""
+"이것은 코드 객체와 전역 변수 및 지역 변수만 있는, :c:func:`PyEval_EvalCodeEx`\\의 단순화된 "
+"인터페이스입니다. 다른 인자는 ``NULL``\\로 설정됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:317
 msgid ""
@@ -360,18 +473,23 @@ msgid ""
 "keywords and defaults, a dictionary of default values for :ref:`keyword-"
 "only <keyword-only_parameter>` arguments and a closure tuple of cells."
 msgstr ""
+"주어진 평가를 위한 특정 환경에서, 미리 컴파일된 코드 객체를 평가합니다. 이 환경은 전역 변수의 딕셔너리, 지역 변수의 매핑 "
+"객체, 인자의 배열, 키워드와 기본값, :ref:`키워드 전용 <keyword-only_parameter>` 인자의 기본값 딕셔너리"
+" 및 셀의 클로저 튜플로 구성됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:326
 msgid ""
 "The C structure of the objects used to describe frame objects. The fields"
 " of this type are subject to change at any time."
-msgstr ""
+msgstr "프레임 객체를 기술하는 데 사용되는 객체의 C 구조체. 이 형의 필드는 언제든지 변경될 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:332
 msgid ""
 "Evaluate an execution frame.  This is a simplified interface to "
 ":c:func:`PyEval_EvalFrameEx`, for backward compatibility."
 msgstr ""
+"실행 프레임을 평가합니다. 이전 버전과의 호환성을 위한, :c:func:`PyEval_EvalFrameEx`\\의 단순화된 "
+"인터페이스입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:338
 msgid ""
@@ -382,24 +500,27 @@ msgid ""
 "exception to immediately be thrown; this is used for the "
 ":meth:`~generator.throw` methods of generator objects."
 msgstr ""
+"이것은 파이썬 인터프리트의 메인, 꾸미지 않은 함수입니다. 실행 프레임 *f*\\와 연관된 코드 객체가 실행됩니다. 필요에 따라 "
+"바이트 코드를 해석하고 호출을 실행합니다. 추가 *throwflag* 매개 변수는 대체로 무시할 수 있습니다 - 참이면, 예외가 "
+"즉시 발생하도록 합니다; 제너레이터 객체의 :meth:`~generator.throw` 메서드에 사용됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:345
 msgid ""
 "This function now includes a debug assertion to help ensure that it does "
 "not silently discard an active exception."
-msgstr ""
+msgstr "이 함수는 이제 활성 예외를 조용히 버리지 않았는지 확인하도록 도우려고 디버그 어서션을 포함합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:352
 msgid ""
 "This function changes the flags of the current evaluation frame, and "
 "returns true on success, false on failure."
-msgstr ""
+msgstr "이 함수는 현재 평가 프레임의 플래그를 변경하고, 성공하면 참을, 실패하면 거짓을 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:360
 msgid ""
 "The start symbol from the Python grammar for isolated expressions; for "
 "use with :c:func:`Py_CompileString`."
-msgstr ""
+msgstr "격리된 표현식을 위한 파이썬 문법의 시작 기호; :c:func:`Py_CompileString`\\과 함께 사용합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:368
 msgid ""
@@ -408,6 +529,8 @@ msgid ""
 ":c:func:`Py_CompileString`.  This is the symbol to use when compiling "
 "arbitrarily long Python source code."
 msgstr ""
+"파일이나 다른 소스에서 읽은 문장의 시퀀스를 위한 파이썬 문법의 시작 기호; :c:func:`Py_CompileString`\\과 "
+"함께 사용합니다. 임의로 긴 파이썬 소스 코드를 컴파일할 때 사용하는 기호입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:377
 msgid ""
@@ -415,6 +538,8 @@ msgid ""
 "with :c:func:`Py_CompileString`. This is the symbol used for the "
 "interactive interpreter loop."
 msgstr ""
+"단일 문장을 위한 파이썬 문법의 시작 기호; :c:func:`Py_CompileString`\\과 함께 사용합니다. 대화식 "
+"인터프리터 루프에 사용되는 기호입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:384
 msgid ""
@@ -423,6 +548,9 @@ msgid ""
 " code is being executed, it is passed as ``PyCompilerFlags *flags``.  In "
 "this case, ``from __future__ import`` can modify *flags*."
 msgstr ""
+"이것은 컴파일러 플래그를 담는 데 사용되는 구조체입니다. 코드가 컴파일되기만 하는 경우 ``int flags``\\로 전달되고, "
+"코드가 실행되는 경우 ``PyCompilerFlags *flags``\\로 전달됩니다. 이 경우, ``from __future__ "
+"import``\\는 *flags*\\를 수정할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:389
 msgid ""
@@ -430,236 +558,34 @@ msgid ""
 "treated as equal to ``0``, and any modification due to ``from __future__ "
 "import`` is discarded."
 msgstr ""
+"``PyCompilerFlags *flags``\\가 ``NULL``\\일 때마다, :attr:`cf_flags`\\는 "
+"``0``\\과 같다고 취급되며, ``from __future__ import``\\로 인한 수정은 버립니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:395
 msgid "Compiler flags."
-msgstr ""
+msgstr "컴파일러 플래그."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:399
 msgid ""
 "*cf_feature_version* is the minor Python version. It should be "
 "initialized to ``PY_MINOR_VERSION``."
-msgstr ""
+msgstr "*cf_feature_version*\\은 부 파이썬 버전입니다. ``PY_MINOR_VERSION``\\으로 초기화되어야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:402
 msgid ""
 "The field is ignored by default, it is used if and only if "
 "``PyCF_ONLY_AST`` flag is set in *cf_flags*."
-msgstr ""
+msgstr "이 필드는 기본적으로 무시되며, ``PyCF_ONLY_AST`` 플래그가 *cf_flags*\\에 설정된 경우에만 사용됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:405
 msgid "Added *cf_feature_version* field."
-msgstr ""
+msgstr "*cf_feature_version* 필드를 추가했습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/veryhigh.rst:411
 msgid ""
 "This bit can be set in *flags* to cause division operator ``/`` to be "
 "interpreted as \"true division\" according to :pep:`238`."
 msgstr ""
-
-#~ msgid ""
-#~ "Read and execute statements from a "
-#~ "file associated with an interactive "
-#~ "device until EOF is reached.  The "
-#~ "user will be prompted using ``sys.ps1``"
-#~ " and ``sys.ps2``.  *filename* is decoded"
-#~ " from the filesystem encoding "
-#~ "(:func:`sys.getfilesystemencoding`).  Returns ``0`` "
-#~ "at EOF."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Evaluate a precompiled code object, "
-#~ "given a particular environment for its"
-#~ " evaluation.  This environment consists of"
-#~ " a dictionary of global variables, a"
-#~ " mapping object of local variables, "
-#~ "arrays of arguments, keywords and "
-#~ "defaults, a dictionary of default values"
-#~ " for :ref:`keyword-only\\ <keyword-"
-#~ "only_parameter>` arguments and a closure "
-#~ "tuple of cells."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is the main, unvarnished function"
-#~ " of Python interpretation.  It is "
-#~ "literally 2000 lines long.  The code "
-#~ "object associated with the execution "
-#~ "frame *f* is executed, interpreting "
-#~ "bytecode and executing calls as needed."
-#~ " The additional *throwflag* parameter can"
-#~ " mostly be ignored - if true, "
-#~ "then it causes an exception to "
-#~ "immediately be thrown; this is used "
-#~ "for the :meth:`~generator.throw` methods of"
-#~ " generator objects."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Whenever ``PyCompilerFlags *flags`` is *NULL*,"
-#~ " :attr:`cf_flags` is treated as equal "
-#~ "to ``0``, and any modification due "
-#~ "to ``from __future__ import`` is "
-#~ "discarded.  ::"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_AnyFileExFlags` below, leaving "
-#~ "*closeit* set to ``0`` and *flags* "
-#~ "set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_AnyFileExFlags` below, leaving the"
-#~ " *flags* argument set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If *fp* refers to a file "
-#~ "associated with an interactive device "
-#~ "(console or terminal input or Unix "
-#~ "pseudo-terminal), return the value of"
-#~ " :c:func:`PyRun_InteractiveLoop`, otherwise return "
-#~ "the result of :c:func:`PyRun_SimpleFile`.  "
-#~ "*filename* is decoded from the "
-#~ "filesystem encoding (:func:`sys.getfilesystemencoding`)."
-#~ "  If *filename* is *NULL*, this "
-#~ "function uses ``\"???\"`` as the "
-#~ "filename."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_SimpleStringFlags` below, leaving the"
-#~ " *PyCompilerFlags\\** argument set to NULL."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_SimpleFileExFlags` below, leaving "
-#~ "*closeit* set to ``0`` and *flags* "
-#~ "set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_SimpleFileExFlags` below, leaving "
-#~ "*flags* set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_InteractiveOneFlags` below, leaving "
-#~ "*flags* set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_InteractiveLoopFlags` below, leaving "
-#~ "*flags* set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Can be set to point to a "
-#~ "function with the prototype ``char "
-#~ "*func(FILE *stdin, FILE *stdout, char "
-#~ "*prompt)``, overriding the default function"
-#~ " used to read a single line of"
-#~ " input at the interpreter's prompt.  "
-#~ "The function is expected to output "
-#~ "the string *prompt* if it's not "
-#~ "*NULL*, and then read a line of"
-#~ " input from the provided standard "
-#~ "input file, returning the resulting "
-#~ "string.  For example, The :mod:`readline` "
-#~ "module sets this hook to provide "
-#~ "line-editing and tab-completion features."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The result must be a string "
-#~ "allocated by :c:func:`PyMem_RawMalloc` or "
-#~ ":c:func:`PyMem_RawRealloc`, or *NULL* if an"
-#~ " error occurred."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyParser_SimpleParseStringFlagsFilename` below, "
-#~ "leaving  *filename* set to *NULL* and"
-#~ " *flags* set to ``0``."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyParser_SimpleParseStringFlagsFilename` below, "
-#~ "leaving  *filename* set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_StringFlags` below, leaving *flags*"
-#~ " set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Returns the result of executing the "
-#~ "code as a Python object, or *NULL*"
-#~ " if an exception was raised."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_FileExFlags` below, leaving *closeit*"
-#~ " set to ``0`` and *flags* set "
-#~ "to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyRun_FileExFlags` below, leaving *flags*"
-#~ " set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`Py_CompileStringFlags` below, leaving "
-#~ "*flags* set to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Parse and compile the Python source "
-#~ "code in *str*, returning the resulting"
-#~ " code object.  The start token is "
-#~ "given by *start*; this can be used"
-#~ " to constrain the code which can "
-#~ "be compiled and should be "
-#~ ":const:`Py_eval_input`, :const:`Py_file_input`, or "
-#~ ":const:`Py_single_input`.  The filename specified"
-#~ " by *filename* is used to construct"
-#~ " the code object and may appear "
-#~ "in tracebacks or :exc:`SyntaxError` exception"
-#~ " messages.  This returns *NULL* if "
-#~ "the code cannot be parsed or "
-#~ "compiled."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyEval_EvalCodeEx`, with just the "
-#~ "code object, and global and local "
-#~ "variables.  The other arguments are set"
-#~ " to *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Whenever ``PyCompilerFlags *flags`` is *NULL*,"
-#~ " :attr:`cf_flags` is treated as equal "
-#~ "to ``0``, and any modification due "
-#~ "to ``from __future__ import`` is "
-#~ "discarded."
-#~ msgstr ""
+"*flags*\\에서 이 비트를 설정하면 :pep:`238`\\에 따라 나누기 연산자 ``/``\\를 \"실수 나누기(true "
+"division)\"로 해석되도록 합니다."
 
