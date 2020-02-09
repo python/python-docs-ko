@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../Doc/library/xmlrpc.client.rst:2
 msgid ":mod:`xmlrpc.client` --- XML-RPC client access"
-msgstr ""
+msgstr ":mod:`xmlrpc.client` --- XML-RPC 클라이언트 액세스"
 
 #: ../Doc/library/xmlrpc.client.rst:10
 msgid "**Source code:** :source:`Lib/xmlrpc/client.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/xmlrpc/client.py`"
 
 #: ../Doc/library/xmlrpc.client.rst:17
 msgid ""
@@ -34,6 +33,10 @@ msgid ""
 "handles all the details of translating between conformable Python objects"
 " and XML on the wire."
 msgstr ""
+"XML-RPC는 HTTP(S)를 통해 전달된 XML을 트랜스포트로 사용하는 원격 프로시저 호출(Remote Procedure "
+"Call) 방법입니다. 이를 통해, 클라이언트는 원격 서버에서 매개 변수를 사용하여 메서드를 호출하고 (서버는 URI로 이름이 "
+"지정됩니다) 구조화된 데이터를 돌려받을 수 있습니다. 이 모듈은 XML-RPC 클라이언트 코드 작성을 지원합니다; 적합한 파이썬 "
+"객체와 전송 회선 상의 XML 간 변환의 모든 세부 사항을 처리합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:26
 msgid ""
@@ -41,12 +44,16 @@ msgid ""
 "constructed data.  If you need to parse untrusted or unauthenticated data"
 " see :ref:`xml-vulnerabilities`."
 msgstr ""
+":mod:`xmlrpc.client` 모듈은 악의적으로 구성된 데이터로부터 안전하지 않습니다. 신뢰할 수 없거나 인증되지 않은 "
+"데이터를 구문 분석해야 하면 :ref:`xml-vulnerabilities`\\을 참조하십시오."
 
 #: ../Doc/library/xmlrpc.client.rst:32
 msgid ""
 "For HTTPS URIs, :mod:`xmlrpc.client` now performs all the necessary "
 "certificate and hostname checks by default."
 msgstr ""
+"HTTPS URI의 경우, :mod:`xmlrpc.client`\\는 이제 기본적으로 필요한 모든 인증서와 호스트명 확인을 "
+"수행합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:39
 msgid ""
@@ -59,6 +66,11 @@ msgid ""
 "optional third argument is an encoding, by default UTF-8. The optional "
 "fourth argument is a debugging flag."
 msgstr ""
+":class:`ServerProxy` 인스턴스는 원격 XML-RPC 서버와의 통신을 관리하는 객체입니다. 필수적인 첫 번째 인자는 "
+"URI(Uniform Resource Indicator)이며 일반적으로 서버의 URL입니다. 선택적인 두 번째 인자는 트랜스포트 "
+"팩토리 인스턴스입니다; 기본적으로 https: URL의 경우는 내부 :class:`SafeTransport` 인스턴스이고 그렇지 "
+"않으면 내부 HTTP :class:`Transport` 인스턴스입니다. 선택적 세 번째 인자는 인코딩이며, 기본적으로 "
+"UTF-8입니다. 선택적 네 번째 인자는 디버깅 플래그입니다."
 
 #: ../Doc/library/xmlrpc.client.rst:47
 msgid ""
@@ -80,14 +92,26 @@ msgid ""
 "'value')]`). The obsolete *use_datetime* flag is similar to "
 "*use_builtin_types* but it applies only to date/time values."
 msgstr ""
+"그 뒤에 오는 매개 변수들은 반환된 프락시 인스턴스 사용을 제어합니다. *allow_none*\\이 참이면, 파이썬 상수 "
+"``None``\\이 XML로 변환됩니다; 기본 동작은 ``None``\\이 :exc:`TypeError`\\를 발생시키는 "
+"것입니다. 이것은 XML-RPC 명세에 일반적으로 사용되는 확장이지만, 모든 클라이언트와 서버에서 지원되는 것은 아닙니다; 설명은 "
+"`http://ontosys.com/xml-rpc/extensions.php "
+"<https://web.archive.org/web/20130120074804/http://ontosys.com/xml-"
+"rpc/extensions.php>`_\\를 참조하십시오. *use_builtin_types* 플래그를 사용하여 날짜/시간 값을 "
+":class:`datetime.datetime` 객체로 표현하고 바이너리 데이터를 :class:`bytes` 객체로 표현할 수 "
+"있습니다; 이 플래그는 기본적으로 거짓입니다. :class:`datetime.datetime`, :class:`bytes` 및 "
+":class:`bytearray` 객체는 호출로 전달될 수 있습니다. *headers* 매개 변수는 각 요청과 함께 보낼 선택적 "
+"HTTP 헤더의 시퀀스이며, 헤더 이름과 값을 나타내는 2-튜플의 시퀀스로 표현됩니다. (예를 들어 `[('Header-Name',"
+" 'value')]`). 사용되지 않는 *use_datetime* 플래그는 *use_builtin_types*\\와 유사하지만, "
+"날짜/시간 값에만 적용됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:65 ../Doc/library/xmlrpc.client.rst:552
 msgid "The *use_builtin_types* flag was added."
-msgstr ""
+msgstr "*use_builtin_types* 플래그가 추가되었습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:68
 msgid "The *headers* parameter was added."
-msgstr ""
+msgstr "*headers* 매개 변수가 추가되었습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:71
 msgid ""
@@ -100,6 +124,11 @@ msgid ""
 "URL is provided, *context* may be :class:`ssl.SSLContext` and configures "
 "the SSL settings of the underlying HTTPS connection."
 msgstr ""
+"HTTP와 HTTPS 트랜스포트는 모두 HTTP 기본 인증(Basic Authentication)을 위한 URL 구문 확장을 "
+"지원합니다: ``http://user:pass@host:port/path``. ``user:pass`` 부분은 HTTP "
+"'Authorization' 헤더로 base64 인코딩되고, XML-RPC 메서드를 호출할 때 연결 프로세스의 일부로 원격 서버로 "
+"전송됩니다. 원격 서버가 기본 인증 사용자와 비밀번호를 요구할 때만 이를 사용해야 합니다. HTTPS URL이 제공되면, "
+"*context*\\는 :class:`ssl.SSLContext` 일 수 있고 하부 HTTPS 연결의 SSL 설정을 구성합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:80
 msgid ""
@@ -109,6 +138,9 @@ msgid ""
 "query the remote server for the methods it supports (service discovery) "
 "and fetch other server-associated metadata."
 msgstr ""
+"반환된 인스턴스는 원격 서버에서 해당 RPC 호출을 호출하는 데 사용할 수 있는 메서드가 있는 프락시 객체입니다. 원격 서버가 "
+"인트로스펙션(introspection) API를 지원하면, 프락시를 사용하여 원격 서버에서 지원하는 메서드를 조회하고 (서비스 "
+"검색, service discovery) 다른 서버 관련 메타 데이터를 가져올 수 있습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:86
 msgid ""
@@ -116,62 +148,66 @@ msgid ""
 "include the following (and except where noted, they are unmarshalled as "
 "the same Python type):"
 msgstr ""
+"적합한 형(예를 들어 XML을 통해 마샬링 할 수 있는 형)에는 다음이 포함됩니다 (별도로 표시된 경우를 제외하고는 같은 파이썬 "
+"형으로 역마샬링 됩니다):"
 
 #: ../Doc/library/xmlrpc.client.rst:93
 msgid "XML-RPC type"
-msgstr ""
+msgstr "XML-RPC 형"
 
 #: ../Doc/library/xmlrpc.client.rst:93
 msgid "Python type"
-msgstr ""
+msgstr "파이썬 형"
 
 #: ../Doc/library/xmlrpc.client.rst:95
 msgid "``boolean``"
-msgstr ""
+msgstr "``boolean``"
 
 #: ../Doc/library/xmlrpc.client.rst:95
 msgid ":class:`bool`"
-msgstr ""
+msgstr ":class:`bool`"
 
 #: ../Doc/library/xmlrpc.client.rst:97
 msgid "``int``, ``i1``, ``i2``,  ``i4``, ``i8`` or ``biginteger``"
-msgstr ""
+msgstr "``int``, ``i1``, ``i2``, ``i4``, ``i8`` 또는 ``biginteger``"
 
 #: ../Doc/library/xmlrpc.client.rst:97
 msgid ""
 ":class:`int` in range from -2147483648 to 2147483647. Values get the "
 "``<int>`` tag."
-msgstr ""
+msgstr "-2147483648에서 2147483647 범위의 :class:`int`. 값은 ``<int>`` 태그를 얻습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:102
 msgid "``double`` or ``float``"
-msgstr ""
+msgstr "``double``\\이나 ``float``"
 
 #: ../Doc/library/xmlrpc.client.rst:102
 msgid ":class:`float`.  Values get the ``<double>`` tag."
-msgstr ""
+msgstr ":class:`float`. 값은 ``<double>`` 태그를 얻습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:105
 msgid "``string``"
-msgstr ""
+msgstr "``string``"
 
 #: ../Doc/library/xmlrpc.client.rst:105
 msgid ":class:`str`"
-msgstr ""
+msgstr ":class:`str`"
 
 #: ../Doc/library/xmlrpc.client.rst:107
 msgid "``array``"
-msgstr ""
+msgstr "``array``"
 
 #: ../Doc/library/xmlrpc.client.rst:107
 msgid ""
 ":class:`list` or :class:`tuple` containing conformable elements.  Arrays "
 "are returned as :class:`lists <list>`."
 msgstr ""
+"적합한 요소를 포함하는 :class:`list`\\나 :class:`tuple`. 배열은 :class:`리스트 <list>`\\로 "
+"반환됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:111
 msgid "``struct``"
-msgstr ""
+msgstr "``struct``"
 
 #: ../Doc/library/xmlrpc.client.rst:111
 msgid ""
@@ -179,42 +215,48 @@ msgid ""
 "  Objects of user-defined classes can be passed in; only their "
 ":attr:`~object.__dict__` attribute is transmitted."
 msgstr ""
+":class:`dict`. 키는 문자열이어야 하며, 값은 적합한 형일 수 있습니다. 사용자 정의 클래스의 객체를 전달할 수 "
+"있습니다; :attr:`~object.__dict__` 어트리뷰트만 전송됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:116
 msgid "``dateTime.iso8601``"
-msgstr ""
+msgstr "``dateTime.iso8601``"
 
 #: ../Doc/library/xmlrpc.client.rst:116
 msgid ""
 ":class:`DateTime` or :class:`datetime.datetime`. Returned type depends on"
 " values of *use_builtin_types* and *use_datetime* flags."
 msgstr ""
+":class:`DateTime`\\이나 :class:`datetime.datetime`. 반환되는 형은 "
+"*use_builtin_types*\\와 *use_datetime* 플래그 값에 따라 다릅니다."
 
 #: ../Doc/library/xmlrpc.client.rst:120
 msgid "``base64``"
-msgstr ""
+msgstr "``base64``"
 
 #: ../Doc/library/xmlrpc.client.rst:120
 msgid ""
 ":class:`Binary`, :class:`bytes` or :class:`bytearray`.  Returned type "
 "depends on the value of the *use_builtin_types* flag."
 msgstr ""
+":class:`Binary`, :class:`bytes` 또는 :class:`bytearray`. 반환되는 형은 "
+"*use_builtin_types* 플래그의 값에 따라 다릅니다."
 
 #: ../Doc/library/xmlrpc.client.rst:124
 msgid "``nil``"
-msgstr ""
+msgstr "``nil``"
 
 #: ../Doc/library/xmlrpc.client.rst:124
 msgid "The ``None`` constant.  Passing is allowed only if *allow_none* is true."
-msgstr ""
+msgstr "``None`` 상수. *allow_none*\\이 참일 때만 전달이 허용됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:127
 msgid "``bigdecimal``"
-msgstr ""
+msgstr "``bigdecimal``"
 
 #: ../Doc/library/xmlrpc.client.rst:127
 msgid ":class:`decimal.Decimal`.  Returned type only."
-msgstr ""
+msgstr ":class:`decimal.Decimal`. 반환되는 형 전용."
 
 #: ../Doc/library/xmlrpc.client.rst:130
 msgid ""
@@ -226,6 +268,11 @@ msgid ""
 "client module currently does not marshal instances of subclasses of "
 "built-in types."
 msgstr ""
+"이것이 XML-RPC가 지원하는 데이터형의 전체 집합입니다. 메서드 호출은 XML-RPC 서버 에러를 알리는 데 사용되는 특수 "
+":exc:`Fault` 인스턴스나 HTTP/HTTPS 전송 계층의 에러를 알리는 데 사용되는 "
+":exc:`ProtocolError`\\를 발생시킬 수도 있습니다. :exc:`Fault`\\와 "
+":exc:`ProtocolError`\\는 모두 :exc:`Error`\\라는 베이스 클래스에서 파생됩니다. xmlrpc 클라이언트"
+" 모듈은 현재 내장형의 서브 클래스 인스턴스를 마샬링 하지 않음에 유의하십시오."
 
 #: ../Doc/library/xmlrpc.client.rst:137
 msgid ""
@@ -239,16 +286,23 @@ msgid ""
 ":class:`bytes` or :class:`bytearray` classes or the :class:`Binary` "
 "wrapper class described below."
 msgstr ""
+"문자열을 전달할 때, ``<``, ``>`` 및 ``&``\\와 같은 XML에 특수한 문자는 자동으로 이스케이프 됩니다. 그러나, "
+"0에서 31 사이의 ASCII 값을 가진 제어 문자(물론 탭, 줄 넘김 및 캐리지 리턴은 제외하고)와 같이 문자열에 XML에서 "
+"허용되지 않는 문자가 없도록 확인하는 것은 호출자의 책임입니다; 이렇게 하지 않으면 XML 형식이 잘못된 XML-RPC 요청이 "
+"발생합니다. XML-RPC를 통해 임의의 바이트열을 전달해야 하면, :class:`bytes`\\나 "
+":class:`bytearray` 클래스 또는 아래 설명된 :class:`Binary` 래퍼 클래스를 사용하십시오."
 
 #: ../Doc/library/xmlrpc.client.rst:146
 msgid ""
 ":class:`Server` is retained as an alias for :class:`ServerProxy` for "
 "backwards compatibility.  New code should use :class:`ServerProxy`."
 msgstr ""
+":class:`Server`\\는 이전 버전과의 호환성을 위해 :class:`ServerProxy`\\의 별칭으로 유지됩니다. 새 "
+"코드는 :class:`ServerProxy`\\를 사용해야 합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:149
 msgid "Added the *context* argument."
-msgstr ""
+msgstr "*context* 인자를 추가했습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:152
 msgid ""
@@ -258,10 +312,14 @@ msgid ""
 "``bigdecimal``. See http://ws.apache.org/xmlrpc/types.html for a "
 "description."
 msgstr ""
+"접두사가 있는 형 태그 지원이 추가되었습니다 (예를 들어 ``ex:nil``). 숫자를 위해 Apache XML-RPC 구현이 "
+"사용하는 추가 형의 역마샬링 지원이 추가되었습니다: ``i1``, ``i2``, ``i8``, ``biginteger``, "
+"``float`` 및 ``bigdecimal``. 설명은 http://ws.apache.org/xmlrpc/types.html 을 "
+"참조하십시오."
 
 #: ../Doc/library/xmlrpc.client.rst:164
 msgid "`XML-RPC HOWTO <http://www.tldp.org/HOWTO/XML-RPC-HOWTO/index.html>`_"
-msgstr ""
+msgstr "`XML-RPC HOWTO <http://www.tldp.org/HOWTO/XML-RPC-HOWTO/index.html>`_"
 
 #: ../Doc/library/xmlrpc.client.rst:163
 msgid ""
@@ -269,28 +327,32 @@ msgid ""
 "languages. Contains pretty much everything an XML-RPC client developer "
 "needs to know."
 msgstr ""
+"여러 언어로 된 XML-RPC 연산과 클라이언트 소프트웨어에 대한 훌륭한 설명. XML-RPC 클라이언트 개발자가 알아야 할 거의 "
+"모든 것이 포함되어 있습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:167
 msgid ""
 "`XML-RPC Introspection "
 "<http://xmlrpc-c.sourceforge.net/introspection.html>`_"
 msgstr ""
+"`XML-RPC Introspection "
+"<http://xmlrpc-c.sourceforge.net/introspection.html>`_"
 
 #: ../Doc/library/xmlrpc.client.rst:167
 msgid "Describes the XML-RPC protocol extension for introspection."
-msgstr ""
+msgstr "인트로스펙션을 위한 XML-RPC 프로토콜 확장을 설명합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:170
 msgid "`XML-RPC Specification <http://xmlrpc.scripting.com/spec.html>`_"
-msgstr ""
+msgstr "`XML-RPC Specification <http://xmlrpc.scripting.com/spec.html>`_"
 
 #: ../Doc/library/xmlrpc.client.rst:170
 msgid "The official specification."
-msgstr ""
+msgstr "공식 명세."
 
 #: ../Doc/library/xmlrpc.client.rst:175
 msgid "`Unofficial XML-RPC Errata <http://effbot.org/zone/xmlrpc-errata.htm>`_"
-msgstr ""
+msgstr "`Unofficial XML-RPC Errata <http://effbot.org/zone/xmlrpc-errata.htm>`_"
 
 #: ../Doc/library/xmlrpc.client.rst:173
 msgid ""
@@ -298,10 +360,12 @@ msgid ""
 "in the XML-RPC specification, as well as hint at 'best practices' to use "
 "when designing your own XML-RPC implementations.\""
 msgstr ""
+"Fredrik Lundh의 \"비공식 정오표, XML-RPC 명세의 특정 세부 사항을 명확하게 설명할 뿐만 아니라 여러분 자신의 "
+"XML-RPC 구현을 설계할 때 사용할 '모범 사례'에 대한 힌트를 제공하기 위한 것입니다.\""
 
 #: ../Doc/library/xmlrpc.client.rst:181
 msgid "ServerProxy Objects"
-msgstr ""
+msgstr "ServerProxy 객체"
 
 #: ../Doc/library/xmlrpc.client.rst:183
 msgid ""
@@ -313,18 +377,24 @@ msgid ""
 "in a conformant type or a :class:`Fault` or :class:`ProtocolError` object"
 " indicating an error."
 msgstr ""
+":class:`ServerProxy` 인스턴스에는 XML-RPC 서버가 받아들이는 각 원격 프로시저 호출에 해당하는 메서드가 "
+"있습니다. 메서드를 호출하면 RPC를 수행하는데, 이름과 인자 서명 모두로 디스패치 됩니다 (예를 들어 같은 메서드 이름이 여러 "
+"인자 서명으로 오버로드 될 수 있습니다). RPC는 값을 반환하여 완료되는데, 값은 적합한 형으로 반환된 데이터이거나 에러를 "
+"나타내는 :class:`Fault`\\나 :class:`ProtocolError` 객체일 수 있습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:190
 msgid ""
 "Servers that support the XML introspection API support some common "
 "methods grouped under the reserved :attr:`~ServerProxy.system` attribute:"
 msgstr ""
+"XML 인트로스팩션 API를 지원하는 서버는 예약된 :attr:`~ServerProxy.system` 어트리뷰트 밑에 그룹화된 몇 "
+"가지 공통 메서드를 지원합니다:"
 
 #: ../Doc/library/xmlrpc.client.rst:196
 msgid ""
 "This method returns a list of strings, one for each (non-system) method "
 "supported by the XML-RPC server."
-msgstr ""
+msgstr "이 메서드는 문자열 리스트를 반환하는데, XML-RPC 서버가 지원하는 각 (system이 아닌) 메서드마다 하나씩 제공됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:202
 msgid ""
@@ -333,12 +403,14 @@ msgid ""
 "method. A signature is an array of types. The first of these types is the"
 " return type of the method, the rest are parameters."
 msgstr ""
+"이 메서드는 하나의 매개 변수를 취하는데, XML-RPC 서버에 의해 구현된 메서드의 이름입니다. 이 메서드에 대해 가능한 서명의 "
+"배열을 반환합니다. 서명은 형의 배열입니다. 이 형 중 첫 번째는 메서드의 반환형이고 나머지는 매개 변수입니다."
 
 #: ../Doc/library/xmlrpc.client.rst:207
 msgid ""
 "Because multiple signatures (ie. overloading) is permitted, this method "
 "returns a list of signatures rather than a singleton."
-msgstr ""
+msgstr "다중 서명(즉 오버로딩)이 허용되므로, 이 메서드는 하나가 아닌 서명의 리스트를 반환합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:210
 msgid ""
@@ -348,6 +420,9 @@ msgid ""
 "array\". If it expects three integers and returns a string, its signature"
 " is \"string, int, int, int\"."
 msgstr ""
+"서명 자체는 메서드가 기대하는 최상위 매개 변수로 제한됩니다. 예를 들어, 메서드가 구조체 배열 하나를 매개 변수로 기대하고, "
+"문자열을 반환하면, 서명은 단순히 \"string, array\"입니다. 세 개의 정수를 기대하고 문자열을 반환하면, 서명은 "
+"\"string, int, int, int\"입니다."
 
 #: ../Doc/library/xmlrpc.client.rst:215
 msgid ""
@@ -355,6 +430,8 @@ msgid ""
 " In Python this means that the type of the returned  value will be "
 "something other than list."
 msgstr ""
+"메서드에 서명이 정의되지 않으면, 배열이 아닌 값이 반환됩니다. 파이썬에서 이것은 반환된 값의 형이 리스트 이외의 어떤 것이 됨을 "
+"의미합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:222
 msgid ""
@@ -363,25 +440,30 @@ msgid ""
 "that method. If no such string is available, an empty string is returned."
 " The documentation string may contain HTML markup."
 msgstr ""
+"이 메서드는 하나의 매개 변수를 취하는데, XML-RPC 서버에 의해 구현된 메서드의 이름입니다. 해당 메서드의 사용법을 기술하는 "
+"설명서 문자열을 반환합니다. 이러한 문자열이 없으면, 빈 문자열이 반환됩니다. 설명서 문자열에 HTML 마크업이 포함될 수 "
+"있습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:229
 msgid ""
 "Instances of :class:`ServerProxy` support the :term:`context manager` "
 "protocol for closing the underlying transport."
 msgstr ""
+":class:`ServerProxy` 인스턴스는 하부 트랜스포트를 닫기 위한 :term:`컨텍스트 관리자 <context "
+"manager>` 프로토콜을 지원합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:233 ../Doc/library/xmlrpc.client.rst:279
 msgid "A working example follows. The server code::"
-msgstr ""
+msgstr "다음은 실제 예입니다. 서버 코드::"
 
 #: ../Doc/library/xmlrpc.client.rst:245 ../Doc/library/xmlrpc.client.rst:294
 #: ../Doc/library/xmlrpc.client.rst:404 ../Doc/library/xmlrpc.client.rst:510
 msgid "The client code for the preceding server::"
-msgstr ""
+msgstr "이전 서버에 대한 클라이언트 코드::"
 
 #: ../Doc/library/xmlrpc.client.rst:256
 msgid "DateTime Objects"
-msgstr ""
+msgstr "DateTime 객체"
 
 #: ../Doc/library/xmlrpc.client.rst:260
 msgid ""
@@ -390,26 +472,29 @@ msgid ""
 "  It has the following methods, supported mainly for internal use by the "
 "marshalling/unmarshalling code:"
 msgstr ""
+"이 클래스는 에포크(epoch) 이후의 초, 시간 튜플, ISO 8601 시간/날짜 문자열 또는 "
+":class:`datetime.datetime`\\으로 초기화될 수 있습니다. 주로 마샬링/역마샬링 코드 내부에서 사용하기 위해 "
+"지원되는, 다음과 같은 메서드가 있습니다:"
 
 #: ../Doc/library/xmlrpc.client.rst:268
 msgid "Accept a string as the instance's new time value."
-msgstr ""
+msgstr "인스턴스의 새 시간 값으로 문자열을 받아들입니다."
 
 #: ../Doc/library/xmlrpc.client.rst:273
 msgid ""
 "Write the XML-RPC encoding of this :class:`DateTime` item to the *out* "
 "stream object."
-msgstr ""
+msgstr "이 :class:`DateTime` 항목의 XML-RPC 인코딩을 *out* 스트림 객체에 씁니다."
 
 #: ../Doc/library/xmlrpc.client.rst:276
 msgid ""
 "It also supports certain of Python's built-in operators through rich "
 "comparison and :meth:`__repr__` methods."
-msgstr ""
+msgstr "풍부한 비교와 :meth:`__repr__` 메서드를 통해 특정 파이썬 내장 연산자도 지원합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:309
 msgid "Binary Objects"
-msgstr ""
+msgstr "Binary 객체"
 
 #: ../Doc/library/xmlrpc.client.rst:313
 msgid ""
@@ -417,30 +502,32 @@ msgid ""
 "The primary access to the content of a :class:`Binary` object is provided"
 " by an attribute:"
 msgstr ""
+"이 클래스는 바이트열 데이터(NUL을 포함할 수 있습니다)로 초기화될 수 있습니다. :class:`Binary` 객체의 내용에 대한"
+" 기본 액세스는 어트리뷰트에 의해 제공됩니다:"
 
 #: ../Doc/library/xmlrpc.client.rst:320
 msgid ""
 "The binary data encapsulated by the :class:`Binary` instance.  The data "
 "is provided as a :class:`bytes` object."
-msgstr ""
+msgstr ":class:`Binary` 인스턴스로 캡슐화된 바이너리 데이터. 데이터는 :class:`bytes` 객체로 제공됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:323
 msgid ""
 ":class:`Binary` objects have the following methods, supported mainly for "
 "internal use by the marshalling/unmarshalling code:"
-msgstr ""
+msgstr ":class:`Binary` 객체에는 주로 마샬링/역마샬링 코드 내부에서 사용하기 위해 지원되는 다음과 같은 메서드가 있습니다:"
 
 #: ../Doc/library/xmlrpc.client.rst:329
 msgid ""
 "Accept a base64 :class:`bytes` object and decode it as the instance's new"
 " data."
-msgstr ""
+msgstr "base64 :class:`bytes` 객체를 받아들이고 인스턴스의 새 데이터로 디코딩합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:334
 msgid ""
 "Write the XML-RPC base 64 encoding of this binary item to the *out* "
 "stream object."
-msgstr ""
+msgstr "이 바이너리 항목의 XML-RPC base64 인코딩을 *out* 스트림 객체에 씁니다."
 
 #: ../Doc/library/xmlrpc.client.rst:336
 msgid ""
@@ -448,50 +535,54 @@ msgid ""
 "2045 section 6.8 <2045#section-6.8>`, which was the de facto standard "
 "base64 specification when the XML-RPC spec was written."
 msgstr ""
+"인코딩된 데이터에는 :rfc:`RFC 2045 섹션 6.8 <2045#section-6.8>`\\에 따라 76문자마다 줄 바꿈이 "
+"있는데, 이는 XML-RPC 명세가 작성될 때 사실상 표준 base64 명세였습니다."
 
 #: ../Doc/library/xmlrpc.client.rst:341
 msgid ""
 "It also supports certain of Python's built-in operators through "
 ":meth:`__eq__` and :meth:`__ne__` methods."
-msgstr ""
+msgstr ":meth:`__eq__`\\와 :meth:`__ne__` 메서드를 통해 특정 파이썬 내장 연산자도 지원합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:344
 msgid ""
 "Example usage of the binary objects.  We're going to transfer an image "
 "over XMLRPC::"
-msgstr ""
+msgstr "바이너리 객체의 사용 예. XMLRPC를 통해 이미지를 전송할 것입니다::"
 
 #: ../Doc/library/xmlrpc.client.rst:360
 msgid "The client gets the image and saves it to a file::"
-msgstr ""
+msgstr "클라이언트는 이미지를 가져와서 파일에 저장합니다::"
 
 #: ../Doc/library/xmlrpc.client.rst:371
 msgid "Fault Objects"
-msgstr ""
+msgstr "Fault 객체"
 
 #: ../Doc/library/xmlrpc.client.rst:375
 msgid ""
 "A :class:`Fault` object encapsulates the content of an XML-RPC fault tag."
 " Fault objects have the following attributes:"
 msgstr ""
+":class:`Fault` 객체는 XML-RPC 결함 태그의 내용을 캡슐화합니다. Fault 객체에는 다음과 같은 어트리뷰트가 "
+"있습니다:"
 
 #: ../Doc/library/xmlrpc.client.rst:381
 msgid "A string indicating the fault type."
-msgstr ""
+msgstr "결함 형을 나타내는 문자열."
 
 #: ../Doc/library/xmlrpc.client.rst:386
 msgid "A string containing a diagnostic message associated with the fault."
-msgstr ""
+msgstr "결함과 연관된 진단 메시지가 포함된 문자열."
 
 #: ../Doc/library/xmlrpc.client.rst:388
 msgid ""
 "In the following example we're going to intentionally cause a "
 ":exc:`Fault` by returning a complex type object.  The server code::"
-msgstr ""
+msgstr "다음 예제에서는 복소수 형의 객체를 반환하여 의도적으로 :exc:`Fault`\\를 발생시킵니다. 서버 코드::"
 
 #: ../Doc/library/xmlrpc.client.rst:421
 msgid "ProtocolError Objects"
-msgstr ""
+msgstr "ProtocolError 객체"
 
 #: ../Doc/library/xmlrpc.client.rst:425
 msgid ""
@@ -499,40 +590,42 @@ msgid ""
 "underlying transport layer (such as a 404 'not found' error if the server"
 " named by the URI does not exist).  It has the following attributes:"
 msgstr ""
+":class:`ProtocolError` 객체는 하부 전송 계층에서의 프로토콜 에러를 기술합니다 (가령 URI로 명명된 서버가 없을"
+" 때 404 'not found' 에러). 다음과 같은 어트리뷰트가 있습니다:"
 
 #: ../Doc/library/xmlrpc.client.rst:432
 msgid "The URI or URL that triggered the error."
-msgstr ""
+msgstr "에러를 일으킨 URI나 URL."
 
 #: ../Doc/library/xmlrpc.client.rst:437
 msgid "The error code."
-msgstr ""
+msgstr "에러 코드."
 
 #: ../Doc/library/xmlrpc.client.rst:442
 msgid "The error message or diagnostic string."
-msgstr ""
+msgstr "에러 메시지나 진단 문자열."
 
 #: ../Doc/library/xmlrpc.client.rst:447
 msgid ""
 "A dict containing the headers of the HTTP/HTTPS request that triggered "
 "the error."
-msgstr ""
+msgstr "에러를 일으킨 HTTP/HTTPS 요청의 헤더를 포함하는 딕셔너리."
 
 #: ../Doc/library/xmlrpc.client.rst:450
 msgid ""
 "In the following example we're going to intentionally cause a "
 ":exc:`ProtocolError` by providing an invalid URI::"
-msgstr ""
+msgstr "다음 예에서는 잘못된 URI를 제공하여 의도적으로 :exc:`ProtocolError`\\를 발생시킵니다::"
 
 #: ../Doc/library/xmlrpc.client.rst:468
 msgid "MultiCall Objects"
-msgstr ""
+msgstr "MultiCall 객체"
 
 #: ../Doc/library/xmlrpc.client.rst:470
 msgid ""
 "The :class:`MultiCall` object provides a way to encapsulate multiple "
 "calls to a remote server into a single request [#]_."
-msgstr ""
+msgstr ":class:`MultiCall` 객체는 원격 서버에 대한 여러 호출을 단일 요청으로 캡슐화하는 방법을 제공합니다 [#]_."
 
 #: ../Doc/library/xmlrpc.client.rst:476
 msgid ""
@@ -544,14 +637,18 @@ msgid ""
 "The result of this call is a :term:`generator`; iterating over this "
 "generator yields the individual results."
 msgstr ""
+"boxcar 메서드 호출에 사용되는 객체를 만듭니다. *server*\\는 최종 호출 대상입니다. 결과 객체를 호출할 수 있지만, "
+"즉시 ``None``\\을 반환하고, 호출 이름과 매개 변수를 :class:`MultiCall` 객체에 저장하기만 합니다. 객체 "
+"자체를 호출하면 저장된 모든 호출이 단일 ``system.multicall`` 요청으로 전송됩니다. 이 호출의 결과는 "
+":term:`제너레이터 <generator>`\\입니다; 이 제너레이터를 이터레이트 하면 개별 결과를 산출합니다."
 
 #: ../Doc/library/xmlrpc.client.rst:484
 msgid "A usage example of this class follows.  The server code::"
-msgstr ""
+msgstr "이 클래스의 사용 예는 다음과 같습니다. 서버 코드::"
 
 #: ../Doc/library/xmlrpc.client.rst:526
 msgid "Convenience Functions"
-msgstr ""
+msgstr "편의 함수"
 
 #: ../Doc/library/xmlrpc.client.rst:530
 msgid ""
@@ -564,6 +661,12 @@ msgid ""
 "be used in standard XML-RPC; to allow using it via an extension,  provide"
 " a true value for *allow_none*."
 msgstr ""
+"*params*\\를 XML-RPC 요청으로, 또는 *methodresponse*\\가 참이면 응답으로 변환합니다. "
+"*params*\\는 인자의 튜플이거나 :exc:`Fault` 예외 클래스의 인스턴스일 수 있습니다. "
+"*methodresponse*\\가 참이면, 단일 값만 반환될 수 있는데, *params*\\의 길이가 1이어야 한다는 뜻입니다. "
+"제공되면, *encoding*\\은 생성된 XML에서 사용할 인코딩입니다; 기본값은 UTF-8입니다. 파이썬의 "
+":const:`None` 값은 표준 XML-RPC에서 사용할 수 없습니다; 확장을 통해 이를 사용하려면 *allow_none*\\에"
+" 참값을 제공하십시오."
 
 #: ../Doc/library/xmlrpc.client.rst:541
 msgid ""
@@ -576,86 +679,48 @@ msgid ""
 "and binary data to be presented as :class:`bytes` objects; this flag is "
 "false by default."
 msgstr ""
+"XML-RPC 요청이나 응답을 파이썬 객체 ``(params, methodname)``\\로 변환합니다. *params*\\는 "
+"인자의 튜플입니다; *methodname*\\은 문자열이거나 패킷에 메서드 이름이 없으면 ``None``\\입니다. XML-RPC "
+"패킷이 결함 조건을 나타내면, 이 함수는 :exc:`Fault` 예외를 발생시킵니다. *use_builtin_types* 플래그를 "
+"사용하여 날짜/시간 값을 :class:`datetime.datetime` 객체로 표현하고 바이너리 데이터를 "
+":class:`bytes` 객체로 표현할 수 있습니다; 이 플래그는 기본적으로 거짓입니다."
 
 #: ../Doc/library/xmlrpc.client.rst:549
 msgid ""
 "The obsolete *use_datetime* flag is similar to *use_builtin_types* but it"
 " applies only to date/time values."
-msgstr ""
+msgstr "사용되지 않는 *use_datetime* 플래그는 *use_builtin_types*\\와 유사하지만, 날짜/시간 값에만 적용됩니다."
 
 #: ../Doc/library/xmlrpc.client.rst:559
 msgid "Example of Client Usage"
-msgstr ""
+msgstr "클라이언트 사용 예"
 
 #: ../Doc/library/xmlrpc.client.rst:576
 msgid ""
 "To access an XML-RPC server through a HTTP proxy, you need to define a "
 "custom transport.  The following example shows how::"
 msgstr ""
+"HTTP 프락시를 통해 XML-RPC 서버에 액세스하려면, 사용자 정의 트랜스포트를 정의해야 합니다. 다음 예제는 방법을 "
+"보여줍니다::"
 
 #: ../Doc/library/xmlrpc.client.rst:601
 msgid "Example of Client and Server Usage"
-msgstr ""
+msgstr "클라이언트와 서버 사용 예"
 
 #: ../Doc/library/xmlrpc.client.rst:603
 msgid "See :ref:`simplexmlrpcserver-example`."
-msgstr ""
+msgstr ":ref:`simplexmlrpcserver-example`\\를 참조하십시오."
 
 #: ../Doc/library/xmlrpc.client.rst:607
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: ../Doc/library/xmlrpc.client.rst:608
 msgid ""
 "This approach has been first presented in `a discussion on xmlrpc.com "
 "<https://web.archive.org/web/20060624230303/http://www.xmlrpc.com/discuss/msgReader$1208?mode=topic>`_."
 msgstr ""
-
-#~ msgid ""
-#~ "Added support of type tags with "
-#~ "prefixes (e.g. ``ex:nil``). Added support "
-#~ "of unmarsalling additional types used by"
-#~ " Apache XML-RPC implementation for "
-#~ "numerics: ``i1``, ``i2``, ``i8``, "
-#~ "``biginteger``, ``float`` and ``bigdecimal``. "
-#~ "See http://ws.apache.org/xmlrpc/types.html for a "
-#~ "description."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The encoded data will have newlines "
-#~ "every 76 characters as per `RFC "
-#~ "2045 section 6.8 "
-#~ "<https://tools.ietf.org/html/rfc2045#section-6.8>`_, which "
-#~ "was the de facto standard base64 "
-#~ "specification when the XML-RPC spec "
-#~ "was written."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The following parameters govern the use"
-#~ " of the returned proxy instance. If"
-#~ " *allow_none* is true,  the Python "
-#~ "constant ``None`` will be translated "
-#~ "into XML; the default behaviour is "
-#~ "for ``None`` to raise a "
-#~ ":exc:`TypeError`. This is a commonly-"
-#~ "used extension to the XML-RPC "
-#~ "specification, but isn't supported by "
-#~ "all clients and servers; see "
-#~ "`http://ontosys.com/xml-rpc/extensions.php "
-#~ "<https://web.archive.org/web/20130120074804/http://ontosys.com/xml-"
-#~ "rpc/extensions.php>`_ for a description. The"
-#~ " *use_builtin_types* flag can be used "
-#~ "to cause date/time values to be "
-#~ "presented as :class:`datetime.datetime` objects "
-#~ "and binary data to be presented as"
-#~ " :class:`bytes` objects; this flag is "
-#~ "false by default. :class:`datetime.datetime`, "
-#~ ":class:`bytes` and :class:`bytearray` objects "
-#~ "may be passed to calls. The "
-#~ "obsolete *use_datetime* flag is similar "
-#~ "to *use_builtin_types* but it applies "
-#~ "only to date/time values."
-#~ msgstr ""
+"이 접근법은 `xmlrpc.com에서의 토론 "
+"<https://web.archive.org/web/20060624230303/http://www.xmlrpc.com/discuss/msgReader$1208?mode=topic>`_\\에서"
+" 처음 제시되었습니다."
 
