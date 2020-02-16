@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-19 18:31+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:8
 msgid "Memory Management"
-msgstr ""
+msgstr "메모리 관리"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:17
 msgid "Overview"
-msgstr ""
+msgstr "개요"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:19
 msgid ""
@@ -33,6 +32,9 @@ msgid ""
 "manager has different components which deal with various dynamic storage "
 "management aspects, like sharing, segmentation, preallocation or caching."
 msgstr ""
+"파이썬의 메모리 관리에는 모든 파이썬 객체와 데이터 구조를 포함하는 비공개 힙(private heap)을 수반합니다. 이 비공개 "
+"힙의 관리는 *파이썬 메모리 관리자*\\에 의해 내부적으로 이루어집니다. 파이썬 메모리 관리자는 공유, 세그먼트 화, 사전 할당 "
+"또는 캐싱과 같은 동적 스토리지 관리의 다양한 측면을 처리하는 서로 다른 구성 요소를 가지고 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:25
 msgid ""
@@ -48,6 +50,11 @@ msgid ""
 "the work to the object-specific allocators, but ensures that the latter "
 "operate within the bounds of the private heap."
 msgstr ""
+"가장 낮은 수준에서, 원시 메모리 할당자는 운영 체제의 메모리 관리자와 상호 작용하여 비공개 힙에 모든 파이썬 관련 데이터를 "
+"저장하기에 충분한 공간이 있는지 확인합니다. 원시 메모리 할당자 위에, 여러 개의 객체별 할당자가 같은 힙에서 작동하며 각 객체 "
+"형의 특성에 맞는 고유한 메모리 관리 정책을 구현합니다. 예를 들어, 정수는 다른 스토리지 요구 사항과 속도/공간 절충을 "
+"의미하므로, 정수 객체는 힙 내에서 문자열, 튜플 또는 딕셔너리와는 다르게 관리됩니다. 따라서 파이썬 메모리 관리자는 일부 작업을 "
+"객체별 할당자에게 위임하지만, 후자가 비공개 힙의 경계 내에서 작동하도록 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:36
 msgid ""
@@ -58,6 +65,9 @@ msgid ""
 "other internal buffers is performed on demand by the Python memory "
 "manager through the Python/C API functions listed in this document."
 msgstr ""
+"파이썬 힙의 관리는 인터프리터 자체에 의해 수행되며, 사용자는 힙 내부의 메모리 블록에 대한 객체 포인터를 규칙적으로 조작하더라도,"
+" 사용자가 제어할 수 없다는 것을 이해하는 것이 중요합니다. 파이썬 객체와 기타 내부 버퍼를 위한 힙 공간 할당은 이 설명서에 "
+"나열된 파이썬/C API 함수를 통해 파이썬 메모리 관리자의 요청에 따라 수행됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:49
 msgid ""
@@ -70,6 +80,11 @@ msgid ""
 "allocate and release memory blocks with the C library allocator for "
 "individual purposes, as shown in the following example::"
 msgstr ""
+"메모리 손상을 피하고자, 확장 작성자는 C 라이브러리에서 내보낸 함수를 파이썬 객체에 대해 실행하지 않아야 합니다: "
+":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` 및 :c:func:`free`. "
+"그렇게 한다면, 서로 다른 알고리즘을 구현하고 다른 힘에 작동하기 때문에, C 할당자와 파이썬 메모리 관리자 간에 혼합 호출이 "
+"발생하여 치명적인 결과를 초래합니다. 그러나, 다음 예제와 같이 개별 목적으로 C 라이브러리 할당자를 사용하여 메모리 블록을 "
+"안전하게 할당하고 해제할 수 있습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:68
 msgid ""
@@ -77,6 +92,8 @@ msgid ""
 "C library allocator. The Python memory manager is involved only in the "
 "allocation of the bytes object returned as a result."
 msgstr ""
+"이 예에서, I/O 버퍼에 대한 메모리 요청은 C 라이브러리 할당자에 의해 처리됩니다. 파이썬 메모리 관리자는 결과로 반환되는 "
+"바이트열 객체의 할당에만 관여합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:72
 msgid ""
@@ -96,12 +113,19 @@ msgid ""
 "allocated memory for the I/O buffer escapes completely the Python memory "
 "manager."
 msgstr ""
+"그러나 대부분의 경우, 파이썬 힙에서 메모리를 할당하는 것이 좋습니다. 파이썬 힙은 파이썬 메모리 관리자가 제어하기 때문입니다. "
+"예를 들어, 인터프리터가 C로 작성된 새로운 객체 형으로 확장될 때 필요합니다. 파이썬 힙을 사용하는 또 다른 이유는 확장 모듈의 "
+"메모리 요구에 대해 파이썬 메모리 관리자에게 *알리고자* 하는 것입니다. 요청된 메모리가 내부적이고 매우 특정한 목적으로만 사용될 "
+"때도, 모든 메모리 요청을 파이썬 메모리 관리자에 위임하면 인터프리터가 전체 메모리 요구량에 대한 더 정확한 이미지를 갖게 됩니다."
+" 결과적으로, 특정 상황에서, 파이썬 메모리 관리자는 가비지 수집, 메모리 압축 또는 기타 예방 절차와 같은 적절한 작업을 트리거 "
+"하거나 그러지 않을 수 있습니다. 앞의 예에서와같이 C 라이브러리 할당자를 사용하면, I/O 버퍼에 할당된 메모리가 파이썬 메모리 "
+"관리자를 완전히 우회하게 됨에 유의하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:88
 msgid ""
 "The :envvar:`PYTHONMALLOC` environment variable can be used to configure "
 "the memory allocators used by Python."
-msgstr ""
+msgstr ":envvar:`PYTHONMALLOC` 환경 변수를 사용하여 파이썬에서 사용하는 메모리 할당자를 구성할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:91
 msgid ""
@@ -109,10 +133,12 @@ msgid ""
 " statistics of the :ref:`pymalloc memory allocator <pymalloc>` every time"
 " a new pymalloc object arena is created, and on shutdown."
 msgstr ""
+":envvar:`PYTHONMALLOCSTATS` 환경 변수는 새로운 pymalloc 객체 아레나(arena)가 만들어질 때마다 "
+"그리고 종료 시 :ref:`pymalloc 메모리 할당자 <pymalloc>`\\의 통계를 인쇄하는 데 사용될 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:97
 msgid "Raw Memory Interface"
-msgstr ""
+msgstr "원시 메모리 인터페이스"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:99
 msgid ""
@@ -120,6 +146,8 @@ msgid ""
 "functions are thread-safe, the :term:`GIL <global interpreter lock>` does"
 " not need to be held."
 msgstr ""
+"다음 함수 집합은 시스템 할당자에 대한 래퍼입니다. 이러한 함수는 스레드 안전해서, :term:`GIL <global "
+"interpreter lock>`\\을 유지할 필요는 없습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:103
 msgid ""
@@ -128,6 +156,9 @@ msgid ""
 ":c:func:`realloc` and :c:func:`free`; call ``malloc(1)`` (or ``calloc(1, "
 "1)``) when requesting zero bytes."
 msgstr ""
+":ref:`기본 원시 메모리 할당자 <default-memory-allocators>`\\는 다음 함수를 사용합니다: "
+":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` 및 :c:func:`free`; "
+"0바이트를 요청할 때 ``malloc(1)``\\(또는 ``calloc(1, 1)``)을 호출합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:112
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:183
@@ -136,6 +167,8 @@ msgid ""
 "Allocates *n* bytes and returns a pointer of type :c:type:`void\\*` to "
 "the allocated memory, or ``NULL`` if the request fails."
 msgstr ""
+"*n* 바이트를 할당하고 할당된 메모리를 가리키는 :c:type:`void\\*` 형의 포인터를 반환하거나, 요청이 실패하면 "
+"``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:115
 msgid ""
@@ -143,6 +176,8 @@ msgid ""
 "possible, as if ``PyMem_RawMalloc(1)`` had been called instead. The "
 "memory will not have been initialized in any way."
 msgstr ""
+"0바이트를 요청하면 가능하면 ``PyMem_RawMalloc(1)``\\이 대신 호출된 것처럼 가능하면 고유한 ``NULL``\\이"
+" 아닌 포인터를 반환합니다. 메모리는 어떤 식으로든 초기화되지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:122
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:193
@@ -152,6 +187,8 @@ msgid ""
 "returns a pointer of type :c:type:`void\\*` to the allocated memory, or "
 "``NULL`` if the request fails. The memory is initialized to zeros."
 msgstr ""
+"크기가 각각 *elsize* 바이트인 *nelem* 개의 요소를 할당하고 할당된 메모리를 가리키는 :c:type:`void\\*` "
+"형의 포인터를 반환하거나, 요청이 실패하면 ``NULL``\\을 반환합니다. 메모리는 0으로 초기화됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:126
 msgid ""
@@ -159,6 +196,8 @@ msgid ""
 "distinct non-``NULL`` pointer if possible, as if ``PyMem_RawCalloc(1, "
 "1)`` had been called instead."
 msgstr ""
+"0개의 요소나 0바이트 크기의 요소를 요청하면 ``PyMem_RawCalloc(1, 1)``\\이 대신 호출된 것처럼 가능하면 "
+"고유한 ``NULL``\\이 아닌 포인터를 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:135
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:206
@@ -167,6 +206,8 @@ msgid ""
 "Resizes the memory block pointed to by *p* to *n* bytes. The contents "
 "will be unchanged to the minimum of the old and the new sizes."
 msgstr ""
+"*p*\\가 가리키는 메모리 블록의 크기를 *n* 바이트로 조정합니다. 내용은 이전과 새로운 크기의 최솟값 내에서는 변경되지 "
+"않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:138
 msgid ""
@@ -174,6 +215,8 @@ msgid ""
 "else if *n* is equal to zero, the memory block is resized but is not "
 "freed, and the returned pointer is non-``NULL``."
 msgstr ""
+"*p*\\가 ``NULL``\\이면, 호출은 ``PyMem_RawMalloc(n)``\\과 동등합니다; *n*\\이 0과 같으면, "
+"메모리 블록의 크기는 조정되지만 해제되지는 않고, 반환된 포인터는 ``NULL``\\이 아닙니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:142
 msgid ""
@@ -181,12 +224,17 @@ msgid ""
 ":c:func:`PyMem_RawMalloc`, :c:func:`PyMem_RawRealloc` or "
 ":c:func:`PyMem_RawCalloc`."
 msgstr ""
+"*p*\\가 ``NULL``\\이 아닌 한, :c:func:`PyMem_RawMalloc`, "
+":c:func:`PyMem_RawRealloc` 또는 :c:func:`PyMem_RawCalloc`\\에 대한 이전 호출에 의해 "
+"반환된 것이어야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:146
 msgid ""
 "If the request fails, :c:func:`PyMem_RawRealloc` returns ``NULL`` and *p*"
 " remains a valid pointer to the previous memory area."
 msgstr ""
+"요청이 실패하면, :c:func:`PyMem_RawRealloc`\\은 ``NULL``\\을 반환하고 *p*\\는 이전 메모리 "
+"영역에 대한 유효한 포인터로 유지됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:152
 msgid ""
@@ -196,16 +244,19 @@ msgid ""
 "if ``PyMem_RawFree(p)`` has been called before, undefined behavior "
 "occurs."
 msgstr ""
+"*p*\\가 가리키는 메모리 블록을 해제합니다. *p*\\는 :c:func:`PyMem_RawMalloc`, "
+":c:func:`PyMem_RawRealloc` 또는 :c:func:`PyMem_RawCalloc`\\에 대한 이전 호출로 반환된 "
+"것이어야 합니다. 그렇지 않거나 ``PyMem_RawFree(p)``\\가 앞서 호출되었으면, 정의되지 않은 동작이 일어납니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:157
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:227
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:329
 msgid "If *p* is ``NULL``, no operation is performed."
-msgstr ""
+msgstr "*p*\\가 ``NULL``\\이면, 아무 작업도 수행되지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:163
 msgid "Memory Interface"
-msgstr ""
+msgstr "메모리 인터페이스"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:165
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:271
@@ -214,23 +265,27 @@ msgid ""
 "specifying behavior when requesting zero bytes, are available for "
 "allocating and releasing memory from the Python heap."
 msgstr ""
+"ANSI C 표준에 따라 모델링 되었지만 0바이트를 요청할 때의 동작을 지정한 다음 함수 집합은 파이썬 힙에서 메모리를 할당하고 "
+"해제하는 데 사용할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:169
 msgid ""
 "The :ref:`default memory allocator <default-memory-allocators>` uses the "
 ":ref:`pymalloc memory allocator <pymalloc>`."
 msgstr ""
+":ref:`기본 메모리 할당자 <default-memory-allocators>`\\는 :ref:`pymalloc 메모리 할당자 "
+"<pymalloc>`\\를 사용합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:174
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:280
 msgid ""
 "The :term:`GIL <global interpreter lock>` must be held when using these "
 "functions."
-msgstr ""
+msgstr "이 함수를 사용할 때는 :term:`GIL <global interpreter lock>`\\을 유지해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:179
 msgid "The default allocator is now pymalloc instead of system :c:func:`malloc`."
-msgstr ""
+msgstr "기본 할당자는 이제 시스템 :c:func:`malloc` 대신 pymalloc 입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:186
 msgid ""
@@ -238,6 +293,8 @@ msgid ""
 "possible, as if ``PyMem_Malloc(1)`` had been called instead. The memory "
 "will not have been initialized in any way."
 msgstr ""
+"0바이트를 요청하면 ``PyMem_Malloc(1)``\\이 대신 호출된 것처럼 가능하면 고유한 ``NULL``\\이 아닌 포인터를"
+" 반환합니다. 메모리는 어떤 식으로든 초기화되지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:197
 msgid ""
@@ -245,6 +302,8 @@ msgid ""
 "distinct non-``NULL`` pointer if possible, as if ``PyMem_Calloc(1, 1)`` "
 "had been called instead."
 msgstr ""
+"0개의 요소나 0바이트 크기의 요소를 요청하면 ``PyMem_Calloc(1, 1)``\\이 대신 호출된 것처럼 가능하면 고유한 "
+"``NULL``\\이 아닌 포인터를 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:209
 msgid ""
@@ -252,6 +311,8 @@ msgid ""
 "if *n* is equal to zero, the memory block is resized but is not freed, "
 "and the returned pointer is non-``NULL``."
 msgstr ""
+"*p*\\가 ``NULL``\\이면, 호출은 ``PyMem_Malloc(n)``\\과 동등합니다; 그렇지 않고 *n*\\이 0과 "
+"같으면, 메모리 블록의 크기는 조정되지만 해제되지는 않으며, 반환된 포인터는 ``NULL``\\이 아닙니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:213
 msgid ""
@@ -259,12 +320,16 @@ msgid ""
 ":c:func:`PyMem_Malloc`, :c:func:`PyMem_Realloc` or "
 ":c:func:`PyMem_Calloc`."
 msgstr ""
+"*p*\\가 ``NULL``\\이 아닌 한, :c:func:`PyMem_Malloc`, :c:func:`PyMem_Realloc` "
+"또는 :c:func:`PyMem_Calloc`\\에 대한 이전 호출이 반환한 것이어야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:216
 msgid ""
 "If the request fails, :c:func:`PyMem_Realloc` returns ``NULL`` and *p* "
 "remains a valid pointer to the previous memory area."
 msgstr ""
+"요청이 실패하면, :c:func:`PyMem_Realloc`\\은 ``NULL``\\을 반환하고 *p*\\는 이전 메모리 영역에 "
+"대한 유효한 포인터로 유지됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:222
 msgid ""
@@ -273,12 +338,15 @@ msgid ""
 ":c:func:`PyMem_Calloc`.  Otherwise, or if ``PyMem_Free(p)`` has been "
 "called before, undefined behavior occurs."
 msgstr ""
+"*p*\\가 가리키는 메모리 블록을 해제합니다. *p*\\는 :c:func:`PyMem_Malloc`, "
+":c:func:`PyMem_Realloc` 또는 :c:func:`PyMem_Calloc`\\에 대한 이전 호출이 반환한 것이어야 "
+"합니다. 그렇지 않거나 ``PyMem_Free(p)``\\가 앞서 호출되었으면 정의되지 않은 동작이 일어납니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:229
 msgid ""
 "The following type-oriented macros are provided for convenience.  Note  "
 "that *TYPE* refers to any C type."
-msgstr ""
+msgstr "편의를 위해 다음과 같은 형 지향 매크로가 제공됩니다. *TYPE*\\이 모든 C형을 나타냄에 유의하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:235
 msgid ""
@@ -286,6 +354,8 @@ msgid ""
 "bytes of memory.  Returns a pointer cast to :c:type:`TYPE\\*`.  The "
 "memory will not have been initialized in any way."
 msgstr ""
+":c:func:`PyMem_Malloc`\\과 같지만, ``(n * sizeof(TYPE))`` 바이트의 메모리를 할당합니다. "
+":c:type:`TYPE\\*`\\로 캐스트 된 포인터를 반환합니다. 메모리는 어떤 식으로든 초기화되지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:242
 msgid ""
@@ -294,16 +364,21 @@ msgid ""
 " return, *p* will be a pointer to the new memory area, or ``NULL`` in the"
 " event of failure."
 msgstr ""
+":c:func:`PyMem_Realloc`\\과 같지만, 메모리 블록의 크기는 ``(n * sizeof(TYPE))`` 바이트로 "
+"조정됩니다. :c:type:`TYPE\\*`\\로 캐스트 된 포인터를 반환합니다. 반환한 후에, *p*\\는 새로운 메모리 영역에 "
+"대한 포인터이거나, 실패하면 ``NULL``\\이 됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:247
 msgid ""
 "This is a C preprocessor macro; *p* is always reassigned.  Save the "
 "original value of *p* to avoid losing memory when handling errors."
 msgstr ""
+"이것은 C 전처리기 매크로입니다; *p*\\는 항상 다시 대입됩니다. 에러를 처리할 때 메모리 손실을 피하려면 *p*\\의 원래 "
+"값을 보관하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:253
 msgid "Same as :c:func:`PyMem_Free`."
-msgstr ""
+msgstr ":c:func:`PyMem_Free`\\와 같습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:255
 msgid ""
@@ -313,40 +388,44 @@ msgid ""
 "compatibility across Python versions and is therefore deprecated in "
 "extension modules."
 msgstr ""
+"또한, 위에 나열된 C API 함수를 사용하지 않고, 파이썬 메모리 할당자를 직접 호출하기 위해 다음 매크로 집합이 제공됩니다. "
+"그러나, 이들을 사용하면 파이썬 버전을 가로지르는 바이너리 호환성이 유지되지 않아서 확장 모듈에서는 폐지되었습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:260
 msgid "``PyMem_MALLOC(size)``"
-msgstr ""
+msgstr "``PyMem_MALLOC(size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:261
 msgid "``PyMem_NEW(type, size)``"
-msgstr ""
+msgstr "``PyMem_NEW(type, size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:262
 msgid "``PyMem_REALLOC(ptr, size)``"
-msgstr ""
+msgstr "``PyMem_REALLOC(ptr, size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:263
 msgid "``PyMem_RESIZE(ptr, type, size)``"
-msgstr ""
+msgstr "``PyMem_RESIZE(ptr, type, size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:264
 msgid "``PyMem_FREE(ptr)``"
-msgstr ""
+msgstr "``PyMem_FREE(ptr)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:265
 msgid "``PyMem_DEL(ptr)``"
-msgstr ""
+msgstr "``PyMem_DEL(ptr)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:269
 msgid "Object allocators"
-msgstr ""
+msgstr "객체 할당자"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:275
 msgid ""
 "The :ref:`default object allocator <default-memory-allocators>` uses the "
 ":ref:`pymalloc memory allocator <pymalloc>`."
 msgstr ""
+":ref:`기본 객체 할당자 <default-memory-allocators>`\\는 :ref:`pymalloc 메모리 할당자 "
+"<pymalloc>`\\를 사용합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:288
 msgid ""
@@ -354,6 +433,8 @@ msgid ""
 "possible, as if ``PyObject_Malloc(1)`` had been called instead. The "
 "memory will not have been initialized in any way."
 msgstr ""
+"0바이트를 요청하면 ``PyObject_Malloc(1)``\\이 대신 호출된 것처럼 가능하면 고유한 ``NULL``\\이 아닌 "
+"포인터를 반환합니다. 메모리는 어떤 식으로든 초기화되지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:299
 msgid ""
@@ -361,6 +442,8 @@ msgid ""
 "distinct non-``NULL`` pointer if possible, as if ``PyObject_Calloc(1, "
 "1)`` had been called instead."
 msgstr ""
+"0개의 요소나 0바이트 크기의 요소를 요청하면 ``PyObject_Calloc(1, 1)``\\이 대신 호출된 것처럼 가능하면 "
+"고유한 ``NULL``\\이 아닌 포인터를 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:311
 msgid ""
@@ -368,6 +451,8 @@ msgid ""
 "else if *n* is equal to zero, the memory block is resized but is not "
 "freed, and the returned pointer is non-``NULL``."
 msgstr ""
+"*p*\\가 ``NULL``\\이면, 호출은 ``PyObject_Malloc(n)``\\과 동등합니다; 그렇지 않고 *n*\\이 "
+"0과 같으면, 메모리 블록의 크기는 조정되지만 해제되지 않고, 반환된 포인터는 ``NULL``\\이 아닙니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:315
 msgid ""
@@ -375,12 +460,17 @@ msgid ""
 ":c:func:`PyObject_Malloc`, :c:func:`PyObject_Realloc` or "
 ":c:func:`PyObject_Calloc`."
 msgstr ""
+"*p*\\가 ``NULL``\\이 아닌 한, :c:func:`PyObject_Malloc`, "
+":c:func:`PyObject_Realloc` 또는 :c:func:`PyObject_Calloc`\\에 대한 이전 호출에 의해 "
+"반환된 것이어야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:318
 msgid ""
 "If the request fails, :c:func:`PyObject_Realloc` returns ``NULL`` and *p*"
 " remains a valid pointer to the previous memory area."
 msgstr ""
+"요청이 실패하면, :c:func:`PyObject_Realloc`\\은 ``NULL``\\을 반환하고 *p*\\는 이전 메모리 "
+"영역에 대한 유효한 포인터로 유지됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:324
 msgid ""
@@ -390,246 +480,254 @@ msgid ""
 "if ``PyObject_Free(p)`` has been called before, undefined behavior "
 "occurs."
 msgstr ""
+"*p*\\가 가리키는 메모리 블록을 해제합니다. 이 블록은 :c:func:`PyObject_Malloc`, "
+":c:func:`PyObject_Realloc` 또는 :c:func:`PyObject_Calloc`\\에 대한 이전 호출에 의해 "
+"반환된 것이어야 합니다. 그렇지 않거나 ``PyObject_Free(p)``\\가 이전에 호출되었으면 정의되지 않은 동작이 "
+"일어납니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:335
 msgid "Default Memory Allocators"
-msgstr ""
+msgstr "기본 메모리 할당자"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:337
 msgid "Default memory allocators:"
-msgstr ""
+msgstr "기본 메모리 할당자:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:340
 msgid "Configuration"
-msgstr ""
+msgstr "구성"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:340
 msgid "Name"
-msgstr ""
+msgstr "이름"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:340
 msgid "PyMem_RawMalloc"
-msgstr ""
+msgstr "PyMem_RawMalloc"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:340
 msgid "PyMem_Malloc"
-msgstr ""
+msgstr "PyMem_Malloc"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:340
 msgid "PyObject_Malloc"
-msgstr ""
+msgstr "PyObject_Malloc"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:342
 msgid "Release build"
-msgstr ""
+msgstr "릴리스 빌드"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:342
 msgid "``\"pymalloc\"``"
-msgstr ""
+msgstr "``\"pymalloc\"``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:342
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:344
 msgid "``malloc``"
-msgstr ""
+msgstr "``malloc``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:342
 msgid "``pymalloc``"
-msgstr ""
+msgstr "``pymalloc``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:343
 msgid "Debug build"
-msgstr ""
+msgstr "디버그 빌드"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:343
 msgid "``\"pymalloc_debug\"``"
-msgstr ""
+msgstr "``\"pymalloc_debug\"``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:343
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:345
 msgid "``malloc`` + debug"
-msgstr ""
+msgstr "``malloc`` + 디버그"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:343
 msgid "``pymalloc`` + debug"
-msgstr ""
+msgstr "``pymalloc`` + 디버그"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:344
 msgid "Release build, without pymalloc"
-msgstr ""
+msgstr "pymalloc 없는 배포 빌드"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:344
 msgid "``\"malloc\"``"
-msgstr ""
+msgstr "``\"malloc\"``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:345
 msgid "Debug build, without pymalloc"
-msgstr ""
+msgstr "pymalloc 없는 디버그 빌드"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:345
 msgid "``\"malloc_debug\"``"
-msgstr ""
+msgstr "``\"malloc_debug\"``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:348
 msgid "Legend:"
-msgstr ""
+msgstr "범례:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:350
 msgid "Name: value for :envvar:`PYTHONMALLOC` environment variable"
-msgstr ""
+msgstr "이름: :envvar:`PYTHONMALLOC` 환경 변수의 값"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:351
 msgid ""
 "``malloc``: system allocators from the standard C library, C functions: "
 ":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` and :c:func:`free`"
 msgstr ""
+"``malloc``: 표준 C 라이브러리의 시스템 할당자, C 함수: :c:func:`malloc`, "
+":c:func:`calloc`, :c:func:`realloc` 및 :c:func:`free`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:353
 msgid "``pymalloc``: :ref:`pymalloc memory allocator <pymalloc>`"
-msgstr ""
+msgstr "``pymalloc``: :ref:`pymalloc 메모리 할당자 <pymalloc>`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:354
 msgid "\"+ debug\": with debug hooks installed by :c:func:`PyMem_SetupDebugHooks`"
-msgstr ""
+msgstr "\"+ 디버그\": :c:func:`PyMem_SetupDebugHooks` 에 의해 설치된 디버그 훅 포함"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:358
 msgid "Customize Memory Allocators"
-msgstr ""
+msgstr "메모리 할당자 사용자 정의"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:364
 msgid ""
 "Structure used to describe a memory block allocator. The structure has "
 "four fields:"
-msgstr ""
+msgstr "메모리 블록 할당자를 기술하는 데 사용되는 구조체. 구조체에는 네 개의 필드가 있습니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:368
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:513
 msgid "Field"
-msgstr ""
+msgstr "필드"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:368
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:513
 msgid "Meaning"
-msgstr ""
+msgstr "의미"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:370
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:515
 msgid "``void *ctx``"
-msgstr ""
+msgstr "``void *ctx``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:370
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:515
 msgid "user context passed as first argument"
-msgstr ""
+msgstr "첫 번째 인자로 전달된 사용자 컨텍스트"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:372
 msgid "``void* malloc(void *ctx, size_t size)``"
-msgstr ""
+msgstr "``void* malloc(void *ctx, size_t size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:372
 msgid "allocate a memory block"
-msgstr ""
+msgstr "메모리 블록을 할당합니다"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:374
 msgid "``void* calloc(void *ctx, size_t nelem, size_t elsize)``"
-msgstr ""
+msgstr "``void* calloc(void *ctx, size_t nelem, size_t elsize)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:374
 msgid "allocate a memory block initialized with zeros"
-msgstr ""
+msgstr "0으로 초기화된 메모리 블록을 할당합니다"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:377
 msgid "``void* realloc(void *ctx, void *ptr, size_t new_size)``"
-msgstr ""
+msgstr "``void* realloc(void *ctx, void *ptr, size_t new_size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:377
 msgid "allocate or resize a memory block"
-msgstr ""
+msgstr "메모리 블록을 할당하거나 크기 조정합니다"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:379
 msgid "``void free(void *ctx, void *ptr)``"
-msgstr ""
+msgstr "``void free(void *ctx, void *ptr)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:379
 msgid "free a memory block"
-msgstr ""
+msgstr "메모리 블록을 해제합니다"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:382
 msgid ""
 "The :c:type:`PyMemAllocator` structure was renamed to "
 ":c:type:`PyMemAllocatorEx` and a new ``calloc`` field was added."
 msgstr ""
+":c:type:`PyMemAllocator` 구조체의 이름이 :c:type:`PyMemAllocatorEx`\\로 바뀌고 새로운 "
+"``calloc`` 필드가 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:389
 msgid "Enum used to identify an allocator domain. Domains:"
-msgstr ""
+msgstr "할당자 도메인을 식별하는 데 사용되는 열거형. 도메인:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:393
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:402
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:411
 msgid "Functions:"
-msgstr ""
+msgstr "함수:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:395
 msgid ":c:func:`PyMem_RawMalloc`"
-msgstr ""
+msgstr ":c:func:`PyMem_RawMalloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:396
 msgid ":c:func:`PyMem_RawRealloc`"
-msgstr ""
+msgstr ":c:func:`PyMem_RawRealloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:397
 msgid ":c:func:`PyMem_RawCalloc`"
-msgstr ""
+msgstr ":c:func:`PyMem_RawCalloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:398
 msgid ":c:func:`PyMem_RawFree`"
-msgstr ""
+msgstr ":c:func:`PyMem_RawFree`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:404
 msgid ":c:func:`PyMem_Malloc`,"
-msgstr ""
+msgstr ":c:func:`PyMem_Malloc`,"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:405
 msgid ":c:func:`PyMem_Realloc`"
-msgstr ""
+msgstr ":c:func:`PyMem_Realloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:406
 msgid ":c:func:`PyMem_Calloc`"
-msgstr ""
+msgstr ":c:func:`PyMem_Calloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:407
 msgid ":c:func:`PyMem_Free`"
-msgstr ""
+msgstr ":c:func:`PyMem_Free`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:413
 msgid ":c:func:`PyObject_Malloc`"
-msgstr ""
+msgstr ":c:func:`PyObject_Malloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:414
 msgid ":c:func:`PyObject_Realloc`"
-msgstr ""
+msgstr ":c:func:`PyObject_Realloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:415
 msgid ":c:func:`PyObject_Calloc`"
-msgstr ""
+msgstr ":c:func:`PyObject_Calloc`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:416
 msgid ":c:func:`PyObject_Free`"
-msgstr ""
+msgstr ":c:func:`PyObject_Free`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:420
 msgid "Get the memory block allocator of the specified domain."
-msgstr ""
+msgstr "지정된 도메인의 메모리 블록 할당자를 가져옵니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:425
 msgid "Set the memory block allocator of the specified domain."
-msgstr ""
+msgstr "지정된 도메인의 메모리 블록 할당자를 설정합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:427
 msgid ""
 "The new allocator must return a distinct non-``NULL`` pointer when "
 "requesting zero bytes."
-msgstr ""
+msgstr "새 할당자는 0바이트를 요청할 때 고유한 ``NULL``\\이 아닌 포인터를 반환해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:430
 msgid ""
@@ -637,6 +735,8 @@ msgid ""
 "safe: the :term:`GIL <global interpreter lock>` is not held when the "
 "allocator is called."
 msgstr ""
+":c:data:`PYMEM_DOMAIN_RAW` 도메인의 경우, 할당자는 스레드 안전해야 합니다: 할당자가 호출될 때 "
+":term:`GIL <global interpreter lock>`\\을 잡지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:434
 msgid ""
@@ -644,10 +744,12 @@ msgid ""
 "allocator), the :c:func:`PyMem_SetupDebugHooks` function must be called "
 "to reinstall the debug hooks on top on the new allocator."
 msgstr ""
+"새 할당자가 훅이 아니면 (이전 할당자를 호출하지 않으면), :c:func:`PyMem_SetupDebugHooks` 함수를 "
+"호출하여 새 할당자 위에 디버그 훅을 다시 설치해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:441
 msgid "Setup hooks to detect bugs in the Python memory allocator functions."
-msgstr ""
+msgstr "파이썬 메모리 할당자 함수에 있는 버그를 감지하기 위한 훅을 설정합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:443
 msgid ""
@@ -656,24 +758,29 @@ msgid ""
 "blocks are surrounded by \"forbidden bytes\" (``FORBIDDENBYTE``: byte "
 "``0xFD``)."
 msgstr ""
+"새로 할당된 메모리는 바이트 ``0xCD``\\(``CLEANBYTE``)로 채워지고, 해제된 메모리는 바이트 "
+"``0xDD``\\(``DEADBYTE``)로 채워집니다. 메모리 블록은 \"금지된 바이트\"(``FORBIDDENBYTE``: "
+"바이트 ``0xFD``)로 둘러싸여 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:447
 msgid "Runtime checks:"
-msgstr ""
+msgstr "실행 시간 검사:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:449
 msgid ""
 "Detect API violations, ex: :c:func:`PyObject_Free` called on a buffer "
 "allocated by :c:func:`PyMem_Malloc`"
 msgstr ""
+"API 위반 탐지, 예: :c:func:`PyMem_Malloc`\\이 할당한 버퍼에 대해 호출된 "
+":c:func:`PyObject_Free`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:451
 msgid "Detect write before the start of the buffer (buffer underflow)"
-msgstr ""
+msgstr "버퍼 시작 전에 쓰기 감지 (버퍼 언더플로)"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:452
 msgid "Detect write after the end of the buffer (buffer overflow)"
-msgstr ""
+msgstr "버퍼 끝 뒤에 쓰기 감지 (버퍼 오버플로)"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:453
 msgid ""
@@ -682,6 +789,9 @@ msgid ""
 ":c:func:`PyObject_Malloc`) and :c:data:`PYMEM_DOMAIN_MEM` (ex: "
 ":c:func:`PyMem_Malloc`) domains are called"
 msgstr ""
+":c:data:`PYMEM_DOMAIN_OBJ`\\(예: :c:func:`PyObject_Malloc`)와 "
+":c:data:`PYMEM_DOMAIN_MEM`\\(예: :c:func:`PyMem_Malloc`) 도메인의 할당자 함수가 호출될 "
+"때 :term:`GIL <global interpreter lock>`\\이 유지되는지 확인"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:458
 msgid ""
@@ -690,6 +800,8 @@ msgid ""
 "displayed if :mod:`tracemalloc` is tracing Python memory allocations and "
 "the memory block was traced."
 msgstr ""
+"에러가 발생하면, 디버그 훅은 :mod:`tracemalloc` 모듈을 사용하여 메모리 블록이 할당된 곳의 트레이스백을 가져옵니다."
+" :mod:`tracemalloc`\\이 파이썬 메모리 할당을 추적 중이고 메모리 블록이 추적될 때만 트레이스백이 표시됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:463
 msgid ""
@@ -698,6 +810,9 @@ msgid ""
 "environment variable can be used to install debug hooks on a Python "
 "compiled in release mode."
 msgstr ""
+"파이썬이 디버그 모드에서 컴파일되면 이러한 훅은 :ref:`기본적으로 설치됩니다 <default-memory-"
+"allocators>`. :envvar:`PYTHONMALLOC` 환경 변수를 사용하여 릴리스 모드에서 컴파일된 파이썬에 디버그 "
+"훅을 설치할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:468
 msgid ""
@@ -707,6 +822,10 @@ msgid ""
 " GIL is held when functions of :c:data:`PYMEM_DOMAIN_OBJ` and "
 ":c:data:`PYMEM_DOMAIN_MEM` domains are called."
 msgstr ""
+"이 함수는 이제 릴리스 모드에서 컴파일된 파이썬에서도 작동합니다. 에러가 발생하면, 디버그 훅은 이제 "
+":mod:`tracemalloc`\\을 사용하여 메모리 블록이 할당된 곳의 트레이스백을 가져옵니다. 또한 디버그 훅은 이제 "
+":c:data:`PYMEM_DOMAIN_OBJ`\\와 :c:data:`PYMEM_DOMAIN_MEM` 도메인의 함수가 호출될 때 "
+"GIL을 잡는지 확인합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:475
 msgid ""
@@ -715,10 +834,13 @@ msgid ""
 "and ``0xFD`` to use the same values than Windows CRT debug ``malloc()`` "
 "and ``free()``."
 msgstr ""
+"바이트 패턴 ``0xCB``\\(``CLEANBYTE``), ``0xDB``\\(``DEADBYTE``) 및 "
+"``0xFB``\\(``FORBIDDENBYTE``)는 윈도우 CRT 디버그 ``malloc()`` 및 ``free()``\\와 "
+"같은 값을 사용하도록 ``0xCD``, ``0xDD`` 및 ``0xFD``\\로 대체되었습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:485
 msgid "The pymalloc allocator"
-msgstr ""
+msgstr "pymalloc 할당자"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:487
 msgid ""
@@ -728,6 +850,9 @@ msgid ""
 ":c:func:`PyMem_RawMalloc` and :c:func:`PyMem_RawRealloc` for allocations "
 "larger than 512 bytes."
 msgstr ""
+"파이썬에는 수명이 짧은 작은 (512바이트 이하) 객체에 최적화된 *pymalloc* 할당자가 있습니다. 256 KiB의 고정 "
+"크기를 갖는 \"아레나(arena)\"라는 메모리 매핑을 사용합니다. 512 바이트보다 큰 할당의 경우 "
+":c:func:`PyMem_RawMalloc`\\과 :c:func:`PyMem_RawRealloc`\\으로 대체됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:492
 msgid ""
@@ -735,64 +860,67 @@ msgid ""
 " the :c:data:`PYMEM_DOMAIN_MEM` (ex: :c:func:`PyMem_Malloc`) and "
 ":c:data:`PYMEM_DOMAIN_OBJ` (ex: :c:func:`PyObject_Malloc`) domains."
 msgstr ""
+"*pymalloc*\\은 :c:data:`PYMEM_DOMAIN_MEM`\\(예: :c:func:`PyMem_Malloc`)과 "
+":c:data:`PYMEM_DOMAIN_OBJ`\\(예: :c:func:`PyObject_Malloc`) 도메인의 :ref:`기본 "
+"할당자 <default-memory-allocators>`\\입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:496
 msgid "The arena allocator uses the following functions:"
-msgstr ""
+msgstr "아레나 할당자는 다음 함수를 사용합니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:498
 msgid ":c:func:`VirtualAlloc` and :c:func:`VirtualFree` on Windows,"
-msgstr ""
+msgstr "윈도우에서 :c:func:`VirtualAlloc`\\과 :c:func:`VirtualFree`,"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:499
 msgid ":c:func:`mmap` and :c:func:`munmap` if available,"
-msgstr ""
+msgstr "사용할 수 있으면 :c:func:`mmap`\\과 :c:func:`munmap`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:500
 msgid ":c:func:`malloc` and :c:func:`free` otherwise."
-msgstr ""
+msgstr "그렇지 않으면 :c:func:`malloc`\\과 :c:func:`free`"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:503
 msgid "Customize pymalloc Arena Allocator"
-msgstr ""
+msgstr "pymalloc 아레나 할당자 사용자 정의"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:509
 msgid ""
 "Structure used to describe an arena allocator. The structure has three "
 "fields:"
-msgstr ""
+msgstr "투기장 할당자를 기술하는 데 사용되는 구조체. 이 구조체에는 세 개의 필드가 있습니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:517
 msgid "``void* alloc(void *ctx, size_t size)``"
-msgstr ""
+msgstr "``void* alloc(void *ctx, size_t size)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:517
 msgid "allocate an arena of size bytes"
-msgstr ""
+msgstr "size 바이트의 아레나를 할당합니다"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:519
 msgid "``void free(void *ctx, size_t size, void *ptr)``"
-msgstr ""
+msgstr "``void free(void *ctx, size_t size, void *ptr)``"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:519
 msgid "free an arena"
-msgstr ""
+msgstr "아레나를 해제합니다"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:524
 msgid "Get the arena allocator."
-msgstr ""
+msgstr "아레나 할당자를 얻습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:528
 msgid "Set the arena allocator."
-msgstr ""
+msgstr "아레나 할당자를 설정합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:532
 msgid "tracemalloc C API"
-msgstr ""
+msgstr "tracemalloc C API"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:556
 msgid "Examples"
-msgstr ""
+msgstr "예"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:558
 msgid ""
@@ -800,10 +928,12 @@ msgid ""
 " the I/O buffer is allocated from the Python heap by using the first "
 "function set::"
 msgstr ""
+"다음은 :ref:`memoryoverview` 섹션에서 따온 예제입니다. I/O 버퍼가 첫 번째 함수 집합을 사용하여 파이썬 힙에서"
+" 할당되도록 다시 작성되었습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:571
 msgid "The same code using the type-oriented function set::"
-msgstr ""
+msgstr "형 지향 함수 집합을 사용하는 같은 코드입니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:583
 msgid ""
@@ -814,6 +944,10 @@ msgid ""
 "sequence contains two errors, one of which is labeled as *fatal* because "
 "it mixes two different allocators operating on different heaps. ::"
 msgstr ""
+"위의 두 가지 예에서, 버퍼는 항상 같은 집합에 속하는 함수를 통해 조작됨에 유의하십시오. 실제로, 서로 다른 할당자를 혼합할 "
+"위험이 최소로 줄어들도록, 주어진 메모리 블록에 대해 같은 메모리 API 패밀리를 사용하는 것은 필수입니다 . 다음 코드 시퀀스에는"
+" 두 개의 에러가 있으며, 그중 하나는 서로 다른 힙에서 작동하는 두 개의 다른 할당자를 혼합하기 때문에 "
+"*치명적(fatal)*\\인 것으로 표시됩니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:598
 msgid ""
@@ -822,244 +956,12 @@ msgid ""
 ":c:func:`PyObject_New`, :c:func:`PyObject_NewVar` and "
 ":c:func:`PyObject_Del`."
 msgstr ""
+"파이썬 힙에서 원시 메모리 블록을 처리하기 위한 함수 외에도, 파이썬의 객체는 :c:func:`PyObject_New`, "
+":c:func:`PyObject_NewVar` 및 :c:func:`PyObject_Del`\\로 할당되고 해제됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/memory.rst:602
 msgid ""
 "These will be explained in the next chapter on defining and implementing "
 "new object types in C."
-msgstr ""
-
-#~ msgid ""
-#~ "Frees the memory block pointed to "
-#~ "by *p*, which must have been "
-#~ "returned by a previous call to "
-#~ ":c:func:`PyMem_RawMalloc`, :c:func:`PyMem_RawRealloc` or"
-#~ " :c:func:`PyMem_RawCalloc`.  Otherwise, or if "
-#~ "``PyMem_Free(p)`` has been called before, "
-#~ "undefined behavior occurs."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The default raw memory block allocator"
-#~ " uses the following functions: "
-#~ ":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` "
-#~ "and :c:func:`free`; call ``malloc(1)`` (or "
-#~ "``calloc(1, 1)``) when requesting zero "
-#~ "bytes."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "By default, these functions use "
-#~ ":ref:`pymalloc memory allocator <pymalloc>`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "These hooks are installed by default "
-#~ "if Python is compiled in debug "
-#~ "mode. The :envvar:`PYTHONMALLOC` environment "
-#~ "variable can be used to install "
-#~ "debug hooks on a Python compiled "
-#~ "in release mode."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Python has a *pymalloc* allocator "
-#~ "optimized for small objects (smaller or"
-#~ " equal to 512 bytes) with a "
-#~ "short lifetime. It uses memory mappings"
-#~ " called \"arenas\" with a fixed size"
-#~ " of 256 KB. It falls back to"
-#~ " :c:func:`PyMem_RawMalloc` and "
-#~ ":c:func:`PyMem_RawRealloc` for allocations larger"
-#~ " than 512 bytes."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "*pymalloc* is the default allocator of"
-#~ " the :c:data:`PYMEM_DOMAIN_MEM` (ex: "
-#~ ":c:func:`PyMem_Malloc`) and :c:data:`PYMEM_DOMAIN_OBJ` "
-#~ "(ex: :c:func:`PyObject_Malloc`) domains."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "It is important to understand that "
-#~ "the management of the Python heap "
-#~ "is performed by the interpreter itself"
-#~ " and that the user has no "
-#~ "control over it, even if she "
-#~ "regularly manipulates object pointers to "
-#~ "memory blocks inside that heap.  The "
-#~ "allocation of heap space for Python "
-#~ "objects and other internal buffers is"
-#~ " performed on demand by the Python"
-#~ " memory manager through the Python/C "
-#~ "API functions listed in this document."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Newly allocated memory is filled with"
-#~ " the byte ``0xCB``, freed memory is"
-#~ " filled with the byte ``0xDB``."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In this example, the memory request "
-#~ "for the I/O buffer is handled by"
-#~ " the C library allocator. The Python"
-#~ " memory manager is involved only in"
-#~ " the allocation of the string object"
-#~ " returned as a result."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Allocates *n* bytes and returns a "
-#~ "pointer of type :c:type:`void\\*` to the"
-#~ " allocated memory, or *NULL* if the"
-#~ " request fails."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Requesting zero bytes returns a distinct"
-#~ " non-*NULL* pointer if possible, as "
-#~ "if ``PyMem_RawMalloc(1)`` had been called "
-#~ "instead. The memory will not have "
-#~ "been initialized in any way."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Allocates *nelem* elements each whose "
-#~ "size in bytes is *elsize* and "
-#~ "returns a pointer of type "
-#~ ":c:type:`void\\*` to the allocated memory, "
-#~ "or *NULL* if the request fails. "
-#~ "The memory is initialized to zeros."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Requesting zero elements or elements of"
-#~ " size zero bytes returns a distinct"
-#~ " non-*NULL* pointer if possible, as "
-#~ "if ``PyMem_RawCalloc(1, 1)`` had been "
-#~ "called instead."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If *p* is *NULL*, the call is "
-#~ "equivalent to ``PyMem_RawMalloc(n)``; else if"
-#~ " *n* is equal to zero, the "
-#~ "memory block is resized but is not"
-#~ " freed, and the returned pointer is"
-#~ " non-*NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Unless *p* is *NULL*, it must have"
-#~ " been returned by a previous call "
-#~ "to :c:func:`PyMem_RawMalloc`, :c:func:`PyMem_RawRealloc`"
-#~ " or :c:func:`PyMem_RawCalloc`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If the request fails, "
-#~ ":c:func:`PyMem_RawRealloc` returns *NULL* and "
-#~ "*p* remains a valid pointer to the"
-#~ " previous memory area."
-#~ msgstr ""
-
-#~ msgid "If *p* is *NULL*, no operation is performed."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Requesting zero bytes returns a distinct"
-#~ " non-*NULL* pointer if possible, as "
-#~ "if ``PyMem_Malloc(1)`` had been called "
-#~ "instead. The memory will not have "
-#~ "been initialized in any way."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Requesting zero elements or elements of"
-#~ " size zero bytes returns a distinct"
-#~ " non-*NULL* pointer if possible, as "
-#~ "if ``PyMem_Calloc(1, 1)`` had been "
-#~ "called instead."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If *p* is *NULL*, the call is "
-#~ "equivalent to ``PyMem_Malloc(n)``; else if "
-#~ "*n* is equal to zero, the memory"
-#~ " block is resized but is not "
-#~ "freed, and the returned pointer is "
-#~ "non-*NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Unless *p* is *NULL*, it must have"
-#~ " been returned by a previous call "
-#~ "to :c:func:`PyMem_Malloc`, :c:func:`PyMem_Realloc` "
-#~ "or :c:func:`PyMem_Calloc`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If the request fails, :c:func:`PyMem_Realloc`"
-#~ " returns *NULL* and *p* remains a "
-#~ "valid pointer to the previous memory "
-#~ "area."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Same as :c:func:`PyMem_Realloc`, but the "
-#~ "memory block is resized to ``(n *"
-#~ " sizeof(TYPE))`` bytes.  Returns a pointer"
-#~ " cast to :c:type:`TYPE\\*`. On return, "
-#~ "*p* will be a pointer to the "
-#~ "new memory area, or *NULL* in the"
-#~ " event of failure."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Requesting zero bytes returns a distinct"
-#~ " non-*NULL* pointer if possible, as "
-#~ "if ``PyObject_Malloc(1)`` had been called "
-#~ "instead. The memory will not have "
-#~ "been initialized in any way."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Requesting zero elements or elements of"
-#~ " size zero bytes returns a distinct"
-#~ " non-*NULL* pointer if possible, as "
-#~ "if ``PyObject_Calloc(1, 1)`` had been "
-#~ "called instead."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If *p* is *NULL*, the call is "
-#~ "equivalent to ``PyObject_Malloc(n)``; else if"
-#~ " *n* is equal to zero, the "
-#~ "memory block is resized but is not"
-#~ " freed, and the returned pointer is"
-#~ " non-*NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Unless *p* is *NULL*, it must have"
-#~ " been returned by a previous call "
-#~ "to :c:func:`PyObject_Malloc`, :c:func:`PyObject_Realloc`"
-#~ " or :c:func:`PyObject_Calloc`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If the request fails, "
-#~ ":c:func:`PyObject_Realloc` returns *NULL* and "
-#~ "*p* remains a valid pointer to the"
-#~ " previous memory area."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The new allocator must return a "
-#~ "distinct non-NULL pointer when "
-#~ "requesting zero bytes."
-#~ msgstr ""
+msgstr "이것들은 C로 새로운 객체 형을 정의하고 구현하는 것에 대한 다음 장에서 설명될 것입니다."
 
