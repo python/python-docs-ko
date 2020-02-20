@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/library/select.rst:2
 msgid ":mod:`select` --- Waiting for I/O completion"
-msgstr ""
+msgstr ":mod:`select` --- I/O 완료 대기"
 
 #: ../Doc/library/select.rst:9
 msgid ""
@@ -32,6 +31,11 @@ msgid ""
 "be used on regular files to determine whether a file has grown since it "
 "was last read."
 msgstr ""
+"이 모듈은 대부분의 운영 체제에서 사용 가능한 :c:func:`select`\\와 :c:func:`poll` 함수, Solaris와"
+" 파생 제품에서 사용 가능한 :c:func:`devpoll`, 리눅스 2.5+ 에서 사용 가능한 :c:func:`epoll` 및 "
+"대부분의 BSD에서 사용 가능한 :c:func:`kqueue`\\에 대한 액세스를 제공합니다. 윈도우에서는 소켓에서만 작동함에 "
+"유의하십시오; 다른 운영 체제에서는, 다른 파일 유형에서도 작동합니다 (특히, 유닉스에서는 파이프에서도 작동합니다). 일반 파일에서"
+" 파일을 마지막으로 읽은 이후에 파일이 커졌는지를 판별하기 위해 사용할 수는 없습니다."
 
 #: ../Doc/library/select.rst:20
 msgid ""
@@ -40,18 +44,21 @@ msgid ""
 "encouraged to use the :mod:`selectors` module instead, unless they want "
 "precise control over the OS-level primitives used."
 msgstr ""
+":mod:`selectors` 모듈은 :mod:`select` 모듈 프리미티브에 기반한 고수준의 효율적인 I/O 멀티플렉싱을 "
+"제공합니다. 사용되는 OS 수준 프리미티브에 대한 정확한 제어를 원하지 않는 한, 사용자는 :mod:`selectors` 모듈을 "
+"대신 사용하는 것이 좋습니다."
 
 #: ../Doc/library/select.rst:26
 msgid "The module defines the following:"
-msgstr ""
+msgstr "모듈은 다음을 정의합니다:"
 
 #: ../Doc/library/select.rst:31
 msgid "A deprecated alias of :exc:`OSError`."
-msgstr ""
+msgstr ":exc:`OSError`\\의 폐지된 별칭."
 
 #: ../Doc/library/select.rst:33
 msgid "Following :pep:`3151`, this class was made an alias of :exc:`OSError`."
-msgstr ""
+msgstr ":pep:`3151`\\에 따라, 이 클래스는 :exc:`OSError`\\의 별칭이 되었습니다."
 
 #: ../Doc/library/select.rst:39
 msgid ""
@@ -59,6 +66,8 @@ msgid ""
 "polling object; see section :ref:`devpoll-objects` below for the methods "
 "supported by devpoll objects."
 msgstr ""
+"(Solaris와 파생 제품에서만 지원됩니다.) ``/dev/poll`` 폴링(polling) 객체를 반환합니다; devpoll "
+"객체가 지원하는 메서드에 대해서는 아래의 :ref:`devpoll-objects` 섹션을 참조하십시오."
 
 #: ../Doc/library/select.rst:43
 msgid ""
@@ -68,15 +77,18 @@ msgid ""
 ":c:func:`devpoll` may return an incomplete list of active file "
 "descriptors."
 msgstr ""
+":c:func:`devpoll` 객체는 인스턴스 화 시점에 허용되는 파일 기술자 수에 연결됩니다. 프로그램이 이 값을 줄이면, "
+":c:func:`devpoll`\\이 실패합니다. 프로그램이 이 값을 늘리면, :c:func:`devpoll`\\은 불완전한 활성 "
+"파일 기술자 리스트를 반환할 수 있습니다."
 
 #: ../Doc/library/select.rst:49 ../Doc/library/select.rst:78
 #: ../Doc/library/select.rst:105
 msgid "The new file descriptor is :ref:`non-inheritable <fd_inheritance>`."
-msgstr ""
+msgstr "새 파일 기술자는 :ref:`상속 불가능 <fd_inheritance>`\\합니다."
 
 #: ../Doc/library/select.rst:53 ../Doc/library/select.rst:107
 msgid "The new file descriptor is now non-inheritable."
-msgstr ""
+msgstr "새 파일 기술자는 이제 상속 불가능합니다."
 
 #: ../Doc/library/select.rst:58
 msgid ""
@@ -84,6 +96,8 @@ msgid ""
 "object, which can be used as Edge or Level Triggered interface for I/O "
 "events."
 msgstr ""
+"(리눅스 2.5.44 이상에서만 지원됩니다.) I/O 이벤트를 위한 에지(Edge)나 레벨(Level) 트리거 되는 인터페이스로 "
+"사용할 수 있는 에지 폴링 객체를 반환합니다."
 
 #: ../Doc/library/select.rst:62
 msgid ""
@@ -92,6 +106,9 @@ msgid ""
 "used on older systems where :c:func:`epoll_create1` is not available; "
 "otherwise it has no effect (though its value is still checked)."
 msgstr ""
+"*sizehint*\\는 epoll에 등록될 예상 이벤트 수를 알려줍니다. 양수이거나, 기본값을 사용하려면 `-1`\\이어야 "
+"합니다. :c:func:`epoll_create1`\\을 사용할 수 없는 구형 시스템에서만 사용됩니다; 그렇지 않으면 효과가 "
+"없습니다 (값을 여전히 확인하기는 합니다)."
 
 #: ../Doc/library/select.rst:67
 msgid ""
@@ -99,12 +116,14 @@ msgid ""
 "its value must be ``0`` or ``select.EPOLL_CLOEXEC``, otherwise "
 "``OSError`` is raised."
 msgstr ""
+"*flags*\\는 폐지되었고 완전히 무시됩니다. 그러나, 제공되면, 값은 ``0``\\이나 "
+"``select.EPOLL_CLOEXEC``\\여야 합니다. 그렇지 않으면 ``OSError``\\가 발생합니다."
 
 #: ../Doc/library/select.rst:71
 msgid ""
 "See the :ref:`epoll-objects` section below for the methods supported by "
 "epolling objects."
-msgstr ""
+msgstr "epolling 객체가 지원하는 메서드는 아래의 :ref:`epoll-objects` 섹션을 참조하십시오."
 
 #: ../Doc/library/select.rst:74
 msgid ""
@@ -112,22 +131,26 @@ msgid ""
 " :keyword:`with` statement, the new file descriptor is automatically "
 "closed at the end of the block."
 msgstr ""
+"``epoll`` 객체는 컨텍스트 관리자 프로토콜을 지원합니다: :keyword:`with` 문에서 사용될 때, 새 파일 기술자는 "
+"블록 끝에서 자동으로 닫힙니다."
 
 #: ../Doc/library/select.rst:80
 msgid "Added the *flags* parameter."
-msgstr ""
+msgstr "*flags* 매개 변수를 추가했습니다."
 
 #: ../Doc/library/select.rst:83
 msgid ""
 "Support for the :keyword:`with` statement was added. The new file "
 "descriptor is now non-inheritable."
-msgstr ""
+msgstr ":keyword:`with` 문에 대한 지원이 추가되었습니다. 새로운 파일 기술자는 이제 상속 불가능합니다."
 
 #: ../Doc/library/select.rst:87
 msgid ""
 "The *flags* parameter.  ``select.EPOLL_CLOEXEC`` is used by default now. "
 "Use :func:`os.set_inheritable` to make the file descriptor inheritable."
 msgstr ""
+"*flags* 매개 변수. 이제 기본적으로 ``select.EPOLL_CLOEXEC``\\가 사용됩니다. 파일 기술자를 상속 "
+"가능하게 하려면 :func:`os.set_inheritable`\\을 사용하십시오."
 
 #: ../Doc/library/select.rst:94
 msgid ""
@@ -136,18 +159,24 @@ msgid ""
 "polling them for I/O events; see section :ref:`poll-objects` below for "
 "the methods supported by polling objects."
 msgstr ""
+"(모든 운영 체제에서 지원되는 것은 아닙니다.) 파일 기술자 등록과 등록 해지를 지원하고 그런 다음 I/O 이벤트에 대해 폴링하는 "
+"폴링 객체를 반환합니다; 폴링 객체가 지원하는 메서드에 대해서는 아래의 :ref:`poll-objects` 섹션을 참조하십시오."
 
 #: ../Doc/library/select.rst:102
 msgid ""
 "(Only supported on BSD.)  Returns a kernel queue object; see section :ref"
 ":`kqueue-objects` below for the methods supported by kqueue objects."
 msgstr ""
+"(BSD에서만 지원됩니다.) 커널 큐 객체를 반환합니다; kqueue 객체가 지원하는 메서드에 대해서는 아래의 :ref"
+":`kqueue-objects` 섹션을 참조하십시오."
 
 #: ../Doc/library/select.rst:113
 msgid ""
 "(Only supported on BSD.)  Returns a kernel event object; see section :ref"
 ":`kevent-objects` below for the methods supported by kevent objects."
 msgstr ""
+"(BSD에서만 지원됩니다.) 커널 이벤트 객체를 반환합니다. kevent 객체가 지원하는 메서드에 대해서는 아래의 :ref"
+":`kevent-objects` 섹션을 참조하십시오."
 
 #: ../Doc/library/select.rst:119
 msgid ""
@@ -157,20 +186,23 @@ msgid ""
 "parameterless method named :meth:`~io.IOBase.fileno` returning such an "
 "integer:"
 msgstr ""
+"이것은 유닉스 :c:func:`select` 시스템 호출에 대한 간단한 인터페이스입니다. 처음 세 개의 인자는 '대기 가능한 "
+"객체(waitable objects)'의 시퀀스입니다: 대기 가능한 객체는 파일 기술자를 나타내는 정수나 그런 정수를 반환하는 "
+":meth:`~io.IOBase.fileno`\\라는 매개 변수 없는 메서드를 가진 객체입니다:"
 
 #: ../Doc/library/select.rst:124
 msgid "*rlist*: wait until ready for reading"
-msgstr ""
+msgstr "*rlist*: 읽을 준비가 될 때까지 기다립니다"
 
 #: ../Doc/library/select.rst:125
 msgid "*wlist*: wait until ready for writing"
-msgstr ""
+msgstr "*wlist*: 쓰기 준비가 될 때까지 기다립니다"
 
 #: ../Doc/library/select.rst:126
 msgid ""
 "*xlist*: wait for an \"exceptional condition\" (see the manual page for "
 "what your system considers such a condition)"
-msgstr ""
+msgstr "*xlist*: \"예외 조건\"을 기다립니다 (시스템에서 어떤 것들을 이러한 조건으로 간주하는지는 매뉴얼 페이지를 참조하십시오)"
 
 #: ../Doc/library/select.rst:129
 msgid ""
@@ -181,6 +213,10 @@ msgid ""
 "blocks until at least one file descriptor is ready.  A time-out value of "
 "zero specifies a poll and never blocks."
 msgstr ""
+"빈 시퀀스가 허용되지만, 세 개의 빈 시퀀스를 받아들일지는 플랫폼에 따라 다릅니다. (유닉스에서는 작동하지만 윈도우에서는 작동하지 "
+"않는 것으로 알려져 있습니다.) 선택적 *timeout* 인자는 시간제한을 초 단위의 부동 소수점 숫자로 지정합니다. "
+"*timeout* 인자가 생략되면 최소한 하나의 파일 기술자가 준비될 때까지 함수가 블록 합니다. 시간제한 값이 0이면 폴링을 "
+"지정하고 절대 블록 하지 않습니다."
 
 #: ../Doc/library/select.rst:136
 msgid ""
@@ -188,6 +224,8 @@ msgid ""
 "of the first three arguments.  When the time-out is reached without a "
 "file descriptor becoming ready, three empty lists are returned."
 msgstr ""
+"반환 값은 준비된 객체의 리스트 3개입니다: 처음 세 인자의 부분 집합입니다. 파일 기술자가 준비되지 않고 시간제한에 도달하면, 세"
+" 개의 빈 리스트가 반환됩니다."
 
 #: ../Doc/library/select.rst:144
 msgid ""
@@ -199,6 +237,11 @@ msgid ""
 "method (that really returns a file descriptor, not just a random "
 "integer)."
 msgstr ""
+"시퀀스에서 허용되는 객체 형에는 파이썬 :term:`파일 객체 <file object>` (예를 들어 ``sys.stdin``, "
+"또는 :func:`open`\\이나 :func:`os.popen`\\에서 반환된 객체), "
+":func:`socket.socket`\\에서 반환된 소켓 객체가 있습니다. 적절한 (단지 임의의 정수가 아니라 실제 파일 기술자를"
+" 반환하는) :meth:`~io.IOBase.fileno` 메서드가 있는 한, :dfn:`래퍼 (wrapper)` 클래스를 직접 "
+"정의할 수도 있습니다."
 
 #: ../Doc/library/select.rst:155
 msgid ""
@@ -207,6 +250,8 @@ msgid ""
 "library, and does not handle file descriptors that don't originate from "
 "WinSock."
 msgstr ""
+"윈도우에서 파일 객체는 허용되지 않지만, 소켓은 허용됩니다. 윈도우에서, 하부 :c:func:`select` 함수는 WinSock "
+"라이브러리에서 제공되며, WinSock에서 생성되지 않은 파일 기술자를 처리하지 않습니다."
 
 #: ../Doc/library/select.rst:160 ../Doc/library/select.rst:266
 #: ../Doc/library/select.rst:363 ../Doc/library/select.rst:451
@@ -217,6 +262,8 @@ msgid ""
 ":pep:`475` for the rationale), instead of raising "
 ":exc:`InterruptedError`."
 msgstr ""
+"시그널 처리기가 :exc:`InterruptedError`\\를 발생시키는 대신 예외를 발생시키는 경우(이유는 "
+":pep:`475`\\를 참조하십시오)를 제외하고, 시그널에 의해 인터럽트 될 때 다시 계산된 시간제한으로 함수가 다시 시도됩니다."
 
 #: ../Doc/library/select.rst:169
 msgid ""
@@ -225,18 +272,20 @@ msgid ""
 ":func:`~select.select`, :func:`poll` or another interface in this module."
 "  This doesn't apply to other kind of file-like objects such as sockets."
 msgstr ""
+"파이프가 :func:`~select.select`, :func:`poll` 또는 이 모듈의 다른 인터페이스에서 쓰기 준비가 된 "
+"것으로 보고될 때, 파이프를 블록 하지 않고 쓸 수 있는 최소 바이트 수. 소켓과 같은 다른 파일류 객체에는 적용되지 않습니다."
 
 #: ../Doc/library/select.rst:174
 msgid "This value is guaranteed by POSIX to be at least 512."
-msgstr ""
+msgstr "이 값은 POSIX에서 512 이상이 되도록 보장합니다."
 
 #: ../Doc/library/select.rst:177
 msgid ":ref:`Availability <availability>`: Unix"
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 유닉스"
 
 #: ../Doc/library/select.rst:184
 msgid "``/dev/poll`` Polling Objects"
-msgstr ""
+msgstr "``/dev/poll`` 폴링 객체"
 
 #: ../Doc/library/select.rst:186
 msgid ""
@@ -244,24 +293,26 @@ msgid ""
 "O(highest file descriptor) and :c:func:`poll` is O(number of file "
 "descriptors), ``/dev/poll`` is O(active file descriptors)."
 msgstr ""
+"Solaris와 파생 제품에는 ``/dev/poll``\\이 있습니다. :c:func:`select`\\는 O(가장 높은 파일 "
+"기술자)이고 :c:func:`poll`\\은 O(파일 기술자 수)이지만 ``/dev/poll``\\은 O(활성 파일 기술자)입니다."
 
 #: ../Doc/library/select.rst:190
 msgid ""
 "``/dev/poll`` behaviour is very close to the standard :c:func:`poll` "
 "object."
-msgstr ""
+msgstr "``/dev/poll`` 동작은 표준 :c:func:`poll` 객체에 매우 가깝습니다."
 
 #: ../Doc/library/select.rst:196
 msgid "Close the file descriptor of the polling object."
-msgstr ""
+msgstr "폴링 객체의 파일 기술자를 닫습니다."
 
 #: ../Doc/library/select.rst:203
 msgid "``True`` if the polling object is closed."
-msgstr ""
+msgstr "폴링 객체가 닫혔으면 ``True``."
 
 #: ../Doc/library/select.rst:210
 msgid "Return the file descriptor number of the polling object."
-msgstr ""
+msgstr "폴링 객체의 파일 기술자 번호를 반환합니다."
 
 #: ../Doc/library/select.rst:217 ../Doc/library/select.rst:386
 msgid ""
@@ -271,6 +322,9 @@ msgid ""
 ":meth:`~io.IOBase.fileno` method that returns an integer.  File objects "
 "implement :meth:`!fileno`, so they can also be used as the argument."
 msgstr ""
+"폴링 객체에 파일 기술자를 등록합니다. 이후 :meth:`poll` 메서드에 대한 호출은 파일 기술자에 계류 중인 I/O 이벤트가 "
+"있는지 확인합니다. *fd*\\는 정수이거나, 정수를 반환하는 :meth:`~io.IOBase.fileno` 메서드가 있는 객체일 "
+"수 있습니다. 파일 객체는 :meth:`!fileno`\\를 구현하므로, 인자로도 사용할 수 있습니다."
 
 #: ../Doc/library/select.rst:223
 msgid ""
@@ -279,6 +333,9 @@ msgid ""
 "object. The default value is a combination of the constants "
 ":const:`POLLIN`, :const:`POLLPRI`, and :const:`POLLOUT`."
 msgstr ""
+"*eventmask*\\는 확인할 이벤트 유형을 설명하는 선택적 비트 마스크입니다. 상수는 :c:func:`poll` 객체와 "
+"같습니다. 기본값은 상수 :const:`POLLIN`, :const:`POLLPRI` 및 :const:`POLLOUT`\\의 "
+"조합입니다."
 
 #: ../Doc/library/select.rst:230
 msgid ""
@@ -287,12 +344,16 @@ msgid ""
 "modify it first. This is an important difference compared with "
 ":c:func:`poll`."
 msgstr ""
+"이미 등록된 파일 기술자를 등록하는 것은 에러가 아니지만, 결과는 정의되지 않습니다. 적절한 액션은 먼저 unregister 하거나"
+" modify 하는 것입니다. 이것은 :c:func:`poll`\\과 비교하여 중요한 차이점입니다."
 
 #: ../Doc/library/select.rst:238
 msgid ""
 "This method does an :meth:`unregister` followed by a :meth:`register`. It"
 " is (a bit) more efficient that doing the same explicitly."
 msgstr ""
+"이 메서드는 :meth:`unregister` 다음에 :meth:`register`\\를 수행합니다. 명시적으로 같은 작업을 "
+"수행하는 것보다 조금 더 효율적입니다."
 
 #: ../Doc/library/select.rst:245 ../Doc/library/select.rst:430
 msgid ""
@@ -300,12 +361,14 @@ msgid ""
 "the :meth:`register` method, *fd* can be an integer or an object with a "
 ":meth:`~io.IOBase.fileno` method that returns an integer."
 msgstr ""
+"폴링 객체가 추적하는 파일 기술자를 제거합니다. :meth:`register` 메서드와 마찬가지로, *fd*\\는 정수이거나 정수를"
+" 반환하는 :meth:`~io.IOBase.fileno` 메서드가 있는 객체일 수 있습니다."
 
 #: ../Doc/library/select.rst:249
 msgid ""
 "Attempting to remove a file descriptor that was never registered is "
 "safely ignored."
-msgstr ""
+msgstr "등록되지 않은 파일 기술자를 제거하려고 하면 안전하게 무시됩니다."
 
 #: ../Doc/library/select.rst:255
 msgid ""
@@ -321,94 +384,100 @@ msgid ""
 "omitted, -1, or :const:`None`, the call will block until there is an "
 "event for this poll object."
 msgstr ""
+"등록된 파일 기술자 집합을 폴링하고, 보고할 이벤트나 에러가 있는 기술자에 대한 ``(fd, event)`` 2-튜플이 포함된 "
+"비어있을 수 있는 리스트를 반환합니다. *fd*\\는 파일 기술자이고, *event*\\는 해당 기술자에 대해 보고된 이벤트에 대해"
+" 설정된 비트가 있는 비트 마스크입니다 --- 대기 중인 입력은 :const:`POLLIN`, 기술자에 쓸 수 있음을 나타내는 데는"
+" :const:`POLLOUT`, 등등. 빈 리스트는 시간제한을 초과하였고 보고할 이벤트가 있는 파일 기술자가 없음을 나타냅니다. "
+"*timeout*\\이 제공되면, 시스템이 반환하기 전에 이벤트를 기다리는 시간을 밀리초로 지정합니다. *timeout*\\을 "
+"생략하거나 -1이거나 :const:`None`\\이면, 이 폴링 객체에 대한 이벤트가 있을 때까지 호출이 블록 됩니다."
 
 #: ../Doc/library/select.rst:276
 msgid "Edge and Level Trigger Polling (epoll) Objects"
-msgstr ""
+msgstr "에지와 레벨 트리거 폴링 (epoll) 객체"
 
 #: ../Doc/library/select.rst:278
 msgid "https://linux.die.net/man/4/epoll"
-msgstr ""
+msgstr "https://linux.die.net/man/4/epoll"
 
 #: ../Doc/library/select.rst:280
 msgid "*eventmask*"
-msgstr ""
+msgstr "*eventmask*"
 
 #: ../Doc/library/select.rst:283 ../Doc/library/select.rst:398
 #: ../Doc/library/select.rst:518 ../Doc/library/select.rst:547
 #: ../Doc/library/select.rst:578 ../Doc/library/select.rst:586
 #: ../Doc/library/select.rst:606 ../Doc/library/select.rst:629
 msgid "Constant"
-msgstr ""
+msgstr "상수"
 
 #: ../Doc/library/select.rst:283 ../Doc/library/select.rst:398
 #: ../Doc/library/select.rst:518 ../Doc/library/select.rst:547
 #: ../Doc/library/select.rst:578 ../Doc/library/select.rst:586
 #: ../Doc/library/select.rst:606 ../Doc/library/select.rst:629
 msgid "Meaning"
-msgstr ""
+msgstr "의미"
 
 #: ../Doc/library/select.rst:285
 msgid ":const:`EPOLLIN`"
-msgstr ""
+msgstr ":const:`EPOLLIN`"
 
 #: ../Doc/library/select.rst:285
 msgid "Available for read"
-msgstr ""
+msgstr "읽기 가능"
 
 #: ../Doc/library/select.rst:287
 msgid ":const:`EPOLLOUT`"
-msgstr ""
+msgstr ":const:`EPOLLOUT`"
 
 #: ../Doc/library/select.rst:287
 msgid "Available for write"
-msgstr ""
+msgstr "쓰기 가능"
 
 #: ../Doc/library/select.rst:289
 msgid ":const:`EPOLLPRI`"
-msgstr ""
+msgstr ":const:`EPOLLPRI`"
 
 #: ../Doc/library/select.rst:289
 msgid "Urgent data for read"
-msgstr ""
+msgstr "읽을 긴급 데이터"
 
 #: ../Doc/library/select.rst:291
 msgid ":const:`EPOLLERR`"
-msgstr ""
+msgstr ":const:`EPOLLERR`"
 
 #: ../Doc/library/select.rst:291
 msgid "Error condition happened on the assoc. fd"
-msgstr ""
+msgstr "연관된 fd에서 에러 조건이 발생했습니다"
 
 #: ../Doc/library/select.rst:293
 msgid ":const:`EPOLLHUP`"
-msgstr ""
+msgstr ":const:`EPOLLHUP`"
 
 #: ../Doc/library/select.rst:293
 msgid "Hang up happened on the assoc. fd"
-msgstr ""
+msgstr "연관된 fd에서 끊어짐(hang up)이 발생했습니다"
 
 #: ../Doc/library/select.rst:295
 msgid ":const:`EPOLLET`"
-msgstr ""
+msgstr ":const:`EPOLLET`"
 
 #: ../Doc/library/select.rst:295
 msgid "Set Edge Trigger behavior, the default is Level Trigger behavior"
-msgstr ""
+msgstr "에지 트리거 동작을 설정합니다, 기본값은 레벨 트리거 동작입니다"
 
 #: ../Doc/library/select.rst:298
 msgid ":const:`EPOLLONESHOT`"
-msgstr ""
+msgstr ":const:`EPOLLONESHOT`"
 
 #: ../Doc/library/select.rst:298
 msgid ""
 "Set one-shot behavior. After one event is pulled out, the fd is "
 "internally disabled"
-msgstr ""
+msgstr "원샷(one-shot) 동작을 설정합니다. 하나의 이벤트를 꺼낸 후에, fd는 내부적으로 비활성화됩니다."
 
 #: ../Doc/library/select.rst:301
 msgid ":const:`EPOLLEXCLUSIVE`"
-msgstr ""
+msgstr ":const:`EPOLLEXCLUSIVE`"
 
 #: ../Doc/library/select.rst:301
 msgid ""
@@ -416,98 +485,100 @@ msgid ""
 "default (if this flag is not set) is to wake all epoll objects polling on"
 " a fd."
 msgstr ""
+"연관된 fd에 이벤트가 있을 때 하나의 epoll 객체만 깨웁니다. 기본값(이 플래그가 설정되지 않으면)은 fd를 폴링하는 모든 "
+"epoll 객체를 깨우는 것입니다."
 
 #: ../Doc/library/select.rst:306
 msgid ":const:`EPOLLRDHUP`"
-msgstr ""
+msgstr ":const:`EPOLLRDHUP`"
 
 #: ../Doc/library/select.rst:306
 msgid ""
 "Stream socket peer closed connection or shut down writing half of "
 "connection."
-msgstr ""
+msgstr "스트림 소켓 반대편이 연결을 닫았거나 연결의 쓰기 절반을 종료했습니다."
 
 #: ../Doc/library/select.rst:309
 msgid ":const:`EPOLLRDNORM`"
-msgstr ""
+msgstr ":const:`EPOLLRDNORM`"
 
 #: ../Doc/library/select.rst:309
 msgid "Equivalent to :const:`EPOLLIN`"
-msgstr ""
+msgstr ":const:`EPOLLIN`\\과 동등합니다"
 
 #: ../Doc/library/select.rst:311
 msgid ":const:`EPOLLRDBAND`"
-msgstr ""
+msgstr ":const:`EPOLLRDBAND`"
 
 #: ../Doc/library/select.rst:311
 msgid "Priority data band can be read."
-msgstr ""
+msgstr "우선순위가 높은 데이터 대역을 읽을 수 있습니다."
 
 #: ../Doc/library/select.rst:313
 msgid ":const:`EPOLLWRNORM`"
-msgstr ""
+msgstr ":const:`EPOLLWRNORM`"
 
 #: ../Doc/library/select.rst:313
 msgid "Equivalent to :const:`EPOLLOUT`"
-msgstr ""
+msgstr ":const:`EPOLLOUT`\\과 동등합니다"
 
 #: ../Doc/library/select.rst:315
 msgid ":const:`EPOLLWRBAND`"
-msgstr ""
+msgstr ":const:`EPOLLWRBAND`"
 
 #: ../Doc/library/select.rst:315
 msgid "Priority data may be written."
-msgstr ""
+msgstr "우선순위가 높은 데이터를 쓸 수 있습니다."
 
 #: ../Doc/library/select.rst:317
 msgid ":const:`EPOLLMSG`"
-msgstr ""
+msgstr ":const:`EPOLLMSG`"
 
 #: ../Doc/library/select.rst:317
 msgid "Ignored."
-msgstr ""
+msgstr "무시됩니다."
 
 #: ../Doc/library/select.rst:320
 msgid ""
 ":const:`EPOLLEXCLUSIVE` was added.  It's only supported by Linux Kernel "
 "4.5 or later."
-msgstr ""
+msgstr ":const:`EPOLLEXCLUSIVE`\\가 추가되었습니다. 리눅스 커널 4.5 이상에서만 지원됩니다."
 
 #: ../Doc/library/select.rst:326
 msgid "Close the control file descriptor of the epoll object."
-msgstr ""
+msgstr "epoll 객체의 제어 파일 기술자를 닫습니다."
 
 #: ../Doc/library/select.rst:331
 msgid "``True`` if the epoll object is closed."
-msgstr ""
+msgstr "epoll 객체가 닫혔으면 ``True``."
 
 #: ../Doc/library/select.rst:336 ../Doc/library/select.rst:475
 msgid "Return the file descriptor number of the control fd."
-msgstr ""
+msgstr "제어 fd의 파일 기술자 번호를 반환합니다."
 
 #: ../Doc/library/select.rst:341
 msgid "Create an epoll object from a given file descriptor."
-msgstr ""
+msgstr "주어진 파일 기술자에서 epoll 객체를 만듭니다."
 
 #: ../Doc/library/select.rst:346
 msgid "Register a fd descriptor with the epoll object."
-msgstr ""
+msgstr "epoll 객체에 fd 기술자를 등록합니다."
 
 #: ../Doc/library/select.rst:351
 msgid "Modify a registered file descriptor."
-msgstr ""
+msgstr "등록된 파일 기술자를 수정합니다."
 
 #: ../Doc/library/select.rst:356
 msgid "Remove a registered file descriptor from the epoll object."
-msgstr ""
+msgstr "epoll 객체에서 등록된 파일 기술자를 제거합니다."
 
 #: ../Doc/library/select.rst:361
 msgid "Wait for events. timeout in seconds (float)"
-msgstr ""
+msgstr "이벤트를 기다립니다. 시간제한은 초 단위입니다 (float)"
 
 #: ../Doc/library/select.rst:373
 msgid "Polling Objects"
-msgstr ""
+msgstr "폴링 객체"
 
 #: ../Doc/library/select.rst:375
 msgid ""
@@ -520,6 +591,11 @@ msgid ""
 ":c:func:`select` is O(highest file descriptor), while :c:func:`poll` is "
 "O(number of file descriptors)."
 msgstr ""
+"대부분의 유닉스 시스템에서 지원되는 :c:func:`poll` 시스템 호출은 동시에 많은 클라이언트에게 서비스를 제공하는 네트워크 "
+"서버에 더 나은 확장성을 제공합니다. :c:func:`select`\\는 비트맵을 빌드하고, 관심 있는 fd에 대한 비트를 켠 후,"
+" 전체 비트 맵을 다시 선형으로 스캔해야 하지만, 이 시스템 호출은 관심 있는 파일 기술자만 나열하면 되기 때문에 "
+":c:func:`poll`\\은 더 잘 확장됩니다. :c:func:`select`\\는 O(가장 높은 파일 기술자)이고 "
+":c:func:`poll`\\은 O (파일 기술자 수)입니다."
 
 #: ../Doc/library/select.rst:392
 msgid ""
@@ -529,70 +605,73 @@ msgid ""
 "If not specified, the default value used will check for all 3 types of "
 "events."
 msgstr ""
+"*eventmask*\\는 확인할 이벤트 유형을 설명하는 선택적 비트 마스크이고, 아래 표에 설명된 상수 "
+":const:`POLLIN`, :const:`POLLPRI` 및 :const:`POLLOUT`\\의 조합일 수 있습니다. 지정하지 "
+"않으면, 사용되는 기본값은 3가지 유형의 이벤트를 모두 확인합니다."
 
 #: ../Doc/library/select.rst:400
 msgid ":const:`POLLIN`"
-msgstr ""
+msgstr ":const:`POLLIN`"
 
 #: ../Doc/library/select.rst:400
 msgid "There is data to read"
-msgstr ""
+msgstr "읽을 데이터가 있습니다"
 
 #: ../Doc/library/select.rst:402
 msgid ":const:`POLLPRI`"
-msgstr ""
+msgstr ":const:`POLLPRI`"
 
 #: ../Doc/library/select.rst:402
 msgid "There is urgent data to read"
-msgstr ""
+msgstr "읽을 긴급한 데이터가 있습니다"
 
 #: ../Doc/library/select.rst:404
 msgid ":const:`POLLOUT`"
-msgstr ""
+msgstr ":const:`POLLOUT`"
 
 #: ../Doc/library/select.rst:404
 msgid "Ready for output: writing will not block"
-msgstr ""
+msgstr "출력 준비: 쓰기가 블록 되지 않을 것입니다"
 
 #: ../Doc/library/select.rst:406
 msgid ":const:`POLLERR`"
-msgstr ""
+msgstr ":const:`POLLERR`"
 
 #: ../Doc/library/select.rst:406
 msgid "Error condition of some sort"
-msgstr ""
+msgstr "어떤 종류의 에러 조건"
 
 #: ../Doc/library/select.rst:408
 msgid ":const:`POLLHUP`"
-msgstr ""
+msgstr ":const:`POLLHUP`"
 
 #: ../Doc/library/select.rst:408
 msgid "Hung up"
-msgstr ""
+msgstr "끊어졌습니다(Hung up)"
 
 #: ../Doc/library/select.rst:410
 msgid ":const:`POLLRDHUP`"
-msgstr ""
+msgstr ":const:`POLLRDHUP`"
 
 #: ../Doc/library/select.rst:410
 msgid ""
 "Stream socket peer closed connection, or shut down writing half of "
 "connection"
-msgstr ""
+msgstr "스트림 소켓 반대편이 연결을 닫았거나, 연결의 쓰기 절반을 종료했습니다"
 
 #: ../Doc/library/select.rst:413
 msgid ":const:`POLLNVAL`"
-msgstr ""
+msgstr ":const:`POLLNVAL`"
 
 #: ../Doc/library/select.rst:413
 msgid "Invalid request: descriptor not open"
-msgstr ""
+msgstr "잘못된 요청: 기술자가 열리지 않았습니다"
 
 #: ../Doc/library/select.rst:416
 msgid ""
 "Registering a file descriptor that's already registered is not an error, "
 "and has the same effect as registering the descriptor exactly once."
-msgstr ""
+msgstr "이미 등록된 파일 기술자를 등록하는 것은 에러가 아니며, 기술자를 정확히 한 번 등록하는 것과 같은 효과가 있습니다."
 
 #: ../Doc/library/select.rst:422
 msgid ""
@@ -601,12 +680,14 @@ msgid ""
 " was never registered causes an :exc:`OSError` exception with errno "
 ":const:`ENOENT` to be raised."
 msgstr ""
+"이미 등록된 fd를 수정합니다. 이것은 ``register(fd, eventmask)``\\와 같은 효과가 있습니다. 등록되지 않은"
+" 파일 기술자를 수정하려고 하면 errno :const:`ENOENT`\\로 :exc:`OSError` 예외가 발생합니다."
 
 #: ../Doc/library/select.rst:434
 msgid ""
 "Attempting to remove a file descriptor that was never registered causes a"
 " :exc:`KeyError` exception to be raised."
-msgstr ""
+msgstr "등록되지 않은 파일 기술자를 제거하려고 하면 :exc:`KeyError` 예외가 발생합니다."
 
 #: ../Doc/library/select.rst:440
 msgid ""
@@ -622,48 +703,54 @@ msgid ""
 "omitted, negative, or :const:`None`, the call will block until there is "
 "an event for this poll object."
 msgstr ""
+"등록된 파일 기술자 집합을 폴링하고, 보고할 이벤트나 에러가 있는 기술자에 대한 ``(fd, event)`` 2-튜플이 포함된 "
+"비어있을 수 있는 리스트를 반환합니다. *fd*\\는 파일 기술자이고, *event*\\는 해당 기술자에 대해 보고된 이벤트에 대해"
+" 설정된 비트가 있는 비트 마스크입니다 --- 대기 중인 입력은 :const:`POLLIN`, 기술자에 쓸 수 있음을 나타내는 데는"
+" :const:`POLLOUT`, 등등. 빈 리스트는 시간제한을 초과하였고 보고할 이벤트가 있는 파일 기술자가 없음을 나타냅니다. "
+"*timeout*\\이 제공되면, 시스템이 반환하기 전에 이벤트를 기다리는 시간을 밀리초로 지정합니다. *timeout*\\을 "
+"생략하거나 음수이거나 :const:`None`\\이면, 이 폴링 객체에 대한 이벤트가 있을 때까지 호출이 블록 됩니다."
 
 #: ../Doc/library/select.rst:461
 msgid "Kqueue Objects"
-msgstr ""
+msgstr "Kqueue 객체"
 
 #: ../Doc/library/select.rst:465
 msgid "Close the control file descriptor of the kqueue object."
-msgstr ""
+msgstr "kqueue 객체의 제어 파일 기술자를 닫습니다."
 
 #: ../Doc/library/select.rst:470
 msgid "``True`` if the kqueue object is closed."
-msgstr ""
+msgstr "kqueue 객체가 닫혔으면 ``True``."
 
 #: ../Doc/library/select.rst:480
 msgid "Create a kqueue object from a given file descriptor."
-msgstr ""
+msgstr "주어진 파일 기술자에서 kqueue 객체를 만듭니다."
 
 #: ../Doc/library/select.rst:485
 msgid "Low level interface to kevent"
-msgstr ""
+msgstr "kevent에 대한 저수준 인터페이스"
 
 #: ../Doc/library/select.rst:487
 msgid "changelist must be an iterable of kevent objects or ``None``"
-msgstr ""
+msgstr "changelist는 kevent 객체의 이터러블 이거나 ``None``\\이어야 합니다"
 
 #: ../Doc/library/select.rst:488
 msgid "max_events must be 0 or a positive integer"
-msgstr ""
+msgstr "max_events는 0이거나 양의 정수여야 합니다."
 
 #: ../Doc/library/select.rst:489
 msgid ""
 "timeout in seconds (floats possible); the default is ``None``, to wait "
 "forever"
-msgstr ""
+msgstr "timeout은 초 단위 (float 가능); 기본값은 ``None``\\이고 무한히 대기합니다"
 
 #: ../Doc/library/select.rst:502
 msgid "Kevent Objects"
-msgstr ""
+msgstr "Kevent 객체"
 
 #: ../Doc/library/select.rst:504
 msgid "https://www.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2"
-msgstr ""
+msgstr "https://www.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2"
 
 #: ../Doc/library/select.rst:508
 msgid ""
@@ -672,355 +759,330 @@ msgid ""
 " either be an int or an object with a :meth:`~io.IOBase.fileno` method. "
 "kevent stores the integer internally."
 msgstr ""
+"이벤트를 식별하는 데 사용되는 값. 해석은 필터에 따라 다르지만, 일반적으로 파일 기술자입니다. 생성자에서 ident 는 정수이거나"
+" :meth:`~io.IOBase.fileno` 메서드가 있는 객체일 수 있습니다. kevent는 내부적으로 정수를 저장합니다."
 
 #: ../Doc/library/select.rst:515
 msgid "Name of the kernel filter."
-msgstr ""
+msgstr "커널 필터의 이름."
 
 #: ../Doc/library/select.rst:520
 msgid ":const:`KQ_FILTER_READ`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_READ`"
 
 #: ../Doc/library/select.rst:520
 msgid "Takes a descriptor and returns whenever there is data available to read"
-msgstr ""
+msgstr "기술자를 취하고 읽을 수 있는 데이터가 있을 때마다 반환합니다"
 
 #: ../Doc/library/select.rst:523
 msgid ":const:`KQ_FILTER_WRITE`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_WRITE`"
 
 #: ../Doc/library/select.rst:523
 msgid "Takes a descriptor and returns whenever there is data available to write"
-msgstr ""
+msgstr "기술자를 취하고 쓸 수 있는 데이터가 있을 때마다 반환합니다"
 
 #: ../Doc/library/select.rst:526
 msgid ":const:`KQ_FILTER_AIO`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_AIO`"
 
 #: ../Doc/library/select.rst:526
 msgid "AIO requests"
-msgstr ""
+msgstr "AIO 요청"
 
 #: ../Doc/library/select.rst:528
 msgid ":const:`KQ_FILTER_VNODE`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_VNODE`"
 
 #: ../Doc/library/select.rst:528
 msgid "Returns when one or more of the requested events watched in *fflag* occurs"
-msgstr ""
+msgstr "*fflag*\\에서 감시 중인 요청된 이벤트 중 하나 이상이 발생할 때 반환합니다"
 
 #: ../Doc/library/select.rst:531
 msgid ":const:`KQ_FILTER_PROC`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_PROC`"
 
 #: ../Doc/library/select.rst:531
 msgid "Watch for events on a process id"
-msgstr ""
+msgstr "프로세스 id에서 이벤트를 감시합니다"
 
 #: ../Doc/library/select.rst:533
 msgid ":const:`KQ_FILTER_NETDEV`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_NETDEV`"
 
 #: ../Doc/library/select.rst:533
 msgid "Watch for events on a network device [not available on Mac OS X]"
-msgstr ""
+msgstr "네트워크 장치에서 이벤트를 감시합니다 [Mac OS X에서는 사용할 수 없습니다]"
 
 #: ../Doc/library/select.rst:536
 msgid ":const:`KQ_FILTER_SIGNAL`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_SIGNAL`"
 
 #: ../Doc/library/select.rst:536
 msgid "Returns whenever the watched signal is delivered to the process"
-msgstr ""
+msgstr "감시하는 시그널이 프로세스에 전달될 때마다 반환합니다"
 
 #: ../Doc/library/select.rst:539
 msgid ":const:`KQ_FILTER_TIMER`"
-msgstr ""
+msgstr ":const:`KQ_FILTER_TIMER`"
 
 #: ../Doc/library/select.rst:539
 msgid "Establishes an arbitrary timer"
-msgstr ""
+msgstr "임의의 타이머를 설정합니다"
 
 #: ../Doc/library/select.rst:544
 msgid "Filter action."
-msgstr ""
+msgstr "필터 액션."
 
 #: ../Doc/library/select.rst:549
 msgid ":const:`KQ_EV_ADD`"
-msgstr ""
+msgstr ":const:`KQ_EV_ADD`"
 
 #: ../Doc/library/select.rst:549
 msgid "Adds or modifies an event"
-msgstr ""
+msgstr "이벤트를 추가하거나 수정합니다"
 
 #: ../Doc/library/select.rst:551
 msgid ":const:`KQ_EV_DELETE`"
-msgstr ""
+msgstr ":const:`KQ_EV_DELETE`"
 
 #: ../Doc/library/select.rst:551
 msgid "Removes an event from the queue"
-msgstr ""
+msgstr "큐에서 이벤트를 제거합니다"
 
 #: ../Doc/library/select.rst:553
 msgid ":const:`KQ_EV_ENABLE`"
-msgstr ""
+msgstr ":const:`KQ_EV_ENABLE`"
 
 #: ../Doc/library/select.rst:553
 msgid "Permitscontrol() to returns the event"
-msgstr ""
+msgstr "이벤트를 반환하도록 Permitscontrol() 합니다"
 
 #: ../Doc/library/select.rst:555
 msgid ":const:`KQ_EV_DISABLE`"
-msgstr ""
+msgstr ":const:`KQ_EV_DISABLE`"
 
 #: ../Doc/library/select.rst:555
 msgid "Disablesevent"
-msgstr ""
+msgstr "이벤트 비활성화"
 
 #: ../Doc/library/select.rst:557
 msgid ":const:`KQ_EV_ONESHOT`"
-msgstr ""
+msgstr ":const:`KQ_EV_ONESHOT`"
 
 #: ../Doc/library/select.rst:557
 msgid "Removes event after first occurrence"
-msgstr ""
+msgstr "처음 발생한 후 이벤트를 제거합니다"
 
 #: ../Doc/library/select.rst:559
 msgid ":const:`KQ_EV_CLEAR`"
-msgstr ""
+msgstr ":const:`KQ_EV_CLEAR`"
 
 #: ../Doc/library/select.rst:559
 msgid "Reset the state after an event is retrieved"
-msgstr ""
+msgstr "이벤트를 꺼낸 후 상태를 재설정합니다"
 
 #: ../Doc/library/select.rst:561
 msgid ":const:`KQ_EV_SYSFLAGS`"
-msgstr ""
+msgstr ":const:`KQ_EV_SYSFLAGS`"
 
 #: ../Doc/library/select.rst:561 ../Doc/library/select.rst:563
 msgid "internal event"
-msgstr ""
+msgstr "내부 이벤트"
 
 #: ../Doc/library/select.rst:563
 msgid ":const:`KQ_EV_FLAG1`"
-msgstr ""
+msgstr ":const:`KQ_EV_FLAG1`"
 
 #: ../Doc/library/select.rst:565
 msgid ":const:`KQ_EV_EOF`"
-msgstr ""
+msgstr ":const:`KQ_EV_EOF`"
 
 #: ../Doc/library/select.rst:565
 msgid "Filter specific EOF condition"
-msgstr ""
+msgstr "필터 특정 EOF 조건"
 
 #: ../Doc/library/select.rst:567
 msgid ":const:`KQ_EV_ERROR`"
-msgstr ""
+msgstr ":const:`KQ_EV_ERROR`"
 
 #: ../Doc/library/select.rst:567
 msgid "See return values"
-msgstr ""
+msgstr "반환 값을 봅니다"
 
 #: ../Doc/library/select.rst:573
 msgid "Filter specific flags."
-msgstr ""
+msgstr "필터 특정 플래그."
 
 #: ../Doc/library/select.rst:575
 msgid ":const:`KQ_FILTER_READ` and  :const:`KQ_FILTER_WRITE` filter flags:"
-msgstr ""
+msgstr ":const:`KQ_FILTER_READ`\\와 :const:`KQ_FILTER_WRITE` 필터 플래그:"
 
 #: ../Doc/library/select.rst:580
 msgid ":const:`KQ_NOTE_LOWAT`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_LOWAT`"
 
 #: ../Doc/library/select.rst:580
 msgid "low water mark of a socket buffer"
-msgstr ""
+msgstr "소켓 버퍼의 낮은 수위(low water mark)"
 
 #: ../Doc/library/select.rst:583
 msgid ":const:`KQ_FILTER_VNODE` filter flags:"
-msgstr ""
+msgstr ":const:`KQ_FILTER_VNODE` 필터 플래그:"
 
 #: ../Doc/library/select.rst:588
 msgid ":const:`KQ_NOTE_DELETE`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_DELETE`"
 
 #: ../Doc/library/select.rst:588
 msgid "*unlink()* was called"
-msgstr ""
+msgstr "*unlink()*\\가 호출되었습니다"
 
 #: ../Doc/library/select.rst:590
 msgid ":const:`KQ_NOTE_WRITE`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_WRITE`"
 
 #: ../Doc/library/select.rst:590
 msgid "a write occurred"
-msgstr ""
+msgstr "쓰기가 발생했습니다"
 
 #: ../Doc/library/select.rst:592
 msgid ":const:`KQ_NOTE_EXTEND`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_EXTEND`"
 
 #: ../Doc/library/select.rst:592
 msgid "the file was extended"
-msgstr ""
+msgstr "파일이 확장되었습니다"
 
 #: ../Doc/library/select.rst:594
 msgid ":const:`KQ_NOTE_ATTRIB`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_ATTRIB`"
 
 #: ../Doc/library/select.rst:594
 msgid "an attribute was changed"
-msgstr ""
+msgstr "속성이 변경되었습니다"
 
 #: ../Doc/library/select.rst:596
 msgid ":const:`KQ_NOTE_LINK`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_LINK`"
 
 #: ../Doc/library/select.rst:596
 msgid "the link count has changed"
-msgstr ""
+msgstr "링크 수가 변경되었습니다"
 
 #: ../Doc/library/select.rst:598
 msgid ":const:`KQ_NOTE_RENAME`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_RENAME`"
 
 #: ../Doc/library/select.rst:598
 msgid "the file was renamed"
-msgstr ""
+msgstr "파일 이름이 변경되었습니다"
 
 #: ../Doc/library/select.rst:600
 msgid ":const:`KQ_NOTE_REVOKE`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_REVOKE`"
 
 #: ../Doc/library/select.rst:600
 msgid "access to the file was revoked"
-msgstr ""
+msgstr "파일에 대한 액세스가 취소되었습니다"
 
 #: ../Doc/library/select.rst:603
 msgid ":const:`KQ_FILTER_PROC` filter flags:"
-msgstr ""
+msgstr ":const:`KQ_FILTER_PROC` 필터 플래그:"
 
 #: ../Doc/library/select.rst:608
 msgid ":const:`KQ_NOTE_EXIT`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_EXIT`"
 
 #: ../Doc/library/select.rst:608
 msgid "the process has exited"
-msgstr ""
+msgstr "프로세스가 종료되었습니다"
 
 #: ../Doc/library/select.rst:610
 msgid ":const:`KQ_NOTE_FORK`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_FORK`"
 
 #: ../Doc/library/select.rst:610
 msgid "the process has called *fork()*"
-msgstr ""
+msgstr "프로세스가 *fork()*\\를 호출했습니다"
 
 #: ../Doc/library/select.rst:612
 msgid ":const:`KQ_NOTE_EXEC`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_EXEC`"
 
 #: ../Doc/library/select.rst:612
 msgid "the process has executed a new process"
-msgstr ""
+msgstr "프로세스가 새로운 프로세스를 실행했습니다"
 
 #: ../Doc/library/select.rst:614
 msgid ":const:`KQ_NOTE_PCTRLMASK`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_PCTRLMASK`"
 
 #: ../Doc/library/select.rst:614 ../Doc/library/select.rst:616
 msgid "internal filter flag"
-msgstr ""
+msgstr "내부 필터 플래그"
 
 #: ../Doc/library/select.rst:616
 msgid ":const:`KQ_NOTE_PDATAMASK`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_PDATAMASK`"
 
 #: ../Doc/library/select.rst:618
 msgid ":const:`KQ_NOTE_TRACK`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_TRACK`"
 
 #: ../Doc/library/select.rst:618
 msgid "follow a process across *fork()*"
-msgstr ""
+msgstr "*fork()*\\를 가로질러 프로세스를 추적합니다"
 
 #: ../Doc/library/select.rst:620
 msgid ":const:`KQ_NOTE_CHILD`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_CHILD`"
 
 #: ../Doc/library/select.rst:620
 msgid "returned on the child process for *NOTE_TRACK*"
-msgstr ""
+msgstr "*NOTE_TRACK*\\의 경우 자식 프로세스에서 반환됩니다"
 
 #: ../Doc/library/select.rst:623
 msgid ":const:`KQ_NOTE_TRACKERR`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_TRACKERR`"
 
 #: ../Doc/library/select.rst:623
 msgid "unable to attach to a child"
-msgstr ""
+msgstr "자식에게 연결할 수 없습니다"
 
 #: ../Doc/library/select.rst:626
 msgid ":const:`KQ_FILTER_NETDEV` filter flags (not available on Mac OS X):"
-msgstr ""
+msgstr ":const:`KQ_FILTER_NETDEV` 필터 플래그 (Mac OS X에서는 사용할 수 없습니다):"
 
 #: ../Doc/library/select.rst:631
 msgid ":const:`KQ_NOTE_LINKUP`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_LINKUP`"
 
 #: ../Doc/library/select.rst:631
 msgid "link is up"
-msgstr ""
+msgstr "링크가 올라갔습니다"
 
 #: ../Doc/library/select.rst:633
 msgid ":const:`KQ_NOTE_LINKDOWN`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_LINKDOWN`"
 
 #: ../Doc/library/select.rst:633
 msgid "link is down"
-msgstr ""
+msgstr "링크가 내려갔습니다"
 
 #: ../Doc/library/select.rst:635
 msgid ":const:`KQ_NOTE_LINKINV`"
-msgstr ""
+msgstr ":const:`KQ_NOTE_LINKINV`"
 
 #: ../Doc/library/select.rst:635
 msgid "link state is invalid"
-msgstr ""
+msgstr "링크 상태가 유효하지 않습니다"
 
 #: ../Doc/library/select.rst:641
 msgid "Filter specific data."
-msgstr ""
+msgstr "필터 특정 데이터."
 
 #: ../Doc/library/select.rst:646
 msgid "User defined value."
-msgstr ""
-
-#~ msgid "http://linux.die.net/man/4/epoll"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "(Only supported on Linux 2.5.44 and "
-#~ "newer.) Return an edge polling object,"
-#~ " which can be used as Edge or"
-#~ " Level Triggered interface for I/O "
-#~ "events. *sizehint* and *flags* are "
-#~ "deprecated and completely ignored."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This value is guaranteed by POSIX "
-#~ "to be at least 512.  Availability: "
-#~ "Unix."
-#~ msgstr ""
-
-#~ msgid "Availability: Unix"
-#~ msgstr ""
-
-#~ msgid "changelist must be an iterable of kevent object or ``None``"
-#~ msgstr ""
-
-#~ msgid "timeout in seconds (floats possible)"
-#~ msgstr ""
+msgstr "사용자 정의 값."
 
