@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-19 18:31+0900\n"
+"POT-Creation-Date: 2020-02-26 09:50+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1382,7 +1382,8 @@ msgid ""
 "responsibilities like signal handling.  It is also responsible for "
 "execution during runtime initialization and is usually the active "
 "interpreter during runtime finalization.  The "
-":c:func:`PyInterpreterState_Main` funtion returns a pointer to its state."
+":c:func:`PyInterpreterState_Main` function returns a pointer to its "
+"state."
 msgstr ""
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1186
@@ -1420,20 +1421,41 @@ msgid ""
 msgstr ""
 
 #: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1225
-msgid ""
-"Extension modules are shared between (sub-)interpreters as follows: the "
-"first time a particular extension is imported, it is initialized "
-"normally, and a (shallow) copy of its module's dictionary is squirreled "
-"away.  When the same extension is imported by another (sub-)interpreter, "
-"a new module is initialized and filled with the contents of this copy; "
-"the extension's ``init`` function is not called.  Note that this is "
-"different from what happens when an extension is imported after the "
-"interpreter has been completely re-initialized by calling "
-":c:func:`Py_FinalizeEx` and :c:func:`Py_Initialize`; in that case, the "
-"extension's ``initmodule`` function *is* called again."
+msgid "Extension modules are shared between (sub-)interpreters as follows:"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1242
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1227
+msgid ""
+"For modules using multi-phase initialization, e.g. "
+":c:func:`PyModule_FromDefAndSpec`, a separate module object is created "
+"and initialized for each interpreter. Only C-level static and global "
+"variables are shared between these module objects."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1233
+msgid ""
+"For modules using single-phase initialization, e.g. "
+":c:func:`PyModule_Create`, the first time a particular extension is "
+"imported, it is initialized normally, and a (shallow) copy of its "
+"module's dictionary is squirreled away. When the same extension is "
+"imported by another (sub-)interpreter, a new module is initialized and "
+"filled with the contents of this copy; the extension's ``init`` function "
+"is not called. Objects in the module's dictionary thus end up shared "
+"across (sub-)interpreters, which might cause unwanted behavior (see `Bugs"
+" and caveats`_ below)."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1244
+msgid ""
+"Note that this is different from what happens when an extension is "
+"imported after the interpreter has been completely re-initialized by "
+"calling :c:func:`Py_FinalizeEx` and :c:func:`Py_Initialize`; in that "
+"case, the extension's ``initmodule`` function *is* called again. As with "
+"multi-phase initialization, this means that only C-level static and "
+"global variables are shared between these modules."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1258
 msgid ""
 "Destroy the (sub-)interpreter represented by the given thread state. The "
 "given thread state must be the current thread state.  See the discussion "
@@ -1445,28 +1467,33 @@ msgid ""
 "at that point."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1252
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1268
 msgid "Bugs and caveats"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1254
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1270
 msgid ""
 "Because sub-interpreters (and the main interpreter) are part of the same "
 "process, the insulation between them isn't perfect --- for example, using"
 " low-level file operations like  :func:`os.close` they can (accidentally "
 "or maliciously) affect each other's open files.  Because of the way "
 "extensions are shared between (sub-)interpreters, some extensions may not"
-" work properly; this is especially likely when the extension makes use of"
-" (static) global variables, or when the extension manipulates its "
-"module's dictionary after its initialization.  It is possible to insert "
-"objects created in one sub-interpreter into a namespace of another sub-"
-"interpreter; this should be done with great care to avoid sharing user-"
-"defined functions, methods, instances or classes between sub-"
-"interpreters, since import operations executed by such objects may affect"
-" the wrong (sub-)interpreter's dictionary of loaded modules."
+" work properly; this is especially likely when using single-phase "
+"initialization or (static) global variables. It is possible to insert "
+"objects created in one sub-interpreter into a namespace of another "
+"(sub-)interpreter; this should be avoided if possible."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1268
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1280
+msgid ""
+"Special care should be taken to avoid sharing user-defined functions, "
+"methods, instances or classes between sub-interpreters, since import "
+"operations executed by such objects may affect the wrong "
+"(sub-)interpreter's dictionary of loaded modules. It is equally important"
+" to avoid sharing objects from which the above are reachable."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1286
 msgid ""
 "Also note that combining this functionality with :c:func:`PyGILState_\\*`"
 " APIs is delicate, because these APIs assume a bijection between Python "
@@ -1479,18 +1506,18 @@ msgid ""
 "interpreters."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1279
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1297
 msgid "Asynchronous Notifications"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1281
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1299
 msgid ""
 "A mechanism is provided to make asynchronous notifications to the main "
 "interpreter thread.  These notifications take the form of a function "
 "pointer and a void pointer argument."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1290
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1308
 msgid ""
 "Schedule a function to be called from the main interpreter thread.  On "
 "success, ``0`` is returned and *func* is queued for being called in the "
@@ -1498,7 +1525,7 @@ msgid ""
 "exception."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1294
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1312
 msgid ""
 "When successfully queued, *func* will be *eventually* called from the "
 "main interpreter thread with the argument *arg*.  It will be called "
@@ -1506,17 +1533,17 @@ msgid ""
 "both these conditions met:"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1299
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1317
 msgid "on a :term:`bytecode` boundary;"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1300
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1318
 msgid ""
 "with the main thread holding the :term:`global interpreter lock` (*func* "
 "can therefore use the full C API)."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1303
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1321
 msgid ""
 "*func* must return ``0`` on success, or ``-1`` on failure with an "
 "exception set.  *func* won't be interrupted to perform another "
@@ -1524,13 +1551,13 @@ msgid ""
 " switch threads if the global interpreter lock is released."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1308
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1326
 msgid ""
 "This function doesn't need a current thread state to run, and it doesn't "
 "need the global interpreter lock."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1312
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1330
 msgid ""
 "This is a low-level function, only useful for very special cases. There "
 "is no guarantee that *func* will be called as quick as possible.  If the "
@@ -1540,18 +1567,18 @@ msgid ""
 "the :ref:`PyGILState API<gilstate>`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1324
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1342
 msgid "Profiling and Tracing"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1329
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1347
 msgid ""
 "The Python interpreter provides some low-level support for attaching "
 "profiling and execution tracing facilities.  These are used for "
 "profiling, debugging, and coverage analysis tools."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1333
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1351
 msgid ""
 "This C interface allows the profiling or tracing code to avoid the "
 "overhead of calling through Python-level callable objects, making a "
@@ -1562,7 +1589,7 @@ msgid ""
 " versions."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1343
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1361
 msgid ""
 "The type of the trace function registered using "
 ":c:func:`PyEval_SetProfile` and :c:func:`PyEval_SetTrace`. The first "
@@ -1574,67 +1601,67 @@ msgid ""
 ":const:`PyTrace_OPCODE`, and *arg* depends on the value of *what*:"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1352
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1370
 msgid "Value of *what*"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1352
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1370
 msgid "Meaning of *arg*"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1354
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1372
 msgid ":const:`PyTrace_CALL`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1354
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1359
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1370
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1372
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1377
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1388
 msgid "Always :c:data:`Py_None`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1356
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1374
 msgid ":const:`PyTrace_EXCEPTION`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1356
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1374
 msgid "Exception information as returned by :func:`sys.exc_info`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1359
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1377
 msgid ":const:`PyTrace_LINE`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1361
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1379
 msgid ":const:`PyTrace_RETURN`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1361
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1379
 msgid "Value being returned to the caller, or ``NULL`` if caused by an exception."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1364
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1382
 msgid ":const:`PyTrace_C_CALL`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1364
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1366
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1368
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1382
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1384
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1386
 msgid "Function object being called."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1366
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1384
 msgid ":const:`PyTrace_C_EXCEPTION`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1368
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1386
 msgid ":const:`PyTrace_C_RETURN`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1370
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1388
 msgid ":const:`PyTrace_OPCODE`"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1375
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1393
 msgid ""
 "The value of the *what* parameter to a :c:type:`Py_tracefunc` function "
 "when a new call to a function or method is being reported, or a new entry"
@@ -1643,7 +1670,7 @@ msgid ""
 "bytecode in the corresponding frame."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1384
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1402
 msgid ""
 "The value of the *what* parameter to a :c:type:`Py_tracefunc` function "
 "when an exception has been raised.  The callback function is called with "
@@ -1655,7 +1682,7 @@ msgid ""
 "needed by the profiler."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1395
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1413
 msgid ""
 "The value passed as the *what* parameter to a :c:type:`Py_tracefunc` "
 "function (but not a profiling function) when a line-number event is being"
@@ -1663,31 +1690,31 @@ msgid ""
 ":attr:`f_trace_lines` to *0* on that frame."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1402
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1420
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a call is about to return."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1408
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1426
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a C function is about to be called."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1414
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1432
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a C function has raised an exception."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1420
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1438
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a C function has returned."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1426
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1444
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "(but not profiling functions) when a new opcode is about to be executed."
@@ -1695,7 +1722,7 @@ msgid ""
 "by setting :attr:`f_trace_opcodes` to *1* on the frame."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1434
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1452
 msgid ""
 "Set the profiler function to *func*.  The *obj* parameter is passed to "
 "the function as its first parameter, and may be any Python object, or "
@@ -1706,7 +1733,7 @@ msgid ""
 " :const:`PyTrace_EXCEPTION`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1444
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1462
 msgid ""
 "Set the tracing function to *func*.  This is similar to "
 ":c:func:`PyEval_SetProfile`, except the tracing function does receive "
@@ -1717,47 +1744,47 @@ msgid ""
 ":const:`PyTrace_C_RETURN` as a value for the *what* parameter."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1454
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1472
 msgid "Advanced Debugger Support"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1459
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1477
 msgid "These functions are only intended to be used by advanced debugging tools."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1464
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1482
 msgid ""
 "Return the interpreter state object at the head of the list of all such "
 "objects."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1469
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1487
 msgid "Return the main interpreter state object."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1474
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1492
 msgid ""
 "Return the next interpreter state object after *interp* from the list of "
 "all such objects."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1480
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1498
 msgid ""
 "Return the pointer to the first :c:type:`PyThreadState` object in the "
 "list of threads associated with the interpreter *interp*."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1486
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1504
 msgid ""
 "Return the next thread state object after *tstate* from the list of all "
 "such objects belonging to the same :c:type:`PyInterpreterState` object."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1493
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1511
 msgid "Thread Local Storage Support"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1497
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1515
 msgid ""
 "The Python interpreter provides low-level support for thread-local "
 "storage (TLS) which wraps the underlying native TLS implementation to "
@@ -1767,19 +1794,19 @@ msgid ""
 "associate a :c:type:`void\\*` value per thread."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1504
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1522
 msgid ""
 "The GIL does *not* need to be held when calling these functions; they "
 "supply their own locking."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1507
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1525
 msgid ""
 "Note that :file:`Python.h` does not include the declaration of the TLS "
 "APIs, you need to include :file:`pythread.h` to use thread-local storage."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1511
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1529
 msgid ""
 "None of these API functions handle memory management on behalf of the "
 ":c:type:`void\\*` values.  You need to allocate and deallocate them "
@@ -1788,22 +1815,22 @@ msgid ""
 "them either."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1519
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1537
 msgid "Thread Specific Storage (TSS) API"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1521
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1539
 msgid ""
 "TSS API is introduced to supersede the use of the existing TLS API within"
 " the CPython interpreter.  This API uses a new type :c:type:`Py_tss_t` "
 "instead of :c:type:`int` to represent thread keys."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1527
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1545
 msgid "\"A New C-API for Thread-Local Storage in CPython\" (:pep:`539`)"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1532
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1550
 msgid ""
 "This data structure represents the state of a thread key, the definition "
 "of which may depend on the underlying TLS implementation, and it has an "
@@ -1811,24 +1838,24 @@ msgid ""
 " public members in this structure."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1537
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1555
 msgid ""
 "When :ref:`Py_LIMITED_API <stable>` is not defined, static allocation of "
 "this type by :c:macro:`Py_tss_NEEDS_INIT` is allowed."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1543
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1561
 msgid ""
 "This macro expands to the initializer for :c:type:`Py_tss_t` variables. "
 "Note that this macro won't be defined with :ref:`Py_LIMITED_API "
 "<stable>`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1548
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1566
 msgid "Dynamic Allocation"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1550
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1568
 msgid ""
 "Dynamic allocation of the :c:type:`Py_tss_t`, required in extension "
 "modules built with :ref:`Py_LIMITED_API <stable>`, where static "
@@ -1836,14 +1863,14 @@ msgid ""
 "opaque at build time."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1557
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1575
 msgid ""
 "Return a value which is the same state as a value initialized with "
 ":c:macro:`Py_tss_NEEDS_INIT`, or ``NULL`` in the case of dynamic "
 "allocation failure."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1564
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1582
 msgid ""
 "Free the given *key* allocated by :c:func:`PyThread_tss_alloc`, after "
 "first calling :c:func:`PyThread_tss_delete` to ensure any associated "
@@ -1851,17 +1878,17 @@ msgid ""
 " is `NULL`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1570
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1588
 msgid ""
 "A freed key becomes a dangling pointer, you should reset the key to "
 "`NULL`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1575
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1593
 msgid "Methods"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1577
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1595
 msgid ""
 "The parameter *key* of these functions must not be ``NULL``.  Moreover, "
 "the behaviors of :c:func:`PyThread_tss_set` and "
@@ -1869,13 +1896,13 @@ msgid ""
 "has not been initialized by :c:func:`PyThread_tss_create`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1585
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1603
 msgid ""
 "Return a non-zero value if the given :c:type:`Py_tss_t` has been "
 "initialized by :c:func:`PyThread_tss_create`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1591
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1609
 msgid ""
 "Return a zero value on successful initialization of a TSS key.  The "
 "behavior is undefined if the value pointed to by the *key* argument is "
@@ -1884,7 +1911,7 @@ msgid ""
 " key is a no-op and immediately returns success."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1600
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1618
 msgid ""
 "Destroy a TSS key to forget the values associated with the key across all"
 " threads, and change the key's initialization state to uninitialized.  A "
@@ -1893,31 +1920,31 @@ msgid ""
 "the same key -- calling it on an already destroyed key is a no-op."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1609
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1627
 msgid ""
 "Return a zero value to indicate successfully associating a "
 ":c:type:`void\\*` value with a TSS key in the current thread.  Each "
 "thread has a distinct mapping of the key to a :c:type:`void\\*` value."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1616
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1634
 msgid ""
 "Return the :c:type:`void\\*` value associated with a TSS key in the "
 "current thread.  This returns ``NULL`` if no value is associated with the"
 " key in the current thread."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1624
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1642
 msgid "Thread Local Storage (TLS) API"
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1626
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1644
 msgid ""
 "This API is superseded by :ref:`Thread Specific Storage (TSS) API "
 "<thread-specific-storage-api>`."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1631
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1649
 msgid ""
 "This version of the API does not support platforms where the native TLS "
 "key is defined in a way that cannot be safely cast to ``int``.  On such "
@@ -1926,7 +1953,7 @@ msgid ""
 "platforms."
 msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1636
+#: /Users/flowdas/works/docs/python/src/Doc/c-api/init.rst:1654
 msgid ""
 "Due to the compatibility problem noted above, this version of the API "
 "should not be used in new code."
@@ -2620,5 +2647,69 @@ msgstr ""
 #~ " thread.  This returns *NULL* if no"
 #~ " value is associated with the key "
 #~ "in the current thread."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The \"main\" interpreter is the first"
+#~ " one created when the runtime "
+#~ "initializes. It is usually the only "
+#~ "Python interpreter in a process.  Unlike"
+#~ " sub-interpreters, the main interpreter "
+#~ "has unique process-global responsibilities "
+#~ "like signal handling.  It is also "
+#~ "responsible for execution during runtime "
+#~ "initialization and is usually the active"
+#~ " interpreter during runtime finalization.  "
+#~ "The :c:func:`PyInterpreterState_Main` funtion "
+#~ "returns a pointer to its state."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Extension modules are shared between "
+#~ "(sub-)interpreters as follows: the first "
+#~ "time a particular extension is imported,"
+#~ " it is initialized normally, and a"
+#~ " (shallow) copy of its module's "
+#~ "dictionary is squirreled away.  When the"
+#~ " same extension is imported by "
+#~ "another (sub-)interpreter, a new module "
+#~ "is initialized and filled with the "
+#~ "contents of this copy; the extension's"
+#~ " ``init`` function is not called.  "
+#~ "Note that this is different from "
+#~ "what happens when an extension is "
+#~ "imported after the interpreter has been"
+#~ " completely re-initialized by calling "
+#~ ":c:func:`Py_FinalizeEx` and :c:func:`Py_Initialize`; "
+#~ "in that case, the extension's "
+#~ "``initmodule`` function *is* called again."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Because sub-interpreters (and the main"
+#~ " interpreter) are part of the same"
+#~ " process, the insulation between them "
+#~ "isn't perfect --- for example, using "
+#~ "low-level file operations like  "
+#~ ":func:`os.close` they can (accidentally or "
+#~ "maliciously) affect each other's open "
+#~ "files.  Because of the way extensions"
+#~ " are shared between (sub-)interpreters, "
+#~ "some extensions may not work properly;"
+#~ " this is especially likely when the"
+#~ " extension makes use of (static) "
+#~ "global variables, or when the extension"
+#~ " manipulates its module's dictionary after"
+#~ " its initialization.  It is possible "
+#~ "to insert objects created in one "
+#~ "sub-interpreter into a namespace of "
+#~ "another sub-interpreter; this should be"
+#~ " done with great care to avoid "
+#~ "sharing user-defined functions, methods, "
+#~ "instances or classes between sub-"
+#~ "interpreters, since import operations executed"
+#~ " by such objects may affect the "
+#~ "wrong (sub-)interpreter's dictionary of loaded"
+#~ " modules."
 #~ msgstr ""
 
