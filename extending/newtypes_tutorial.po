@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-19 18:31+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:7
 msgid "Defining Extension Types: Tutorial"
-msgstr ""
+msgstr "확장형 정의하기: 자습서"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:14
 msgid ""
@@ -30,10 +29,13 @@ msgid ""
 "you can get started.  This document is a gentle introduction to the "
 "topic."
 msgstr ""
+"파이썬은 C 확장 모듈 작성자가 내장 :class:`str`\\과 :class:`list` 형과 마찬가지로 파이썬 코드에서 조작할 "
+"수 있는 새로운 형을 정의할 수 있도록 합니다. 모든 확장형의 코드는 패턴을 따르지만, 시작하기 전에 이해해야 할 세부 사항이 "
+"있습니다. 이 설명서는 주제에 대한 간단한 소개입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:24
 msgid "The Basics"
-msgstr ""
+msgstr "기초"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:26
 msgid ""
@@ -47,12 +49,17 @@ msgid ""
 "multiplied by another object.  These C functions are called \"type "
 "methods\"."
 msgstr ""
+":term:`CPython` 런타임은 모든 파이썬 객체를 :c:type:`PyObject\\*` 형의 변수로 간주하는데, 이는 모든"
+" 파이썬 객체의 \"베이스형\" 역할을 합니다. :c:type:`PyObject` 구조체 자체는 객체의 :term:`참조 횟수 "
+"<reference count>`\\와 객체의 \"형 객체\"에 대한 포인터만 포함합니다. 여기가 액션이 일어나는 곳입니다; 형 "
+"객체는 예를 들어 객체에서 어트리뷰트를 조회하거나, 메서드를 호출하거나, 다른 객체와 곱할 때 인터프리터가 호출하는 (C) 함수를 "
+"결정합니다. 이러한 C 함수를 \"형 메서드\"라고 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:35
 msgid ""
 "So, if you want to define a new extension type, you need to create a new "
 "type object."
-msgstr ""
+msgstr "따라서, 새 확장형을 정의하려면, 새 형 객체를 만들어야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:38
 msgid ""
@@ -60,6 +67,8 @@ msgid ""
 " but complete, module that defines a new type named :class:`Custom` "
 "inside a C extension module :mod:`custom`:"
 msgstr ""
+"이런 종류의 것은 예제로만 설명할 수 있어서, 여기에 C 확장 모듈 :mod:`custom` 내에서 "
+":class:`Custom`\\이라는 새 형을 정의하는 최소한이지만 완전한 모듈이 있습니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:43
 msgid ""
@@ -68,18 +77,23 @@ msgid ""
 "allows defining heap-allocated extension types using the "
 ":c:func:`PyType_FromSpec` function, which isn't covered in this tutorial."
 msgstr ""
+"여기에 표시하는 것은 *정적인(static)* 확장형을 정의하는 전통적인 방법입니다. 대부분의 용도에 적합해야 합니다. C API는"
+" 또한 :c:func:`PyType_FromSpec` 함수를 사용하여 힙 할당 확장형을 정의 할 수 있습니다만, 이 자습서에서는 "
+"다루지 않습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:50
 msgid ""
 "Now that's quite a bit to take in at once, but hopefully bits will seem "
 "familiar from the previous chapter.  This file defines three things:"
-msgstr ""
+msgstr "이제는 한 번에 배워야 할 것이 많지만, 이전 장과 비슷해 보이기를 바랍니다. 이 파일은 세 가지를 정의합니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:53
 msgid ""
 "What a :class:`Custom` **object** contains: this is the ``CustomObject`` "
 "struct, which is allocated once for each :class:`Custom` instance."
 msgstr ""
+":class:`Custom` **객체**\\에 포함된 것: ``CustomObject`` 구조체이며, 각 "
+":class:`Custom` 인스턴스마다 한 번씩 할당됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:55
 msgid ""
@@ -87,16 +101,20 @@ msgid ""
 "struct, which defines a set of flags and function pointers that the "
 "interpreter inspects when specific operations are requested."
 msgstr ""
+":class:`Custom` **형**\\의 작동 방식: ``CustomType`` 구조체이며, 특정 연산이 요청될 때 인터프리터가"
+" 검사하는 플래그와 함수 포인터 집합을 정의합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:58
 msgid ""
 "How to initialize the :mod:`custom` module: this is the ``PyInit_custom``"
 " function and the associated ``custommodule`` struct."
 msgstr ""
+":mod:`custom` 모듈을 초기화하는 방법: ``PyInit_custom`` 함수와 관련 ``custommodule`` "
+"구조체입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:61
 msgid "The first bit is::"
-msgstr ""
+msgstr "첫 번째 것은::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:67
 msgid ""
@@ -108,12 +126,19 @@ msgid ""
 "for the macro is to abstract away the layout and to enable additional "
 "fields in debug builds."
 msgstr ""
+"이것이 Custom 객체에 포함될 것입니다. ``PyObject_HEAD``\\는 각 객체 구조체의 시작 부분에 필수적으로 오는 "
+"것이며, :c:type:`PyObject` 형의 ``ob_base``\\라는 필드를 정의하여, 형 객체에 대한 포인터와 참조 횟수를"
+" 포함합니다 (이것들은 각각 매크로 :c:macro:`Py_TYPE`\\과 :c:macro:`Py_REFCNT`\\를 사용하여 "
+"액세스 할 수 있습니다). 이것이 매크로인 이유는 배치(layout)를 추상화하고 디버그 빌드에서 추가 필드를 활성화하기 위한 "
+"것입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:75
 msgid ""
 "There is no semicolon above after the :c:macro:`PyObject_HEAD` macro. Be "
 "wary of adding one by accident: some compilers will complain."
 msgstr ""
+":c:macro:`PyObject_HEAD` 매크로 뒤에는 세미콜론이 없습니다. 실수로 추가하는 것에 주의하십시오: 일부 컴파일러는"
+" 불평할 것입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:78
 msgid ""
@@ -121,10 +146,12 @@ msgid ""
 "``PyObject_HEAD`` boilerplate; for example, here is the definition for "
 "standard Python floats::"
 msgstr ""
+"물론, 객체는 일반적으로 표준 ``PyObject_HEAD`` 관용구 외에 추가 데이터를 저장합니다; 예를 들어, 표준 파이썬 "
+"floats에 대한 정의는 다음과 같습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:87
 msgid "The second bit is the definition of the type object. ::"
-msgstr ""
+msgstr "두 번째 것은 형 객체의 정의입니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:100
 msgid ""
@@ -132,6 +159,8 @@ msgid ""
 "listing all the :c:type:`PyTypeObject` fields that you don't care about "
 "and also to avoid caring about the fields' declaration order."
 msgstr ""
+"신경 쓰지 않는 모든 :c:type:`PyTypeObject` 필드를 나열하지 않고 필드의 선언 순서를 신경 쓰지 않으려면, 위와 "
+"같이 C99 스타일의 지명(designated) 초기화자를 사용하는 것이 좋습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:104
 msgid ""
@@ -140,22 +169,25 @@ msgid ""
 "remaining fields will be filled with zeros by the C compiler, and it's "
 "common practice to not specify them explicitly unless you need them."
 msgstr ""
+":file:`object.h`\\에 있는 :c:type:`PyTypeObject`\\의 실제 정의는 위의 정의보다 더 많은 "
+":ref:`필드 <type-structs>`\\를 갖습니다. 나머지 필드는 C 컴파일러에 의해 0으로 채워지며, 필요하지 않으면 "
+"명시적으로 지정하지 않는 것이 일반적입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:109
 msgid "We're going to pick it apart, one field at a time::"
-msgstr ""
+msgstr "한 번에 한 필드씩 따로 다루려고 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:113
 msgid ""
 "This line is mandatory boilerplate to initialize the ``ob_base`` field "
 "mentioned above. ::"
-msgstr ""
+msgstr "이 줄은 위에서 언급한 ``ob_base`` 필드를 초기화하기 위한 필수 상용구입니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:118
 msgid ""
 "The name of our type.  This will appear in the default textual "
 "representation of our objects and in some error messages, for example:"
-msgstr ""
+msgstr "우리 형의 이름. 이것은 객체의 기본 텍스트 표현과 일부 에러 메시지에 나타납니다, 예를 들어:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:128
 msgid ""
@@ -166,6 +198,10 @@ msgid ""
 "to make your type compatible with the :mod:`pydoc` and :mod:`pickle` "
 "modules. ::"
 msgstr ""
+"이름이 모듈 이름과 모듈 내 형의 이름을 모두 포함하는 점으로 구분된 이름임에 유의하십시오. 이 경우 모듈은 "
+":mod:`custom`\\이고 형은 :class:`Custom`\\이라서, 형 이름을 "
+":class:`custom.Custom`\\으로 설정합니다. 형이 :mod:`pydoc`\\과 :mod:`pickle` 모듈과 "
+"호환되도록 하려면 실제 점으로 구분된 임포트 경로를 사용하는 것이 중요합니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:137
 msgid ""
@@ -173,6 +209,9 @@ msgid ""
 "new :class:`Custom` instances.  :c:member:`~PyTypeObject.tp_itemsize` is "
 "only used for variable-sized objects and should otherwise be zero."
 msgstr ""
+"이것은 새로운 :class:`Custom` 인스턴스를 만들 때 파이썬이 할당할 메모리양을 알 수 있도록 하기 위한 것입니다. "
+":c:member:`~PyTypeObject.tp_itemsize`\\는 가변 크기 객체에만 사용되며 그렇지 않으면 0이어야 "
+"합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:143
 msgid ""
@@ -188,10 +227,17 @@ msgid ""
 "be adding data members to your base type, and therefore increasing its "
 "size."
 msgstr ""
+"파이썬에서 형을 서브 클래싱 할 수 있기를 원하고, 형이 베이스형과 같은 "
+":c:member:`~PyTypeObject.tp_basicsize`\\를 가지면, 다중 상속에 문제가 있을 수 있습니다. 형의 "
+"파이썬 서브 클래스는 :attr:`~class.__bases__`\\에 이 형을 먼저 나열해야 합니다, 그렇지 않으면 에러 없이 "
+"형의 :meth:`__new__` 메서드를 호출할 수 없습니다. 형이 베이스형보다 큰 "
+":c:member:`~PyTypeObject.tp_basicsize` 값을 갖도록 하여 이 문제점을 피할 수 있습니다. 대부분의 "
+"경우, 이것은 어쨌든 만족하는데, 베이스형이 :class:`object`\\이거나, 그렇지 않으면 베이스형에 데이터 멤버를 추가하여"
+" 크기를 늘리기 때문입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:153
 msgid "We set the class flags to :const:`Py_TPFLAGS_DEFAULT`. ::"
-msgstr ""
+msgstr "클래스 플래그를 :const:`Py_TPFLAGS_DEFAULT`\\로 설정합니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:157
 msgid ""
@@ -199,12 +245,14 @@ msgid ""
 " the members defined until at least Python 3.3.  If you need further "
 "members, you will need to OR the corresponding flags."
 msgstr ""
+"모든 형은 이 상수를 플래그에 포함해야 합니다. 적어도 파이썬 3.3까지 정의된 모든 멤버를 활성화합니다. 추가 멤버가 필요하면, "
+"해당 플래그를 OR 해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:161
 msgid ""
 "We provide a doc string for the type in :c:member:`~PyTypeObject.tp_doc`."
 " ::"
-msgstr ""
+msgstr ":c:member:`~PyTypeObject.tp_doc`\\에 형의 독스트링을 제공합니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:165
 msgid ""
@@ -214,12 +262,15 @@ msgid ""
 "this case, we can just use the default implementation provided by the API"
 " function :c:func:`PyType_GenericNew`. ::"
 msgstr ""
+"객체 생성을 가능하게 하려면, :c:member:`~PyTypeObject.tp_new` 처리기를 제공해야 합니다. 이것은 파이썬 "
+"메서드 :meth:`__new__`\\와 동등하지만, 명시적으로 지정해야 합니다. 이 경우에는, API 함수 "
+":c:func:`PyType_GenericNew`\\에서 제공하는 기본 구현을 그냥 사용할 수 있습니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:172
 msgid ""
 "Everything else in the file should be familiar, except for some code in "
 ":c:func:`PyInit_custom`::"
-msgstr ""
+msgstr ":c:func:`PyInit_custom`\\의 일부 코드를 제외하고, 파일의 다른 모든 내용은 익숙해야 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:178
 msgid ""
@@ -227,22 +278,26 @@ msgid ""
 " to the appropriate default values, including :attr:`ob_type` that we "
 "initially set to ``NULL``. ::"
 msgstr ""
+"이것은 :class:`Custom` 형을 초기화하는데, 처음에 ``NULL``\\로 설정한 :attr:`ob_type`\\을 "
+"포함하여, 여러 멤버를 적절한 기본값으로 채웁니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:189
 msgid ""
 "This adds the type to the module dictionary.  This allows us to create "
 ":class:`Custom` instances by calling the :class:`Custom` class:"
 msgstr ""
+"이것은 형을 모듈 딕셔너리에 추가합니다. :class:`Custom` 클래스를 호출하여 :class:`Custom` 인스턴스를 만들"
+" 수 있도록 합니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:197
 msgid ""
 "That's it!  All that remains is to build it; put the above code in a file"
 " called :file:`custom.c` and:"
-msgstr ""
+msgstr "이게 전부입니다! 남아있는 것은 빌드하는 것입니다; 위의 코드를 :file:`custom.c`\\라는 파일에 넣고:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:206
 msgid "in a file called :file:`setup.py`; then typing"
-msgstr ""
+msgstr "를 :file:`setup.py`\\라는 파일에 넣은 다음; 다음을"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:212
 msgid ""
@@ -250,16 +305,18 @@ msgid ""
 "move to that directory and fire up Python --- you should be able to "
 "``import custom`` and play around with Custom objects."
 msgstr ""
+"셸에서 입력하면 서브 디렉터리에 파일 :file:`custom.so`\\를 생성해야 합니다; 해당 디렉터리로 이동하여 파이썬을 "
+"시작하십시오 --- ``import custom`` 할 수 있고 Custom 객체로 놀 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:216
 msgid "That wasn't so hard, was it?"
-msgstr ""
+msgstr "그렇게 어렵지 않습니다, 그렇지 않나요?"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:218
 msgid ""
 "Of course, the current Custom type is pretty uninteresting. It has no "
 "data and doesn't do anything. It can't even be subclassed."
-msgstr ""
+msgstr "물론, 현재 Custom 형은 그리 흥미롭지 않습니다. 데이터가 없고 아무것도 하지 않습니다. 서브 클래싱조차 할 수 없습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:222
 msgid ""
@@ -270,10 +327,14 @@ msgid ""
 " be found in the `Python Packaging User's Guide "
 "<https://packaging.python.org/tutorials/distributing-packages/>`_."
 msgstr ""
+"이 설명서는 C 확장을 빌드하기 위한 표준 :mod:`distutils` 모듈을 보여 주지만, 실제 사용 사례에서는 새롭고 유지 "
+"관리가 잘 된 ``setuptools`` 라이브러리를 사용하는 것이 좋습니다. 이 작업을 수행하는 방법에 대한 설명서는 이 문서의 "
+"범위를 넘어서고 `파이썬 패키징 사용자 지침서 <https://packaging.python.org/tutorials"
+"/distributing-packages/>`_\\에서 찾을 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:230
 msgid "Adding data and methods to the Basic example"
-msgstr ""
+msgstr "기초 예제에 데이터와 메서드 추가하기"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:232
 msgid ""
@@ -281,20 +342,22 @@ msgid ""
 "make the type usable as a base class. We'll create a new module, "
 ":mod:`custom2` that adds these capabilities:"
 msgstr ""
+"데이터와 메서드를 추가하도록 기초 예제를 확장해 봅시다. 형을 베이스 클래스로도 사용할 수 있도록 합시다. 다음 기능을 추가하는 새"
+" 모듈 :mod:`custom2`\\를 만들 것입니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:239
 msgid "This version of the module has a number of changes."
-msgstr ""
+msgstr "이 버전의 모듈에는 여러 가지 변경 사항이 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:241
 msgid "We've added an extra include::"
-msgstr ""
+msgstr "다음과 같은 추가 포함(include)을 추가했습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:245
 msgid ""
 "This include provides declarations that we use to handle attributes, as "
 "described a bit later."
-msgstr ""
+msgstr "이 포함은 나중에 설명하는 것처럼 어트리뷰트를 처리하는 데 사용하는 선언을 제공합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:248
 msgid ""
@@ -303,21 +366,24 @@ msgid ""
 "Python strings containing first and last names.  The *number* attribute "
 "is a C integer."
 msgstr ""
+":class:`Custom` 형은 이제 C 구조체에 *first*, *last* 및 *number*\\의 세 가지 데이터 "
+"어트리뷰트가 있습니다. *first*\\와 *last* 변수는 이름과 성을 포함하는 파이썬 문자열입니다. *number* "
+"어트리뷰트는 C 정수입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:252
 msgid "The object structure is updated accordingly::"
-msgstr ""
+msgstr "객체 구조체는 다음과 같이 갱신됩니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:261
 msgid ""
 "Because we now have data to manage, we have to be more careful about "
 "object allocation and deallocation.  At a minimum, we need a deallocation"
 " method::"
-msgstr ""
+msgstr "이제 관리할 데이터가 있기 때문에, 객체 할당과 할당 해제에 관해 더욱 신중해야 합니다. 최소한, 할당 해제 메서드가 필요합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:272
 msgid "which is assigned to the :c:member:`~PyTypeObject.tp_dealloc` member::"
-msgstr ""
+msgstr "이는 :c:member:`~PyTypeObject.tp_dealloc` 멤버에 대입됩니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:276
 msgid ""
@@ -329,6 +395,11 @@ msgid ""
 "memory.  Note that the object's type might not be :class:`CustomType`, "
 "because the object may be an instance of a subclass."
 msgstr ""
+"이 메서드는 먼저 두 파이썬 어트리뷰트의 참조 횟수를 지웁니다. :c:func:`Py_XDECREF`\\는 인자가 "
+"``NULL``\\인 경우(``tp_new``\\가 중간에 실패하면 발생할 수 있습니다)를 올바르게 처리합니다. 그런 다음 객체 "
+"형(``Py_TYPE(self)``\\로 계산합니다)의 :c:member:`~PyTypeObject.tp_free` 멤버를 호출하여"
+" 객체의 메모리를 해제합니다. 객체 형이 :class:`CustomType`\\이 아닐 수 있음에 유의하십시오, 객체는 서브 "
+"클래스의 인스턴스일 수 있기 때문입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:285
 msgid ""
@@ -338,16 +409,19 @@ msgid ""
 "argument.  Otherwise, the compiler will emit a warning.  This is object-"
 "oriented polymorphism, in C!"
 msgstr ""
+"``CustomObject *`` 인자를 취하도록 ``Custom_dealloc``\\을 정의했지만, ``tp_dealloc`` "
+"함수 포인터는 ``PyObject *`` 인자를 받을 것으로 기대하기 때문에 위의 ``destructor``\\로의 명시적 캐스트가"
+" 필요합니다. 그렇지 않으면, 컴파일러에서 경고가 발생합니다. 이것이 C로 하는 객체 지향 다형성입니다!"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:291
 msgid ""
 "We want to make sure that the first and last names are initialized to "
 "empty strings, so we provide a ``tp_new`` implementation::"
-msgstr ""
+msgstr "우리는 성과 이름이 빈 문자열로 초기화되도록 하고 싶어서, ``tp_new`` 구현을 제공합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:315
 msgid "and install it in the :c:member:`~PyTypeObject.tp_new` member::"
-msgstr ""
+msgstr "그리고 그것을 :c:member:`~PyTypeObject.tp_new` 멤버에 설치합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:319
 msgid ""
@@ -360,6 +434,10 @@ msgid ""
 "initialize the ``first`` and ``last`` attributes to non-``NULL`` default "
 "values."
 msgstr ""
+"``tp_new`` 처리기는 형의 객체를 (초기화와 대비하여) 생성하는 책임을 집니다. 파이썬에서 :meth:`__new__` "
+"메서드로 노출됩니다. ``tp_new`` 멤버를 정의할 필요는 없으며, 실제로 많은 확장형은 위의 ``Custom`` 형의 첫 번째"
+" 버전에서처럼 :c:func:`PyType_GenericNew`\\를 재사용하기만 합니다. 지금은, ``tp_new`` 처리기를 "
+"사용하여 ``first``\\와 ``last`` 어트리뷰트를 ``NULL``\\이 아닌 기본값으로 초기화합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:327
 msgid ""
@@ -370,18 +448,22 @@ msgid ""
 " they often ignore the arguments, leaving the argument handling to "
 "initializer (a.k.a. ``tp_init`` in C or ``__init__`` in Python) methods."
 msgstr ""
+"``tp_new``\\는 인스턴스 화 되는 형(서브 클래스가 인스턴스 화 되면, 반드시 ``CustomType``\\일 필요는 "
+"없습니다)과 형이 호출될 때 전달된 모든 인자가 전달되며, 만들어진 인스턴스를 반환할 것으로 기대됩니다. ``tp_new`` "
+"처리기는 항상 위치와 키워드 인자를 받아들이지만, 종종 인자를 무시하고 인자 처리를 초기화 (C의 ``tp_init``\\나 "
+"파이썬의 ``__init__``) 메서드에게 남겨둡니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:335
 msgid ""
 "``tp_new`` shouldn't call ``tp_init`` explicitly, as the interpreter will"
 " do it itself."
-msgstr ""
+msgstr "인터프리터가 직접 할 것이라서, ``tp_new``\\는 명시적으로 ``tp_init``\\를 호출하면 안 됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:338
 msgid ""
 "The ``tp_new`` implementation calls the "
 ":c:member:`~PyTypeObject.tp_alloc` slot to allocate memory::"
-msgstr ""
+msgstr "``tp_new`` 구현은 :c:member:`~PyTypeObject.tp_alloc` 슬롯을 호출하여 메모리를 할당합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:343
 msgid ""
@@ -389,6 +471,8 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_alloc` result against ``NULL`` before "
 "proceeding."
 msgstr ""
+"메모리 할당이 실패할 수 있어서, 진행하기 전에 :c:member:`~PyTypeObject.tp_alloc` 결과가 "
+"``NULL``\\이 아닌지 확인해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:347
 msgid ""
@@ -397,6 +481,9 @@ msgid ""
 "base class, which is :class:`object` by default.  Most types use the "
 "default allocation strategy."
 msgstr ""
+"우리는 :c:member:`~PyTypeObject.tp_alloc` 슬롯을 직접 채우지 않았습니다. 대신 "
+":c:func:`PyType_Ready`\\가 베이스 클래스(기본적으로 :class:`object`\\입니다)에서 상속하여 이를 "
+"채웁니다. 대부분의 형은 기본 할당 전략을 사용합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:353
 msgid ""
@@ -411,16 +498,23 @@ msgid ""
 "work correctly. (Specifically, you may not be able to create instances of"
 " such subclasses without getting a :exc:`TypeError`.)"
 msgstr ""
+"협업 :c:member:`~PyTypeObject.tp_new`\\(베이스형의 "
+":c:member:`~PyTypeObject.tp_new`\\나 :meth:`__new__`\\를 호출하는 것)를 만드는 경우, "
+"실행 시간에 메서드 결정 순서를 사용하여 호출할 메서드를 결정하려고 하지 *않아야* 합니다. 항상 어떤 형을 호출할지 정적으로 "
+"결정하고, 그것의 :c:member:`~PyTypeObject.tp_new`\\를 직접, 또는 "
+"``type->tp_base->tp_new``\\를 통해 호출하십시오. 이렇게 하지 않으면, 다른 파이썬 정의 클래스도 상속하는 "
+"여러분 형의 파이썬 서브 클래스가 올바르게 작동하지 않을 수 있습니다. (특히, :exc:`TypeError`\\를 얻지 않으면서,"
+" 이러한 서브 클래스의 인스턴스를 만들지 못할 수도 있습니다.)"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:363
 msgid ""
 "We also define an initialization function which accepts arguments to "
 "provide initial values for our instance::"
-msgstr ""
+msgstr "인스턴스의 초깃값을 제공하는 인자를 받아들이는 초기화 함수도 정의합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:392
 msgid "by filling the :c:member:`~PyTypeObject.tp_init` slot. ::"
-msgstr ""
+msgstr "이것으로 :c:member:`~PyTypeObject.tp_init` 슬롯을 채웁니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:396
 msgid ""
@@ -429,6 +523,9 @@ msgid ""
 "created.  Initializers always accept positional and keyword arguments, "
 "and they should return either ``0`` on success or ``-1`` on error."
 msgstr ""
+":c:member:`~PyTypeObject.tp_init` 슬롯은 파이썬에서 :meth:`__init__` 메서드로 노출됩니다. "
+"객체가 만들어진 후 초기화하는 데 사용됩니다. 초기화자는 항상 위치와 키워드 인자를 받아들이며 성공 시 ``0`` 또는 에러 시 "
+"``-1``\\을 반환해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:401
 msgid ""
@@ -440,6 +537,10 @@ msgid ""
 " new attribute values.  We might be tempted, for example to assign the "
 "``first`` member like this::"
 msgstr ""
+"``tp_new`` 처리기와 달리, ``tp_init``\\가 아예 호출되지 않을 수도 있습니다 (예를 들어, "
+":mod:`pickle` 모듈은 기본적으로 역 피클 된 인스턴스에서 :meth:`__init__`\\를 호출하지 않습니다). 여러 "
+"번 호출될 수도 있습니다. 누구나 우리 객체의 :meth:`__init__` 메서드를 호출할 수 있습니다. 이런 이유로, 새 "
+"어트리뷰트 값을 대입할 때는 각별히 주의해야 합니다. 예를 들어 ``first`` 멤버를 다음과 같이 대입하려고 할 수 있습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:415
 msgid ""
@@ -450,6 +551,10 @@ msgid ""
 "interpreter Lock` and let arbitrary code run in other threads that "
 "accesses and modifies our object."
 msgstr ""
+"하지만 이것은 위험합니다. 우리 형은 ``first`` 멤버의 형을 제한하지 않아서, 모든 종류의 객체가 될 수 있습니다. "
+"``first`` 멤버에 액세스하려고 시도하는 코드가 실행되도록 하는 파괴자가 있을 수 있습니다; 또는 파괴자가 :term:`전역 "
+"인터프리터 록 <Global interpreter Lock>`\\을 해제하고 다른 스레드에서 객체에 액세스하고 수정하는 임의의 "
+"코드가 실행되도록 할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:422
 msgid ""
@@ -457,16 +562,18 @@ msgid ""
 "always reassign members before decrementing their reference counts.  When"
 " don't we have to do this?"
 msgstr ""
+"편집증적이 되고 이 가능성으로부터 우리 자신을 보호하기 위해, 우리는 거의 항상 참조 횟수를 줄이기 전에 멤버를 다시 대입합니다. "
+"언제 이렇게 하지 않아도 될까요?"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:426
 msgid "when we absolutely know that the reference count is greater than 1;"
-msgstr ""
+msgstr "참조 횟수가 1보다 크다는 것을 확실히 알고 있을 때;"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:428
 msgid ""
 "when we know that deallocation of the object [#]_ will neither release "
 "the :term:`GIL` nor cause any calls back into our type's code;"
-msgstr ""
+msgstr "객체의 할당 해제가 :term:`GIL`\\을 해제하지도 않고 형의 코드를 다시 호출하지도 않음을 알고 있을 때 [#]_;"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:431
 msgid ""
@@ -474,6 +581,8 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_dealloc` handler on a type which doesn't "
 "support cyclic garbage collection [#]_."
 msgstr ""
+"순환 가비지 수거를 지원하지 않는 형의 :c:member:`~PyTypeObject.tp_dealloc` 처리기에서 참조 횟수를 "
+"감소시킬 때 [#]_."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:434
 msgid ""
@@ -481,10 +590,12 @@ msgid ""
 "number of ways to do that. The simplest way is to define member "
 "definitions::"
 msgstr ""
+"인스턴스 변수를 어트리뷰트로 노출하려고 합니다. 이를 수행하는 방법에는 여러 가지가 있습니다. 가장 간단한 방법은 멤버 정의를 "
+"정의하는 것입니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:447
 msgid "and put the definitions in the :c:member:`~PyTypeObject.tp_members` slot::"
-msgstr ""
+msgstr "그리고 :c:member:`~PyTypeObject.tp_members` 슬롯에 정의를 넣습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:451
 msgid ""
@@ -492,6 +603,8 @@ msgid ""
 "documentation string.  See the :ref:`Generic-Attribute-Management` "
 "section below for details."
 msgstr ""
+"각 멤버 정의에는 멤버 이름, 형, 오프셋, 액세스 플래그 및 독스트링이 있습니다. 자세한 내용은 아래 :ref:`Generic-"
+"Attribute-Management` 섹션을 참조하십시오."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:455
 msgid ""
@@ -503,12 +616,16 @@ msgid ""
 "members are initialized to non-``NULL`` values, the members can be set to"
 " ``NULL`` if the attributes are deleted."
 msgstr ""
+"이 접근법의 단점은 파이썬 어트리뷰트에 대입할 수 있는 객체의 형을 제한할 방법을 제공하지 않는다는 것입니다. 이름과 성은 문자열일"
+" 것으로 기대하지만, 모든 파이썬 객체를 할당할 수 있습니다. 또한 어트리뷰트를 삭제할 수 있습니다, C 포인터를 "
+"``NULL``\\로 설정합니다. ``NULL``\\이 아닌 값으로 멤버를 초기화 할 수 있지만, 어트리뷰트를 삭제하면 멤버를 "
+"``NULL``\\로 설정할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:462
 msgid ""
 "We define a single method, :meth:`Custom.name()`, that outputs the "
 "objects name as the concatenation of the first and last names. ::"
-msgstr ""
+msgstr "이름과 성을 이어붙여 객체 이름으로 출력하는 단일 메서드 :meth:`Custom.name()`\\을 정의합니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:479
 msgid ""
@@ -519,6 +636,10 @@ msgid ""
 "any and don't need to accept a positional argument tuple or keyword "
 "argument dictionary. This method is equivalent to the Python method:"
 msgstr ""
+"이 메서드는 :class:`Custom` (또는 :class:`Custom` 서브 클래스) 인스턴스를 첫 번째 인자로 취하는 C "
+"함수로 구현됩니다. 메서드는 항상 인스턴스를 첫 번째 인자로 취합니다. 메서드는 종종 위치와 키워드 인자도 취하지만, 이 경우에는 "
+"아무것도 취하지 않아서 위치 인자 튜플이나 키워드 인자 딕셔너리를 받아들일 필요 없습니다. 이 메서드는 다음과 같은 파이썬 메서드와"
+" 동등합니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:491
 msgid ""
@@ -528,22 +649,27 @@ msgid ""
 "deletion of these attributes and to restrict the attribute values to be "
 "strings.  We'll see how to do that in the next section."
 msgstr ""
+":attr:`first`\\와 :attr:`last` 멤버가 ``NULL``\\일 가능성을 확인해야 함에 유의하십시오. 삭제할 수 "
+"있기 때문인데, 이때 ``NULL``\\로 설정됩니다. 이러한 어트리뷰트의 삭제를 방지하고 어트리뷰트 값을 문자열로 제한하는 것이 "
+"더 좋습니다. 다음 섹션에서 이를 수행하는 방법을 살펴보겠습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:497
 msgid ""
 "Now that we've defined the method, we need to create an array of method "
 "definitions::"
-msgstr ""
+msgstr "이제 메서드를 정의했습니다, 메서드 정의 배열을 만들어야 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:507
 msgid ""
 "(note that we used the :const:`METH_NOARGS` flag to indicate that the "
 "method is expecting no arguments other than *self*)"
 msgstr ""
+"(우리는 :const:`METH_NOARGS` 플래그를 사용하여 메서드가 *self* 이외의 인자를 기대하지 않음을 나타냈음에 "
+"유의하십시오)"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:510
 msgid "and assign it to the :c:member:`~PyTypeObject.tp_methods` slot::"
-msgstr ""
+msgstr "그리고 :c:member:`~PyTypeObject.tp_methods` 슬롯에 대입합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:514
 msgid ""
@@ -553,6 +679,9 @@ msgid ""
 " need to do is to add the :const:`Py_TPFLAGS_BASETYPE` to our class flag "
 "definition::"
 msgstr ""
+"마지막으로, 우리의 형을 서브 클래싱의 베이스 클래스로 사용할 수 있게 만들 것입니다. 우리는 지금까지 만들어지거나 사용되고 있는 "
+"객체의 형에 대해 가정을 하지 않도록 메서드를 주의해서 작성했습니다, 그래서 클래스 플래그 정의에 "
+":const:`Py_TPFLAGS_BASETYPE`\\을 추가하기만 하면 됩니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:521
 msgid ""
@@ -560,14 +689,17 @@ msgid ""
 " module name in the :c:type:`PyModuleDef` struct, and update the full "
 "class name in the :c:type:`PyTypeObject` struct."
 msgstr ""
+":c:func:`PyInit_custom`\\의 이름을 :c:func:`PyInit_custom2`\\로 바꾸고, "
+":c:type:`PyModuleDef` 구조체에서 모듈 이름을 갱신하고, :c:type:`PyTypeObject` 구조체에서 전체 "
+"클래스 이름을 갱신합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:525
 msgid "Finally, we update our :file:`setup.py` file to build the new module:"
-msgstr ""
+msgstr "마지막으로, 새 모듈을 빌드하기 위해 :file:`setup.py` 파일을 갱신합니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:538
 msgid "Providing finer control over data attributes"
-msgstr ""
+msgstr "데이터 어트리뷰트를 더 세밀하게 제어하기"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:540
 msgid ""
@@ -577,6 +709,9 @@ msgid ""
 "and :attr:`last` could be set to non-string values or even deleted. We "
 "want to make sure that these attributes always contain strings."
 msgstr ""
+"이 섹션에서는, :class:`Custom` 예제에서 :attr:`first`\\와 :attr:`last` 어트리뷰트가 설정되는 "
+"방식을 더 세밀하게 제어합니다. 이전 버전의 모듈에서는, 인스턴스 변수 :attr:`first`\\와 :attr:`last`\\를 "
+"문자열이 아닌 값으로 설정하거나 삭제할 수도 있습니다. 이 어트리뷰트들에 항상 문자열이 포함되도록 하고 싶습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:549
 msgid ""
@@ -584,6 +719,8 @@ msgid ""
 "attributes, we'll use custom getter and setter functions.  Here are the "
 "functions for getting and setting the :attr:`first` attribute::"
 msgstr ""
+":attr:`first`\\와 :attr:`last` 어트리뷰트를 더 효과적으로 제어하기 위해, 사용자 정의 게터(getter)와 "
+"세터(setter) 함수를 사용합니다. :attr:`first` 어트리뷰트를 가져오고 설정하는 함수는 다음과 같습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:580
 msgid ""
@@ -594,6 +731,10 @@ msgid ""
 " set of getter and setter functions that decide the attribute to get or "
 "set based on data in the closure.)"
 msgstr ""
+"게터(getter) 함수에는 :class:`Custom` 객체와 \"클로저(closure)\"(void 포인터)가 전달됩니다. 이 "
+"경우, 클로저는 무시됩니다. (클로저는 정의 데이터가 게터(getter)와 세터(setter)로 전달되는 고급 사용법을 지원합니다."
+" 예를 들어, 클로저의 데이터에 기반하여 가져오거나 설정할 어트리뷰트를 결정하는 단일 게터(getter)와 세터(setter) 함수"
+" 집합을 가능하게 합니다.)"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:586
 msgid ""
@@ -602,14 +743,17 @@ msgid ""
 "attribute is being deleted.  In our setter, we raise an error if the "
 "attribute is deleted or if its new value is not a string."
 msgstr ""
+"세터(setter) 함수에는 :class:`Custom` 객체, 새 값 및 클로저(closure)가 전달됩니다. 새 값은 "
+"``NULL``\\일 수 있으며, 이 경우 어트리뷰트가 삭제됩니다. 세터(setter)에서, 우리는 어트리뷰트가 삭제되거나 새 값이"
+" 문자열이 아니면 에러를 발생시킵니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:591
 msgid "We create an array of :c:type:`PyGetSetDef` structures::"
-msgstr ""
+msgstr ":c:type:`PyGetSetDef` 구조체의 배열을 만듭니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:601
 msgid "and register it in the :c:member:`~PyTypeObject.tp_getset` slot::"
-msgstr ""
+msgstr "그리고 :c:member:`~PyTypeObject.tp_getset` 슬롯에 등록합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:605
 msgid ""
@@ -617,16 +761,18 @@ msgid ""
 "mentioned above.  In this case, we aren't using a closure, so we just "
 "pass ``NULL``."
 msgstr ""
+":c:type:`PyGetSetDef` 구조체의 마지막 항목은 위에서 언급한 \"클로저\"입니다. 이 경우, 클로저를 사용하지 "
+"않아서, ``NULL``\\만 전달합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:608
 msgid "We also remove the member definitions for these attributes::"
-msgstr ""
+msgstr "또한 이러한 어트리뷰트에 대한 멤버 정의를 제거합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:616
 msgid ""
 "We also need to update the :c:member:`~PyTypeObject.tp_init` handler to "
 "only allow strings [#]_ to be passed::"
-msgstr ""
+msgstr "또한 문자열만 전달되도록 [#]_ :c:member:`~PyTypeObject.tp_init` 처리기를 갱신해야 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:645
 msgid ""
@@ -638,6 +784,10 @@ msgid ""
 "possibility that the initialization of these members failed in "
 "``tp_new``."
 msgstr ""
+"이러한 변경을 통해, ``first``\\와 ``last`` 멤버가 절대 ``NULL``\\이 아니라고 확신할 수 있어서, 거의 "
+"모든 경우에 ``NULL`` 값 검사를 제거할 수 있습니다. 이것은 대부분의 :c:func:`Py_XDECREF` 호출이 "
+":c:func:`Py_DECREF` 호출로 변환될 수 있음을 의미합니다. 이러한 호출을 변경할 수 없는 유일한 장소는 "
+"``tp_dealloc`` 구현에서인데, ``tp_new``\\에서 이 멤버의 초기화가 실패했을 가능성이 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:652
 msgid ""
@@ -645,10 +795,12 @@ msgid ""
 "initialization function, as we did before, and we add an extra definition"
 " to the :file:`setup.py` file."
 msgstr ""
+"또한 이전과 마찬가지로, 초기화 함수에서 모듈 초기화 함수와 모듈 이름을 바꾸고, :file:`setup.py` 파일에 추가 정의를"
+" 추가합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:658
 msgid "Supporting cyclic garbage collection"
-msgstr ""
+msgstr "순환 가비지 수거 지원하기"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:660
 msgid ""
@@ -657,6 +809,8 @@ msgid ""
 "not zero. This can happen when objects are involved in cycles.  For "
 "example, consider:"
 msgstr ""
+"파이썬에는 참조 횟수가 0이 아닐 때도 불필요한 객체를 식별할 수 있는 :term:`순환 가비지 수거기 (GC) <garbage "
+"collection>`\\가 있습니다. 이것은 객체가 순환에 참여할 때 일어날 수 있습니다. 예를 들어, 다음을 고려하십시오:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:670
 msgid ""
@@ -665,6 +819,8 @@ msgid ""
 "drop to zero. Fortunately, Python's cyclic garbage collector will "
 "eventually figure out that the list is garbage and free it."
 msgstr ""
+"이 예에서, 자신을 포함하는 리스트를 만듭니다. 삭제해도 여전히 자체 참조가 있습니다. 참조 횟수가 0으로 떨어지지 않습니다. "
+"다행스럽게도, 파이썬의 순환 가비지 수거기는 결국 리스트가 가비지임을 확인하고 해제합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:675
 msgid ""
@@ -674,6 +830,10 @@ msgid ""
 ":class:`Custom`, and subclasses may add arbitrary attributes.  For any of"
 " those two reasons, :class:`Custom` objects can participate in cycles:"
 msgstr ""
+":class:`Custom` 예제의 두 번째 버전에서는, 모든 종류의 객체를 :attr:`first`\\나 :attr:`last` "
+"어트리뷰트에 저장할 수 있었습니다 [#]_. 게다가 두 번째와 세 번째 버전에서는, :class:`Custom`\\을 서브 클래싱 "
+"할 수 있었고, 서브 클래스는 임의의 어트리뷰트를 추가할 수 있습니다. 이 두 가지 이유 중 어느 것으로도, "
+":class:`Custom` 객체는 순환에 참여할 수 있습니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:689
 msgid ""
@@ -682,12 +842,14 @@ msgid ""
 " type needs to fill two additional slots and to enable a flag that "
 "enables these slots:"
 msgstr ""
+"순환 GC가 참조 순환에 참여하는 :class:`Custom` 인스턴스를 올바르게 감지하고 수집할 수 있도록, "
+":class:`Custom` 형은 두 개의 추가 슬롯을 채우고 이러한 슬롯을 활성화하는 플래그를 활성화해야 합니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:696
 msgid ""
 "First, the traversal method lets the cyclic GC know about subobjects that"
 " could participate in cycles::"
-msgstr ""
+msgstr "첫째, 탐색(traversal) 메서드는 순환 GC가 순환에 참여할 수 있는 서브 객체에 대해 알 수 있도록 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:716
 msgid ""
@@ -697,6 +859,9 @@ msgid ""
 "argument *arg* passed to the traversal method.  It returns an integer "
 "value that must be returned if it is non-zero."
 msgstr ""
+"순환에 참여할 수 있는 각 서브 객체에 대해 탐색 메서드에 전달되는 :c:func:`visit` 함수를 호출해야 합니다. "
+":c:func:`visit` 함수는 서브 객체와 탐색 메서드에 전달한 추가 인자 *arg* 인자를 인자로 취합니다. 0이 아닌 경우"
+" 반환해야 하는 정숫값을 반환합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:722
 msgid ""
@@ -704,18 +869,22 @@ msgid ""
 "functions.  With :c:func:`Py_VISIT`, we can minimize the amount of "
 "boilerplate in ``Custom_traverse``::"
 msgstr ""
+"파이썬은 visit 함수 호출을 자동화하는 :c:func:`Py_VISIT` 매크로를 제공합니다. "
+":c:func:`Py_VISIT`\\를 사용하면, ``Custom_traverse``\\에서 관용구 양을 최소화할 수 있습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:735
 msgid ""
 "The :c:member:`~PyTypeObject.tp_traverse` implementation must name its "
 "arguments exactly *visit* and *arg* in order to use :c:func:`Py_VISIT`."
 msgstr ""
+":c:func:`Py_VISIT`\\를 사용하려면 :c:member:`~PyTypeObject.tp_traverse` 구현에서 인자"
+" 이름을 *visit*\\과 *arg*\\로 정확하게 지정해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:738
 msgid ""
 "Second, we need to provide a method for clearing any subobjects that can "
 "participate in cycles::"
-msgstr ""
+msgstr "둘째, 순환에 참여할 수 있는 서브 객체를 지우는 메서드를 제공해야 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:749
 msgid ""
@@ -727,10 +896,13 @@ msgid ""
 "call back into code that reads the attribute again (*especially* if there"
 " is a reference cycle)."
 msgstr ""
+":c:func:`Py_CLEAR` 매크로 사용에 주목하십시오. 참조 횟수를 줄이면서 임의 형의 데이터 어트리뷰트를 지우는 권장되고 "
+"안전한 방법입니다. ``NULL``\\로 설정하기 전에 어트리뷰트에서 :c:func:`Py_XDECREF`\\를 대신 호출했으면, "
+"어트리뷰트의 파괴자가 어트리뷰트를 다시 읽는 코드(*특히* 참조 순환이 있으면 )를 다시 호출할 가능성이 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:757
 msgid "You could emulate :c:func:`Py_CLEAR` by writing::"
-msgstr ""
+msgstr "다음과 같이 작성하여 :c:func:`Py_CLEAR`\\를 에뮬레이션할 수 있습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:764
 msgid ""
@@ -738,6 +910,8 @@ msgid ""
 ":c:func:`Py_CLEAR` when deleting an attribute.  Don't try to micro-"
 "optimize at the expense of robustness!"
 msgstr ""
+"그런데도, 어트리뷰트를 삭제할 때 항상 :c:func:`Py_CLEAR`\\를 사용하기가 훨씬 쉽고 에러가 적습니다. 견고성을 "
+"희생하면서 세밀한 최적화를 시도하지 마십시오!"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:768
 msgid ""
@@ -748,10 +922,15 @@ msgid ""
 "before clearing members. Here is our reimplemented deallocator using "
 ":c:func:`PyObject_GC_UnTrack` and ``Custom_clear``::"
 msgstr ""
+"할당 해제기 ``Custom_dealloc``\\은 어트리뷰트를 지울 때 임의의 코드를 호출할 수 있습니다. 이는 함수 내에서 순환"
+" GC가 트리거 될 수 있음을 의미합니다. GC는 참조 횟수가 0이 아니라고 가정하기 때문에, 멤버를 지우기 전에 "
+":c:func:`PyObject_GC_UnTrack`\\을 호출하여 GC에서 객체를 추적 해제해야 합니다. 다음은 "
+":c:func:`PyObject_GC_UnTrack`\\과 ``Custom_clear``\\를 사용하여 다시 구현된 할당 "
+"해제기입니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:783
 msgid "Finally, we add the :const:`Py_TPFLAGS_HAVE_GC` flag to the class flags::"
-msgstr ""
+msgstr "마지막으로, :const:`Py_TPFLAGS_HAVE_GC` 플래그를 클래스 플래그에 추가합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:787
 msgid ""
@@ -760,10 +939,13 @@ msgid ""
 "handlers, we'd need to modify them for cyclic garbage collection.  Most "
 "extensions will use the versions automatically provided."
 msgstr ""
+"거의 다 됐습니다. 사용자 정의 :c:member:`~PyTypeObject.tp_alloc`\\이나 "
+":c:member:`~PyTypeObject.tp_free` 처리기를 작성했으면, 순환 가비지 수거를 위해 이를 수정해야 합니다. "
+"대부분의 확장은 자동으로 제공된 버전을 사용합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:793
 msgid "Subclassing other types"
-msgstr ""
+msgstr "다른 형의 서브 클래싱"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:795
 msgid ""
@@ -773,6 +955,9 @@ msgid ""
 "be difficult to share these :c:type:`PyTypeObject` structures between "
 "extension modules."
 msgstr ""
+"기존 형에서 파생된 새 확장형을 만들 수 있습니다. 확장이 필요한 :c:type:`PyTypeObject`\\를 쉽게 사용할 수 "
+"있어서, 내장형에서 상속하기가 가장 쉽습니다. 확장 모듈 간에 이러한 :c:type:`PyTypeObject` 구조체를 공유하기 "
+"어려울 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:800
 msgid ""
@@ -781,6 +966,8 @@ msgid ""
 "compatible with regular lists, but will have an additional "
 ":meth:`increment` method that increases an internal counter:"
 msgstr ""
+"이 예에서는 내장 :class:`list` 형을 상속하는 :class:`SubList` 형을 만듭니다. 새로운 형은 일반 리스트와 "
+"완전히 호환되지만, 내부 카운터를 증가시키는 추가 :meth:`increment` 메서드가 있습니다:"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:820
 msgid ""
@@ -788,6 +975,8 @@ msgid ""
 "examples in previous sections. We will break down the main differences "
 "between them. ::"
 msgstr ""
+"보시다시피, 소스 코드는 이전 섹션의 :class:`Custom` 예제와 매우 유사합니다. 우리는 그들 사이의 주요 차이점을 분석할"
+" 것입니다. ::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:828
 msgid ""
@@ -795,6 +984,8 @@ msgid ""
 "object structure must be the first value.  The base type will already "
 "include the :c:func:`PyObject_HEAD` at the beginning of its structure."
 msgstr ""
+"파생형 객체의 주요 차이점은 베이스형의 객체 구조체가 첫 번째 값이어야 한다는 것입니다. 베이스형은 이미 구조체의 시작 부분에 "
+":c:func:`PyObject_HEAD`\\를 포함합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:832
 msgid ""
@@ -802,12 +993,14 @@ msgid ""
 "pointer can be safely cast to both ``PyListObject *`` and ``SubListObject"
 " *``::"
 msgstr ""
+"파이썬 객체가 :class:`SubList` 인스턴스일 때, ``PyObject *`` 포인터는 ``PyListObject "
+"*``\\와 ``SubListObject *`` 모두로 안전하게 캐스팅될 수 있습니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:844
 msgid ""
 "We see above how to call through to the :attr:`__init__` method of the "
 "base type."
-msgstr ""
+msgstr "위에서 베이스형의 :attr:`__init__` 메서드를 호출하는 방법을 볼 수 있습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:847
 msgid ""
@@ -818,6 +1011,11 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_alloc`, but let the base class handle it by "
 "calling its own :c:member:`~PyTypeObject.tp_new`."
 msgstr ""
+"이 패턴은 사용자 정의 :c:member:`~PyTypeObject.tp_new`\\와 "
+":c:member:`~PyTypeObject.tp_dealloc` 멤버를 갖는 형을 작성할 때 중요합니다. "
+":c:member:`~PyTypeObject.tp_new` 처리기는 실제로 "
+":c:member:`~PyTypeObject.tp_alloc`\\을 사용하여 객체의 메모리를 만들지 말고, 베이스 클래스가 자체 "
+":c:member:`~PyTypeObject.tp_new`\\를 호출하여 처리하도록 해야 합니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:853
 msgid ""
@@ -827,6 +1025,10 @@ msgid ""
 "directly with a reference to :c:type:`PyList_Type`; it should be done "
 "later in the module initialization function::"
 msgstr ""
+":c:type:`PyTypeObject` 구조체는 형의 구상 베이스 클래스를 지정하는 "
+":c:member:`~PyTypeObject.tp_base`\\를 지원합니다. 크로스 플랫폼 컴파일러 문제로 인해, "
+":c:type:`PyList_Type`\\에 대한 참조로 해당 필드를 직접 채울 수 없습니다; 나중에 모듈 초기화 함수에서 수행해야"
+" 합니다::"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:881
 msgid ""
@@ -836,28 +1038,36 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_alloc` slot with :c:func:`PyType_GenericNew` "
 "-- the allocation function from the base type will be inherited."
 msgstr ""
+":c:func:`PyType_Ready`\\를 호출하기 전에, 형 구조체에 "
+":c:member:`~PyTypeObject.tp_base` 슬롯이 채워져 있어야 합니다. 기존 형을 파생할 때, "
+":c:func:`PyType_GenericNew`\\로 :c:member:`~PyTypeObject.tp_alloc` 슬롯을 채울 "
+"필요는 없습니다 -- 베이스형의 할당 함수가 상속됩니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:887
 msgid ""
 "After that, calling :c:func:`PyType_Ready` and adding the type object to "
 "the module is the same as with the basic :class:`Custom` examples."
 msgstr ""
+"그런 다음, :c:func:`PyType_Ready`\\를 호출하고 형 객체를 모듈에 추가하는 것은 기초 "
+":class:`Custom` 예와 같습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:892
 msgid "Footnotes"
-msgstr ""
+msgstr "각주"
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:893
 msgid ""
 "This is true when we know that the object is a basic type, like a string "
 "or a float."
-msgstr ""
+msgstr "이것은 객체가 문자열이나 부동 소수점과 같은 기본형이라는 것을 알고 있을 때 참입니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:896
 msgid ""
 "We relied on this in the :c:member:`~PyTypeObject.tp_dealloc` handler in "
 "this example, because our type doesn't support garbage collection."
 msgstr ""
+"우리의 형이 가비지 수거를 지원하지 않기 때문에, 이 예제에서는 :c:member:`~PyTypeObject.tp_dealloc` "
+"처리기에서 이것을 사용했습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:899
 msgid ""
@@ -868,6 +1078,9 @@ msgid ""
 "deallocating an instance of a string subclass won't call back into our "
 "objects."
 msgstr ""
+"우리는 이제 first와 last 멤버가 문자열이라는 것을 알고 있어서, 참조 횟수를 줄이는 데 덜 주의할 수 있지만, 우리는 "
+"문자열 서브 클래스의 인스턴스를 받아들입니다. 일반 문자열을 할당 해제하는 것이 우리 객체로 다시 호출되지는 않더라도, 문자열 서브"
+" 클래스의 인스턴스를 할당 해제하는 것이 객체로 다시 호출되지 않는다고 보장할 수 없습니다."
 
 #: /Users/flowdas/works/docs/python/src/Doc/extending/newtypes_tutorial.rst:905
 msgid ""
@@ -875,131 +1088,6 @@ msgid ""
 "could pass arbitrary :class:`str` subclasses and therefore still create "
 "reference cycles."
 msgstr ""
-
-#~ msgid ""
-#~ "This initializes the :class:`Custom` type, "
-#~ "filling in a number of members to"
-#~ " the appropriate default values, including"
-#~ " :attr:`ob_type` that we initially set "
-#~ "to *NULL*. ::"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This method first clears the reference"
-#~ " counts of the two Python attributes."
-#~ " :c:func:`Py_XDECREF` correctly handles the "
-#~ "case where its argument is *NULL* "
-#~ "(which might happen here if ``tp_new``"
-#~ " failed midway).  It then calls the"
-#~ " :c:member:`~PyTypeObject.tp_free` member of the"
-#~ " object's type (computed by "
-#~ "``Py_TYPE(self)``) to free the object's "
-#~ "memory.  Note that the object's type "
-#~ "might not be :class:`CustomType`, because "
-#~ "the object may be an instance of"
-#~ " a subclass."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The ``tp_new`` handler is responsible "
-#~ "for creating (as opposed to "
-#~ "initializing) objects of the type.  It"
-#~ " is exposed in Python as the "
-#~ ":meth:`__new__` method. It is not "
-#~ "required to define a ``tp_new`` member,"
-#~ " and indeed many extension types will"
-#~ " simply reuse :c:func:`PyType_GenericNew` as "
-#~ "done in the first version of the"
-#~ " ``Custom`` type above.  In this "
-#~ "case, we use the ``tp_new`` handler "
-#~ "to initialize the ``first`` and ``last``"
-#~ " attributes to non-*NULL* default values."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Since memory allocation may fail, we "
-#~ "must check the :c:member:`~PyTypeObject.tp_alloc`"
-#~ " result against *NULL* before proceeding."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "A disadvantage of this approach is "
-#~ "that it doesn't provide a way to"
-#~ " restrict the types of objects that"
-#~ " can be assigned to the Python "
-#~ "attributes.  We expect the first and "
-#~ "last names to be strings, but any"
-#~ " Python objects can be assigned. "
-#~ "Further, the attributes can be deleted,"
-#~ " setting the C pointers to *NULL*."
-#~ "  Even though we can make sure "
-#~ "the members are initialized to "
-#~ "non-*NULL* values, the members can be"
-#~ " set to *NULL* if the attributes "
-#~ "are deleted."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Note that we have to check for "
-#~ "the possibility that our :attr:`first` "
-#~ "and :attr:`last` members are *NULL*.  "
-#~ "This is because they can be "
-#~ "deleted, in which case they are "
-#~ "set to *NULL*.  It would be better"
-#~ " to prevent deletion of these "
-#~ "attributes and to restrict the attribute"
-#~ " values to be strings.  We'll see "
-#~ "how to do that in the next "
-#~ "section."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The setter function is passed the "
-#~ ":class:`Custom` object, the new value, "
-#~ "and the closure.  The new value "
-#~ "may be *NULL*, in which case the"
-#~ " attribute is being deleted.  In our"
-#~ " setter, we raise an error if "
-#~ "the attribute is deleted or if its"
-#~ " new value is not a string."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The last item in a :c:type:`PyGetSetDef`"
-#~ " structure is the \"closure\" mentioned "
-#~ "above.  In this case, we aren't "
-#~ "using a closure, so we just pass"
-#~ " *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "With these changes, we can assure "
-#~ "that the ``first`` and ``last`` members"
-#~ " are never *NULL* so we can "
-#~ "remove checks for *NULL* values in "
-#~ "almost all cases. This means that "
-#~ "most of the :c:func:`Py_XDECREF` calls "
-#~ "can be converted to :c:func:`Py_DECREF` "
-#~ "calls.  The only place we can't "
-#~ "change these calls is in the "
-#~ "``tp_dealloc`` implementation, where there is"
-#~ " the possibility that the initialization"
-#~ " of these members failed in "
-#~ "``tp_new``."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Notice the use of the :c:func:`Py_CLEAR`"
-#~ " macro.  It is the recommended and"
-#~ " safe way to clear data attributes"
-#~ " of arbitrary types while decrementing "
-#~ "their reference counts.  If you were "
-#~ "to call :c:func:`Py_XDECREF` instead on "
-#~ "the attribute before setting it to "
-#~ "*NULL*, there is a possibility that "
-#~ "the attribute's destructor would call "
-#~ "back into code that reads the "
-#~ "attribute again (*especially* if there "
-#~ "is a reference cycle)."
-#~ msgstr ""
+"또한, 어트리뷰트가 문자열 인스턴스로 제한된 경우에도, 사용자는 임의의 :class:`str` 서브 클래스를 전달할 수 있어서 "
+"여전히 참조 순환을 만들 수 있습니다."
 
