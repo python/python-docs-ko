@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: ../Doc/library/zlib.rst:2
 msgid ":mod:`zlib` --- Compression compatible with :program:`gzip`"
-msgstr ""
+msgstr ":mod:`zlib` --- :program:`gzip` 과 호환되는 압축"
 
 #: ../Doc/library/zlib.rst:10
 msgid ""
@@ -30,6 +29,10 @@ msgid ""
 "zlib library earlier than 1.1.3; 1.1.3 has a security vulnerability, so "
 "we recommend using 1.1.4 or later."
 msgstr ""
+"데이터 압축이 필요한 응용 프로그램의 경우, 이 모듈의 함수는 zlib 라이브러리를 사용하여 압축과 압축 해제를 하도록 합니다. "
+"zlib 라이브러리는 http://www.zlib.net 에 자체 홈페이지가 있습니다. 파이썬 모듈과 1.1.3 이전의 zlib "
+"라이브러리 버전 간에는 호환성 문제가 알려져 있습니다; 1.1.3에는 보안 취약점이 있기 때문에, 1.1.4 이상을 사용하는 것이 "
+"좋습니다."
 
 #: ../Doc/library/zlib.rst:17
 msgid ""
@@ -38,18 +41,20 @@ msgid ""
 " permutations; consult the zlib manual at http://www.zlib.net/manual.html"
 " for authoritative information."
 msgstr ""
+"zlib의 함수에는 많은 옵션이 있으며 종종 특정 순서로 사용해야 합니다. 이 설명서는 모든 순열을 다루려고 시도하지는 않습니다; "
+"권위 있는 정보는 zlib 매뉴얼(http://www.zlib.net/manual.html)을 참조하십시오."
 
 #: ../Doc/library/zlib.rst:22
 msgid "For reading and writing ``.gz`` files see the :mod:`gzip` module."
-msgstr ""
+msgstr "``.gz`` 파일 읽기와 쓰기에 대해서는 :mod:`gzip` 모듈을 참조하십시오."
 
 #: ../Doc/library/zlib.rst:24
 msgid "The available exception and functions in this module are:"
-msgstr ""
+msgstr "이 모듈에서 사용 가능한 예외와 함수는 다음과 같습니다:"
 
 #: ../Doc/library/zlib.rst:29
 msgid "Exception raised on compression and decompression errors."
-msgstr ""
+msgstr "압축과 압축 해제 에러에서 발생하는 예외."
 
 #: ../Doc/library/zlib.rst:34
 msgid ""
@@ -63,6 +68,11 @@ msgid ""
 "  Since the algorithm is designed for use as a checksum algorithm, it is "
 "not suitable for use as a general hash algorithm."
 msgstr ""
+"*data*\\의 Adler-32 체크섬을 계산합니다. (Adler-32 체크섬은 CRC32만큼 신뢰성 있지만, 훨씬 빠르게 계산할"
+" 수 있습니다.) 결과는 부호 없는 32비트 정수입니다. *value*\\가 있으면, 체크섬의 시작 값으로 사용됩니다; 그렇지 "
+"않으면, 기본값 1이 사용됩니다. *value*\\를 전달하면 여러 입력을 이어붙인 것에 대한 잇따른(running) 체크섬을 "
+"계산할 수 있습니다. 알고리즘은 암호학적으로 강력하지 않아서, 인증이나 디지털 서명에 사용해서는 안 됩니다. 알고리즘은 체크섬 "
+"알고리즘으로 사용하도록 설계되었으므로, 일반적인 해시 알고리즘으로 사용하기에 적합하지 않습니다."
 
 #: ../Doc/library/zlib.rst:44
 msgid ""
@@ -70,6 +80,8 @@ msgid ""
 "across all Python versions and platforms, use ``adler32(data) & "
 "0xffffffff``."
 msgstr ""
+"항상 부호 없는 값을 반환합니다. 모든 파이썬 버전 및 플랫폼에서 동일한 숫자 값을 생성하려면, ``adler32(data) & "
+"0xffffffff``\\를 사용하십시오."
 
 #: ../Doc/library/zlib.rst:52
 msgid ""
@@ -83,16 +95,22 @@ msgid ""
 "equivalent to level 6). Raises the :exc:`error` exception if any error "
 "occurs."
 msgstr ""
+"*data*\\에 있는 바이트열을 압축하여, 압축된 데이터를 포함하는 바이트열 객체를 반환합니다. *level*\\은 압축 수준을 "
+"제어하는 ``0``\\에서 ``9`` 또는 ``-1``\\인 정수입니다; ``1``\\(Z_BEST_SPEED)은 가장 빠르고 "
+"압축률이 가장 낮습니다, ``9``\\(Z_BEST_COMPRESSION)는 가장 느리고 최대 압축을 생성합니다. "
+"``0``\\(Z_NO_COMPRESSION)은 압축하지 않습니다. 기본값은 "
+"``-1``\\(Z_DEFAULT_COMPRESSION)입니다. Z_DEFAULT_COMPRESSION은 속도와 압축률 사이의 기본"
+" 절충(현재 수준 6과 동등합니다)을 나타냅니다. 에러가 발생하면 :exc:`error` 예외를 발생시킵니다."
 
 #: ../Doc/library/zlib.rst:60
 msgid "*level* can now be used as a keyword parameter."
-msgstr ""
+msgstr "*level*\\은 이제 키워드 매개 변수로 사용될 수 있습니다."
 
 #: ../Doc/library/zlib.rst:66
 msgid ""
 "Returns a compression object, to be used for compressing data streams "
 "that won't fit into memory at once."
-msgstr ""
+msgstr "메모리에 한 번에 맞지 않는 데이터 스트림을 압축하는 데 사용되는 압축 객체를 반환합니다."
 
 #: ../Doc/library/zlib.rst:69
 msgid ""
@@ -104,12 +122,17 @@ msgid ""
 "represents a default compromise between speed and compression (currently "
 "equivalent to level 6)."
 msgstr ""
+"*level*\\은 압축 수준입니다 -- ``0``\\에서 ``9`` 또는 ``-1``\\인 정수입니다. "
+"``1``\\(Z_BEST_SPEED) 값은 가장 빠르고 압축률이 가장 낮지만, ``9``\\(Z_BEST_COMPRESSION) "
+"값은 가장 느리고 최대 압축을 생성합니다. ``0``\\(Z_NO_COMPRESSION)은 압축하지 않습니다. 기본값은 "
+"``-1``\\(Z_DEFAULT_COMPRESSION)입니다. Z_DEFAULT_COMPRESSION은 속도와 압축률 사이의 기본"
+" 절충(현재 수준 6과 동등합니다)을 나타냅니다."
 
 #: ../Doc/library/zlib.rst:76
 msgid ""
 "*method* is the compression algorithm. Currently, the only supported "
 "value is :const:`DEFLATED`."
-msgstr ""
+msgstr "*method*\\는 압축 알고리즘입니다. 현재, 유일하게 지원되는 값은 :const:`DEFLATED`\\입니다."
 
 #: ../Doc/library/zlib.rst:79
 msgid ""
@@ -118,6 +141,8 @@ msgid ""
 "trailer is included in the output.  It can take several ranges of values,"
 " defaulting to ``15`` (MAX_WBITS):"
 msgstr ""
+"*wbits* 인자는 데이터를 압축할 때 사용되는 히스토리 버퍼의 크기(또는 \"창 크기(window size)\")와, 출력에 "
+"헤더와 트레일러가 포함되는지를 제어합니다. 여러 범위의 값을 취할 수 있으며, 기본값은 ``15``\\(MAX_WBITS)입니다:"
 
 #: ../Doc/library/zlib.rst:84
 msgid ""
@@ -126,6 +151,8 @@ msgid ""
 "at the expense of greater memory usage.  The resulting output will "
 "include a zlib-specific header and trailer."
 msgstr ""
+"+9 에서 +15: 창 크기의 밑이 2인 로그, 그래서 창 크기는 512에서 32768 사이의 범위입니다. 값이 클수록 메모리 "
+"사용량이 증가하면서 압축률이 높아집니다. 결과 출력에는 zlib 특정 헤더와 트레일러가 포함됩니다."
 
 #: ../Doc/library/zlib.rst:89
 msgid ""
@@ -133,6 +160,8 @@ msgid ""
 "logarithm, while producing a raw output stream with no header or trailing"
 " checksum."
 msgstr ""
+"−9 에서 −15: *wbits*\\의 절댓값을 창 크기의 로그로 사용하면서, 헤더나 후행 체크섬 없이 원시 출력 스트림을 "
+"생성합니다."
 
 #: ../Doc/library/zlib.rst:93
 msgid ""
@@ -140,6 +169,8 @@ msgid ""
 "window size logarithm, while including a basic :program:`gzip` header and"
 " trailing checksum in the output."
 msgstr ""
+"+25 에서 +31 = 16 + (9 에서 15): 하위 4비트를 창 크기의 로그로 사용하면서, 출력에 기본 "
+":program:`gzip` 헤더와 후행 체크섬을 포함합니다."
 
 #: ../Doc/library/zlib.rst:97
 msgid ""
@@ -147,6 +178,8 @@ msgid ""
 "internal compression state. Valid values range from ``1`` to ``9``. "
 "Higher values use more memory, but are faster and produce smaller output."
 msgstr ""
+"*memLevel* 인자는 내부 압축 상태에 사용되는 메모리양을 제어합니다. 유효한 값의 범위는 ``1``\\에서 "
+"``9``\\입니다. 값이 클수록 더 많은 메모리를 사용하지만, 더 빠르고 더 작은 출력을 생성합니다."
 
 #: ../Doc/library/zlib.rst:101
 msgid ""
@@ -155,6 +188,9 @@ msgid ""
 ":const:`Z_HUFFMAN_ONLY`, :const:`Z_RLE` (zlib 1.2.0.1) and "
 ":const:`Z_FIXED` (zlib 1.2.2.2)."
 msgstr ""
+"*strategy*\\는 압축 알고리즘을 조정하는 데 사용됩니다. 가능한 값은 :const:`Z_DEFAULT_STRATEGY`, "
+":const:`Z_FILTERED`, :const:`Z_HUFFMAN_ONLY`, :const:`Z_RLE`\\(zlib "
+"1.2.0.1) 및 :const:`Z_FIXED`\\(zlib 1.2.2.2)입니다."
 
 #: ../Doc/library/zlib.rst:105
 msgid ""
@@ -164,10 +200,13 @@ msgid ""
 "subsequences that are expected to be most common should come at the end "
 "of the dictionary."
 msgstr ""
+"*zdict*\\는 사전 정의된 압축 딕셔너리입니다. 이것은 압축될 데이터에서 자주 나타날 것으로 예상되는 서브 시퀀스를 포함하는 "
+"일련의 바이트 시퀀스(가령 :class:`bytes` 객체)입니다. 가장 흔할 것으로 예상되는 서브 시퀀스는 딕셔너리 끝에 와야 "
+"합니다."
 
 #: ../Doc/library/zlib.rst:110
 msgid "Added the *zdict* parameter and keyword argument support."
-msgstr ""
+msgstr "*zdict* 매개 변수와 키워드 인자 지원이 추가되었습니다."
 
 #: ../Doc/library/zlib.rst:120
 msgid ""
@@ -180,6 +219,11 @@ msgid ""
 "  Since the algorithm is designed for use as a checksum algorithm, it is "
 "not suitable for use as a general hash algorithm."
 msgstr ""
+"*data*\\의 CRC (Cyclic Redundancy Check) 체크섬을 계산합니다. 결과는 부호 없는 32비트 정수입니다."
+" *value*\\가 있으면, 체크섬의 시작 값으로 사용됩니다; 그렇지 않으면, 기본값 1이 사용됩니다. *value*\\를 "
+"전달하면 여러 입력을 이어붙인 것에 대한 잇따른(running) 체크섬을 계산할 수 있습니다. 알고리즘은 암호학적으로 강력하지 "
+"않아서, 인증이나 디지털 서명에 사용해서는 안 됩니다. 알고리즘은 체크섬 알고리즘으로 사용하도록 설계되었으므로, 일반적인 해시 "
+"알고리즘으로 사용하기에 적합하지 않습니다."
 
 #: ../Doc/library/zlib.rst:129
 msgid ""
@@ -187,6 +231,8 @@ msgid ""
 "across all Python versions and platforms, use ``crc32(data) & "
 "0xffffffff``."
 msgstr ""
+"항상 부호 없는 값을 반환합니다. 모든 파이썬 버전 및 플랫폼에서 동일한 숫자 값을 생성하려면, ``crc32(data) & "
+"0xffffffff``\\를 사용하십시오."
 
 #: ../Doc/library/zlib.rst:137
 msgid ""
@@ -196,6 +242,9 @@ msgid ""
 " as the initial size of the output buffer.  Raises the :exc:`error` "
 "exception if any error occurs."
 msgstr ""
+"*data*\\에 있는 바이트열을 압축 해제하여, 압축되지 않은 데이터를 포함하는 바이트열 객체를 반환합니다. *wbits* 매개 "
+"변수는 *data*\\의 형식에 따라 다르며, 아래에서 자세히 설명합니다. *bufsize*\\가 제공되면, 출력 버퍼의 초기 "
+"크기로 사용됩니다. 에러가 발생하면 :exc:`error` 예외를 발생시킵니다."
 
 #: ../Doc/library/zlib.rst:145
 msgid ""
@@ -204,30 +253,36 @@ msgid ""
 "similar to the parameter for :func:`compressobj`, but accepts more ranges"
 " of values:"
 msgstr ""
+"*wbits* 인자는 히스토리 버퍼의 크기(또는 \"창 크기(window size)\")와, 어떤 헤더와 트레일러 형식을 "
+"기대하는지를 제어합니다. :func:`compressobj`\\의 매개 변수와 유사하지만, 더 많은 범위의 값을 받아들입니다:"
 
 #: ../Doc/library/zlib.rst:150
 msgid ""
 "+8 to +15: The base-two logarithm of the window size.  The input must "
 "include a zlib header and trailer."
-msgstr ""
+msgstr "+8 에서 +15: 창 크기의 밑이 2인 로그. 입력은 zlib 헤더와 트레일러를 포함해야 합니다."
 
 #: ../Doc/library/zlib.rst:153
 msgid ""
 "0: Automatically determine the window size from the zlib header. Only "
 "supported since zlib 1.2.3.5."
-msgstr ""
+msgstr "0: zlib 헤더에서 창 크기를 자동으로 결정합니다. zlib 1.2.3.5부터 지원됩니다."
 
 #: ../Doc/library/zlib.rst:156
 msgid ""
 "−8 to −15: Uses the absolute value of *wbits* as the window size "
 "logarithm.  The input must be a raw stream with no header or trailer."
 msgstr ""
+"−8 에서 −15: *wbits*\\의 절댓값을 창 크기의 로그로 사용합니다. 입력은 헤더나 트레일러가 없는 원시 스트림이어야 "
+"합니다."
 
 #: ../Doc/library/zlib.rst:159
 msgid ""
 "+24 to +31 = 16 + (8 to 15): Uses the low 4 bits of the value as the "
 "window size logarithm.  The input must include a gzip header and trailer."
 msgstr ""
+"+24 에서 +31 = 16 + (8 에서 15): 값의 하위 4비트를 창 크기의 로그로 사용합니다. 입력은 gzip 헤더와 "
+"트레일러를 포함해야 합니다."
 
 #: ../Doc/library/zlib.rst:163
 msgid ""
@@ -235,6 +290,8 @@ msgid ""
 "window size logarithm, and automatically accepts either the zlib or gzip "
 "format."
 msgstr ""
+"+40 에서 +47 = 32 + (8 에서 15): 값의 하위 4비트를 창 크기의 로그로 사용하고, zlib나 gzip 형식을 "
+"자동으로 받아들입니다."
 
 #: ../Doc/library/zlib.rst:167
 msgid ""
@@ -244,6 +301,9 @@ msgid ""
 "corresponds to the largest window size and requires a zlib header and "
 "trailer to be included."
 msgstr ""
+"스트림을 압축 해제할 때, 창 크기는 스트림을 압축하는 데 원래 사용된 크기보다 작아서는 안 됩니다; 너무 작은 값을 사용하면 "
+":exc:`error` 예외가 발생할 수 있습니다. 기본 *wbits* 값은 가장 큰 창 크기에 해당하며 zlib 헤더와 트레일러가"
+" 포함될 것을 요구합니다."
 
 #: ../Doc/library/zlib.rst:173
 msgid ""
@@ -252,16 +312,19 @@ msgid ""
 "needed, so you don't have to get this value exactly right; tuning it will"
 " only save a few calls to :c:func:`malloc`."
 msgstr ""
+"*bufsize*\\는 압축 해제된 데이터를 담는 데 사용되는 버퍼의 초기 크기입니다. 더 많은 공간이 필요하면, 필요에 따라 버퍼"
+" 크기가 증가하므로, 이 값을 정확하게 얻을 필요는 없습니다; 조정하면 :c:func:`malloc`\\에 대한 몇 번의 호출만 "
+"절약됩니다."
 
 #: ../Doc/library/zlib.rst:178
 msgid "*wbits* and *bufsize* can be used as keyword arguments."
-msgstr ""
+msgstr "*wbits*\\와 *bufsize*\\는 키워드 인자로 사용할 수 있습니다."
 
 #: ../Doc/library/zlib.rst:183
 msgid ""
 "Returns a decompression object, to be used for decompressing data streams"
 " that won't fit into memory at once."
-msgstr ""
+msgstr "메모리에 한 번에 맞지 않는 데이터 스트림을 압축 해제하는 데 사용되는 압축 해제 객체를 반환합니다."
 
 #: ../Doc/library/zlib.rst:186
 msgid ""
@@ -269,6 +332,8 @@ msgid ""
 "\"window size\"), and what header and trailer format is expected.  It has"
 " the same meaning as `described for decompress() <#decompress-wbits>`__."
 msgstr ""
+"*wbits* 인자는 히스토리 버퍼의 크기(또는 \"창 크기(window size)\")와, 어떤 헤더와 트레일러 형식을 "
+"기대하는지를 제어합니다. `decompress()에서 설명된 것 <#decompress-wbits>`__\\과 같은 의미입니다."
 
 #: ../Doc/library/zlib.rst:190
 msgid ""
@@ -276,6 +341,8 @@ msgid ""
 "provided, this must be the same dictionary as was used by the compressor "
 "that produced the data that is to be decompressed."
 msgstr ""
+"*zdict* 매개 변수는 사전 정의된 압축 딕셔너리를 지정합니다. 제공되면,, 압축 해제할 데이터를 생성한 압축기에서 사용한 것과"
+" 같은 딕셔너리이어야 합니다."
 
 #: ../Doc/library/zlib.rst:196
 msgid ""
@@ -283,14 +350,16 @@ msgid ""
 "not modify its contents between the call to :func:`decompressobj` and the"
 " first call to the decompressor's ``decompress()`` method."
 msgstr ""
+"*zdict*\\가 가변 객체(가령 :class:`bytearray`)이면, :func:`decompressobj`\\에 대한 "
+"호출과 압축 해제기의 ``decompress()`` 메서드에 대한 첫 번째 호출 사이에 내용을 수정해서는 안 됩니다."
 
 #: ../Doc/library/zlib.rst:200
 msgid "Added the *zdict* parameter."
-msgstr ""
+msgstr "*zdict* 매개 변수를 추가했습니다."
 
 #: ../Doc/library/zlib.rst:204
 msgid "Compression objects support the following methods:"
-msgstr ""
+msgstr "압축 객체는 다음 메서드를 지원합니다:"
 
 #: ../Doc/library/zlib.rst:209
 msgid ""
@@ -299,6 +368,9 @@ msgid ""
 " the output produced by any preceding calls to the :meth:`compress` "
 "method.  Some input may be kept in internal buffers for later processing."
 msgstr ""
+"*data*\\를 압축하여, *data*\\의 데이터 중 적어도 일부에 대한 압축된 데이터가 포함된 바이트열 객체를 반환합니다. 이"
+" 데이터는 :meth:`compress` 메서드에 대한 이전 호출에서 생성된 출력에 이어붙여야 합니다. 일부 입력은 나중에 처리하기"
+" 위해 내부 버퍼에 보관될 수 있습니다."
 
 #: ../Doc/library/zlib.rst:217
 msgid ""
@@ -313,22 +385,30 @@ msgid ""
 "*mode* set to :const:`Z_FINISH`, the :meth:`compress` method cannot be "
 "called again; the only realistic action is to delete the object."
 msgstr ""
+"계류 중인 모든 입력이 처리되고, 나머지 압축 출력을 포함하는 바이트열 객체가 반환됩니다. *mode*\\는 상수 "
+":const:`Z_NO_FLUSH`, :const:`Z_PARTIAL_FLUSH`, :const:`Z_SYNC_FLUSH`, "
+":const:`Z_FULL_FLUSH`, :const:`Z_BLOCK`\\(zlib 1.2.3.4) 또는 "
+":const:`Z_FINISH`\\에서 선택할 수 있으며, 기본값은 :const:`Z_FINISH`\\입니다. "
+":const:`Z_FINISH`\\를 제외한 모든 상수는 추가 바이트열 데이터를 압축하도록 허락하는  반면, "
+":const:`Z_FINISH`\\는 압축된 스트림을 완료하고 추가 데이터의 압축을 방지합니다. *mode*\\를 "
+":const:`Z_FINISH`\\로 설정하고 :meth:`flush`\\를 호출한 후, :meth:`compress` 메서드를 "
+"다시 호출할 수 없습니다; 유일한 현실적인 조치는 객체를 삭제하는 것입니다."
 
 #: ../Doc/library/zlib.rst:230
 msgid ""
 "Returns a copy of the compression object.  This can be used to "
 "efficiently compress a set of data that share a common initial prefix."
-msgstr ""
+msgstr "압축 객체의 복사본을 반환합니다. 공통 초기 접두사를 공유하는 데이터 집합을 효율적으로 압축하는 데 사용할 수 있습니다."
 
 #: ../Doc/library/zlib.rst:234
 msgid ""
 "Added :func:`copy.copy` and :func:`copy.deepcopy` support to compression "
 "objects."
-msgstr ""
+msgstr "압축 객체에 :func:`copy.copy`\\와 :func:`copy.deepcopy` 지원이 추가되었습니다."
 
 #: ../Doc/library/zlib.rst:239
 msgid "Decompression objects support the following methods and attributes:"
-msgstr ""
+msgstr "압축 해제 객체는 다음과 같은 메서드와 어트리뷰트를 지원합니다:"
 
 #: ../Doc/library/zlib.rst:244
 msgid ""
@@ -337,6 +417,9 @@ msgid ""
 "compression data is available.  If the whole bytestring turned out to "
 "contain compressed data, this is ``b\"\"``, an empty bytes object."
 msgstr ""
+"압축된 데이터가 끝난 뒤의 바이트를 포함하는 바이트열 객체. 즉, 압축 데이터가 들어 있는 마지막 바이트를 사용할 수 있을 때까지 "
+"``b\"\"``\\로 남습니다. 전체 바이트열이 압축된 데이터를 포함하는 것으로 판명되면, 이것은 빈 바이트열 객체인 "
+"``b\"\"``\\입니다."
 
 #: ../Doc/library/zlib.rst:252
 msgid ""
@@ -347,18 +430,21 @@ msgid ""
 "to it) back to a subsequent :meth:`decompress` method call in order to "
 "get correct output."
 msgstr ""
+"압축되지 않은 데이터 버퍼의 한계를 초과하기 때문에 마지막 :meth:`decompress` 호출에 의해 소비되지 않은 모든 "
+"데이터를 포함하는 바이트열 객체. 이 데이터는 아직 zlib 장치가 볼 수 없었기 때문에 올바른 출력을 얻으려면 후속 "
+":meth:`decompress` 메서드 호출에 다시 공급해야 합니다 (아마도 추가 데이터를 이것에 이어붙여서)."
 
 #: ../Doc/library/zlib.rst:261
 msgid ""
 "A boolean indicating whether the end of the compressed data stream has "
 "been reached."
-msgstr ""
+msgstr "압축된 데이터 스트림의 끝에 도달했는지를 나타내는 불리언."
 
 #: ../Doc/library/zlib.rst:264
 msgid ""
 "This makes it possible to distinguish between a properly-formed "
 "compressed stream, and an incomplete or truncated one."
-msgstr ""
+msgstr "올바르게 구성된 압축 스트림과 불완전하거나 잘린 스트림을 구별할 수 있도록 합니다."
 
 #: ../Doc/library/zlib.rst:272
 msgid ""
@@ -368,6 +454,9 @@ msgid ""
 "the :meth:`decompress` method.  Some of the input data may be preserved "
 "in internal buffers for later processing."
 msgstr ""
+"*data*\\를 압축 해제하여, *string*\\의 데이터 중 적어도 일부에 해당하는 압축되지 않은 데이터를 포함하는 바이트열 "
+"객체를 반환합니다. 이 데이터는 :meth:`decompress` 메서드에 대한 이전 호출에서 생성된 출력에 이어붙여야 합니다. "
+"입력 데이터 중 일부는 나중에 처리하기 위해 내부 버퍼에 보존될 수 있습니다."
 
 #: ../Doc/library/zlib.rst:278
 msgid ""
@@ -379,10 +468,14 @@ msgid ""
 "  If *max_length* is zero then the whole input is decompressed, and "
 ":attr:`unconsumed_tail` is empty."
 msgstr ""
+"선택적 매개 변수 *max_length*\\가 0이 아니면 반환 값은 *max_length*\\보다 길지 않습니다. 이는 모든 압축"
+" 입력을 처리할 수 없음을 뜻합니다; 소비되지 않은 데이터는 :attr:`unconsumed_tail` 어트리뷰트에 저장됩니다. "
+"압축 해제를 계속하려면 이 바이트열을 :meth:`decompress`\\에 대한 후속 호출로 전달해야 합니다. "
+"*max_length*\\가 0이면 전체 입력이 압축 해제되고, :attr:`unconsumed_tail`\\은 비어 있습니다."
 
 #: ../Doc/library/zlib.rst:285
 msgid "*max_length* can be used as a keyword argument."
-msgstr ""
+msgstr "*max_length*\\는 키워드 인자로 사용할 수 있습니다."
 
 #: ../Doc/library/zlib.rst:291
 msgid ""
@@ -391,12 +484,14 @@ msgid ""
 "the :meth:`decompress` method cannot be called again; the only realistic "
 "action is to delete the object."
 msgstr ""
+"계류 중인 모든 입력이 처리되고, 나머지 압축되지 않은 출력을 포함하는 바이트열 객체가 반환됩니다. :meth:`flush`\\를 "
+"호출한 후, :meth:`decompress` 메서드를 다시 호출할 수 없습니다; 유일한 현실적인 조치는 객체를 삭제하는 것입니다."
 
 #: ../Doc/library/zlib.rst:296
 msgid ""
 "The optional parameter *length* sets the initial size of the output "
 "buffer."
-msgstr ""
+msgstr "선택적 매개 변수 *length*\\는 출력 버퍼의 초기 크기를 설정합니다."
 
 #: ../Doc/library/zlib.rst:301
 msgid ""
@@ -404,18 +499,20 @@ msgid ""
 " state of the decompressor midway through the data stream in order to "
 "speed up random seeks into the stream at a future point."
 msgstr ""
+"압축 해제 객체의 복사본을 반환합니다. 이것은 미래 시점에 스트림으로의 임의 탐색(random seek) 속도를 높이기 위해 데이터"
+" 스트림의 중간 지점에서 압축 해제기의 상태를 저장하는 데 사용될 수 있습니다."
 
 #: ../Doc/library/zlib.rst:306
 msgid ""
 "Added :func:`copy.copy` and :func:`copy.deepcopy` support to "
 "decompression objects."
-msgstr ""
+msgstr "압축 해제 객체에 :func:`copy.copy`\\와 :func:`copy.deepcopy` 지원이 추가되었습니다."
 
 #: ../Doc/library/zlib.rst:311
 msgid ""
 "Information about the version of the zlib library in use is available "
 "through the following constants:"
-msgstr ""
+msgstr "사용 중인 zlib 라이브러리 버전에 대한 정보는 다음 상수를 통해 사용할 수 있습니다:"
 
 #: ../Doc/library/zlib.rst:317
 msgid ""
@@ -423,107 +520,36 @@ msgid ""
 "module. This may be different from the zlib library actually used at "
 "runtime, which is available as :const:`ZLIB_RUNTIME_VERSION`."
 msgstr ""
+"모듈을 빌드하는 데 사용된 zlib 라이브러리의 버전 문자열. :const:`ZLIB_RUNTIME_VERSION`\\으로 사용 "
+"가능한, 실행 시간에 실제로 사용되는 zlib 라이브러리와 다를 수 있습니다."
 
 #: ../Doc/library/zlib.rst:324
 msgid "The version string of the zlib library actually loaded by the interpreter."
-msgstr ""
+msgstr "인터프리터가 실제로 로드한 zlib 라이브러리의 버전 문자열."
 
 #: ../Doc/library/zlib.rst:332
 msgid "Module :mod:`gzip`"
-msgstr ""
+msgstr "모듈 :mod:`gzip`"
 
 #: ../Doc/library/zlib.rst:332
 msgid "Reading and writing :program:`gzip`\\ -format files."
-msgstr ""
+msgstr ":program:`gzip` 형식 파일 읽기와 쓰기"
 
 #: ../Doc/library/zlib.rst:335
 msgid "http://www.zlib.net"
-msgstr ""
+msgstr "http://www.zlib.net"
 
 #: ../Doc/library/zlib.rst:335
 msgid "The zlib library home page."
-msgstr ""
+msgstr "zlib 라이브러리 홈페이지."
 
 #: ../Doc/library/zlib.rst:338
 msgid "http://www.zlib.net/manual.html"
-msgstr ""
+msgstr "http://www.zlib.net/manual.html"
 
 #: ../Doc/library/zlib.rst:338
 msgid ""
 "The zlib manual explains  the semantics and usage of the library's many "
 "functions."
-msgstr ""
-
-#~ msgid ""
-#~ "Compresses the bytes in *data*, "
-#~ "returning a bytes object containing "
-#~ "compressed data. *level* is an integer"
-#~ " from ``0`` to ``9`` or ``-1`` "
-#~ "controlling the level of compression; "
-#~ "``1`` is fastest and produces the "
-#~ "least compression, ``9`` is slowest and"
-#~ " produces the most.  ``0`` is no "
-#~ "compression.  The default value is "
-#~ "``-1`` (Z_DEFAULT_COMPRESSION).  Z_DEFAULT_COMPRESSION "
-#~ "represents a default compromise between "
-#~ "speed and compression (currently equivalent"
-#~ " to level 6). Raises the :exc:`error`"
-#~ " exception if any error occurs."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "*level* is the compression level -- "
-#~ "an integer from ``0`` to ``9`` or"
-#~ " ``-1``. A value of ``1`` is "
-#~ "fastest and produces the least "
-#~ "compression, while a value of ``9`` "
-#~ "is slowest and produces the most. "
-#~ "``0`` is no compression. The default "
-#~ "value is ``-1`` (Z_DEFAULT_COMPRESSION). "
-#~ "Z_DEFAULT_COMPRESSION represents a default "
-#~ "compromise between speed and compression "
-#~ "(currently equivalent to level 6)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "*method* is the compression algorithm. "
-#~ "Currently, the only supported value is"
-#~ " ``DEFLATED``."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The *wbits* argument controls the size"
-#~ " of the history buffer (or the "
-#~ "\"window size\") used when compressing "
-#~ "data, and whether a header and "
-#~ "trailer is included in the output.  "
-#~ "It can take several ranges of "
-#~ "values:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "*strategy* is used to tune the "
-#~ "compression algorithm. Possible values are "
-#~ "``Z_DEFAULT_STRATEGY``, ``Z_FILTERED``, and "
-#~ "``Z_HUFFMAN_ONLY``."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "All pending input is processed, and "
-#~ "a bytes object containing the remaining"
-#~ " compressed output is returned.  *mode* "
-#~ "can be selected from the constants "
-#~ ":const:`Z_SYNC_FLUSH`,  :const:`Z_FULL_FLUSH`,  or  "
-#~ ":const:`Z_FINISH`, defaulting to :const:`Z_FINISH`."
-#~ "  :const:`Z_SYNC_FLUSH` and :const:`Z_FULL_FLUSH` "
-#~ "allow compressing further bytestrings of "
-#~ "data, while :const:`Z_FINISH` finishes the "
-#~ "compressed stream and  prevents compressing"
-#~ " any more data.  After calling "
-#~ ":meth:`flush` with *mode* set to "
-#~ ":const:`Z_FINISH`, the :meth:`compress` method "
-#~ "cannot be called again; the only "
-#~ "realistic action is to delete the "
-#~ "object."
-#~ msgstr ""
+msgstr "zlib 매뉴얼은 라이브러리의 많은 함수의 의미와 사용법을 설명합니다."
 
