@@ -321,7 +321,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:227
 msgid "Objects, Types and Reference Counts"
-msgstr ""
+msgstr "객체, 형 그리고 참조 횟수"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:231
 msgid ""
@@ -337,6 +337,11 @@ msgid ""
 "exception are the type objects; since these must never be deallocated, "
 "they are typically static :c:type:`PyTypeObject` objects."
 msgstr ""
+"대부분의 파이썬/C API 함수는 하나 이상의 인자와 :c:type:`PyObject\\*` 형의 반환 값을 가집니다. "
+":c:type:`PyObject\\*` 형은 임의의 파이썬 객체를 나타내는 오파크(Opaque) 데이터 형에 대한 포인터입니다. "
+"할당, 스코프 규칙, 인자 전달 등 대부분의 상황에서 파이썬 언어가 모든 파이썬 객체 형을 동일한 방식으로 취급하기 때문에 단일한 C 형으로 표현하는 것이 적절합니다. "
+"대부분의 객체는 힙에 존재합니다. :c:type:`PyObject` 형의 자동 변수나 정적 변수를 선언해서는 안되며 :c:type:`PyObject` 형의 포인터 변수만을 선언할 수 있습니다. "
+"유일한 예외는 형 객체입니다. 형 객체들은 절대 할당이 해제돼서는 안되기 때문에 형 객체들은 보통 정적 :c:type:`PyTypeObject` 객체들입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:242
 msgid ""
@@ -348,6 +353,9 @@ msgid ""
 "instance, ``PyList_Check(a)`` is true if (and only if) the object pointed"
 " to by *a* is a Python list."
 msgstr ""
+"모든 파이썬 객체는 (파이썬 정수조차도) :dfn:`형(type)` 과 :dfn:`참조 횟수(reference count)` 를 가지고 있습니다. "
+"객체의 형은 객체의 종류를 결정합니다. (예를 들어 정수, 리스트, 또는 사용자 정의 함수. :ref:`types` 에서 설명하는 것처럼 많은 형들이 있습니다.) "
+"잘 알려진 형에는 객체가 해당 형인지를 확인하는 매크로가 있습니다. 예를 들어 ``PyList_Check(a)`` 는 *a* 가 가리키는 객체가 파이썬 리스트일 경우에만 참입니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:253
 msgid "Reference Counts"
