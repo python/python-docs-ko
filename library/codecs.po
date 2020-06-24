@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../Doc/library/codecs.rst:2
 msgid ":mod:`codecs` --- Codec registry and base classes"
-msgstr ""
+msgstr ":mod:`codecs` --- 코덱 레지스트리와 베이스 클래스"
 
 #: ../Doc/library/codecs.rst:11
 msgid "**Source code:** :source:`Lib/codecs.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/codecs.py`"
 
 #: ../Doc/library/codecs.rst:23
 msgid ""
@@ -37,16 +36,21 @@ msgid ""
 ":term:`text encodings <text encoding>`, or with codecs that encode to "
 ":class:`bytes`."
 msgstr ""
+"이 모듈은 표준 파이썬 코덱(인코더와 디코더)의 베이스 클래스를 정의하고, 코덱과 에러 처리 조회 프로세스를 관리하는 내부 파이썬 "
+"코덱 레지스트리에 대한 액세스를 제공합니다. 대부분의 표준 코덱은 텍스트를 바이트열로 인코딩하는 :term:`텍스트 인코딩 "
+"<text encoding>`\\이지만, 텍스트를 텍스트로 인코딩하고 바이트열을 바이트열로 인코딩하는 코덱도 제공됩니다. 사용자 "
+"정의 코덱은 임의 형 간에 인코딩과 디코딩 할 수 있지만, 일부 모듈 기능은 :term:`텍스트 인코딩 <text "
+"encoding>`\\이나 :class:`bytes`\\로 인코딩하는 코덱과 함께 사용하도록 특별히 제한됩니다."
 
 #: ../Doc/library/codecs.rst:33
 msgid ""
 "The module defines the following functions for encoding and decoding with"
 " any codec:"
-msgstr ""
+msgstr "이 모듈은 임의의 코덱으로 인코딩과 디코딩하는 다음 함수를 정의합니다:"
 
 #: ../Doc/library/codecs.rst:38
 msgid "Encodes *obj* using the codec registered for *encoding*."
-msgstr ""
+msgstr "*encoding*\\을 위해 등록된 코덱을 사용하여 *obj*\\를 인코딩합니다."
 
 #: ../Doc/library/codecs.rst:40
 msgid ""
@@ -56,10 +60,14 @@ msgid ""
 ":exc:`UnicodeEncodeError`). Refer to :ref:`codec-base-classes` for more "
 "information on codec error handling."
 msgstr ""
+"원하는 에러 처리 방식을 설정하기 위해 *errors*\\가 주어질 수 있습니다. 기본 에러 처리기는 ``'strict'``\\이며"
+" 인코딩 에러가 :exc:`ValueError`\\(또는 :exc:`UnicodeEncodeError` 와 같은 더 많은 코덱 관련"
+" 서브 클래스)를 발생시킨다는 뜻입니다. 코덱 에러 처리에 대한 자세한 내용은 :ref:`codec-base-classes`\\를 "
+"참조하십시오."
 
 #: ../Doc/library/codecs.rst:48
 msgid "Decodes *obj* using the codec registered for *encoding*."
-msgstr ""
+msgstr "*encoding*\\을 위해 등록된 코덱을 사용하여 *obj*\\를 디코딩합니다."
 
 #: ../Doc/library/codecs.rst:50
 msgid ""
@@ -69,16 +77,20 @@ msgid ""
 ":exc:`UnicodeDecodeError`). Refer to :ref:`codec-base-classes` for more "
 "information on codec error handling."
 msgstr ""
+"원하는 에러 처리 방식을 설정하기 위해 *errors*\\가 주어질 수 있습니다. 기본 에러 처리기는 ``'strict'``\\이며"
+" 디코딩 에러가 :exc:`ValueError` (또는 :exc:`UnicodeDecodeError` 와 같은 더 많은 코덱 관련 "
+"서브 클래스)를 발생시킨다는 뜻입니다. 코덱 에러 처리에 대한 자세한 내용은 :ref:`codec-base-classes`\\를 "
+"참조하십시오."
 
 #: ../Doc/library/codecs.rst:56
 msgid "The full details for each codec can also be looked up directly:"
-msgstr ""
+msgstr "각 코덱에 대한 자세한 내용도 직접 확인할 수 있습니다:"
 
 #: ../Doc/library/codecs.rst:60
 msgid ""
 "Looks up the codec info in the Python codec registry and returns a "
 ":class:`CodecInfo` object as defined below."
-msgstr ""
+msgstr "파이썬 코덱 레지스트리에서 코덱 정보를 조회하고 아래 정의된 :class:`CodecInfo` 객체를 반환합니다."
 
 #: ../Doc/library/codecs.rst:63
 msgid ""
@@ -88,16 +100,19 @@ msgid ""
 ":class:`CodecInfo` object is stored in the cache and returned to the "
 "caller."
 msgstr ""
+"인코딩은 먼저 레지스트리 캐시에서 조회됩니다. 찾을 수 없으면, 등록된 검색 함수 리스트를 탐색합니다. "
+":class:`CodecInfo` 객체가 없으면, :exc:`LookupError`\\가 발생합니다. 그렇지 않으면, "
+":class:`CodecInfo` 객체가 캐시에 저장되고 호출자에게 반환됩니다."
 
 #: ../Doc/library/codecs.rst:70
 msgid ""
 "Codec details when looking up the codec registry. The constructor "
 "arguments are stored in attributes of the same name:"
-msgstr ""
+msgstr "코덱 레지스트리를 조회할 때의 코덱 세부 정보. 생성자 인자는 같은 이름의 어트리뷰트에 저장됩니다:"
 
 #: ../Doc/library/codecs.rst:76
 msgid "The name of the encoding."
-msgstr ""
+msgstr "인코딩의 이름."
 
 #: ../Doc/library/codecs.rst:82
 msgid ""
@@ -107,6 +122,9 @@ msgid ""
 "Interface <codec-objects>`). The functions or methods are expected to "
 "work in a stateless mode."
 msgstr ""
+"상태 없는 인코딩과 디코딩 함수. 이들은 코덱 인스턴스의 :meth:`~Codec.encode`\\와 "
+":meth:`~Codec.decode` 메서드와 같은 인터페이스를 갖는 함수나 메서드여야 합니다 (:ref:`코덱 인터페이스 "
+"<codec-objects>`\\를 참조하십시오). 함수나 메서드는 상태 없는 모드로 작동할 것으로 기대됩니다."
 
 #: ../Doc/library/codecs.rst:92
 msgid ""
@@ -115,6 +133,9 @@ msgid ""
 ":class:`IncrementalEncoder` and :class:`IncrementalDecoder`, "
 "respectively. Incremental codecs can maintain state."
 msgstr ""
+"증분형 인코더와 디코더 클래스 또는 팩토리 함수. 이들은 각각 베이스 클래스 :class:`IncrementalEncoder`\\와"
+" :class:`IncrementalDecoder`\\가 정의하는 인터페이스를 제공해야 합니다. 증분 코덱은 상태를 유지할 수 "
+"있습니다."
 
 #: ../Doc/library/codecs.rst:101
 msgid ""
@@ -123,67 +144,71 @@ msgid ""
 "and :class:`StreamReader`, respectively. Stream codecs can maintain "
 "state."
 msgstr ""
+"스트림 기록기와 판독기 클래스 또는 팩토리 함수. 이들은 각각 베이스 클래스 :class:`StreamWriter`\\와 "
+":class:`StreamReader`\\가 정의하는 인터페이스를 제공해야 합니다. 스트림 코덱은 상태를 유지할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:106
 msgid ""
 "To simplify access to the various codec components, the module provides "
 "these additional functions which use :func:`lookup` for the codec lookup:"
 msgstr ""
+"다양한 코덱 구성 요소에 대한 액세스를 단순화하기 위해, 이 모듈은 코덱 조회에 :func:`lookup`\\을 사용하는 다음과 "
+"같은 추가 함수를 제공합니다:"
 
 #: ../Doc/library/codecs.rst:111
 msgid "Look up the codec for the given encoding and return its encoder function."
-msgstr ""
+msgstr "주어진 인코딩에 대한 코덱을 찾아서 해당 인코더 함수를 반환합니다."
 
 #: ../Doc/library/codecs.rst:113 ../Doc/library/codecs.rst:120
 #: ../Doc/library/codecs.rst:146 ../Doc/library/codecs.rst:154
 msgid "Raises a :exc:`LookupError` in case the encoding cannot be found."
-msgstr ""
+msgstr "인코딩을 찾을 수 없는 경우 :exc:`LookupError`\\를 발생시킵니다."
 
 #: ../Doc/library/codecs.rst:118
 msgid "Look up the codec for the given encoding and return its decoder function."
-msgstr ""
+msgstr "주어진 인코딩에 대한 코덱을 찾아서 해당 디코더 함수를 반환합니다."
 
 #: ../Doc/library/codecs.rst:125
 msgid ""
 "Look up the codec for the given encoding and return its incremental "
 "encoder class or factory function."
-msgstr ""
+msgstr "주어진 인코딩에 대한 코덱을 찾아서 증분 인코더 클래스나 팩토리 함수를 반환합니다."
 
 #: ../Doc/library/codecs.rst:128
 msgid ""
 "Raises a :exc:`LookupError` in case the encoding cannot be found or the "
 "codec doesn't support an incremental encoder."
-msgstr ""
+msgstr "인코딩을 찾을 수 없거나 코덱이 증분 인코더를 지원하지 않는 경우 :exc:`LookupError`\\를 발생시킵니다."
 
 #: ../Doc/library/codecs.rst:134
 msgid ""
 "Look up the codec for the given encoding and return its incremental "
 "decoder class or factory function."
-msgstr ""
+msgstr "주어진 인코딩에 대한 코덱을 찾아서 증분 디코더 클래스나 팩토리 함수를 반환합니다."
 
 #: ../Doc/library/codecs.rst:137
 msgid ""
 "Raises a :exc:`LookupError` in case the encoding cannot be found or the "
 "codec doesn't support an incremental decoder."
-msgstr ""
+msgstr "인코딩을 찾을 수 없거나 코덱이 증분 디코더를 지원하지 않는 경우 :exc:`LookupError`\\를 발생시킵니다."
 
 #: ../Doc/library/codecs.rst:143
 msgid ""
 "Look up the codec for the given encoding and return its "
 ":class:`StreamReader` class or factory function."
-msgstr ""
+msgstr "주어진 인코딩의 코덱을 찾아서 :class:`StreamReader` 클래스나 팩토리 함수를 반환합니다."
 
 #: ../Doc/library/codecs.rst:151
 msgid ""
 "Look up the codec for the given encoding and return its "
 ":class:`StreamWriter` class or factory function."
-msgstr ""
+msgstr "주어진 인코딩의 코덱을 찾아서 :class:`StreamWriter` 클래스나 팩토리 함수를 반환합니다."
 
 #: ../Doc/library/codecs.rst:156
 msgid ""
 "Custom codecs are made available by registering a suitable codec search "
 "function:"
-msgstr ""
+msgstr "적합한 코덱 검색 함수를 등록하여 사용자 정의 코덱을 사용할 수 있도록 합니다:"
 
 #: ../Doc/library/codecs.rst:161
 msgid ""
@@ -192,12 +217,15 @@ msgid ""
 "return a :class:`CodecInfo` object. In case a search function cannot find"
 " a given encoding, it should return ``None``."
 msgstr ""
+"코덱 검색 함수를 등록합니다. 검색 함수는 모두 소문자로 이루어진 인코딩 이름인 하나의 인자를 취하고, "
+":class:`CodecInfo` 객체를 반환해야 합니다. 검색 함수가 주어진 인코딩을 찾지 못하면, ``None``\\을 반환해야"
+" 합니다."
 
 #: ../Doc/library/codecs.rst:168
 msgid ""
 "Search function registration is not currently reversible, which may cause"
 " problems in some cases, such as unit testing or module reloading."
-msgstr ""
+msgstr "검색 함수 등록은 현재 되돌릴 수 없어서, 단위 테스트나 모듈 다시 로드하기와 같은 몇몇 경우에 문제를 일으킬 수 있습니다."
 
 #: ../Doc/library/codecs.rst:172
 msgid ""
@@ -206,6 +234,8 @@ msgid ""
 " provides additional utility functions and classes that allow the use of "
 "a wider range of codecs when working with binary files:"
 msgstr ""
+"내장 :func:`open`\\과 관련 :mod:`io` 모듈은 인코딩된 텍스트 파일 작업에 권장되는 접근 방법이지만, 이 모듈은 "
+"바이너리 파일로 작업할 때 더 넓은 범위의 코덱을 사용할 수 있도록 하는 추가 유틸리티 함수와 클래스를 제공합니다:"
 
 #: ../Doc/library/codecs.rst:179
 msgid ""
@@ -213,6 +243,9 @@ msgid ""
 ":class:`StreamReaderWriter`, providing transparent encoding/decoding. The"
 " default file mode is ``'r'``, meaning to open the file in read mode."
 msgstr ""
+"주어진 *mode*\\를 사용하여 인코딩된 파일을 열고 투명한 인코딩/디코딩을 제공하는 "
+":class:`StreamReaderWriter` 의 인스턴스를 반환합니다. 기본 파일 모드는 ``'r'``\\이고, 파일을 읽기 "
+"모드로 연다는 뜻입니다."
 
 #: ../Doc/library/codecs.rst:185
 msgid ""
@@ -221,6 +254,9 @@ msgid ""
 "argument may be any binary mode acceptable to the built-in :func:`open` "
 "function; the ``'b'`` is automatically added."
 msgstr ""
+"하부 인코딩된 파일은 항상 바이너리 모드로 열립니다. 읽기와 쓰기 시 ``'\\n'``\\의 자동 변환이 수행되지 않습니다. "
+"*mode* 인자는 내장 :func:`open` 함수에 허용되는 모든 바이너리 모드일 수 있습니다; ``'b'``\\가 자동으로 "
+"추가됩니다."
 
 #: ../Doc/library/codecs.rst:190
 msgid ""
@@ -228,6 +264,8 @@ msgid ""
 "encoding that encodes to and decodes from bytes is allowed, and the data "
 "types supported by the file methods depend on the codec used."
 msgstr ""
+"*encoding*\\은 파일에 사용될 인코딩을 지정합니다. 바이트열에서 인코딩하고 바이트열로 디코딩하는 모든 인코딩이 허용되며, "
+"파일 메서드가 지원하는 데이터형은 사용된 코덱에 따라 다릅니다."
 
 #: ../Doc/library/codecs.rst:194
 msgid ""
@@ -235,6 +273,8 @@ msgid ""
 "``'strict'`` which causes a :exc:`ValueError` to be raised in case an "
 "encoding error occurs."
 msgstr ""
+"에러 처리를 정의하기 위해 *errors*\\가 제공될 수 있습니다. 기본값은 ``'strict'``\\이고 인코딩 에러가 발생하면"
+" :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/codecs.rst:197
 msgid ""
@@ -242,6 +282,8 @@ msgid ""
 "function. It defaults to -1 which means that the default buffer size will"
 " be used."
 msgstr ""
+"*buffering*\\은 내장 :func:`open` 함수에서와 같은 의미입니다. 기본값은 -1이며 기본 버퍼 크기가 사용됨을 "
+"의미합니다."
 
 #: ../Doc/library/codecs.rst:203
 msgid ""
@@ -249,6 +291,8 @@ msgid ""
 "which provides transparent transcoding. The original file is closed when "
 "the wrapped version is closed."
 msgstr ""
+"투명한 트랜스코딩을 제공하는 *file*\\의 래핑 된 버전인 :class:`StreamRecoder` 인스턴스를 반환합니다. 래핑"
+" 된 버전이 닫힐 때 원본 파일이 닫힙니다."
 
 #: ../Doc/library/codecs.rst:207
 msgid ""
@@ -257,10 +301,13 @@ msgid ""
 "*file_encoding*. Bytes read from the original file are decoded according "
 "to *file_encoding*, and the result is encoded using *data_encoding*."
 msgstr ""
+"래핑 된 파일에 기록된 데이터는 주어진 *data_encoding*\\에 따라 디코딩된 다음 *file_encoding*\\을 "
+"사용하여 바이트열로 원본 파일에 기록됩니다. 원본 파일에서 읽은 바이트열은 *file_encoding*\\에 따라 디코딩되며, "
+"결과는 *data_encoding*\\을 사용하여 인코딩됩니다."
 
 #: ../Doc/library/codecs.rst:213
 msgid "If *file_encoding* is not given, it defaults to *data_encoding*."
-msgstr ""
+msgstr "*file_encoding*\\이 제공되지 않으면, 기본값은 *data_encoding*\\입니다."
 
 #: ../Doc/library/codecs.rst:215
 msgid ""
@@ -268,6 +315,8 @@ msgid ""
 "``'strict'``, which causes :exc:`ValueError` to be raised in case an "
 "encoding error occurs."
 msgstr ""
+"에러 처리를 정의하기 위해 *errors*\\가 제공될 수 있습니다. 기본값은 ``'strict'``\\이며, 인코딩 에러가 "
+"발생하면 :exc:`ValueError`\\가 발생합니다."
 
 #: ../Doc/library/codecs.rst:222
 msgid ""
@@ -276,6 +325,8 @@ msgid ""
 "(as well as any other keyword argument) is passed through to the "
 "incremental encoder."
 msgstr ""
+"증분 인코더를 사용하여 *iterator*\\에서 제공하는 입력을 반복적으로 인코딩합니다. 이 함수는 :term:`제너레이터 "
+"<generator>`\\입니다. *errors* 인자(다른 키워드 인자뿐만 아니라)는 증분 인코더로 전달됩니다."
 
 #: ../Doc/library/codecs.rst:227
 msgid ""
@@ -283,6 +334,8 @@ msgid ""
 " encode. Therefore it does not support bytes-to-bytes encoders such as "
 "``base64_codec``."
 msgstr ""
+"이 함수를 사용하려면 코덱에서 인코딩할 텍스트 :class:`str` 객체를 허용해야 합니다. 따라서 "
+"``base64_codec``\\과 같은 바이트열-바이트열 인코더는 지원하지 않습니다."
 
 #: ../Doc/library/codecs.rst:234
 msgid ""
@@ -291,6 +344,8 @@ msgid ""
 "(as well as any other keyword argument) is passed through to the "
 "incremental decoder."
 msgstr ""
+"증분 디코더를 사용하여 *iterator*\\에서 제공하는 입력을 반복적으로 디코딩합니다. 이 함수는 :term:`제너레이터 "
+"<generator>`\\입니다. *errors* 인자(다른 키워드 인자뿐만 아니라)는 증분 디코더로 전달됩니다."
 
 #: ../Doc/library/codecs.rst:239
 msgid ""
@@ -299,12 +354,15 @@ msgid ""
 "``rot_13``, although ``rot_13`` may be used equivalently with "
 ":func:`iterencode`."
 msgstr ""
+"이 함수를 사용하려면 코덱에서 디코딩할 :class:`bytes` 객체를 허용해야 합니다. 따라서 ``rot_13``\\이 "
+":func:`iterencode`\\로 동등하게 사용될 수 있지만, ``rot_13``\\과 같은 텍스트-텍스트 인코더는 지원하지 "
+"않습니다."
 
 #: ../Doc/library/codecs.rst:245
 msgid ""
 "The module also provides the following constants which are useful for "
 "reading and writing to platform dependent files:"
-msgstr ""
+msgstr "이 모듈은 또한 플랫폼 종속 파일을 읽고 쓰는 데 유용한 다음 상수를 제공합니다:"
 
 #: ../Doc/library/codecs.rst:260
 msgid ""
@@ -317,10 +375,16 @@ msgid ""
 ":const:`BOM_UTF16_LE` and :const:`BOM_BE` for :const:`BOM_UTF16_BE`. The "
 "others represent the BOM in UTF-8 and UTF-32 encodings."
 msgstr ""
+"이 상수는 여러 인코딩에서 유니코드 바이트 순서 표시(BOM)인 다양한 바이트 시퀀스를 정의합니다. UTF-16과 UTF-32 "
+"데이터 스트림에서 사용된 바이트 순서를 나타내는 데 사용되며, UTF-8에서 유니코드 서명으로 사용됩니다. "
+":const:`BOM_UTF16`\\은 플랫폼의 네이티브 바이트 순서에 따라 :const:`BOM_UTF16_BE`\\나 "
+":const:`BOM_UTF16_LE`\\이며, :const:`BOM`\\은 :const:`BOM_UTF16`\\의 별칭, "
+":const:`BOM_LE`\\는 :const:`BOM_UTF16_LE`\\의 별칭, :const:`BOM_BE`\\는 "
+":const:`BOM_UTF16_BE`\\의 별칭입니다. 다른 것은 UTF-8과 UTF-32 인코딩에서 BOM을 나타냅니다."
 
 #: ../Doc/library/codecs.rst:274
 msgid "Codec Base Classes"
-msgstr ""
+msgstr "코덱 베이스 클래스"
 
 #: ../Doc/library/codecs.rst:276
 msgid ""
@@ -328,6 +392,8 @@ msgid ""
 "interfaces for working with codec objects, and can also be used as the "
 "basis for custom codec implementations."
 msgstr ""
+":mod:`codecs` 모듈은 코덱 객체로 작업하기 위한 인터페이스를 정의하는 베이스 클래스 집합을 정의하며, 사용자 정의 코덱 "
+"구현의 기초로 사용될 수도 있습니다."
 
 #: ../Doc/library/codecs.rst:280
 msgid ""
@@ -337,10 +403,13 @@ msgid ""
 "encoder/decoder to implement the file protocols. Codec authors also need "
 "to define how the codec will handle encoding and decoding errors."
 msgstr ""
+"각 코덱은 파이썬에서 코덱으로 사용할 수 있도록 네 가지 인터페이스를 정의해야 합니다: 상태 없는 인코더, 상태 없는 디코더, "
+"스트림 판독기 및 스트림 기록기. 스트림 판독기와 기록기는 일반적으로 상태 없는 인코더/디코더를 재사용하여 파일 프로토콜을 "
+"구현합니다. 코덱 작성자는 코덱에서 인코딩과 디코딩 에러를 처리하는 방법도 정의해야 합니다."
 
 #: ../Doc/library/codecs.rst:291
 msgid "Error Handlers"
-msgstr ""
+msgstr "에러 처리기"
 
 #: ../Doc/library/codecs.rst:293
 msgid ""
@@ -349,47 +418,51 @@ msgid ""
 "argument. The following string values are defined and implemented by all "
 "standard Python codecs:"
 msgstr ""
+"에러 처리를 단순화하고 표준화하기 위해, 코덱은 *errors* 문자열 인자를 받아들여 다른 에러 처리 체계를 구현할 수 있습니다."
+" 다음 문자열 값은 모든 표준 파이썬 코덱에서 정의되고 구현됩니다:"
 
 #: ../Doc/library/codecs.rst:301 ../Doc/library/codecs.rst:324
 #: ../Doc/library/codecs.rst:357
 msgid "Value"
-msgstr ""
+msgstr "값"
 
 #: ../Doc/library/codecs.rst:301 ../Doc/library/codecs.rst:324
 #: ../Doc/library/codecs.rst:357 ../Doc/library/codecs.rst:1268
 #: ../Doc/library/codecs.rst:1335 ../Doc/library/codecs.rst:1390
 msgid "Meaning"
-msgstr ""
+msgstr "의미"
 
 #: ../Doc/library/codecs.rst:303
 msgid "``'strict'``"
-msgstr ""
+msgstr "``'strict'``"
 
 #: ../Doc/library/codecs.rst:303
 msgid ""
 "Raise :exc:`UnicodeError` (or a subclass); this is the default. "
 "Implemented in :func:`strict_errors`."
 msgstr ""
+":exc:`UnicodeError`\\(또는 서브 클래스)를 발생시킵니다; 이것이 기본값입니다. "
+":func:`strict_errors`\\에서 구현되었습니다."
 
 #: ../Doc/library/codecs.rst:307
 msgid "``'ignore'``"
-msgstr ""
+msgstr "``'ignore'``"
 
 #: ../Doc/library/codecs.rst:307
 msgid ""
 "Ignore the malformed data and continue without further notice. "
 "Implemented in :func:`ignore_errors`."
-msgstr ""
+msgstr "잘못된 데이터를 무시하고 추가 통지 없이 계속 진행합니다. :func:`ignore_errors`\\에서 구현되었습니다."
 
 #: ../Doc/library/codecs.rst:312
 msgid ""
 "The following error handlers are only applicable to :term:`text encodings"
 " <text encoding>`:"
-msgstr ""
+msgstr "다음 에러 처리기는 :term:`텍스트 인코딩 <text encoding>`\\에만 적용됩니다:"
 
 #: ../Doc/library/codecs.rst:326
 msgid "``'replace'``"
-msgstr ""
+msgstr "``'replace'``"
 
 #: ../Doc/library/codecs.rst:326
 msgid ""
@@ -397,40 +470,46 @@ msgid ""
 "``U+FFFD`` REPLACEMENT CHARACTER for the built-in codecs on decoding, and"
 " '?' on encoding. Implemented in :func:`replace_errors`."
 msgstr ""
+"적절한 교체 마커로 교체합니다; 파이썬은 내장 코덱에 디코딩 시 공식 ``U+FFFD`` REPLACEMENT CHARACTER를,"
+" 인코딩 시 '?'를 사용합니다. :func:`replace_errors`\\에서 구현되었습니다."
 
 #: ../Doc/library/codecs.rst:333
 msgid "``'xmlcharrefreplace'``"
-msgstr ""
+msgstr "``'xmlcharrefreplace'``"
 
 #: ../Doc/library/codecs.rst:333
 msgid ""
 "Replace with the appropriate XML character reference (only for encoding)."
 " Implemented in :func:`xmlcharrefreplace_errors`."
 msgstr ""
+"적절한 XML 문자 참조로 교체합니다 (인코딩에만 해당합니다). :func:`xmlcharrefreplace_errors`\\에서 "
+"구현되었습니다."
 
 #: ../Doc/library/codecs.rst:337
 msgid "``'backslashreplace'``"
-msgstr ""
+msgstr "``'backslashreplace'``"
 
 #: ../Doc/library/codecs.rst:337
 msgid ""
 "Replace with backslashed escape sequences. Implemented in "
 ":func:`backslashreplace_errors`."
-msgstr ""
+msgstr "역 슬래시 이스케이프 시퀀스로 교체합니다. :func:`backslashreplace_errors`\\에서 구현되었습니다."
 
 #: ../Doc/library/codecs.rst:341
 msgid "``'namereplace'``"
-msgstr ""
+msgstr "``'namereplace'``"
 
 #: ../Doc/library/codecs.rst:341
 msgid ""
 "Replace with ``\\N{...}`` escape sequences (only for encoding). "
 "Implemented in :func:`namereplace_errors`."
 msgstr ""
+"``\\N{...}`` 이스케이프 시퀀스로 교체합니다 (인코딩에만 해당합니다). "
+":func:`namereplace_errors`\\에서 구현되었습니다."
 
 #: ../Doc/library/codecs.rst:345
 msgid "``'surrogateescape'``"
-msgstr ""
+msgstr "``'surrogateescape'``"
 
 #: ../Doc/library/codecs.rst:345
 msgid ""
@@ -439,54 +518,57 @@ msgid ""
 "same byte when the ``'surrogateescape'`` error handler is used when "
 "encoding the data. (See :pep:`383` for more.)"
 msgstr ""
+"디코딩 시, 바이트를 ``U+DC80``\\에서 ``U+DCFF`` 범위의 개별 서로게이트 코드(surrogate code)로 "
+"바꿉니다. 이 코드는 데이터를 인코딩할 때 ``'surrogateescape'`` 에러 처리기가 사용되면 같은 바이트로 다시 "
+"변환됩니다. (자세한 내용은 :pep:`383`\\을 참조하십시오.)"
 
 #: ../Doc/library/codecs.rst:354
 msgid "In addition, the following error handler is specific to the given codecs:"
-msgstr ""
+msgstr "또한, 다음 에러 처리기는 지정된 코덱에만 적용됩니다:"
 
 #: ../Doc/library/codecs.rst:357
 msgid "Codecs"
-msgstr ""
+msgstr "코덱"
 
 #: ../Doc/library/codecs.rst:359
 msgid "``'surrogatepass'``"
-msgstr ""
+msgstr "``'surrogatepass'``"
 
 #: ../Doc/library/codecs.rst:359
 msgid "utf-8, utf-16, utf-32, utf-16-be, utf-16-le, utf-32-be, utf-32-le"
-msgstr ""
+msgstr "utf-8, utf-16, utf-32, utf-16-be, utf-16-le, utf-32-be, utf-32-le"
 
 #: ../Doc/library/codecs.rst:359
 msgid ""
 "Allow encoding and decoding of surrogate codes. These codecs normally "
 "treat the presence of surrogates as an error."
-msgstr ""
+msgstr "서로게이트 코드의 인코딩과 디코딩을 허용합니다. 이 코덱들은 일반적으로 서로게이트의 존재를 에러로 취급합니다."
 
 #: ../Doc/library/codecs.rst:364
 msgid "The ``'surrogateescape'`` and ``'surrogatepass'`` error handlers."
-msgstr ""
+msgstr "``'surrogateescape'``\\와 ``'surrogatepass'`` 에러 처리기."
 
 #: ../Doc/library/codecs.rst:367
 msgid ""
 "The ``'surrogatepass'`` error handlers now works with utf-16\\* and "
 "utf-32\\* codecs."
-msgstr ""
+msgstr "``'surrogatepass'`` 에러 처리기는 이제 utf-16\\* 와 utf-32\\* 코덱에서 작동합니다."
 
 #: ../Doc/library/codecs.rst:370
 msgid "The ``'namereplace'`` error handler."
-msgstr ""
+msgstr "``'namereplace'`` 에러 처리기."
 
 #: ../Doc/library/codecs.rst:373
 msgid ""
 "The ``'backslashreplace'`` error handlers now works with decoding and "
 "translating."
-msgstr ""
+msgstr "``'backslashreplace'`` 에러 처리기는 이제 디코딩과 변환(translating)에서 작동합니다."
 
 #: ../Doc/library/codecs.rst:377
 msgid ""
 "The set of allowed values can be extended by registering a new named "
 "error handler:"
-msgstr ""
+msgstr "새 이름으로 에러 처리기를 등록하여 허용되는 값 집합을 확장할 수 있습니다:"
 
 #: ../Doc/library/codecs.rst:382
 msgid ""
@@ -495,6 +577,8 @@ msgid ""
 "decoding in case of an error, when *name* is specified as the errors "
 "parameter."
 msgstr ""
+"에러 처리 함수 *error_handler*\\를 *name*\\이라는 이름으로 등록합니다. *error_handler* 인자는 "
+"*name*\\이 errors 매개 변수로 지정될 때, 인코딩과 디코딩 중에 에러가 있으면 호출됩니다."
 
 #: ../Doc/library/codecs.rst:386
 msgid ""
@@ -511,6 +595,12 @@ msgid ""
 "the end of the input string. If the resulting position is out of bound an"
 " :exc:`IndexError` will be raised."
 msgstr ""
+"인코딩의 경우, 에러 위치에 대한 정보가 포함된 :exc:`UnicodeEncodeError` 인스턴스와 함께 "
+"*error_handler*\\가 호출됩니다. 에러 처리기는 이 예외나 다른 예외를 발생시키거나, 입력의 인코딩할 수 없는 부분의 "
+"대체 값과 인코딩을 계속할 위치를 담은 튜플을 반환해야 합니다. 대체 값은 :class:`str`\\이나 "
+":class:`bytes`\\일 수 있습니다. 대체 값이 바이트열이면, 인코더는 이를 단순히 출력 버퍼에 복사합니다. 대체 값이 "
+"문자열이면, 인코더는 대체 값을 인코딩합니다. 지정된 위치에서 원래 입력으로 인코딩이 계속됩니다. 음수 위칫값은 입력 문자열의 끝을"
+" 기준으로 처리됩니다. 결과 위치가 범위를 벗어나면 :exc:`IndexError`\\가 발생합니다."
 
 #: ../Doc/library/codecs.rst:398
 msgid ""
@@ -519,32 +609,34 @@ msgid ""
 "to the handler and that the replacement from the error handler will be "
 "put into the output directly."
 msgstr ""
+":exc:`UnicodeDecodeError` 나 :exc:`UnicodeTranslateError` 가 처리기로 전달되고 에러 "
+"처리기의 대체 값을 출력에 직접 넣는다는 점을 제외하면, 디코딩과 변환(translating)은 비슷하게 작동합니다."
 
 #: ../Doc/library/codecs.rst:403
 msgid ""
 "Previously registered error handlers (including the standard error "
 "handlers) can be looked up by name:"
-msgstr ""
+msgstr "이전에 등록된 에러 처리기(표준 에러 처리기를 포함하여)는 이름으로 조회할 수 있습니다:"
 
 #: ../Doc/library/codecs.rst:408
 msgid "Return the error handler previously registered under the name *name*."
-msgstr ""
+msgstr "*name*\\이라는 이름으로 이전에 등록된 에러 처리기를 반환합니다."
 
 #: ../Doc/library/codecs.rst:410
 msgid "Raises a :exc:`LookupError` in case the handler cannot be found."
-msgstr ""
+msgstr "처리기를 찾을 수 없으면 :exc:`LookupError`\\를 발생시킵니다."
 
 #: ../Doc/library/codecs.rst:412
 msgid ""
 "The following standard error handlers are also made available as module "
 "level functions:"
-msgstr ""
+msgstr "다음과 같은 표준 에러 처리기가 모듈 수준 함수로 제공됩니다:"
 
 #: ../Doc/library/codecs.rst:417
 msgid ""
 "Implements the ``'strict'`` error handling: each encoding or decoding "
 "error raises a :exc:`UnicodeError`."
-msgstr ""
+msgstr "``'strict'`` 에러 처리를 구현합니다: 각 인코딩이나 디코딩 에러는 :exc:`UnicodeError`\\를 발생시킵니다."
 
 #: ../Doc/library/codecs.rst:423
 msgid ""
@@ -553,12 +645,15 @@ msgid ""
 "encoded by the codec), and ``'\\ufffd'`` (the Unicode replacement "
 "character) for decoding errors."
 msgstr ""
+"``'replace'`` 에러 처리를 구현합니다 (:term:`텍스트 인코딩 <text encoding>` 전용): 인코딩 에러를 "
+"``'?'``\\로 대체하고 (코덱으로 인코딩됩니다), 디코딩 에러를 ``'\\ufffd'``\\(유니코드 대체 문자)로 "
+"대체합니다."
 
 #: ../Doc/library/codecs.rst:431
 msgid ""
 "Implements the ``'ignore'`` error handling: malformed data is ignored and"
 " encoding or decoding is continued without further notice."
-msgstr ""
+msgstr "``'ignore'`` 에러 처리를 구현합니다: 잘못된 형식의 데이터는 무시되고 추가 통지 없이 인코딩이나 디코딩이 계속됩니다."
 
 #: ../Doc/library/codecs.rst:437
 msgid ""
@@ -566,6 +661,8 @@ msgid ""
 ":term:`text encodings <text encoding>` only): the unencodable character "
 "is replaced by an appropriate XML character reference."
 msgstr ""
+"``'xmlcharrefreplace'`` 에러 처리를 구현합니다 (:term:`텍스트 인코딩 <text encoding>`\\으로"
+" 인코딩하는 경우에만 해당): 인코드할 수 없는 문자는 적절한 XML 문자 참조로 대체됩니다."
 
 #: ../Doc/library/codecs.rst:444
 msgid ""
@@ -573,6 +670,8 @@ msgid ""
 "encodings <text encoding>` only): malformed data is replaced by a "
 "backslashed escape sequence."
 msgstr ""
+"``'backslashreplace'`` 에러 처리를 구현합니다 (:term:`텍스트 인코딩 <text encoding>` 전용):"
+" 잘못된 형식의 데이터는 역 슬래시 이스케이프 시퀀스로 대체됩니다."
 
 #: ../Doc/library/codecs.rst:450
 msgid ""
@@ -580,16 +679,20 @@ msgid ""
 ":term:`text encodings <text encoding>` only): the unencodable character "
 "is replaced by a ``\\N{...}`` escape sequence."
 msgstr ""
+"``'namereplace'`` 에러 처리를 구현합니다 (:term:`텍스트 인코딩 <text encoding>`\\으로 인코딩하는"
+" 경우에만 해당): 인코드할 수 없는 문자는 ``\\N{...}`` 이스케이프 시퀀스로 대체됩니다."
 
 #: ../Doc/library/codecs.rst:460
 msgid "Stateless Encoding and Decoding"
-msgstr ""
+msgstr "상태 없는 인코딩과 디코딩"
 
 #: ../Doc/library/codecs.rst:462
 msgid ""
 "The base :class:`Codec` class defines these methods which also define the"
 " function interfaces of the stateless encoder and decoder:"
 msgstr ""
+"기본 :class:`Codec` 클래스는 다음과 같은 메서드를 정의하는데, 상태 없는 인코더와 디코더의 함수 인터페이스를 정의하기도"
+" 합니다:"
 
 #: ../Doc/library/codecs.rst:468
 msgid ""
@@ -598,12 +701,15 @@ msgid ""
 "to a bytes object using a particular character set encoding (e.g., "
 "``cp1252`` or ``iso-8859-1``)."
 msgstr ""
+"객체 *input*\\을 인코딩하고 튜플(출력 객체, 소비한 길이)을 반환합니다. 예를 들어, :term:`텍스트 인코딩 <text"
+" encoding>`\\은 특정 문자 집합 인코딩 (예를 들어, ``cp1252``\\나 ``iso-8859-1``)을 사용하여 "
+"문자열 객체를 바이트열 객체로 변환합니다."
 
 #: ../Doc/library/codecs.rst:473 ../Doc/library/codecs.rst:495
 msgid ""
 "The *errors* argument defines the error handling to apply. It defaults to"
 " ``'strict'`` handling."
-msgstr ""
+msgstr "*errors* 인자는 적용할 에러 처리를 정의합니다. 기본값은 ``'strict'`` 처리입니다."
 
 #: ../Doc/library/codecs.rst:476
 msgid ""
@@ -611,12 +717,14 @@ msgid ""
 ":class:`StreamWriter` for codecs which have to keep state in order to "
 "make encoding efficient."
 msgstr ""
+"이 메서드는 :class:`Codec` 인스턴스에 상태를 저장하지 않을 수 있습니다. 인코딩 효율을 높이기 위해 상태를 유지해야 "
+"하는 코덱에서는 :class:`StreamWriter`\\를 사용하십시오."
 
 #: ../Doc/library/codecs.rst:480
 msgid ""
 "The encoder must be able to handle zero length input and return an empty "
 "object of the output object type in this situation."
-msgstr ""
+msgstr "인코더는 길이가 0인 입력을 처리하고 이 상황에서는 출력 객체 형의 빈 객체를 반환할 수 있어야 합니다."
 
 #: ../Doc/library/codecs.rst:486
 msgid ""
@@ -625,6 +733,9 @@ msgid ""
 " bytes object encoded using a particular character set encoding to a "
 "string object."
 msgstr ""
+"객체 *input*\\을 디코딩하고 튜플 (출력 객체, 소비한 길이)를 반환합니다. 예를 들어, :term:`텍스트 인코딩 "
+"<text encoding>`\\의 경우, 디코딩은 특정 문자 집합 인코딩을 사용하여 인코딩된 바이트열 객체를 문자열 객체로 "
+"변환합니다."
 
 #: ../Doc/library/codecs.rst:491
 msgid ""
@@ -632,6 +743,8 @@ msgid ""
 "object or one which provides the read-only buffer interface -- for "
 "example, buffer objects and memory mapped files."
 msgstr ""
+"텍스트 인코딩과 바이트열-바이트열 코덱의 경우, *input*\\은 바이트열 객체이거나 읽기 전용 버퍼 인터페이스를 제공하는 "
+"객체여야 합니다 -- 예를 들어, 버퍼 객체와 및 메모리 맵핑 파일."
 
 #: ../Doc/library/codecs.rst:498
 msgid ""
@@ -639,16 +752,18 @@ msgid ""
 ":class:`StreamReader` for codecs which have to keep state in order to "
 "make decoding efficient."
 msgstr ""
+"이 메서드는 :class:`Codec` 인스턴스에 상태를 저장하지 않을 수 있습니다. 디코딩 효율을 높이기 위해 상태를 유지해야 "
+"하는 코덱에서는 :class:`StreamReader`\\를 사용하십시오."
 
 #: ../Doc/library/codecs.rst:502
 msgid ""
 "The decoder must be able to handle zero length input and return an empty "
 "object of the output object type in this situation."
-msgstr ""
+msgstr "디코더는 길이가 0인 입력을 처리하고 이 상황에서 출력 객체 형의 빈 객체를 반환할 수 있어야 합니다."
 
 #: ../Doc/library/codecs.rst:507
 msgid "Incremental Encoding and Decoding"
-msgstr ""
+msgstr "증분 인코딩과 디코딩"
 
 #: ../Doc/library/codecs.rst:509
 msgid ""
@@ -661,6 +776,11 @@ msgid ""
 "encoder/decoder keeps track of the encoding/decoding process during "
 "method calls."
 msgstr ""
+":class:`IncrementalEncoder`\\와 :class:`IncrementalDecoder` 클래스는 증분 인코딩과 "
+"디코딩을 위한 기본 인터페이스를 제공합니다. 입력을 인코딩/디코딩하는 것이 상태 없는 인코더/디코더 함수를 한 번 호출하는 것이 "
+"아니라, 증분 인코더/디코더의 "
+":meth:`~IncrementalEncoder.encode`/:meth:`~IncrementalDecoder.decode` "
+"메서드를 여러 번 호출하여 수행됩니다. 증분 인코더/디코더는 메서드 호출 중에 인코딩/디코딩 프로세스를 추적합니다."
 
 #: ../Doc/library/codecs.rst:517
 msgid ""
@@ -669,10 +789,12 @@ msgid ""
 "method is the same as if all the single inputs were joined into one, and "
 "this input was encoded/decoded with the stateless encoder/decoder."
 msgstr ""
+":meth:`~IncrementalEncoder.encode`/:meth:`~IncrementalDecoder.decode` "
+"메서드에 대한 호출의 연결된 출력은 모든 단일 입력을 하나로 결합하여 상태 없는 인코더/디코더로 인코딩/디코딩되는 것과 같습니다."
 
 #: ../Doc/library/codecs.rst:526
 msgid "IncrementalEncoder Objects"
-msgstr ""
+msgstr "IncrementalEncoder 객체"
 
 #: ../Doc/library/codecs.rst:528
 msgid ""
@@ -681,10 +803,12 @@ msgid ""
 "encoder must define in order to be compatible with the Python codec "
 "registry."
 msgstr ""
+":class:`IncrementalEncoder` 클래스는 여러 단계로 입력을 인코딩하는 데 사용됩니다. 파이썬 코덱 레지스트리와 "
+"호환되도록 모든 증분 인코더가 정의해야 하는 다음 메서드를 정의합니다."
 
 #: ../Doc/library/codecs.rst:535
 msgid "Constructor for an :class:`IncrementalEncoder` instance."
-msgstr ""
+msgstr ":class:`IncrementalEncoder` 인스턴스의 생성자."
 
 #: ../Doc/library/codecs.rst:537
 msgid ""
@@ -692,6 +816,8 @@ msgid ""
 "are free to add additional keyword arguments, but only the ones defined "
 "here are used by the Python codec registry."
 msgstr ""
+"모든 증분 인코더는 이 생성자 인터페이스를 제공해야 합니다. 추가 키워드 인자를 자유롭게 추가할 수 있지만, 여기에 정의된 키워드 "
+"인자만 파이썬 코덱 레지스트리에서 사용됩니다."
 
 #: ../Doc/library/codecs.rst:541
 msgid ""
@@ -699,6 +825,8 @@ msgid ""
 "schemes by providing the *errors* keyword argument. See :ref:`error-"
 "handlers` for possible values."
 msgstr ""
+":class:`IncrementalEncoder`\\는 *errors* 키워드 인자를 제공하여 다른 에러 처리 체계를 구현할 수 "
+"있습니다. 가능한 값은 :ref:`error-handlers`\\를 참조하십시오."
 
 #: ../Doc/library/codecs.rst:545
 msgid ""
@@ -707,6 +835,8 @@ msgid ""
 " error handling strategies during the lifetime of the "
 ":class:`IncrementalEncoder` object."
 msgstr ""
+"*errors* 인자는 같은 이름의 어트리뷰트에 대입됩니다. 이 어트리뷰트에 대입하면 "
+":class:`IncrementalEncoder` 객체의 수명 동안 다른 에러 처리 전략 간에 전환할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:553
 msgid ""
@@ -714,6 +844,8 @@ msgid ""
 "and returns the resulting encoded object. If this is the last call to "
 ":meth:`encode` *final* must be true (the default is false)."
 msgstr ""
+"*object*\\를 (인코더의 현재 상태를 고려하여) 인코딩하고 결과 인코딩된 객체를 반환합니다. 이것이 "
+":meth:`encode`\\에 대한 마지막 호출이면 *final*\\은 참이어야 합니다 (기본값은 거짓)."
 
 #: ../Doc/library/codecs.rst:560
 msgid ""
@@ -721,6 +853,8 @@ msgid ""
 "``.encode(object, final=True)``, passing an empty byte or text string if "
 "necessary, to reset the encoder and to get the output."
 msgstr ""
+"인코더를 초기 상태로 재설정합니다. 출력은 버려집니다: 인코더를 재설정하고 출력을 얻으려면, 필요하면 빈 바이트열이나 텍스트 "
+"문자열을 전달하여, ``.encode(object, final=True)``\\를 호출하십시오."
 
 #: ../Doc/library/codecs.rst:567
 msgid ""
@@ -730,16 +864,18 @@ msgid ""
 "integer by marshaling/pickling the state and encoding the bytes of the "
 "resulting string into an integer.)"
 msgstr ""
+"인코더의 현재 상태를 반환하는데, 정수여야 합니다. 구현은 ``0``\\이 가장 흔한 상태가 되도록 해야 합니다. (정수보다 복잡한"
+" 상태는 상태를 마샬링/피클링하고 결과 문자열의 바이트열을 정수로 인코딩하여 정수로 변환할 수 있습니다.)"
 
 #: ../Doc/library/codecs.rst:576
 msgid ""
 "Set the state of the encoder to *state*. *state* must be an encoder state"
 " returned by :meth:`getstate`."
-msgstr ""
+msgstr "인코더 상태를 *state*\\로 설정합니다. *state*\\는 :meth:`getstate`\\가 반환한 인코더 상태여야 합니다."
 
 #: ../Doc/library/codecs.rst:583
 msgid "IncrementalDecoder Objects"
-msgstr ""
+msgstr "IncrementalDecoder 객체"
 
 #: ../Doc/library/codecs.rst:585
 msgid ""
@@ -748,10 +884,12 @@ msgid ""
 "decoder must define in order to be compatible with the Python codec "
 "registry."
 msgstr ""
+":class:`IncrementalDecoder` 클래스는 여러 단계로 입력을 디코딩하는 데 사용됩니다. 파이썬 코덱 레지스트리와 "
+"호환되도록 모든 증분 디코더에서 정의해야 하는 다음 메서드를 정의합니다."
 
 #: ../Doc/library/codecs.rst:592
 msgid "Constructor for an :class:`IncrementalDecoder` instance."
-msgstr ""
+msgstr ":class:`IncrementalDecoder` 인스턴스의 생성자."
 
 #: ../Doc/library/codecs.rst:594
 msgid ""
@@ -759,6 +897,8 @@ msgid ""
 "are free to add additional keyword arguments, but only the ones defined "
 "here are used by the Python codec registry."
 msgstr ""
+"모든 증분 디코더는 이 생성자 인터페이스를 제공해야 합니다. 추가 키워드 인자를 자유롭게 추가할 수 있지만, 여기에 정의된 키워드 "
+"인자만 파이썬 코덱 레지스트리에서 사용됩니다."
 
 #: ../Doc/library/codecs.rst:598
 msgid ""
@@ -766,6 +906,8 @@ msgid ""
 "schemes by providing the *errors* keyword argument. See :ref:`error-"
 "handlers` for possible values."
 msgstr ""
+":class:`IncrementalDecoder`\\는 *errors* 키워드 인자를 제공하여 다른 에러 처리 체계를 구현할 수 "
+"있습니다. 가능한 값은 :ref:`error-handlers`\\를 참조하십시오."
 
 #: ../Doc/library/codecs.rst:602
 msgid ""
@@ -774,6 +916,8 @@ msgid ""
 " error handling strategies during the lifetime of the "
 ":class:`IncrementalDecoder` object."
 msgstr ""
+"*errors* 인자는 같은 이름의 어트리뷰트에 대입됩니다. 이 어트리뷰트에 대입하면 "
+":class:`IncrementalDecoder` 객체의 수명 동안 다른 에러 처리 전략 간에 전환할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:610
 msgid ""
@@ -785,10 +929,14 @@ msgid ""
 "sequences at the end of the input) it must initiate error handling just "
 "like in the stateless case (which might raise an exception)."
 msgstr ""
+"*object*\\를 디코딩하고 (디코더의 현재 상태를 고려하여) 결과 디코딩된 객체를 반환합니다. 이것이 "
+":meth:`decode`\\에 대한 마지막 호출이면 *final*\\은 참이어야 합니다 (기본값은 거짓). *final*\\이 "
+"참이면 디코더는 입력을 완전히 디코딩해야 하며 모든 버퍼를 플러시 해야 합니다. 이것이 가능하지 않으면 (예를 들어 입력 끝의 "
+"불완전한 바이트 시퀀스로 인해), 상태 없는 경우와 같이 에러 처리를 시작해야 합니다 (예외가 발생시킬 수 있습니다)."
 
 #: ../Doc/library/codecs.rst:621
 msgid "Reset the decoder to the initial state."
-msgstr ""
+msgstr "디코더를 초기 상태로 재설정합니다."
 
 #: ../Doc/library/codecs.rst:626
 msgid ""
@@ -804,16 +952,23 @@ msgid ""
 " be converted into an integer by marshaling/pickling the info and "
 "encoding the bytes of the resulting string into an integer.)"
 msgstr ""
+"디코더의 현재 상태를 반환합니다. 두 항목이 있는 튜플이어야 하며, 첫 번째는 여전히 디코딩되지 않은 입력을 포함하는 버퍼여야 "
+"합니다. 두 번째는 정수여야 하며 추가 상태 정보일 수 있습니다. (구현은 ``0``\\이 가장 흔한 추가 상태 정보가 되도록 해야"
+" 합니다.) 이 추가 상태 정보가 ``0``\\이면, 입력 버퍼가 없고 추가 상태 정보가 ``0``\\인 상태로 디코더를 설정할 수"
+" 있어서, 이전에 버퍼링 된 입력을 디코더에 공급하면 출력을 생성하지 않고 이전 상태로 되돌아갈 수 있어야 합니다. (정수보다 "
+"복잡한 추가 상태 정보는 정보를 마샬링/피클링하고 결과 문자열의 바이트를 정수로 인코딩하여 정수로 변환할 수 있습니다.)"
 
 #: ../Doc/library/codecs.rst:641
 msgid ""
 "Set the state of the decoder to *state*. *state* must be a decoder state "
 "returned by :meth:`getstate`."
 msgstr ""
+"디코더의 상태를 *state*\\로 설정합니다. *state*\\는 :meth:`getstate`\\가 반환한 디코더 상태여야 "
+"합니다."
 
 #: ../Doc/library/codecs.rst:646
 msgid "Stream Encoding and Decoding"
-msgstr ""
+msgstr "스트림 인코딩과 디코딩"
 
 #: ../Doc/library/codecs.rst:649
 msgid ""
@@ -822,10 +977,13 @@ msgid ""
 "submodules very easily. See :mod:`encodings.utf_8` for an example of how "
 "this is done."
 msgstr ""
+":class:`StreamWriter`\\와 :class:`StreamReader` 클래스는 새로운 인코딩 서브 모듈을 매우 쉽게 "
+"구현하는 데 사용할 수 있는 범용 작업 인터페이스를 제공합니다. 이를 수행하는 방법에 대한 예는 "
+":mod:`encodings.utf_8`\\을 참조하십시오."
 
 #: ../Doc/library/codecs.rst:657
 msgid "StreamWriter Objects"
-msgstr ""
+msgstr "StreamWriter 객체"
 
 #: ../Doc/library/codecs.rst:659
 msgid ""
@@ -833,10 +991,12 @@ msgid ""
 "defines the following methods which every stream writer must define in "
 "order to be compatible with the Python codec registry."
 msgstr ""
+":class:`StreamWriter` 클래스는 :class:`Codec`\\의 서브 클래스이며 파이썬 코덱 레지스트리와 호환되도록"
+" 모든 스트림 기록기가 정의해야 하는 다음 메서드를 정의합니다."
 
 #: ../Doc/library/codecs.rst:666
 msgid "Constructor for a :class:`StreamWriter` instance."
-msgstr ""
+msgstr ":class:`StreamWriter` 인스턴스의 생성자."
 
 #: ../Doc/library/codecs.rst:668
 msgid ""
@@ -844,12 +1004,14 @@ msgid ""
 " to add additional keyword arguments, but only the ones defined here are "
 "used by the Python codec registry."
 msgstr ""
+"모든 스트림 기록기는 이 생성자 인터페이스를 제공해야 합니다. 추가 키워드 인자를 자유롭게 추가할 수 있지만, 여기에 정의된 키워드"
+" 인자만 파이썬 코덱 레지스트리에서 사용됩니다."
 
 #: ../Doc/library/codecs.rst:672
 msgid ""
 "The *stream* argument must be a file-like object open for writing text or"
 " binary data, as appropriate for the specific codec."
-msgstr ""
+msgstr "*stream* 인자는 특정 코덱에 적합하도록 텍스트나 바이너리 데이터를 쓰기 위해 열린 파일류 객체여야 합니다."
 
 #: ../Doc/library/codecs.rst:675
 msgid ""
@@ -857,6 +1019,8 @@ msgid ""
 "by providing the *errors* keyword argument. See :ref:`error-handlers` for"
 " the standard error handlers the underlying stream codec may support."
 msgstr ""
+":class:`StreamWriter`\\는 *errors* 키워드 인자를 제공하여 다른 에러 처리 체계를 구현할 수 있습니다. "
+"하부 스트림 코덱이 지원할 수 있는 표준 에러 처리기에 대해서는 :ref:`error-handlers`\\를 참조하십시오."
 
 #: ../Doc/library/codecs.rst:679
 msgid ""
@@ -865,10 +1029,12 @@ msgid ""
 " error handling strategies during the lifetime of the "
 ":class:`StreamWriter` object."
 msgstr ""
+"*errors* 인자는 같은 이름의 어트리뷰트에 대입됩니다. 이 어트리뷰트에 대입하면 :class:`StreamWriter` 객체의"
+" 수명 동안 다른 에러 처리 전략 간에 전환할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:685
 msgid "Writes the object's contents encoded to the stream."
-msgstr ""
+msgstr "스트림에 인코딩된 객체의 내용을 씁니다."
 
 #: ../Doc/library/codecs.rst:690
 msgid ""
@@ -876,10 +1042,12 @@ msgid ""
 "reusing the :meth:`write` method). The standard bytes-to-bytes codecs do "
 "not support this method."
 msgstr ""
+"이어붙인 문자열 리스트를 스트림에 씁니다 (:meth:`write` 메서드를 재사용할 수 있습니다). 표준 바이트열-바이트열 코덱은"
+" 이 메서드를 지원하지 않습니다."
 
 #: ../Doc/library/codecs.rst:697
 msgid "Flushes and resets the codec buffers used for keeping state."
-msgstr ""
+msgstr "상태를 유지하는 데 사용되는 코덱 버퍼를 플러시하고 재설정합니다."
 
 #: ../Doc/library/codecs.rst:699
 msgid ""
@@ -887,16 +1055,20 @@ msgid ""
 " a clean state that allows appending of new fresh data without having to "
 "rescan the whole stream to recover state."
 msgstr ""
+"이 메서드를 호출하면 출력의 데이터가 깨끗한 상태가 되어 상태를 복구하기 위해 전체 스트림을 다시 스캔하지 않고도 새로운 최신 "
+"데이터를 추가할 수 있도록 합니다."
 
 #: ../Doc/library/codecs.rst:704
 msgid ""
 "In addition to the above methods, the :class:`StreamWriter` must also "
 "inherit all other methods and attributes from the underlying stream."
 msgstr ""
+"위의 메서드 외에도, :class:`StreamWriter`\\는 하부 스트림에서 온 다른 모든 메서드와 어트리뷰트를 상속해야 "
+"합니다."
 
 #: ../Doc/library/codecs.rst:711
 msgid "StreamReader Objects"
-msgstr ""
+msgstr "StreamReader 객체"
 
 #: ../Doc/library/codecs.rst:713
 msgid ""
@@ -904,10 +1076,12 @@ msgid ""
 "defines the following methods which every stream reader must define in "
 "order to be compatible with the Python codec registry."
 msgstr ""
+":class:`StreamReader` 클래스는 :class:`Codec`\\의 서브 클래스이며 파이썬 코덱 레지스트리와 호환되도록"
+" 모든 스트림 판독기가 정의해야 하는 다음 메서드를 정의합니다."
 
 #: ../Doc/library/codecs.rst:720
 msgid "Constructor for a :class:`StreamReader` instance."
-msgstr ""
+msgstr ":class:`StreamReader` 인스턴스의 생성자."
 
 #: ../Doc/library/codecs.rst:722
 msgid ""
@@ -915,12 +1089,14 @@ msgid ""
 " to add additional keyword arguments, but only the ones defined here are "
 "used by the Python codec registry."
 msgstr ""
+"모든 스트림 판독기는 이 생성자 인터페이스를 제공해야 합니다. 추가 키워드 인자를 자유롭게 추가할 수 있지만, 여기에 정의된 키워드"
+" 인자만 파이썬 코덱 레지스트리에서 사용됩니다."
 
 #: ../Doc/library/codecs.rst:726
 msgid ""
 "The *stream* argument must be a file-like object open for reading text or"
 " binary data, as appropriate for the specific codec."
-msgstr ""
+msgstr "*stream* 인자는 특정 코덱에 적합하게 텍스트나 바이너리 데이터를 읽기 위해 열린 파일류 객체여야 합니다."
 
 #: ../Doc/library/codecs.rst:729
 msgid ""
@@ -928,6 +1104,8 @@ msgid ""
 "by providing the *errors* keyword argument. See :ref:`error-handlers` for"
 " the standard error handlers the underlying stream codec may support."
 msgstr ""
+":class:`StreamReader`\\는 *errors* 키워드 인자를 제공하여 다른 에러 처리 체계를 구현할 수 있습니다. "
+"하부 스트림 코덱이 지원할 수 있는 표준 에러 처리기에 대해서는 :ref:`error-handlers`\\를 참조하십시오."
 
 #: ../Doc/library/codecs.rst:733
 msgid ""
@@ -936,16 +1114,18 @@ msgid ""
 " error handling strategies during the lifetime of the "
 ":class:`StreamReader` object."
 msgstr ""
+"*errors* 인자는 같은 이름의 어트리뷰트에 대입됩니다. 이 어트리뷰트에 대입하면 :class:`StreamReader` 객체의"
+" 수명 동안 다른 에러 처리 전략 간에 전환할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:737
 msgid ""
 "The set of allowed values for the *errors* argument can be extended with "
 ":func:`register_error`."
-msgstr ""
+msgstr "*errors* 인자에 허용되는 값 집합은 :func:`register_error`\\로 확장될 수 있습니다."
 
 #: ../Doc/library/codecs.rst:743
 msgid "Decodes data from the stream and returns the resulting object."
-msgstr ""
+msgstr "스트림에서 데이터를 디코딩하고 결과 객체를 반환합니다."
 
 #: ../Doc/library/codecs.rst:745
 msgid ""
@@ -953,6 +1133,8 @@ msgid ""
 " to return. The :func:`read` method will never return more data than "
 "requested, but it might return less, if there is not enough available."
 msgstr ""
+"*chars* 인자는 반환할 디코딩 된 코드 포인트나 바이트의 수를 나타냅니다. :func:`read` 메서드는 요청된 것보다 더 "
+"많은 데이터를 반환하지 않지만, 사용 가능한 것이 충분하지 않으면 더 적게 반환할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:750
 msgid ""
@@ -962,12 +1144,15 @@ msgid ""
 " as much as possible. This parameter is intended to prevent having to "
 "decode huge files in one step."
 msgstr ""
+"*size* 인자는 디코딩을 위해 읽을 인코딩 된 바이트나 코드 포인트의 대략적인 최대 수를 나타냅니다. 디코더는 이 설정을 "
+"적절하게 수정할 수 있습니다. 기본값 -1은 가능한 한 많이 읽고 디코딩함을 나타냅니다. 이 매개 변수는 커다란 파일을 한 번에 "
+"디코딩하지 않도록 하기 위한 것입니다."
 
 #: ../Doc/library/codecs.rst:757
 msgid ""
 "The *firstline* flag indicates that it would be sufficient to only return"
 " the first line, if there are decoding errors on later lines."
-msgstr ""
+msgstr "*firstline* 플래그는 이후 줄에 디코딩 에러가 있으면 첫 번째 줄만 반환해도 충분함을 나타냅니다."
 
 #: ../Doc/library/codecs.rst:761
 msgid ""
@@ -976,72 +1161,74 @@ msgid ""
 "given size, e.g.  if optional encoding endings or state markers are "
 "available on the stream, these should be read too."
 msgstr ""
+"이 메서드는 탐욕스러운(greedy) 읽기 전략을 사용해야 합니다. 즉, 인코딩 정의와 주어진 size 내에서 허용되는 만큼 많은 "
+"데이터를 읽어야 합니다. 예를 들어 스트림에 선택적 인코딩 종료나 상태 마커가 있으면, 이것도 읽어야 합니다."
 
 #: ../Doc/library/codecs.rst:769
 msgid "Read one line from the input stream and return the decoded data."
-msgstr ""
+msgstr "입력 스트림에서 한 줄을 읽고 디코딩된 데이터를 반환합니다."
 
 #: ../Doc/library/codecs.rst:771
 msgid ""
 "*size*, if given, is passed as size argument to the stream's :meth:`read`"
 " method."
-msgstr ""
+msgstr "주어지면, *size*\\는 스트림의 :meth:`read` 메서드에 size 인자로 전달됩니다."
 
 #: ../Doc/library/codecs.rst:774
 msgid ""
 "If *keepends* is false line-endings will be stripped from the lines "
 "returned."
-msgstr ""
+msgstr "*keepends*\\가 거짓이면 줄 종료가 반환된 줄에서 제거됩니다."
 
 #: ../Doc/library/codecs.rst:780
 msgid ""
 "Read all lines available on the input stream and return them as a list of"
 " lines."
-msgstr ""
+msgstr "입력 스트림에서 사용 가능한 모든 줄을 읽고 줄의 리스트로 반환합니다."
 
 #: ../Doc/library/codecs.rst:783
 msgid ""
 "Line-endings are implemented using the codec's :meth:`decode` method and "
 "are included in the list entries if *keepends* is true."
-msgstr ""
+msgstr "줄 종료는 코덱의 :meth:`decode` 메서드를 사용하여 구현되며 *keepends*\\가 참이면 리스트 항목에 포함됩니다."
 
 #: ../Doc/library/codecs.rst:786
 msgid ""
 "*sizehint*, if given, is passed as the *size* argument to the stream's "
 ":meth:`read` method."
-msgstr ""
+msgstr "주어지면, *sizehint*\\는 스트림의 :meth:`read` 메서드에 *size* 인자로 전달됩니다."
 
 #: ../Doc/library/codecs.rst:792
 msgid "Resets the codec buffers used for keeping state."
-msgstr ""
+msgstr "상태를 유지하는 데 사용되는 코덱 버퍼를 재설정합니다."
 
 #: ../Doc/library/codecs.rst:794
 msgid ""
 "Note that no stream repositioning should take place. This method is "
 "primarily intended to be able to recover from decoding errors."
-msgstr ""
+msgstr "스트림 위치 변경이 발생하지 않아야 함에 유의하십시오. 이 메서드는 주로 디코딩 에러에서 복구할 수 있도록 하기 위한 것입니다."
 
 #: ../Doc/library/codecs.rst:798
 msgid ""
 "In addition to the above methods, the :class:`StreamReader` must also "
 "inherit all other methods and attributes from the underlying stream."
-msgstr ""
+msgstr "위의 메서드 외에도 :class:`StreamReader`\\는 하부 스트림에서 다른 모든 메서드와 어트리뷰트를 상속해야 합니다."
 
 #: ../Doc/library/codecs.rst:804
 msgid "StreamReaderWriter Objects"
-msgstr ""
+msgstr "StreamReaderWriter 객체"
 
 #: ../Doc/library/codecs.rst:806
 msgid ""
 "The :class:`StreamReaderWriter` is a convenience class that allows "
 "wrapping streams which work in both read and write modes."
-msgstr ""
+msgstr ":class:`StreamReaderWriter` 는 읽기와 쓰기 모드 모두에서 작동하는 스트림을 래핑하도록 하는 편의 클래스입니다."
 
 #: ../Doc/library/codecs.rst:809 ../Doc/library/codecs.rst:833
 msgid ""
 "The design is such that one can use the factory functions returned by the"
 " :func:`lookup` function to construct the instance."
-msgstr ""
+msgstr ":func:`lookup` 함수가 반환한 팩토리 함수를 사용하여 인스턴스를 구성할 수 있도록 설계되었습니다."
 
 #: ../Doc/library/codecs.rst:815
 msgid ""
@@ -1051,6 +1238,10 @@ msgid ""
 "resp. Error handling is done in the same way as defined for the stream "
 "readers and writers."
 msgstr ""
+":class:`StreamReaderWriter` 인스턴스를 만듭니다. *stream*\\은 파일류 객체여야 합니다. "
+"*Reader*\\와 *Writer*\\는 각각 :class:`StreamReader`\\와 :class:`StreamWriter`"
+" 인터페이스를 제공하는 팩토리 함수나 클래스여야 합니다. 에러 처리는 스트림 판독기와 기록기에 정의된 것과 같은 방식으로 "
+"수행됩니다."
 
 #: ../Doc/library/codecs.rst:820
 msgid ""
@@ -1058,10 +1249,13 @@ msgid ""
 ":class:`StreamReader` and :class:`StreamWriter` classes. They inherit all"
 " other methods and attributes from the underlying stream."
 msgstr ""
+":class:`StreamReaderWriter` 인스턴스는 :class:`StreamReader`\\와 "
+":class:`StreamWriter` 클래스가 결합한 인터페이스를 정의합니다. 하부 스트림에서 다른 모든 메서드와 어트리뷰트를 "
+"상속합니다."
 
 #: ../Doc/library/codecs.rst:828
 msgid "StreamRecoder Objects"
-msgstr ""
+msgstr "StreamRecoder 객체"
 
 #: ../Doc/library/codecs.rst:830
 msgid ""
@@ -1069,6 +1263,8 @@ msgid ""
 "which is sometimes useful when dealing with different encoding "
 "environments."
 msgstr ""
+":class:`StreamRecoder`\\는 한 인코딩에서 다른 인코딩으로 데이터를 변환하는데, 이는 때때로 다른 인코딩 환경을 "
+"다룰 때 유용합니다."
 
 #: ../Doc/library/codecs.rst:839
 msgid ""
@@ -1077,16 +1273,19 @@ msgid ""
 " to code calling :meth:`read` and :meth:`write`, while *Reader* and "
 "*Writer* work on the backend — the data in *stream*."
 msgstr ""
+"양방향 변환을 구현하는 :class:`StreamRecoder` 인스턴스를 만듭니다: *encode*\\와 *decode*\\는 "
+"프런트 엔드에 작동합니다 - :meth:`read`\\와 :meth:`write`\\를 호출하는 코드가 보는 데이터, 반면에 "
+"*Reader*\\와 *Writer*\\는 백 엔드에 작동합니다 - *stream*\\의 데이터."
 
 #: ../Doc/library/codecs.rst:844
 msgid ""
 "You can use these objects to do transparent transcodings, e.g., from "
 "Latin-1 to UTF-8 and back."
-msgstr ""
+msgstr "이러한 객체를 사용하여 투명한 트랜스코딩을 수행 할 수 있습니다, 예를 들어, Latin-1 에서 UTF-8로 또는 그 반대로."
 
 #: ../Doc/library/codecs.rst:847
 msgid "The *stream* argument must be a file-like object."
-msgstr ""
+msgstr "*stream* 인자는 파일류 객체여야 합니다."
 
 #: ../Doc/library/codecs.rst:849
 msgid ""
@@ -1095,12 +1294,15 @@ msgid ""
 "providing objects of the :class:`StreamReader` and :class:`StreamWriter` "
 "interface respectively."
 msgstr ""
+"*encode*\\와 *decode* 인자는 :class:`Codec` 인터페이스를 준수해야 합니다. *Reader*\\와 "
+"*Writer*\\는 각각 :class:`StreamReader`\\와 :class:`StreamWriter` 인터페이스의 객체를 "
+"제공하는 팩토리 함수나 클래스여야 합니다."
 
 #: ../Doc/library/codecs.rst:854
 msgid ""
 "Error handling is done in the same way as defined for the stream readers "
 "and writers."
-msgstr ""
+msgstr "에러 처리는 스트림 판독기와 기록기에 정의된 것과 같은 방식으로 수행됩니다."
 
 #: ../Doc/library/codecs.rst:858
 msgid ""
@@ -1108,10 +1310,13 @@ msgid ""
 ":class:`StreamReader` and :class:`StreamWriter` classes. They inherit all"
 " other methods and attributes from the underlying stream."
 msgstr ""
+":class:`StreamRecoder` 인스턴스는 :class:`StreamReader`\\와 "
+":class:`StreamWriter` 클래스가 결합한 인터페이스를 정의합니다. 하부 스트림에서 다른 모든 메서드와 어트리뷰트를 "
+"상속합니다."
 
 #: ../Doc/library/codecs.rst:866
 msgid "Encodings and Unicode"
-msgstr ""
+msgstr "인코딩과 유니코드"
 
 #: ../Doc/library/codecs.rst:868
 msgid ""
@@ -1125,6 +1330,11 @@ msgid ""
 "codecs, which are collectivity referred to as :term:`text encodings <text"
 " encoding>`."
 msgstr ""
+"문자열은 ``0x0``--``0x10FFFF`` 범위의 코드 포인트 시퀀스로 내부적으로 저장됩니다. (구현에 대한 자세한 내용은 "
+":pep:`393`\\을 참조하십시오.) 일단 문자열 객체가 CPU와 메모리 외부에서 사용되면, 엔디안(endianness)과 "
+"이러한 배열이 바이트열로 저장되는 방식이 문제가 됩니다. 다른 코덱과 마찬가지로, 문자열을 바이트 시퀀스로 직렬화하는 것을 "
+"*인코딩*\\이라고 하며, 바이트 시퀀스에서 문자열을 다시 만드는 것을 *디코딩*\\이라고 합니다. 다양한 텍스트 직렬화 코덱이 "
+"있으며, 이를 집합적으로 :term:`텍스트 인코딩 <text encoding>`\\이라고 합니다."
 
 #: ../Doc/library/codecs.rst:878
 msgid ""
@@ -1136,6 +1346,12 @@ msgid ""
 "may differ): ``UnicodeEncodeError: 'latin-1' codec can't encode character"
 " '\\u1234' in position 3: ordinal not in range(256)``."
 msgstr ""
+"가장 간단한 텍스트 인코딩(``'latin-1'`` 또는 ``'iso-8859-1'``\\이라고 합니다)은 코드 포인트 0--"
+"255를 바이트 ``0x0``--``0xff``\\로 매핑합니다. 이것은 ``U+00FF`` 위의 코드 포인트를 포함하는 문자열 "
+"객체는 이 코덱으로 인코딩할 수 없음을 뜻합니다. 그렇게 하면 다음과 유사한 :exc:`UnicodeEncodeError` 가 "
+"발생합니다 (에러 메시지의 세부 사항은 다를 수 있습니다): ``UnicodeEncodeError: 'latin-1' codec "
+"can't encode character '\\u1234' in position 3: ordinal not in "
+"range(256)``."
 
 #: ../Doc/library/codecs.rst:886
 msgid ""
@@ -1146,6 +1362,10 @@ msgid ""
 "is used primarily on Windows). There's a string constant with 256 "
 "characters that shows you which character is mapped to which byte value."
 msgstr ""
+"모든 유니코드 코드 포인트의 다른 부분 집합과 이러한 코드 포인트가 바이트 ``0x0``--``0xff``\\에 매핑되는 방식을 "
+"선택하는 또 다른 인코딩 그룹(소위 charmap 인코딩)이 있습니다. 이 작업을 수행하는 방법을 보려면 간단히 예를 들어 "
+":file:`encodings/cp1252.py`\\(윈도우에서 주로 사용되는 인코딩)를 열어보십시오. 어떤 문자가 어떤 바이트 "
+"값에 매핑되는지를 나타내는 256개의 문자로 구성된 문자열 상수가 있습니다."
 
 #: ../Doc/library/codecs.rst:893
 msgid ""
@@ -1177,6 +1397,23 @@ msgid ""
 "has been decoded into a string; as a ``ZERO WIDTH NO-BREAK SPACE`` it's a"
 " normal character that will be decoded like any other."
 msgstr ""
+"이러한 모든 인코딩은 유니코드로 정의된 1114112 코드 포인트 중 256개만 인코딩 할 수 있습니다. 각 유니코드 코드 포인트를"
+" 저장할 수 있는 간단하고 간단한 방법은 각 코드 포인트를 4개의 연속 바이트로 저장하는 것입니다. 두 가지 가능성이 있습니다: "
+"바이트를 빅 엔디안이나 리틀 엔디안 순서로 저장합니다. 이 두 가지 인코딩을 각각 ``UTF-32-BE``\\와 "
+"``UTF-32-LE``\\라고 합니다. 단점은, 예를 들어 리틀 엔디안 기계에서 ``UTF-32-BE``\\를 사용하면 인코딩과 "
+"디코딩 시 항상 바이트를 스와프해야 한다는 것입니다. ``UTF-32``\\는 이 문제를 피합니다: 바이트는 항상 자연 "
+"엔디안입니다. 이 바이트를 엔디안이 다른 CPU에서 읽을 때는, 바이트를 스와프해야 합니다. ``UTF-16``\\이나 "
+"``UTF-32`` 바이트 시퀀스의 엔디안을 감지할 수 있도록, BOM(\"Byte Order Mark -- 바이트 순서 "
+"마크\")이 있습니다. 이것은 유니코드 문자 ``U+FEFF``\\입니다. 이 문자는 모든 ``UTF-16``\\이나 "
+"``UTF-32`` 바이트 시퀀스 앞에 붙일 수 있습니다. 이 문자의 바이트 스와프된 버전(``0xFFFE``)은 유니코드 텍스트에"
+" 나타날 수 없는 잘못된 문자입니다. 따라서 ``UTF-16``\\이나 ``UTF-32`` 바이트 시퀀스의 첫 번째 문자가 "
+"``U+FFFE``\\이면, 디코딩 시 바이트를 스와프해야 합니다. 불행히도 ``U+FEFF`` 문자는 ``ZERO WIDTH "
+"NO-BREAK SPACE``\\라는 두 번째 목적을 가지고 있었습니다: 너비가 없고 단어를 나눌 수 없도록 하는 문자입니다. 예를"
+" 들어 합자(ligature) 알고리즘에 힌트를 주기 위해 사용될 수 있습니다. 유니코드 4.0에서는 ``U+FEFF``\\를 "
+"``ZERO WIDTH NO-BREAK SPACE``\\로 사용하는 것이 폐지되었습니다 (``U+2060``\\(``WORD "
+"JOINER``)이 이 역할을 맡습니다). 그런데도 유니코드 소프트웨어는 여전히 두 가지 역할 모두로 ``U+FEFF``\\를 "
+"처리할 수 있어야 합니다: 인코딩된 바이트의 스토리지 배치를 결정하는 장치이며, 바이트 시퀀스가 문자열로 디코딩되면 사라지는 "
+"BOM의 역할, 다른 문자처럼 디코딩되는 일반 문자 ``ZERO WIDTH NO-BREAK SPACE``\\의 역할."
 
 #: ../Doc/library/codecs.rst:919
 msgid ""
@@ -1189,50 +1426,54 @@ msgid ""
 "(with x being payload bits, which when concatenated give the Unicode "
 "character):"
 msgstr ""
+"유니코드 문자의 전체 범위를 인코딩 할 수 있는 또 다른 인코딩이 있습니다: UTF-8. UTF-8은 8비트 인코딩입니다. "
+"UTF-8에서는 바이트 순서에 관한 문제가 없음을 의미합니다. UTF-8 바이트 시퀀스의 각 바이트는 두 부분으로 구성됩니다: 마커"
+" 비트(최상위 비트)와 페이로드 비트. 마커 비트는 0에서 4개의 ``1`` 비트와 그 뒤에 ``0``\\비트가 오는 시퀀스입니다."
+" 유니코드 문자는 다음과 같이 인코딩됩니다 (x는 페이로드 비트이며, 이어 붙이면 유니코드 문자가 됩니다):"
 
 #: ../Doc/library/codecs.rst:928
 msgid "Range"
-msgstr ""
+msgstr "범위"
 
 #: ../Doc/library/codecs.rst:928
 msgid "Encoding"
-msgstr ""
+msgstr "인코딩"
 
 #: ../Doc/library/codecs.rst:930
 msgid "``U-00000000`` ... ``U-0000007F``"
-msgstr ""
+msgstr "``U-00000000`` ... ``U-0000007F``"
 
 #: ../Doc/library/codecs.rst:930
 msgid "0xxxxxxx"
-msgstr ""
+msgstr "0xxxxxxx"
 
 #: ../Doc/library/codecs.rst:932
 msgid "``U-00000080`` ... ``U-000007FF``"
-msgstr ""
+msgstr "``U-00000080`` ... ``U-000007FF``"
 
 #: ../Doc/library/codecs.rst:932
 msgid "110xxxxx 10xxxxxx"
-msgstr ""
+msgstr "110xxxxx 10xxxxxx"
 
 #: ../Doc/library/codecs.rst:934
 msgid "``U-00000800`` ... ``U-0000FFFF``"
-msgstr ""
+msgstr "``U-00000800`` ... ``U-0000FFFF``"
 
 #: ../Doc/library/codecs.rst:934
 msgid "1110xxxx 10xxxxxx 10xxxxxx"
-msgstr ""
+msgstr "1110xxxx 10xxxxxx 10xxxxxx"
 
 #: ../Doc/library/codecs.rst:936
 msgid "``U-00010000`` ... ``U-0010FFFF``"
-msgstr ""
+msgstr "``U-00010000`` ... ``U-0010FFFF``"
 
 #: ../Doc/library/codecs.rst:936
 msgid "11110xxx 10xxxxxx 10xxxxxx 10xxxxxx"
-msgstr ""
+msgstr "11110xxx 10xxxxxx 10xxxxxx 10xxxxxx"
 
 #: ../Doc/library/codecs.rst:939
 msgid "The least significant bit of the Unicode character is the rightmost x bit."
-msgstr ""
+msgstr "유니코드 문자의 최하위 비트는 가장 오른쪽에 있는 x 비트입니다."
 
 #: ../Doc/library/codecs.rst:941
 msgid ""
@@ -1240,6 +1481,8 @@ msgid ""
 "character in the decoded string (even if it's the first character) is "
 "treated as a ``ZERO WIDTH NO-BREAK SPACE``."
 msgstr ""
+"UTF-8은 8비트 인코딩이라서 BOM이 필요하지 않으며 디코딩된 문자열의 모든 ``U+FEFF`` 문자(첫 번째 문자라 "
+"할지라도)는 ``ZERO WIDTH NO-BREAK SPACE``\\로 처리됩니다."
 
 #: ../Doc/library/codecs.rst:945
 msgid ""
@@ -1255,18 +1498,25 @@ msgid ""
 "it's rather improbable that any charmap encoded file starts with these "
 "byte values (which would e.g. map to"
 msgstr ""
+"외부 정보 없이 문자열 인코딩에 사용된 인코딩을 신뢰성 있게 결정하는 것은 불가능합니다. 각 charmap 인코딩은 모든 임의의 "
+"바이트 시퀀스를 디코딩 할 수 있습니다. 그러나 UTF-8에서는 그렇지 않습니다, UTF-8 바이트 시퀀스는 임의의 바이트 시퀀스를"
+" 허용하지 않는 구조를 갖기 때문입니다. UTF-8 인코딩 감지의 신뢰성을 높이기 위해, Microsoft는 메모장(Notepad)"
+" 프로그램을 위해 UTF-8의 변형을 발명했습니다 (파이썬 2.5에서 ``\"utf-8-sig\"``\\라고 부릅니다): 유니코드 "
+"문자를 파일에 쓰기 전에, UTF-8 인코딩된 BOM(다음과 같은 바이트 시퀀스로 표시됩니다: ``0xef``, ``0xbb``, "
+"``0xbf``)이 기록됩니다. 모든 charmap 인코딩된 파일이 이러한 바이트 값으로 시작한다는 것은 다소 불가능하기 때문에 "
+"(예를 들어 iso-8859-1 에서 다음과 같은 것으로 매핑됩니다"
 
 #: ../Doc/library/codecs.rst
 msgid "LATIN SMALL LETTER I WITH DIAERESIS"
-msgstr ""
+msgstr "LATIN SMALL LETTER I WITH DIAERESIS"
 
 #: ../Doc/library/codecs.rst
 msgid "RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK"
-msgstr ""
+msgstr "RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK"
 
 #: ../Doc/library/codecs.rst
 msgid "INVERTED QUESTION MARK"
-msgstr ""
+msgstr "INVERTED QUESTION MARK"
 
 #: ../Doc/library/codecs.rst:961
 msgid ""
@@ -1280,10 +1530,15 @@ msgid ""
 "the file. In UTF-8, the use of the BOM is discouraged and should "
 "generally be avoided."
 msgstr ""
+"), 바이트 시퀀스에서 ``utf-8-sig`` 인코딩을 정확하게 추측할 수 있는 가능성을 높입니다. 따라서 여기서 BOM은 바이트"
+" 시퀀스를 생성하는 데 사용되는 바이트 순서를 결정할 수 있도록 하는데 사용되지는 않지만, 인코딩을 추측하는 데 도움이 되는 "
+"서명으로 사용됩니다. 인코딩할 때 utf-8-sig 코덱은 ``0xef``, ``0xbb``, ``0xbf``\\를 파일의 처음 "
+"3바이트로 기록합니다. 디코딩할 때 ``utf-8-sig``\\는 파일에서 처음 3바이트에 등장하면 이 3바이트를 건너뜁니다. "
+"UTF-8에서는, BOM 사용을 권장하지 않으며 일반적으로 피해야 합니다."
 
 #: ../Doc/library/codecs.rst:974
 msgid "Standard Encodings"
-msgstr ""
+msgstr "표준 인코딩"
 
 #: ../Doc/library/codecs.rst:976
 msgid ""
@@ -1296,6 +1551,10 @@ msgid ""
 " an underscore are also valid aliases; therefore, e.g. ``'utf-8'`` is a "
 "valid alias for the ``'utf_8'`` codec."
 msgstr ""
+"파이썬에는 C 함수로 구현되거나 딕셔너리를 매핑 테이블로 사용하는 많은 코덱이 내장되어 있습니다. 다음 표는 몇 가지 공통 별칭과 "
+"인코딩이 사용되는 언어와 함께 이름별로 코덱을 나열합니다. 별칭 목록이나 언어 목록이 모두 철저하지는 않습니다. 대소 문자만 "
+"다르거나 밑줄 대신 하이픈을 사용하는 철자 대안도 유효한 별칭임에 유의하십시오; 따라서, 예를 들어 ``'utf-8'``\\은 "
+"``'utf_8'`` 코덱의 유효한 별칭입니다."
 
 #: ../Doc/library/codecs.rst:986
 msgid ""
@@ -1307,10 +1566,15 @@ msgid ""
 "instead of dashes. Using alternative aliases for these encodings may "
 "result in slower execution."
 msgstr ""
+"일부 공통 인코딩은 코덱 조회 메커니즘을 우회하여 성능을 향상할 수 있습니다. 이러한 최적화 기회는 CPython에서만 제한된 "
+"(대소 문자를 구분하는) 별칭 집합에 대해서 인식됩니다:  utf-8, utf8, latin-1, latin1, "
+"iso-8859-1, iso8859-1, mbcs (윈도우 전용), ascii, us-ascii, utf-16, utf16, "
+"utf-32, utf32 및 대시 대신 밑줄을 사용한 것들. 이러한 인코딩에 대체 대안 별칭을 사용하면 실행 속도가 느려질 수 "
+"있습니다."
 
 #: ../Doc/library/codecs.rst:994
 msgid "Optimization opportunity recognized for us-ascii."
-msgstr ""
+msgstr "us-ascii에서 최적화 기회가 인식됩니다."
 
 #: ../Doc/library/codecs.rst:997
 msgid ""
@@ -1319,326 +1583,328 @@ msgid ""
 "and in the assignment of characters to code positions. For the European "
 "languages in particular, the following variants typically exist:"
 msgstr ""
+"많은 문자 집합이 같은 언어를 지원합니다. 개별 문자(예를 들어 EURO SIGN 지원 여부)와 코드 위치에 문자를 대입하는 것에서"
+" 다릅니다. 특히 유럽 언어의 경우, 일반적으로 다음과 같은 변형이 있습니다:"
 
 #: ../Doc/library/codecs.rst:1002
 msgid "an ISO 8859 codeset"
-msgstr ""
+msgstr "ISO 8859 코드 집합"
 
 #: ../Doc/library/codecs.rst:1004
 msgid ""
 "a Microsoft Windows code page, which is typically derived from an 8859 "
 "codeset, but replaces control characters with additional graphic "
 "characters"
-msgstr ""
+msgstr "Microsoft 윈도우 코드 페이지, 일반적으로 8859 코드 집합에서 파생되지만, 제어 문자를 추가 그래픽 문자로 대체합니다"
 
 #: ../Doc/library/codecs.rst:1007
 msgid "an IBM EBCDIC code page"
-msgstr ""
+msgstr "IBM EBCDIC 코드 페이지"
 
 #: ../Doc/library/codecs.rst:1009
 msgid "an IBM PC code page, which is ASCII compatible"
-msgstr ""
+msgstr "IBM PC 코드 페이지, ASCII와 호환됩니다"
 
 #: ../Doc/library/codecs.rst:1014 ../Doc/library/codecs.rst:1268
 #: ../Doc/library/codecs.rst:1335 ../Doc/library/codecs.rst:1390
 msgid "Codec"
-msgstr ""
+msgstr "코덱"
 
 #: ../Doc/library/codecs.rst:1014 ../Doc/library/codecs.rst:1268
 #: ../Doc/library/codecs.rst:1335 ../Doc/library/codecs.rst:1390
 msgid "Aliases"
-msgstr ""
+msgstr "별칭"
 
 #: ../Doc/library/codecs.rst:1014
 msgid "Languages"
-msgstr ""
+msgstr "언어"
 
 #: ../Doc/library/codecs.rst:1016
 msgid "ascii"
-msgstr ""
+msgstr "ascii"
 
 #: ../Doc/library/codecs.rst:1016
 msgid "646, us-ascii"
-msgstr ""
+msgstr "646, us-ascii"
 
 #: ../Doc/library/codecs.rst:1016 ../Doc/library/codecs.rst:1022
 #: ../Doc/library/codecs.rst:1030
 msgid "English"
-msgstr ""
+msgstr "영어"
 
 #: ../Doc/library/codecs.rst:1018
 msgid "big5"
-msgstr ""
+msgstr "big5"
 
 #: ../Doc/library/codecs.rst:1018
 msgid "big5-tw, csbig5"
-msgstr ""
+msgstr "big5-tw, csbig5"
 
 #: ../Doc/library/codecs.rst:1018 ../Doc/library/codecs.rst:1020
 #: ../Doc/library/codecs.rst:1078
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "중국어 번체"
 
 #: ../Doc/library/codecs.rst:1020
 msgid "big5hkscs"
-msgstr ""
+msgstr "big5hkscs"
 
 #: ../Doc/library/codecs.rst:1020
 msgid "big5-hkscs, hkscs"
-msgstr ""
+msgstr "big5-hkscs, hkscs"
 
 #: ../Doc/library/codecs.rst:1022
 msgid "cp037"
-msgstr ""
+msgstr "cp037"
 
 #: ../Doc/library/codecs.rst:1022
 msgid "IBM037, IBM039"
-msgstr ""
+msgstr "IBM037, IBM039"
 
 #: ../Doc/library/codecs.rst:1024
 msgid "cp273"
-msgstr ""
+msgstr "cp273"
 
 #: ../Doc/library/codecs.rst:1024
 msgid "273, IBM273, csIBM273"
-msgstr ""
+msgstr "273, IBM273, csIBM273"
 
 #: ../Doc/library/codecs.rst:1024
 msgid "German"
-msgstr ""
+msgstr "독일어"
 
 #: ../Doc/library/codecs.rst:1028
 msgid "cp424"
-msgstr ""
+msgstr "cp424"
 
 #: ../Doc/library/codecs.rst:1028
 msgid "EBCDIC-CP-HE, IBM424"
-msgstr ""
+msgstr "EBCDIC-CP-HE, IBM424"
 
 #: ../Doc/library/codecs.rst:1028 ../Doc/library/codecs.rst:1048
 #: ../Doc/library/codecs.rst:1058 ../Doc/library/codecs.rst:1101
 #: ../Doc/library/codecs.rst:1164
 msgid "Hebrew"
-msgstr ""
+msgstr "히브리어"
 
 #: ../Doc/library/codecs.rst:1030
 msgid "cp437"
-msgstr ""
+msgstr "cp437"
 
 #: ../Doc/library/codecs.rst:1030
 msgid "437, IBM437"
-msgstr ""
+msgstr "437, IBM437"
 
 #: ../Doc/library/codecs.rst:1032
 msgid "cp500"
-msgstr ""
+msgstr "cp500"
 
 #: ../Doc/library/codecs.rst:1032
 msgid "EBCDIC-CP-BE, EBCDIC-CP-CH, IBM500"
-msgstr ""
+msgstr "EBCDIC-CP-BE, EBCDIC-CP-CH, IBM500"
 
 #: ../Doc/library/codecs.rst:1032 ../Doc/library/codecs.rst:1041
 #: ../Doc/library/codecs.rst:1052 ../Doc/library/codecs.rst:1088
 #: ../Doc/library/codecs.rst:1095 ../Doc/library/codecs.rst:1148
 #: ../Doc/library/codecs.rst:1176 ../Doc/library/codecs.rst:1203
 msgid "Western Europe"
-msgstr ""
+msgstr "서유럽어"
 
 #: ../Doc/library/codecs.rst:1035
 msgid "cp720"
-msgstr ""
+msgstr "cp720"
 
 #: ../Doc/library/codecs.rst:1035 ../Doc/library/codecs.rst:1062
 #: ../Doc/library/codecs.rst:1103 ../Doc/library/codecs.rst:1160
 msgid "Arabic"
-msgstr ""
+msgstr "아랍어"
 
 #: ../Doc/library/codecs.rst:1037
 msgid "cp737"
-msgstr ""
+msgstr "cp737"
 
 #: ../Doc/library/codecs.rst:1037 ../Doc/library/codecs.rst:1068
 #: ../Doc/library/codecs.rst:1072 ../Doc/library/codecs.rst:1097
 #: ../Doc/library/codecs.rst:1162 ../Doc/library/codecs.rst:1197
 msgid "Greek"
-msgstr ""
+msgstr "그리스어"
 
 #: ../Doc/library/codecs.rst:1039
 msgid "cp775"
-msgstr ""
+msgstr "cp775"
 
 #: ../Doc/library/codecs.rst:1039
 msgid "IBM775"
-msgstr ""
+msgstr "IBM775"
 
 #: ../Doc/library/codecs.rst:1039 ../Doc/library/codecs.rst:1105
 #: ../Doc/library/codecs.rst:1155 ../Doc/library/codecs.rst:1172
 msgid "Baltic languages"
-msgstr ""
+msgstr "발트어"
 
 #: ../Doc/library/codecs.rst:1041
 msgid "cp850"
-msgstr ""
+msgstr "cp850"
 
 #: ../Doc/library/codecs.rst:1041
 msgid "850, IBM850"
-msgstr ""
+msgstr "850, IBM850"
 
 #: ../Doc/library/codecs.rst:1043
 msgid "cp852"
-msgstr ""
+msgstr "cp852"
 
 #: ../Doc/library/codecs.rst:1043
 msgid "852, IBM852"
-msgstr ""
+msgstr "852, IBM852"
 
 #: ../Doc/library/codecs.rst:1043 ../Doc/library/codecs.rst:1090
 #: ../Doc/library/codecs.rst:1151 ../Doc/library/codecs.rst:1201
 msgid "Central and Eastern Europe"
-msgstr ""
+msgstr "중부와 동유럽어"
 
 #: ../Doc/library/codecs.rst:1045
 msgid "cp855"
-msgstr ""
+msgstr "cp855"
 
 #: ../Doc/library/codecs.rst:1045
 msgid "855, IBM855"
-msgstr ""
+msgstr "855, IBM855"
 
 #: ../Doc/library/codecs.rst:1045 ../Doc/library/codecs.rst:1092
 #: ../Doc/library/codecs.rst:1157 ../Doc/library/codecs.rst:1194
 msgid "Bulgarian, Byelorussian, Macedonian, Russian, Serbian"
-msgstr ""
+msgstr "불가리아어, 벨로루시야어, 마케도니아어, 러시아어, 세르비아어"
 
 #: ../Doc/library/codecs.rst:1048
 msgid "cp856"
-msgstr ""
+msgstr "cp856"
 
 #: ../Doc/library/codecs.rst:1050
 msgid "cp857"
-msgstr ""
+msgstr "cp857"
 
 #: ../Doc/library/codecs.rst:1050
 msgid "857, IBM857"
-msgstr ""
+msgstr "857, IBM857"
 
 #: ../Doc/library/codecs.rst:1050 ../Doc/library/codecs.rst:1082
 #: ../Doc/library/codecs.rst:1099 ../Doc/library/codecs.rst:1166
 #: ../Doc/library/codecs.rst:1205
 msgid "Turkish"
-msgstr ""
+msgstr "터키어"
 
 #: ../Doc/library/codecs.rst:1052
 msgid "cp858"
-msgstr ""
+msgstr "cp858"
 
 #: ../Doc/library/codecs.rst:1052
 msgid "858, IBM858"
-msgstr ""
+msgstr "858, IBM858"
 
 #: ../Doc/library/codecs.rst:1054
 msgid "cp860"
-msgstr ""
+msgstr "cp860"
 
 #: ../Doc/library/codecs.rst:1054
 msgid "860, IBM860"
-msgstr ""
+msgstr "860, IBM860"
 
 #: ../Doc/library/codecs.rst:1054
 msgid "Portuguese"
-msgstr ""
+msgstr "포르투갈어"
 
 #: ../Doc/library/codecs.rst:1056
 msgid "cp861"
-msgstr ""
+msgstr "cp861"
 
 #: ../Doc/library/codecs.rst:1056
 msgid "861, CP-IS, IBM861"
-msgstr ""
+msgstr "861, CP-IS, IBM861"
 
 #: ../Doc/library/codecs.rst:1056 ../Doc/library/codecs.rst:1199
 msgid "Icelandic"
-msgstr ""
+msgstr "아이슬란드어"
 
 #: ../Doc/library/codecs.rst:1058
 msgid "cp862"
-msgstr ""
+msgstr "cp862"
 
 #: ../Doc/library/codecs.rst:1058
 msgid "862, IBM862"
-msgstr ""
+msgstr "862, IBM862"
 
 #: ../Doc/library/codecs.rst:1060
 msgid "cp863"
-msgstr ""
+msgstr "cp863"
 
 #: ../Doc/library/codecs.rst:1060
 msgid "863, IBM863"
-msgstr ""
+msgstr "863, IBM863"
 
 #: ../Doc/library/codecs.rst:1060
 msgid "Canadian"
-msgstr ""
+msgstr "캐나다어"
 
 #: ../Doc/library/codecs.rst:1062
 msgid "cp864"
-msgstr ""
+msgstr "cp864"
 
 #: ../Doc/library/codecs.rst:1062
 msgid "IBM864"
-msgstr ""
+msgstr "IBM864"
 
 #: ../Doc/library/codecs.rst:1064
 msgid "cp865"
-msgstr ""
+msgstr "cp865"
 
 #: ../Doc/library/codecs.rst:1064
 msgid "865, IBM865"
-msgstr ""
+msgstr "865, IBM865"
 
 #: ../Doc/library/codecs.rst:1064
 msgid "Danish, Norwegian"
-msgstr ""
+msgstr "덴마크어, 노르웨이어"
 
 #: ../Doc/library/codecs.rst:1066
 msgid "cp866"
-msgstr ""
+msgstr "cp866"
 
 #: ../Doc/library/codecs.rst:1066
 msgid "866, IBM866"
-msgstr ""
+msgstr "866, IBM866"
 
 #: ../Doc/library/codecs.rst:1066 ../Doc/library/codecs.rst:1182
 msgid "Russian"
-msgstr ""
+msgstr "러시아어"
 
 #: ../Doc/library/codecs.rst:1068
 msgid "cp869"
-msgstr ""
+msgstr "cp869"
 
 #: ../Doc/library/codecs.rst:1068
 msgid "869, CP-GR, IBM869"
-msgstr ""
+msgstr "869, CP-GR, IBM869"
 
 #: ../Doc/library/codecs.rst:1070
 msgid "cp874"
-msgstr ""
+msgstr "cp874"
 
 #: ../Doc/library/codecs.rst:1070
 msgid "Thai"
-msgstr ""
+msgstr "태국어"
 
 #: ../Doc/library/codecs.rst:1072
 msgid "cp875"
-msgstr ""
+msgstr "cp875"
 
 #: ../Doc/library/codecs.rst:1074
 msgid "cp932"
-msgstr ""
+msgstr "cp932"
 
 #: ../Doc/library/codecs.rst:1074
 msgid "932, ms932, mskanji, ms-kanji"
-msgstr ""
+msgstr "932, ms932, mskanji, ms-kanji"
 
 #: ../Doc/library/codecs.rst:1074 ../Doc/library/codecs.rst:1109
 #: ../Doc/library/codecs.rst:1111 ../Doc/library/codecs.rst:1113
@@ -1647,478 +1913,480 @@ msgstr ""
 #: ../Doc/library/codecs.rst:1143 ../Doc/library/codecs.rst:1210
 #: ../Doc/library/codecs.rst:1213 ../Doc/library/codecs.rst:1216
 msgid "Japanese"
-msgstr ""
+msgstr "일본어"
 
 #: ../Doc/library/codecs.rst:1076
 msgid "cp949"
-msgstr ""
+msgstr "cp949"
 
 #: ../Doc/library/codecs.rst:1076
 msgid "949, ms949, uhc"
-msgstr ""
+msgstr "949, ms949, uhc"
 
 #: ../Doc/library/codecs.rst:1076 ../Doc/library/codecs.rst:1115
 #: ../Doc/library/codecs.rst:1145 ../Doc/library/codecs.rst:1180
 msgid "Korean"
-msgstr ""
+msgstr "한국어"
 
 #: ../Doc/library/codecs.rst:1078
 msgid "cp950"
-msgstr ""
+msgstr "cp950"
 
 #: ../Doc/library/codecs.rst:1078
 msgid "950, ms950"
-msgstr ""
+msgstr "950, ms950"
 
 #: ../Doc/library/codecs.rst:1080
 msgid "cp1006"
-msgstr ""
+msgstr "cp1006"
 
 #: ../Doc/library/codecs.rst:1080
 msgid "Urdu"
-msgstr ""
+msgstr "우르두어"
 
 #: ../Doc/library/codecs.rst:1082
 msgid "cp1026"
-msgstr ""
+msgstr "cp1026"
 
 #: ../Doc/library/codecs.rst:1082
 msgid "ibm1026"
-msgstr ""
+msgstr "ibm1026"
 
 #: ../Doc/library/codecs.rst:1084
 msgid "cp1125"
-msgstr ""
+msgstr "cp1125"
 
 #: ../Doc/library/codecs.rst:1084
 msgid "1125, ibm1125, cp866u, ruscii"
-msgstr ""
+msgstr "1125, ibm1125, cp866u, ruscii"
 
 #: ../Doc/library/codecs.rst:1084 ../Doc/library/codecs.rst:1188
 msgid "Ukrainian"
-msgstr ""
+msgstr "우크라이나어"
 
 #: ../Doc/library/codecs.rst:1088
 msgid "cp1140"
-msgstr ""
+msgstr "cp1140"
 
 #: ../Doc/library/codecs.rst:1088
 msgid "ibm1140"
-msgstr ""
+msgstr "ibm1140"
 
 #: ../Doc/library/codecs.rst:1090
 msgid "cp1250"
-msgstr ""
+msgstr "cp1250"
 
 #: ../Doc/library/codecs.rst:1090
 msgid "windows-1250"
-msgstr ""
+msgstr "windows-1250"
 
 #: ../Doc/library/codecs.rst:1092
 msgid "cp1251"
-msgstr ""
+msgstr "cp1251"
 
 #: ../Doc/library/codecs.rst:1092
 msgid "windows-1251"
-msgstr ""
+msgstr "windows-1251"
 
 #: ../Doc/library/codecs.rst:1095
 msgid "cp1252"
-msgstr ""
+msgstr "cp1252"
 
 #: ../Doc/library/codecs.rst:1095
 msgid "windows-1252"
-msgstr ""
+msgstr "windows-1252"
 
 #: ../Doc/library/codecs.rst:1097
 msgid "cp1253"
-msgstr ""
+msgstr "cp1253"
 
 #: ../Doc/library/codecs.rst:1097
 msgid "windows-1253"
-msgstr ""
+msgstr "windows-1253"
 
 #: ../Doc/library/codecs.rst:1099
 msgid "cp1254"
-msgstr ""
+msgstr "cp1254"
 
 #: ../Doc/library/codecs.rst:1099
 msgid "windows-1254"
-msgstr ""
+msgstr "windows-1254"
 
 #: ../Doc/library/codecs.rst:1101
 msgid "cp1255"
-msgstr ""
+msgstr "cp1255"
 
 #: ../Doc/library/codecs.rst:1101
 msgid "windows-1255"
-msgstr ""
+msgstr "windows-1255"
 
 #: ../Doc/library/codecs.rst:1103
 msgid "cp1256"
-msgstr ""
+msgstr "cp1256"
 
 #: ../Doc/library/codecs.rst:1103
 msgid "windows-1256"
-msgstr ""
+msgstr "windows-1256"
 
 #: ../Doc/library/codecs.rst:1105
 msgid "cp1257"
-msgstr ""
+msgstr "cp1257"
 
 #: ../Doc/library/codecs.rst:1105
 msgid "windows-1257"
-msgstr ""
+msgstr "windows-1257"
 
 #: ../Doc/library/codecs.rst:1107
 msgid "cp1258"
-msgstr ""
+msgstr "cp1258"
 
 #: ../Doc/library/codecs.rst:1107
 msgid "windows-1258"
-msgstr ""
+msgstr "windows-1258"
 
 #: ../Doc/library/codecs.rst:1107
 msgid "Vietnamese"
-msgstr ""
+msgstr "베트남어"
 
 #: ../Doc/library/codecs.rst:1109
 msgid "euc_jp"
-msgstr ""
+msgstr "euc_jp"
 
 #: ../Doc/library/codecs.rst:1109
 msgid "eucjp, ujis, u-jis"
-msgstr ""
+msgstr "eucjp, ujis, u-jis"
 
 #: ../Doc/library/codecs.rst:1111
 msgid "euc_jis_2004"
-msgstr ""
+msgstr "euc_jis_2004"
 
 #: ../Doc/library/codecs.rst:1111
 msgid "jisx0213, eucjis2004"
-msgstr ""
+msgstr "jisx0213, eucjis2004"
 
 #: ../Doc/library/codecs.rst:1113
 msgid "euc_jisx0213"
-msgstr ""
+msgstr "euc_jisx0213"
 
 #: ../Doc/library/codecs.rst:1113
 msgid "eucjisx0213"
-msgstr ""
+msgstr "eucjisx0213"
 
 #: ../Doc/library/codecs.rst:1115
 msgid "euc_kr"
-msgstr ""
+msgstr "euc_kr"
 
 #: ../Doc/library/codecs.rst:1115
 msgid "euckr, korean, ksc5601, ks_c-5601, ks_c-5601-1987, ksx1001, ks_x-1001"
-msgstr ""
+msgstr "euckr, korean, ksc5601, ks_c-5601, ks_c-5601-1987, ksx1001, ks_x-1001"
 
 #: ../Doc/library/codecs.rst:1119
 msgid "gb2312"
-msgstr ""
+msgstr "gb2312"
 
 #: ../Doc/library/codecs.rst:1119
 msgid ""
 "chinese, csiso58gb231280, euc-cn, euccn, eucgb2312-cn, gb2312-1980, "
 "gb2312-80, iso-ir-58"
 msgstr ""
+"chinese, csiso58gb231280, euc-cn, euccn, eucgb2312-cn, gb2312-1980, "
+"gb2312-80, iso-ir-58"
 
 #: ../Doc/library/codecs.rst:1119 ../Doc/library/codecs.rst:1128
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "중국어 간체"
 
 #: ../Doc/library/codecs.rst:1124
 msgid "gbk"
-msgstr ""
+msgstr "gbk"
 
 #: ../Doc/library/codecs.rst:1124
 msgid "936, cp936, ms936"
-msgstr ""
+msgstr "936, cp936, ms936"
 
 #: ../Doc/library/codecs.rst:1124 ../Doc/library/codecs.rst:1126
 msgid "Unified Chinese"
-msgstr ""
+msgstr "통합 중국어"
 
 #: ../Doc/library/codecs.rst:1126
 msgid "gb18030"
-msgstr ""
+msgstr "gb18030"
 
 #: ../Doc/library/codecs.rst:1126
 msgid "gb18030-2000"
-msgstr ""
+msgstr "gb18030-2000"
 
 #: ../Doc/library/codecs.rst:1128
 msgid "hz"
-msgstr ""
+msgstr "hz"
 
 #: ../Doc/library/codecs.rst:1128
 msgid "hzgb, hz-gb, hz-gb-2312"
-msgstr ""
+msgstr "hzgb, hz-gb, hz-gb-2312"
 
 #: ../Doc/library/codecs.rst:1130
 msgid "iso2022_jp"
-msgstr ""
+msgstr "iso2022_jp"
 
 #: ../Doc/library/codecs.rst:1130
 msgid "csiso2022jp, iso2022jp, iso-2022-jp"
-msgstr ""
+msgstr "csiso2022jp, iso2022jp, iso-2022-jp"
 
 #: ../Doc/library/codecs.rst:1133
 msgid "iso2022_jp_1"
-msgstr ""
+msgstr "iso2022_jp_1"
 
 #: ../Doc/library/codecs.rst:1133
 msgid "iso2022jp-1, iso-2022-jp-1"
-msgstr ""
+msgstr "iso2022jp-1, iso-2022-jp-1"
 
 #: ../Doc/library/codecs.rst:1135
 msgid "iso2022_jp_2"
-msgstr ""
+msgstr "iso2022_jp_2"
 
 #: ../Doc/library/codecs.rst:1135
 msgid "iso2022jp-2, iso-2022-jp-2"
-msgstr ""
+msgstr "iso2022jp-2, iso-2022-jp-2"
 
 #: ../Doc/library/codecs.rst:1135
 msgid "Japanese, Korean, Simplified Chinese, Western Europe, Greek"
-msgstr ""
+msgstr "일본어, 한국어, 중국어 간체, 서유럽어, 그리스어"
 
 #: ../Doc/library/codecs.rst:1138
 msgid "iso2022_jp_2004"
-msgstr ""
+msgstr "iso2022_jp_2004"
 
 #: ../Doc/library/codecs.rst:1138
 msgid "iso2022jp-2004, iso-2022-jp-2004"
-msgstr ""
+msgstr "iso2022jp-2004, iso-2022-jp-2004"
 
 #: ../Doc/library/codecs.rst:1141
 msgid "iso2022_jp_3"
-msgstr ""
+msgstr "iso2022_jp_3"
 
 #: ../Doc/library/codecs.rst:1141
 msgid "iso2022jp-3, iso-2022-jp-3"
-msgstr ""
+msgstr "iso2022jp-3, iso-2022-jp-3"
 
 #: ../Doc/library/codecs.rst:1143
 msgid "iso2022_jp_ext"
-msgstr ""
+msgstr "iso2022_jp_ext"
 
 #: ../Doc/library/codecs.rst:1143
 msgid "iso2022jp-ext, iso-2022-jp-ext"
-msgstr ""
+msgstr "iso2022jp-ext, iso-2022-jp-ext"
 
 #: ../Doc/library/codecs.rst:1145
 msgid "iso2022_kr"
-msgstr ""
+msgstr "iso2022_kr"
 
 #: ../Doc/library/codecs.rst:1145
 msgid "csiso2022kr, iso2022kr, iso-2022-kr"
-msgstr ""
+msgstr "csiso2022kr, iso2022kr, iso-2022-kr"
 
 #: ../Doc/library/codecs.rst:1148
 msgid "latin_1"
-msgstr ""
+msgstr "latin_1"
 
 #: ../Doc/library/codecs.rst:1148
 msgid "iso-8859-1, iso8859-1, 8859, cp819, latin, latin1, L1"
-msgstr ""
+msgstr "iso-8859-1, iso8859-1, 8859, cp819, latin, latin1, L1"
 
 #: ../Doc/library/codecs.rst:1151
 msgid "iso8859_2"
-msgstr ""
+msgstr "iso8859_2"
 
 #: ../Doc/library/codecs.rst:1151
 msgid "iso-8859-2, latin2, L2"
-msgstr ""
+msgstr "iso-8859-2, latin2, L2"
 
 #: ../Doc/library/codecs.rst:1153
 msgid "iso8859_3"
-msgstr ""
+msgstr "iso8859_3"
 
 #: ../Doc/library/codecs.rst:1153
 msgid "iso-8859-3, latin3, L3"
-msgstr ""
+msgstr "iso-8859-3, latin3, L3"
 
 #: ../Doc/library/codecs.rst:1153
 msgid "Esperanto, Maltese"
-msgstr ""
+msgstr "에스페란토어, 몰타어"
 
 #: ../Doc/library/codecs.rst:1155
 msgid "iso8859_4"
-msgstr ""
+msgstr "iso8859_4"
 
 #: ../Doc/library/codecs.rst:1155
 msgid "iso-8859-4, latin4, L4"
-msgstr ""
+msgstr "iso-8859-4, latin4, L4"
 
 #: ../Doc/library/codecs.rst:1157
 msgid "iso8859_5"
-msgstr ""
+msgstr "iso8859_5"
 
 #: ../Doc/library/codecs.rst:1157
 msgid "iso-8859-5, cyrillic"
-msgstr ""
+msgstr "iso-8859-5, cyrillic"
 
 #: ../Doc/library/codecs.rst:1160
 msgid "iso8859_6"
-msgstr ""
+msgstr "iso8859_6"
 
 #: ../Doc/library/codecs.rst:1160
 msgid "iso-8859-6, arabic"
-msgstr ""
+msgstr "iso-8859-6, arabic"
 
 #: ../Doc/library/codecs.rst:1162
 msgid "iso8859_7"
-msgstr ""
+msgstr "iso8859_7"
 
 #: ../Doc/library/codecs.rst:1162
 msgid "iso-8859-7, greek, greek8"
-msgstr ""
+msgstr "iso-8859-7, greek, greek8"
 
 #: ../Doc/library/codecs.rst:1164
 msgid "iso8859_8"
-msgstr ""
+msgstr "iso8859_8"
 
 #: ../Doc/library/codecs.rst:1164
 msgid "iso-8859-8, hebrew"
-msgstr ""
+msgstr "iso-8859-8, hebrew"
 
 #: ../Doc/library/codecs.rst:1166
 msgid "iso8859_9"
-msgstr ""
+msgstr "iso8859_9"
 
 #: ../Doc/library/codecs.rst:1166
 msgid "iso-8859-9, latin5, L5"
-msgstr ""
+msgstr "iso-8859-9, latin5, L5"
 
 #: ../Doc/library/codecs.rst:1168
 msgid "iso8859_10"
-msgstr ""
+msgstr "iso8859_10"
 
 #: ../Doc/library/codecs.rst:1168
 msgid "iso-8859-10, latin6, L6"
-msgstr ""
+msgstr "iso-8859-10, latin6, L6"
 
 #: ../Doc/library/codecs.rst:1168
 msgid "Nordic languages"
-msgstr ""
+msgstr "북유럽어"
 
 #: ../Doc/library/codecs.rst:1170
 msgid "iso8859_11"
-msgstr ""
+msgstr "iso8859_11"
 
 #: ../Doc/library/codecs.rst:1170
 msgid "iso-8859-11, thai"
-msgstr ""
+msgstr "iso-8859-11, thai"
 
 #: ../Doc/library/codecs.rst:1170
 msgid "Thai languages"
-msgstr ""
+msgstr "태국어"
 
 #: ../Doc/library/codecs.rst:1172
 msgid "iso8859_13"
-msgstr ""
+msgstr "iso8859_13"
 
 #: ../Doc/library/codecs.rst:1172
 msgid "iso-8859-13, latin7, L7"
-msgstr ""
+msgstr "iso-8859-13, latin7, L7"
 
 #: ../Doc/library/codecs.rst:1174
 msgid "iso8859_14"
-msgstr ""
+msgstr "iso8859_14"
 
 #: ../Doc/library/codecs.rst:1174
 msgid "iso-8859-14, latin8, L8"
-msgstr ""
+msgstr "iso-8859-14, latin8, L8"
 
 #: ../Doc/library/codecs.rst:1174
 msgid "Celtic languages"
-msgstr ""
+msgstr "켈틱어"
 
 #: ../Doc/library/codecs.rst:1176
 msgid "iso8859_15"
-msgstr ""
+msgstr "iso8859_15"
 
 #: ../Doc/library/codecs.rst:1176
 msgid "iso-8859-15, latin9, L9"
-msgstr ""
+msgstr "iso-8859-15, latin9, L9"
 
 #: ../Doc/library/codecs.rst:1178
 msgid "iso8859_16"
-msgstr ""
+msgstr "iso8859_16"
 
 #: ../Doc/library/codecs.rst:1178
 msgid "iso-8859-16, latin10, L10"
-msgstr ""
+msgstr "iso-8859-16, latin10, L10"
 
 #: ../Doc/library/codecs.rst:1178
 msgid "South-Eastern Europe"
-msgstr ""
+msgstr "남유럽어"
 
 #: ../Doc/library/codecs.rst:1180
 msgid "johab"
-msgstr ""
+msgstr "johab"
 
 #: ../Doc/library/codecs.rst:1180
 msgid "cp1361, ms1361"
-msgstr ""
+msgstr "cp1361, ms1361"
 
 #: ../Doc/library/codecs.rst:1182
 msgid "koi8_r"
-msgstr ""
+msgstr "koi8_r"
 
 #: ../Doc/library/codecs.rst:1184
 msgid "koi8_t"
-msgstr ""
+msgstr "koi8_t"
 
 #: ../Doc/library/codecs.rst:1184
 msgid "Tajik"
-msgstr ""
+msgstr "타지크어"
 
 #: ../Doc/library/codecs.rst:1188
 msgid "koi8_u"
-msgstr ""
+msgstr "koi8_u"
 
 #: ../Doc/library/codecs.rst:1190
 msgid "kz1048"
-msgstr ""
+msgstr "kz1048"
 
 #: ../Doc/library/codecs.rst:1190
 msgid "kz_1048, strk1048_2002, rk1048"
-msgstr ""
+msgstr "kz_1048, strk1048_2002, rk1048"
 
 #: ../Doc/library/codecs.rst:1190 ../Doc/library/codecs.rst:1207
 msgid "Kazakh"
-msgstr ""
+msgstr "카자흐어"
 
 #: ../Doc/library/codecs.rst:1194
 msgid "mac_cyrillic"
-msgstr ""
+msgstr "mac_cyrillic"
 
 #: ../Doc/library/codecs.rst:1194
 msgid "maccyrillic"
-msgstr ""
+msgstr "maccyrillic"
 
 #: ../Doc/library/codecs.rst:1197
 msgid "mac_greek"
-msgstr ""
+msgstr "mac_greek"
 
 #: ../Doc/library/codecs.rst:1197
 msgid "macgreek"
-msgstr ""
+msgstr "macgreek"
 
 #: ../Doc/library/codecs.rst:1199
 msgid "mac_iceland"
-msgstr ""
+msgstr "mac_iceland"
 
 #: ../Doc/library/codecs.rst:1199
 msgid "maciceland"
-msgstr ""
+msgstr "maciceland"
 
 #: ../Doc/library/codecs.rst:1201
 msgid "mac_latin2"
-msgstr ""
+msgstr "mac_latin2"
 
 #: ../Doc/library/codecs.rst:1201
 msgid "maclatin2, maccentraleurope"
@@ -2126,59 +2394,59 @@ msgstr ""
 
 #: ../Doc/library/codecs.rst:1203
 msgid "mac_roman"
-msgstr ""
+msgstr "mac_roman"
 
 #: ../Doc/library/codecs.rst:1203
 msgid "macroman, macintosh"
-msgstr ""
+msgstr "macroman, macintosh"
 
 #: ../Doc/library/codecs.rst:1205
 msgid "mac_turkish"
-msgstr ""
+msgstr "mac_turkish"
 
 #: ../Doc/library/codecs.rst:1205
 msgid "macturkish"
-msgstr ""
+msgstr "macturkish"
 
 #: ../Doc/library/codecs.rst:1207
 msgid "ptcp154"
-msgstr ""
+msgstr "ptcp154"
 
 #: ../Doc/library/codecs.rst:1207
 msgid "csptcp154, pt154, cp154, cyrillic-asian"
-msgstr ""
+msgstr "csptcp154, pt154, cp154, cyrillic-asian"
 
 #: ../Doc/library/codecs.rst:1210
 msgid "shift_jis"
-msgstr ""
+msgstr "shift_jis"
 
 #: ../Doc/library/codecs.rst:1210
 msgid "csshiftjis, shiftjis, sjis, s_jis"
-msgstr ""
+msgstr "csshiftjis, shiftjis, sjis, s_jis"
 
 #: ../Doc/library/codecs.rst:1213
 msgid "shift_jis_2004"
-msgstr ""
+msgstr "shift_jis_2004"
 
 #: ../Doc/library/codecs.rst:1213
 msgid "shiftjis2004, sjis_2004, sjis2004"
-msgstr ""
+msgstr "shiftjis2004, sjis_2004, sjis2004"
 
 #: ../Doc/library/codecs.rst:1216
 msgid "shift_jisx0213"
-msgstr ""
+msgstr "shift_jisx0213"
 
 #: ../Doc/library/codecs.rst:1216
 msgid "shiftjisx0213, sjisx0213, s_jisx0213"
-msgstr ""
+msgstr "shiftjisx0213, sjisx0213, s_jisx0213"
 
 #: ../Doc/library/codecs.rst:1219
 msgid "utf_32"
-msgstr ""
+msgstr "utf_32"
 
 #: ../Doc/library/codecs.rst:1219
 msgid "U32, utf32"
-msgstr ""
+msgstr "U32, utf32"
 
 #: ../Doc/library/codecs.rst:1219 ../Doc/library/codecs.rst:1221
 #: ../Doc/library/codecs.rst:1223 ../Doc/library/codecs.rst:1225
@@ -2186,67 +2454,67 @@ msgstr ""
 #: ../Doc/library/codecs.rst:1231 ../Doc/library/codecs.rst:1233
 #: ../Doc/library/codecs.rst:1235
 msgid "all languages"
-msgstr ""
+msgstr "모든 언어"
 
 #: ../Doc/library/codecs.rst:1221
 msgid "utf_32_be"
-msgstr ""
+msgstr "utf_32_be"
 
 #: ../Doc/library/codecs.rst:1221
 msgid "UTF-32BE"
-msgstr ""
+msgstr "UTF-32BE"
 
 #: ../Doc/library/codecs.rst:1223
 msgid "utf_32_le"
-msgstr ""
+msgstr "utf_32_le"
 
 #: ../Doc/library/codecs.rst:1223
 msgid "UTF-32LE"
-msgstr ""
+msgstr "UTF-32LE"
 
 #: ../Doc/library/codecs.rst:1225
 msgid "utf_16"
-msgstr ""
+msgstr "utf_16"
 
 #: ../Doc/library/codecs.rst:1225
 msgid "U16, utf16"
-msgstr ""
+msgstr "U16, utf16"
 
 #: ../Doc/library/codecs.rst:1227
 msgid "utf_16_be"
-msgstr ""
+msgstr "utf_16_be"
 
 #: ../Doc/library/codecs.rst:1227
 msgid "UTF-16BE"
-msgstr ""
+msgstr "UTF-16BE"
 
 #: ../Doc/library/codecs.rst:1229
 msgid "utf_16_le"
-msgstr ""
+msgstr "utf_16_le"
 
 #: ../Doc/library/codecs.rst:1229
 msgid "UTF-16LE"
-msgstr ""
+msgstr "UTF-16LE"
 
 #: ../Doc/library/codecs.rst:1231
 msgid "utf_7"
-msgstr ""
+msgstr "utf_7"
 
 #: ../Doc/library/codecs.rst:1231
 msgid "U7, unicode-1-1-utf-7"
-msgstr ""
+msgstr "U7, unicode-1-1-utf-7"
 
 #: ../Doc/library/codecs.rst:1233
 msgid "utf_8"
-msgstr ""
+msgstr "utf_8"
 
 #: ../Doc/library/codecs.rst:1233
 msgid "U8, UTF, utf8, cp65001"
-msgstr ""
+msgstr "U8, UTF, utf8, cp65001"
 
 #: ../Doc/library/codecs.rst:1235
 msgid "utf_8_sig"
-msgstr ""
+msgstr "utf_8_sig"
 
 #: ../Doc/library/codecs.rst:1238
 msgid ""
@@ -2254,14 +2522,16 @@ msgid ""
 "points (``U+D800``--``U+DFFF``) to be encoded. The utf-32\\* decoders no "
 "longer decode byte sequences that correspond to surrogate code points."
 msgstr ""
+"utf-16\\* 과 utf-32\\* 인코더는 더는 서로게이트 코드 포인트(``U+D800``--``U+DFFF``)를 인코딩할 "
+"수 없습니다. utf-32\\* 디코더는 더는 서로게이트 코드 포인트에 해당하는 바이트 시퀀스를 디코딩하지 않습니다."
 
 #: ../Doc/library/codecs.rst:1244
 msgid "``cp65001`` is now an alias to ``utf_8``."
-msgstr ""
+msgstr "``cp65001``\\은 이제 ``utf_8``\\의 별칭입니다."
 
 #: ../Doc/library/codecs.rst:1249
 msgid "Python Specific Encodings"
-msgstr ""
+msgstr "파이썬 특정 인코딩"
 
 #: ../Doc/library/codecs.rst:1251
 msgid ""
@@ -2273,10 +2543,13 @@ msgid ""
 "encodings). For asymmetric codecs, the stated meaning describes the "
 "encoding direction."
 msgstr ""
+"사전 정의된 많은 코덱이 파이썬에만 해당하여, 코덱 이름은 파이썬 외부에서 의미가 없습니다. 예상되는 입력과 출력형에 따라 아래 "
+"표에 나열되어 있습니다 (텍스트 인코딩은 코덱의 가장 일반적인 사용 사례이지만, 하부 코덱 인프라는 단지 텍스트 인코딩이 아닌 "
+"임의의 데이터 변환을 지원합니다). 비대칭 코덱의 경우, 언급된 의미는 인코딩 방향을 설명합니다."
 
 #: ../Doc/library/codecs.rst:1259
 msgid "Text Encodings"
-msgstr ""
+msgstr "텍스트 인코딩"
 
 #: ../Doc/library/codecs.rst:1261
 msgid ""
@@ -2284,56 +2557,60 @@ msgid ""
 ":term:`bytes-like object` to :class:`str` decoding, similar to the "
 "Unicode text encodings."
 msgstr ""
+"다음 코덱은 유니코드 텍스트 인코딩과 유사하게, :class:`str`\\에서 :class:`bytes`\\로의 인코딩과 "
+":term:`바이트열류 객체 <bytes-like object>`\\에서 :class:`str`\\로의 디코딩을 제공합니다."
 
 #: ../Doc/library/codecs.rst:1270
 msgid "idna"
-msgstr ""
+msgstr "idna"
 
 #: ../Doc/library/codecs.rst:1270
 msgid ""
 "Implement :rfc:`3490`, see also :mod:`encodings.idna`. Only "
 "``errors='strict'`` is supported."
 msgstr ""
+":rfc:`3490`\\을 구현합니다. :mod:`encodings.idna`\\도 참조하십시오. "
+"``errors='strict'``\\만 지원됩니다."
 
 #: ../Doc/library/codecs.rst:1276
 msgid "mbcs"
-msgstr ""
+msgstr "mbcs"
 
 #: ../Doc/library/codecs.rst:1276
 msgid "ansi, dbcs"
-msgstr ""
+msgstr "ansi, dbcs"
 
 #: ../Doc/library/codecs.rst:1276
 msgid "Windows only: Encode the operand according to the ANSI codepage (CP_ACP)."
-msgstr ""
+msgstr "윈도우 전용: ANSI 코드 페이지(CP_ACP)에 따라 피연산자를 인코딩합니다."
 
 #: ../Doc/library/codecs.rst:1280
 msgid "oem"
-msgstr ""
+msgstr "oem"
 
 #: ../Doc/library/codecs.rst:1280
 msgid "Windows only: Encode the operand according to the OEM codepage (CP_OEMCP)."
-msgstr ""
+msgstr "윈도우 전용: OEM 코드 페이지(CP_OEMCP)에 따라 피연산자를 인코딩합니다."
 
 #: ../Doc/library/codecs.rst:1286
 msgid "palmos"
-msgstr ""
+msgstr "palmos"
 
 #: ../Doc/library/codecs.rst:1286
 msgid "Encoding of PalmOS 3.5."
-msgstr ""
+msgstr "PalmOS 3.5의 인코딩."
 
 #: ../Doc/library/codecs.rst:1288
 msgid "punycode"
-msgstr ""
+msgstr "punycode"
 
 #: ../Doc/library/codecs.rst:1288
 msgid "Implement :rfc:`3492`. Stateful codecs are not supported."
-msgstr ""
+msgstr ":rfc:`3492`\\를 구현합니다. 상태 있는 코덱은 지원되지 않습니다."
 
 #: ../Doc/library/codecs.rst:1292
 msgid "raw_unicode_escape"
-msgstr ""
+msgstr "raw_unicode_escape"
 
 #: ../Doc/library/codecs.rst:1292
 msgid ""
@@ -2341,20 +2618,22 @@ msgid ""
 "points. Existing backslashes are not escaped in any way. It is used in "
 "the Python pickle protocol."
 msgstr ""
+"다른 코드 포인트를 위해 ``\\uXXXX``\\와 ``\\UXXXXXXXX``\\를 사용하는 Latin-1 인코딩. 기존 역 "
+"슬래시는 어떤 방식으로도 이스케이프 되지 않습니다. 파이썬 피클 프로토콜에서 사용됩니다."
 
 #: ../Doc/library/codecs.rst:1301
 msgid "undefined"
-msgstr ""
+msgstr "undefined"
 
 #: ../Doc/library/codecs.rst:1301
 msgid ""
 "Raise an exception for all conversions, even empty strings. The error "
 "handler is ignored."
-msgstr ""
+msgstr "모든 변환에 대해 예외를 발생시킵니다, 빈 문자열조차. 에러 처리기는 무시됩니다."
 
 #: ../Doc/library/codecs.rst:1306
 msgid "unicode_escape"
-msgstr ""
+msgstr "unicode_escape"
 
 #: ../Doc/library/codecs.rst:1306
 msgid ""
@@ -2363,14 +2642,16 @@ msgid ""
 "Latin-1 source code. Beware that Python source code actually uses UTF-8 "
 "by default."
 msgstr ""
+"따옴표가 이스케이프 되지 않는 것을 제외하고, ASCII로 인코딩된 파이썬 소스 코드에서 유니코드 리터럴 내용으로 적합한 인코딩. "
+"Latin-1 소스 코드에서 디코딩합니다. 파이썬 소스 코드는 실제로는 기본적으로 UTF-8을 사용합니다."
 
 #: ../Doc/library/codecs.rst:1318
 msgid "\"unicode_internal\" codec is removed."
-msgstr ""
+msgstr "\"unicode_internal\" 코덱이 제거되었습니다."
 
 #: ../Doc/library/codecs.rst:1325
 msgid "Binary Transforms"
-msgstr ""
+msgstr "바이너리 변환"
 
 #: ../Doc/library/codecs.rst:1327
 msgid ""
@@ -2378,114 +2659,117 @@ msgid ""
 " to :class:`bytes` mappings. They are not supported by "
 ":meth:`bytes.decode` (which only produces :class:`str` output)."
 msgstr ""
+"다음 코덱은 바이너리 변환을 제공합니다: :term:`바이트열류 객체 <bytes-like object>`\\에서 "
+":class:`bytes`\\로의 매핑.  (:class:`str` 출력만 생성하는) :meth:`bytes.decode`\\에서는"
+" 지원되지 않습니다."
 
 #: ../Doc/library/codecs.rst:1335
 msgid "Encoder / decoder"
-msgstr ""
+msgstr "인코더 / 디코더"
 
 #: ../Doc/library/codecs.rst:1337
 msgid "base64_codec [#b64]_"
-msgstr ""
+msgstr "base64_codec [#b64]_"
 
 #: ../Doc/library/codecs.rst:1337
 msgid "base64, base_64"
-msgstr ""
+msgstr "base64, base_64"
 
 #: ../Doc/library/codecs.rst:1337
 msgid ""
 "Convert the operand to multiline MIME base64 (the result always includes "
 "a trailing ``'\\n'``)."
-msgstr ""
+msgstr "피연산자를 여러 줄 MIME base64로 변환합니다 (결과에는 항상 후행 ``'\\n'``\\이 포함됩니다)."
 
 #: ../Doc/library/codecs.rst:1342
 msgid "accepts any :term:`bytes-like object` as input for encoding and decoding"
-msgstr ""
+msgstr "인코딩과 디코딩을 위해 모든 :term:`바이트열류 객체 <bytes-like object>`\\를 입력으로 받아들입니다."
 
 #: ../Doc/library/codecs.rst:1337
 msgid ":meth:`base64.encodebytes` / :meth:`base64.decodebytes`"
-msgstr ""
+msgstr ":meth:`base64.encodebytes` / :meth:`base64.decodebytes`"
 
 #: ../Doc/library/codecs.rst:1348
 msgid "bz2_codec"
-msgstr ""
+msgstr "bz2_codec"
 
 #: ../Doc/library/codecs.rst:1348
 msgid "bz2"
-msgstr ""
+msgstr "bz2"
 
 #: ../Doc/library/codecs.rst:1348
 msgid "Compress the operand using bz2."
-msgstr ""
+msgstr "bz2를 사용하여 피연산자를 압축합니다."
 
 #: ../Doc/library/codecs.rst:1348
 msgid ":meth:`bz2.compress` / :meth:`bz2.decompress`"
-msgstr ""
+msgstr ":meth:`bz2.compress` / :meth:`bz2.decompress`"
 
 #: ../Doc/library/codecs.rst:1351
 msgid "hex_codec"
-msgstr ""
+msgstr "hex_codec"
 
 #: ../Doc/library/codecs.rst:1351
 msgid "hex"
-msgstr ""
+msgstr "hex"
 
 #: ../Doc/library/codecs.rst:1351
 msgid ""
 "Convert the operand to hexadecimal representation, with two digits per "
 "byte."
-msgstr ""
+msgstr "바이트 당 두 자리 숫자를 사용하여, 피연산자를 16진 표현으로 변환합니다."
 
 #: ../Doc/library/codecs.rst:1351
 msgid ":meth:`binascii.b2a_hex` / :meth:`binascii.a2b_hex`"
-msgstr ""
+msgstr ":meth:`binascii.b2a_hex` / :meth:`binascii.a2b_hex`"
 
 #: ../Doc/library/codecs.rst:1356
 msgid "quopri_codec"
-msgstr ""
+msgstr "quopri_codec"
 
 #: ../Doc/library/codecs.rst:1356
 msgid "quopri, quotedprintable, quoted_printable"
-msgstr ""
+msgstr "quopri, quotedprintable, quoted_printable"
 
 #: ../Doc/library/codecs.rst:1356
 msgid "Convert the operand to MIME quoted printable."
-msgstr ""
+msgstr "피연산자를 MIME quoted printable로 변환합니다."
 
 #: ../Doc/library/codecs.rst:1356
 msgid ":meth:`quopri.encode` with ``quotetabs=True`` / :meth:`quopri.decode`"
-msgstr ""
+msgstr "``quotetabs=True``\\를 사용한 :meth:`quopri.encode` / :meth:`quopri.decode`"
 
 #: ../Doc/library/codecs.rst:1360
 msgid "uu_codec"
-msgstr ""
+msgstr "uu_codec"
 
 #: ../Doc/library/codecs.rst:1360
 msgid "uu"
-msgstr ""
+msgstr "uu"
 
 #: ../Doc/library/codecs.rst:1360
 msgid "Convert the operand using uuencode."
-msgstr ""
+msgstr "uuencode를 사용하여 피연산자를 변환합니다."
 
 #: ../Doc/library/codecs.rst:1360
 msgid ":meth:`uu.encode` / :meth:`uu.decode`"
-msgstr ""
+msgstr ":meth:`uu.encode` / :meth:`uu.decode`"
 
 #: ../Doc/library/codecs.rst:1363
 msgid "zlib_codec"
-msgstr ""
+msgstr "zlib_codec"
 
 #: ../Doc/library/codecs.rst:1363
 msgid "zip, zlib"
-msgstr ""
+msgstr "zip, zlib"
 
 #: ../Doc/library/codecs.rst:1363
 msgid "Compress the operand using gzip."
-msgstr ""
+msgstr "gzip을 사용하여 피연산자를 압축합니다."
 
 #: ../Doc/library/codecs.rst:1363
 msgid ":meth:`zlib.compress` / :meth:`zlib.decompress`"
-msgstr ""
+msgstr ":meth:`zlib.compress` / :meth:`zlib.decompress`"
 
 #: ../Doc/library/codecs.rst:1367
 msgid ""
@@ -2493,18 +2777,20 @@ msgid ""
 "``'base64_codec'`` also accepts ASCII-only instances of :class:`str` for "
 "decoding"
 msgstr ""
+"``'base64_codec'``\\는 :term:`바이트열류 객체 <bytes-like object>` 외에도 디코딩을 위해 "
+"ASCII만 있는 :class:`str` 인스턴스도 허용합니다."
 
 #: ../Doc/library/codecs.rst:1371
 msgid "Restoration of the binary transforms."
-msgstr ""
+msgstr "바이너리 변환의 복원."
 
 #: ../Doc/library/codecs.rst:1374
 msgid "Restoration of the aliases for the binary transforms."
-msgstr ""
+msgstr "바이너리 변환에 대한 별칭의 복원."
 
 #: ../Doc/library/codecs.rst:1381
 msgid "Text Transforms"
-msgstr ""
+msgstr "텍스트 변환"
 
 #: ../Doc/library/codecs.rst:1383
 msgid ""
@@ -2512,30 +2798,32 @@ msgid ""
 ":class:`str` mapping. It is not supported by :meth:`str.encode` (which "
 "only produces :class:`bytes` output)."
 msgstr ""
+"다음 코덱은 텍스트 변환을 제공합니다: :class:`str`\\에서 :class:`str`\\로의 매핑. "
+"(:class:`bytes` 출력만 생성하는) :meth:`str.encode`\\에서는 지원되지 않습니다."
 
 #: ../Doc/library/codecs.rst:1392
 msgid "rot_13"
-msgstr ""
+msgstr "rot_13"
 
 #: ../Doc/library/codecs.rst:1392
 msgid "rot13"
-msgstr ""
+msgstr "rot13"
 
 #: ../Doc/library/codecs.rst:1392
 msgid "Return the Caesar-cypher encryption of the operand."
-msgstr ""
+msgstr "피연산자의 시저 암호(Caesar-cypher) 암호화를 반환합니다."
 
 #: ../Doc/library/codecs.rst:1397
 msgid "Restoration of the ``rot_13`` text transform."
-msgstr ""
+msgstr "``rot_13`` 텍스트 변환 복원."
 
 #: ../Doc/library/codecs.rst:1400
 msgid "Restoration of the ``rot13`` alias."
-msgstr ""
+msgstr "``rot13`` 별칭 복원."
 
 #: ../Doc/library/codecs.rst:1405
 msgid ":mod:`encodings.idna` --- Internationalized Domain Names in Applications"
-msgstr ""
+msgstr ":mod:`encodings.idna` --- 응용 프로그램에서의 국제화된 도메인 이름"
 
 #: ../Doc/library/codecs.rst:1411
 msgid ""
@@ -2544,6 +2832,9 @@ msgid ""
 "Internationalized Domain Names (IDN)). It builds upon the ``punycode`` "
 "encoding and :mod:`stringprep`."
 msgstr ""
+"이 모듈은 :rfc:`3490`\\(Internationalized Domain Names in Applications)과 "
+":rfc:`3492`\\(Nameprep: A Stringprep Profile for Internationalized Domain"
+" Names (IDN))를 구현합니다. ``punycode`` 인코딩과 :mod:`stringprep`\\을 기반으로 합니다."
 
 #: ../Doc/library/codecs.rst:1416
 msgid ""
@@ -2559,6 +2850,12 @@ msgid ""
 "and convert back ACE labels to Unicode before presenting them to the "
 "user."
 msgstr ""
+"이 RFC는 함께 도메인 이름에서 비 ASCII 문자를 지원하는 프로토콜을 정의합니다. 비 ASCII 문자(가령 "
+"``www.Alliancefrançaise.nu``)를 포함하는 도메인 이름은 ASCII 호환 인코딩(ACE, 가령 ``www.xn"
+"--alliancefranaise-npb.nu``)으로 변환됩니다. 그런 다음 도메인 이름의 ACE 형식은 DNS 조회, HTTP "
+":mailheader:`Host` 필드 등과 같이 프로토콜에 의해 임의의 문자가 허용되지 않는 모든 위치에서 사용됩니다. 이 변환은"
+" 응용 프로그램에서 수행됩니다; 가능하다면 사용자에게 보이지 않습니다: 응용 프로그램은 전송 시에 유니코드 도메인 레이블을 투명하게"
+" IDNA로 변환하고, 사용자에게 표시하기 전에 ACE 레이블을 다시 유니코드로 변환해야 합니다."
 
 #: ../Doc/library/codecs.rst:1427
 msgid ""
@@ -2576,6 +2873,14 @@ msgid ""
 "host names (:mod:`http.client` then also transparently sends an IDNA "
 "hostname in the :mailheader:`Host` field if it sends that field at all)."
 msgstr ""
+"파이썬은 여러 가지 방식으로 이 변환을 지원합니다: ``idna`` 코덱은 유니코드와 ACE 간의 변환을 수행하여, "
+":rfc:`RFC 3490의 섹션 3.1 <3490#section-3.1>`\\에 정의된 구분 문자를 기반으로 입력 문자열을 "
+"레이블로 분리하고 필요에 따라 각 레이블을 ACE로 변환하고, 반대로 입력 바이트 문자열을 ``.`` 구분 기호를 기반으로 레이블로"
+" 분리하고 모든 ACE 레이블을 유니코드로 변환합니다. 또한, :mod:`socket` 모듈은 유니코드 호스트 이름을 투명하게 "
+"ACE로 변환하므로, 응용 프로그램이 호스트 이름을 소켓 모듈로 전달할 때 호스트 이름 자체를 변환할 필요가 없습니다. 이에 더해,"
+" :mod:`http.client`\\와 :mod:`ftplib`\\와 같은, 함수 매개 변수로 호스트 이름이 있는 모듈은 유니코드"
+" 호스트 이름을 받아들입니다 (:mod:`http.client`\\는 해당 필드를 전송한다면 :mailheader:`Host` "
+"필드에 IDNA 호스트 이름을 투명하게 전송합니다)."
 
 #: ../Doc/library/codecs.rst:1440
 msgid ""
@@ -2583,6 +2888,8 @@ msgid ""
 " no automatic conversion to Unicode is performed: applications wishing to"
 " present such host names to the user should decode them to Unicode."
 msgstr ""
+"회선에서 호스트 이름을 수신할 때 (가령 역 이름 조회(reverse name lookup)에서), 유니코드로 자동 변환되지 "
+"않습니다: 이러한 호스트 이름을 사용자에게 제시하려는 응용 프로그램은 유니코드로 디코딩해야 합니다."
 
 #: ../Doc/library/codecs.rst:1444
 msgid ""
@@ -2591,48 +2898,57 @@ msgid ""
 "insensitivity of international domain names, and to unify similar "
 "characters. The nameprep functions can be used directly if desired."
 msgstr ""
+"또한 모듈 :mod:`encodings.idna`\\는 nameprep 절차를 구현합니다. 이는 국제 도메인 이름의 대소 문자를 "
+"구분하지 않고 유사한 문자를 통합하기 위해 호스트 이름에 대해 특정 정규화를 수행합니다. 원한다면 nameprep 함수를 직접 "
+"사용할 수 있습니다."
 
 #: ../Doc/library/codecs.rst:1452
 msgid ""
 "Return the nameprepped version of *label*. The implementation currently "
 "assumes query strings, so ``AllowUnassigned`` is true."
 msgstr ""
+"*label*\\의 nameprep 된 버전을 반환합니다. 구현은 현재 쿼리 문자열을 가정하므로, "
+"``AllowUnassigned``\\는 참입니다."
 
 #: ../Doc/library/codecs.rst:1458
 msgid ""
 "Convert a label to ASCII, as specified in :rfc:`3490`. "
 "``UseSTD3ASCIIRules`` is assumed to be false."
 msgstr ""
+":rfc:`3490`\\에 지정된 대로 레이블을 ASCII로 변환합니다. ``UseSTD3ASCIIRules``\\는 거짓으로 "
+"가정합니다."
 
 #: ../Doc/library/codecs.rst:1464
 msgid "Convert a label to Unicode, as specified in :rfc:`3490`."
-msgstr ""
+msgstr ":rfc:`3490`\\에 지정된 대로 레이블을 유니코드로 변환합니다."
 
 #: ../Doc/library/codecs.rst:1468
 msgid ":mod:`encodings.mbcs` --- Windows ANSI codepage"
-msgstr ""
+msgstr ":mod:`encodings.mbcs` --- 윈도우 ANSI 코드 페이지"
 
 #: ../Doc/library/codecs.rst:1473
 msgid "This module implements the ANSI codepage (CP_ACP)."
-msgstr ""
+msgstr "이 모듈은 ANSI 코드 페이지(CP_ACP)를 구현합니다."
 
 #: ../Doc/library/codecs.rst:1476
 msgid ":ref:`Availability <availability>`: Windows only."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 윈도우 전용."
 
 #: ../Doc/library/codecs.rst:1477
 msgid "Support any error handler."
-msgstr ""
+msgstr "모든 에러 처리기를 지원합니다."
 
 #: ../Doc/library/codecs.rst:1480
 msgid ""
 "Before 3.2, the *errors* argument was ignored; ``'replace'`` was always "
 "used to encode, and ``'ignore'`` to decode."
 msgstr ""
+"3.2 이전에는, *errors* 인자가 무시되었습니다; 인코딩에는 항상 ``'replace'``\\가 사용되고, 디코딩에는 항상 "
+"``'ignore'``\\가 사용되었습니다."
 
 #: ../Doc/library/codecs.rst:1486
 msgid ":mod:`encodings.utf_8_sig` --- UTF-8 codec with BOM signature"
-msgstr ""
+msgstr ":mod:`encodings.utf_8_sig` --- BOM 서명이 있는 UTF-8 코덱"
 
 #: ../Doc/library/codecs.rst:1492
 msgid ""
@@ -2642,427 +2958,7 @@ msgid ""
 "stream). On decoding, an optional UTF-8 encoded BOM at the start of the "
 "data will be skipped."
 msgstr ""
-
-#~ msgid ""
-#~ "Some common encodings can bypass the "
-#~ "codecs lookup machinery to improve "
-#~ "performance.  These optimization opportunities "
-#~ "are only recognized by CPython for "
-#~ "a limited set of aliases: utf-8, "
-#~ "utf8, latin-1, latin1, iso-8859-1, mbcs "
-#~ "(Windows only), ascii, utf-16, and "
-#~ "utf-32.  Using alternative spellings for "
-#~ "these encodings may result in slower "
-#~ "execution."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Python supports this conversion in "
-#~ "several ways:  the ``idna`` codec "
-#~ "performs conversion between Unicode and "
-#~ "ACE, separating an input string into "
-#~ "labels based on the separator characters"
-#~ " defined in `section 3.1`_ (1) of "
-#~ ":rfc:`3490` and converting each label to"
-#~ " ACE as required, and conversely "
-#~ "separating an input byte string into "
-#~ "labels based on the ``.`` separator "
-#~ "and converting any ACE labels found "
-#~ "into unicode.  Furthermore, the :mod:`socket`"
-#~ " module transparently converts Unicode host"
-#~ " names to ACE, so that applications"
-#~ " need not be concerned about "
-#~ "converting host names themselves when "
-#~ "they pass them to the socket "
-#~ "module. On top of that, modules "
-#~ "that have host names as function "
-#~ "parameters, such as :mod:`http.client` and "
-#~ ":mod:`ftplib`, accept Unicode host names "
-#~ "(:mod:`http.client` then also transparently "
-#~ "sends an IDNA hostname in the "
-#~ ":mailheader:`Host` field if it sends "
-#~ "that field at all)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "chinese, csiso58gb231280, euc- cn, euccn, "
-#~ "eucgb2312-cn, gb2312-1980, gb2312-80, iso- "
-#~ "ir-58"
-#~ msgstr ""
-
-#~ msgid "Availability: Windows only."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Set the state of the encoder to"
-#~ " *state*. *state* must be a decoder"
-#~ " state returned by :meth:`getstate`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "*buffering* has the same meaning as "
-#~ "for the built-in :func:`open` function."
-#~ "  It defaults to line buffered."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "To simplify and standardize error "
-#~ "handling, codecs may implement different "
-#~ "error handling schemes by accepting the"
-#~ " *errors* string argument.  The following"
-#~ " string values are defined and "
-#~ "implemented by all standard Python "
-#~ "codecs:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Raise :exc:`UnicodeError` (or a subclass); "
-#~ "this is the default.  Implemented in "
-#~ ":func:`strict_errors`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Ignore the malformed data and continue"
-#~ " without further notice.  Implemented in"
-#~ " :func:`ignore_errors`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Replace with a suitable replacement "
-#~ "marker; Python will use the official "
-#~ "``U+FFFD`` REPLACEMENT CHARACTER for the "
-#~ "built-in codecs on decoding, and "
-#~ "'?' on encoding.  Implemented in "
-#~ ":func:`replace_errors`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Replace with the appropriate XML "
-#~ "character reference (only for encoding).  "
-#~ "Implemented in :func:`xmlcharrefreplace_errors`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Replace with ``\\N{...}`` escape sequences "
-#~ "(only for encoding).  Implemented in "
-#~ ":func:`namereplace_errors`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "On decoding, replace byte with "
-#~ "individual surrogate code ranging from "
-#~ "``U+DC80`` to ``U+DCFF``.  This code "
-#~ "will then be turned back into the"
-#~ " same byte when the ``'surrogateescape'``"
-#~ " error handler is used when encoding"
-#~ " the data.  (See :pep:`383` for "
-#~ "more.)"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Allow encoding and decoding of surrogate"
-#~ " codes.  These codecs normally treat "
-#~ "the presence of surrogates as an "
-#~ "error."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "For encoding, *error_handler* will be "
-#~ "called with a :exc:`UnicodeEncodeError` "
-#~ "instance, which contains information about "
-#~ "the location of the error. The "
-#~ "error handler must either raise this "
-#~ "or a different exception, or return "
-#~ "a tuple with a replacement for the"
-#~ " unencodable part of the input and"
-#~ " a position where encoding should "
-#~ "continue. The replacement may be either"
-#~ " :class:`str` or :class:`bytes`.  If the"
-#~ " replacement is bytes, the encoder "
-#~ "will simply copy them into the "
-#~ "output buffer. If the replacement is "
-#~ "a string, the encoder will encode "
-#~ "the replacement.  Encoding continues on "
-#~ "original input at the specified "
-#~ "position. Negative position values will "
-#~ "be treated as being relative to "
-#~ "the end of the input string. If"
-#~ " the resulting position is out of "
-#~ "bound an :exc:`IndexError` will be "
-#~ "raised."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Decodes the object *input* and returns"
-#~ " a tuple (output object, length "
-#~ "consumed).  For instance, for a "
-#~ ":term:`text encoding`, decoding converts a "
-#~ "bytes object encoded using a particular"
-#~ " character set encoding to a string"
-#~ " object."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the current state of the "
-#~ "encoder which must be an integer. "
-#~ "The implementation should make sure that"
-#~ " ``0`` is the most common state. "
-#~ "(States that are more complicated than"
-#~ " integers can be converted into an"
-#~ " integer by marshaling/pickling the state"
-#~ " and encoding the bytes of the "
-#~ "resulting string into an integer)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The *size* argument indicates the "
-#~ "approximate maximum number of encoded "
-#~ "bytes or code points to read for"
-#~ " decoding. The decoder can modify "
-#~ "this setting as appropriate. The default"
-#~ " value -1 indicates to read and "
-#~ "decode as much as possible.  This "
-#~ "parameter is intended to prevent having"
-#~ " to decode huge files in one "
-#~ "step."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Line-endings are implemented using the"
-#~ " codec's decoder method and are "
-#~ "included in the list entries if "
-#~ "*keepends* is true."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Note that no stream repositioning should"
-#~ " take place.  This method is "
-#~ "primarily intended to be able to "
-#~ "recover from decoding errors."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "You can use these objects to do"
-#~ " transparent transcodings from e.g. Latin-1"
-#~ " to UTF-8 and back."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Strings are stored internally as "
-#~ "sequences of code points in range "
-#~ "``0x0``--``0x10FFFF``.  (See :pep:`393` for "
-#~ "more details about the implementation.) "
-#~ "Once a string object is used "
-#~ "outside of CPU and memory, endianness"
-#~ " and how these arrays are stored "
-#~ "as bytes become an issue.  As with"
-#~ " other codecs, serialising a string "
-#~ "into a sequence of bytes is known"
-#~ " as *encoding*, and recreating the "
-#~ "string from the sequence of bytes "
-#~ "is known as *decoding*. There are "
-#~ "a variety of different text "
-#~ "serialisation codecs, which are collectivity"
-#~ " referred to as :term:`text encodings "
-#~ "<text encoding>`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "in iso-8859-1), this increases the "
-#~ "probability that a ``utf-8-sig`` encoding "
-#~ "can be correctly guessed from the "
-#~ "byte sequence. So here the BOM is"
-#~ " not used to be able to "
-#~ "determine the byte order used for "
-#~ "generating the byte sequence, but as "
-#~ "a signature that helps in guessing "
-#~ "the encoding. On encoding the utf-8-sig"
-#~ " codec will write ``0xef``, ``0xbb``, "
-#~ "``0xbf`` as the first three bytes "
-#~ "to the file. On decoding ``utf-8-sig``"
-#~ " will skip those three bytes if "
-#~ "they appear as the first three "
-#~ "bytes in the file.  In UTF-8, the"
-#~ " use of the BOM is discouraged "
-#~ "and should generally be avoided."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Some common encodings can bypass the "
-#~ "codecs lookup machinery to improve "
-#~ "performance.  These optimization opportunities "
-#~ "are only recognized by CPython for "
-#~ "a limited set of (case insensitive) "
-#~ "aliases: utf-8, utf8, latin-1, latin1, "
-#~ "iso-8859-1, iso8859-1, mbcs (Windows only),"
-#~ " ascii, us-ascii, utf-16, utf16, "
-#~ "utf-32, utf32, and the same using "
-#~ "underscores instead of dashes. Using "
-#~ "alternative aliases for these encodings "
-#~ "may result in slower execution."
-#~ msgstr ""
-
-#~ msgid "cp65001"
-#~ msgstr ""
-
-#~ msgid "Windows only: Windows UTF-8 (``CP_UTF8``)"
-#~ msgstr ""
-
-#~ msgid "West Europe"
-#~ msgstr ""
-
-#~ msgid "U8, UTF, utf8"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "A number of predefined codecs are "
-#~ "specific to Python, so their codec "
-#~ "names have no meaning outside Python."
-#~ "  These are listed in the tables "
-#~ "below based on the expected input "
-#~ "and output types (note that while "
-#~ "text encodings are the most common "
-#~ "use case for codecs, the underlying "
-#~ "codec infrastructure supports arbitrary data"
-#~ " transforms rather than just text "
-#~ "encodings).  For asymmetric codecs, the "
-#~ "stated purpose describes the encoding "
-#~ "direction."
-#~ msgstr ""
-
-#~ msgid "Purpose"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Implements :rfc:`3490`, see also "
-#~ ":mod:`encodings.idna`. Only ``errors='strict'`` is"
-#~ " supported."
-#~ msgstr ""
-
-#~ msgid "Windows only: Encode operand according to the ANSI codepage (CP_ACP)"
-#~ msgstr ""
-
-#~ msgid "Windows only: Encode operand according to the OEM codepage (CP_OEMCP)"
-#~ msgstr ""
-
-#~ msgid "Encoding of PalmOS 3.5"
-#~ msgstr ""
-
-#~ msgid "Implements :rfc:`3492`. Stateful codecs are not supported."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Encoding suitable as the contents of "
-#~ "a Unicode literal in ASCII-encoded "
-#~ "Python source code, except that quotes"
-#~ " are not escaped. Decodes from "
-#~ "Latin-1 source code. Beware that Python"
-#~ " source code actually uses UTF-8 by"
-#~ " default."
-#~ msgstr ""
-
-#~ msgid "unicode_internal"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the internal representation of "
-#~ "the operand. Stateful codecs are not "
-#~ "supported."
-#~ msgstr ""
-
-#~ msgid "This representation is obsoleted by :pep:`393`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The following codecs provide binary "
-#~ "transforms: :term:`bytes-like object` to "
-#~ ":class:`bytes` mappings.  They are not "
-#~ "supported by :meth:`bytes.decode` (which only"
-#~ " produces :class:`str` output)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Convert operand to multiline MIME base64"
-#~ " (the result always includes a "
-#~ "trailing ``'\\n'``)"
-#~ msgstr ""
-
-#~ msgid "Compress the operand using bz2"
-#~ msgstr ""
-
-#~ msgid "Convert operand to hexadecimal representation, with two digits per byte"
-#~ msgstr ""
-
-#~ msgid "Convert operand to MIME quoted printable"
-#~ msgstr ""
-
-#~ msgid "Convert the operand using uuencode"
-#~ msgstr ""
-
-#~ msgid "Compress the operand using gzip"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The following codec provides a text "
-#~ "transform: a :class:`str` to :class:`str` "
-#~ "mapping.  It is not supported by "
-#~ ":meth:`str.encode` (which only produces "
-#~ ":class:`bytes` output)."
-#~ msgstr ""
-
-#~ msgid "Returns the Caesar-cypher encryption of the operand"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Python supports this conversion in "
-#~ "several ways:  the ``idna`` codec "
-#~ "performs conversion between Unicode and "
-#~ "ACE, separating an input string into "
-#~ "labels based on the separator characters"
-#~ " defined in :rfc:`section 3.1 of RFC"
-#~ " 3490 <3490#section-3.1>` and converting "
-#~ "each label to ACE as required, and"
-#~ " conversely separating an input byte "
-#~ "string into labels based on the "
-#~ "``.`` separator and converting any ACE"
-#~ " labels found into unicode.  Furthermore,"
-#~ " the :mod:`socket` module transparently "
-#~ "converts Unicode host names to ACE, "
-#~ "so that applications need not be "
-#~ "concerned about converting host names "
-#~ "themselves when they pass them to "
-#~ "the socket module. On top of that,"
-#~ " modules that have host names as "
-#~ "function parameters, such as "
-#~ ":mod:`http.client` and :mod:`ftplib`, accept "
-#~ "Unicode host names (:mod:`http.client` then"
-#~ " also transparently sends an IDNA "
-#~ "hostname in the :mailheader:`Host` field "
-#~ "if it sends that field at all)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "When receiving host names from the "
-#~ "wire (such as in reverse name "
-#~ "lookup), no automatic conversion to "
-#~ "Unicode is performed: Applications wishing "
-#~ "to present such host names to the"
-#~ " user should decode them to Unicode."
-#~ msgstr ""
-
-#~ msgid "Encode operand according to the ANSI codepage (CP_ACP)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This module implements a variant of "
-#~ "the UTF-8 codec: On encoding a "
-#~ "UTF-8 encoded BOM will be prepended "
-#~ "to the UTF-8 encoded bytes. For "
-#~ "the stateful encoder this is only "
-#~ "done once (on the first write to"
-#~ " the byte stream).  For decoding an"
-#~ " optional UTF-8 encoded BOM at the"
-#~ " start of the data will be "
-#~ "skipped."
-#~ msgstr ""
+"이 모듈은 UTF-8 코덱의 변형을 구현합니다. 인코딩 시, UTF-8로 인코딩된 BOM을 UTF-8로 인코딩된 바이트열 앞에 "
+"붙입니다. 상태 있는 인코더의 경우 이 작업은 한 번만 수행됩니다 (바이트 스트림에 대한 첫 번째 쓰기 시). 디코딩 시, 데이터 "
+"시작에 있는 선택적 UTF-8 인코딩된 BOM을 건너뜁니다."
 
