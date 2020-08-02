@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,21 +18,21 @@ msgstr ""
 
 #: ../Doc/library/http.server.rst:2
 msgid ":mod:`http.server` --- HTTP servers"
-msgstr ""
+msgstr ":mod:`http.server` --- HTTP 서버"
 
 #: ../Doc/library/http.server.rst:7
 msgid "**Source code:** :source:`Lib/http/server.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/http/server.py`"
 
 #: ../Doc/library/http.server.rst:17
 msgid "This module defines classes for implementing HTTP servers (Web servers)."
-msgstr ""
+msgstr "이 모듈은 HTTP 서버(웹 서버)를 구현하기 위한 클래스를 정의합니다."
 
 #: ../Doc/library/http.server.rst:22
 msgid ""
 ":mod:`http.server` is not recommended for production. It only implements "
 "basic security checks."
-msgstr ""
+msgstr "프로덕션에는 :mod:`http.server`\\가 권장되지 않습니다. 기초적인 보안 검사만 구현합니다."
 
 #: ../Doc/library/http.server.rst:25
 msgid ""
@@ -42,6 +41,8 @@ msgid ""
 "requests to a handler.  Code to create and run the server looks like "
 "this::"
 msgstr ""
+":class:`HTTPServer` 클래스는 :class:`socketserver.TCPServer` 서브 클래스입니다. HTTP "
+"소켓을 만들고 리스닝하면서 요청을 처리기로 디스패치 합니다. 서버를 만들고 실행하는 코드는 다음과 같습니다::"
 
 #: ../Doc/library/http.server.rst:37
 msgid ""
@@ -51,6 +52,9 @@ msgid ""
 "the handler, typically through the handler's :attr:`server` instance "
 "variable."
 msgstr ""
+"이 클래스는 :class:`~socketserver.TCPServer` 클래스를 기반으로 하고, 서버 주소를 "
+":attr:`server_name`\\과 :attr:`server_port`\\라는 인스턴스 변수로 저장합니다. 처리기는 일반적으로"
+" 처리기의 :attr:`server` 인스턴스 변수를 통해 서버에 액세스 할 수 있습니다."
 
 #: ../Doc/library/http.server.rst:44
 msgid ""
@@ -59,6 +63,9 @@ msgid ""
 "handle web browsers pre-opening sockets, on which :class:`HTTPServer` "
 "would wait indefinitely."
 msgstr ""
+"이 클래스는 HTTPServer와 동일하지만 :class:`~socketserver.ThreadingMixIn`\\을 사용하여 "
+"요청을 처리하는 데 스레드를 사용합니다. :class:`HTTPServer`\\가 무기한 대기하도록 만드는 소켓을 미리 여는 웹 "
+"브라우저를 처리하는 데 유용합니다."
 
 #: ../Doc/library/http.server.rst:52
 msgid ""
@@ -66,6 +73,8 @@ msgid ""
 "*RequestHandlerClass* on instantiation, of which this module provides "
 "three different variants:"
 msgstr ""
+":class:`HTTPServer`\\와 :class:`ThreadingHTTPServer`\\는 인스턴스 화할 때 "
+"*RequestHandlerClass*\\를 제공해야 하며, 이 모듈은 세 가지 변형을 제공합니다:"
 
 #: ../Doc/library/http.server.rst:58
 msgid ""
@@ -75,6 +84,10 @@ msgid ""
 ":class:`BaseHTTPRequestHandler` provides a number of class and instance "
 "variables, and methods for use by subclasses."
 msgstr ""
+"이 클래스는 서버에 도착하는 HTTP 요청을 처리하는 데 사용됩니다. 그 자체로는, 실제 HTTP 요청에 응답할 수 없습니다; 각 "
+"요청 메서드(예를 들어 GET이나 POST)를 처리하려면 서브 클래스를 만들어야 합니다. "
+":class:`BaseHTTPRequestHandler`\\는 많은 클래스 및 인스턴스 변수와 서브 클래스가 사용할 메서드를 "
+"제공합니다."
 
 #: ../Doc/library/http.server.rst:64
 msgid ""
@@ -86,20 +99,23 @@ msgid ""
 "Subclasses should not need to override or extend the :meth:`__init__` "
 "method."
 msgstr ""
+"처리기는 요청과 헤더를 구문 분석한 다음, 요청 유형에 특정한 메서드를 호출합니다. 메서드 이름은 요청으로부터 구성됩니다. 예를 "
+"들어, 요청 메서드 ``SPAM``\\의 경우, :meth:`do_SPAM` 메서드가 인자 없이 호출됩니다. 모든 관련 정보는 "
+"처리기의 인스턴스 변수에 저장됩니다. 서브 클래스는 :meth:`__init__` 메서드를 대체하거나 확장할 필요가 없습니다."
 
 #: ../Doc/library/http.server.rst:71
 msgid ":class:`BaseHTTPRequestHandler` has the following instance variables:"
-msgstr ""
+msgstr ":class:`BaseHTTPRequestHandler`\\에는 다음과 같은 인스턴스 변수가 있습니다:"
 
 #: ../Doc/library/http.server.rst:75
 msgid ""
 "Contains a tuple of the form ``(host, port)`` referring to the client's "
 "address."
-msgstr ""
+msgstr "클라이언트 주소를 나타내는 ``(host, port)`` 형식의 튜플을 포함합니다."
 
 #: ../Doc/library/http.server.rst:80
 msgid "Contains the server instance."
-msgstr ""
+msgstr "서버 인스턴스를 포함합니다."
 
 #: ../Doc/library/http.server.rst:84
 msgid ""
@@ -107,6 +123,8 @@ msgid ""
 "indicating if another request may be expected, or if the connection "
 "should be shut down."
 msgstr ""
+":meth:`handle_one_request`\\가 반환되기 전에 설정해야 하는 불리언으로, 다른 요청이 기대되는지, 또는 연결을"
+" 종료해야 하는지를 나타냅니다."
 
 #: ../Doc/library/http.server.rst:90
 msgid ""
@@ -115,18 +133,21 @@ msgid ""
 ":meth:`handle_one_request`. If no valid request line was processed, it "
 "should be set to the empty string."
 msgstr ""
+"HTTP 요청 줄의 문자열 표현을 포함합니다. 종료 CRLF가 제거됩니다. 이 어트리뷰트는 "
+":meth:`handle_one_request`\\에서 설정해야 합니다. 유효한 요청 줄이 처리되지 않았으면, 빈 문자열로 설정해야"
+" 합니다."
 
 #: ../Doc/library/http.server.rst:97
 msgid "Contains the command (request type). For example, ``'GET'``."
-msgstr ""
+msgstr "명령(요청 유형)을 포함합니다. 예를 들어, ``'GET'``."
 
 #: ../Doc/library/http.server.rst:101
 msgid "Contains the request path."
-msgstr ""
+msgstr "요청 경로를 포함합니다."
 
 #: ../Doc/library/http.server.rst:105
 msgid "Contains the version string from the request. For example, ``'HTTP/1.0'``."
-msgstr ""
+msgstr "요청의 버전 문자열을 포함합니다. 예를 들어, ``'HTTP/1.0'``."
 
 #: ../Doc/library/http.server.rst:109
 msgid ""
@@ -136,12 +157,15 @@ msgid ""
 ":mod:`http.client` is used to parse the headers and it requires that the "
 "HTTP request provide a valid :rfc:`2822` style header."
 msgstr ""
+":attr:`MessageClass` 클래스 변수로 지정된 클래스의 인스턴스를 보유합니다. 이 인스턴스는 HTTP 요청의 헤더를 "
+"구문 분석하고 관리합니다. :mod:`http.client`\\의 :func:`~http.client.parse_headers` "
+"함수가 헤더를 구문 분석하는 데 사용되며 HTTP 요청이 유효한 :rfc:`2822` 스타일 헤더를 제공할 것을 요구합니다."
 
 #: ../Doc/library/http.server.rst:117
 msgid ""
 "An :class:`io.BufferedIOBase` input stream, ready to read from the start "
 "of the optional input data."
-msgstr ""
+msgstr "선택적 입력 데이터의 시작부터 읽을 준비가 된 :class:`io.BufferedIOBase` 입력 스트림."
 
 #: ../Doc/library/http.server.rst:122
 msgid ""
@@ -149,14 +173,16 @@ msgid ""
 "Proper adherence to the HTTP protocol must be used when writing to this "
 "stream in order to achieve successful interoperation with HTTP clients."
 msgstr ""
+"클라이언트로 돌려줄 응답을 쓰기 위한 출력 스트림을 포함합니다. HTTP 클라이언트와의 성공적인 상호 운용을 위해서 이 스트림에 쓸"
+" 때 HTTP 프로토콜을 올바르게 준수해야 합니다."
 
 #: ../Doc/library/http.server.rst:127
 msgid "This is an :class:`io.BufferedIOBase` stream."
-msgstr ""
+msgstr "이것은 :class:`io.BufferedIOBase` 스트림입니다."
 
 #: ../Doc/library/http.server.rst:130
 msgid ":class:`BaseHTTPRequestHandler` has the following attributes:"
-msgstr ""
+msgstr ":class:`BaseHTTPRequestHandler`\\에는 다음과 같은 어트리뷰트가 있습니다:"
 
 #: ../Doc/library/http.server.rst:134
 msgid ""
@@ -164,6 +190,8 @@ msgid ""
 "The format is multiple whitespace-separated strings, where each string is"
 " of the form name[/version]. For example, ``'BaseHTTP/0.2'``."
 msgstr ""
+"서버 소프트웨어 버전을 지정합니다. 이것을 재정의하고 싶을 수 있습니다. 형식은 여러 공백으로 구분된 문자열이며, 각 문자열은 "
+"name[/version] 형식입니다. 예를 들어, ``'BaseHTTP/0.2'``."
 
 #: ../Doc/library/http.server.rst:140
 msgid ""
@@ -171,6 +199,8 @@ msgid ""
 ":attr:`version_string` method and the :attr:`server_version` class "
 "variable. For example, ``'Python/1.4'``."
 msgstr ""
+":attr:`version_string` 메서드와 :attr:`server_version` 클래스 변수에서 사용할 수 있는 형식으로"
+" 파이썬 시스템 버전을 포함합니다. 예를 들어, ``'Python/1.4'``."
 
 #: ../Doc/library/http.server.rst:146
 msgid ""
@@ -179,12 +209,15 @@ msgid ""
 " by default with variables from :attr:`responses` based on the status "
 "code that passed to :meth:`send_error`."
 msgstr ""
+"클라이언트에 대한 에러 응답을 빌드하기 위해 :meth:`send_error` 메서드에서 사용해야 하는 포맷 문자열을 지정합니다. "
+"문자열은 기본적으로 :meth:`send_error`\\에 전달된 상태 코드에 따라 :attr:`responses`\\의 변수로 "
+"채워집니다."
 
 #: ../Doc/library/http.server.rst:153
 msgid ""
 "Specifies the Content-Type HTTP header of error responses sent to the "
 "client.  The default value is ``'text/html'``."
-msgstr ""
+msgstr "클라이언트로 전송되는 에러 응답의 Content-Type HTTP 헤더를 지정합니다. 기본값은 ``'text/html'``\\입니다."
 
 #: ../Doc/library/http.server.rst:158
 msgid ""
@@ -194,6 +227,10 @@ msgid ""
 "header (using :meth:`send_header`) in all of its responses to clients. "
 "For backwards compatibility, the setting defaults to ``'HTTP/1.0'``."
 msgstr ""
+"응답에 사용되는 HTTP 프로토콜 버전을 지정합니다. ``'HTTP/1.1'``\\로 설정되면, 서버는 HTTP 지속적 "
+"연결(persistent connections)을 허용합니다; 그러나, 이때 서버는 *반드시* 클라이언트에 대한 모든 응답에 "
+"(:meth:`send_header`\\를 사용해서) 정확한 ``Content-Length`` 헤더를 포함해야 합니다. 이전 "
+"버전과의 호환성을 위해, 기본 설정은 ``'HTTP/1.0'``\\입니다."
 
 #: ../Doc/library/http.server.rst:166
 msgid ""
@@ -201,6 +238,8 @@ msgid ""
 "headers.  Typically, this is not overridden, and it defaults to "
 ":class:`http.client.HTTPMessage`."
 msgstr ""
+"HTTP 헤더를 구문 분석할 :class:`email.message.Message`\\와 유사한 클래스를 지정합니다. 일반적으로, "
+"이는 재정의되지 않으며, 기본값은 :class:`http.client.HTTPMessage`\\입니다."
 
 #: ../Doc/library/http.server.rst:172
 msgid ""
@@ -211,10 +250,14 @@ msgid ""
 "key.  It is used by :meth:`send_response_only` and :meth:`send_error` "
 "methods."
 msgstr ""
+"이 어트리뷰트에는 에러 코드 정수에서 짧고 긴 메시지를 포함하는 두 요소 튜플로의 매핑이 포함됩니다. 예를 들어, ``{code: "
+"(shortmessage, longmessage)}``. *shortmessage*\\는 일반적으로 에러 응답에서 *message*"
+" 키로 사용되고, *longmessage*\\는 *explain* 키로 사용됩니다. "
+":meth:`send_response_only`\\와 :meth:`send_error` 메서드에서 사용됩니다."
 
 #: ../Doc/library/http.server.rst:178
 msgid "A :class:`BaseHTTPRequestHandler` instance has the following methods:"
-msgstr ""
+msgstr ":class:`BaseHTTPRequestHandler` 인스턴스에는 다음과 같은 메서드가 있습니다:"
 
 #: ../Doc/library/http.server.rst:182
 msgid ""
@@ -223,12 +266,14 @@ msgid ""
 "never need to override it; instead, implement appropriate :meth:`do_\\*` "
 "methods."
 msgstr ""
+"들어오는 HTTP 요청을 처리하기 위해 :meth:`handle_one_request`\\를 한 번 (또는, 지속적 연결이 "
+"활성화되었으면, 여러 번) 호출합니다. 재정의할 필요는 없습니다; 대신 적절한 :meth:`do_\\*` 메서드를 구현하십시오."
 
 #: ../Doc/library/http.server.rst:189
 msgid ""
 "This method will parse and dispatch the request to the appropriate "
 ":meth:`do_\\*` method.  You should never need to override it."
-msgstr ""
+msgstr "이 메서드는 요청을 구문 분석하여 적절한 :meth:`do_\\*` 메서드로 디스패치 합니다. 재정의할 필요는 없습니다."
 
 #: ../Doc/library/http.server.rst:194
 msgid ""
@@ -239,6 +284,10 @@ msgid ""
 "to send ``417 Expectation Failed`` as a response header and ``return "
 "False``."
 msgstr ""
+"HTTP/1.1 호환 서버가 ``Expect: 100-continue`` 요청 헤더를 수신하면 ``100 Continue``\\로 "
+"응답한 후 ``200 OK`` 헤더가 뒤따릅니다. 클라이언트가 계속하는 것을 서버가 원하지 않으면 에러를 발생시키기 위해 이 "
+"메서드를 재정의할 수 있습니다. 예를 들어 서버는 ``417 Expectation Failed``\\를 응답 헤더로 보내고 "
+"``return False`` 할 수 있습니다."
 
 #: ../Doc/library/http.server.rst:205
 msgid ""
@@ -254,12 +303,19 @@ msgid ""
 "if the method is HEAD or the response code is one of the following: "
 "``1xx``, ``204 No Content``, ``205 Reset Content``, ``304 Not Modified``."
 msgstr ""
+"클라이언트에게 완전한 에러 응답을 보내고 로깅 합니다. 숫자 *code*\\는 HTTP 에러 코드를 지정하며, "
+"*message*\\는 선택적인 사람이 읽을 수 있는 에러에 대한 간단한 설명입니다. *explain* 인자는 에러에 대한 자세한 "
+"정보를 제공하는 데 사용될 수 있습니다; :attr:`error_message_format` 어트리뷰트를 사용하여 포맷되고 전체 "
+"헤더 집합 뒤에 응답 바디로 보냅니다. :attr:`responses` 어트리뷰트는 값이 제공되지 않을 때 사용될 "
+"*message*\\와 *explain*\\의 기본값을 담고 있습니다; 알 수 없는 코드의 경우 둘 다 기본값은 문자열 "
+"``???``\\입니다. 메서드가 HEAD이거나 응답 코드가 ``1xx``, ``204 No Content``, ``205 "
+"Reset Content``, ``304 Not Modified`` 중 하나면 바디는 비어 있게 됩니다."
 
 #: ../Doc/library/http.server.rst:217
 msgid ""
 "The error response includes a Content-Length header. Added the *explain* "
 "argument."
-msgstr ""
+msgstr "에러 응답에는 Content-Length 헤더가 포함됩니다. *explain* 인자를 추가했습니다."
 
 #: ../Doc/library/http.server.rst:223
 msgid ""
@@ -272,12 +328,17 @@ msgid ""
 "then :meth:`send_response` should be followed by an :meth:`end_headers` "
 "call."
 msgstr ""
+"헤더 버퍼에 응답 헤더를 추가하고 받아들인 요청을 로깅 합니다. HTTP 응답 줄이 내부 버퍼에 기록되고, *Server*\\와 "
+"*Date* 헤더가 뒤따릅니다. 이 두 헤더의 값은 각각 :meth:`version_string`\\과 "
+":meth:`date_time_string` 메서드에서 취합니다. 서버가 :meth:`send_header` 메서드를 사용하여 다른"
+" 헤더를 보내려고 하지 않는다면, :meth:`send_response` 다음에 :meth:`end_headers` 호출이 있어야 "
+"합니다."
 
 #: ../Doc/library/http.server.rst:232
 msgid ""
 "Headers are stored to an internal buffer and :meth:`end_headers` needs to"
 " be called explicitly."
-msgstr ""
+msgstr "헤더는 내부 버퍼에 저장되며 :meth:`end_headers`\\를 명시적으로 호출해야 합니다."
 
 #: ../Doc/library/http.server.rst:238
 msgid ""
@@ -287,10 +348,14 @@ msgid ""
 "specifying its value. Note that, after the send_header calls are done, "
 ":meth:`end_headers` MUST BE called in order to complete the operation."
 msgstr ""
+":meth:`end_headers`\\나 :meth:`flush_headers`\\가 호출될 때 출력 스트림에 기록될 내부 버퍼에 "
+"HTTP 헤더를 추가합니다. *keyword*\\는 헤더 키워드를 지정하고, *value*\\는 값을 지정해야 합니다. "
+"send_header 호출이 완료된 후, 작업을 완료하려면 반드시 :meth:`end_headers`\\를 호출해야 함에 "
+"유의하십시오."
 
 #: ../Doc/library/http.server.rst:244
 msgid "Headers are stored in an internal buffer."
-msgstr ""
+msgstr "헤더는 내부 버퍼에 저장됩니다."
 
 #: ../Doc/library/http.server.rst:249
 msgid ""
@@ -299,22 +364,25 @@ msgid ""
 "buffered and sent directly the output stream.If the *message* is not "
 "specified, the HTTP message corresponding the response *code*  is sent."
 msgstr ""
+"응답 헤더만 보내는데, 서버가 ``100 Continue`` 응답을 클라이언트로 전송할 목적으로 사용됩니다. 헤더는 버퍼링 되지 "
+"않고 출력 스트림으로 직접 전송합니다. *message*\\를 지정하지 않으면, 응답 *code*\\에 해당하는 HTTP 메시지가 "
+"전송됩니다."
 
 #: ../Doc/library/http.server.rst:258
 msgid ""
 "Adds a blank line (indicating the end of the HTTP headers in the "
 "response) to the headers buffer and calls :meth:`flush_headers()`."
-msgstr ""
+msgstr "(응답에서 HTTP 헤더의 끝을 나타내는) 빈 줄을 헤더 버퍼에 추가하고 :meth:`flush_headers()`\\를 호출합니다."
 
 #: ../Doc/library/http.server.rst:262
 msgid "The buffered headers are written to the output stream."
-msgstr ""
+msgstr "버퍼링 된 헤더는 출력 스트림에 기록됩니다."
 
 #: ../Doc/library/http.server.rst:267
 msgid ""
 "Finally send the headers to the output stream and flush the internal "
 "headers buffer."
-msgstr ""
+msgstr "마지막으로 헤더를 출력 스트림으로 보내고 내부 헤더 버퍼를 플러시 합니다."
 
 #: ../Doc/library/http.server.rst:274
 msgid ""
@@ -322,6 +390,8 @@ msgid ""
 "HTTP code associated with the response. If a size of the response is "
 "available, then it should be passed as the *size* parameter."
 msgstr ""
+"받아들인 (성공적인) 요청을 로깅 합니다. *code*\\는 응답과 관련된 숫자 HTTP 코드를 지정해야 합니다. 응답의 크기가 "
+"있으면, *size* 매개 변수로 전달되어야 합니다."
 
 #: ../Doc/library/http.server.rst:280
 msgid ""
@@ -329,6 +399,8 @@ msgid ""
 "the message to :meth:`log_message`, so it takes the same arguments "
 "(*format* and additional values)."
 msgstr ""
+"요청을 이행할 수 없을 때 에러를 로깅 합니다. 기본적으로, 메시지를 :meth:`log_message`\\에 전달하므로, 같은 "
+"인자(*format*\\과 추가 값)를 취합니다."
 
 #: ../Doc/library/http.server.rst:287
 msgid ""
@@ -339,12 +411,17 @@ msgid ""
 "ip address and current date and time are prefixed to every message "
 "logged."
 msgstr ""
+"``sys.stderr``\\에 임의의 메시지를 로깅 합니다. 이것은 일반적으로 사용자 지정 에러 로깅 메커니즘을 만들기 위해 "
+"재정의됩니다. *format* 인자는 표준 printf 스타일 포맷 문자열이며, :meth:`log_message`\\에 대한 추가"
+" 인자는 포매팅의 입력으로 적용됩니다. 클라이언트 ip 주소와 현재 날짜 및 시간은 로깅 되는 모든 메시지 앞에 붙습니다."
 
 #: ../Doc/library/http.server.rst:295
 msgid ""
 "Returns the server software's version string. This is a combination of "
 "the :attr:`server_version` and :attr:`sys_version` attributes."
 msgstr ""
+"서버 소프트웨어의 버전 문자열을 반환합니다. 이것은 :attr:`server_version`\\과 "
+":attr:`sys_version` 어트리뷰트의 조합입니다."
 
 #: ../Doc/library/http.server.rst:300
 msgid ""
@@ -352,30 +429,32 @@ msgid ""
 " in the format returned by :func:`time.time`), formatted for a message "
 "header. If *timestamp* is omitted, it uses the current date and time."
 msgstr ""
+"*timestamp*\\(``None``\\이거나 :func:`time.time`\\이 반환한 형식이어야 합니다)로 지정된 날짜와 "
+"시간을 메시지 헤더용으로 포맷하여 반환합니다. *timestamp*\\를 생략하면, 현재 날짜와 시간이 사용됩니다."
 
 #: ../Doc/library/http.server.rst:304
 msgid "The result looks like ``'Sun, 06 Nov 1994 08:49:37 GMT'``."
-msgstr ""
+msgstr "결과는 ``'Sun, 06 Nov 1994 08:49:37 GMT'``\\와 같은 모습입니다."
 
 #: ../Doc/library/http.server.rst:308
 msgid "Returns the current date and time, formatted for logging."
-msgstr ""
+msgstr "로깅용으로 포맷한 현재 날짜와 시간을 반환합니다."
 
 #: ../Doc/library/http.server.rst:312
 msgid "Returns the client address."
-msgstr ""
+msgstr "클라이언트 주소를 반환합니다."
 
 #: ../Doc/library/http.server.rst:314
 msgid ""
 "Previously, a name lookup was performed. To avoid name resolution delays,"
 " it now always returns the IP address."
-msgstr ""
+msgstr "이전에는, 이름 조회가 수행되었습니다. 이름 결정(name resolution) 지연을 피하고자, 이제 항상 IP 주소를 반환합니다."
 
 #: ../Doc/library/http.server.rst:321
 msgid ""
 "This class serves files from the current directory and below, directly "
 "mapping the directory structure to HTTP requests."
-msgstr ""
+msgstr "이 클래스는 디렉터리 구조를 HTTP 요청에 직접 매핑하여 현재 디렉터리와 그 이하의 파일을 제공합니다."
 
 #: ../Doc/library/http.server.rst:324
 msgid ""
@@ -383,18 +462,22 @@ msgid ""
 " :class:`BaseHTTPRequestHandler`.  This class implements the "
 ":func:`do_GET` and :func:`do_HEAD` functions."
 msgstr ""
+"요청 구문 분석과 같은 많은 작업이 베이스 클래스 :class:`BaseHTTPRequestHandler` 에 의해 수행됩니다. 이"
+" 클래스는 :func:`do_GET`\\과 :func:`do_HEAD` 함수를 구현합니다."
 
 #: ../Doc/library/http.server.rst:328
 msgid ""
 "The following are defined as class-level attributes of "
 ":class:`SimpleHTTPRequestHandler`:"
-msgstr ""
+msgstr "다음은 :class:`SimpleHTTPRequestHandler` 의 클래스 수준 어트리뷰트로 정의됩니다:"
 
 #: ../Doc/library/http.server.rst:333
 msgid ""
 "This will be ``\"SimpleHTTP/\" + __version__``, where ``__version__`` is "
 "defined at the module level."
 msgstr ""
+"이것은 ``\"SimpleHTTP/\" + __version__``\\이며, 여기서 ``__version__``\\은 모듈 수준에서"
+" 정의됩니다."
 
 #: ../Doc/library/http.server.rst:338
 msgid ""
@@ -406,11 +489,11 @@ msgstr ""
 
 #: ../Doc/library/http.server.rst:345
 msgid "If not specified, the directory to serve is the current working directory."
-msgstr ""
+msgstr "지정되지 않으면, 제공할 디렉터리는 현재 작업 디렉터리입니다."
 
 #: ../Doc/library/http.server.rst:347
 msgid "The :class:`SimpleHTTPRequestHandler` class defines the following methods:"
-msgstr ""
+msgstr ":class:`SimpleHTTPRequestHandler` 클래스는 다음 메서드를 정의합니다:"
 
 #: ../Doc/library/http.server.rst:351
 msgid ""
@@ -418,12 +501,14 @@ msgid ""
 "would send for the equivalent ``GET`` request. See the :meth:`do_GET` "
 "method for a more complete explanation of the possible headers."
 msgstr ""
+"이 메서드는 ``'HEAD'`` 요청 유형을 제공합니다: 동등한 ``GET`` 요청에 대해 전송할 헤더를 전송합니다. 가능한 헤더에"
+" 대한 더 완전한 설명은 :meth:`do_GET` 메서드를 참조하십시오."
 
 #: ../Doc/library/http.server.rst:357
 msgid ""
 "The request is mapped to a local file by interpreting the request as a "
 "path relative to the current working directory."
-msgstr ""
+msgstr "요청을 현재 작업 디렉터리에 상대적인 경로로 해석하여 요청은 로컬 파일에 매핑됩니다."
 
 #: ../Doc/library/http.server.rst:360
 msgid ""
@@ -434,6 +519,10 @@ msgid ""
 ":func:`os.listdir` to scan the directory, and returns a ``404`` error "
 "response if the :func:`~os.listdir` fails."
 msgstr ""
+"요청이 디렉터리에 매핑되었으면, 디렉터리는 ``index.html``\\이나 ``index.htm`` (이 순서대로) 파일을 "
+"검사합니다. 발견되면, 파일 내용이 반환됩니다; 그렇지 않으면 :meth:`list_directory` 메서드를 호출하여 디렉터리 "
+"목록이 생성됩니다. 이 메서드는 :func:`os.listdir`\\을 사용하여 디렉터리를 스캔하고, "
+":func:`~os.listdir`\\이 실패하면 ``404`` 에러 응답을 반환합니다."
 
 #: ../Doc/library/http.server.rst:367
 msgid ""
@@ -445,6 +534,11 @@ msgid ""
 "calling the :meth:`guess_type` method, which in turn uses the "
 "*extensions_map* variable, and the file contents are returned."
 msgstr ""
+"요청이 파일에 매핑되었으면, 파일을 엽니다. 요청된 파일을 열 때 발생하는 :exc:`OSError` 예외는 ``404``, "
+"``'File not found'`` 에러로 매핑됩니다. 요청에 ``'If-Modified-Since'`` 헤더가 있고, 이 시간 "
+"이후 파일이 수정되지 않았으면, ``304``, ``'Not Modified'`` 응답이 전송됩니다. 그렇지 않으면, 콘텐츠 유형은"
+" :meth:`guess_type` 메서드를 호출하여 추측되며, 이 메서드는 *extensions_map* 변수를 사용합니다. 그런"
+" 다음 파일 내용이 반환됩니다."
 
 #: ../Doc/library/http.server.rst:375
 msgid ""
@@ -452,6 +546,8 @@ msgid ""
 "followed by a ``'Content-Length:'`` header with the file's size and a "
 "``'Last-Modified:'`` header with the file's modification time."
 msgstr ""
+"추측된 콘텐츠 유형의 ``'Content-type:'`` 헤더가 출력되고, 파일 크기가 담긴 ``'Content-Length:'``"
+" 헤더와 파일 수정 시간이 담긴 ``'Last-Modified:'`` 헤더가 뒤따릅니다."
 
 #: ../Doc/library/http.server.rst:379
 msgid ""
@@ -459,16 +555,18 @@ msgid ""
 " contents of the file are output. If the file's MIME type starts with "
 "``text/`` the file is opened in text mode; otherwise binary mode is used."
 msgstr ""
+"그런 다음 헤더의 끝을 나타내는 빈 줄이 따라온 후에, 파일의 내용이 출력됩니다. 파일의 MIME 유형이 ``text/``\\로 "
+"시작하면 파일은 텍스트 모드로 열립니다; 그렇지 않으면 바이너리 모드가 사용됩니다."
 
 #: ../Doc/library/http.server.rst:383
 msgid ""
 "For example usage, see the implementation of the :func:`test` function "
 "invocation in the :mod:`http.server` module."
-msgstr ""
+msgstr "사용 예로는, :mod:`http.server` 모듈에서 :func:`test` 함수 호출 구현을 참조하십시오."
 
 #: ../Doc/library/http.server.rst:386
 msgid "Support of the ``'If-Modified-Since'`` header."
-msgstr ""
+msgstr "``'If-Modified-Since'`` 헤더 지원."
 
 #: ../Doc/library/http.server.rst:389
 msgid ""
@@ -476,6 +574,8 @@ msgid ""
 "manner in order to create a very basic webserver serving files relative "
 "to the current directory::"
 msgstr ""
+":class:`SimpleHTTPRequestHandler` 클래스는 현재 디렉터리를 기준으로 파일을 제공하는 매우 기본적인 웹 "
+"서버를 만들기 위해 다음과 같은 방식으로 사용될 수 있습니다::"
 
 #: ../Doc/library/http.server.rst:406
 msgid ""
@@ -484,6 +584,8 @@ msgid ""
 "the previous example, this serves files relative to the current "
 "directory::"
 msgstr ""
+":mod:`http.server`\\는 ``포트 번호`` 인자와 함께 인터프리터의 :option:`-m` 스위치를 사용하여 직접 "
+"호출할 수도 있습니다. 앞의 예제와 유사하게, 이것은 현재 디렉터리를 기준으로 파일을 제공합니다::"
 
 #: ../Doc/library/http.server.rst:412
 msgid ""
@@ -492,14 +594,16 @@ msgid ""
 "IPv4 and IPv6 addresses are supported. For example, the following command"
 " causes the server to bind to localhost only::"
 msgstr ""
+"기본적으로, 서버는 모든 인터페이스에 자신을 바인드 합니다. 옵션 ``-b/--bind``\\는 바인딩할 특정 주소를 지정합니다. "
+"IPv4와 IPv6 주소가 모두 지원됩니다. 예를 들어, 다음 명령은 서버가 localhost에만 바인드 하도록 합니다::"
 
 #: ../Doc/library/http.server.rst:419
 msgid "``--bind`` argument was introduced."
-msgstr ""
+msgstr "``--bind`` 인자가 도입되었습니다."
 
 #: ../Doc/library/http.server.rst:422
 msgid "``--bind`` argument enhanced to support IPv6"
-msgstr ""
+msgstr "``--bind`` 인자가 IPv6을 지원하도록 향상되었습니다"
 
 #: ../Doc/library/http.server.rst:425
 msgid ""
@@ -507,10 +611,12 @@ msgid ""
 "``-d/--directory`` specifies a directory to which it should serve the "
 "files. For example, the following command uses a specific directory::"
 msgstr ""
+"기본적으로 서버는 현재 디렉터리를 사용합니다. 옵션 ``-d/--directory``\\는 파일을 제공할 디렉터리를 지정합니다. "
+"예를 들어, 다음 명령은 특정 디렉터리를 사용합니다::"
 
 #: ../Doc/library/http.server.rst:431
 msgid "``--directory`` specify alternate directory"
-msgstr ""
+msgstr "``--directory``\\는 대체 디렉터리를 지정합니다"
 
 #: ../Doc/library/http.server.rst:436
 msgid ""
@@ -519,6 +625,8 @@ msgid ""
 "structure to local directory structure is exactly as in "
 ":class:`SimpleHTTPRequestHandler`."
 msgstr ""
+"이 클래스는 현재 디렉터리와 그 아래에 있는 파일이나 CGI 스크립트의 출력을 제공하는 데 사용됩니다. HTTP 계층 구조를 로컬 "
+"디렉터리 구조에 매핑하는 것은 :class:`SimpleHTTPRequestHandler`\\와 정확히 같음에 유의하십시오."
 
 #: ../Doc/library/http.server.rst:442
 msgid ""
@@ -527,6 +635,9 @@ msgid ""
 "follows) is sent prior to execution of the CGI script.  This pre-empts "
 "the status code."
 msgstr ""
+":class:`CGIHTTPRequestHandler` 클래스가 실행하는 CGI 스크립트는 리디렉션(HTTP 코드 302)을 실행할"
+" 수 없습니다, CGI 스크립트를 실행하기 전에 코드 200(스크립트 출력이 이어집니다)이 전송되기 때문입니다. 이것은 상태 코드를"
+" 선점합니다."
 
 #: ../Doc/library/http.server.rst:447
 msgid ""
@@ -535,6 +646,8 @@ msgid ""
 "used --- the other common server configuration is to treat special "
 "extensions as denoting CGI scripts."
 msgstr ""
+"클래스는 CGI 스크립트라고 생각되면 파일로 제공하는 대신 CGI 스크립트를 실행합니다. 디렉터리 기반 CGI만 사용됩니다 --- "
+"다른 일반적인 서버 구성은 특수한 확장자를 CGI 스크립트를 나타내는 것으로 취급하는 것입니다."
 
 #: ../Doc/library/http.server.rst:452
 msgid ""
@@ -542,20 +655,22 @@ msgid ""
 "scripts and serve the output, instead of serving files, if the request "
 "leads to somewhere below the ``cgi_directories`` path."
 msgstr ""
+"요청이 ``cgi_directories`` 경로 아래로 이어지면, 파일을 제공하는 대신 CGI 스크립트를 실행하고 출력을 제공하도록"
+" :func:`do_GET`\\과 :func:`do_HEAD` 함수가 수정되었습니다."
 
 #: ../Doc/library/http.server.rst:456
 msgid "The :class:`CGIHTTPRequestHandler` defines the following data member:"
-msgstr ""
+msgstr ":class:`CGIHTTPRequestHandler`\\는 다음 데이터 멤버를 정의합니다:"
 
 #: ../Doc/library/http.server.rst:460
 msgid ""
 "This defaults to ``['/cgi-bin', '/htbin']`` and describes directories to "
 "treat as containing CGI scripts."
-msgstr ""
+msgstr "기본값은 ``['/cgi-bin', '/htbin']``\\이며 CGI 스크립트를 포함하는 것으로 취급할 디렉터리를 기술합니다."
 
 #: ../Doc/library/http.server.rst:463
 msgid "The :class:`CGIHTTPRequestHandler` defines the following method:"
-msgstr ""
+msgstr ":class:`CGIHTTPRequestHandler`\\는 다음 메서드를 정의합니다:"
 
 #: ../Doc/library/http.server.rst:467
 msgid ""
@@ -563,52 +678,20 @@ msgid ""
 "scripts.  Error 501, \"Can only POST to CGI scripts\", is output when "
 "trying to POST to a non-CGI url."
 msgstr ""
+"이 메서드는 ``'POST'`` 요청 유형을 제공하며, CGI 스크립트에만 허용됩니다. CGI 이외의 url에 POST를 시도할 때"
+" 에러 501, \"Can only POST to CGI scripts\"가 출력됩니다."
 
 #: ../Doc/library/http.server.rst:471
 msgid ""
 "Note that CGI scripts will be run with UID of user nobody, for security "
 "reasons.  Problems with the CGI script will be translated to error 403."
 msgstr ""
+"보안상의 이유로, CGI 스크립트는 nobody 사용자의 UID로 실행됨에 유의하십시오. CGI 스크립트 문제는 에러 403으로 "
+"변환됩니다."
 
 #: ../Doc/library/http.server.rst:474
 msgid ""
 ":class:`CGIHTTPRequestHandler` can be enabled in the command line by "
 "passing the ``--cgi`` option::"
-msgstr ""
-
-#~ msgid ""
-#~ "The :class:`HTTPServer` must be given a"
-#~ " *RequestHandlerClass* on instantiation, of "
-#~ "which this module provides three "
-#~ "different variants:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If the request was mapped to a "
-#~ "file, it is opened and the "
-#~ "contents are returned.  Any :exc:`OSError` "
-#~ "exception in opening the requested file"
-#~ " is mapped to a ``404``, ``'File "
-#~ "not found'`` error. Otherwise, the "
-#~ "content type is guessed by calling "
-#~ "the :meth:`guess_type` method, which in "
-#~ "turn uses the *extensions_map* variable."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The :class:`HTTPServer` and "
-#~ ":class:`ThreadedHTTPServer` must be given a"
-#~ " *RequestHandlerClass* on instantiation, of "
-#~ "which this module provides three "
-#~ "different variants:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "By default, server binds itself to "
-#~ "all interfaces.  The option ``-b/--bind`` "
-#~ "specifies a specific address to which"
-#~ " it should bind.  For example, the"
-#~ " following command causes the server "
-#~ "to bind to localhost only::"
-#~ msgstr ""
+msgstr "``--cgi`` 옵션을 전달하여 명령 줄에서 :class:`CGIHTTPRequestHandler`\\를 사용할 수 있습니다::"
 
