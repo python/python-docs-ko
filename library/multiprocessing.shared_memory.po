@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,11 +20,11 @@ msgstr ""
 msgid ""
 ":mod:`multiprocessing.shared_memory` ---  Provides shared memory for "
 "direct access across processes"
-msgstr ""
+msgstr ":mod:`multiprocessing.shared_memory` --- 프로세스 간 직접 액세스를 위한 공유 메모리를 제공합니다"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:7
 msgid "**Source code:** :source:`Lib/multiprocessing/shared_memory.py`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/multiprocessing/shared_memory.py`"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:18
 msgid ""
@@ -37,6 +36,10 @@ msgid ""
 ":class:`SharedMemoryManager`, is also provided in the "
 "``multiprocessing.managers`` module."
 msgstr ""
+"이 모듈은 멀티 코어나 대칭 멀티 프로세서 (SMP) 기계에서 하나 이상의 프로세스가 액세스할 공유 메모리의 할당과 관리를 위한 "
+"클래스 :class:`SharedMemory`\\를 제공합니다. 특히 별개의 프로세스에 걸친 공유 메모리의 수명 주기 관리를 "
+"지원하기 위해, :class:`~multiprocessing.managers.BaseManager` 서브 클래스인 "
+":class:`SharedMemoryManager`\\도 ``multiprocessing.managers`` 모듈에서 제공됩니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:26
 msgid ""
@@ -53,6 +56,12 @@ msgid ""
 " communications requiring the serialization/deserialization and copying "
 "of data."
 msgstr ""
+"이 모듈에서, 공유 메모리는 \"시스템 V 스타일\" 공유 메모리 블록을 가리키며 (꼭 그런 식으로 구현돼야 할 필요는 없습니다),"
+" \"분산 공유 메모리\"를 가리키지는 않습니다. 이 스타일의 공유 메모리는 개별 프로세스가 잠재적으로 휘발성 메모리의 공통 (또는"
+" 공유) 영역을 읽고 쓸 수 있게 합니다. 프로세스는 일반적으로 자체 프로세스 메모리 공간에만 액세스 할 수 있도록 제한되지만, "
+"공유 메모리는 프로세스 간에 데이터를 공유 할 수 있도록 해서, 프로세스 간에 대신 해당 데이터가 포함된 메시지를 보낼 필요가 "
+"없도록 합니다. 메모리를 통해 직접 데이터를 공유하면 디스크나 소켓 또는 직렬화/역 직렬화와 데이터의 복사를 요구하는 다른 통신과 "
+"비교하여 상당한 성능상의 이점을 얻을 수 있습니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:41
 msgid ""
@@ -62,6 +71,9 @@ msgid ""
 "name and a different process can attach to that same shared memory block "
 "using that same name."
 msgstr ""
+"새 공유 메모리 블록을 만들거나 기존 공유 메모리 블록에 연결합니다. 각 공유 메모리 블록에는 고유한 이름이 지정됩니다. 이런 "
+"식으로, 하나의 프로세스가 특정 이름을 가진 공유 메모리 블록을 생성 할 수 있으며, 다른 프로세스가 같은 이름을 사용하여 같은 "
+"공유 메모리 블록에 연결할 수 있습니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:47
 msgid ""
@@ -72,6 +84,10 @@ msgid ""
 "shared memory block is no longer needed by any process, the "
 ":meth:`unlink()` method should be called to ensure proper cleanup."
 msgstr ""
+"프로세스 간에 데이터를 공유하기 위한 자원으로서, 공유 메모리 블록은 생성한 원래 프로세스보다 오래갈 수 있습니다. 한 프로세스가 "
+"더는 다른 프로세스가 필요로 할 수도 있는 공유 메모리 블록에 대한 액세스를 필요로하지 않으면 :meth:`close()` 메서드를"
+" 호출해야 합니다. 어떤 프로세스에서도 공유 메모리 블록이 더는 필요하지 않으면, 적절한 정리를 위해 :meth:`unlink()`"
+" 메서드를 호출해야 합니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:54
 msgid ""
@@ -79,12 +95,16 @@ msgid ""
 " string.  When creating a new shared memory block, if ``None`` (the "
 "default) is supplied for the name, a novel name will be generated."
 msgstr ""
+"*name*\\은 문자열로 지정된 요청된 공유 메모리의 고유한 이름입니다. 새 공유 메모리 블록을 만들 때, 이름에 "
+"``None``\\(기본값)이 제공되면, 새로운 이름이 생성됩니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:58
 msgid ""
 "*create* controls whether a new shared memory block is created (``True``)"
 " or an existing shared memory block is attached (``False``)."
 msgstr ""
+"*create*\\는 새 공유 메모리 블록을 만들지(``True``), 또는 기존 공유 메모리 블록을 연결할지(``False``)를"
+" 제어합니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:61
 msgid ""
@@ -95,6 +115,9 @@ msgid ""
 "attaching to an existing shared memory block, the ``size`` parameter is "
 "ignored."
 msgstr ""
+"*size*\\는 새 공유 메모리 블록을 만들 때 요청된 바이트 수를 지정합니다. 일부 플랫폼은 해당 플랫폼의 메모리 페이지 크기를"
+" 기반으로 메모리 덩어리를 할당하기 때문에, 공유 메모리 블록의 정확한 크기는 요청한 크기보다 크거나 같을 수 있습니다. 기존 공유"
+" 메모리 블록에 연결할 때는, ``size`` 매개 변수가 무시됩니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:69
 msgid ""
@@ -103,6 +126,9 @@ msgid ""
 " once the instance is no longer needed.  Note that calling ``close()`` "
 "does not cause the shared memory block itself to be destroyed."
 msgstr ""
+"이 인스턴스에서 공유 메모리에 대한 액세스를 닫습니다. 자원을 적절히 정리하기 위해, 인스턴스가 더는 필요하지 않으면 모든 "
+"인스턴스가 ``close()``\\를 호출해야 합니다. ``close()``\\를 호출해도 공유 메모리 블록 자체가 파괴되지는 "
+"않습니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:77
 msgid ""
@@ -116,24 +142,29 @@ msgid ""
 "Note: the last process relinquishing its hold on a shared memory block "
 "may call ``unlink()`` and :meth:`close()` in either order."
 msgstr ""
+"하부 공유 메모리 블록이 삭제되도록 요청합니다. 리소스를 적절히 정리하려면, ``unlink()``\\를 공유 메모리 블록이 필요한"
+" 모든 프로세스 전체에서 (오직) 한 번만 호출해야 합니다. 파괴를 요청한 후에는, 공유 메모리 블록이 즉시 파괴될 수도 있고 "
+"그렇지 않을 수도 있습니다. 이 동작은 플랫폼에 따라 다를 수 있습니다. ``unlink()``\\가 호출된 후에, 공유 메모리 "
+"블록 내부의 데이터에 액세스하려고 하면 메모리 액세스 에러가 발생할 수 있습니다. 주의: 공유 메모리 블록에 대한 참조를 해제하는 "
+"마지막 프로세스는 ``unlink()``\\와 :meth:`close()`\\를 어느 순서로든 호출 할 수 있습니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:90
 msgid "A memoryview of contents of the shared memory block."
-msgstr ""
+msgstr "공유 메모리 블록의 내용에 대한 메모리 뷰."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:94
 msgid "Read-only access to the unique name of the shared memory block."
-msgstr ""
+msgstr "공유 메모리 블록의 고유한 이름에 대한 읽기 전용 액세스."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:98
 msgid "Read-only access to size in bytes of the shared memory block."
-msgstr ""
+msgstr "공유 메모리 블록의 크기(바이트)에 대한 읽기 전용 액세스."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:101
 msgid ""
 "The following example demonstrates low-level use of :class:`SharedMemory`"
 " instances::"
-msgstr ""
+msgstr "다음 예제는 :class:`SharedMemory` 인스턴스의 저수준 사용을 보여줍니다::"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:127
 msgid ""
@@ -142,12 +173,17 @@ msgid ""
 "<https://www.numpy.org/>`_, accessing the same ``numpy.ndarray`` from two"
 " distinct Python shells:"
 msgstr ""
+"다음 예제는 두 개의 다른 파이썬 셸에서 같은 ``numpy.ndarray``\\에 액세스하는, `NumPy 배열 "
+"<https://www.numpy.org/>`_\\과 함께 :class:`SharedMemory` 클래스를 사용하는 실용적인 방법을"
+" 보여줍니다:"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:181
 msgid ""
 "A subclass of :class:`~multiprocessing.managers.BaseManager` which can be"
 " used for the management of shared memory blocks across processes."
 msgstr ""
+"프로세스 간 공유 메모리 블록을 관리하는 데 사용할 수 있는 "
+":class:`~multiprocessing.managers.BaseManager`\\의 서브 클래스."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:184
 msgid ""
@@ -163,6 +199,15 @@ msgid ""
 "``SharedMemoryManager``, we avoid the need to manually track and trigger "
 "the freeing of shared memory resources."
 msgstr ""
+":class:`SharedMemoryManager` 인스턴스에서 "
+":meth:`~multiprocessing.managers.BaseManager.start`\\를 호출하면 새 프로세스가 "
+"시작됩니다. 이 새로운 프로세스의 유일한 목적은 이를 통해 생성된 모든 공유 메모리 블록의 수명 주기를 관리하는 것입니다. 해당 "
+"프로세스가 관리하는 모든 공유 메모리 블록의 해제를 시작시키려면, 해당 인스턴스에서 "
+":meth:`~multiprocessing.managers.BaseManager.shutdown()`\\을 호출하십시오. 그러면 이"
+" 프로세스에 의해 관리되는 모든 :class:`SharedMemory` 객체에 대해 "
+":meth:`SharedMemory.unlink()` 호출을 일으키고, 그런 다음 프로세스 자체를 중지합니다. "
+"``SharedMemoryManager``\\를 통해 ``SharedMemory`` 인스턴스를 생성함으로써, 공유 메모리 자원을 "
+"수동으로 추적하여 해제할 필요가 없습니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:196
 msgid ""
@@ -170,6 +215,8 @@ msgid ""
 ":class:`SharedMemory` instances and for creating a list-like object "
 "(:class:`ShareableList`) backed by shared memory."
 msgstr ""
+"이 클래스는 :class:`SharedMemory` 인스턴스를 만들고 반환하는 메서드와, 공유 메모리로 지원되는 리스트류 "
+"객체(:class:`ShareableList`)를 만드는 메서드를 제공합니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:200
 msgid ""
@@ -178,24 +225,27 @@ msgid ""
 " they may be used to connect to an existing ``SharedMemoryManager`` "
 "service from other processes."
 msgstr ""
+"상속된 *address*\\와 *authkey* 선택적 입력 인자에 대한 설명과 이 인자를 사용하여 다른 프로세스의 기존 "
+"``SharedMemoryManager`` 서비스에 연결하는 방법에 대해서는 "
+":class:`multiprocessing.managers.BaseManager`\\를 참조하십시오."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:207
 msgid ""
 "Create and return a new :class:`SharedMemory` object with the specified "
 "``size`` in bytes."
-msgstr ""
+msgstr "바이트로 지정된 ``size`` 크기의 새로운 :class:`SharedMemory` 객체를 만들고 반환합니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:212
 msgid ""
 "Create and return a new :class:`ShareableList` object, initialized by the"
 " values from the input ``sequence``."
-msgstr ""
+msgstr "입력 ``sequence``\\의 값으로 초기화된, 새 :class:`ShareableList` 객체를 만들고 반환합니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:216
 msgid ""
 "The following example demonstrates the basic mechanisms of a "
 ":class:`SharedMemoryManager`:"
-msgstr ""
+msgstr "다음 예제는 :class:`SharedMemoryManager`\\의 기본 메커니즘을 보여줍니다:"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:234
 msgid ""
@@ -204,6 +254,8 @@ msgid ""
 "statement to ensure that all shared memory blocks are released after they"
 " are no longer needed:"
 msgstr ""
+"다음 예제는 :keyword:`with` 문을 통해 :class:`SharedMemoryManager` 객체를 사용하여 더는 "
+"필요하지 않은 모든 공유 메모리 블록이 해제되도록 하는, 잠재적으로 더 편리한 패턴을 보여줍니다:"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:253
 msgid ""
@@ -211,6 +263,8 @@ msgid ""
 " the shared memory blocks created using that manager are all released "
 "when the :keyword:`with` statement's code block finishes execution."
 msgstr ""
+":keyword:`with` 문에서 :class:`SharedMemoryManager`\\를 사용할 때, "
+":keyword:`with` 문의 코드 블록 실행이 완료되면 해당 관리자를 사용하여 만들어진 공유 메모리 블록이 모두 해제됩니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:260
 msgid ""
@@ -223,6 +277,11 @@ msgid ""
 "and do not support the dynamic creation of new :class:`ShareableList` "
 "instances via slicing."
 msgstr ""
+"안에 저장되는 모든 값이 공유 메모리 블록에 저장되는 가변 리스트류 객체를 제공합니다. 이것은 ``int``, ``float``, "
+"``bool``, ``str`` (각각 10M 바이트 미만), ``bytes`` (각각 10M 바이트 미만) 및 ``None`` "
+"내장 데이터형으로만 저장 가능한 값을 제한합니다. 또한, 이 리스트는 전체 길이를 변경할 수 없으며 (즉, 추가, 삽입 등이 "
+"없습니다), 슬라이싱을 통해 새로운 :class:`ShareableList` 인스턴스를 동적으로 생성할 수 없다는 점에서 내장 "
+"``list`` 형과 상당히 다릅니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:269
 msgid ""
@@ -230,6 +289,8 @@ msgid ""
 "Set to ``None`` to instead attach to an already existing "
 "``ShareableList`` by its unique shared memory name."
 msgstr ""
+"*sequence*\\는 새로운 ``ShareableList``\\를 값으로 가득 채우는 데 사용됩니다. 고유한 공유 메모리 "
+"이름으로 이미 존재하는 ``ShareableList``\\에 대신 연결하려면 ``None``\\으로 설정하십시오."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:273
 msgid ""
@@ -238,32 +299,37 @@ msgid ""
 "existing ``ShareableList``, specify its shared memory block's unique name"
 " while leaving ``sequence`` set to ``None``."
 msgstr ""
+"*name*\\은 :class:`SharedMemory`\\에 대한 정의에서 설명한 대로, 요청된 공유 메모리의 고유한 이름입니다."
+" 기존 ``ShareableList``\\에 연결할 때, ``sequence``\\를 ``None``\\으로 설정하고 공유 메모리 "
+"블록의 고유한 이름을 지정하십시오."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:280
 msgid "Returns the number of occurrences of ``value``."
-msgstr ""
+msgstr "``value``\\의 발생 횟수를 반환합니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:284
 msgid ""
 "Returns first index position of ``value``.  Raises :exc:`ValueError` if "
 "``value`` is not present."
 msgstr ""
+"``value``\\의 첫 번째 인덱스 위치를 반환합니다. ``value``\\가 없으면 :exc:`ValueError`\\를 "
+"발생시킵니다."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:289
 msgid ""
 "Read-only attribute containing the :mod:`struct` packing format used by "
 "all currently stored values."
-msgstr ""
+msgstr "현재 저장된 모든 값이 사용하는 :mod:`struct` 패킹 형식을 포함하는 읽기 전용 어트리뷰트."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:294
 msgid "The :class:`SharedMemory` instance where the values are stored."
-msgstr ""
+msgstr "값이 저장되는 :class:`SharedMemory` 인스턴스."
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:297
 msgid ""
 "The following example demonstrates basic use of a :class:`ShareableList` "
 "instance:"
-msgstr ""
+msgstr "다음 예제는 :class:`ShareableList` 인스턴스의 기본 사용을 보여줍니다.:"
 
 #: ../Doc/library/multiprocessing.shared_memory.rst:330
 msgid ""
@@ -271,4 +337,6 @@ msgid ""
 "the same :class:`ShareableList` by supplying the name of the shared "
 "memory block behind it:"
 msgstr ""
+"다음 예는 하나, 둘 또는 여러 프로세스가 그 뒤에 있는 공유 메모리 블록의 이름을 제공하여 같은 "
+":class:`ShareableList`\\에 액세스하는 방법을 보여줍니다:"
 
