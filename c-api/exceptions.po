@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-15 20:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +18,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:8
 msgid "Exception Handling"
-msgstr ""
+msgstr "예외 처리"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:10
 msgid ""
@@ -34,6 +33,11 @@ msgid ""
 "integer (exception: the :c:func:`PyArg_\\*` functions return ``1`` for "
 "success and ``0`` for failure)."
 msgstr ""
+"이 장에서 설명하는 함수를 사용하면 파이썬 예외를 처리하고 발생시킬 수 있습니다. 파이썬 예외 처리의 기본 사항을 이해하는 것이 "
+"중요합니다. POSIX :c:data:`errno` 변수와 비슷하게 작동합니다: 발생한 마지막 에러에 대한 전역 표시기(스레드 "
+"당)가 있습니다. 대부분 C API 함수는 성공 시 이를 지우지 않지만, 실패 시 에러의 원인을 나타내도록 설정합니다. 대부분 C "
+"API 함수는 에러 표시기도 반환합니다, 일반적으로 포인터를 반환해야 하면 ``NULL``, 정수를 반환하면 ``-1``\\을 "
+"반환합니다 (예외: :c:func:`PyArg_\\*` 함수는 성공하면 ``1``\\을, 실패하면 ``0``\\을 반환합니다)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:20
 msgid ""
@@ -43,6 +47,9 @@ msgid ""
 "are forbidden, for example you can't have a non-``NULL`` traceback if the"
 " exception type is ``NULL``)."
 msgstr ""
+"구체적으로, 에러 표시기는 세 가지 객체 포인터로 구성됩니다: 예외 형, 예외 값 및 트레이스백 객체. 이러한 포인터들은 설정되지 "
+"않으면 ``NULL``\\이 될 수 있습니다 (하지만 일부 조합은 금지되어 있습니다, 예를 들어 예외 형이 ``NULL``\\이면 "
+"``NULL``\\이 아닌 트레이스백을 가질 수 없습니다)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:26
 msgid ""
@@ -57,6 +64,11 @@ msgid ""
 "additional calls into the Python/C API may not behave as intended and may"
 " fail in mysterious ways."
 msgstr ""
+"호출한 일부 함수가 실패하여 함수가 실패해야 할 때, 일반적으로 에러 표시기를 설정하지 않습니다; 호출된 함수가 이미 설정했습니다."
+" 에러를 처리하고 예외를 지우거나 보유한 모든 리소스(가령 객체 참조나 메모리 할당)를 정리한 후 반환해야 할 책임이 있습니다; "
+"에러를 처리할 준비가 되지 않았을 때 정상적으로 계속되지 *않아야* 합니다. 에러로 인해 반환하면, 호출자에게 에러가 설정되었음을 "
+"알리는 것이 중요합니다. 에러를 처리하지 않거나 신중하게 전파하지 않으면, 파이썬/C API에 대한 추가 호출이 의도한 대로 "
+"작동하지 않을 수 있으며 알 수 없는 방식으로 실패할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:37
 msgid ""
@@ -65,16 +77,18 @@ msgid ""
 "therefore still propagating), while the latter returns an exception after"
 " it is caught (and has therefore stopped propagating)."
 msgstr ""
+"에러 표시기는 :func:`sys.exc_info()`\\의 결과가 **아닙니다**. 전자는 아직 포착되지 않은 (따라서 여전히 "
+"전파 중인) 예외에 해당하는 반면, 후자는 포착된 후 (따라서 전파가 중단된) 예외를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:44
 msgid "Printing and clearing"
-msgstr ""
+msgstr "인쇄와 지우기"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:49
 msgid ""
 "Clear the error indicator.  If the error indicator is not set, there is "
 "no effect."
-msgstr ""
+msgstr "에러 표시기를 지웁니다. 에러 표시기가 설정되어 있지 않으면 효과가 없습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:55
 msgid ""
@@ -83,12 +97,15 @@ msgid ""
 "traceback is printed and the Python process will exit with the error code"
 " specified by the ``SystemExit`` instance."
 msgstr ""
+"표준 트레이스백을 ``sys.stderr``\\로 인쇄하고 에러 표시기를 지웁니다. 에러가 ``SystemExit``\\가 **아닌"
+" 한**, 이 경우에는 트레이스백이 인쇄되지 않고 파이썬 프로세스는 ``SystemExit`` 인스턴스에 의해 지정된 에러 코드로 "
+"종료됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:60
 msgid ""
 "Call this function **only** when the error indicator is set.  Otherwise "
 "it will cause a fatal error!"
-msgstr ""
+msgstr "에러 표시기가 설정된 경우\\**에만** 이 함수를 호출하십시오. 그렇지 않으면 치명적인 에러가 발생합니다!"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:63
 msgid ""
@@ -96,16 +113,19 @@ msgid ""
 ":data:`sys.last_value` and :data:`sys.last_traceback` will be set to the "
 "type, value and traceback of the printed exception, respectively."
 msgstr ""
+"*set_sys_last_vars*\\가 0이 아니면, 변수 :data:`sys.last_type`, "
+":data:`sys.last_value` 및 :data:`sys.last_traceback` 은 각각 인쇄되는 예외의 형, 값 및 "
+"트레이스백으로 설정됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:70
 msgid "Alias for ``PyErr_PrintEx(1)``."
-msgstr ""
+msgstr "``PyErr_PrintEx(1)``\\의 별칭."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:75
 msgid ""
 "Call :func:`sys.unraisablehook` using the current exception and *obj* "
 "argument."
-msgstr ""
+msgstr "현재 예외와 *obj* 인자를 사용하여 :func:`sys.unraisablehook` 을 호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:78
 msgid ""
@@ -114,6 +134,8 @@ msgid ""
 "actually raise the exception.  It is used, for example, when an exception"
 " occurs in an :meth:`__del__` method."
 msgstr ""
+"이 유틸리티 함수는 예외가 설정되었지만, 인터프리터가 실제로 예외를 발생시킬 수 없을 때 ``sys.stderr``\\에 경고 "
+"메시지를 인쇄합니다. 예를 들어, :meth:`__del__` 메서드에서 예외가 발생할 때 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:83
 msgid ""
@@ -121,14 +143,16 @@ msgid ""
 "context in which the unraisable exception occurred. If possible, the repr"
 " of *obj* will be printed in the warning message."
 msgstr ""
+"이 함수는 발생시킬 수 없는 예외가 발생한 문맥을 식별하는 단일 인자 *obj*\\로 호출됩니다. 가능하면, *obj*\\의 "
+"repr이 경고 메시지에 인쇄됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:87
 msgid "An exception must be set when calling this function."
-msgstr ""
+msgstr "이 함수를 호출할 때 예외를 설정되어 있어야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:91
 msgid "Raising exceptions"
-msgstr ""
+msgstr "예외 발생시키기"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:93
 msgid ""
@@ -136,6 +160,8 @@ msgid ""
 "convenience, some of these functions will always return a ``NULL`` "
 "pointer for use in a ``return`` statement."
 msgstr ""
+"이 함수들은 현재 스레드의 에러 표시기를 설정하는 데 도움이 됩니다. 편의를 위해, 이러한 함수 중 일부는 항상 ``return``"
+" 문에서 사용할 ``NULL`` 포인터를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:100
 msgid ""
@@ -145,12 +171,17 @@ msgid ""
 "its reference count. The second argument is an error message; it is "
 "decoded from ``'utf-8``'."
 msgstr ""
+"이것은 에러 표시기를 설정하는 가장 일반적인 방법입니다. 첫 번째 인자는 예외 형을 지정합니다; 일반적으로 표준 예외 중 "
+"하나입니다, 예를 들어 :c:data:`PyExc_RuntimeError`. 참조 횟수를 증가시킬 필요가 없습니다. 두 번째 인자는"
+" 에러 메시지입니다; ``'utf-8'`` 에서 디코딩됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:108
 msgid ""
 "This function is similar to :c:func:`PyErr_SetString` but lets you "
 "specify an arbitrary Python object for the \"value\" of the exception."
 msgstr ""
+"이 함수는 :c:func:`PyErr_SetString`\\과 유사하지만, 예외의 \"값\"에 대해 임의의 파이썬 객체를 지정할 수"
+" 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:114
 msgid ""
@@ -160,16 +191,20 @@ msgid ""
 "values as in :c:func:`PyUnicode_FromFormat`. *format* is an ASCII-encoded"
 " string."
 msgstr ""
+"이 함수는 에러 표시기를 설정하고 ``NULL``\\을 반환합니다. *exception*\\은 파이썬 예외 클래스여야 합니다. "
+"*format*\\과 후속 매개 변수는 에러 메시지를 포맷하는 데 도움이 됩니다; "
+":c:func:`PyUnicode_FromFormat`\\에서와 같은 의미와 값을 갖습니다. *format*\\은 ASCII "
+"인코딩된 문자열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:123
 msgid ""
 "Same as :c:func:`PyErr_Format`, but taking a :c:type:`va_list` argument "
 "rather than a variable number of arguments."
-msgstr ""
+msgstr ":c:func:`PyErr_Format`\\과 같지만, 가변 개수의 인자 대신 :c:type:`va_list` 인자를 취합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:131
 msgid "This is a shorthand for ``PyErr_SetObject(type, Py_None)``."
-msgstr ""
+msgstr "이것은 ``PyErr_SetObject(type, Py_None)``\\의 줄임 표현입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:136
 msgid ""
@@ -177,6 +212,8 @@ msgid ""
 "where *message* indicates that a built-in operation was invoked with an "
 "illegal argument.  It is mostly for internal use."
 msgstr ""
+"이것은 ``PyErr_SetString(PyExc_TypeError, message)``\\의 줄임 표현입니다, 여기서 "
+"*message*\\는 잘못된 인자로 내장 연산이 호출되었음을 나타냅니다. 대부분 내부 용입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:143
 msgid ""
@@ -184,6 +221,8 @@ msgid ""
 "``NULL`` so an object allocation function can write ``return "
 "PyErr_NoMemory();`` when it runs out of memory."
 msgstr ""
+"이것은 ``PyErr_SetNone(PyExc_MemoryError)``\\의 줄임 표현입니다; ``NULL``\\을 반환해서 객체"
+" 할당 함수는 메모리가 부족할 때 ``return PyErr_NoMemory();`` 라고 쓸 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:152
 msgid ""
@@ -199,6 +238,13 @@ msgid ""
 "wrapper function around a system call can write ``return "
 "PyErr_SetFromErrno(type);`` when the system call returns an error."
 msgstr ""
+"C 라이브러리 함수가 에러를 반환하고 C 변수 :c:data:`errno`\\를 설정했을 때 예외를 발생시키는 편의 함수입니다. 첫"
+" 번째 항목이 정수 :c:data:`errno` 값이고 두 번째 항목이 (:c:func:`strerror`\\에서 얻은) 해당 에러"
+" 메시지인 튜플 객체를 만든 다음, ``PyErr_SetObject(type, object)``\\를 호출합니다. 유닉스에서, "
+":c:data:`errno` 값이 시스템 호출이 중단되었음을 나타내는 :const:`EINTR`\\이면, "
+":c:func:`PyErr_CheckSignals`\\를 호출하고 이것이 에러 표시기를 설정하면, 설정된 그대로 둡니다. 이 함수는"
+" 항상 ``NULL``\\을 반환해서, 시스템 호출에 대한 래퍼 함수는 시스템 호출이 에러를 반환할 때 ``return "
+"PyErr_SetFromErrno(type);`` 이라고 쓸 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:166
 msgid ""
@@ -208,6 +254,9 @@ msgid ""
 "exception, this is used to define the :attr:`filename` attribute of the "
 "exception instance."
 msgstr ""
+":c:func:`PyErr_SetFromErrno`\\와 유사하지만, *filenameObject*\\가 ``NULL``\\이 "
+"아니면, *type*\\의 생성자에 세 번째 매개 변수로 전달된다는 추가 동작이 있습니다. :exc:`OSError` 예외의 경우,"
+" 예외 인스턴스의 :attr:`filename` 어트리뷰트를 정의하는 데 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:175
 msgid ""
@@ -215,6 +264,8 @@ msgid ""
 "second filename object, for raising errors when a function that takes two"
 " filenames fails."
 msgstr ""
+":c:func:`PyErr_SetFromErrnoWithFilenameObject`\\와 유사하지만, 두 개의 파일명을 취하는 "
+"함수가 실패할 때 에러를 발생시키기 위해 두 번째 파일명 객체를 취합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:184
 msgid ""
@@ -222,6 +273,8 @@ msgid ""
 "filename is given as a C string.  *filename* is decoded from the "
 "filesystem encoding (:func:`os.fsdecode`)."
 msgstr ""
+":c:func:`PyErr_SetFromErrnoWithFilenameObject`\\와 유사하지만, 파일명이 C 문자열로 "
+"제공됩니다. *filename*\\은 파일 시스템 인코딩(:func:`os.fsdecode`)으로 디코딩됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:191
 msgid ""
@@ -235,6 +288,13 @@ msgid ""
 "then calls ``PyErr_SetObject(PyExc_WindowsError, object)``. This function"
 " always returns ``NULL``."
 msgstr ""
+":exc:`WindowsError`\\를 발생시키는 편의 함수입니다. :c:data:`0`\\의 *ierr*\\로 호출하면, "
+":c:func:`GetLastError` 호출에서 반환된 에러 코드가 대신 사용됩니다. Win32 함수 "
+":c:func:`FormatMessage`\\를 호출하여 *ierr*\\이나 :c:func:`GetLastError`\\가 제공하는"
+" 에러 코드의 윈도우 설명을 얻은 다음, 첫 번째 항목이 *ierr* 값이고 두 번째 항목이 "
+"(:c:func:`FormatMessage`\\에서 얻은) 해당 에러 메시지인 튜플 객체를 생성한 다음, "
+"``PyErr_SetObject(PyExc_WindowsError, object)``\\를 호출합니다. 이 함수는 항상 "
+"``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:200
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:208
@@ -243,13 +303,13 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:234
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:243
 msgid ":ref:`Availability <availability>`: Windows."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 윈도우."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:205
 msgid ""
 "Similar to :c:func:`PyErr_SetFromWindowsErr`, with an additional "
 "parameter specifying the exception type to be raised."
-msgstr ""
+msgstr ":c:func:`PyErr_SetFromWindowsErr` 와 유사하며, 발생시킬 예외 형을 지정하는 추가 매개 변수가 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:213
 msgid ""
@@ -257,24 +317,32 @@ msgid ""
 "filename is given as a C string.  *filename* is decoded from the "
 "filesystem encoding (:func:`os.fsdecode`)."
 msgstr ""
+":c:func:`PyErr_SetFromWindowsErrWithFilenameObject`\\와 유사하지만, 파일명이 C 문자열로"
+" 제공됩니다. *filename*\\은 파일 시스템 인코딩(:func:`os.fsdecode`)으로 디코딩됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:222
 msgid ""
 "Similar to :c:func:`PyErr_SetFromWindowsErrWithFilenameObject`, with an "
 "additional parameter specifying the exception type to be raised."
 msgstr ""
+":c:func:`PyErr_SetFromWindowsErrWithFilenameObject`\\와 유사하며, 발생시킬 예외 형을 "
+"지정하는 추가 매개 변수가 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:230
 msgid ""
 "Similar to :c:func:`PyErr_SetExcFromWindowsErrWithFilenameObject`, but "
 "accepts a second filename object."
 msgstr ""
+":c:func:`PyErr_SetExcFromWindowsErrWithFilenameObject`\\와 유사하지만, 두 번째 파일명"
+" 객체를 받아들입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:240
 msgid ""
 "Similar to :c:func:`PyErr_SetFromWindowsErrWithFilename`, with an "
 "additional parameter specifying the exception type to be raised."
 msgstr ""
+":c:func:`PyErr_SetFromWindowsErrWithFilename`\\와 유사하며, 발생시킬 예외 형을 지정하는 추가"
+" 매개 변수가 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:248
 msgid ""
@@ -283,6 +351,9 @@ msgid ""
 "can be ``NULL``, will be set as the :exc:`ImportError`'s respective "
 "``name`` and ``path`` attributes."
 msgstr ""
+":exc:`ImportError`\\를 발생시키는 편의 함수입니다. *msg*\\는 예외의 메시지 문자열로 설정됩니다. 둘 다 "
+"``NULL``\\이 될 수 있는, *name*\\과 *path*\\는 각각 :exc:`ImportError`\\의 "
+"``name``\\과 ``path`` 어트리뷰트로 설정됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:258
 msgid ""
@@ -291,18 +362,23 @@ msgid ""
 "attributes, which make the exception printing subsystem think the "
 "exception is a :exc:`SyntaxError`."
 msgstr ""
+"현재 예외에 대한 파일(file), 줄(line) 및 오프셋(offset) 정보를 설정합니다. 현재 예외가 "
+":exc:`SyntaxError`\\가 아니면, 추가 어트리뷰트를 설정하여, 예외 인쇄 하위 시스템이 예외가 "
+":exc:`SyntaxError`\\라고 생각하게 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:268
 msgid ""
 "Like :c:func:`PyErr_SyntaxLocationObject`, but *filename* is a byte "
 "string decoded from the filesystem encoding (:func:`os.fsdecode`)."
 msgstr ""
+":c:func:`PyErr_SyntaxLocationObject` 와 비슷하지만, *filename*\\은 파일 시스템 "
+"인코딩(:func:`os.fsdecode`)에서 디코딩되는 바이트 문자열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:276
 msgid ""
 "Like :c:func:`PyErr_SyntaxLocationEx`, but the col_offset parameter is "
 "omitted."
-msgstr ""
+msgstr ":c:func:`PyErr_SyntaxLocationEx` 와 비슷하지만, col_offset 매개 변수는 생략됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:282
 msgid ""
@@ -311,10 +387,13 @@ msgid ""
 " function) was invoked with an illegal argument.  It is mostly for "
 "internal use."
 msgstr ""
+"이것은 ``PyErr_SetString(PyExc_SystemError, message)``\\의 줄임 표현입니다. 여기서 "
+"*message*\\는 내부 연산(예를 들어 파이썬/C API 함수)이 잘못된 인자로 호출되었음을 나타냅니다. 대부분 내부 "
+"용입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:289
 msgid "Issuing warnings"
-msgstr ""
+msgstr "경고 발행하기"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:291
 msgid ""
@@ -331,6 +410,12 @@ msgid ""
 "should do its normal exception handling (for example, :c:func:`Py_DECREF`"
 " owned references and return an error value)."
 msgstr ""
+"이 함수를 사용하여 C 코드에서 경고를 발행하십시오. 파이썬 :mod:`warnings` 모듈에서 내보낸 유사한 함수를 "
+"미러링합니다. 일반적으로 *sys.stderr*\\에 경고 메시지를 인쇄합니다; 그러나, 사용자가 경고를 에러로 전환하도록 지정했을"
+" 수도 있으며, 이 경우 예외가 발생합니다. 경고 장치의 문제로 인해 이 함수가 예외를 발생시키는 것도 가능합니다. 예외가 발생하지"
+" 않으면 반환 값은 ``0``\\이고, 예외가 발생하면 ``-1``\\입니다. (경고 메시지가 실제로 인쇄되는지나 예외의 이유를 "
+"확인할 수 없습니다; 이것은 의도적입니다.) 예외가 발생하면, 호출자는 정상적인 예외 처리를 수행해야 합니다 (예를 들어, 소유한 "
+"참조를 :c:func:`Py_DECREF`\\하고 에러값을 반환합니다)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:306
 msgid ""
@@ -341,6 +426,10 @@ msgid ""
 "code in that stack frame.  A *stack_level* of 1 is the function calling "
 ":c:func:`PyErr_WarnEx`, 2 is  the function above that, and so forth."
 msgstr ""
+"경고 메시지를 발행합니다. *category* 인자는 경고 범주(아래를 참조하십시오)나 ``NULL``\\입니다; *message*"
+" 인자는 UTF-8로 인코딩된 문자열입니다. *stack_level*\\은 스택 프레임 수를 제공하는 양수입니다; 해당 스택 "
+"프레임에서 현재 실행 중인 코드 줄에서 경고가 발생합니다. *stack_level*\\이 1이면 "
+":c:func:`PyErr_WarnEx`\\를 호출하는 함수, 2는 그 위의 함수, 등등."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:313
 msgid ""
@@ -350,6 +439,10 @@ msgid ""
 "Python warning categories are available as global variables whose names "
 "are enumerated at :ref:`standardwarningcategories`."
 msgstr ""
+"경고 범주는 :c:data:`PyExc_Warning`\\의 서브 클래스여야 합니다. "
+":c:data:`PyExc_Warning`\\은 :c:data:`PyExc_Exception`\\의 서브 클래스입니다; 기본 경고 "
+"범주는 :c:data:`PyExc_RuntimeWarning`\\입니다. 표준 파이썬 경고 범주는 이름이 "
+":ref:`standardwarningcategories` 에 열거된 전역 변수로 제공됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:319
 msgid ""
@@ -357,12 +450,16 @@ msgid ""
 ":mod:`warnings` module and the :option:`-W` option in the command line "
 "documentation.  There is no C API for warning control."
 msgstr ""
+"경고 제어에 대한 자세한 내용은, :mod:`warnings` 모듈 설명서와 명령 줄 설명서에서 :option:`-W` 옵션을 "
+"참조하십시오. 경고 제어를 위한 C API는 없습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:325
 msgid ""
 "Much like :c:func:`PyErr_SetImportError` but this function allows for "
 "specifying a subclass of :exc:`ImportError` to raise."
 msgstr ""
+":c:func:`PyErr_SetImportError` 와 매우 비슷하지만, 이 함수는 발생시킬 "
+":exc:`ImportError`\\의 서브 클래스를 지정할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:333
 msgid ""
@@ -372,6 +469,9 @@ msgid ""
 "*module* and *registry* arguments may be set to ``NULL`` to get the "
 "default effect described there."
 msgstr ""
+"모든 경고 어트리뷰트를 명시적으로 제어하면서 경고 메시지를 발행합니다. 이것은 파이썬 함수 "
+":func:`warnings.warn_explicit`\\에 대한 간단한 래퍼입니다. 자세한 내용은 거기를 참조하십시오. 그곳에 "
+"설명된 기본 효과를 얻으려면 *module*\\과 *registry* 인자를 ``NULL``\\로 설정해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:344
 msgid ""
@@ -379,6 +479,9 @@ msgid ""
 "*module* are UTF-8 encoded strings, and *filename* is decoded from the "
 "filesystem encoding (:func:`os.fsdecode`)."
 msgstr ""
+"*message*\\와 *module*\\이 UTF-8 인코딩된 문자열이고, *filename*\\은 파일 시스템 "
+"인코딩(:func:`os.fsdecode`)으로 디코딩된다는 점을 제외하면 "
+":c:func:`PyErr_WarnExplicitObject` 와 유사합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:351
 msgid ""
@@ -386,6 +489,8 @@ msgid ""
 ":c:func:`PyUnicode_FromFormat` to format the warning message.  *format* "
 "is an ASCII-encoded string."
 msgstr ""
+":c:func:`PyErr_WarnEx`\\와 유사한 함수지만, :c:func:`PyUnicode_FromFormat`\\을 "
+"사용하여 경고 메시지를 포맷합니다. *format*\\은 ASCII 인코딩된 문자열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:360
 msgid ""
@@ -393,10 +498,13 @@ msgid ""
 ":exc:`ResourceWarning` and it passes *source* to "
 ":func:`warnings.WarningMessage`."
 msgstr ""
+":c:func:`PyErr_WarnFormat`\\과 유사한 함수지만, *category*\\는 "
+":exc:`ResourceWarning`\\이고 *source*\\를 :func:`warnings.WarningMessage`\\로"
+" 전달합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:367
 msgid "Querying the error indicator"
-msgstr ""
+msgstr "에러 표시기 조회하기"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:371
 msgid ""
@@ -406,6 +514,10 @@ msgid ""
 "set, return ``NULL``.  You do not own a reference to the return value, so"
 " you do not need to :c:func:`Py_DECREF` it."
 msgstr ""
+"에러 표시기가 설정되었는지 테스트합니다. 설정되었으면, 예외 *type*\\(:c:func:`PyErr_Set\\*` 함수나 "
+":c:func:`PyErr_Restore`\\에 대한 마지막 호출의 첫 번째 인자)을 반환합니다. 설정되지 않았으면, "
+"``NULL``\\을 반환합니다. 여러분이 반환 값에 대한 참조를 소유하지 않아서, :c:func:`Py_DECREF` 할 필요가 "
+"없습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:379
 msgid ""
@@ -415,6 +527,9 @@ msgid ""
 "class, in the case of a class exception, or it may be a subclass of the "
 "expected exception.)"
 msgstr ""
+"반환 값을 특정 예외와 비교하지 마십시오; 대신 :c:func:`PyErr_ExceptionMatches`\\를 사용하십시오, "
+"아래를 참조하십시오. (클래스 예외의 경우 예외가 클래스 대신 인스턴스이거나, 예상하는 예외의 서브 클래스일 수 있어서 비교는 "
+"실패하기 쉽습니다.)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:387
 msgid ""
@@ -422,6 +537,8 @@ msgid ""
 "This should only be called when an exception is actually set; a memory "
 "access violation will occur if no exception has been raised."
 msgstr ""
+"``PyErr_GivenExceptionMatches(PyErr_Occurred(), exc)``\\와 동등합니다. 예외가 실제로 "
+"설정되었을 때만 호출해야 합니다; 예외가 발생하지 않았으면 메모리 액세스 위반이 발생합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:394
 msgid ""
@@ -430,6 +547,9 @@ msgid ""
 "instance of a subclass.  If *exc* is a tuple, all exception types in the "
 "tuple (and recursively in subtuples) are searched for a match."
 msgstr ""
+"*given* 예외가 *exc*\\의 예외 형과 일치하면 참을 반환합니다. *exc*\\가 클래스 객체이면, *given*\\이 "
+"서브 클래스의 인스턴스일 때도 참을 반환합니다. *exc*\\가 튜플이면, 튜플에 있는 모든 예외 형(그리고 서브 튜플도 "
+"재귀적으로)을 일치를 위해 검색합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:402
 msgid ""
@@ -439,6 +559,9 @@ msgid ""
 "each object retrieved.  The value and traceback object may be ``NULL`` "
 "even when the type object is not."
 msgstr ""
+"주소가 전달된 세 개의 변수로 에러 표시기를 꺼냅니다. 에러 표시기가 설정되지 않았으면, 세 변수를 모두 ``NULL``\\로 "
+"설정합니다. 설정되었으면, 지워지고 꺼낸 각 객체에 대한 참조를 여러분이 소유합니다. 값과 트레이스백 객체는 형 객체가 그렇지 않을"
+" 때도 ``NULL``\\일 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:409
 msgid ""
@@ -446,6 +569,8 @@ msgid ""
 "exceptions or by code that needs to save and restore the error indicator "
 "temporarily, e.g.::"
 msgstr ""
+"이 함수는 일반적으로 예외를 포착해야 하는 코드나 에러 표시기를 일시적으로 저장하고 복원해야 하는 코드에서만 사용됩니다. 예를 "
+"들어::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:424
 msgid ""
@@ -459,6 +584,11 @@ msgid ""
 "call you no longer own these references.  (If you don't understand this, "
 "don't use this function.  I warned you.)"
 msgstr ""
+"세 객체로 에러 표시기를 설정합니다. 에러 표시기가 이미 설정되어 있으면, 먼저 지워집니다. 객체가 ``NULL``\\이면, 에러 "
+"표시기가 지워집니다. ``NULL`` type과 함께 ``NULL``\\이 아닌 value나 traceback 을 전달하지 "
+"마십시오. 예외 형은 클래스여야 합니다. 잘못된 예외 형이나 값을 전달하지 마십시오. (이러한 규칙을 위반하면 나중에 미묘한 문제가"
+" 발생합니다.) 이 호출은 각 객체에 대한 참조를 제거합니다: 호출 전에 각 객체에 대한 참조를 소유해야 하며 호출 후에는 더는 "
+"이러한 참조를 소유하지 않습니다. (이것을 이해할 수 없다면, 이 함수를 사용하지 마십시오. 경고했습니다.)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:436
 msgid ""
@@ -466,6 +596,8 @@ msgid ""
 "restore the error indicator temporarily.  Use :c:func:`PyErr_Fetch` to "
 "save the current error indicator."
 msgstr ""
+"이 함수는 일반적으로 에러 표시기를 일시적으로 저장하고 복원해야 하는 코드에서만 사용됩니다. 현재 에러 표시기를 저장하려면 "
+":c:func:`PyErr_Fetch`\\를 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:443
 msgid ""
@@ -476,6 +608,10 @@ msgid ""
 "normalized, nothing happens. The delayed normalization is implemented to "
 "improve performance."
 msgstr ""
+"특정 상황에서, 아래의 :c:func:`PyErr_Fetch`\\가 반환하는 값은 \"비 정규화\"되었을 수 있습니다. 즉, "
+"``*exc``\\는 클래스 객체이지만 ``*val``\\은 같은 클래스의 인스턴스가 아닙니다. 이 함수는 이 경우 클래스를 "
+"인스턴스 화하는 데 사용할 수 있습니다. 값이 이미 정규화되어 있으면, 아무 일도 일어나지 않습니다. 지연된 정규화는 성능 향상을 "
+"위해 구현됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:451
 msgid ""
@@ -483,6 +619,8 @@ msgid ""
 "on the exception value. If setting the traceback appropriately is "
 "desired, the following additional snippet is needed::"
 msgstr ""
+"이 함수 예외 값에 ``__traceback__`` 어트리뷰트를 묵시적으로 설정하지 *않습니다*. 트레이스백을 적절하게 설정해야 "
+"하면, 다음과 같은 추가 스니펫이 필요합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:462
 msgid ""
@@ -491,6 +629,9 @@ msgid ""
 "that was freshly raised.  Returns new references for the three objects, "
 "any of which may be ``NULL``.  Does not modify the exception info state."
 msgstr ""
+"``sys.exc_info()``\\로 알려진 것과 같은, 예외 정보를 꺼냅니다. 이것은 새로 발생한 예외가 아니라, *이미 "
+"포착된* 예외를 가리킵니다. 세 객체에 대한 새 참조를 반환합니다. 이 중 어느 것이든 ``NULL``\\일 수 있습니다. 예외 "
+"정보 상태를 수정하지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:469
 msgid ""
@@ -499,6 +640,8 @@ msgid ""
 "the exception state temporarily.  Use :c:func:`PyErr_SetExcInfo` to "
 "restore or clear the exception state."
 msgstr ""
+"이 함수는 일반적으로 예외를 처리하려는 코드에서 사용되지 않습니다. 오히려, 코드가 예외 상태를 임시로 저장하고 복원해야 할 때 "
+"사용할 수 있습니다. 예외 상태를 복원하거나 지우려면 :c:func:`PyErr_SetExcInfo`\\를 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:479
 msgid ""
@@ -508,6 +651,9 @@ msgid ""
 " clear the exception state, pass ``NULL`` for all three arguments. For "
 "general rules about the three arguments, see :c:func:`PyErr_Restore`."
 msgstr ""
+"``sys.exc_info()``\\로 알려진 것과 같은, 예외 정보를 설정합니다. 이것은 새로 발생한 예외가 아니라, *이미 "
+"포착된* 예외를 가리킵니다. 이 함수는 인자의 참조를 훔칩니다. 예외 상태를 지우려면, 세 인자 모두에 ``NULL``\\을 "
+"전달하십시오. 세 인자에 대한 일반적인 규칙은, :c:func:`PyErr_Restore`\\를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:487
 msgid ""
@@ -516,10 +662,12 @@ msgid ""
 "the exception state temporarily.  Use :c:func:`PyErr_GetExcInfo` to read "
 "the exception state."
 msgstr ""
+"이 함수는 일반적으로 예외를 처리하려는 코드에서 사용되지 않습니다. 오히려, 코드가 예외 상태를 임시로 저장하고 복원해야 할 때 "
+"사용할 수 있습니다. 예외 상태를 읽으려면 :c:func:`PyErr_GetExcInfo`\\를 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:496
 msgid "Signal Handling"
-msgstr ""
+msgstr "시그널 처리하기"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:506
 msgid ""
@@ -533,6 +681,11 @@ msgid ""
 "returns ``0``.  The error indicator may or may not be cleared if it was "
 "previously set."
 msgstr ""
+"이 함수는 파이썬의 시그널 처리와 상호 작용합니다. 시그널이 프로세스로 전송되었는지 확인하고, 그렇다면, 해당 시그널 처리기를 "
+"호출합니다. :mod:`signal` 모듈이 지원되면, 파이썬으로 작성된 시그널 처리기를 호출할 수 있습니다. 모든 경우에, "
+":const:`SIGINT`\\의 기본 효과는 :exc:`KeyboardInterrupt` 예외를 발생시키는 것입니다. 예외가 "
+"발생하면 에러 표시기가 설정되고 함수는 ``-1``\\을 반환합니다; 그렇지 않으면 함수는 ``0``\\을 반환합니다. 에러 "
+"표시기는 이전에 설정한 경우 지워지거나 지워지지 않을 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:522
 msgid ""
@@ -540,6 +693,8 @@ msgid ""
 ":c:func:`PyErr_CheckSignals` is called,  the Python signal handler for "
 ":const:`SIGINT` will be called."
 msgstr ""
+":const:`SIGINT` 시그널 도착의 효과를 시뮬레이션합니다. 다음에 :c:func:`PyErr_CheckSignals`\\가"
+" 호출되면, :const:`SIGINT`\\에 대한 파이썬 시그널 처리기가 호출됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:526
 msgid ""
@@ -547,6 +702,8 @@ msgid ""
 ":data:`signal.SIG_DFL` or :data:`signal.SIG_IGN`), this function does "
 "nothing."
 msgstr ""
+":const:`SIGINT`\\가 파이썬에서 처리되지 않으면 (:data:`signal.SIG_DFL`\\이나 "
+":data:`signal.SIG_IGN`\\으로 설정되어서), 이 함수는 아무 작업도 수행하지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:532
 msgid ""
@@ -554,6 +711,8 @@ msgid ""
 "number is written as a single byte whenever a signal is received. *fd* "
 "must be non-blocking. It returns the previous such file descriptor."
 msgstr ""
+"이 유틸리티 함수는 시그널이 수신될 때마다 시그널 번호가 단일 바이트로 기록되는 파일 기술자를 지정합니다. *fd*\\는 비 "
+"블로킹이어야 합니다. 이전의 파일 기술자를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:536
 msgid ""
@@ -562,14 +721,17 @@ msgid ""
 "error checking.  *fd* should be a valid file descriptor.  The function "
 "should only be called from the main thread."
 msgstr ""
+"값 ``-1``\\은 기능을 비활성화합니다; 이것이 초기 상태입니다. 이것은 파이썬의 "
+":func:`signal.set_wakeup_fd`\\와 동등하지만, 에러 검사는 없습니다. *fd*\\는 유효한 파일 기술자여야 "
+"합니다. 함수는 메인 스레드에서만 호출되어야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:541
 msgid "On Windows, the function now also supports socket handles."
-msgstr ""
+msgstr "윈도우에서, 함수는 이제 소켓 핸들도 지원합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:546
 msgid "Exception Classes"
-msgstr ""
+msgstr "예외 클래스"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:550
 msgid ""
@@ -579,6 +741,10 @@ msgid ""
 "``NULL``. This creates a class object derived from :exc:`Exception` "
 "(accessible in C as :c:data:`PyExc_Exception`)."
 msgstr ""
+"이 유틸리티 함수는 새 예외 클래스를 만들고 반환합니다. *name* 인자는 새 예외의 이름, ``module.classname``"
+" 형식의 C 문자열이어야 합니다. *base*\\와 *dict* 인자는 일반적으로 ``NULL``\\입니다. 이렇게 하면 "
+":exc:`Exception`\\(C에서 :c:data:`PyExc_Exception`\\으로 액세스할 수 있습니다)에서 파생된 "
+"클래스 객체가 만들어집니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:556
 msgid ""
@@ -589,6 +755,10 @@ msgid ""
 "or a tuple of classes. The *dict* argument can be used to specify a "
 "dictionary of class variables and methods."
 msgstr ""
+"새 클래스의 :attr:`__module__` 어트리뷰트는 *name* 인자의 첫 번째 부분(마지막 점까지)으로 설정되고, 클래스 "
+"이름은 마지막 부분(마지막 점 뒤)으로 설정됩니다. *base* 인자는 대체 베이스 클래스를 지정하는 데 사용할 수 있습니다; "
+"하나의 클래스나 클래스의 튜플일 수 있습니다. *dict* 인자는 클래스 변수와 메서드의 딕셔너리를 지정하는 데 사용할 수 "
+"있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:565
 msgid ""
@@ -596,10 +766,12 @@ msgid ""
 " can easily be given a docstring: If *doc* is non-``NULL``, it will be "
 "used as the docstring for the exception class."
 msgstr ""
+"새로운 예외 클래스에 독스트링을 쉽게 부여할 수 있다는 점을 제외하면 :c:func:`PyErr_NewException`\\과 "
+"같습니다: *doc*\\이 ``NULL``\\이 아니면, 예외 클래스에 대한 독스트링으로 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:573
 msgid "Exception Objects"
-msgstr ""
+msgstr "예외 객체"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:577
 msgid ""
@@ -607,12 +779,14 @@ msgid ""
 " accessible from Python through :attr:`__traceback__`.  If there is no "
 "traceback associated, this returns ``NULL``."
 msgstr ""
+"파이썬에서 :attr:`__traceback__`\\을 통해 액세스 할 수 있는 새로운 참조로 예외와 관련된 트레이스백을 "
+"반환합니다. 관련된 트레이스백이 없으면, ``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:584
 msgid ""
 "Set the traceback associated with the exception to *tb*.  Use ``Py_None``"
 " to clear it."
-msgstr ""
+msgstr "예외와 관련된 트레이스백을 *tb*\\로 설정합니다. 지우려면 ``Py_None``\\을 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:590
 msgid ""
@@ -621,6 +795,8 @@ msgid ""
 "accessible from Python through :attr:`__context__`.  If there is no "
 "context associated, this returns ``NULL``."
 msgstr ""
+"파이썬에서 :attr:`__context__`\\를 통해 액세스 할 수 있는 새 참조로 예외와 연관된 컨텍스트(다른 예외 인스턴스,"
+" 이것을 처리하는 도중 *ex*\\가 발생했습니다)를 반환합니다. 연결된 컨텍스트가 없으면 ``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:598
 msgid ""
@@ -628,6 +804,8 @@ msgid ""
 "clear it.  There is no type check to make sure that *ctx* is an exception"
 " instance. This steals a reference to *ctx*."
 msgstr ""
+"예외와 연관된 컨텍스트를 *ctx*\\로 설정합니다. 지우려면 ``NULL``\\을 사용하십시오. *ctx*\\가 예외 인스턴스인지"
+" 확인하는 형 검사는 없습니다. 이것은 *ctx*\\에 대한 참조를 훔칩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:605
 msgid ""
@@ -635,6 +813,8 @@ msgid ""
 "``raise ... from ...``) associated with the exception as a new reference,"
 " as accessible from Python through :attr:`__cause__`."
 msgstr ""
+"파이썬에서 :attr:`__cause__`\\를 통해 액세스 할 수 있는 새 참조로 예외와 관련된 원인(예외 인스턴스나 "
+":const:`None`, ``raise ... from ...``\\으로 설정됩니다)을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:612
 msgid ""
@@ -642,22 +822,24 @@ msgid ""
 "clear it.  There is no type check to make sure that *cause* is either an "
 "exception instance or :const:`None`.  This steals a reference to *cause*."
 msgstr ""
+"예외와 관련된 원인을 *cause*\\로 설정합니다. 지우려면 ``NULL``\\을 사용하십시오. *cause*\\가 예외 "
+"인스턴스나 :const:`None`\\인지 확인하는 형 검사는 없습니다. 이것은 *cause*\\에 대한 참조를 훔칩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:616
 msgid ""
 ":attr:`__suppress_context__` is implicitly set to ``True`` by this "
 "function."
-msgstr ""
+msgstr ":attr:`__suppress_context__`\\는 이 함수에 의해 묵시적으로 ``True``\\로 설정됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:622
 msgid "Unicode Exception Objects"
-msgstr ""
+msgstr "유니코드 예외 객체"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:624
 msgid ""
 "The following functions are used to create and modify Unicode exceptions "
 "from C."
-msgstr ""
+msgstr "다음 함수는 C에서 유니코드 예외를 만들고 수정하는 데 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:628
 msgid ""
@@ -665,6 +847,9 @@ msgid ""
 "*encoding*, *object*, *length*, *start*, *end* and *reason*. *encoding* "
 "and *reason* are UTF-8 encoded strings."
 msgstr ""
+"*encoding*, *object*, *length*, *start*, *end* 및 *reason* 어트리뷰트를 사용하여 "
+":class:`UnicodeDecodeError` 객체를 만듭니다. *encoding*\\과 *reason*\\은 UTF-8로 "
+"인코딩된 문자열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:634
 msgid ""
@@ -672,6 +857,9 @@ msgid ""
 "*encoding*, *object*, *length*, *start*, *end* and *reason*. *encoding* "
 "and *reason* are UTF-8 encoded strings."
 msgstr ""
+"*encoding*, *object*, *length*, *start*, *end* 및 *reason* 어트리뷰트를 사용하여 "
+":class:`UnicodeEncodeError` 객체를 만듭니다. *encoding*\\과 *reason*\\은 UTF-8로 "
+"인코딩된 문자열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:640
 msgid ""
@@ -679,14 +867,16 @@ msgid ""
 "*object*, *length*, *start*, *end* and *reason*. *reason* is a UTF-8 "
 "encoded string."
 msgstr ""
+"*object*, *length*, *start*, *end* 및 *reason* 어트리뷰트를 사용하여 "
+":class:`UnicodeTranslateError` 객체를 만듭니다. *reason*\\은 UTF-8로 인코딩된 문자열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:646
 msgid "Return the *encoding* attribute of the given exception object."
-msgstr ""
+msgstr "주어진 예외 객체의 *encoding* 어트리뷰트를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:652
 msgid "Return the *object* attribute of the given exception object."
-msgstr ""
+msgstr "주어진 예외 객체의 *object* 어트리뷰트를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:658
 msgid ""
@@ -694,12 +884,16 @@ msgid ""
 " *\\*start*.  *start* must not be ``NULL``.  Return ``0`` on success, "
 "``-1`` on failure."
 msgstr ""
+"주어진 예외 객체의 *start* 어트리뷰트를 가져와서 *\\*start*\\에 배치합니다. *start*\\는 "
+"``NULL``\\이 아니어야 합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:666
 msgid ""
 "Set the *start* attribute of the given exception object to *start*.  "
 "Return ``0`` on success, ``-1`` on failure."
 msgstr ""
+"주어진 예외 객체의 *start* 어트리뷰트를 *start*\\로 설정합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을"
+" 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:673
 msgid ""
@@ -707,26 +901,32 @@ msgid ""
 "*\\*end*.  *end* must not be ``NULL``.  Return ``0`` on success, ``-1`` "
 "on failure."
 msgstr ""
+"주어진 예외 객체의 *end* 어트리뷰트를 가져와서 *\\*end*\\에 배치합니다. *end*\\는 ``NULL``\\이 아니어야"
+" 합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:681
 msgid ""
 "Set the *end* attribute of the given exception object to *end*.  Return "
 "``0`` on success, ``-1`` on failure."
 msgstr ""
+"주어진 예외 객체의 *end* 어트리뷰트를 *end*\\로 설정합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 "
+"반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:688
 msgid "Return the *reason* attribute of the given exception object."
-msgstr ""
+msgstr "주어진 예외 객체의 *reason* 어트리뷰트를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:694
 msgid ""
 "Set the *reason* attribute of the given exception object to *reason*.  "
 "Return ``0`` on success, ``-1`` on failure."
 msgstr ""
+"주어진 예외 객체의 *reason* 어트리뷰트를 *reason*\\으로 설정합니다. 성공하면 ``0``\\을, 실패하면 "
+"``-1``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:699
 msgid "Recursion Control"
-msgstr ""
+msgstr "재귀 제어"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:701
 msgid ""
@@ -738,7 +938,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:708
 msgid "Marks a point where a recursive C-level call is about to be performed."
-msgstr ""
+msgstr "재귀적 C 수준 호출이 막 수행되려고 하는 지점을 표시합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:710
 msgid ""
@@ -746,6 +946,9 @@ msgid ""
 "stack overflowed using :c:func:`PyOS_CheckStack`.  In this is the case, "
 "it sets a :exc:`MemoryError` and returns a nonzero value."
 msgstr ""
+":const:`USE_STACKCHECK`\\가 정의되었으면, 이 함수는 :c:func:`PyOS_CheckStack`\\을 "
+"사용하여 OS 스택이 오버플로 되었는지 확인합니다. 이 경우, :exc:`MemoryError`\\를 설정하고 0이 아닌 값을 "
+"반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:714
 msgid ""
@@ -753,6 +956,8 @@ msgid ""
 "the case, a :exc:`RecursionError` is set and a nonzero value is returned."
 " Otherwise, zero is returned."
 msgstr ""
+"그런 다음 함수는 재귀 제한에 도달했는지 확인합니다. 이 경우, :exc:`RecursionError`\\가 설정되고 0이 아닌 "
+"값이 반환됩니다. 그렇지 않으면, 0이 반환됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:718
 msgid ""
@@ -766,6 +971,8 @@ msgid ""
 "Ends a :c:func:`Py_EnterRecursiveCall`.  Must be called once for each "
 "*successful* invocation of :c:func:`Py_EnterRecursiveCall`."
 msgstr ""
+":c:func:`Py_EnterRecursiveCall` 을 종료합니다. :c:func:`Py_EnterRecursiveCall` "
+"의 각 *성공적인* 호출마다 한 번씩 호출되어야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:727
 msgid ""
@@ -776,12 +983,16 @@ msgid ""
 "functionality.  Effectively, these are the C equivalent to "
 ":func:`reprlib.recursive_repr`."
 msgstr ""
+"컨테이너형에 대해 :c:member:`~PyTypeObject.tp_repr`\\을 올바르게 구현하려면 특별한 재귀 처리가 "
+"필요합니다. 스택을 보호하는 것 외에도, :c:member:`~PyTypeObject.tp_repr`\\은 순환을 방지하기 위해 "
+"객체를 추적해야 합니다. 다음 두 함수는 이 기능을 쉽게 만듭니다. 사실상, 이들은 "
+":func:`reprlib.recursive_repr`\\에 대한 C 동등물입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:735
 msgid ""
 "Called at the beginning of the :c:member:`~PyTypeObject.tp_repr` "
 "implementation to detect cycles."
-msgstr ""
+msgstr "순환을 감지하기 위해 :c:member:`~PyTypeObject.tp_repr` 구현 시작 시 호출됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:738
 msgid ""
@@ -791,6 +1002,9 @@ msgid ""
 "examples, :class:`dict` objects return ``{...}`` and :class:`list` "
 "objects return ``[...]``."
 msgstr ""
+"객체가 이미 처리되었으면, 함수는 양의 정수를 반환합니다. 이 경우 :c:member:`~PyTypeObject.tp_repr` "
+"구현은 순환을 나타내는 문자열 객체를 반환해야 합니다. 예를 들어, :class:`dict` 객체는 ``{...}``\\를 반환하고"
+" :class:`list` 객체는 ``[...]``\\를 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:744
 msgid ""
@@ -798,22 +1012,28 @@ msgid ""
 "reached.  In that case the :c:member:`~PyTypeObject.tp_repr` "
 "implementation should typically return ``NULL``."
 msgstr ""
+"재귀 제한에 도달하면 함수는 음의 정수를 반환합니다. 이 경우 :c:member:`~PyTypeObject.tp_repr` 구현은 "
+"일반적으로 ``NULL``\\을 반환해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:748
 msgid ""
 "Otherwise, the function returns zero and the "
 ":c:member:`~PyTypeObject.tp_repr` implementation can continue normally."
 msgstr ""
+"그렇지 않으면, 함수는 0을 반환하고 :c:member:`~PyTypeObject.tp_repr` 구현은 정상적으로 계속될 수 "
+"있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:753
 msgid ""
 "Ends a :c:func:`Py_ReprEnter`.  Must be called once for each invocation "
 "of :c:func:`Py_ReprEnter` that returns zero."
 msgstr ""
+":c:func:`Py_ReprEnter`\\를 종료합니다. 0을 반환하는 :c:func:`Py_ReprEnter` 호출마다 한 번씩"
+" 호출해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:760
 msgid "Standard Exceptions"
-msgstr ""
+msgstr "표준 예외"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:762
 msgid ""
@@ -822,31 +1042,33 @@ msgid ""
 "the type :c:type:`PyObject\\*`; they are all class objects.  For "
 "completeness, here are all the variables:"
 msgstr ""
+"모든 표준 파이썬 예외는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
+":c:type:`PyObject\\*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:823
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:956
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1001
 msgid "C Name"
-msgstr ""
+msgstr "C 이름"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:823
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1001
 msgid "Python Name"
-msgstr ""
+msgstr "파이썬 이름"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:823
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:956
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1001
 msgid "Notes"
-msgstr ""
+msgstr "노트"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:825
 msgid ":c:data:`PyExc_BaseException`"
-msgstr ""
+msgstr ":c:data:`PyExc_BaseException`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:825
 msgid ":exc:`BaseException`"
-msgstr ""
+msgstr ":exc:`BaseException`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:825
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:827
@@ -855,427 +1077,427 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:887
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1003
 msgid "\\(1)"
-msgstr ""
+msgstr "\\(1)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:827
 msgid ":c:data:`PyExc_Exception`"
-msgstr ""
+msgstr ":c:data:`PyExc_Exception`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:827
 msgid ":exc:`Exception`"
-msgstr ""
+msgstr ":exc:`Exception`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:829
 msgid ":c:data:`PyExc_ArithmeticError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ArithmeticError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:829
 msgid ":exc:`ArithmeticError`"
-msgstr ""
+msgstr ":exc:`ArithmeticError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:831
 msgid ":c:data:`PyExc_AssertionError`"
-msgstr ""
+msgstr ":c:data:`PyExc_AssertionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:831
 msgid ":exc:`AssertionError`"
-msgstr ""
+msgstr ":exc:`AssertionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:833
 msgid ":c:data:`PyExc_AttributeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_AttributeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:833
 msgid ":exc:`AttributeError`"
-msgstr ""
+msgstr ":exc:`AttributeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:835
 msgid ":c:data:`PyExc_BlockingIOError`"
-msgstr ""
+msgstr ":c:data:`PyExc_BlockingIOError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:835
 msgid ":exc:`BlockingIOError`"
-msgstr ""
+msgstr ":exc:`BlockingIOError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:837
 msgid ":c:data:`PyExc_BrokenPipeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_BrokenPipeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:837
 msgid ":exc:`BrokenPipeError`"
-msgstr ""
+msgstr ":exc:`BrokenPipeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:839
 msgid ":c:data:`PyExc_BufferError`"
-msgstr ""
+msgstr ":c:data:`PyExc_BufferError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:839
 msgid ":exc:`BufferError`"
-msgstr ""
+msgstr ":exc:`BufferError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:841
 msgid ":c:data:`PyExc_ChildProcessError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ChildProcessError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:841
 msgid ":exc:`ChildProcessError`"
-msgstr ""
+msgstr ":exc:`ChildProcessError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:843
 msgid ":c:data:`PyExc_ConnectionAbortedError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ConnectionAbortedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:843
 msgid ":exc:`ConnectionAbortedError`"
-msgstr ""
+msgstr ":exc:`ConnectionAbortedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:845
 msgid ":c:data:`PyExc_ConnectionError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ConnectionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:845
 msgid ":exc:`ConnectionError`"
-msgstr ""
+msgstr ":exc:`ConnectionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:847
 msgid ":c:data:`PyExc_ConnectionRefusedError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ConnectionRefusedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:847
 msgid ":exc:`ConnectionRefusedError`"
-msgstr ""
+msgstr ":exc:`ConnectionRefusedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:849
 msgid ":c:data:`PyExc_ConnectionResetError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ConnectionResetError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:849
 msgid ":exc:`ConnectionResetError`"
-msgstr ""
+msgstr ":exc:`ConnectionResetError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:851
 msgid ":c:data:`PyExc_EOFError`"
-msgstr ""
+msgstr ":c:data:`PyExc_EOFError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:851
 msgid ":exc:`EOFError`"
-msgstr ""
+msgstr ":exc:`EOFError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:853
 msgid ":c:data:`PyExc_FileExistsError`"
-msgstr ""
+msgstr ":c:data:`PyExc_FileExistsError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:853
 msgid ":exc:`FileExistsError`"
-msgstr ""
+msgstr ":exc:`FileExistsError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:855
 msgid ":c:data:`PyExc_FileNotFoundError`"
-msgstr ""
+msgstr ":c:data:`PyExc_FileNotFoundError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:855
 msgid ":exc:`FileNotFoundError`"
-msgstr ""
+msgstr ":exc:`FileNotFoundError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:857
 msgid ":c:data:`PyExc_FloatingPointError`"
-msgstr ""
+msgstr ":c:data:`PyExc_FloatingPointError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:857
 msgid ":exc:`FloatingPointError`"
-msgstr ""
+msgstr ":exc:`FloatingPointError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:859
 msgid ":c:data:`PyExc_GeneratorExit`"
-msgstr ""
+msgstr ":c:data:`PyExc_GeneratorExit`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:859
 msgid ":exc:`GeneratorExit`"
-msgstr ""
+msgstr ":exc:`GeneratorExit`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:861
 msgid ":c:data:`PyExc_ImportError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ImportError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:861
 msgid ":exc:`ImportError`"
-msgstr ""
+msgstr ":exc:`ImportError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:863
 msgid ":c:data:`PyExc_IndentationError`"
-msgstr ""
+msgstr ":c:data:`PyExc_IndentationError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:863
 msgid ":exc:`IndentationError`"
-msgstr ""
+msgstr ":exc:`IndentationError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:865
 msgid ":c:data:`PyExc_IndexError`"
-msgstr ""
+msgstr ":c:data:`PyExc_IndexError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:865
 msgid ":exc:`IndexError`"
-msgstr ""
+msgstr ":exc:`IndexError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:867
 msgid ":c:data:`PyExc_InterruptedError`"
-msgstr ""
+msgstr ":c:data:`PyExc_InterruptedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:867
 msgid ":exc:`InterruptedError`"
-msgstr ""
+msgstr ":exc:`InterruptedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:869
 msgid ":c:data:`PyExc_IsADirectoryError`"
-msgstr ""
+msgstr ":c:data:`PyExc_IsADirectoryError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:869
 msgid ":exc:`IsADirectoryError`"
-msgstr ""
+msgstr ":exc:`IsADirectoryError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:871
 msgid ":c:data:`PyExc_KeyError`"
-msgstr ""
+msgstr ":c:data:`PyExc_KeyError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:871
 msgid ":exc:`KeyError`"
-msgstr ""
+msgstr ":exc:`KeyError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:873
 msgid ":c:data:`PyExc_KeyboardInterrupt`"
-msgstr ""
+msgstr ":c:data:`PyExc_KeyboardInterrupt`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:873
 msgid ":exc:`KeyboardInterrupt`"
-msgstr ""
+msgstr ":exc:`KeyboardInterrupt`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:875
 msgid ":c:data:`PyExc_LookupError`"
-msgstr ""
+msgstr ":c:data:`PyExc_LookupError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:875
 msgid ":exc:`LookupError`"
-msgstr ""
+msgstr ":exc:`LookupError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:877
 msgid ":c:data:`PyExc_MemoryError`"
-msgstr ""
+msgstr ":c:data:`PyExc_MemoryError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:877
 msgid ":exc:`MemoryError`"
-msgstr ""
+msgstr ":exc:`MemoryError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:879
 msgid ":c:data:`PyExc_ModuleNotFoundError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ModuleNotFoundError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:879
 msgid ":exc:`ModuleNotFoundError`"
-msgstr ""
+msgstr ":exc:`ModuleNotFoundError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:881
 msgid ":c:data:`PyExc_NameError`"
-msgstr ""
+msgstr ":c:data:`PyExc_NameError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:881
 msgid ":exc:`NameError`"
-msgstr ""
+msgstr ":exc:`NameError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:883
 msgid ":c:data:`PyExc_NotADirectoryError`"
-msgstr ""
+msgstr ":c:data:`PyExc_NotADirectoryError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:883
 msgid ":exc:`NotADirectoryError`"
-msgstr ""
+msgstr ":exc:`NotADirectoryError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:885
 msgid ":c:data:`PyExc_NotImplementedError`"
-msgstr ""
+msgstr ":c:data:`PyExc_NotImplementedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:885
 msgid ":exc:`NotImplementedError`"
-msgstr ""
+msgstr ":exc:`NotImplementedError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:887
 msgid ":c:data:`PyExc_OSError`"
-msgstr ""
+msgstr ":c:data:`PyExc_OSError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:887
 msgid ":exc:`OSError`"
-msgstr ""
+msgstr ":exc:`OSError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:889
 msgid ":c:data:`PyExc_OverflowError`"
-msgstr ""
+msgstr ":c:data:`PyExc_OverflowError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:889
 msgid ":exc:`OverflowError`"
-msgstr ""
+msgstr ":exc:`OverflowError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:891
 msgid ":c:data:`PyExc_PermissionError`"
-msgstr ""
+msgstr ":c:data:`PyExc_PermissionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:891
 msgid ":exc:`PermissionError`"
-msgstr ""
+msgstr ":exc:`PermissionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:893
 msgid ":c:data:`PyExc_ProcessLookupError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ProcessLookupError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:893
 msgid ":exc:`ProcessLookupError`"
-msgstr ""
+msgstr ":exc:`ProcessLookupError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:895
 msgid ":c:data:`PyExc_RecursionError`"
-msgstr ""
+msgstr ":c:data:`PyExc_RecursionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:895
 msgid ":exc:`RecursionError`"
-msgstr ""
+msgstr ":exc:`RecursionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:897
 msgid ":c:data:`PyExc_ReferenceError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ReferenceError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:897
 msgid ":exc:`ReferenceError`"
-msgstr ""
+msgstr ":exc:`ReferenceError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:897
 msgid "\\(2)"
-msgstr ""
+msgstr "\\(2)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:899
 msgid ":c:data:`PyExc_RuntimeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_RuntimeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:899
 msgid ":exc:`RuntimeError`"
-msgstr ""
+msgstr ":exc:`RuntimeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:901
 msgid ":c:data:`PyExc_StopAsyncIteration`"
-msgstr ""
+msgstr ":c:data:`PyExc_StopAsyncIteration`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:901
 msgid ":exc:`StopAsyncIteration`"
-msgstr ""
+msgstr ":exc:`StopAsyncIteration`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:903
 msgid ":c:data:`PyExc_StopIteration`"
-msgstr ""
+msgstr ":c:data:`PyExc_StopIteration`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:903
 msgid ":exc:`StopIteration`"
-msgstr ""
+msgstr ":exc:`StopIteration`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:905
 msgid ":c:data:`PyExc_SyntaxError`"
-msgstr ""
+msgstr ":c:data:`PyExc_SyntaxError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:905
 msgid ":exc:`SyntaxError`"
-msgstr ""
+msgstr ":exc:`SyntaxError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:907
 msgid ":c:data:`PyExc_SystemError`"
-msgstr ""
+msgstr ":c:data:`PyExc_SystemError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:907
 msgid ":exc:`SystemError`"
-msgstr ""
+msgstr ":exc:`SystemError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:909
 msgid ":c:data:`PyExc_SystemExit`"
-msgstr ""
+msgstr ":c:data:`PyExc_SystemExit`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:909
 msgid ":exc:`SystemExit`"
-msgstr ""
+msgstr ":exc:`SystemExit`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:911
 msgid ":c:data:`PyExc_TabError`"
-msgstr ""
+msgstr ":c:data:`PyExc_TabError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:911
 msgid ":exc:`TabError`"
-msgstr ""
+msgstr ":exc:`TabError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:913
 msgid ":c:data:`PyExc_TimeoutError`"
-msgstr ""
+msgstr ":c:data:`PyExc_TimeoutError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:913
 msgid ":exc:`TimeoutError`"
-msgstr ""
+msgstr ":exc:`TimeoutError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:915
 msgid ":c:data:`PyExc_TypeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_TypeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:915
 msgid ":exc:`TypeError`"
-msgstr ""
+msgstr ":exc:`TypeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:917
 msgid ":c:data:`PyExc_UnboundLocalError`"
-msgstr ""
+msgstr ":c:data:`PyExc_UnboundLocalError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:917
 msgid ":exc:`UnboundLocalError`"
-msgstr ""
+msgstr ":exc:`UnboundLocalError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:919
 msgid ":c:data:`PyExc_UnicodeDecodeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_UnicodeDecodeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:919
 msgid ":exc:`UnicodeDecodeError`"
-msgstr ""
+msgstr ":exc:`UnicodeDecodeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:921
 msgid ":c:data:`PyExc_UnicodeEncodeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_UnicodeEncodeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:921
 msgid ":exc:`UnicodeEncodeError`"
-msgstr ""
+msgstr ":exc:`UnicodeEncodeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:923
 msgid ":c:data:`PyExc_UnicodeError`"
-msgstr ""
+msgstr ":c:data:`PyExc_UnicodeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:923
 msgid ":exc:`UnicodeError`"
-msgstr ""
+msgstr ":exc:`UnicodeError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:925
 msgid ":c:data:`PyExc_UnicodeTranslateError`"
-msgstr ""
+msgstr ":c:data:`PyExc_UnicodeTranslateError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:925
 msgid ":exc:`UnicodeTranslateError`"
-msgstr ""
+msgstr ":exc:`UnicodeTranslateError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:927
 msgid ":c:data:`PyExc_ValueError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ValueError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:927
 msgid ":exc:`ValueError`"
-msgstr ""
+msgstr ":exc:`ValueError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:929
 msgid ":c:data:`PyExc_ZeroDivisionError`"
-msgstr ""
+msgstr ":c:data:`PyExc_ZeroDivisionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:929
 msgid ":exc:`ZeroDivisionError`"
-msgstr ""
+msgstr ":exc:`ZeroDivisionError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:932
 msgid ""
@@ -1289,57 +1511,66 @@ msgid ""
 ":c:data:`PyExc_PermissionError`, :c:data:`PyExc_ProcessLookupError` and "
 ":c:data:`PyExc_TimeoutError` were introduced following :pep:`3151`."
 msgstr ""
+":c:data:`PyExc_BlockingIOError`, :c:data:`PyExc_BrokenPipeError`, "
+":c:data:`PyExc_ChildProcessError`, :c:data:`PyExc_ConnectionError`, "
+":c:data:`PyExc_ConnectionAbortedError`, "
+":c:data:`PyExc_ConnectionRefusedError`, "
+":c:data:`PyExc_ConnectionResetError`, :c:data:`PyExc_FileExistsError`, "
+":c:data:`PyExc_FileNotFoundError`, :c:data:`PyExc_InterruptedError`, "
+":c:data:`PyExc_IsADirectoryError`, :c:data:`PyExc_NotADirectoryError`, "
+":c:data:`PyExc_PermissionError`, :c:data:`PyExc_ProcessLookupError` 및 "
+":c:data:`PyExc_TimeoutError`\\는 :pep:`3151`\\을 따라 도입되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:942
 msgid ":c:data:`PyExc_StopAsyncIteration` and :c:data:`PyExc_RecursionError`."
-msgstr ""
+msgstr ":c:data:`PyExc_StopAsyncIteration` 과 :c:data:`PyExc_RecursionError`."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:945
 msgid ":c:data:`PyExc_ModuleNotFoundError`."
-msgstr ""
+msgstr ":c:data:`PyExc_ModuleNotFoundError`."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:948
 msgid "These are compatibility aliases to :c:data:`PyExc_OSError`:"
-msgstr ""
+msgstr "다음은 :c:data:`PyExc_OSError`\\에 대한 호환성 별칭입니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:958
 msgid ":c:data:`PyExc_EnvironmentError`"
-msgstr ""
+msgstr ":c:data:`PyExc_EnvironmentError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:960
 msgid ":c:data:`PyExc_IOError`"
-msgstr ""
+msgstr ":c:data:`PyExc_IOError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:962
 msgid ":c:data:`PyExc_WindowsError`"
-msgstr ""
+msgstr ":c:data:`PyExc_WindowsError`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:962
 msgid "\\(3)"
-msgstr ""
+msgstr "\\(3)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:965
 msgid "These aliases used to be separate exception types."
-msgstr ""
+msgstr "이러한 별칭은 별도의 예외 형이었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:968
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1029
 msgid "Notes:"
-msgstr ""
+msgstr "노트:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:971
 msgid "This is a base class for other standard exceptions."
-msgstr ""
+msgstr "이것은 다른 표준 예외에 대한 베이스 클래스입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:974
 msgid ""
 "Only defined on Windows; protect code that uses this by testing that the "
 "preprocessor macro ``MS_WINDOWS`` is defined."
-msgstr ""
+msgstr "윈도우에서만 정의됩니다; 전 처리기 매크로 ``MS_WINDOWS``\\가 정의되었는지 테스트하여 이를 사용하는 코드를 보호하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:980
 msgid "Standard Warning Categories"
-msgstr ""
+msgstr "표준 경고 범주"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:982
 msgid ""
@@ -1348,485 +1579,102 @@ msgid ""
 "have the type :c:type:`PyObject\\*`; they are all class objects. For "
 "completeness, here are all the variables:"
 msgstr ""
+"모든 표준 파이썬 경고 범주는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
+":c:type:`PyObject\\*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1003
 msgid ":c:data:`PyExc_Warning`"
-msgstr ""
+msgstr ":c:data:`PyExc_Warning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1003
 msgid ":exc:`Warning`"
-msgstr ""
+msgstr ":exc:`Warning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1005
 msgid ":c:data:`PyExc_BytesWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_BytesWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1005
 msgid ":exc:`BytesWarning`"
-msgstr ""
+msgstr ":exc:`BytesWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1007
 msgid ":c:data:`PyExc_DeprecationWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_DeprecationWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1007
 msgid ":exc:`DeprecationWarning`"
-msgstr ""
+msgstr ":exc:`DeprecationWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1009
 msgid ":c:data:`PyExc_FutureWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_FutureWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1009
 msgid ":exc:`FutureWarning`"
-msgstr ""
+msgstr ":exc:`FutureWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1011
 msgid ":c:data:`PyExc_ImportWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_ImportWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1011
 msgid ":exc:`ImportWarning`"
-msgstr ""
+msgstr ":exc:`ImportWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1013
 msgid ":c:data:`PyExc_PendingDeprecationWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_PendingDeprecationWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1013
 msgid ":exc:`PendingDeprecationWarning`"
-msgstr ""
+msgstr ":exc:`PendingDeprecationWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1015
 msgid ":c:data:`PyExc_ResourceWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_ResourceWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1015
 msgid ":exc:`ResourceWarning`"
-msgstr ""
+msgstr ":exc:`ResourceWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1017
 msgid ":c:data:`PyExc_RuntimeWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_RuntimeWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1017
 msgid ":exc:`RuntimeWarning`"
-msgstr ""
+msgstr ":exc:`RuntimeWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1019
 msgid ":c:data:`PyExc_SyntaxWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_SyntaxWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1019
 msgid ":exc:`SyntaxWarning`"
-msgstr ""
+msgstr ":exc:`SyntaxWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1021
 msgid ":c:data:`PyExc_UnicodeWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_UnicodeWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1021
 msgid ":exc:`UnicodeWarning`"
-msgstr ""
+msgstr ":exc:`UnicodeWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1023
 msgid ":c:data:`PyExc_UserWarning`"
-msgstr ""
+msgstr ":c:data:`PyExc_UserWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1023
 msgid ":exc:`UserWarning`"
-msgstr ""
+msgstr ":exc:`UserWarning`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1026
 msgid ":c:data:`PyExc_ResourceWarning`."
-msgstr ""
+msgstr ":c:data:`PyExc_ResourceWarning`."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/exceptions.rst:1032
 msgid "This is a base class for other standard warning categories."
-msgstr ""
-
-#~ msgid ""
-#~ "This is a convenience function to "
-#~ "raise :exc:`WindowsError`. If called with "
-#~ "*ierr* of :c:data:`0`, the error code"
-#~ " returned by a call to "
-#~ ":c:func:`GetLastError` is used instead.  It"
-#~ " calls the Win32 function "
-#~ ":c:func:`FormatMessage` to retrieve the "
-#~ "Windows description of error code given"
-#~ " by *ierr* or :c:func:`GetLastError`, then"
-#~ " it constructs a tuple object whose"
-#~ " first item is the *ierr* value "
-#~ "and whose second item is the "
-#~ "corresponding error message (gotten from "
-#~ ":c:func:`FormatMessage`), and then calls "
-#~ "``PyErr_SetObject(PyExc_WindowsError, object)``. This "
-#~ "function always returns *NULL*. Availability:"
-#~ " Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Similar to :c:func:`PyErr_SetFromWindowsErr`, with"
-#~ " an additional parameter specifying the "
-#~ "exception type to be raised. "
-#~ "Availability: Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Similar to "
-#~ ":c:func:`PyErr_SetFromWindowsErrWithFilenameObject`, but "
-#~ "the filename is given as a C "
-#~ "string.  *filename* is decoded from the"
-#~ " filesystem encoding (:func:`os.fsdecode`).  "
-#~ "Availability: Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Similar to "
-#~ ":c:func:`PyErr_SetFromWindowsErrWithFilenameObject`, with "
-#~ "an additional parameter specifying the "
-#~ "exception type to be raised. "
-#~ "Availability: Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Similar to "
-#~ ":c:func:`PyErr_SetExcFromWindowsErrWithFilenameObject`, but "
-#~ "accepts a second filename object. "
-#~ "Availability: Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Similar to :c:func:`PyErr_SetFromWindowsErrWithFilename`,"
-#~ " with an additional parameter specifying"
-#~ " the exception type to be raised. "
-#~ "Availability: Windows."
-#~ msgstr ""
-
-#~ msgid "Availability: Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Print a standard traceback to "
-#~ "``sys.stderr`` and clear the error "
-#~ "indicator. Call this function only when"
-#~ " the error indicator is set.  "
-#~ "(Otherwise it will cause a fatal "
-#~ "error!)"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This function simulates the effect of"
-#~ " a :const:`SIGINT` signal arriving --- "
-#~ "the next time :c:func:`PyErr_CheckSignals` is"
-#~ " called,  :exc:`KeyboardInterrupt` will be "
-#~ "raised.  It may be called without "
-#~ "holding the interpreter lock."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Print a standard traceback to "
-#~ "``sys.stderr`` and clear the error "
-#~ "indicator. **Unless** the error is a "
-#~ "``SystemExit``.  In that case the no "
-#~ "traceback is printed and Python process"
-#~ " will exit with the error code "
-#~ "specified by the ``SystemExit`` instance."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The functions described in this chapter"
-#~ " will let you handle and raise "
-#~ "Python exceptions.  It is important to"
-#~ " understand some of the basics of "
-#~ "Python exception handling.  It works "
-#~ "somewhat like the POSIX :c:data:`errno` "
-#~ "variable: there is a global indicator"
-#~ " (per thread) of the last error "
-#~ "that occurred.  Most C API functions "
-#~ "don't clear this on success, but "
-#~ "will set it to indicate the cause"
-#~ " of the error on failure.  Most "
-#~ "C API functions also return an "
-#~ "error indicator, usually *NULL* if they"
-#~ " are supposed to return a pointer,"
-#~ " or ``-1`` if they return an "
-#~ "integer (exception: the :c:func:`PyArg_\\*` "
-#~ "functions return ``1`` for success and"
-#~ " ``0`` for failure)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Concretely, the error indicator consists "
-#~ "of three object pointers: the "
-#~ "exception's type, the exception's value, "
-#~ "and the traceback object.  Any of "
-#~ "those pointers can be NULL if "
-#~ "non-set (although some combinations are "
-#~ "forbidden, for example you can't have"
-#~ " a non-NULL traceback if the "
-#~ "exception type is NULL)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "These functions help you set the "
-#~ "current thread's error indicator. For "
-#~ "convenience, some of these functions "
-#~ "will always return a NULL pointer "
-#~ "for use in a ``return`` statement."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This function sets the error indicator"
-#~ " and returns *NULL*.  *exception* should"
-#~ " be a Python exception class.  The"
-#~ " *format* and subsequent parameters help"
-#~ " format the error message; they have"
-#~ " the same meaning and values as "
-#~ "in :c:func:`PyUnicode_FromFormat`. *format* is "
-#~ "an ASCII-encoded string."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a shorthand for "
-#~ "``PyErr_SetNone(PyExc_MemoryError)``; it returns "
-#~ "*NULL* so an object allocation function"
-#~ " can write ``return PyErr_NoMemory();`` "
-#~ "when it runs out of memory."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a convenience function to "
-#~ "raise an exception when a C "
-#~ "library function has returned an error"
-#~ " and set the C variable "
-#~ ":c:data:`errno`.  It constructs a tuple "
-#~ "object whose first item is the "
-#~ "integer :c:data:`errno` value and whose "
-#~ "second item is the corresponding error"
-#~ " message (gotten from :c:func:`strerror`), "
-#~ "and then calls ``PyErr_SetObject(type, "
-#~ "object)``.  On Unix, when the "
-#~ ":c:data:`errno` value is :const:`EINTR`, "
-#~ "indicating an interrupted system call, "
-#~ "this calls :c:func:`PyErr_CheckSignals`, and "
-#~ "if that set the error indicator, "
-#~ "leaves it set to that.  The "
-#~ "function always returns *NULL*, so a "
-#~ "wrapper function around a system call"
-#~ " can write ``return PyErr_SetFromErrno(type);``"
-#~ " when the system call returns an "
-#~ "error."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Similar to :c:func:`PyErr_SetFromErrno`, with "
-#~ "the additional behavior that if "
-#~ "*filenameObject* is not *NULL*, it is"
-#~ " passed to the constructor of *type*"
-#~ " as a third parameter.  In the "
-#~ "case of :exc:`OSError` exception, this "
-#~ "is used to define the :attr:`filename`"
-#~ " attribute of the exception instance."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a convenience function to "
-#~ "raise :exc:`WindowsError`. If called with "
-#~ "*ierr* of :c:data:`0`, the error code"
-#~ " returned by a call to "
-#~ ":c:func:`GetLastError` is used instead.  It"
-#~ " calls the Win32 function "
-#~ ":c:func:`FormatMessage` to retrieve the "
-#~ "Windows description of error code given"
-#~ " by *ierr* or :c:func:`GetLastError`, then"
-#~ " it constructs a tuple object whose"
-#~ " first item is the *ierr* value "
-#~ "and whose second item is the "
-#~ "corresponding error message (gotten from "
-#~ ":c:func:`FormatMessage`), and then calls "
-#~ "``PyErr_SetObject(PyExc_WindowsError, object)``. This "
-#~ "function always returns *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Issue a warning message.  The *category*"
-#~ " argument is a warning category (see"
-#~ " below) or *NULL*; the *message* "
-#~ "argument is a UTF-8 encoded string.  "
-#~ "*stack_level* is a positive number "
-#~ "giving a number of stack frames; "
-#~ "the warning will be issued from "
-#~ "the  currently executing line of code"
-#~ " in that stack frame.  A "
-#~ "*stack_level* of 1 is the function "
-#~ "calling :c:func:`PyErr_WarnEx`, 2 is  the "
-#~ "function above that, and so forth."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Issue a warning message with explicit"
-#~ " control over all warning attributes.  "
-#~ "This is a straightforward wrapper around"
-#~ " the Python function "
-#~ ":func:`warnings.warn_explicit`, see there for "
-#~ "more information.  The *module* and "
-#~ "*registry* arguments may be set to "
-#~ "*NULL* to get the default effect "
-#~ "described there."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Test whether the error indicator is "
-#~ "set.  If set, return the exception "
-#~ "*type* (the first argument to the "
-#~ "last call to one of the "
-#~ ":c:func:`PyErr_Set\\*` functions or to "
-#~ ":c:func:`PyErr_Restore`).  If not set, return"
-#~ " *NULL*.  You do not own a "
-#~ "reference to the return value, so "
-#~ "you do not need to :c:func:`Py_DECREF`"
-#~ " it."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Retrieve the error indicator into three"
-#~ " variables whose addresses are passed. "
-#~ "If the error indicator is not set,"
-#~ " set all three variables to *NULL*."
-#~ "  If it is set, it will be "
-#~ "cleared and you own a reference to"
-#~ " each object retrieved.  The value "
-#~ "and traceback object may be *NULL* "
-#~ "even when the type object is not."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Set  the error indicator from the "
-#~ "three objects.  If the error indicator"
-#~ " is already set, it is cleared "
-#~ "first.  If the objects are *NULL*, "
-#~ "the error indicator is cleared.  Do "
-#~ "not pass a *NULL* type and "
-#~ "non-*NULL* value or traceback.  The "
-#~ "exception type should be a class.  "
-#~ "Do not pass an invalid exception "
-#~ "type or value. (Violating these rules"
-#~ " will cause subtle problems later.)  "
-#~ "This call takes away a reference "
-#~ "to each object: you must own a "
-#~ "reference to each object before the "
-#~ "call and after the call you no "
-#~ "longer own these references.  (If you"
-#~ " don't understand this, don't use "
-#~ "this function.  I warned you.)"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Retrieve the exception info, as known"
-#~ " from ``sys.exc_info()``.  This refers to"
-#~ " an exception that was *already "
-#~ "caught*, not to an exception that "
-#~ "was freshly raised.  Returns new "
-#~ "references for the three objects, any"
-#~ " of which may be *NULL*.  Does "
-#~ "not modify the exception info state."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Set the exception info, as known "
-#~ "from ``sys.exc_info()``.  This refers to "
-#~ "an exception that was *already caught*,"
-#~ " not to an exception that was "
-#~ "freshly raised.  This function steals "
-#~ "the references of the arguments. To "
-#~ "clear the exception state, pass *NULL*"
-#~ " for all three arguments. For general"
-#~ " rules about the three arguments, see"
-#~ " :c:func:`PyErr_Restore`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This utility function creates and "
-#~ "returns a new exception class. The "
-#~ "*name* argument must be the name "
-#~ "of the new exception, a C string"
-#~ " of the form ``module.classname``.  The "
-#~ "*base* and *dict* arguments are normally"
-#~ " *NULL*. This creates a class object"
-#~ " derived from :exc:`Exception` (accessible "
-#~ "in C as :c:data:`PyExc_Exception`)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Same as :c:func:`PyErr_NewException`, except "
-#~ "that the new exception class can "
-#~ "easily be given a docstring: If "
-#~ "*doc* is non-*NULL*, it will be "
-#~ "used as the docstring for the "
-#~ "exception class."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the traceback associated with the"
-#~ " exception as a new reference, as "
-#~ "accessible from Python through "
-#~ ":attr:`__traceback__`.  If there is no "
-#~ "traceback associated, this returns *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the context (another exception "
-#~ "instance during whose handling *ex* was"
-#~ " raised) associated with the exception "
-#~ "as a new reference, as accessible "
-#~ "from Python through :attr:`__context__`.  If"
-#~ " there is no context associated, this"
-#~ " returns *NULL*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Set the context associated with the "
-#~ "exception to *ctx*.  Use *NULL* to "
-#~ "clear it.  There is no type check"
-#~ " to make sure that *ctx* is an"
-#~ " exception instance. This steals a "
-#~ "reference to *ctx*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Set the cause associated with the "
-#~ "exception to *cause*.  Use *NULL* to "
-#~ "clear it.  There is no type check"
-#~ " to make sure that *cause* is "
-#~ "either an exception instance or "
-#~ ":const:`None`.  This steals a reference "
-#~ "to *cause*."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Get the *start* attribute of the "
-#~ "given exception object and place it "
-#~ "into *\\*start*.  *start* must not be"
-#~ " *NULL*.  Return ``0`` on success, "
-#~ "``-1`` on failure."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Get the *end* attribute of the "
-#~ "given exception object and place it "
-#~ "into *\\*end*.  *end* must not be "
-#~ "*NULL*.  Return ``0`` on success, ``-1``"
-#~ " on failure."
-#~ msgstr ""
-
-#~ msgid "This is the same as :exc:`weakref.ReferenceError`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Function similar to :c:func:`PyErr_WarnFormat`, "
-#~ "but *category* is :exc:`ResourceWarning` and"
-#~ " pass *source* to "
-#~ ":func:`warnings.WarningMessage`."
-#~ msgstr ""
+msgstr "이것은 다른 표준 경고 범주의 베이스 클래스입니다."
 
