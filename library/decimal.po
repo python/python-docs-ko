@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-10 11:28+0900\n"
+"POT-Creation-Date: 2020-10-08 03:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -1801,7 +1801,8 @@ msgstr ""
 "빠릅니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:1491
-msgid "backported to 3.7 and 3.8"
+#, fuzzy
+msgid "backported to 3.7 and 3.8."
 msgstr "3.7과 3.8로 역 이식되었습니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:1495
@@ -2394,13 +2395,11 @@ msgid ""
 " the decimal module integrate the high speed `libmpdec "
 "<https://www.bytereef.org/mpdecimal/doc/libmpdec/index.html>`_ library "
 "for arbitrary precision correctly-rounded decimal floating point "
-"arithmetic. ``libmpdec`` uses `Karatsuba multiplication "
+"arithmetic [#]_. ``libmpdec`` uses `Karatsuba multiplication "
 "<https://en.wikipedia.org/wiki/Karatsuba_algorithm>`_ for medium-sized "
 "numbers and the `Number Theoretic Transform "
 "<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general"
-")#Number-theoretic_transform>`_ for very large numbers.  However, to "
-"realize this performance gain, the context needs to be set for unrounded "
-"calculations."
+")#Number-theoretic_transform>`_ for very large numbers."
 msgstr ""
 "A. 예. CPython 과 PyPy3 구현에서, decimal 모듈의 C/CFFI 버전은 임의의 정밀도로 올바르게 자리 올림 되는"
 " 십진 부동 소수점 산술을 위한 고속 `libmpdec "
@@ -2410,4 +2409,45 @@ msgstr ""
 "사용하고 매우 큰 숫자에는 `수론적 변환(Number Theoretic Transform) "
 "<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general"
 ")#Number-theoretic_transform>`_\\을 사용합니다."
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:2143
+msgid ""
+"The context must be adapted for exact arbitrary precision arithmetic. "
+":attr:`Emin` and :attr:`Emax` should always be set to the maximum values,"
+" :attr:`clamp` should always be 0 (the default).  Setting :attr:`prec` "
+"requires some care."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:2147
+msgid ""
+"The easiest approach for trying out bignum arithmetic is to use the "
+"maximum value for :attr:`prec` as well [#]_::"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:2156
+msgid ""
+"For inexact results, :attr:`MAX_PREC` is far too large on 64-bit "
+"platforms and the available memory will be insufficient::"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:2164
+msgid ""
+"On systems with overallocation (e.g. Linux), a more sophisticated "
+"approach is to adjust :attr:`prec` to the amount of available RAM.  "
+"Suppose that you have 8GB of RAM and expect 10 simultaneous operands "
+"using a maximum of 500MB each::"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:2188
+msgid ""
+"In general (and especially on systems without overallocation), it is "
+"recommended to estimate even tighter bounds and set the :attr:`Inexact` "
+"trap if all calculations are expected to be exact."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/decimal.rst:2197
+msgid ""
+"This approach now works for all exact results except for non-integer "
+"powers."
+msgstr ""
 

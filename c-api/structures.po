@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-24 20:44+0900\n"
+"POT-Creation-Date: 2020-10-08 03:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -27,7 +27,11 @@ msgid ""
 "how they are used."
 msgstr "파이썬의 객체 형 정의에 사용되는 많은 구조체가 있습니다. 이 섹션에서는 이러한 구조체와 사용 방법에 관해 설명합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:12
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:14
+msgid "Base object types and macros"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:16
 msgid ""
 "All Python objects ultimately share a small number of fields at the "
 "beginning of the object's representation in memory.  These are "
@@ -40,7 +44,7 @@ msgstr ""
 ":c:type:`PyObject`\\와 :c:type:`PyVarObject` 형으로 표시되며, 다른 모든 파이썬 객체의 정의에서,"
 " 직접 또는 간접적으로, 사용되는 일부 매크로의 확장을 통해 정의됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:21
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:25
 msgid ""
 "All object types are extensions of this type.  This is a type which "
 "contains the information Python needs to treat a pointer to an object as "
@@ -57,7 +61,7 @@ msgstr ""
 ":c:type:`PyObject*`\\로 캐스트 할 수 있습니다. :c:macro:`Py_REFCNT`\\와 "
 ":c:macro:`Py_TYPE` 매크로를 사용하여 멤버에 액세스해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:33
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:37
 msgid ""
 "This is an extension of :c:type:`PyObject` that adds the :attr:`ob_size` "
 "field.  This is only used for objects that have some notion of *length*. "
@@ -69,7 +73,7 @@ msgstr ""
 "개념을 가진 객체에만 사용됩니다. 이 형은 종종 파이썬/C API에 나타나지 않습니다. :c:macro:`Py_REFCNT`, "
 ":c:macro:`Py_TYPE` 및 :c:macro:`Py_SIZE` 매크로를 사용하여 멤버에 액세스해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:42
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:46
 msgid ""
 "This is a macro used when declaring new types which represent objects "
 "without a varying length.  The PyObject_HEAD macro expands to::"
@@ -77,11 +81,11 @@ msgstr ""
 "길이가 변하지 않는 객체를 나타내는 새로운 형을 선언할 때 사용되는 매크로입니다. PyObject_HEAD 매크로는 다음과 같이 "
 "확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:47
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:51
 msgid "See documentation of :c:type:`PyObject` above."
 msgstr "위의 :c:type:`PyObject` 설명서를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:52
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:56
 msgid ""
 "This is a macro used when declaring new types which represent objects "
 "with a length that varies from instance to instance. The "
@@ -90,35 +94,53 @@ msgstr ""
 "인스턴스마다 길이가 다른 객체를 나타내는 새로운 형을 선언할 때 사용되는 매크로입니다. PyObject_VAR_HEAD 매크로는 "
 "다음과 같이 확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:58
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:62
 msgid "See documentation of :c:type:`PyVarObject` above."
 msgstr "위의 :c:type:`PyVarObject` 설명서를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:63
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:67
 msgid ""
 "This macro is used to access the :attr:`ob_type` member of a Python "
 "object. It expands to::"
 msgstr "이 매크로는 파이썬 객체의 :attr:`ob_type` 멤버에 액세스하는 데 사용됩니다. 다음으로 확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:71
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:75
+msgid ""
+"Return non-zero if the object *o* type is *type*. Return zero otherwise. "
+"Equivalent to: ``Py_TYPE(o) == type``."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:83
+msgid "Set the object *o* type to *type*."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:90
 msgid ""
 "This macro is used to access the :attr:`ob_refcnt` member of a Python "
 "object. It expands to::"
 msgstr "이 매크로는 파이썬 객체의 :attr:`ob_refcnt` 멤버에 액세스하는 데 사용됩니다. 다음으로 확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:80
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:99
+msgid "Set the object *o* reference counter to *refcnt*."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:106
 msgid ""
 "This macro is used to access the :attr:`ob_size` member of a Python "
 "object. It expands to::"
 msgstr "이 매크로는 파이썬 객체의 :attr:`ob_size` 멤버에 액세스하는 데 사용됩니다. 다음으로 확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:88
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:114
+msgid "Set the object *o* size to *size*."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:121
 msgid ""
 "This is a macro which expands to initialization values for a new "
 ":c:type:`PyObject` type.  This macro expands to::"
 msgstr "이것은 새로운 :c:type:`PyObject` 형의 초기화 값으로 확장되는 매크로입니다. 이 매크로는 다음으로 확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:97
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:130
 msgid ""
 "This is a macro which expands to initialization values for a new "
 ":c:type:`PyVarObject` type, including the :attr:`ob_size` field. This "
@@ -127,7 +149,11 @@ msgstr ""
 "이것은 :attr:`ob_size` 필드를 포함하여, 새로운 :c:type:`PyVarObject` 형의 초기화 값으로 확장되는 "
 "매크로입니다. 이 매크로는 다음으로 확장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:107
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:139
+msgid "Implementing functions and methods"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:143
 msgid ""
 "Type of the functions used to implement most Python callables in C. "
 "Functions of this type take two :c:type:`PyObject*` parameters and return"
@@ -140,105 +166,120 @@ msgstr ""
 "변수를 취하고 하나의 값을 반환합니다. 반환 값이 *NULL*\\이면, 예외가 설정되어 있어야 합니다. ``NULL``\\이 "
 "아니면, 반환 값은 파이썬에 노출된 함수의 반환 값으로 해석됩니다. 함수는 새로운 참조를 반환해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:117
-msgid ""
-"Type of the functions used to implement Python callables in C with "
-"signature :const:`METH_VARARGS | METH_KEYWORDS`."
-msgstr "서명이 :const:`METH_VARARGS | METH_KEYWORDS`\\인 파이썬 콜러블을 C로 구현하는 데 사용되는 함수 형."
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:150
+msgid "The function signature is::"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:123
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:157
+#, fuzzy
 msgid ""
 "Type of the functions used to implement Python callables in C with "
-"signature :const:`METH_FASTCALL`."
+"signature :const:`METH_VARARGS | METH_KEYWORDS`. The function signature "
+"is::"
 msgstr "서명이 :const:`METH_FASTCALL` 인 파이썬 콜러블을 C로 구현하는 데 사용되는 함수 형."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:129
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:168
+#, fuzzy
 msgid ""
 "Type of the functions used to implement Python callables in C with "
-"signature :const:`METH_FASTCALL | METH_KEYWORDS`."
-msgstr ""
-"서명이 :const:`METH_FASTCALL | METH_KEYWORDS`\\인 파이썬 콜러블을 C로 구현하는 데 사용되는 함수 "
-"형."
+"signature :const:`METH_FASTCALL`. The function signature is::"
+msgstr "서명이 :const:`METH_FASTCALL` 인 파이썬 콜러블을 C로 구현하는 데 사용되는 함수 형."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:135
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:178
+#, fuzzy
+msgid ""
+"Type of the functions used to implement Python callables in C with "
+"signature :const:`METH_FASTCALL | METH_KEYWORDS`. The function signature "
+"is::"
+msgstr "서명이 :const:`METH_FASTCALL` 인 파이썬 콜러블을 C로 구현하는 데 사용되는 함수 형."
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:189
+#, fuzzy
+msgid ""
+"Type of the functions used to implement Python callables in C with "
+"signature :const:`METH_METHOD | METH_FASTCALL | METH_KEYWORDS`. The "
+"function signature is::"
+msgstr "서명이 :const:`METH_FASTCALL` 인 파이썬 콜러블을 C로 구현하는 데 사용되는 함수 형."
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:204
 msgid ""
 "Structure used to describe a method of an extension type.  This structure"
 " has four fields:"
 msgstr "확장형의 메서드를 기술하는 데 사용되는 구조체. 이 구조체에는 네 개의 필드가 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:139
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:279
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:345
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:208
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:364
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:445
 msgid "Field"
 msgstr "필드"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:139
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:279
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:345
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:208
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:364
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:445
 msgid "C Type"
 msgstr "C 형"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:139
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:279
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:345
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:208
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:364
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:445
 msgid "Meaning"
 msgstr "의미"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:141
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:210
 msgid ":attr:`ml_name`"
 msgstr ":attr:`ml_name`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:141
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:149
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:281
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:294
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:310
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:347
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:355
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:210
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:218
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:366
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:379
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:395
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:447
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:455
 msgid "const char \\*"
 msgstr "const char \\*"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:141
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:210
 msgid "name of the method"
 msgstr "메서드의 이름"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:143
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:212
 msgid ":attr:`ml_meth`"
 msgstr ":attr:`ml_meth`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:143
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:212
 msgid "PyCFunction"
 msgstr "PyCFunction"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:143
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:212
 msgid "pointer to the C implementation"
 msgstr "C 구현에 대한 포인터"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:146
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:215
 msgid ":attr:`ml_flags`"
 msgstr ":attr:`ml_flags`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:146
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:283
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:290
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:306
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:215
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:368
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:375
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:391
 msgid "int"
 msgstr "int"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:146
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:215
 msgid "flag bits indicating how the call should be constructed"
 msgstr "호출 구성 방법을 나타내는 플래그 비트"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:149
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:218
 msgid ":attr:`ml_doc`"
 msgstr ":attr:`ml_doc`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:149
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:294
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:218
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:379
 msgid "points to the contents of the docstring"
 msgstr "독스트링의 내용을 가리킵니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:153
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:222
 msgid ""
 "The :attr:`ml_meth` is a C function pointer.  The functions may be of "
 "different types, but they always return :c:type:`PyObject*`.  If the "
@@ -252,7 +293,7 @@ msgstr ""
 " 테이블에서 캐스트를 요구합니다. :c:type:`PyCFunction`\\이 첫 번째 매개 변수를 "
 ":c:type:`PyObject*`\\로 정의하더라도, 일반적으로 메서드 구현은 *self* 객체의 특정 C 형을 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:160
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:229
 msgid ""
 "The :attr:`ml_flags` field is a bitfield which can include the following "
 "flags. The individual flags indicate either a calling convention or a "
@@ -261,16 +302,11 @@ msgstr ""
 ":attr:`ml_flags` 필드는 다음 플래그를 포함 할 수 있는 비트 필드입니다. 개별 플래그는 호출 규칙이나 바인딩 규칙을 "
 "나타냅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:164
-msgid ""
-"There are four basic calling conventions for positional arguments and two"
-" of them can be combined with :const:`METH_KEYWORDS` to support also "
-"keyword arguments.  So there are a total of 6 calling conventions:"
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:233
+msgid "There are these calling conventions:"
 msgstr ""
-"위치 인자에 대한 네 가지 기본 호출 규칙이 있으며 이 중 두 가지는 :const:`METH_KEYWORDS`\\와 결합하여 키워드"
-" 인자도 지원할 수 있습니다. 그래서 총 6개의 호출 규칙이 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:170
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:237
 msgid ""
 "This is the typical calling convention, where the methods have the type "
 ":c:type:`PyCFunction`. The function expects two :c:type:`PyObject*` "
@@ -286,7 +322,7 @@ msgstr ""
 "일반적으로 :c:func:`PyArg_ParseTuple`\\이나 :c:func:`PyArg_UnpackTuple`\\을 사용하여 "
 "처리됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:180
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:247
 msgid ""
 "Methods with these flags must be of type "
 ":c:type:`PyCFunctionWithKeywords`. The function expects three parameters:"
@@ -300,7 +336,7 @@ msgstr ""
 "딕셔너리이거나 키워드 인자가 없으면 ``NULL``\\일 수 있습니다. 매개 변수는 일반적으로 "
 ":c:func:`PyArg_ParseTupleAndKeywords`\\를 사용하여 처리됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:189
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:256
 msgid ""
 "Fast calling convention supporting only positional arguments. The methods"
 " have the type :c:type:`_PyCFunctionFast`. The first parameter is *self*,"
@@ -312,19 +348,20 @@ msgstr ""
 " *self*\\이고, 두 번째 매개 변수는 인자를 나타내는 :c:type:`PyObject*` 값의 C 배열이며, 세 번째 매개 "
 "변수는 인자 수(배열의 길이)입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:195
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:210
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:262
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:279
 msgid "This is not part of the :ref:`limited API <stable>`."
 msgstr "이것은 :ref:`제한된 API <stable>`\\의 일부가 아닙니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:202
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:269
 #, fuzzy
 msgid ""
 "Extension of :const:`METH_FASTCALL` supporting also keyword arguments, "
 "with methods of type :c:type:`_PyCFunctionFastWithKeywords`. Keyword "
-"arguments are passed the same way as in the vectorcall protocol: there is"
-" an additional fourth :c:type:`PyObject*` parameter which is a tuple "
-"representing the names of the keyword arguments or possibly ``NULL`` if "
+"arguments are passed the same way as in the :ref:`vectorcall protocol "
+"<vectorcall>`: there is an additional fourth :c:type:`PyObject*` "
+"parameter which is a tuple representing the names of the keyword "
+"arguments (which are guaranteed to be strings) or possibly ``NULL`` if "
 "there are no keywords.  The values of the keyword arguments are stored in"
 " the *args* array, after the positional arguments."
 msgstr ""
@@ -333,7 +370,21 @@ msgstr ""
 "전달됩니다: 추가의 네 번째 :c:type:`PyObject\\*` 매개 변수가 있는데, 키워드 인자의 이름을 나타내는 튜플이거나 "
 "키워드가 없으면 ``NULL``\\일 수 있습니다. 키워드 인자의 값은 위치 인자 다음에 *args* 배열에 저장됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:217
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:286
+msgid ""
+"Extension of :const:`METH_FASTCALL | METH_KEYWORDS` supporting the "
+"*defining class*, that is, the class that contains the method in "
+"question. The defining class might be a superclass of ``Py_TYPE(self)``."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:290
+msgid ""
+"The method needs to be of type :c:type:`PyCMethod`, the same as for "
+"``METH_FASTCALL | METH_KEYWORDS`` with ``defining_class`` argument added "
+"after ``self``."
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:299
 msgid ""
 "Methods without parameters don't need to check whether arguments are "
 "given if they are listed with the :const:`METH_NOARGS` flag.  They need "
@@ -345,7 +396,7 @@ msgstr ""
 "없습니다. :c:type:`PyCFunction` 형이어야 합니다. 첫 번째 매개 변수의 이름은 일반적으로 *self*\\이며 "
 "모듈이나 객체 인스턴스에 대한 참조를 보유합니다. 모든 경우에 두 번째 매개 변수는 ``NULL``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:226
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:308
 msgid ""
 "Methods with a single object argument can be listed with the "
 ":const:`METH_O` flag, instead of invoking :c:func:`PyArg_ParseTuple` with"
@@ -357,7 +408,7 @@ msgstr ""
 ":const:`METH_O` 플래그로 나열 할 수 있습니다. :c:type:`PyCFunction` 형이고, *self* 매개 "
 "변수와 단일 인자를 나타내는 :c:type:`PyObject*` 매개 변수를 갖습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:232
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:314
 msgid ""
 "These two constants are not used to indicate the calling convention but "
 "the binding when use with methods of classes.  These may not be used for "
@@ -367,7 +418,7 @@ msgstr ""
 "이 두 상수는 호출 규칙을 나타내는 데 사용되지 않고 클래스의 메서드와 함께 사용할 때 바인딩을 나타냅니다. 모듈에 정의된 함수에는"
 " 사용할 수 없습니다. 이러한 플래그 중 최대 하나를 주어진 메서드에 대해 설정할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:242
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:324
 msgid ""
 "The method will be passed the type object as the first parameter rather "
 "than an instance of the type.  This is used to create *class methods*, "
@@ -377,7 +428,7 @@ msgstr ""
 "메서드로 형의 인스턴스가 아닌 형 객체가 첫 번째 매개 변수로 전달됩니다. :func:`classmethod` 내장 함수를 사용할 "
 "때 만들어지는 것과 유사한 *클래스 메서드(class methods)*\\를 만드는 데 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:252
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:334
 msgid ""
 "The method will be passed ``NULL`` as the first parameter rather than an "
 "instance of the type.  This is used to create *static methods*, similar "
@@ -386,13 +437,13 @@ msgstr ""
 "메서드로 형의 인스턴스가 아닌 ``NULL``\\이 첫 번째 매개 변수로 전달됩니다. :func:`staticmethod` 내장 "
 "함수를 사용할 때 만들어지는 것과 유사한 *정적 메서드(static methods)*\\를 만드는 데 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:256
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:338
 msgid ""
 "One other constant controls whether a method is loaded in place of "
 "another definition with the same method name."
 msgstr "하나의 다른 상수는 같은 메서드 이름을 가진 다른 정의 대신 메서드가 로드되는지를 제어합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:262
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:344
 msgid ""
 "The method will be loaded in place of existing definitions.  Without "
 "*METH_COEXIST*, the default is to skip repeated definitions.  Since slot "
@@ -410,54 +461,58 @@ msgstr ""
 " 플래그가 정의되면, PyCFunction이 래퍼 객체 자리에 로드되고 슬롯과 공존합니다. 이는 PyCFunction에 대한 호출이"
 " 래퍼 객체 호출보다 최적화되어 있기 때문에 유용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:275
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:356
+msgid "Accessing attributes of extension types"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:360
 msgid ""
 "Structure which describes an attribute of a type which corresponds to a C"
 " struct member.  Its fields are:"
 msgstr "C 구조체 멤버에 해당하는 형의 어트리뷰트를 기술하는 구조체. 필드는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:281
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:366
 msgid ":attr:`name`"
 msgstr ":attr:`name`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:281
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:366
 msgid "name of the member"
 msgstr "멤버의 이름"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:283
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:368
 msgid ":attr:`!type`"
 msgstr ":attr:`!type`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:283
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:368
 msgid "the type of the member in the C struct"
 msgstr "C 구조체에 있는 멤버의 형"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:286
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:371
 msgid ":attr:`offset`"
 msgstr ":attr:`offset`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:286
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:322
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:371
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:407
 msgid "Py_ssize_t"
 msgstr "Py_ssize_t"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:286
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:371
 msgid "the offset in bytes that the member is located on the type's object struct"
 msgstr "멤버가 형의 객체 구조체에 위치하는 바이트 단위의 오프셋"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:290
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:375
 msgid ":attr:`flags`"
 msgstr ":attr:`flags`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:290
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:375
 msgid "flag bits indicating if the field should be read-only or writable"
 msgstr "필드가 읽기 전용인지 쓰기 가능한지를 나타내는 플래그 비트"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:294
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:379
 msgid ":attr:`doc`"
 msgstr ":attr:`doc`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:298
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:383
 msgid ""
 ":attr:`!type` can be one of many ``T_`` macros corresponding to various C"
 " types.  When the member is accessed in Python, it will be converted to "
@@ -466,138 +521,138 @@ msgstr ""
 ":attr:`!type`\\은 다양한 C 형에 해당하는 많은 ``T_`` 매크로 중 하나일 수 있습니다. 멤버가 파이썬에서 액세스 "
 "될 때, 동등한 파이썬 형으로 변환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:303
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:388
 msgid "Macro name"
 msgstr "매크로 이름"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:303
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:388
 msgid "C type"
 msgstr "C 형"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:305
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:390
 msgid "T_SHORT"
 msgstr "T_SHORT"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:305
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:390
 msgid "short"
 msgstr "short"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:306
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:391
 msgid "T_INT"
 msgstr "T_INT"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:307
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:392
 msgid "T_LONG"
 msgstr "T_LONG"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:307
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:392
 msgid "long"
 msgstr "long"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:308
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:393
 msgid "T_FLOAT"
 msgstr "T_FLOAT"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:308
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:393
 msgid "float"
 msgstr "float"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:309
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:394
 msgid "T_DOUBLE"
 msgstr "T_DOUBLE"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:309
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:394
 msgid "double"
 msgstr "double"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:310
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:395
 msgid "T_STRING"
 msgstr "T_STRING"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:311
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:396
 msgid "T_OBJECT"
 msgstr "T_OBJECT"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:311
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:312
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:396
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:397
 msgid "PyObject \\*"
 msgstr "PyObject \\*"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:312
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:397
 msgid "T_OBJECT_EX"
 msgstr "T_OBJECT_EX"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:313
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:398
 msgid "T_CHAR"
 msgstr "T_CHAR"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:313
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:314
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:319
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:398
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:399
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:404
 msgid "char"
 msgstr "char"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:314
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:399
 msgid "T_BYTE"
 msgstr "T_BYTE"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:315
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:400
 msgid "T_UBYTE"
 msgstr "T_UBYTE"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:315
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:400
 msgid "unsigned char"
 msgstr "unsigned char"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:316
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:401
 msgid "T_UINT"
 msgstr "T_UINT"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:316
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:401
 msgid "unsigned int"
 msgstr "unsigned int"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:317
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:402
 msgid "T_USHORT"
 msgstr "T_USHORT"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:317
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:402
 msgid "unsigned short"
 msgstr "unsigned short"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:318
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:403
 msgid "T_ULONG"
 msgstr "T_ULONG"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:318
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:403
 msgid "unsigned long"
 msgstr "unsigned long"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:319
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:404
 msgid "T_BOOL"
 msgstr "T_BOOL"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:320
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:405
 msgid "T_LONGLONG"
 msgstr "T_LONGLONG"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:320
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:405
 msgid "long long"
 msgstr "long long"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:321
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:406
 msgid "T_ULONGLONG"
 msgstr "T_ULONGLONG"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:321
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:406
 msgid "unsigned long long"
 msgstr "unsigned long long"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:322
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:407
 msgid "T_PYSSIZET"
 msgstr "T_PYSSIZET"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:325
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:410
 msgid ""
 ":c:macro:`T_OBJECT` and :c:macro:`T_OBJECT_EX` differ in that "
 ":c:macro:`T_OBJECT` returns ``None`` if the member is ``NULL`` and "
@@ -613,7 +668,7 @@ msgstr ""
 ":keyword:`del` 문 사용을 더 올바르게 처리하므로, :c:macro:`T_OBJECT`\\보다 "
 ":c:macro:`T_OBJECT_EX`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:332
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:417
 msgid ""
 ":attr:`flags` can be ``0`` for write and read access or "
 ":c:macro:`READONLY` for read-only access.  Using :c:macro:`T_STRING` for "
@@ -627,7 +682,18 @@ msgstr ""
 "해석됩니다. :c:macro:`T_OBJECT`\\와 :c:macro:`T_OBJECT_EX` 멤버만 삭제될 수 있습니다. "
 "(``NULL``\\로 설정됩니다)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:341
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:425
+msgid ""
+"Heap allocated types (created using :c:func:`PyType_FromSpec` or "
+"similar), ``PyMemberDef`` may contain definitions for the special members"
+" ``__dictoffset__``, ``__weaklistoffset__`` and ``__vectorcalloffset__``,"
+" corresponding to :c:member:`~PyTypeObject.tp_dictoffset`, "
+":c:member:`~PyTypeObject.tp_weaklistoffset` and "
+":c:member:`~PyTypeObject.tp_vectorcall_offset` in type objects. These "
+"must be defined with ``T_PYSSIZET`` and ``READONLY``, for example::"
+msgstr ""
+
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:441
 msgid ""
 "Structure to define property-like access for a type. See also description"
 " of the :c:member:`PyTypeObject.tp_getset` slot."
@@ -635,61 +701,61 @@ msgstr ""
 "형에 대한 프로퍼티 같은 액세스를 정의하는 구조체. :c:member:`PyTypeObject.tp_getset` 슬롯에 대한 "
 "설명도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:347
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:447
 msgid "name"
 msgstr "name"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:347
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:447
 msgid "attribute name"
 msgstr "어트리뷰트 이름"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:349
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:449
 msgid "get"
 msgstr "get"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:349
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:449
 msgid "getter"
 msgstr "getter"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:349
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:449
 msgid "C Function to get the attribute"
 msgstr "어트리뷰트를 얻는 C 함수"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:351
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:451
 msgid "set"
 msgstr "set"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:351
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:451
 msgid "setter"
 msgstr "setter"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:351
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:451
 msgid ""
 "optional C function to set or delete the attribute, if omitted the "
 "attribute is readonly"
 msgstr "어트리뷰트를 설정하거나 삭제하는 선택적 C 함수, 생략되면 어트리뷰트는 읽기 전용입니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:355
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:455
 msgid "doc"
 msgstr "doc"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:355
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:455
 msgid "optional docstring"
 msgstr "선택적 독스트링"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:357
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:457
 msgid "closure"
 msgstr "closure"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:357
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:457
 msgid "void \\*"
 msgstr "void \\*"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:357
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:457
 msgid "optional function pointer, providing additional data for getter and setter"
 msgstr "getter와 setter에 추가 데이터를 제공하는 선택적 함수 포인터"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:362
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:462
 msgid ""
 "The ``get`` function takes one :c:type:`PyObject*` parameter (the "
 "instance) and a function pointer (the associated ``closure``)::"
@@ -697,13 +763,13 @@ msgstr ""
 "``get`` 함수는 하나의 :c:type:`PyObject*` 매개 변수(인스턴스)와 함수 포인터(연관된 ``closure``)를"
 " 받아들입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:367
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:467
 msgid ""
 "It should return a new reference on success or ``NULL`` with a set "
 "exception on failure."
 msgstr "성공하면 새 참조를 반환하고, 실패하면 설정된 예외와 함께 ``NULL``\\을 반환해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:370
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:470
 msgid ""
 "``set`` functions take two :c:type:`PyObject*` parameters (the instance "
 "and the value to be set) and a function pointer (the associated "
@@ -712,7 +778,7 @@ msgstr ""
 "``set`` 함수는 두 개의 :c:type:`PyObject*` 매개 변수(인스턴스와 설정할 값)와 함수 포인터(연관된 "
 "``closure``)를 받아들입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:375
+#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/structures.rst:475
 msgid ""
 "In case the attribute should be deleted the second parameter is ``NULL``."
 " Should return ``0`` on success or ``-1`` with a set exception on "
@@ -720,4 +786,35 @@ msgid ""
 msgstr ""
 "어트리뷰트를 삭제해야 하는 경우 두 번째 매개 변수는 ``NULL``\\입니다. 성공하면 ``0``\\을, 실패하면 설정된 예외와 "
 "함께 ``-1``\\을 반환해야 합니다."
+
+#~ msgid ""
+#~ "Type of the functions used to "
+#~ "implement Python callables in C with "
+#~ "signature :const:`METH_VARARGS | METH_KEYWORDS`."
+#~ msgstr ""
+#~ "서명이 :const:`METH_VARARGS | METH_KEYWORDS`\\인 "
+#~ "파이썬 콜러블을 C로 구현하는 데 사용되는 함수 "
+#~ "형."
+
+#~ msgid ""
+#~ "Type of the functions used to "
+#~ "implement Python callables in C with "
+#~ "signature :const:`METH_FASTCALL | METH_KEYWORDS`."
+#~ msgstr ""
+#~ "서명이 :const:`METH_FASTCALL | METH_KEYWORDS`\\인 "
+#~ "파이썬 콜러블을 C로 구현하는 데 사용되는 함수 "
+#~ "형."
+
+#~ msgid ""
+#~ "There are four basic calling conventions"
+#~ " for positional arguments and two of"
+#~ " them can be combined with "
+#~ ":const:`METH_KEYWORDS` to support also keyword"
+#~ " arguments.  So there are a total "
+#~ "of 6 calling conventions:"
+#~ msgstr ""
+#~ "위치 인자에 대한 네 가지 기본 호출 규칙이 "
+#~ "있으며 이 중 두 가지는 :const:`METH_KEYWORDS`\\와"
+#~ " 결합하여 키워드 인자도 지원할 수 있습니다. 그래서"
+#~ " 총 6개의 호출 규칙이 있습니다:"
 
