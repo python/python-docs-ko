@@ -31,19 +31,19 @@ msgid ""
 msgstr "이것은 형 객체의 형 객체입니다; 파이썬 계층의 :class:`type`\\과 같은 객체입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:24
-#, fuzzy
 msgid ""
 "Return non-zero if the object *o* is a type object, including instances "
 "of types derived from the standard type object.  Return 0 in all other "
 "cases."
-msgstr "객체 *o*\\가 표준형 객체에서 파생된 형의 인스턴스를 포함하여 형 객체면 참을 반환합니다. 다른 모든 경우 거짓을 반환합니다."
+msgstr ""
+"객체 *o*\\가 표준형 객체에서 파생된 형의 인스턴스를 포함하여 형 객체면 0이 아닌 값을 반환합니다. 다른 모든 경우 0을 "
+"반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:30
-#, fuzzy
 msgid ""
 "Return non-zero if the object *o* is a type object, but not a subtype of "
 "the standard type object.  Return 0 in all other cases."
-msgstr "객체 *o*\\가 형 객체이지만, 표준형 객체의 서브 형이 아니면 참을 반환합니다. 다른 모든 경우 거짓을 반환합니다."
+msgstr "객체 *o*\\가 형 객체이지만, 표준형 객체의 서브 형이 아니면 0이 아닌 값을 반환합니다. 다른 모든 경우 0을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:36
 msgid "Clear the internal lookup cache. Return the current version tag."
@@ -75,11 +75,10 @@ msgstr ""
 "함수를 호출해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:60
-#, fuzzy
 msgid ""
 "Return non-zero if the type object *o* sets the feature *feature*. Type "
 "features are denoted by single bit flags."
-msgstr "형 객체 *o*\\가 기능 *feature*\\를 설정하면 참을 반환합니다. 형 기능은 단일 비트 플래그로 표시됩니다."
+msgstr "형 객체 *o*\\가 기능 *feature*\\를 설정하면 0이 아닌 값을 반환합니다. 형 기능은 단일 비트 플래그로 표시됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:66
 msgid ""
@@ -157,13 +156,15 @@ msgid ""
 "Return the module object associated with the given type when the type was"
 " created using :c:func:`PyType_FromModuleAndSpec`."
 msgstr ""
+":c:func:`PyType_FromModuleAndSpec`\\를 사용하여 형을 만들 때 지정된 형과 관련된 모듈 객체를 "
+"반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:117
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:135
 msgid ""
 "If no module is associated with the given type, sets "
 ":py:class:`TypeError` and returns ``NULL``."
-msgstr ""
+msgstr "주어진 형과 연관된 모듈이 없으면, :py:class:`TypeError`\\를 설정하고 ``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:120
 msgid ""
@@ -174,6 +175,10 @@ msgid ""
 " same module as their superclass. See :c:type:`PyCMethod` to get the "
 "class that defines the method."
 msgstr ""
+"이 함수는 일반적으로 메서드가 정의된 모듈을 가져오는 데 사용됩니다. 이러한 메서드에서, "
+"``PyType_GetModule(Py_TYPE(self))``\\는 의도한 결과를 반환하지 않을 수 있음에 유의하십시오. "
+"``Py_TYPE(self)``\\는 의도한 클래스의 *서브 클래스*\\일 수 있으며, 서브 클래스가 반드시 슈퍼 클래스와 같은 "
+"모듈에 정의된 것은 아닙니다. 메서드를 정의하는 클래스를 얻으려면 :c:type:`PyCMethod`\\를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:131
 msgid ""
@@ -181,12 +186,14 @@ msgid ""
 "This is a shortcut for calling :c:func:`PyModule_GetState()` on the "
 "result of :c:func:`PyType_GetModule`."
 msgstr ""
+"주어진 형과 관련된 모듈 객체의 상태를 반환합니다. :c:func:`PyType_GetModule` 결과에 "
+":c:func:`PyModule_GetState()`\\를 호출하는 바로 가기입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:138
 msgid ""
 "If the *type* has an associated module but its state is ``NULL``, returns"
 " ``NULL`` without setting an exception."
-msgstr ""
+msgstr "*type*\\에 연관된 모듈이 있지만, 상태가 ``NULL``\\이면, 예외를 설정하지 않고 ``NULL``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:145
 msgid "Creating Heap-Allocated Types"
@@ -227,15 +234,17 @@ msgid ""
 "inherited by subclasses; it must be specified for each class "
 "individually."
 msgstr ""
+"*module* 인자는 새 클래스가 정의된 모듈을 기록하는 데 사용할 수 있습니다. 모듈 객체나 ``NULL``\\이어야 합니다. "
+"``NULL``\\이 아니면, 모듈은 새 형과 연관되며 나중에 :c:func:`PyType_GetModule`\\로 가져올 수 "
+"있습니다. 연관된 모듈은 서브 클래스에 상속되지 않습니다; 각 클래스에 대해 개별적으로 지정해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:168
 msgid "This function calls :c:func:`PyType_Ready` on the new type."
 msgstr "이 함수는 새로운 형에 :c:func:`PyType_Ready`\\를 호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:174
-#, fuzzy
 msgid "Equivalent to ``PyType_FromModuleAndSpec(NULL, spec, bases)``."
-msgstr "``PyType_FromSpecWithBases(spec, NULL)``\\와 동등합니다."
+msgstr "``PyType_FromModuleAndSpec(NULL, spec, bases)``\\와 동등합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:180
 msgid "Equivalent to ``PyType_FromSpecWithBases(spec, NULL)``."
@@ -310,11 +319,12 @@ msgid "``Py_sq_length`` to set :c:member:`PySequenceMethods.sq_length`"
 msgstr ":c:member:`PySequenceMethods.sq_length`\\를 설정하는 ``Py_sq_length``"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:228
-#, fuzzy
 msgid ""
 "The following fields cannot be set at all using :c:type:`PyType_Spec` and"
 " :c:type:`PyType_Slot`:"
-msgstr "다음 필드는 :c:type:`PyType_Spec`\\과 :c:type:`PyType_Slot`\\을 사용하여 설정할 수 없습니다:"
+msgstr ""
+"다음 필드는 :c:type:`PyType_Spec`\\과 :c:type:`PyType_Slot`\\을 사용하여 전혀 설정할 수 "
+"없습니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:231
 msgid ":c:member:`~PyTypeObject.tp_dict`"
@@ -337,35 +347,40 @@ msgid ":c:member:`~PyTypeObject.tp_weaklist`"
 msgstr ":c:member:`~PyTypeObject.tp_weaklist`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:236
-#, fuzzy
 msgid ":c:member:`~PyTypeObject.tp_vectorcall`"
-msgstr ":c:member:`~PyTypeObject.tp_dict`"
+msgstr ":c:member:`~PyTypeObject.tp_vectorcall`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:237
-#, fuzzy
 msgid ""
 ":c:member:`~PyTypeObject.tp_weaklistoffset` (see :ref:`PyMemberDef "
 "<pymemberdef-offsets>`)"
-msgstr ":c:member:`~PyTypeObject.tp_weaklistoffset`"
+msgstr ""
+":c:member:`~PyTypeObject.tp_weaklistoffset` (:ref:`PyMemberDef "
+"<pymemberdef-offsets>`\\를 참조하십시오)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:239
 msgid ""
 ":c:member:`~PyTypeObject.tp_dictoffset` (see :ref:`PyMemberDef "
 "<pymemberdef-offsets>`)"
 msgstr ""
+":c:member:`~PyTypeObject.tp_dictoffset` (:ref:`PyMemberDef <pymemberdef-"
+"offsets>`\\를 참조하십시오)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:241
 msgid ""
 ":c:member:`~PyTypeObject.tp_vectorcall_offset` (see :ref:`PyMemberDef "
 "<pymemberdef-offsets>`)"
 msgstr ""
+":c:member:`~PyTypeObject.tp_vectorcall_offset` (:ref:`PyMemberDef "
+"<pymemberdef-offsets>`\\를 참조하십시오)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:244
-#, fuzzy
 msgid ""
 "The following fields cannot be set using :c:type:`PyType_Spec` and "
 ":c:type:`PyType_Slot` under the limited API:"
-msgstr "다음 필드는 :c:type:`PyType_Spec`\\과 :c:type:`PyType_Slot`\\을 사용하여 설정할 수 없습니다:"
+msgstr ""
+"다음 필드는 제한된 API에서 :c:type:`PyType_Spec`\\과 :c:type:`PyType_Slot`\\을 사용하여 "
+"설정할 수 없습니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:247
 msgid ":c:member:`~PyBufferProcs.bf_getbuffer`"
@@ -386,7 +401,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:256
 msgid "Slots in :c:type:`PyBufferProcs` in may be set in the unlimited API."
-msgstr ""
+msgstr ":c:type:`PyBufferProcs`\\의 슬롯은 제한 없는 API에서 설정할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:260
 msgid ""
@@ -397,10 +412,4 @@ msgstr "슬롯의 원하는 값입니다. 대부분 이것은 함수에 대한 �
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/type.rst:263
 msgid "May not be ``NULL``."
 msgstr "``NULL``\\이 아닐 수 있습니다."
-
-#~ msgid ":c:member:`~PyTypeObject.tp_print`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_print`"
-
-#~ msgid ":c:member:`~PyTypeObject.tp_dictoffset`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_dictoffset`"
 

@@ -176,7 +176,7 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:253
 msgid "Record the current and peak size of all traced memory blocks"
-msgstr ""
+msgstr "모든 추적한 메모리 블록의 현재 및 최대 크기를 기록"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:255
 msgid ""
@@ -186,6 +186,10 @@ msgid ""
 ":func:`reset_peak` to observe the small memory usage after the sum is "
 "computed as well as the peak memory usage during the computations::"
 msgstr ""
+"다음 코드는 ``0 + 1 + 2 + ...``\\와 같은 두 개의 합계를 비효율적으로 계산하는데, 이 숫자들의 리스트를 만듭니다."
+" 이 리스트는 일시적으로 많은 메모리를 소비합니다. :func:`get_traced_memory`\\와 "
+":func:`reset_peak`\\를 사용하여 계산 중 최대 메모리 사용량뿐만 아니라 합이 계산된 후의 작은 메모리 사용량도 "
+"관찰할 수 있습니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:280
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:759
@@ -203,6 +207,12 @@ msgid ""
 "memory usage, and which suggests we could optimise (by removing the "
 "unnecessary call to :class:`list`, and writing ``sum(range(...))``)."
 msgstr ""
+":func:`reset_peak`\\를 사용하면 ``small_sum``\\을 계산하는 동안의 최대 사용량을 "
+":func:`start` 호출 이후 메모리 블록의 전체 최대 크기보다 훨씬 작더라도 정확하게 기록 할 수 있습니다. "
+":func:`reset_peak`\\를 호출하지 않으면, ``second_peak``\\는 여전히 ``large_sum`` 계산의 "
+"최대가 됩니다 (즉, ``first_peak``\\와 같습니다). 이 경우, 두 최댓값은 모두 최종 메모리 사용량보다 훨씬 높아서,"
+" 최적화할 수 있음을 제안합니다 (:class:`list`\\에 대한 불필요한 호출을 제거하고, "
+"``sum(range(...))``\\이라고 작성하여)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:295
 msgid "API"
@@ -258,20 +268,16 @@ msgstr ""
 "int, peak: int)``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:335
-#, fuzzy
 msgid ""
 "Set the peak size of memory blocks traced by the :mod:`tracemalloc` "
 "module to the current size."
-msgstr ""
-":mod:`tracemalloc` 모듈이 추적하는 메모리 블록의 현재 크기와 최대 크기를 튜플로 가져옵니다: ``(current: "
-"int, peak: int)``."
+msgstr ":mod:`tracemalloc` 모듈이 추적하는 메모리 블록의 최대 크기를 현재 크기로 설정합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:338
-#, fuzzy
 msgid ""
 "Do nothing if the :mod:`tracemalloc` module is not tracing memory "
 "allocations."
-msgstr ":mod:`tracemalloc` 모듈이 파이썬 메모리 할당을 추적하고 있으면 ``True``, 그렇지 않으면 ``False``."
+msgstr ":mod:`tracemalloc` 모듈이 파이썬 메모리 할당을 추적하고 있지 않으면 아무것도 하지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:341
 msgid ""
@@ -280,11 +286,13 @@ msgid ""
 ":func:`take_snapshot` before a call to :func:`reset_peak` can be "
 "meaningfully compared to snapshots taken after the call."
 msgstr ""
+"이 함수는 기록된 최대 크기만 수정하며, :func:`clear_traces`\\와 달리 어떤 추적도 수정하거나 지우지 않습니다. "
+":func:`reset_peak`\\를 호출하기 전에 :func:`take_snapshot`\\로 찍은 스냅숏은 호출 후 찍은 "
+"스냅숏과 의미 있게 비교할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:346
-#, fuzzy
 msgid "See also :func:`get_traced_memory`."
-msgstr ":func:`stop`\\도 참조하십시오."
+msgstr ":func:`get_traced_memory`\\도 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:353
 msgid ""
@@ -320,6 +328,8 @@ msgid ""
 "You can still read the original number of total frames that composed the "
 "traceback by looking at the :attr:`Traceback.total_nframe` attribute."
 msgstr ""
+":attr:`Traceback.total_nframe` 어트리뷰트를 보면 트레이스백을 구성한 원래의 총 프레임 수를 계속 읽을 수 "
+"있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:376
 msgid ""
@@ -856,6 +866,10 @@ msgid ""
 " :attr:`Traceback.total_nframe` attribute. That allows to know if a "
 "traceback has been truncated by the traceback limit."
 msgstr ""
+"스냅샷을 취할 때, 트레이스의 트레이스백은 :func:`get_traceback_limit` 프레임으로 제한됩니다. "
+":func:`take_snapshot` 함수를 참조하십시오. 트레이스백의 원래 프레임 수는 "
+":attr:`Traceback.total_nframe` 어트리뷰트에 저장됩니다. 이를 통해 트레이스백 제한으로 인해 트레이스백이 "
+"잘렸는지 알 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:726
 msgid ""
@@ -874,11 +888,11 @@ msgid ""
 "Total number of frames that composed the traceback before truncation. "
 "This attribute can be set to ``None`` if the information is not "
 "available."
-msgstr ""
+msgstr "자르기 전에 트레이스백을 구성한 총 프레임 수. 정보가 없으면 이 어트리뷰트를 ``None``\\으로 설정할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:738
 msgid "The :attr:`Traceback.total_nframe` attribute was added."
-msgstr ""
+msgstr ":attr:`Traceback.total_nframe` 어트리뷰트가 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:743
 msgid ""
@@ -905,11 +919,4 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/tracemalloc.rst:753
 msgid "Example::"
 msgstr "예::"
-
-#~ msgid ""
-#~ "When a snapshot is taken, tracebacks "
-#~ "of traces are limited to "
-#~ ":func:`get_traceback_limit` frames. See the "
-#~ ":func:`take_snapshot` function."
-#~ msgstr ""
 

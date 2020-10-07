@@ -257,7 +257,7 @@ msgstr "버전 3.5 이전에는, 이 멤버가 항상 ``NULL``\\로 설정되었
 msgid ""
 "A traversal function to call during GC traversal of the module object, or"
 " ``NULL`` if not needed."
-msgstr ""
+msgstr "모듈 객체의 GC 탐색 중 호출할 탐색 함수나, 필요하지 않으면 ``NULL``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:201
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:216
@@ -270,24 +270,28 @@ msgid ""
 "than 0 and the module state (as returned by :c:func:`PyModule_GetState`) "
 "is ``NULL``."
 msgstr ""
+"모듈 상태가 요청되었지만, 아직 할당되지 않았으면 이 함수가 호출되지 않습니다. 이것은 모듈이 만들이진 직후, 모듈이 실행되기 "
+"직전의 경우입니다 (:c:data:`Py_mod_exec` 함수). 더 정확하게는, :c:member:`m_size`\\가 0보다 "
+"크고 모듈 상태(:c:func:`PyModule_GetState`\\가 반환하는)가 ``NULL``\\이면 이 함수가 호출되지 "
+"않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:208
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:223
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:238
 msgid "No longer called before the module state is allocated."
-msgstr ""
+msgstr "모듈 상태가 할당되기 전에 더는 호출되지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:213
 msgid ""
 "A clear function to call during GC clearing of the module object, or "
 "``NULL`` if not needed."
-msgstr ""
+msgstr "모듈 객체의 GC 정리 중에 호출할 정리(clear) 함수나, 필요하지 않으면 ``NULL``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:228
 msgid ""
 "A function to call during deallocation of the module object, or ``NULL`` "
 "if not needed."
-msgstr ""
+msgstr "모듈 객체 할당 해제 중에 호출할 함수나, 필요하지 않으면 ``NULL``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:242
 msgid "Single-phase initialization"
@@ -595,7 +599,6 @@ msgstr ""
 " 초기화를 도우려고 다음 함수를 사용할 수 있습니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:442
-#, fuzzy
 msgid ""
 "Add an object to *module* as *name*.  This is a convenience function "
 "which can be used from the module's initialization function.  This steals"
@@ -662,6 +665,9 @@ msgid ""
 "from the last component of :c:member:`~PyTypeObject.tp_name` after dot. "
 "Return ``-1`` on error, ``0`` on success."
 msgstr ""
+"*module*\\에 형 객체를 추가합니다. 내부적으로 :c:func:`PyType_Ready`\\를 호출하여 형 객체를 "
+"파이널라이즈합니다. 형 객체의 이름은 점 뒤 :c:member:`~PyTypeObject.tp_name`\\의 마지막 구성 요소에서"
+" 가져옵니다. 에러가 발생하면 ``-1``, 성공하면 ``0``\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:499
 msgid "Module lookup"
@@ -729,7 +735,7 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:530
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:541
 msgid "The caller must hold the GIL."
-msgstr ""
+msgstr "호출자는 GIL을 보유해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/module.rst:532
 msgid "Return 0 on success or -1 on failure."
@@ -740,51 +746,4 @@ msgid ""
 "Removes the module object created from *def* from the interpreter state. "
 "Return 0 on success or -1 on failure."
 msgstr "*def*\\에서 만들어진 모듈 객체를 인터프리터 상태에서 제거합니다. 성공하면 0을, 실패하면 -1을 반환합니다."
-
-#~ msgid ""
-#~ "A traversal function to call during "
-#~ "GC traversal of the module object, "
-#~ "or ``NULL`` if not needed. This "
-#~ "function may be called before module "
-#~ "state is allocated (:c:func:`PyModule_GetState()`"
-#~ " may return `NULL`), and before the"
-#~ " :c:member:`Py_mod_exec` function is executed."
-#~ msgstr ""
-#~ "모듈 객체의 GC 탐색 중 호출할 탐색 함수나,"
-#~ " 필요하지 않으면 ``NULL``. 이 함수는 모듈 "
-#~ "상태가 할당되기 전에 (:c:func:`PyModule_GetState()`\\가 "
-#~ "`NULL`\\을 반환할 수 있습니다), 그리고 "
-#~ ":c:member:`Py_mod_exec` 함수가 실행되기 전에 호출될 "
-#~ "수 있습니다."
-
-#~ msgid ""
-#~ "A clear function to call during GC"
-#~ " clearing of the module object, or"
-#~ " ``NULL`` if not needed. This "
-#~ "function may be called before module "
-#~ "state is allocated (:c:func:`PyModule_GetState()`"
-#~ " may return `NULL`), and before the"
-#~ " :c:member:`Py_mod_exec` function is executed."
-#~ msgstr ""
-#~ "모듈 객체의 GC 정리 중에 호출할 정리(clear) "
-#~ "함수나, 필요하지 않으면 ``NULL``. 이 함수는 모듈"
-#~ " 상태가 할당되기 전에 (:c:func:`PyModule_GetState()`\\가"
-#~ " `NULL`\\을 반환할 수 있습니다), 그리고 "
-#~ ":c:member:`Py_mod_exec` 함수가 실행되기 전에 호출될 "
-#~ "수 있습니다."
-
-#~ msgid ""
-#~ "A function to call during deallocation"
-#~ " of the module object, or ``NULL``"
-#~ " if not needed. This function may "
-#~ "be called before module state is "
-#~ "allocated (:c:func:`PyModule_GetState()` may return"
-#~ " `NULL`), and before the "
-#~ ":c:member:`Py_mod_exec` function is executed."
-#~ msgstr ""
-#~ "모듈 객체 할당 해제 중에 호출할 함수나, 필요하지"
-#~ " 않으면 ``NULL``. 이 함수는 모듈 상태가 "
-#~ "할당되기 전에 (:c:func:`PyModule_GetState()`\\가 `NULL`\\을"
-#~ " 반환할 수 있습니다), 그리고 :c:member:`Py_mod_exec`"
-#~ " 함수가 실행되기 전에 호출될 수 있습니다."
 

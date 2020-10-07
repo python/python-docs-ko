@@ -148,7 +148,6 @@ msgstr ""
 "프로그램에서 IPv6를 지원하려는 경우에는 이것들을 사용하지 않을 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:80
-#, fuzzy
 msgid ""
 "For :const:`AF_INET6` address family, a four-tuple ``(host, port, "
 "flowinfo, scope_id)`` is used, where *flowinfo* and *scope_id* represent "
@@ -158,21 +157,22 @@ msgid ""
 "however, omission of *scope_id* can cause problems in manipulating scoped"
 " IPv6 addresses."
 msgstr ""
-":const:`AF_INET6` 주소 패밀리의 경우, 4-튜플 ``(host, port, flowinfo, scopeid)``\\가"
-" 사용됩니다. 여기서 *flowinfo* 와 *scopeid*\\는 C에서 :const:`struct sockaddr_in6`\\의"
-" ``sin6_flowinfo`` 와 ``sin6_scope_id`` 멤버를 나타냅니다. :mod:`socket` 모듈 메서드의 "
-"경우, *flowinfo* 와 *scopeid*\\는 이전 버전과의 호환성을 위해 생략할 수 있습니다. 그러나, "
-"*scopeid*\\를 생략하면 스코프가 지정된(scoped) IPv6 주소를 조작하는 데 문제가 발생할 수 있습니다."
+":const:`AF_INET6` 주소 패밀리의 경우, 4-튜플 ``(host, port, flowinfo, "
+"scope_id)``\\가 사용됩니다. 여기서 *flowinfo* 와 *scope_id*\\는 C에서 :const:`struct "
+"sockaddr_in6`\\의 ``sin6_flowinfo`` 와 ``sin6_scope_id`` 멤버를 나타냅니다. "
+":mod:`socket` 모듈 메서드의 경우, *flowinfo* 와 *scope_id*\\는 이전 버전과의 호환성을 위해 생략할 "
+"수 있습니다. 그러나, *scope_id*\\를 생략하면 스코프가 지정된(scoped) IPv6 주소를 조작하는 데 문제가 발생할 "
+"수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:87
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "For multicast addresses (with *scope_id* meaningful) *address* may not "
 "contain ``%scope_id`` (or ``zone id``) part. This information is "
 "superfluous and may be safely omitted (recommended)."
 msgstr ""
-"멀티캐스트 주소(의미 있는 *scopeid*\\를 가진)의 경우, *address*\\에는 ``%scope`` (또는 ``zone "
-"id``) 부분이 포함될 수 없습니다. 이 정보는 불필요하므로 안전하게 생략할 수 있습니다 (권장 사항)."
+"멀티캐스트 주소(의미 있는 *scope_id*\\를 가진)의 경우, *address*\\에는 ``%scope_id`` (또는 "
+"``zone id``) 부분이 포함될 수 없습니다. 이 정보는 불필요하므로 안전하게 생략할 수 있습니다 (권장 사항)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:92
 msgid ":const:`AF_NETLINK` sockets are represented as pairs ``(pid, groups)``."
@@ -258,6 +258,9 @@ msgid ""
 "Parameter Group Number (PGN), and an 8-bit integer representing the "
 "address."
 msgstr ""
+":const:`CAN_J1939` 프로토콜에는 ``(interface, name, pgn, addr)``\\가 필요한데, 여기서 "
+"추가 파라미터는 ECU 이름을 나타내는 64 비트 부호 없는 정수, PGN(Parameter Group Number)을 나타내는 "
+"32비트 부호 없는 정수 및 주소를 나타내는 8비트 정수입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:126
 msgid ""
@@ -436,6 +439,12 @@ msgid ""
 "filter out packets which cover too little of their data. In both cases "
 "``length`` should be in ``range(8, 2**16, 8)``."
 msgstr ""
+":const:`IPPROTO_UDPLITE`\\는 UDP의 변형으로, 체크섬으로 커버되는 패킷 부분을 지정할 수 있습니다. 변경할 "
+"수 있는 두 개의 소켓 옵션이 추가되었습니다. ``self.setsockopt(IPPROTO_UDPLITE, "
+"UDPLITE_SEND_CSCOV, length)``\\는 체크섬으로 커버되는 나가는 패킷 부분을 변경하고 "
+"``self.setsockopt(IPPROTO_UDPLITE, UDPLITE_RECV_CSCOV, length)``\\는 너무 적은"
+" 데이터를 커버하는 패킷을 걸러냅니다. 두 경우 모두 ``length``\\는 ``range(8, 2**16, 8)``\\에 "
+"있어야합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:216
 msgid ""
@@ -443,6 +452,8 @@ msgid ""
 "IPPROTO_UDPLITE)`` for IPv4 or ``socket(AF_INET6, SOCK_DGRAM, "
 "IPPROTO_UDPLITE)`` for IPv6."
 msgstr ""
+"이러한 소켓은 IPv4의 경우 ``socket(AF_INET, SOCK_DGRAM, IPPROTO_UDPLITE)`` 또는 "
+"IPv6의 경우 ``socket(AF_INET6, SOCK_DGRAM, IPPROTO_UDPLITE)``\\로 구성되어야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:224
 msgid ""
@@ -688,12 +699,11 @@ msgstr ":ref:`가용성 <availability>` : 리눅스 >= 3.6."
 msgid ""
 "Joins the applied CAN filters such that only CAN frames that match all "
 "given CAN filters are passed to user space."
-msgstr ""
+msgstr "주어진 모든 CAN 필터와 일치하는 CAN 프레임 만 사용자 공간으로 전달되도록 적용된 CAN 필터를 결합합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:423
-#, fuzzy
 msgid ":ref:`Availability <availability>`: Linux >= 4.1."
-msgstr ":ref:`가용성 <availability>` : 리눅스 >= 4.8."
+msgstr ":ref:`가용성 <availability>`: 리눅스 >= 4.1."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:428
 msgid ""
@@ -704,18 +714,14 @@ msgstr ""
 "설명서에 설명되어 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:437
-#, fuzzy
 msgid ""
 "CAN_J1939, in the CAN protocol family, is the SAE J1939 protocol. J1939 "
 "constants, documented in the Linux documentation."
-msgstr ""
-"CAN 프로토콜 패밀리의 CAN_ISOTP는 ISO-TP (ISO 15765-2) 프로토콜입니다. ISO-TP 상수는 리눅스 "
-"설명서에 설명되어 있습니다."
+msgstr "CAN 프로토콜 패밀리의 CAN_J1939는 SAE J1939 프로토콜입니다. J1939 상수는 리눅스 설명서에 설명되어 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:441
-#, fuzzy
 msgid ":ref:`Availability <availability>`: Linux >= 5.4."
-msgstr ":ref:`가용성 <availability>` : 리눅스 >= 4.8."
+msgstr ":ref:`가용성 <availability>`: 리눅스 >= 5.4."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:452
 msgid ":ref:`Availability <availability>`: Linux >= 2.2."
@@ -814,7 +820,6 @@ msgid "The following functions all create :ref:`socket objects <socket-objects>`
 msgstr "다음 함수는 모두 :ref:`소켓 객체 <socket-objects>`\\를 만듭니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:553
-#, fuzzy
 msgid ""
 "Create a new socket using the given address family, socket type and "
 "protocol number.  The address family should be :const:`AF_INET` (the "
@@ -832,7 +837,8 @@ msgstr ""
 ":const:`AF_PACKET` 또는 :const:`AF_RDS` 여야 합니다. 소켓 유형은 :const:`SOCK_STREAM`"
 " (기본값), :const:`SOCK_DGRAM`, :const:`SOCK_RAW` 또는 기타 ``SOCK_`` 상수 중 하나여야 "
 "합니다. 프로토콜 번호는 일반적으로 0이며 생략될 수도 있고, 주소 패밀리가 :const:`AF_CAN` 일 때 프로토콜은 "
-":const:`CAN_RAW`, :const:`CAN_BCM` 또는 :const:`CAN_ISOTP` 중 하나여야 합니다."
+":const:`CAN_RAW`, :const:`CAN_BCM`, :const:`CAN_ISOTP` 또는 "
+":const:`CAN_J1939` 중 하나여야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:563
 msgid ""
@@ -904,9 +910,8 @@ msgstr ""
 "``socket.SOCK_STREAM``\\로 설정됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:605
-#, fuzzy
 msgid "The CAN_J1939 protocol was added."
-msgstr "CAN_BCM 프로토콜이 추가되었습니다."
+msgstr "CAN_J1939 프로토콜이 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:610
 msgid ""
@@ -1118,7 +1123,6 @@ msgid "``(family, type, proto, canonname, sockaddr)``"
 msgstr "``(family, type, proto, canonname, sockaddr)``"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:763
-#, fuzzy
 msgid ""
 "In these tuples, *family*, *type*, *proto* are all integers and are meant"
 " to be passed to the :func:`.socket` function.  *canonname* will be a "
@@ -1135,7 +1139,7 @@ msgstr ""
 "규범적(canonical) 이름을 나타내는 문자열입니다; 그렇지 않으면 *canonname*\\가 비어 있습니다. "
 "*sockaddr*\\은 반환된 *family*\\에 따라 형식이 달라지는, 소켓 주소를 설명하는 튜플이며 "
 "(:const:`AF_INET`\\이면 ``(address, port)`` 2-튜플, :const:`AF_INET6`\\이면 "
-"``(address, port, flow info, scope id)`` 4-튜플), :meth:`socket.connect` "
+"``(address, port, flowinfo, scope_id)`` 4-튜플), :meth:`socket.connect` "
 "메서드로 전달됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:774
@@ -1160,11 +1164,11 @@ msgid "parameters can now be passed using keyword arguments."
 msgstr "매개 변수는 이제 키워드 인자를 사용하여 전달할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:788
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "for IPv6 multicast addresses, string representing an address will not "
 "contain ``%scope_id`` part."
-msgstr "IPv6 멀티캐스트 주소의 경우, 주소를 나타내는 문자열에는 ``%scope`` 부분이 포함되지 않습니다."
+msgstr "IPv6 멀티캐스트 주소의 경우, 주소를 나타내는 문자열에는 ``%scope_id`` 부분이 포함되지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:794
 msgid ""
@@ -1282,14 +1286,14 @@ msgstr ""
 "문자열 포트 이름이나 숫자 포트 번호가 포함될 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:858
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "For IPv6 addresses, ``%scope_id`` is appended to the host part if "
 "*sockaddr* contains meaningful *scope_id*. Usually this happens for "
 "multicast addresses."
 msgstr ""
-"IPv6 주소의 경우, *sockaddr*\\에 의미 있는 *scopeid*\\가 있으면 ``%scope``\\를 host 부분에 "
-"덧붙입니다. 보통 이것은 멀티캐스트 주소에서 일어납니다."
+"IPv6 주소의 경우, *sockaddr*\\에 의미 있는 *scope_id*\\가 있으면 ``%scope_id``\\를 host "
+"부분에 덧붙입니다. 보통 이것은 멀티캐스트 주소에서 일어납니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:861
 msgid ""
@@ -2031,14 +2035,14 @@ msgstr ""
 "패밀리에 따라 다릅니다 --- 위를 보십시오.)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1383
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "For multicast IPv6 address, first item of *address* does not contain "
 "``%scope_id`` part anymore. In order to get full IPv6 address use "
 ":func:`getnameinfo`."
 msgstr ""
-"멀티캐스트 IPv6 주소의 경우, *address*\\의 첫 번째 항목에는 ``%scope`` 부분이 더는 포함되지 않습니다. 전체"
-" IPv6 주소를 얻으려면 :func:`getnameinfo`\\를 사용하십시오."
+"멀티캐스트 IPv6 주소의 경우, *address*\\의 첫 번째 항목에는 ``%scope_id`` 부분이 더는 포함되지 않습니다."
+" 전체 IPv6 주소를 얻으려면 :func:`getnameinfo`\\를 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1390
 msgid ""
@@ -2308,12 +2312,16 @@ msgid ""
 "The *fds* parameter is a sequence of file descriptors. Consult "
 ":meth:`sendmsg` for the documentation of these parameters."
 msgstr ""
+":const:`AF_UNIX` 소켓을 통해 파일 기술자의 리스트 *fds*\\를 전송합니다. *fds* 매개 변수는 파일 "
+"디스크립터의 시퀀스입니다. 이 매개 변수에 대한 설명서는 :meth:`sendmsg`\\를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1624
 msgid ""
 ":ref:`Availability <availability>`: Unix supporting "
 ":meth:`~socket.sendmsg` and :const:`SCM_RIGHTS` mechanism."
 msgstr ""
+":ref:`가용성 <availability>`: :meth:`~socket.sendmsg`\\와 :const:`SCM_RIGHTS`"
+" 메커니즘을 지원하는 유닉스."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1629
 msgid ""
@@ -2321,16 +2329,20 @@ msgid ""
 " addr)``. Consult :meth:`recvmsg` for the documentation of these "
 "parameters."
 msgstr ""
+"최대 *maxfds* 파일 기술자를 수신합니다. ``(msg, list(fds), flags, addr)``\\를 반환합니다. 이 "
+"매개 변수에 대한 설명서는 :meth:`recvmsg`\\를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1633
 msgid ""
 ":ref:`Availability <availability>`: Unix supporting "
 ":meth:`~socket.recvmsg` and :const:`SCM_RIGHTS` mechanism."
 msgstr ""
+":ref:`가용성 <availability>`: :meth:`~socket.recvmsg`\\와 :const:`SCM_RIGHTS`"
+" 메커니즘을 지원하는 유닉스."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1638
 msgid "Any truncated integers at the end of the list of file descriptors."
-msgstr ""
+msgstr "파일 기술자 리스트 끝에 있는 모든 잘린 정수."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/socket.rst:1642
 msgid ""

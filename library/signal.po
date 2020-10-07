@@ -103,12 +103,15 @@ msgid ""
 "communication.  You can use the synchronization primitives from the "
 ":mod:`threading` module instead."
 msgstr ""
+"파이썬 시그널 처리기는 시그널이 다른 스레드에서 수신될 때도 항상 메인 인터프리터의 메인 파이썬 스레드에서 실행됩니다. 이는 "
+"시그널을 스레드 간 통신 수단으로 사용할 수 없음을 의미합니다. 대신 :mod:`threading` 모듈의 동기화 프리미티브를 "
+"사용할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:61
 msgid ""
 "Besides, only the main thread of the main interpreter is allowed to set a"
 " new signal handler."
-msgstr ""
+msgstr "게다가, 메인 인터프리터의 메인 스레드만 새로운 시그널 처리기를 설정할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:65
 msgid "Module contents"
@@ -453,15 +456,17 @@ msgid ""
 "``None``.  The *flags* argument is provided for future extensions; no "
 "flag values are currently defined."
 msgstr ""
+"파일 기술자 *pidfd*\\가 참조하는 프로세스로 시그널 *sig*\\를 보냅니다. 파이썬은 현재 *siginfo* 매개 변수를 "
+"지원하지 않습니다; ``None``\\이어야 합니다. *flags* 인자는 향후 확장을 위해 제공됩니다; 현재는 플래그 값이 "
+"정의되어 있지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:361
 msgid "See the :manpage:`pidfd_send_signal(2)` man page for more information."
-msgstr ""
+msgstr "자세한 내용은 :manpage:`pidfd_send_signal(2)` 매뉴얼 페이지를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:363
-#, fuzzy
 msgid ":ref:`Availability <availability>`: Linux 5.1+"
-msgstr ":ref:`가용성 <availability>`: 유닉스."
+msgstr ":ref:`가용성 <availability>`: 리눅스 5.1+"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:369
 msgid ""
@@ -474,6 +479,11 @@ msgid ""
 "thread would be to force a running system call to fail with "
 ":exc:`InterruptedError`."
 msgstr ""
+"시그널 *signalnum*\\을 호출자와 같은 프로세스의 다른 스레드인 스레드 *thread_id*\\로 보냅니다. 대상 스레드는"
+" 임의의 (파이썬이거나 아닌) 코드를 실행 중일 수 있습니다. 그러나, 대상 스레드가 파이썬 인터프리터를 실행 중이면, 파이썬 "
+"시그널 처리기는 :ref:`메인 인터프리터의 메인 스레드에서 실행 <signals-and-threads>`\\됩니다. 따라서, 특정"
+" 파이썬 스레드에 시그널을 보내는 것의 유일한 용도는 실행 중인 시스템 호출이 :exc:`InterruptedError`\\로 "
+"실패하도록 하는 것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:377
 msgid ""
@@ -654,6 +664,8 @@ msgid ""
 "to call it from other threads will cause a :exc:`ValueError` exception to"
 " be raised."
 msgstr ""
+"스레드가 활성화되었을 때, 이 함수는 :ref:`메인 인터프리터의 메인 스레드 <signals-and-threads>`\\에서만 "
+"호출할 수 있습니다; 다른 스레드에서 호출하려고 하면 :exc:`ValueError` 예외가 발생합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:474
 msgid ""
@@ -937,43 +949,4 @@ msgstr ""
 ":exc:`BrokenPipeError`\\를 피하고자 :const:`SIGPIPE`\\의 배치를 "
 ":const:`SIG_DFL`\\로 설정하지 마십시오. 그렇게 하면 프로그램이 여전히 쓰고 있는 동안 소켓 연결이 중단될 때마다 "
 "프로그램이 예기치 않게 종료되도록 합니다."
-
-#~ msgid ""
-#~ "Python signal handlers are always "
-#~ "executed in the main Python thread, "
-#~ "even if the signal was received in"
-#~ " another thread.  This means that "
-#~ "signals can't be used as a means"
-#~ " of inter-thread communication.  You "
-#~ "can use the synchronization primitives "
-#~ "from the :mod:`threading` module instead."
-#~ msgstr ""
-
-#~ msgid "Besides, only the main thread is allowed to set a new signal handler."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Send the signal *signalnum* to the "
-#~ "thread *thread_id*, another thread in "
-#~ "the same process as the caller.  "
-#~ "The target thread can be executing "
-#~ "any code (Python or not).  However, "
-#~ "if the target thread is executing "
-#~ "the Python interpreter, the Python "
-#~ "signal handlers will be :ref:`executed "
-#~ "by the main thread <signals-and-"
-#~ "threads>`.  Therefore, the only point of"
-#~ " sending a signal to a particular "
-#~ "Python thread would be to force a"
-#~ " running system call to fail with "
-#~ ":exc:`InterruptedError`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "When threads are enabled, this function"
-#~ " can only be called from the "
-#~ "main thread; attempting to call it "
-#~ "from other threads will cause a "
-#~ ":exc:`ValueError` exception to be raised."
-#~ msgstr ""
 

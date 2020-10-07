@@ -44,7 +44,6 @@ msgid ""
 msgstr ":mod:`imaplib` 모듈은 세 가지 클래스를 제공하며, :class:`IMAP4`\\는 베이스 클래스입니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:35
-#, fuzzy
 msgid ""
 "This class implements the actual IMAP4 protocol.  The connection is "
 "created and protocol version (IMAP4 or IMAP4rev1) is determined when the "
@@ -56,7 +55,8 @@ msgid ""
 msgstr ""
 "이 클래스는 실제 IMAP4 프로토콜을 구현합니다. 연결이 만들어지고 인스턴스가 초기화될 때 프로토콜 버전(IMAP4 또는 "
 "IMAP4rev1)이 결정됩니다. *host*\\를 지정하지 않으면, ``''``\\(로컬 호스트)가 사용됩니다. *port*\\를"
-" 생략하면, 표준 IMAP4 포트(143)가 사용됩니다."
+" 생략하면, 표준 IMAP4 포트(143)가 사용됩니다. 선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 "
+"지정합니다. timeout이 제공되지 않거나 None이면, 전역 기본 소켓 시간제한이 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:42
 msgid ""
@@ -73,9 +73,8 @@ msgstr ":keyword:`with` 문에 대한 지원이 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:55
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:122
-#, fuzzy
 msgid "The optional *timeout* parameter was added."
-msgstr "*ssl_context* 매개 변수가 추가되었습니다."
+msgstr "선택적 *timeout* 매개 변수가 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:58
 msgid "Three exceptions are defined as attributes of the :class:`IMAP4` class:"
@@ -147,9 +146,10 @@ msgid ""
 "connection attempt. If timeout is not given or is None, the global "
 "default socket timeout is used."
 msgstr ""
+"선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 지정합니다. timeout이 제공되지 않거나 None이면, "
+"전역 기본 소켓 시간제한이 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:107
-#, fuzzy
 msgid "*ssl_context* parameter was added."
 msgstr "*ssl_context* 매개 변수가 추가되었습니다."
 
@@ -503,6 +503,12 @@ msgid ""
 ":meth:`IMAP4.read`, :meth:`IMAP4.readline`, :meth:`IMAP4.send`, and "
 ":meth:`IMAP4.shutdown` methods. You may override this method."
 msgstr ""
+"*host*\\의 *port*\\로 소켓을 엽니다. 선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 "
+"지정합니다. timeout이 제공되지 않거나 None이면, 전역 기본 소켓 시간제한이 사용됩니다. 또한 *timeout* 매개 "
+"변수가 0으로 설정되면, 비 블로킹 소켓을 만들지 못하도록 :class:`ValueError`\\를 발생시킴에 유의하십시오. 이 "
+"메서드는 :class:`IMAP4` 생성자에 의해 묵시적으로 호출됩니다. 이 메서드로 맺어진 연결 객체는 "
+":meth:`IMAP4.read`, :meth:`IMAP4.readline`, :meth:`IMAP4.send` 및 "
+":meth:`IMAP4.shutdown` 메서드에서 사용됩니다. 이 메서드를 재정의할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:380
 msgid ""
@@ -513,9 +519,8 @@ msgstr ""
 "``imaplib.open``\\을 발생시킵니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:381
-#, fuzzy
 msgid "The *timeout* parameter was added."
-msgstr "*ssl_context* 매개 변수가 추가되었습니다."
+msgstr "*timeout* 매개 변수가 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:386
 msgid ""
@@ -776,6 +781,9 @@ msgid ""
 "except that no messages are permanently removed from the currently "
 "selected mailbox."
 msgstr ""
+":meth:`imaplib.IMAP4.unselect`\\는 선택한 사서함과 관련된 서버 자원을 해제하고 서버를 인증된 상태로 "
+"되돌립니다. 이 명령은 현재 선택된 사서함에서 메시지가 영구적으로 제거되지 않는다는 점을 제외하고, "
+":meth:`imaplib.IMAP4.close`\\와 같은 작업을 수행합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/imaplib.rst:597
 msgid ""
@@ -820,21 +828,4 @@ msgid ""
 "Here is a minimal example (without error checking) that opens a mailbox "
 "and retrieves and prints all messages::"
 msgstr "다음은 사서함을 열고 모든 메시지를 가져오고 인쇄하는 최소한의 예(에러 검사는 없습니다)입니다::"
-
-#~ msgid ""
-#~ "Opens socket to *port* at *host*.  "
-#~ "This method is implicitly called by "
-#~ "the :class:`IMAP4` constructor.  The "
-#~ "connection objects established by this "
-#~ "method will be used in the "
-#~ ":meth:`IMAP4.read`, :meth:`IMAP4.readline`, "
-#~ ":meth:`IMAP4.send`, and :meth:`IMAP4.shutdown` "
-#~ "methods.  You may override this method."
-#~ msgstr ""
-#~ "*host*\\의 *port*\\로 소켓을 엽니다. 이 메서드는 "
-#~ ":class:`IMAP4` 생성자에 의해 묵시적으로 호출됩니다. 이"
-#~ " 메서드로 맺어진 연결 객체는 :meth:`IMAP4.read`, "
-#~ ":meth:`IMAP4.readline`, :meth:`IMAP4.send` 및 "
-#~ ":meth:`IMAP4.shutdown` 메서드에서 사용됩니다. 이 메서드를 "
-#~ "재정의할 수 있습니다."
 

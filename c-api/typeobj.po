@@ -638,14 +638,12 @@ msgid "__del__"
 msgstr "__del__"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:148
-#, fuzzy
 msgid ":c:member:`~PyTypeObject.tp_vectorcall`"
-msgstr ":c:member:`~PyTypeObject.tp_vectorcall_offset`"
+msgstr ":c:member:`~PyTypeObject.tp_vectorcall`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:148
-#, fuzzy
 msgid ":c:type:`vectorcallfunc`"
-msgstr ":c:type:`allocfunc`"
+msgstr ":c:type:`vectorcallfunc`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:152
 msgid ""
@@ -1643,51 +1641,45 @@ msgstr ""
 "해당 형 객체의 참조 횟수를 줄여야 합니다. 매달린(dangling) 포인터를 피하고자, 이렇게 하는 권장 방법은 다음과 같습니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:682
-#, fuzzy
 msgid ""
 "An optional offset to a per-instance function that implements calling the"
 " object using the :ref:`vectorcall protocol <vectorcall>`, a more "
 "efficient alternative of the simpler :c:member:`~PyTypeObject.tp_call`."
 msgstr ""
-"간단한 :c:member:`~PyTypeObject.tp_call`\\의 더 효율적인 대안인 *벡터콜(vectorcall)* "
-"프로토콜을 사용하여 객체를 호출하는 것을 구현하는 인스턴스별 함수에 대한 선택적 오프셋입니다."
+"간단한 :c:member:`~PyTypeObject.tp_call`\\의 더 효율적인 대안인 :ref:`벡터콜(vectorcall)"
+" 프로토콜 <vectorcall>`\\을 사용하여 객체를 호출하는 것을 구현하는 인스턴스별 함수에 대한 선택적 오프셋입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:687
-#, fuzzy
 msgid ""
 "This field is only used if the flag :const:`Py_TPFLAGS_HAVE_VECTORCALL` "
 "is set. If so, this must be a positive integer containing the offset in "
 "the instance of a :c:type:`vectorcallfunc` pointer."
 msgstr ""
-"이 필드는 플래그 :const:`_Py_TPFLAGS_HAVE_VECTORCALL`\\이 설정되었을 때만 사용됩니다. 그럴 때, "
-"이것은 :c:type:`vectorcallfunc` 포인터의 인스턴스에서의 오프셋을 포함하는 양의 정수여야 합니다. 서명은 "
-":c:func:`_PyObject_Vectorcall`\\과 같습니다::"
+"이 필드는 플래그 :const:`Py_TPFLAGS_HAVE_VECTORCALL`\\이 설정되었을 때만 사용됩니다. 그럴 때, "
+"이것은 :c:type:`vectorcallfunc` 포인터의 인스턴스에서의 오프셋을 포함하는 양의 정수여야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:691
-#, fuzzy
 msgid ""
 "The *vectorcallfunc* pointer may be ``NULL``, in which case the instance "
 "behaves as if :const:`Py_TPFLAGS_HAVE_VECTORCALL` was not set: calling "
 "the instance falls back to :c:member:`~PyTypeObject.tp_call`."
 msgstr ""
-"*vectorcallfunc* 포인터는 0일 수 있으며, 이때 인스턴스는 "
-":const:`_Py_TPFLAGS_HAVE_VECTORCALL`\\이 설정되지 않은 것처럼 작동합니다: 인스턴스를 호출하면 "
+"*vectorcallfunc* 포인터는 ``NULL``\\일 수 있으며, 이때 인스턴스는 "
+":const:`Py_TPFLAGS_HAVE_VECTORCALL`\\이 설정되지 않은 것처럼 작동합니다: 인스턴스를 호출하면 "
 ":c:member:`~PyTypeObject.tp_call`\\로 폴백 됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:695
-#, fuzzy
 msgid ""
 "Any class that sets ``Py_TPFLAGS_HAVE_VECTORCALL`` must also set "
 ":c:member:`~PyTypeObject.tp_call` and make sure its behaviour is "
 "consistent with the *vectorcallfunc* function. This can be done by "
 "setting *tp_call* to :c:func:`PyVectorcall_Call`."
 msgstr ""
-"``_Py_TPFLAGS_HAVE_VECTORCALL``\\을 설정하는 모든 클래스는 "
+"``Py_TPFLAGS_HAVE_VECTORCALL``\\을 설정하는 모든 클래스는 "
 ":c:member:`~PyTypeObject.tp_call`\\도 설정해야 하고, 해당 동작이 *vectorcallfunc* 함수와"
-" 일관되도록 만들어야 합니다. *tp_call*\\을 ``PyVectorcall_Call``\\로 설정하면 됩니다:"
+" 일관되도록 만들어야 합니다. *tp_call*\\을 :c:func:`PyVectorcall_Call`\\로 설정하면 됩니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:702
-#, fuzzy
 msgid ""
 "It is not recommended for :ref:`heap types <heap-types>` to implement the"
 " vectorcall protocol. When a user sets :attr:`__call__` in Python code, "
@@ -1695,7 +1687,7 @@ msgid ""
 "vectorcall function."
 msgstr ""
 ":ref:`힙(heap) 형 <heap-types>`\\에 벡터콜 프로토콜을 구현하는 것은 권장하지 않습니다. 사용자가 파이썬 "
-"코드에서 ``__call__``\\을 설정하면, ``tp_call``\\만 갱신되어 벡터콜 함수와 일치하지 않을 수 있습니다."
+"코드에서 :attr:`__call__`\\을 설정하면, *tp_call*\\만 갱신되어 벡터콜 함수와 일치하지 않게 됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:709
 msgid ""
@@ -1711,6 +1703,8 @@ msgid ""
 "Before version 3.8, this slot was named ``tp_print``. In Python 2.x, it "
 "was used for printing to a file. In Python 3.0 to 3.7, it was unused."
 msgstr ""
+"버전 3.8 이전에는, 이 슬롯의 이름이 ``tp_print``\\였습니다. 파이썬 2.x에서는, 파일로 인쇄하는 데 "
+"사용되었습니다. 파이썬 3.0에서 3.7까지는, 사용되지 않았습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:721
 msgid ""
@@ -1721,6 +1715,10 @@ msgid ""
 "particular the case for `heap types`_ (including subclasses defined in "
 "Python)."
 msgstr ""
+"이 필드는 항상 상속됩니다. 그러나, :const:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그가 항상 상속되는 것은 "
+"아닙니다. 그렇지 않으면, :c:func:`PyVectorcall_Call`\\이 명시적으로 호출되었을 때를 제외하고, 서브 "
+"클래스는 :ref:`벡터콜(vectorcall) <vectorcall>`\\을 사용하지 않을 것입니다. 특히 `힙 형 <heap "
+"types_>`_\\일 때 그렇습니다 (파이썬에서 정의된 서브 클래스를 포함합니다)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:732
 msgid "An optional pointer to the get-attribute-string function."
@@ -2333,13 +2331,12 @@ msgstr ""
 "이 플래그는 더는 필요하지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1158
-#, fuzzy
 msgid ""
 "This bit is set when the class implements the :ref:`vectorcall protocol "
 "<vectorcall>`. See :c:member:`~PyTypeObject.tp_vectorcall_offset` for "
 "details."
 msgstr ""
-"이 비트는 클래스가 벡터콜 프로토콜을 구현할 때 설정됩니다. 자세한 내용은 "
+"이 비트는 클래스가 :ref:`벡터콜 프로토콜 <vectorcall>`\\을 구현할 때 설정됩니다. 자세한 내용은 "
 ":c:member:`~PyTypeObject.tp_vectorcall_offset`\\을 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1164
@@ -2348,6 +2345,9 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_call` is also inherited. `Heap types`_ do not"
 " inherit ``Py_TPFLAGS_HAVE_VECTORCALL``."
 msgstr ""
+"이 비트는 :c:member:`~PyTypeObject.tp_call`\\도 상속되면 *정적(static)* 서브 유형에 대해 "
+"상속됩니다. `힙 형 <Heap types_>`_\\은 ``Py_TPFLAGS_HAVE_VECTORCALL``\\을 상속하지 "
+"않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1173
 msgid ""
@@ -2451,6 +2451,10 @@ msgid ""
 "allocated superclass). If they do not, the type object may not be "
 "garbage-collected."
 msgstr ""
+"힙 할당 형(:const:`Py_TPFLAGS_HEAPTYPE`, :c:func:`PyType_FromSpec`\\과 유사한 "
+"API로 만들어진 것과 같은)은 그들의 형에 대한 참조를 보유합니다. 따라서 순회 함수는 :c:func:`Py_TYPE(self) "
+"<Py_TYPE>`\\를 방문하거나, 다른 힙 할당 형(가령 힙 할당 슈퍼 클래스)의 ``tp_traverse``\\를 호출하여 이"
+" 책임을 위임해야 합니다. 그렇지 않으면, 형 객체가 가비지 수거되지 않을 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1240
 msgid ""
@@ -2459,6 +2463,9 @@ msgid ""
 "<https://bugs.python.org/issue40217>`_, doing this may lead to crashes in"
 " subclasses."
 msgstr ""
+"힙 할당 형은 ``tp_traverse``\\에서 ``Py_TYPE(self)``\\를 방문할 것으로 기대됩니다. 이전 버전의 "
+"파이썬에서는, `버그 40217 <https://bugs.python.org/issue40217>`_\\로 인해, 이렇게 하면 서브"
+" 클래스에서 충돌이 발생할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1249
 msgid ""
@@ -3191,7 +3198,6 @@ msgid "An optional pointer to an instance creation function."
 msgstr "인스턴스 생성 함수에 대한 선택적 포인터."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1718
-#, fuzzy
 msgid ""
 "The *subtype* argument is the type of the object being created; the "
 "*args* and *kwds* arguments represent positional and keyword arguments of"
@@ -3199,9 +3205,9 @@ msgid ""
 "type whose :c:member:`~PyTypeObject.tp_new` function is called; it may be"
 " a subtype of that type (but not an unrelated type)."
 msgstr ""
-"subtype 인자는 만들어지고 있는 객체의 형입니다; *args*\\와 *kwds* 인자는 형 호출의 위치와 키워드 인자를 "
-"나타냅니다. 서브 형은 :c:member:`~PyTypeObject.tp_new` 함수가 호출되는 형과 같을 필요는 없음에 "
-"유의하십시오; 이 형의 서브 형일 수 있습니다 (하지만 관련이 없는 형은 아닙니다)."
+"*subtype* 인자는 만들어지고 있는 객체의 형입니다; *args*\\와 *kwds* 인자는 형 호출의 위치와 키워드 인자를 "
+"나타냅니다. *subtype*\\이 :c:member:`~PyTypeObject.tp_new` 함수가 호출되는 형과 같을 필요는 "
+"없음에 유의하십시오; 이 형의 서브 형일 수 있습니다 (하지만 관련이 없는 형은 아닙니다)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1724
 msgid ""
@@ -3410,15 +3416,17 @@ msgid ""
 "``type.__call__``. If ``tp_vectorcall`` is ``NULL``, the default call "
 "implementation using :attr:`__new__` and :attr:`__init__` is used."
 msgstr ""
+"이 형 객체의 호출에 사용하는 벡터콜 함수. 즉, ``type.__call__``\\을 위한 :ref:`벡터콜 "
+"<vectorcall>`\\을 구현하는 데 사용됩니다. ``tp_vectorcall``\\이 ``NULL``\\이면, "
+":attr:`__new__`\\와 :attr:`__init__`\\를 사용하는 기본 호출 구현이 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1913
-#, fuzzy
 msgid "This field is never inherited."
 msgstr "이 필드는 상속되지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1915
 msgid "(the field exists since 3.8 but it's only used since 3.9)"
-msgstr ""
+msgstr "(필드는 3.8부터 존재하지만 3.9부터 사용됩니다)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:1918
 msgid ""
@@ -4055,158 +4063,4 @@ msgstr "(고정 길이 인스턴스의) 가장 간단한 정적 형::"
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/typeobj.rst:2573
 msgid "The simplest static type (with variable-length instances)::"
 msgstr "(가변 길이 인스턴스의) 가장 간단한 정적 형::"
-
-#~ msgid ""
-#~ "If :const:`COUNT_ALLOCS` is defined then "
-#~ "the following (internal-only) fields "
-#~ "exist as well:"
-#~ msgstr ":const:`COUNT_ALLOCS`\\가 정의되면 다음 (내부 전용) 필드도 존재합니다:"
-
-#~ msgid ":c:member:`~PyTypeObject.tp_allocs`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_allocs`"
-
-#~ msgid ":c:member:`~PyTypeObject.tp_frees`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_frees`"
-
-#~ msgid ":c:member:`~PyTypeObject.tp_maxalloc`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_maxalloc`"
-
-#~ msgid ":c:member:`~PyTypeObject.tp_prev`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_prev`"
-
-#~ msgid ":c:member:`~PyTypeObject.tp_next`"
-#~ msgstr ":c:member:`~PyTypeObject.tp_next`"
-
-#~ msgid ""
-#~ "Call *callable*'s *vectorcallfunc* with "
-#~ "positional and keyword arguments given "
-#~ "in a tuple and dict, respectively."
-#~ msgstr ""
-#~ "tuple과 dict에 각각 주어진 위치와 키워드 인자로"
-#~ " *callable*\\의 *vectorcallfunc*\\를 호출합니다."
-
-#~ msgid ""
-#~ "This function is intended to be "
-#~ "used in the ``tp_call`` slot. It "
-#~ "does not fall back to ``tp_call`` "
-#~ "and it currently does not check "
-#~ "the ``_Py_TPFLAGS_HAVE_VECTORCALL`` flag. To "
-#~ "call an object, use one of the "
-#~ ":c:func:`PyObject_Call <PyObject_Call>` functions "
-#~ "instead."
-#~ msgstr ""
-#~ "이 함수는 ``tp_call`` 슬롯에서 사용하기 위한 "
-#~ "것입니다. ``tp_call``\\로 폴백하지 않으며 현재 "
-#~ "``_Py_TPFLAGS_HAVE_VECTORCALL`` 플래그를 확인하지 않습니다. "
-#~ "객체를 호출하려면, :c:func:`PyObject_Call <PyObject_Call>`"
-#~ " 함수 중 하나를 대신 사용하십시오."
-
-#~ msgid ""
-#~ "This slot was used for print "
-#~ "formatting in Python 2.x. In Python "
-#~ "3.0 to 3.7, it was reserved and"
-#~ " named ``tp_print``."
-#~ msgstr ""
-#~ "이 슬롯은 파이썬 2.x의 인쇄 포매팅에 사용되었습니다."
-#~ " 파이썬 3.0에서 3.7에서는, 예약되었고 ``tp_print``\\로"
-#~ " 명명되었습니다."
-
-#~ msgid ""
-#~ "This field is inherited by subtypes "
-#~ "together with :c:member:`~PyTypeObject.tp_call`: a"
-#~ " subtype inherits "
-#~ ":c:member:`~PyTypeObject.tp_vectorcall_offset` from its"
-#~ " base type when the subtype’s "
-#~ ":c:member:`~PyTypeObject.tp_call` is ``NULL``."
-#~ msgstr ""
-#~ "이 필드는 :c:member:`~PyTypeObject.tp_call`\\과 함께 "
-#~ "서브 형에 의해 상속됩니다: 서브 형의 "
-#~ ":c:member:`~PyTypeObject.tp_call`\\이 ``NULL``\\일 때 "
-#~ "서브 형은 베이스형에서 "
-#~ ":c:member:`~PyTypeObject.tp_vectorcall_offset`\\을 상속합니다."
-
-#~ msgid ""
-#~ "Note that `heap types`_ (including "
-#~ "subclasses defined in Python) do not "
-#~ "inherit the :const:`_Py_TPFLAGS_HAVE_VECTORCALL` "
-#~ "flag."
-#~ msgstr ""
-#~ "`힙 형 <heap types_>`_\\(파이썬에서 정의된 서브 "
-#~ "클래스를 포함합니다)은 :const:`_Py_TPFLAGS_HAVE_VECTORCALL` "
-#~ "플래그를 상속하지 않음에 유의하십시오."
-
-#~ msgid ""
-#~ "This bit is set on *static* "
-#~ "subtypes if ``tp_flags`` is not "
-#~ "overridden: a subtype inherits "
-#~ "``_Py_TPFLAGS_HAVE_VECTORCALL`` from its base "
-#~ "type when the subtype’s "
-#~ ":c:member:`~PyTypeObject.tp_call` is ``NULL`` and"
-#~ " the subtype's ``Py_TPFLAGS_HEAPTYPE`` is "
-#~ "not set."
-#~ msgstr ""
-#~ "이 비트는 ``tp_flags``\\가 재정의되지 않으면 "
-#~ "*정적(static)* 서브 형에 설정됩니다: 서브 형의 "
-#~ ":c:member:`~PyTypeObject.tp_call`\\이 ``NULL``\\이고 서브 "
-#~ "형의 ``Py_TPFLAGS_HEAPTYPE``\\이 설정되지 않을 때 "
-#~ "서브 형은 베이스형에서 ``_Py_TPFLAGS_HAVE_VECTORCALL``\\을 "
-#~ "상속합니다."
-
-#~ msgid "`Heap types`_ do not inherit ``_Py_TPFLAGS_HAVE_VECTORCALL``."
-#~ msgstr "`힙 형 <Heap types_>`_\\은 ``_Py_TPFLAGS_HAVE_VECTORCALL``\\을 상속하지 않습니다."
-
-#~ msgid ""
-#~ "This flag is provisional and expected"
-#~ " to become public in Python 3.9, "
-#~ "with a different name and, possibly, "
-#~ "changed semantics. If you use "
-#~ "vectorcall, plan for updating your code"
-#~ " for Python 3.9."
-#~ msgstr ""
-#~ "이 플래그는 잠정적이며 파이썬 3.9에서 다른 이름과 "
-#~ "변경된 의미론으로 공개되리라고 봅니다. 벡터콜을 사용하면, "
-#~ "파이썬 3.9 용으로 코드를 갱신할 준비를 하십시오."
-
-#~ msgid ""
-#~ "The remaining fields are only defined"
-#~ " if the feature test macro "
-#~ ":const:`COUNT_ALLOCS` is defined, and are "
-#~ "for internal use only. They are "
-#~ "documented here for completeness.  None "
-#~ "of these fields are inherited by "
-#~ "subtypes."
-#~ msgstr ""
-#~ "나머지 필드는 기능 테스트 매크로 "
-#~ ":const:`COUNT_ALLOCS`\\가 정의된 경우에만 정의되며, 내부 "
-#~ "전용입니다. 그것들은 완전성을 위해 여기에서 설명합니다. "
-#~ "이러한 필드는 서브 형에 의해 상속되지 않습니다."
-
-#~ msgid "Number of allocations."
-#~ msgstr "할당 수."
-
-#~ msgid "Number of frees."
-#~ msgstr "할당 해제 수."
-
-#~ msgid "Maximum simultaneously allocated objects."
-#~ msgstr "동시에 할당된 최대 객체 수."
-
-#~ msgid ""
-#~ "Pointer to the previous type object "
-#~ "with a non-zero "
-#~ ":c:member:`~PyTypeObject.tp_allocs` field."
-#~ msgstr "0이 아닌 :c:member:`~PyTypeObject.tp_allocs` 필드를 가진 이전 형 객체를 가리키는 포인터."
-
-#~ msgid ""
-#~ "Pointer to the next type object "
-#~ "with a non-zero "
-#~ ":c:member:`~PyTypeObject.tp_allocs` field."
-#~ msgstr "0이 아닌 :c:member:`~PyTypeObject.tp_allocs` 필드를 가진 다음 형 객체를 가리키는 포인터."
-
-#~ msgid "See :c:member:`~PyTypeObject.tp_vectorcall_offset`."
-#~ msgstr ":c:member:`~PyTypeObject.tp_vectorcall_offset`\\을 참조하십시오."
-
-#~ msgid ""
-#~ "Arguments to ``vectorcallfunc`` are the "
-#~ "same as for :c:func:`_PyObject_Vectorcall`."
-#~ msgstr "``vectorcallfunc``\\에 대한 인자는 :c:func:`_PyObject_Vectorcall`\\과 같습니다."
 

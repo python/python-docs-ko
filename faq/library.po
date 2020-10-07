@@ -210,9 +210,8 @@ msgid ""
 msgstr "가장 흔한 문제점은 시그널 처리기가 잘못된 인자 목록으로 선언되는 것입니다. 이렇게 호출됩니다 ::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:128
-#, fuzzy
 msgid "so it should be declared with two parameters::"
-msgstr "따라서 두 개의 인자로 선언해야 합니다::"
+msgstr "따라서 두 개의 매개 변수로 선언해야 합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:135
 msgid "Common tasks"
@@ -261,7 +260,6 @@ msgid "at the bottom of the main module of your program."
 msgstr "프로그램의 메인 모듈 하단에 넣는 것처럼 간단할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:162
-#, fuzzy
 msgid ""
 "Once your program is organized as a tractable collection of function and "
 "class behaviours, you should write test functions that exercise the "
@@ -272,7 +270,7 @@ msgid ""
 "parallel with the \"production code\", since this makes it easy to find "
 "bugs and even design flaws earlier."
 msgstr ""
-"일단 프로그램이 다루기 쉬운 함수와 클래스 동작의 모음으로 구성되면 이 동작을 검사하는 테스트 함수를 작성해야 합니다. 일련의 "
+"일단 프로그램이 다루기 쉬운 함수와 클래스 동작의 모음으로 구성되면, 이 동작을 검사하는 테스트 함수를 작성해야 합니다. 일련의 "
 "테스트를 자동화하는 테스트 스위트는 각 모듈과 연관될 수 있습니다. 이것은 많은 작업처럼 들리지만, 파이썬이 아주 간결하고 유연하기"
 " 때문에 놀랍도록 쉽습니다. \"프로덕션 코드\"와 함께 테스트 함수를 작성하여 코딩을 훨씬 더 즐겁고 재미있게 만들 수 있습니다."
 " 버그를 쉽게 찾고 결함을 조기에 발견할 수 있기 때문입니다."
@@ -391,12 +389,11 @@ msgid "How do I parcel out work among a bunch of worker threads?"
 msgstr "여러 작업자 스레드 간에 작업을 어떻게 배달합니까?"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:298
-#, fuzzy
 msgid ""
 "The easiest way is to use the :mod:`concurrent.futures` module, "
 "especially the :mod:`~concurrent.futures.ThreadPoolExecutor` class."
 msgstr ""
-"가장 쉬운 방법은 새로운 :mod:`concurrent.futures` 모듈, 특히 "
+"가장 쉬운 방법은 :mod:`concurrent.futures` 모듈, 특히 "
 ":mod:`~concurrent.futures.ThreadPoolExecutor` 클래스를 사용하는 것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:301
@@ -820,9 +817,8 @@ msgid ""
 msgstr "폼을 POST 한 결과 웹 페이지를 가져오고 싶습니다. 이 작업을 쉽게 수행할 수 있도록 하는 기존 코드가 있습니까?"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:682
-#, fuzzy
 msgid "Yes. Here's a simple example that uses :mod:`urllib.request`::"
-msgstr "예. 다음은 urllib.request를 사용하는 간단한 예입니다::"
+msgstr "예. 다음은 :mod:`urllib.request`\\를 사용하는 간단한 예입니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:697
 msgid ""
@@ -894,9 +890,12 @@ msgid ""
 "return different values, so you're going to have to check what's returned"
 " on your system."
 msgstr ""
+"TCP 연결이 블록 되지 않도록 하기 위해, 소켓을 비 블로킹 모드로 설정할 수 있습니다. 그런 다음 "
+":meth:`socket.connect`\\를 수행하면, 즉시 연결되거나 (그다지 가능성이 없습니다) 에러 번호를 "
+"``.errno``\\에 포함하는 예외가 발생합니다. ``errno.EINPROGRESS``\\는 연결이 진행 중이지만, 아직 "
+"완료되지 않았음을 나타냅니다. OS마다 다른 값을 반환해서, 여러분의 시스템에서 무엇이 반환되는지 확인해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:774
-#, fuzzy
 msgid ""
 "You can use the :meth:`socket.connect_ex` method to avoid creating an "
 "exception.  It will just return the errno value.  To poll, you can call "
@@ -904,9 +903,10 @@ msgid ""
 "indicate that you're connected -- or you can pass this socket to "
 ":meth:`select.select` to check if it's writable."
 msgstr ""
-"예외를 피하려면 ``connect_ex()`` 메서드를 사용할 수 있습니다. errno 값만 반환합니다. 폴링하려면, 나중에 "
-"``connect_ex()``\\를 다시 호출할 수 있습니다 -- ``0``\\이나 ``errno.EISCONN``\\은 "
-"연결되었음을 나타냅니다 -- 또는 이 소켓을 select로 전달하여 쓸 수 있는지 확인할 수 있습니다."
+"예외를 피하려면 :meth:`socket.connect_ex` 메서드를 사용할 수 있습니다. errno 값만 반환합니다. "
+"폴링하려면, 나중에 :meth:`socket.connect_ex`\\를 다시 호출할 수 있습니다 -- ``0``\\이나 "
+"``errno.EISCONN``\\은 연결되었음을 나타냅니다 -- 또는 이 소켓을 :meth:`select.select`\\로 "
+"전달하여 쓸 수 있는지 확인할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:780
 msgid ""
@@ -916,6 +916,9 @@ msgid ""
 "<https://twistedmatrix.com/trac/>`_ library is a popular and feature-rich"
 " alternative."
 msgstr ""
+":mod:`asyncio` 모듈은 비 블로킹 네트워크 코드를 작성하는 데 사용할 수 있는 범용 단일 스레드 및 동시성 비동기 "
+"라이브러리를 제공합니다. 제삼자 `Twisted <https://twistedmatrix.com/trac/>`_ 라이브러리는 널리 "
+"사용되는 기능이 풍부한 대안입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:788
 msgid "Databases"
@@ -1002,55 +1005,16 @@ msgid "Some higher-level functions operate on sequences directly, such as:"
 msgstr "일부 고수준 함수는 시퀀스에서 직접 작동합니다, 가령:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:836
-#, fuzzy
 msgid "``choice(S)`` chooses a random element from a given sequence."
-msgstr "``choice(S)``\\는 주어진 시퀀스에서 무작위 요소를 선택합니다"
+msgstr "``choice(S)``\\는 주어진 시퀀스에서 무작위 요소 하나를 선택합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:837
-#, fuzzy
 msgid "``shuffle(L)`` shuffles a list in-place, i.e. permutes it randomly."
-msgstr "``shuffle(L)``\\은 리스트를 제자리에서 섞습니다, 즉 무작위로 순서를 바꿉니다"
+msgstr "``shuffle(L)``\\은 리스트를 제자리에서 섞습니다, 즉 무작위로 순서를 바꿉니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/faq/library.rst:839
 msgid ""
 "There's also a ``Random`` class you can instantiate to create independent"
 " multiple random number generators."
 msgstr "독립적인 여러 개의 난수 생성기를 만들기 위해 인스턴스 화 할 수 있는 ``Random`` 클래스도 있습니다."
-
-#~ msgid ""
-#~ "To prevent the TCP connect from "
-#~ "blocking, you can set the socket "
-#~ "to non-blocking mode.  Then when "
-#~ "you do the ``connect()``, you will "
-#~ "either connect immediately (unlikely) or "
-#~ "get an exception that contains the "
-#~ "error number as ``.errno``. "
-#~ "``errno.EINPROGRESS`` indicates that the "
-#~ "connection is in progress, but hasn't"
-#~ " finished yet.  Different OSes will "
-#~ "return different values, so you're going"
-#~ " to have to check what's returned "
-#~ "on your system."
-#~ msgstr ""
-#~ "TCP 연결이 블록 되지 않도록 하기 위해, 소켓을"
-#~ " 비 블로킹 모드로 설정할 수 있습니다. 그런 "
-#~ "다음 ``connect()``\\를 수행하면, 즉시 연결되거나 (그다지"
-#~ " 가능성이 없습니다) 에러 번호를 ``.errno``\\에 포함하는"
-#~ " 예외가 발생합니다. ``errno.EINPROGRESS``\\는 연결이 진행"
-#~ " 중이지만, 아직 완료되지 않았음을 나타냅니다. OS마다 "
-#~ "다른 값을 반환해서, 여러분의 시스템에서 무엇이 반환되는지"
-#~ " 확인해야 합니다."
-
-#~ msgid ""
-#~ "The :mod:`asyncore` module presents a "
-#~ "framework-like approach to the problem "
-#~ "of writing non-blocking networking code."
-#~ " The third-party `Twisted "
-#~ "<https://twistedmatrix.com/trac/>`_ library is a "
-#~ "popular and feature-rich alternative."
-#~ msgstr ""
-#~ ":mod:`asyncore` 모듈은 비 블로킹 네트워킹 코드 "
-#~ "작성 문제에 대해 프레임워크 식 접근법을 제공합니다. "
-#~ "제삼자 `Twisted <https://twistedmatrix.com/trac/>`_ "
-#~ "라이브러리는 널리 사용되는 기능이 풍부한 대안입니다."
 

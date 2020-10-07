@@ -235,6 +235,8 @@ msgid ""
 "exit_on_error_ - Determines whether or not ArgumentParser exits with "
 "error info when an error occurs. (default: ``True``)"
 msgstr ""
+"exit_on_error_ - 에러가 발생했을 때 ArgumentParser가 에러 정보로 종료되는지를 결정합니다. (기본값: "
+"``True``)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:185
 msgid "*allow_abbrev* parameter was added."
@@ -249,9 +251,8 @@ msgstr ""
 "그룹화도 비활성화했습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:192
-#, fuzzy
 msgid "*exit_on_error* parameter was added."
-msgstr "*allow_abbrev* 매개 변수가 추가되었습니다."
+msgstr "*exit_on_error* 매개 변수가 추가되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:195
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:715
@@ -643,24 +644,24 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:657
 msgid "exit_on_error"
-msgstr ""
+msgstr "exit_on_error"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:659
-#, fuzzy
 msgid ""
 "Normally, when you pass an invalid argument list to the "
 ":meth:`~ArgumentParser.parse_args` method of an :class:`ArgumentParser`, "
 "it will exit with error info."
 msgstr ""
-"일반적으로 :class:`ArgumentParser` 의 :meth:`~ArgumentParser.parse_args` 메서드에 "
-"인자 리스트를 건네주면 긴 옵션의 :ref:`약어를 인식합니다 <prefix-matching>`."
+"일반적으로, :class:`ArgumentParser` 의 :meth:`~ArgumentParser.parse_args` 메서드에 "
+"잘못된 인자 리스트를 건네주면, 에러 정보와 함께 종료합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:662
-#, fuzzy
 msgid ""
 "If the user would like catch errors manually, the feature can be enable "
 "by setting ``exit_on_error`` to ``False``::"
-msgstr "``allow_abbrev`` 를 ``False`` 로 설정하면 이 기능을 비활성화 할 수 있습니다::"
+msgstr ""
+"사용자가 수동으로 에러를 잡으려면, ``exit_on_error``\\를 ``False``\\로 설정하여 기능을 활성화 할 수 "
+"있습니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:679
 msgid "The add_argument() method"
@@ -865,17 +866,18 @@ msgid ""
 "``BooleanOptionalAction`` is available in ``argparse`` and adds support "
 "for boolean actions such as ``--foo`` and ``--no-foo``::"
 msgstr ""
+"Action 서브 클래스나 같은 인터페이스를 구현하는 다른 객체를 전달하여 임의의 액션을 지정할 수도 있습니다. "
+"``BooleanOptionalAction``\\은 ``argparse``\\에서 사용할 수 있으며 ``--foo``\\와 "
+"``--no-foo``\\와 같은 불리언 액션에 대한 지원을 추가합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:856
-#, fuzzy
 msgid ""
 "The recommended way to create a custom action is to extend "
 ":class:`Action`, overriding the ``__call__`` method and optionally the "
 "``__init__`` and ``format_usage`` methods."
 msgstr ""
-"Action 서브 클래스나 같은 인터페이스를 구현하는 다른 객체를 전달하여 임의의 액션을 지정할 수도 있습니다. 권장하는 방법은 "
-":class:`Action` 을 확장하여 ``__call__`` 메서드와 선택적으로 ``__init__`` 메서드를 재정의하는 "
-"것입니다."
+"사용자 정의 액션을 만드는 권장하는 방법은 :class:`Action` 을 확장하여 ``__call__`` 메서드와 선택적으로 "
+"``__init__``\\와 ``format_usage`` 메서드를 재정의하는 것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:860
 msgid "An example of a custom action::"
@@ -1130,7 +1132,6 @@ msgstr ""
 "지정된 type_ 과 일치해야 합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:1134
-#, fuzzy
 msgid ""
 "Any container can be passed as the *choices* value, so :class:`list` "
 "objects, :class:`set` objects, and custom containers are all supported. "
@@ -1139,7 +1140,8 @@ msgid ""
 "example, this could be as follows::"
 msgstr ""
 "모든 컨테이너는 *choices* 값으로 전달될 수 있기 때문에, :class:`list` 객체, :class:`set` 객체, "
-"사용자 정의 컨테이너 등이 모두 지원됩니다."
+"사용자 정의 컨테이너 등이 모두 지원됩니다. 여기에는 :class:`enum.Enum`\\이 포함되며, 인자의 선택을 제한하는 데 "
+"사용될 수 있습니다; 이전의 가위바위보 게임 예제를 재사용하면 다음과 같습니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:1153
 msgid "required"
@@ -1396,6 +1398,8 @@ msgid ""
 "of the program. If such method is not provided, a sensible default will "
 "be used."
 msgstr ""
+"Action 서브 클래스는 인자를 취하지 않고 프로그램 사용법을 인쇄할 때 사용될 문자열을 반환하는 ``format_usage`` "
+"메서드를 정의할 수 있습니다. 이러한 메서드를 제공하지 않으면, 적절한 기본값이 사용됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/argparse.rst:1384
 msgid "The parse_args() method"
@@ -2203,15 +2207,4 @@ msgid ""
 msgstr ""
 "OptionParser 생성자의 ``version`` 인자를 ``parser.add_argument('--version', "
 "action='version', version='<the version>')`` 호출로 대체하십시오."
-
-#~ msgid ""
-#~ "``argparse.REMAINDER``.  All the remaining "
-#~ "command-line arguments are gathered into"
-#~ " a list.  This is commonly useful "
-#~ "for command line utilities that dispatch"
-#~ " to other command line utilities::"
-#~ msgstr ""
-#~ "``argparse.REMAINDER``. 남은 모든 명령행 인자를 "
-#~ "리스트로 수집합니다. 이것은 일반적으로 다른 명령행 유틸리티를"
-#~ " 호출하는 명령행 유틸리티에 유용합니다::"
 
