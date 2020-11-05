@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 03:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,23 +18,25 @@ msgstr ""
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:6
 msgid "Call Protocol"
-msgstr ""
+msgstr "호출 프로토콜"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:8
 msgid ""
 "CPython supports two different calling protocols: *tp_call* and "
 "vectorcall."
-msgstr ""
+msgstr "CPython은 두 가지 호출 프로토콜을 지원합니다: *tp_call*\\과 벡터콜(vectorcall)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:12
 msgid "The *tp_call* Protocol"
-msgstr ""
+msgstr "*tp_call* 프로토콜"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:14
 msgid ""
 "Instances of classes that set :c:member:`~PyTypeObject.tp_call` are "
 "callable. The signature of the slot is::"
 msgstr ""
+":c:member:`~PyTypeObject.tp_call`\\을 설정하는 클래스의 인스턴스는 콜러블입니다. 슬롯의 서명은 다음과 "
+"같습니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:19
 msgid ""
@@ -44,6 +45,9 @@ msgid ""
 "Python code. *args* must be non-NULL (use an empty tuple if there are no "
 "arguments) but *kwargs* may be *NULL* if there are no keyword arguments."
 msgstr ""
+"파이썬 코드의 ``callable(*args, **kwargs)`` 와 유사하게, 위치 인자를 위한 튜플과 키워드 인자를 위한 "
+"딕셔너리를 사용하여 호출합니다. *args*\\는 NULL이 아니어야 합니다 (인자가 없으면 빈 튜플을 사용하십시오). 하지만 "
+"키워드 인자가 없으면 *kwargs*\\는 *NULL*\\일 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:25
 msgid ""
@@ -51,22 +55,26 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_new` and :c:member:`~PyTypeObject.tp_init` "
 "also pass arguments this way."
 msgstr ""
+"이 규칙은 *tp_call*\\에서만 사용되는 것이 아닙니다: :c:member:`~PyTypeObject.tp_new`\\와 "
+":c:member:`~PyTypeObject.tp_init`\\도 인자를 이런 식으로 전달합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:29
 msgid ""
 "To call an object, use :c:func:`PyObject_Call` or other :ref:`call API "
 "<capi-call>`."
 msgstr ""
+"객체를 호출하려면, :c:func:`PyObject_Call`\\이나 다른 :ref:`호출 API <capi-call>`\\를 "
+"사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:36
 msgid "The Vectorcall Protocol"
-msgstr ""
+msgstr "벡터콜(Vectorcall) 프로토콜"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:40
 msgid ""
 "The vectorcall protocol was introduced in :pep:`590` as an additional "
 "protocol for making calls more efficient."
-msgstr ""
+msgstr "벡터콜 프로토콜은 :pep:`590`\\에서 호출 효율을 높이기 위한 추가 프로토콜로 도입되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:43
 msgid ""
@@ -80,12 +88,20 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_call` to :c:func:`PyVectorcall_Call`. This "
 "bears repeating:"
 msgstr ""
+"경험 규칙으로, CPython은 콜러블이 지원하면 내부 호출에 대해 벡터콜을 선호합니다. 그러나 이것은 엄격한 규칙이 아닙니다. "
+"또한, 일부 제삼자 확장은 (:c:func:`PyObject_call`\\을 사용하지 않고) *tp_call*\\을 직접 "
+"사용합니다. 따라서, 벡터콜을 지원하는 클래스도 :c:member:`~PyTypeObject.tp_call`\\을 구현해야 합니다."
+" 또한, 어떤 프로토콜을 사용하는지와 관계없이 콜러블은 동일하게 작동해야 합니다. 이를 위해 권장되는 방법은 "
+":c:member:`~PyTypeObject.tp_call`\\을 :c:func:`PyVectorcall_Call`\\로 설정하는 "
+"것입니다. 이것이 반복을 처리합니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:57
 msgid ""
 "A class supporting vectorcall **must** also implement "
 ":c:member:`~PyTypeObject.tp_call` with the same semantics."
 msgstr ""
+"벡터콜을 지원하는 클래스도 같은 의미가 있도록 :c:member:`~PyTypeObject.tp_call`\\을 **반드시** "
+"구현해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:60
 msgid ""
@@ -94,6 +110,8 @@ msgid ""
 "an args tuple and kwargs dict anyway, then there is no point in "
 "implementing vectorcall."
 msgstr ""
+"*tp_call*\\보다 느려진다면 클래스는 벡터콜을 구현해서는 안 됩니다. 예를 들어, 피호출자가 어차피 인자를 인자 튜플과 "
+"kwargs 딕셔너리로 변환해야 하면, 벡터콜을 구현할 이유가 없습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:65
 msgid ""
@@ -103,34 +121,40 @@ msgid ""
 "object structure where a *vectorcallfunc* appears. This is a pointer to a"
 " function with the following signature:"
 msgstr ""
+"클래스는 :const:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그를 활성화하고 "
+":c:member:`~PyTypeObject.tp_vectorcall_offset`\\을 *vectorcallfunc* 가 등장하는"
+" 객체 구조체 내부의 오프셋으로 설정하여 벡터콜 프로토콜을 구현할 수 있습니다. 이것은 다음과 같은 서명을 갖는 함수를 가리키는 "
+"포인터입니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:73
 msgid "*callable* is the object being called."
-msgstr ""
+msgstr "*callable*\\은 호출되는 객체입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:75
 msgid "*args* is a C array consisting of the positional arguments followed by the"
-msgstr ""
+msgstr "*args*\\는 위치 인자와 그 뒤를 따르는 키워드 인자의 값으로 구성된 C 배열입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:75
 msgid ""
 "values of the keyword arguments. This can be *NULL* if there are no "
 "arguments."
-msgstr ""
+msgstr "인자가 없으면 *NULL*\\일 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:79
 msgid "*nargsf* is the number of positional arguments plus possibly the"
-msgstr ""
+msgstr "*nargsf*\\는 위치 인자의 수에"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:78
 msgid ""
 ":const:`PY_VECTORCALL_ARGUMENTS_OFFSET` flag. To get the actual number of"
 " positional arguments from *nargsf*, use :c:func:`PyVectorcall_NARGS`."
 msgstr ""
+":const:`PY_VECTORCALL_ARGUMENTS_OFFSET` 플래그를 더한 것입니다. *nargsf*\\에서 실제 위치 "
+"인자 수를 얻으려면, :c:func:`PyVectorcall_NARGS`\\를 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:85
 msgid "*kwnames* is a tuple containing the names of the keyword arguments;"
-msgstr ""
+msgstr "*kwnames*\\는 키워드 인자의 이름을 포함하는 튜플입니다;"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:82
 msgid ""
@@ -138,6 +162,8 @@ msgid ""
 "(instances of ``str`` or a subclass) and they must be unique. If there "
 "are no keyword arguments, then *kwnames* can instead be *NULL*."
 msgstr ""
+"다시 말해, kwargs 딕셔너리의 키. 이 이름들은 문자열(``str``\\이나 서브 클래스의 인스턴스)이어야하며 고유해야 "
+"합니다. 키워드 인자가 없으면, *kwnames*\\는 대신 *NULL*\\일 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:89
 msgid ""
@@ -146,12 +172,17 @@ msgid ""
 " to argument 1 (not 0) in the allocated vector. The callee must restore "
 "the value of ``args[-1]`` before returning."
 msgstr ""
+"이 플래그가 벡터콜 *nargsf* 인자에 설정되면, 피호출자는 일시적으로 ``args[-1]``\\을 변경할 수 있습니다. 즉, "
+"*args*\\는 할당된 벡터에서 인자 1(0이 아닙니다)을 가리킵니다. 피호출자는 반환하기 전에 ``args[-1]`` 값을 "
+"복원해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:94
 msgid ""
 "For :c:func:`PyObject_VectorcallMethod`, this flag means instead that "
 "``args[0]`` may be changed."
 msgstr ""
+":c:func:`PyObject_VectorcallMethod` 의 경우, 이 플래그는 대신 ``args[0]``\\이 변경될 수 "
+"있음을 의미합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:97
 msgid ""
@@ -160,6 +191,9 @@ msgid ""
 "will allow callables such as bound methods to make their onward calls "
 "(which include a prepended *self* argument) very efficiently."
 msgstr ""
+"(추가 할당 없이) 저렴하게 할 수 있을 때마다, 호출자는 "
+":const:`PY_VECTORCALL_ARGUMENTS_OFFSET`\\을 사용하는 것이 좋습니다. 이렇게 하면 연결된 메서드와 "
+"같은 콜러블이 후속 호출(앞에 *self* 인자를 포함하는)을 매우 효율적으로 만들 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:102
 msgid ""
@@ -167,6 +201,8 @@ msgid ""
 "call>` function as with any other callable. :c:func:`PyObject_Vectorcall`"
 " will usually be most efficient."
 msgstr ""
+"벡터콜을 구현하는 객체를 호출하려면, 다른 콜러블과 마찬가지로 :ref:`호출 API <capi-call>` 함수를 사용하십시오. "
+":c:func:`PyObject_Vectorcall`\\은 일반적으로 가장 효율적입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:109
 msgid ""
@@ -179,10 +215,17 @@ msgid ""
 " was available as ``_PyObject_FastCallDict``. The old names are still "
 "defined as aliases of the new, non-underscored names."
 msgstr ""
+"CPython 3.8에서 벡터콜 API와 관련 함수는 앞에 밑줄이 붙은 이름으로 잠정적으로 사용할 수 있었습니다: "
+"``_PyObject_Vectorcall``, ``_Py_TPFLAGS_HAVE_VECTORCALL``, "
+"``_PyObject_VectorcallMethod``, ``_PyVectorcall_Function``, "
+"``_PyObject_CallOneArg``, ``_PyObject_CallMethodNoArgs``, "
+"``_PyObject_CallMethodOneArg``. 또한, ``PyObject_VectorcallDict``\\는 "
+"``_PyObject_FastCallDict``\\로 제공되었습니다. 이전 이름은 여전히 밑줄이 없는 새로운 이름의 별칭으로 "
+"정의됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:121
 msgid "Recursion Control"
-msgstr ""
+msgstr "재귀 제어"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:123
 msgid ""
@@ -190,6 +233,9 @@ msgid ""
 "<recursion>`: CPython uses :c:func:`Py_EnterRecursiveCall` and "
 ":c:func:`Py_LeaveRecursiveCall` for calls made using *tp_call*."
 msgstr ""
+"*tp_call*\\을 사용할 때, 피호출자는 :ref:`재귀 <recursion>`\\에 대해 걱정할 필요가 없습니다: "
+"CPython은 *tp_call*\\을 사용하여 호출한 경우 :c:func:`Py_EnterRecursiveCall` 과 "
+":c:func:`Py_LeaveRecursiveCall` 을 사용합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:128
 msgid ""
@@ -197,22 +243,24 @@ msgid ""
 " callee should use *Py_EnterRecursiveCall* and *Py_LeaveRecursiveCall* if"
 " needed."
 msgstr ""
+"효율성을 위해, 벡터콜을 사용하여 호출한 경우에는 그렇지 않습니다: 피호출자는 필요하면 *Py_EnterRecursiveCall* "
+"과 *Py_LeaveRecursiveCall* 을 사용해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:134
 msgid "Vectorcall Support API"
-msgstr ""
+msgstr "벡터콜 지원 API"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:138
 msgid ""
 "Given a vectorcall *nargsf* argument, return the actual number of "
 "arguments. Currently equivalent to::"
-msgstr ""
+msgstr "벡터콜 *nargsf* 인자가 주어지면, 실제 인자 수를 반환합니다. 현재 다음과 동등합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:144
 msgid ""
 "However, the function ``PyVectorcall_NARGS`` should be used to allow for "
 "future extensions."
-msgstr ""
+msgstr "그러나, 향후 확장을 위해 ``PyVectorcall_NARGS`` 함수를 사용해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:147
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:161
@@ -224,7 +272,7 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:391
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:413
 msgid "This function is not part of the :ref:`limited API <stable>`."
-msgstr ""
+msgstr "이 함수는 :ref:`제한된 API <stable>`\\의 일부가 아닙니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:153
 msgid ""
@@ -233,18 +281,24 @@ msgid ""
 "Otherwise, return the vectorcall function pointer stored in *op*. This "
 "function never raises an exception."
 msgstr ""
+"*op*\\가 벡터콜 프로토콜을 지원하지 않으면 (형이 지원하지 않거나 인스턴스가 지원하지 않기 때문에), *NULL*\\을 "
+"반환합니다. 그렇지 않으면, *op*\\에 저장된 벡터콜 함수 포인터를 반환합니다. 이 함수는 예외를 발생시키지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:158
 msgid ""
 "This is mostly useful to check whether or not *op* supports vectorcall, "
 "which can be done by checking ``PyVectorcall_Function(op) != NULL``."
 msgstr ""
+"이것은 *op*\\가 벡터콜을 지원하는지를 확인하는 데 주로 유용하며, ``PyVectorcall_Function(op) != "
+"NULL``\\을 확인하여 수행 할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:167
 msgid ""
 "Call *callable*'s :c:type:`vectorcallfunc` with positional and keyword "
 "arguments given in a tuple and dict, respectively."
 msgstr ""
+"튜플과 딕셔너리에 각각 주어진 위치와 키워드 인자로 *callable*\\의 :c:type:`vectorcallfunc` 를 "
+"호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:170
 msgid ""
@@ -253,10 +307,13 @@ msgid ""
 " ``tp_call``. It does not check the :const:`Py_TPFLAGS_HAVE_VECTORCALL` "
 "flag and it does not fall back to ``tp_call``."
 msgstr ""
+"이것은 :c:member:`~PyTypeObject.tp_call` 슬롯에 넣거나 ``tp_call`` 구현에 사용하기 위한 특수 "
+"함수입니다. :const:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그를 확인하지 않고 ``tp_call``\\로 폴 "
+"백하지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:183
 msgid "Object Calling API"
-msgstr ""
+msgstr "객체 호출 API"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:185
 msgid ""
@@ -265,32 +322,34 @@ msgid ""
 "either *tp_call* or vectorcall. In order to do as litle conversion as "
 "possible, pick one that best fits the format of data you have available."
 msgstr ""
+"파이썬 객체를 호출하기 위해 다양한 함수를 사용할 수 있습니다. 각각은 인자를 호출된 객체가 지원하는 규칙으로 변환합니다 - "
+"*tp_call* 또는 벡터콜. 가능한 한 적은 변환을 수행하려면, 사용 가능한 데이터 형식에 가장 적합한 것을 선택하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:191
 msgid ""
 "The following table summarizes the available functions; please see "
 "individual documentation for details."
-msgstr ""
+msgstr "다음 표는 사용 가능한 함수를 요약한 것입니다; 자세한 내용은 개별 설명서를 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:195
 msgid "Function"
-msgstr ""
+msgstr "함수"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:195
 msgid "callable"
-msgstr ""
+msgstr "콜러블"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:195
 msgid "args"
-msgstr ""
+msgstr "args"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:195
 msgid "kwargs"
-msgstr ""
+msgstr "kwargs"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:197
 msgid ":c:func:`PyObject_Call`"
-msgstr ""
+msgstr ":c:func:`PyObject_Call`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:197
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:199
@@ -301,20 +360,20 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:217
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:219
 msgid "``PyObject *``"
-msgstr ""
+msgstr "``PyObject *``"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:197
 msgid "tuple"
-msgstr ""
+msgstr "튜플"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:197
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:219
 msgid "dict/``NULL``"
-msgstr ""
+msgstr "딕셔너리/``NULL``"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:199
 msgid ":c:func:`PyObject_CallNoArgs`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallNoArgs`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:199
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:201
@@ -326,102 +385,106 @@ msgstr ""
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:213
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:215
 msgid "---"
-msgstr ""
+msgstr "---"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:201
 msgid ":c:func:`PyObject_CallOneArg`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallOneArg`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:201
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:215
 msgid "1 object"
-msgstr ""
+msgstr "1 객체"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:203
 msgid ":c:func:`PyObject_CallObject`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallObject`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:203
 msgid "tuple/``NULL``"
-msgstr ""
+msgstr "튜플/``NULL``"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:205
 msgid ":c:func:`PyObject_CallFunction`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallFunction`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:205
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:207
 msgid "format"
-msgstr ""
+msgstr "포맷(format)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:207
 msgid ":c:func:`PyObject_CallMethod`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallMethod`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:207
 msgid "obj + ``char*``"
-msgstr ""
+msgstr "obj + ``char*``"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:209
 msgid ":c:func:`PyObject_CallFunctionObjArgs`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallFunctionObjArgs`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:209
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:211
 msgid "variadic"
-msgstr ""
+msgstr "가변(variadic)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:211
 msgid ":c:func:`PyObject_CallMethodObjArgs`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallMethodObjArgs`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:211
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:213
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:215
 msgid "obj + name"
-msgstr ""
+msgstr "obj + name"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:213
 msgid ":c:func:`PyObject_CallMethodNoArgs`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallMethodNoArgs`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:215
 msgid ":c:func:`PyObject_CallMethodOneArg`"
-msgstr ""
+msgstr ":c:func:`PyObject_CallMethodOneArg`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:217
 msgid ":c:func:`PyObject_Vectorcall`"
-msgstr ""
+msgstr ":c:func:`PyObject_Vectorcall`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:217
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:219
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:221
 msgid "vectorcall"
-msgstr ""
+msgstr "벡터콜"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:219
 msgid ":c:func:`PyObject_VectorcallDict`"
-msgstr ""
+msgstr ":c:func:`PyObject_VectorcallDict`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:221
 msgid ":c:func:`PyObject_VectorcallMethod`"
-msgstr ""
+msgstr ":c:func:`PyObject_VectorcallMethod`"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:221
 msgid "arg + name"
-msgstr ""
+msgstr "arg + name"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:227
 msgid ""
 "Call a callable Python object *callable*, with arguments given by the "
 "tuple *args*, and named arguments given by the dictionary *kwargs*."
 msgstr ""
+"튜플 *args*\\로 주어진 인자와 딕셔너리 *kwargs*\\로 주어진 이름있는 인자로 콜러블 파이썬 객체 "
+"*callable*\\을 호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:230
 msgid ""
 "*args* must not be *NULL*; use an empty tuple if no arguments are needed."
 " If no named arguments are needed, *kwargs* can be *NULL*."
 msgstr ""
+"*args*\\는 *NULL*\\이 아니어야 합니다ㅣ 인자가 필요 없으면 빈 튜플을 사용하십시오. 이름있는 인자가 필요하지 않으면,"
+" *kwargs*\\는 *NULL*\\일 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:233
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:245
@@ -438,13 +501,13 @@ msgstr ""
 msgid ""
 "Return the result of the call on success, or raise an exception and "
 "return *NULL* on failure."
-msgstr ""
+msgstr "성공하면 호출 결과를 반환하고, 실패하면 예외를 발생시키고 *NULL*\\을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:236
 msgid ""
 "This is the equivalent of the Python expression: ``callable(*args, "
 "**kwargs)``."
-msgstr ""
+msgstr "이것은 다음 파이썬 표현식과 동등합니다: ``callable(*args, **kwargs)``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:242
 msgid ""
@@ -452,23 +515,27 @@ msgid ""
 " most efficient way to call a callable Python object without any "
 "argument."
 msgstr ""
+"인자 없이 콜러블 파이썬 객체 *callable*\\을 호출합니다. 인자 없이 콜러블 파이썬 객체를 호출하는 가장 효율적인 "
+"방법입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:253
 msgid ""
 "Call a callable Python object *callable* with exactly 1 positional "
 "argument *arg* and no keyword arguments."
-msgstr ""
+msgstr "정확히 1개의 위치 인자 *arg*\\로 키워드 인자 없이 콜러블 파이썬 객체 *callable*\\을 호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:266
 msgid ""
 "Call a callable Python object *callable*, with arguments given by the "
 "tuple *args*.  If no arguments are needed, then *args* can be *NULL*."
 msgstr ""
+"튜플 *args*\\에 의해 주어진 인자로 콜러블 파이썬 객체 *callable*\\을 호출합니다. 인자가 필요하지 않으면 "
+"*args*\\는 *NULL*\\일 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:272
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:284
 msgid "This is the equivalent of the Python expression: ``callable(*args)``."
-msgstr ""
+msgstr "이것은 다음 파이썬 표현식과 동등합니다: ``callable(*args)``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:277
 msgid ""
@@ -477,16 +544,21 @@ msgid ""
 "style format string.  The format can be *NULL*, indicating that no "
 "arguments are provided."
 msgstr ""
+"가변 개수의 C 인자로 콜러블 파이썬 객체 *callable*\\을 호출합니다. C 인자는 "
+":c:func:`Py_BuildValue` 스타일 포맷 문자열을 사용하여 기술됩니다. format은 *NULL*\\일 수 있으며, "
+"인자가 제공되지 않음을 나타냅니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:286
 msgid ""
 "Note that if you only pass :c:type:`PyObject *` args, "
 ":c:func:`PyObject_CallFunctionObjArgs` is a faster alternative."
 msgstr ""
+":c:type:`PyObject *` 인자만 전달한다면 :c:func:`PyObject_CallFunctionObjArgs` 가 더"
+" 빠른 대안임에 유의하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:289
 msgid "The type of *format* was changed from ``char *``."
-msgstr ""
+msgstr "*format*\\의 형이 ``char *``\\에서 변경되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:295
 msgid ""
@@ -494,26 +566,30 @@ msgid ""
 "arguments.  The C arguments are described by a :c:func:`Py_BuildValue` "
 "format string that should produce a tuple."
 msgstr ""
+"가변 개수의 C 인자를 사용하여 객체 *obj*\\의 *name*\\이라는 이름의 메서드를 호출합니다. C 인자는 튜플을 생성해야 "
+"하는 :c:func:`Py_BuildValue` 포맷 문자열로 기술됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:299
 msgid "The format can be *NULL*, indicating that no arguments are provided."
-msgstr ""
+msgstr "format은 *NULL*\\일 수 있으며, 인자가 제공되지 않음을 나타냅니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:304
 msgid ""
 "This is the equivalent of the Python expression: ``obj.name(arg1, arg2, "
 "...)``."
-msgstr ""
+msgstr "이것은 다음 파이썬 표현식과 동등합니다: ``obj.name(arg1, arg2, ...)``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:307
 msgid ""
 "Note that if you only pass :c:type:`PyObject *` args, "
 ":c:func:`PyObject_CallMethodObjArgs` is a faster alternative."
 msgstr ""
+":c:type:`PyObject *` 인자만 전달한다면 :c:func:`PyObject_CallMethodObjArgs` 가 더 "
+"빠른 대안임에 유의하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:310
 msgid "The types of *name* and *format* were changed from ``char *``."
-msgstr ""
+msgstr "*name*\\과 *format*\\의 형이 ``char *``\\에서 변경되었습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:316
 msgid ""
@@ -521,12 +597,14 @@ msgid ""
 ":c:type:`PyObject *` arguments.  The arguments are provided as a variable"
 " number of parameters followed by *NULL*."
 msgstr ""
+"가변 개수의 :c:type:`PyObject *` 인자로 콜러블 파이썬 객체 *callable*\\을 호출합니다. 인자는 "
+"*NULL*\\로 끝나는 가변 개수의 매개 변수로 제공됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:323
 msgid ""
 "This is the equivalent of the Python expression: ``callable(arg1, arg2, "
 "...)``."
-msgstr ""
+msgstr "이것은 다음 파이썬 표현식과 동등합니다: ``callable(arg1, arg2, ...)``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:329
 msgid ""
@@ -535,12 +613,17 @@ msgid ""
 " number of :c:type:`PyObject *` arguments.  The arguments are provided as"
 " a variable number of parameters followed by *NULL*."
 msgstr ""
+"파이썬 객체 *obj*\\의 메서드를 호출합니다. 여기서 메서드 이름은 *name*\\에서 파이썬 문자열 객체로 제공됩니다. 가변 "
+"개수의 :c:type:`PyObject *` 인자로 호출됩니다. 인자는 *NULL*\\로 끝나는 가변 개수의 매개 변수로 "
+"제공됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:340
 msgid ""
 "Call a method of the Python object *obj* without arguments, where the "
 "name of the method is given as a Python string object in *name*."
 msgstr ""
+"인자 없이 파이썬 객체 *obj*\\의 메서드를 호출합니다. 여기서 메서드 이름은 *name*\\에서 파이썬 문자열 객체로 "
+"제공됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:353
 msgid ""
@@ -548,6 +631,8 @@ msgid ""
 "argument *arg*, where the name of the method is given as a Python string "
 "object in *name*."
 msgstr ""
+"단일 위치 인자 *arg*\\로 파이썬 객체 *obj*\\의 메서드를 호출합니다. 여기서 메서드 이름은 *name*\\에서 파이썬 "
+"문자열 객체로 제공됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:367
 msgid ""
@@ -555,6 +640,9 @@ msgid ""
 "for :c:type:`vectorcallfunc`. If *callable* supports vectorcall_, this "
 "directly calls the vectorcall function stored in *callable*."
 msgstr ""
+"콜러블 파이썬 객체 *callable*\\을 호출합니다. 인자는 :c:type:`vectorcallfunc` 와 같습니다. "
+"*callable*\\이 `벡터콜 <vectorcall_>`_\\을 지원하면, *callable*\\에 저장된 벡터콜 함수를 직접 "
+"호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:381
 msgid ""
@@ -562,6 +650,8 @@ msgid ""
 "vectorcall_ protocol, but with keyword arguments passed as a dictionary "
 "*kwdict*. The *args* array contains only the positional arguments."
 msgstr ""
+"위치 인자가 `벡터콜 <vectorcall_>`_ 프로토콜과 정확히 일치하지만 딕셔너리 *kwdict*\\로 전달된 키워드 인자로 "
+"*callable*\\을 호출합니다. *args* 배열은 위치 인자만 포함합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:385
 msgid ""
@@ -570,6 +660,8 @@ msgid ""
 "if the caller already has a dictionary ready to use for the keyword "
 "arguments, but not a tuple for the positional arguments."
 msgstr ""
+"내부적으로 사용되는 프로토콜과 관계없이, 인자를 변환해야 합니다. 따라서, 이 함수는 호출자에게 이미 키워드 인자로 사용할 준비가 "
+"된 딕셔너리가 있지만, 위치 인자에 대한 튜플이 없을 때만 사용해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:397
 msgid ""
@@ -582,6 +674,11 @@ msgid ""
 "value of ``args[0]`` may temporarily be changed. Keyword arguments can be"
 " passed just like in :c:func:`PyObject_Vectorcall`."
 msgstr ""
+"벡터콜 호출 규칙을 사용하여 메서드를 호출합니다. 메서드 이름은 파이썬 문자열 *name*\\으로 제공됩니다. 메서드가 호출되는 "
+"객체는 *args[0]*\\이며, *args[1]*\\에서 시작하는 *args* 배열은 호출의 인자를 나타냅니다. 하나 이상의 위치"
+" 인자가 있어야 합니다. *nargsf*\\는 *args[0]*\\을 포함한 위치 인자의 수이며, ``args[0]`` 값이 "
+"일시적으로 변경될 수 있으면 :const:`PY_VECTORCALL_ARGUMENTS_OFFSET`\\이 더해집니다. 키워드 인자는"
+" :c:func:`PyObject_Vectorcall`\\에서처럼 전달될 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:406
 msgid ""
@@ -589,14 +686,18 @@ msgid ""
 " will call the unbound method object with the full *args* vector as "
 "arguments."
 msgstr ""
+"객체에 :const:`Py_TPFLAGS_METHOD_DESCRIPTOR` 기능이 있으면, 전체 *args* 벡터를 인자로 연결되지"
+" 않은 메서드 객체를 호출합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:419
 msgid "Call Support API"
-msgstr ""
+msgstr "호출 지원 API"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/call.rst:423
 msgid ""
 "Determine if the object *o* is callable.  Return ``1`` if the object is "
 "callable and ``0`` otherwise.  This function always succeeds."
 msgstr ""
+"객체 *o*\\가 콜러블 인지 판별합니다. 객체가 콜러블 이면 ``1``\\을, 그렇지 않으면 ``0``\\을 반환합니다. 이 "
+"함수는 항상 성공합니다."
 
