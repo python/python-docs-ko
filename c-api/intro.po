@@ -845,9 +845,9 @@ msgid ""
 msgstr ""
 "대부분의 시스템에서 (특별히 유닉스와 윈도우는 세부적인 부분이 조금 다르긴 하지만) :c:func:`Py_Initialize` 는 "
 "파이썬 인터프리터를 기준으로 고정된 위치에 파이썬 라이브러리가 있다고 가정하여 표준 파이썬 인터프리터 실행 파일에 대한 최선의 "
-"추측을 바탕으로 바탕으로 모듈 검색 경로를 계산합니다. 특히 셸 명령어 검색 경로 (환경 변수 "
-":envvar:`PATH`) 에서 :file:`python` 이라는 이름의 실행 파일이 발견되는 부모 디렉토리를 기준으로 "
-":file:`lib/python{X.Y}` 같은 이름을 가진 디렉터리를 찾습니다. "
+"추측을 바탕으로 바탕으로 모듈 검색 경로를 계산합니다. 특히 셸 명령어 검색 경로 (환경 변수 :envvar:`PATH`) 에서 "
+":file:`python` 이라는 이름의 실행 파일이 발견되는 부모 디렉토리를 기준으로 :file:`lib/python{X.Y}` "
+"같은 이름을 가진 디렉터리를 찾습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:693
 msgid ""
@@ -860,6 +860,11 @@ msgid ""
 "or insert additional directories in front of the standard path by setting"
 " :envvar:`PYTHONPATH`."
 msgstr ""
+"예를 들어 파이썬 실행 파일이 :file:`/usr/local/bin/python` 에서 발견된다면 라이브러리는 "
+":file:`/usr/local/lib/python{X.Y}` 에 있는 것으로 가정합니다. (실제로 이 특정 경로는 "
+":envvar:`PATH` 를 따라 :file:`python` 이라는 이름의 실행 파일이 발견되지 않을 때 사용되는 "
+"\"fallback\" 경로이기도 합니다.) 유저는 환경 변수 :envvar:`PYTHONHOME` 를 설정하여 이 동작을 "
+"재정의하거나 :envvar:`PYTHONPATH` 를 설정하여 표준 경로 앞에 추가적인 디렉터리를 추가할 수 있습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:708
 msgid ""
@@ -872,6 +877,12 @@ msgid ""
 ":c:func:`Py_GetExecPrefix`, and :c:func:`Py_GetProgramFullPath` (all "
 "defined in :file:`Modules/getpath.c`)."
 msgstr ""
+"파이썬을 임베딩하는 애플리케이션은 :c:func:`Py_Initialize` 를 호출하기 *전에* "
+"``Py_SetProgramName(file)`` 을 호출하여 검색을 제어할 수 있습니다. :envvar:`PYTHONHOME` 는"
+" 여전히 이 값을 재정의하며 :envvar:`PYTHONPATH` 는 여전히 표준 경로 앞에 추가된다는 점에 유의하십시오.  완전한"
+" 제어가 필요한 애플리케이션은 :c:func:`Py_GetPath`, :c:func:`Py_GetPrefix`, "
+":c:func:`Py_GetExecPrefix`, 그리고 :c:func:`Py_GetProgramFullPath` 의 자체적인 "
+"구현을 제공할 필요가 있습니다. (모두 :file:`Modules/getpath.c` 에 정의되어 있습니다.)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:718
 msgid ""
@@ -886,10 +897,16 @@ msgid ""
 "memory allocated by the Python interpreter, e.g. memory allocated by "
 "extension modules currently cannot be released."
 msgstr ""
+"가끔은 파이썬을 \"uninitialize\" 하는 것이 바람직합니다. 예를 들어 애플리케이션이 다시 시작하거나 "
+"(:c:func:`Py_Initialize` 다시 호출하기) 애플리케이션에서 파이썬의 사용이 끝나 파이썬이 할당한 메모리를 "
+"해제하려고 할 수 있습니다. :c:func:`Py_FinalizeEx` 를 호출하여 이를 달성할 수 있습니다. 함수 "
+":c:func:`Py_IsInitialized` 는 파이썬이 현재 초기화된 상태에 있을 경우 참을 반환합니다. 이 함수들에 대한 "
+"자세한 내용은 다른 장에서 제공됩니다. :c:func:`Py_FinalizeEx` 가 파이썬 인터프리터가 할당한 모든 메모리를 "
+"해제하지는 않는다는 점에 유의해야 합니다. 예를 들어, 현재 확장 모듈에서 할당한 메모리는 해제할 수 없습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:732
 msgid "Debugging Builds"
-msgstr ""
+msgstr "디버깅 빌드"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:734
 msgid ""
@@ -897,6 +914,8 @@ msgid ""
 "interpreter and extension modules.  These checks tend to add a large "
 "amount of overhead to the runtime so they are not enabled by default."
 msgstr ""
+"파이썬은 인터프리터와 확장 모듈들에 대한 추가적인 검사를 가능하게 하는 여러 매크로를 사용하여 빌드될 수 있습니다. 이러한 검사는 "
+"런타임에 많은 오버헤드를 추가하는 경향이 있으므로 기본적으로 실행되지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:738
 msgid ""
@@ -907,6 +926,9 @@ msgid ""
 "Only the most frequently-used builds will be described in the remainder "
 "of this section."
 msgstr ""
+"다양한 유형의 디버깅 빌드의 전체 목록은 파이썬 소스 배포판 안의 :file:`Misc/SpecialBuilds.txt` 파일에 "
+"있습니다. 참조 횟수 추적, 메모리 할당자 디버깅, 메인 인터프리터 루프의 저수준 프로파일링을 지원하는 빌드들을 사용할 수 "
+"있습니다. 이 섹션에서는 가장 자주 사용되는 빌드만 설명합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:744
 msgid ""
@@ -918,61 +940,65 @@ msgid ""
 ":c:macro:`Py_DEBUG` is enabled in the Unix build, compiler optimization "
 "is disabled."
 msgstr ""
+":c:macro:`Py_DEBUG` 매크로가 정의된 인터프리터를 컴파일하면 일반적으로 파이썬의 \"디버그 빌드\" 가 일반적으로 "
+"의미하는 빌드가 생성됩니다. :c:macro:`Py_DEBUG` 는 :file:`./configure` 명령에 ``--with-"
+"pydebug`` 를 추가하여 유닉스 빌드에서 활성화됩니다. 또한 파이썬 전용이 아닌 :c:macro:`_DEBUG` 매크로의 "
+"존재를 암시합니다. 유닉스 빌드에서 :c:macro:`Py_DEBUG` 가 활성화 되어있으면 컴파일러 최적화가 비활성화됩니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:751
 msgid ""
 "In addition to the reference count debugging described below, the "
 "following extra checks are performed:"
-msgstr ""
+msgstr "아래에 설명된 참조 횟수 디버깅 외에도 다음과 같은 추가적인 검사가 수행됩니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:754
 msgid "Extra checks are added to the object allocator."
-msgstr ""
+msgstr "객체 할당자에 추가적인 검사가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:756
 msgid "Extra checks are added to the parser and compiler."
-msgstr ""
+msgstr "파서 및 컴파일러에 추가적인 검사가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:758
 msgid ""
 "Downcasts from wide types to narrow types are checked for loss of "
 "information."
-msgstr ""
+msgstr "큰 타입에서 작은 타입으로 다운 캐스팅이 일어날 때 정보 손실을 확인합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:760
 msgid ""
 "A number of assertions are added to the dictionary and set "
 "implementations. In addition, the set object acquires a "
 ":meth:`test_c_api` method."
-msgstr ""
+msgstr "많은 어설션이 사전과 집합 구현에 추가됩니다. 또한 집합 객체는 :meth:`test_c_api` 메소드가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:763
 msgid "Sanity checks of the input arguments are added to frame creation."
-msgstr ""
+msgstr "입력 인자의 온전성 검사가 프레임 생성에 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:765
 msgid ""
 "The storage for ints is initialized with a known invalid pattern to catch"
 " reference to uninitialized digits."
-msgstr ""
+msgstr "정수에 대한 저장소는 초기화되지 않은 숫자에 대한 참조를 포착하기 위해 알려진 잘못된 패턴으로 초기화됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:768
 msgid ""
 "Low-level tracing and extra exception checking are added to the runtime "
 "virtual machine."
-msgstr ""
+msgstr "저수준 추적과 추가적인 예외 검사가 런타임 가상머신에 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:771
 msgid "Extra checks are added to the memory arena implementation."
-msgstr ""
+msgstr "메모리 아레나 구현에 추가 검사가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:773
 msgid "Extra debugging is added to the thread module."
-msgstr ""
+msgstr "스레드 모듈에 추가적인 디버깅이 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:775
 msgid "There may be additional checks not mentioned here."
-msgstr ""
+msgstr "여기에 언급되지 않은 추가적인 검사들이 있을 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:777
 msgid ""
@@ -983,12 +1009,16 @@ msgid ""
 "(In interactive mode this happens after every statement run by the "
 "interpreter.)  Implied by :c:macro:`Py_DEBUG`."
 msgstr ""
+":c:macro:`Py_TRACE_REFS` 를 정의하면 참조 추적이 활성화됩니다. 정의된 경우 모든 "
+":c:type:`PyObject` 에 두 개의 추가 필드를 추가함으로써 활성 객체에 대한 이중 원형 연결 리스트가 유지됩니다. 또한"
+" 모든 할당이 추적됩니다. 인터프리터 종료시에는 현재 사용되고 있는 모든 참조가 출력됩니다. (대화식 모드에서는 인터프리터가 "
+"명령문을 실행할 때마다 이후에 출력됩니다.) :c:macro:`Py_DEBUG` 에 의해 암시됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:783
 msgid ""
 "Please refer to :file:`Misc/SpecialBuilds.txt` in the Python source "
 "distribution for more detailed information."
-msgstr ""
+msgstr "자세한 내용은 파이썬 소스 배포판 안의 :file:`Misc/SpecialBuilds.txt` 를 참조하십시오. "
 
 #~ msgid ""
 #~ "Writing an extension module is a "
