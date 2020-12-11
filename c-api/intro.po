@@ -10,16 +10,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 03:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: SeongHyeon Kim <self@seonghyeon.dev>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:8
 msgid "Introduction"
-msgstr ""
+msgstr "소개"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:10
 msgid ""
@@ -34,6 +34,12 @@ msgid ""
 "technique is generally referred to as :dfn:`embedding` Python in an "
 "application."
 msgstr ""
+"파이썬의 애플리케이션 프로그래머용 인터페이스는 다양한 수준에서 C/C++ 프로그래머에게 파이썬 인터프리터에 대한 접근 방법을 "
+"제공합니다. 이 API는 C++에서도 동일하게 사용 가능하지만 간결함을 위해 보통 파이썬/C API 로 불립니다. 파이썬/C "
+"API를 사용하는 데에는 근본적으로 다른 두 가지 이유가 있습니다. 첫번째 이유는 특정한 목적을 위해 *확장 모듈*\\을 작성하기 "
+"위해서입니다; 이 확장 모듈들은 파이썬 인터프리터를 확장하는 C 모듈들입니다. 이것이 아마도 가장 흔한 용도일 것입니다. 두번째 "
+"이유는 파이썬을 더 큰 애플리케이션의 컴포넌트로 사용하기 위함입니다. 이 기술은 일반적으로 파이썬을 애플리케이션에 "
+":dfn:`임베딩(embedding)` 하는 것을 말합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:20
 msgid ""
@@ -43,6 +49,9 @@ msgid ""
 "in other applications since its early existence, the process of embedding"
 " Python is less straightforward than writing an extension."
 msgstr ""
+"확장 모듈을 작성하는 것은 비교적 잘 다듬어진 과정으로, \"쿡북\" 접근법이 잘 통하며 프로세스를 다소 자동화하는 툴들도 "
+"존재합니다. 사람들은 파이썬이 존재한 초기부터 다른 애플리케이션에 파이썬을 임베드 해왔으나 파이썬을 임베딩 하는 과정은 확장 모듈을"
+" 작성하는 것보다 복잡합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:26
 msgid ""
@@ -52,10 +61,12 @@ msgid ""
 " to become familiar with writing an extension before  attempting to embed"
 " Python in a real application."
 msgstr ""
+"많은 API 함수들은 파이썬을 임베딩하거나 확장하는 것에 무관하게 유용합니다. 더욱이 파이썬을 임베드하는 대부분의 애플리케이션은 "
+"커스텀 확장을 제공할 필요성이 있기 때문에 파이썬을 임베드하려고 시도하기 전에 확장을 작성하는 것에 친숙해지는 것이 좋습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:34
 msgid "Coding standards"
-msgstr ""
+msgstr "코딩 표준"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:36
 msgid ""
@@ -65,16 +76,19 @@ msgid ""
 "these conventions is not necessary for your own third party extension "
 "modules, unless you eventually expect to contribute them to Python."
 msgstr ""
+"CPython 에 포함하기 위해 C 코드를 작성하는 경우에는 :PEP:`7` 에 정의된 지침과 표준을 따라야 합니다. 이 지침은 "
+"기여하고 있는 파이썬 버전과 상관없이 적용됩니다. 최종적으로 파이썬에 기여하는 것을 기대하지 않는 이상 이 규칙을 따르는 것은 "
+"제삼자 확장 모듈에는 필수가 아닙니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:46
 msgid "Include Files"
-msgstr ""
+msgstr "인클루드 파일"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:48
 msgid ""
 "All function, type and macro definitions needed to use the Python/C API "
 "are included in your code by the following line::"
-msgstr ""
+msgstr "파이썬/C API를 사용하기 위한 모든 함수, 타입 그리고 매크로 정의는 다음 행에 의해 인클루드됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:54
 msgid ""
@@ -82,6 +96,9 @@ msgid ""
 "``<string.h>``, ``<errno.h>``, ``<limits.h>``, ``<assert.h>`` and "
 "``<stdlib.h>`` (if available)."
 msgstr ""
+"이는 다음과 같은 표준 헤더를 인클루드하는것을 의미합니다: ``<stdio.h>``, ``<string.h>``, "
+"``<errno.h>``, ``<limits.h>``, ``<assert.h>`` 그리고 ``<stdlib.h>`` (사용 가능한 "
+"경우)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:60
 msgid ""
@@ -89,12 +106,16 @@ msgid ""
 "standard headers on some systems, you *must* include :file:`Python.h` "
 "before any standard headers are included."
 msgstr ""
+"파이썬은 일부 시스템의 표준 헤더에 영향을 미치는 전처리기 정의를 정의할 수 있으므로 표준 헤더를 인클루드하기 전에 "
+":file:`Python.h` 를 인클루드해야 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:64
 msgid ""
 "It is recommended to always define ``PY_SSIZE_T_CLEAN`` before including "
 "``Python.h``.  See :ref:`arg-parsing` for a description of this macro."
 msgstr ""
+"``Python.h`` 를 인클루드하기 전에 항상 ``PY_SSIZE_T_CLEAN`` 를 정의하는 것을 권장합니다. 이 매크로에 "
+"대한 자세한 사항은 :ref:`arg-parsing` 을 참조하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:67
 msgid ""
@@ -104,6 +125,9 @@ msgid ""
 "implementation and should not be used by extension writers. Structure "
 "member names do not have a reserved prefix."
 msgstr ""
+"Python.h로 정의된 사용자에게 공개되는 모든 이름들은 (포함된 표준 헤더로 정의된 것은 제외) ``Py`` 또는 ``_Py``"
+" 로 시작하는 이름을 가지고 있습니다. ``_Py`` 로 시작하는 이름들은 파이썬 구현에 의해 내부적으로 사용되며 확장 개발자들에 "
+"의해 사용돠어서는 안됩니다. 구조체 멤버들은 이름에 접두사가 붙지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:74
 msgid ""
@@ -112,6 +136,8 @@ msgid ""
 "code to future Python versions, which may define additional names "
 "beginning with one of these prefixes."
 msgstr ""
+"사용자 코드는 ``Py`` 또는 ``_Py`` 로 시작하는 이름들을 정의해서는 안됩니다. 이것은 읽는 사람을 혼란스럽게 하며이러한 "
+"접두사가 붙는 추가적인 이름을 정의할수도 있는 향후의 파이썬 버전에 대한 사용자 코드의 이식성을 위태롭게 합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:79
 #, python-format
@@ -125,6 +151,13 @@ msgid ""
 ":file:`{prefix}/include`, where :envvar:`prefix` is the installation "
 "directory specified to the installer."
 msgstr ""
+"헤더 파일들은 일반적으로 파이썬과 함께 설치됩니다. 유닉스에서는 헤더 파일들은 "
+":file:`{prefix}/include/pythonversion/` 와 "
+":file:`{exec_prefix}/include/pythonversion/` 안에 들어있습니다. :envvar:`prefix` "
+"와 :envvar:`exec_prefix` 는 파이썬의 :program:`configure` 스크립트에 해당하는 파라미터로 정의되며"
+" *버전* 은 ``'%d.%d' % sys.version_info[:2]`` 입니다. 윈도우에서는 헤더 파일들은 "
+":file:`{prefix}/include` 안에 설치되어 있습니다. :envvar:`prefix` 는 인스톨러에 의해 지정된 설치"
+" 디렉터리 입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:88
 msgid ""
@@ -135,6 +168,10 @@ msgid ""
 "the platform independent headers under :envvar:`prefix` include the "
 "platform specific headers from :envvar:`exec_prefix`."
 msgstr ""
+"헤더를 인클루드 하기 위해선 두 디렉터리 모두 (두 디렉터리가 다를 경우) 컴파일러의 검색 패스에 추가하십시오. 부모 디렉터리를 "
+"검색 패스에 추가해서 ``#include <pythonX.Y/Python.h>`` 처럼 사용해서는 *안됩니다.* "
+":envvar:`prefix` 아래의 플랫폼 독립적인 헤더들이 :envvar:`exec_prefix` 에서 플랫폼 종속적인 헤더를 "
+"인클루드 하기 때문에 멀티플랫폼 빌드가 고장날 것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:95
 msgid ""
@@ -143,10 +180,12 @@ msgid ""
 "\"C\"``. As a result, there is no need to do anything special to use the "
 "API from C++."
 msgstr ""
+"C++ 사용자들은 파이썬/C API 가 C 만을 사용하여 정의되었어도 헤더 파일들이 ``extern \"C\"`` 로 진입점을 "
+"제대로 선언한다는 점에 유의해야 합니다. C++ 에서 파이썬/C API 를 사용하기 위해 특별한 조치를 취할 필요는 없습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:101
 msgid "Useful macros"
-msgstr ""
+msgstr "유용한 매크로들"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:103
 msgid ""
@@ -155,6 +194,9 @@ msgid ""
 " Others of a more general utility are defined here.  This is not "
 "necessarily a complete listing."
 msgstr ""
+"파이썬 헤더 파일에는 몇 가지 유용한 매크로가 정의되어 있습니다. 대부분은 필요한 곳에 가깝게 정의되어 있습니다. (예를 들어 "
+":c:macro:`Py_RETURN_NONE`)  나머지 더 일반적인 유틸리티들은 여기에 정의되어 있습니다.  아래 목록이 전체 "
+"목록은 아닙니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:110
 msgid ""
@@ -164,6 +206,9 @@ msgid ""
 "places where you might be tempted to put an ``assert(0)`` or ``abort()`` "
 "call."
 msgstr ""
+"의도적으로 도달할 수 없는 코드 경로가 있을 경우에 이 매크로를 사용하십시오. 예를 들어, ``switch`` 문에서 가능한 모든 "
+"값이 ``case`` 절에서 다뤄지는 경우에 ``default:`` 절에서 사용할 수 있습니다. ``assert(0)`` 또는 "
+"``abort()`` 대신 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:115
 msgid ""
@@ -171,12 +216,16 @@ msgid ""
 "avoids a warning about unreachable code.  For example, the macro is "
 "implemented with ``__builtin_unreachable()`` on GCC in release mode."
 msgstr ""
+"릴리즈 모드에서 이 매크로는 컴파일러가 코드를 최적화하는데 도움이 되며 도달할 수 없는 코드에 대한 경고를 방지합니다. 예를 들어,"
+" 이 매크로는 릴리즈 모드에서 GCC의 ``__builtin_unreachable()`` 로 구현됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:119
 msgid ""
 "A use for ``Py_UNREACHABLE()`` is following a call a function that never "
 "returns but that is not declared :c:macro:`_Py_NO_RETURN`."
 msgstr ""
+"``Py_UNREACHABLE()`` 의 용도는 반환하지 않지만 :c:macro:`_Py_NO_RETURN` 을 선언하지 않은 "
+"함수를 호출하는 것입니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:122
 msgid ""
@@ -186,40 +235,47 @@ msgid ""
 "  In this case, it's better to report the error to the caller.  If the "
 "error cannot be reported to caller, :c:func:`Py_FatalError` can be used."
 msgstr ""
+"코드 경로가 매우 가능성이 낮지만 예외적인 경우에 도달할 수 있는 경우, 이 매크로를 사용해서는 안됩니다. 예를 들어, 메모리가 "
+"부족하거나 시스템 콜이 예상 범위를 벗어나는 값을 반환했을 경우에는 호출자에게 에러를 보고하는 것이 좋습니다. 호출자에게 에러를 "
+"보고할 수 없는 경우 :c:func:`Py_FatalError` 를 사용할 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:132
 msgid "Return the absolute value of ``x``."
-msgstr ""
+msgstr "``x`` 의 절댓값을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:138
 msgid "Return the minimum value between ``x`` and ``y``."
-msgstr ""
+msgstr "``x`` 와 ``y`` 사이의 최솟값을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:144
 msgid "Return the maximum value between ``x`` and ``y``."
-msgstr ""
+msgstr "``x`` 와 ``y`` 사이의 최댓값을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:150
 msgid ""
 "Convert ``x`` to a C string.  E.g. ``Py_STRINGIFY(123)`` returns "
 "``\"123\"``."
-msgstr ""
+msgstr "``x`` 를 C 문자열로 변환합니다.  예를 들어 ``Py_STRINGIFY(123)`` 은 ``\"123\"`` 을 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:157
 msgid "Return the size of a structure (``type``) ``member`` in bytes."
-msgstr ""
+msgstr "(``type``) 구조체의 ``member`` 의 크기를 바이트로 반환합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:163
 msgid ""
 "Argument must be a character or an integer in the range [-128, 127] or "
 "[0, 255].  This macro returns ``c`` cast to an ``unsigned char``."
 msgstr ""
+"인자는 문자 또는 [-128, 127] 나 [0, 255] 사이의 정수여야 합니다. 이 매크로는 ``unsigned char`` 로"
+" 캐스팅된 ``c`` 를 반환합니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:168
 msgid ""
 "Like ``getenv(s)``, but returns ``NULL`` if :option:`-E` was passed on "
 "the command line (i.e. if ``Py_IgnoreEnvironmentFlag`` is set)."
 msgstr ""
+"``getenv(s)`` 와 유사하지만 :option:`-E` 가 커맨드라인으로 전달된 경우 (즉, "
+"``Py_IgnoreEnvironmentFlag`` 가 설정된 경우) ``NULL`` 을 반환합니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:173
 msgid ""
@@ -227,50 +283,58 @@ msgid ""
 "compiler warnings. Example: ``int func(int a, int Py_UNUSED(b)) { return "
 "a; }``."
 msgstr ""
+"함수의 미사용 인자에 사용하여 컴파일러 경고를 무시합니다. 예시: ``int func(int a, int Py_UNUSED(b))"
+" { return a; }``."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:180
 msgid ""
 "Use this for deprecated declarations.  The macro must be placed before "
 "the symbol name."
-msgstr ""
+msgstr "폐지(deprecated) 선언에 사용하십시오. 이 매크로는 심볼 이름 앞에 위치해야 합니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:183
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:198
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:216
 msgid "Example::"
-msgstr ""
+msgstr "예제::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:187
 msgid "MSVC support was added."
-msgstr ""
+msgstr "MSVC 지원을 추가했습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:192
 msgid ""
 "Creates a variable with name ``name`` that can be used in docstrings. If "
 "Python is built without docstrings, the value will be empty."
 msgstr ""
+"독스트링에서 사용 가능한 ``name`` 이란 이름의 변수를 생성합니다. 파이썬이 독스트링 없이 빌드되었다면 변수의 값은 비어있을 "
+"것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:195
 msgid ""
 "Use :c:macro:`PyDoc_STRVAR` for docstrings to support building Python "
 "without docstrings, as specified in :pep:`7`."
 msgstr ""
+":pep:`7` 에 명시된 것처럼 파이썬을 독스트링 없이 빌드하기 위해 :c:macro:`PyDoc_STRVAR` 를 독스트링에 "
+"사용하십시오"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:210
 msgid ""
 "Creates a docstring for the given input string or an empty string if "
 "docstrings are disabled."
-msgstr ""
+msgstr "주어진 문자열에 대한 독스트링을 생성합니다. 독스트링이 비활성화 되어있을 경우엔 빈 문자열을 생성합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:213
 msgid ""
 "Use :c:macro:`PyDoc_STR` in specifying docstrings to support building "
 "Python without docstrings, as specified in :pep:`7`."
 msgstr ""
+":pep:`7` 에 명시된 것처럼 독스트링 없이 파이썬을 빌드할 수 있도록 독스트링을 명시할 때 "
+":c:macro:`PyDoc_STR` 을 사용하십시오."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:227
 msgid "Objects, Types and Reference Counts"
-msgstr ""
+msgstr "객체, 형 그리고 참조 횟수"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:231
 msgid ""
@@ -286,6 +350,12 @@ msgid ""
 "exception are the type objects; since these must never be deallocated, "
 "they are typically static :c:type:`PyTypeObject` objects."
 msgstr ""
+"대부분의 파이썬/C API 함수는 하나 이상의 인자와 :c:type:`PyObject\\*` 형의 반환 값을 가집니다. 해당 형은 "
+"임의의 파이썬 객체를 나타내는 오파크(Opaque) 데이터 형에 대한 포인터입니다. 할당, 스코프 규칙, 인자 전달 등 대부분의 "
+"상황에서 파이썬 언어가 모든 파이썬 객체 형을 동일한 방식으로 취급하기 때문에 단일한 C 형으로 표현하는 것이 적절합니다. 대부분의"
+" 객체는 힙에 존재합니다. :c:type:`PyObject` 형의 자동 변수나 정적 변수를 선언해서는 안되며 "
+":c:type:`PyObject` 형의 포인터 변수만을 선언할 수 있습니다. 유일한 예외는 형 객체입니다. 형 객체들은 절대 할당이"
+" 해제돼서는 안되기 때문에 형 객체들은 보통 정적 :c:type:`PyTypeObject` 객체들입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:242
 msgid ""
@@ -297,10 +367,14 @@ msgid ""
 "instance, ``PyList_Check(a)`` is true if (and only if) the object pointed"
 " to by *a* is a Python list."
 msgstr ""
+"모든 파이썬 객체는 (파이썬 정수조차도) :dfn:`형(type)` 과 :dfn:`참조 횟수(reference count)` 를 "
+"가지고 있습니다. 객체의 형은 객체의 종류를 결정합니다. (예를 들어 정수, 리스트, 또는 사용자 정의 함수 등. "
+":ref:`types` 에 추가적인 형들에 대해 설명되어 있습니다.) 잘 알려진 형에는 객체가 해당 형인지를 확인하는 매크로가 "
+"있습니다. 예를 들어 ``PyList_Check(a)`` 는 *a* 가 가리키는 객체가 파이썬 리스트일 경우에만 참입니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:253
 msgid "Reference Counts"
-msgstr ""
+msgstr "참조 횟수"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:255
 msgid ""
@@ -315,6 +389,11 @@ msgid ""
 "become zero, and so on.  (There's an obvious problem  with objects that "
 "reference each other here; for now, the solution is  \"don't do that.\")"
 msgstr ""
+"오늘날의 컴퓨터는 유한한(그리고 자주 제한되는) 양의 메모리를 가지고 있기 때문에. 참조 횟수는 매우 중요합니다. 참조 횟수는 "
+"객체를 참조하는 위치의 갯수를 셉니다. 객체를 참조하는 위치는 다른 객체일 수도 있고, C 전역 변수이거나 C 함수 안의 지역 "
+"변수일 수도 있습니다. 객체의 참조 횟수가 0이 되면 객체는 할당이 해제됩니다. 객체가 다른 객체에 대한 참조를 가지고 있을 경우 "
+"해당 객체의 참조 횟수가 감소합니다. 이러한 참조 횟수의 감소로 인해 다른 객체의 참조 횟수가 0으로 감소하면 다른 객체들이 차례로"
+" 할당이 해제될 수 있습니다. (서로를 참조하는 객체에 대해 분명한 문제점이 있으나 현재 해결책은 \"그러지 마세요\" 입니다.)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:270
 msgid ""
@@ -334,6 +413,14 @@ msgid ""
 "``sizeof(Py_ssize_t) >= sizeof(void*)``). Thus, the reference count "
 "increment is a simple operation."
 msgstr ""
+"참조 횟수는 항상 명시적으로 조작됩니다. 일반적인 방법은 매크로 :c:func:`Py_INCREF` 를 사용하여 객체의 참조 횟수를"
+" 하나 증가시키고, :c:func:`Py_DECREF` 를 사용하여 참조 횟수를 하나 감소시키는 것입니다. "
+":c:func:`Py_DECREF` 매크로는 참조 횟수가 0이 되는지를 확인하고 객체의 할당해제자(deallocator) 를 "
+"호출해야 하므로 참조 횟수를 증가시키는 매크로보다 상당히 복잡합니다. 할당 해제자는 객체의 형 구조체에 포함된 함수 포인터입니다."
+" 형별 할당 해제자는 리스트와 같은 복합 객체 형에 대해서 객체에 포함된 객체에 포함 된 다른 객체에 대한 참조 횟수를 "
+"감소시키고 필요한 추가 마무리 작업을 수행합니다. 참조 횟수가 오버플로우 될 가능성은 없습니다. 참조 횟수를 저장하기 위해서 가상 "
+"메모리 안에서 구별되는 메모리 위치 만큼 (``sizeof(Py_ssize_t) >= sizeof(void*)`` 라고 가정할 "
+"경우) 많은 비트가 사용됩니다. 따라서 참조 횟수 증가는 간단한 연산입니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:284
 msgid ""
@@ -352,6 +439,12 @@ msgid ""
 "Python; the call mechanism guarantees to hold a  reference to every "
 "argument for the duration of the call."
 msgstr ""
+"객체에 대한 포인터를 포함하는 모든 지역 변수에 대해 객체의 참조 횟수를 증가시킬 필요는 없습니다. 이론적으로는 객체의 참조 횟수는"
+" 변수가 객체를 가리킬 때 증가하고 변수가 스코프를 벗어날 때 감소합니다. 하지만 이 두 동작은 서로를 상쇄시키기 때문에 결과적으로"
+" 참조 횟수는 변하지 않습니다. 참조 횟수를 사용해야만 하는 이유는 우리의 변수가 객체를 참조하는 한 객체가 할당 해제되지 않도록 "
+"하기 위함입니다. 만약 객체에 대한 적어도 하나 이상의 다른 참조가 우리의 변수만큼 오래 살아있을 것을 안다면 참조 횟수를 "
+"일시적으로 증가시킬 필요가 없습니다. 이런 현상이 발생하는 중요한 상황은 파이썬이 호출하는 확장 모듈의 C 함수에 인자로 넘겨지는 "
+"객체에서 발생합니다. 호출 메커니즘은 호출하는동안 모든 인자에 대한 참조를 보유하도록 보장합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:298
 msgid ""
@@ -364,6 +457,10 @@ msgid ""
 "the user from a :c:func:`Py_DECREF`, so almost any operation is "
 "potentially dangerous."
 msgstr ""
+"그러나 흔히 하기 쉬운 실수는 리스트에서 객체를 가져와 참조 횟수를 늘리지 않고 유지하는 것입니다. 다른 연산이 리스트에서 객체를 "
+"제거해 객체의 참조 횟수를 감소시키면 객체가 할당 해제될수도 있습니다. 진짜 위험은 무해해 보이는 연산이 이를 실행할 수도 있는 "
+"임의의 파이썬 코드를 실행할수도 있다는 것입니다. :c:func:`Py_DECREF` 에서 사용자로 컨트롤을 돌아가게 하는 코드 "
+"경로가 있기 때문에 사실 거의 모든 연산이 잠재적으로 위험합니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:306
 msgid ""
@@ -374,10 +471,14 @@ msgid ""
 "to call :c:func:`Py_DECREF` when they are done with the result; this soon"
 " becomes second nature."
 msgstr ""
+"안전한 접근방식은 제네릭 연산들 (``PyObject_``, ``PyNumber_``, ``PySequence_`` 또는 "
+"``PyMapping_`` 로 시작하는 이름을 가진 함수들) 을 사용하는 것입니다. 이러한 연산들은 반환하는 모든 객체에 대한 참조"
+" 횟수를 증가시킵니다. 이는 함수 호출자에게 연산이 반환된 객체와의 작업이 끝났을 경우 :c:func:`Py_DECREF` 를 "
+"호출할 책임을 지웁니다. 이건 곧 습관화 될 것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:316
 msgid "Reference Count Details"
-msgstr ""
+msgstr "참조 횟수 상세"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:318
 msgid ""
@@ -395,6 +496,13 @@ msgid ""
 "the caller is said to *borrow* the reference. Nothing needs to be done "
 "for a borrowed reference."
 msgstr ""
+"파이썬/C API 에서 함수의 참조 횟수 동작은 *참조의 소유권* 으로 가장 잘 설명됩니다. 소유권은 객체가 아닌 참조에 관련되어 "
+"있습니다. (객체는 소유되지 않습니다: 객체는 항상 공유됩니다.) \"참조를 소유하는 것\" 은 더 이상 참조가 필요하지 않을 때 "
+"Py_DECREF 를 호출할 책임이 있다는 것을 의미합니다. 소유권은 양도될 수도 있습니다. 즉, 참조의 소유권을 받은 코드가 "
+"소유권이 더 이상 필요하지 않을 때 :c:func:`Py_DECREF` 또는 :c:func:`Py_XDECREF` 를 호출하거나 "
+"책임을 (대게 자신의 호출자에게) 넘김으로써 결국 참조 횟수를 감소시킬 책임이 생긴다는 것을 의미합니다. 함수가 참조의 소유권을 "
+"호출자에게 넘길때 호출자는 *새로운* 참조를 받는다고 합니다. 소유권이 옮겨지지 않을 때 호출자는 참조를 *빌린다* 라고 합니다. "
+"빌린 참조를 위해서는 아무것도 할 필요가 없습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:331
 msgid ""
@@ -404,6 +512,9 @@ msgid ""
 "a reference to a function, that function assumes that it now owns that "
 "reference, and you are not responsible for it any longer."
 msgstr ""
+"반대로 호출 함수에게 객체에 대한 참조를 넘길 때는 두가지 가능성이 있습니다: 함수는 객체에 대한 참조를 *훔칠* 수도, 그러지 "
+"않을 수도 있습니다. 참조를 훔치는 것은 함수에 참조를 전달할 때 해당 함수가 전달된 참조를 소유한다고 가정하고 더 이상 책임을 "
+"지지 않는다는 것을 의미합니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:341
 msgid ""
@@ -416,6 +527,11 @@ msgid ""
 "look like this (forgetting about error handling for the moment; a better "
 "way to code this is shown below)::"
 msgstr ""
+"참조를 훔치는 함수는 거의 없습니다. 주목할만한 두가지 예외는 :c:func:`PyList_SetItem` 과 "
+":c:func:`PyTuple_SetItem` 입니다. 이 두가지 함수는 요소에 대한 참조를 훔칩니다(단, 요소를 넣을 튜플이나 "
+"리스트에 대한 참조는 훔치지 않습니다.). 이 함수들은 새로 만들어진 객체들로 튜플이나 리스트를 채우는 일반적인 관행 때문에 참조를"
+" 훔치도록 설계되었습니다. 예를 들어, 튜플을 만드는 코드 ``(1, 2, \"three\")`` 는 다음과 같을 수 있습니다. "
+"(잠시 에러 처리는 잊어버리십시오. 더 좋은 방법으로 코딩하는 방법은 아래에 나와 있습니다.) "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:356
 msgid ""
@@ -425,6 +541,9 @@ msgid ""
 ":c:func:`Py_INCREF` to grab another reference before calling the "
 "reference-stealing function."
 msgstr ""
+"여기서 :c:func:`PyTuple_SetItem` 는 :c:func:`PyLong_FromLong` 가 반환한 참조를 곧바로 "
+"훔칩니다. 객체에 대한 참조가 훔쳐져도 계속 객체를 사용하려면 참조를 훔치는 함수를 호출하기 전에 "
+":c:func:`Py_INCREF` 를 다른 참조를 가져오는데 사용하십시오. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:361
 msgid ""
@@ -433,12 +552,17 @@ msgid ""
 " to do this since tuples are an immutable data type.  You should only use"
 " :c:func:`PyTuple_SetItem` for tuples that you are creating yourself."
 msgstr ""
+"덧붙이자면, :c:func:`PyTuple_SetItem` 은 튜플에 요소를 넣는 *유일한* 방법입니다. 튜플은 불변 자료형이기 "
+"때문에 :c:func:`PySequence_SetItem` 과 :c:func:`PyObject_SetItem` 는 튜플에 요소를 "
+"넣는 것을 거부합니다. :c:func:`PyTuple_SetItem` 은 직접 만들고 있는 튜플에만 사용되어야 합니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:366
 msgid ""
 "Equivalent code for populating a list can be written using "
 ":c:func:`PyList_New` and :c:func:`PyList_SetItem`."
 msgstr ""
+"리스트를 채우는 동일한 의미의 코드는 :c:func:`PyList_New` 와 :c:func:`PyList_SetItem` 을 "
+"사용해 만들 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:369
 msgid ""
@@ -449,6 +573,9 @@ msgid ""
 "blocks of code could be replaced by the following (which also takes care "
 "of the error checking)::"
 msgstr ""
+"하지만 실제로는 이렇게 튜플 또는 리스트를 만들고 채우는 경우는 드뭅니다. 일반적인 객체들을 :dfn:`형식 문자열(format "
+"string)`\\로 지시되는 C 값으로부터 만들어낼 수 있는 제네릭 함수 :c:func:`Py_BuildValue` 가 있습니다."
+" 예룰 들어, 위의 두 블록의 코드를 다음 코드로 대체할 수 있습니다. (에러 검사도 처리합니다.) "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:380
 msgid ""
@@ -460,6 +587,9 @@ msgid ""
 "be stolen\").  For example, this function sets all items of a list "
 "(actually, any mutable sequence) to a given item::"
 msgstr ""
+":c:func:`PyObject_SetItem` 과 그 친구들은 함수에 전달되는 인자처럼 참조만 빌리고 있는 요소와 함께 사용하는 "
+"것이 일반적입니다. 이 경우 참조 횟수를 증가시키지 않고 참조를 제공할 수 있으므로 참조 카운트에 대한 함수들의 동작이 훨씬 "
+"멀쩡합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:410
 msgid ""
@@ -473,6 +603,11 @@ msgid ""
 ":c:func:`PyObject_GetItem` and  :c:func:`PySequence_GetItem`, always "
 "return a new reference (the caller becomes the owner of the reference)."
 msgstr ""
+"함수 반환 값에 대해서는 상황이 약간 다릅니다. 대부분의 함수에 참조를 전달해도 해당 참조에 대한 소유권 책임이 바뀌진 않지만 "
+"객체에 대한 참조를 제공하는 많은 함수는 참조의 소유권을 제공합니다. 이유는 간단합니다. 대부분의 경우에서 반환된 객체는 즉석에서 "
+"생성되고 반환된 참조는 객체에 대한 유일한 참조입니다. 따라서 :c:func:`PyObject_GetItem` 과 "
+":c:func:`PySequence_GetItem` 처럼 객체에 대한 참조를 반환하는 제네릭 함수들은 언제나 새로운 참조를 "
+"반환합니다 (호출자가 객체의 소유자가 됩니다)."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:419
 msgid ""
@@ -485,6 +620,11 @@ msgid ""
 ":c:func:`PySequence_GetItem` (which happens to take exactly the same "
 "arguments), you do own a reference to the returned object."
 msgstr ""
+"함수의 의해 반환된 함수를 소유하고 있는지는 어떤 함수를 호출하느냐에 따라 달라진다는 것을 아는 것이 중요합니다. --- *깃털* "
+"(함수에 인자로 전달된 객체의 형) *은 해당되지 않습니다!* 따라서 :c:func:`PyList_GetItem` 를 사용하여 "
+"리스트에서 항목을 가져오면 참조를 소유하지 않습니다. --- 하지만 동일한 인자를 받는 "
+":c:func:`PySequence_GetItem` 를 사용하여 리스트에서 항목을 가져온다면 반환된 객체에 대한 참조를 소유하게 "
+"됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:431
 msgid ""
@@ -492,10 +632,13 @@ msgid ""
 "sum of the items in a list of integers; once using  "
 ":c:func:`PyList_GetItem`, and once using :c:func:`PySequence_GetItem`. ::"
 msgstr ""
+"다음은 정수 리스트에 있는 항목의 합계를 구하는 함수를 작성하는 방법의 예시입니다. 한 번은 "
+":c:func:`PyList_GetItem` 를 사용하고, 한 번은 :c:func:`PySequence_GetItem` 을 "
+"사용합니다. ::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:495
 msgid "Types"
-msgstr ""
+msgstr "형"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:497
 msgid ""
@@ -507,10 +650,14 @@ msgid ""
 "another is used to describe the value of a complex number.  These will  "
 "be discussed together with the functions that use them."
 msgstr ""
+"파이썬/C API에서 중요한 역할을 하는 다른 데이터 형은 거의 없습니다. 대부분은 :c:type:`int`,  "
+":c:type:`long`, :c:type:`double` 그리고 :c:type:`char\\*` 같은 평범한 C 형입니다. "
+"모듈에서 내보내는 함수나 새 객체 형의 데이터 속성들을 나열하는데 사용되는 정적 테이블을 표현하는데 사용되는 구조체 형이 몇가지 "
+"있으며, 복소수를 표현하기 위해 사용되는 구조체 형도 있습니다. 이러한 형들은 해당 형들을 사용하는 함수와 함께 다뤄질 것입니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:509
 msgid "Exceptions"
-msgstr ""
+msgstr "예외"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:511
 msgid ""
@@ -520,6 +667,8 @@ msgid ""
 "they reach the top-level interpreter, where they are reported to the  "
 "user accompanied by a stack traceback."
 msgstr ""
+"파이썬 프로그래머는 특정한 에러 처리가 필요할 경우에만 에러를 처리하면 됩니다. 처리되지 않은 예외는 사용자에게 전달되는 최상위 "
+"인터프리터까지 스택 트레이스백과 함께 자동으로 호출자, 호출자의 호출자 등으로 전파됩니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:519
 msgid ""
@@ -536,6 +685,12 @@ msgid ""
 ":c:func:`PyErr_Occurred`.  These exceptions are always explicitly "
 "documented."
 msgstr ""
+"그러나 C 프로그래머들에게 에러 검사는 항상 명시적이어야만 합니다. 파이썬/C API의 모든 함수는 해당 함수의 문서에서 명시하지 "
+"않는 한 예외를 발생시킬 수 있습니다. 일반적으로 함수에 에러가 발생하면 함수는 예외를 설정하고 소유하고 있는 모든 객체에 대한 "
+"참조를 취소하고 에러 표시기를 반환합니다. 달리 문서화되지 않은 경우 표시기는 함수의 반환 형에 따라 ``NULL`` 또는 "
+"``-1`` 입니다. 일부 함수는 에러를 의미하는 거짓과 함께 참/거짓의 불리언 결과를 반환합니다. 아주 일부의 함수는 명시적인 "
+"에러 표시기가 없거나 모호한 반환값을 가지며 :c:func:`PyErr_Occurred` 를 사용하여 명시적인 점검을 요구합니다. "
+"이런 예외는 항상 명시적으로 문서화됩니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:534
 msgid ""
@@ -549,6 +704,12 @@ msgid ""
 "(though not the most general) function to set the exception state, and "
 ":c:func:`PyErr_Clear` clears the exception state."
 msgstr ""
+"예외 상태는 스레드 별 공간에서 관리됩니다. (스레드를 사용하지 않는 프로그램에서는 전역 공간을 사용한다는 말과 같습니다.) "
+"스레드는 예외가 발생했거나, 발생하지 않았거나의 두가지 상태 중 하나일 수 있습니다. 함수 "
+":c:func:`PyErr_Occurred` 는 이 상태를 확인하기 위해 사용할 수 있습니다. 해당 함수는 예외가 발생했을 경우 "
+"예외 형 객체에 대한 빌린 참조를 반환합니다. 예외가 발생하지 않았을 경우엔 ``NULL`` 을 반환합니다. 예외 상태를 설정하기 "
+"위한 여러가지 함수들이 있습니다: :c:func:`PyErr_SetString` 는 예외 상태를 설정하기 위해 가장 보편적인 (가장"
+" 일반적인 것은 아니지만) 함수입니다. :c:func:`PyErr_Clear` 는 예외 상태를 지웁니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:544
 msgid ""
@@ -562,6 +723,11 @@ msgid ""
 " reaches the Python bytecode interpreter's  main loop, which takes care "
 "of transferring it to ``sys.exc_info()`` and friends."
 msgstr ""
+"전체 예외 상태는 예외 형, 해당 예외 값, 트레이스백이라는 세가지 객체로 구성됩니다. (셋 모두 ``NULL`` 일 수 "
+"있습니다.) 이 세가지 객체는 파이썬의 ``sys.exc_info()`` 의 결과와 같은 의미를 가지고 있지만 동일하지는 않습니다."
+" 파이썬 객체는 :keyword:`try` ... :keyword:`except` 문으로 처리되는 마지막 예외를 표현하는 반면 C "
+"수준 예외는 ``sys.exc_info()`` 와 그 친구들로 예외를 전송하는 파이썬 바이트코드 인터프리터의 메인 루프에 도달할 "
+"때까지 C 함수들 간에 전달되는 동안에만 존재합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:556
 msgid ""
@@ -577,6 +743,11 @@ msgid ""
 "extension for objects that are referenced by the stack frames in the "
 "traceback."
 msgstr ""
+"파이썬 1.5부터 선호되어 온 파이썬 코드에서의 스레드 안전한 예외 상태 접근 방법은 파이썬 코드를 위해 스레드 별 예외 상태를 "
+"반환하는 :func:`sys.exc_info` 함수를 호출하는 것입니다. 또한 예외 상태에 접근하는 양쪽 방법의 의미도 바뀌어 "
+"에러를 포착하는 함수가 호출자의 예외 상태를 보존하기 위해 스레드의 예외를 저장하고 복원합니다. 이는 평범해 보이는 함수가 처리중인"
+" 예외를 덮어씌우는 것으로 인한 예외 처리 코드의 흔한 버그를 방지합니다. 또한 트레이스백의 스택 프레임에 의하여 참조되는 객체들에"
+" 대해 종종 원하지 않은 수명 증가가 일어나는 것을 방지합니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:567
 msgid ""
@@ -588,6 +759,10 @@ msgid ""
 "overwrite the exception that was just raised, and lose important "
 "information about the exact cause of the error."
 msgstr ""
+"일반적으로 어떤 작업을 수행하기 위해 다른 함수를 호출하는 함수는 호출된 함수가 예외를 일으켰는지 확인해야만 하며 만약 예외가 "
+"일어났다면 호출자에게 예외 상태를 전달해야 합니다. 소유하고 있는 모든 객체에 대한 참조를 버리고 에러 표시기를 반환해야 하지만 "
+"다른 예외를 설정해서는 *안됩니다.* --- 방금 일어난 예외를 덮어씌우고 정확한 에러 원인에 대한 중요한 정보를 잃어버리게 "
+"됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:576
 msgid ""
@@ -597,10 +772,13 @@ msgid ""
 "error.  The following example function shows some error cleanup.  First, "
 "to remind you why you like Python, we show the equivalent Python code::"
 msgstr ""
+"예외를 감지하고 전달하는 간단한 예가 아래 :c:func:`sum_sequence` 예시에 나와 있습니다. 우연히 이 예시에선 "
+"에러를 감지했을 때 소유하고 있는 참조를 정리할 필요가 없습니다. 그 다음 예시 함수에서는 몇가지 에러 정리작업을 보여줍니다. 먼저"
+" 파이썬을 좋아하는 이유를 상기시키기 위해 같은 의미의 파이썬 코드를 제공합니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:591
 msgid "Here is the corresponding C code, in all its glory::"
-msgstr ""
+msgstr "다음은 같은 의미의 웅장한 C 코드입니다::"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:643
 msgid ""
@@ -615,10 +793,16 @@ msgid ""
 "``-1`` (failure) and only set to success after the final call made is "
 "successful."
 msgstr ""
+"이 예시는 C ``goto`` 문의 허용된 사용방법을 보여줍니다! 이 예시는 특정한 예외를 처리하기 위한 "
+":c:func:`PyErr_ExceptionMatches` 와 :c:func:`PyErr_Clear` 의 사용 방법과 "
+":c:func:`Py_XDECREF` 를 사용하여 소유하고 있는 ``NULL`` 일 수도 있는 참조를 삭제하는 방법을 표현합니다. "
+"(이름에 있는 ``'X'`` 를 주목하십시오. :c:func:`Py_DECREF` 는 ``NULL`` 참조와 마주치면 충돌을 "
+"일으킵니다.) 이 예시를 수행하려면 소유하고 있는 참조를 보유하는데 사용하는 변수를 ``NULL`` 로 초기화하는 것이 중요합니다."
+" 마찬가지로 반환 값은 ``-1`` (실패) 로 설정되고 마지만 호출이 성공한 뒤에야 성공으로 설정됩니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:657
 msgid "Embedding Python"
-msgstr ""
+msgstr "파이썬 임베딩하기"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:659
 msgid ""
@@ -628,6 +812,8 @@ msgid ""
 "  Most functionality of the interpreter can only be used after the "
 "interpreter has been initialized."
 msgstr ""
+"확장 작성자들과는 달리 파이썬 인터프리터를 임베딩 하는 사람들만이 걱정해야 하는 한가지 중요한 문제는 파이썬 인터프리터의 초기화, "
+"그리고 아마도 마무리일 것입니다. 인터프리터의 대부분의 기능은 인터프리터가 초기화 된 이후에 사용할 수 있습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:672
 msgid ""
@@ -636,6 +822,9 @@ msgid ""
 "modules :mod:`builtins`, :mod:`__main__`, and :mod:`sys`.  It also "
 "initializes the module search path (``sys.path``)."
 msgstr ""
+"기본적인 초기화 함수는 :c:func:`Py_Initialize` 입니다. 이 함수는 로드된 모듈 테이블을 초기화 하고 기본 모듈인"
+" :mod:`builtins`, :mod:`__main__`, 그리고 :mod:`sys` 를 생성합니다. 또한 모듈 검색 경로 "
+"(``sys.path``) 를 초기화합니다"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:679
 msgid ""
@@ -645,6 +834,9 @@ msgid ""
 "``PySys_SetArgvEx(argc, argv, updatepath)`` after the call to "
 ":c:func:`Py_Initialize`."
 msgstr ""
+":c:func:`Py_Initialize` 는 \"스크립트 인자 리스트\" (``sys.argv``) 를 설정하지 않습니다. 만약 "
+"후에 실행될 파이썬 코드가 이 변수를 필요로 한다면 :c:func:`Py_Initialize` 를 호출한 후 "
+"``PySys_SetArgvEx(argc, argv, updatepath)`` 호출을 통해 명시적으로 설정해야 합니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:684
 msgid ""
@@ -658,6 +850,11 @@ msgid ""
 ":file:`python` is found on the shell command search path (the environment"
 " variable :envvar:`PATH`)."
 msgstr ""
+"대부분의 시스템에서 (특별히 유닉스와 윈도우는 세부적인 부분이 조금 다르긴 하지만) :c:func:`Py_Initialize` 는 "
+"파이썬 인터프리터를 기준으로 고정된 위치에 파이썬 라이브러리가 있다고 가정하여 표준 파이썬 인터프리터 실행 파일에 대한 최선의 "
+"추측을 바탕으로 바탕으로 모듈 검색 경로를 계산합니다. 특히 셸 명령어 검색 경로 (환경 변수 :envvar:`PATH`) 에서 "
+":file:`python` 이라는 이름의 실행 파일이 발견되는 부모 디렉터리를 기준으로 :file:`lib/python{X.Y}` "
+"같은 이름을 가진 디렉터리를 찾습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:693
 msgid ""
@@ -670,6 +867,11 @@ msgid ""
 "or insert additional directories in front of the standard path by setting"
 " :envvar:`PYTHONPATH`."
 msgstr ""
+"예를 들어 파이썬 실행 파일이 :file:`/usr/local/bin/python` 에서 발견된다면 라이브러리는 "
+":file:`/usr/local/lib/python{X.Y}` 에 있는 것으로 가정합니다. (실제로 이 특정 경로는 "
+":envvar:`PATH` 를 따라 :file:`python` 이라는 이름의 실행 파일이 발견되지 않을 때 사용되는 "
+"\"fallback\" 경로이기도 합니다.) 유저는 환경 변수 :envvar:`PYTHONHOME` 를 설정하여 이 동작을 "
+"재정의하거나 :envvar:`PYTHONPATH` 를 설정하여 표준 경로 앞에 추가적인 디렉터리를 추가할 수 있습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:708
 msgid ""
@@ -682,6 +884,12 @@ msgid ""
 ":c:func:`Py_GetExecPrefix`, and :c:func:`Py_GetProgramFullPath` (all "
 "defined in :file:`Modules/getpath.c`)."
 msgstr ""
+"파이썬을 임베딩하는 애플리케이션은 :c:func:`Py_Initialize` 를 호출하기 *전에* "
+"``Py_SetProgramName(file)`` 을 호출하여 검색을 제어할 수 있습니다. :envvar:`PYTHONHOME` 는"
+" 여전히 이 값을 재정의하며 :envvar:`PYTHONPATH` 는 여전히 표준 경로 앞에 추가된다는 점에 유의하십시오.  완전한"
+" 제어가 필요한 애플리케이션은 :c:func:`Py_GetPath`, :c:func:`Py_GetPrefix`, "
+":c:func:`Py_GetExecPrefix`, 그리고 :c:func:`Py_GetProgramFullPath` 의 자체적인 "
+"구현을 제공할 필요가 있습니다. (모두 :file:`Modules/getpath.c` 에 정의되어 있습니다.)"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:718
 msgid ""
@@ -696,10 +904,16 @@ msgid ""
 "memory allocated by the Python interpreter, e.g. memory allocated by "
 "extension modules currently cannot be released."
 msgstr ""
+"가끔은 파이썬을 \"uninitialize\" 하는 것이 바람직합니다. 예를 들어 애플리케이션이 다시 시작하거나 "
+"(:c:func:`Py_Initialize` 다시 호출하기) 애플리케이션에서 파이썬의 사용이 끝나 파이썬이 할당한 메모리를 "
+"해제하려고 할 수 있습니다. :c:func:`Py_FinalizeEx` 를 호출하여 이를 달성할 수 있습니다. 함수 "
+":c:func:`Py_IsInitialized` 는 파이썬이 현재 초기화된 상태에 있을 경우 참을 반환합니다. 이 함수들에 대한 "
+"자세한 내용은 다른 장에서 제공됩니다. :c:func:`Py_FinalizeEx` 가 파이썬 인터프리터가 할당한 모든 메모리를 "
+"해제하지는 않는다는 점에 유의해야 합니다. 예를 들어, 현재 확장 모듈에서 할당한 메모리는 해제할 수 없습니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:732
 msgid "Debugging Builds"
-msgstr ""
+msgstr "디버깅 빌드"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:734
 msgid ""
@@ -707,6 +921,8 @@ msgid ""
 "interpreter and extension modules.  These checks tend to add a large "
 "amount of overhead to the runtime so they are not enabled by default."
 msgstr ""
+"파이썬은 인터프리터와 확장 모듈들에 대한 추가적인 검사를 가능하게 하는 여러 매크로를 사용하여 빌드될 수 있습니다. 이러한 검사는 "
+"런타임에 많은 오버헤드를 추가하는 경향이 있으므로 기본적으로 실행되지 않습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:738
 msgid ""
@@ -717,6 +933,9 @@ msgid ""
 "Only the most frequently-used builds will be described in the remainder "
 "of this section."
 msgstr ""
+"다양한 유형의 디버깅 빌드의 전체 목록은 파이썬 소스 배포판 안의 :file:`Misc/SpecialBuilds.txt` 파일에 "
+"있습니다. 참조 횟수 추적, 메모리 할당자 디버깅, 메인 인터프리터 루프의 저수준 프로파일링을 지원하는 빌드들을 사용할 수 "
+"있습니다. 이 섹션에서는 가장 자주 사용되는 빌드만 설명합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:744
 msgid ""
@@ -728,61 +947,65 @@ msgid ""
 ":c:macro:`Py_DEBUG` is enabled in the Unix build, compiler optimization "
 "is disabled."
 msgstr ""
+":c:macro:`Py_DEBUG` 매크로가 정의된 인터프리터를 컴파일하면 일반적으로 파이썬의 \"디버그 빌드\" 가 일반적으로 "
+"의미하는 빌드가 생성됩니다. :c:macro:`Py_DEBUG` 는 :file:`./configure` 명령에 ``--with-"
+"pydebug`` 를 추가하여 유닉스 빌드에서 활성화됩니다. 또한 파이썬 전용이 아닌 :c:macro:`_DEBUG` 매크로의 "
+"존재를 암시합니다. 유닉스 빌드에서 :c:macro:`Py_DEBUG` 가 활성화 되어있으면 컴파일러 최적화가 비활성화됩니다. "
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:751
 msgid ""
 "In addition to the reference count debugging described below, the "
 "following extra checks are performed:"
-msgstr ""
+msgstr "아래에 설명된 참조 횟수 디버깅 외에도 다음과 같은 추가적인 검사가 수행됩니다:"
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:754
 msgid "Extra checks are added to the object allocator."
-msgstr ""
+msgstr "객체 할당자에 추가적인 검사가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:756
 msgid "Extra checks are added to the parser and compiler."
-msgstr ""
+msgstr "파서 및 컴파일러에 추가적인 검사가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:758
 msgid ""
 "Downcasts from wide types to narrow types are checked for loss of "
 "information."
-msgstr ""
+msgstr "큰 타입에서 작은 타입으로 다운 캐스팅이 일어날 때 정보 손실을 확인합니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:760
 msgid ""
 "A number of assertions are added to the dictionary and set "
 "implementations. In addition, the set object acquires a "
 ":meth:`test_c_api` method."
-msgstr ""
+msgstr "많은 어설션이 딕셔너리와 집합 구현에 추가됩니다. 또한 집합 객체는 :meth:`test_c_api` 메소드가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:763
 msgid "Sanity checks of the input arguments are added to frame creation."
-msgstr ""
+msgstr "입력 인자의 온전성 검사가 프레임 생성에 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:765
 msgid ""
 "The storage for ints is initialized with a known invalid pattern to catch"
 " reference to uninitialized digits."
-msgstr ""
+msgstr "정수에 대한 저장소는 초기화되지 않은 숫자에 대한 참조를 포착하기 위해 알려진 잘못된 패턴으로 초기화됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:768
 msgid ""
 "Low-level tracing and extra exception checking are added to the runtime "
 "virtual machine."
-msgstr ""
+msgstr "저수준 추적과 추가적인 예외 검사가 런타임 가상머신에 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:771
 msgid "Extra checks are added to the memory arena implementation."
-msgstr ""
+msgstr "메모리 아레나 구현에 추가 검사가 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:773
 msgid "Extra debugging is added to the thread module."
-msgstr ""
+msgstr "스레드 모듈에 추가적인 디버깅이 추가됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:775
 msgid "There may be additional checks not mentioned here."
-msgstr ""
+msgstr "여기에 언급되지 않은 추가적인 검사들이 있을 수 있습니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:777
 msgid ""
@@ -793,12 +1016,16 @@ msgid ""
 "(In interactive mode this happens after every statement run by the "
 "interpreter.)  Implied by :c:macro:`Py_DEBUG`."
 msgstr ""
+":c:macro:`Py_TRACE_REFS` 를 정의하면 참조 추적이 활성화됩니다. 정의된 경우 모든 "
+":c:type:`PyObject` 에 두 개의 추가 필드를 추가함으로써 활성 객체에 대한 이중 원형 연결 리스트가 유지됩니다. 또한"
+" 모든 할당이 추적됩니다. 인터프리터 종료시에는 현재 사용되고 있는 모든 참조가 출력됩니다. (대화식 모드에서는 인터프리터가 "
+"명령문을 실행할 때마다 이후에 출력됩니다.) :c:macro:`Py_DEBUG` 에 의해 암시됩니다."
 
 #: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/intro.rst:783
 msgid ""
 "Please refer to :file:`Misc/SpecialBuilds.txt` in the Python source "
 "distribution for more detailed information."
-msgstr ""
+msgstr "자세한 내용은 파이썬 소스 배포판 안의 :file:`Misc/SpecialBuilds.txt` 를 참조하십시오. "
 
 #~ msgid ""
 #~ "Writing an extension module is a "
