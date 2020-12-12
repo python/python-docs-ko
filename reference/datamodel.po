@@ -288,32 +288,34 @@ msgid ""
 "The string representations of the numeric classes, computed by "
 ":meth:`__repr__` and :meth:`__str__`, have the following properties:"
 msgstr ""
+":meth:`__repr__`\\과 :meth:`__str__`\\로 계산되는 숫자 클래스의 문자열 표현에는 다음과 같은 특성이 "
+"있습니다:"
 
 #: ../Doc/reference/datamodel.rst:194
 msgid ""
 "They are valid numeric literals which, when passed to their class "
 "constructor, produce an object having the value of the original numeric."
-msgstr ""
+msgstr "클래스 생성자에 전달될 때 원래 숫자 값을 가진 객체를 생성하는 유효한 숫자 리터럴 입니다."
 
 #: ../Doc/reference/datamodel.rst:198
 msgid "The representation is in base 10, when possible."
-msgstr ""
+msgstr "가능하면, 표현은 10진법입니다."
 
 #: ../Doc/reference/datamodel.rst:200
 msgid ""
 "Leading zeros, possibly excepting a single zero before a decimal point, "
 "are not shown."
-msgstr ""
+msgstr "소수점 앞의 단일 0을 제외하고, 선행 0은 표시되지 않습니다."
 
 #: ../Doc/reference/datamodel.rst:203
 msgid ""
 "Trailing zeros, possibly excepting a single zero after a decimal point, "
 "are not shown."
-msgstr ""
+msgstr "소수점 뒤의 단일 0을 제외하고, 후행 0은 표시되지 않습니다."
 
 #: ../Doc/reference/datamodel.rst:206
 msgid "A sign is shown only when the number is negative."
-msgstr ""
+msgstr "부호는 숫자가 음수일 때만 표시됩니다."
 
 #: ../Doc/reference/datamodel.rst:208
 msgid ""
@@ -2089,6 +2091,12 @@ msgid ""
 "ordering operations from a single root operation, see "
 ":func:`functools.total_ordering`."
 msgstr ""
+"기본적으로, ``object``\\는 ``is``\\를 사용해서 거짓으로 비교될 때 ``NotImplemented``\\를 반환하는"
+" :meth:`__eq__`\\를 구현합니다: ``True if x is y else NotImplemented``. "
+":meth:`__ne__`\\의 경우는, 기본적으로 :meth:`__eq__`\\에 위임하고 ``NotImplemented`` 가 "
+"아니라면 그 결과를 뒤집습니다. 비교 연산자나 기본 구현 간의 다른 암시적인 관계는 없습니다; 예를 들어, ``(x<y or "
+"x==y)`` 가 참이라고 해서 ``x<=y`` 가 참일 필요는 없습니다. 하나의 기본 연산으로부터 대소관계 연산을 자동으로 "
+"만들어내려면, :func:`functools.total_ordering`\\을 보십시오."
 
 #: ../Doc/reference/datamodel.rst:1407
 msgid ""
@@ -2348,12 +2356,16 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``object.__getattr__`` with "
 "arguments ``obj``, ``name``."
 msgstr ""
+"인자 ``obj``, ``name``\\으로 :ref:`감사 이벤트 <auditing>` "
+"``object.__getattr__``\\을 발생시킵니다."
 
 #: ../Doc/reference/datamodel.rst:1565
 msgid ""
 "For certain sensitive attribute accesses, raises an :ref:`auditing event "
 "<auditing>` ``object.__getattr__`` with arguments ``obj`` and ``name``."
 msgstr ""
+"특정 민감한 어트리뷰트 액세스의 경우, 인자 ``obj``\\와 ``name``\\으로 :ref:`감사 이벤트 <auditing>`"
+" ``object.__getattr__``\\을 발생시킵니다."
 
 #: ../Doc/reference/datamodel.rst:1572
 msgid ""
@@ -2378,6 +2390,8 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``object.__setattr__`` with "
 "arguments ``obj``, ``name``, ``value``."
 msgstr ""
+"인자 ``obj``, ``name``, ``value``\\로 :ref:`감사 이벤트 <auditing>` "
+"``object.__setattr__``\\을 발생시킵니다."
 
 #: ../Doc/reference/datamodel.rst:1582
 msgid ""
@@ -2385,6 +2399,8 @@ msgid ""
 "event <auditing>` ``object.__setattr__`` with arguments ``obj``, "
 "``name``, ``value``."
 msgstr ""
+"특정 민감한 어트리뷰트 대입의 경우, 인자 ``obj``, ``name``, ``value``\\로 :ref:`감사 이벤트 "
+"<auditing>` ``object.__setattr__``\\을 발생시킵니다."
 
 #: ../Doc/reference/datamodel.rst:1589
 msgid ""
@@ -2399,12 +2415,16 @@ msgid ""
 "Raises an :ref:`auditing event <auditing>` ``object.__delattr__`` with "
 "arguments ``obj``, ``name``."
 msgstr ""
+"인자 ``obj``, ``name``\\으로 :ref:`감사 이벤트 <auditing>` "
+"``object.__delattr__``\\을 발생시킵니다."
 
 #: ../Doc/reference/datamodel.rst:1594
 msgid ""
 "For certain sensitive attribute deletions, raises an :ref:`auditing event"
 " <auditing>` ``object.__delattr__`` with arguments ``obj`` and ``name``."
 msgstr ""
+"특정 민감한 어트리뷰트 삭제의 경우, 인자 ``obj``\\와 ``name``\\으로 :ref:`감사 이벤트 <auditing>` "
+"``object.__delattr__``\\을 발생시킵니다."
 
 #: ../Doc/reference/datamodel.rst:1601
 msgid ""
@@ -3332,14 +3352,13 @@ msgid "Emulating callable objects"
 msgstr "콜러블 객체 흉내 내기"
 
 #: ../Doc/reference/datamodel.rst:2170
-#, fuzzy
 msgid ""
 "Called when the instance is \"called\" as a function; if this method is "
 "defined, ``x(arg1, arg2, ...)`` roughly translates to "
 "``type(x).__call__(x, arg1, ...)``."
 msgstr ""
-"인스턴스가 함수처럼 \"호출될\" 때 호출됩니다; 이 메서드가 정의되면, ``x(arg1, arg2, ...)`` 는 "
-"``x.__call__(arg1, arg2, ...)`` 의 줄인 표현입니다."
+"인스턴스가 함수처럼 \"호출될\" 때 호출됩니다; 이 메서드가 정의되면, ``x(arg1, arg2, ...)`` 는 대략 "
+"``type(x).__call__(x, arg1, ...)``\\로 번역됩니다."
 
 #: ../Doc/reference/datamodel.rst:2177
 msgid "Emulating container types"
@@ -3655,7 +3674,6 @@ msgstr ""
 " 규칙이 너무 복잡해집니다)."
 
 #: ../Doc/reference/datamodel.rst:2417
-#, fuzzy
 msgid ""
 "If the right operand's type is a subclass of the left operand's type and "
 "that subclass provides a different implementation of the reflected method"
@@ -3663,8 +3681,9 @@ msgid ""
 "non-reflected method. This behavior allows subclasses to override their "
 "ancestors' operations."
 msgstr ""
-"만약 오른쪽 피연산자의 형이 왼쪽 피연산자의 형의 서브 클래스이고, 그 서브 클래스가 연산의 뒤집힌 메서드들 제공하면, 이 메서드가"
-" 왼쪽 연산자의 뒤집히지 않은 메서드보다 먼저 호출됩니다. 이 동작은 서브 클래스가 조상들의 연산을 재정의할 수 있도록 합니다."
+"만약 오른쪽 피연산자의 형이 왼쪽 피연산자의 형의 서브 클래스이고, 그 서브 클래스가 연산의 뒤집힌 메서드의 다른 구현을 제공하면,"
+" 이 메서드가 왼쪽 연산자의 뒤집히지 않은 메서드보다 먼저 호출됩니다. 이 동작은 서브 클래스가 조상들의 연산을 재정의할 수 있도록"
+" 합니다."
 
 #: ../Doc/reference/datamodel.rst:2438
 msgid ""
@@ -4142,33 +4161,11 @@ msgstr ""
 " - 그렇게 하는 것은 그런 대안을 명시적으로 *금지하는* 반대 효과를 줍니다."
 
 #: ../Doc/reference/datamodel.rst:2820
-#, fuzzy
 msgid ""
 "For operands of the same type, it is assumed that if the non-reflected "
 "method -- such as :meth:`__add__` -- fails then the overall operation is "
 "not supported, which is why the reflected method is not called."
 msgstr ""
-"피연산자들이 같은 형이면, 뒤집히지 않은 메서드(:meth:`__add__` 같은)가 실패하면 그 연산이 지원되지 않는 것으로 "
-"간주합니다. 이것이 뒤집힌 메서드가 호출되지 않는 이유입니다."
-
-#~ msgid ""
-#~ "By default, :meth:`__ne__` delegates to "
-#~ ":meth:`__eq__` and inverts the result "
-#~ "unless it is ``NotImplemented``.  There "
-#~ "are no other implied relationships among"
-#~ " the comparison operators, for example, "
-#~ "the truth of ``(x<y or x==y)`` "
-#~ "does not imply ``x<=y``. To "
-#~ "automatically generate ordering operations "
-#~ "from a single root operation, see "
-#~ ":func:`functools.total_ordering`."
-#~ msgstr ""
-#~ "기본적으로, :meth:`__ne__` 는 :meth:`__eq__` 를 "
-#~ "호출한 후 ``NotImplemented`` 가 아니라면 그 "
-#~ "결과를 뒤집습니다. 비교 연산자 간의 다른 암시적인 "
-#~ "관계는 없습니다. 예를 들어, ``(x<y or x==y)``"
-#~ " 가 참이라고 해서 ``x<=y`` 가 참일 필요는"
-#~ " 없습니다. 하나의 기본 연산으로부터 대소관계 연산을 "
-#~ "자동으로 만들어내려면 :func:`functools.total_ordering` 를 "
-#~ "보면 됩니다."
+"피연산자들이 같은 형이면, 뒤집히지 않은 메서드(가령 :meth:`__add__`)가 실패하면 그 전체 연산이 지원되지 않는 것으로"
+" 간주합니다. 이것이 뒤집힌 메서드가 호출되지 않는 이유입니다."
 
