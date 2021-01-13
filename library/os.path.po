@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-15 07:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,13 +18,15 @@ msgstr ""
 
 #: ../Doc/library/os.path.rst:2
 msgid ":mod:`os.path` --- Common pathname manipulations"
-msgstr ""
+msgstr ":mod:`os.path` --- 일반적인 경로명 조작"
 
 #: ../Doc/library/os.path.rst:7
 msgid ""
 "**Source code:** :source:`Lib/posixpath.py` (for POSIX) and "
 ":source:`Lib/ntpath.py` (for Windows NT)."
 msgstr ""
+"**소스 코드:** :source:`Lib/posixpath.py` (POSIX의 경우) 및 "
+":source:`Lib/ntpath.py` (윈도우 NT의 경우)"
 
 #: ../Doc/library/os.path.rst:14
 msgid ""
@@ -40,6 +41,12 @@ msgid ""
 " Windows (in the standard ``mbcs`` encoding), hence Windows applications "
 "should use string objects to access all files."
 msgstr ""
+"이 모듈은 경로명에 유용한 함수를 구현합니다. 파일을 읽거나 쓰려면 :func:`open`\\을 참조하고, 파일 시스템에 "
+"액세스하려면 :mod:`os` 모듈을 참조하십시오. 경로 매개 변수는 문자열이나 바이트열로 전달할 수 있습니다. 응용 프로그램은 "
+"파일 이름을 (유니코드) 문자열로 나타내도록 권장됩니다. 불행히도, 일부 파일 이름은 유닉스에서 문자열로 표현할 수 없어서, "
+"유닉스에서 임의의 파일 이름을 지원해야 하는 응용 프로그램은 바이트열 객체를 사용하여 경로 이름을 나타내야 합니다. 반대로, "
+"바이트열 객체를 사용하면 윈도우에서 모든 파일 이름(표준 ``mbcs`` 인코딩에서)을 표현할 수 없습니다, 따라서 윈도우 응용 "
+"프로그램은 문자열 객체를 사용하여 모든 파일에 액세스해야 합니다."
 
 #: ../Doc/library/os.path.rst:25
 msgid ""
@@ -48,10 +55,13 @@ msgid ""
 "invoked explicitly when an application desires shell-like path expansion."
 "  (See also the :mod:`glob` module.)"
 msgstr ""
+"유닉스 셸과 달리, 파이썬은 어떤 *자동* 경로 확장도 수행하지 않습니다. :func:`expanduser`\\와 "
+":func:`expandvars`\\와 같은 함수는 응용 프로그램이 셸과 같은 경로 확장을 원할 때 명시적으로 호출할 수 있습니다."
+" (:mod:`glob` 모듈도 참조하십시오.)"
 
 #: ../Doc/library/os.path.rst:32
 msgid "The :mod:`pathlib` module offers high-level path objects."
-msgstr ""
+msgstr ":mod:`pathlib` 모듈은 고수준의 경로 객체를 제공합니다."
 
 #: ../Doc/library/os.path.rst:37
 msgid ""
@@ -59,6 +69,8 @@ msgid ""
 " their parameters.  The result is an object of the same type, if a path "
 "or file name is returned."
 msgstr ""
+"이 모든 함수는 매개 변수가 모두 바이트열 객체이거나 모두 문자열 객체인 것만 허락합니다. 경로나 파일 이름이 반환되면, 결과는 "
+"같은 형의 객체입니다."
 
 #: ../Doc/library/os.path.rst:44
 msgid ""
@@ -70,14 +82,17 @@ msgid ""
 "you want to manipulate a path that is *always* in one of the different "
 "formats.  They all have the same interface:"
 msgstr ""
+"운영 체제마다 경로 이름 규칙이 다르기 때문에, 표준 라이브러리에 이 모듈의 여러 버전이 있습니다. :mod:`os.path` "
+"모듈은 항상 파이썬이 실행 중인 운영 체제에 적합한 경로 모듈이고, 따라서 지역 경로에 사용할 수 있습니다. 그러나, *항상* 다른"
+" 형식 중 하나인 경로를 조작하려면 개별 모듈을 임포트 해서 사용할 수도 있습니다. 그들은 모두 같은 인터페이스를 가지고 있습니다:"
 
 #: ../Doc/library/os.path.rst:52
 msgid ":mod:`posixpath` for UNIX-style paths"
-msgstr ""
+msgstr "유닉스 스타일 경로는 :mod:`posixpath`"
 
 #: ../Doc/library/os.path.rst:53
 msgid ":mod:`ntpath` for Windows paths"
-msgstr ""
+msgstr "윈도우 경로는 :mod:`ntpath`"
 
 #: ../Doc/library/os.path.rst:58
 msgid ""
@@ -86,6 +101,9 @@ msgid ""
 "raising an exception for paths that contain characters or bytes "
 "unrepresentable at the OS level."
 msgstr ""
+":func:`exists`, :func:`lexists`, :func:`isdir`, :func:`isfile`, "
+":func:`islink` 및 :func:`ismount`\\는 이제 OS 수준에서 표현할 수 없는 문자나 바이트를 포함하는 경로에"
+" 대해 예외를 발생시키는 대신 ``False``\\를 반환합니다."
 
 #: ../Doc/library/os.path.rst:66
 msgid ""
@@ -93,6 +111,8 @@ msgid ""
 "platforms, this is equivalent to calling the function :func:`normpath` as"
 " follows: ``normpath(join(os.getcwd(), path))``."
 msgstr ""
+"경로명 *path*\\의 정규화된 절대 버전을 반환합니다. 대부분의 플랫폼에서, 이는 다음과 같이 :func:`normpath` "
+"함수를 호출하는 것과 동등합니다: ``normpath(join(os.getcwd(), path))``."
 
 #: ../Doc/library/os.path.rst:70 ../Doc/library/os.path.rst:83
 #: ../Doc/library/os.path.rst:123 ../Doc/library/os.path.rst:132
@@ -108,7 +128,7 @@ msgstr ""
 #: ../Doc/library/os.path.rst:423 ../Doc/library/os.path.rst:439
 #: ../Doc/library/os.path.rst:460 ../Doc/library/os.path.rst:471
 msgid "Accepts a :term:`path-like object`."
-msgstr ""
+msgstr ":term:`경로류 객체 <path-like object>`\\를 받아들입니다."
 
 #: ../Doc/library/os.path.rst:76
 msgid ""
@@ -119,6 +139,10 @@ msgid ""
 "``'/foo/bar/'`` returns ``'bar'``, the :func:`basename` function returns "
 "an empty string (``''``)."
 msgstr ""
+"경로명 *path*\\의 기본 이름을 반환합니다. 이것은 *path*\\를 함수 :func:`split`\\에 전달하여 반환된 쌍의"
+" 두 번째 요소입니다. 이 함수의 결과는 유닉스 :program:`basename` 프로그램과 다름에 유의하십시오; "
+"``'/foo/bar/'``\\에 대해 :program:`basename`\\은 ``'bar'``\\를 반환하고, "
+":func:`basename` 함수는 빈 문자열(``''``)을 반환합니다."
 
 #: ../Doc/library/os.path.rst:89
 msgid ""
@@ -127,16 +151,19 @@ msgid ""
 "relative pathnames, the *paths* are on the different drives or if *paths*"
 " is empty.  Unlike :func:`commonprefix`, this returns a valid path."
 msgstr ""
+"시퀀스 *paths*\\에 있는 각 경로명의 가장 긴 공통 하위 경로(sub-path)를 반환합니다. *paths*\\에 절대 "
+"경로명과 상대 경로명이 모두 있거나 *paths*\\가 다른 드라이브에 있거나 *paths*\\가 비어 있으면 "
+":exc:`ValueError`\\를 발생시킵니다. :func:`commonprefix`\\와 달리, 유효한 경로를 반환합니다."
 
 #: ../Doc/library/os.path.rst:96 ../Doc/library/os.path.rst:375
 #: ../Doc/library/os.path.rst:387 ../Doc/library/os.path.rst:403
 #: ../Doc/library/os.path.rst:419
 msgid ":ref:`Availability <availability>`: Unix, Windows."
-msgstr ""
+msgstr ":ref:`가용성 <availability>`: 유닉스, 윈도우"
 
 #: ../Doc/library/os.path.rst:99
 msgid "Accepts a sequence of :term:`path-like objects <path-like object>`."
-msgstr ""
+msgstr ":term:`경로류 객체 <path-like object>`\\의 시퀀스를 받아들입니다."
 
 #: ../Doc/library/os.path.rst:105
 msgid ""
@@ -144,18 +171,24 @@ msgid ""
 "prefix of all paths in  *list*.  If *list* is empty, return the empty "
 "string (``''``)."
 msgstr ""
+"*list*\\에 있는 모든 경로의 접두사인 가장 긴 경로 접두사(문자 단위로 취합니다)를 반환합니다. *list*\\가 비어 "
+"있으면, 빈 문자열(``''``)을 반환합니다."
 
 #: ../Doc/library/os.path.rst:111
 msgid ""
 "This function may return invalid paths because it works a character at a "
 "time.  To obtain a valid path, see :func:`commonpath`."
 msgstr ""
+"이 함수는 한 번에 한 문자씩 다루기 때문에 유효하지 않은 경로를 반환할 수 있습니다. 유효한 경로를 얻으려면, "
+":func:`commonpath`\\를 참조하십시오."
 
 #: ../Doc/library/os.path.rst:129
 msgid ""
 "Return the directory name of pathname *path*.  This is the first element "
 "of the pair returned by passing *path* to the function :func:`split`."
 msgstr ""
+"경로명 *path*\\의 디렉터리 이름을 반환합니다. 이것은 *path*\\를 함수 :func:`split`\\에 전달하여 반환된 "
+"쌍의 첫 번째 요소입니다."
 
 #: ../Doc/library/os.path.rst:138
 msgid ""
@@ -165,12 +198,17 @@ msgid ""
 "granted to execute :func:`os.stat` on the requested file, even if the "
 "*path* physically exists."
 msgstr ""
+"*path*\\가 기존 경로나 열린 파일 기술자를 참조하면 ``True``\\를 반환합니다. 깨진 심볼릭 링크에 대해서는 "
+"``False``\\를 반환합니다. 일부 플랫폼에서, *path*\\가 물리적으로 존재하더라도, 요청된 파일에 대해 "
+":func:`os.stat`\\을 실행할 권한이 없으면 이 함수는 ``False``\\를 반환할 수 있습니다."
 
 #: ../Doc/library/os.path.rst:144
 msgid ""
 "*path* can now be an integer: ``True`` is returned if it is an  open file"
 " descriptor, ``False`` otherwise."
 msgstr ""
+"*path*\\는 이제 정수가 될 수 있습니다: 열린 파일 기술자이면 ``True``\\가 반환되고, 그렇지 않으면 "
+"``False``\\가 반환됩니다."
 
 #: ../Doc/library/os.path.rst:154
 msgid ""
@@ -178,12 +216,16 @@ msgid ""
 "for broken symbolic links.   Equivalent to :func:`exists` on platforms "
 "lacking :func:`os.lstat`."
 msgstr ""
+"*path*\\가 기존 경로를 참조하면 ``True``\\를 반환합니다. 깨진 심볼릭 링크에 대해 ``True``\\를 반환합니다."
+" :func:`os.lstat`\\이 없는 플랫폼에서 :func:`exists`\\와 동등합니다."
 
 #: ../Doc/library/os.path.rst:166
 msgid ""
 "On Unix and Windows, return the argument with an initial component of "
 "``~`` or ``~user`` replaced by that *user*'s home directory."
 msgstr ""
+"유닉스와 윈도우에서, ``~``\\나 ``~user``\\의 초기 구성 요소가 해당 *사용자*\\의 홈 디렉터리로 치환된 인자를 "
+"반환합니다."
 
 #: ../Doc/library/os.path.rst:171
 msgid ""
@@ -193,6 +235,9 @@ msgid ""
 ":mod:`pwd`. An initial ``~user`` is looked up directly in the password "
 "directory."
 msgstr ""
+"유닉스에서, 초기 ``~``\\는 환경 변수 :envvar:`HOME`\\이 설정되어 있다면 그것으로 치환됩니다; 그렇지 않으면 "
+"현재 사용자의 홈 디렉터리가 내장 모듈 :mod:`pwd`\\를 통해 비밀번호 디렉터리에서 조회됩니다. 초기 ``~user``\\는"
+" 비밀번호 디렉터리에서 직접 조회됩니다."
 
 #: ../Doc/library/os.path.rst:176
 msgid ""
@@ -201,16 +246,19 @@ msgid ""
 "An initial ``~user`` is handled by stripping the last directory component"
 " from the created user path derived above."
 msgstr ""
+"윈도우에서, :envvar:`USERPROFILE`\\이 설정되었으면 이것이 사용됩니다, 그렇지 않으면 "
+":envvar:`HOMEPATH`\\와 :envvar:`HOMEDRIVE`\\의 조합이 사용됩니다. 초기 ``~user``\\는 "
+"위에서 파생되어 만들어진 사용자 경로에서 마지막 디렉터리 구성 요소를 제거하여 처리됩니다."
 
 #: ../Doc/library/os.path.rst:181
 msgid ""
 "If the expansion fails or if the path does not begin with a tilde, the "
 "path is returned unchanged."
-msgstr ""
+msgstr "확장이 실패하거나 경로가 물결표로 시작하지 않으면, 경로는 변경되지 않은 상태로 반환됩니다."
 
 #: ../Doc/library/os.path.rst:187
 msgid "No longer uses :envvar:`HOME` on Windows."
-msgstr ""
+msgstr "더는 윈도우에서 :envvar:`HOME`\\을 사용하지 않습니다."
 
 #: ../Doc/library/os.path.rst:196
 msgid ""
@@ -219,12 +267,14 @@ msgid ""
 "environment variable *name*.  Malformed variable names and references to "
 "non-existing variables are left unchanged."
 msgstr ""
+"환경 변수로 확장된 인자를 반환합니다. ``$name``\\이나 ``${name}`` 형식의 부분 문자열이 환경 변수 "
+"*name*\\의 값으로 치환됩니다. 잘못된 변수 이름과 존재하지 않는 변수에 대한 참조는 변경되지 않고 남습니다."
 
 #: ../Doc/library/os.path.rst:201
 msgid ""
 "On Windows, ``%name%`` expansions are supported in addition to ``$name`` "
 "and ``${name}``."
-msgstr ""
+msgstr "윈도우에서, ``$name``\\과 ``${name}`` 외에 ``%name%`` 확장이 지원됩니다."
 
 #: ../Doc/library/os.path.rst:210
 msgid ""
@@ -233,6 +283,8 @@ msgid ""
 ":mod:`time` module).  Raise :exc:`OSError` if the file does not exist or "
 "is inaccessible."
 msgstr ""
+"*path*\\의 마지막 액세스 시간을 반환합니다. 반환 값은 에포크(epoch) 이후 초 수를 나타내는 부동 소수점 숫자입니다 "
+"(:mod:`time` 모듈을 참조하십시오). 파일이 없거나 액세스할 수 없으면 :exc:`OSError`\\를 발생시킵니다."
 
 #: ../Doc/library/os.path.rst:217
 msgid ""
@@ -241,6 +293,8 @@ msgid ""
 "the  :mod:`time` module). Raise :exc:`OSError` if the file does not exist"
 " or is inaccessible."
 msgstr ""
+"*path*\\를 마지막으로 수정한 시간을 반환합니다. 반환 값은 에포크(epoch) 이후 초 수를 나타내는 부동 소수점 숫자입니다"
+" (:mod:`time` 모듈을 참조하십시오). 파일이 없거나 액세스할 수 없으면 :exc:`OSError`\\를 발생시킵니다."
 
 #: ../Doc/library/os.path.rst:227
 msgid ""
@@ -250,12 +304,15 @@ msgid ""
 "of seconds since the epoch (see the  :mod:`time` module).  Raise "
 ":exc:`OSError` if the file does not exist or is inaccessible."
 msgstr ""
+"시스템의 ctime을 반환하는데, 일부 시스템(가령 유닉스)에서는 마지막 메타 데이터 변경 시간이고, 다른 시스템(가령 "
+"윈도우)에서는 *path* 생성 시간입니다. 반환 값은 에포크(epoch) 이후 초 수를 나타내는 부동 소수점 숫자입니다 "
+"(:mod:`time` 모듈을 참조하십시오). 파일이 없거나 액세스할 수 없으면 :exc:`OSError`\\를 발생시킵니다."
 
 #: ../Doc/library/os.path.rst:239
 msgid ""
 "Return the size, in bytes, of *path*.  Raise :exc:`OSError` if the file "
 "does not exist or is inaccessible."
-msgstr ""
+msgstr "*path*\\의 크기를 바이트 단위로 반환합니다. 파일이 없거나 액세스할 수 없으면 :exc:`OSError`\\를 발생시킵니다."
 
 #: ../Doc/library/os.path.rst:248
 msgid ""
@@ -263,6 +320,8 @@ msgid ""
 "it begins with a slash, on Windows that it begins with a (back)slash "
 "after chopping off a potential drive letter."
 msgstr ""
+"*path*\\가 절대 경로명이면 ``True``\\를 반환합니다. 유닉스에서는 슬래시로 시작하고, 윈도우에서는 잠재적 드라이브 "
+"문자를 잘라낸 후 (역) 슬래시로 시작함을 의미합니다."
 
 #: ../Doc/library/os.path.rst:258
 msgid ""
@@ -270,6 +329,8 @@ msgid ""
 "This follows symbolic links, so both :func:`islink` and :func:`isfile` "
 "can be true for the same path."
 msgstr ""
+"*path*\\가 :func:`존재하는 <exists>` 일반 파일이면 ``True``\\를 반환합니다. 이것은 심볼릭 링크를 "
+"따르므로, 같은 경로에 대해 :func:`islink`\\와 :func:`isfile`\\이 모두 참일 수 있습니다."
 
 #: ../Doc/library/os.path.rst:268
 msgid ""
@@ -277,6 +338,8 @@ msgid ""
 "This follows symbolic links, so both :func:`islink` and :func:`isdir` can"
 " be true for the same path."
 msgstr ""
+"*path*\\가 :func:`존재하는 <exists>` 디렉터리이면 ``True``\\를 반환합니다. 이것은 심볼릭 링크를 "
+"따르므로, 같은 경로에 대해 :func:`islink`\\와 :func:`isdir`\\이 모두 참일 수 있습니다."
 
 #: ../Doc/library/os.path.rst:278
 msgid ""
@@ -284,6 +347,8 @@ msgid ""
 "directory entry that is a symbolic link.  Always ``False`` if symbolic "
 "links are not supported by the Python runtime."
 msgstr ""
+"*path*\\가 심볼릭 링크인 :func:`존재하는 <exists>` 디렉터리 항목을 가리키면 ``True``\\를 반환합니다. "
+"파이썬 런타임에서 심볼릭 링크를 지원하지 않으면 항상 ``False``\\입니다."
 
 #: ../Doc/library/os.path.rst:288
 msgid ""
@@ -298,10 +363,16 @@ msgid ""
 "``GetVolumePathName`` is called to see if it is different from the input "
 "path."
 msgstr ""
+"경로명 *path*\\가 :dfn:`마운트 지점(mount point)`\\이면 ``True``\\를 반환합니다: 다른 파일 "
+"시스템이 마운트된 파일 시스템의 지점. POSIX에서, 이 함수는 *path*\\의 부모 :file:`{path}/..`\\가 "
+"*path*\\와 다른 장치에 있는지, 또는 :file:`{path}/..`\\와 *path*\\가 같은 장치에서 같은 i-노드를 "
+"가리키는지를 확인합니다 --- 이 방법은 모든 유닉스와 POSIX 변형에서 마운트 지점을 감지해야 합니다. 같은 파일 시스템에서의 "
+"바인드 마운트(bind mounts)를 신뢰성 있게 감지할 수 없습니다. 윈도우에서, 드라이브 문자 루트와 공유 UNC는 항상 "
+"마운트 지점이며, 다른 경로의 경우 ``GetVolumePathName``\\을 호출해서 입력 경로와 다른지 봅니다."
 
 #: ../Doc/library/os.path.rst:298
 msgid "Support for detecting non-root mount points on Windows."
-msgstr ""
+msgstr "윈도우에서 비 루트 마운트 지점 감지 지원."
 
 #: ../Doc/library/os.path.rst:307
 msgid ""
@@ -313,6 +384,10 @@ msgid ""
 "components are thrown away and joining continues from the absolute path "
 "component."
 msgstr ""
+"하나 이상의 경로 구성 요소를 지능적으로 결합합니다. 반환 값은 마지막을 제외한 *path*\\와 *\\*paths*\\의 모든 "
+"멤버에 대해 비어 있지 않은 각 부분 다음에 정확히 하나의 디렉터리 구분자(``os.sep``)가 오도록 이어붙인 것입니다. 이는 "
+"마지막 부분이 비어 있을 때만 결과가 구분자로 끝남을 의미합니다. 구성 요소가 절대 경로이면, 그 앞의 모든 구성 요소를 버리고 "
+"절대 경로 구성 요소에서부터 결합이 계속됩니다."
 
 #: ../Doc/library/os.path.rst:315
 msgid ""
@@ -324,10 +399,14 @@ msgid ""
 "current directory on drive :file:`C:` (:file:`c:foo`), not "
 ":file:`c:\\\\foo`."
 msgstr ""
+"윈도우에서 절대 경로 구성 요소(예를 들어 ``r'\\foo'``)를 만날 때 드라이브 문자가 재설정되지 않습니다. 구성 요소에 "
+"드라이브 문자가 포함되어 있으면, 이전의 모든 구성 요소를 버리고 드라이브 문자를 재설정합니다. 각 드라이브에 현재 디렉터리가 있기"
+" 때문에, ``os.path.join(\"c:\", \"foo\")``\\는 :file:`c:\\\\foo`\\가 아니라 드라이브 "
+":file:`C:`\\의 현재 디렉터리에 상대적인 경로를 나타냅니다 (:file:`c:foo`)."
 
 #: ../Doc/library/os.path.rst:322
 msgid "Accepts a :term:`path-like object` for *path* and *paths*."
-msgstr ""
+msgstr "*path*\\와 *paths*\\에 대해 :term:`경로류 객체 <path-like object>`\\를 받아들입니다."
 
 #: ../Doc/library/os.path.rst:328
 msgid ""
@@ -335,6 +414,8 @@ msgid ""
 "the pathname to lowercase, and also convert forward slashes to backward "
 "slashes. On other operating systems, return the path unchanged."
 msgstr ""
+"경로명의 대소 문자를 정규화합니다. 윈도우에서는, 경로명의 모든 문자를 소문자로 변환하고, 슬래시도 역 슬래시로 변환합니다. 다른 "
+"운영 체제에서는, 경로를 변경하지 않고 반환합니다."
 
 #: ../Doc/library/os.path.rst:338
 msgid ""
@@ -344,23 +425,27 @@ msgid ""
 "path that contains symbolic links.  On Windows, it converts forward "
 "slashes to backward slashes. To normalize case, use :func:`normcase`."
 msgstr ""
+"중복된 구분자와 상위 수준 참조를 접어 경로명을 정규화합니다. 그래서 ``A//B``, ``A/B/``, ``A/./B`` 및 "
+"``A/foo/../B``\\가 모두 ``A/B``\\가 됩니다. 이 문자열 조작은 심볼릭 링크가 포함된 경로의 의미를 변경할 수 "
+"있습니다. 윈도우에서는, 슬래시를 역 슬래시로 변환합니다. 대소 문자를 정규화하려면, :func:`normcase`\\를 "
+"사용하십시오."
 
 #: ../Doc/library/os.path.rst:350
 msgid ""
 "Return the canonical path of the specified filename, eliminating any "
 "symbolic links encountered in the path (if they are supported by the "
 "operating system)."
-msgstr ""
+msgstr "(운영 체제에서 지원한다면) 경로에서 발견된 심볼릭 링크를 제거해서 지정된 파일명의 규범적(canonical) 경로를 반환합니다."
 
 #: ../Doc/library/os.path.rst:355
 msgid ""
 "When symbolic link cycles occur, the returned path will be one member of "
 "the cycle, but no guarantee is made about which member that will be."
-msgstr ""
+msgstr "심볼릭 링크 순환이 발생하면, 반환된 경로는 순환의 한 멤버가 되지만, 어떤 멤버가 될지는 보장하지 않습니다."
 
 #: ../Doc/library/os.path.rst:361
 msgid "Symbolic links and junctions are now resolved on Windows."
-msgstr ""
+msgstr "윈도우에서 심볼릭 링크와 정션(junctions)이 이제 해석됩니다."
 
 #: ../Doc/library/os.path.rst:367
 msgid ""
@@ -369,10 +454,12 @@ msgid ""
 "filesystem is not accessed to confirm the existence or nature of *path* "
 "or *start*."
 msgstr ""
+"현재 디렉터리나 선택적 *start* 디렉터리로부터 *path*\\로의 상대 파일 경로를 반환합니다. 이것은 경로 계산입니다: "
+"*path*\\나 *start*\\의 존재나 특성을 확인하기 위해 파일 시스템을 액세스하지 않습니다."
 
 #: ../Doc/library/os.path.rst:372
 msgid "*start* defaults to :attr:`os.curdir`."
-msgstr ""
+msgstr "*start*\\의 기본값은 :attr:`os.curdir`\\입니다."
 
 #: ../Doc/library/os.path.rst:382
 msgid ""
@@ -380,21 +467,23 @@ msgid ""
 "directory. This is determined by the device number and i-node number and "
 "raises an exception if an :func:`os.stat` call on either pathname fails."
 msgstr ""
+"두 경로명 인자가 같은 파일이나 디렉터리를 가리키면 ``True``\\를 반환합니다. 장치 번호와 i-노드 번호로 결정하며 경로명 "
+"중 어느 하나에 대해 :func:`os.stat` 호출이 실패하면 예외를 발생시킵니다."
 
 #: ../Doc/library/os.path.rst:388 ../Doc/library/os.path.rst:404
 #: ../Doc/library/os.path.rst:420
 msgid "Added Windows support."
-msgstr ""
+msgstr "윈도우 지원이 추가되었습니다."
 
 #: ../Doc/library/os.path.rst:391
 msgid "Windows now uses the same implementation as all other platforms."
-msgstr ""
+msgstr "윈도우는 이제 다른 모든 플랫폼과 같은 구현을 사용합니다."
 
 #: ../Doc/library/os.path.rst:400
 msgid ""
 "Return ``True`` if the file descriptors *fp1* and *fp2* refer to the same"
 " file."
-msgstr ""
+msgstr "파일 기술자 *fp1*\\과 *fp2*\\가 같은 파일을 가리키면 ``True``\\를 반환합니다."
 
 #: ../Doc/library/os.path.rst:413
 msgid ""
@@ -403,6 +492,9 @@ msgid ""
 ":func:`os.lstat`, or :func:`os.stat`.  This function implements the "
 "underlying comparison used by :func:`samefile` and :func:`sameopenfile`."
 msgstr ""
+"stat 튜플 *stat1*\\과 *stat2*\\가 같은 파일을 가리키면 ``True``\\를 반환합니다. 이러한 구조는 "
+":func:`os.fstat`, :func:`os.lstat` 또는 :func:`os.stat`\\에 의해 반환되었을 수 있습니다."
+" 이 함수는 :func:`samefile`\\과 :func:`sameopenfile`\\에서 사용하는 하부 비교를 구현합니다."
 
 #: ../Doc/library/os.path.rst:429
 msgid ""
@@ -416,6 +508,13 @@ msgid ""
 "same location as *path* (but the strings may differ).  Also see the "
 "functions :func:`dirname` and :func:`basename`."
 msgstr ""
+"*path* 경로명을 ``(head, tail)`` 쌍으로 분할합니다. 여기서 *tail*\\은 마지막 경로명 구성 요소이고 "
+"*head*\\는 그 앞에 오는 모든 것입니다. *tail* 부분에는 슬래시가 포함되지 않습니다; *path*\\가 슬래시로 "
+"끝나면, *tail*\\은 비어 있습니다. *path*\\에 슬래시가 없으면, *head*\\는 비어 있습니다. *path*\\가 "
+"비어 있으면, *head*\\와 *tail*\\이 모두 비어 있습니다. 후행 슬래시는 루트(하나나 그 이상의 슬래시로만 "
+"구성됩니다)가 아니라면 *head*\\에서 제거됩니다. 모든 경우에, ``join(head, tail)``\\은 *path*\\와 "
+"같은 위치에 대한 경로를 반환합니다 (하지만 문자열은 다를 수 있습니다). :func:`dirname`\\과 "
+":func:`basename` 함수도 참조하십시오."
 
 #: ../Doc/library/os.path.rst:445
 msgid ""
@@ -424,10 +523,13 @@ msgid ""
 "drive specifications, *drive* will always be the empty string.  In all "
 "cases, ``drive + tail`` will be the same as *path*."
 msgstr ""
+"경로명 *path*\\를 쌍 ``(drive, tail)``\\로 분할합니다. 여기서 *drive*\\는 마운트 지점이나 빈 "
+"문자열입니다. 드라이브 지정을 사용하지 않는 시스템에서 *drive*\\는 항상 빈 문자열입니다. 모든 경우에, ``drive + "
+"tail``\\은 *path*\\와 같습니다."
 
 #: ../Doc/library/os.path.rst:450
 msgid "On Windows, splits a pathname into drive/UNC sharepoint and relative path."
-msgstr ""
+msgstr "윈도우에서는, 경로명을 드라이브/UNC 공유 지점과 상대 경로로 분할합니다."
 
 #: ../Doc/library/os.path.rst:452
 msgid ""
@@ -435,6 +537,8 @@ msgid ""
 "and including the colon. e.g. ``splitdrive(\"c:/dir\")`` returns "
 "``(\"c:\", \"/dir\")``"
 msgstr ""
+"경로에 드라이브 문자가 포함되면, drive는 콜론까지의 콜론을 포함하는 모든 것을 포함합니다. 예를 들어, "
+"``splitdrive(\"c:/dir\")``\\은 ``(\"c:\", \"/dir\")``\\를 반환합니다."
 
 #: ../Doc/library/os.path.rst:456
 msgid ""
@@ -443,6 +547,9 @@ msgid ""
 "``splitdrive(\"//host/computer/dir\")`` returns ``(\"//host/computer\", "
 "\"/dir\")``"
 msgstr ""
+"경로에 UNC 경로가 포함되면, drive는 호스트 이름과 공유를 포함하는데, 최대 네 번째 구분 기호까지이고 네 번째 구분 기호는"
+" 포함하지 않습니다. 예를 들어, ``splitdrive(\"//host/computer/dir\")``\\은 "
+"``(\"//host/computer\", \"/dir\")``\\를 반환합니다."
 
 #: ../Doc/library/os.path.rst:466
 msgid ""
@@ -451,185 +558,13 @@ msgid ""
 "at most one period. Leading periods on the basename are  ignored; "
 "``splitext('.cshrc')`` returns  ``('.cshrc', '')``."
 msgstr ""
+"경로명 *path*\\를 ``root + ext == path``\\가 되도록 쌍 ``(root, ext)``\\로 분할하는데, "
+"*ext*\\는 비어 있거나 마침표로 시작하고 최대 하나의 마침표를 포함합니다. 기본 이름(basename)의 선행 마침표는 "
+"무시됩니다; ``splitext('.cshrc')``\\는 ``('.cshrc', '')``\\를 반환합니다."
 
 #: ../Doc/library/os.path.rst:477
 msgid ""
 "``True`` if arbitrary Unicode strings can be used as file names (within "
 "limitations imposed by the file system)."
-msgstr ""
-
-#~ msgid ""
-#~ "Return ``True`` if *path* is an "
-#~ "existing regular file.  This follows "
-#~ "symbolic links, so both :func:`islink` "
-#~ "and :func:`isfile` can be true for "
-#~ "the same path."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return ``True`` if *path* is an "
-#~ "existing directory.  This follows symbolic "
-#~ "links, so both :func:`islink` and "
-#~ ":func:`isdir` can be true for the "
-#~ "same path."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return ``True`` if *path* refers to "
-#~ "a directory entry that is a "
-#~ "symbolic link. Always ``False`` if "
-#~ "symbolic links are not supported by "
-#~ "the Python runtime."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the time of last access of"
-#~ " *path*.  The return value is a "
-#~ "number giving the number of seconds "
-#~ "since the epoch (see the  :mod:`time`"
-#~ " module).  Raise :exc:`OSError` if the "
-#~ "file does not exist or is "
-#~ "inaccessible."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If :func:`os.stat_float_times` returns ``True``, "
-#~ "the result is a floating point "
-#~ "number."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the time of last modification "
-#~ "of *path*.  The return value is a"
-#~ " number giving the number of seconds"
-#~ " since the epoch (see the  "
-#~ ":mod:`time` module). Raise :exc:`OSError` if"
-#~ " the file does not exist or is"
-#~ " inaccessible."
-#~ msgstr ""
-
-#~ msgid "Use *splitdrive* instead."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Split the pathname *path* into a "
-#~ "pair ``(unc, rest)`` so that *unc* "
-#~ "is the UNC mount point (such as"
-#~ " ``r'\\\\host\\mount'``), if present, and "
-#~ "*rest* the rest of the path (such"
-#~ " as  ``r'\\path\\file.ext'``).  For paths "
-#~ "containing drive letters, *unc* will "
-#~ "always be the empty string."
-#~ msgstr ""
-
-#~ msgid "Availability:  Windows."
-#~ msgstr ""
-
-#~ msgid "Availability: Unix, Windows"
-#~ msgstr ""
-
-#~ msgid "Availability: Unix, Windows."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Normalize the case of a pathname.  "
-#~ "On Unix and Mac OS X, this "
-#~ "returns the path unchanged; on case-"
-#~ "insensitive filesystems, it converts the "
-#~ "path to lowercase.  On Windows, it "
-#~ "also converts forward slashes to "
-#~ "backward slashes. Raise a TypeError if"
-#~ " the type of *path* is not "
-#~ "``str`` or ``bytes`` (directly or "
-#~ "indirectly through the :class:`os.PathLike` "
-#~ "interface)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return ``True`` if pathname *path* is"
-#~ " a :dfn:`mount point`: a point in "
-#~ "a file system where a different "
-#~ "file system has been mounted.  On "
-#~ "POSIX, the function checks whether "
-#~ "*path*'s parent, :file:`path/..`, is on "
-#~ "a different device than *path*, or "
-#~ "whether :file:`path/..` and *path* point "
-#~ "to the same i-node on the same "
-#~ "device --- this should detect mount "
-#~ "points for all Unix and POSIX "
-#~ "variants.  On Windows, a drive letter"
-#~ " root and a share UNC are "
-#~ "always mount points, and for any "
-#~ "other path ``GetVolumePathName`` is called "
-#~ "to see if it is different from "
-#~ "the input path."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the longest common sub-path "
-#~ "of each pathname in the sequence "
-#~ "*paths*.  Raise ValueError if *paths* "
-#~ "contains both absolute and relative "
-#~ "pathnames, or if *paths* is empty.  "
-#~ "Unlike :func:`commonprefix`, this returns a"
-#~ " valid path."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Normalize the case of a pathname.  "
-#~ "On Unix and Mac OS X, this "
-#~ "returns the path unchanged; on case-"
-#~ "insensitive filesystems, it converts the "
-#~ "path to lowercase.  On Windows, it "
-#~ "also converts forward slashes to "
-#~ "backward slashes. Raise a :exc:`TypeError` "
-#~ "if the type of *path* is not "
-#~ "``str`` or ``bytes`` (directly or "
-#~ "indirectly through the :class:`os.PathLike` "
-#~ "interface)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "**Source code:** :source:`Lib/posixpath.py` (for "
-#~ "POSIX), :source:`Lib/ntpath.py` (for Windows "
-#~ "NT), and :source:`Lib/macpath.py` (for "
-#~ "Macintosh)"
-#~ msgstr ""
-
-#~ msgid ":mod:`macpath` for old-style MacOS paths"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Return the longest common sub-path "
-#~ "of each pathname in the sequence "
-#~ "*paths*.  Raise :exc:`ValueError` if *paths*"
-#~ " contains both absolute and relative "
-#~ "pathnames, or if *paths* is empty.  "
-#~ "Unlike :func:`commonprefix`, this returns a"
-#~ " valid path."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "On Windows, :envvar:`HOME` and "
-#~ ":envvar:`USERPROFILE` will be used if "
-#~ "set, otherwise a combination of "
-#~ ":envvar:`HOMEPATH` and :envvar:`HOMEDRIVE` will "
-#~ "be used.  An initial ``~user`` is "
-#~ "handled by stripping the last directory"
-#~ " component from the created user path"
-#~ " derived above."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Normalize the case of a pathname.  "
-#~ "On Windows, convert all characters in"
-#~ " the pathname to lowercase, and also"
-#~ " convert forward slashes to backward "
-#~ "slashes. On other operating systems, "
-#~ "return the path unchanged. Raise a "
-#~ ":exc:`TypeError` if the type of *path*"
-#~ " is not ``str`` or ``bytes`` "
-#~ "(directly or indirectly through the "
-#~ ":class:`os.PathLike` interface)."
-#~ msgstr ""
+msgstr "(파일 시스템에 의해 부과된 제한 내에서) 임의의 유니코드 문자열을 파일 이름으로 사용할 수 있으면 ``True``."
 
