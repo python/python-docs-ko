@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 08:36+0900\n"
+"POT-Creation-Date: 2021-04-08 08:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -2890,4 +2890,61 @@ msgstr ""
 #: ../Doc/whatsnew/3.9.rst:1499
 msgid "(Contributed by Ronald Oussoren and Lawrence D'Anna in :issue:`41100`.)"
 msgstr "(Contributed by Ronald Oussoren and Lawrence D'Anna in :issue:`41100`.)"
+
+#: ../Doc/whatsnew/3.9.rst:1502
+#, fuzzy
+msgid "Notable changes in Python 3.9.2"
+msgstr "파이썬 3.9.1의 주목할만한 변경 사항"
+
+#: ../Doc/whatsnew/3.9.rst:1505
+msgid "collections.abc"
+msgstr ""
+
+#: ../Doc/whatsnew/3.9.rst:1507
+msgid ""
+":class:`collections.abc.Callable` generic now flattens type parameters, "
+"similar to what :data:`typing.Callable` currently does.  This means that "
+"``collections.abc.Callable[[int, str], str]`` will have ``__args__`` of "
+"``(int, str, str)``; previously this was ``([int, str], str)``.  To allow"
+" this change, :class:`types.GenericAlias` can now be subclassed, and a "
+"subclass will be returned when subscripting the "
+":class:`collections.abc.Callable` type. Code which accesses the arguments"
+" via :func:`typing.get_args` or ``__args__`` need to account for this "
+"change.  A :exc:`DeprecationWarning` may be emitted for invalid forms of "
+"parameterizing :class:`collections.abc.Callable` which may have passed "
+"silently in Python 3.9.1.  This :exc:`DeprecationWarning` will become a "
+":exc:`TypeError` in Python 3.10. (Contributed by Ken Jin in "
+":issue:`42195`.)"
+msgstr ""
+
+#: ../Doc/whatsnew/3.9.rst:1521
+msgid "urllib.parse"
+msgstr ""
+
+#: ../Doc/whatsnew/3.9.rst:1523
+msgid ""
+"Earlier Python versions allowed using both ``;`` and ``&`` as query "
+"parameter separators in :func:`urllib.parse.parse_qs` and "
+":func:`urllib.parse.parse_qsl`.  Due to security concerns, and to conform"
+" with newer W3C recommendations, this has been changed to allow only a "
+"single separator key, with ``&`` as the default.  This change also "
+"affects :func:`cgi.parse` and :func:`cgi.parse_multipart` as they use the"
+" affected functions internally. For more details, please see their "
+"respective documentation. (Contributed by Adam Goldschmidt, Senthil "
+"Kumaran and Ken Jin in :issue:`42967`.)"
+msgstr ""
+
+#: ../Doc/whatsnew/3.9.rst:1534
+#, fuzzy
+msgid "Notable changes in Python 3.9.3"
+msgstr "파이썬 3.9.1의 주목할만한 변경 사항"
+
+#: ../Doc/whatsnew/3.9.rst:1536
+msgid ""
+"A security fix alters the :class:`ftplib.FTP` behavior to not trust the "
+"IPv4 address sent from the remote server when setting up a passive data "
+"channel.  We reuse the ftp server IP address instead.  For unusual code "
+"requiring the old behavior, set a ``trust_server_pasv_ipv4_address`` "
+"attribute on your FTP instance to ``True``.  (See :issue:`43285`)"
+msgstr ""
 

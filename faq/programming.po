@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 08:36+0900\n"
+"POT-Creation-Date: 2021-04-08 08:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -2232,14 +2232,107 @@ msgstr ""
 "객체가 여전히 살아 있도록 하려면, 그 객체에 대한 다른 참조를 만드십시오:"
 
 #: ../Doc/faq/programming.rst:1706
+msgid "When can I rely on identity tests with the *is* operator?"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1708
+msgid ""
+"The ``is`` operator tests for object identity.  The test ``a is b`` is "
+"equivalent to ``id(a) == id(b)``."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1711
+msgid ""
+"The most important property of an identity test is that an object is "
+"always identical to itself, ``a is a`` always returns ``True``.  Identity"
+" tests are usually faster than equality tests.  And unlike equality "
+"tests, identity tests are guaranteed to return a boolean ``True`` or "
+"``False``."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1716
+msgid ""
+"However, identity tests can *only* be substituted for equality tests when"
+" object identity is assured.  Generally, there are three circumstances "
+"where identity is guaranteed:"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1720
+msgid ""
+"1) Assignments create new names but do not change object identity.  After"
+" the assignment ``new = old``, it is guaranteed that ``new is old``."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1723
+msgid ""
+"2) Putting an object in a container that stores object references does "
+"not change object identity.  After the list assignment ``s[0] = x``, it "
+"is guaranteed that ``s[0] is x``."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1727
+msgid ""
+"3) If an object is a singleton, it means that only one instance of that "
+"object can exist.  After the assignments ``a = None`` and ``b = None``, "
+"it is guaranteed that ``a is b`` because ``None`` is a singleton."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1731
+msgid ""
+"In most other circumstances, identity tests are inadvisable and equality "
+"tests are preferred.  In particular, identity tests should not be used to"
+" check constants such as :class:`int` and :class:`str` which aren't "
+"guaranteed to be singletons::"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1748
+msgid "Likewise, new instances of mutable containers are never identical::"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1755
+msgid ""
+"In the standard library code, you will see several common patterns for "
+"correctly using identity tests:"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1758
+msgid ""
+"1) As recommended by :pep:`8`, an identity test is the preferred way to "
+"check for ``None``.  This reads like plain English in code and avoids "
+"confusion with other objects that may have boolean values that evaluate "
+"to false."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1762
+msgid ""
+"2) Detecting optional arguments can be tricky when ``None`` is a valid "
+"input value.  In those situations, you can create an singleton sentinel "
+"object guaranteed to be distinct from other objects.  For example, here "
+"is how to implement a method that behaves like :meth:`dict.pop`::"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1778
+msgid ""
+"3) Container implementations sometimes need to augment equality tests "
+"with identity tests.  This prevents the code from being confused by "
+"objects such as ``float('NaN')`` that are not equal to themselves."
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1782
+msgid ""
+"For example, here is the implementation of "
+":meth:`collections.abc.Sequence.__contains__`::"
+msgstr ""
+
+#: ../Doc/faq/programming.rst:1793
 msgid "Modules"
 msgstr "모듈"
 
-#: ../Doc/faq/programming.rst:1709
+#: ../Doc/faq/programming.rst:1796
 msgid "How do I create a .pyc file?"
 msgstr ".pyc 파일을 어떻게 만듭니까?"
 
-#: ../Doc/faq/programming.rst:1711
+#: ../Doc/faq/programming.rst:1798
 msgid ""
 "When a module is imported for the first time (or when the source file has"
 " changed since the current compiled file was created) a ``.pyc`` file "
@@ -2256,7 +2349,7 @@ msgstr ""
 "``python`` 바이너리 파일에 종속되는 중간 구성 요소를 갖는 파일명을 갖습니다. (자세한 내용은 :pep:`3147`\\을 "
 "참조하십시오.)"
 
-#: ../Doc/faq/programming.rst:1719
+#: ../Doc/faq/programming.rst:1806
 msgid ""
 "One reason that a ``.pyc`` file may not be created is a permissions "
 "problem with the directory containing the source file, meaning that the "
@@ -2268,7 +2361,7 @@ msgstr ""
 "``__pycache__`` 서브 디렉터리를 만들 수 없다는 뜻입니다. 예를 들어, 한 사용자로 개발했지만 다른 사용자로 실행하는 "
 "경우에 이런 일이 일어날 수 있습니다, 가령 웹 서버로 테스트하고 있을 때입니다."
 
-#: ../Doc/faq/programming.rst:1724
+#: ../Doc/faq/programming.rst:1811
 msgid ""
 "Unless the :envvar:`PYTHONDONTWRITEBYTECODE` environment variable is set,"
 " creation of a .pyc file is automatic if you're importing a module and "
@@ -2280,7 +2373,7 @@ msgstr ""
 "``__pycache__`` 서브 디렉터리를 만들고 컴파일된 모듈을 그 서브 디렉터리에 쓸 수 있는 능력(권한, 여유 공간 등)이 "
 "있으면 .pyc 파일의 생성은 자동입니다."
 
-#: ../Doc/faq/programming.rst:1729
+#: ../Doc/faq/programming.rst:1816
 msgid ""
 "Running Python on a top level script is not considered an import and no "
 "``.pyc`` will be created.  For example, if you have a top-level module "
@@ -2295,7 +2388,7 @@ msgstr ""
 "``.pyc``\\가 만들어지지만, ``foo.py``\\를 임포트 하지 않기 때문에 ``foo``\\에 대해서는 ``.pyc`` "
 "파일이 만들어지지 않습니다."
 
-#: ../Doc/faq/programming.rst:1736
+#: ../Doc/faq/programming.rst:1823
 msgid ""
 "If you need to create a ``.pyc`` file for ``foo`` -- that is, to create a"
 " ``.pyc`` file for a module that is not imported -- you can, using the "
@@ -2304,7 +2397,7 @@ msgstr ""
 "``foo``\\에 대한 ``.pyc`` 파일을 만들 필요가 있으면 -- 즉, 임포트 되지 않는 모듈에 대한 ``.pyc`` 파일을"
 " 만들려면 -- :mod:`py_compile`\\과 :mod:`compileall` 모듈을 사용할 수 있습니다."
 
-#: ../Doc/faq/programming.rst:1740
+#: ../Doc/faq/programming.rst:1827
 msgid ""
 "The :mod:`py_compile` module can manually compile any module.  One way is"
 " to use the ``compile()`` function in that module interactively::"
@@ -2312,7 +2405,7 @@ msgstr ""
 ":mod:`py_compile` 모듈은 임의의 모듈을 수동으로 컴파일할 수 있습니다. 한 가지 방법은 해당 모듈에서 "
 "``compile()`` 함수를 대화식으로 사용하는 것입니다::"
 
-#: ../Doc/faq/programming.rst:1746
+#: ../Doc/faq/programming.rst:1833
 msgid ""
 "This will write the ``.pyc`` to a ``__pycache__`` subdirectory in the "
 "same location as ``foo.py`` (or you can override that with the optional "
@@ -2321,7 +2414,7 @@ msgstr ""
 "이것은 ``.pyc``\\를 ``foo.py``\\와 같은 위치에 있는 ``__pycache__`` 서브 디렉터리에 기록합니다 "
 "(또는 선택적 매개변수 ``cfile``\\로 이를 재정의할 수 있습니다)."
 
-#: ../Doc/faq/programming.rst:1750
+#: ../Doc/faq/programming.rst:1837
 msgid ""
 "You can also automatically compile all files in a directory or "
 "directories using the :mod:`compileall` module.  You can do it from the "
@@ -2332,11 +2425,11 @@ msgstr ""
 "``compileall.py``\\를 실행하고 컴파일할 파이썬 파일이 포함된 디렉터리의 경로를 제공하여 셸 프롬프트에서 이를 수행할"
 " 수 있습니다::"
 
-#: ../Doc/faq/programming.rst:1759
+#: ../Doc/faq/programming.rst:1846
 msgid "How do I find the current module name?"
 msgstr "현재 모듈 이름을 어떻게 찾습니까?"
 
-#: ../Doc/faq/programming.rst:1761
+#: ../Doc/faq/programming.rst:1848
 msgid ""
 "A module can find out its own module name by looking at the predefined "
 "global variable ``__name__``.  If this has the value ``'__main__'``, the "
@@ -2348,61 +2441,61 @@ msgstr ""
 "``'__main__'``\\이면, 프로그램이 스크립트로 실행 중입니다. 일반적으로 모듈을 임포트 해서 사용하는 많은 모듈은 명령 "
 "줄 인터페이스나 자체 테스트를 제공하며, ``__name__``\\을 확인한 후에 만 이 코드를 실행합니다::"
 
-#: ../Doc/faq/programming.rst:1776
+#: ../Doc/faq/programming.rst:1863
 msgid "How can I have modules that mutually import each other?"
 msgstr "서로 임포트 하는 모듈을 어떻게 만들 수 있습니까?"
 
-#: ../Doc/faq/programming.rst:1778
+#: ../Doc/faq/programming.rst:1865
 msgid "Suppose you have the following modules:"
 msgstr "다음 모듈이 있다고 가정하십시오:"
 
-#: ../Doc/faq/programming.rst:1780
+#: ../Doc/faq/programming.rst:1867
 msgid "foo.py::"
 msgstr "foo.py::"
 
-#: ../Doc/faq/programming.rst:1785
+#: ../Doc/faq/programming.rst:1872
 msgid "bar.py::"
 msgstr "bar.py::"
 
-#: ../Doc/faq/programming.rst:1790
+#: ../Doc/faq/programming.rst:1877
 msgid "The problem is that the interpreter will perform the following steps:"
 msgstr "문제는 인터프리터가 다음 단계를 수행한다는 것입니다:"
 
-#: ../Doc/faq/programming.rst:1792
+#: ../Doc/faq/programming.rst:1879
 msgid "main imports foo"
 msgstr "main이 foo를 임포트 합니다"
 
-#: ../Doc/faq/programming.rst:1793
+#: ../Doc/faq/programming.rst:1880
 msgid "Empty globals for foo are created"
 msgstr "foo에 대한 빈 전역이 만들어집니다"
 
-#: ../Doc/faq/programming.rst:1794
+#: ../Doc/faq/programming.rst:1881
 msgid "foo is compiled and starts executing"
 msgstr "foo가 컴파일되고 실행되기 시작합니다"
 
-#: ../Doc/faq/programming.rst:1795
+#: ../Doc/faq/programming.rst:1882
 msgid "foo imports bar"
 msgstr "foo가 bar를 임포트 합니다"
 
-#: ../Doc/faq/programming.rst:1796
+#: ../Doc/faq/programming.rst:1883
 msgid "Empty globals for bar are created"
 msgstr "bar에 대한 빈 전역이 만들어집니다"
 
-#: ../Doc/faq/programming.rst:1797
+#: ../Doc/faq/programming.rst:1884
 msgid "bar is compiled and starts executing"
 msgstr "바가 컴파일되고 실행되기 시작합니다"
 
-#: ../Doc/faq/programming.rst:1798
+#: ../Doc/faq/programming.rst:1885
 msgid ""
 "bar imports foo (which is a no-op since there already is a module named "
 "foo)"
 msgstr "bar가 foo를 임포트 합니다 (이미 foo라는 모듈이 있어서 no-op입니다)"
 
-#: ../Doc/faq/programming.rst:1799
+#: ../Doc/faq/programming.rst:1886
 msgid "bar.foo_var = foo.foo_var"
 msgstr "bar.foo_var = foo.foo_var"
 
-#: ../Doc/faq/programming.rst:1801
+#: ../Doc/faq/programming.rst:1888
 msgid ""
 "The last step fails, because Python isn't done with interpreting ``foo`` "
 "yet and the global symbol dictionary for ``foo`` is still empty."
@@ -2410,17 +2503,17 @@ msgstr ""
 "마지막 단계가 실패합니다. 파이썬이 아직 ``foo``\\를 인터프리트 하는 것을 완료하지 않았고 ``foo``\\의 전역 기호 "
 "딕셔너리가 여전히 비어 있기 때문입니다."
 
-#: ../Doc/faq/programming.rst:1804
+#: ../Doc/faq/programming.rst:1891
 msgid ""
 "The same thing happens when you use ``import foo``, and then try to "
 "access ``foo.foo_var`` in global code."
 msgstr "``import foo``\\를 사용하고 전역 코드에서 ``foo.foo_var``\\에 액세스하려고 할 때도 같은 일이 일어납니다."
 
-#: ../Doc/faq/programming.rst:1807
+#: ../Doc/faq/programming.rst:1894
 msgid "There are (at least) three possible workarounds for this problem."
 msgstr "이 문제에 대해 가능한 (최소한) 세 가지 해결 방법이 있습니다."
 
-#: ../Doc/faq/programming.rst:1809
+#: ../Doc/faq/programming.rst:1896
 msgid ""
 "Guido van Rossum recommends avoiding all uses of ``from <module> import "
 "...``, and placing all code inside functions.  Initializations of global "
@@ -2432,47 +2525,47 @@ msgstr ""
 "내에 배치할 것을 권장합니다. 전역 변수와 클래스 변수의 초기화는 상수나 내장 함수만 사용해야 합니다. 이것은 임포트 된 모듈의 "
 "모든 것이 ``<module>.<name>``\\으로 참조됨을 의미합니다."
 
-#: ../Doc/faq/programming.rst:1814
+#: ../Doc/faq/programming.rst:1901
 msgid ""
 "Jim Roskind suggests performing steps in the following order in each "
 "module:"
 msgstr "Jim Roskind는 각 모듈에서 다음 순서로 단계를 수행할 것을 제안합니다:"
 
-#: ../Doc/faq/programming.rst:1816
+#: ../Doc/faq/programming.rst:1903
 msgid ""
 "exports (globals, functions, and classes that don't need imported base "
 "classes)"
 msgstr "내보내기 (전역, 함수 및 베이스 클래스를 임포트 할 필요가 없는 클래스)"
 
-#: ../Doc/faq/programming.rst:1818
+#: ../Doc/faq/programming.rst:1905
 msgid "``import`` statements"
 msgstr "``import`` 문"
 
-#: ../Doc/faq/programming.rst:1819
+#: ../Doc/faq/programming.rst:1906
 msgid "active code (including globals that are initialized from imported values)."
 msgstr "활성 코드 (임포트 된 값에서 초기화된 전역 포함)."
 
-#: ../Doc/faq/programming.rst:1821
+#: ../Doc/faq/programming.rst:1908
 msgid ""
 "van Rossum doesn't like this approach much because the imports appear in "
 "a strange place, but it does work."
 msgstr "van Rossum은 임포트가 이상한 곳에 나타나기 때문에 이 방법을 많이 좋아하지 않지만, 작동합니다."
 
-#: ../Doc/faq/programming.rst:1824
+#: ../Doc/faq/programming.rst:1911
 msgid ""
 "Matthias Urlichs recommends restructuring your code so that the recursive"
 " import is not necessary in the first place."
 msgstr "Matthias Urlichs는 처음부터 재귀 임포트가 필요하지 않도록 코드를 재구성할 것을 권합니다."
 
-#: ../Doc/faq/programming.rst:1827
+#: ../Doc/faq/programming.rst:1914
 msgid "These solutions are not mutually exclusive."
 msgstr "이 해결 방법들은 상호 배타적이지 않습니다."
 
-#: ../Doc/faq/programming.rst:1831
+#: ../Doc/faq/programming.rst:1918
 msgid "__import__('x.y.z') returns <module 'x'>; how do I get z?"
 msgstr "__import__('x.y.z')는 <module 'x'>를 반환합니다; z를 어떻게 얻습니까?"
 
-#: ../Doc/faq/programming.rst:1833
+#: ../Doc/faq/programming.rst:1920
 msgid ""
 "Consider using the convenience function :func:`~importlib.import_module` "
 "from :mod:`importlib` instead::"
@@ -2480,13 +2573,13 @@ msgstr ""
 ":mod:`importlib`\\의 편의 함수 :func:`~importlib.import_module`\\을 대신 사용하는 곳을 "
 "고려하십시오::"
 
-#: ../Doc/faq/programming.rst:1840
+#: ../Doc/faq/programming.rst:1927
 msgid ""
 "When I edit an imported module and reimport it, the changes don't show "
 "up.  Why does this happen?"
 msgstr "임포트 된 모듈을 편집하고 다시 임포트 할 때, 변경 사항이 표시되지 않습니다. 왜 이런 일이 발생합니까?"
 
-#: ../Doc/faq/programming.rst:1842
+#: ../Doc/faq/programming.rst:1929
 msgid ""
 "For reasons of efficiency as well as consistency, Python only reads the "
 "module file on the first time a module is imported.  If it didn't, in a "
@@ -2498,14 +2591,14 @@ msgstr ""
 "기본 모듈을 임포트 하는 많은 모듈로 구성된 프로그램에서, 기본 모듈을 여러 번 구문 분석하고 다시 구문 분석하게 됩니다. 변경된 "
 "모듈을 강제로 다시 읽으려면, 다음과 같이 하십시오::"
 
-#: ../Doc/faq/programming.rst:1852
+#: ../Doc/faq/programming.rst:1939
 #, python-format
 msgid ""
 "Warning: this technique is not 100% fool-proof.  In particular, modules "
 "containing statements like ::"
 msgstr "경고: 이 기법은 100% 확실하지 않습니다. 특히, 다음과 같은 문장을 포함하는 모듈은 ::"
 
-#: ../Doc/faq/programming.rst:1857
+#: ../Doc/faq/programming.rst:1944
 msgid ""
 "will continue to work with the old version of the imported objects.  If "
 "the module contains class definitions, existing class instances will "
@@ -2515,7 +2608,7 @@ msgstr ""
 "임포트 된 객체의 이전 버전으로 계속 작업합니다. 모듈에 클래스 정의가 포함되면, 새 클래스 정의를 사용하도록 기존 클래스 "
 "인스턴스가 갱신되지 *않습니다*. 이것은 다음과 같은 역설적인 동작으로 이어집니다::"
 
-#: ../Doc/faq/programming.rst:1870
+#: ../Doc/faq/programming.rst:1957
 msgid ""
 "The nature of the problem is made clear if you print out the \"identity\""
 " of the class objects::"

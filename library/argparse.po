@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 08:36+0900\n"
+"POT-Creation-Date: 2021-04-08 08:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -1064,57 +1064,80 @@ msgstr "type"
 
 #: ../Doc/library/argparse.rst:1053
 msgid ""
-"By default, :class:`ArgumentParser` objects read command-line arguments "
-"in as simple strings. However, quite often the command-line string should"
-" instead be interpreted as another type, like a :class:`float` or "
-":class:`int`.  The ``type`` keyword argument of "
-":meth:`~ArgumentParser.add_argument` allows any necessary type-checking "
-"and type conversions to be performed.  Common built-in types and "
-"functions can be used directly as the value of the ``type`` argument::"
+"By default, the parser reads command-line arguments in as simple strings."
+" However, quite often the command-line string should instead be "
+"interpreted as another type, such as a :class:`float` or :class:`int`.  "
+"The ``type`` keyword for :meth:`~ArgumentParser.add_argument` allows any "
+"necessary type-checking and type conversions to be performed."
 msgstr ""
-"기본적으로 :class:`ArgumentParser` 객체는 명령행 인자를 간단한 문자열로 읽습니다. 그러나 꽤 자주 명령행 "
-"문자열은 :class:`float` 또는 :class:`int`\\와 같은 다른 형으로 해석되어야 합니다. "
-":meth:`~ArgumentParser.add_argument` 의 ``type`` 키워드 인자는 필요한 형 검사와 형 변환이 "
-"수행되도록 합니다. 일반적인 내장형과 함수는 ``type`` 인자의 값으로 직접 사용될 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:1066
+#: ../Doc/library/argparse.rst:1059
 msgid ""
-"See the section on the default_ keyword argument for information on when "
-"the ``type`` argument is applied to default arguments."
-msgstr "언제 ``type`` 인자가 기본 인자에 적용되는지에 대한 정보는 default_ 키워드 인자 절을 참조하십시오."
-
-#: ../Doc/library/argparse.rst:1069
-msgid ""
-"To ease the use of various types of files, the argparse module provides "
-"the factory FileType which takes the ``mode=``, ``bufsize=``, "
-"``encoding=`` and ``errors=`` arguments of the :func:`open` function.  "
-"For example, ``FileType('w')`` can be used to create a writable file::"
+"If the type_ keyword is used with the default_ keyword, the type "
+"converter is only applied if the default is a string."
 msgstr ""
-"다양한 형태의 파일을 사용하기 쉽게 하려고, argparse 모듈은 :func:`open` 함수의 ``mode=``, "
-"``bufsize=``, ``encoding=``, ``errors=`` 인자를 취하는 팩토리 FileType 을 제공합니다. 예를"
-" 들어, ``FileType('w')`` 은 쓰기 가능한 파일을 만드는 데 사용할 수 있습니다 ::"
 
-#: ../Doc/library/argparse.rst:1079
+#: ../Doc/library/argparse.rst:1062
 msgid ""
-"``type=`` can take any callable that takes a single string argument and "
-"returns the converted value::"
-msgstr "``type=`` 는 단일 문자열 인자를 취하고 변환된 값을 돌려주는 모든 콜러블을 받아들입니다::"
+"The argument to ``type`` can be any callable that accepts a single "
+"string. If the function raises :exc:`ArgumentTypeError`, "
+":exc:`TypeError`, or :exc:`ValueError`, the exception is caught and a "
+"nicely formatted error message is displayed.  No other exception types "
+"are handled."
+msgstr ""
 
-#: ../Doc/library/argparse.rst:1098
+#: ../Doc/library/argparse.rst:1067
+msgid "Common built-in types and functions can be used as type converters:"
+msgstr ""
+
+#: ../Doc/library/argparse.rst:1083
+msgid "User defined functions can be used as well:"
+msgstr ""
+
+#: ../Doc/library/argparse.rst:1095
 msgid ""
-"The choices_ keyword argument may be more convenient for type checkers "
-"that simply check against a range of values::"
-msgstr "단순히 값의 범위를 검사하는 형 검사기로는 choices_ 키워드 인자가 더 편리할 수 있습니다::"
+"The :func:`bool` function is not recommended as a type converter.  All it"
+" does is convert empty strings to ``False`` and non-empty strings to "
+"``True``. This is usually not what is desired."
+msgstr ""
+
+#: ../Doc/library/argparse.rst:1099
+msgid ""
+"In general, the ``type`` keyword is a convenience that should only be "
+"used for simple conversions that can only raise one of the three "
+"supported exceptions. Anything with more interesting error-handling or "
+"resource management should be done downstream after the arguments are "
+"parsed."
+msgstr ""
+
+#: ../Doc/library/argparse.rst:1104
+msgid ""
+"For example, JSON or YAML conversions have complex error cases that "
+"require better reporting than can be given by the ``type`` keyword.  An "
+":exc:`~json.JSONDecodeError` would not be well formatted and a "
+":exc:`FileNotFound` exception would not be handled at all."
+msgstr ""
 
 #: ../Doc/library/argparse.rst:1109
-msgid "See the choices_ section for more details."
-msgstr "자세한 내용은 choices_ 섹션을 참조하십시오."
+msgid ""
+"Even :class:`~argparse.FileType` has its limitations for use with the "
+"``type`` keyword.  If one argument uses *FileType* and then a subsequent "
+"argument fails, an error is reported but the file is not automatically "
+"closed.  In this case, it would be better to wait until after the parser "
+"has run and then use the :keyword:`with`-statement to manage the files."
+msgstr ""
 
-#: ../Doc/library/argparse.rst:1113
+#: ../Doc/library/argparse.rst:1115
+msgid ""
+"For type checkers that simply check against a fixed set of values, "
+"consider using the choices_ keyword instead."
+msgstr ""
+
+#: ../Doc/library/argparse.rst:1120
 msgid "choices"
 msgstr "choices"
 
-#: ../Doc/library/argparse.rst:1115
+#: ../Doc/library/argparse.rst:1122
 msgid ""
 "Some command-line arguments should be selected from a restricted set of "
 "values. These can be handled by passing a container object as the "
@@ -1127,7 +1150,7 @@ msgstr ""
 "컨테이너 객체를 *choices* 키워드 인자로 전달하여 처리할 수 있습니다. 명령행을 파싱할 때, 인자의 값을 검사하고, 인자가 "
 "받아들일 수 없는 값이 아닌 경우 에러 메시지가 표시됩니다::"
 
-#: ../Doc/library/argparse.rst:1130
+#: ../Doc/library/argparse.rst:1137
 msgid ""
 "Note that inclusion in the *choices* container is checked after any type_"
 " conversions have been performed, so the type of the objects in the "
@@ -1136,7 +1159,7 @@ msgstr ""
 "*choices* 컨테이너에 포함되는지는 type_ 변환이 수행된 후에 검사하므로, *choices* 컨테이너에 있는 객체의 형은 "
 "지정된 type_ 과 일치해야 합니다::"
 
-#: ../Doc/library/argparse.rst:1142
+#: ../Doc/library/argparse.rst:1149
 msgid ""
 "Any container can be passed as the *choices* value, so :class:`list` "
 "objects, :class:`set` objects, and custom containers are all supported."
@@ -1144,7 +1167,7 @@ msgstr ""
 "모든 컨테이너는 *choices* 값으로 전달될 수 있기 때문에, :class:`list` 객체, :class:`set` 객체, "
 "사용자 정의 컨테이너 등이 모두 지원됩니다."
 
-#: ../Doc/library/argparse.rst:1145
+#: ../Doc/library/argparse.rst:1152
 msgid ""
 "Use of :class:`enum.Enum` is not recommended because it is difficult to "
 "control its appearance in usage, help, and error messages."
@@ -1152,11 +1175,20 @@ msgstr ""
 ":class:`enum.Enum`\\은 사용법, 도움말 및 에러 메시지에서 나타나는 방식을 제어하기 어렵기 때문에 사용하지 않는 "
 "것이 좋습니다."
 
-#: ../Doc/library/argparse.rst:1150
+#: ../Doc/library/argparse.rst:1155
+msgid ""
+"Formatted choices overrides the default *metavar* which is normally "
+"derived from *dest*.  This is usually what you want because the user "
+"never sees the *dest* parameter.  If this display isn't desirable "
+"(perhaps because there are many choices), just specify an explicit "
+"metavar_."
+msgstr ""
+
+#: ../Doc/library/argparse.rst:1162
 msgid "required"
 msgstr "required"
 
-#: ../Doc/library/argparse.rst:1152
+#: ../Doc/library/argparse.rst:1164
 msgid ""
 "In general, the :mod:`argparse` module assumes that flags like ``-f`` and"
 " ``--bar`` indicate *optional* arguments, which can always be omitted at "
@@ -1169,7 +1201,7 @@ msgstr ""
 ":meth:`~ArgumentParser.add_argument` 의 ``required=`` 키워드 인자에 ``True`` 를 "
 "지정할 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:1165
+#: ../Doc/library/argparse.rst:1177
 msgid ""
 "As the example shows, if an option is marked as ``required``, "
 ":meth:`~ArgumentParser.parse_args` will report an error if that option is"
@@ -1178,18 +1210,18 @@ msgstr ""
 "예에서 보듯이, 옵션이 ``required`` 로 표시되면, :meth:`~ArgumentParser.parse_args` 는 그 "
 "옵션이 명령행에 없을 때 에러를 보고합니다."
 
-#: ../Doc/library/argparse.rst:1171
+#: ../Doc/library/argparse.rst:1183
 msgid ""
 "Required options are generally considered bad form because users expect "
 "*options* to be *optional*, and thus they should be avoided when "
 "possible."
 msgstr "필수 옵션은 사용자가 *옵션* 이 *선택적* 일 것으로 기대하기 때문에 일반적으로 나쁜 형식으로 간주하므로 가능하면 피해야 합니다."
 
-#: ../Doc/library/argparse.rst:1176
+#: ../Doc/library/argparse.rst:1188
 msgid "help"
 msgstr "help"
 
-#: ../Doc/library/argparse.rst:1178
+#: ../Doc/library/argparse.rst:1190
 msgid ""
 "The ``help`` value is a string containing a brief description of the "
 "argument. When a user requests help (usually by using ``-h`` or "
@@ -1199,7 +1231,7 @@ msgstr ""
 "``help`` 값은 인자의 간단한 설명이 들어있는 문자열입니다. 사용자가 도움말을 요청하면 (보통 명령행에서 ``-h`` 또는 "
 "``--help`` 를 사용합니다), ``help`` 설명이 각 인자와 함께 표시됩니다::"
 
-#: ../Doc/library/argparse.rst:1198
+#: ../Doc/library/argparse.rst:1210
 #, python-format
 msgid ""
 "The ``help`` strings can include various format specifiers to avoid "
@@ -1213,7 +1245,7 @@ msgstr ""
 ":meth:`~ArgumentParser.add_argument` 의 대부분의 키워드 인자, ``%(default)s``, "
 "``%(type)s`` 등을 포함합니다.::"
 
-#: ../Doc/library/argparse.rst:1215
+#: ../Doc/library/argparse.rst:1227
 #, python-format
 msgid ""
 "As the help string supports %-formatting, if you want a literal ``%`` to "
@@ -1222,7 +1254,7 @@ msgstr ""
 "도움말 문자열이 %-포매팅을 지원하기 때문에, 도움말 문자열에 리터럴 ``%`` 을 표시하려면, ``%%`` 로 이스케이프 처리해야"
 " 합니다."
 
-#: ../Doc/library/argparse.rst:1218
+#: ../Doc/library/argparse.rst:1230
 msgid ""
 ":mod:`argparse` supports silencing the help entry for certain options, by"
 " setting the ``help`` value to ``argparse.SUPPRESS``::"
@@ -1230,11 +1262,11 @@ msgstr ""
 ":mod:`argparse` 는 ``help`` 값을 ``argparse.SUPPRESS`` 로 설정함으로써 특정 옵션에 대한 "
 "도움말 엔트리를 감추는 것을 지원합니다::"
 
-#: ../Doc/library/argparse.rst:1231
+#: ../Doc/library/argparse.rst:1243
 msgid "metavar"
 msgstr "metavar"
 
-#: ../Doc/library/argparse.rst:1233
+#: ../Doc/library/argparse.rst:1245
 msgid ""
 "When :class:`ArgumentParser` generates help messages, it needs some way "
 "to refer to each expected argument.  By default, ArgumentParser objects "
@@ -1251,11 +1283,11 @@ msgstr ""
 " 단일 위치 인자는 ``bar`` 로 지칭됩니다. 하나의 명령행 인자가 따라와야 하는 단일 선택 인자 ``--foo`` 는 "
 "``FOO`` 라고 표시됩니다. 예::"
 
-#: ../Doc/library/argparse.rst:1257
+#: ../Doc/library/argparse.rst:1269
 msgid "An alternative name can be specified with ``metavar``::"
 msgstr "다른 이름은 ``metavar`` 로 지정할 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:1274
+#: ../Doc/library/argparse.rst:1286
 msgid ""
 "Note that ``metavar`` only changes the *displayed* name - the name of the"
 " attribute on the :meth:`~ArgumentParser.parse_args` object is still "
@@ -1264,7 +1296,7 @@ msgstr ""
 "``metavar`` 는 *표시되는* 이름 만 변경합니다 - :meth:`~ArgumentParser.parse_args` 객체의 "
 "어트리뷰트 이름은 여전히\\  dest_ 값에 의해 결정됩니다."
 
-#: ../Doc/library/argparse.rst:1278
+#: ../Doc/library/argparse.rst:1290
 msgid ""
 "Different values of ``nargs`` may cause the metavar to be used multiple "
 "times. Providing a tuple to ``metavar`` specifies a different display for"
@@ -1273,11 +1305,11 @@ msgstr ""
 "``nargs`` 값이 다르면 metavar 가 여러 번 사용될 수 있습니다. ``metavar`` 에 튜플을 제공하면 인자마다 "
 "다른 디스플레이가 지정됩니다::"
 
-#: ../Doc/library/argparse.rst:1295
+#: ../Doc/library/argparse.rst:1307
 msgid "dest"
 msgstr "dest"
 
-#: ../Doc/library/argparse.rst:1297
+#: ../Doc/library/argparse.rst:1309
 msgid ""
 "Most :class:`ArgumentParser` actions add some value as an attribute of "
 "the object returned by :meth:`~ArgumentParser.parse_args`.  The name of "
@@ -1292,7 +1324,7 @@ msgstr ""
 "액션의 경우, ``dest`` 는 일반적으로 :meth:`~ArgumentParser.add_argument` 에 첫 번째 인자로 "
 "제공됩니다.::"
 
-#: ../Doc/library/argparse.rst:1309
+#: ../Doc/library/argparse.rst:1321
 msgid ""
 "For optional argument actions, the value of ``dest`` is normally inferred"
 " from the option strings.  :class:`ArgumentParser` generates the value of"
@@ -1309,15 +1341,15 @@ msgstr ""
 "어트리뷰트 이름이 되도록 만들기 위해 중간에 나오는 ``-`` 문자는 ``_`` 문자로 변환됩니다. 아래 예제는 이 동작을 "
 "보여줍니다::"
 
-#: ../Doc/library/argparse.rst:1326
+#: ../Doc/library/argparse.rst:1338
 msgid "``dest`` allows a custom attribute name to be provided::"
 msgstr "``dest`` 는 사용자 정의 어트리뷰트 이름을 지정할 수 있게 합니다::"
 
-#: ../Doc/library/argparse.rst:1334
+#: ../Doc/library/argparse.rst:1346
 msgid "Action classes"
 msgstr "Action 클래스"
 
-#: ../Doc/library/argparse.rst:1336
+#: ../Doc/library/argparse.rst:1348
 msgid ""
 "Action classes implement the Action API, a callable which returns a "
 "callable which processes arguments from the command-line. Any object "
@@ -1327,7 +1359,7 @@ msgstr ""
 "Action 클래스는 액션 API를 구현합니다. 액션 API는 명령행에서 인자를 처리하는 콜러블을 반환하는 콜러블 객체입니다. 이 "
 "API를 따르는 모든 객체는 :meth:`add_argument` 의 ``action`` 매개 변수로 전달될 수 있습니다."
 
-#: ../Doc/library/argparse.rst:1345
+#: ../Doc/library/argparse.rst:1357
 msgid ""
 "Action objects are used by an ArgumentParser to represent the information"
 " needed to parse a single argument from one or more strings from the "
@@ -1339,7 +1371,7 @@ msgstr ""
 "위해 사용됩니다. Action 클래스는 두 개의 위치 인자와 :meth:`ArgumentParser.add_argument` 에 "
 "전달된 ``action`` 자신을 제외한 모든 키워드 인자들을 받아들여야 합니다."
 
-#: ../Doc/library/argparse.rst:1351
+#: ../Doc/library/argparse.rst:1363
 msgid ""
 "Instances of Action (or return value of any callable to the ``action`` "
 "parameter) should have attributes \"dest\", \"option_strings\", "
@@ -1352,7 +1384,7 @@ msgstr ""
 "어트리뷰트가 정의되어야 합니다. 이러한 어트리뷰트를 정의하는 가장 쉬운 방법은 ``Action.__init__`` 를 호출하는 "
 "것입니다."
 
-#: ../Doc/library/argparse.rst:1356
+#: ../Doc/library/argparse.rst:1368
 msgid ""
 "Action instances should be callable, so subclasses must override the "
 "``__call__`` method, which should accept four parameters:"
@@ -1360,11 +1392,11 @@ msgstr ""
 "Action 인스턴스는 콜러블이어야 하므로, 서브 클래스는 네 개의 매개 변수를 받아들이는 ``__call__`` 메서드를 "
 "재정의해야 합니다:"
 
-#: ../Doc/library/argparse.rst:1359
+#: ../Doc/library/argparse.rst:1371
 msgid "``parser`` - The ArgumentParser object which contains this action."
 msgstr "``parser`` - 이 액션을 포함하는 ArgumentParser 객체."
 
-#: ../Doc/library/argparse.rst:1361
+#: ../Doc/library/argparse.rst:1373
 msgid ""
 "``namespace`` - The :class:`Namespace` object that will be returned by "
 ":meth:`~ArgumentParser.parse_args`.  Most actions add an attribute to "
@@ -1374,7 +1406,7 @@ msgstr ""
 ":class:`Namespace` 객체. 대부분의 액션은 :func:`setattr` 을 사용하여 이 객체에 어트리뷰트를 "
 "추가합니다."
 
-#: ../Doc/library/argparse.rst:1365
+#: ../Doc/library/argparse.rst:1377
 msgid ""
 "``values`` - The associated command-line arguments, with any type "
 "conversions applied.  Type conversions are specified with the type_ "
@@ -1383,7 +1415,7 @@ msgstr ""
 "``values`` - 형 변환이 적용된 연관된 명령행 인자. 형 변환은 "
 ":meth:`~ArgumentParser.add_argument` 에 전달된 type_ 키워드 인자로 지정됩니다."
 
-#: ../Doc/library/argparse.rst:1369
+#: ../Doc/library/argparse.rst:1381
 msgid ""
 "``option_string`` - The option string that was used to invoke this "
 "action. The ``option_string`` argument is optional, and will be absent if"
@@ -1392,7 +1424,7 @@ msgstr ""
 "``option_string`` - 이 액션을 호출하는 데 사용된 옵션 문자열. ``option_string`` 인자는 선택적이며,"
 " 액션이 위치 인자와 관련되어 있으면 생략됩니다."
 
-#: ../Doc/library/argparse.rst:1373
+#: ../Doc/library/argparse.rst:1385
 msgid ""
 "The ``__call__`` method may perform arbitrary actions, but will typically"
 " set attributes on the ``namespace`` based on ``dest`` and ``values``."
@@ -1400,7 +1432,7 @@ msgstr ""
 "``__call__`` 메서드는 임의의 액션을 수행 할 수 있습니다만, 일반적으로 ``dest`` 와 ``values`` 에 "
 "기반하여 ``namespace`` 에 어트리뷰트를 설정합니다."
 
-#: ../Doc/library/argparse.rst:1376
+#: ../Doc/library/argparse.rst:1388
 msgid ""
 "Action subclasses can define a ``format_usage`` method that takes no "
 "argument and return a string which will be used when printing the usage "
@@ -1410,17 +1442,17 @@ msgstr ""
 "Action 서브 클래스는 인자를 취하지 않고 프로그램 사용법을 인쇄할 때 사용될 문자열을 반환하는 ``format_usage`` "
 "메서드를 정의할 수 있습니다. 이러한 메서드를 제공하지 않으면, 적절한 기본값이 사용됩니다."
 
-#: ../Doc/library/argparse.rst:1381
+#: ../Doc/library/argparse.rst:1393
 msgid "The parse_args() method"
 msgstr "parse_args() 메서드"
 
-#: ../Doc/library/argparse.rst:1385
+#: ../Doc/library/argparse.rst:1397
 msgid ""
 "Convert argument strings to objects and assign them as attributes of the "
 "namespace.  Return the populated namespace."
 msgstr "인자 문자열을 객체로 변환하고 namespace의 어트리뷰트로 설정합니다. 값들이 설정된 namespace를 돌려줍니다."
 
-#: ../Doc/library/argparse.rst:1388
+#: ../Doc/library/argparse.rst:1400
 msgid ""
 "Previous calls to :meth:`add_argument` determine exactly what objects are"
 " created and how they are assigned. See the documentation for "
@@ -1429,23 +1461,23 @@ msgstr ""
 "이전의 :meth:`add_argument` 호출이 어떤 객체를 만들고 어떤 식으로 대입할지를 결정합니다. 자세한 내용은 "
 ":meth:`add_argument` 설명서를 참조하십시오."
 
-#: ../Doc/library/argparse.rst:1392
+#: ../Doc/library/argparse.rst:1404
 msgid ""
 "args_ - List of strings to parse.  The default is taken from "
 ":data:`sys.argv`."
 msgstr "args_ - 구문 분석할 문자열 리스트. 기본값은 :data:`sys.argv` 에서 취합니다."
 
-#: ../Doc/library/argparse.rst:1395
+#: ../Doc/library/argparse.rst:1407
 msgid ""
 "namespace_ - An object to take the attributes.  The default is a new "
 "empty :class:`Namespace` object."
 msgstr "namespace_ - 어트리뷰트가 대입될 객체. 기본값은 새로 만들어지는 빈 :class:`Namespace` 객체입니다."
 
-#: ../Doc/library/argparse.rst:1400
+#: ../Doc/library/argparse.rst:1412
 msgid "Option value syntax"
 msgstr "옵션값 문법"
 
-#: ../Doc/library/argparse.rst:1402
+#: ../Doc/library/argparse.rst:1414
 msgid ""
 "The :meth:`~ArgumentParser.parse_args` method supports several ways of "
 "specifying the value of an option (if it takes one).  In the simplest "
@@ -1454,7 +1486,7 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_args` 메서드는 (취할 것이 있다면) 옵션의 값을 지정하는 몇 가지 방법을 "
 "지원합니다. 가장 단순한 경우, 옵션과 그 값은 두 개의 독립적인 인자로 전달됩니다::"
 
-#: ../Doc/library/argparse.rst:1414
+#: ../Doc/library/argparse.rst:1426
 msgid ""
 "For long options (options with names longer than a single character), the"
 " option and value can also be passed as a single command-line argument, "
@@ -1463,13 +1495,13 @@ msgstr ""
 "긴 옵션(단일 문자보다 긴 이름을 가진 옵션)의 경우, 옵션과 값을 ``=`` 로 구분하여 단일 명령행 인자로 전달할 수도 "
 "있습니다::"
 
-#: ../Doc/library/argparse.rst:1421
+#: ../Doc/library/argparse.rst:1433
 msgid ""
 "For short options (options only one character long), the option and its "
 "value can be concatenated::"
 msgstr "짧은 옵션(한 문자 길이의 옵션)의 경우, 옵션과 해당 값을 이어붙일 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:1427
+#: ../Doc/library/argparse.rst:1439
 msgid ""
 "Several short options can be joined together, using only a single ``-`` "
 "prefix, as long as only the last option (or none of them) requires a "
@@ -1478,11 +1510,11 @@ msgstr ""
 "여러 개의 짧은 옵션은 마지막 옵션만 값을 요구하는 한 (또는 그들 중 아무것도 값을 요구하지 않거나), 하나의 ``-`` 접두어를"
 " 사용하여 함께 결합 할 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:1439
+#: ../Doc/library/argparse.rst:1451
 msgid "Invalid arguments"
 msgstr "잘못된 인자"
 
-#: ../Doc/library/argparse.rst:1441
+#: ../Doc/library/argparse.rst:1453
 msgid ""
 "While parsing the command line, :meth:`~ArgumentParser.parse_args` checks"
 " for a variety of errors, including ambiguous options, invalid types, "
@@ -1494,11 +1526,11 @@ msgstr ""
 "않은 옵션, 잘못된 위치 인자의 수 등을 포함한 다양한 에러를 검사합니다. 이런 에러가 발생하면, 사용 메시지와 함께 에러를 "
 "인쇄합니다::"
 
-#: ../Doc/library/argparse.rst:1467
+#: ../Doc/library/argparse.rst:1479
 msgid "Arguments containing ``-``"
 msgstr "``-`` 를 포함하는 인자들"
 
-#: ../Doc/library/argparse.rst:1469
+#: ../Doc/library/argparse.rst:1481
 msgid ""
 "The :meth:`~ArgumentParser.parse_args` method attempts to give errors "
 "whenever the user has clearly made a mistake, but some situations are "
@@ -1514,7 +1546,7 @@ msgstr ""
 "수 있습니다. :meth:`~ArgumentParser.parse_args` 메서드는 이럴 때 신중합니다: 위치 인자는 음수처럼 "
 "보이고 파서에 음수처럼 보이는 옵션이 없을 때만 ``-`` 로 시작할 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:1507
+#: ../Doc/library/argparse.rst:1519
 msgid ""
 "If you have positional arguments that must begin with ``-`` and don't "
 "look like negative numbers, you can insert the pseudo-argument ``'--'`` "
@@ -1525,11 +1557,11 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_args` 에 다음과 같은 의사 인자 ``'--'`` 를 삽입 할 수 있습니다."
 " 그 이후의 모든 것은 위치 인자입니다::"
 
-#: ../Doc/library/argparse.rst:1518
+#: ../Doc/library/argparse.rst:1530
 msgid "Argument abbreviations (prefix matching)"
 msgstr "인자 약어 (접두사 일치)"
 
-#: ../Doc/library/argparse.rst:1520
+#: ../Doc/library/argparse.rst:1532
 msgid ""
 "The :meth:`~ArgumentParser.parse_args` method :ref:`by default "
 "<allow_abbrev>` allows long options to be abbreviated to a prefix, if the"
@@ -1538,7 +1570,7 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_args` 메서드는 :ref:`기본적으로 <allow_abbrev>` 약어가 "
 "모호하지 않으면 (접두사가 오직 하나의 옵션과 일치합니다) 긴 옵션을 접두사로 축약 할 수 있도록 합니다::"
 
-#: ../Doc/library/argparse.rst:1535
+#: ../Doc/library/argparse.rst:1547
 msgid ""
 "An error is produced for arguments that could produce more than one "
 "options. This feature can be disabled by setting :ref:`allow_abbrev` to "
@@ -1547,11 +1579,11 @@ msgstr ""
 "둘 이상의 옵션과 일치하는 인자는 에러를 일으킵니다. 이 기능은 :ref:`allow_abbrev`\\를 ``False`` 로 "
 "설정함으로써 비활성화시킬 수 있습니다."
 
-#: ../Doc/library/argparse.rst:1541
+#: ../Doc/library/argparse.rst:1553
 msgid "Beyond ``sys.argv``"
 msgstr "``sys.argv`` 너머"
 
-#: ../Doc/library/argparse.rst:1543
+#: ../Doc/library/argparse.rst:1555
 msgid ""
 "Sometimes it may be useful to have an ArgumentParser parse arguments "
 "other than those of :data:`sys.argv`.  This can be accomplished by "
@@ -1562,11 +1594,11 @@ msgstr ""
 " 문자열 리스트를 :meth:`~ArgumentParser.parse_args` 에 전달하면 됩니다. 대화식 프롬프트에서 테스트할 "
 "때 유용합니다::"
 
-#: ../Doc/library/argparse.rst:1563
+#: ../Doc/library/argparse.rst:1575
 msgid "The Namespace object"
 msgstr "Namespace 객체"
 
-#: ../Doc/library/argparse.rst:1567
+#: ../Doc/library/argparse.rst:1579
 msgid ""
 "Simple class used by default by :meth:`~ArgumentParser.parse_args` to "
 "create an object holding attributes and return it."
@@ -1574,7 +1606,7 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_args` 가 어트리뷰트를 저장하고 반환할 객체를 만드는 데 기본적으로 사용하는"
 " 간단한 클래스."
 
-#: ../Doc/library/argparse.rst:1570
+#: ../Doc/library/argparse.rst:1582
 msgid ""
 "This class is deliberately simple, just an :class:`object` subclass with "
 "a readable string representation. If you prefer to have dict-like view of"
@@ -1583,7 +1615,7 @@ msgstr ""
 "이 클래스는 의도적으로 단순한데, 단지 가독성 있는 문자열 표현을 갖는 :class:`object` 의 서브 클래스입니다. "
 "어트리뷰트를 딕셔너리처럼 보기 원한다면, 표준 파이썬 관용구를 사용할 수 있습니다, :func:`vars`::"
 
-#: ../Doc/library/argparse.rst:1580
+#: ../Doc/library/argparse.rst:1592
 msgid ""
 "It may also be useful to have an :class:`ArgumentParser` assign "
 "attributes to an already existing object, rather than a new "
@@ -1593,15 +1625,15 @@ msgstr ""
 ":class:`ArgumentParser` 가 새 :class:`Namespace` 객체가 아니라 이미 존재하는 객체에 어트리뷰트를"
 " 대입하는 것이 유용 할 수 있습니다. ``namespace=`` 키워드 인자를 지정하면 됩니다::"
 
-#: ../Doc/library/argparse.rst:1596
+#: ../Doc/library/argparse.rst:1608
 msgid "Other utilities"
 msgstr "기타 유틸리티"
 
-#: ../Doc/library/argparse.rst:1599
+#: ../Doc/library/argparse.rst:1611
 msgid "Sub-commands"
 msgstr "부속 명령"
 
-#: ../Doc/library/argparse.rst:1606
+#: ../Doc/library/argparse.rst:1618
 msgid ""
 "Many programs split up their functionality into a number of sub-commands,"
 " for example, the ``svn`` program can invoke sub-commands like ``svn "
@@ -1625,11 +1657,11 @@ msgstr ""
 ":class:`ArgumentParser` 생성자 인자를 받고 평소와 같이 수정할 수 있는 "
 ":class:`ArgumentParser` 객체를 반환합니다."
 
-#: ../Doc/library/argparse.rst:1618
+#: ../Doc/library/argparse.rst:1630
 msgid "Description of parameters:"
 msgstr "매개 변수 설명:"
 
-#: ../Doc/library/argparse.rst:1620
+#: ../Doc/library/argparse.rst:1632
 msgid ""
 "title - title for the sub-parser group in help output; by default "
 "\"subcommands\" if description is provided, otherwise uses title for "
@@ -1638,20 +1670,20 @@ msgstr ""
 "title - 도움말 출력의 부속 파서 그룹 제목; description이 제공되면 기본적으로 \"subcommands\", 그렇지"
 " 않으면 위치 인자를 위한 제목을 사용합니다"
 
-#: ../Doc/library/argparse.rst:1624
+#: ../Doc/library/argparse.rst:1636
 msgid ""
 "description - description for the sub-parser group in help output, by "
 "default ``None``"
 msgstr "description - 도움말 출력의 부속 파서 그룹에 대한 설명. 기본값은 ``None`` 입니다."
 
-#: ../Doc/library/argparse.rst:1627
+#: ../Doc/library/argparse.rst:1639
 msgid ""
 "prog - usage information that will be displayed with sub-command help, by"
 " default the name of the program and any positional arguments before the "
 "subparser argument"
 msgstr "prog - 부속 명령 도움말과 함께 표시될 사용 정보. 기본적으로 프로그램 이름 및 부속 파서 인자 앞에 오는 위치 인자"
 
-#: ../Doc/library/argparse.rst:1631
+#: ../Doc/library/argparse.rst:1643
 msgid ""
 "parser_class - class which will be used to create sub-parser instances, "
 "by default the class of the current parser (e.g. ArgumentParser)"
@@ -1659,29 +1691,29 @@ msgstr ""
 "parser_class - 부속 파서 인스턴스를 만들 때 사용할 클래스. 기본적으로, 현재 파서의 클래스 (예를 들어 "
 "ArgumentParser)"
 
-#: ../Doc/library/argparse.rst:1634
+#: ../Doc/library/argparse.rst:1646
 msgid ""
 "action_ - the basic type of action to be taken when this argument is "
 "encountered at the command line"
 msgstr "action_ - 이 인자를 명령행에서 만날 때 수행 할 액션의 기본형"
 
-#: ../Doc/library/argparse.rst:1637
+#: ../Doc/library/argparse.rst:1649
 msgid ""
 "dest_ - name of the attribute under which sub-command name will be "
 "stored; by default ``None`` and no value is stored"
 msgstr "dest_ - 부속 명령 이름을 저장하는 어트리뷰트의 이름. 기본적으로 ``None`` 이며 값은 저장되지 않습니다."
 
-#: ../Doc/library/argparse.rst:1640
+#: ../Doc/library/argparse.rst:1652
 msgid ""
 "required_ - Whether or not a subcommand must be provided, by default "
 "``False`` (added in 3.7)"
 msgstr "required_ - 부속 명령이 꼭 제공되어야 하는지 아닌지, 기본값은 ``False`` (3.7에서 추가)"
 
-#: ../Doc/library/argparse.rst:1643
+#: ../Doc/library/argparse.rst:1655
 msgid "help_ - help for sub-parser group in help output, by default ``None``"
 msgstr "help_ - 도움말 출력의 부속 파서 그룹 도움말, 기본적으로 ``None``"
 
-#: ../Doc/library/argparse.rst:1645
+#: ../Doc/library/argparse.rst:1657
 msgid ""
 "metavar_ - string presenting available sub-commands in help; by default "
 "it is ``None`` and presents sub-commands in form {cmd1, cmd2, ..}"
@@ -1689,11 +1721,11 @@ msgstr ""
 "metavar_ - 도움말에서 사용 가능한 부속 명령을 표시하는 문자열. 기본적으로 ``None`` 이며 {cmd1, cmd2, "
 "..} 형식으로 부속 명령을 표시합니다."
 
-#: ../Doc/library/argparse.rst:1648
+#: ../Doc/library/argparse.rst:1660
 msgid "Some example usage::"
 msgstr "몇 가지 사용 예::"
 
-#: ../Doc/library/argparse.rst:1669
+#: ../Doc/library/argparse.rst:1681
 msgid ""
 "Note that the object returned by :meth:`parse_args` will only contain "
 "attributes for the main parser and the subparser that was selected by the"
@@ -1706,7 +1738,7 @@ msgstr ""
 "어트리뷰트만을 포함한다는 것에 주의하십시오. 그래서 위의 예에서, ``a`` 명령이 지정되면 ``foo`` 와 ``bar`` "
 "어트리뷰트 만 존재하고, ``b`` 명령이 지정되면 ``foo`` 와 ``baz`` 어트리뷰트만 존재합니다."
 
-#: ../Doc/library/argparse.rst:1676
+#: ../Doc/library/argparse.rst:1688
 msgid ""
 "Similarly, when a help message is requested from a subparser, only the "
 "help for that particular parser will be printed.  The help message will "
@@ -1718,7 +1750,7 @@ msgstr ""
 " 메시지는 포함되지 않습니다. (하지만 각 부속 파서 명령에 대한 도움말 메시지는 위와 같이 :meth:`add_parser` 에 "
 "``help=`` 인자를 주어 지정할 수 있습니다.)"
 
-#: ../Doc/library/argparse.rst:1712
+#: ../Doc/library/argparse.rst:1724
 msgid ""
 "The :meth:`add_subparsers` method also supports ``title`` and "
 "``description`` keyword arguments.  When either is present, the "
@@ -1728,7 +1760,7 @@ msgstr ""
 ":meth:`add_subparsers` 메서드는 또한 ``title`` 과 ``description`` 키워드 인자를 지원합니다."
 " 둘 중 하나가 있으면 부속 파서의 명령이 도움말 출력에서 자체 그룹으로 나타납니다. 예를 들면::"
 
-#: ../Doc/library/argparse.rst:1733
+#: ../Doc/library/argparse.rst:1745
 msgid ""
 "Furthermore, ``add_parser`` supports an additional ``aliases`` argument, "
 "which allows multiple strings to refer to the same subparser. This "
@@ -1737,7 +1769,7 @@ msgstr ""
 "게다가, ``add_parser`` 는 ``aliases`` 인자를 추가로 지원하는데, 여러 개의 문자열이 같은 부속 파서를 참조 "
 "할 수 있게 해줍니다. 이 예는 ``svn`` 와 마찬가지로 ``checkout`` 의 약자로 ``co`` 라는 별칭을 만듭니다::"
 
-#: ../Doc/library/argparse.rst:1744
+#: ../Doc/library/argparse.rst:1756
 msgid ""
 "One particularly effective way of handling sub-commands is to combine the"
 " use of the :meth:`add_subparsers` method with calls to "
@@ -1748,7 +1780,7 @@ msgstr ""
 ":meth:`set_defaults` 호출과 결합하여, 각 부속 파서가 어떤 파이썬 함수를 실행해야 하는지 알 수 있도록 하는 "
 "것입니다. 예를 들면::"
 
-#: ../Doc/library/argparse.rst:1781
+#: ../Doc/library/argparse.rst:1793
 msgid ""
 "This way, you can let :meth:`parse_args` do the job of calling the "
 "appropriate function after argument parsing is complete.  Associating "
@@ -1761,15 +1793,15 @@ msgstr ""
 "연결하는 것이, 일반적으로 각 부속 파서가 서로 다른 액션을 처리하도록 하는 가장 쉬운 방법입니다. 그러나 호출된 부속 파서의 "
 "이름을 확인해야 하는 경우 :meth:`add_subparsers` 호출에 ``dest`` 키워드 인자를 제공합니다::"
 
-#: ../Doc/library/argparse.rst:1797
+#: ../Doc/library/argparse.rst:1809
 msgid "New *required* keyword argument."
 msgstr "새로운 *required* 키워드 인자"
 
-#: ../Doc/library/argparse.rst:1802
+#: ../Doc/library/argparse.rst:1814
 msgid "FileType objects"
 msgstr "FileType 객체"
 
-#: ../Doc/library/argparse.rst:1806
+#: ../Doc/library/argparse.rst:1818
 msgid ""
 "The :class:`FileType` factory creates objects that can be passed to the "
 "type argument of :meth:`ArgumentParser.add_argument`.  Arguments that "
@@ -1781,7 +1813,7 @@ msgstr ""
 " 수 있는 객체를 만듭니다. type으로 :class:`FileType` 객체를 사용하는 인자는 명령행 인자를 요청된 모드, 버퍼 "
 "크기, 인코딩 및 오류 처리의 파일로 엽니다 (자세한 내용은 :func:`open` 함수를 참조하세요)::"
 
-#: ../Doc/library/argparse.rst:1818
+#: ../Doc/library/argparse.rst:1830
 msgid ""
 "FileType objects understand the pseudo-argument ``'-'`` and automatically"
 " convert this into ``sys.stdin`` for readable :class:`FileType` objects "
@@ -1791,15 +1823,15 @@ msgstr ""
 "``sys.stdin`` 으로, 쓰기 위한 :class:`FileType` 객체는 ``sys.stdout`` 으로 자동 "
 "변환합니다::"
 
-#: ../Doc/library/argparse.rst:1827
+#: ../Doc/library/argparse.rst:1839
 msgid "The *encodings* and *errors* keyword arguments."
 msgstr "*encodings* 및 *errors* 키워드 인자"
 
-#: ../Doc/library/argparse.rst:1832
+#: ../Doc/library/argparse.rst:1844
 msgid "Argument groups"
 msgstr "인자 그룹"
 
-#: ../Doc/library/argparse.rst:1836
+#: ../Doc/library/argparse.rst:1848
 msgid ""
 "By default, :class:`ArgumentParser` groups command-line arguments into "
 "\"positional arguments\" and \"optional arguments\" when displaying help "
@@ -1812,7 +1844,7 @@ msgstr ""
 "그룹보다 더 나은 개념적 인자 그룹이 있는 경우, :meth:`add_argument_group` 메서드를 사용하여 적절한 그룹을 "
 "만들 수 있습니다.::"
 
-#: ../Doc/library/argparse.rst:1853
+#: ../Doc/library/argparse.rst:1865
 msgid ""
 "The :meth:`add_argument_group` method returns an argument group object "
 "which has an :meth:`~ArgumentParser.add_argument` method just like a "
@@ -1828,7 +1860,7 @@ msgstr ""
 ":meth:`add_argument_group` 메서드는 이 표시를 사용자 정의하는데 사용할 수 있는 *title* 과 "
 "*description* 인자를 받아들입니다::"
 
-#: ../Doc/library/argparse.rst:1879
+#: ../Doc/library/argparse.rst:1891
 msgid ""
 "Note that any arguments not in your user-defined groups will end up back "
 "in the usual \"positional arguments\" and \"optional arguments\" "
@@ -1837,11 +1869,11 @@ msgstr ""
 "사용자 정의 그룹에 없는 인자는 일반적인 \"positional arguments\" 및 \"optional arguments\" "
 "섹션으로 들어갑니다."
 
-#: ../Doc/library/argparse.rst:1884
+#: ../Doc/library/argparse.rst:1896
 msgid "Mutual exclusion"
 msgstr "상호 배제"
 
-#: ../Doc/library/argparse.rst:1888
+#: ../Doc/library/argparse.rst:1900
 msgid ""
 "Create a mutually exclusive group. :mod:`argparse` will make sure that "
 "only one of the arguments in the mutually exclusive group was present on "
@@ -1850,7 +1882,7 @@ msgstr ""
 "상호 배타적인 그룹을 만듭니다. :mod:`argparse` 는 상호 배타적인 그룹에서 오직 하나의 인자만 명령행에 존재하는지 "
 "확인합니다::"
 
-#: ../Doc/library/argparse.rst:1904
+#: ../Doc/library/argparse.rst:1916
 msgid ""
 "The :meth:`add_mutually_exclusive_group` method also accepts a *required*"
 " argument, to indicate that at least one of the mutually exclusive "
@@ -1859,7 +1891,7 @@ msgstr ""
 ":meth:`add_mutually_exclusive_group` 메서드는 상호 배타적 인자 중 적어도 하나가 필요하다는 것을 "
 "나타내기 위한 *required* 인자도 받아들입니다::"
 
-#: ../Doc/library/argparse.rst:1916
+#: ../Doc/library/argparse.rst:1928
 msgid ""
 "Note that currently mutually exclusive argument groups do not support the"
 " *title* and *description* arguments of "
@@ -1868,11 +1900,11 @@ msgstr ""
 "현재, 상호 배타적인 인자 그룹은 :meth:`~ArgumentParser.add_argument_group` 의 *title* 및"
 " *description* 인자를 지원하지 않습니다."
 
-#: ../Doc/library/argparse.rst:1922
+#: ../Doc/library/argparse.rst:1934
 msgid "Parser defaults"
 msgstr "파서 기본값"
 
-#: ../Doc/library/argparse.rst:1926
+#: ../Doc/library/argparse.rst:1938
 msgid ""
 "Most of the time, the attributes of the object returned by "
 ":meth:`parse_args` will be fully determined by inspecting the command-"
@@ -1884,11 +1916,11 @@ msgstr ""
 "결정됩니다. :meth:`set_defaults` 는 명령행을 검사하지 않고 결정되는 몇 가지 추가적인 어트리뷰트를 추가할 수 "
 "있도록 합니다::"
 
-#: ../Doc/library/argparse.rst:1938
+#: ../Doc/library/argparse.rst:1950
 msgid "Note that parser-level defaults always override argument-level defaults::"
 msgstr "파서 수준의 기본값은 항상 인자 수준의 기본값보다 우선합니다::"
 
-#: ../Doc/library/argparse.rst:1946
+#: ../Doc/library/argparse.rst:1958
 msgid ""
 "Parser-level defaults can be particularly useful when working with "
 "multiple parsers.  See the :meth:`~ArgumentParser.add_subparsers` method "
@@ -1897,7 +1929,7 @@ msgstr ""
 "파서 수준의 기본값은 여러 파서로 작업 할 때 특히 유용 할 수 있습니다. 이 유형의 예제는 "
 ":meth:`~ArgumentParser.add_subparsers` 메서드를 참조하십시오."
 
-#: ../Doc/library/argparse.rst:1952
+#: ../Doc/library/argparse.rst:1964
 msgid ""
 "Get the default value for a namespace attribute, as set by either "
 ":meth:`~ArgumentParser.add_argument` or by "
@@ -1906,11 +1938,11 @@ msgstr ""
 ":meth:`~ArgumentParser.add_argument` 또는 "
 ":meth:`~ArgumentParser.set_defaults` 에 의해 설정된 이름 공간 어트리뷰트의 기본값을 가져옵니다::"
 
-#: ../Doc/library/argparse.rst:1963
+#: ../Doc/library/argparse.rst:1975
 msgid "Printing help"
 msgstr "도움말 인쇄"
 
-#: ../Doc/library/argparse.rst:1965
+#: ../Doc/library/argparse.rst:1977
 msgid ""
 "In most typical applications, :meth:`~ArgumentParser.parse_args` will "
 "take care of formatting and printing any usage or error messages.  "
@@ -1919,7 +1951,7 @@ msgstr ""
 "대부분의 일반적인 응용 프로그램에서 :meth:`~ArgumentParser.parse_args` 가 사용법이나 오류 메시지를 "
 "포매팅하고 인쇄하는 것을 담당합니다. 그러나 여러 가지 포매팅 방법이 제공됩니다:"
 
-#: ../Doc/library/argparse.rst:1971
+#: ../Doc/library/argparse.rst:1983
 msgid ""
 "Print a brief description of how the :class:`ArgumentParser` should be "
 "invoked on the command line.  If *file* is ``None``, :data:`sys.stdout` "
@@ -1928,7 +1960,7 @@ msgstr ""
 ":class:`ArgumentParser` 가 어떻게 명령행에서 호출되어야 하는지에 대한 간단한 설명을 인쇄합니다. *file* 이"
 " ``None`` 이면, :data:`sys.stdout` 이 가정됩니다."
 
-#: ../Doc/library/argparse.rst:1977
+#: ../Doc/library/argparse.rst:1989
 msgid ""
 "Print a help message, including the program usage and information about "
 "the arguments registered with the :class:`ArgumentParser`.  If *file* is "
@@ -1937,19 +1969,19 @@ msgstr ""
 "프로그램 사용법과 :class:`ArgumentParser` 에 등록된 인자에 대한 정보를 포함하는 도움말 메시지를 출력합니다. "
 "*file* 이 ``None`` 이면, :data:`sys.stdout` 이 가정됩니다."
 
-#: ../Doc/library/argparse.rst:1981
+#: ../Doc/library/argparse.rst:1993
 msgid ""
 "There are also variants of these methods that simply return a string "
 "instead of printing it:"
 msgstr "인쇄하는 대신 단순히 문자열을 반환하는, 이러한 메서드의 변형도 있습니다:"
 
-#: ../Doc/library/argparse.rst:1986
+#: ../Doc/library/argparse.rst:1998
 msgid ""
 "Return a string containing a brief description of how the "
 ":class:`ArgumentParser` should be invoked on the command line."
 msgstr ":class:`ArgumentParser` 가 어떻게 명령행에서 호출되어야 하는지에 대한 간단한 설명을 담은 문자열을 반환합니다."
 
-#: ../Doc/library/argparse.rst:1991
+#: ../Doc/library/argparse.rst:2003
 msgid ""
 "Return a string containing a help message, including the program usage "
 "and information about the arguments registered with the "
@@ -1958,11 +1990,11 @@ msgstr ""
 "프로그램 사용법과 :class:`ArgumentParser` 에 등록된 인자에 대한 정보를 포함하는 도움말 메시지를 담은 문자열을 "
 "반환합니다."
 
-#: ../Doc/library/argparse.rst:1996
+#: ../Doc/library/argparse.rst:2008
 msgid "Partial parsing"
 msgstr "부분 파싱"
 
-#: ../Doc/library/argparse.rst:2000
+#: ../Doc/library/argparse.rst:2012
 msgid ""
 "Sometimes a script may only parse a few of the command-line arguments, "
 "passing the remaining arguments on to another script or program. In these"
@@ -1977,7 +2009,7 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_args` 와 매우 유사하게 작동하는데, 여분의 인자가 있을 때 에러를 "
 "발생시키지 않는 점이 다릅니다. 대신, 채워진 이름 공간과 여분의 인자 문자열 리스트를 포함하는 두 항목 튜플을 반환합니다."
 
-#: ../Doc/library/argparse.rst:2016
+#: ../Doc/library/argparse.rst:2028
 msgid ""
 ":ref:`Prefix matching <prefix-matching>` rules apply to "
 ":meth:`parse_known_args`. The parser may consume an option even if it's "
@@ -1987,11 +2019,11 @@ msgstr ""
 ":ref:`접두사 일치 <prefix-matching>` 규칙은 :meth:`parse_known_args` 에 적용됩니다. 파서는"
 " 알려진 옵션 중 하나의 접두사 일지라도 여분의 인자 목록에 남기지 않고 옵션을 소비할 수 있습니다."
 
-#: ../Doc/library/argparse.rst:2023
+#: ../Doc/library/argparse.rst:2035
 msgid "Customizing file parsing"
 msgstr "파일 파싱 사용자 정의"
 
-#: ../Doc/library/argparse.rst:2027
+#: ../Doc/library/argparse.rst:2039
 msgid ""
 "Arguments that are read from a file (see the *fromfile_prefix_chars* "
 "keyword argument to the :class:`ArgumentParser` constructor) are read one"
@@ -2002,7 +2034,7 @@ msgstr ""
 " 참조하세요) 한 줄에 하나의 인자로 읽습니다. 이 동작을 변경하려면 :meth:`convert_arg_line_to_args` 를"
 " 재정의합니다."
 
-#: ../Doc/library/argparse.rst:2032
+#: ../Doc/library/argparse.rst:2044
 msgid ""
 "This method takes a single argument *arg_line* which is a string read "
 "from the argument file.  It returns a list of arguments parsed from this "
@@ -2012,7 +2044,7 @@ msgstr ""
 "이 메서드는 하나의 인자 *arg_line* 를 받아들이는데, 인자 파일에서 읽어 들인 문자열입니다. 이 문자열에서 파싱된 인자 "
 "리스트를 반환합니다. 메서드는 인자 파일에서 읽어 들이는 대로 한 줄에 한 번씩 순서대로 호출됩니다."
 
-#: ../Doc/library/argparse.rst:2036
+#: ../Doc/library/argparse.rst:2048
 msgid ""
 "A useful override of this method is one that treats each space-separated "
 "word as an argument.  The following example demonstrates how to do this::"
@@ -2020,11 +2052,11 @@ msgstr ""
 "이 메서드의 재정의하는 유용한 경우는 스페이스로 분리된 각 단어를 인자로 처리하는 것입니다. 다음 예제는 이렇게 하는 방법을 "
 "보여줍니다::"
 
-#: ../Doc/library/argparse.rst:2045
+#: ../Doc/library/argparse.rst:2057
 msgid "Exiting methods"
 msgstr "종료 메서드"
 
-#: ../Doc/library/argparse.rst:2049
+#: ../Doc/library/argparse.rst:2061
 msgid ""
 "This method terminates the program, exiting with the specified *status* "
 "and, if given, it prints a *message* before that. The user can override "
@@ -2033,17 +2065,17 @@ msgstr ""
 "이 메서드는 지정된 *status* 상태 코드로 프로그램을 종료하고, *message* 가 주어지면 그 전에 인쇄합니다. 사용자는 "
 "이 단계를 다르게 처리하기 위해 이 메서드를 재정의할 수 있습니다::"
 
-#: ../Doc/library/argparse.rst:2061
+#: ../Doc/library/argparse.rst:2073
 msgid ""
 "This method prints a usage message including the *message* to the "
 "standard error and terminates the program with a status code of 2."
 msgstr "이 메서드는 *message* 를 포함하는 사용법 메시지를 표준 에러에 인쇄하고, 상태 코드 2로 프로그램을 종료합니다."
 
-#: ../Doc/library/argparse.rst:2066
+#: ../Doc/library/argparse.rst:2078
 msgid "Intermixed parsing"
 msgstr "혼합 파싱"
 
-#: ../Doc/library/argparse.rst:2071
+#: ../Doc/library/argparse.rst:2083
 msgid ""
 "A number of Unix commands allow the user to intermix optional arguments "
 "with positional arguments.  The "
@@ -2056,7 +2088,7 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_known_intermixed_args` 메서드는 이런 파싱 스타일을 "
 "지원합니다."
 
-#: ../Doc/library/argparse.rst:2076
+#: ../Doc/library/argparse.rst:2088
 msgid ""
 "These parsers do not support all the argparse features, and will raise "
 "exceptions if unsupported features are used.  In particular, subparsers, "
@@ -2066,7 +2098,7 @@ msgstr ""
 "이 파서들은 argparse 기능을 모두 지원하지는 않으며 지원되지 않는 기능이 사용되는 경우 예외를 발생시킵니다. 특히 부속 "
 "파서, ``argparse.REMAINDER``, 그리고 옵션과 위치를 모두 포함하는 상호 배타적인 그룹은 지원되지 않습니다."
 
-#: ../Doc/library/argparse.rst:2081
+#: ../Doc/library/argparse.rst:2093
 msgid ""
 "The following example shows the difference between "
 ":meth:`~ArgumentParser.parse_known_args` and "
@@ -2078,7 +2110,7 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_intermixed_args` 의 차이점을 보여줍니다: 전자는 여분의 인자로 "
 "``['2', '3']`` 을 반환하는 반면, 후자는 모든 위치 인자를 ``rest`` 로 모읍니다. ::"
 
-#: ../Doc/library/argparse.rst:2096
+#: ../Doc/library/argparse.rst:2108
 msgid ""
 ":meth:`~ArgumentParser.parse_known_intermixed_args` returns a two item "
 "tuple containing the populated namespace and the list of remaining "
@@ -2090,11 +2122,11 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_intermixed_args` 는 파싱되지 않은 인자 문자열이 남아 있으면 "
 "에러를 발생시킵니다."
 
-#: ../Doc/library/argparse.rst:2106
+#: ../Doc/library/argparse.rst:2118
 msgid "Upgrading optparse code"
 msgstr "optparse 코드 업그레이드"
 
-#: ../Doc/library/argparse.rst:2108
+#: ../Doc/library/argparse.rst:2120
 msgid ""
 "Originally, the :mod:`argparse` module had attempted to maintain "
 "compatibility with :mod:`optparse`.  However, :mod:`optparse` was "
@@ -2109,41 +2141,41 @@ msgstr ""
 "지원하는 데 필요한 변경에서 그렇습니다. :mod:`optparse` 에 있는 대부분이 복사-붙여넣기 되었거나 몽키 패치되었을 때,"
 " 더 하위 호환성을 유지하려고 노력하는 것이 실용적으로 보이지 않게 되었습니다."
 
-#: ../Doc/library/argparse.rst:2115
+#: ../Doc/library/argparse.rst:2127
 msgid ""
 "The :mod:`argparse` module improves on the standard library "
 ":mod:`optparse` module in a number of ways including:"
 msgstr ":mod:`argparse` 모듈은 표준 라이브러리 :mod:`optparse` 모듈을 다음과 같은 여러 가지 방식으로 개선합니다:"
 
-#: ../Doc/library/argparse.rst:2118
+#: ../Doc/library/argparse.rst:2130
 msgid "Handling positional arguments."
 msgstr "위치 인자 처리."
 
-#: ../Doc/library/argparse.rst:2119
+#: ../Doc/library/argparse.rst:2131
 msgid "Supporting sub-commands."
 msgstr "부속 명령 지원."
 
-#: ../Doc/library/argparse.rst:2120
+#: ../Doc/library/argparse.rst:2132
 msgid "Allowing alternative option prefixes like ``+`` and ``/``."
 msgstr "``+`` 와 ``/`` 와 같은 다른 옵션 접두사 허용."
 
-#: ../Doc/library/argparse.rst:2121
+#: ../Doc/library/argparse.rst:2133
 msgid "Handling zero-or-more and one-or-more style arguments."
 msgstr "0개 이상 및 1개 이상 스타일의 인자 처리."
 
-#: ../Doc/library/argparse.rst:2122
+#: ../Doc/library/argparse.rst:2134
 msgid "Producing more informative usage messages."
 msgstr "더욱 유익한 사용법 메시지 생성."
 
-#: ../Doc/library/argparse.rst:2123
+#: ../Doc/library/argparse.rst:2135
 msgid "Providing a much simpler interface for custom ``type`` and ``action``."
 msgstr "사용자 정의 ``type`` 과 ``action`` 을 위한 훨씬 간단한 인터페이스 제공."
 
-#: ../Doc/library/argparse.rst:2125
+#: ../Doc/library/argparse.rst:2137
 msgid "A partial upgrade path from :mod:`optparse` to :mod:`argparse`:"
 msgstr ":mod:`optparse` 에서 :mod:`argparse` 로의 부분적인 업그레이드 경로:"
 
-#: ../Doc/library/argparse.rst:2127
+#: ../Doc/library/argparse.rst:2139
 msgid ""
 "Replace all :meth:`optparse.OptionParser.add_option` calls with "
 ":meth:`ArgumentParser.add_argument` calls."
@@ -2151,7 +2183,7 @@ msgstr ""
 "모든 :meth:`optparse.OptionParser.add_option` 호출을 "
 ":meth:`ArgumentParser.add_argument` 호출로 대체하십시오."
 
-#: ../Doc/library/argparse.rst:2130
+#: ../Doc/library/argparse.rst:2142
 msgid ""
 "Replace ``(options, args) = parser.parse_args()`` with ``args = "
 "parser.parse_args()`` and add additional "
@@ -2164,7 +2196,7 @@ msgstr ""
 ":meth:`ArgumentParser.add_argument` 호출을 추가하십시오. 이전에 ``options`` 라고 불렀던 것이"
 " 이제 :mod:`argparse` 문맥에서 ``args`` 라는 것을 명심하십시오."
 
-#: ../Doc/library/argparse.rst:2135
+#: ../Doc/library/argparse.rst:2147
 msgid ""
 "Replace :meth:`optparse.OptionParser.disable_interspersed_args` by using "
 ":meth:`~ArgumentParser.parse_intermixed_args` instead of "
@@ -2174,13 +2206,13 @@ msgstr ""
 ":meth:`~ArgumentParser.parse_args` 대신 "
 ":meth:`~ArgumentParser.parse_intermixed_args` 를 사용하여 대체하십시오."
 
-#: ../Doc/library/argparse.rst:2139
+#: ../Doc/library/argparse.rst:2151
 msgid ""
 "Replace callback actions and the ``callback_*`` keyword arguments with "
 "``type`` or ``action`` arguments."
 msgstr "콜백 액션과 ``callback_*`` 키워드 인자를 ``type`` 또는 ``action`` 인자로 대체하십시오."
 
-#: ../Doc/library/argparse.rst:2142
+#: ../Doc/library/argparse.rst:2154
 msgid ""
 "Replace string names for ``type`` keyword arguments with the "
 "corresponding type objects (e.g. int, float, complex, etc)."
@@ -2188,7 +2220,7 @@ msgstr ""
 "``type`` 키워드 인자를 위한 문자열 이름을 해당 type 객체(예를 들어, int, float, complex 등)로 "
 "대체하십시오."
 
-#: ../Doc/library/argparse.rst:2145
+#: ../Doc/library/argparse.rst:2157
 msgid ""
 "Replace :class:`optparse.Values` with :class:`Namespace` and "
 ":exc:`optparse.OptionError` and :exc:`optparse.OptionValueError` with "
@@ -2198,7 +2230,7 @@ msgstr ""
 ":exc:`optparse.OptionError` 와 :exc:`optparse.OptionValueError` 를 "
 ":exc:`ArgumentError` 로 대체하십시오."
 
-#: ../Doc/library/argparse.rst:2149
+#: ../Doc/library/argparse.rst:2161
 #, python-format
 msgid ""
 "Replace strings with implicit arguments such as ``%default`` or ``%prog``"
@@ -2208,7 +2240,7 @@ msgstr ""
 "``%default`` 나 ``%prog`` 와 같은 묵시적인 인자를 포함하는 문자열을, 문자열 포맷에 딕셔너리를 사용하는 표준 "
 "파이썬 문법 대체하십시오, 즉 ``%(default)s`` 와 ``%(prog)s``."
 
-#: ../Doc/library/argparse.rst:2153
+#: ../Doc/library/argparse.rst:2165
 msgid ""
 "Replace the OptionParser constructor ``version`` argument with a call to "
 "``parser.add_argument('--version', action='version', version='<the "
@@ -2216,4 +2248,68 @@ msgid ""
 msgstr ""
 "OptionParser 생성자의 ``version`` 인자를 ``parser.add_argument('--version', "
 "action='version', version='<the version>')`` 호출로 대체하십시오."
+
+#~ msgid ""
+#~ "By default, :class:`ArgumentParser` objects "
+#~ "read command-line arguments in as "
+#~ "simple strings. However, quite often the"
+#~ " command-line string should instead "
+#~ "be interpreted as another type, like "
+#~ "a :class:`float` or :class:`int`.  The "
+#~ "``type`` keyword argument of "
+#~ ":meth:`~ArgumentParser.add_argument` allows any "
+#~ "necessary type-checking and type "
+#~ "conversions to be performed.  Common "
+#~ "built-in types and functions can be"
+#~ " used directly as the value of "
+#~ "the ``type`` argument::"
+#~ msgstr ""
+#~ "기본적으로 :class:`ArgumentParser` 객체는 명령행 인자를 "
+#~ "간단한 문자열로 읽습니다. 그러나 꽤 자주 명령행 "
+#~ "문자열은 :class:`float` 또는 :class:`int`\\와 같은 "
+#~ "다른 형으로 해석되어야 합니다. "
+#~ ":meth:`~ArgumentParser.add_argument` 의 ``type`` 키워드"
+#~ " 인자는 필요한 형 검사와 형 변환이 수행되도록 "
+#~ "합니다. 일반적인 내장형과 함수는 ``type`` 인자의 "
+#~ "값으로 직접 사용될 수 있습니다::"
+
+#~ msgid ""
+#~ "See the section on the default_ "
+#~ "keyword argument for information on when"
+#~ " the ``type`` argument is applied to"
+#~ " default arguments."
+#~ msgstr "언제 ``type`` 인자가 기본 인자에 적용되는지에 대한 정보는 default_ 키워드 인자 절을 참조하십시오."
+
+#~ msgid ""
+#~ "To ease the use of various types"
+#~ " of files, the argparse module "
+#~ "provides the factory FileType which "
+#~ "takes the ``mode=``, ``bufsize=``, "
+#~ "``encoding=`` and ``errors=`` arguments of "
+#~ "the :func:`open` function.  For example, "
+#~ "``FileType('w')`` can be used to create"
+#~ " a writable file::"
+#~ msgstr ""
+#~ "다양한 형태의 파일을 사용하기 쉽게 하려고, argparse"
+#~ " 모듈은 :func:`open` 함수의 ``mode=``, "
+#~ "``bufsize=``, ``encoding=``, ``errors=`` 인자를 "
+#~ "취하는 팩토리 FileType 을 제공합니다. 예를 들어,"
+#~ " ``FileType('w')`` 은 쓰기 가능한 파일을 만드는"
+#~ " 데 사용할 수 있습니다 ::"
+
+#~ msgid ""
+#~ "``type=`` can take any callable that "
+#~ "takes a single string argument and "
+#~ "returns the converted value::"
+#~ msgstr "``type=`` 는 단일 문자열 인자를 취하고 변환된 값을 돌려주는 모든 콜러블을 받아들입니다::"
+
+#~ msgid ""
+#~ "The choices_ keyword argument may be "
+#~ "more convenient for type checkers that"
+#~ " simply check against a range of "
+#~ "values::"
+#~ msgstr "단순히 값의 범위를 검사하는 형 검사기로는 choices_ 키워드 인자가 더 편리할 수 있습니다::"
+
+#~ msgid "See the choices_ section for more details."
+#~ msgstr "자세한 내용은 choices_ 섹션을 참조하십시오."
 

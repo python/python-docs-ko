@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 08:36+0900\n"
+"POT-Creation-Date: 2021-04-08 08:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -279,12 +279,14 @@ msgid "Format String Syntax"
 msgstr "포맷 문자열 문법"
 
 #: ../Doc/library/string.rst:188
+#, fuzzy
 msgid ""
 "The :meth:`str.format` method and the :class:`Formatter` class share the "
 "same syntax for format strings (although in the case of "
 ":class:`Formatter`, subclasses can define their own format string "
 "syntax).  The syntax is related to that of :ref:`formatted string "
-"literals <f-strings>`, but there are differences."
+"literals <f-strings>`, but it is less sophisticated and, in particular, "
+"does not support arbitrary expressions."
 msgstr ""
 ":meth:`str.format` 메서드와 :class:`Formatter` 클래스는 포맷 문자열에 대해서 같은 문법을 공유합니다 "
 "(:class:`Formatter` 의 경우, 서브 클래스는 그들 자신의 포맷 문자열 문법을 정의 할 수 있습니다). 문법은 "
@@ -680,7 +682,7 @@ msgid "String format. This is the default type for strings and may be omitted."
 msgstr "문자열 포맷. 이것은 문자열의 기본 유형이고 생략될 수 있습니다."
 
 #: ../Doc/library/string.rst:444 ../Doc/library/string.rst:471
-#: ../Doc/library/string.rst:553
+#: ../Doc/library/string.rst:558
 msgid "None"
 msgstr "없음"
 
@@ -746,7 +748,7 @@ msgid ""
 "the digits above 9."
 msgstr "16진 형식. 9보다 큰 숫자의 경우 대문자를 사용하여 16진법으로 숫자를 출력합니다."
 
-#: ../Doc/library/string.rst:467 ../Doc/library/string.rst:546
+#: ../Doc/library/string.rst:467 ../Doc/library/string.rst:551
 msgid "``'n'``"
 msgstr "``'n'``"
 
@@ -843,15 +845,17 @@ msgid "``'g'``"
 msgstr "``'g'``"
 
 #: ../Doc/library/string.rst:513
+#, fuzzy
 msgid ""
 "General format.  For a given precision ``p >= 1``, this rounds the number"
 " to ``p`` significant digits and then formats the result in either fixed-"
-"point format or in scientific notation, depending on its magnitude."
+"point format or in scientific notation, depending on its magnitude. A "
+"precision of ``0`` is treated as equivalent to a precision of ``1``."
 msgstr ""
 "범용 형식. 주어진 정밀도 ``p >= 1`` 에 대해, 숫자를 유효 숫자 ``p`` 로 자리 올림 한 다음, 결과를 크기에 따라 "
 "고정 소수점 형식이나 과학 표기법으로 포맷합니다."
 
-#: ../Doc/library/string.rst:518
+#: ../Doc/library/string.rst:520
 msgid ""
 "The precise rules are as follows: suppose that the result formatted with "
 "presentation type ``'e'`` and precision ``p-1`` would have exponent "
@@ -870,7 +874,17 @@ msgstr ""
 "경우 유효하지 않은 후행 0은 모두 유효숫자부에서 제거되고, 뒤에 남아있는 숫자가 없다면 ``'#'`` 옵션이 사용되지 않는 한 "
 "소수점도 제거됩니다."
 
-#: ../Doc/library/string.rst:531
+#: ../Doc/library/string.rst:533
+msgid ""
+"With no precision given, uses a precision of ``6`` significant digits for"
+" :class:`float`. For :class:`~decimal.Decimal`, the coefficient of the "
+"result is formed from the coefficient digits of the value; scientific "
+"notation is used for values smaller than ``1e-6`` in absolute value and "
+"values where the place value of the least significant digit is larger "
+"than 1, and fixed-point notation is used otherwise."
+msgstr ""
+
+#: ../Doc/library/string.rst:542
 msgid ""
 "Positive and negative infinity, positive and negative zero, and nans, are"
 " formatted as ``inf``, ``-inf``, ``0``, ``-0`` and ``nan`` respectively, "
@@ -879,22 +893,11 @@ msgstr ""
 "양과 음의 무한대, 양과 음의 0, nans는 정밀도와 무관하게 각각 ``inf``, ``-inf``, ``0``, ``-0``, "
 "``nan`` 으로 포맷됩니다."
 
-#: ../Doc/library/string.rst:536
-msgid ""
-"A precision of ``0`` is treated as equivalent to a precision of ``1``. "
-"With no precision given, uses a precision of ``6`` significant digits for"
-" :class:`float`, and shows all coefficient digits for "
-":class:`~decimal.Decimal`."
-msgstr ""
-"``0`` 의 정밀도는 ``1`` 의 정밀도로 처리됩니다. 정밀도가 지정되지 않으면, :class:`float`\\의 경우 "
-"``6`` 유효 자릿수의 정밀도를 사용하고, :class:`~decimal.Decimal`\\의 경우는 모든 계수 숫자를 "
-"표시합니다."
-
-#: ../Doc/library/string.rst:542
+#: ../Doc/library/string.rst:547
 msgid "``'G'``"
 msgstr "``'G'``"
 
-#: ../Doc/library/string.rst:542
+#: ../Doc/library/string.rst:547
 msgid ""
 "General format. Same as ``'g'`` except switches to ``'E'`` if the number "
 "gets too large. The representations of infinity and NaN are uppercased, "
@@ -903,44 +906,54 @@ msgstr ""
 "범용 형식. 숫자가 너무 커지면 ``'E'`` 로 전환하는 것을 제외하고 ``'g'`` 와 같습니다. 무한과 NaN 의 표현도 "
 "대문자로 바뀝니다."
 
-#: ../Doc/library/string.rst:546
+#: ../Doc/library/string.rst:551
 msgid ""
 "Number. This is the same as ``'g'``, except that it uses the current "
 "locale setting to insert the appropriate number separator characters."
 msgstr "숫자. 현재 로케일 설정을 사용하여 적절한 숫자 구분 문자를 삽입한다는 점을 제외하면 ``'g'`` 와 같습니다."
 
-#: ../Doc/library/string.rst:550
+#: ../Doc/library/string.rst:555
 msgid "``'%'``"
 msgstr "``'%'``"
 
-#: ../Doc/library/string.rst:550
+#: ../Doc/library/string.rst:555
 msgid ""
 "Percentage. Multiplies the number by 100 and displays in fixed (``'f'``) "
 "format, followed by a percent sign."
 msgstr "백분율. 숫자에 100을 곱해서 고정 (``'f'``) 형식으로 표시한 다음 백분율 기호를 붙입니다."
 
-#: ../Doc/library/string.rst:553
+#: ../Doc/library/string.rst:558
 msgid ""
-"Similar to ``'g'``, except that fixed-point notation, when used, has at "
-"least one digit past the decimal point. The default precision is as high "
-"as needed to represent the particular value. The overall effect is to "
-"match the output of :func:`str` as altered by the other format modifiers."
+"For :class:`float` this is the same as ``'g'``, except that when fixed-"
+"point notation is used to format the result, it always includes at least "
+"one digit past the decimal point. The precision used is as large as "
+"needed to represent the given value faithfully."
 msgstr ""
-"고정 소수점 표기법이 선택될 때, 소수점 이하로 적어도 하나의 자리가 있다는 점을 제외하면 ``'g'`` 와 비슷합니다. 기본 "
-"정밀도는 특정 값을 나타내는 데 필요한 만큼 높습니다. 전체적인 효과는 :func:`str` 의 출력을 다른 포맷 수정자에 의해 "
-"변경된 것처럼 만드는 것입니다."
 
-#: ../Doc/library/string.rst:565
+#: ../Doc/library/string.rst:564
+msgid ""
+"For :class:`~decimal.Decimal`, this is the same as either ``'g'`` or "
+"``'G'`` depending on the value of ``context.capitals`` for the current "
+"decimal context."
+msgstr ""
+
+#: ../Doc/library/string.rst:568
+msgid ""
+"The overall effect is to match the output of :func:`str` as altered by "
+"the other format modifiers."
+msgstr ""
+
+#: ../Doc/library/string.rst:576
 msgid "Format examples"
 msgstr "포맷 예제"
 
-#: ../Doc/library/string.rst:567
+#: ../Doc/library/string.rst:578
 msgid ""
 "This section contains examples of the :meth:`str.format` syntax and "
 "comparison with the old ``%``-formatting."
 msgstr "이 절은 :meth:`str.format` 문법의 예와 예전 ``%``-포매팅과의 비교를 포함합니다."
 
-#: ../Doc/library/string.rst:570
+#: ../Doc/library/string.rst:581
 #, python-format
 msgid ""
 "In most of the cases the syntax is similar to the old ``%``-formatting, "
@@ -950,68 +963,68 @@ msgstr ""
 "대부분은 문법이 예전의 ``%``-포매팅과 유사하며, ``{}`` 가 추가되고 ``%`` 대신 및 ``:`` 이 사용됩니다. 예를 "
 "들어, ``'%03.2f'`` 는 ``'{:03.2f}'`` 로 번역될 수 있습니다."
 
-#: ../Doc/library/string.rst:574
+#: ../Doc/library/string.rst:585
 msgid ""
 "The new format syntax also supports new and different options, shown in "
 "the following examples."
 msgstr "새 포맷 문법은 다음 예제에 보이는 것과 같이 새롭고 다양한 옵션도 지원합니다."
 
-#: ../Doc/library/string.rst:577
+#: ../Doc/library/string.rst:588
 msgid "Accessing arguments by position::"
 msgstr "위치로 인자 액세스::"
 
-#: ../Doc/library/string.rst:590
+#: ../Doc/library/string.rst:601
 msgid "Accessing arguments by name::"
 msgstr "이름으로 인자 액세스::"
 
-#: ../Doc/library/string.rst:598
+#: ../Doc/library/string.rst:609
 msgid "Accessing arguments' attributes::"
 msgstr "인자의 어트리뷰트 액세스::"
 
-#: ../Doc/library/string.rst:613
+#: ../Doc/library/string.rst:624
 msgid "Accessing arguments' items::"
 msgstr "인자의 항목 액세스::"
 
-#: ../Doc/library/string.rst:619
+#: ../Doc/library/string.rst:630
 #, python-format
 msgid "Replacing ``%s`` and ``%r``::"
 msgstr "``%s`` 과 ``%r`` 대체::"
 
-#: ../Doc/library/string.rst:624
+#: ../Doc/library/string.rst:635
 msgid "Aligning the text and specifying a width::"
 msgstr "텍스트 정렬과 너비 지정::"
 
-#: ../Doc/library/string.rst:635
+#: ../Doc/library/string.rst:646
 #, python-format
 msgid "Replacing ``%+f``, ``%-f``, and ``% f`` and specifying a sign::"
 msgstr "``%+f``, ``%-f``, ``% f`` 대체와 부호 지정::"
 
-#: ../Doc/library/string.rst:644
+#: ../Doc/library/string.rst:655
 #, python-format
 msgid "Replacing ``%x`` and ``%o`` and converting the value to different bases::"
 msgstr "``%x``, ``%o`` 대체와 다른 진법으로 값 변환::"
 
-#: ../Doc/library/string.rst:653
+#: ../Doc/library/string.rst:664
 msgid "Using the comma as a thousands separator::"
 msgstr "쉼표를 천 단위 구분자로 사용::"
 
-#: ../Doc/library/string.rst:658
+#: ../Doc/library/string.rst:669
 msgid "Expressing a percentage::"
 msgstr "백분율 표현::"
 
-#: ../Doc/library/string.rst:665
+#: ../Doc/library/string.rst:676
 msgid "Using type-specific formatting::"
 msgstr "형별 포매팅 사용::"
 
-#: ../Doc/library/string.rst:672
+#: ../Doc/library/string.rst:683
 msgid "Nesting arguments and more complex examples::"
 msgstr "인자 중첩과 보다 복잡한 예제::"
 
-#: ../Doc/library/string.rst:706
+#: ../Doc/library/string.rst:717
 msgid "Template strings"
 msgstr "템플릿 문자열"
 
-#: ../Doc/library/string.rst:708
+#: ../Doc/library/string.rst:719
 msgid ""
 "Template strings provide simpler string substitutions as described in "
 ":pep:`292`.  A primary use case for template strings is for "
@@ -1026,17 +1039,17 @@ msgstr ""
 "때문입니다. i18n을 위해 템플릿 문자열을 기반으로 구축된 라이브러리의 예는 `flufl.i18n "
 "<http://flufli18n.readthedocs.io/en/latest/>`_ 패키지를 보십시오."
 
-#: ../Doc/library/string.rst:718
+#: ../Doc/library/string.rst:729
 msgid ""
 "Template strings support ``$``-based substitutions, using the following "
 "rules:"
 msgstr "템플릿 문자열은 다음 규칙을 사용하여 ``$``-기반 치환을 지원합니다:"
 
-#: ../Doc/library/string.rst:720
+#: ../Doc/library/string.rst:731
 msgid "``$$`` is an escape; it is replaced with a single ``$``."
 msgstr "``$$`` 는 이스케이프입니다. 이것은 하나의 ``$`` 로 치환됩니다."
 
-#: ../Doc/library/string.rst:722
+#: ../Doc/library/string.rst:733
 msgid ""
 "``$identifier`` names a substitution placeholder matching a mapping key "
 "of ``\"identifier\"``.  By default, ``\"identifier\"`` is restricted to "
@@ -1049,7 +1062,7 @@ msgstr ""
 " ``\"identifier\"`` 는 밑줄이나 ASCII 알파벳으로 시작하는 대소문자 구분 없는 ASCII 영숫자(밑줄 포함) "
 "문자열로 제한됩니다. ``$`` 문자 뒤의 첫 번째 비 식별자 문자는 이 자리 표시자 명세를 종료합니다."
 
-#: ../Doc/library/string.rst:729
+#: ../Doc/library/string.rst:740
 msgid ""
 "``${identifier}`` is equivalent to ``$identifier``.  It is required when "
 "valid identifier characters follow the placeholder but are not part of "
@@ -1058,13 +1071,13 @@ msgstr ""
 "``${identifier}`` 는 ``$identifier`` 와 동등합니다. 유효한 식별자 문자가 자리 표시자 뒤에 오지만, "
 "자리 표시자의 일부가 아니면 필요합니다, 가령 ``\"${noun}ification\"``."
 
-#: ../Doc/library/string.rst:733
+#: ../Doc/library/string.rst:744
 msgid ""
 "Any other appearance of ``$`` in the string will result in a "
 ":exc:`ValueError` being raised."
 msgstr "문자열에 다른 방식으로 ``$`` 이 등장하면 :exc:`ValueError` 가 발생합니다."
 
-#: ../Doc/library/string.rst:736
+#: ../Doc/library/string.rst:747
 msgid ""
 "The :mod:`string` module provides a :class:`Template` class that "
 "implements these rules.  The methods of :class:`Template` are:"
@@ -1072,11 +1085,11 @@ msgstr ""
 ":mod:`string` 모듈은 이 규칙들을 구현하는 :class:`Template` 클래스를 제공합니다. "
 ":class:`Template` 의 메서드는 다음과 같습니다:"
 
-#: ../Doc/library/string.rst:742
+#: ../Doc/library/string.rst:753
 msgid "The constructor takes a single argument which is the template string."
 msgstr "생성자는 템플릿 문자열 하나를 받아들입니다."
 
-#: ../Doc/library/string.rst:747
+#: ../Doc/library/string.rst:758
 msgid ""
 "Performs the template substitution, returning a new string.  *mapping* is"
 " any dictionary-like object with keys that match the placeholders in the "
@@ -1088,7 +1101,7 @@ msgstr ""
 " 객체입니다. 또는, 키워드가 자리 표시자인 키워드 인자를 제공 할 수 있습니다. *mapping* 및 *kwds* 가 모두 "
 "제공되고 중복이 있는 경우, *kwds* 의 자리 표시자가 우선합니다."
 
-#: ../Doc/library/string.rst:756
+#: ../Doc/library/string.rst:767
 msgid ""
 "Like :meth:`substitute`, except that if placeholders are missing from "
 "*mapping* and *kwds*, instead of raising a :exc:`KeyError` exception, the"
@@ -1101,7 +1114,7 @@ msgstr ""
 ":meth:`substitute` 와는 달리, ``$`` 가 잘못 사용되는 경우 :exc:`ValueError` 를 일으키는 대신 "
 "단순히 ``$`` 를 반환합니다."
 
-#: ../Doc/library/string.rst:762
+#: ../Doc/library/string.rst:773
 msgid ""
 "While other exceptions may still occur, this method is called \"safe\" "
 "because it always tries to return a usable string instead of raising an "
@@ -1115,11 +1128,11 @@ msgstr ""
 "길 잃은(dangling) 구분 기호, 쌍을 이루지 않는 중괄호, 유효한 파이썬 식별자가 아닌 자리 표시자를 포함하는 잘못된 "
 "템플릿을 조용히 무시하기 때문입니다."
 
-#: ../Doc/library/string.rst:769
+#: ../Doc/library/string.rst:780
 msgid ":class:`Template` instances also provide one public data attribute:"
 msgstr ":class:`Template` 인스턴스는 공개 데이터 어트리뷰트도 하나 제공합니다:"
 
-#: ../Doc/library/string.rst:773
+#: ../Doc/library/string.rst:784
 msgid ""
 "This is the object passed to the constructor's *template* argument.  In "
 "general, you shouldn't change it, but read-only access is not enforced."
@@ -1127,11 +1140,11 @@ msgstr ""
 "이것은 생성자의 *template* 인자로 전달된 객체입니다. 일반적으로, 변경해서는 안 되지만, 읽기 전용 액세스가 강제되지는 "
 "않습니다."
 
-#: ../Doc/library/string.rst:776
+#: ../Doc/library/string.rst:787
 msgid "Here is an example of how to use a Template::"
 msgstr "다음은 Template 사용 방법의 예입니다::"
 
-#: ../Doc/library/string.rst:794
+#: ../Doc/library/string.rst:805
 msgid ""
 "Advanced usage: you can derive subclasses of :class:`Template` to "
 "customize the placeholder syntax, delimiter character, or the entire "
@@ -1141,7 +1154,7 @@ msgstr ""
 "고급 사용법: :class:`Template` 의 서브 클래스를 파생하여, 자리 표시자 문법, 구분 기호 문자 또는 템플릿 문자열을"
 " 파싱하는데 사용되는 전체 정규식을 사용자 정의 할 수 있습니다. 이렇게 하려면, 다음 클래스 어트리뷰트를 재정의할 수 있습니다:"
 
-#: ../Doc/library/string.rst:799
+#: ../Doc/library/string.rst:810
 msgid ""
 "*delimiter* -- This is the literal string describing a placeholder "
 "introducing delimiter.  The default value is ``$``.  Note that this "
@@ -1154,7 +1167,7 @@ msgstr ""
 "필요할 때 이 문자열에 :meth:`re.escape` 를 호출하므로, 이 문자열은 정규식이 *아니어야* 합니다. 또한, 클래스 "
 "생성 후에 구분자를 변경할 수 없습니다 (즉, 다른 구분자는 반드시 서브 클래스의 클래스 이름 공간에 설정해야 합니다)."
 
-#: ../Doc/library/string.rst:806
+#: ../Doc/library/string.rst:817
 msgid ""
 "*idpattern* -- This is the regular expression describing the pattern for "
 "non-braced placeholders.  The default value is the regular expression "
@@ -1165,7 +1178,7 @@ msgstr ""
 "``(?a:[_a-z][_a-z0-9]*)`` 입니다. *braceidpattern* 이 ``None`` 인 경우, 이 패턴은 "
 "중괄호가 있는 자리 표시자에게도 적용됩니다."
 
-#: ../Doc/library/string.rst:813
+#: ../Doc/library/string.rst:824
 msgid ""
 "Since default *flags* is ``re.IGNORECASE``, pattern ``[a-z]`` can match "
 "with some non-ASCII characters. That's why we use the local ``a`` flag "
@@ -1174,13 +1187,13 @@ msgstr ""
 "기본 *flags* 가 ``re.IGNORECASE`` 이기 때문에, 패턴 ``[a-z]`` 는 비 ASCII 문자와 일치 할 수 "
 "있습니다. 이 때문에 정규식에 ``a`` 플래그를 사용했습니다."
 
-#: ../Doc/library/string.rst:817
+#: ../Doc/library/string.rst:828
 msgid ""
 "*braceidpattern* can be used to define separate patterns used inside and "
 "outside the braces."
 msgstr "*braceidpattern* 은 중괄호로 싸여있을 때와 그렇지 않을 때 사용되는 별도의 패턴을 정의하는데 사용할 수 있습니다."
 
-#: ../Doc/library/string.rst:821
+#: ../Doc/library/string.rst:832
 msgid ""
 "*braceidpattern* -- This is like *idpattern* but describes the pattern "
 "for braced placeholders.  Defaults to ``None`` which means to fall back "
@@ -1192,7 +1205,7 @@ msgstr ""
 "기본값은 ``None`` 인데, *idpattern* 을 사용하는 것을 의미합니다 (즉, 같은 패턴이 중괄호가 있을 때와 없을 때 "
 "모두 사용됩니다). 이 값을 주면, 중괄호가 있을 때와 없을 때의 자리 표시자에 서로 다른 패턴을 정의 할 수 있습니다."
 
-#: ../Doc/library/string.rst:829
+#: ../Doc/library/string.rst:840
 msgid ""
 "*flags* -- The regular expression flags that will be applied when "
 "compiling the regular expression used for recognizing substitutions.  The"
@@ -1204,7 +1217,7 @@ msgstr ""
 " 입니다. ``re.VERBOSE`` 가 항상 플래그에 추가되므로, 사용자 정의 *idpattern* 은 상세한 정규식의 규칙을 "
 "따라야 합니다."
 
-#: ../Doc/library/string.rst:837
+#: ../Doc/library/string.rst:848
 msgid ""
 "Alternatively, you can provide the entire regular expression pattern by "
 "overriding the class attribute *pattern*.  If you do this, the value must"
@@ -1216,35 +1229,35 @@ msgstr ""
 "개의 이름있는 캡처 그룹이 있는 정규식 객체여야 합니다. 캡처 그룹은 위에 제공된 규칙과 함께 유효하지 않은 자리 표시자 규칙에 "
 "해당합니다:"
 
-#: ../Doc/library/string.rst:843
+#: ../Doc/library/string.rst:854
 msgid ""
 "*escaped* -- This group matches the escape sequence, e.g. ``$$``, in the "
 "default pattern."
 msgstr "*escaped* -- 이 그룹은 이스케이프 시퀀스를 일치시킵니다, 예를 들어 기본 패턴에서 ``$$``."
 
-#: ../Doc/library/string.rst:846
+#: ../Doc/library/string.rst:857
 msgid ""
 "*named* -- This group matches the unbraced placeholder name; it should "
 "not include the delimiter in capturing group."
 msgstr "*named* -- 이 그룹은 중괄호가 없는 자리 표시자 이름을 일치합니다; 캡처 그룹에 구분자를 포함해서는 안 됩니다."
 
-#: ../Doc/library/string.rst:849
+#: ../Doc/library/string.rst:860
 msgid ""
 "*braced* -- This group matches the brace enclosed placeholder name; it "
 "should not include either the delimiter or braces in the capturing group."
 msgstr "*braced* -- 이 그룹은 중괄호로 묶인 자리 표시자 이름을 일치시킵니다; 캡처 그룹에 구분자나 중괄호를 포함해서는 안 됩니다."
 
-#: ../Doc/library/string.rst:852
+#: ../Doc/library/string.rst:863
 msgid ""
 "*invalid* -- This group matches any other delimiter pattern (usually a "
 "single delimiter), and it should appear last in the regular expression."
 msgstr "*invalid* -- 이 그룹은 그 외의 구분자 패턴(일반적으로 단일 구분자)을 일치시키고, 정규식의 마지막에 나타나야 합니다."
 
-#: ../Doc/library/string.rst:857
+#: ../Doc/library/string.rst:868
 msgid "Helper functions"
 msgstr "도움 함수"
 
-#: ../Doc/library/string.rst:861
+#: ../Doc/library/string.rst:872
 msgid ""
 "Split the argument into words using :meth:`str.split`, capitalize each "
 "word using :meth:`str.capitalize`, and join the capitalized words using "
@@ -1257,4 +1270,36 @@ msgstr ""
 " 첫 글자를 대문자로 만들고, 이렇게 만들어진 단어들을 :meth:`str.join` 을 사용하여 결합합니다. 선택적 두 번째 인자"
 " *sep* 가 없거나 ``None`` 이면, 연속된 공백 문자는 단일 스페이스로 바뀌고 앞뒤 공백이 제거됩니다. 그렇지 않으면 "
 "*sep* 가 단어를 나누고 합치는 데 사용됩니다."
+
+#~ msgid ""
+#~ "A precision of ``0`` is treated as"
+#~ " equivalent to a precision of ``1``."
+#~ " With no precision given, uses a "
+#~ "precision of ``6`` significant digits "
+#~ "for :class:`float`, and shows all "
+#~ "coefficient digits for :class:`~decimal.Decimal`."
+#~ msgstr ""
+#~ "``0`` 의 정밀도는 ``1`` 의 정밀도로 처리됩니다."
+#~ " 정밀도가 지정되지 않으면, :class:`float`\\의 경우 "
+#~ "``6`` 유효 자릿수의 정밀도를 사용하고, "
+#~ ":class:`~decimal.Decimal`\\의 경우는 모든 계수 숫자를 "
+#~ "표시합니다."
+
+#~ msgid ""
+#~ "Similar to ``'g'``, except that "
+#~ "fixed-point notation, when used, has "
+#~ "at least one digit past the "
+#~ "decimal point. The default precision is"
+#~ " as high as needed to represent "
+#~ "the particular value. The overall effect"
+#~ " is to match the output of "
+#~ ":func:`str` as altered by the other "
+#~ "format modifiers."
+#~ msgstr ""
+#~ "고정 소수점 표기법이 선택될 때, 소수점 이하로 "
+#~ "적어도 하나의 자리가 있다는 점을 제외하면 ``'g'``"
+#~ " 와 비슷합니다. 기본 정밀도는 특정 값을 나타내는"
+#~ " 데 필요한 만큼 높습니다. 전체적인 효과는 "
+#~ ":func:`str` 의 출력을 다른 포맷 수정자에 의해"
+#~ " 변경된 것처럼 만드는 것입니다."
 
