@@ -279,7 +279,6 @@ msgid "Format String Syntax"
 msgstr "포맷 문자열 문법"
 
 #: ../Doc/library/string.rst:188
-#, fuzzy
 msgid ""
 "The :meth:`str.format` method and the :class:`Formatter` class share the "
 "same syntax for format strings (although in the case of "
@@ -290,7 +289,7 @@ msgid ""
 msgstr ""
 ":meth:`str.format` 메서드와 :class:`Formatter` 클래스는 포맷 문자열에 대해서 같은 문법을 공유합니다 "
 "(:class:`Formatter` 의 경우, 서브 클래스는 그들 자신의 포맷 문자열 문법을 정의 할 수 있습니다). 문법은 "
-":ref:`포맷 문자열 리터럴 <f-strings>` 과 관련 있지만, 차이점이 있습니다."
+":ref:`포맷 문자열 리터럴 <f-strings>` 과 관련 있지만, 덜 정교하며, 특히 임의의 표현식을 지원하지 않습니다."
 
 #: ../Doc/library/string.rst:201
 msgid ""
@@ -845,7 +844,6 @@ msgid "``'g'``"
 msgstr "``'g'``"
 
 #: ../Doc/library/string.rst:513
-#, fuzzy
 msgid ""
 "General format.  For a given precision ``p >= 1``, this rounds the number"
 " to ``p`` significant digits and then formats the result in either fixed-"
@@ -853,7 +851,7 @@ msgid ""
 "precision of ``0`` is treated as equivalent to a precision of ``1``."
 msgstr ""
 "범용 형식. 주어진 정밀도 ``p >= 1`` 에 대해, 숫자를 유효 숫자 ``p`` 로 자리 올림 한 다음, 결과를 크기에 따라 "
-"고정 소수점 형식이나 과학 표기법으로 포맷합니다."
+"고정 소수점 형식이나 과학 표기법으로 포맷합니다. 정밀도 ``0``\\은 정밀도 ``1``\\과 동등하게 처리됩니다."
 
 #: ../Doc/library/string.rst:520
 msgid ""
@@ -883,6 +881,9 @@ msgid ""
 "values where the place value of the least significant digit is larger "
 "than 1, and fixed-point notation is used otherwise."
 msgstr ""
+"정밀도가 지정되지 않으면, :class:`float`\\의 경우 ``6`` 유효 자릿수의 정밀도를 사용합니다. "
+":class:`~decimal.Decimal`\\의 경우, 결과 계수는 값의 계수 숫자로 구성됩니다; 과학적 표기법은 절댓값이 "
+"``1e-6`` 보다 작은 값과 최하위 숫자의 자릿값이 1보다 큰 값에 사용되며, 그렇지 않으면 고정 소수점 표기법이 사용됩니다."
 
 #: ../Doc/library/string.rst:542
 msgid ""
@@ -929,6 +930,8 @@ msgid ""
 "one digit past the decimal point. The precision used is as large as "
 "needed to represent the given value faithfully."
 msgstr ""
+":class:`float`\\의 경우, 고정 소수점 표기법이 결과를 포맷하는데 사용될 때, 소수점 이하로 적어도 하나의 숫자를 항상"
+" 포함한다는 점을 제외하면 ``'g'`` 와 같습니다. 사용되는 정밀도는 주어진 값을 충실히 표현하는 데 필요한 만큼 큽니다."
 
 #: ../Doc/library/string.rst:564
 msgid ""
@@ -936,12 +939,14 @@ msgid ""
 "``'G'`` depending on the value of ``context.capitals`` for the current "
 "decimal context."
 msgstr ""
+":class:`~decimal.Decimal`\\의 경우, 현재 십진 컨텍스트의 ``context.capitals`` 값에 따라 "
+"``'g'``\\나 ``'G'``\\와 같습니다."
 
 #: ../Doc/library/string.rst:568
 msgid ""
 "The overall effect is to match the output of :func:`str` as altered by "
 "the other format modifiers."
-msgstr ""
+msgstr "전체적인 효과는 :func:`str` 의 출력을 다른 포맷 수정자에 의해 변경된 것처럼 만드는 것입니다."
 
 #: ../Doc/library/string.rst:576
 msgid "Format examples"
@@ -1270,36 +1275,4 @@ msgstr ""
 " 첫 글자를 대문자로 만들고, 이렇게 만들어진 단어들을 :meth:`str.join` 을 사용하여 결합합니다. 선택적 두 번째 인자"
 " *sep* 가 없거나 ``None`` 이면, 연속된 공백 문자는 단일 스페이스로 바뀌고 앞뒤 공백이 제거됩니다. 그렇지 않으면 "
 "*sep* 가 단어를 나누고 합치는 데 사용됩니다."
-
-#~ msgid ""
-#~ "A precision of ``0`` is treated as"
-#~ " equivalent to a precision of ``1``."
-#~ " With no precision given, uses a "
-#~ "precision of ``6`` significant digits "
-#~ "for :class:`float`, and shows all "
-#~ "coefficient digits for :class:`~decimal.Decimal`."
-#~ msgstr ""
-#~ "``0`` 의 정밀도는 ``1`` 의 정밀도로 처리됩니다."
-#~ " 정밀도가 지정되지 않으면, :class:`float`\\의 경우 "
-#~ "``6`` 유효 자릿수의 정밀도를 사용하고, "
-#~ ":class:`~decimal.Decimal`\\의 경우는 모든 계수 숫자를 "
-#~ "표시합니다."
-
-#~ msgid ""
-#~ "Similar to ``'g'``, except that "
-#~ "fixed-point notation, when used, has "
-#~ "at least one digit past the "
-#~ "decimal point. The default precision is"
-#~ " as high as needed to represent "
-#~ "the particular value. The overall effect"
-#~ " is to match the output of "
-#~ ":func:`str` as altered by the other "
-#~ "format modifiers."
-#~ msgstr ""
-#~ "고정 소수점 표기법이 선택될 때, 소수점 이하로 "
-#~ "적어도 하나의 자리가 있다는 점을 제외하면 ``'g'``"
-#~ " 와 비슷합니다. 기본 정밀도는 특정 값을 나타내는"
-#~ " 데 필요한 만큼 높습니다. 전체적인 효과는 "
-#~ ":func:`str` 의 출력을 다른 포맷 수정자에 의해"
-#~ " 변경된 것처럼 만드는 것입니다."
 
