@@ -178,7 +178,6 @@ msgstr ""
 ":func:`raw`\\를 먼저 호출한 다음 :func:`cbreak`\\를 호출하면 터미널이 cbreak 모드로 유지됩니다."
 
 #: ../Doc/library/curses.rst:114
-#, fuzzy
 msgid ""
 "Return the intensity of the red, green, and blue (RGB) components in the "
 "color *color_number*, which must be between ``0`` and ``COLORS - 1``.  "
@@ -186,12 +185,11 @@ msgid ""
 "will be between ``0`` (no component) and ``1000`` (maximum amount of "
 "component)."
 msgstr ""
-"``0``\\과 :const:`COLORS` 사이의 색상 *color_number*\\에서 빨강, 녹색 및 파랑 (RGB) 구성 "
+"``0``\\과 ``COLORS - 1`` 사이의 색상 *color_number*\\에서 빨강, 녹색 및 파랑 (RGB) 구성 "
 "요소의 강도(intensity)를 반환합니다. 주어진 색상에 대한 R,G,B 값이 포함된 3-튜플을 반환합니다. 이 값은 "
 "``0``\\(구성 요소 없음)과 ``1000``\\(구성 요소의 최대량) 사이입니다."
 
 #: ../Doc/library/curses.rst:122
-#, fuzzy
 msgid ""
 "Return the attribute value for displaying text in the specified color "
 "pair. Only the first 256 color pairs are supported. This attribute value "
@@ -199,9 +197,9 @@ msgid ""
 "other :const:`A_\\*` attributes.  :func:`pair_number` is the counterpart "
 "to this function."
 msgstr ""
-"지정된 색상으로 텍스트를 표시하기 위한 속성값을 반환합니다. 이 속성값은 :const:`A_STANDOUT`, "
-":const:`A_REVERSE` 및 기타 :const:`A_\\*` 속성과 결합할 수 있습니다. "
-":func:`pair_number`\\는 이 함수의 역입니다."
+"지정된 색상 쌍으로 텍스트를 표시하기 위한 속성값을 반환합니다. 처음 256 색상 쌍만 지원됩니다. 이 속성값은 "
+":const:`A_STANDOUT`, :const:`A_REVERSE` 및 기타 :const:`A_\\*` 속성과 결합할 수 "
+"있습니다. :func:`pair_number`\\는 이 함수의 역입니다."
 
 #: ../Doc/library/curses.rst:131
 msgid ""
@@ -409,7 +407,6 @@ msgstr ""
 ":func:`nocbreak`\\를 사용하십시오."
 
 #: ../Doc/library/curses.rst:279
-#, fuzzy
 msgid ""
 "Change the definition of a color, taking the number of the color to be "
 "changed followed by three RGB values (for the amounts of red, green, and "
@@ -421,13 +418,12 @@ msgid ""
 ":func:`can_change_color` returns ``True``."
 msgstr ""
 "변경될 색상 번호와 뒤따르는 세 RGB 값(빨강, 녹색 및 파랑 성분의 양)을 취해서 색상의 정의를 변경합니다. "
-"*color_number*\\의 값은 ``0``\\과 :const:`COLORS` 사이여야 합니다. *r*, *g*, *b*\\는 "
-"각각 ``0``\\과 ``1000`` 사이의 값이어야 합니다. :func:`init_color`\\를 사용하면, 화면에서 해당 "
-"색상의 모든 항목이 즉시 새 정의로 변경됩니다. 이 함수는 대부분의 터미널에서 효과가 없습니다; "
+"*color_number*\\의 값은 ``0``\\과 `COLORS - 1` 사이여야 합니다. *r*, *g*, *b*\\는 각각 "
+"``0``\\과 ``1000`` 사이의 값이어야 합니다. :func:`init_color`\\를 사용하면, 화면에서 해당 색상의 "
+"모든 항목이 즉시 새 정의로 변경됩니다. 이 함수는 대부분의 터미널에서 효과가 없습니다; "
 ":func:`can_change_color`\\가 ``True``\\를 반환할 때만 활성화됩니다."
 
 #: ../Doc/library/curses.rst:290
-#, fuzzy
 msgid ""
 "Change the definition of a color-pair.  It takes three arguments: the "
 "number of the color-pair to be changed, the foreground color number, and "
@@ -441,9 +437,9 @@ msgid ""
 msgstr ""
 "색상 쌍의 정의를 변경합니다. 세 가지 인자를 취합니다: 변경할 색상 쌍 번호, 전경색 번호 및 배경색 번호. "
 "*pair_number*\\의 값은 ``1``\\과 ``COLOR_PAIRS - 1`` 사이여야 합니다 (``0`` 색상 쌍은 검은"
-" 배경색에 흰 전경색으로 연결되어 있으며 변경할 수 없습니다). *fg*\\와 *bg* 인자의 값은 ``0``\\과 "
-":const:`COLORS` 사이여야 합니다. 색상 쌍이 이전에 초기화되었으면, 화면이 새로 고쳐지고 해당 색상 쌍의 모든 항목이 "
-"새 정의로 변경됩니다."
+" 배경색에 흰 전경색으로 연결되어 있으며 변경할 수 없습니다). *fg*\\와 *bg* 인자의 값은 ``0``\\과 ``COLORS"
+" - 1`` 사이, 또는, :func:`use_default_colors` 후에, ``-1``\\이어야 합니다. 색상 쌍이 이전에 "
+"초기화되었으면, 화면이 새로 고쳐지고 해당 색상 쌍의 모든 항목이 새 정의로 변경됩니다."
 
 #: ../Doc/library/curses.rst:303
 msgid ""
@@ -629,13 +625,12 @@ msgid "Leave raw mode. Return to normal \"cooked\" mode with line buffering."
 msgstr "원시(raw) 모드를 종료합니다. 줄 버퍼링을 사용하는 일반 \"요리된(cooked)\" 모드로 돌아갑니다."
 
 #: ../Doc/library/curses.rst:445
-#, fuzzy
 msgid ""
 "Return a tuple ``(fg, bg)`` containing the colors for the requested color"
 " pair. The value of *pair_number* must be between ``0`` and ``COLOR_PAIRS"
 " - 1``."
 msgstr ""
-"요청된 색상 쌍의 색상이 포함된 튜플 ``(fg, bg)``\\를 반환합니다. *pair_number*\\의 값은 ``1``\\과 "
+"요청된 색상 쌍의 색상이 포함된 튜플 ``(fg, bg)``\\를 반환합니다. *pair_number*\\의 값은 ``0``\\과 "
 "``COLOR_PAIRS - 1`` 사이여야 합니다."
 
 #: ../Doc/library/curses.rst:451
