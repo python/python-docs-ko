@@ -3518,6 +3518,9 @@ msgid ""
 "which is a subclass of :class:`Pool` that supports all the same method "
 "calls but uses a pool of worker threads rather than worker processes."
 msgstr ""
+"특히, :mod:`multiprocessing.dummy`\\에서 제공하는 ``Pool`` 함수는 같은 메서드 호출을 모두 "
+"지원하지만, 작업자 프로세스가 아닌 작업자 스레드 풀을 사용하는 :class:`Pool`\\의 서브 클래스인 "
+":class:`ThreadPool`\\의 인스턴스를 반환합니다."
 
 #: ../Doc/library/multiprocessing.rst:2674
 msgid ""
@@ -3528,19 +3531,22 @@ msgid ""
 "calling :meth:`~multiprocessing.pool.Pool.close` and "
 ":meth:`~multiprocessing.pool.Pool.terminate` manually."
 msgstr ""
+"작업을 제출할 수 있는 작업자 스레드 풀을 제어하는 스레드 풀 객체. :class:`ThreadPool` 인스턴스는 "
+":class:`Pool` 인스턴스와 완전히 호환되며, 해당 리소스는 컨텍스트 관리자로 풀을 사용하거나 "
+":meth:`~multiprocessing.pool.Pool.close`\\와 "
+":meth:`~multiprocessing.pool.Pool.terminate`\\를 수동으로 호출하여 적절하게 관리해야 합니다."
 
 #: ../Doc/library/multiprocessing.rst:2681
-#, fuzzy
 msgid ""
 "*processes* is the number of worker threads to use.  If *processes* is "
 "``None`` then the number returned by :func:`os.cpu_count` is used."
 msgstr ""
-"*processes* 는 사용할 작업자 프로세스 수입니다. *processes* 가 ``None`` 이면 "
+"*processes* 는 사용할 작업자 스레드 수입니다. *processes* 가 ``None`` 이면 "
 ":func:`os.cpu_count` 에 의해 반환되는 수가 사용됩니다."
 
 #: ../Doc/library/multiprocessing.rst:2687
 msgid "Unlike :class:`Pool`, *maxtasksperchild* and *context* cannot be provided."
-msgstr ""
+msgstr ":class:`Pool`\\과 달리, *maxtasksperchild*\\와 *context*\\는 제공할 수 없습니다."
 
 #: ../Doc/library/multiprocessing.rst:2691
 msgid ""
@@ -3551,6 +3557,10 @@ msgid ""
 " its own type for representing the status of asynchronous jobs, "
 ":class:`AsyncResult`, that is not understood by any other libraries."
 msgstr ""
+":class:`ThreadPool`\\은 프로세스 풀을 중심으로 설계되고 :class:`concurrent.futures` 모듈 "
+"도입 이전에 설계된 :class:`Pool`\\과 같은 인터페이스를 공유합니다. 따라서, 스레드가 지원하는 풀에 적합하지 않은 일부"
+" 연산을 상속하고, 비동기 작업의 상태를 나타내는 자체 형 :class:`AsyncResult`\\를 가지고 있는데 다른 "
+"라이브러리에서는 이해하지 못합니다."
 
 #: ../Doc/library/multiprocessing.rst:2698
 msgid ""
@@ -3560,6 +3570,9 @@ msgid ""
 "returns :class:`concurrent.futures.Future` instances that are compatible "
 "with many other libraries, including :mod:`asyncio`."
 msgstr ""
+"사용자는 일반적으로 처음부터 스레드를 중심으로 설계되고 :mod:`asyncio`\\를 포함한 다른 많은 라이브러리와 호환되는 "
+":class:`concurrent.futures.Future` 인스턴스를 반환하는 더 간단한 인터페이스를 가진 "
+":class:`concurrent.futures.ThreadPoolExecutor`\\를 사용하는 것을 선호해야 합니다."
 
 #: ../Doc/library/multiprocessing.rst:2708
 msgid "Programming guidelines"

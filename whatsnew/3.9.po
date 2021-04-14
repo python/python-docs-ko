@@ -2892,13 +2892,12 @@ msgid "(Contributed by Ronald Oussoren and Lawrence D'Anna in :issue:`41100`.)"
 msgstr "(Contributed by Ronald Oussoren and Lawrence D'Anna in :issue:`41100`.)"
 
 #: ../Doc/whatsnew/3.9.rst:1502
-#, fuzzy
 msgid "Notable changes in Python 3.9.2"
-msgstr "파이썬 3.9.1의 주목할만한 변경 사항"
+msgstr "파이썬 3.9.2의 주목할만한 변경 사항"
 
 #: ../Doc/whatsnew/3.9.rst:1505
 msgid "collections.abc"
-msgstr ""
+msgstr "collections.abc"
 
 #: ../Doc/whatsnew/3.9.rst:1507
 msgid ""
@@ -2916,10 +2915,21 @@ msgid ""
 ":exc:`TypeError` in Python 3.10. (Contributed by Ken Jin in "
 ":issue:`42195`.)"
 msgstr ""
+":class:`collections.abc.Callable` 제네릭은 이제 :data:`typing.Callable`\\이 현재 "
+"수행하는 것과 유사하게 형 매개 변수를 평활화합니다. 이것은 ``collections.abc.Callable[[int, str], "
+"str]``\\의 ``__args__``\\가 ``(int, str, str)``\\임을 의미합니다; 이전에는 ``([int, "
+"str], str)``\\였습니다. 이러한 변경을 허용하기 위해, 이제 :class:`types.GenericAlias`\\를 서브"
+" 클래싱할 수 있으며, :class:`collections.abc.Callable` 형을 서브스크립팅할 할 때 서브 클래스가 "
+"반환됩니다. :func:`typing.get_args`\\나 ``__args__``\\를 통해 인자에 액세스하는 코드는 이 변경 "
+"사항을 고려해야 합니다. 파이썬 3.9.1에서 조용히 전달되었을 수 있는 "
+":class:`collections.abc.Callable`\\의 유효하지 않은 매개 변수화 형식에 대해 "
+":exc:`DeprecationWarning`\\을 방출할 수 있습니다. 이 :exc:`DeprecationWarning`\\은 "
+"파이썬 3.10에서 :exc:`TypeError`\\가 됩니다. (Contributed by Ken Jin in "
+":issue:`42195`.)"
 
 #: ../Doc/whatsnew/3.9.rst:1521
 msgid "urllib.parse"
-msgstr ""
+msgstr "urllib.parse"
 
 #: ../Doc/whatsnew/3.9.rst:1523
 msgid ""
@@ -2933,11 +2943,17 @@ msgid ""
 "respective documentation. (Contributed by Adam Goldschmidt, Senthil "
 "Kumaran and Ken Jin in :issue:`42967`.)"
 msgstr ""
+"이전 파이썬 버전에서는 :func:`urllib.parse.parse_qs`\\와 "
+":func:`urllib.parse.parse_qsl`\\에서 쿼리 매개 변수 구분자로 ``;``\\과 ``&``\\를 모두 사용할"
+" 수 있었습니다. 보안 문제와 최신 W3C 권장 사항을 준수하기 위해, ``&``\\가 기본값인 단일 구분자 키만 허용하도록 "
+"변경되었습니다. 이 변경 사항은 영향을 받는 함수를 내부적으로 사용하므로 :func:`cgi.parse`\\와 "
+":func:`cgi.parse_multipart`\\에도 영향을 줍니다. 자세한 내용은 해당 설명서를 참조하십시오. "
+"(Contributed by Adam Goldschmidt, Senthil Kumaran and Ken Jin in "
+":issue:`42967`.)"
 
 #: ../Doc/whatsnew/3.9.rst:1534
-#, fuzzy
 msgid "Notable changes in Python 3.9.3"
-msgstr "파이썬 3.9.1의 주목할만한 변경 사항"
+msgstr "파이썬 3.9.3의 주목할만한 변경 사항"
 
 #: ../Doc/whatsnew/3.9.rst:1536
 msgid ""
@@ -2947,4 +2963,8 @@ msgid ""
 "requiring the old behavior, set a ``trust_server_pasv_ipv4_address`` "
 "attribute on your FTP instance to ``True``.  (See :issue:`43285`)"
 msgstr ""
+"보안 수정은 수동 데이터 채널을 설정할 때 원격 서버에서 보낸 IPv4 주소를 신뢰하지 않도록 :class:`ftplib.FTP` "
+"동작을 변경합니다. 대신 ftp 서버 IP 주소를 재사용합니다. 이전 동작이 필요한 특별한 코드의 경우, FTP 인스턴스의 "
+"``trust_server_pasv_ipv4_address`` 어트리뷰트를 ``True``\\로 설정하십시오. "
+"(:issue:`43285`\\를 참조하십시오)"
 
