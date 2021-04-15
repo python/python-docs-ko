@@ -2233,13 +2233,13 @@ msgstr ""
 
 #: ../Doc/faq/programming.rst:1706
 msgid "When can I rely on identity tests with the *is* operator?"
-msgstr ""
+msgstr "*is* 연산자를 사용한 아이덴티티 검사는 언제 신뢰할 수 있습니까?"
 
 #: ../Doc/faq/programming.rst:1708
 msgid ""
 "The ``is`` operator tests for object identity.  The test ``a is b`` is "
 "equivalent to ``id(a) == id(b)``."
-msgstr ""
+msgstr "``is`` 연산자는 객체 아이덴티티를 검사합니다. 검사 ``a is b``\\는 ``id(a) == id(b)``\\와 동등합니다."
 
 #: ../Doc/faq/programming.rst:1711
 msgid ""
@@ -2249,6 +2249,9 @@ msgid ""
 "tests, identity tests are guaranteed to return a boolean ``True`` or "
 "``False``."
 msgstr ""
+"아이덴티티 검사의 가장 중요한 속성은 객체가 항상 자신과 동일하고 ``a is a``\\는 항상 ``True``\\를 반환한다는 "
+"것입니다. 아이덴티티 검사는 일반적으로 동등성 검사보다 빠릅니다. 동등성 검사와 달리, 아이덴티티 테스트는 불리언 "
+"``True``\\나 ``False``\\를 반환함이 보장됩니다."
 
 #: ../Doc/faq/programming.rst:1716
 msgid ""
@@ -2256,12 +2259,16 @@ msgid ""
 " object identity is assured.  Generally, there are three circumstances "
 "where identity is guaranteed:"
 msgstr ""
+"그러나, 객체 아이덴티티가 보장될 때 아이덴티티 검사가 동등성 검사를 대체할 수 있습니다. 일반적으로, 아이덴티티가 보장되는 세 "
+"가지 상황이 있습니다:"
 
 #: ../Doc/faq/programming.rst:1720
 msgid ""
 "1) Assignments create new names but do not change object identity.  After"
 " the assignment ``new = old``, it is guaranteed that ``new is old``."
 msgstr ""
+"1) 대입은 새 이름을 만들지 만 객체 아이덴티티를 변경하지는 않습니다. 대입 ``new = old`` 후에, ``new is "
+"old``\\임이 보장됩니다."
 
 #: ../Doc/faq/programming.rst:1723
 msgid ""
@@ -2269,6 +2276,8 @@ msgid ""
 "not change object identity.  After the list assignment ``s[0] = x``, it "
 "is guaranteed that ``s[0] is x``."
 msgstr ""
+"2) 객체 참조를 저장하는 컨테이너에 객체를 넣어도 객체 아이덴티티가 변경되지 않습니다. 리스트 대입 ``s[0] = x`` 후에,"
+" ``s[0] is x``\\임이 보장됩니다."
 
 #: ../Doc/faq/programming.rst:1727
 msgid ""
@@ -2276,6 +2285,8 @@ msgid ""
 "object can exist.  After the assignments ``a = None`` and ``b = None``, "
 "it is guaranteed that ``a is b`` because ``None`` is a singleton."
 msgstr ""
+"3) 객체가 싱글톤이면, 해당 객체의 인스턴스가 하나만 존재할 수 있음을 의미합니다. ``a = None`` 과 ``b = "
+"None`` 대입 후에 ``None``\\은 싱글톤이므로 ``a is b``\\임이 보장됩니다."
 
 #: ../Doc/faq/programming.rst:1731
 msgid ""
@@ -2284,16 +2295,18 @@ msgid ""
 " check constants such as :class:`int` and :class:`str` which aren't "
 "guaranteed to be singletons::"
 msgstr ""
+"대부분의 다른 상황에서는 아이덴티티 검사가 권장되지 않으며 동등성 테스트가 선호됩니다. 특히, 싱글톤이 보장되지 않는 "
+":class:`int`\\와 :class:`str`\\과 같은 상수를 확인하는 데 아이덴티티 검사를 사용해서는 안 됩니다::"
 
 #: ../Doc/faq/programming.rst:1748
 msgid "Likewise, new instances of mutable containers are never identical::"
-msgstr ""
+msgstr "마찬가지로, 가변 컨테이너의 새 인스턴스는 절대 동일하지 않습니다::"
 
 #: ../Doc/faq/programming.rst:1755
 msgid ""
 "In the standard library code, you will see several common patterns for "
 "correctly using identity tests:"
-msgstr ""
+msgstr "표준 라이브러리 코드에서, 아이덴티티 검사를 올바르게 사용하는 몇 가지 일반적인 패턴을 볼 수 있습니다:"
 
 #: ../Doc/faq/programming.rst:1758
 msgid ""
@@ -2302,6 +2315,8 @@ msgid ""
 "confusion with other objects that may have boolean values that evaluate "
 "to false."
 msgstr ""
+"1) :pep:`8`\\에서 권장하는 대로, 아이덴티티 검사는 ``None``\\을 확인하는 데 선호되는 방법입니다. 이것은 "
+"코드에서 일반 영어처럼 읽히고 거짓으로 평가되는 불리언 값을 가질 수 있는 다른 객체와의 혼동을 방지합니다."
 
 #: ../Doc/faq/programming.rst:1762
 msgid ""
@@ -2310,6 +2325,9 @@ msgid ""
 "object guaranteed to be distinct from other objects.  For example, here "
 "is how to implement a method that behaves like :meth:`dict.pop`::"
 msgstr ""
+"2) ``None``\\이 유효한 입력값일 때 선택적 인자를 감지하는 것이 까다로울 수 있습니다. 이러한 상황에서, 다른 객체와 "
+"구별되는 싱글톤 센티넬 객체를 만들 수 있습니다. 예를 들어, 다음은 :meth:`dict.pop`\\처럼 작동하는 메서드를 "
+"구현하는 방법입니다::"
 
 #: ../Doc/faq/programming.rst:1778
 msgid ""
@@ -2317,12 +2335,14 @@ msgid ""
 "with identity tests.  This prevents the code from being confused by "
 "objects such as ``float('NaN')`` that are not equal to themselves."
 msgstr ""
+"3) 컨테이너 구현은 때때로 아이덴티티 검사로 동등성 검사를 강화해야 합니다. 이것은 자신과 같지 않은 "
+"``float('NaN')``\\과 같은 객체에 의해 코드가 혼동되는 것을 방지합니다."
 
 #: ../Doc/faq/programming.rst:1782
 msgid ""
 "For example, here is the implementation of "
 ":meth:`collections.abc.Sequence.__contains__`::"
-msgstr ""
+msgstr "예를 들어, 다음은 :meth:`collections.abc.Sequence.__contains__`\\의 구현입니다::"
 
 #: ../Doc/faq/programming.rst:1793
 msgid "Modules"
