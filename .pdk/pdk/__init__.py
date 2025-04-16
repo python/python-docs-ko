@@ -62,6 +62,16 @@ class Command:
         chdir_Doc()
         sh("make -e SPHINXOPTS=\"-D language='ko'\" htmllive")
 
+    def extract(self):
+        """Extract translatable messages into pot files."""
+        chdir_Doc()
+        sh("make gettext")
+
+    def update(self):
+        """Apply the updates from pot files to po files."""
+        chdir_Doc()
+        sh("sphinx-intl update -p build/gettext -l ko")
+
 
 def main():
     fire.Fire(Command)
