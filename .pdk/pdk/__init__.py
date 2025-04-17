@@ -1,8 +1,11 @@
+import io
 import os
 import pathlib
 import shutil
+import string
 import subprocess
 
+from babel.messages.pofile import read_po, write_po
 import fire
 
 MSG_DIR = pathlib.Path(__file__).parent.parent.parent
@@ -40,6 +43,14 @@ def chdir_Doc():
     os.chdir(MSG_DIR / "../cpython/Doc")
 
 
+def remove_nonprintables(text):
+    nps = ''.join(sorted(set(chr(i)
+                  for i in range(128)) - set(string.printable)))
+    table = str.maketrans(nps, nps[0] * len(nps))
+    text = text.translate(table).replace(nps[0], '')
+    return text.lstrip()
+
+
 class Command:
     def init(self):
         """Initialize .pdk."""
@@ -63,14 +74,47 @@ class Command:
         sh("make -e SPHINXOPTS=\"-D language='ko'\" htmllive")
 
     def extract(self):
-        """Extract translatable messages into pot files."""
+        """Extract translatable messages into .pot files."""
         chdir_Doc()
         sh("make gettext")
 
     def update(self):
-        """Apply the updates from pot files to po files."""
+        """Apply the updates from pot files to .po files."""
         chdir_Doc()
         sh("sphinx-intl update -p build/gettext -l ko")
+
+    def format(self, pofile):
+        """Format a .po file."""
+        with open(pofile) as f:
+            idata = f.read()
+        f = io.StringIO(idata)
+        catalog = read_po(f, abort_invalid=True)
+
+        for msg in catalog:
+            if not msg.id or not msg.string or msg.fuzzy:
+                continue
+            msg.string = remove_nonprintables(msg.string)
+
+        f = io.BytesIO()
+        write_po(f, catalog)
+        odata = f.getvalue()
+        if idata.encode() != odata:
+            with open(pofile, 'wb') as f:
+                f.write(odata)
+        else:
+            print('already formatted')
+        fuzzy_count = empty_count = 0
+        for msg in catalog:
+            if not msg.id:
+                continue
+            if msg.fuzzy:
+                fuzzy_count += 1
+            elif not msg.string:
+                empty_count += 1
+        if fuzzy_count:
+            print(f'{fuzzy_count} fuzzy messages found')
+        if empty_count:
+            print(f'{empty_count} untranslated messages found')
 
 
 def main():
