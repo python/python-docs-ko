@@ -7,39 +7,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 08:18+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/tutorial/controlflow.rst:5
+#: ../../tutorial/controlflow.rst:5
 msgid "More Control Flow Tools"
 msgstr "기타 제어 흐름 도구"
 
-#: ../Doc/tutorial/controlflow.rst:7
+#: ../../tutorial/controlflow.rst:7
+#, fuzzy
 msgid ""
-"Besides the :keyword:`while` statement just introduced, Python uses the "
-"usual flow control statements known from other languages, with some "
-"twists."
+"As well as the :keyword:`while` statement just introduced, Python uses a "
+"few more that we will encounter in this chapter."
 msgstr ""
 "방금 소개한 :keyword:`while` 문 외에도, 파이썬은 다른 언어들에서 알려진 일반적인 흐름 제어문들을 사용하고, 나름의 "
 "변형을 가하고 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:14
+#: ../../tutorial/controlflow.rst:14
 msgid ":keyword:`!if` Statements"
 msgstr ":keyword:`!if` 문"
 
-#: ../Doc/tutorial/controlflow.rst:16
+#: ../../tutorial/controlflow.rst:16
 msgid ""
 "Perhaps the most well-known statement type is the :keyword:`if` "
 "statement.  For example::"
 msgstr "아마도 가장 잘 알려진 문장 형은 :keyword:`if` 문일 것입니다. 예를 들어::"
 
-#: ../Doc/tutorial/controlflow.rst:33
+#: ../../tutorial/controlflow.rst:19
+msgid ""
+">>> x = int(input(\"Please enter an integer: \"))\n"
+"Please enter an integer: 42\n"
+">>> if x < 0:\n"
+"...     x = 0\n"
+"...     print('Negative changed to zero')\n"
+"... elif x == 0:\n"
+"...     print('Zero')\n"
+"... elif x == 1:\n"
+"...     print('Single')\n"
+"... else:\n"
+"...     print('More')\n"
+"...\n"
+"More"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:33
 msgid ""
 "There can be zero or more :keyword:`elif` parts, and the :keyword:`else` "
 "part is optional.  The keyword ':keyword:`!elif`' is short for 'else if',"
@@ -52,11 +69,18 @@ msgstr ""
 ":keyword:`!if` ... :keyword:`!elif` ... :keyword:`!elif` ... 시퀀스는 다른 "
 "언어들에서 발견되는 ``switch`` 나 ``case`` 문을 대신합니다."
 
-#: ../Doc/tutorial/controlflow.rst:43
+#: ../../tutorial/controlflow.rst:39
+msgid ""
+"If you're comparing the same value to several constants, or checking for "
+"specific types or attributes, you may also find the :keyword:`!match` "
+"statement useful. For more details see :ref:`tut-match`."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:46
 msgid ":keyword:`!for` Statements"
 msgstr ":keyword:`!for` 문"
 
-#: ../Doc/tutorial/controlflow.rst:48
+#: ../../tutorial/controlflow.rst:51
 msgid ""
 "The :keyword:`for` statement in Python differs a bit from what you may be"
 " used to in C or Pascal.  Rather than always iterating over an arithmetic"
@@ -71,7 +95,19 @@ msgstr ""
 ":keyword:`!for` 문은 임의의 시퀀스 (리스트나 문자열)의 항목들을 그 시퀀스에 들어있는 순서대로 이터레이션 합니다. "
 "예를 들어 (말장난이 아니라):"
 
-#: ../Doc/tutorial/controlflow.rst:69
+#: ../../tutorial/controlflow.rst:63
+msgid ""
+">>> # Measure some strings:\n"
+">>> words = ['cat', 'window', 'defenestrate']\n"
+">>> for w in words:\n"
+"...     print(w, len(w))\n"
+"...\n"
+"cat 3\n"
+"window 6\n"
+"defenestrate 12"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:72
 msgid ""
 "Code that modifies a collection while iterating over that same collection"
 " can be tricky to get right.  Instead, it is usually more straight-"
@@ -81,18 +117,48 @@ msgstr ""
 "컬렉션을 이터레이트 하는 동안 같은 컬렉션을 수정하는 코드는 올바르게 동작하도록 만들기 힘듭니다. 대신, 보통 컬렉션의 복사본으로 "
 "루프를 만들거나 새 컬렉션을 만드는 것이 더 간단합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:88
+#: ../../tutorial/controlflow.rst:76
+#, python-brace-format
+msgid ""
+"# Create a sample collection\n"
+"users = {'Hans': 'active', 'Éléonore': 'inactive', '景太郎': 'active'}\n"
+"\n"
+"# Strategy:  Iterate over a copy\n"
+"for user, status in users.copy().items():\n"
+"    if status == 'inactive':\n"
+"        del users[user]\n"
+"\n"
+"# Strategy:  Create a new collection\n"
+"active_users = {}\n"
+"for user, status in users.items():\n"
+"    if status == 'active':\n"
+"        active_users[user] = status"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:94
 msgid "The :func:`range` Function"
 msgstr ":func:`range` 함수"
 
-#: ../Doc/tutorial/controlflow.rst:90
+#: ../../tutorial/controlflow.rst:96
 msgid ""
 "If you do need to iterate over a sequence of numbers, the built-in "
 "function :func:`range` comes in handy.  It generates arithmetic "
 "progressions::"
 msgstr "숫자들의 시퀀스로 이터레이트할 필요가 있으면, 내장 함수 :func:`range`\\가 편리합니다. 수열을 만듭니다::"
 
-#: ../Doc/tutorial/controlflow.rst:102
+#: ../../tutorial/controlflow.rst:99
+msgid ""
+">>> for i in range(5):\n"
+"...     print(i)\n"
+"...\n"
+"0\n"
+"1\n"
+"2\n"
+"3\n"
+"4"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:108
 msgid ""
 "The given end point is never part of the generated sequence; "
 "``range(10)`` generates 10 values, the legal indices for items of a "
@@ -104,13 +170,38 @@ msgstr ""
 "가리키는 올바른 인덱스들입니다. 범위가 다른 숫자로 시작하거나, 다른 증가분을 (음수조차 가능합니다; 때로 이것을 "
 "'스텝(step)'이라고 부릅니다) 지정하는 것도 가능합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:116
+#: ../../tutorial/controlflow.rst:113
+msgid ""
+">>> list(range(5, 10))\n"
+"[5, 6, 7, 8, 9]\n"
+"\n"
+">>> list(range(0, 10, 3))\n"
+"[0, 3, 6, 9]\n"
+"\n"
+">>> list(range(-10, -100, -30))\n"
+"[-10, -40, -70]"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:122
 msgid ""
 "To iterate over the indices of a sequence, you can combine :func:`range` "
 "and :func:`len` as follows::"
 msgstr "시퀀스의 인덱스들로 이터레이트 하려면, 다음처럼 :func:`range`\\와 :func:`len` 을 결합할 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:129
+#: ../../tutorial/controlflow.rst:125
+msgid ""
+">>> a = ['Mary', 'had', 'a', 'little', 'lamb']\n"
+">>> for i in range(len(a)):\n"
+"...     print(i, a[i])\n"
+"...\n"
+"0 Mary\n"
+"1 had\n"
+"2 a\n"
+"3 little\n"
+"4 lamb"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:135
 msgid ""
 "In most such cases, however, it is convenient to use the "
 ":func:`enumerate` function, see :ref:`tut-loopidioms`."
@@ -118,11 +209,17 @@ msgstr ""
 "하지만, 그럴 때 대부분은, :func:`enumerate` 함수를 쓰는 것이 편리합니다, :ref:`tut-loopidioms` "
 "를 보세요."
 
-#: ../Doc/tutorial/controlflow.rst:132
+#: ../../tutorial/controlflow.rst:138
 msgid "A strange thing happens if you just print a range::"
 msgstr "범위를 그냥 인쇄하면 이상한 일이 일어납니다::"
 
-#: ../Doc/tutorial/controlflow.rst:137
+#: ../../tutorial/controlflow.rst:140
+msgid ""
+">>> range(10)\n"
+"range(0, 10)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:143
 msgid ""
 "In many ways the object returned by :func:`range` behaves as if it is a "
 "list, but in fact it isn't. It is an object which returns the successive "
@@ -132,7 +229,7 @@ msgstr ""
 "많은 경우에 :func:`range`\\가 돌려준 객체는 리스트인 것처럼 동작하지만, 사실 리스트가 아닙니다. 이터레이트할 때 "
 "원하는 시퀀스 항목들을 순서대로 돌려주는 객체이지만, 실제로 리스트를 만들지 않아서 공간을 절약합니다."
 
-#: ../Doc/tutorial/controlflow.rst:142
+#: ../../tutorial/controlflow.rst:148
 msgid ""
 "We say such an object is :term:`iterable`, that is, suitable as a target "
 "for functions and constructs that expect something from which they can "
@@ -144,81 +241,175 @@ msgstr ""
 "무엇인가를 기대하는 함수와 구조물들의 타깃으로 적합합니다. 우리는 :keyword:`for` 문이 그런 구조물임을 보았습니다. "
 "이터러블을 취하는 함수의 예는 :func:`sum`\\입니다::"
 
-#: ../Doc/tutorial/controlflow.rst:151
+#: ../../tutorial/controlflow.rst:154
+msgid ""
+">>> sum(range(4))  # 0 + 1 + 2 + 3\n"
+"6"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:157
+#, fuzzy
 msgid ""
 "Later we will see more functions that return iterables and take iterables"
-" as arguments.  Lastly, maybe you are curious about how to get a list "
-"from a range. Here is the solution::"
-msgstr ""
-"나중에 이터러블을 돌려주고 이터러블을 인자로 받는 함수들을 더 보게 됩니다. 마지막으로, range에서 리스트를 얻는 방법에 대해 "
-"궁금할 것입니다. 이렇게 합니다::"
-
-#: ../Doc/tutorial/controlflow.rst:158
-msgid ""
-"In chapter :ref:`tut-structures`, we will discuss in more detail about "
-":func:`list`."
+" as arguments.  In chapter :ref:`tut-structures`, we will discuss in more"
+" detail about :func:`list`."
 msgstr ":ref:`tut-structures` 장에서 :func:`list`\\에 대해 더 자세히 논의할 것입니다."
 
-#: ../Doc/tutorial/controlflow.rst:164
-msgid ""
-":keyword:`!break` and :keyword:`!continue` Statements, and "
-":keyword:`!else` Clauses on Loops"
+#: ../../tutorial/controlflow.rst:164
+#, fuzzy
+msgid ":keyword:`!break` and :keyword:`!continue` Statements"
 msgstr "루프의 :keyword:`!break` 와 :keyword:`!continue` 문, 그리고 :keyword:`!else` 절"
 
-#: ../Doc/tutorial/controlflow.rst:166
+#: ../../tutorial/controlflow.rst:166
+#, fuzzy
 msgid ""
-"The :keyword:`break` statement, like in C, breaks out of the innermost "
-"enclosing :keyword:`for` or :keyword:`while` loop."
+"The :keyword:`break` statement breaks out of the innermost enclosing "
+":keyword:`for` or :keyword:`while` loop::"
 msgstr ""
 ":keyword:`break` 문은, C처럼, 가장 가까이서 둘러싸는 :keyword:`for` 나 :keyword:`while` "
 "루프로부터 빠져나가게 만듭니다."
 
-#: ../Doc/tutorial/controlflow.rst:169
+#: ../../tutorial/controlflow.rst:169
+#, python-brace-format, python-format
 msgid ""
-"Loop statements may have an :keyword:`!else` clause; it is executed when "
-"the loop terminates through exhaustion of the iterable (with "
-":keyword:`for`) or when the condition becomes false (with "
-":keyword:`while`), but not when the loop is terminated by a "
-":keyword:`break` statement.  This is exemplified by the following loop, "
-"which searches for prime numbers::"
+">>> for n in range(2, 10):\n"
+"...     for x in range(2, n):\n"
+"...         if n % x == 0:\n"
+"...             print(f\"{n} equals {x} * {n//x}\")\n"
+"...             break\n"
+"...\n"
+"4 equals 2 * 2\n"
+"6 equals 2 * 3\n"
+"8 equals 2 * 4\n"
+"9 equals 3 * 3"
 msgstr ""
-"루프 문은 :keyword:`!else` 절을 가질 수 있습니다; 루프가 이터러블의 소진이나 (:keyword:`for`\\의 "
-"경우) 조건이 거짓이 돼서 (:keyword:`while`\\의 경우) 종료할 때 실행됩니다. 하지만 루프가 "
-":keyword:`break` 문으로 종료할 때는 실행되지 않습니다. 소수를 찾는 루프를 통해 다음에서 예시합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:193
+#: ../../tutorial/controlflow.rst:180
+#, fuzzy
+msgid ""
+"The :keyword:`continue` statement continues with the next iteration of "
+"the loop::"
+msgstr ":keyword:`continue` 문은, 역시 C에서 빌렸습니다, 루프의 다음 이터레이션에서 계속하도록 만듭니다::"
+
+#: ../../tutorial/controlflow.rst:183
+#, python-brace-format
+msgid ""
+">>> for num in range(2, 10):\n"
+"...     if num % 2 == 0:\n"
+"...         print(f\"Found an even number {num}\")\n"
+"...         continue\n"
+"...     print(f\"Found an odd number {num}\")\n"
+"...\n"
+"Found an even number 2\n"
+"Found an odd number 3\n"
+"Found an even number 4\n"
+"Found an odd number 5\n"
+"Found an even number 6\n"
+"Found an odd number 7\n"
+"Found an even number 8\n"
+"Found an odd number 9"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:202
+#, fuzzy
+msgid ":keyword:`!else` Clauses on Loops"
+msgstr ":keyword:`!pass` 문"
+
+#: ../../tutorial/controlflow.rst:204
+msgid ""
+"In a :keyword:`!for` or :keyword:`!while` loop the :keyword:`!break` "
+"statement may be paired with an :keyword:`!else` clause.  If the loop "
+"finishes without executing the :keyword:`!break`, the :keyword:`!else` "
+"clause executes."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:208
+msgid ""
+"In a :keyword:`for` loop, the :keyword:`!else` clause is executed after "
+"the loop finishes its final iteration, that is, if no break occurred."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:211
+msgid ""
+"In a :keyword:`while` loop, it's executed after the loop's condition "
+"becomes false."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:213
+msgid ""
+"In either kind of loop, the :keyword:`!else` clause is **not** executed "
+"if the loop was terminated by a :keyword:`break`.  Of course, other ways "
+"of ending the loop early, such as a :keyword:`return` or a raised "
+"exception, will also skip execution of the :keyword:`else` clause."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:218
+msgid ""
+"This is exemplified in the following :keyword:`!for` loop, which searches"
+" for prime numbers::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:221
+#, python-format
+msgid ""
+">>> for n in range(2, 10):\n"
+"...     for x in range(2, n):\n"
+"...         if n % x == 0:\n"
+"...             print(n, 'equals', x, '*', n//x)\n"
+"...             break\n"
+"...     else:\n"
+"...         # loop fell through without finding a factor\n"
+"...         print(n, 'is a prime number')\n"
+"...\n"
+"2 is a prime number\n"
+"3 is a prime number\n"
+"4 equals 2 * 2\n"
+"5 is a prime number\n"
+"6 equals 2 * 3\n"
+"7 is a prime number\n"
+"8 equals 2 * 4\n"
+"9 equals 3 * 3"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:239
+#, fuzzy
 msgid ""
 "(Yes, this is the correct code.  Look closely: the ``else`` clause "
-"belongs to the :keyword:`for` loop, **not** the :keyword:`if` statement.)"
+"belongs to the ``for`` loop, **not** the ``if`` statement.)"
 msgstr ""
 "(이것은 올바른 코드입니다. 자세히 들여다보면: ``else`` 절은 :keyword:`if` 문이 **아니라** "
 ":keyword:`for` 루프에 속합니다.)"
 
-#: ../Doc/tutorial/controlflow.rst:196
+#: ../../tutorial/controlflow.rst:242
+msgid ""
+"One way to think of the else clause is to imagine it paired with the "
+"``if`` inside the loop.  As the loop executes, it will run a sequence "
+"like if/if/if/else. The ``if`` is inside the loop, encountered a number "
+"of times. If the condition is ever true, a ``break`` will happen. If the "
+"condition is never true, the ``else`` clause outside the loop will "
+"execute."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:248
+#, fuzzy
 msgid ""
 "When used with a loop, the ``else`` clause has more in common with the "
 "``else`` clause of a :keyword:`try` statement than it does with that of "
-":keyword:`if` statements: a :keyword:`try` statement's ``else`` clause "
-"runs when no exception occurs, and a loop's ``else`` clause runs when no "
-"``break`` occurs. For more on the :keyword:`!try` statement and "
-"exceptions, see :ref:`tut-handling`."
+"``if`` statements: a ``try`` statement's ``else`` clause runs when no "
+"exception occurs, and a loop's ``else`` clause runs when no ``break`` "
+"occurs. For more on the ``try`` statement and exceptions, see :ref:`tut-"
+"handling`."
 msgstr ""
 "루프와 함께 사용될 때, ``else`` 절은 :keyword:`if` 문보다는 :keyword:`try` 문의 ``else`` "
 "절과 비슷한 면이 많습니다: :keyword:`try` 문의 ``else`` 절은 예외가 발생하지 않을 때 실행되고, 루프의 "
 "``else`` 절은 ``break``\\가 발생하지 않을 때 실행됩니다. :keyword:`!try` 문과 예외에 관한 자세한 "
 "내용은 :ref:`tut-handling` 를 보세요."
 
-#: ../Doc/tutorial/controlflow.rst:203
-msgid ""
-"The :keyword:`continue` statement, also borrowed from C, continues with "
-"the next iteration of the loop::"
-msgstr ":keyword:`continue` 문은, 역시 C에서 빌렸습니다, 루프의 다음 이터레이션에서 계속하도록 만듭니다::"
-
-#: ../Doc/tutorial/controlflow.rst:223
+#: ../../tutorial/controlflow.rst:257
 msgid ":keyword:`!pass` Statements"
 msgstr ":keyword:`!pass` 문"
 
-#: ../Doc/tutorial/controlflow.rst:225
+#: ../../tutorial/controlflow.rst:259
 msgid ""
 "The :keyword:`pass` statement does nothing. It can be used when a "
 "statement is required syntactically but the program requires no action. "
@@ -227,11 +418,25 @@ msgstr ""
 ":keyword:`pass` 문은 아무것도 하지 않습니다. 문법적으로 문장이 필요하지만, 프로그램이 특별히 할 일이 없을 때 사용할"
 " 수 있습니다. 예를 들어::"
 
-#: ../Doc/tutorial/controlflow.rst:232
+#: ../../tutorial/controlflow.rst:262
+msgid ""
+">>> while True:\n"
+"...     pass  # Busy-wait for keyboard interrupt (Ctrl+C)\n"
+"..."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:266
 msgid "This is commonly used for creating minimal classes::"
 msgstr "최소한의 클래스를 만들 때 흔히 사용됩니다::"
 
-#: ../Doc/tutorial/controlflow.rst:238
+#: ../../tutorial/controlflow.rst:268
+msgid ""
+">>> class MyEmptyClass:\n"
+"...     pass\n"
+"..."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:272
 msgid ""
 "Another place :keyword:`pass` can be used is as a place-holder for a "
 "function or conditional body when you are working on new code, allowing "
@@ -241,17 +446,309 @@ msgstr ""
 ":keyword:`pass`\\가 사용될 수 있는 다른 장소는 새 코드를 작업할 때 함수나 조건부 바디의 자리를 채우는 것인데, "
 "여러분이 더 추상적인 수준에서 생각할 수 있게 합니다. :keyword:`!pass` 는 조용히 무시됩니다::"
 
-#: ../Doc/tutorial/controlflow.rst:249
+#: ../../tutorial/controlflow.rst:276
+msgid ""
+">>> def initlog(*args):\n"
+"...     pass   # Remember to implement this!\n"
+"..."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:284
+#, fuzzy
+msgid ":keyword:`!match` Statements"
+msgstr ":keyword:`!pass` 문"
+
+#: ../../tutorial/controlflow.rst:286
+msgid ""
+"A :keyword:`match` statement takes an expression and compares its value "
+"to successive patterns given as one or more case blocks.  This is "
+"superficially similar to a switch statement in C, Java or JavaScript (and"
+" many other languages), but it's more similar to pattern matching in "
+"languages like Rust or Haskell. Only the first pattern that matches gets "
+"executed and it can also extract components (sequence elements or object "
+"attributes) from the value into variables."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:294
+msgid "The simplest form compares a subject value against one or more literals::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:296
+msgid ""
+"def http_error(status):\n"
+"    match status:\n"
+"        case 400:\n"
+"            return \"Bad request\"\n"
+"        case 404:\n"
+"            return \"Not found\"\n"
+"        case 418:\n"
+"            return \"I'm a teapot\"\n"
+"        case _:\n"
+"            return \"Something's wrong with the internet\""
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:307
+msgid ""
+"Note the last block: the \"variable name\" ``_`` acts as a *wildcard* and"
+" never fails to match. If no case matches, none of the branches is "
+"executed."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:310
+msgid ""
+"You can combine several literals in a single pattern using ``|`` "
+"(\"or\")::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:312
+msgid ""
+"case 401 | 403 | 404:\n"
+"    return \"Not allowed\""
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:315
+msgid ""
+"Patterns can look like unpacking assignments, and can be used to bind "
+"variables::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:318
+#, python-brace-format
+msgid ""
+"# point is an (x, y) tuple\n"
+"match point:\n"
+"    case (0, 0):\n"
+"        print(\"Origin\")\n"
+"    case (0, y):\n"
+"        print(f\"Y={y}\")\n"
+"    case (x, 0):\n"
+"        print(f\"X={x}\")\n"
+"    case (x, y):\n"
+"        print(f\"X={x}, Y={y}\")\n"
+"    case _:\n"
+"        raise ValueError(\"Not a point\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:331
+msgid ""
+"Study that one carefully!  The first pattern has two literals, and can be"
+" thought of as an extension of the literal pattern shown above.  But the "
+"next two patterns combine a literal and a variable, and the variable "
+"*binds* a value from the subject (``point``).  The fourth pattern "
+"captures two values, which makes it conceptually similar to the unpacking"
+" assignment ``(x, y) = point``."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:338
+msgid ""
+"If you are using classes to structure your data you can use the class "
+"name followed by an argument list resembling a constructor, but with the "
+"ability to capture attributes into variables::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:342
+#, python-brace-format
+msgid ""
+"class Point:\n"
+"    def __init__(self, x, y):\n"
+"        self.x = x\n"
+"        self.y = y\n"
+"\n"
+"def where_is(point):\n"
+"    match point:\n"
+"        case Point(x=0, y=0):\n"
+"            print(\"Origin\")\n"
+"        case Point(x=0, y=y):\n"
+"            print(f\"Y={y}\")\n"
+"        case Point(x=x, y=0):\n"
+"            print(f\"X={x}\")\n"
+"        case Point():\n"
+"            print(\"Somewhere else\")\n"
+"        case _:\n"
+"            print(\"Not a point\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:360
+msgid ""
+"You can use positional parameters with some builtin classes that provide "
+"an ordering for their attributes (e.g. dataclasses). You can also define "
+"a specific position for attributes in patterns by setting the "
+"``__match_args__`` special attribute in your classes. If it's set to "
+"(\"x\", \"y\"), the following patterns are all equivalent (and all bind "
+"the ``y`` attribute to the ``var`` variable)::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:366
+msgid ""
+"Point(1, var)\n"
+"Point(1, y=var)\n"
+"Point(x=1, y=var)\n"
+"Point(y=var, x=1)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:371
+msgid ""
+"A recommended way to read patterns is to look at them as an extended form"
+" of what you would put on the left of an assignment, to understand which "
+"variables would be set to what. Only the standalone names (like ``var`` "
+"above) are assigned to by a match statement. Dotted names (like "
+"``foo.bar``), attribute names (the ``x=`` and ``y=`` above) or class "
+"names (recognized by the \"(...)\" next to them like ``Point`` above) are"
+" never assigned to."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:378
+msgid ""
+"Patterns can be arbitrarily nested.  For example, if we have a short list"
+" of Points, with ``__match_args__`` added, we could match it like this::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:381
+#, python-brace-format
+msgid ""
+"class Point:\n"
+"    __match_args__ = ('x', 'y')\n"
+"    def __init__(self, x, y):\n"
+"        self.x = x\n"
+"        self.y = y\n"
+"\n"
+"match points:\n"
+"    case []:\n"
+"        print(\"No points\")\n"
+"    case [Point(0, 0)]:\n"
+"        print(\"The origin\")\n"
+"    case [Point(x, y)]:\n"
+"        print(f\"Single point {x}, {y}\")\n"
+"    case [Point(0, y1), Point(0, y2)]:\n"
+"        print(f\"Two on the Y axis at {y1}, {y2}\")\n"
+"    case _:\n"
+"        print(\"Something else\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:399
+msgid ""
+"We can add an ``if`` clause to a pattern, known as a \"guard\".  If the "
+"guard is false, ``match`` goes on to try the next case block.  Note that "
+"value capture happens before the guard is evaluated::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:403
+#, python-brace-format
+msgid ""
+"match point:\n"
+"    case Point(x, y) if x == y:\n"
+"        print(f\"Y=X at {x}\")\n"
+"    case Point(x, y):\n"
+"        print(f\"Not on the diagonal\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:409
+msgid "Several other key features of this statement:"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:411
+msgid ""
+"Like unpacking assignments, tuple and list patterns have exactly the same"
+" meaning and actually match arbitrary sequences.  An important exception "
+"is that they don't match iterators or strings."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:415
+msgid ""
+"Sequence patterns support extended unpacking: ``[x, y, *rest]`` and ``(x,"
+" y, *rest)`` work similar to unpacking assignments.  The name after ``*``"
+" may also be ``_``, so ``(x, y, *_)`` matches a sequence of at least two "
+"items without binding the remaining items."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:420
+#, python-brace-format
+msgid ""
+"Mapping patterns: ``{\"bandwidth\": b, \"latency\": l}`` captures the "
+"``\"bandwidth\"`` and ``\"latency\"`` values from a dictionary.  Unlike "
+"sequence patterns, extra keys are ignored.  An unpacking like ``**rest`` "
+"is also supported.  (But ``**_`` would be redundant, so it is not "
+"allowed.)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:425
+msgid "Subpatterns may be captured using the ``as`` keyword::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:427
+msgid "case (Point(x1, y1), Point(x2, y2) as p2): ..."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:429
+msgid ""
+"will capture the second element of the input as ``p2`` (as long as the "
+"input is a sequence of two points)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:432
+msgid ""
+"Most literals are compared by equality, however the singletons ``True``, "
+"``False`` and ``None`` are compared by identity."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:435
+msgid ""
+"Patterns may use named constants.  These must be dotted names to prevent "
+"them from being interpreted as capture variable::"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:438
+msgid ""
+"from enum import Enum\n"
+"class Color(Enum):\n"
+"    RED = 'red'\n"
+"    GREEN = 'green'\n"
+"    BLUE = 'blue'\n"
+"\n"
+"color = Color(input(\"Enter your choice of 'red', 'blue' or 'green': \"))"
+"\n"
+"\n"
+"match color:\n"
+"    case Color.RED:\n"
+"        print(\"I see red!\")\n"
+"    case Color.GREEN:\n"
+"        print(\"Grass is green\")\n"
+"    case Color.BLUE:\n"
+"        print(\"I'm feeling the blues :(\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:454
+msgid ""
+"For a more detailed explanation and additional examples, you can look "
+"into :pep:`636` which is written in a tutorial format."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:460
 msgid "Defining Functions"
 msgstr "함수 정의하기"
 
-#: ../Doc/tutorial/controlflow.rst:251
+#: ../../tutorial/controlflow.rst:462
 msgid ""
 "We can create a function that writes the Fibonacci series to an arbitrary"
 " boundary::"
 msgstr "피보나치 수열을 임의의 한도까지 출력하는 함수를 만들 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:271
+#: ../../tutorial/controlflow.rst:465
+msgid ""
+">>> def fib(n):    # write Fibonacci series less than n\n"
+"...     \"\"\"Print a Fibonacci series less than n.\"\"\"\n"
+"...     a, b = 0, 1\n"
+"...     while a < n:\n"
+"...         print(a, end=' ')\n"
+"...         a, b = b, a+b\n"
+"...     print()\n"
+"...\n"
+">>> # Now call the function we just defined:\n"
+">>> fib(2000)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:482
 msgid ""
 "The keyword :keyword:`def` introduces a function *definition*.  It must "
 "be followed by the function name and the parenthesized list of formal "
@@ -261,7 +758,7 @@ msgstr ""
 "키워드 :keyword:`def`\\는 함수 *정의*\\를 시작합니다. 함수 이름과 괄호로 싸인 형식 매개변수들의 목록이 "
 "뒤따릅니다. 함수의 바디를 형성하는 문장들이 다음 줄에서 시작되고, 반드시 들여쓰기 되어야 합니다."
 
-#: ../Doc/tutorial/controlflow.rst:276
+#: ../../tutorial/controlflow.rst:487
 msgid ""
 "The first statement of the function body can optionally be a string "
 "literal; this string literal is the function's documentation string, or "
@@ -276,7 +773,7 @@ msgstr ""
 "나옵니다.) 독스트링을 사용해서 온라인이나 인쇄된 설명서를 자동 생성하거나, 사용자들이 대화형으로 코드를 열람할 수 있도록 하는 "
 "도구들이 있습니다; 여러분이 작성하는 코드에 독스트링을 첨부하는 것은 좋은 관습입니다, 그러니 버릇을 들이는 것이 좋습니다."
 
-#: ../Doc/tutorial/controlflow.rst:283
+#: ../../tutorial/controlflow.rst:494
 msgid ""
 "The *execution* of a function introduces a new symbol table used for the "
 "local variables of the function.  More precisely, all variable "
@@ -296,7 +793,7 @@ msgstr ""
 "값이 대입될 수 없습니다 (전역 변수를 :keyword:`global` 문으로 명시하거나 둘러싸는 함수의 변수를 "
 ":keyword:`nonlocal` 문으로 명시하지 않는 이상)."
 
-#: ../Doc/tutorial/controlflow.rst:294
+#: ../../tutorial/controlflow.rst:505
 msgid ""
 "The actual parameters (arguments) to a function call are introduced in "
 "the local symbol table of the called function when it is called; thus, "
@@ -309,7 +806,7 @@ msgstr ""
 "*값에 의한 호출(call by value)*\\로 전달됩니다 (*값*\\은 항상 객체의 값이 아니라 객체 *참조*\\입니다). "
 "[#]_ 함수가 다른 함수를 호출할 때, 또는 자신을 재귀적으로 호출할 때, 그 호출을 위한 새 지역 심볼 테이블이 만들어집니다."
 
-#: ../Doc/tutorial/controlflow.rst:301
+#: ../../tutorial/controlflow.rst:512
 msgid ""
 "A function definition associates the function name with the function "
 "object in the current symbol table.  The interpreter recognizes the "
@@ -320,7 +817,16 @@ msgstr ""
 "함수 정의는 함수 이름을 현재 심볼 테이블의 함수 객체와 연결합니다. 인터프리터는 해당 이름이 가리키는 객체를 사용자 정의 함수로 "
 "인식합니다. 다른 이름은 같은 함수 객체를 가리킬 수 있으며 함수에 액세스하는 데 사용될 수도 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:312
+#: ../../tutorial/controlflow.rst:517
+msgid ""
+">>> fib\n"
+"<function fib at 10042ed0>\n"
+">>> f = fib\n"
+">>> f(100)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:523
 msgid ""
 "Coming from other languages, you might object that ``fib`` is not a "
 "function but a procedure since it doesn't return a value.  In fact, even "
@@ -335,17 +841,41 @@ msgstr ""
 " 불립니다 (내장 이름입니다). ``None`` 이 출력할 유일한 값이라면, 인터프리터는 보통 ``None`` 값 출력을 "
 "억제합니다. 꼭 보길 원한다면 :func:`print`\\를 사용할 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:323
+#: ../../tutorial/controlflow.rst:530
+msgid ""
+">>> fib(0)\n"
+">>> print(fib(0))\n"
+"None"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:534
 msgid ""
 "It is simple to write a function that returns a list of the numbers of "
 "the Fibonacci series, instead of printing it::"
 msgstr "인쇄하는 대신, 피보나치 수열의 숫자들 리스트를 돌려주는 함수를 작성하는 것도 간단합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:339
+#: ../../tutorial/controlflow.rst:537
+msgid ""
+">>> def fib2(n):  # return Fibonacci series up to n\n"
+"...     \"\"\"Return a list containing the Fibonacci series up to "
+"n.\"\"\"\n"
+"...     result = []\n"
+"...     a, b = 0, 1\n"
+"...     while a < n:\n"
+"...         result.append(a)    # see below\n"
+"...         a, b = b, a+b\n"
+"...     return result\n"
+"...\n"
+">>> f100 = fib2(100)    # call it\n"
+">>> f100                # write the result\n"
+"[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:550
 msgid "This example, as usual, demonstrates some new Python features:"
 msgstr "여느 때처럼, 이 예는 몇 가지 새 파이썬 기능을 보여줍니다:"
 
-#: ../Doc/tutorial/controlflow.rst:341
+#: ../../tutorial/controlflow.rst:552
 msgid ""
 "The :keyword:`return` statement returns with a value from a function. "
 ":keyword:`!return` without an expression argument returns ``None``. "
@@ -354,7 +884,8 @@ msgstr ""
 ":keyword:`return` 문은 함수로부터 값을 갖고 복귀하게 만듭니다. 표현식 인자 없는 :keyword:`!return` "
 "은 ``None``\\을 돌려줍니다. 함수의 끝으로 떨어지면 역시 ``None``\\을 돌려줍니다."
 
-#: ../Doc/tutorial/controlflow.rst:345
+#: ../../tutorial/controlflow.rst:556
+#, fuzzy
 msgid ""
 "The statement ``result.append(a)`` calls a *method* of the list object "
 "``result``.  A method is a function that 'belongs' to an object and is "
@@ -363,9 +894,9 @@ msgid ""
 "by the object's type. Different types define different methods.  Methods "
 "of different types may have the same name without causing ambiguity.  (It"
 " is possible to define your own object types and methods, using "
-"*classes*, see :ref:`tut-classes`) The method :meth:`append` shown in the"
-" example is defined for list objects; it adds a new element at the end of"
-" the list.  In this example it is equivalent to ``result = result + "
+"*classes*, see :ref:`tut-classes`) The method :meth:`!append` shown in "
+"the example is defined for list objects; it adds a new element at the end"
+" of the list.  In this example it is equivalent to ``result = result + "
 "[a]``, but more efficient."
 msgstr ""
 "문장 ``result.append(a)`` 은 리스트 객체 ``result``\\의 *메서드*\\를 호출합니다. 메서드는 객체에 "
@@ -376,21 +907,21 @@ msgstr ""
 "리스트 객체들에 정의되어 있습니다; 요소를 리스트의 끝에 덧붙입니다. 이 예에서는 ``result = result + [a]`` 와"
 " 동등하지만, 더 효율적입니다."
 
-#: ../Doc/tutorial/controlflow.rst:360
+#: ../../tutorial/controlflow.rst:571
 msgid "More on Defining Functions"
 msgstr "함수 정의 더 보기"
 
-#: ../Doc/tutorial/controlflow.rst:362
+#: ../../tutorial/controlflow.rst:573
 msgid ""
 "It is also possible to define functions with a variable number of "
 "arguments. There are three forms, which can be combined."
 msgstr "정해지지 않은 개수의 인자들로 함수를 정의하는 것도 가능합니다. 세 가지 형식이 있는데, 조합할 수 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:369
+#: ../../tutorial/controlflow.rst:580
 msgid "Default Argument Values"
 msgstr "기본 인자 값"
 
-#: ../Doc/tutorial/controlflow.rst:371
+#: ../../tutorial/controlflow.rst:582
 msgid ""
 "The most useful form is to specify a default value for one or more "
 "arguments. This creates a function that can be called with fewer "
@@ -399,45 +930,72 @@ msgstr ""
 "가장 쓸모 있는 형식은 하나나 그 이상 인자들의 기본값을 지정하는 것입니다. 정의된 것보다 더 적은 개수의 인자들로 호출될 수 있는"
 " 함수를 만듭니다. 예를 들어::"
 
-#: ../Doc/tutorial/controlflow.rst:387
+#: ../../tutorial/controlflow.rst:586
+#, python-brace-format
+msgid ""
+"def ask_ok(prompt, retries=4, reminder='Please try again!'):\n"
+"    while True:\n"
+"        reply = input(prompt)\n"
+"        if reply in {'y', 'ye', 'yes'}:\n"
+"            return True\n"
+"        if reply in {'n', 'no', 'nop', 'nope'}:\n"
+"            return False\n"
+"        retries = retries - 1\n"
+"        if retries < 0:\n"
+"            raise ValueError('invalid user response')\n"
+"        print(reminder)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:598
 msgid "This function can be called in several ways:"
 msgstr "이 함수는 여러 가지 방법으로 호출될 수 있습니다:"
 
-#: ../Doc/tutorial/controlflow.rst:389
+#: ../../tutorial/controlflow.rst:600
 msgid ""
 "giving only the mandatory argument: ``ask_ok('Do you really want to "
 "quit?')``"
 msgstr "오직 꼭 필요한 인자만 전달해서: ``ask_ok('정말 끝내길 원하세요?')``"
 
-#: ../Doc/tutorial/controlflow.rst:391
+#: ../../tutorial/controlflow.rst:602
 msgid ""
 "giving one of the optional arguments: ``ask_ok('OK to overwrite the "
 "file?', 2)``"
 msgstr "선택적 인자 하나를 제공해서: ``ask_ok('파일을 덮어써도 좋습니까?', 2)``"
 
-#: ../Doc/tutorial/controlflow.rst:393
+#: ../../tutorial/controlflow.rst:604
 msgid ""
 "or even giving all arguments: ``ask_ok('OK to overwrite the file?', 2, "
 "'Come on, only yes or no!')``"
 msgstr "또는 모든 인자를 제공해서: ``ask_ok('파일을 덮어써도 좋습니까?', 2, '자, 예나 아니요로만 답하세요!')``"
 
-#: ../Doc/tutorial/controlflow.rst:396
+#: ../../tutorial/controlflow.rst:607
 msgid ""
 "This example also introduces the :keyword:`in` keyword. This tests "
 "whether or not a sequence contains a certain value."
 msgstr "이 예는 :keyword:`in` 키워드도 소개하고 있습니다. 시퀀스가 어떤 값을 가졌는지 아닌지를 검사합니다."
 
-#: ../Doc/tutorial/controlflow.rst:399
+#: ../../tutorial/controlflow.rst:610
 msgid ""
 "The default values are evaluated at the point of function definition in "
 "the *defining* scope, so that ::"
 msgstr "기본값은 함수 정의 시점에 *정의되고 있는* 스코프에서 구해집니다, 그래서 ::"
 
-#: ../Doc/tutorial/controlflow.rst:410
+#: ../../tutorial/controlflow.rst:613
+msgid ""
+"i = 5\n"
+"\n"
+"def f(arg=i):\n"
+"    print(arg)\n"
+"\n"
+"i = 6\n"
+"f()"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:621
 msgid "will print ``5``."
 msgstr "는 ``5``\\를 인쇄합니다."
 
-#: ../Doc/tutorial/controlflow.rst:412
+#: ../../tutorial/controlflow.rst:623
 msgid ""
 "**Important warning:**  The default value is evaluated only once. This "
 "makes a difference when the default is a mutable object such as a list, "
@@ -447,21 +1005,48 @@ msgstr ""
 "**중요한 주의사항:** 기본값은 오직 한 번만 값이 구해집니다. 이것은 기본값이 리스트나 딕셔너리나 대부분 클래스의 인스턴스와 "
 "같은 가변 객체일 때 차이를 만듭니다. 예를 들어, 다음 함수는 계속되는 호출로 전달된 인자들을 누적합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:425
+#: ../../tutorial/controlflow.rst:628
+msgid ""
+"def f(a, L=[]):\n"
+"    L.append(a)\n"
+"    return L\n"
+"\n"
+"print(f(1))\n"
+"print(f(2))\n"
+"print(f(3))"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:636
 msgid "This will print ::"
 msgstr "다음과 같은 것을 인쇄합니다 ::"
 
-#: ../Doc/tutorial/controlflow.rst:431
+#: ../../tutorial/controlflow.rst:638
+msgid ""
+"[1]\n"
+"[1, 2]\n"
+"[1, 2, 3]"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:642
 msgid ""
 "If you don't want the default to be shared between subsequent calls, you "
 "can write the function like this instead::"
 msgstr "연속된 호출 간에 기본값이 공유되지 않기를 원한다면, 대신 함수를 이런 식으로 쓸 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:444
+#: ../../tutorial/controlflow.rst:645
+msgid ""
+"def f(a, L=None):\n"
+"    if L is None:\n"
+"        L = []\n"
+"    L.append(a)\n"
+"    return L"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:655
 msgid "Keyword Arguments"
 msgstr "키워드 인자"
 
-#: ../Doc/tutorial/controlflow.rst:446
+#: ../../tutorial/controlflow.rst:657
 msgid ""
 "Functions can also be called using :term:`keyword arguments <keyword "
 "argument>` of the form ``kwarg=value``.  For instance, the following "
@@ -470,7 +1055,17 @@ msgstr ""
 "함수는 ``kwarg=value`` 형식의 :term:`키워드 인자 <keyword argument>` 를 사용해서 호출될 수 "
 "있습니다. 예를 들어, 다음 함수는::"
 
-#: ../Doc/tutorial/controlflow.rst:455
+#: ../../tutorial/controlflow.rst:660
+msgid ""
+"def parrot(voltage, state='a stiff', action='voom', type='Norwegian "
+"Blue'):\n"
+"    print(\"-- This parrot wouldn't\", action, end=' ')\n"
+"    print(\"if you put\", voltage, \"volts through it.\")\n"
+"    print(\"-- Lovely plumage, the\", type)\n"
+"    print(\"-- It's\", state, \"!\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:666
 msgid ""
 "accepts one required argument (``voltage``) and three optional arguments "
 "(``state``, ``action``, and ``type``).  This function can be called in "
@@ -479,11 +1074,36 @@ msgstr ""
 "하나의 필수 인자(``voltage``)와 세 개의 선택적 인자 (``state``, ``action``, ``type``) 를 "
 "받아들입니다. 이 함수는 다음과 같은 방법 중 아무것으로나 호출될 수 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:466
+#: ../../tutorial/controlflow.rst:670
+msgid ""
+"parrot(1000)                                          # 1 positional "
+"argument\n"
+"parrot(voltage=1000)                                  # 1 keyword "
+"argument\n"
+"parrot(voltage=1000000, action='VOOOOOM')             # 2 keyword "
+"arguments\n"
+"parrot(action='VOOOOOM', voltage=1000000)             # 2 keyword "
+"arguments\n"
+"parrot('a million', 'bereft of life', 'jump')         # 3 positional "
+"arguments\n"
+"parrot('a thousand', state='pushing up the daisies')  # 1 positional, 1 "
+"keyword"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:677
 msgid "but all the following calls would be invalid::"
 msgstr "하지만 다음과 같은 호출들은 모두 올바르지 않습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:473
+#: ../../tutorial/controlflow.rst:679
+msgid ""
+"parrot()                     # required argument missing\n"
+"parrot(voltage=5.0, 'dead')  # non-keyword argument after a keyword "
+"argument\n"
+"parrot(110, voltage=220)     # duplicate value for the same argument\n"
+"parrot(actor='John Cleese')  # unknown keyword argument"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:684
 msgid ""
 "In a function call, keyword arguments must follow positional arguments. "
 "All the keyword arguments passed must match one of the arguments accepted"
@@ -498,7 +1118,18 @@ msgstr ""
 "이것들에는 필수 인자들도 포함됩니다 (예를 들어, ``parrot(voltage=1000)`` 도 올바릅니다). 어떤 인자도 두 개"
 " 이상의 값을 받을 수 없습니다. 여기, 이 제약 때문에 실패하는 예가 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:489
+#: ../../tutorial/controlflow.rst:692
+msgid ""
+">>> def function(a):\n"
+"...     pass\n"
+"...\n"
+">>> function(0, a=0)\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: function() got multiple values for argument 'a'"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:700
 msgid ""
 "When a final formal parameter of the form ``**name`` is present, it "
 "receives a dictionary (see :ref:`typesmapping`) containing all keyword "
@@ -514,26 +1145,59 @@ msgstr ""
 "형식 매개변수와 조합될 수 있는데, 형식 매개변수 목록 밖의 위치 인자들을 담은 :ref:`튜플 <tut-tuples>`\\을 "
 "받습니다. (``*name``\\은 ``**name`` 앞에 나와야 합니다.) 예를 들어, 이런 함수를 정의하면::"
 
-#: ../Doc/tutorial/controlflow.rst:506
+#: ../../tutorial/controlflow.rst:708
+msgid ""
+"def cheeseshop(kind, *arguments, **keywords):\n"
+"    print(\"-- Do you have any\", kind, \"?\")\n"
+"    print(\"-- I'm sorry, we're all out of\", kind)\n"
+"    for arg in arguments:\n"
+"        print(arg)\n"
+"    print(\"-\" * 40)\n"
+"    for kw in keywords:\n"
+"        print(kw, \":\", keywords[kw])"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:717
 msgid "It could be called like this::"
 msgstr "이런 식으로 호출될 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:514
+#: ../../tutorial/controlflow.rst:719
+msgid ""
+"cheeseshop(\"Limburger\", \"It's very runny, sir.\",\n"
+"           \"It's really very, VERY runny, sir.\",\n"
+"           shopkeeper=\"Michael Palin\",\n"
+"           client=\"John Cleese\",\n"
+"           sketch=\"Cheese Shop Sketch\")"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:725
 msgid "and of course it would print:"
 msgstr "그리고 당연히 이렇게 인쇄합니다:"
 
-#: ../Doc/tutorial/controlflow.rst:527
+#: ../../tutorial/controlflow.rst:727
+msgid ""
+"-- Do you have any Limburger ?\n"
+"-- I'm sorry, we're all out of Limburger\n"
+"It's very runny, sir.\n"
+"It's really very, VERY runny, sir.\n"
+"----------------------------------------\n"
+"shopkeeper : Michael Palin\n"
+"client : John Cleese\n"
+"sketch : Cheese Shop Sketch"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:738
 msgid ""
 "Note that the order in which the keyword arguments are printed is "
 "guaranteed to match the order in which they were provided in the function"
 " call."
 msgstr "인쇄되는 키워드 인자들의 순서 함수 호출로 전달된 순서와 일치함이 보장됨에 주목하세요."
 
-#: ../Doc/tutorial/controlflow.rst:531
+#: ../../tutorial/controlflow.rst:742
 msgid "Special parameters"
 msgstr "특수 매개 변수"
 
-#: ../Doc/tutorial/controlflow.rst:533
+#: ../../tutorial/controlflow.rst:744
 msgid ""
 "By default, arguments may be passed to a Python function either by "
 "position or explicitly by keyword. For readability and performance, it "
@@ -544,11 +1208,21 @@ msgstr ""
 "기본적으로, 인자는 위치나 명시적인 키워드로 파이썬 함수에 전달될 수 있습니다. 가독성과 성능을 위해, 개발자가 항목이 위치, "
 "위치나 키워드 또는 키워드로 전달되는지를 판단할 때 함수 정의만을 보면 되도록, 인자가 전달될 방법을 제한하면 좋습니다."
 
-#: ../Doc/tutorial/controlflow.rst:539
+#: ../../tutorial/controlflow.rst:750
 msgid "A function definition may look like:"
 msgstr "함수 정의는 다음과 같습니다:"
 
-#: ../Doc/tutorial/controlflow.rst:550
+#: ../../tutorial/controlflow.rst:752
+msgid ""
+"def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):\n"
+"      -----------    ----------     ----------\n"
+"        |             |                  |\n"
+"        |        Positional or keyword   |\n"
+"        |                                - Keyword only\n"
+"         -- Positional only"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:761
 msgid ""
 "where ``/`` and ``*`` are optional. If used, these symbols indicate the "
 "kind of parameter by how the arguments may be passed to the function: "
@@ -558,21 +1232,21 @@ msgstr ""
 "여기서 ``/``\\와 ``*``\\는 선택적입니다. 사용하면, 이 기호는 인자가 함수에 전달되는 방식에 따른 매개 변수의 종류를 "
 "나타냅니다: 위치 전용, 위치-키워드 및 키워드 전용. 키워드 매개 변수는 명명된(named) 매개 변수라고도 합니다."
 
-#: ../Doc/tutorial/controlflow.rst:557
+#: ../../tutorial/controlflow.rst:768
 msgid "Positional-or-Keyword Arguments"
 msgstr "위치-키워드(Positional-or-Keyword) 인자"
 
-#: ../Doc/tutorial/controlflow.rst:559
+#: ../../tutorial/controlflow.rst:770
 msgid ""
 "If ``/`` and ``*`` are not present in the function definition, arguments "
 "may be passed to a function by position or by keyword."
 msgstr "함수 정의에 ``/``\\와 ``*``\\가 없으면, 인자를 위치나 키워드로 함수에 전달할 수 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:564
+#: ../../tutorial/controlflow.rst:775
 msgid "Positional-Only Parameters"
 msgstr "위치 전용 매개 변수"
 
-#: ../Doc/tutorial/controlflow.rst:566
+#: ../../tutorial/controlflow.rst:777
 msgid ""
 "Looking at this in a bit more detail, it is possible to mark certain "
 "parameters as *positional-only*. If *positional-only*, the parameters' "
@@ -587,17 +1261,17 @@ msgstr ""
 "위치 전용 매개 변수를 나머지 매개 변수들로부터 논리적으로 분리하는 데 사용됩니다. 함수 정의에 ``/``\\가 없으면, 위치 전용"
 " 매개 변수는 없습니다."
 
-#: ../Doc/tutorial/controlflow.rst:574
+#: ../../tutorial/controlflow.rst:785
 msgid ""
 "Parameters following the ``/`` may be *positional-or-keyword* or "
 "*keyword-only*."
 msgstr "``/`` 다음의 매개 변수는 *위치-키워드*\\나 *키워드 전용*\\일 수 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:578
+#: ../../tutorial/controlflow.rst:789
 msgid "Keyword-Only Arguments"
 msgstr "키워드 전용 인자"
 
-#: ../Doc/tutorial/controlflow.rst:580
+#: ../../tutorial/controlflow.rst:791
 msgid ""
 "To mark parameters as *keyword-only*, indicating the parameters must be "
 "passed by keyword argument, place an ``*`` in the arguments list just "
@@ -606,17 +1280,32 @@ msgstr ""
 "매개 변수를 키워드 인자로 전달해야 함을 나타내도록, 매개 변수를 *키워드 전용*\\으로 표시하려면, 첫 번째 *키워드 전용* 매개"
 " 변수 바로 전에 인자 목록에 ``*``\\를 넣으십시오."
 
-#: ../Doc/tutorial/controlflow.rst:586
+#: ../../tutorial/controlflow.rst:797
 msgid "Function Examples"
 msgstr "함수 예제"
 
-#: ../Doc/tutorial/controlflow.rst:588
+#: ../../tutorial/controlflow.rst:799
 msgid ""
 "Consider the following example function definitions paying close "
 "attention to the markers ``/`` and ``*``::"
 msgstr "``/``\\와 ``*`` 마커에 주의를 기울이는 다음 예제 함수 정의를 고려하십시오::"
 
-#: ../Doc/tutorial/controlflow.rst:604
+#: ../../tutorial/controlflow.rst:802
+msgid ""
+">>> def standard_arg(arg):\n"
+"...     print(arg)\n"
+"...\n"
+">>> def pos_only_arg(arg, /):\n"
+"...     print(arg)\n"
+"...\n"
+">>> def kwd_only_arg(*, arg):\n"
+"...     print(arg)\n"
+"...\n"
+">>> def combined_example(pos_only, /, standard, *, kwd_only):\n"
+"...     print(pos_only, standard, kwd_only)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:815
 msgid ""
 "The first function definition, ``standard_arg``, the most familiar form, "
 "places no restrictions on the calling convention and arguments may be "
@@ -625,25 +1314,79 @@ msgstr ""
 "첫 번째 함수 정의 ``standard_arg``\\는 가장 익숙한 형식으로, 호출 규칙에 아무런 제한을 두지 않으며 인자는 위치나"
 " 키워드로 전달될 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:614
+#: ../../tutorial/controlflow.rst:819
+msgid ""
+">>> standard_arg(2)\n"
+"2\n"
+"\n"
+">>> standard_arg(arg=2)\n"
+"2"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:825
 msgid ""
 "The second function ``pos_only_arg`` is restricted to only use positional"
 " parameters as there is a ``/`` in the function definition::"
 msgstr "두 번째 함수 ``pos_only_arg``\\는 함수 정의에 ``/``\\가 있으므로 위치 매개 변수만 사용하도록 제한됩니다::"
 
-#: ../Doc/tutorial/controlflow.rst:625
+#: ../../tutorial/controlflow.rst:828
 msgid ""
-"The third function ``kwd_only_args`` only allows keyword arguments as "
+">>> pos_only_arg(1)\n"
+"1\n"
+"\n"
+">>> pos_only_arg(arg=1)\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: pos_only_arg() got some positional-only arguments passed as "
+"keyword arguments: 'arg'"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:836
+#, fuzzy
+msgid ""
+"The third function ``kwd_only_arg`` only allows keyword arguments as "
 "indicated by a ``*`` in the function definition::"
 msgstr "세 번째 함수 ``kwd_only_args``\\는 함수 정의에서 ``*``\\로 표시된 키워드 인자만 허용합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:636
+#: ../../tutorial/controlflow.rst:839
+msgid ""
+">>> kwd_only_arg(3)\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: kwd_only_arg() takes 0 positional arguments but 1 was given\n"
+"\n"
+">>> kwd_only_arg(arg=3)\n"
+"3"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:847
 msgid ""
 "And the last uses all three calling conventions in the same function "
 "definition::"
 msgstr "마지막은 같은 함수 정의에서 세 가지 호출 규칙을 모두 사용합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:656
+#: ../../tutorial/controlflow.rst:850
+msgid ""
+">>> combined_example(1, 2, 3)\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: combined_example() takes 2 positional arguments but 3 were "
+"given\n"
+"\n"
+">>> combined_example(1, 2, kwd_only=3)\n"
+"1 2 3\n"
+"\n"
+">>> combined_example(1, standard=2, kwd_only=3)\n"
+"1 2 3\n"
+"\n"
+">>> combined_example(pos_only=1, standard=2, kwd_only=3)\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: combined_example() got some positional-only arguments passed "
+"as keyword arguments: 'pos_only'"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:867
 msgid ""
 "Finally, consider this function definition which has a potential "
 "collision between the positional argument ``name``  and ``**kwds`` which "
@@ -652,7 +1395,13 @@ msgstr ""
 "마지막으로, 위치 인자 ``name``\\과 ``name``\\을 키로 가지는 ``**kwds`` 사이에 잠재적인 충돌이 있는 이 "
 "함수 정의를 고려하십시오::"
 
-#: ../Doc/tutorial/controlflow.rst:661
+#: ../../tutorial/controlflow.rst:869
+msgid ""
+"def foo(name, **kwds):\n"
+"    return 'name' in kwds"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:872
 msgid ""
 "There is no possible call that will make it return ``True`` as the "
 "keyword ``'name'`` will always bind to the first parameter. For example::"
@@ -660,7 +1409,17 @@ msgstr ""
 "``'name'`` 키워드는 항상 첫 번째 매개 변수에 결합하므로 ``True``\\를 반환할 수 있는 호출은 불가능합니다. 예를 "
 "들면::"
 
-#: ../Doc/tutorial/controlflow.rst:670
+#: ../../tutorial/controlflow.rst:875
+#, python-brace-format
+msgid ""
+">>> foo(1, **{'name': 2})\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: foo() got multiple values for argument 'name'\n"
+">>>"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:881
 msgid ""
 "But using ``/`` (positional only arguments), it is possible since it "
 "allows ``name`` as a positional argument and ``'name'`` as a key in the "
@@ -669,27 +1428,41 @@ msgstr ""
 "그러나 ``/``\\(위치 전용 인자)를 사용하면, ``name``\\을 위치 인자로, 동시에 ``'name'``\\을 키워드 "
 "인자의 키로 사용할 수 있으므로 가능합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:677
+#: ../../tutorial/controlflow.rst:883
+#, python-brace-format
+msgid ""
+">>> def foo(name, /, **kwds):\n"
+"...     return 'name' in kwds\n"
+"...\n"
+">>> foo(1, **{'name': 2})\n"
+"True"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:889
 msgid ""
 "In other words, the names of positional-only parameters can be used in "
 "``**kwds`` without ambiguity."
 msgstr "즉, 위치 전용 매개 변수의 이름을 ``**kwds``\\에서 모호함 없이 사용할 수 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:682
+#: ../../tutorial/controlflow.rst:894
 msgid "Recap"
 msgstr "복습"
 
-#: ../Doc/tutorial/controlflow.rst:684
+#: ../../tutorial/controlflow.rst:896
 msgid ""
 "The use case will determine which parameters to use in the function "
 "definition::"
 msgstr "사용 사례가 함수 정의에서 어떤 매개 변수를 사용할지 결정합니다::"
 
-#: ../Doc/tutorial/controlflow.rst:688
+#: ../../tutorial/controlflow.rst:898
+msgid "def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:900
 msgid "As guidance:"
 msgstr "지침으로서:"
 
-#: ../Doc/tutorial/controlflow.rst:690
+#: ../../tutorial/controlflow.rst:902
 msgid ""
 "Use positional-only if you want the name of the parameters to not be "
 "available to the user. This is useful when parameter names have no real "
@@ -700,7 +1473,7 @@ msgstr ""
 "매개 변수의 이름을 사용자가 사용할 수 없도록 하려면 위치 전용을 사용하십시오. 매개 변수 이름이 실제 의미가 없을 때, 함수가 "
 "호출될 때 인자의 순서를 강제하려고 할 때, 또는 일부 위치 매개 변수와 임의의 키워드를 받아들이고 싶을 때 유용합니다."
 
-#: ../Doc/tutorial/controlflow.rst:695
+#: ../../tutorial/controlflow.rst:907
 msgid ""
 "Use keyword-only when names have meaning and the function definition is "
 "more understandable by being explicit with names or you want to prevent "
@@ -709,17 +1482,17 @@ msgstr ""
 "이름이 의미가 있고 함수 정의가 이름을 명시적으로 지정함으로써 더 이해하기 쉬워지거나, 사용자가 전달되는 인자의 위치에 의존하지 "
 "못하도록 하려면 키워드 전용을 사용하십시오."
 
-#: ../Doc/tutorial/controlflow.rst:698
+#: ../../tutorial/controlflow.rst:910
 msgid ""
 "For an API, use positional-only to prevent breaking API changes if the "
 "parameter's name is modified in the future."
 msgstr "API의 경우, 향후 매개 변수의 이름이 수정될 때 비호환 API 변경이 발생하는 것을 방지하려면 위치 전용을 사용하십시오."
 
-#: ../Doc/tutorial/controlflow.rst:704
+#: ../../tutorial/controlflow.rst:916
 msgid "Arbitrary Argument Lists"
 msgstr "임의의 인자 목록"
 
-#: ../Doc/tutorial/controlflow.rst:709
+#: ../../tutorial/controlflow.rst:921
 msgid ""
 "Finally, the least frequently used option is to specify that a function "
 "can be called with an arbitrary number of arguments.  These arguments "
@@ -729,11 +1502,18 @@ msgstr ""
 "마지막으로, 가장 덜 사용되는 옵션은 함수가 임의의 개수 인자로 호출될 수 있도록 지정하는 것입니다. 이 인자들은 튜플로 묶입니다 "
 "(:ref:`tut-tuples` 을 보세요). 가변 길이 인자 앞에, 없거나 여러 개의 일반 인자들이 올 수 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:718
+#: ../../tutorial/controlflow.rst:926
 msgid ""
-"Normally, these ``variadic`` arguments will be last in the list of formal"
-" parameters, because they scoop up all remaining input arguments that are"
-" passed to the function. Any formal parameters which occur after the "
+"def write_multiple_items(file, separator, *args):\n"
+"    file.write(separator.join(args))"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:930
+#, fuzzy
+msgid ""
+"Normally, these *variadic* arguments will be last in the list of formal "
+"parameters, because they scoop up all remaining input arguments that are "
+"passed to the function. Any formal parameters which occur after the "
 "``*args`` parameter are 'keyword-only' arguments, meaning that they can "
 "only be used as keywords rather than positional arguments. ::"
 msgstr ""
@@ -741,11 +1521,22 @@ msgstr ""
 "때문입니다. ``*args`` 매개변수 뒤에 등장하는 형식 매개변수들은 모두 '키워드-전용' 인자들인데, 위치 인자 대신 키워드 "
 "인자로만 사용될 수 있다는 뜻입니다. ::"
 
-#: ../Doc/tutorial/controlflow.rst:735
+#: ../../tutorial/controlflow.rst:936
+msgid ""
+">>> def concat(*args, sep=\"/\"):\n"
+"...     return sep.join(args)\n"
+"...\n"
+">>> concat(\"earth\", \"mars\", \"venus\")\n"
+"'earth/mars/venus'\n"
+">>> concat(\"earth\", \"mars\", \"venus\", sep=\".\")\n"
+"'earth.mars.venus'"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:947
 msgid "Unpacking Argument Lists"
 msgstr "인자 목록 언 패킹"
 
-#: ../Doc/tutorial/controlflow.rst:737
+#: ../../tutorial/controlflow.rst:949
 msgid ""
 "The reverse situation occurs when the arguments are already in a list or "
 "tuple but need to be unpacked for a function call requiring separate "
@@ -758,17 +1549,42 @@ msgstr ""
 "벌어집니다. 예를 들어, 내장 :func:`range` 함수는 별도의 *start*\\와 *stop* 인자를 기대합니다. 그것들이 "
 "따로 있지 않으면, 리스트와 튜플로부터 인자를 언 패킹하기 위해 ``*``\\ -연산자를 사용해서 함수를 호출하면 됩니다::"
 
-#: ../Doc/tutorial/controlflow.rst:753
+#: ../../tutorial/controlflow.rst:956
+msgid ""
+">>> list(range(3, 6))            # normal call with separate arguments\n"
+"[3, 4, 5]\n"
+">>> args = [3, 6]\n"
+">>> list(range(*args))            # call with arguments unpacked from a "
+"list\n"
+"[3, 4, 5]"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:965
 msgid ""
 "In the same fashion, dictionaries can deliver keyword arguments with the "
 "``**``\\ -operator::"
 msgstr "같은 방식으로 딕셔너리도 ``**``\\ -연산자를 써서 키워드 인자를 전달할 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:769
+#: ../../tutorial/controlflow.rst:968
+#, python-brace-format
+msgid ""
+">>> def parrot(voltage, state='a stiff', action='voom'):\n"
+"...     print(\"-- This parrot wouldn't\", action, end=' ')\n"
+"...     print(\"if you put\", voltage, \"volts through it.\", end=' ')\n"
+"...     print(\"E's\", state, \"!\")\n"
+"...\n"
+">>> d = {\"voltage\": \"four million\", \"state\": \"bleedin' demised\", "
+"\"action\": \"VOOM\"}\n"
+">>> parrot(**d)\n"
+"-- This parrot wouldn't VOOM if you put four million volts through it. "
+"E's bleedin' demised !"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:981
 msgid "Lambda Expressions"
 msgstr "람다 표현식"
 
-#: ../Doc/tutorial/controlflow.rst:771
+#: ../../tutorial/controlflow.rst:983
 msgid ""
 "Small anonymous functions can be created with the :keyword:`lambda` "
 "keyword. This function returns the sum of its two arguments: ``lambda a, "
@@ -783,23 +1599,43 @@ msgstr ""
 "하나의 표현식으로 제한됩니다. 의미적으로는, 일반적인 함수 정의의 편의 문법일 뿐입니다. 중첩된 함수 정의처럼, 람다 함수는 "
 "둘러싸는 스코프에 있는 변수들을 참조할 수 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:788
+#: ../../tutorial/controlflow.rst:991
+msgid ""
+">>> def make_incrementor(n):\n"
+"...     return lambda x: x + n\n"
+"...\n"
+">>> f = make_incrementor(42)\n"
+">>> f(0)\n"
+"42\n"
+">>> f(1)\n"
+"43"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1000
 msgid ""
 "The above example uses a lambda expression to return a function.  Another"
 " use is to pass a small function as an argument::"
 msgstr "위의 예는 함수를 돌려주기 위해 람다 표현식을 사용합니다. 또 다른 용도는 작은 함수를 인자로 전달하는 것입니다::"
 
-#: ../Doc/tutorial/controlflow.rst:800
+#: ../../tutorial/controlflow.rst:1003
+msgid ""
+">>> pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]\n"
+">>> pairs.sort(key=lambda pair: pair[1])\n"
+">>> pairs\n"
+"[(4, 'four'), (1, 'one'), (3, 'three'), (2, 'two')]"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1012
 msgid "Documentation Strings"
 msgstr "도큐멘테이션 문자열"
 
-#: ../Doc/tutorial/controlflow.rst:807
+#: ../../tutorial/controlflow.rst:1019
 msgid ""
 "Here are some conventions about the content and formatting of "
 "documentation strings."
 msgstr "여기에 도큐멘테이션 문자열의 내용과 포매팅에 관한 몇 가지 관례가 있습니다."
 
-#: ../Doc/tutorial/controlflow.rst:810
+#: ../../tutorial/controlflow.rst:1022
 msgid ""
 "The first line should always be a short, concise summary of the object's "
 "purpose.  For brevity, it should not explicitly state the object's name "
@@ -811,7 +1647,7 @@ msgstr ""
 "하는데, 이것들은 다른 방법으로 제공되기 때문입니다 (이름이 함수의 작업을 설명하는 동사라면 예외입니다). 이 줄은 대문자로 "
 "시작하고 마침표로 끝나야 합니다."
 
-#: ../Doc/tutorial/controlflow.rst:816
+#: ../../tutorial/controlflow.rst:1028
 msgid ""
 "If there are more lines in the documentation string, the second line "
 "should be blank, visually separating the summary from the rest of the "
@@ -821,7 +1657,7 @@ msgstr ""
 "도큐멘테이션 문자열에 여러 줄이 있다면, 두 번째 줄은 비어있어서, 시각적으로 요약과 나머지 설명을 분리해야 합니다. 뒤따르는 "
 "줄들은 하나나 그 이상의 문단으로, 객체의 호출 규약, 부작용 등을 설명해야 합니다."
 
-#: ../Doc/tutorial/controlflow.rst:821
+#: ../../tutorial/controlflow.rst:1033
 msgid ""
 "The Python parser does not strip indentation from multi-line string "
 "literals in Python, so tools that process documentation have to strip "
@@ -843,15 +1679,30 @@ msgstr ""
 "제거됩니다. 덜 들여쓰기 된 줄이 나타나지는 말아야 하지만, 나타난다면 모든 앞부분의 공백이 제거됩니다. 공백의 동등성은 탭 확장 "
 "(보통 8개의 스페이스) 후에 검사됩니다."
 
-#: ../Doc/tutorial/controlflow.rst:833
+#: ../../tutorial/controlflow.rst:1045
 msgid "Here is an example of a multi-line docstring::"
 msgstr "여기 여러 줄 독스트링의 예가 있습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:851
+#: ../../tutorial/controlflow.rst:1047
+msgid ""
+">>> def my_function():\n"
+"...     \"\"\"Do nothing, but document it.\n"
+"...\n"
+"...     No, really, it doesn't do anything.\n"
+"...     \"\"\"\n"
+"...     pass\n"
+"...\n"
+">>> print(my_function.__doc__)\n"
+"Do nothing, but document it.\n"
+"\n"
+"    No, really, it doesn't do anything."
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1063
 msgid "Function Annotations"
 msgstr "함수 어노테이션"
 
-#: ../Doc/tutorial/controlflow.rst:859
+#: ../../tutorial/controlflow.rst:1071
 msgid ""
 ":ref:`Function annotations <function>` are completely optional metadata "
 "information about the types used by user-defined functions (see "
@@ -860,10 +1711,11 @@ msgstr ""
 ":ref:`함수 어노테이션 <function>` 은 사용자 정의 함수가 사용하는 형들에 대한 완전히 선택적인 메타데이터 정보입니다 "
 "(자세한 내용은 :pep:`3107` 과 :pep:`484` 를 보세요)."
 
-#: ../Doc/tutorial/controlflow.rst:863
+#: ../../tutorial/controlflow.rst:1075
+#, fuzzy
 msgid ""
 ":term:`Annotations <function annotation>` are stored in the "
-":attr:`__annotations__` attribute of the function as a dictionary and "
+":attr:`!__annotations__` attribute of the function as a dictionary and "
 "have no effect on any other part of the function.  Parameter annotations "
 "are defined by a colon after the parameter name, followed by an "
 "expression evaluating to the value of the annotation.  Return annotations"
@@ -878,11 +1730,26 @@ msgstr ""
 " 표현식으로 정의되는데, 매개변수 목록과 :keyword:`def` 문의 끝을 나타내는 콜론 사이에 놓입니다. 다음 예에서 필수 "
 "인자, 선택적 인자, 반환 값이 어노테이트 됩니다::"
 
-#: ../Doc/tutorial/controlflow.rst:885
+#: ../../tutorial/controlflow.rst:1084
+#, python-brace-format
+msgid ""
+">>> def f(ham: str, eggs: str = 'eggs') -> str:\n"
+"...     print(\"Annotations:\", f.__annotations__)\n"
+"...     print(\"Arguments:\", ham, eggs)\n"
+"...     return ham + ' and ' + eggs\n"
+"...\n"
+">>> f('spam')\n"
+"Annotations: {'ham': <class 'str'>, 'return': <class 'str'>, 'eggs': "
+"<class 'str'>}\n"
+"Arguments: spam eggs\n"
+"'spam and eggs'"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1097
 msgid "Intermezzo: Coding Style"
 msgstr "막간극: 코딩 스타일"
 
-#: ../Doc/tutorial/controlflow.rst:890
+#: ../../tutorial/controlflow.rst:1102
 msgid ""
 "Now that you are about to write longer, more complex pieces of Python, it"
 " is a good time to talk about *coding style*.  Most languages can be "
@@ -896,7 +1763,7 @@ msgstr ""
 "다른 사람들이 여러분의 코드를 읽기 쉽게 만드는 것은 항상 좋은 생각이고, 훌륭한 코딩 스타일을 도입하는 것은 그렇게 하는 데 큰 "
 "도움을 줍니다."
 
-#: ../Doc/tutorial/controlflow.rst:896
+#: ../../tutorial/controlflow.rst:1108
 msgid ""
 "For Python, :pep:`8` has emerged as the style guide that most projects "
 "adhere to; it promotes a very readable and eye-pleasing coding style.  "
@@ -907,11 +1774,11 @@ msgstr ""
 "코딩 스타일을 장려합니다. 모든 파이썬 개발자는 언젠가는 이 문서를 읽어야 합니다; 여러분을 위해 가장 중요한 부분들을 "
 "추려봤습니다::"
 
-#: ../Doc/tutorial/controlflow.rst:901
+#: ../../tutorial/controlflow.rst:1113
 msgid "Use 4-space indentation, and no tabs."
 msgstr "들려 쓰기에 4-스페이스를 사용하고, 탭을 사용하지 마세요."
 
-#: ../Doc/tutorial/controlflow.rst:903
+#: ../../tutorial/controlflow.rst:1115
 msgid ""
 "4 spaces are a good compromise between small indentation (allows greater "
 "nesting depth) and large indentation (easier to read).  Tabs introduce "
@@ -920,31 +1787,31 @@ msgstr ""
 "4개의 스페이스는 작은 들여쓰기 (더 많은 중첩 도를 허락합니다) 와 큰 들여쓰기 (읽기 쉽습니다) 사이의 좋은 절충입니다. 탭은 "
 "혼란을 일으키고, 없애는 것이 최선입니다."
 
-#: ../Doc/tutorial/controlflow.rst:907
+#: ../../tutorial/controlflow.rst:1119
 msgid "Wrap lines so that they don't exceed 79 characters."
 msgstr "79자를 넘지 않도록 줄 넘김 하세요."
 
-#: ../Doc/tutorial/controlflow.rst:909
+#: ../../tutorial/controlflow.rst:1121
 msgid ""
 "This helps users with small displays and makes it possible to have "
 "several code files side-by-side on larger displays."
 msgstr "이것은 작은 화면을 가진 사용자를 돕고 큰 화면에서는 여러 코드 파일들을 나란히 볼 수 있게 합니다."
 
-#: ../Doc/tutorial/controlflow.rst:912
+#: ../../tutorial/controlflow.rst:1124
 msgid ""
 "Use blank lines to separate functions and classes, and larger blocks of "
 "code inside functions."
 msgstr "함수, 클래스, 함수 내의 큰 코드 블록 사이에 빈 줄을 넣어 분리하세요."
 
-#: ../Doc/tutorial/controlflow.rst:915
+#: ../../tutorial/controlflow.rst:1127
 msgid "When possible, put comments on a line of their own."
 msgstr "가능하다면, 주석은 별도의 줄로 넣으세요."
 
-#: ../Doc/tutorial/controlflow.rst:917
+#: ../../tutorial/controlflow.rst:1129
 msgid "Use docstrings."
 msgstr "독스트링을 사용하세요."
 
-#: ../Doc/tutorial/controlflow.rst:919
+#: ../../tutorial/controlflow.rst:1131
 msgid ""
 "Use spaces around operators and after commas, but not directly inside "
 "bracketing constructs: ``a = f(1, 2) + g(3, 4)``."
@@ -952,7 +1819,7 @@ msgstr ""
 "연산자들 주변과 콤마 뒤에 스페이스를 넣고, 괄호 바로 안쪽에는 스페이스를 넣지 마세요: ``a = f(1, 2) + g(3, "
 "4)``."
 
-#: ../Doc/tutorial/controlflow.rst:922
+#: ../../tutorial/controlflow.rst:1134
 msgid ""
 "Name your classes and functions consistently; the convention is to use "
 "``UpperCamelCase`` for classes and ``lowercase_with_underscores`` for "
@@ -964,7 +1831,7 @@ msgstr ""
 "``lowercase_with_underscores``\\입니다. 첫 번째 메서드 인자의 이름으로는 항상 ``self``\\를 "
 "사용하세요 (클래스와 메서드에 대한 자세한 내용은 :ref:`tut-firstclasses` 을 보세요)."
 
-#: ../Doc/tutorial/controlflow.rst:927
+#: ../../tutorial/controlflow.rst:1139
 msgid ""
 "Don't use fancy encodings if your code is meant to be used in "
 "international environments.  Python's default, UTF-8, or even plain ASCII"
@@ -973,7 +1840,7 @@ msgstr ""
 "여러분의 코드를 국제적인 환경에서 사용하려고 한다면 특별한 인코딩을 사용하지 마세요. 어떤 경우에도 파이썬의 기본, UTF-8, "
 "또는 단순 ASCII조차, 이 최선입니다."
 
-#: ../Doc/tutorial/controlflow.rst:931
+#: ../../tutorial/controlflow.rst:1143
 msgid ""
 "Likewise, don't use non-ASCII characters in identifiers if there is only "
 "the slightest chance people speaking a different language will read or "
@@ -982,11 +1849,11 @@ msgstr ""
 "마찬가지로, 다른 언어를 사용하는 사람이 코드를 읽거나 유지할 약간의 가능성만 있더라도, 식별자에 ASCII 이외의 문자를 사용하지"
 " 마세요."
 
-#: ../Doc/tutorial/controlflow.rst:937
+#: ../../tutorial/controlflow.rst:1149
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../Doc/tutorial/controlflow.rst:938
+#: ../../tutorial/controlflow.rst:1150
 msgid ""
 "Actually, *call by object reference* would be a better description, since"
 " if a mutable object is passed, the caller will see any changes the "
@@ -994,4 +1861,102 @@ msgid ""
 msgstr ""
 "실제로, *객체 참조에 의한 호출 (call by object reference)* 이 더 좋은 표현인데, 가변 객체가 전달되면, "
 "호출자는 피호출자가 만든 변경을 볼 수 있기 때문입니다 (가령 리스트에 항목을 추가합니다)."
+
+#: ../../tutorial/controlflow.rst:48
+msgid "statement"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:48
+msgid "for"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:477 ../../tutorial/controlflow.rst:1014
+#, fuzzy
+msgid "documentation strings"
+msgstr "도큐멘테이션 문자열"
+
+#: ../../tutorial/controlflow.rst:477 ../../tutorial/controlflow.rst:1014
+#, fuzzy
+msgid "docstrings"
+msgstr "독스트링을 사용하세요."
+
+#: ../../tutorial/controlflow.rst:477 ../../tutorial/controlflow.rst:1014
+#, fuzzy
+msgid "strings, documentation"
+msgstr "도큐멘테이션 문자열"
+
+#: ../../tutorial/controlflow.rst:918
+msgid "* (asterisk)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:918 ../../tutorial/controlflow.rst:962
+#, fuzzy
+msgid "in function calls"
+msgstr "함수 예제"
+
+#: ../../tutorial/controlflow.rst:962
+msgid "**"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1066
+#, fuzzy
+msgid "function"
+msgstr "함수 예제"
+
+#: ../../tutorial/controlflow.rst:1066
+#, fuzzy
+msgid "annotations"
+msgstr "함수 어노테이션"
+
+#: ../../tutorial/controlflow.rst:1066
+msgid "->"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1066
+#, fuzzy
+msgid "function annotations"
+msgstr "함수 어노테이션"
+
+#: ../../tutorial/controlflow.rst:1066
+msgid ": (colon)"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1100
+msgid "coding"
+msgstr ""
+
+#: ../../tutorial/controlflow.rst:1100
+msgid "style"
+msgstr ""
+
+#~ msgid ""
+#~ "Later we will see more functions "
+#~ "that return iterables and take iterables"
+#~ " as arguments.  Lastly, maybe you are"
+#~ " curious about how to get a "
+#~ "list from a range. Here is the "
+#~ "solution::"
+#~ msgstr ""
+#~ "나중에 이터러블을 돌려주고 이터러블을 인자로 받는 함수들을"
+#~ " 더 보게 됩니다. 마지막으로, range에서 리스트를 "
+#~ "얻는 방법에 대해 궁금할 것입니다. 이렇게 합니다::"
+
+#~ msgid ""
+#~ "Loop statements may have an "
+#~ ":keyword:`!else` clause; it is executed "
+#~ "when the loop terminates through "
+#~ "exhaustion of the iterable (with "
+#~ ":keyword:`for`) or when the condition "
+#~ "becomes false (with :keyword:`while`), but "
+#~ "not when the loop is terminated by"
+#~ " a :keyword:`break` statement.  This is "
+#~ "exemplified by the following loop, which"
+#~ " searches for prime numbers::"
+#~ msgstr ""
+#~ "루프 문은 :keyword:`!else` 절을 가질 수 "
+#~ "있습니다; 루프가 이터러블의 소진이나 (:keyword:`for`\\의 "
+#~ "경우) 조건이 거짓이 돼서 (:keyword:`while`\\의 경우)"
+#~ " 종료할 때 실행됩니다. 하지만 루프가 "
+#~ ":keyword:`break` 문으로 종료할 때는 실행되지 않습니다."
+#~ " 소수를 찾는 루프를 통해 다음에서 예시합니다::"
 

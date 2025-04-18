@@ -7,26 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 08:18+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/library/functools.rst:2
+#: ../../library/functools.rst:2
+#, fuzzy
 msgid ""
-":mod:`functools` --- Higher-order functions and operations on callable "
+":mod:`!functools` --- Higher-order functions and operations on callable "
 "objects"
 msgstr ":mod:`functools` --- 고차 함수와 콜러블 객체에 대한 연산"
 
-#: ../Doc/library/functools.rst:14
+#: ../../library/functools.rst:14
 msgid "**Source code:** :source:`Lib/functools.py`"
 msgstr "**소스 코드:** :source:`Lib/functools.py`"
 
-#: ../Doc/library/functools.rst:23
+#: ../../library/functools.rst:23
 msgid ""
 "The :mod:`functools` module is for higher-order functions: functions that"
 " act on or return other functions. In general, any callable object can be"
@@ -35,11 +36,11 @@ msgstr ""
 ":mod:`functools` 모듈은 고차 함수를 위한 것입니다: 다른 함수에 작용하거나 다른 함수를 반환하는 함수. 일반적으로, "
 "모든 콜러블 객체는 이 모듈의 목적상 함수로 취급될 수 있습니다."
 
-#: ../Doc/library/functools.rst:27
+#: ../../library/functools.rst:27
 msgid "The :mod:`functools` module defines the following functions:"
 msgstr ":mod:`functools` 모듈은 다음 함수를 정의합니다:"
 
-#: ../Doc/library/functools.rst:31
+#: ../../library/functools.rst:31
 msgid ""
 "Simple lightweight unbounded function cache.  Sometimes called "
 "`\"memoize\" <https://en.wikipedia.org/wiki/Memoization>`_."
@@ -47,21 +48,52 @@ msgstr ""
 "단순하고 가벼운 무제한 함수 캐시. 때때로 `\"memoize\" "
 "<https://en.wikipedia.org/wiki/Memoization>`_\\라고도 합니다."
 
-#: ../Doc/library/functools.rst:34
+#: ../../library/functools.rst:34
+#, fuzzy
 msgid ""
 "Returns the same as ``lru_cache(maxsize=None)``, creating a thin wrapper "
 "around a dictionary lookup for the function arguments.  Because it never "
 "needs to evict old values, this is smaller and faster than "
-":func:`lru_cache()` with a size limit."
+":func:`lru_cache` with a size limit."
 msgstr ""
 "``lru_cache(maxsize=None)``\\와 같은 것을 반환하여, 함수 인자의 딕셔너리 조회 주위로 얇은 래퍼를 "
 "만듭니다. 이전 값을 제거할 필요가 없어서, 크기 제한이 있는 :func:`lru_cache()`\\보다 작고 빠릅니다."
 
-#: ../Doc/library/functools.rst:39 ../Doc/library/functools.rst:255
+#: ../../library/functools.rst:39 ../../library/functools.rst:291
 msgid "For example::"
 msgstr "예를 들면::"
 
-#: ../Doc/library/functools.rst:57
+#: ../../library/functools.rst:41
+msgid ""
+"@cache\n"
+"def factorial(n):\n"
+"    return n * factorial(n-1) if n else 1\n"
+"\n"
+">>> factorial(10)      # no previously cached result, makes 11 recursive "
+"calls\n"
+"3628800\n"
+">>> factorial(5)       # just looks up cached value result\n"
+"120\n"
+">>> factorial(12)      # makes two new recursive calls, the other 10 are "
+"cached\n"
+"479001600"
+msgstr ""
+
+#: ../../library/functools.rst:52 ../../library/functools.rst:158
+msgid ""
+"The cache is threadsafe so that the wrapped function can be used in "
+"multiple threads.  This means that the underlying data structure will "
+"remain coherent during concurrent updates."
+msgstr ""
+
+#: ../../library/functools.rst:56 ../../library/functools.rst:162
+msgid ""
+"It is possible for the wrapped function to be called more than once if "
+"another thread makes an additional call before the initial call has been "
+"completed and cached."
+msgstr ""
+
+#: ../../library/functools.rst:65
 msgid ""
 "Transform a method of a class into a property whose value is computed "
 "once and then cached as a normal attribute for the life of the instance. "
@@ -73,12 +105,24 @@ msgstr ""
 ":func:`property`\\와 유사하고, 캐싱이 추가되었습니다. 비싸게 계산되고 그 외에는 사실상 불변인 인스턴스의 프로퍼티에"
 " 유용합니다."
 
-#: ../Doc/library/functools.rst:62 ../Doc/library/functools.rst:127
-#: ../Doc/library/functools.rst:340
+#: ../../library/functools.rst:70 ../../library/functools.rst:142
+#: ../../library/functools.rst:383
 msgid "Example::"
 msgstr "예::"
 
-#: ../Doc/library/functools.rst:73
+#: ../../library/functools.rst:72
+msgid ""
+"class DataSet:\n"
+"\n"
+"    def __init__(self, sequence_of_numbers):\n"
+"        self._data = tuple(sequence_of_numbers)\n"
+"\n"
+"    @cached_property\n"
+"    def stdev(self):\n"
+"        return statistics.stdev(self._data)"
+msgstr ""
+
+#: ../../library/functools.rst:81
 msgid ""
 "The mechanics of :func:`cached_property` are somewhat different from "
 ":func:`property`.  A regular property blocks attribute writes unless a "
@@ -88,7 +132,7 @@ msgstr ""
 "setter가 정의되지 않은 경우 어트리뷰트 쓰기를 차단합니다. 이와는 달리, *cached_property*\\는 쓰기를 "
 "허용합니다."
 
-#: ../Doc/library/functools.rst:77
+#: ../../library/functools.rst:85
 msgid ""
 "The *cached_property* decorator only runs on lookups and only when an "
 "attribute of the same name doesn't exist.  When it does run, the "
@@ -100,13 +144,24 @@ msgstr ""
 "*cached_property*\\는 같은 이름의 어트리뷰트에 기록합니다. 후속 어트리뷰트 읽기와 쓰기는 "
 "*cached_property* 메서드보다 우선하며 일반 어트리뷰트처럼 작동합니다."
 
-#: ../Doc/library/functools.rst:83
+#: ../../library/functools.rst:91
 msgid ""
 "The cached value can be cleared by deleting the attribute.  This allows "
 "the *cached_property* method to run again."
 msgstr "캐시 된 값은 어트리뷰트를 삭제하여 지울 수 있습니다. 이렇게 하면 *cached_property* 메서드가 다시 실행됩니다."
 
-#: ../Doc/library/functools.rst:86
+#: ../../library/functools.rst:94
+msgid ""
+"The *cached_property* does not prevent a possible race condition in "
+"multi-threaded usage. The getter function could run more than once on the"
+" same instance, with the latest run setting the cached value. If the "
+"cached property is idempotent or otherwise not harmful to run more than "
+"once on an instance, this is fine. If synchronization is needed, "
+"implement the necessary locking inside the decorated getter function or "
+"around the cached property access."
+msgstr ""
+
+#: ../../library/functools.rst:102
 msgid ""
 "Note, this decorator interferes with the operation of :pep:`412` key-"
 "sharing dictionaries.  This means that instance dictionaries can take "
@@ -115,7 +170,7 @@ msgstr ""
 "이 데코레이터는 :pep:`412` 키 공유 딕셔너리의 작동을 방해함에 유의하십시오. 이는 인스턴스 딕셔너리가 평소보다 더 많은 "
 "공간을 차지할 수 있음을 의미합니다."
 
-#: ../Doc/library/functools.rst:90
+#: ../../library/functools.rst:106
 msgid ""
 "Also, this decorator requires that the ``__dict__`` attribute on each "
 "instance be a mutable mapping. This means it will not work with some "
@@ -130,16 +185,28 @@ msgstr ""
 " 정의된 슬롯 중 하나로 포함하지 않고 ``__slots__``\\를 지정하는 것(이러한 클래스는 ``__dict__`` "
 "어트리뷰트를 전혀 제공하지 않기 때문에)과 같은 일부 형에서 작동하지 않음을 의미합니다."
 
-#: ../Doc/library/functools.rst:97
+#: ../../library/functools.rst:113
+#, fuzzy
 msgid ""
 "If a mutable mapping is not available or if space-efficient key sharing "
-"is desired, an effect similar to :func:`cached_property` can be achieved "
-"by a stacking :func:`property` on top of :func:`cache`::"
+"is desired, an effect similar to :func:`cached_property` can also be "
+"achieved by stacking :func:`property` on top of :func:`lru_cache`. See "
+":ref:`faq-cache-method-calls` for more details on how this differs from "
+":func:`cached_property`."
 msgstr ""
 "가변 매핑을 사용할 수 없거나 공간 효율적인 키 공유가 필요하면, :func:`cache` 위에 :func:`property`\\를"
 " 쌓아서 :func:`cached_property`\\와 유사한 효과를 얻을 수 있습니다::"
 
-#: ../Doc/library/functools.rst:115
+#: ../../library/functools.rst:120
+msgid ""
+"Prior to Python 3.12, ``cached_property`` included an undocumented lock "
+"to ensure that in multi-threaded usage the getter function was guaranteed"
+" to run only once per instance. However, the lock was per-property, not "
+"per-instance, which could result in unacceptably high lock contention. In"
+" Python 3.12+ this locking is removed."
+msgstr ""
+
+#: ../../library/functools.rst:130
 msgid ""
 "Transform an old-style comparison function to a :term:`key function`.  "
 "Used with tools that accept key functions (such as :func:`sorted`, "
@@ -153,24 +220,31 @@ msgstr ""
 ":func:`heapq.nsmallest`, :func:`itertools.groupby`\\와 같은) 키 함수를 받아들이는 도구와"
 " 함께 사용됩니다. 이 함수는 주로 비교 함수 사용을 지원하는 파이썬 2에서 변환되는 프로그램의 전이 도구로 사용됩니다."
 
-#: ../Doc/library/functools.rst:122
+#: ../../library/functools.rst:137
+#, fuzzy
 msgid ""
-"A comparison function is any callable that accept two arguments, compares"
-" them, and returns a negative number for less-than, zero for equality, or"
-" a positive number for greater-than.  A key function is a callable that "
-"accepts one argument and returns another value to be used as the sort "
-"key."
+"A comparison function is any callable that accepts two arguments, "
+"compares them, and returns a negative number for less-than, zero for "
+"equality, or a positive number for greater-than.  A key function is a "
+"callable that accepts one argument and returns another value to be used "
+"as the sort key."
 msgstr ""
 "비교 함수는 두 개의 인자를 받아들이고, 그들을 비교하여, 작으면 음수, 같으면 0, 크면 양수를 반환하는 콜러블입니다. 키 함수는"
 " 하나의 인자를 받아들이고 정렬 키로 사용할 다른 값을 반환하는 콜러블입니다."
 
-#: ../Doc/library/functools.rst:131
+#: ../../library/functools.rst:144
+msgid ""
+"sorted(iterable, key=cmp_to_key(locale.strcoll))  # locale-aware sort "
+"order"
+msgstr ""
+
+#: ../../library/functools.rst:146
 msgid ""
 "For sorting examples and a brief sorting tutorial, see "
 ":ref:`sortinghowto`."
 msgstr "정렬 예제와 간략한 정렬 자습서는 :ref:`sortinghowto`\\를 참조하십시오."
 
-#: ../Doc/library/functools.rst:139
+#: ../../library/functools.rst:154
 msgid ""
 "Decorator to wrap a function with a memoizing callable that saves up to "
 "the *maxsize* most recent calls.  It can save time when an expensive or "
@@ -179,23 +253,25 @@ msgstr ""
 "가장 최근의 *maxsize* 호출까지 저장하는 기억하는(memoizing) 콜러블 함수를 감싸는 데코레이터. 비싸거나 I/O 병목"
 " 함수가 같은 인자로 주기적으로 호출될 때 시간을 절약할 수 있습니다."
 
-#: ../Doc/library/functools.rst:143
+#: ../../library/functools.rst:166
+#, fuzzy
 msgid ""
 "Since a dictionary is used to cache results, the positional and keyword "
-"arguments to the function must be hashable."
+"arguments to the function must be :term:`hashable`."
 msgstr "결과를 캐시 하는 데 딕셔너리가 사용되기 때문에, 함수에 대한 위치와 키워드 인자는 해시 가능해야 합니다."
 
-#: ../Doc/library/functools.rst:146
+#: ../../library/functools.rst:169
+#, fuzzy
 msgid ""
 "Distinct argument patterns may be considered to be distinct calls with "
-"separate cache entries.  For example, `f(a=1, b=2)` and `f(b=2, a=1)` "
-"differ in their keyword argument order and may have two separate cache "
+"separate cache entries.  For example, ``f(a=1, b=2)`` and ``f(b=2, a=1)``"
+" differ in their keyword argument order and may have two separate cache "
 "entries."
 msgstr ""
 "서도 다른 인자 패턴은 별도의 캐시 항목을 갖는 별개의 호출로 간주할 수 있습니다. 예를 들어, `f(a=1, b=2)`\\와 "
 "`f(b=2, a=1)`\\은 키워드 인자 순서가 다르며 두 개의 개별 캐시 항목을 가질 수 있습니다."
 
-#: ../Doc/library/functools.rst:151
+#: ../../library/functools.rst:174
 msgid ""
 "If *user_function* is specified, it must be a callable. This allows the "
 "*lru_cache* decorator to be applied directly to a user function, leaving "
@@ -204,24 +280,41 @@ msgstr ""
 "*user_function*\\이 지정되면, 콜러블이어야 합니다. 이는 *lru_cache* 데코레이터를 사용자 함수에 직접 적용 "
 "할 수 있도록 하며, *maxsize*\\를 기본값 128로 유지합니다::"
 
-#: ../Doc/library/functools.rst:160
+#: ../../library/functools.rst:178
+msgid ""
+"@lru_cache\n"
+"def count_vowels(sentence):\n"
+"    return sum(sentence.count(vowel) for vowel in 'AEIOUaeiou')"
+msgstr ""
+
+#: ../../library/functools.rst:182
 msgid ""
 "If *maxsize* is set to ``None``, the LRU feature is disabled and the "
 "cache can grow without bound."
 msgstr "*maxsize*\\가 ``None``\\으로 설정되면, LRU 기능이 비활성화되고 캐시가 제한 없이 커질 수 있습니다."
 
-#: ../Doc/library/functools.rst:163
+#: ../../library/functools.rst:185
 msgid ""
 "If *typed* is set to true, function arguments of different types will be "
-"cached separately.  For example, ``f(3)`` and ``f(3.0)`` will be treated "
-"as distinct calls with distinct results."
+"cached separately.  If *typed* is false, the implementation will usually "
+"regard them as equivalent calls and only cache a single result. (Some "
+"types such as *str* and *int* may be cached separately even when *typed* "
+"is false.)"
 msgstr ""
-"*typed*\\가 참으로 설정되면, 다른 형의 함수 인자가 별도로 캐시 됩니다. 예를 들어, ``f(3)``\\과 "
-"``f(3.0)``\\은 별개의 결과를 가진 별개의 호출로 취급됩니다."
 
-#: ../Doc/library/functools.rst:167
+#: ../../library/functools.rst:191
 msgid ""
-"The wrapped function is instrumented with a :func:`cache_parameters` "
+"Note, type specificity applies only to the function's immediate arguments"
+" rather than their contents.  The scalar arguments, ``Decimal(42)`` and "
+"``Fraction(42)`` are be treated as distinct calls with distinct results. "
+"In contrast, the tuple arguments ``('answer', Decimal(42))`` and "
+"``('answer', Fraction(42))`` are treated as equivalent."
+msgstr ""
+
+#: ../../library/functools.rst:197
+#, fuzzy
+msgid ""
+"The wrapped function is instrumented with a :func:`!cache_parameters` "
 "function that returns a new :class:`dict` showing the values for "
 "*maxsize* and *typed*.  This is for information purposes only.  Mutating "
 "the values has no effect."
@@ -230,26 +323,26 @@ msgstr ""
 ":func:`cache_parameters` 함수로 인스트루먼트 됩니다. 이것은 정보 제공만을 위한 것입니다. 값을 변경해도 효과가"
 " 없습니다."
 
-#: ../Doc/library/functools.rst:172
+#: ../../library/functools.rst:202
+#, fuzzy
 msgid ""
 "To help measure the effectiveness of the cache and tune the *maxsize* "
 "parameter, the wrapped function is instrumented with a :func:`cache_info`"
 " function that returns a :term:`named tuple` showing *hits*, *misses*, "
-"*maxsize* and *currsize*.  In a multi-threaded environment, the hits and "
-"misses are approximate."
+"*maxsize* and *currsize*."
 msgstr ""
 "캐시의 효과를 측정하고 *maxsize* 매개 변수를 조정하는 것을 돕기 위해, 래핑 된 함수는 *hits*, *misses*, "
 "*maxsize* 및 *currsize*\\를 표시하는 :term:`네임드 튜플 <named tuple>`\\을 반환하는 "
 ":func:`cache_info` 함수로 인스트루먼트 됩니다. 다중 스레드 환경에서, hits와 misses는 "
 "근사적(approximate)입니다."
 
-#: ../Doc/library/functools.rst:178
+#: ../../library/functools.rst:207
 msgid ""
 "The decorator also provides a :func:`cache_clear` function for clearing "
 "or invalidating the cache."
 msgstr "데코레이터는 캐시를 지우거나 무효로 하기 위한 :func:`cache_clear` 함수도 제공합니다."
 
-#: ../Doc/library/functools.rst:181
+#: ../../library/functools.rst:210
 msgid ""
 "The original underlying function is accessible through the "
 ":attr:`__wrapped__` attribute.  This is useful for introspection, for "
@@ -259,10 +352,23 @@ msgstr ""
 "원래의 하부 함수는 :attr:`__wrapped__` 어트리뷰트를 통해 액세스 할 수 있습니다. 이것은 인트로스펙션, 캐시 우회 "
 "또는 다른 캐시로 함수를 다시 래핑하는 데 유용합니다."
 
-#: ../Doc/library/functools.rst:185
+#: ../../library/functools.rst:214
+msgid ""
+"The cache keeps references to the arguments and return values until they "
+"age out of the cache or until the cache is cleared."
+msgstr ""
+
+#: ../../library/functools.rst:217
+msgid ""
+"If a method is cached, the ``self`` instance argument is included in the "
+"cache.  See :ref:`faq-cache-method-calls`"
+msgstr ""
+
+#: ../../library/functools.rst:220
+#, fuzzy
 msgid ""
 "An `LRU (least recently used) cache "
-"<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)>`_"
+"<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_Recently_Used_(LRU)>`_"
 " works best when the most recent calls are the best predictors of "
 "upcoming calls (for example, the most popular articles on a news server "
 "tend to change each day).  The cache's size limit assures that the cache "
@@ -274,23 +380,45 @@ msgstr ""
 " 가장 최근 호출이 향후 호출에 대한 최상의 예측일 때 가장 잘 작동합니다 (예를 들어, 뉴스 서버에서 가장 인기 있는 기사는 매일"
 " 바뀌는 경향이 있습니다). 캐시의 크기 제한은 웹 서버와 같은 오래 실행되는 프로세스에서 제한 없이 캐시가 커지지 않도록 합니다."
 
-#: ../Doc/library/functools.rst:192
+#: ../../library/functools.rst:227
+#, fuzzy
 msgid ""
 "In general, the LRU cache should only be used when you want to reuse "
 "previously computed values.  Accordingly, it doesn't make sense to cache "
 "functions with side-effects, functions that need to create distinct "
-"mutable objects on each call, or impure functions such as time() or "
-"random()."
+"mutable objects on each call (such as generators and async functions), or"
+" impure functions such as time() or random()."
 msgstr ""
 "일반적으로, LRU 캐시는 이전에 계산된 값을 재사용하려고 할 때만 사용해야 합니다. 따라서, 부작용이 있는 함수, 각 호출에서 "
 "고유한 가변 객체를 만들어야 하는 함수, time()이나 random()과 같은 비순수(impure) 함수를 캐시 하는 것은 의미가"
 " 없습니다."
 
-#: ../Doc/library/functools.rst:197
+#: ../../library/functools.rst:233
 msgid "Example of an LRU cache for static web content::"
 msgstr "정적 웹 콘텐츠를 위한 LRU 캐시의 예::"
 
-#: ../Doc/library/functools.rst:216
+#: ../../library/functools.rst:235
+#, python-brace-format
+msgid ""
+"@lru_cache(maxsize=32)\n"
+"def get_pep(num):\n"
+"    'Retrieve text of a Python Enhancement Proposal'\n"
+"    resource = f'https://peps.python.org/pep-{num:04d}'\n"
+"    try:\n"
+"        with urllib.request.urlopen(resource) as s:\n"
+"            return s.read()\n"
+"    except urllib.error.HTTPError:\n"
+"        return 'Not Found'\n"
+"\n"
+">>> for n in 8, 290, 308, 320, 8, 218, 320, 279, 289, 320, 9991:\n"
+"...     pep = get_pep(n)\n"
+"...     print(n, len(pep))\n"
+"\n"
+">>> get_pep.cache_info()\n"
+"CacheInfo(hits=3, misses=8, maxsize=32, currsize=8)"
+msgstr ""
+
+#: ../../library/functools.rst:252
 msgid ""
 "Example of efficiently computing `Fibonacci numbers "
 "<https://en.wikipedia.org/wiki/Fibonacci_number>`_ using a cache to "
@@ -302,19 +430,35 @@ msgstr ""
 "사용하여 `피보나치 수 <https://en.wikipedia.org/wiki/Fibonacci_number>`_\\를 효율적으로 "
 "계산하는 예::"
 
-#: ../Doc/library/functools.rst:236
+#: ../../library/functools.rst:258
+msgid ""
+"@lru_cache(maxsize=None)\n"
+"def fib(n):\n"
+"    if n < 2:\n"
+"        return n\n"
+"    return fib(n-1) + fib(n-2)\n"
+"\n"
+">>> [fib(n) for n in range(16)]\n"
+"[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]\n"
+"\n"
+">>> fib.cache_info()\n"
+"CacheInfo(hits=28, misses=16, maxsize=None, currsize=16)"
+msgstr ""
+
+#: ../../library/functools.rst:272
 msgid "Added the *typed* option."
 msgstr "*typed* 옵션을 추가했습니다."
 
-#: ../Doc/library/functools.rst:239
+#: ../../library/functools.rst:275
 msgid "Added the *user_function* option."
 msgstr "*user_function* 옵션을 추가했습니다."
 
-#: ../Doc/library/functools.rst:242
-msgid "Added the function :func:`cache_parameters`"
+#: ../../library/functools.rst:278
+#, fuzzy
+msgid "Added the function :func:`!cache_parameters`"
 msgstr ":func:`cache_parameters` 함수를 추가했습니다"
 
-#: ../Doc/library/functools.rst:247
+#: ../../library/functools.rst:283
 msgid ""
 "Given a class defining one or more rich comparison ordering methods, this"
 " class decorator supplies the rest.  This simplifies the effort involved "
@@ -323,7 +467,7 @@ msgstr ""
 "하나 이상의 풍부한 비교(rich comparison) 순서 메서드를 정의하는 클래스를 주면, 이 클래스 데코레이터가 나머지를 "
 "제공합니다. 가능한 모든 풍부한 비교 연산을 지정하는 데 드는 노력이 단순화됩니다:"
 
-#: ../Doc/library/functools.rst:251
+#: ../../library/functools.rst:287
 msgid ""
 "The class must define one of :meth:`__lt__`, :meth:`__le__`, "
 ":meth:`__gt__`, or :meth:`__ge__`. In addition, the class should supply "
@@ -332,7 +476,26 @@ msgstr ""
 "클래스는 :meth:`__lt__`, :meth:`__le__`, :meth:`__gt__` 또는 :meth:`__ge__` 중 "
 "하나를 정의해야 합니다. 또한, 클래스는 :meth:`__eq__` 메서드를 제공해야 합니다."
 
-#: ../Doc/library/functools.rst:275
+#: ../../library/functools.rst:293
+msgid ""
+"@total_ordering\n"
+"class Student:\n"
+"    def _is_valid_operand(self, other):\n"
+"        return (hasattr(other, \"lastname\") and\n"
+"                hasattr(other, \"firstname\"))\n"
+"    def __eq__(self, other):\n"
+"        if not self._is_valid_operand(other):\n"
+"            return NotImplemented\n"
+"        return ((self.lastname.lower(), self.firstname.lower()) ==\n"
+"                (other.lastname.lower(), other.firstname.lower()))\n"
+"    def __lt__(self, other):\n"
+"        if not self._is_valid_operand(other):\n"
+"            return NotImplemented\n"
+"        return ((self.lastname.lower(), self.firstname.lower()) <\n"
+"                (other.lastname.lower(), other.firstname.lower()))"
+msgstr ""
+
+#: ../../library/functools.rst:311
 msgid ""
 "While this decorator makes it easy to create well behaved totally ordered"
 " types, it *does* come at the cost of slower execution and more complex "
@@ -345,13 +508,22 @@ msgstr ""
 "메서드에서 실행 속도가 느려지고 스택 트레이스가 더 복잡해지는 대가를 지불합니다. 성능 벤치마킹이 이것이 특정 응용 프로그램의 "
 "병목임을 가리키면, 6가지의 풍부한 비교 메서드를 모두 구현하여 속도를 쉽게 높일 수 있습니다."
 
-#: ../Doc/library/functools.rst:284
+#: ../../library/functools.rst:320
 msgid ""
-"Returning NotImplemented from the underlying comparison function for "
+"This decorator makes no attempt to override methods that have been "
+"declared in the class *or its superclasses*. Meaning that if a superclass"
+" defines a comparison operator, *total_ordering* will not implement it "
+"again, even if the original method is abstract."
+msgstr ""
+
+#: ../../library/functools.rst:327
+#, fuzzy
+msgid ""
+"Returning ``NotImplemented`` from the underlying comparison function for "
 "unrecognised types is now supported."
 msgstr "인식할 수 없는 형에 대해 하부 비교 함수에서 NotImplemented를 반환하는 것이 이제 지원됩니다."
 
-#: ../Doc/library/functools.rst:290
+#: ../../library/functools.rst:333
 msgid ""
 "Return a new :ref:`partial object<partial-objects>` which when called "
 "will behave like *func* called with the positional arguments *args* and "
@@ -364,7 +536,20 @@ msgstr ""
 "*args*\\에 추가됩니다. 추가 키워드 인자가 제공되면, *keywords*\\를 확장하고 대체합니다. 대략 다음과 "
 "동등합니다::"
 
-#: ../Doc/library/functools.rst:306
+#: ../../library/functools.rst:340
+#, python-brace-format
+msgid ""
+"def partial(func, /, *args, **keywords):\n"
+"    def newfunc(*fargs, **fkeywords):\n"
+"        newkeywords = {**keywords, **fkeywords}\n"
+"        return func(*args, *fargs, **newkeywords)\n"
+"    newfunc.func = func\n"
+"    newfunc.args = args\n"
+"    newfunc.keywords = keywords\n"
+"    return newfunc"
+msgstr ""
+
+#: ../../library/functools.rst:349
 msgid ""
 "The :func:`partial` is used for partial function application which "
 "\"freezes\" some portion of a function's arguments and/or keywords "
@@ -376,7 +561,7 @@ msgstr ""
 "함수 응용에 사용됩니다. 예를 들어, :func:`partial`\\을 사용하여 *base* 인자의 기본값이 2이면서 "
 ":func:`int` 함수 같은 동작을 하는 콜러블을 만들 수 있습니다:"
 
-#: ../Doc/library/functools.rst:321
+#: ../../library/functools.rst:364
 msgid ""
 "Return a new :class:`partialmethod` descriptor which behaves like "
 ":class:`partial` except that it is designed to be used as a method "
@@ -385,7 +570,7 @@ msgstr ""
 "직접 호출하기보다는 메서드 정의로 사용되도록 설계된 것을 제외하고는 :class:`partial`\\과 같이 동작하는 새 "
 ":class:`partialmethod` 디스크립터를 반환합니다."
 
-#: ../Doc/library/functools.rst:325
+#: ../../library/functools.rst:368
 msgid ""
 "*func* must be a :term:`descriptor` or a callable (objects which are "
 "both, like normal functions, are handled as descriptors)."
@@ -393,7 +578,7 @@ msgstr ""
 "*func*\\는 :term:`디스크립터 <descriptor>`\\나 콜러블이어야 합니다 (일반 함수처럼 둘 모두인 객체는 "
 "디스크립터로 처리됩니다)."
 
-#: ../Doc/library/functools.rst:328
+#: ../../library/functools.rst:371
 msgid ""
 "When *func* is a descriptor (such as a normal Python function, "
 ":func:`classmethod`, :func:`staticmethod`, :func:`abstractmethod` or "
@@ -406,7 +591,7 @@ msgstr ""
 "``__get__``\\에 대한 호출은 하부 디스크립터에 위임되고, 적절한 :ref:`partial 객체 <partial-"
 "objects>`\\가 결과로 반환됩니다."
 
-#: ../Doc/library/functools.rst:334
+#: ../../library/functools.rst:377
 msgid ""
 "When *func* is a non-descriptor callable, an appropriate bound method is "
 "created dynamically. This behaves like a normal Python function when used"
@@ -418,16 +603,38 @@ msgstr ""
 "파이썬 함수처럼 작동합니다: :class:`partialmethod` 생성자에 제공된 *args*\\와 *keywords*\\보다도"
 " 전에 *self* 인자가 첫 번째 위치 인자로 삽입됩니다."
 
-#: ../Doc/library/functools.rst:365
+#: ../../library/functools.rst:385
+msgid ""
+">>> class Cell:\n"
+"...     def __init__(self):\n"
+"...         self._alive = False\n"
+"...     @property\n"
+"...     def alive(self):\n"
+"...         return self._alive\n"
+"...     def set_state(self, state):\n"
+"...         self._alive = bool(state)\n"
+"...     set_alive = partialmethod(set_state, True)\n"
+"...     set_dead = partialmethod(set_state, False)\n"
+"...\n"
+">>> c = Cell()\n"
+">>> c.alive\n"
+"False\n"
+">>> c.set_alive()\n"
+">>> c.alive\n"
+"True"
+msgstr ""
+
+#: ../../library/functools.rst:408
+#, fuzzy
 msgid ""
 "Apply *function* of two arguments cumulatively to the items of "
 "*iterable*, from left to right, so as to reduce the iterable to a single "
 "value.  For example, ``reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])`` "
 "calculates ``((((1+2)+3)+4)+5)``. The left argument, *x*, is the "
 "accumulated value and the right argument, *y*, is the update value from "
-"the *iterable*.  If the optional *initializer* is present, it is placed "
+"the *iterable*.  If the optional *initial* is present, it is placed "
 "before the items of the iterable in the calculation, and serves as a "
-"default when the iterable is empty.  If *initializer* is not given and "
+"default when the iterable is empty.  If *initial* is not given and "
 "*iterable* contains only one item, the first item is returned."
 msgstr ""
 "두 인자의 *function*\\을 왼쪽에서 오른쪽으로 *iterable*\\의 항목에 누적적으로 적용해서, 이터러블을 단일 값으로"
@@ -437,17 +644,32 @@ msgstr ""
 "배치되고, 이터러블이 비어있을 때 기본값의 역할을 합니다. *initializer*\\가 제공되지 않고 *iterable*\\에 "
 "하나의 항목만 포함되면, 첫 번째 항목이 반환됩니다."
 
-#: ../Doc/library/functools.rst:374
+#: ../../library/functools.rst:417
 msgid "Roughly equivalent to::"
 msgstr "대략 다음과 동등합니다::"
 
-#: ../Doc/library/functools.rst:386
+#: ../../library/functools.rst:419
+msgid ""
+"initial_missing = object()\n"
+"\n"
+"def reduce(function, iterable, initial=initial_missing, /):\n"
+"    it = iter(iterable)\n"
+"    if initial is initial_missing:\n"
+"        value = next(it)\n"
+"    else:\n"
+"        value = initial\n"
+"    for element in it:\n"
+"        value = function(value, element)\n"
+"    return value"
+msgstr ""
+
+#: ../../library/functools.rst:431
 msgid ""
 "See :func:`itertools.accumulate` for an iterator that yields all "
 "intermediate values."
 msgstr "모든 중간값을 산출하는 이터레이터는 :func:`itertools.accumulate`\\를 참조하십시오."
 
-#: ../Doc/library/functools.rst:391
+#: ../../library/functools.rst:436
 msgid ""
 "Transform a function into a :term:`single-dispatch <single dispatch>` "
 ":term:`generic function`."
@@ -455,91 +677,268 @@ msgstr ""
 "함수를 :term:`싱글 디스패치 <single dispatch>` :term:`제네릭 함수 <generic "
 "function>`\\로 변환합니다."
 
-#: ../Doc/library/functools.rst:394
+#: ../../library/functools.rst:439
+#, fuzzy
 msgid ""
 "To define a generic function, decorate it with the ``@singledispatch`` "
-"decorator. Note that the dispatch happens on the type of the first "
-"argument, create your function accordingly::"
+"decorator. When defining a function using ``@singledispatch``, note that "
+"the dispatch happens on the type of the first argument::"
 msgstr ""
 "제네릭 함수를 정의하려면, ``@singledispatch`` 데코레이터로 데코레이트 하십시오. 디스패치는 첫 번째 인자의 형으로 "
 "일어납니다, 그에 따라 함수를 작성하십시오::"
 
-#: ../Doc/library/functools.rst:405
+#: ../../library/functools.rst:443
+msgid ""
+">>> from functools import singledispatch\n"
+">>> @singledispatch\n"
+"... def fun(arg, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Let me just say,\", end=\" \")\n"
+"...     print(arg)"
+msgstr ""
+
+#: ../../library/functools.rst:450
+#, fuzzy
 msgid ""
 "To add overloaded implementations to the function, use the "
-":func:`register` attribute of the generic function.  It is a decorator.  "
-"For functions annotated with types, the decorator will infer the type of "
-"the first argument automatically::"
+":func:`register` attribute of the generic function, which can be used as "
+"a decorator.  For functions annotated with types, the decorator will "
+"infer the type of the first argument automatically::"
 msgstr ""
 "오버로드 된 구현을 함수에 추가하려면, 제네릭 함수의 :func:`register` 어트리뷰트를 사용하십시오. 데코레이터입니다. "
 "형으로 어노테이트 된 함수의 경우, 데코레이터는 첫 번째 인자의 형을 자동으로 유추합니다::"
 
-#: ../Doc/library/functools.rst:423
+#: ../../library/functools.rst:455
+msgid ""
+">>> @fun.register\n"
+"... def _(arg: int, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Strength in numbers, eh?\", end=\" \")\n"
+"...     print(arg)\n"
+"...\n"
+">>> @fun.register\n"
+"... def _(arg: list, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Enumerate this:\")\n"
+"...     for i, elem in enumerate(arg):\n"
+"...         print(i, elem)"
+msgstr ""
+
+#: ../../library/functools.rst:468
+msgid ":data:`types.UnionType` and :data:`typing.Union` can also be used::"
+msgstr ""
+
+#: ../../library/functools.rst:470
+msgid ""
+">>> @fun.register\n"
+"... def _(arg: int | float, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Strength in numbers, eh?\", end=\" \")\n"
+"...     print(arg)\n"
+"...\n"
+">>> from typing import Union\n"
+">>> @fun.register\n"
+"... def _(arg: Union[list, set], verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Enumerate this:\")\n"
+"...     for i, elem in enumerate(arg):\n"
+"...         print(i, elem)\n"
+"..."
+msgstr ""
+
+#: ../../library/functools.rst:485
 msgid ""
 "For code which doesn't use type annotations, the appropriate type "
 "argument can be passed explicitly to the decorator itself::"
 msgstr "형 어노테이션을 사용하지 않는 코드의 경우, 적절한 형 인자를 데코레이터 자체에 명시적으로 전달할 수 있습니다::"
 
-#: ../Doc/library/functools.rst:434
+#: ../../library/functools.rst:488
 msgid ""
-"To enable registering lambdas and pre-existing functions, the "
-":func:`register` attribute can be used in a functional form::"
+">>> @fun.register(complex)\n"
+"... def _(arg, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Better than complicated.\", end=\" \")\n"
+"...     print(arg.real, arg.imag)\n"
+"..."
+msgstr ""
+
+#: ../../library/functools.rst:495
+msgid ""
+"For code that dispatches on a collections type (e.g., ``list``), but "
+"wants to typehint the items of the collection (e.g., ``list[int]``), the "
+"dispatch type should be passed explicitly to the decorator itself with "
+"the typehint going into the function definition::"
+msgstr ""
+
+#: ../../library/functools.rst:500
+msgid ""
+">>> @fun.register(list)\n"
+"... def _(arg: list[int], verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Enumerate this:\")\n"
+"...     for i, elem in enumerate(arg):\n"
+"...         print(i, elem)"
+msgstr ""
+
+#: ../../library/functools.rst:509
+msgid ""
+"At runtime the function will dispatch on an instance of a list regardless"
+" of the type contained within the list i.e. ``[1,2,3]`` will be "
+"dispatched the same as ``[\"foo\", \"bar\", \"baz\"]``. The annotation "
+"provided in this example is for static type checkers only and has no "
+"runtime impact."
+msgstr ""
+
+#: ../../library/functools.rst:515
+#, fuzzy
+msgid ""
+"To enable registering :term:`lambdas<lambda>` and pre-existing functions,"
+" the :func:`register` attribute can also be used in a functional form::"
 msgstr ""
 "람다와 사전에 존재하는 함수를 등록할 수 있도록, :func:`register` 어트리뷰트를 다음과 같은 함수적인 형태로 사용할 수"
 " 있습니다::"
 
-#: ../Doc/library/functools.rst:442
+#: ../../library/functools.rst:518
 msgid ""
-"The :func:`register` attribute returns the undecorated function which "
-"enables decorator stacking, pickling, as well as creating unit tests for "
-"each variant independently::"
+">>> def nothing(arg, verbose=False):\n"
+"...     print(\"Nothing.\")\n"
+"...\n"
+">>> fun.register(type(None), nothing)"
+msgstr ""
+
+#: ../../library/functools.rst:523
+#, fuzzy
+msgid ""
+"The :func:`register` attribute returns the undecorated function. This "
+"enables decorator stacking, :mod:`pickling<pickle>`, and the creation of "
+"unit tests for each variant independently::"
 msgstr ""
 ":func:`register` 어트리뷰트는 데코레이트 되지 않은 함수를 반환해서 데코레이터 스태킹, 피클링 뿐만 아니라 각 변형에 "
 "대한 단위 테스트를 독립적으로 만드는 것을 가능하게 합니다::"
 
-#: ../Doc/library/functools.rst:456
+#: ../../library/functools.rst:527
+msgid ""
+">>> @fun.register(float)\n"
+"... @fun.register(Decimal)\n"
+"... def fun_num(arg, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Half of your number:\", end=\" \")\n"
+"...     print(arg / 2)\n"
+"...\n"
+">>> fun_num is fun\n"
+"False"
+msgstr ""
+
+#: ../../library/functools.rst:537
 msgid ""
 "When called, the generic function dispatches on the type of the first "
 "argument::"
 msgstr "호출되면, 제네릭 함수는 첫 번째 인자의 형에 따라 디스패치 합니다::"
 
-#: ../Doc/library/functools.rst:476
+#: ../../library/functools.rst:540
+msgid ""
+">>> fun(\"Hello, world.\")\n"
+"Hello, world.\n"
+">>> fun(\"test.\", verbose=True)\n"
+"Let me just say, test.\n"
+">>> fun(42, verbose=True)\n"
+"Strength in numbers, eh? 42\n"
+">>> fun(['spam', 'spam', 'eggs', 'spam'], verbose=True)\n"
+"Enumerate this:\n"
+"0 spam\n"
+"1 spam\n"
+"2 eggs\n"
+"3 spam\n"
+">>> fun(None)\n"
+"Nothing.\n"
+">>> fun(1.23)\n"
+"0.615"
+msgstr ""
+
+#: ../../library/functools.rst:557
+#, fuzzy
 msgid ""
 "Where there is no registered implementation for a specific type, its "
 "method resolution order is used to find a more generic implementation. "
 "The original function decorated with ``@singledispatch`` is registered "
-"for the base ``object`` type, which means it is used if no better "
+"for the base :class:`object` type, which means it is used if no better "
 "implementation is found."
 msgstr ""
 "특정 형에 대해 등록된 구현이 없으면, 더 일반적인 구현을 찾는 데 메서드 결정 순서가 사용됩니다. "
 "``@singledispatch``\\로 데코레이트 된 원래 함수는 베이스 ``object`` 형으로 등록되어서, 더 나은 구현이 "
 "발견되지 않으면 사용됩니다."
 
-#: ../Doc/library/functools.rst:482
+#: ../../library/functools.rst:563
+#, fuzzy
 msgid ""
-"If an implementation registered to :term:`abstract base class`, virtual "
-"subclasses will be dispatched to that implementation::"
+"If an implementation is registered to an :term:`abstract base class`, "
+"virtual subclasses of the base class will be dispatched to that "
+"implementation::"
 msgstr ""
 "구현이 :term:`추상 베이스 클래스 <abstract base class>`\\에 등록되면, 가상 서브 클래스는 그 구현으로 "
 "디스패치 됩니다::"
 
-#: ../Doc/library/functools.rst:496
+#: ../../library/functools.rst:567
+#, python-brace-format
 msgid ""
-"To check which implementation will the generic function choose for a "
+">>> from collections.abc import Mapping\n"
+">>> @fun.register\n"
+"... def _(arg: Mapping, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Keys & Values\")\n"
+"...     for key, value in arg.items():\n"
+"...         print(key, \"=>\", value)\n"
+"...\n"
+">>> fun({\"a\": \"b\"})\n"
+"a => b"
+msgstr ""
+
+#: ../../library/functools.rst:578
+#, fuzzy
+msgid ""
+"To check which implementation the generic function will choose for a "
 "given type, use the ``dispatch()`` attribute::"
 msgstr "제네릭 함수가 주어진 형에 대해 어떤 구현을 선택하는지 확인하려면 ``dispatch()`` 어트리뷰트를 사용하십시오::"
 
-#: ../Doc/library/functools.rst:504
+#: ../../library/functools.rst:581
+msgid ""
+">>> fun.dispatch(float)\n"
+"<function fun_num at 0x1035a2840>\n"
+">>> fun.dispatch(dict)    # note: default implementation\n"
+"<function fun at 0x103fe0000>"
+msgstr ""
+
+#: ../../library/functools.rst:586
 msgid ""
 "To access all registered implementations, use the read-only ``registry`` "
 "attribute::"
 msgstr "등록된 모든 구현에 액세스하려면, 읽기 전용 ``registry`` 어트리뷰트를 사용하십시오::"
 
-#: ../Doc/library/functools.rst:518
-msgid "The :func:`register` attribute supports using type annotations."
+#: ../../library/functools.rst:589
+msgid ""
+">>> fun.registry.keys()\n"
+"dict_keys([<class 'NoneType'>, <class 'int'>, <class 'object'>,\n"
+"          <class 'decimal.Decimal'>, <class 'list'>,\n"
+"          <class 'float'>])\n"
+">>> fun.registry[float]\n"
+"<function fun_num at 0x1035a2840>\n"
+">>> fun.registry[object]\n"
+"<function fun at 0x103fe0000>"
+msgstr ""
+
+#: ../../library/functools.rst:600
+#, fuzzy
+msgid "The :func:`register` attribute now supports using type annotations."
 msgstr ":func:`register` 어트리뷰트는 형 어노테이션 사용을 지원합니다."
 
-#: ../Doc/library/functools.rst:524
+#: ../../library/functools.rst:603
+#, fuzzy
+msgid ""
+"The :func:`register` attribute now supports :data:`types.UnionType` and "
+":data:`typing.Union` as type annotations."
+msgstr ":func:`register` 어트리뷰트는 형 어노테이션 사용을 지원합니다."
+
+#: ../../library/functools.rst:610
 msgid ""
 "Transform a method into a :term:`single-dispatch <single dispatch>` "
 ":term:`generic function`."
@@ -547,36 +946,77 @@ msgstr ""
 "메서드를 :term:`싱글 디스패치 <single dispatch>` :term:`제네릭 함수 <generic "
 "function>`\\로 변환합니다."
 
-#: ../Doc/library/functools.rst:527
+#: ../../library/functools.rst:613
+#, fuzzy
 msgid ""
 "To define a generic method, decorate it with the "
-"``@singledispatchmethod`` decorator. Note that the dispatch happens on "
-"the type of the first non-self or non-cls argument, create your function "
-"accordingly::"
+"``@singledispatchmethod`` decorator. When defining a function using "
+"``@singledispatchmethod``, note that the dispatch happens on the type of "
+"the first non-*self* or non-*cls* argument::"
 msgstr ""
 "제네릭 메서드를 정의하려면, ``@singledispatchmethod`` 데코레이터로 장식하십시오. 디스패치는 첫 번째 self가"
 " 아니거나 cls가 아닌 인자의 형에 따라 일어납니다, 그에 따라 함수를 작성하십시오::"
 
-#: ../Doc/library/functools.rst:544
+#: ../../library/functools.rst:618
+msgid ""
+"class Negator:\n"
+"    @singledispatchmethod\n"
+"    def neg(self, arg):\n"
+"        raise NotImplementedError(\"Cannot negate a\")\n"
+"\n"
+"    @neg.register\n"
+"    def _(self, arg: int):\n"
+"        return -arg\n"
+"\n"
+"    @neg.register\n"
+"    def _(self, arg: bool):\n"
+"        return not arg"
+msgstr ""
+
+#: ../../library/functools.rst:631
+#, fuzzy
 msgid ""
 "``@singledispatchmethod`` supports nesting with other decorators such as "
-"``@classmethod``. Note that to allow for ``dispatcher.register``, "
-"``singledispatchmethod`` must be the *outer most* decorator. Here is the "
-"``Negator`` class with the ``neg`` methods being class bound::"
+":func:`@classmethod<classmethod>`. Note that to allow for "
+"``dispatcher.register``, ``singledispatchmethod`` must be the *outer "
+"most* decorator. Here is the ``Negator`` class with the ``neg`` methods "
+"bound to the class, rather than an instance of the class::"
 msgstr ""
 "``@singledispatchmethod``\\는 ``@classmethod``\\와 같은 다른 데코레이터와의 중첩을 지원합니다."
 " ``dispatcher.register``\\를 허용하기 위해, ``singledispatchmethod``\\는 *가장 바깥* "
 "데코레이터이어야 함에 유의하십시오. 다음은 ``neg`` 메서드가 클래스에 연결되는 ``Negator`` 클래스입니다::"
 
-#: ../Doc/library/functools.rst:565
+#: ../../library/functools.rst:637
+msgid ""
+"class Negator:\n"
+"    @singledispatchmethod\n"
+"    @classmethod\n"
+"    def neg(cls, arg):\n"
+"        raise NotImplementedError(\"Cannot negate a\")\n"
+"\n"
+"    @neg.register\n"
+"    @classmethod\n"
+"    def _(cls, arg: int):\n"
+"        return -arg\n"
+"\n"
+"    @neg.register\n"
+"    @classmethod\n"
+"    def _(cls, arg: bool):\n"
+"        return not arg"
+msgstr ""
+
+#: ../../library/functools.rst:653
+#, fuzzy
 msgid ""
 "The same pattern can be used for other similar decorators: "
-"``staticmethod``, ``abstractmethod``, and others."
+":func:`@staticmethod<staticmethod>`, "
+":func:`@abstractmethod<abc.abstractmethod>`, and others."
 msgstr ""
 "다른 유사한 데코레이터에도 같은 패턴을 사용할 수 있습니다: ``staticmethod``, ``abstractmethod`` 및 "
 "기타."
 
-#: ../Doc/library/functools.rst:573
+#: ../../library/functools.rst:662
+#, fuzzy
 msgid ""
 "Update a *wrapper* function to look like the *wrapped* function. The "
 "optional arguments are tuples to specify which attributes of the original"
@@ -585,10 +1025,11 @@ msgid ""
 "the corresponding attributes from the original function. The default "
 "values for these arguments are the module level constants "
 "``WRAPPER_ASSIGNMENTS`` (which assigns to the wrapper function's "
-"``__module__``, ``__name__``, ``__qualname__``, ``__annotations__`` and "
-"``__doc__``, the documentation string) and ``WRAPPER_UPDATES`` (which "
-"updates the wrapper function's ``__dict__``, i.e. the instance "
-"dictionary)."
+":attr:`~function.__module__`, :attr:`~function.__name__`, "
+":attr:`~function.__qualname__`, :attr:`~function.__annotations__`, "
+":attr:`~function.__type_params__`, and :attr:`~function.__doc__`, the "
+"documentation string) and ``WRAPPER_UPDATES`` (which updates the wrapper "
+"function's :attr:`~function.__dict__`, i.e. the instance dictionary)."
 msgstr ""
 "*wrapped* 함수처럼 보이도록 *wrapper* 함수를 갱신합니다. 선택적 인자는 원래 함수의 어떤 어트리뷰트가 wrapper"
 " 함수의 일치하는 어트리뷰트에 직접 대입되고 wrapper 함수의 어떤 어트리뷰트가 원래 함수의 해당 어트리뷰트로 갱신되는지 "
@@ -597,7 +1038,7 @@ msgstr ""
 "``__doc__`` 독스트링에 대입합니다)와 ``WRAPPER_UPDATES``\\(wrapper 함수의 ``__dict__``,"
 " 즉 인스턴스 딕셔너리를 갱신합니다)입니다."
 
-#: ../Doc/library/functools.rst:583
+#: ../../library/functools.rst:674
 msgid ""
 "To allow access to the original function for introspection and other "
 "purposes (e.g. bypassing a caching decorator such as :func:`lru_cache`), "
@@ -607,7 +1048,7 @@ msgstr ""
 "내부 검사와 기타 목적(예를 들어 :func:`lru_cache`\\와 같은 캐싱 데코레이터 우회)을 위해 원래 함수에 액세스 할 "
 "수 있도록, 이 함수는 래핑 되는 함수를 가리키는 ``__wrapped__`` 어트리뷰트를 wrapper에 자동으로 추가합니다."
 
-#: ../Doc/library/functools.rst:588
+#: ../../library/functools.rst:679
 msgid ""
 "The main intended use for this function is in :term:`decorator` functions"
 " which wrap the decorated function and return the wrapper. If the wrapper"
@@ -619,7 +1060,7 @@ msgstr ""
 "함수에서 사용하는 것입니다. wrapper 함수가 갱신되지 않으면, 반환된 함수의 메타 데이터는 원래 함수 정의가 아닌 "
 "wrapper 정의를 반영하게 되어 일반적으로 도움이 되지 않습니다."
 
-#: ../Doc/library/functools.rst:594
+#: ../../library/functools.rst:685
 msgid ""
 ":func:`update_wrapper` may be used with callables other than functions. "
 "Any attributes named in *assigned* or *updated* that are missing from the"
@@ -633,19 +1074,14 @@ msgstr ""
 "어트리뷰트를 설정하려고 시도하지 않습니다). wrapper 함수 자체에 *updated*\\에 이름 지정된 어트리뷰트가 없으면 "
 "여전히 :exc:`AttributeError`\\가 발생합니다."
 
-#: ../Doc/library/functools.rst:600
-msgid "Automatic addition of the ``__wrapped__`` attribute."
-msgstr "``__wrapped__`` 어트리뷰트 자동 추가."
+#: ../../library/functools.rst:691
+msgid ""
+"The ``__wrapped__`` attribute is now automatically added. The "
+":attr:`~function.__annotations__` attribute is now copied by default. "
+"Missing attributes no longer trigger an :exc:`AttributeError`."
+msgstr ""
 
-#: ../Doc/library/functools.rst:603
-msgid "Copying of the ``__annotations__`` attribute by default."
-msgstr "기본적으로 ``__annotations__`` 어트리뷰트의 복사."
-
-#: ../Doc/library/functools.rst:606
-msgid "Missing attributes no longer trigger an :exc:`AttributeError`."
-msgstr "누락된 어트리뷰트는 더는 :exc:`AttributeError`\\를 발생시키지 않습니다."
-
-#: ../Doc/library/functools.rst:609
+#: ../../library/functools.rst:696
 msgid ""
 "The ``__wrapped__`` attribute now always refers to the wrapped function, "
 "even if that function defined a ``__wrapped__`` attribute. (see "
@@ -654,7 +1090,11 @@ msgstr ""
 "``__wrapped__`` 어트리뷰트는 이제 해당 함수가 ``__wrapped__`` 어트리뷰트를 정의한 경우에도 항상 래핑 된 "
 "함수를 참조합니다. (:issue:`17482`\\를 참조하십시오)"
 
-#: ../Doc/library/functools.rst:617
+#: ../../library/functools.rst:701
+msgid "The :attr:`~function.__type_params__` attribute is now copied by default."
+msgstr ""
+
+#: ../../library/functools.rst:707
 msgid ""
 "This is a convenience function for invoking :func:`update_wrapper` as a "
 "function decorator when defining a wrapper function.  It is equivalent to"
@@ -665,7 +1105,31 @@ msgstr ""
 "``partial(update_wrapper, wrapped=wrapped, assigned=assigned, "
 "updated=updated)``\\와 동등합니다. 예를 들면::"
 
-#: ../Doc/library/functools.rst:643
+#: ../../library/functools.rst:712
+msgid ""
+">>> from functools import wraps\n"
+">>> def my_decorator(f):\n"
+"...     @wraps(f)\n"
+"...     def wrapper(*args, **kwds):\n"
+"...         print('Calling decorated function')\n"
+"...         return f(*args, **kwds)\n"
+"...     return wrapper\n"
+"...\n"
+">>> @my_decorator\n"
+"... def example():\n"
+"...     \"\"\"Docstring\"\"\"\n"
+"...     print('Called example function')\n"
+"...\n"
+">>> example()\n"
+"Calling decorated function\n"
+"Called example function\n"
+">>> example.__name__\n"
+"'example'\n"
+">>> example.__doc__\n"
+"'Docstring'"
+msgstr ""
+
+#: ../../library/functools.rst:733
 msgid ""
 "Without the use of this decorator factory, the name of the example "
 "function would have been ``'wrapper'``, and the docstring of the original"
@@ -674,11 +1138,11 @@ msgstr ""
 "이 데코레이터 팩토리를 사용하지 않으면, example 함수의 이름은 ``'wrapper'``\\가 되고, 원래 "
 ":func:`example`\\의 독스트링은 잃어버리게 됩니다."
 
-#: ../Doc/library/functools.rst:651
+#: ../../library/functools.rst:741
 msgid ":class:`partial` Objects"
 msgstr ":class:`partial` 객체"
 
-#: ../Doc/library/functools.rst:653
+#: ../../library/functools.rst:743
 msgid ""
 ":class:`partial` objects are callable objects created by :func:`partial`."
 " They have three read-only attributes:"
@@ -686,7 +1150,7 @@ msgstr ""
 ":class:`partial` 객체는 :func:`partial`\\이 만든 콜러블 객체입니다. 세 가지 읽기 전용 어트리뷰트가 "
 "있습니다:"
 
-#: ../Doc/library/functools.rst:659
+#: ../../library/functools.rst:749
 msgid ""
 "A callable object or function.  Calls to the :class:`partial` object will"
 " be forwarded to :attr:`func` with new arguments and keywords."
@@ -694,31 +1158,54 @@ msgstr ""
 "콜러블 객체나 함수. :class:`partial` 객체에 대한 호출은 새로운 인자와 키워드와 함께 :attr:`func`\\로 "
 "전달됩니다."
 
-#: ../Doc/library/functools.rst:665
+#: ../../library/functools.rst:755
 msgid ""
 "The leftmost positional arguments that will be prepended to the "
 "positional arguments provided to a :class:`partial` object call."
 msgstr ":class:`partial` 객체 호출에 제공되는 위치 인자 앞에 추가될 가장 왼쪽 위치 인자들입니다."
 
-#: ../Doc/library/functools.rst:671
+#: ../../library/functools.rst:761
 msgid ""
 "The keyword arguments that will be supplied when the :class:`partial` "
 "object is called."
 msgstr ":class:`partial` 객체가 호출될 때 제공될 키워드 인자들입니다."
 
-#: ../Doc/library/functools.rst:674
+#: ../../library/functools.rst:764
+#, fuzzy
 msgid ""
-":class:`partial` objects are like :class:`function` objects in that they "
-"are callable, weak referencable, and can have attributes.  There are some"
-" important differences.  For instance, the :attr:`~definition.__name__` "
-"and :attr:`__doc__` attributes are not created automatically.  Also, "
-":class:`partial` objects defined in classes behave like static methods "
-"and do not transform into bound methods during instance attribute look-"
-"up."
+":class:`partial` objects are like :ref:`function objects <user-defined-"
+"funcs>` in that they are callable, weak referenceable, and can have "
+"attributes. There are some important differences.  For instance, the "
+":attr:`~function.__name__` and :attr:`function.__doc__` attributes are "
+"not created automatically.  Also, :class:`partial` objects defined in "
+"classes behave like static methods and do not transform into bound "
+"methods during instance attribute look-up."
 msgstr ""
 ":class:`partial` 객체는 콜러블이고, 약한 참조 가능하며, 어트리뷰트를 가질 수 있다는 점에서 "
 ":class:`function` 객체와 같습니다. 몇 가지 중요한 차이점이 있습니다. 예를 들어, "
 ":attr:`~definition.__name__`\\과 :attr:`__doc__` 어트리뷰트는 자동으로 만들어지지 않습니다. "
 "또한, 클래스에 정의된 :class:`partial` 객체는 정적 메서드처럼 동작하며 인스턴스 어트리뷰트 조회 중에 연결된 메서드로"
 " 변환되지 않습니다."
+
+#~ msgid ""
+#~ "If *typed* is set to true, "
+#~ "function arguments of different types "
+#~ "will be cached separately.  For example,"
+#~ " ``f(3)`` and ``f(3.0)`` will be "
+#~ "treated as distinct calls with distinct"
+#~ " results."
+#~ msgstr ""
+#~ "*typed*\\가 참으로 설정되면, 다른 형의 함수 인자가"
+#~ " 별도로 캐시 됩니다. 예를 들어, ``f(3)``\\과 "
+#~ "``f(3.0)``\\은 별개의 결과를 가진 별개의 호출로 "
+#~ "취급됩니다."
+
+#~ msgid "Automatic addition of the ``__wrapped__`` attribute."
+#~ msgstr "``__wrapped__`` 어트리뷰트 자동 추가."
+
+#~ msgid "Copying of the ``__annotations__`` attribute by default."
+#~ msgstr "기본적으로 ``__annotations__`` 어트리뷰트의 복사."
+
+#~ msgid "Missing attributes no longer trigger an :exc:`AttributeError`."
+#~ msgstr "누락된 어트리뷰트는 더는 :exc:`AttributeError`\\를 발생시키지 않습니다."
 

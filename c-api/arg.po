@@ -7,29 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-24 20:44+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:6
+#: ../../c-api/arg.rst:6
 msgid "Parsing arguments and building values"
 msgstr "인자 구문 분석과 값 구축"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:8
+#: ../../c-api/arg.rst:8
+#, fuzzy
 msgid ""
-"These functions are useful when creating your own extensions functions "
-"and methods.  Additional information and examples are available in :ref"
+"These functions are useful when creating your own extension functions and"
+" methods.  Additional information and examples are available in :ref"
 ":`extending-index`."
 msgstr ""
 "이 함수들은 자체 확장 함수와 메서드를 만들 때 유용합니다. 추가 정보와 예제는 :ref:`extending-index`\\에 "
 "있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:12
+#: ../../c-api/arg.rst:12
 msgid ""
 "The first three of these functions described, :c:func:`PyArg_ParseTuple`,"
 " :c:func:`PyArg_ParseTupleAndKeywords`, and :c:func:`PyArg_Parse`, all "
@@ -42,11 +43,11 @@ msgstr ""
 "인자에 관한 사항을 함수에 알리는 데 사용되는 *포맷 문자열(format strings)*\\을 사용합니다. 포맷 문자열은 이러한 "
 "각 함수에 대해 같은 문법을 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:19
+#: ../../c-api/arg.rst:19
 msgid "Parsing arguments"
 msgstr "인자 구문 분석"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:21
+#: ../../c-api/arg.rst:21
 msgid ""
 "A format string consists of zero or more \"format units.\"  A format unit"
 " describes one Python object; it is usually a single character or a "
@@ -63,11 +64,19 @@ msgstr ""
 "일반적으로 이러한 함수에 대한 단일 주소 인자에 대응합니다. 다음 설명에서, 인용된(quoted) 형식은 포맷 단위입니다; (둥근)"
 " 괄호 안의 항목은 포맷 단위와 일치하는 파이썬 객체 형입니다; [대괄호] 안의 항목은 주소를 전달해야 하는 C 변수의 형입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:31
+#: ../../c-api/arg.rst:33
 msgid "Strings and buffers"
 msgstr "문자열과 버퍼"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:33
+#: ../../c-api/arg.rst:37
+msgid ""
+"On Python 3.12 and older, the macro :c:macro:`!PY_SSIZE_T_CLEAN` must be "
+"defined before including :file:`Python.h` to use all ``#`` variants of "
+"formats (``s#``, ``y#``, etc.) explained below. This is not necessary on "
+"Python 3.13 and later."
+msgstr ""
+
+#: ../../c-api/arg.rst:42
 msgid ""
 "These formats allow accessing an object as a contiguous chunk of memory. "
 "You don't have to provide raw storage for the returned unicode or bytes "
@@ -76,68 +85,66 @@ msgstr ""
 "이러한 포맷을 사용하면 연속적인 메모리 청크로 객체에 액세스 할 수 있습니다. 반환된 유니코드나 바이트열 영역에 대한 원시 저장소를"
 " 제공할 필요가 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:37
-msgid ""
-"In general, when a format sets a pointer to a buffer, the buffer is "
-"managed by the corresponding Python object, and the buffer shares the "
-"lifetime of this object.  You won't have to release any memory yourself. "
-"The only exceptions are ``es``, ``es#``, ``et`` and ``et#``."
-msgstr ""
-"일반적으로, 포맷이 버퍼에 대한 포인터를 설정할 때, 버퍼는 해당 파이썬 객체에 의해 관리되고, 버퍼는 이 객체의 수명을 "
-"공유합니다. 여러분이 직접 메모리를 해제할 필요가 없습니다. 유일한 예외는 ``es``, ``es#``, ``et`` 및 "
-"``et#``\\입니다."
+#: ../../c-api/arg.rst:46
+msgid "Unless otherwise stated, buffers are not NUL-terminated."
+msgstr "달리 명시되지 않는 한, 버퍼는 NUL로 종료되지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:42
+#: ../../c-api/arg.rst:48
+msgid "There are three ways strings and buffers can be converted to C:"
+msgstr ""
+
+#: ../../c-api/arg.rst:50
+#, fuzzy
 msgid ""
-"However, when a :c:type:`Py_buffer` structure gets filled, the underlying"
-" buffer is locked so that the caller can subsequently use the buffer even"
-" inside a :c:type:`Py_BEGIN_ALLOW_THREADS` block without the risk of "
-"mutable data being resized or destroyed.  As a result, **you have to "
-"call** :c:func:`PyBuffer_Release` after you have finished processing the "
-"data (or in any early abort case)."
+"Formats such as ``y*`` and ``s*`` fill a :c:type:`Py_buffer` structure. "
+"This locks the underlying buffer so that the caller can subsequently use "
+"the buffer even inside a :c:type:`Py_BEGIN_ALLOW_THREADS` block without "
+"the risk of mutable data being resized or destroyed. As a result, **you "
+"have to call** :c:func:`PyBuffer_Release` after you have finished "
+"processing the data (or in any early abort case)."
 msgstr ""
 "그러나, :c:type:`Py_buffer` 구조체가 채워질 때, 하부 버퍼가 잠겨서, 호출자가 "
 ":c:type:`Py_BEGIN_ALLOW_THREADS` 블록 내에서도 가변 데이터의 크기가 조정되거나 파괴될 위험 없이 이후에 "
 "버퍼를 사용할 수 있습니다. 결과적으로, 데이터 처리를 마친 후 (또는 모든 조기 중단의 경우) "
 ":c:func:`PyBuffer_Release`\\를 **호출해야 합니다**."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:49
-msgid "Unless otherwise stated, buffers are not NUL-terminated."
-msgstr "달리 명시되지 않는 한, 버퍼는 NUL로 종료되지 않습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:51
+#: ../../c-api/arg.rst:57
 msgid ""
-"Some formats require a read-only :term:`bytes-like object`, and set a "
-"pointer instead of a buffer structure.  They work by checking that the "
-"object's :c:member:`PyBufferProcs.bf_releasebuffer` field is ``NULL``, "
-"which disallows mutable objects such as :class:`bytearray`."
+"The ``es``, ``es#``, ``et`` and ``et#`` formats allocate the result "
+"buffer. **You have to call** :c:func:`PyMem_Free` after you have finished"
+" processing the data (or in any early abort case)."
 msgstr ""
-"일부 포맷에는 읽기 전용 :term:`바이트열류 객체 <bytes-like object>`\\가 필요하며, 버퍼 구조체 대신 "
-"포인터를 설정합니다. 객체의 :c:member:`PyBufferProcs.bf_releasebuffer` 필드가 "
-"``NULL``\\인지 확인하여 작동하며, 이때는 :class:`bytearray`\\와 같은 가변 객체를 허용하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:58
+#: ../../c-api/arg.rst:63
 msgid ""
-"For all ``#`` variants of formats (``s#``, ``y#``, etc.), the type of the"
-" length argument (int or :c:type:`Py_ssize_t`) is controlled by defining "
-"the macro :c:macro:`PY_SSIZE_T_CLEAN` before including :file:`Python.h`."
-"  If the macro was defined, length is a :c:type:`Py_ssize_t` rather than "
-"an :c:type:`int`. This behavior will change in a future Python version to"
-" only support :c:type:`Py_ssize_t` and drop :c:type:`int` support. It is "
-"best to always define :c:macro:`PY_SSIZE_T_CLEAN`."
+"Other formats take a :class:`str` or a read-only :term:`bytes-like "
+"object`, such as :class:`bytes`, and provide a ``const char *`` pointer "
+"to its buffer. In this case the buffer is \"borrowed\": it is managed by "
+"the corresponding Python object, and shares the lifetime of this object. "
+"You won't have to release any memory yourself."
 msgstr ""
-"모든 포맷의 ``#`` 변형(``s#``, ``y#`` 등)에 대해, 길이 인자의 형(int나 "
-":c:type:`Py_ssize_t`)은 :file:`Python.h`\\를 포함하기 전에 매크로 "
-":c:macro:`PY_SSIZE_T_CLEAN`\\을 정의하여 제어됩니다. 매크로가 정의되었으면, 길이는 "
-":c:type:`int`\\가 아닌 :c:type:`Py_ssize_t`\\입니다. 이 동작은 향후 파이썬 버전에서 "
-":c:type:`Py_ssize_t`\\만 지원하고 :c:type:`int` 지원을 중단하도록 변경됩니다. 항상 "
-":c:macro:`PY_SSIZE_T_CLEAN`\\을 정의하는 것이 가장 좋습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:85
+#: ../../c-api/arg.rst:70
+msgid ""
+"To ensure that the underlying buffer may be safely borrowed, the object's"
+" :c:member:`PyBufferProcs.bf_releasebuffer` field must be ``NULL``. This "
+"disallows common mutable objects such as :class:`bytearray`, but also "
+"some read-only objects such as :class:`memoryview` of :class:`bytes`."
+msgstr ""
+
+#: ../../c-api/arg.rst:76
+msgid ""
+"Besides this ``bf_releasebuffer`` requirement, there is no check to "
+"verify whether the input object is immutable (e.g. whether it would honor"
+" a request for a writable buffer, or whether another thread can mutate "
+"the data)."
+msgstr ""
+
+#: ../../c-api/arg.rst:80
 msgid "``s`` (:class:`str`) [const char \\*]"
 msgstr "``s`` (:class:`str`) [const char \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:68
+#: ../../c-api/arg.rst:81
 msgid ""
 "Convert a Unicode object to a C pointer to a character string. A pointer "
 "to an existing string is stored in the character pointer variable whose "
@@ -152,7 +159,7 @@ msgstr ""
 ":exc:`ValueError` 예외가 발생합니다. 유니코드 객체는 ``'utf-8'`` 인코딩을 사용하여 C 문자열로 변환됩니다."
 " 이 변환이 실패하면, :exc:`UnicodeError`\\가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:77
+#: ../../c-api/arg.rst:90
 msgid ""
 "This format does not accept :term:`bytes-like objects <bytes-like "
 "object>`.  If you want to accept filesystem paths and convert them to C "
@@ -163,18 +170,17 @@ msgstr ""
 "받아들이고 이를 C 문자열로 변환하려면, :c:func:`PyUnicode_FSConverter`\\를 *converter*\\로 "
 "``O&`` 포맷을 사용하는 것이 좋습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:83
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:150
+#: ../../c-api/arg.rst:96
 msgid ""
 "Previously, :exc:`TypeError` was raised when embedded null code points "
 "were encountered in the Python string."
 msgstr "이전에는, 파이썬 문자열에서 내장된 널 코드 포인트가 발견되면 :exc:`TypeError`\\가 발생했습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:91
+#: ../../c-api/arg.rst:100
 msgid "``s*`` (:class:`str` or :term:`bytes-like object`) [Py_buffer]"
 msgstr "``s*`` (:class:`str` 또는 :term:`바이트열류 객체 <bytes-like object>`) [Py_buffer]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:88
+#: ../../c-api/arg.rst:101
 msgid ""
 "This format accepts Unicode objects as well as bytes-like objects. It "
 "fills a :c:type:`Py_buffer` structure provided by the caller. In this "
@@ -185,43 +191,45 @@ msgstr ""
 "채웁니다. 이 경우 결과 C 문자열은 내장된 NUL 바이트를 포함할 수 있습니다. 유니코드 객체는 ``'utf-8'`` 인코딩을 "
 "사용하여 C 문자열로 변환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:98
+#: ../../c-api/arg.rst:106
+#, fuzzy
 msgid ""
 "``s#`` (:class:`str`, read-only :term:`bytes-like object`) [const char "
-"\\*, int or :c:type:`Py_ssize_t`]"
+"\\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``s#`` (:class:`str`, 읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const "
 "char \\*, int 또는 :c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:94
+#: ../../c-api/arg.rst:107
+#, fuzzy
 msgid ""
-"Like ``s*``, except that it doesn't accept mutable objects. The result is"
-" stored into two C variables, the first one a pointer to a C string, the "
-"second one its length. The string may contain embedded null bytes. "
-"Unicode objects are converted to C strings using ``'utf-8'`` encoding."
+"Like ``s*``, except that it provides a :ref:`borrowed buffer <c-arg-"
+"borrowed-buffer>`. The result is stored into two C variables, the first "
+"one a pointer to a C string, the second one its length. The string may "
+"contain embedded null bytes. Unicode objects are converted to C strings "
+"using ``'utf-8'`` encoding."
 msgstr ""
 "가변 객체를 받아들이지 않는다는 점을 제외하면, ``s*``\\와 같습니다. 결과는 두 개의 C 변수에 저장됩니다. 첫 번째 변수는"
 " C 문자열에 대한 포인터이고, 두 번째 변수는 길이입니다. 문자열은 내장 널 바이트를 포함할 수  있습니다. 유니코드 객체는 "
 "``'utf-8'`` 인코딩을 사용하여 C 문자열로 변환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:102
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:566
+#: ../../c-api/arg.rst:113 ../../c-api/arg.rst:593
 msgid "``z`` (:class:`str` or ``None``) [const char \\*]"
 msgstr "``z`` (:class:`str` 또는 ``None``) [const char \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:101
+#: ../../c-api/arg.rst:114
 msgid ""
 "Like ``s``, but the Python object may also be ``None``, in which case the"
 " C pointer is set to ``NULL``."
 msgstr "``s``\\와 비슷하지만, 파이썬 객체가 ``None``\\일 수도 있는데, 이 경우 C 포인터가 ``NULL``\\로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:106
+#: ../../c-api/arg.rst:117
 msgid "``z*`` (:class:`str`, :term:`bytes-like object` or ``None``) [Py_buffer]"
 msgstr ""
 "``z*`` (:class:`str`, :term:`바이트열류 객체 <bytes-like object>` 또는 ``None``) "
 "[Py_buffer]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:105
+#: ../../c-api/arg.rst:118
 msgid ""
 "Like ``s*``, but the Python object may also be ``None``, in which case "
 "the ``buf`` member of the :c:type:`Py_buffer` structure is set to "
@@ -230,15 +238,16 @@ msgstr ""
 "``s*``\\와 비슷하지만, 파이썬 객체는 ``None``\\일 수도 있습니다, 이 경우 :c:type:`Py_buffer` "
 "구조체의 ``buf`` 멤버가 ``NULL``\\로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:110
+#: ../../c-api/arg.rst:121
+#, fuzzy
 msgid ""
 "``z#`` (:class:`str`, read-only :term:`bytes-like object` or ``None``) "
-"[const char \\*, int or :c:type:`Py_ssize_t`]"
+"[const char \\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``z#`` (:class:`str`, 읽기 전용 :term:`바이트열류 객체 <bytes-like object>` 또는 "
 "``None``) [const char \\*, int 또는 :c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:109
+#: ../../c-api/arg.rst:122
 msgid ""
 "Like ``s#``, but the Python object may also be ``None``, in which case "
 "the C pointer is set to ``NULL``."
@@ -246,31 +255,32 @@ msgstr ""
 "``s#``\\와 비슷하지만, 파이썬 객체는 ``None``\\일 수도 있습니다, 이 경우 C 포인터가 ``NULL``\\로 "
 "설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:120
+#: ../../c-api/arg.rst:125
 msgid "``y`` (read-only :term:`bytes-like object`) [const char \\*]"
 msgstr "``y`` (읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const char \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:113
+#: ../../c-api/arg.rst:126
+#, fuzzy
 msgid ""
-"This format converts a bytes-like object to a C pointer to a character "
-"string; it does not accept Unicode objects.  The bytes buffer must not "
-"contain embedded null bytes; if it does, a :exc:`ValueError` exception is"
-" raised."
+"This format converts a bytes-like object to a C pointer to a "
+":ref:`borrowed <c-arg-borrowed-buffer>` character string; it does not "
+"accept Unicode objects.  The bytes buffer must not contain embedded null "
+"bytes; if it does, a :exc:`ValueError` exception is raised."
 msgstr ""
 "이 포맷은 바이트열류 객체를 문자열에 대한 C 포인터로 변환합니다; 유니코드 객체를 받아들이지 않습니다. 바이트열 버퍼는 내장 널 "
 "바이트를 포함하지 않아야 합니다; 만약 그렇다면, :exc:`ValueError` 예외가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:118
+#: ../../c-api/arg.rst:132
 msgid ""
 "Previously, :exc:`TypeError` was raised when embedded null bytes were "
 "encountered in the bytes buffer."
 msgstr "이전에는, 바이트열 버퍼에서 내장 널 바이트가 발견되면 :exc:`TypeError`\\가 발생했습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:125
+#: ../../c-api/arg.rst:136
 msgid "``y*`` (:term:`bytes-like object`) [Py_buffer]"
 msgstr "``y*`` (:term:`바이트열류 객체 <bytes-like object>`) [Py_buffer]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:123
+#: ../../c-api/arg.rst:137
 msgid ""
 "This variant on ``s*`` doesn't accept Unicode objects, only bytes-like "
 "objects.  **This is the recommended way to accept binary data.**"
@@ -278,138 +288,71 @@ msgstr ""
 "``s*``\\의 이 변형은 유니코드 객체가 아니라 바이트열류 객체만 받아들입니다. **바이너리 데이터를 받아들이는 권장 "
 "방법입니다.**"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:129
+#: ../../c-api/arg.rst:141
+#, fuzzy
 msgid ""
-"``y#`` (read-only :term:`bytes-like object`) [const char \\*, int or "
+"``y#`` (read-only :term:`bytes-like object`) [const char \\*, "
 ":c:type:`Py_ssize_t`]"
 msgstr ""
 "``y#`` (읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const char \\*, int "
 "또는 :c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:128
+#: ../../c-api/arg.rst:142
 msgid ""
 "This variant on ``s#`` doesn't accept Unicode objects, only bytes-like "
 "objects."
 msgstr "``s#``\\의 이 변형은 유니코드 객체가 아니라 바이트열류 객체만 받아들입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:134
+#: ../../c-api/arg.rst:145
 msgid "``S`` (:class:`bytes`) [PyBytesObject \\*]"
 msgstr "``S`` (:class:`bytes`) [PyBytesObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:132
+#: ../../c-api/arg.rst:146
+#, fuzzy
 msgid ""
 "Requires that the Python object is a :class:`bytes` object, without "
 "attempting any conversion.  Raises :exc:`TypeError` if the object is not "
 "a bytes object.  The C variable may also be declared as "
-":c:type:`PyObject*`."
+":c:expr:`PyObject*`."
 msgstr ""
 "변환을 시도하지 않고, 파이썬 객체가 :class:`bytes` 객체일 것을 요구합니다. 객체가 바이트열 객체가 아니면 "
 ":exc:`TypeError`\\를 발생시킵니다. C 변수는 :c:type:`PyObject*`\\로 선언될 수도 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:139
+#: ../../c-api/arg.rst:150
 msgid "``Y`` (:class:`bytearray`) [PyByteArrayObject \\*]"
 msgstr "``Y`` (:class:`bytearray`) [PyByteArrayObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:137
+#: ../../c-api/arg.rst:151
+#, fuzzy
 msgid ""
 "Requires that the Python object is a :class:`bytearray` object, without "
 "attempting any conversion.  Raises :exc:`TypeError` if the object is not "
 "a :class:`bytearray` object. The C variable may also be declared as "
-":c:type:`PyObject*`."
+":c:expr:`PyObject*`."
 msgstr ""
 "변환을 시도하지 않고, 파이썬 객체가 :class:`bytearray` 객체일 것을 요구합니다. 객체가 "
 ":class:`bytearray` 객체가 아니면 :exc:`TypeError`\\를 발생시킵니다. C 변수는 "
 ":c:type:`PyObject*`\\로 선언될 수도 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:156
-msgid "``u`` (:class:`str`) [const Py_UNICODE \\*]"
-msgstr "``u`` (:class:`str`) [const Py_UNICODE \\*]"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:142
-msgid ""
-"Convert a Python Unicode object to a C pointer to a NUL-terminated buffer"
-" of Unicode characters.  You must pass the address of a "
-":c:type:`Py_UNICODE` pointer variable, which will be filled with the "
-"pointer to an existing Unicode buffer.  Please note that the width of a "
-":c:type:`Py_UNICODE` character depends on compilation options (it is "
-"either 16 or 32 bits). The Python string must not contain embedded null "
-"code points; if it does, a :exc:`ValueError` exception is raised."
-msgstr ""
-"파이썬 유니코드 객체를 유니코드 문자의 NUL 종료 버퍼에 대한 C 포인터로 변환합니다. 기존 유니코드 버퍼에 대한 포인터로 "
-"채워질, :c:type:`Py_UNICODE` 포인터 변수의 주소를 전달해야 합니다. :c:type:`Py_UNICODE` 문자의 "
-"너비는 컴파일 옵션에 따라 다음에 유의하십시오 (16비트나 32비트입니다). 파이썬 문자열은 내장 널 코드 포인트를 포함하지 않아야"
-" 합니다; 만약 그렇다면, :exc:`ValueError` 예외가 발생합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:157
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:166
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:174
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:182
-msgid ""
-"Part of the old-style :c:type:`Py_UNICODE` API; please migrate to using "
-":c:func:`PyUnicode_AsWideCharString`."
-msgstr ""
-"이전 스타일 :c:type:`Py_UNICODE` API의 일부입니다; "
-":c:func:`PyUnicode_AsWideCharString` 을 사용하여 마이그레이션 하십시오."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:165
-msgid "``u#`` (:class:`str`) [const Py_UNICODE \\*, int or :c:type:`Py_ssize_t`]"
-msgstr "``u#`` (:class:`str`) [const Py_UNICODE \\*, int 또는 :c:type:`Py_ssize_t`]"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:159
-msgid ""
-"This variant on ``u`` stores into two C variables, the first one a "
-"pointer to a Unicode data buffer, the second one its length.  This "
-"variant allows null code points."
-msgstr ""
-"``u``\\의 이 변형은 두 개의 C 변수에 저장됩니다, 첫 번째 변수는 유니코드 데이터 버퍼에 대한 포인터이고, 두 번째 변수는"
-" 길이입니다. 이 변형은 널 코드 포인트를 허용합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:173
-msgid "``Z`` (:class:`str` or ``None``) [const Py_UNICODE \\*]"
-msgstr "``Z`` (:class:`str` 또는 ``None``) [const Py_UNICODE \\*]"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:168
-msgid ""
-"Like ``u``, but the Python object may also be ``None``, in which case the"
-" :c:type:`Py_UNICODE` pointer is set to ``NULL``."
-msgstr ""
-"``u``\\와 비슷하지만, 파이썬 객체는 ``None``\\일 수도 있습니다, 이 경우 :c:type:`Py_UNICODE` "
-"포인터가 ``NULL``\\로 설정됩니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:181
-msgid ""
-"``Z#`` (:class:`str` or ``None``) [const Py_UNICODE \\*, int or "
-":c:type:`Py_ssize_t`]"
-msgstr ""
-"``Z#`` (:class:`str` 또는 ``None``) [const Py_UNICODE \\*, int or "
-":c:type:`Py_ssize_t`]"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:176
-msgid ""
-"Like ``u#``, but the Python object may also be ``None``, in which case "
-"the :c:type:`Py_UNICODE` pointer is set to ``NULL``."
-msgstr ""
-"``u#``\\와 비슷하지만, 파이썬 객체는 ``None``\\일 수도 있습니다, 이 경우 :c:type:`Py_UNICODE` "
-"포인터가 ``NULL``\\로 설정됩니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:186
+#: ../../c-api/arg.rst:155
 msgid "``U`` (:class:`str`) [PyObject \\*]"
 msgstr "``U`` (:class:`str`) [PyObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:184
+#: ../../c-api/arg.rst:156
+#, fuzzy
 msgid ""
 "Requires that the Python object is a Unicode object, without attempting "
 "any conversion.  Raises :exc:`TypeError` if the object is not a Unicode "
-"object.  The C variable may also be declared as :c:type:`PyObject*`."
+"object.  The C variable may also be declared as :c:expr:`PyObject*`."
 msgstr ""
 "변환을 시도하지 않고, 파이썬 객체가 유니코드 객체일 것을 요구합니다. 객체가 유니코드 객체가 아니면 "
 ":exc:`TypeError`\\를 발생시킵니다. C 변수는 :c:type:`PyObject*`\\로 선언될 수도 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:192
+#: ../../c-api/arg.rst:160
 msgid "``w*`` (read-write :term:`bytes-like object`) [Py_buffer]"
 msgstr "``w*`` (읽기-쓰기 :term:`바이트열류 객체 <bytes-like object>`) [Py_buffer]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:189
+#: ../../c-api/arg.rst:161
 msgid ""
 "This format accepts any object which implements the read-write buffer "
 "interface. It fills a :c:type:`Py_buffer` structure provided by the "
@@ -420,11 +363,11 @@ msgstr ""
 "구조체를 채웁니다. 버퍼에는 내장 널 바이트가 포함될 수 있습니다. 호출자는 버퍼로 할 일을 마치면 "
 ":c:func:`PyBuffer_Release`\\를 호출해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:209
+#: ../../c-api/arg.rst:166
 msgid "``es`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer]"
 msgstr "``es`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:195
+#: ../../c-api/arg.rst:167
 msgid ""
 "This variant on ``s`` is used for encoding Unicode into a character "
 "buffer. It only works for encoded data without embedded NUL bytes."
@@ -432,13 +375,14 @@ msgstr ""
 "``s``\\의 이 변형은 유니코드를 문자 버퍼로 인코딩하는 데 사용됩니다. 내장 NUL 바이트가 포함되지 않은 인코딩된 데이터에 "
 "대해서만 작동합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:198
+#: ../../c-api/arg.rst:170
+#, fuzzy
 msgid ""
 "This format requires two arguments.  The first is only used as input, and"
-" must be a :c:type:`const char*` which points to the name of an encoding "
+" must be a :c:expr:`const char*` which points to the name of an encoding "
 "as a NUL-terminated string, or ``NULL``, in which case ``'utf-8'`` "
 "encoding is used. An exception is raised if the named encoding is not "
-"known to Python.  The second argument must be a :c:type:`char**`; the "
+"known to Python.  The second argument must be a :c:expr:`char**`; the "
 "value of the pointer it references will be set to a buffer with the "
 "contents of the argument text. The text will be encoded in the encoding "
 "specified by the first argument."
@@ -448,7 +392,7 @@ msgstr ""
 "명명된 인코딩이 파이썬에 알려지지 않았으면 예외가 발생합니다. 두 번째 인자는 :c:type:`char**`\\여야 합니다; "
 "참조하는 포인터의 값은 인자 텍스트의 내용이 있는 버퍼로 설정됩니다. 텍스트는 첫 번째 인자에 지정된 인코딩으로 인코딩됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:206
+#: ../../c-api/arg.rst:178
 msgid ""
 ":c:func:`PyArg_ParseTuple` will allocate a buffer of the needed size, "
 "copy the encoded data into this buffer and adjust *\\*buffer* to "
@@ -459,7 +403,7 @@ msgstr ""
 "할당된 스토리지를 참조하도록 *\\*buffer*\\를 조정합니다. 호출자는 사용 후에 할당된 버퍼를 해제하기 위해 "
 ":c:func:`PyMem_Free`\\를 호출해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:214
+#: ../../c-api/arg.rst:183
 msgid ""
 "``et`` (:class:`str`, :class:`bytes` or :class:`bytearray`) [const char "
 "\\*encoding, char \\*\\*buffer]"
@@ -467,7 +411,7 @@ msgstr ""
 "``et`` (:class:`str`, :class:`bytes` 또는 :class:`bytearray`) [const char "
 "\\*encoding, char \\*\\*buffer]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:212
+#: ../../c-api/arg.rst:184
 msgid ""
 "Same as ``es`` except that byte string objects are passed through without"
 " recoding them.  Instead, the implementation assumes that the byte string"
@@ -476,15 +420,16 @@ msgstr ""
 "바이트 문자열 객체를 다시 코딩하지 않고 통과시킨다는 점을 제외하면 ``es``\\와 같습니다. 대신, 구현은 바이트 문자열 객체가"
 " 매개 변수로 전달된 인코딩을 사용한다고 가정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:245
+#: ../../c-api/arg.rst:188
+#, fuzzy
 msgid ""
-"``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, int or"
-" :c:type:`Py_ssize_t` \\*buffer_length]"
+"``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, "
+":c:type:`Py_ssize_t` \\*buffer_length]"
 msgstr ""
 "``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, int 또는"
 " :c:type:`Py_ssize_t` \\*buffer_length]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:217
+#: ../../c-api/arg.rst:189
 msgid ""
 "This variant on ``s#`` is used for encoding Unicode into a character "
 "buffer. Unlike the ``es`` format, this variant allows input data which "
@@ -493,13 +438,14 @@ msgstr ""
 "``s#``\\의 이 변형은 유니코드를 문자 버퍼로 인코딩하는 데 사용됩니다. ``es`` 포맷과 달리, 이 변형은 NUL 문자를 "
 "포함하는 입력 데이터를 허용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:221
+#: ../../c-api/arg.rst:193
+#, fuzzy
 msgid ""
 "It requires three arguments.  The first is only used as input, and must "
-"be a :c:type:`const char*` which points to the name of an encoding as a "
+"be a :c:expr:`const char*` which points to the name of an encoding as a "
 "NUL-terminated string, or ``NULL``, in which case ``'utf-8'`` encoding is"
 " used. An exception is raised if the named encoding is not known to "
-"Python.  The second argument must be a :c:type:`char**`; the value of the"
+"Python.  The second argument must be a :c:expr:`char**`; the value of the"
 " pointer it references will be set to a buffer with the contents of the "
 "argument text. The text will be encoded in the encoding specified by the "
 "first argument. The third argument must be a pointer to an integer; the "
@@ -512,11 +458,11 @@ msgstr ""
 "텍스트의 내용이 있는 버퍼로 설정됩니다. 텍스트는 첫 번째 인자에 지정된 인코딩으로 인코딩됩니다. 세 번째 인자는 정수에 대한 "
 "포인터여야 합니다; 참조된 정수는 출력 버퍼의 바이트 수로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:231
+#: ../../c-api/arg.rst:203
 msgid "There are two modes of operation:"
 msgstr "두 가지 작동 모드가 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:233
+#: ../../c-api/arg.rst:205
 msgid ""
 "If *\\*buffer* points a ``NULL`` pointer, the function will allocate a "
 "buffer of the needed size, copy the encoded data into this buffer and set"
@@ -528,7 +474,7 @@ msgstr ""
 "복사하고 *\\*buffer*\\를 새로 할당된 스토리지를 참조하도록 설정합니다. 호출자는 사용 후 할당된 버퍼를 해제하기 위해 "
 ":c:func:`PyMem_Free`\\를 호출해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:238
+#: ../../c-api/arg.rst:210
 msgid ""
 "If *\\*buffer* points to a non-``NULL`` pointer (an already allocated "
 "buffer), :c:func:`PyArg_ParseTuple` will use this location as the buffer "
@@ -541,23 +487,23 @@ msgstr ""
 "버퍼 크기로 해석합니다. 그런 다음 인코딩된 데이터를 버퍼에 복사하고 NUL 종료합니다. 버퍼가 충분히 크지 않으면, "
 ":exc:`ValueError`\\가 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:244
+#: ../../c-api/arg.rst:216
 msgid ""
 "In both cases, *\\*buffer_length* is set to the length of the encoded "
 "data without the trailing NUL byte."
 msgstr "두 경우 모두, *\\*buffer_length*\\는 후행 NUL 바이트를 제외한 인코딩된 데이터의 길이로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:250
+#: ../../c-api/arg.rst:219
+#, fuzzy
 msgid ""
 "``et#`` (:class:`str`, :class:`bytes` or :class:`bytearray`) [const char "
-"\\*encoding, char \\*\\*buffer, int or :c:type:`Py_ssize_t` "
-"\\*buffer_length]"
+"\\*encoding, char \\*\\*buffer, :c:type:`Py_ssize_t` \\*buffer_length]"
 msgstr ""
 "``et#`` (:class:`str`, :class:`bytes` 또는 :class:`bytearray`) [const char "
 "\\*encoding, char \\*\\*buffer, int 또는 :c:type:`Py_ssize_t` "
 "\\*buffer_length]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:248
+#: ../../c-api/arg.rst:220
 msgid ""
 "Same as ``es#`` except that byte string objects are passed through "
 "without recoding them. Instead, the implementation assumes that the byte "
@@ -566,202 +512,229 @@ msgstr ""
 "바이트 문자열 객체를 다시 코딩하지 않고 통과시킨다는 점을 제외하면 ``es#``\\와 같습니다. 대신, 구현은 바이트 문자열 "
 "객체가 매개 변수로 전달된 인코딩을 사용한다고 가정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:253
+#: ../../c-api/arg.rst:224
+msgid ""
+"``u``, ``u#``, ``Z``, and ``Z#`` are removed because they used a legacy "
+"``Py_UNICODE*`` representation."
+msgstr ""
+
+#: ../../c-api/arg.rst:230
 msgid "Numbers"
 msgstr "숫자"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:257
+#: ../../c-api/arg.rst:232
+msgid ""
+"These formats allow representing Python numbers or single characters as C"
+" numbers. Formats that require :class:`int`, :class:`float` or "
+":class:`complex` can also use the corresponding special methods "
+":meth:`~object.__index__`, :meth:`~object.__float__` or "
+":meth:`~object.__complex__` to convert the Python object to the required "
+"type."
+msgstr ""
+
+#: ../../c-api/arg.rst:238
+msgid ""
+"For signed integer formats, :exc:`OverflowError` is raised if the value "
+"is out of range for the C type. For unsigned integer formats, no range "
+"checking is done --- the most significant bits are silently truncated "
+"when the receiving field is too small to receive the value."
+msgstr ""
+
+#: ../../c-api/arg.rst:244
 msgid "``b`` (:class:`int`) [unsigned char]"
 msgstr "``b`` (:class:`int`) [unsigned char]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:256
+#: ../../c-api/arg.rst:245
+#, fuzzy
 msgid ""
-"Convert a nonnegative Python integer to an unsigned tiny int, stored in a"
-" C :c:type:`unsigned char`."
+"Convert a nonnegative Python integer to an unsigned tiny integer, stored "
+"in a C :c:expr:`unsigned char`."
 msgstr "음이 아닌 파이썬 정수를 부호 없는 작은 정수로 변환하고, C :c:type:`unsigned char`\\에 저장합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:261
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:600
+#: ../../c-api/arg.rst:248 ../../c-api/arg.rst:627
 msgid "``B`` (:class:`int`) [unsigned char]"
 msgstr "``B`` (:class:`int`) [unsigned char]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:260
+#: ../../c-api/arg.rst:249
+#, fuzzy
 msgid ""
-"Convert a Python integer to a tiny int without overflow checking, stored "
-"in a C :c:type:`unsigned char`."
+"Convert a Python integer to a tiny integer without overflow checking, "
+"stored in a C :c:expr:`unsigned char`."
 msgstr "오버플로 검사 없이 파이썬 정수를 작은 정수로 변환하고, C :c:type:`unsigned char`\\에 저장합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:264
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:594
+#: ../../c-api/arg.rst:252 ../../c-api/arg.rst:621
 msgid "``h`` (:class:`int`) [short int]"
 msgstr "``h`` (:class:`int`) [short int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:264
-msgid "Convert a Python integer to a C :c:type:`short int`."
+#: ../../c-api/arg.rst:253
+#, fuzzy
+msgid "Convert a Python integer to a C :c:expr:`short int`."
 msgstr "파이썬 정수를 C :c:type:`short int`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:268
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:603
+#: ../../c-api/arg.rst:255 ../../c-api/arg.rst:630
 msgid "``H`` (:class:`int`) [unsigned short int]"
 msgstr "``H`` (:class:`int`) [unsigned short int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:267
+#: ../../c-api/arg.rst:256
+#, fuzzy
 msgid ""
-"Convert a Python integer to a C :c:type:`unsigned short int`, without "
+"Convert a Python integer to a C :c:expr:`unsigned short int`, without "
 "overflow checking."
 msgstr "오버플로 검사 없이, 파이썬 정수를 C :c:type:`unsigned short int`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:271
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:588
+#: ../../c-api/arg.rst:259 ../../c-api/arg.rst:615
 msgid "``i`` (:class:`int`) [int]"
 msgstr "``i`` (:class:`int`) [int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:271
-msgid "Convert a Python integer to a plain C :c:type:`int`."
+#: ../../c-api/arg.rst:260
+#, fuzzy
+msgid "Convert a Python integer to a plain C :c:expr:`int`."
 msgstr "파이썬 정수를 일반 C :c:type:`int`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:275
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:606
+#: ../../c-api/arg.rst:262 ../../c-api/arg.rst:633
 msgid "``I`` (:class:`int`) [unsigned int]"
 msgstr "``I`` (:class:`int`) [unsigned int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:274
+#: ../../c-api/arg.rst:263
+#, fuzzy
 msgid ""
-"Convert a Python integer to a C :c:type:`unsigned int`, without overflow "
+"Convert a Python integer to a C :c:expr:`unsigned int`, without overflow "
 "checking."
 msgstr "오버플로 검사 없이, 파이썬 정수를 C :c:type:`unsigned int`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:278
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:597
+#: ../../c-api/arg.rst:266 ../../c-api/arg.rst:624
 msgid "``l`` (:class:`int`) [long int]"
 msgstr "``l`` (:class:`int`) [long int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:278
-msgid "Convert a Python integer to a C :c:type:`long int`."
+#: ../../c-api/arg.rst:267
+#, fuzzy
+msgid "Convert a Python integer to a C :c:expr:`long int`."
 msgstr "파이썬 정수를 C :c:type:`long int`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:282
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:609
+#: ../../c-api/arg.rst:269 ../../c-api/arg.rst:636
 msgid "``k`` (:class:`int`) [unsigned long]"
 msgstr "``k`` (:class:`int`) [unsigned long]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:281
+#: ../../c-api/arg.rst:270
+#, fuzzy
 msgid ""
-"Convert a Python integer to a C :c:type:`unsigned long` without overflow "
+"Convert a Python integer to a C :c:expr:`unsigned long` without overflow "
 "checking."
 msgstr "오버플로 검사 없이 파이썬 정수를 C :c:type:`unsigned long`\\으로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:285
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:612
+#: ../../c-api/arg.rst:273 ../../c-api/arg.rst:639
 msgid "``L`` (:class:`int`) [long long]"
 msgstr "``L`` (:class:`int`) [long long]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:285
-msgid "Convert a Python integer to a C :c:type:`long long`."
+#: ../../c-api/arg.rst:274
+#, fuzzy
+msgid "Convert a Python integer to a C :c:expr:`long long`."
 msgstr "파이썬 정수를 C :c:type:`long long`\\으로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:289
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:615
+#: ../../c-api/arg.rst:276 ../../c-api/arg.rst:642
 msgid "``K`` (:class:`int`) [unsigned long long]"
 msgstr "``K`` (:class:`int`) [unsigned long long]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:288
+#: ../../c-api/arg.rst:277
+#, fuzzy
 msgid ""
-"Convert a Python integer to a C :c:type:`unsigned long long` without "
+"Convert a Python integer to a C :c:expr:`unsigned long long` without "
 "overflow checking."
 msgstr "오버플로 검사 없이 파이썬 정수를 C :c:type:`unsigned long long`\\으로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:292
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:618
-msgid "``n`` (:class:`int`) [Py_ssize_t]"
+#: ../../c-api/arg.rst:280 ../../c-api/arg.rst:645
+#, fuzzy
+msgid "``n`` (:class:`int`) [:c:type:`Py_ssize_t`]"
 msgstr "``n`` (:class:`int`) [Py_ssize_t]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:292
+#: ../../c-api/arg.rst:281
 msgid "Convert a Python integer to a C :c:type:`Py_ssize_t`."
 msgstr "파이썬 정수를 C :c:type:`Py_ssize_t`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:299
+#: ../../c-api/arg.rst:283
 msgid "``c`` (:class:`bytes` or :class:`bytearray` of length 1) [char]"
 msgstr "``c`` (길이 1의 :class:`bytes` 또는 :class:`bytearray`) [char]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:295
+#: ../../c-api/arg.rst:284
+#, fuzzy
 msgid ""
 "Convert a Python byte, represented as a :class:`bytes` or "
-":class:`bytearray` object of length 1, to a C :c:type:`char`."
+":class:`bytearray` object of length 1, to a C :c:expr:`char`."
 msgstr ""
 "길이가 1인 :class:`bytes`\\나 :class:`bytearray` 객체로 표시된, 파이썬 바이트를 C "
 ":c:type:`char`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:298
+#: ../../c-api/arg.rst:287
 msgid "Allow :class:`bytearray` objects."
 msgstr ":class:`bytearray` 객체를 허용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:303
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:626
+#: ../../c-api/arg.rst:290 ../../c-api/arg.rst:652
 msgid "``C`` (:class:`str` of length 1) [int]"
 msgstr "``C`` (길이 1의 :class:`str`) [int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:302
+#: ../../c-api/arg.rst:291
+#, fuzzy
 msgid ""
 "Convert a Python character, represented as a :class:`str` object of "
-"length 1, to a C :c:type:`int`."
+"length 1, to a C :c:expr:`int`."
 msgstr "길이가 1인 :class:`str` 객체로 표시된, 파이썬 문자를 C :c:type:`int`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:306
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:632
+#: ../../c-api/arg.rst:294 ../../c-api/arg.rst:659
 msgid "``f`` (:class:`float`) [float]"
 msgstr "``f`` (:class:`float`) [float]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:306
-msgid "Convert a Python floating point number to a C :c:type:`float`."
+#: ../../c-api/arg.rst:295
+#, fuzzy
+msgid "Convert a Python floating-point number to a C :c:expr:`float`."
 msgstr "파이썬 부동 소수점 숫자를 C :c:type:`float`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:309
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:629
+#: ../../c-api/arg.rst:297 ../../c-api/arg.rst:656
 msgid "``d`` (:class:`float`) [double]"
 msgstr "``d`` (:class:`float`) [double]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:309
-msgid "Convert a Python floating point number to a C :c:type:`double`."
+#: ../../c-api/arg.rst:298
+#, fuzzy
+msgid "Convert a Python floating-point number to a C :c:expr:`double`."
 msgstr "파이썬 부동 소수점 숫자를 C :c:type:`double`\\로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:312
+#: ../../c-api/arg.rst:300
 msgid "``D`` (:class:`complex`) [Py_complex]"
 msgstr "``D`` (:class:`complex`) [Py_complex]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:312
+#: ../../c-api/arg.rst:301
 msgid "Convert a Python complex number to a C :c:type:`Py_complex` structure."
 msgstr "파이썬 복소수를 C :c:type:`Py_complex` 구조체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:315
+#: ../../c-api/arg.rst:304
 msgid "Other objects"
 msgstr "기타 객체"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:320
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:643
+#: ../../c-api/arg.rst:306 ../../c-api/arg.rst:665
 msgid "``O`` (object) [PyObject \\*]"
 msgstr "``O`` (object) [PyObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:318
+#: ../../c-api/arg.rst:307
+#, fuzzy
 msgid ""
 "Store a Python object (without any conversion) in a C object pointer.  "
-"The C program thus receives the actual object that was passed.  The "
-"object's reference count is not increased.  The pointer stored is not "
-"``NULL``."
+"The C program thus receives the actual object that was passed.  A new "
+":term:`strong reference` to the object is not created (i.e. its reference"
+" count is not increased). The pointer stored is not ``NULL``."
 msgstr ""
 "C 객체 포인터에 파이썬 객체를 (변환 없이) 저장합니다. 따라서 C 프로그램은 전달된 실제 객체를 받습니다. 객체의 참조 횟수는 "
 "증가하지 않습니다. 저장된 포인터는 ``NULL``\\이 아닙니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:327
+#: ../../c-api/arg.rst:313
 msgid "``O!`` (object) [*typeobject*, PyObject \\*]"
 msgstr "``O!`` (object) [*typeobject*, PyObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:323
+#: ../../c-api/arg.rst:314
+#, fuzzy
 msgid ""
 "Store a Python object in a C object pointer.  This is similar to ``O``, "
 "but takes two C arguments: the first is the address of a Python type "
 "object, the second is the address of the C variable (of type "
-":c:type:`PyObject*`) into which the object pointer is stored.  If the "
+":c:expr:`PyObject*`) into which the object pointer is stored.  If the "
 "Python object does not have the required type, :exc:`TypeError` is "
 "raised."
 msgstr ""
@@ -769,26 +742,32 @@ msgstr ""
 " 객체의 주소이고, 두 번째는 객체 포인터가 저장되는 (:c:type:`PyObject*` 형의) C 변수의 주소입니다. 파이썬 "
 "객체가 필요한 형이 아니면, :exc:`TypeError`\\가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:352
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:657
-msgid "``O&`` (object) [*converter*, *anything*]"
+#: ../../c-api/arg.rst:322
+#, fuzzy
+msgid "``O&`` (object) [*converter*, *address*]"
 msgstr "``O&`` (object) [*converter*, *anything*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:332
+#: ../../c-api/arg.rst:323
+#, fuzzy
 msgid ""
 "Convert a Python object to a C variable through a *converter* function.  "
 "This takes two arguments: the first is a function, the second is the "
-"address of a C variable (of arbitrary type), converted to :c:type:`void "
+"address of a C variable (of arbitrary type), converted to :c:expr:`void "
 "*`.  The *converter* function in turn is called as follows::"
 msgstr ""
 "*converter* 함수를 통해 파이썬 객체를 C 변수로 변환합니다. 두 개의 인자를 취합니다: 첫 번째는 함수이고, 두 번째는 "
 ":c:type:`void *`\\로 변환된, (임의의 형의) C 변수의 주소입니다. *converter* 함수는 다음과 같이 "
 "호출됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:339
+#: ../../c-api/arg.rst:328
+msgid "status = converter(object, address);"
+msgstr ""
+
+#: ../../c-api/arg.rst:330
+#, fuzzy
 msgid ""
 "where *object* is the Python object to be converted and *address* is the "
-":c:type:`void*` argument that was passed to the :c:func:`PyArg_Parse\\*` "
+":c:expr:`void*` argument that was passed to the ``PyArg_Parse*`` "
 "function. The returned *status* should be ``1`` for a successful "
 "conversion and ``0`` if the conversion has failed.  When the conversion "
 "fails, the *converter* function should raise an exception and leave the "
@@ -799,11 +778,12 @@ msgstr ""
 "경우 ``0``\\이어야 합니다. 변환이 실패하면, *converter* 함수는 예외를 발생시키고 *address*\\의 내용을 "
 "수정하지 않은 상태로 두어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:345
+#: ../../c-api/arg.rst:339
+#, fuzzy
 msgid ""
-"If the *converter* returns ``Py_CLEANUP_SUPPORTED``, it may get called a "
-"second time if the argument parsing eventually fails, giving the "
-"converter a chance to release any memory that it had already allocated. "
+"If the *converter* returns :c:macro:`!Py_CLEANUP_SUPPORTED`, it may get "
+"called a second time if the argument parsing eventually fails, giving the"
+" converter a chance to release any memory that it had already allocated. "
 "In this second call, the *object* parameter will be ``NULL``; *address* "
 "will have the same value as in the original call."
 msgstr ""
@@ -811,15 +791,22 @@ msgstr ""
 "호출되어 변환기에 이미 할당된 메모리를 해제할 기회를 제공할 수 있습니다. 이 두 번째 호출에서, *object* 매개 변수는 "
 "``NULL``\\이 됩니다; *address*\\는 원래 호출과 같은 값을 갖습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:351
-msgid "``Py_CLEANUP_SUPPORTED`` was added."
+#: ../../c-api/arg.rst:345
+msgid ""
+"Examples of converters: :c:func:`PyUnicode_FSConverter` and "
+":c:func:`PyUnicode_FSDecoder`."
+msgstr ""
+
+#: ../../c-api/arg.rst:348
+#, fuzzy
+msgid ":c:macro:`!Py_CLEANUP_SUPPORTED` was added."
 msgstr "``Py_CLEANUP_SUPPORTED``\\가 추가되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:361
+#: ../../c-api/arg.rst:351
 msgid "``p`` (:class:`bool`) [int]"
 msgstr "``p`` (:class:`bool`) [int]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:355
+#: ../../c-api/arg.rst:352
 msgid ""
 "Tests the value passed in for truth (a boolean **p**\\ redicate) and "
 "converts the result to its equivalent C true/false integer value. Sets "
@@ -831,12 +818,11 @@ msgstr ""
 "참이면 int를 ``1``\\로, 거짓이면 ``0``\\으로 설정합니다. 모든 유효한 파이썬 값을 허용합니다. 파이썬이 논리값을 "
 "테스트하는 방법에 대한 자세한 내용은 :ref:`truth`\\를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:366
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:660
+#: ../../c-api/arg.rst:360 ../../c-api/arg.rst:689
 msgid "``(items)`` (:class:`tuple`) [*matching-items*]"
 msgstr "``(items)`` (:class:`tuple`) [*matching-items*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:364
+#: ../../c-api/arg.rst:361
 msgid ""
 "The object must be a Python sequence whose length is the number of format"
 " units in *items*.  The C arguments must correspond to the individual "
@@ -845,29 +831,17 @@ msgstr ""
 "객체는 길이가 *items*\\에 있는 포맷 단위의 수인 파이썬 시퀀스여야 합니다. C 인자들은 *items*\\의 개별 포맷 "
 "단위에 대응해야 합니다. 시퀀스의 포맷 단위는 중첩될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:368
-msgid ""
-"It is possible to pass \"long\" integers (integers whose value exceeds "
-"the platform's :const:`LONG_MAX`) however no proper range checking is "
-"done --- the most significant bits are silently truncated when the "
-"receiving field is too small to receive the value (actually, the "
-"semantics are inherited from downcasts in C --- your mileage may vary)."
-msgstr ""
-"\"긴\" 정수(값이 플랫폼의 :const:`LONG_MAX`\\를 초과하는 정수)를 전달할 수 있지만 적절한 범위 검사가 수행되지"
-" 않습니다 --- 수신 필드가 값을 수신하기에 너무 작을 때 최상위 비트가 자동으로 잘립니다 (실제로, 이 의미는 C의 다운 "
-"캐스트에서 물려받았습니다 --- 여러분의 경험은 다를 수 있습니다)."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:374
+#: ../../c-api/arg.rst:365
 msgid ""
 "A few other characters have a meaning in a format string.  These may not "
 "occur inside nested parentheses.  They are:"
 msgstr "몇 가지 다른 문자는 포맷 문자열에서 의미가 있습니다. 중첩된 괄호 안에서는 나타날 수 없습니다. 그들은:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:382
+#: ../../c-api/arg.rst:368
 msgid "``|``"
 msgstr "``|``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:378
+#: ../../c-api/arg.rst:369
 msgid ""
 "Indicates that the remaining arguments in the Python argument list are "
 "optional. The C variables corresponding to optional arguments should be "
@@ -879,11 +853,11 @@ msgstr ""
 "--- 선택적 인자가 지정되지 않을 때, :c:func:`PyArg_ParseTuple`\\은 해당 C 변수의 내용을 건드리지 "
 "않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:391
+#: ../../c-api/arg.rst:375
 msgid "``$``"
 msgstr "``$``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:385
+#: ../../c-api/arg.rst:376
 msgid ""
 ":c:func:`PyArg_ParseTupleAndKeywords` only: Indicates that the remaining "
 "arguments in the Python argument list are keyword-only.  Currently, all "
@@ -894,11 +868,11 @@ msgstr ""
 "나타냅니다. 현재, 모든 키워드 전용 인자는 선택적 인자여야 하므로, ``|``\\는 항상 포맷 문자열에서 ``$`` 앞에 "
 "지정되어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:396
+#: ../../c-api/arg.rst:384
 msgid "``:``"
 msgstr "``:``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:394
+#: ../../c-api/arg.rst:385
 msgid ""
 "The list of format units ends here; the string after the colon is used as"
 " the function name in error messages (the \"associated value\" of the "
@@ -907,11 +881,11 @@ msgstr ""
 "포맷 단위 리스트는 여기에서 끝납니다; 콜론 뒤의 문자열은 에러 메시지에서 함수 이름으로 사용됩니다 "
 "(:c:func:`PyArg_ParseTuple`\\이 발생시키는 예외의 \"연관된 값\")."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:401
+#: ../../c-api/arg.rst:389
 msgid "``;``"
 msgstr "``;``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:399
+#: ../../c-api/arg.rst:390
 msgid ""
 "The list of format units ends here; the string after the semicolon is "
 "used as the error message *instead* of the default error message.  ``:`` "
@@ -920,13 +894,15 @@ msgstr ""
 "포맷 단위 리스트는 여기에서 끝납니다; 세미콜론 뒤의 문자열은 기본 에러 메시지의 에러 메시지 *대신* 에러 메시지로 사용됩니다. "
 "``:``\\와 ``;``\\는 서로를 배제합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:403
+#: ../../c-api/arg.rst:394
+#, fuzzy
 msgid ""
 "Note that any Python object references which are provided to the caller "
-"are *borrowed* references; do not decrement their reference count!"
+"are *borrowed* references; do not release them (i.e. do not decrement "
+"their reference count)!"
 msgstr "호출자에게 제공되는 모든 파이썬 객체 참조는 *빌려온(borrowed)* 참조임에 유의하십시오; 참조 횟수를 줄이지 마십시오!"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:406
+#: ../../c-api/arg.rst:398
 msgid ""
 "Additional arguments passed to these functions must be addresses of "
 "variables whose type is determined by the format string; these are used "
@@ -939,26 +915,27 @@ msgstr ""
 " 사용됩니다. 위의 포맷 단위 리스트에서 설명된 대로, 이러한 매개 변수가 입력값으로 사용되는 몇 가지 경우가 있습니다; 이 경우 "
 "해당 포맷 단위에 대해 지정된 것과 일치해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:412
+#: ../../c-api/arg.rst:404
+#, fuzzy
 msgid ""
 "For the conversion to succeed, the *arg* object must match the format and"
-" the format must be exhausted.  On success, the :c:func:`PyArg_Parse\\*` "
+" the format must be exhausted.  On success, the ``PyArg_Parse*`` "
 "functions return true, otherwise they return false and raise an "
-"appropriate exception. When the :c:func:`PyArg_Parse\\*` functions fail "
-"due to conversion failure in one of the format units, the variables at "
-"the addresses corresponding to that and the following format units are "
-"left untouched."
+"appropriate exception. When the ``PyArg_Parse*`` functions fail due to "
+"conversion failure in one of the format units, the variables at the "
+"addresses corresponding to that and the following format units are left "
+"untouched."
 msgstr ""
 "변환이 성공하려면, *arg* 객체가 포맷과 일치해야 하며 포맷이 소진되어야 합니다. 성공하면, "
 ":c:func:`PyArg_Parse\\*` 함수는 참을 반환하고, 그렇지 않으면 거짓을 반환하고 적절한 예외를 발생시킵니다. 포맷"
 " 단위 중 하나의 변환 실패로 인해 :c:func:`PyArg_Parse\\*` 함수가 실패하면, 해당 주소의 변수와 그 뒤에 오는"
 " 포맷 단위는 건드리지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:421
+#: ../../c-api/arg.rst:413
 msgid "API Functions"
 msgstr "API 함수"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:425
+#: ../../c-api/arg.rst:417
 msgid ""
 "Parse the parameters of a function that takes only positional parameters "
 "into local variables.  Returns true on success; on failure, it returns "
@@ -967,7 +944,7 @@ msgstr ""
 "위치 매개 변수만 지역 변수로 취하는 함수의 매개 변수를 구문 분석합니다. 성공하면 참을 반환합니다; 실패하면, 거짓을 반환하고 "
 "적절한 예외를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:432
+#: ../../c-api/arg.rst:424
 msgid ""
 "Identical to :c:func:`PyArg_ParseTuple`, except that it accepts a va_list"
 " rather than a variable number of arguments."
@@ -975,26 +952,42 @@ msgstr ""
 "가변 개수의 인자가 아닌 va_list를 받아들인다는 점을 제외하면, :c:func:`PyArg_ParseTuple`\\과 "
 "동일합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:438
+#: ../../c-api/arg.rst:430
+#, fuzzy
 msgid ""
 "Parse the parameters of a function that takes both positional and keyword"
-" parameters into local variables.  The *keywords* argument is a "
-"``NULL``-terminated array of keyword parameter names.  Empty names denote"
-" :ref:`positional-only parameters <positional-only_parameter>`. Returns "
-"true on success; on failure, it returns false and raises the appropriate "
+" parameters into local variables. The *keywords* argument is a "
+"``NULL``-terminated array of keyword parameter names specified as null-"
+"terminated ASCII or UTF-8 encoded C strings. Empty names denote :ref"
+":`positional-only parameters <positional-only_parameter>`. Returns true "
+"on success; on failure, it returns false and raises the appropriate "
 "exception."
 msgstr ""
 "위치와 키워드 매개 변수를 모두 지역 변수로 취하는 함수의 매개 변수를 구문 분석합니다. *keywords* 인자는 키워드 매개 "
 "변수 이름의 ``NULL``-종료 배열입니다. 빈 이름은 :ref:`위치-전용 매개 변수 <positional-"
 "only_parameter>`\\를 나타냅니다. 성공하면 참을 반환합니다; 실패하면, 거짓을 반환하고 적절한 예외를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:445
+#: ../../c-api/arg.rst:441
+msgid ""
+"The *keywords* parameter declaration is :c:expr:`char * const *` in C and"
+" :c:expr:`const char * const *` in C++. This can be overridden with the "
+":c:macro:`PY_CXX_CONST` macro."
+msgstr ""
+
+#: ../../c-api/arg.rst:445
 msgid ""
 "Added support for :ref:`positional-only parameters <positional-"
 "only_parameter>`."
 msgstr ":ref:`위치-전용 매개 변수 <positional-only_parameter>`\\에 대한 지원이 추가되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:452
+#: ../../c-api/arg.rst:449
+msgid ""
+"The *keywords* parameter has now type :c:expr:`char * const *` in C and "
+":c:expr:`const char * const *` in C++, instead of :c:expr:`char **`. "
+"Added support for non-ASCII keyword parameter names."
+msgstr ""
+
+#: ../../c-api/arg.rst:458
 msgid ""
 "Identical to :c:func:`PyArg_ParseTupleAndKeywords`, except that it "
 "accepts a va_list rather than a variable number of arguments."
@@ -1002,7 +995,7 @@ msgstr ""
 "가변 개수의 인자가 아닌 va_list를 받아들인다는 점을 제외하면, "
 ":c:func:`PyArg_ParseTupleAndKeywords` 와 동일합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:458
+#: ../../c-api/arg.rst:464
 msgid ""
 "Ensure that the keys in the keywords argument dictionary are strings.  "
 "This is only needed if :c:func:`PyArg_ParseTupleAndKeywords` is not used,"
@@ -1011,33 +1004,48 @@ msgstr ""
 "키워드 인자 딕셔너리의 키가 문자열인지 확인합니다. :c:func:`PyArg_ParseTupleAndKeywords` 가 사용되지"
 " 않는 경우에만 필요합니다, 여기서는 이미 이 검사를 수행하기 때문입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:468
+#: ../../c-api/arg.rst:473
+#, fuzzy
 msgid ""
-"Function used to deconstruct the argument lists of \"old-style\" "
-"functions --- these are functions which use the :const:`METH_OLDARGS` "
-"parameter parsing method, which has been removed in Python 3.  This is "
-"not recommended for use in parameter parsing in new code, and most code "
-"in the standard interpreter has been modified to no longer use this for "
-"that purpose.  It does remain a convenient way to decompose other tuples,"
-" however, and may continue to be used for that purpose."
+"Parse the parameter of a function that takes a single positional "
+"parameter into a local variable.  Returns true on success; on failure, it"
+" returns false and raises the appropriate exception."
 msgstr ""
-"\"이전 스타일\" 함수의 인자 리스트를 분해하는 데 사용되는 함수 --- 이들은 파이썬 3에서 제거된 "
-":const:`METH_OLDARGS` 매개 변수 구문 분석 메서드를 사용하는 함수입니다. 새 코드에서 매개 변수 구문 분석에 "
-"사용하는 것은 권장되지 않고, 표준 인터프리터에 있는 대부분의 코드는 더는 이런 목적으로 사용하지 않도록 수정되었습니다. 그러나, "
-"다른 튜플을 분해하는 편리한 방법으로 남아 있으며, 그런 목적으로 계속 사용할 수 있습니다."
+"위치 매개 변수만 지역 변수로 취하는 함수의 매개 변수를 구문 분석합니다. 성공하면 참을 반환합니다; 실패하면, 거짓을 반환하고 "
+"적절한 예외를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:479
+#: ../../c-api/arg.rst:477
+msgid "Example::"
+msgstr ""
+
+#: ../../c-api/arg.rst:479
+msgid ""
+"// Function using METH_O calling convention\n"
+"static PyObject*\n"
+"my_function(PyObject *module, PyObject *arg)\n"
+"{\n"
+"    int value;\n"
+"    if (!PyArg_Parse(arg, \"i:my_function\", &value)) {\n"
+"        return NULL;\n"
+"    }\n"
+"    // ... use value ...\n"
+"}"
+msgstr ""
+
+#: ../../c-api/arg.rst:493
+#, fuzzy
 msgid ""
 "A simpler form of parameter retrieval which does not use a format string "
 "to specify the types of the arguments.  Functions which use this method "
-"to retrieve their parameters should be declared as :const:`METH_VARARGS` "
-"in function or method tables.  The tuple containing the actual parameters"
-" should be passed as *args*; it must actually be a tuple.  The length of "
-"the tuple must be at least *min* and no more than *max*; *min* and *max* "
-"may be equal.  Additional arguments must be passed to the function, each "
-"of which should be a pointer to a :c:type:`PyObject*` variable; these "
-"will be filled in with the values from *args*; they will contain borrowed"
-" references.  The variables which correspond to optional parameters not "
+"to retrieve their parameters should be declared as "
+":c:macro:`METH_VARARGS` in function or method tables.  The tuple "
+"containing the actual parameters should be passed as *args*; it must "
+"actually be a tuple.  The length of the tuple must be at least *min* and "
+"no more than *max*; *min* and *max* may be equal.  Additional arguments "
+"must be passed to the function, each of which should be a pointer to a "
+":c:expr:`PyObject*` variable; these will be filled in with the values "
+"from *args*; they will contain :term:`borrowed references <borrowed "
+"reference>`. The variables which correspond to optional parameters not "
 "given by *args* will not be filled in; these should be initialized by the"
 " caller. This function returns true on success and false if *args* is not"
 " a tuple or contains the wrong number of elements; an exception will be "
@@ -1052,13 +1060,30 @@ msgstr ""
 "초기화되어야 합니다. 이 함수는 성공하면 참을 반환하고 *args*\\가 튜플이 아니거나, 잘못된 수의 요소를 포함하면 거짓을 "
 "반환합니다; 실패하면 예외가 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:493
+#: ../../c-api/arg.rst:508
+#, fuzzy
 msgid ""
 "This is an example of the use of this function, taken from the sources "
-"for the :mod:`_weakref` helper module for weak references::"
+"for the :mod:`!_weakref` helper module for weak references::"
 msgstr "다음은 이 함수 사용의 예입니다, 약한 참조를 위한 :mod:`_weakref` 도우미 모듈의 소스에서 가져왔습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:509
+#: ../../c-api/arg.rst:511
+msgid ""
+"static PyObject *\n"
+"weakref_ref(PyObject *self, PyObject *args)\n"
+"{\n"
+"    PyObject *object;\n"
+"    PyObject *callback = NULL;\n"
+"    PyObject *result = NULL;\n"
+"\n"
+"    if (PyArg_UnpackTuple(args, \"ref\", 1, 2, &object, &callback)) {\n"
+"        result = PyWeakref_NewRef(object, callback);\n"
+"    }\n"
+"    return result;\n"
+"}"
+msgstr ""
+
+#: ../../c-api/arg.rst:524
 msgid ""
 "The call to :c:func:`PyArg_UnpackTuple` in this example is entirely "
 "equivalent to this call to :c:func:`PyArg_ParseTuple`::"
@@ -1066,21 +1091,35 @@ msgstr ""
 "이 예제에서 :c:func:`PyArg_UnpackTuple`\\에 대한 호출은 "
 ":c:func:`PyArg_ParseTuple`\\에 대한 다음 호출과 전적으로 동등합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:517
+#: ../../c-api/arg.rst:527
+msgid "PyArg_ParseTuple(args, \"O|O:ref\", &object, &callback)"
+msgstr ""
+
+#: ../../c-api/arg.rst:531
+msgid ""
+"The value to be inserted, if any, before :c:expr:`char * const *` in the "
+"*keywords* parameter declaration of :c:func:`PyArg_ParseTupleAndKeywords`"
+" and :c:func:`PyArg_VaParseTupleAndKeywords`. Default empty for C and "
+"``const`` for C++ (:c:expr:`const char * const *`). To override, define "
+"it to the desired value before including :file:`Python.h`."
+msgstr ""
+
+#: ../../c-api/arg.rst:545
 msgid "Building values"
 msgstr "값 구축"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:521
+#: ../../c-api/arg.rst:549
+#, fuzzy
 msgid ""
 "Create a new value based on a format string similar to those accepted by "
-"the :c:func:`PyArg_Parse\\*` family of functions and a sequence of "
-"values.  Returns the value or ``NULL`` in the case of an error; an "
-"exception will be raised if ``NULL`` is returned."
+"the ``PyArg_Parse*`` family of functions and a sequence of values.  "
+"Returns the value or ``NULL`` in the case of an error; an exception will "
+"be raised if ``NULL`` is returned."
 msgstr ""
 ":c:func:`PyArg_Parse\\*` 함수 계열에서 받아들이는 것과 유사한 포맷 문자열과 값 시퀀스를 기반으로 새 값을 "
 "만듭니다. 값을 반환하거나 에러가 발생하면 ``NULL``\\을 반환합니다; ``NULL``\\이 반환되면 예외가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:526
+#: ../../c-api/arg.rst:554
 msgid ""
 ":c:func:`Py_BuildValue` does not always build a tuple.  It builds a tuple"
 " only if its format string contains two or more format units.  If the "
@@ -1093,7 +1132,7 @@ msgstr ""
 "때만 튜플을 구축합니다. 포맷 문자열이 비어 있으면, ``None``\\을 반환합니다; 정확히 하나의 포맷 단위를 포함하면, 해당 "
 "포맷 단위가 기술하는 객체가 무엇이건 반환합니다. 크기가 0이나 1인 튜플을 반환하도록 하려면, 포맷 문자열을 괄호로 묶으십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:532
+#: ../../c-api/arg.rst:560
 msgid ""
 "When memory buffers are passed as parameters to supply data to build "
 "objects, as for the ``s`` and ``s#`` formats, the required data is "
@@ -1109,7 +1148,7 @@ msgstr ""
 " 전달하면, 인단 :c:func:`Py_BuildValue`\\가 반환되면 여러분이 코드가 해당 메모리에 대해 "
 ":c:func:`free`\\를 호출해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:540
+#: ../../c-api/arg.rst:568
 msgid ""
 "In the following description, the quoted form is the format unit; the "
 "entry in (round) parentheses is the Python object type that the format "
@@ -1119,7 +1158,7 @@ msgstr ""
 "다음 설명에서, 인용된 형식은 포맷 단위입니다; (둥근) 괄호 안의 항목은 포맷 단위가 반환할 파이썬 객체 형입니다; [대괄호] "
 "안의 항목은 전달할 C 값의 형입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:544
+#: ../../c-api/arg.rst:572
 msgid ""
 "The characters space, tab, colon and comma are ignored in format strings "
 "(but not within format units such as ``s#``).  This can be used to make "
@@ -1128,11 +1167,11 @@ msgstr ""
 "문자 스페이스, 탭, 콜론 및 쉼표는 포맷 문자열에서 무시됩니다 (하지만 ``s#``\\와 같은 포맷 단위 내에서는 아닙니다). "
 "이것은 긴 포맷 문자열을 좀 더 읽기 쉽게 만드는 데 사용할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:550
+#: ../../c-api/arg.rst:576
 msgid "``s`` (:class:`str` or ``None``) [const char \\*]"
 msgstr "``s`` (:class:`str` 또는 ``None``) [const char \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:549
+#: ../../c-api/arg.rst:577
 msgid ""
 "Convert a null-terminated C string to a Python :class:`str` object using "
 "``'utf-8'`` encoding. If the C string pointer is ``NULL``, ``None`` is "
@@ -1141,15 +1180,14 @@ msgstr ""
 "``'utf-8'`` 인코딩을 사용하여 널-종료 C 문자열을 파이썬 :class:`str` 객체로 변환합니다. C 문자열 포인터가 "
 "``NULL``\\이면, ``None``\\이 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:555
-msgid ""
-"``s#`` (:class:`str` or ``None``) [const char \\*, int or "
-":c:type:`Py_ssize_t`]"
+#: ../../c-api/arg.rst:580
+#, fuzzy
+msgid "``s#`` (:class:`str` or ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``s#`` (:class:`str` 또는 ``None``) [const char \\*, int or "
 ":c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:553
+#: ../../c-api/arg.rst:581
 msgid ""
 "Convert a C string and its length to a Python :class:`str` object using "
 "``'utf-8'`` encoding. If the C string pointer is ``NULL``, the length is "
@@ -1158,11 +1196,11 @@ msgstr ""
 "``'utf-8'`` 인코딩을 사용하여 C 문자열과 그 길이를 파이썬 :class:`str` 객체로 변환합니다. C 문자열 포인터가"
 " ``NULL``\\이면, 길이가 무시되고 ``None``\\이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:559
+#: ../../c-api/arg.rst:585
 msgid "``y`` (:class:`bytes`) [const char \\*]"
 msgstr "``y`` (:class:`bytes`) [const char \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:558
+#: ../../c-api/arg.rst:586
 msgid ""
 "This converts a C string to a Python :class:`bytes` object.  If the C "
 "string pointer is ``NULL``, ``None`` is returned."
@@ -1170,11 +1208,12 @@ msgstr ""
 "이것은 C 문자열을 파이썬 :class:`bytes` 객체로 변환합니다. C 문자열 포인터가 ``NULL``\\이면, "
 "``None``\\이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:563
-msgid "``y#`` (:class:`bytes`) [const char \\*, int or :c:type:`Py_ssize_t`]"
+#: ../../c-api/arg.rst:589
+#, fuzzy
+msgid "``y#`` (:class:`bytes`) [const char \\*, :c:type:`Py_ssize_t`]"
 msgstr "``y#`` (:class:`bytes`) [const char \\*, int 또는 :c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:562
+#: ../../c-api/arg.rst:590
 msgid ""
 "This converts a C string and its lengths to a Python object.  If the C "
 "string pointer is ``NULL``, ``None`` is returned."
@@ -1182,29 +1221,26 @@ msgstr ""
 "이것은 C 문자열과 그 길이를 파이썬 객체로 변환합니다. C 문자열 포인터가 ``NULL``\\이면, ``None``\\이 "
 "반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:566
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:582
+#: ../../c-api/arg.rst:594 ../../c-api/arg.rst:610
 msgid "Same as ``s``."
 msgstr "``s``\\와 같습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:569
-msgid ""
-"``z#`` (:class:`str` or ``None``) [const char \\*, int or "
-":c:type:`Py_ssize_t`]"
+#: ../../c-api/arg.rst:596
+#, fuzzy
+msgid "``z#`` (:class:`str` or ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``z#`` (:class:`str` 또는 ``None``) [const char \\*, int 또는 "
 ":c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:569
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:585
+#: ../../c-api/arg.rst:597 ../../c-api/arg.rst:613
 msgid "Same as ``s#``."
 msgstr "``s#``\\과 같습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:574
+#: ../../c-api/arg.rst:599
 msgid "``u`` (:class:`str`) [const wchar_t \\*]"
 msgstr "``u`` (:class:`str`) [const wchar_t \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:572
+#: ../../c-api/arg.rst:600
 msgid ""
 "Convert a null-terminated :c:type:`wchar_t` buffer of Unicode (UTF-16 or "
 "UCS-4) data to a Python Unicode object.  If the Unicode buffer pointer is"
@@ -1213,11 +1249,12 @@ msgstr ""
 "유니코드 (UTF-16 또는 UCS-4) 데이터의 널-종료 :c:type:`wchar_t` 버퍼를 파이썬 유니코드 객체로 "
 "변환합니다. 유니코드 버퍼 포인터가 ``NULL``\\이면, ``None``\\이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:579
-msgid "``u#`` (:class:`str`) [const wchar_t \\*, int or :c:type:`Py_ssize_t`]"
+#: ../../c-api/arg.rst:604
+#, fuzzy
+msgid "``u#`` (:class:`str`) [const wchar_t \\*, :c:type:`Py_ssize_t`]"
 msgstr "``u#`` (:class:`str`) [const wchar_t \\*, int 또는 :c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:577
+#: ../../c-api/arg.rst:605
 msgid ""
 "Convert a Unicode (UTF-16 or UCS-4) data buffer and its length to a "
 "Python Unicode object.   If the Unicode buffer pointer is ``NULL``, the "
@@ -1226,163 +1263,185 @@ msgstr ""
 "유니코드 (UTF-16 또는 UCS-4) 데이터 버퍼와 그 길이를 파이썬 유니코드 객체로 변환합니다. 유니코드 버퍼 포인터가 "
 "``NULL``\\이면, 길이가 무시되고 ``None``\\이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:582
+#: ../../c-api/arg.rst:609
 msgid "``U`` (:class:`str` or ``None``) [const char \\*]"
 msgstr "``U`` (:class:`str` 또는 ``None``) [const char \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:585
-msgid ""
-"``U#`` (:class:`str` or ``None``) [const char \\*, int or "
-":c:type:`Py_ssize_t`]"
+#: ../../c-api/arg.rst:612
+#, fuzzy
+msgid "``U#`` (:class:`str` or ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``U#`` (:class:`str` 또는 ``None``) [const char \\*, int 또는 "
 ":c:type:`Py_ssize_t`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:588
-msgid "Convert a plain C :c:type:`int` to a Python integer object."
+#: ../../c-api/arg.rst:616
+#, fuzzy
+msgid "Convert a plain C :c:expr:`int` to a Python integer object."
 msgstr "일반 C :c:type:`int`\\를 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:591
+#: ../../c-api/arg.rst:618
 msgid "``b`` (:class:`int`) [char]"
 msgstr "``b`` (:class:`int`) [char]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:591
-msgid "Convert a plain C :c:type:`char` to a Python integer object."
+#: ../../c-api/arg.rst:619
+#, fuzzy
+msgid "Convert a plain C :c:expr:`char` to a Python integer object."
 msgstr "일반 C :c:type:`char`\\을 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:594
-msgid "Convert a plain C :c:type:`short int` to a Python integer object."
+#: ../../c-api/arg.rst:622
+#, fuzzy
+msgid "Convert a plain C :c:expr:`short int` to a Python integer object."
 msgstr "일반 C :c:type:`short int`\\를 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:597
-msgid "Convert a C :c:type:`long int` to a Python integer object."
+#: ../../c-api/arg.rst:625
+#, fuzzy
+msgid "Convert a C :c:expr:`long int` to a Python integer object."
 msgstr "C :c:type:`long int`\\를 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:600
-msgid "Convert a C :c:type:`unsigned char` to a Python integer object."
+#: ../../c-api/arg.rst:628
+#, fuzzy
+msgid "Convert a C :c:expr:`unsigned char` to a Python integer object."
 msgstr "C :c:type:`unsigned char`\\을 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:603
-msgid "Convert a C :c:type:`unsigned short int` to a Python integer object."
+#: ../../c-api/arg.rst:631
+#, fuzzy
+msgid "Convert a C :c:expr:`unsigned short int` to a Python integer object."
 msgstr "C :c:type:`unsigned short int`\\를 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:606
-msgid "Convert a C :c:type:`unsigned int` to a Python integer object."
+#: ../../c-api/arg.rst:634
+#, fuzzy
+msgid "Convert a C :c:expr:`unsigned int` to a Python integer object."
 msgstr "C :c:type:`unsigned int`\\를 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:609
-msgid "Convert a C :c:type:`unsigned long` to a Python integer object."
+#: ../../c-api/arg.rst:637
+#, fuzzy
+msgid "Convert a C :c:expr:`unsigned long` to a Python integer object."
 msgstr "C :c:type:`unsigned long`\\을 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:612
-msgid "Convert a C :c:type:`long long` to a Python integer object."
+#: ../../c-api/arg.rst:640
+#, fuzzy
+msgid "Convert a C :c:expr:`long long` to a Python integer object."
 msgstr "C :c:type:`long long`\\을 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:615
-msgid "Convert a C :c:type:`unsigned long long` to a Python integer object."
+#: ../../c-api/arg.rst:643
+#, fuzzy
+msgid "Convert a C :c:expr:`unsigned long long` to a Python integer object."
 msgstr "C :c:type:`unsigned long long`\\을 파이썬 정수 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:618
+#: ../../c-api/arg.rst:646
 msgid "Convert a C :c:type:`Py_ssize_t` to a Python integer."
 msgstr "C :c:type:`Py_ssize_t`\\를 파이썬 정수로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:622
+#: ../../c-api/arg.rst:648
 msgid "``c`` (:class:`bytes` of length 1) [char]"
 msgstr "``c`` (길이 1의 :class:`bytes`) [char]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:621
+#: ../../c-api/arg.rst:649
+#, fuzzy
 msgid ""
-"Convert a C :c:type:`int` representing a byte to a Python :class:`bytes` "
+"Convert a C :c:expr:`int` representing a byte to a Python :class:`bytes` "
 "object of length 1."
 msgstr "바이트를 나타내는 C :c:type:`int`\\를 길이 1의 파이썬 :class:`bytes` 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:625
+#: ../../c-api/arg.rst:653
+#, fuzzy
 msgid ""
-"Convert a C :c:type:`int` representing a character to Python :class:`str`"
+"Convert a C :c:expr:`int` representing a character to Python :class:`str`"
 " object of length 1."
 msgstr "문자를 나타내는 C :c:type:`int`\\를 길이 1의 파이썬 :class:`str` 객체로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:629
-msgid "Convert a C :c:type:`double` to a Python floating point number."
+#: ../../c-api/arg.rst:657
+#, fuzzy
+msgid "Convert a C :c:expr:`double` to a Python floating-point number."
 msgstr "C :c:type:`double`\\을 파이썬 부동 소수점 숫자로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:632
-msgid "Convert a C :c:type:`float` to a Python floating point number."
+#: ../../c-api/arg.rst:660
+#, fuzzy
+msgid "Convert a C :c:expr:`float` to a Python floating-point number."
 msgstr "C :c:type:`float`\\를 파이썬 부동 소수점 숫자로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:635
+#: ../../c-api/arg.rst:662
 msgid "``D`` (:class:`complex`) [Py_complex \\*]"
 msgstr "``D`` (:class:`complex`) [Py_complex \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:635
+#: ../../c-api/arg.rst:663
 msgid "Convert a C :c:type:`Py_complex` structure to a Python complex number."
 msgstr "C :c:type:`Py_complex` 구조체를 파이썬 복소수로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:638
+#: ../../c-api/arg.rst:666
+#, fuzzy
 msgid ""
-"Pass a Python object untouched (except for its reference count, which is "
-"incremented by one).  If the object passed in is a ``NULL`` pointer, it "
-"is assumed that this was caused because the call producing the argument "
-"found an error and set an exception. Therefore, :c:func:`Py_BuildValue` "
-"will return ``NULL`` but won't raise an exception.  If no exception has "
-"been raised yet, :exc:`SystemError` is set."
+"Pass a Python object untouched but create a new :term:`strong reference` "
+"to it (i.e. its reference count is incremented by one). If the object "
+"passed in is a ``NULL`` pointer, it is assumed that this was caused "
+"because the call producing the argument found an error and set an "
+"exception. Therefore, :c:func:`Py_BuildValue` will return ``NULL`` but "
+"won't raise an exception.  If no exception has been raised yet, "
+":exc:`SystemError` is set."
 msgstr ""
 "파이썬 객체를 손대지 않고 전달합니다 (1 증가하는 참조 횟수는 예외입니다). 전달된 객체가 ``NULL`` 포인터면, 인자를 "
 "생성하는 호출이 에러를 발견하고 예외를 설정했기 때문으로 간주합니다. 따라서, :c:func:`Py_BuildValue`\\는 "
 "``NULL``\\을 반환하지만, 예외를 발생시키지 않습니다. 아직 예외가 발생하지 않았으면, "
 ":exc:`SystemError`\\가 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:646
+#: ../../c-api/arg.rst:675
 msgid "``S`` (object) [PyObject \\*]"
 msgstr "``S`` (object) [PyObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:646
+#: ../../c-api/arg.rst:676
 msgid "Same as ``O``."
 msgstr "``O``\\와 같습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:651
+#: ../../c-api/arg.rst:678
 msgid "``N`` (object) [PyObject \\*]"
 msgstr "``N`` (object) [PyObject \\*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:649
+#: ../../c-api/arg.rst:679
+#, fuzzy
 msgid ""
-"Same as ``O``, except it doesn't increment the reference count on the "
-"object. Useful when the object is created by a call to an object "
-"constructor in the argument list."
+"Same as ``O``, except it doesn't create a new :term:`strong reference`. "
+"Useful when the object is created by a call to an object constructor in "
+"the argument list."
 msgstr "``O``\\와 같지만, 객체의 참조 횟수를 증가시키지 않습니다. 인자 리스트에서 객체 생성자를 호출하여 객체를 만들 때 유용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:654
+#: ../../c-api/arg.rst:683
+msgid "``O&`` (object) [*converter*, *anything*]"
+msgstr "``O&`` (object) [*converter*, *anything*]"
+
+#: ../../c-api/arg.rst:684
+#, fuzzy
 msgid ""
 "Convert *anything* to a Python object through a *converter* function.  "
 "The function is called with *anything* (which should be compatible with "
-":c:type:`void*`) as its argument and should return a \"new\" Python "
+":c:expr:`void*`) as its argument and should return a \"new\" Python "
 "object, or ``NULL`` if an error occurred."
 msgstr ""
 "*converter* 함수를 통해 *anything*\\을 파이썬 객체로 변환합니다. 함수는 인자로 "
 "*anything*\\(:c:type:`void*`\\와 호환되어야 합니다)을 사용하여 호출되며 \"새\" 파이썬 객체를 "
 "반환하거나, 에러가 발생하면 ``NULL``\\을 반환해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:660
+#: ../../c-api/arg.rst:690
 msgid ""
 "Convert a sequence of C values to a Python tuple with the same number of "
 "items."
 msgstr "C값의 시퀀스를 항목 수가 같은 파이썬 튜플로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:663
+#: ../../c-api/arg.rst:692
 msgid "``[items]`` (:class:`list`) [*matching-items*]"
 msgstr "``[items]`` (:class:`list`) [*matching-items*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:663
+#: ../../c-api/arg.rst:693
 msgid ""
 "Convert a sequence of C values to a Python list with the same number of "
 "items."
 msgstr "C값의 시퀀스를 항목 수가 같은 파이썬 리스트로 변환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:668
+#: ../../c-api/arg.rst:695
+#, python-brace-format
 msgid "``{items}`` (:class:`dict`) [*matching-items*]"
 msgstr "``{items}`` (:class:`dict`) [*matching-items*]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:666
+#: ../../c-api/arg.rst:696
 msgid ""
 "Convert a sequence of C values to a Python dictionary.  Each pair of "
 "consecutive C values adds one item to the dictionary, serving as key and "
@@ -1391,15 +1450,205 @@ msgstr ""
 "C값의 시퀀스를 파이썬 딕셔너리로 변환합니다. 연속된 C 값의 각 쌍은 딕셔너리에 하나의 항목을 추가하여, 각각 키와 값으로 "
 "사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:670
+#: ../../c-api/arg.rst:700
 msgid ""
 "If there is an error in the format string, the :exc:`SystemError` "
 "exception is set and ``NULL`` returned."
 msgstr "포맷 문자열에 에러가 있으면, :exc:`SystemError` 예외가 설정되고 ``NULL``\\이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/arg.rst:675
+#: ../../c-api/arg.rst:705
 msgid ""
 "Identical to :c:func:`Py_BuildValue`, except that it accepts a va_list "
 "rather than a variable number of arguments."
 msgstr "가변 개수의 인자가 아닌 va_list를 받아들인다는 점을 제외하면, :c:func:`Py_BuildValue`\\와 동일합니다."
+
+#~ msgid ""
+#~ "In general, when a format sets a"
+#~ " pointer to a buffer, the buffer "
+#~ "is managed by the corresponding Python"
+#~ " object, and the buffer shares the"
+#~ " lifetime of this object.  You won't"
+#~ " have to release any memory yourself."
+#~ " The only exceptions are ``es``, "
+#~ "``es#``, ``et`` and ``et#``."
+#~ msgstr ""
+#~ "일반적으로, 포맷이 버퍼에 대한 포인터를 설정할 때, "
+#~ "버퍼는 해당 파이썬 객체에 의해 관리되고, 버퍼는 "
+#~ "이 객체의 수명을 공유합니다. 여러분이 직접 메모리를 "
+#~ "해제할 필요가 없습니다. 유일한 예외는 ``es``, "
+#~ "``es#``, ``et`` 및 ``et#``\\입니다."
+
+#~ msgid ""
+#~ "Some formats require a read-only "
+#~ ":term:`bytes-like object`, and set a "
+#~ "pointer instead of a buffer structure."
+#~ "  They work by checking that the "
+#~ "object's :c:member:`PyBufferProcs.bf_releasebuffer` field"
+#~ " is ``NULL``, which disallows mutable "
+#~ "objects such as :class:`bytearray`."
+#~ msgstr ""
+#~ "일부 포맷에는 읽기 전용 :term:`바이트열류 객체 "
+#~ "<bytes-like object>`\\가 필요하며, 버퍼 구조체 "
+#~ "대신 포인터를 설정합니다. 객체의 "
+#~ ":c:member:`PyBufferProcs.bf_releasebuffer` 필드가 "
+#~ "``NULL``\\인지 확인하여 작동하며, 이때는 "
+#~ ":class:`bytearray`\\와 같은 가변 객체를 허용하지 "
+#~ "않습니다."
+
+#~ msgid ""
+#~ "For all ``#`` variants of formats "
+#~ "(``s#``, ``y#``, etc.), the type of "
+#~ "the length argument (int or "
+#~ ":c:type:`Py_ssize_t`) is controlled by "
+#~ "defining the macro :c:macro:`PY_SSIZE_T_CLEAN` "
+#~ "before including :file:`Python.h`.  If the "
+#~ "macro was defined, length is a "
+#~ ":c:type:`Py_ssize_t` rather than an "
+#~ ":c:type:`int`. This behavior will change "
+#~ "in a future Python version to only"
+#~ " support :c:type:`Py_ssize_t` and drop "
+#~ ":c:type:`int` support. It is best to "
+#~ "always define :c:macro:`PY_SSIZE_T_CLEAN`."
+#~ msgstr ""
+#~ "모든 포맷의 ``#`` 변형(``s#``, ``y#`` 등)에 "
+#~ "대해, 길이 인자의 형(int나 :c:type:`Py_ssize_t`)은 "
+#~ ":file:`Python.h`\\를 포함하기 전에 매크로 "
+#~ ":c:macro:`PY_SSIZE_T_CLEAN`\\을 정의하여 제어됩니다. 매크로가 "
+#~ "정의되었으면, 길이는 :c:type:`int`\\가 아닌 "
+#~ ":c:type:`Py_ssize_t`\\입니다. 이 동작은 향후 파이썬 "
+#~ "버전에서 :c:type:`Py_ssize_t`\\만 지원하고 :c:type:`int` "
+#~ "지원을 중단하도록 변경됩니다. 항상 "
+#~ ":c:macro:`PY_SSIZE_T_CLEAN`\\을 정의하는 것이 가장 "
+#~ "좋습니다."
+
+#~ msgid "``u`` (:class:`str`) [const Py_UNICODE \\*]"
+#~ msgstr "``u`` (:class:`str`) [const Py_UNICODE \\*]"
+
+#~ msgid ""
+#~ "Convert a Python Unicode object to "
+#~ "a C pointer to a NUL-terminated"
+#~ " buffer of Unicode characters.  You "
+#~ "must pass the address of a "
+#~ ":c:type:`Py_UNICODE` pointer variable, which "
+#~ "will be filled with the pointer to"
+#~ " an existing Unicode buffer.  Please "
+#~ "note that the width of a "
+#~ ":c:type:`Py_UNICODE` character depends on "
+#~ "compilation options (it is either 16 "
+#~ "or 32 bits). The Python string "
+#~ "must not contain embedded null code "
+#~ "points; if it does, a :exc:`ValueError`"
+#~ " exception is raised."
+#~ msgstr ""
+#~ "파이썬 유니코드 객체를 유니코드 문자의 NUL 종료 "
+#~ "버퍼에 대한 C 포인터로 변환합니다. 기존 유니코드 "
+#~ "버퍼에 대한 포인터로 채워질, :c:type:`Py_UNICODE` "
+#~ "포인터 변수의 주소를 전달해야 합니다. "
+#~ ":c:type:`Py_UNICODE` 문자의 너비는 컴파일 옵션에 따라"
+#~ " 다음에 유의하십시오 (16비트나 32비트입니다). 파이썬 문자열은"
+#~ " 내장 널 코드 포인트를 포함하지 않아야 합니다; "
+#~ "만약 그렇다면, :exc:`ValueError` 예외가 발생합니다."
+
+#~ msgid ""
+#~ "Part of the old-style "
+#~ ":c:type:`Py_UNICODE` API; please migrate to"
+#~ " using :c:func:`PyUnicode_AsWideCharString`."
+#~ msgstr ""
+#~ "이전 스타일 :c:type:`Py_UNICODE` API의 일부입니다; "
+#~ ":c:func:`PyUnicode_AsWideCharString` 을 사용하여 마이그레이션"
+#~ " 하십시오."
+
+#~ msgid ""
+#~ "``u#`` (:class:`str`) [const Py_UNICODE \\*,"
+#~ " int or :c:type:`Py_ssize_t`]"
+#~ msgstr ""
+#~ "``u#`` (:class:`str`) [const Py_UNICODE \\*,"
+#~ " int 또는 :c:type:`Py_ssize_t`]"
+
+#~ msgid ""
+#~ "This variant on ``u`` stores into "
+#~ "two C variables, the first one a"
+#~ " pointer to a Unicode data buffer,"
+#~ " the second one its length.  This "
+#~ "variant allows null code points."
+#~ msgstr ""
+#~ "``u``\\의 이 변형은 두 개의 C 변수에 "
+#~ "저장됩니다, 첫 번째 변수는 유니코드 데이터 버퍼에 "
+#~ "대한 포인터이고, 두 번째 변수는 길이입니다. 이 "
+#~ "변형은 널 코드 포인트를 허용합니다."
+
+#~ msgid "``Z`` (:class:`str` or ``None``) [const Py_UNICODE \\*]"
+#~ msgstr "``Z`` (:class:`str` 또는 ``None``) [const Py_UNICODE \\*]"
+
+#~ msgid ""
+#~ "Like ``u``, but the Python object "
+#~ "may also be ``None``, in which "
+#~ "case the :c:type:`Py_UNICODE` pointer is "
+#~ "set to ``NULL``."
+#~ msgstr ""
+#~ "``u``\\와 비슷하지만, 파이썬 객체는 ``None``\\일 수도"
+#~ " 있습니다, 이 경우 :c:type:`Py_UNICODE` 포인터가 "
+#~ "``NULL``\\로 설정됩니다."
+
+#~ msgid ""
+#~ "``Z#`` (:class:`str` or ``None``) [const "
+#~ "Py_UNICODE \\*, int or :c:type:`Py_ssize_t`]"
+#~ msgstr ""
+#~ "``Z#`` (:class:`str` 또는 ``None``) [const "
+#~ "Py_UNICODE \\*, int or :c:type:`Py_ssize_t`]"
+
+#~ msgid ""
+#~ "Like ``u#``, but the Python object "
+#~ "may also be ``None``, in which "
+#~ "case the :c:type:`Py_UNICODE` pointer is "
+#~ "set to ``NULL``."
+#~ msgstr ""
+#~ "``u#``\\와 비슷하지만, 파이썬 객체는 ``None``\\일 수도"
+#~ " 있습니다, 이 경우 :c:type:`Py_UNICODE` 포인터가 "
+#~ "``NULL``\\로 설정됩니다."
+
+#~ msgid ""
+#~ "It is possible to pass \"long\" "
+#~ "integers (integers whose value exceeds "
+#~ "the platform's :const:`LONG_MAX`) however no"
+#~ " proper range checking is done ---"
+#~ " the most significant bits are "
+#~ "silently truncated when the receiving "
+#~ "field is too small to receive the"
+#~ " value (actually, the semantics are "
+#~ "inherited from downcasts in C --- "
+#~ "your mileage may vary)."
+#~ msgstr ""
+#~ "\"긴\" 정수(값이 플랫폼의 :const:`LONG_MAX`\\를 초과하는 "
+#~ "정수)를 전달할 수 있지만 적절한 범위 검사가 "
+#~ "수행되지 않습니다 --- 수신 필드가 값을 수신하기에 "
+#~ "너무 작을 때 최상위 비트가 자동으로 잘립니다 "
+#~ "(실제로, 이 의미는 C의 다운 캐스트에서 물려받았습니다"
+#~ " --- 여러분의 경험은 다를 수 있습니다)."
+
+#~ msgid ""
+#~ "Function used to deconstruct the "
+#~ "argument lists of \"old-style\" "
+#~ "functions --- these are functions which"
+#~ " use the :const:`METH_OLDARGS` parameter "
+#~ "parsing method, which has been removed"
+#~ " in Python 3.  This is not "
+#~ "recommended for use in parameter parsing"
+#~ " in new code, and most code in"
+#~ " the standard interpreter has been "
+#~ "modified to no longer use this for"
+#~ " that purpose.  It does remain a "
+#~ "convenient way to decompose other "
+#~ "tuples, however, and may continue to "
+#~ "be used for that purpose."
+#~ msgstr ""
+#~ "\"이전 스타일\" 함수의 인자 리스트를 분해하는 데 "
+#~ "사용되는 함수 --- 이들은 파이썬 3에서 제거된 "
+#~ ":const:`METH_OLDARGS` 매개 변수 구문 분석 메서드를"
+#~ " 사용하는 함수입니다. 새 코드에서 매개 변수 구문"
+#~ " 분석에 사용하는 것은 권장되지 않고, 표준 인터프리터에"
+#~ " 있는 대부분의 코드는 더는 이런 목적으로 사용하지"
+#~ " 않도록 수정되었습니다. 그러나, 다른 튜플을 분해하는 "
+#~ "편리한 방법으로 남아 있으며, 그런 목적으로 계속 "
+#~ "사용할 수 있습니다."
 

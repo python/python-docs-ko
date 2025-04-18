@@ -7,24 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-15 07:19+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/library/xml.dom.pulldom.rst:2
-msgid ":mod:`xml.dom.pulldom` --- Support for building partial DOM trees"
+#: ../../library/xml.dom.pulldom.rst:2
+#, fuzzy
+msgid ":mod:`!xml.dom.pulldom` --- Support for building partial DOM trees"
 msgstr ":mod:`xml.dom.pulldom` --- 부분 DOM 트리 구축 지원"
 
-#: ../Doc/library/xml.dom.pulldom.rst:9
+#: ../../library/xml.dom.pulldom.rst:9
 msgid "**Source code:** :source:`Lib/xml/dom/pulldom.py`"
 msgstr "**소스 코드:** :source:`Lib/xml/dom/pulldom.py`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:13
+#: ../../library/xml.dom.pulldom.rst:13
 msgid ""
 "The :mod:`xml.dom.pulldom` module provides a \"pull parser\" which can "
 "also be asked to produce DOM-accessible fragments of the document where "
@@ -41,7 +42,7 @@ msgstr ""
 " 달리 풀 구문 분석기 사용자는 스트림에서 이벤트를 명시적으로 가져와서 처리가 완료되거나 에러 조건이 발생할 때까지 그 이벤트들을 "
 "루핑해야 합니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:24
+#: ../../library/xml.dom.pulldom.rst:24
 msgid ""
 "The :mod:`xml.dom.pulldom` module is not secure against maliciously "
 "constructed data.  If you need to parse untrusted or unauthenticated data"
@@ -50,7 +51,7 @@ msgstr ""
 ":mod:`xml.dom.pulldom` 모듈은 악의적으로 구성된 데이터로부터 안전하지 않습니다. 신뢰할 수 없거나 인증되지 않은 "
 "데이터를 구문 분석해야 하면 :ref:`xml-vulnerabilities`\\를 참조하십시오."
 
-#: ../Doc/library/xml.dom.pulldom.rst:30
+#: ../../library/xml.dom.pulldom.rst:30
 msgid ""
 "The SAX parser no longer processes general external entities by default "
 "to increase security by default. To enable processing of external "
@@ -59,47 +60,70 @@ msgstr ""
 "SAX 구문 분석기는 보안을 강화하기 위해 더는 일반 외부 엔티티를 처리하지 않습니다. 외부 엔티티를 처리를 활성화하려면, 사용자 "
 "정의 구문 분석기 인스턴스를 전달하십시오::"
 
-#: ../Doc/library/xml.dom.pulldom.rst:43
+#: ../../library/xml.dom.pulldom.rst:34
+msgid ""
+"from xml.dom.pulldom import parse\n"
+"from xml.sax import make_parser\n"
+"from xml.sax.handler import feature_external_ges\n"
+"\n"
+"parser = make_parser()\n"
+"parser.setFeature(feature_external_ges, True)\n"
+"parse(filename, parser=parser)"
+msgstr ""
+
+#: ../../library/xml.dom.pulldom.rst:43
 msgid "Example::"
 msgstr "예::"
 
-#: ../Doc/library/xml.dom.pulldom.rst:54
+#: ../../library/xml.dom.pulldom.rst:45
+msgid ""
+"from xml.dom import pulldom\n"
+"\n"
+"doc = pulldom.parse('sales_items.xml')\n"
+"for event, node in doc:\n"
+"    if event == pulldom.START_ELEMENT and node.tagName == 'item':\n"
+"        if int(node.getAttribute('price')) > 50:\n"
+"            doc.expandNode(node)\n"
+"            print(node.toxml())"
+msgstr ""
+
+#: ../../library/xml.dom.pulldom.rst:54
 msgid "``event`` is a constant and can be one of:"
 msgstr "``event``\\는 상수이며 다음 중 하나일 수 있습니다:"
 
-#: ../Doc/library/xml.dom.pulldom.rst:56
+#: ../../library/xml.dom.pulldom.rst:56
 msgid ":data:`START_ELEMENT`"
 msgstr ":data:`START_ELEMENT`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:57
+#: ../../library/xml.dom.pulldom.rst:57
 msgid ":data:`END_ELEMENT`"
 msgstr ":data:`END_ELEMENT`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:58
+#: ../../library/xml.dom.pulldom.rst:58
 msgid ":data:`COMMENT`"
 msgstr ":data:`COMMENT`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:59
+#: ../../library/xml.dom.pulldom.rst:59
 msgid ":data:`START_DOCUMENT`"
 msgstr ":data:`START_DOCUMENT`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:60
+#: ../../library/xml.dom.pulldom.rst:60
 msgid ":data:`END_DOCUMENT`"
 msgstr ":data:`END_DOCUMENT`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:61
+#: ../../library/xml.dom.pulldom.rst:61
 msgid ":data:`CHARACTERS`"
 msgstr ":data:`CHARACTERS`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:62
+#: ../../library/xml.dom.pulldom.rst:62
 msgid ":data:`PROCESSING_INSTRUCTION`"
 msgstr ":data:`PROCESSING_INSTRUCTION`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:63
+#: ../../library/xml.dom.pulldom.rst:63
 msgid ":data:`IGNORABLE_WHITESPACE`"
 msgstr ":data:`IGNORABLE_WHITESPACE`"
 
-#: ../Doc/library/xml.dom.pulldom.rst:65
+#: ../../library/xml.dom.pulldom.rst:65
 msgid ""
 "``node`` is an object of type :class:`xml.dom.minidom.Document`, "
 ":class:`xml.dom.minidom.Element` or :class:`xml.dom.minidom.Text`."
@@ -108,7 +132,7 @@ msgstr ""
 ":class:`xml.dom.minidom.Element` 또는 :class:`xml.dom.minidom.Text` 형의 "
 "객체입니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:68
+#: ../../library/xml.dom.pulldom.rst:68
 msgid ""
 "Since the document is treated as a \"flat\" stream of events, the "
 "document \"tree\" is implicitly traversed and the desired elements are "
@@ -125,11 +149,11 @@ msgstr ""
 "문맥이 중요하다면, 문맥과 관련된 상태를 유지하거나 (즉, 주어진 지점에서 문서의 어느 위치에 있는지 기억함으로써),  "
 ":func:`DOMEventStream.expandNode` 메서드를 사용하고 DOM 관련 처리로 전환해야 합니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:80 ../Doc/library/xml.dom.pulldom.rst:85
+#: ../../library/xml.dom.pulldom.rst:80 ../../library/xml.dom.pulldom.rst:85
 msgid "Subclass of :class:`xml.sax.handler.ContentHandler`."
 msgstr ":class:`xml.sax.handler.ContentHandler`\\의 서브 클래스."
 
-#: ../Doc/library/xml.dom.pulldom.rst:90
+#: ../../library/xml.dom.pulldom.rst:90
 msgid ""
 "Return a :class:`DOMEventStream` from the given input. *stream_or_string*"
 " may be either a file name, or a file-like object. *parser*, if given, "
@@ -143,35 +167,36 @@ msgstr ""
 ":class:`~xml.sax.xmlreader.XMLReader` 객체여야 합니다. 이 함수는 구문 분석기의 문서 처리기를 "
 "변경하고 이름 공간 지원을 활성화합니다; 다른 구문 분석기 구성(엔티티 해석기 설정과 같은)은 미리 수행되어 있어야 합니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:97
+#: ../../library/xml.dom.pulldom.rst:97
 msgid ""
 "If you have XML in a string, you can use the :func:`parseString` function"
 " instead:"
 msgstr "문자열로 XML을 갖고 있다면, :func:`parseString` 함수를 대신 사용할 수 있습니다:"
 
-#: ../Doc/library/xml.dom.pulldom.rst:101
+#: ../../library/xml.dom.pulldom.rst:101
 msgid "Return a :class:`DOMEventStream` that represents the (Unicode) *string*."
 msgstr "(유니코드) *string*\\을 표현하는 :class:`DOMEventStream`\\을 반환합니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:105
+#: ../../library/xml.dom.pulldom.rst:105
 msgid "Default value for the *bufsize* parameter to :func:`parse`."
 msgstr ":func:`parse`\\의 *bufsize* 매개 변수의 기본값."
 
-#: ../Doc/library/xml.dom.pulldom.rst:107
+#: ../../library/xml.dom.pulldom.rst:107
 msgid ""
 "The value of this variable can be changed before calling :func:`parse` "
 "and the new value will take effect."
 msgstr "이 변수의 값은 :func:`parse`\\를 호출하기 전에 변경될 수 있으며 새 값이 적용됩니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:113
+#: ../../library/xml.dom.pulldom.rst:113
 msgid "DOMEventStream Objects"
 msgstr "DOMEventStream 객체"
 
-#: ../Doc/library/xml.dom.pulldom.rst:117
-msgid "Support for :meth:`sequence protocol <__getitem__>` is deprecated."
+#: ../../library/xml.dom.pulldom.rst:117
+#, fuzzy
+msgid "Support for :meth:`~object.__getitem__` method has been removed."
 msgstr ":meth:`시퀀스 프로토콜 <__getitem__>` 지원은 폐지되었습니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:122
+#: ../../library/xml.dom.pulldom.rst:122
 msgid ""
 "Return a tuple containing *event* and the current *node* as "
 ":class:`xml.dom.minidom.Document` if event equals :data:`START_DOCUMENT`,"
@@ -187,7 +212,24 @@ msgstr ""
 ":class:`xml.dom.minidom.Text` 입니다. :func:`expandNode`\\가 호출되지 않는 한 현재 "
 "노드에는 자식에 대한 정보가 없습니다."
 
-#: ../Doc/library/xml.dom.pulldom.rst:132
+#: ../../library/xml.dom.pulldom.rst:132
 msgid "Expands all children of *node* into *node*. Example::"
 msgstr "*node*\\의 모든 자식을 *node*\\로 확장합니다. 예::"
+
+#: ../../library/xml.dom.pulldom.rst:134
+msgid ""
+"from xml.dom import pulldom\n"
+"\n"
+"xml = '<html><title>Foo</title> <p>Some text <div>and more</div></p> "
+"</html>'\n"
+"doc = pulldom.parseString(xml)\n"
+"for event, node in doc:\n"
+"    if event == pulldom.START_ELEMENT and node.tagName == 'p':\n"
+"        # Following statement only prints '<p/>'\n"
+"        print(node.toxml())\n"
+"        doc.expandNode(node)\n"
+"        # Following statement prints node with all its children '<p>Some "
+"text <div>and more</div></p>'\n"
+"        print(node.toxml())"
+msgstr ""
 

@@ -116,6 +116,22 @@ class Command:
         if empty_count:
             print(f'{empty_count} untranslated messages found')
 
+    def find_obsoletes(self, *, delete=False):
+        """Find obsolete .po files."""
+        os.chdir(MSG_DIR)
+        potroot = pathlib.Path("../cpython/Doc/build/gettext")
+        for root, _, files in os.walk("."):
+            for filename in files:
+                if not filename.endswith(".po"):
+                    continue
+                relpath = pathlib.Path(root, filename)
+                potpath = potroot / relpath.with_suffix(".pot")
+                if not potpath.exists():
+                    print(relpath)
+                    if delete:
+                        relpath.unlink()
+                        relpath.with_suffix(".mo").unlink(missing_ok=True)
+
 
 def main():
     fire.Fire(Command)

@@ -7,24 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 08:18+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/library/dis.rst:2
-msgid ":mod:`dis` --- Disassembler for Python bytecode"
+#: ../../library/dis.rst:2
+#, fuzzy
+msgid ":mod:`!dis` --- Disassembler for Python bytecode"
 msgstr ":mod:`dis` --- 파이썬 바이트 코드 역 어셈블러"
 
-#: ../Doc/library/dis.rst:7
+#: ../../library/dis.rst:7
 msgid "**Source code:** :source:`Lib/dis.py`"
 msgstr "**소스 코드:** :source:`Lib/dis.py`"
 
-#: ../Doc/library/dis.rst:11
+#: ../../library/dis.rst:17
 msgid ""
 "The :mod:`dis` module supports the analysis of CPython :term:`bytecode` "
 "by disassembling it. The CPython bytecode which this module takes as an "
@@ -35,7 +36,7 @@ msgstr ""
 " 모듈이 입력으로 취하는 CPython 바이트 코드는 파일 :file:`Include/opcode.h`\\에 정의되어 있으며 "
 "컴파일러와 인터프리터에서 사용됩니다."
 
-#: ../Doc/library/dis.rst:18
+#: ../../library/dis.rst:24
 msgid ""
 "Bytecode is an implementation detail of the CPython interpreter.  No "
 "guarantees are made that bytecode will not be added, removed, or changed "
@@ -45,31 +46,123 @@ msgstr ""
 "바이트 코드는 CPython 인터프리터의 구현 세부 사항입니다. 파이썬 버전 간에 바이트 코드가 추가, 제거 또는 변경되지 않을 "
 "것이라는 보장은 없습니다. 이 모듈을 사용하는 것이 파이썬 VM이나 파이썬 릴리스에 걸쳐 작동할 것으로 생각하지 말아야 합니다."
 
-#: ../Doc/library/dis.rst:23
+#: ../../library/dis.rst:29
 msgid ""
 "Use 2 bytes for each instruction. Previously the number of bytes varied "
 "by instruction."
 msgstr "명령어마다 2바이트를 사용합니다. 이전에는 바이트 수가 명령어에 따라 달랐습니다."
 
-#: ../Doc/library/dis.rst:28
-msgid "Example: Given the function :func:`myfunc`::"
+#: ../../library/dis.rst:33
+msgid ""
+"The argument of jump, exception handling and loop instructions is now the"
+" instruction offset rather than the byte offset."
+msgstr ""
+
+#: ../../library/dis.rst:37
+msgid ""
+"Some instructions are accompanied by one or more inline cache entries, "
+"which take the form of :opcode:`CACHE` instructions. These instructions "
+"are hidden by default, but can be shown by passing ``show_caches=True`` "
+"to any :mod:`dis` utility. Furthermore, the interpreter now adapts the "
+"bytecode to specialize it for different runtime conditions. The adaptive "
+"bytecode can be shown by passing ``adaptive=True``."
+msgstr ""
+
+#: ../../library/dis.rst:45
+msgid ""
+"The argument of a jump is the offset of the target instruction relative "
+"to the instruction that appears immediately after the jump instruction's "
+":opcode:`CACHE` entries."
+msgstr ""
+
+#: ../../library/dis.rst:50
+msgid ""
+"As a consequence, the presence of the :opcode:`CACHE` instructions is "
+"transparent for forward jumps but needs to be taken into account when "
+"reasoning about backward jumps."
+msgstr ""
+
+#: ../../library/dis.rst:54
+msgid ""
+"The output shows logical labels rather than instruction offsets for jump "
+"targets and exception handlers. The ``-O`` command line option and the "
+"``show_offsets`` argument were added."
+msgstr ""
+
+#: ../../library/dis.rst:59
+#, fuzzy
+msgid "Example: Given the function :func:`!myfunc`::"
 msgstr "예: 주어진 함수 :func:`myfunc`\\에 대해::"
 
-#: ../Doc/library/dis.rst:33
+#: ../../library/dis.rst:61
+msgid ""
+"def myfunc(alist):\n"
+"    return len(alist)"
+msgstr ""
+
+#: ../../library/dis.rst:64
+#, fuzzy
 msgid ""
 "the following command can be used to display the disassembly of "
-":func:`myfunc`::"
+":func:`!myfunc`:"
 msgstr "다음 명령을 사용하여 :func:`myfunc`\\의 역 어셈블리를 표시할 수 있습니다::"
 
-#: ../Doc/library/dis.rst:42
+#: ../../library/dis.rst:67
+msgid ""
+">>> dis.dis(myfunc)\n"
+"  2           RESUME                   0\n"
+"\n"
+"  3           LOAD_GLOBAL              1 (len + NULL)\n"
+"              LOAD_FAST                0 (alist)\n"
+"              CALL                     1\n"
+"              RETURN_VALUE"
+msgstr ""
+
+#: ../../library/dis.rst:77
 msgid "(The \"2\" is a line number)."
 msgstr "(\"2\"는 줄 번호입니다)."
 
-#: ../Doc/library/dis.rst:45
+#: ../../library/dis.rst:82
+msgid "Command-line interface"
+msgstr ""
+
+#: ../../library/dis.rst:84
+msgid "The :mod:`dis` module can be invoked as a script from the command line:"
+msgstr ""
+
+#: ../../library/dis.rst:86
+msgid "python -m dis [-h] [-C] [-O] [infile]"
+msgstr ""
+
+#: ../../library/dis.rst:90
+msgid "The following options are accepted:"
+msgstr ""
+
+#: ../../library/dis.rst:96
+msgid "Display usage and exit."
+msgstr ""
+
+#: ../../library/dis.rst:100
+msgid "Show inline caches."
+msgstr ""
+
+#: ../../library/dis.rst:106
+#, fuzzy
+msgid "Show offsets of instructions."
+msgstr "파이썬 바이트 코드 명령어"
+
+#: ../../library/dis.rst:110
+msgid ""
+"If :file:`infile` is specified, its disassembled code will be written to "
+"stdout. Otherwise, disassembly is performed on compiled source code "
+"received from stdin."
+msgstr ""
+
+#: ../../library/dis.rst:114
 msgid "Bytecode analysis"
 msgstr "바이트 코드 분석"
 
-#: ../Doc/library/dis.rst:49
+#: ../../library/dis.rst:118
 msgid ""
 "The bytecode analysis API allows pieces of Python code to be wrapped in a"
 " :class:`Bytecode` object that provides easy access to details of the "
@@ -78,7 +171,7 @@ msgstr ""
 "바이트 코드 분석 API는 컴파일된 코드의 세부 사항에 쉽게 액세스 할 수 있도록 하는 :class:`Bytecode` 객체로 "
 "파이썬 코드 조각을 감쌀 수 있도록 합니다."
 
-#: ../Doc/library/dis.rst:56
+#: ../../library/dis.rst:125
 msgid ""
 "Analyse the bytecode corresponding to a function, generator, asynchronous"
 " generator, coroutine, method, string of source code, or a code object "
@@ -87,7 +180,7 @@ msgstr ""
 "함수, 제너레이터, 비동기 제너레이터, 코루틴, 메서드, 소스 코드 문자열 또는 (:func:`compile`\\에서 반환된) 코드"
 " 객체에 해당하는 바이트 코드를 분석합니다."
 
-#: ../Doc/library/dis.rst:60
+#: ../../library/dis.rst:129
 msgid ""
 "This is a convenience wrapper around many of the functions listed below, "
 "most notably :func:`get_instructions`, as iterating over a "
@@ -98,7 +191,7 @@ msgstr ""
 ":class:`Bytecode` 인스턴스를 이터레이트 하면 바이트 코드 연산이 :class:`Instruction` 인스턴스로 "
 "산출되기 때문입니다."
 
-#: ../Doc/library/dis.rst:64 ../Doc/library/dis.rst:225
+#: ../../library/dis.rst:133 ../../library/dis.rst:330
 msgid ""
 "If *first_line* is not ``None``, it indicates the line number that should"
 " be reported for the first source line in the disassembled code.  "
@@ -108,7 +201,7 @@ msgstr ""
 "*first_line*\\이 ``None``\\이 아니면, 역 어셈블 된 코드에서 첫 번째 소스 줄에 대해 보고해야 하는 줄 번호를"
 " 나타냅니다. 그렇지 않으면, 소스 줄 정보(있다면)를 역 어셈블 된 코드 객체에서 직접 취합니다."
 
-#: ../Doc/library/dis.rst:69
+#: ../../library/dis.rst:138
 msgid ""
 "If *current_offset* is not ``None``, it refers to an instruction offset "
 "in the disassembled code. Setting this means :meth:`.dis` will display a "
@@ -117,7 +210,25 @@ msgstr ""
 "*current_offset*\\이 ``None``\\이 아니면, 역 어셈블 된 코드의 명령어 오프셋을 나타냅니다. 이를 설정하면,"
 " :meth:`.dis`\\가 지정된 옵코드(opcode)에 대해 \"현재 명령어\" 마커를 표시합니다."
 
-#: ../Doc/library/dis.rst:75
+#: ../../library/dis.rst:142
+msgid ""
+"If *show_caches* is ``True``, :meth:`.dis` will display inline cache "
+"entries used by the interpreter to specialize the bytecode."
+msgstr ""
+
+#: ../../library/dis.rst:145
+msgid ""
+"If *adaptive* is ``True``, :meth:`.dis` will display specialized bytecode"
+" that may be different from the original bytecode."
+msgstr ""
+
+#: ../../library/dis.rst:148
+msgid ""
+"If *show_offsets* is ``True``, :meth:`.dis` will include instruction "
+"offsets in the output."
+msgstr ""
+
+#: ../../library/dis.rst:153
 msgid ""
 "Construct a :class:`Bytecode` instance from the given traceback, setting "
 "*current_offset* to the instruction responsible for the exception."
@@ -125,15 +236,15 @@ msgstr ""
 "주어진 트레이스백에서 :class:`Bytecode` 인스턴스를 구성하고, *current_offset*\\을 예외를 일으킨 "
 "명령어로 설정합니다."
 
-#: ../Doc/library/dis.rst:80
+#: ../../library/dis.rst:158
 msgid "The compiled code object."
 msgstr "컴파일된 코드 객체."
 
-#: ../Doc/library/dis.rst:84
+#: ../../library/dis.rst:162
 msgid "The first source line of the code object (if available)"
 msgstr "코드 객체의 첫 번째 소스 줄 (사용 가능하다면)"
 
-#: ../Doc/library/dis.rst:88
+#: ../../library/dis.rst:166
 msgid ""
 "Return a formatted view of the bytecode operations (the same as printed "
 "by :func:`dis.dis`, but returned as a multi-line string)."
@@ -141,26 +252,46 @@ msgstr ""
 "바이트 코드 연산의 포맷된 보기를 반환합니다 (:func:`dis.dis`\\가 인쇄하는 것과 같지만, 여러 줄 문자열로 "
 "반환됩니다)."
 
-#: ../Doc/library/dis.rst:93
+#: ../../library/dis.rst:171
 msgid ""
 "Return a formatted multi-line string with detailed information about the "
 "code object, like :func:`code_info`."
 msgstr ":func:`code_info`\\처럼, 코드 객체에 대한 자세한 정보가 포함된 포맷된 여러 줄 문자열을 반환합니다."
 
-#: ../Doc/library/dis.rst:96 ../Doc/library/dis.rst:130
-#: ../Doc/library/dis.rst:176
+#: ../../library/dis.rst:174 ../../library/dis.rst:214
+#: ../../library/dis.rst:266
 msgid "This can now handle coroutine and asynchronous generator objects."
 msgstr "이제 코루틴과 비동기 제너레이터 객체를 처리할 수 있습니다."
 
-#: ../Doc/library/dis.rst:99
-msgid "Example::"
+#: ../../library/dis.rst:177 ../../library/dis.rst:269
+#: ../../library/dis.rst:286 ../../library/dis.rst:316
+#: ../../library/dis.rst:339
+msgid "Added the *show_caches* and *adaptive* parameters."
+msgstr ""
+
+#: ../../library/dis.rst:180
+#, fuzzy
+msgid "Example:"
 msgstr "예::"
 
-#: ../Doc/library/dis.rst:112
+#: ../../library/dis.rst:182
+msgid ""
+">>> bytecode = dis.Bytecode(myfunc)\n"
+">>> for instr in bytecode:\n"
+"...     print(instr.opname)\n"
+"...\n"
+"RESUME\n"
+"LOAD_GLOBAL\n"
+"LOAD_FAST\n"
+"CALL\n"
+"RETURN_VALUE"
+msgstr ""
+
+#: ../../library/dis.rst:196
 msgid "Analysis functions"
 msgstr "분석 함수"
 
-#: ../Doc/library/dis.rst:114
+#: ../../library/dis.rst:198
 msgid ""
 "The :mod:`dis` module also defines the following analysis functions that "
 "convert the input directly to the desired output. They can be useful if "
@@ -170,7 +301,7 @@ msgstr ""
 ":mod:`dis` 모듈은 또한 입력을 원하는 출력으로 직접 변환하는 다음 분석 함수를 정의합니다. 단일 작업만 수행해서, 중간 "
 "분석 객체가 유용하지 않을 때 유용할 수 있습니다:"
 
-#: ../Doc/library/dis.rst:120
+#: ../../library/dis.rst:204
 msgid ""
 "Return a formatted multi-line string with detailed code object "
 "information for the supplied function, generator, asynchronous generator,"
@@ -179,14 +310,14 @@ msgstr ""
 "제공된 함수, 제너레이터, 비동기 제너레이터, 코루틴, 메서드, 소스 코드 문자열 또는 코드 객체에 대한 자세한 코드 객체 정보가 "
 "포함된 포맷된 여러 줄 문자열을 반환합니다."
 
-#: ../Doc/library/dis.rst:124
+#: ../../library/dis.rst:208
 msgid ""
 "Note that the exact contents of code info strings are highly "
 "implementation dependent and they may change arbitrarily across Python "
 "VMs or Python releases."
 msgstr "코드 정보 문자열의 정확한 내용은 구현에 따라 달라지며 파이썬 VM이나 파이썬 릴리스에 걸쳐 임의로 변경될 수 있습니다."
 
-#: ../Doc/library/dis.rst:136
+#: ../../library/dis.rst:220
 msgid ""
 "Print detailed code object information for the supplied function, method,"
 " source code string or code object to *file* (or ``sys.stdout`` if *file*"
@@ -195,7 +326,7 @@ msgstr ""
 "제공된 함수, 메서드, 소스 코드 문자열 또는 코드 객체에 대한 자세한 코드 객체 정보를 *file*\\(또는 *file*\\이 "
 "지정되지 않으면 ``sys.stdout``)로 인쇄합니다."
 
-#: ../Doc/library/dis.rst:140
+#: ../../library/dis.rst:224
 msgid ""
 "This is a convenient shorthand for ``print(code_info(x), file=file)``, "
 "intended for interactive exploration at the interpreter prompt."
@@ -203,12 +334,13 @@ msgstr ""
 "이것은 ``print(code_info(x), file=file)``\\의 편리한 축약 형으로, 인터프리터 프롬프트에서의 대화식 "
 "탐색을 위한 것입니다."
 
-#: ../Doc/library/dis.rst:145 ../Doc/library/dis.rst:170
-#: ../Doc/library/dis.rst:189 ../Doc/library/dis.rst:213
+#: ../../library/dis.rst:229 ../../library/dis.rst:260
+#: ../../library/dis.rst:283 ../../library/dis.rst:313
 msgid "Added *file* parameter."
 msgstr "*file* 매개 변수를 추가했습니다."
 
-#: ../Doc/library/dis.rst:151
+#: ../../library/dis.rst:235
+#, fuzzy
 msgid ""
 "Disassemble the *x* object.  *x* can denote either a module, a class, a "
 "method, a function, a generator, an asynchronous generator, a coroutine, "
@@ -216,12 +348,12 @@ msgid ""
 "bytecode. For a module, it disassembles all functions. For a class, it "
 "disassembles all methods (including class and static methods). For a code"
 " object or sequence of raw bytecode, it prints one line per bytecode "
-"instruction. It also recursively disassembles nested code objects (the "
-"code of comprehensions, generator expressions and nested functions, and "
-"the code used for building nested classes). Strings are first compiled to"
-" code objects with the :func:`compile` built-in function before being "
-"disassembled.  If no object is provided, this function disassembles the "
-"last traceback."
+"instruction. It also recursively disassembles nested code objects. These "
+"can include generator expressions, nested functions, the bodies of nested"
+" classes, and the code objects used for :ref:`annotation scopes "
+"<annotation-scopes>`. Strings are first compiled to code objects with the"
+" :func:`compile` built-in function before being disassembled.  If no "
+"object is provided, this function disassembles the last traceback."
 msgstr ""
 "*x* 객체를 역 어셈블 합니다. *x*\\는 모듈, 클래스, 메서드, 함수, 제너레이터, 비동기 제너레이터, 코루틴, 코드 객체,"
 " 소스 코드 문자열 또는 원시 바이트 코드의 바이트 시퀀스를 나타낼 수 있습니다. 모듈의 경우, 모든 함수를 역 어셈블 합니다. "
@@ -230,14 +362,14 @@ msgstr ""
 "클래스를 만드는 데 사용된 코드)를 재귀적으로 역 어셈블 합니다. 문자열은 역 어셈블 되기 전에 먼저 :func:`compile` "
 "내장 함수를 사용하여 코드 객체로 컴파일됩니다. 객체가 제공되지 않으면, 이 함수는 마지막 트레이스백을 역 어셈블 합니다."
 
-#: ../Doc/library/dis.rst:164 ../Doc/library/dis.rst:186
-#: ../Doc/library/dis.rst:210
+#: ../../library/dis.rst:248 ../../library/dis.rst:280
+#: ../../library/dis.rst:310
 msgid ""
 "The disassembly is written as text to the supplied *file* argument if "
 "provided and to ``sys.stdout`` otherwise."
 msgstr "역 어셈블리는 제공된다면 제공된 *file* 인자에, 그렇지 않으면 ``sys.stdout``\\에 텍스트로 기록됩니다."
 
-#: ../Doc/library/dis.rst:167
+#: ../../library/dis.rst:251
 msgid ""
 "The maximal depth of recursion is limited by *depth* unless it is "
 "``None``. ``depth=0`` means no recursion."
@@ -245,64 +377,81 @@ msgstr ""
 "재귀의 최대 깊이는 ``None``\\이 아닌 한 *depth*\\에 의해 제한됩니다. ``depth=0``\\은 재귀가 없음을 "
 "의미합니다."
 
-#: ../Doc/library/dis.rst:173
+#: ../../library/dis.rst:254
+msgid ""
+"If *show_caches* is ``True``, this function will display inline cache "
+"entries used by the interpreter to specialize the bytecode."
+msgstr ""
+
+#: ../../library/dis.rst:257
+msgid ""
+"If *adaptive* is ``True``, this function will display specialized "
+"bytecode that may be different from the original bytecode."
+msgstr ""
+
+#: ../../library/dis.rst:263
 msgid "Implemented recursive disassembling and added *depth* parameter."
 msgstr "재귀 역 어셈블을 구현하고 *depth* 매개 변수를 추가했습니다."
 
-#: ../Doc/library/dis.rst:182
+#: ../../library/dis.rst:276
 msgid ""
 "Disassemble the top-of-stack function of a traceback, using the last "
 "traceback if none was passed.  The instruction causing the exception is "
 "indicated."
 msgstr "트레이스백의 최상단 함수를 역 어셈블 합니다. 전달되지 않으면 마지막 트레이스백을 사용합니다. 예외를 일으키는 명령어가 표시됩니다."
 
-#: ../Doc/library/dis.rst:196
+#: ../../library/dis.rst:289 ../../library/dis.rst:319
+#, fuzzy
+msgid "Added the *show_offsets* parameter."
+msgstr "*file* 매개 변수를 추가했습니다."
+
+#: ../../library/dis.rst:296
 msgid ""
 "Disassemble a code object, indicating the last instruction if *lasti* was"
 " provided.  The output is divided in the following columns:"
 msgstr "코드 객체를 역 어셈블 하고, *lasti*\\가 제공되면 마지막 명령어를 표시합니다. 출력은 다음 열로 나뉩니다:"
 
-#: ../Doc/library/dis.rst:199
+#: ../../library/dis.rst:299
 msgid "the line number, for the first instruction of each line"
 msgstr "줄 번호, 각 줄의 첫 번째 명령어에 표시됩니다"
 
-#: ../Doc/library/dis.rst:200
+#: ../../library/dis.rst:300
 msgid "the current instruction, indicated as ``-->``,"
 msgstr "현재 명령어, ``-->``\\로 표시됩니다,"
 
-#: ../Doc/library/dis.rst:201
+#: ../../library/dis.rst:301
 msgid "a labelled instruction, indicated with ``>>``,"
 msgstr "레이블이 있는 명령어, ``>>``\\로 표시됩니다,"
 
-#: ../Doc/library/dis.rst:202
+#: ../../library/dis.rst:302
 msgid "the address of the instruction,"
 msgstr "명령어의 주소,"
 
-#: ../Doc/library/dis.rst:203
+#: ../../library/dis.rst:303
 msgid "the operation code name,"
 msgstr "연산 코드 이름,"
 
-#: ../Doc/library/dis.rst:204
+#: ../../library/dis.rst:304
 msgid "operation parameters, and"
 msgstr "연산 매개 변수, 그리고"
 
-#: ../Doc/library/dis.rst:205
+#: ../../library/dis.rst:305
 msgid "interpretation of the parameters in parentheses."
 msgstr "괄호 안에 있는 매개 변수의 해석."
 
-#: ../Doc/library/dis.rst:207
+#: ../../library/dis.rst:307
 msgid ""
 "The parameter interpretation recognizes local and global variable names, "
 "constant values, branch targets, and compare operators."
 msgstr "매개 변수 해석은 지역과 전역 변수 이름, 상숫값, 분기 대상 및 비교 연산자를 인식합니다."
 
-#: ../Doc/library/dis.rst:219
+#: ../../library/dis.rst:324
 msgid ""
 "Return an iterator over the instructions in the supplied function, "
 "method, source code string or code object."
 msgstr "제공된 함수, 메서드, 소스 코드 문자열 또는 코드 객체의 명령어들에 대한 이터레이터를 반환합니다."
 
-#: ../Doc/library/dis.rst:222
+#: ../../library/dis.rst:327
 msgid ""
 "The iterator generates a series of :class:`Instruction` named tuples "
 "giving the details of each operation in the supplied code."
@@ -310,33 +459,58 @@ msgstr ""
 "이터레이터는 제공된 코드의 각 연산에 대한 세부 정보를 제공하는 :class:`Instruction` 네임드 튜플의 연속을 "
 "생성합니다."
 
-#: ../Doc/library/dis.rst:235
+#: ../../library/dis.rst:335
+msgid "The *adaptive* parameter works as it does in :func:`dis`."
+msgstr ""
+
+#: ../../library/dis.rst:342
 msgid ""
-"This generator function uses the ``co_firstlineno`` and ``co_lnotab`` "
-"attributes of the code object *code* to find the offsets which are starts"
-" of lines in the source code.  They are generated as ``(offset, lineno)``"
-" pairs. See :source:`Objects/lnotab_notes.txt` for the ``co_lnotab`` "
-"format and how to decode it."
+"The *show_caches* parameter is deprecated and has no effect. The iterator"
+" generates the :class:`Instruction` instances with the *cache_info* field"
+" populated (regardless of the value of *show_caches*) and it no longer "
+"generates separate items for the cache entries."
+msgstr ""
+
+#: ../../library/dis.rst:350
+#, fuzzy
+msgid ""
+"This generator function uses the :meth:`~codeobject.co_lines` method of "
+"the :ref:`code object <code-objects>` *code* to find the offsets which "
+"are starts of lines in the source code.  They are generated as ``(offset,"
+" lineno)`` pairs."
 msgstr ""
 "이 제너레이터 함수는 코드 객체 *code*\\의 ``co_firstlineno``\\와 ``co_lnotab`` 어트리뷰트를 "
 "사용하여 소스 코드에서 줄의 시작을 가리키는 오프셋을 찾습니다. ``(offset, lineno)`` 쌍으로 생성됩니다. "
 "``co_lnotab`` 형식과 디코딩 방법은 :source:`Objects/lnotab_notes.txt`\\를 참조하십시오."
 
-#: ../Doc/library/dis.rst:241
+#: ../../library/dis.rst:355
 msgid "Line numbers can be decreasing. Before, they were always increasing."
 msgstr "줄 번호가 줄어들 수 있습니다. 전에는, 언제나 증가했습니다."
 
-#: ../Doc/library/dis.rst:247
+#: ../../library/dis.rst:358
+msgid ""
+"The :pep:`626` :meth:`~codeobject.co_lines` method is used instead of the"
+" :attr:`~codeobject.co_firstlineno` and :attr:`~codeobject.co_lnotab` "
+"attributes of the :ref:`code object <code-objects>`."
+msgstr ""
+
+#: ../../library/dis.rst:363
+msgid ""
+"Line numbers can be ``None`` for bytecode that does not map to source "
+"lines."
+msgstr ""
+
+#: ../../library/dis.rst:369
 msgid ""
 "Detect all offsets in the raw compiled bytecode string *code* which are "
 "jump targets, and return a list of these offsets."
 msgstr "원시 컴파일된 바이트 코드 문자열 *code*\\에서 점프 대상인 모든 오프셋을 감지하고, 이러한 오프셋의 리스트를 반환합니다."
 
-#: ../Doc/library/dis.rst:253
+#: ../../library/dis.rst:375
 msgid "Compute the stack effect of *opcode* with argument *oparg*."
 msgstr "인자 *oparg*\\를 갖는 *opcode*\\의 스택 효과를 계산합니다."
 
-#: ../Doc/library/dis.rst:255
+#: ../../library/dis.rst:377
 msgid ""
 "If the code has a jump target and *jump* is ``True``, "
 ":func:`~stack_effect` will return the stack effect of jumping.  If *jump*"
@@ -348,15 +522,23 @@ msgstr ""
 " 반환합니다. *jump*\\가 ``False``\\이면, 점프하지 않는 스택 효과를 반환합니다. *jump*\\가 "
 "``None``\\(기본값)이면, 두 경우의 최대 스택 효과를 반환합니다."
 
-#: ../Doc/library/dis.rst:262
+#: ../../library/dis.rst:384
 msgid "Added *jump* parameter."
 msgstr "*jump* 매개 변수를 추가했습니다."
 
-#: ../Doc/library/dis.rst:269
+#: ../../library/dis.rst:387
+msgid ""
+"If ``oparg`` is omitted (or ``None``), the stack effect is now returned "
+"for ``oparg=0``. Previously this was an error for opcodes that use their "
+"arg. It is also no longer an error to pass an integer ``oparg`` when the "
+"``opcode`` does not use it; the ``oparg`` in this case is ignored."
+msgstr ""
+
+#: ../../library/dis.rst:397
 msgid "Python Bytecode Instructions"
 msgstr "파이썬 바이트 코드 명령어"
 
-#: ../Doc/library/dis.rst:271
+#: ../../library/dis.rst:399
 msgid ""
 "The :func:`get_instructions` function and :class:`Bytecode` class provide"
 " details of bytecode instructions as :class:`Instruction` instances:"
@@ -364,361 +546,483 @@ msgstr ""
 ":func:`get_instructions` 함수와 :class:`Bytecode` 클래스는 바이트 코드 명령어의 세부 사항을 "
 ":class:`Instruction` 인스턴스로 제공합니다:"
 
-#: ../Doc/library/dis.rst:276
+#: ../../library/dis.rst:404
 msgid "Details for a bytecode operation"
 msgstr "바이트 코드 연산에 대한 세부 사항"
 
-#: ../Doc/library/dis.rst:280
+#: ../../library/dis.rst:408
 msgid ""
 "numeric code for operation, corresponding to the opcode values listed "
 "below and the bytecode values in the :ref:`opcode_collections`."
 msgstr "연산의 숫자 코드, 아래 나열된 옵코드 값과 :ref:`opcode_collections`\\에 있는 바이트 코드 값에 해당합니다."
 
-#: ../Doc/library/dis.rst:286
+#: ../../library/dis.rst:414
 msgid "human readable name for operation"
 msgstr "연산의 사람이 읽을 수 있는 이름"
 
-#: ../Doc/library/dis.rst:291
+#: ../../library/dis.rst:419
+msgid ""
+"numeric code for the base operation if operation is specialized; "
+"otherwise equal to :data:`opcode`"
+msgstr ""
+
+#: ../../library/dis.rst:425
+msgid ""
+"human readable name for the base operation if operation is specialized; "
+"otherwise equal to :data:`opname`"
+msgstr ""
+
+#: ../../library/dis.rst:431
 msgid "numeric argument to operation (if any), otherwise ``None``"
 msgstr "연산에 대한 숫자 인자 (있다면), 그렇지 않으면 ``None``"
 
-#: ../Doc/library/dis.rst:296
-msgid "resolved arg value (if known), otherwise same as arg"
+#: ../../library/dis.rst:435
+msgid "alias for :data:`arg`"
+msgstr ""
+
+#: ../../library/dis.rst:439
+#, fuzzy
+msgid "resolved arg value (if any), otherwise ``None``"
 msgstr "해석된(resolved) arg 값 (알고 있다면), 그렇지 않으면 arg와 같습니다"
 
-#: ../Doc/library/dis.rst:301
-msgid "human readable description of operation argument"
+#: ../../library/dis.rst:444
+#, fuzzy
+msgid ""
+"human readable description of operation argument (if any), otherwise an "
+"empty string."
 msgstr "연산 인자에 대한 사람이 읽을 수 있는 설명"
 
-#: ../Doc/library/dis.rst:306
+#: ../../library/dis.rst:450
 msgid "start index of operation within bytecode sequence"
 msgstr "바이트 코드 시퀀스 내에서 연산의 시작 인덱스"
 
-#: ../Doc/library/dis.rst:311
-msgid "line started by this opcode (if any), otherwise ``None``"
+#: ../../library/dis.rst:455
+msgid ""
+"start index of operation within bytecode sequence, including prefixed "
+"``EXTENDED_ARG`` operations if present; otherwise equal to :data:`offset`"
+msgstr ""
+
+#: ../../library/dis.rst:461
+msgid "start index of the cache entries following the operation"
+msgstr ""
+
+#: ../../library/dis.rst:466
+msgid "end index of the cache entries following the operation"
+msgstr ""
+
+#: ../../library/dis.rst:471
+#, fuzzy
+msgid "``True`` if this opcode starts a source line, otherwise ``False``"
+msgstr "다른 코드가 여기로 점프하면 ``True``, 그렇지 않으면 ``False``"
+
+#: ../../library/dis.rst:476
+#, fuzzy
+msgid ""
+"source line number associated with this opcode (if any), otherwise "
+"``None``"
 msgstr "이 옵코드에 의해 시작된 줄 (있다면), 그렇지 않으면 ``None``"
 
-#: ../Doc/library/dis.rst:316
+#: ../../library/dis.rst:481
 msgid "``True`` if other code jumps to here, otherwise ``False``"
 msgstr "다른 코드가 여기로 점프하면 ``True``, 그렇지 않으면 ``False``"
 
-#: ../Doc/library/dis.rst:321
+#: ../../library/dis.rst:486
+msgid ""
+"bytecode index of the jump target if this is a jump operation, otherwise "
+"``None``"
+msgstr ""
+
+#: ../../library/dis.rst:492
+msgid ""
+":class:`dis.Positions` object holding the start and end locations that "
+"are covered by this instruction."
+msgstr ""
+
+#: ../../library/dis.rst:497
+msgid ""
+"Information about the cache entries of this instruction, as triplets of "
+"the form ``(name, size, data)``, where the ``name`` and ``size`` describe"
+" the cache format and data is the contents of the cache. ``cache_info`` "
+"is ``None`` if the instruction does not have caches."
+msgstr ""
+
+#: ../../library/dis.rst:507
+msgid "Field ``positions`` is added."
+msgstr ""
+
+#: ../../library/dis.rst:511
+msgid "Changed field ``starts_line``."
+msgstr ""
+
+#: ../../library/dis.rst:513
+msgid ""
+"Added fields ``start_offset``, ``cache_offset``, ``end_offset``, "
+"``baseopname``, ``baseopcode``, ``jump_target``, ``oparg``, "
+"``line_number`` and ``cache_info``."
+msgstr ""
+
+#: ../../library/dis.rst:520
+msgid "In case the information is not available, some fields might be ``None``."
+msgstr ""
+
+#: ../../library/dis.rst:530
 msgid ""
 "The Python compiler currently generates the following bytecode "
 "instructions."
 msgstr "파이썬 컴파일러는 현재 다음 바이트 코드 명령어를 생성합니다."
 
-#: ../Doc/library/dis.rst:324
+#: ../../library/dis.rst:533
 msgid "**General instructions**"
 msgstr "**일반 명령어**"
 
-#: ../Doc/library/dis.rst:328
-msgid "Do nothing code.  Used as a placeholder by the bytecode optimizer."
+#: ../../library/dis.rst:535
+msgid ""
+"In the following, We will refer to the interpreter stack as ``STACK`` and"
+" describe operations on it as if it was a Python list. The top of the "
+"stack corresponds to ``STACK[-1]`` in this language."
+msgstr ""
+
+#: ../../library/dis.rst:541
+#, fuzzy
+msgid ""
+"Do nothing code.  Used as a placeholder by the bytecode optimizer, and to"
+" generate line tracing events."
 msgstr "아무것도 하지 않는 코드. 바이트 코드 최적화기에서 자리 표시자로 사용됩니다."
 
-#: ../Doc/library/dis.rst:333
-msgid "Removes the top-of-stack (TOS) item."
+#: ../../library/dis.rst:547
+#, fuzzy
+msgid "Removes the top-of-stack item::"
 msgstr "스택 최상단 (TOS) 항목을 제거합니다."
 
-#: ../Doc/library/dis.rst:338
-msgid "Swaps the two top-most stack items."
-msgstr "두 개의 최상위 스택 항목을 자리바꿈합니다."
+#: ../../library/dis.rst:549
+msgid "STACK.pop()"
+msgstr ""
 
-#: ../Doc/library/dis.rst:343
+#: ../../library/dis.rst:554
 msgid ""
-"Lifts second and third stack item one position up, moves top down to "
-"position three."
-msgstr "두 번째와 세 번째 스택 항목을 한 자리 위로 들어 올리고, 최상단 항목을 세 번째 자리로 내립니다."
+"Removes the top-of-stack item. Equivalent to ``POP_TOP``. Used to clean "
+"up at the end of loops, hence the name."
+msgstr ""
 
-#: ../Doc/library/dis.rst:349
+#: ../../library/dis.rst:563
+msgid "Implements ``del STACK[-2]``. Used to clean up when a generator exits."
+msgstr ""
+
+#: ../../library/dis.rst:571
 msgid ""
-"Lifts second, third and fourth stack items one position up, moves top "
-"down to position four."
-msgstr "두 번째, 세 번째 및 네 번째 스택 항목을 한 자리 위로 들어 올리고, 최상단 항목을 네 번째 자리로 내립니다."
+"Push the i-th item to the top of the stack without removing it from its "
+"original location::"
+msgstr ""
 
-#: ../Doc/library/dis.rst:357
-msgid "Duplicates the reference on top of the stack."
-msgstr "스택 최상단의 참조를 복제합니다."
-
-#: ../Doc/library/dis.rst:364
+#: ../../library/dis.rst:574
 msgid ""
-"Duplicates the two references on top of the stack, leaving them in the "
-"same order."
-msgstr "같은 순서를 유지하면서, 스택 최상단의 두 참조를 복제합니다."
+"assert i > 0\n"
+"STACK.append(STACK[-i])"
+msgstr ""
 
-#: ../Doc/library/dis.rst:370
+#: ../../library/dis.rst:582
+msgid "Swap the top of the stack with the i-th element::"
+msgstr ""
+
+#: ../../library/dis.rst:584
+msgid "STACK[-i], STACK[-1] = STACK[-1], STACK[-i]"
+msgstr ""
+
+#: ../../library/dis.rst:591
+msgid ""
+"Rather than being an actual instruction, this opcode is used to mark "
+"extra space for the interpreter to cache useful data directly in the "
+"bytecode itself. It is automatically hidden by all ``dis`` utilities, but"
+" can be viewed with ``show_caches=True``."
+msgstr ""
+
+#: ../../library/dis.rst:596
+msgid ""
+"Logically, this space is part of the preceding instruction. Many opcodes "
+"expect to be followed by an exact number of caches, and will instruct the"
+" interpreter to skip over them at runtime."
+msgstr ""
+
+#: ../../library/dis.rst:600
+msgid ""
+"Populated caches can look like arbitrary instructions, so great care "
+"should be taken when reading or modifying raw, adaptive bytecode "
+"containing quickened data."
+msgstr ""
+
+#: ../../library/dis.rst:607
 msgid "**Unary operations**"
 msgstr "**단항 연산**"
 
-#: ../Doc/library/dis.rst:372
+#: ../../library/dis.rst:609
 msgid ""
 "Unary operations take the top of the stack, apply the operation, and push"
 " the result back on the stack."
 msgstr "단항 연산은 스택의 최상단을 취하고, 연산을 적용한 다음, 결과를 스택에 다시 푸시합니다."
 
-#: ../Doc/library/dis.rst:377
-msgid "Implements ``TOS = +TOS``."
-msgstr "``TOS = +TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:382
-msgid "Implements ``TOS = -TOS``."
+#: ../../library/dis.rst:615
+#, fuzzy
+msgid "Implements ``STACK[-1] = -STACK[-1]``."
 msgstr "``TOS = -TOS``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:387
-msgid "Implements ``TOS = not TOS``."
+#: ../../library/dis.rst:620
+#, fuzzy
+msgid "Implements ``STACK[-1] = not STACK[-1]``."
 msgstr "``TOS = not TOS``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:392
-msgid "Implements ``TOS = ~TOS``."
+#: ../../library/dis.rst:622 ../../library/dis.rst:1318
+#: ../../library/dis.rst:1334
+msgid "This instruction now requires an exact :class:`bool` operand."
+msgstr ""
+
+#: ../../library/dis.rst:628
+#, fuzzy
+msgid "Implements ``STACK[-1] = ~STACK[-1]``."
 msgstr "``TOS = ~TOS``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:397
-msgid "Implements ``TOS = iter(TOS)``."
+#: ../../library/dis.rst:633
+#, fuzzy
+msgid "Implements ``STACK[-1] = iter(STACK[-1])``."
 msgstr "``TOS = iter(TOS)``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:402
+#: ../../library/dis.rst:638
+#, fuzzy
 msgid ""
-"If ``TOS`` is a :term:`generator iterator` or :term:`coroutine` object it"
-" is left as is.  Otherwise, implements ``TOS = iter(TOS)``."
+"If ``STACK[-1]`` is a :term:`generator iterator` or :term:`coroutine` "
+"object it is left as is.  Otherwise, implements ``STACK[-1] = "
+"iter(STACK[-1])``."
 msgstr ""
 "``TOS``\\가 :term:`제너레이터 이터레이터 <generator iterator>`\\나 :term:`코루틴 "
 "<coroutine>` 객체이면 그대로 둡니다. 그렇지 않으면, ``TOS = iter(TOS)``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:408
-msgid "**Binary operations**"
-msgstr "**이항 연산**"
+#: ../../library/dis.rst:646
+#, fuzzy
+msgid "Implements ``STACK[-1] = bool(STACK[-1])``."
+msgstr "``TOS = TOS1[TOS]``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:410
+#: ../../library/dis.rst:651
+#, fuzzy
+msgid "**Binary and in-place operations**"
+msgstr "**제자리 연산**"
+
+#: ../../library/dis.rst:653
+#, fuzzy
 msgid ""
-"Binary operations remove the top of the stack (TOS) and the second top-"
-"most stack item (TOS1) from the stack.  They perform the operation, and "
-"put the result back on the stack."
+"Binary operations remove the top two items from the stack (``STACK[-1]`` "
+"and ``STACK[-2]``). They perform the operation, then put the result back "
+"on the stack."
 msgstr ""
 "이항 연산은 스택에서 스택 최상단(TOS)과 두 번째 최상단 스택 항목(TOS1)을 제거합니다. 연산을 수행하고, 결과를 다시 "
 "스택에 넣습니다."
 
-#: ../Doc/library/dis.rst:416
-msgid "Implements ``TOS = TOS1 ** TOS``."
-msgstr "``TOS = TOS1 ** TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:421
-msgid "Implements ``TOS = TOS1 * TOS``."
-msgstr "``TOS = TOS1 * TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:426
-msgid "Implements ``TOS = TOS1 @ TOS``."
-msgstr "``TOS = TOS1 @ TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:433
-msgid "Implements ``TOS = TOS1 // TOS``."
-msgstr "``TOS = TOS1 // TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:438
-msgid "Implements ``TOS = TOS1 / TOS``."
-msgstr "``TOS = TOS1 / TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:443
-msgid "Implements ``TOS = TOS1 % TOS``."
-msgstr "``TOS = TOS1 % TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:448
-msgid "Implements ``TOS = TOS1 + TOS``."
-msgstr "``TOS = TOS1 + TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:453
-msgid "Implements ``TOS = TOS1 - TOS``."
-msgstr "``TOS = TOS1 - TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:458
-msgid "Implements ``TOS = TOS1[TOS]``."
-msgstr "``TOS = TOS1[TOS]``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:463
-msgid "Implements ``TOS = TOS1 << TOS``."
-msgstr "``TOS = TOS1 << TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:468
-msgid "Implements ``TOS = TOS1 >> TOS``."
-msgstr "``TOS = TOS1 >> TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:473
-msgid "Implements ``TOS = TOS1 & TOS``."
-msgstr "``TOS = TOS1 & TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:478
-msgid "Implements ``TOS = TOS1 ^ TOS``."
-msgstr "``TOS = TOS1 ^ TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:483
-msgid "Implements ``TOS = TOS1 | TOS``."
-msgstr "``TOS = TOS1 | TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:486
-msgid "**In-place operations**"
-msgstr "**제자리 연산**"
-
-#: ../Doc/library/dis.rst:488
+#: ../../library/dis.rst:656
+#, fuzzy
 msgid ""
-"In-place operations are like binary operations, in that they remove TOS "
-"and TOS1, and push the result back on the stack, but the operation is "
-"done in-place when TOS1 supports it, and the resulting TOS may be (but "
-"does not have to be) the original TOS1."
+"In-place operations are like binary operations, but the operation is done"
+" in-place when ``STACK[-2]`` supports it, and the resulting ``STACK[-1]``"
+" may be (but does not have to be) the original ``STACK[-2]``."
 msgstr ""
 "제자리(in-place) 연산은 TOS와 TOS1을 제거하고, 스택에 결과를 다시 푸시한다는 점에서 이항 연산과 같습니다. 그러나 "
 "TOS1이 이를 지원하면 연산이 제자리에서 수행되며, 결과 TOS는 원래 TOS1일 수 있습니다 (하지만 꼭 그럴 필요는 "
 "없습니다)."
 
-#: ../Doc/library/dis.rst:495
-msgid "Implements in-place ``TOS = TOS1 ** TOS``."
-msgstr "제자리 ``TOS = TOS1 ** TOS``\\를 구현합니다."
+#: ../../library/dis.rst:663
+msgid ""
+"Implements the binary and in-place operators (depending on the value of "
+"*op*)::"
+msgstr ""
 
-#: ../Doc/library/dis.rst:500
-msgid "Implements in-place ``TOS = TOS1 * TOS``."
-msgstr "제자리 ``TOS = TOS1 * TOS``\\를 구현합니다."
+#: ../../library/dis.rst:666
+msgid ""
+"rhs = STACK.pop()\n"
+"lhs = STACK.pop()\n"
+"STACK.append(lhs op rhs)"
+msgstr ""
 
-#: ../Doc/library/dis.rst:505
-msgid "Implements in-place ``TOS = TOS1 @ TOS``."
-msgstr "제자리 ``TOS = TOS1 @ TOS``\\를 구현합니다."
+#: ../../library/dis.rst:675 ../../library/dis.rst:684
+#: ../../library/dis.rst:694 ../../library/dis.rst:702
+#: ../../library/dis.rst:714 ../../library/dis.rst:802
+#: ../../library/dis.rst:812 ../../library/dis.rst:822
+#: ../../library/dis.rst:1046 ../../library/dis.rst:1057
+#: ../../library/dis.rst:1161 ../../library/dis.rst:1173
+#: ../../library/dis.rst:1185
+msgid "Implements::"
+msgstr ""
 
-#: ../Doc/library/dis.rst:512
-msgid "Implements in-place ``TOS = TOS1 // TOS``."
-msgstr "제자리 ``TOS = TOS1 // TOS``\\를 구현합니다."
+#: ../../library/dis.rst:677
+msgid ""
+"key = STACK.pop()\n"
+"container = STACK.pop()\n"
+"STACK.append(container[key])"
+msgstr ""
 
-#: ../Doc/library/dis.rst:517
-msgid "Implements in-place ``TOS = TOS1 / TOS``."
-msgstr "제자리 ``TOS = TOS1 / TOS``\\를 구현합니다."
+#: ../../library/dis.rst:686
+msgid ""
+"key = STACK.pop()\n"
+"container = STACK.pop()\n"
+"value = STACK.pop()\n"
+"container[key] = value"
+msgstr ""
 
-#: ../Doc/library/dis.rst:522
-msgid "Implements in-place ``TOS = TOS1 % TOS``."
-msgstr "제자리 ``TOS = TOS1 % TOS``\\를 구현합니다."
+#: ../../library/dis.rst:696
+msgid ""
+"key = STACK.pop()\n"
+"container = STACK.pop()\n"
+"del container[key]"
+msgstr ""
 
-#: ../Doc/library/dis.rst:527
-msgid "Implements in-place ``TOS = TOS1 + TOS``."
-msgstr "제자리 ``TOS = TOS1 + TOS``\\를 구현합니다."
+#: ../../library/dis.rst:704
+msgid ""
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"container = STACK.pop()\n"
+"STACK.append(container[start:end])"
+msgstr ""
 
-#: ../Doc/library/dis.rst:532
-msgid "Implements in-place ``TOS = TOS1 - TOS``."
-msgstr "제자리 ``TOS = TOS1 - TOS``\\를 구현합니다."
+#: ../../library/dis.rst:716
+msgid ""
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"container = STACK.pop()\n"
+"values = STACK.pop()\n"
+"container[start:end] = value"
+msgstr ""
 
-#: ../Doc/library/dis.rst:537
-msgid "Implements in-place ``TOS = TOS1 << TOS``."
-msgstr "제자리 ``TOS = TOS1 << TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:542
-msgid "Implements in-place ``TOS = TOS1 >> TOS``."
-msgstr "제자리 ``TOS = TOS1 >> TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:547
-msgid "Implements in-place ``TOS = TOS1 & TOS``."
-msgstr "제자리 ``TOS = TOS1 & TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:552
-msgid "Implements in-place ``TOS = TOS1 ^ TOS``."
-msgstr "제자리 ``TOS = TOS1 ^ TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:557
-msgid "Implements in-place ``TOS = TOS1 | TOS``."
-msgstr "제자리 ``TOS = TOS1 | TOS``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:562
-msgid "Implements ``TOS1[TOS] = TOS2``."
-msgstr "``TOS1[TOS] = TOS2``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:567
-msgid "Implements ``del TOS1[TOS]``."
-msgstr "``del TOS1[TOS]``\\를 구현합니다."
-
-#: ../Doc/library/dis.rst:570
+#: ../../library/dis.rst:725
 msgid "**Coroutine opcodes**"
 msgstr "**코루틴 옵코드**"
 
-#: ../Doc/library/dis.rst:574
+#: ../../library/dis.rst:729
+#, fuzzy
 msgid ""
-"Implements ``TOS = get_awaitable(TOS)``, where ``get_awaitable(o)`` "
-"returns ``o`` if ``o`` is a coroutine object or a generator object with "
-"the CO_ITERABLE_COROUTINE flag, or resolves ``o.__await__``."
+"Implements ``STACK[-1] = get_awaitable(STACK[-1])``, where "
+"``get_awaitable(o)`` returns ``o`` if ``o`` is a coroutine object or a "
+"generator object with the :data:`~inspect.CO_ITERABLE_COROUTINE` flag, or"
+" resolves ``o.__await__``."
 msgstr ""
 "``TOS = get_awaitable(TOS)``\\를 구현합니다. 여기서 ``o``\\가 코루틴 객체나 "
 "CO_ITERABLE_COROUTINE 플래그를 가진 제너레이터 객체이면 ``get_awaitable(o)``\\는 ``o``\\를"
 " 반환합니다, 또는 ``o.__await__``\\를 해석(resolve)합니다."
 
-#: ../Doc/library/dis.rst:584
-msgid "Implements ``TOS = TOS.__aiter__()``."
+#: ../../library/dis.rst:734
+msgid ""
+"If the ``where`` operand is nonzero, it indicates where the instruction "
+"occurs:"
+msgstr ""
+
+#: ../../library/dis.rst:737
+msgid "``1``: After a call to ``__aenter__``"
+msgstr ""
+
+#: ../../library/dis.rst:738
+msgid "``2``: After a call to ``__aexit__``"
+msgstr ""
+
+#: ../../library/dis.rst:742
+msgid "Previously, this instruction did not have an oparg."
+msgstr ""
+
+#: ../../library/dis.rst:748
+#, fuzzy
+msgid "Implements ``STACK[-1] = STACK[-1].__aiter__()``."
 msgstr "``TOS = TOS.__aiter__()``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:587
+#: ../../library/dis.rst:751
 msgid "Returning awaitable objects from ``__aiter__`` is no longer supported."
 msgstr "``__aiter__``\\로부터 어웨이터블 객체를 반환하는 것은 더는 지원되지 않습니다."
 
-#: ../Doc/library/dis.rst:594
+#: ../../library/dis.rst:758
+#, fuzzy
 msgid ""
-"Implements ``PUSH(get_awaitable(TOS.__anext__()))``.  See "
-"``GET_AWAITABLE`` for details about ``get_awaitable``"
+"Implement ``STACK.append(get_awaitable(STACK[-1].__anext__()))`` to the "
+"stack. See ``GET_AWAITABLE`` for details about ``get_awaitable``."
 msgstr ""
 "``PUSH(get_awaitable(TOS.__anext__()))``\\를 구현합니다. ``get_awaitable``\\에 "
 "대한 자세한 내용은 ``GET_AWAITABLE``\\을 참조하십시오."
 
-#: ../Doc/library/dis.rst:602
+#: ../../library/dis.rst:766
 msgid ""
 "Terminates an :keyword:`async for` loop.  Handles an exception raised "
-"when awaiting a next item.  If TOS is :exc:`StopAsyncIteration` pop 7 "
-"values from the stack and restore the exception state using the second "
-"three of them.  Otherwise re-raise the exception using the three values "
-"from the stack.  An exception handler block is removed from the block "
-"stack."
+"when awaiting a next item. The stack contains the async iterable in "
+"``STACK[-2]`` and the raised exception in ``STACK[-1]``. Both are popped."
+" If the exception is not :exc:`StopAsyncIteration`, it is re-raised."
 msgstr ""
-":keyword:`async for` 루프를 종료합니다. 다음 항목을 어웨이트 할 때 발생하는 예외를 처리합니다. TOS가 "
-":exc:`StopAsyncIteration` 이면 스택에서 7개의 값을 팝하고 두 번째 세 개를 사용하여 예외 상태를 복원합니다."
-" 그렇지 않으면 스택에서 세 값을 사용하여 예외를 다시 발생시킵니다. 예외 처리기 블록이 블록 스택에서 제거됩니다."
 
-#: ../Doc/library/dis.rst:613
+#: ../../library/dis.rst:773 ../../library/dis.rst:881
+#: ../../library/dis.rst:892
 msgid ""
-"Resolves ``__aenter__`` and ``__aexit__`` from the object on top of the "
-"stack.  Pushes ``__aexit__`` and result of ``__aenter__()`` to the stack."
+"Exception representation on the stack now consist of one, not three, "
+"items."
+msgstr ""
+
+#: ../../library/dis.rst:779
+msgid ""
+"Handles an exception raised during a :meth:`~generator.throw` or "
+":meth:`~generator.close` call through the current frame.  If "
+"``STACK[-1]`` is an instance of :exc:`StopIteration`, pop three values "
+"from the stack and push its ``value`` member.  Otherwise, re-raise "
+"``STACK[-1]``."
+msgstr ""
+
+#: ../../library/dis.rst:789
+#, fuzzy
+msgid ""
+"Resolves ``__aenter__`` and ``__aexit__`` from ``STACK[-1]``. Pushes "
+"``__aexit__`` and result of ``__aenter__()`` to the stack::"
 msgstr ""
 "스택 최상단의 객체에서 ``__aenter__``\\와 ``__aexit__``\\를 해석(resolve)합니다. "
 "``__aexit__``\\와 ``__aenter__()``\\의 결과를 스택으로 푸시합니다."
 
-#: ../Doc/library/dis.rst:621
-msgid "Creates a new frame object."
-msgstr "새 프레임 객체를 만듭니다."
+#: ../../library/dis.rst:792
+msgid "STACK.extend((__aexit__, __aenter__())"
+msgstr ""
 
-#: ../Doc/library/dis.rst:627
+#: ../../library/dis.rst:798
 msgid "**Miscellaneous opcodes**"
 msgstr "**기타 옵코드**"
 
-#: ../Doc/library/dis.rst:631
+#: ../../library/dis.rst:804
 msgid ""
-"Implements the expression statement for the interactive mode.  TOS is "
-"removed from the stack and printed.  In non-interactive mode, an "
-"expression statement is terminated with :opcode:`POP_TOP`."
+"item = STACK.pop()\n"
+"set.add(STACK[-i], item)"
 msgstr ""
-"대화식 모드를 위한 표현식 문을 구현합니다. 스택에서 TOS가 제거되고 인쇄됩니다. 비 대화식 모드에서, 표현식 문은 "
-":opcode:`POP_TOP`\\으로 종료됩니다."
 
-#: ../Doc/library/dis.rst:638
-msgid "Calls ``set.add(TOS1[-i], TOS)``.  Used to implement set comprehensions."
+#: ../../library/dis.rst:807
+#, fuzzy
+msgid "Used to implement set comprehensions."
 msgstr "``set.add(TOS1[-i], TOS)``\\를 호출합니다. 집합 컴프리헨션을 구현하는 데 사용됩니다."
 
-#: ../Doc/library/dis.rst:643
+#: ../../library/dis.rst:814
 msgid ""
-"Calls ``list.append(TOS1[-i], TOS)``.  Used to implement list "
-"comprehensions."
+"item = STACK.pop()\n"
+"list.append(STACK[-i], item)"
+msgstr ""
+
+#: ../../library/dis.rst:817
+#, fuzzy
+msgid "Used to implement list comprehensions."
 msgstr "``list.append(TOS1[-i], TOS)``\\를 호출합니다. 리스트 컴프리헨션을 구현하는 데 사용됩니다."
 
-#: ../Doc/library/dis.rst:648
+#: ../../library/dis.rst:824
 msgid ""
-"Calls ``dict.__setitem__(TOS1[-i], TOS1, TOS)``.  Used to implement dict "
-"comprehensions."
+"value = STACK.pop()\n"
+"key = STACK.pop()\n"
+"dict.__setitem__(STACK[-i], key, value)"
 msgstr ""
-"``dict.__setitem__(TOS1[-i], TOS1, TOS)``\\를 호출합니다. 딕셔너리 컴프리헨션을 구현하는 데 "
-"사용됩니다."
 
-#: ../Doc/library/dis.rst:652
-msgid "Map value is TOS and map key is TOS1. Before, those were reversed."
+#: ../../library/dis.rst:828
+#, fuzzy
+msgid "Used to implement dict comprehensions."
+msgstr "``set.add(TOS1[-i], TOS)``\\를 호출합니다. 집합 컴프리헨션을 구현하는 데 사용됩니다."
+
+#: ../../library/dis.rst:831
+#, fuzzy
+msgid ""
+"Map value is ``STACK[-1]`` and map key is ``STACK[-2]``. Before, those "
+"were reversed."
 msgstr "맵 값은 TOS이고 맵 키는 TOS1입니다. 전에는, 이것들이 반대였습니다."
 
-#: ../Doc/library/dis.rst:655
+#: ../../library/dis.rst:835
 msgid ""
 "For all of the :opcode:`SET_ADD`, :opcode:`LIST_APPEND` and "
 ":opcode:`MAP_ADD` instructions, while the added value or key/value pair "
@@ -728,19 +1032,38 @@ msgstr ""
 "모든 :opcode:`SET_ADD`, :opcode:`LIST_APPEND` 및 :opcode:`MAP_ADD` 명령어에 대해, "
 "추가된 값이나 키/값 쌍이 팝 되지만, 컨테이너 객체는 스택에 남아 있어서 루프의 추가 이터레이션에 사용할 수 있습니다."
 
-#: ../Doc/library/dis.rst:663
-msgid "Returns with TOS to the caller of the function."
+#: ../../library/dis.rst:843
+#, fuzzy
+msgid "Returns with ``STACK[-1]`` to the caller of the function."
 msgstr "TOS를 함수 호출자에게 반환합니다."
 
-#: ../Doc/library/dis.rst:668
-msgid "Pops TOS and yields it from a :term:`generator`."
+#: ../../library/dis.rst:848
+#, fuzzy
+msgid "Returns with ``co_consts[consti]`` to the caller of the function."
+msgstr "TOS를 함수 호출자에게 반환합니다."
+
+#: ../../library/dis.rst:855
+#, fuzzy
+msgid "Yields ``STACK.pop()`` from a :term:`generator`."
 msgstr "TOS를 팝하고 :term:`제너레이터 <generator>`\\에서 그것을 산출합니다."
 
-#: ../Doc/library/dis.rst:673
-msgid "Pops TOS and delegates to it as a subiterator from a :term:`generator`."
-msgstr "TOS를 팝하고 :term:`제너레이터 <generator>`\\에서 서브 이터레이터로 그것에 위임합니다."
+#: ../../library/dis.rst:857
+msgid "oparg set to be the stack depth."
+msgstr ""
 
-#: ../Doc/library/dis.rst:680
+#: ../../library/dis.rst:860
+msgid ""
+"oparg set to be the exception block depth, for efficient closing of "
+"generators."
+msgstr ""
+
+#: ../../library/dis.rst:863
+msgid ""
+"oparg is ``1`` if this instruction is part of a yield-from or await, and "
+"``0`` otherwise."
+msgstr ""
+
+#: ../../library/dis.rst:869
 msgid ""
 "Checks whether ``__annotations__`` is defined in ``locals()``, if not it "
 "is set up to an empty ``dict``. This opcode is only emitted if a class or"
@@ -751,72 +1074,86 @@ msgstr ""
 "``dict``\\로 설정됩니다. 이 옵코드는 클래스나 모듈 본문에 :term:`변수 어노테이션 <variable "
 "annotation>`\\이 정적으로 포함될 때만 생성됩니다."
 
-#: ../Doc/library/dis.rst:690
-msgid ""
-"Loads all symbols not starting with ``'_'`` directly from the module TOS "
-"to the local namespace. The module is popped after loading all names. "
-"This opcode implements ``from module import *``."
+#: ../../library/dis.rst:879
+msgid "Pops a value from the stack, which is used to restore the exception state."
 msgstr ""
-"``'_'``\\로 시작하지 않는 모든 심볼을 모듈 TOS에서 지역 이름 공간으로 직접 로드합니다. 모든 이름을 로드한 후 모듈이 "
-"팝 됩니다. 이 옵코드는 ``from module import *``\\를 구현합니다."
 
-#: ../Doc/library/dis.rst:697
+#: ../../library/dis.rst:886
 msgid ""
-"Removes one block from the block stack.  Per frame, there is a stack of "
-"blocks, denoting :keyword:`try` statements, and such."
+"Re-raises the exception currently on top of the stack. If oparg is non-"
+"zero, pops an additional value from the stack which is used to set "
+":attr:`~frame.f_lasti` of the current frame."
 msgstr ""
-"블록 스택에서 하나의 블록을 제거합니다. 프레임마다, 블록 스택이 있습니다, :keyword:`try` 문을 나타내는 것과 같은 "
-"것들입니다."
 
-#: ../Doc/library/dis.rst:703
+#: ../../library/dis.rst:897
 msgid ""
-"Removes one block from the block stack. The popped block must be an "
-"exception handler block, as implicitly created when entering an except "
-"handler.  In addition to popping extraneous values from the frame stack, "
-"the last three popped values are used to restore the exception state."
+"Pops a value from the stack. Pushes the current exception to the top of "
+"the stack. Pushes the value originally popped back to the stack. Used in "
+"exception handlers."
 msgstr ""
-"블록 스택에서 하나의 블록을 제거합니다. 팝 된 블록은 예외 처리기에 진입할 때 묵시적으로 만들어진 예외 처리기 블록이어야 합니다."
-" 프레임 스택에서 추가적인 값들을 팝 하는 것에 더해, 마지막 3개의 팝 된 값이 예외 상태를 복원하는 데 사용됩니다."
 
-#: ../Doc/library/dis.rst:711
-msgid "Re-raises the exception currently on top of the stack."
-msgstr "스택 최상단의 예외를 다시 발생시킵니다."
-
-#: ../Doc/library/dis.rst:718
+#: ../../library/dis.rst:905
 msgid ""
-"Calls the function in position 7 on the stack with the top three items on"
-" the stack as arguments. Used to implement the call "
-"``context_manager.__exit__(*exc_info())`` when an exception has occurred "
-"in a :keyword:`with` statement."
+"Performs exception matching for ``except``. Tests whether the "
+"``STACK[-2]`` is an exception matching ``STACK[-1]``. Pops ``STACK[-1]`` "
+"and pushes the boolean result of the test."
+msgstr ""
+
+#: ../../library/dis.rst:913
+msgid ""
+"Performs exception matching for ``except*``. Applies ``split(STACK[-1])``"
+" on the exception group representing ``STACK[-2]``."
+msgstr ""
+
+#: ../../library/dis.rst:916
+msgid ""
+"In case of a match, pops two items from the stack and pushes the non-"
+"matching subgroup (``None`` in case of full match) followed by the "
+"matching subgroup. When there is no match, pops one item (the match type)"
+" and pushes ``None``."
+msgstr ""
+
+#: ../../library/dis.rst:925
+#, fuzzy
+msgid ""
+"Calls the function in position 4 on the stack with arguments (type, val, "
+"tb) representing the exception at the top of the stack. Used to implement"
+" the call ``context_manager.__exit__(*exc_info())`` when an exception has"
+" occurred in a :keyword:`with` statement."
 msgstr ""
 "스택의 최상위 3개 항목을 인자로 스택의 위치 7에 있는 함수를 호출합니다. :keyword:`with` 문에서 예외가 발생했을 때"
 " ``context_manager.__exit__(*exc_info())`` 호출을 구현하는 데 사용됩니다."
 
-#: ../Doc/library/dis.rst:728
+#: ../../library/dis.rst:932
+msgid ""
+"The ``__exit__`` function is in position 4 of the stack rather than 7. "
+"Exception representation on the stack now consist of one, not three, "
+"items."
+msgstr ""
+
+#: ../../library/dis.rst:939
 msgid ""
 "Pushes :exc:`AssertionError` onto the stack.  Used by the "
 ":keyword:`assert` statement."
 msgstr ":exc:`AssertionError`\\를 스택으로 푸시합니다. :keyword:`assert` 문에서 사용됩니다."
 
-#: ../Doc/library/dis.rst:736
+#: ../../library/dis.rst:947
+#, fuzzy
 msgid ""
-"Pushes :func:`builtins.__build_class__` onto the stack.  It is later "
-"called by :opcode:`CALL_FUNCTION` to construct a class."
+"Pushes :func:`!builtins.__build_class__` onto the stack.  It is later "
+"called to construct a class."
 msgstr ""
 ":func:`builtins.__build_class__`\\를 스택으로 푸시합니다. 나중에 클래스를 생성하기 위해 "
 ":opcode:`CALL_FUNCTION`\\에 의해 호출됩니다."
 
-#: ../Doc/library/dis.rst:742
+#: ../../library/dis.rst:953
+#, fuzzy
 msgid ""
 "This opcode performs several operations before a with block starts.  "
 "First, it loads :meth:`~object.__exit__` from the context manager and "
-"pushes it onto the stack for later use by :opcode:`WITH_CLEANUP_START`.  "
-"Then, :meth:`~object.__enter__` is called, and a finally block pointing "
-"to *delta* is pushed.  Finally, the result of calling the ``__enter__()``"
-" method is pushed onto the stack.  The next opcode will either ignore it "
-"(:opcode:`POP_TOP`), or store it in (a) variable(s) "
-"(:opcode:`STORE_FAST`, :opcode:`STORE_NAME`, or "
-":opcode:`UNPACK_SEQUENCE`)."
+"pushes it onto the stack for later use by :opcode:`WITH_EXCEPT_START`.  "
+"Then, :meth:`~object.__enter__` is called. Finally, the result of calling"
+" the ``__enter__()`` method is pushed onto the stack."
 msgstr ""
 "이 옵코드는 with 블록이 시작되기 전에 여러 연산을 수행합니다. 먼저 컨텍스트 관리자에서 "
 ":meth:`~object.__exit__`\\를 로드하고 나중에 :opcode:`WITH_CLEANUP_START`\\에서 사용할"
@@ -825,362 +1162,669 @@ msgstr ""
 "다음 옵코드는 이를 무시하거나 (:opcode:`POP_TOP`), 변수에 저장합니다 (:opcode:`STORE_FAST`, "
 ":opcode:`STORE_NAME` 또는 :opcode:`UNPACK_SEQUENCE`)."
 
-#: ../Doc/library/dis.rst:754
-msgid "All of the following opcodes use their arguments."
-msgstr "다음 옵코드는 모두 인자를 사용합니다."
-
-#: ../Doc/library/dis.rst:758
+#: ../../library/dis.rst:964
 msgid ""
-"Implements ``name = TOS``. *namei* is the index of *name* in the "
-"attribute :attr:`co_names` of the code object. The compiler tries to use "
-":opcode:`STORE_FAST` or :opcode:`STORE_GLOBAL` if possible."
+"Perform ``STACK.append(len(STACK[-1]))``. Used in :keyword:`match` "
+"statements where comparison with structure of pattern is needed."
+msgstr ""
+
+#: ../../library/dis.rst:972
+msgid ""
+"If ``STACK[-1]`` is an instance of :class:`collections.abc.Mapping` (or, "
+"more technically: if it has the :c:macro:`Py_TPFLAGS_MAPPING` flag set in"
+" its :c:member:`~PyTypeObject.tp_flags`), push ``True`` onto the stack.  "
+"Otherwise, push ``False``."
+msgstr ""
+
+#: ../../library/dis.rst:982
+msgid ""
+"If ``STACK[-1]`` is an instance of :class:`collections.abc.Sequence` and "
+"is *not* an instance of :class:`str`/:class:`bytes`/:class:`bytearray` "
+"(or, more technically: if it has the :c:macro:`Py_TPFLAGS_SEQUENCE` flag "
+"set in its :c:member:`~PyTypeObject.tp_flags`), push ``True`` onto the "
+"stack.  Otherwise, push ``False``."
+msgstr ""
+
+#: ../../library/dis.rst:992
+msgid ""
+"``STACK[-1]`` is a tuple of mapping keys, and ``STACK[-2]`` is the match "
+"subject. If ``STACK[-2]`` contains all of the keys in ``STACK[-1]``, push"
+" a :class:`tuple` containing the corresponding values. Otherwise, push "
+"``None``."
+msgstr ""
+
+#: ../../library/dis.rst:998 ../../library/dis.rst:1690
+msgid ""
+"Previously, this instruction also pushed a boolean value indicating "
+"success (``True``) or failure (``False``)."
+msgstr ""
+
+#: ../../library/dis.rst:1005
+#, fuzzy
+msgid ""
+"Implements ``name = STACK.pop()``. *namei* is the index of *name* in the "
+"attribute :attr:`~codeobject.co_names` of the :ref:`code object <code-"
+"objects>`. The compiler tries to use :opcode:`STORE_FAST` or "
+":opcode:`STORE_GLOBAL` if possible."
 msgstr ""
 "``name = TOS``\\를 구현합니다. *namei*\\는 코드 객체의 :attr:`co_names` 어트리뷰트에서 "
 "*name*\\의 인덱스입니다. 컴파일러는 가능하면 :opcode:`STORE_FAST`\\나 "
 ":opcode:`STORE_GLOBAL`\\을 사용하려고 합니다."
 
-#: ../Doc/library/dis.rst:765
+#: ../../library/dis.rst:1012
+#, fuzzy
 msgid ""
-"Implements ``del name``, where *namei* is the index into :attr:`co_names`"
-" attribute of the code object."
+"Implements ``del name``, where *namei* is the index into "
+":attr:`~codeobject.co_names` attribute of the :ref:`code object <code-"
+"objects>`."
 msgstr ""
 "``del name``\\을 구현합니다. 여기서 *namei*\\는 코드 객체의 :attr:`co_names` 어트리뷰트에서의 "
 "인덱스입니다."
 
-#: ../Doc/library/dis.rst:771
+#: ../../library/dis.rst:1018
+#, fuzzy
 msgid ""
-"Unpacks TOS into *count* individual values, which are put onto the stack "
-"right-to-left."
+"Unpacks ``STACK[-1]`` into *count* individual values, which are put onto "
+"the stack right-to-left. Require there to be exactly *count* values.::"
 msgstr "TOS를 *count* 개 개별 값으로 언팩합니다. 이 값들은 오른쪽에서 왼쪽으로 스택에 넣습니다."
 
-#: ../Doc/library/dis.rst:777
+#: ../../library/dis.rst:1021
 msgid ""
-"Implements assignment with a starred target: Unpacks an iterable in TOS "
-"into individual values, where the total number of values can be smaller "
-"than the number of items in the iterable: one of the new values will be a"
-" list of all leftover items."
+"assert(len(STACK[-1]) == count)\n"
+"STACK.extend(STACK.pop()[:-count-1:-1])"
+msgstr ""
+
+#: ../../library/dis.rst:1027
+#, fuzzy
+msgid ""
+"Implements assignment with a starred target: Unpacks an iterable in "
+"``STACK[-1]`` into individual values, where the total number of values "
+"can be smaller than the number of items in the iterable: one of the new "
+"values will be a list of all leftover items."
 msgstr ""
 "스타드 타깃(starred target)으로의 대입을 구현합니다: TOS의 이터러블을 개별 값으로 언팩합니다. 여기서 값의 총수는 "
 "이터러블의 항목 수보다 적을 수 있습니다: 새 값 중 하나는 남은 모든 항목의 리스트입니다."
 
-#: ../Doc/library/dis.rst:782
-msgid ""
-"The low byte of *counts* is the number of values before the list value, "
-"the high byte of *counts* the number of values after it.  The resulting "
-"values are put onto the stack right-to-left."
+#: ../../library/dis.rst:1032
+msgid "The number of values before and after the list value is limited to 255."
 msgstr ""
-"*counts*\\의 하위 바이트는 리스트값 이전의 값의 개수이고, *counts*\\의 상위 바이트는 그 이후의 값의 개수입니다."
-" 결괏값들은 오른쪽에서 왼쪽으로 스택에 넣습니다."
 
-#: ../Doc/library/dis.rst:789
+#: ../../library/dis.rst:1034
 msgid ""
-"Implements ``TOS.name = TOS1``, where *namei* is the index of name in "
-":attr:`co_names`."
+"The number of values before the list value is encoded in the argument of "
+"the opcode. The number of values after the list if any is encoded using "
+"an ``EXTENDED_ARG``. As a consequence, the argument can be seen as a two "
+"bytes values where the low byte of *counts* is the number of values "
+"before the list value, the high byte of *counts* the number of values "
+"after it."
 msgstr ""
-"``TOS.name = TOS1``\\을 구현합니다. 여기서 *namei*\\는 :attr:`co_names`\\에서 name의 "
+
+#: ../../library/dis.rst:1040
+msgid ""
+"The extracted values are put onto the stack right-to-left, i.e. ``a, *b, "
+"c = d`` will be stored after execution as ``STACK.extend((a, b, c))``."
+msgstr ""
+
+#: ../../library/dis.rst:1048
+msgid ""
+"obj = STACK.pop()\n"
+"value = STACK.pop()\n"
+"obj.name = value"
+msgstr ""
+
+#: ../../library/dis.rst:1052
+#, fuzzy
+msgid ""
+"where *namei* is the index of name in :attr:`~codeobject.co_names` of the"
+" :ref:`code object <code-objects>`."
+msgstr ""
+"``del name``\\을 구현합니다. 여기서 *namei*\\는 코드 객체의 :attr:`co_names` 어트리뷰트에서의 "
 "인덱스입니다."
 
-#: ../Doc/library/dis.rst:795
-msgid "Implements ``del TOS.name``, using *namei* as index into :attr:`co_names`."
-msgstr "*namei*\\를 :attr:`co_names`\\에서의 인덱스로 사용하여, ``del TOS.name``\\을 구현합니다."
+#: ../../library/dis.rst:1059
+msgid ""
+"obj = STACK.pop()\n"
+"del obj.name"
+msgstr ""
 
-#: ../Doc/library/dis.rst:800
+#: ../../library/dis.rst:1062
+#, fuzzy
+msgid ""
+"where *namei* is the index of name into :attr:`~codeobject.co_names` of "
+"the :ref:`code object <code-objects>`."
+msgstr ""
+"``del name``\\을 구현합니다. 여기서 *namei*\\는 코드 객체의 :attr:`co_names` 어트리뷰트에서의 "
+"인덱스입니다."
+
+#: ../../library/dis.rst:1068
 msgid "Works as :opcode:`STORE_NAME`, but stores the name as a global."
 msgstr ":opcode:`STORE_NAME`\\처럼 작동하지만, 이름을 전역으로 저장합니다."
 
-#: ../Doc/library/dis.rst:805
+#: ../../library/dis.rst:1073
 msgid "Works as :opcode:`DELETE_NAME`, but deletes a global name."
 msgstr ":opcode:`DELETE_NAME`\\처럼 작동하지만, 전역 이름을 삭제합니다."
 
-#: ../Doc/library/dis.rst:810
+#: ../../library/dis.rst:1078
 msgid "Pushes ``co_consts[consti]`` onto the stack."
 msgstr "``co_consts[consti]``\\를 스택으로 푸시합니다."
 
-#: ../Doc/library/dis.rst:815
-msgid "Pushes the value associated with ``co_names[namei]`` onto the stack."
+#: ../../library/dis.rst:1083
+#, fuzzy
+msgid ""
+"Pushes the value associated with ``co_names[namei]`` onto the stack. The "
+"name is looked up within the locals, then the globals, then the builtins."
 msgstr "``co_names[namei]``\\와 연관된 값을 스택으로 푸시합니다."
 
-#: ../Doc/library/dis.rst:820
+#: ../../library/dis.rst:1089
+msgid ""
+"Pushes a reference to the locals dictionary onto the stack.  This is used"
+" to prepare namespace dictionaries for :opcode:`LOAD_FROM_DICT_OR_DEREF` "
+"and :opcode:`LOAD_FROM_DICT_OR_GLOBALS`."
+msgstr ""
+
+#: ../../library/dis.rst:1098
+msgid ""
+"Pops a mapping off the stack and looks up the value for "
+"``co_names[namei]``. If the name is not found there, looks it up in the "
+"globals and then the builtins, similar to :opcode:`LOAD_GLOBAL`. This is "
+"used for loading global variables in :ref:`annotation scopes <annotation-"
+"scopes>` within class bodies."
+msgstr ""
+
+#: ../../library/dis.rst:1109
+#, fuzzy
 msgid ""
 "Creates a tuple consuming *count* items from the stack, and pushes the "
-"resulting tuple onto the stack."
+"resulting tuple onto the stack::"
 msgstr "스택에서 *count* 개의 항목을 소비하는 튜플을 만들고, 결과 튜플을 스택으로 푸시합니다."
 
-#: ../Doc/library/dis.rst:826
+#: ../../library/dis.rst:1112
+msgid ""
+"if count == 0:\n"
+"    value = ()\n"
+"else:\n"
+"    value = tuple(STACK[-count:])\n"
+"    STACK = STACK[:-count]\n"
+"\n"
+"STACK.append(value)"
+msgstr ""
+
+#: ../../library/dis.rst:1123
 msgid "Works as :opcode:`BUILD_TUPLE`, but creates a list."
 msgstr ":opcode:`BUILD_TUPLE`\\처럼 작동하지만, 리스트를 만듭니다."
 
-#: ../Doc/library/dis.rst:831
+#: ../../library/dis.rst:1128
 msgid "Works as :opcode:`BUILD_TUPLE`, but creates a set."
 msgstr ":opcode:`BUILD_TUPLE`\\처럼 작동하지만, 집합을 만듭니다."
 
-#: ../Doc/library/dis.rst:836
+#: ../../library/dis.rst:1133
+#, fuzzy, python-brace-format
 msgid ""
 "Pushes a new dictionary object onto the stack.  Pops ``2 * count`` items "
-"so that the dictionary holds *count* entries: ``{..., TOS3: TOS2, TOS1: "
-"TOS}``."
+"so that the dictionary holds *count* entries: ``{..., STACK[-4]: "
+"STACK[-3], STACK[-2]: STACK[-1]}``."
 msgstr ""
 "새 딕셔너리 객체를 스택으로 푸시합니다. 딕셔너리가 *count* 항목을 갖도록 ``2 * count`` 항목을 팝 합니다: "
 "``{..., TOS3: TOS2, TOS1: TOS}``."
 
-#: ../Doc/library/dis.rst:840
+#: ../../library/dis.rst:1137
 msgid ""
 "The dictionary is created from stack items instead of creating an empty "
 "dictionary pre-sized to hold *count* items."
 msgstr "딕셔너리는 *count* 항목을 갖도록 미리 크기가 조정된 빈 딕셔너리를 만드는 대신 스택 항목에서 만들어집니다."
 
-#: ../Doc/library/dis.rst:847
+#: ../../library/dis.rst:1144
+#, fuzzy
 msgid ""
 "The version of :opcode:`BUILD_MAP` specialized for constant keys. Pops "
 "the top element on the stack which contains a tuple of keys, then "
-"starting from ``TOS1``, pops *count* values to form values in the built "
-"dictionary."
+"starting from ``STACK[-2]``, pops *count* values to form values in the "
+"built dictionary."
 msgstr ""
 "상수 키에 특화된 :opcode:`BUILD_MAP` 버전. 키의 튜플이 포함된 스택의 맨 위 요소를 팝 한 다음, "
 "``TOS1``\\에서 시작하여, *count* 개의 값을 팝 하여 만들어지는 딕셔너리의 값을 형성합니다."
 
-#: ../Doc/library/dis.rst:856
+#: ../../library/dis.rst:1153
 msgid ""
 "Concatenates *count* strings from the stack and pushes the resulting "
 "string onto the stack."
 msgstr "스택에서 *count* 문자열을 이어붙이고 결과 문자열을 스택으로 푸시합니다."
 
-#: ../Doc/library/dis.rst:864
-msgid "Pops a list from the stack and pushes a tuple containing the same values."
-msgstr "스택에서 리스트를 팝하고 같은 값을 포함하는 튜플을 푸시합니다."
+#: ../../library/dis.rst:1163
+msgid ""
+"seq = STACK.pop()\n"
+"list.extend(STACK[-i], seq)"
+msgstr ""
 
-#: ../Doc/library/dis.rst:871
-msgid "Calls ``list.extend(TOS1[-i], TOS)``.  Used to build lists."
-msgstr "``list.extend(TOS1[-i], TOS)``\\를 호출합니다. 리스트를 만드는 데 사용됩니다."
+#: ../../library/dis.rst:1166
+msgid "Used to build lists."
+msgstr ""
 
-#: ../Doc/library/dis.rst:878
-msgid "Calls ``set.update(TOS1[-i], TOS)``.  Used to build sets."
-msgstr "``set.update(TOS1[-i], TOS)``\\를 호출합니다. 집합을 만드는 데 사용됩니다."
+#: ../../library/dis.rst:1175
+msgid ""
+"seq = STACK.pop()\n"
+"set.update(STACK[-i], seq)"
+msgstr ""
 
-#: ../Doc/library/dis.rst:885
-msgid "Calls ``dict.update(TOS1[-i], TOS)``.  Used to build dicts."
-msgstr "``dict.update(TOS1[-i], TOS)``\\를 호출합니다. 딕셔너리를 만드는 데 사용됩니다."
+#: ../../library/dis.rst:1178
+msgid "Used to build sets."
+msgstr ""
 
-#: ../Doc/library/dis.rst:892
+#: ../../library/dis.rst:1187
+msgid ""
+"map = STACK.pop()\n"
+"dict.update(STACK[-i], map)"
+msgstr ""
+
+#: ../../library/dis.rst:1190
+msgid "Used to build dicts."
+msgstr ""
+
+#: ../../library/dis.rst:1197
 msgid "Like :opcode:`DICT_UPDATE` but raises an exception for duplicate keys."
 msgstr ":opcode:`DICT_UPDATE`\\와 유사하지만, 중복 키에 대해 예외를 발생시킵니다."
 
-#: ../Doc/library/dis.rst:899
-msgid "Replaces TOS with ``getattr(TOS, co_names[namei])``."
-msgstr "TOS를 ``getattr(TOS, co_names[namei])``\\로 바꿉니다."
+#: ../../library/dis.rst:1204
+msgid ""
+"If the low bit of ``namei`` is not set, this replaces ``STACK[-1]`` with "
+"``getattr(STACK[-1], co_names[namei>>1])``."
+msgstr ""
 
-#: ../Doc/library/dis.rst:904
+#: ../../library/dis.rst:1207
+#, fuzzy
+msgid ""
+"If the low bit of ``namei`` is set, this will attempt to load a method "
+"named ``co_names[namei>>1]`` from the ``STACK[-1]`` object. ``STACK[-1]``"
+" is popped. This bytecode distinguishes two cases: if ``STACK[-1]`` has a"
+" method with the correct name, the bytecode pushes the unbound method and"
+" ``STACK[-1]``. ``STACK[-1]`` will be used as the first argument "
+"(``self``) by :opcode:`CALL` or :opcode:`CALL_KW` when calling the "
+"unbound method. Otherwise, ``NULL`` and the object returned by the "
+"attribute lookup are pushed."
+msgstr ""
+"TOS 객체에서 ``co_names[namei]``\\라는 이름의 메서드를 로드합니다. TOS가 팝 됩니다. 이 바이트 코드는 두 "
+"가지 경우를 구별합니다: TOS에 올바른 이름의 메서드가 있으면, 바이트 코드는 연결되지 않은 메서드와 TOS를 푸시합니다. "
+"TOS는 연결되지 않은 메서드를 호출할 때 :opcode:`CALL_METHOD`\\에서 첫 번째 인자(``self``)로 "
+"사용됩니다. 그렇지 않으면, ``NULL``\\과 어트리뷰트 조회에 의해 반환된 객체가 푸시 됩니다."
+
+#: ../../library/dis.rst:1216
+msgid ""
+"If the low bit of ``namei`` is set, then a ``NULL`` or ``self`` is pushed"
+" to the stack before the attribute or unbound method respectively."
+msgstr ""
+
+#: ../../library/dis.rst:1223
+msgid ""
+"This opcode implements :func:`super`, both in its zero-argument and two-"
+"argument forms (e.g. ``super().method()``, ``super().attr`` and "
+"``super(cls, self).method()``, ``super(cls, self).attr``)."
+msgstr ""
+
+#: ../../library/dis.rst:1227
+msgid "It pops three values from the stack (from top of stack down):"
+msgstr ""
+
+#: ../../library/dis.rst:1229
+msgid "``self``: the first argument to the current method"
+msgstr ""
+
+#: ../../library/dis.rst:1230
+msgid "``cls``: the class within which the current method was defined"
+msgstr ""
+
+#: ../../library/dis.rst:1231
+msgid "the global ``super``"
+msgstr ""
+
+#: ../../library/dis.rst:1233
+msgid ""
+"With respect to its argument, it works similarly to :opcode:`LOAD_ATTR`, "
+"except that ``namei`` is shifted left by 2 bits instead of 1."
+msgstr ""
+
+#: ../../library/dis.rst:1236
+msgid ""
+"The low bit of ``namei`` signals to attempt a method load, as with "
+":opcode:`LOAD_ATTR`, which results in pushing ``NULL`` and the loaded "
+"method. When it is unset a single value is pushed to the stack."
+msgstr ""
+
+#: ../../library/dis.rst:1240
+msgid ""
+"The second-low bit of ``namei``, if set, means that this was a two-"
+"argument call to :func:`super` (unset means zero-argument)."
+msgstr ""
+
+#: ../../library/dis.rst:1248
+#, fuzzy
 msgid ""
 "Performs a Boolean operation.  The operation name can be found in "
-"``cmp_op[opname]``."
+"``cmp_op[opname >> 5]``. If the fifth-lowest bit of ``opname`` is set "
+"(``opname & 16``), the result should be coerced to ``bool``."
 msgstr "불리언 연산을 수행합니다. 연산 이름은 ``cmp_op[opname]``\\에서 찾을 수 있습니다."
 
-#: ../Doc/library/dis.rst:910
+#: ../../library/dis.rst:1252
+msgid ""
+"The fifth-lowest bit of the oparg now indicates a forced conversion to "
+":class:`bool`."
+msgstr ""
+
+#: ../../library/dis.rst:1259
 msgid "Performs ``is`` comparison, or ``is not`` if ``invert`` is 1."
 msgstr "``is`` 비교를 수행하거나, ``invert``\\가 1이면 ``is not``\\을 수행합니다."
 
-#: ../Doc/library/dis.rst:917
+#: ../../library/dis.rst:1266
 msgid "Performs ``in`` comparison, or ``not in`` if ``invert`` is 1."
 msgstr "``in`` 비교를 수행하거나, ``invert``\\가 1이면 ``not in``\\을 수행합니다."
 
-#: ../Doc/library/dis.rst:924
+#: ../../library/dis.rst:1273
+#, fuzzy
 msgid ""
-"Imports the module ``co_names[namei]``.  TOS and TOS1 are popped and "
-"provide the *fromlist* and *level* arguments of :func:`__import__`.  The "
-"module object is pushed onto the stack.  The current namespace is not "
-"affected: for a proper import statement, a subsequent "
-":opcode:`STORE_FAST` instruction modifies the namespace."
+"Imports the module ``co_names[namei]``.  ``STACK[-1]`` and ``STACK[-2]`` "
+"are popped and provide the *fromlist* and *level* arguments of "
+":func:`__import__`. The module object is pushed onto the stack.  The "
+"current namespace is not affected: for a proper import statement, a "
+"subsequent :opcode:`STORE_FAST` instruction modifies the namespace."
 msgstr ""
 "모듈 ``co_names[namei]``\\를 임포트 합니다. TOS와 TOS1이 팝 되고 :func:`__import__`\\의 "
 "*fromlist*\\와 *level* 인자를 제공합니다. 모듈 객체가 스택으로 푸시 됩니다. 현재 이름 공간은 영향을 받지 "
 "않습니다: 올바른 import 문을 위해, 후속 :opcode:`STORE_FAST` 명령어가 이름 공간을 수정합니다."
 
-#: ../Doc/library/dis.rst:933
+#: ../../library/dis.rst:1281
+#, fuzzy
 msgid ""
-"Loads the attribute ``co_names[namei]`` from the module found in TOS. The"
-" resulting object is pushed onto the stack, to be subsequently stored by "
-"a :opcode:`STORE_FAST` instruction."
+"Loads the attribute ``co_names[namei]`` from the module found in "
+"``STACK[-1]``. The resulting object is pushed onto the stack, to be "
+"subsequently stored by a :opcode:`STORE_FAST` instruction."
 msgstr ""
 "TOS에서 발견된 모듈에서 어트리뷰트 ``co_names[namei]``\\를 로드합니다. 결과 객체는 스택에 푸시 되어, 뒤따르는"
 " :opcode:`STORE_FAST` 명령어로 저장됩니다."
 
-#: ../Doc/library/dis.rst:940
+#: ../../library/dis.rst:1288
 msgid "Increments bytecode counter by *delta*."
 msgstr "바이트 코드 카운터를 *delta*\\만큼 증가시킵니다."
 
-#: ../Doc/library/dis.rst:945
-msgid "If TOS is true, sets the bytecode counter to *target*.  TOS is popped."
+#: ../../library/dis.rst:1293
+#, fuzzy
+msgid "Decrements bytecode counter by *delta*. Checks for interrupts."
+msgstr "바이트 코드 카운터를 *delta*\\만큼 증가시킵니다."
+
+#: ../../library/dis.rst:1300
+#, fuzzy
+msgid "Decrements bytecode counter by *delta*. Does not check for interrupts."
+msgstr "바이트 코드 카운터를 *delta*\\만큼 증가시킵니다."
+
+#: ../../library/dis.rst:1307
+#, fuzzy
+msgid ""
+"If ``STACK[-1]`` is true, increments the bytecode counter by *delta*. "
+"``STACK[-1]`` is popped."
 msgstr "TOS가 참이면, 바이트 코드 카운터를 *target*\\으로 설정합니다. TOS가 팝 됩니다."
 
-#: ../Doc/library/dis.rst:952
-msgid "If TOS is false, sets the bytecode counter to *target*.  TOS is popped."
+#: ../../library/dis.rst:1310 ../../library/dis.rst:1326
+msgid ""
+"The oparg is now a relative delta rather than an absolute target. This "
+"opcode is a pseudo-instruction, replaced in final bytecode by the "
+"directed versions (forward/backward)."
+msgstr ""
+
+#: ../../library/dis.rst:1315 ../../library/dis.rst:1331
+#: ../../library/dis.rst:1347 ../../library/dis.rst:1361
+msgid "This is no longer a pseudo-instruction."
+msgstr ""
+
+#: ../../library/dis.rst:1323
+#, fuzzy
+msgid ""
+"If ``STACK[-1]`` is false, increments the bytecode counter by *delta*. "
+"``STACK[-1]`` is popped."
 msgstr "TOS가 거짓이면, 바이트 코드 카운터를 *target*\\으로 설정합니다. TOS가 팝 됩니다."
 
-#: ../Doc/library/dis.rst:958
+#: ../../library/dis.rst:1339
+#, fuzzy
 msgid ""
-"Tests whether the second value on the stack is an exception matching TOS,"
-" and jumps if it is not. Pops two values from the stack."
-msgstr "스택의 두 번째 값이 TOS와 일치하는 예외인지 테스트하고, 그렇지 않으면 점프합니다. 스택에서 두 값을 팝 합니다."
+"If ``STACK[-1]`` is not ``None``, increments the bytecode counter by "
+"*delta*. ``STACK[-1]`` is popped."
+msgstr "TOS가 참이면, 바이트 코드 카운터를 *target*\\으로 설정합니다. TOS가 팝 됩니다."
 
-#: ../Doc/library/dis.rst:966
+#: ../../library/dis.rst:1342 ../../library/dis.rst:1356
 msgid ""
-"If TOS is true, sets the bytecode counter to *target* and leaves TOS on "
-"the stack.  Otherwise (TOS is false), TOS is popped."
+"This opcode is a pseudo-instruction, replaced in final bytecode by the "
+"directed versions (forward/backward)."
 msgstr ""
-"TOS가 참이면, 바이트 코드 카운터를 *target*\\으로 설정하고 스택에 TOS를 남겨 둡니다. 그렇지 않으면 (TOS가 "
-"거짓이면), TOS가 팝 됩니다."
 
-#: ../Doc/library/dis.rst:974
+#: ../../library/dis.rst:1353
+#, fuzzy
 msgid ""
-"If TOS is false, sets the bytecode counter to *target* and leaves TOS on "
-"the stack.  Otherwise (TOS is true), TOS is popped."
-msgstr ""
-"TOS가 거짓이면, 바이트 코드 카운터를 *target*\\으로 설정하고 스택에 TOS를 남겨 둡니다. 그렇지 않으면 (TOS가 "
-"참이면), TOS가 팝 됩니다."
+"If ``STACK[-1]`` is ``None``, increments the bytecode counter by *delta*."
+" ``STACK[-1]`` is popped."
+msgstr "TOS가 참이면, 바이트 코드 카운터를 *target*\\으로 설정합니다. TOS가 팝 됩니다."
 
-#: ../Doc/library/dis.rst:982
-msgid "Set bytecode counter to *target*."
-msgstr "바이트 코드 카운터를 *target*\\으로 설정합니다."
-
-#: ../Doc/library/dis.rst:987
+#: ../../library/dis.rst:1366
+#, fuzzy
 msgid ""
-"TOS is an :term:`iterator`.  Call its :meth:`~iterator.__next__` method."
-"  If this yields a new value, push it on the stack (leaving the iterator "
-"below it).  If the iterator indicates it is exhausted, TOS is popped, and"
-" the byte code counter is incremented by *delta*."
+"``STACK[-1]`` is an :term:`iterator`.  Call its "
+":meth:`~iterator.__next__` method. If this yields a new value, push it on"
+" the stack (leaving the iterator below it).  If the iterator indicates it"
+" is exhausted then the byte code counter is incremented by *delta*."
 msgstr ""
 "TOS는 :term:`이터레이터 <iterator>`\\입니다. 그것의 :meth:`~iterator.__next__` 메서드를 "
 "호출합니다. 이것이 새로운 값을 산출하면, 스택에 푸시합니다 (그 밑에 이터레이터를 남겨둡니다). 이터레이터가 소진되었음을 "
 "표시하면, TOS가 팝 되고, 바이트 코드 카운터가 *delta*\\만큼 증가합니다."
 
-#: ../Doc/library/dis.rst:995
-msgid "Loads the global named ``co_names[namei]`` onto the stack."
+#: ../../library/dis.rst:1371
+msgid "Up until 3.11 the iterator was popped when it was exhausted."
+msgstr ""
+
+#: ../../library/dis.rst:1376
+#, fuzzy
+msgid "Loads the global named ``co_names[namei>>1]`` onto the stack."
 msgstr "``co_names[namei]``\\라는 이름의 전역을 스택에 로드합니다."
 
-#: ../Doc/library/dis.rst:1000
+#: ../../library/dis.rst:1378
 msgid ""
-"Pushes a try block from a try-finally or try-except clause onto the block"
-" stack.  *delta* points to the finally block or the first except block."
+"If the low bit of ``namei`` is set, then a ``NULL`` is pushed to the "
+"stack before the global variable."
 msgstr ""
-"try-finally나 try-except 절의 try 블록을 블록 스택으로 푸시합니다. *delta*\\는 finally 블록이나"
-" 첫 번째 except 블록을 가리킵니다."
 
-#: ../Doc/library/dis.rst:1006
+#: ../../library/dis.rst:1384
 msgid "Pushes a reference to the local ``co_varnames[var_num]`` onto the stack."
 msgstr "지역 ``co_varnames[var_num]``\\에 대한 참조를 스택으로 푸시합니다."
 
-#: ../Doc/library/dis.rst:1011
-msgid "Stores TOS into the local ``co_varnames[var_num]``."
+#: ../../library/dis.rst:1386
+msgid ""
+"This opcode is now only used in situations where the local variable is "
+"guaranteed to be initialized. It cannot raise :exc:`UnboundLocalError`."
+msgstr ""
+
+#: ../../library/dis.rst:1392
+#, fuzzy
+msgid ""
+"Pushes references to ``co_varnames[var_nums >> 4]`` and "
+"``co_varnames[var_nums & 15]`` onto the stack."
+msgstr "지역 ``co_varnames[var_num]``\\에 대한 참조를 스택으로 푸시합니다."
+
+#: ../../library/dis.rst:1399
+#, fuzzy
+msgid ""
+"Pushes a reference to the local ``co_varnames[var_num]`` onto the stack, "
+"raising an :exc:`UnboundLocalError` if the local variable has not been "
+"initialized."
+msgstr "지역 ``co_varnames[var_num]``\\에 대한 참조를 스택으로 푸시합니다."
+
+#: ../../library/dis.rst:1407
+msgid ""
+"Pushes a reference to the local ``co_varnames[var_num]`` onto the stack "
+"(or pushes ``NULL`` onto the stack if the local variable has not been "
+"initialized) and sets ``co_varnames[var_num]`` to ``NULL``."
+msgstr ""
+
+#: ../../library/dis.rst:1415
+#, fuzzy
+msgid "Stores ``STACK.pop()`` into the local ``co_varnames[var_num]``."
 msgstr "TOS를 지역 ``co_varnames[var_num]``\\에 저장합니다."
 
-#: ../Doc/library/dis.rst:1016
+#: ../../library/dis.rst:1419
+msgid ""
+"Stores ``STACK[-1]`` into ``co_varnames[var_nums >> 4]`` and "
+"``STACK[-2]`` into ``co_varnames[var_nums & 15]``."
+msgstr ""
+
+#: ../../library/dis.rst:1426
+#, fuzzy
+msgid ""
+"Stores ``STACK.pop()`` into the local ``co_varnames[var_nums >> 4]`` and "
+"pushes a reference to the local ``co_varnames[var_nums & 15]`` onto the "
+"stack."
+msgstr "지역 ``co_varnames[var_num]``\\에 대한 참조를 스택으로 푸시합니다."
+
+#: ../../library/dis.rst:1434
 msgid "Deletes local ``co_varnames[var_num]``."
 msgstr "지역 ``co_varnames[var_num]``\\을 삭제합니다."
 
-#: ../Doc/library/dis.rst:1021
+#: ../../library/dis.rst:1439
 msgid ""
-"Pushes a reference to the cell contained in slot *i* of the cell and free"
-" variable storage.  The name of the variable is ``co_cellvars[i]`` if *i*"
-" is less than the length of *co_cellvars*.  Otherwise it is "
-"``co_freevars[i - len(co_cellvars)]``."
+"Creates a new cell in slot ``i``.  If that slot is nonempty then that "
+"value is stored into the new cell."
 msgstr ""
-"셀과 자유 변수 스토리지의 슬롯 *i*\\에 포함된 셀에 대한 참조를 푸시합니다. *i*\\가 *co_cellvars*\\의 "
-"길이보다 작으면 변수 이름은 ``co_cellvars[i]``\\입니다. 그렇지 않으면 ``co_freevars[i - "
-"len(co_cellvars)]``\\입니다."
 
-#: ../Doc/library/dis.rst:1029
+#: ../../library/dis.rst:1447
+#, fuzzy
 msgid ""
-"Loads the cell contained in slot *i* of the cell and free variable "
-"storage. Pushes a reference to the object the cell contains on the stack."
+"Loads the cell contained in slot ``i`` of the \"fast locals\" storage. "
+"Pushes a reference to the object the cell contains on the stack."
 msgstr "셀과 자유 변수 스토리지의 슬롯 *i*\\에 포함된 셀을 로드합니다. 스택에 포함된 셀 객체에 대한 참조를 푸시합니다."
 
-#: ../Doc/library/dis.rst:1035
+#: ../../library/dis.rst:1450 ../../library/dis.rst:1472
+#: ../../library/dis.rst:1483
 msgid ""
-"Much like :opcode:`LOAD_DEREF` but first checks the locals dictionary "
-"before consulting the cell.  This is used for loading free variables in "
-"class bodies."
+"``i`` is no longer offset by the length of "
+":attr:`~codeobject.co_varnames`."
 msgstr ""
-":opcode:`LOAD_DEREF`\\와 비슷하지만, 셀을 참조하기 전에 먼저 지역 딕셔너리를 확인합니다. 이것은 클래스 본문에서"
-" 자유 변수를 로드하는 데 사용됩니다."
 
-#: ../Doc/library/dis.rst:1044
+#: ../../library/dis.rst:1456
 msgid ""
-"Stores TOS into the cell contained in slot *i* of the cell and free "
-"variable storage."
+"Pops a mapping off the stack and looks up the name associated with slot "
+"``i`` of the \"fast locals\" storage in this mapping. If the name is not "
+"found there, loads it from the cell contained in slot ``i``, similar to "
+":opcode:`LOAD_DEREF`. This is used for loading :term:`closure variables "
+"<closure variable>` in class bodies (which previously used "
+":opcode:`!LOAD_CLASSDEREF`) and in :ref:`annotation scopes <annotation-"
+"scopes>` within class bodies."
+msgstr ""
+
+#: ../../library/dis.rst:1469
+#, fuzzy
+msgid ""
+"Stores ``STACK.pop()`` into the cell contained in slot ``i`` of the "
+"\"fast locals\" storage."
 msgstr "TOS를 셀과 자유 변수 스토리지의 슬롯 *i*\\에 포함된 셀에 저장합니다."
 
-#: ../Doc/library/dis.rst:1050
+#: ../../library/dis.rst:1478
+#, fuzzy
 msgid ""
-"Empties the cell contained in slot *i* of the cell and free variable "
-"storage. Used by the :keyword:`del` statement."
+"Empties the cell contained in slot ``i`` of the \"fast locals\" storage. "
+"Used by the :keyword:`del` statement."
 msgstr "셀과 자유 변수 스토리지의 슬롯 *i*\\에 포함된 셀을 비웁니다. :keyword:`del` 문에서 사용됩니다."
 
-#: ../Doc/library/dis.rst:1058
+#: ../../library/dis.rst:1489
+msgid ""
+"Copies the ``n`` :term:`free (closure) variables <closure variable>` from"
+" the closure into the frame. Removes the need for special code on the "
+"caller's side when calling closures."
+msgstr ""
+
+#: ../../library/dis.rst:1498
 msgid ""
 "Raises an exception using one of the 3 forms of the ``raise`` statement, "
 "depending on the value of *argc*:"
 msgstr "*argc*\\의 값에 따라, ``raise`` 문의 3가지 형식 중 하나를 사용하여 예외를 발생시킵니다:"
 
-#: ../Doc/library/dis.rst:1061
+#: ../../library/dis.rst:1501
 msgid "0: ``raise`` (re-raise previous exception)"
 msgstr "0: ``raise`` (이전 예외를 다시 발생시킵니다)"
 
-#: ../Doc/library/dis.rst:1062
-msgid "1: ``raise TOS`` (raise exception instance or type at ``TOS``)"
+#: ../../library/dis.rst:1502
+#, fuzzy
+msgid "1: ``raise STACK[-1]`` (raise exception instance or type at ``STACK[-1]``)"
 msgstr "1: ``raise TOS`` (``TOS``\\에 있는 예외 인스턴스나 형을 발생시킵니다)"
 
-#: ../Doc/library/dis.rst:1063
+#: ../../library/dis.rst:1503
+#, fuzzy
 msgid ""
-"2: ``raise TOS1 from TOS`` (raise exception instance or type at ``TOS1`` "
-"with ``__cause__`` set to ``TOS``)"
+"2: ``raise STACK[-2] from STACK[-1]`` (raise exception instance or type "
+"at ``STACK[-2]`` with ``__cause__`` set to ``STACK[-1]``)"
 msgstr ""
 "2: ``raise TOS1 from TOS`` (``__cause__``\\가 ``TOS``\\로 설정된 ``TOS1``\\에 "
 "있는 예외 인스턴스나 형을 발생시킵니다)"
 
-#: ../Doc/library/dis.rst:1069
+#: ../../library/dis.rst:1509
 msgid ""
-"Calls a callable object with positional arguments. *argc* indicates the "
-"number of positional arguments. The top of the stack contains positional "
-"arguments, with the right-most argument on top.  Below the arguments is a"
-" callable object to call. ``CALL_FUNCTION`` pops all arguments and the "
-"callable object off the stack, calls the callable object with those "
-"arguments, and pushes the return value returned by the callable object."
+"Calls a callable object with the number of arguments specified by "
+"``argc``. On the stack are (in ascending order):"
 msgstr ""
-"위치 인자를 사용하여 콜러블 객체를 호출합니다. *argc*\\는 위치 인자의 수를 나타냅니다. 스택의 맨 위에는 위치 인자가 "
-"포함되는데, 가장 오른쪽 인자가 맨 위에 있습니다. 인자 아래에는 호출할 콜러블 객체가 있습니다. "
-"``CALL_FUNCTION``\\은 모든 인자와 콜러블 객체를 스택에서 팝하고, 해당 인자로 콜러블 객체를 호출한 다음 콜러블 "
-"객체가 반환한 반환 값을 푸시 합니다."
 
-#: ../Doc/library/dis.rst:1077
-msgid "This opcode is used only for calls with positional arguments."
-msgstr "이 옵코드는 위치 인자가 있는 호출에만 사용됩니다."
+#: ../../library/dis.rst:1512 ../../library/dis.rst:1536
+msgid "The callable"
+msgstr ""
 
-#: ../Doc/library/dis.rst:1083
+#: ../../library/dis.rst:1513 ../../library/dis.rst:1537
+msgid "``self`` or ``NULL``"
+msgstr ""
+
+#: ../../library/dis.rst:1514 ../../library/dis.rst:1538
+msgid "The remaining positional arguments"
+msgstr ""
+
+#: ../../library/dis.rst:1516
+msgid "``argc`` is the total of the positional arguments, excluding ``self``."
+msgstr ""
+
+#: ../../library/dis.rst:1518
 msgid ""
-"Calls a callable object with positional (if any) and keyword arguments. "
-"*argc* indicates the total number of positional and keyword arguments. "
-"The top element on the stack contains a tuple with the names of the "
-"keyword arguments, which must be strings. Below that are the values for "
-"the keyword arguments, in the order corresponding to the tuple. Below "
-"that are positional arguments, with the right-most parameter on top.  "
-"Below the arguments is a callable object to call. ``CALL_FUNCTION_KW`` "
-"pops all arguments and the callable object off the stack, calls the "
-"callable object with those arguments, and pushes the return value "
+"``CALL`` pops all arguments and the callable object off the stack, calls "
+"the callable object with those arguments, and pushes the return value "
 "returned by the callable object."
 msgstr ""
-"위치(있다면)와 키워드 인자를 사용하여 콜러블 객체를 호출합니다. *argc*\\는 위치와 키워드 인자의 총수를 나타냅니다. 스택의"
-" 최상위 요소에는 문자열이어야 하는 키워드 인자의 이름으로 구성된 튜플이 포함되어 있습니다. 그 아래에는 그 튜플에 해당하는 순서로"
-" 키워드 인자의 값이 옵니다. 그 아래는 위치 인자인데, 가장 오른쪽 매개 변수가 맨 위에 옵니다. 인자 아래에는 호출할 콜러블 "
-"객체가 있습니다. ``CALL_FUNCTION_KW``\\는 모든 인자와 콜러블 객체를 스택에서 팝하고, 해당 인자로 콜러블 객체를"
-" 호출한 다음, 콜러블 객체가 반환한 반환 값을 푸시합니다."
 
-#: ../Doc/library/dis.rst:1095
+#: ../../library/dis.rst:1524
+msgid "The callable now always appears at the same position on the stack."
+msgstr ""
+
+#: ../../library/dis.rst:1527
+msgid "Calls with keyword arguments are now handled by :opcode:`CALL_KW`."
+msgstr ""
+
+#: ../../library/dis.rst:1533
 msgid ""
-"Keyword arguments are packed in a tuple instead of a dictionary, *argc* "
-"indicates the total number of arguments."
-msgstr "키워드 인자는 딕셔너리 대신 튜플에 담기며, *argc*\\는 전체 인자 수를 나타냅니다."
+"Calls a callable object with the number of arguments specified by "
+"``argc``, including one or more named arguments. On the stack are (in "
+"ascending order):"
+msgstr ""
 
-#: ../Doc/library/dis.rst:1102
+#: ../../library/dis.rst:1539
+msgid "The named arguments"
+msgstr ""
+
+#: ../../library/dis.rst:1540
+msgid "A :class:`tuple` of keyword argument names"
+msgstr ""
+
+#: ../../library/dis.rst:1542
+msgid ""
+"``argc`` is the total of the positional and named arguments, excluding "
+"``self``. The length of the tuple of keyword argument names is the number"
+" of named arguments."
+msgstr ""
+
+#: ../../library/dis.rst:1545
+msgid ""
+"``CALL_KW`` pops all arguments, the keyword names, and the callable "
+"object off the stack, calls the callable object with those arguments, and"
+" pushes the return value returned by the callable object."
+msgstr ""
+
+#: ../../library/dis.rst:1554
 msgid ""
 "Calls a callable object with variable set of positional and keyword "
 "arguments.  If the lowest bit of *flags* is set, the top of the stack "
@@ -1196,79 +1840,88 @@ msgstr ""
 "내용이 각각 키워드와 위치 인자로 전달됩니다. ``CALL_FUNCTION_EX``\\는 모든 인자와 콜러블 객체를 스택에서 "
 "팝하고, 해당 인자로 콜러블 객체를 호출한 다음, 콜러블 객체가 반환한 반환 값을 푸시합니다."
 
-#: ../Doc/library/dis.rst:1117
+#: ../../library/dis.rst:1569
 msgid ""
-"Loads a method named ``co_names[namei]`` from the TOS object. TOS is "
-"popped. This bytecode distinguishes two cases: if TOS has a method with "
-"the correct name, the bytecode pushes the unbound method and TOS. TOS "
-"will be used as the first argument (``self``) by :opcode:`CALL_METHOD` "
-"when calling the unbound method. Otherwise, ``NULL`` and the object "
-"return by the attribute lookup are pushed."
+"Pushes a ``NULL`` to the stack. Used in the call sequence to match the "
+"``NULL`` pushed by :opcode:`LOAD_METHOD` for non-method calls."
 msgstr ""
-"TOS 객체에서 ``co_names[namei]``\\라는 이름의 메서드를 로드합니다. TOS가 팝 됩니다. 이 바이트 코드는 두 "
-"가지 경우를 구별합니다: TOS에 올바른 이름의 메서드가 있으면, 바이트 코드는 연결되지 않은 메서드와 TOS를 푸시합니다. "
-"TOS는 연결되지 않은 메서드를 호출할 때 :opcode:`CALL_METHOD`\\에서 첫 번째 인자(``self``)로 "
-"사용됩니다. 그렇지 않으면, ``NULL``\\과 어트리뷰트 조회에 의해 반환된 객체가 푸시 됩니다."
 
-#: ../Doc/library/dis.rst:1129
+#: ../../library/dis.rst:1578
 msgid ""
-"Calls a method.  *argc* is the number of positional arguments. Keyword "
-"arguments are not supported.  This opcode is designed to be used with "
-":opcode:`LOAD_METHOD`.  Positional arguments are on top of the stack. "
-"Below them, the two items described in :opcode:`LOAD_METHOD` are on the "
-"stack (either ``self`` and an unbound method object or ``NULL`` and an "
-"arbitrary callable). All of them are popped and the return value is "
-"pushed."
+"Pushes a new function object on the stack built from the code object at "
+"``STACK[-1]``."
 msgstr ""
-"메서드를 호출합니다. *argc*\\는 위치 인자의 수입니다. 키워드 인자는 지원되지 않습니다. 이 옵코드는 "
-":opcode:`LOAD_METHOD`\\와 함께 사용하도록 설계되었습니다. 위치 인자는 스택 맨 위에 있습니다. 그 아래에, "
-":opcode:`LOAD_METHOD`\\에 설명된 두 항목이 스택에 있습니다 (``self``\\와 연결되지 않은 메서드 객체 "
-"또는 ``NULL``\\과 임의의 콜러블). 이것들이 모두 팝 되고 반환 값이 푸시 됩니다."
 
-#: ../Doc/library/dis.rst:1141
+#: ../../library/dis.rst:1580
+msgid "Flag value ``0x04`` is a tuple of strings instead of dictionary"
+msgstr ""
+
+#: ../../library/dis.rst:1583
+msgid "Qualified name at ``STACK[-1]`` was removed."
+msgstr ""
+
+#: ../../library/dis.rst:1586
 msgid ""
-"Pushes a new function object on the stack.  From bottom to top, the "
-"consumed stack must consist of values if the argument carries a specified"
-" flag value"
-msgstr "스택에 새 함수 객체를 푸시합니다. 바닥에서 맨 위로, 인자가 지정된 플래그 값을 전달하면 소비되는 스택은 값으로 구성되어야 합니다."
+"Extra function attributes on the stack, signaled by oparg flags, were "
+"removed. They now use :opcode:`SET_FUNCTION_ATTRIBUTE`."
+msgstr ""
 
-#: ../Doc/library/dis.rst:1144
+#: ../../library/dis.rst:1593
+msgid ""
+"Sets an attribute on a function object. Expects the function at "
+"``STACK[-1]`` and the attribute value to set at ``STACK[-2]``; consumes "
+"both and leaves the function at ``STACK[-1]``. The flag determines which "
+"attribute to set:"
+msgstr ""
+
+#: ../../library/dis.rst:1597
 msgid ""
 "``0x01`` a tuple of default values for positional-only and positional-or-"
 "keyword parameters in positional order"
 msgstr "``0x01`` 위치 전용과 위치-키워드 매개 변수를 위한 기본값의 위치 순서 튜플"
 
-#: ../Doc/library/dis.rst:1146
+#: ../../library/dis.rst:1599
 msgid "``0x02`` a dictionary of keyword-only parameters' default values"
 msgstr "``0x02`` 키워드 전용 매개 변수의 기본값 딕셔너리"
 
-#: ../Doc/library/dis.rst:1147
-msgid "``0x04`` an annotation dictionary"
-msgstr "``0x04`` 어노테이션 딕셔너리"
+#: ../../library/dis.rst:1600
+msgid "``0x04`` a tuple of strings containing parameters' annotations"
+msgstr ""
 
-#: ../Doc/library/dis.rst:1148
+#: ../../library/dis.rst:1601
 msgid "``0x08`` a tuple containing cells for free variables, making a closure"
 msgstr "``0x08`` 자유 변수를 위한 셀을 포함하는 튜플, 클로저를 만듭니다"
 
-#: ../Doc/library/dis.rst:1149
-msgid "the code associated with the function (at TOS1)"
-msgstr "함수와 연관된 코드 (TOS1에)"
-
-#: ../Doc/library/dis.rst:1150
-msgid "the :term:`qualified name` of the function (at TOS)"
-msgstr "함수의 :term:`정규화된 이름 <qualified name>` (TOS에)"
-
-#: ../Doc/library/dis.rst:1157
+#: ../../library/dis.rst:1610
 msgid ""
 "Pushes a slice object on the stack.  *argc* must be 2 or 3.  If it is 2, "
-"``slice(TOS1, TOS)`` is pushed; if it is 3, ``slice(TOS2, TOS1, TOS)`` is"
-" pushed. See the :func:`slice` built-in function for more information."
+"implements::"
 msgstr ""
-"스택에 슬라이스 객체를 푸시합니다. *argc*\\는 2나 3이어야 합니다. 2이면, ``slice(TOS1, TOS)``\\가 "
-"푸시 됩니다; 3이면, ``slice(TOS2, TOS1, TOS)``\\가 푸시 됩니다. 자세한 정보는 :func:`slice` "
-"내장 함수를 참조하십시오."
 
-#: ../Doc/library/dis.rst:1164
+#: ../../library/dis.rst:1612
+msgid ""
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"STACK.append(slice(start, end))"
+msgstr ""
+
+#: ../../library/dis.rst:1616
+msgid "if it is 3, implements::"
+msgstr ""
+
+#: ../../library/dis.rst:1618
+msgid ""
+"step = STACK.pop()\n"
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"STACK.append(slice(start, end, step))"
+msgstr ""
+
+#: ../../library/dis.rst:1623
+msgid "See the :func:`slice` built-in function for more information."
+msgstr ""
+
+#: ../../library/dis.rst:1628
 msgid ""
 "Prefixes any opcode which has an argument too big to fit into the default"
 " one byte. *ext* holds an additional byte which act as higher bits in the"
@@ -1279,61 +1932,152 @@ msgstr ""
 "추가 바이트를 보유합니다. 각 옵코드마다, 최대 3개의 접두사 ``EXTENDED_ARG``\\가 허용되며, 2바이트에서 4바이트 "
 "사이의 인자를 형성합니다."
 
-#: ../Doc/library/dis.rst:1172
-msgid ""
-"Used for implementing formatted literal strings (f-strings).  Pops an "
-"optional *fmt_spec* from the stack, then a required *value*. *flags* is "
-"interpreted as follows:"
+#: ../../library/dis.rst:1636
+msgid "Convert value to a string, depending on ``oparg``::"
 msgstr ""
-"포맷 문자열 리터럴(f-문자열)을 구현하는 데 사용됩니다. 스택에서 선택적 *fmt_spec*\\을 팝 한 다음, 필수 "
-"*value*\\를 팝 합니다. *flags*\\는 다음과 같이 해석됩니다:"
 
-#: ../Doc/library/dis.rst:1176
-msgid "``(flags & 0x03) == 0x00``: *value* is formatted as-is."
-msgstr "``(flags & 0x03) == 0x00``: *value*\\는 있는 그대로 포맷됩니다."
-
-#: ../Doc/library/dis.rst:1177
+#: ../../library/dis.rst:1638
 msgid ""
-"``(flags & 0x03) == 0x01``: call :func:`str` on *value* before formatting"
-" it."
+"value = STACK.pop()\n"
+"result = func(value)\n"
+"STACK.append(result)"
+msgstr ""
+
+#: ../../library/dis.rst:1642
+#, fuzzy
+msgid "``oparg == 1``: call :func:`str` on *value*"
 msgstr "``(flags & 0x03) == 0x01``: 포맷하기 전에 *value*\\에 대해 :func:`str`\\을 호출합니다."
 
-#: ../Doc/library/dis.rst:1179
-msgid ""
-"``(flags & 0x03) == 0x02``: call :func:`repr` on *value* before "
-"formatting it."
+#: ../../library/dis.rst:1643
+#, fuzzy
+msgid "``oparg == 2``: call :func:`repr` on *value*"
 msgstr "``(flags & 0x03) == 0x02``: 포맷하기 전에 *value*\\에 대해 :func:`repr`\\을 호출합니다."
 
-#: ../Doc/library/dis.rst:1181
-msgid ""
-"``(flags & 0x03) == 0x03``: call :func:`ascii` on *value* before "
-"formatting it."
+#: ../../library/dis.rst:1644
+#, fuzzy
+msgid "``oparg == 3``: call :func:`ascii` on *value*"
 msgstr "``(flags & 0x03) == 0x03``: 포맷하기 전에 *value*\\에 대해 :func:`ascii`\\를 호출합니다."
 
-#: ../Doc/library/dis.rst:1183
-msgid ""
-"``(flags & 0x04) == 0x04``: pop *fmt_spec* from the stack and use it, "
-"else use an empty *fmt_spec*."
+#: ../../library/dis.rst:1646 ../../library/dis.rst:1659
+#: ../../library/dis.rst:1672
+msgid "Used for implementing formatted literal strings (f-strings)."
 msgstr ""
-"``(flags & 0x04) == 0x04``: 스택에서 *fmt_spec*\\을 팝 하고 그것을 사용합니다, 그렇지 않으면 빈 "
-"*fmt_spec*\\을 사용합니다."
 
-#: ../Doc/library/dis.rst:1186
+#: ../../library/dis.rst:1653
+#, fuzzy
+msgid "Formats the value on top of stack::"
+msgstr "스택 최상단의 참조를 복제합니다."
+
+#: ../../library/dis.rst:1655
 msgid ""
-"Formatting is performed using :c:func:`PyObject_Format`.  The result is "
-"pushed on the stack."
-msgstr ":c:func:`PyObject_Format`\\을 사용하여 포맷이 수행됩니다. 결과는 스택에 푸시 됩니다."
+"value = STACK.pop()\n"
+"result = value.__format__(\"\")\n"
+"STACK.append(result)"
+msgstr ""
 
-#: ../Doc/library/dis.rst:1194
+#: ../../library/dis.rst:1665
+msgid "Formats the given value with the given format spec::"
+msgstr ""
+
+#: ../../library/dis.rst:1667
+msgid ""
+"spec = STACK.pop()\n"
+"value = STACK.pop()\n"
+"result = value.__format__(spec)\n"
+"STACK.append(result)"
+msgstr ""
+
+#: ../../library/dis.rst:1679
+msgid ""
+"``STACK[-1]`` is a tuple of keyword attribute names, ``STACK[-2]`` is the"
+" class being matched against, and ``STACK[-3]`` is the match subject.  "
+"*count* is the number of positional sub-patterns."
+msgstr ""
+
+#: ../../library/dis.rst:1683
+msgid ""
+"Pop ``STACK[-1]``, ``STACK[-2]``, and ``STACK[-3]``. If ``STACK[-3]`` is "
+"an instance of ``STACK[-2]`` and has the positional and keyword "
+"attributes required by *count* and ``STACK[-1]``, push a tuple of "
+"extracted attributes. Otherwise, push ``None``."
+msgstr ""
+
+#: ../../library/dis.rst:1697
+msgid "A no-op. Performs internal tracing, debugging and optimization checks."
+msgstr ""
+
+#: ../../library/dis.rst:1699
+msgid ""
+"The ``context`` oparand consists of two parts. The lowest two bits "
+"indicate where the ``RESUME`` occurs:"
+msgstr ""
+
+#: ../../library/dis.rst:1702
+msgid ""
+"``0`` The start of a function, which is neither a generator, coroutine "
+"nor an async generator"
+msgstr ""
+
+#: ../../library/dis.rst:1704
+msgid "``1`` After a ``yield`` expression"
+msgstr ""
+
+#: ../../library/dis.rst:1705
+msgid "``2`` After a ``yield from`` expression"
+msgstr ""
+
+#: ../../library/dis.rst:1706
+msgid "``3`` After an ``await`` expression"
+msgstr ""
+
+#: ../../library/dis.rst:1708
+msgid ""
+"The next bit is ``1`` if the RESUME is at except-depth ``1``, and ``0`` "
+"otherwise."
+msgstr ""
+
+#: ../../library/dis.rst:1713
+msgid "The oparg value changed to include information about except-depth"
+msgstr ""
+
+#: ../../library/dis.rst:1719
+msgid ""
+"Create a generator, coroutine, or async generator from the current frame."
+" Used as first opcode of in code object for the above mentioned "
+"callables. Clear the current frame and return the newly created "
+"generator."
+msgstr ""
+
+#: ../../library/dis.rst:1728
+msgid ""
+"Equivalent to ``STACK[-1] = STACK[-2].send(STACK[-1])``. Used in ``yield "
+"from`` and ``await`` statements."
+msgstr ""
+
+#: ../../library/dis.rst:1731
+msgid ""
+"If the call raises :exc:`StopIteration`, pop the top value from the "
+"stack, push the exception's ``value`` attribute, and increment the "
+"bytecode counter by *delta*."
+msgstr ""
+
+#: ../../library/dis.rst:1740
+#, fuzzy
 msgid ""
 "This is not really an opcode.  It identifies the dividing line between "
-"opcodes which don't use their argument and those that do (``< "
-"HAVE_ARGUMENT`` and ``>= HAVE_ARGUMENT``, respectively)."
+"opcodes in the range [0,255] which don't use their argument and those "
+"that do (``< HAVE_ARGUMENT`` and ``>= HAVE_ARGUMENT``, respectively)."
 msgstr ""
 "이것은 진짜 옵코드가 아닙니다. 인자를 사용하지 않는 옵코드와 사용하는 옵코드 사이의 구분 선을 식별합니다 (각각, ``< "
 "HAVE_ARGUMENT``\\와 ``>= HAVE_ARGUMENT``)."
 
-#: ../Doc/library/dis.rst:1198
+#: ../../library/dis.rst:1744
+msgid ""
+"If your application uses pseudo instructions or specialized instructions,"
+" use the :data:`hasarg` collection instead."
+msgstr ""
+
+#: ../../library/dis.rst:1747
 msgid ""
 "Now every instruction has an argument, but opcodes ``< HAVE_ARGUMENT`` "
 "ignore it. Before, only opcodes ``>= HAVE_ARGUMENT`` had an argument."
@@ -1341,59 +2085,821 @@ msgstr ""
 "이제 모든 명령어에는 인자가 있지만, ``< HAVE_ARGUMENT``\\인 옵코드는 이를 무시합니다. 이전에는, ``>= "
 "HAVE_ARGUMENT``\\인 옵코드에만 인자가 있었습니다."
 
-#: ../Doc/library/dis.rst:1206
+#: ../../library/dis.rst:1751
+msgid ""
+"Pseudo instructions were added to the :mod:`dis` module, and for them it "
+"is not true that comparison with ``HAVE_ARGUMENT`` indicates whether they"
+" use their arg."
+msgstr ""
+
+#: ../../library/dis.rst:1756
+msgid "Use :data:`hasarg` instead."
+msgstr ""
+
+#: ../../library/dis.rst:1761
+msgid ""
+"Calls an intrinsic function with one argument. Passes ``STACK[-1]`` as "
+"the argument and sets ``STACK[-1]`` to the result. Used to implement "
+"functionality that is not performance critical."
+msgstr ""
+
+#: ../../library/dis.rst:1765 ../../library/dis.rst:1819
+msgid "The operand determines which intrinsic function is called:"
+msgstr ""
+
+#: ../../library/dis.rst:1768 ../../library/dis.rst:1822
+msgid "Operand"
+msgstr ""
+
+#: ../../library/dis.rst:1768 ../../library/dis.rst:1822
+msgid "Description"
+msgstr ""
+
+#: ../../library/dis.rst:1770
+msgid "``INTRINSIC_1_INVALID``"
+msgstr ""
+
+#: ../../library/dis.rst:1770 ../../library/dis.rst:1824
+msgid "Not valid"
+msgstr ""
+
+#: ../../library/dis.rst:1772
+msgid "``INTRINSIC_PRINT``"
+msgstr ""
+
+#: ../../library/dis.rst:1772
+msgid "Prints the argument to standard out. Used in the REPL."
+msgstr ""
+
+#: ../../library/dis.rst:1775
+msgid "``INTRINSIC_IMPORT_STAR``"
+msgstr ""
+
+#: ../../library/dis.rst:1775
+msgid "Performs ``import *`` for the named module."
+msgstr ""
+
+#: ../../library/dis.rst:1778
+msgid "``INTRINSIC_STOPITERATION_ERROR``"
+msgstr ""
+
+#: ../../library/dis.rst:1778
+msgid "Extracts the return value from a ``StopIteration`` exception."
+msgstr ""
+
+#: ../../library/dis.rst:1781
+msgid "``INTRINSIC_ASYNC_GEN_WRAP``"
+msgstr ""
+
+#: ../../library/dis.rst:1781
+msgid "Wraps an async generator value"
+msgstr ""
+
+#: ../../library/dis.rst:1783
+msgid "``INTRINSIC_UNARY_POSITIVE``"
+msgstr ""
+
+#: ../../library/dis.rst:1783
+msgid "Performs the unary ``+`` operation"
+msgstr ""
+
+#: ../../library/dis.rst:1786
+msgid "``INTRINSIC_LIST_TO_TUPLE``"
+msgstr ""
+
+#: ../../library/dis.rst:1786
+msgid "Converts a list to a tuple"
+msgstr ""
+
+#: ../../library/dis.rst:1788
+msgid "``INTRINSIC_TYPEVAR``"
+msgstr ""
+
+#: ../../library/dis.rst:1788
+msgid "Creates a :class:`typing.TypeVar`"
+msgstr ""
+
+#: ../../library/dis.rst:1790
+msgid "``INTRINSIC_PARAMSPEC``"
+msgstr ""
+
+#: ../../library/dis.rst:1790
+msgid "Creates a :class:`typing.ParamSpec`"
+msgstr ""
+
+#: ../../library/dis.rst:1793
+msgid "``INTRINSIC_TYPEVARTUPLE``"
+msgstr ""
+
+#: ../../library/dis.rst:1793
+msgid "Creates a :class:`typing.TypeVarTuple`"
+msgstr ""
+
+#: ../../library/dis.rst:1796
+msgid "``INTRINSIC_SUBSCRIPT_GENERIC``"
+msgstr ""
+
+#: ../../library/dis.rst:1796
+msgid "Returns :class:`typing.Generic` subscripted with the argument"
+msgstr ""
+
+#: ../../library/dis.rst:1799
+msgid "``INTRINSIC_TYPEALIAS``"
+msgstr ""
+
+#: ../../library/dis.rst:1799
+msgid ""
+"Creates a :class:`typing.TypeAliasType`; used in the :keyword:`type` "
+"statement. The argument is a tuple of the type alias's name, type "
+"parameters, and value."
+msgstr ""
+
+#: ../../library/dis.rst:1811
+msgid ""
+"Calls an intrinsic function with two arguments. Used to implement "
+"functionality that is not performance critical::"
+msgstr ""
+
+#: ../../library/dis.rst:1814
+msgid ""
+"arg2 = STACK.pop()\n"
+"arg1 = STACK.pop()\n"
+"result = intrinsic2(arg1, arg2)\n"
+"STACK.append(result)"
+msgstr ""
+
+#: ../../library/dis.rst:1824
+msgid "``INTRINSIC_2_INVALID``"
+msgstr ""
+
+#: ../../library/dis.rst:1826
+msgid "``INTRINSIC_PREP_RERAISE_STAR``"
+msgstr ""
+
+#: ../../library/dis.rst:1826
+msgid "Calculates the :exc:`ExceptionGroup` to raise from a ``try-except*``."
+msgstr ""
+
+#: ../../library/dis.rst:1830
+msgid "``INTRINSIC_TYPEVAR_WITH_BOUND``"
+msgstr ""
+
+#: ../../library/dis.rst:1830
+msgid "Creates a :class:`typing.TypeVar` with a bound."
+msgstr ""
+
+#: ../../library/dis.rst:1833
+msgid "``INTRINSIC_TYPEVAR_WITH_CONSTRAINTS``"
+msgstr ""
+
+#: ../../library/dis.rst:1833
+msgid "Creates a :class:`typing.TypeVar` with constraints."
+msgstr ""
+
+#: ../../library/dis.rst:1837
+msgid "``INTRINSIC_SET_FUNCTION_TYPE_PARAMS``"
+msgstr ""
+
+#: ../../library/dis.rst:1837
+msgid "Sets the ``__type_params__`` attribute of a function."
+msgstr ""
+
+#: ../../library/dis.rst:1844
+#, fuzzy
+msgid "**Pseudo-instructions**"
+msgstr "**일반 명령어**"
+
+#: ../../library/dis.rst:1846
+msgid ""
+"These opcodes do not appear in Python bytecode. They are used by the "
+"compiler but are replaced by real opcodes or removed before bytecode is "
+"generated."
+msgstr ""
+
+#: ../../library/dis.rst:1851
+msgid ""
+"Set up an exception handler for the following code block. If an exception"
+" occurs, the value stack level is restored to its current state and "
+"control is transferred to the exception handler at ``target``."
+msgstr ""
+
+#: ../../library/dis.rst:1858
+msgid ""
+"Like ``SETUP_FINALLY``, but in case of an exception also pushes the last "
+"instruction (``lasti``) to the stack so that ``RERAISE`` can restore it. "
+"If an exception occurs, the value stack level and the last instruction on"
+" the frame are restored to their current state, and control is "
+"transferred to the exception handler at ``target``."
+msgstr ""
+
+#: ../../library/dis.rst:1867
+msgid ""
+"Like ``SETUP_CLEANUP``, but in case of an exception one more item is "
+"popped from the stack before control is transferred to the exception "
+"handler at ``target``."
+msgstr ""
+
+#: ../../library/dis.rst:1871
+msgid ""
+"This variant is used in :keyword:`with` and :keyword:`async with` "
+"constructs, which push the return value of the context manager's "
+":meth:`~object.__enter__` or :meth:`~object.__aenter__` to the stack."
+msgstr ""
+
+#: ../../library/dis.rst:1878
+msgid ""
+"Marks the end of the code block associated with the last "
+"``SETUP_FINALLY``, ``SETUP_CLEANUP`` or ``SETUP_WITH``."
+msgstr ""
+
+#: ../../library/dis.rst:1884
+msgid ""
+"Undirected relative jump instructions which are replaced by their "
+"directed (forward/backward) counterparts by the assembler."
+msgstr ""
+
+#: ../../library/dis.rst:1889
+#, fuzzy
+msgid ""
+"Pushes a reference to the cell contained in slot ``i`` of the \"fast "
+"locals\" storage."
+msgstr "TOS를 셀과 자유 변수 스토리지의 슬롯 *i*\\에 포함된 셀에 저장합니다."
+
+#: ../../library/dis.rst:1892
+msgid ""
+"Note that ``LOAD_CLOSURE`` is replaced with ``LOAD_FAST`` in the "
+"assembler."
+msgstr ""
+
+#: ../../library/dis.rst:1894
+msgid "This opcode is now a pseudo-instruction."
+msgstr ""
+
+#: ../../library/dis.rst:1900
+msgid ""
+"Optimized unbound method lookup. Emitted as a ``LOAD_ATTR`` opcode with a"
+" flag set in the arg."
+msgstr ""
+
+#: ../../library/dis.rst:1907
 msgid "Opcode collections"
 msgstr "옵코드 모음"
 
-#: ../Doc/library/dis.rst:1208
+#: ../../library/dis.rst:1909
 msgid ""
 "These collections are provided for automatic introspection of bytecode "
 "instructions:"
 msgstr "이 모음은 바이트 코드 명령어의 자동 검사를 위해 제공됩니다:"
 
-#: ../Doc/library/dis.rst:1213
+#: ../../library/dis.rst:1912
+msgid ""
+"The collections now contain pseudo instructions and instrumented "
+"instructions as well. These are opcodes with values ``>= "
+"MIN_PSEUDO_OPCODE`` and ``>= MIN_INSTRUMENTED_OPCODE``."
+msgstr ""
+
+#: ../../library/dis.rst:1919
 msgid "Sequence of operation names, indexable using the bytecode."
 msgstr "연산 이름의 시퀀스, 바이트 코드를 사용하여 인덱싱할 수 있습니다."
 
-#: ../Doc/library/dis.rst:1218
+#: ../../library/dis.rst:1924
 msgid "Dictionary mapping operation names to bytecodes."
 msgstr "연산 이름을 바이트 코드로 매핑하는 딕셔너리."
 
-#: ../Doc/library/dis.rst:1223
+#: ../../library/dis.rst:1929
 msgid "Sequence of all compare operation names."
 msgstr "모든 비교 연산 이름의 시퀀스."
 
-#: ../Doc/library/dis.rst:1228
+#: ../../library/dis.rst:1934
+#, fuzzy
+msgid "Sequence of bytecodes that use their argument."
+msgstr "상수에 액세스하는 바이트 코드의 시퀀스."
+
+#: ../../library/dis.rst:1941
 msgid "Sequence of bytecodes that access a constant."
 msgstr "상수에 액세스하는 바이트 코드의 시퀀스."
 
-#: ../Doc/library/dis.rst:1233
+#: ../../library/dis.rst:1946
+#, fuzzy
 msgid ""
-"Sequence of bytecodes that access a free variable (note that 'free' in "
-"this context refers to names in the current scope that are referenced by "
-"inner scopes or names in outer scopes that are referenced from this "
-"scope.  It does *not* include references to global or builtin scopes)."
+"Sequence of bytecodes that access a :term:`free (closure) variable "
+"<closure variable>`. 'free' in this context refers to names in the "
+"current scope that are referenced by inner scopes or names in outer "
+"scopes that are referenced from this scope.  It does *not* include "
+"references to global or builtin scopes."
 msgstr ""
 "자유 변수에 액세스하는 바이트 코드의 시퀀스 (이 문맥에서 '자유'는 내부 스코프에서 참조되는 현재 스코프의 이름이나 이 스코프에서"
 " 참조되는 외부 스코프의 이름을 나타냅니다. 전역이나 내장 스코프에 대한 참조는 포함하지 *않습니다*)."
 
-#: ../Doc/library/dis.rst:1241
+#: ../../library/dis.rst:1954
 msgid "Sequence of bytecodes that access an attribute by name."
 msgstr "어트리뷰트를 이름으로 액세스하는 바이트 코드의 시퀀스."
 
-#: ../Doc/library/dis.rst:1246
-msgid "Sequence of bytecodes that have a relative jump target."
+#: ../../library/dis.rst:1959
+#, fuzzy
+msgid "Sequence of bytecodes that have a jump target. All jumps are relative."
 msgstr "상대 점프 대상이 있는 바이트 코드의 시퀀스."
 
-#: ../Doc/library/dis.rst:1251
-msgid "Sequence of bytecodes that have an absolute jump target."
-msgstr "절대 점프 대상이 있는 바이트 코드의 시퀀스."
-
-#: ../Doc/library/dis.rst:1256
+#: ../../library/dis.rst:1966
 msgid "Sequence of bytecodes that access a local variable."
 msgstr "지역 변수에 액세스하는 바이트 코드의 시퀀스."
 
-#: ../Doc/library/dis.rst:1261
+#: ../../library/dis.rst:1971
 msgid "Sequence of bytecodes of Boolean operations."
 msgstr "불리언 연산의 바이트 코드의 시퀀스."
+
+#: ../../library/dis.rst:1975
+#, fuzzy
+msgid "Sequence of bytecodes that set an exception handler."
+msgstr "상수에 액세스하는 바이트 코드의 시퀀스."
+
+#: ../../library/dis.rst:1982
+msgid "Sequence of bytecodes that have a relative jump target."
+msgstr "상대 점프 대상이 있는 바이트 코드의 시퀀스."
+
+#: ../../library/dis.rst:1984
+msgid "All jumps are now relative. Use :data:`hasjump`."
+msgstr ""
+
+#: ../../library/dis.rst:1990
+msgid "Sequence of bytecodes that have an absolute jump target."
+msgstr "절대 점프 대상이 있는 바이트 코드의 시퀀스."
+
+#: ../../library/dis.rst:1992
+msgid "All jumps are now relative. This list is empty."
+msgstr ""
+
+#: ../../library/dis.rst:1608
+msgid "built-in function"
+msgstr ""
+
+#: ../../library/dis.rst:1608
+msgid "slice"
+msgstr ""
+
+#~ msgid "Swaps the two top-most stack items."
+#~ msgstr "두 개의 최상위 스택 항목을 자리바꿈합니다."
+
+#~ msgid ""
+#~ "Lifts second and third stack item "
+#~ "one position up, moves top down to"
+#~ " position three."
+#~ msgstr "두 번째와 세 번째 스택 항목을 한 자리 위로 들어 올리고, 최상단 항목을 세 번째 자리로 내립니다."
+
+#~ msgid ""
+#~ "Lifts second, third and fourth stack "
+#~ "items one position up, moves top "
+#~ "down to position four."
+#~ msgstr "두 번째, 세 번째 및 네 번째 스택 항목을 한 자리 위로 들어 올리고, 최상단 항목을 네 번째 자리로 내립니다."
+
+#~ msgid ""
+#~ "Duplicates the two references on top "
+#~ "of the stack, leaving them in the"
+#~ " same order."
+#~ msgstr "같은 순서를 유지하면서, 스택 최상단의 두 참조를 복제합니다."
+
+#~ msgid "Implements ``TOS = +TOS``."
+#~ msgstr "``TOS = +TOS``\\를 구현합니다."
+
+#~ msgid "**Binary operations**"
+#~ msgstr "**이항 연산**"
+
+#~ msgid "Implements ``TOS = TOS1 ** TOS``."
+#~ msgstr "``TOS = TOS1 ** TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 * TOS``."
+#~ msgstr "``TOS = TOS1 * TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 @ TOS``."
+#~ msgstr "``TOS = TOS1 @ TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 // TOS``."
+#~ msgstr "``TOS = TOS1 // TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 / TOS``."
+#~ msgstr "``TOS = TOS1 / TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 % TOS``."
+#~ msgstr "``TOS = TOS1 % TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 + TOS``."
+#~ msgstr "``TOS = TOS1 + TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 - TOS``."
+#~ msgstr "``TOS = TOS1 - TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 << TOS``."
+#~ msgstr "``TOS = TOS1 << TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 >> TOS``."
+#~ msgstr "``TOS = TOS1 >> TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 & TOS``."
+#~ msgstr "``TOS = TOS1 & TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 ^ TOS``."
+#~ msgstr "``TOS = TOS1 ^ TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS = TOS1 | TOS``."
+#~ msgstr "``TOS = TOS1 | TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 ** TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 ** TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 * TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 * TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 @ TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 @ TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 // TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 // TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 / TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 / TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 % TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 % TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 + TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 + TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 - TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 - TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 << TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 << TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 >> TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 >> TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 & TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 & TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 ^ TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 ^ TOS``\\를 구현합니다."
+
+#~ msgid "Implements in-place ``TOS = TOS1 | TOS``."
+#~ msgstr "제자리 ``TOS = TOS1 | TOS``\\를 구현합니다."
+
+#~ msgid "Implements ``TOS1[TOS] = TOS2``."
+#~ msgstr "``TOS1[TOS] = TOS2``\\를 구현합니다."
+
+#~ msgid "Implements ``del TOS1[TOS]``."
+#~ msgstr "``del TOS1[TOS]``\\를 구현합니다."
+
+#~ msgid ""
+#~ "Terminates an :keyword:`async for` loop.  "
+#~ "Handles an exception raised when "
+#~ "awaiting a next item.  If TOS is"
+#~ " :exc:`StopAsyncIteration` pop 7 values "
+#~ "from the stack and restore the "
+#~ "exception state using the second three"
+#~ " of them.  Otherwise re-raise the "
+#~ "exception using the three values from"
+#~ " the stack.  An exception handler "
+#~ "block is removed from the block "
+#~ "stack."
+#~ msgstr ""
+#~ ":keyword:`async for` 루프를 종료합니다. 다음 항목을"
+#~ " 어웨이트 할 때 발생하는 예외를 처리합니다. TOS가"
+#~ " :exc:`StopAsyncIteration` 이면 스택에서 7개의 값을"
+#~ " 팝하고 두 번째 세 개를 사용하여 예외 "
+#~ "상태를 복원합니다. 그렇지 않으면 스택에서 세 값을 "
+#~ "사용하여 예외를 다시 발생시킵니다. 예외 처리기 블록이 "
+#~ "블록 스택에서 제거됩니다."
+
+#~ msgid "Creates a new frame object."
+#~ msgstr "새 프레임 객체를 만듭니다."
+
+#~ msgid ""
+#~ "Implements the expression statement for "
+#~ "the interactive mode.  TOS is removed"
+#~ " from the stack and printed.  In "
+#~ "non-interactive mode, an expression "
+#~ "statement is terminated with "
+#~ ":opcode:`POP_TOP`."
+#~ msgstr ""
+#~ "대화식 모드를 위한 표현식 문을 구현합니다. 스택에서 "
+#~ "TOS가 제거되고 인쇄됩니다. 비 대화식 모드에서, 표현식"
+#~ " 문은 :opcode:`POP_TOP`\\으로 종료됩니다."
+
+#~ msgid ""
+#~ "Calls ``dict.__setitem__(TOS1[-i], TOS1, TOS)``."
+#~ "  Used to implement dict comprehensions."
+#~ msgstr ""
+#~ "``dict.__setitem__(TOS1[-i], TOS1, TOS)``\\를 호출합니다."
+#~ " 딕셔너리 컴프리헨션을 구현하는 데 사용됩니다."
+
+#~ msgid "Pops TOS and delegates to it as a subiterator from a :term:`generator`."
+#~ msgstr "TOS를 팝하고 :term:`제너레이터 <generator>`\\에서 서브 이터레이터로 그것에 위임합니다."
+
+#~ msgid ""
+#~ "Loads all symbols not starting with "
+#~ "``'_'`` directly from the module TOS "
+#~ "to the local namespace. The module "
+#~ "is popped after loading all names. "
+#~ "This opcode implements ``from module "
+#~ "import *``."
+#~ msgstr ""
+#~ "``'_'``\\로 시작하지 않는 모든 심볼을 모듈 TOS에서"
+#~ " 지역 이름 공간으로 직접 로드합니다. 모든 이름을"
+#~ " 로드한 후 모듈이 팝 됩니다. 이 옵코드는 "
+#~ "``from module import *``\\를 구현합니다."
+
+#~ msgid ""
+#~ "Removes one block from the block "
+#~ "stack.  Per frame, there is a "
+#~ "stack of blocks, denoting :keyword:`try` "
+#~ "statements, and such."
+#~ msgstr ""
+#~ "블록 스택에서 하나의 블록을 제거합니다. 프레임마다, 블록"
+#~ " 스택이 있습니다, :keyword:`try` 문을 나타내는 것과"
+#~ " 같은 것들입니다."
+
+#~ msgid ""
+#~ "Removes one block from the block "
+#~ "stack. The popped block must be an"
+#~ " exception handler block, as implicitly "
+#~ "created when entering an except handler."
+#~ "  In addition to popping extraneous "
+#~ "values from the frame stack, the "
+#~ "last three popped values are used "
+#~ "to restore the exception state."
+#~ msgstr ""
+#~ "블록 스택에서 하나의 블록을 제거합니다. 팝 된 "
+#~ "블록은 예외 처리기에 진입할 때 묵시적으로 만들어진 "
+#~ "예외 처리기 블록이어야 합니다. 프레임 스택에서 추가적인"
+#~ " 값들을 팝 하는 것에 더해, 마지막 3개의 "
+#~ "팝 된 값이 예외 상태를 복원하는 데 사용됩니다."
+
+#~ msgid "Re-raises the exception currently on top of the stack."
+#~ msgstr "스택 최상단의 예외를 다시 발생시킵니다."
+
+#~ msgid "All of the following opcodes use their arguments."
+#~ msgstr "다음 옵코드는 모두 인자를 사용합니다."
+
+#~ msgid ""
+#~ "The low byte of *counts* is the"
+#~ " number of values before the list "
+#~ "value, the high byte of *counts* "
+#~ "the number of values after it.  "
+#~ "The resulting values are put onto "
+#~ "the stack right-to-left."
+#~ msgstr ""
+#~ "*counts*\\의 하위 바이트는 리스트값 이전의 값의 "
+#~ "개수이고, *counts*\\의 상위 바이트는 그 이후의 값의"
+#~ " 개수입니다. 결괏값들은 오른쪽에서 왼쪽으로 스택에 넣습니다."
+
+#~ msgid ""
+#~ "Implements ``TOS.name = TOS1``, where "
+#~ "*namei* is the index of name in"
+#~ " :attr:`co_names`."
+#~ msgstr ""
+#~ "``TOS.name = TOS1``\\을 구현합니다. 여기서 "
+#~ "*namei*\\는 :attr:`co_names`\\에서 name의 인덱스입니다."
+
+#~ msgid ""
+#~ "Implements ``del TOS.name``, using *namei* "
+#~ "as index into :attr:`co_names`."
+#~ msgstr "*namei*\\를 :attr:`co_names`\\에서의 인덱스로 사용하여, ``del TOS.name``\\을 구현합니다."
+
+#~ msgid ""
+#~ "Pops a list from the stack and "
+#~ "pushes a tuple containing the same "
+#~ "values."
+#~ msgstr "스택에서 리스트를 팝하고 같은 값을 포함하는 튜플을 푸시합니다."
+
+#~ msgid "Calls ``list.extend(TOS1[-i], TOS)``.  Used to build lists."
+#~ msgstr "``list.extend(TOS1[-i], TOS)``\\를 호출합니다. 리스트를 만드는 데 사용됩니다."
+
+#~ msgid "Calls ``set.update(TOS1[-i], TOS)``.  Used to build sets."
+#~ msgstr "``set.update(TOS1[-i], TOS)``\\를 호출합니다. 집합을 만드는 데 사용됩니다."
+
+#~ msgid "Calls ``dict.update(TOS1[-i], TOS)``.  Used to build dicts."
+#~ msgstr "``dict.update(TOS1[-i], TOS)``\\를 호출합니다. 딕셔너리를 만드는 데 사용됩니다."
+
+#~ msgid "Replaces TOS with ``getattr(TOS, co_names[namei])``."
+#~ msgstr "TOS를 ``getattr(TOS, co_names[namei])``\\로 바꿉니다."
+
+#~ msgid ""
+#~ "Tests whether the second value on "
+#~ "the stack is an exception matching "
+#~ "TOS, and jumps if it is not. "
+#~ "Pops two values from the stack."
+#~ msgstr "스택의 두 번째 값이 TOS와 일치하는 예외인지 테스트하고, 그렇지 않으면 점프합니다. 스택에서 두 값을 팝 합니다."
+
+#~ msgid ""
+#~ "If TOS is true, sets the bytecode"
+#~ " counter to *target* and leaves TOS"
+#~ " on the stack.  Otherwise (TOS is "
+#~ "false), TOS is popped."
+#~ msgstr ""
+#~ "TOS가 참이면, 바이트 코드 카운터를 *target*\\으로 "
+#~ "설정하고 스택에 TOS를 남겨 둡니다. 그렇지 않으면 "
+#~ "(TOS가 거짓이면), TOS가 팝 됩니다."
+
+#~ msgid ""
+#~ "If TOS is false, sets the bytecode"
+#~ " counter to *target* and leaves TOS"
+#~ " on the stack.  Otherwise (TOS is "
+#~ "true), TOS is popped."
+#~ msgstr ""
+#~ "TOS가 거짓이면, 바이트 코드 카운터를 *target*\\으로 "
+#~ "설정하고 스택에 TOS를 남겨 둡니다. 그렇지 않으면 "
+#~ "(TOS가 참이면), TOS가 팝 됩니다."
+
+#~ msgid "Set bytecode counter to *target*."
+#~ msgstr "바이트 코드 카운터를 *target*\\으로 설정합니다."
+
+#~ msgid ""
+#~ "Pushes a try block from a try-"
+#~ "finally or try-except clause onto "
+#~ "the block stack.  *delta* points to "
+#~ "the finally block or the first "
+#~ "except block."
+#~ msgstr ""
+#~ "try-finally나 try-except 절의 try 블록을"
+#~ " 블록 스택으로 푸시합니다. *delta*\\는 finally "
+#~ "블록이나 첫 번째 except 블록을 가리킵니다."
+
+#~ msgid ""
+#~ "Pushes a reference to the cell "
+#~ "contained in slot *i* of the cell"
+#~ " and free variable storage.  The name"
+#~ " of the variable is ``co_cellvars[i]`` "
+#~ "if *i* is less than the length "
+#~ "of *co_cellvars*.  Otherwise it is "
+#~ "``co_freevars[i - len(co_cellvars)]``."
+#~ msgstr ""
+#~ "셀과 자유 변수 스토리지의 슬롯 *i*\\에 포함된 "
+#~ "셀에 대한 참조를 푸시합니다. *i*\\가 *co_cellvars*\\의"
+#~ " 길이보다 작으면 변수 이름은 ``co_cellvars[i]``\\입니다."
+#~ " 그렇지 않으면 ``co_freevars[i - "
+#~ "len(co_cellvars)]``\\입니다."
+
+#~ msgid ""
+#~ "Much like :opcode:`LOAD_DEREF` but first "
+#~ "checks the locals dictionary before "
+#~ "consulting the cell.  This is used "
+#~ "for loading free variables in class "
+#~ "bodies."
+#~ msgstr ""
+#~ ":opcode:`LOAD_DEREF`\\와 비슷하지만, 셀을 참조하기 전에 "
+#~ "먼저 지역 딕셔너리를 확인합니다. 이것은 클래스 본문에서"
+#~ " 자유 변수를 로드하는 데 사용됩니다."
+
+#~ msgid ""
+#~ "Calls a callable object with positional"
+#~ " arguments. *argc* indicates the number "
+#~ "of positional arguments. The top of "
+#~ "the stack contains positional arguments, "
+#~ "with the right-most argument on "
+#~ "top.  Below the arguments is a "
+#~ "callable object to call. ``CALL_FUNCTION`` "
+#~ "pops all arguments and the callable "
+#~ "object off the stack, calls the "
+#~ "callable object with those arguments, "
+#~ "and pushes the return value returned "
+#~ "by the callable object."
+#~ msgstr ""
+#~ "위치 인자를 사용하여 콜러블 객체를 호출합니다. "
+#~ "*argc*\\는 위치 인자의 수를 나타냅니다. 스택의 맨"
+#~ " 위에는 위치 인자가 포함되는데, 가장 오른쪽 인자가"
+#~ " 맨 위에 있습니다. 인자 아래에는 호출할 콜러블 "
+#~ "객체가 있습니다. ``CALL_FUNCTION``\\은 모든 인자와 "
+#~ "콜러블 객체를 스택에서 팝하고, 해당 인자로 콜러블 "
+#~ "객체를 호출한 다음 콜러블 객체가 반환한 반환 값을"
+#~ " 푸시 합니다."
+
+#~ msgid "This opcode is used only for calls with positional arguments."
+#~ msgstr "이 옵코드는 위치 인자가 있는 호출에만 사용됩니다."
+
+#~ msgid ""
+#~ "Calls a callable object with positional"
+#~ " (if any) and keyword arguments. "
+#~ "*argc* indicates the total number of "
+#~ "positional and keyword arguments. The "
+#~ "top element on the stack contains "
+#~ "a tuple with the names of the "
+#~ "keyword arguments, which must be "
+#~ "strings. Below that are the values "
+#~ "for the keyword arguments, in the "
+#~ "order corresponding to the tuple. Below"
+#~ " that are positional arguments, with "
+#~ "the right-most parameter on top.  "
+#~ "Below the arguments is a callable "
+#~ "object to call. ``CALL_FUNCTION_KW`` pops "
+#~ "all arguments and the callable object"
+#~ " off the stack, calls the callable"
+#~ " object with those arguments, and "
+#~ "pushes the return value returned by "
+#~ "the callable object."
+#~ msgstr ""
+#~ "위치(있다면)와 키워드 인자를 사용하여 콜러블 객체를 "
+#~ "호출합니다. *argc*\\는 위치와 키워드 인자의 총수를 "
+#~ "나타냅니다. 스택의 최상위 요소에는 문자열이어야 하는 키워드"
+#~ " 인자의 이름으로 구성된 튜플이 포함되어 있습니다. 그"
+#~ " 아래에는 그 튜플에 해당하는 순서로 키워드 인자의"
+#~ " 값이 옵니다. 그 아래는 위치 인자인데, 가장 "
+#~ "오른쪽 매개 변수가 맨 위에 옵니다. 인자 아래에는"
+#~ " 호출할 콜러블 객체가 있습니다. ``CALL_FUNCTION_KW``\\는"
+#~ " 모든 인자와 콜러블 객체를 스택에서 팝하고, 해당"
+#~ " 인자로 콜러블 객체를 호출한 다음, 콜러블 객체가"
+#~ " 반환한 반환 값을 푸시합니다."
+
+#~ msgid ""
+#~ "Keyword arguments are packed in a "
+#~ "tuple instead of a dictionary, *argc*"
+#~ " indicates the total number of "
+#~ "arguments."
+#~ msgstr "키워드 인자는 딕셔너리 대신 튜플에 담기며, *argc*\\는 전체 인자 수를 나타냅니다."
+
+#~ msgid ""
+#~ "Calls a method.  *argc* is the "
+#~ "number of positional arguments. Keyword "
+#~ "arguments are not supported.  This "
+#~ "opcode is designed to be used with"
+#~ " :opcode:`LOAD_METHOD`.  Positional arguments are"
+#~ " on top of the stack. Below "
+#~ "them, the two items described in "
+#~ ":opcode:`LOAD_METHOD` are on the stack "
+#~ "(either ``self`` and an unbound method"
+#~ " object or ``NULL`` and an arbitrary"
+#~ " callable). All of them are popped"
+#~ " and the return value is pushed."
+#~ msgstr ""
+#~ "메서드를 호출합니다. *argc*\\는 위치 인자의 수입니다. "
+#~ "키워드 인자는 지원되지 않습니다. 이 옵코드는 "
+#~ ":opcode:`LOAD_METHOD`\\와 함께 사용하도록 설계되었습니다. 위치"
+#~ " 인자는 스택 맨 위에 있습니다. 그 아래에, "
+#~ ":opcode:`LOAD_METHOD`\\에 설명된 두 항목이 스택에 "
+#~ "있습니다 (``self``\\와 연결되지 않은 메서드 객체 "
+#~ "또는 ``NULL``\\과 임의의 콜러블). 이것들이 모두 팝"
+#~ " 되고 반환 값이 푸시 됩니다."
+
+#~ msgid ""
+#~ "Pushes a new function object on "
+#~ "the stack.  From bottom to top, "
+#~ "the consumed stack must consist of "
+#~ "values if the argument carries a "
+#~ "specified flag value"
+#~ msgstr ""
+#~ "스택에 새 함수 객체를 푸시합니다. 바닥에서 맨 "
+#~ "위로, 인자가 지정된 플래그 값을 전달하면 소비되는 "
+#~ "스택은 값으로 구성되어야 합니다."
+
+#~ msgid "``0x04`` an annotation dictionary"
+#~ msgstr "``0x04`` 어노테이션 딕셔너리"
+
+#~ msgid "the code associated with the function (at TOS1)"
+#~ msgstr "함수와 연관된 코드 (TOS1에)"
+
+#~ msgid "the :term:`qualified name` of the function (at TOS)"
+#~ msgstr "함수의 :term:`정규화된 이름 <qualified name>` (TOS에)"
+
+#~ msgid ""
+#~ "Pushes a slice object on the "
+#~ "stack.  *argc* must be 2 or 3."
+#~ "  If it is 2, ``slice(TOS1, TOS)``"
+#~ " is pushed; if it is 3, "
+#~ "``slice(TOS2, TOS1, TOS)`` is pushed. "
+#~ "See the :func:`slice` built-in function"
+#~ " for more information."
+#~ msgstr ""
+#~ "스택에 슬라이스 객체를 푸시합니다. *argc*\\는 2나 "
+#~ "3이어야 합니다. 2이면, ``slice(TOS1, TOS)``\\가 "
+#~ "푸시 됩니다; 3이면, ``slice(TOS2, TOS1, "
+#~ "TOS)``\\가 푸시 됩니다. 자세한 정보는 :func:`slice`"
+#~ " 내장 함수를 참조하십시오."
+
+#~ msgid ""
+#~ "Used for implementing formatted literal "
+#~ "strings (f-strings).  Pops an optional "
+#~ "*fmt_spec* from the stack, then a "
+#~ "required *value*. *flags* is interpreted "
+#~ "as follows:"
+#~ msgstr ""
+#~ "포맷 문자열 리터럴(f-문자열)을 구현하는 데 사용됩니다. "
+#~ "스택에서 선택적 *fmt_spec*\\을 팝 한 다음, 필수"
+#~ " *value*\\를 팝 합니다. *flags*\\는 다음과 같이"
+#~ " 해석됩니다:"
+
+#~ msgid "``(flags & 0x03) == 0x00``: *value* is formatted as-is."
+#~ msgstr "``(flags & 0x03) == 0x00``: *value*\\는 있는 그대로 포맷됩니다."
+
+#~ msgid ""
+#~ "``(flags & 0x04) == 0x04``: pop "
+#~ "*fmt_spec* from the stack and use "
+#~ "it, else use an empty *fmt_spec*."
+#~ msgstr ""
+#~ "``(flags & 0x04) == 0x04``: 스택에서 "
+#~ "*fmt_spec*\\을 팝 하고 그것을 사용합니다, 그렇지 "
+#~ "않으면 빈 *fmt_spec*\\을 사용합니다."
+
+#~ msgid ""
+#~ "Formatting is performed using "
+#~ ":c:func:`PyObject_Format`.  The result is "
+#~ "pushed on the stack."
+#~ msgstr ":c:func:`PyObject_Format`\\을 사용하여 포맷이 수행됩니다. 결과는 스택에 푸시 됩니다."
 

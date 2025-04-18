@@ -7,24 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-15 07:19+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/library/configparser.rst:2
-msgid ":mod:`configparser` --- Configuration file parser"
+#: ../../library/configparser.rst:2
+#, fuzzy
+msgid ":mod:`!configparser` --- Configuration file parser"
 msgstr ":mod:`configparser` --- 구성 파일 구문 분석기"
 
-#: ../Doc/library/configparser.rst:14
+#: ../../library/configparser.rst:14
 msgid "**Source code:** :source:`Lib/configparser.py`"
 msgstr "**소스 코드:** :source:`Lib/configparser.py`"
 
-#: ../Doc/library/configparser.rst:24
+#: ../../library/configparser.rst:24
 msgid ""
 "This module provides the :class:`ConfigParser` class which implements a "
 "basic configuration language which provides a structure similar to what's"
@@ -35,41 +36,70 @@ msgstr ""
 ":class:`ConfigParser` 클래스를 제공합니다. 이를 사용하여 최종 사용자가 쉽게 사용자 정의 할 수 있는 파이썬 "
 "프로그램을 작성할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:31
+#: ../../library/configparser.rst:31
 msgid ""
 "This library does *not* interpret or write the value-type prefixes used "
 "in the Windows Registry extended version of INI syntax."
 msgstr "이 라이브러리는 윈도우 레지스트리 확장 버전의 INI 문법에 사용된 값-형 접두사를 해석하거나 기록하지 *않습니다*."
 
-#: ../Doc/library/configparser.rst:38
+#: ../../library/configparser.rst:36
+#, fuzzy
+msgid "Module :mod:`tomllib`"
+msgstr "모듈 :mod:`json`"
+
+#: ../../library/configparser.rst:37
+msgid ""
+"TOML is a well-specified format for application configuration files. It "
+"is specifically designed to be an improved version of INI."
+msgstr ""
+
+#: ../../library/configparser.rst:40
 msgid "Module :mod:`shlex`"
 msgstr "모듈 :mod:`shlex`"
 
-#: ../Doc/library/configparser.rst:37
+#: ../../library/configparser.rst:41
+#, fuzzy
 msgid ""
-"Support for creating Unix shell-like mini-languages which can be used as "
-"an alternate format for application configuration files."
+"Support for creating Unix shell-like mini-languages which can also be "
+"used for application configuration files."
 msgstr "응용 프로그램 구성 파일의 대체 형식으로 사용할 수 있는 유닉스 셸과 유사한 미니 언어를 만드는 것에 관한 지원."
 
-#: ../Doc/library/configparser.rst:41
+#: ../../library/configparser.rst:44
 msgid "Module :mod:`json`"
 msgstr "모듈 :mod:`json`"
 
-#: ../Doc/library/configparser.rst:41
+#: ../../library/configparser.rst:45
+#, fuzzy
 msgid ""
-"The json module implements a subset of JavaScript syntax which can also "
-"be used for this purpose."
+"The ``json`` module implements a subset of JavaScript syntax which is "
+"sometimes used for configuration, but does not support comments."
 msgstr "json 모듈은 이러한 목적으로도 사용될 수 있는 자바스크립트 문법의 부분 집합을 구현합니다."
 
-#: ../Doc/library/configparser.rst:51
+#: ../../library/configparser.rst:61
 msgid "Quick Start"
 msgstr "빠른 시작"
 
-#: ../Doc/library/configparser.rst:53
+#: ../../library/configparser.rst:63
 msgid "Let's take a very basic configuration file that looks like this:"
 msgstr "다음과 같은 매우 기본적인 구성 파일을 봅시다:"
 
-#: ../Doc/library/configparser.rst:70
+#: ../../library/configparser.rst:65
+msgid ""
+"[DEFAULT]\n"
+"ServerAliveInterval = 45\n"
+"Compression = yes\n"
+"CompressionLevel = 9\n"
+"ForwardX11 = yes\n"
+"\n"
+"[forge.example]\n"
+"User = hg\n"
+"\n"
+"[topsecret.server.example]\n"
+"Port = 50022\n"
+"ForwardX11 = no"
+msgstr ""
+
+#: ../../library/configparser.rst:80
 msgid ""
 "The structure of INI files is described `in the following section "
 "<#supported-ini-file-structure>`_.  Essentially, the file consists of "
@@ -81,7 +111,27 @@ msgstr ""
 "섹션으로 구성되며, 각 섹션에는 값이 있는 키가 포함됩니다. :mod:`configparser` 클래스는 이러한 파일을 읽고 쓸 수"
 " 있습니다. 프로그래밍 방식으로 위의 구성 파일을 만드는 것으로 시작하겠습니다."
 
-#: ../Doc/library/configparser.rst:94
+#: ../../library/configparser.rst:86
+#, python-brace-format
+msgid ""
+">>> import configparser\n"
+">>> config = configparser.ConfigParser()\n"
+">>> config['DEFAULT'] = {'ServerAliveInterval': '45',\n"
+"...                      'Compression': 'yes',\n"
+"...                      'CompressionLevel': '9'}\n"
+">>> config['forge.example'] = {}\n"
+">>> config['forge.example']['User'] = 'hg'\n"
+">>> config['topsecret.server.example'] = {}\n"
+">>> topsecret = config['topsecret.server.example']\n"
+">>> topsecret['Port'] = '50022'     # mutates the parser\n"
+">>> topsecret['ForwardX11'] = 'no'  # same here\n"
+">>> config['DEFAULT']['ForwardX11'] = 'yes'\n"
+">>> with open('example.ini', 'w') as configfile:\n"
+"...   config.write(configfile)\n"
+"..."
+msgstr ""
+
+#: ../../library/configparser.rst:104
 msgid ""
 "As you can see, we can treat a config parser much like a dictionary. "
 "There are differences, `outlined later <#mapping-protocol-access>`_, but "
@@ -90,13 +140,46 @@ msgstr ""
 "보시다시피, 구성 구문 분석기는 딕셔너리처럼 취급할 수 있습니다. `나중에 설명되는 <#mapping-protocol-"
 "access>`_ 차이점이 있지만, 동작은 딕셔너리에서 기대하는 것과 매우 비슷합니다."
 
-#: ../Doc/library/configparser.rst:98
+#: ../../library/configparser.rst:108
 msgid ""
 "Now that we have created and saved a configuration file, let's read it "
 "back and explore the data it holds."
 msgstr "이제 구성 파일을 만들고 저장했으니, 파일을 다시 읽고 담긴 데이터를 탐색합시다."
 
-#: ../Doc/library/configparser.rst:133
+#: ../../library/configparser.rst:111
+msgid ""
+">>> config = configparser.ConfigParser()\n"
+">>> config.sections()\n"
+"[]\n"
+">>> config.read('example.ini')\n"
+"['example.ini']\n"
+">>> config.sections()\n"
+"['forge.example', 'topsecret.server.example']\n"
+">>> 'forge.example' in config\n"
+"True\n"
+">>> 'python.org' in config\n"
+"False\n"
+">>> config['forge.example']['User']\n"
+"'hg'\n"
+">>> config['DEFAULT']['Compression']\n"
+"'yes'\n"
+">>> topsecret = config['topsecret.server.example']\n"
+">>> topsecret['ForwardX11']\n"
+"'no'\n"
+">>> topsecret['Port']\n"
+"'50022'\n"
+">>> for key in config['forge.example']:\n"
+"...     print(key)\n"
+"user\n"
+"compressionlevel\n"
+"serveraliveinterval\n"
+"compression\n"
+"forwardx11\n"
+">>> config['forge.example']['ForwardX11']\n"
+"'yes'"
+msgstr ""
+
+#: ../../library/configparser.rst:143
 msgid ""
 "As we can see above, the API is pretty straightforward.  The only bit of "
 "magic involves the ``DEFAULT`` section which provides default values for "
@@ -106,11 +189,48 @@ msgstr ""
 "위에서 볼 수 있듯이, API는 매우 간단합니다. 유일한 마법은 ``DEFAULT`` 섹션인데, 다른 모든 섹션에 대한 기본값을 "
 "제공합니다 [1]_. 섹션의 키는 대소 문자를 구분하지 않으며 소문자로 저장됨에 유의하십시오 [1]_."
 
-#: ../Doc/library/configparser.rst:140
+#: ../../library/configparser.rst:148 ../../library/configparser.rst:1003
+msgid ""
+"It is possible to read several configurations into a single "
+":class:`ConfigParser`, where the most recently added configuration has "
+"the highest priority. Any conflicting keys are taken from the more recent"
+" configuration while the previously existing keys are retained. The "
+"example below reads in an ``override.ini`` file, which will override any "
+"conflicting keys from the ``example.ini`` file."
+msgstr ""
+
+#: ../../library/configparser.rst:155 ../../library/configparser.rst:1010
+msgid ""
+"[DEFAULT]\n"
+"ServerAliveInterval = -1"
+msgstr ""
+
+#: ../../library/configparser.rst:160 ../../library/configparser.rst:1015
+#, python-brace-format
+msgid ""
+">>> config_override = configparser.ConfigParser()\n"
+">>> config_override['DEFAULT'] = {'ServerAliveInterval': '-1'}\n"
+">>> with open('override.ini', 'w') as configfile:\n"
+"...     config_override.write(configfile)\n"
+"...\n"
+">>> config_override = configparser.ConfigParser()\n"
+">>> config_override.read(['example.ini', 'override.ini'])\n"
+"['example.ini', 'override.ini']\n"
+">>> print(config_override.get('DEFAULT', 'ServerAliveInterval'))\n"
+"-1"
+msgstr ""
+
+#: ../../library/configparser.rst:174
+msgid ""
+"This behaviour is equivalent to a :meth:`ConfigParser.read` call with "
+"several files passed to the *filenames* parameter."
+msgstr ""
+
+#: ../../library/configparser.rst:179
 msgid "Supported Datatypes"
 msgstr "지원되는 데이터형"
 
-#: ../Doc/library/configparser.rst:142
+#: ../../library/configparser.rst:181
 msgid ""
 "Config parsers do not guess datatypes of values in configuration files, "
 "always storing them internally as strings.  This means that if you need "
@@ -119,7 +239,15 @@ msgstr ""
 "구성 구문 분석기는 구성 파일에 있는 값의 데이터형을 추측하지 않고, 항상 내부적으로 문자열로 저장합니다. 이것은 다른 데이터형이 "
 "필요하면, 직접 변환해야 함을 뜻합니다:"
 
-#: ../Doc/library/configparser.rst:153
+#: ../../library/configparser.rst:185
+msgid ""
+">>> int(topsecret['Port'])\n"
+"50022\n"
+">>> float(topsecret['CompressionLevel'])\n"
+"9.0"
+msgstr ""
+
+#: ../../library/configparser.rst:192
 msgid ""
 "Since this task is so common, config parsers provide a range of handy "
 "getter methods to handle integers, floats and booleans.  The last one is "
@@ -137,7 +265,17 @@ msgstr ""
 "``'yes'``/``'no'``, ``'on'``/``'off'``, ``'true'``/``'false'`` 및 "
 "``'1'``/``'0'``\\에서 불리언 값을 인식합니다 [1]_. 예를 들면:"
 
-#: ../Doc/library/configparser.rst:170
+#: ../../library/configparser.rst:200
+msgid ""
+">>> topsecret.getboolean('ForwardX11')\n"
+"False\n"
+">>> config['forge.example'].getboolean('ForwardX11')\n"
+"True\n"
+">>> config.getboolean('forge.example', 'Compression')\n"
+"True"
+msgstr ""
+
+#: ../../library/configparser.rst:209
 msgid ""
 "Apart from :meth:`~ConfigParser.getboolean`, config parsers also provide "
 "equivalent :meth:`~ConfigParser.getint` and "
@@ -148,40 +286,68 @@ msgstr ""
 ":meth:`~ConfigParser.getint`\\와 :meth:`~ConfigParser.getfloat` 메서드를 "
 "제공합니다. 여러분 자신의 변환기를 등록하고 제공된 변환기를 사용자 정의 할 수 있습니다. [1]_"
 
-#: ../Doc/library/configparser.rst:176
+#: ../../library/configparser.rst:215
 msgid "Fallback Values"
 msgstr "대체 값"
 
-#: ../Doc/library/configparser.rst:178
+#: ../../library/configparser.rst:217
+#, fuzzy
 msgid ""
-"As with a dictionary, you can use a section's :meth:`get` method to "
-"provide fallback values:"
+"As with a dictionary, you can use a section's :meth:`~ConfigParser.get` "
+"method to provide fallback values:"
 msgstr "딕셔너리와 마찬가지로, 섹션의 :meth:`get` 메서드를 사용하여 대체(fallback) 값을 제공할 수 있습니다:"
 
-#: ../Doc/library/configparser.rst:191
+#: ../../library/configparser.rst:220
+msgid ""
+">>> topsecret.get('Port')\n"
+"'50022'\n"
+">>> topsecret.get('CompressionLevel')\n"
+"'9'\n"
+">>> topsecret.get('Cipher')\n"
+">>> topsecret.get('Cipher', '3des-cbc')\n"
+"'3des-cbc'"
+msgstr ""
+
+#: ../../library/configparser.rst:230
+#, fuzzy
 msgid ""
 "Please note that default values have precedence over fallback values. For"
 " instance, in our example the ``'CompressionLevel'`` key was specified "
 "only in the ``'DEFAULT'`` section.  If we try to get it from the section "
-"``'topsecret.server.com'``, we will always get the default, even if we "
-"specify a fallback:"
+"``'topsecret.server.example'``, we will always get the default, even if "
+"we specify a fallback:"
 msgstr ""
 "기본값이 대체 값보다 우선함에 유의하십시오. 예를 들어, 이 예에서 ``'CompressionLevel'`` 키는 "
 "``'DEFAULT'`` 섹션에서만 지정되었습니다. 이것을 ``'topsecret.server.com'`` 섹션에서 가져오려고 하면"
 " 대체 값을 지정하더라도 항상 기본값을 얻습니다:"
 
-#: ../Doc/library/configparser.rst:202
+#: ../../library/configparser.rst:236
 msgid ""
-"One more thing to be aware of is that the parser-level :meth:`get` method"
-" provides a custom, more complex interface, maintained for backwards "
-"compatibility.  When using this method, a fallback value can be provided "
-"via the ``fallback`` keyword-only argument:"
+">>> topsecret.get('CompressionLevel', '3')\n"
+"'9'"
+msgstr ""
+
+#: ../../library/configparser.rst:241
+#, fuzzy
+msgid ""
+"One more thing to be aware of is that the parser-level "
+":meth:`~ConfigParser.get` method provides a custom, more complex "
+"interface, maintained for backwards compatibility.  When using this "
+"method, a fallback value can be provided via the ``fallback`` keyword-"
+"only argument:"
 msgstr ""
 "알아 두어야 할 또 다른 사항은 구문 분석기 수준의 :meth:`get` 메서드가 이전 버전과의 호환성을 위해 유지되는 더 복잡한 "
 "사용자 정의 인터페이스를 제공한다는 것입니다. 이 메서드를 사용할 때, ``fallback`` 키워드 전용 인자를 통해 대체 값을 "
 "제공할 수 있습니다:"
 
-#: ../Doc/library/configparser.rst:213
+#: ../../library/configparser.rst:246
+msgid ""
+">>> config.get('forge.example', 'monster',\n"
+"...            fallback='No such things as monsters')\n"
+"'No such things as monsters'"
+msgstr ""
+
+#: ../../library/configparser.rst:252
 msgid ""
 "The same ``fallback`` argument can be used with the "
 ":meth:`~ConfigParser.getint`, :meth:`~ConfigParser.getfloat` and "
@@ -191,21 +357,34 @@ msgstr ""
 ":meth:`~ConfigParser.getboolean` 메서드에 같은 ``fallback`` 인자를 사용할 수 있습니다. 예를 "
 "들면:"
 
-#: ../Doc/library/configparser.rst:229
+#: ../../library/configparser.rst:256
+msgid ""
+">>> 'BatchMode' in topsecret\n"
+"False\n"
+">>> topsecret.getboolean('BatchMode', fallback=True)\n"
+"True\n"
+">>> config['DEFAULT']['BatchMode'] = 'no'\n"
+">>> topsecret.getboolean('BatchMode', fallback=True)\n"
+"False"
+msgstr ""
+
+#: ../../library/configparser.rst:268
 msgid "Supported INI File Structure"
 msgstr "지원되는 INI 파일 구조"
 
-#: ../Doc/library/configparser.rst:231
+#: ../../library/configparser.rst:270
+#, fuzzy
 msgid ""
 "A configuration file consists of sections, each led by a ``[section]`` "
 "header, followed by key/value entries separated by a specific string "
 "(``=`` or ``:`` by default [1]_).  By default, section names are case "
 "sensitive but keys are not [1]_.  Leading and trailing whitespace is "
-"removed from keys and values. Values can be omitted, in which case the "
-"key/value delimiter may also be left out.  Values can also span multiple "
-"lines, as long as they are indented deeper than the first line of the "
-"value.  Depending on the parser's mode, blank lines may be treated as "
-"parts of multiline values or ignored."
+"removed from keys and values. Values can be omitted if the parser is "
+"configured to allow it [1]_, in which case the key/value delimiter may "
+"also be left out.  Values can also span multiple lines, as long as they "
+"are indented deeper than the first line of the value.  Depending on the "
+"parser's mode, blank lines may be treated as parts of multiline values or"
+" ignored."
 msgstr ""
 "구성 파일은 섹션으로 구성되며, 각 섹션은 ``[section]`` 헤더로 시작하고, 특정 문자열(기본적으로 ``=``\\이나 "
 "``:`` [1]_)로 구분된 키/값 항목들이 뒤따릅니다. 기본적으로, 섹션 이름은 대소 문자를 구분하지만 키는 구분하지 않습니다 "
@@ -213,7 +392,21 @@ msgstr ""
 " 첫 줄보다 깊이 들여쓰기만 하면 값이 여러 줄에 걸쳐있을 수 있습니다. 구문 분석기의 모드에 따라, 빈 줄은 여러 줄 값의 일부로"
 " 취급되거나 무시될 수 있습니다."
 
-#: ../Doc/library/configparser.rst:240
+#: ../../library/configparser.rst:280
+msgid ""
+"By default, a valid section name can be any string that does not contain "
+"'\\\\n'. To change this, see :attr:`ConfigParser.SECTCRE`."
+msgstr ""
+
+#: ../../library/configparser.rst:283
+msgid ""
+"The first section name may be omitted if the parser is configured to "
+"allow an unnamed top level section with ``allow_unnamed_section=True``. "
+"In this case, the keys/values may be retrieved by "
+":const:`UNNAMED_SECTION` as in ``config[UNNAMED_SECTION]``."
+msgstr ""
+
+#: ../../library/configparser.rst:288
 msgid ""
 "Configuration files may include comments, prefixed by specific characters"
 " (``#`` and ``;`` by default [1]_).  Comments may appear on their own on "
@@ -222,15 +415,84 @@ msgstr ""
 "구성 파일에는 특정 문자(기본적으로 ``#``\\과 ``;`` [1]_)를 접두사로 붙인 주석이 포함될 수 있습니다. 주석은 주석이"
 " 없다면 빈 줄일 곳에 있을 수 있으며, 들여쓰기 될 수 있습니다. [1]_"
 
-#: ../Doc/library/configparser.rst:244 ../Doc/library/configparser.rst:307
+#: ../../library/configparser.rst:292 ../../library/configparser.rst:376
 msgid "For example:"
 msgstr "예를 들면:"
 
-#: ../Doc/library/configparser.rst:292
+#: ../../library/configparser.rst:294
+msgid ""
+"[Simple Values]\n"
+"key=value\n"
+"spaces in keys=allowed\n"
+"spaces in values=allowed as well\n"
+"spaces around the delimiter = obviously\n"
+"you can also use : to delimit keys from values\n"
+"\n"
+"[All Values Are Strings]\n"
+"values like this: 1000000\n"
+"or this: 3.14159265359\n"
+"are they treated as numbers? : no\n"
+"integers, floats and booleans are held as: strings\n"
+"can use the API to get converted values directly: true\n"
+"\n"
+"[Multiline Values]\n"
+"chorus: I'm a lumberjack, and I'm okay\n"
+"    I sleep all night and I work all day\n"
+"\n"
+"[No Values]\n"
+"key_without_value\n"
+"empty string value here =\n"
+"\n"
+"[You can use comments]\n"
+"# like this\n"
+"; or this\n"
+"\n"
+"# By default only in an empty line.\n"
+"# Inline comments can be harmful because they prevent users\n"
+"# from using the delimiting characters as parts of values.\n"
+"# That being said, this can be customized.\n"
+"\n"
+"    [Sections Can Be Indented]\n"
+"        can_values_be_as_well = True\n"
+"        does_that_mean_anything_special = False\n"
+"        purpose = formatting for readability\n"
+"        multiline_values = are\n"
+"            handled just fine as\n"
+"            long as they are indented\n"
+"            deeper than the first line\n"
+"            of a value\n"
+"        # Did I mention we can indent comments, too?"
+msgstr ""
+
+#: ../../library/configparser.rst:342
+msgid "Unnamed Sections"
+msgstr ""
+
+#: ../../library/configparser.rst:344
+msgid ""
+"The name of the first section (or unique) may be omitted and values "
+"retrieved by the :const:`UNNAMED_SECTION` attribute."
+msgstr ""
+
+#: ../../library/configparser.rst:347
+msgid ""
+">>> config = \"\"\"\n"
+"... option = value\n"
+"...\n"
+"... [  Section 2  ]\n"
+"... another = val\n"
+"... \"\"\"\n"
+">>> unnamed = configparser.ConfigParser(allow_unnamed_section=True)\n"
+">>> unnamed.read_string(config)\n"
+">>> unnamed.get(configparser.UNNAMED_SECTION, 'option')\n"
+"'value'"
+msgstr ""
+
+#: ../../library/configparser.rst:361
 msgid "Interpolation of values"
 msgstr "값의 보간"
 
-#: ../Doc/library/configparser.rst:294
+#: ../../library/configparser.rst:363
 msgid ""
 "On top of the core functionality, :class:`ConfigParser` supports "
 "interpolation.  This means values can be preprocessed before returning "
@@ -239,7 +501,7 @@ msgstr ""
 "핵심 기능 위에, :class:`ConfigParser`\\는 보간(interpolation)을 지원합니다. 이는 ``get()``"
 " 호출에서 값을 반환하기 전에 값을 전처리할 수 있음을 의미합니다."
 
-#: ../Doc/library/configparser.rst:302
+#: ../../library/configparser.rst:371
 msgid ""
 "The default implementation used by :class:`ConfigParser`.  It enables "
 "values to contain format strings which refer to other values in the same "
@@ -249,7 +511,21 @@ msgstr ""
 ":class:`ConfigParser`\\에서 사용되는 기본 구현. 같은 섹션의 다른 값이나 특수한 기본 섹션의 값을 참조하는 포맷"
 " 문자열을 포함하는 값을 사용할 수 있도록 합니다 [1]_. 초기화할 때 추가 기본값을 제공할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:319
+#: ../../library/configparser.rst:378
+#, python-format
+msgid ""
+"[Paths]\n"
+"home_dir: /Users\n"
+"my_dir: %(home_dir)s/lumberjack\n"
+"my_pictures: %(my_dir)s/Pictures\n"
+"\n"
+"[Escape]\n"
+"# use a %% to escape the % sign (% is the only character that needs to be"
+" escaped):\n"
+"gain: 80%%"
+msgstr ""
+
+#: ../../library/configparser.rst:389
 #, python-format
 msgid ""
 "In the example above, :class:`ConfigParser` with *interpolation* set to "
@@ -264,7 +540,7 @@ msgstr ""
 "``/Users``)으로 해석합니다. 결과적으로 ``%(my_dir)s``\\는 ``/Users/lumberjack``\\으로 "
 "해석됩니다. 모든 보간은 요청 시 수행되므로 참조 체인에 사용된 키를 구성 파일에서 특정 순서로 지정할 필요는 없습니다."
 
-#: ../Doc/library/configparser.rst:326
+#: ../../library/configparser.rst:396
 #, python-format
 msgid ""
 "With ``interpolation`` set to ``None``, the parser would simply return "
@@ -275,7 +551,8 @@ msgstr ""
 "``%(my_dir)s/Pictures``\\로, ``my_dir``\\의 값을 "
 "``%(home_dir)s/lumberjack``\\으로 반환합니다."
 
-#: ../Doc/library/configparser.rst:334
+#: ../../library/configparser.rst:404
+#, python-brace-format
 msgid ""
 "An alternative handler for interpolation which implements a more advanced"
 " syntax, used for instance in ``zc.buildout``.  Extended interpolation is"
@@ -288,21 +565,56 @@ msgstr ""
 "``${section:option}``\\을 사용하여 외부 섹션의 값을 나타냅니다. 보간은 여러 수준으로 확장될 수 있습니다. "
 "편의상, ``section:`` 부분을 생략하면, 보간은 현재 섹션(그리고 가능하면 특수 섹션의 기본값)으로 기본 설정됩니다."
 
-#: ../Doc/library/configparser.rst:341
+#: ../../library/configparser.rst:411
 msgid ""
 "For example, the configuration specified above with basic interpolation, "
 "would look like this with extended interpolation:"
 msgstr "예를 들어, 기본 보간으로 위에서 지정한 구성은, 확장 보간으로는 다음과 같습니다:"
 
-#: ../Doc/library/configparser.rst:354
+#: ../../library/configparser.rst:414
+#, python-brace-format
+msgid ""
+"[Paths]\n"
+"home_dir: /Users\n"
+"my_dir: ${home_dir}/lumberjack\n"
+"my_pictures: ${my_dir}/Pictures\n"
+"\n"
+"[Escape]\n"
+"# use a $$ to escape the $ sign ($ is the only character that needs to be"
+" escaped):\n"
+"cost: $$80"
+msgstr ""
+
+#: ../../library/configparser.rst:425
 msgid "Values from other sections can be fetched as well:"
 msgstr "다른 섹션의 값도 가져올 수 있습니다:"
 
-#: ../Doc/library/configparser.rst:376
+#: ../../library/configparser.rst:427
+#, python-brace-format
+msgid ""
+"[Common]\n"
+"home_dir: /Users\n"
+"library_dir: /Library\n"
+"system_dir: /System\n"
+"macports_dir: /opt/local\n"
+"\n"
+"[Frameworks]\n"
+"Python: 3.2\n"
+"path: ${Common:system_dir}/Library/Frameworks/\n"
+"\n"
+"[Arthur]\n"
+"nickname: Two Sheds\n"
+"last_name: Jackson\n"
+"my_dir: ${Common:home_dir}/twosheds\n"
+"my_pictures: ${my_dir}/Pictures\n"
+"python_dir: ${Frameworks:path}/Python/Versions/${Frameworks:Python}"
+msgstr ""
+
+#: ../../library/configparser.rst:447
 msgid "Mapping Protocol Access"
 msgstr "매핑 프로토콜 액세스"
 
-#: ../Doc/library/configparser.rst:380
+#: ../../library/configparser.rst:451
 msgid ""
 "Mapping protocol access is a generic name for functionality that enables "
 "using custom objects as if they were dictionaries.  In case of "
@@ -313,7 +625,7 @@ msgstr ""
 ":mod:`configparser`\\의 경우, 매핑 인터페이스 구현은 ``parser['section']['option']`` "
 "표기법을 사용합니다."
 
-#: ../Doc/library/configparser.rst:385
+#: ../../library/configparser.rst:456
 msgid ""
 "``parser['section']`` in particular returns a proxy for the section's "
 "data in the parser.  This means that the values are not copied but they "
@@ -325,7 +637,7 @@ msgstr ""
 " 필요할 때 원래 구문 분석기에서 가져옴을 뜻합니다. 더욱 중요한 것은 섹션 프락시에서 값이 변경되면, 실제로 원래 구문 분석기에서"
 " 변경된다는 것입니다."
 
-#: ../Doc/library/configparser.rst:391
+#: ../../library/configparser.rst:462
 msgid ""
 ":mod:`configparser` objects behave as close to actual dictionaries as "
 "possible. The mapping interface is complete and adheres to the "
@@ -336,7 +648,7 @@ msgstr ""
 ":class:`~collections.abc.MutableMapping` ABC를 준수합니다. 그러나, 고려해야 하는 몇 가지 "
 "차이점이 있습니다:"
 
-#: ../Doc/library/configparser.rst:396
+#: ../../library/configparser.rst:467
 msgid ""
 "By default, all keys in sections are accessible in a case-insensitive "
 "manner [1]_.  E.g. ``for option in parser[\"section\"]`` yields only "
@@ -348,7 +660,13 @@ msgstr ""
 "parser[\"section\"]``\\는 ``optionxform`` 변환된 옵션 키 이름만 산출합니다. 이것은 기본적으로 "
 "소문자 키를 의미합니다. 동시에, 키 ``'a'``\\를 보유하는 섹션의 경우, 두 표현식 모두 ``True``\\를 반환합니다::"
 
-#: ../Doc/library/configparser.rst:404
+#: ../../library/configparser.rst:472
+msgid ""
+"\"a\" in parser[\"section\"]\n"
+"\"A\" in parser[\"section\"]"
+msgstr ""
+
+#: ../../library/configparser.rst:475
 msgid ""
 "All sections include ``DEFAULTSECT`` values as well which means that "
 "``.clear()`` on a section may not leave the section visibly empty.  This "
@@ -361,23 +679,23 @@ msgstr ""
 " 수 없다는 뜻입니다. 이것은 섹션에서 기본값을 삭제할 수 없기 때문입니다 (기술적으로는 기본값이 거기 없기 때문입니다). 섹션에서"
 " 재정의되었으면, 삭제하면 기본값이 다시 보입니다. 기본값을 삭제하려고 하면 :exc:`KeyError`\\가 발생합니다."
 
-#: ../Doc/library/configparser.rst:411
+#: ../../library/configparser.rst:482
 msgid "``DEFAULTSECT`` cannot be removed from the parser:"
 msgstr "``DEFAULTSECT``\\는 구문 분석기에서 제거할 수 없습니다:"
 
-#: ../Doc/library/configparser.rst:413
+#: ../../library/configparser.rst:484
 msgid "trying to delete it raises :exc:`ValueError`,"
 msgstr "삭제하려고 하면 :exc:`ValueError`\\가 발생합니다,"
 
-#: ../Doc/library/configparser.rst:415
+#: ../../library/configparser.rst:486
 msgid "``parser.clear()`` leaves it intact,"
 msgstr "``parser.clear()``\\는 이것을 그대로 남겨둡니다,"
 
-#: ../Doc/library/configparser.rst:417
+#: ../../library/configparser.rst:488
 msgid "``parser.popitem()`` never returns it."
 msgstr "``parser.popitem()``\\은 이것을 절대 반환하지 않습니다."
 
-#: ../Doc/library/configparser.rst:419
+#: ../../library/configparser.rst:490
 msgid ""
 "``parser.get(section, option, **kwargs)`` - the second argument is "
 "**not** a fallback value.  Note however that the section-level ``get()`` "
@@ -387,7 +705,7 @@ msgstr ""
 "``parser.get(section, option, **kwargs)`` - 두 번째 인자는 대체 값이 **아닙니다**. 그러나 "
 "섹션 수준 ``get()`` 메서드는 매핑 프로토콜과 클래식 configparser API와 모두 호환됨에 유의하십시오."
 
-#: ../Doc/library/configparser.rst:423
+#: ../../library/configparser.rst:494
 msgid ""
 "``parser.items()`` is compatible with the mapping protocol (returns a "
 "list of *section_name*, *section_proxy* pairs including the DEFAULTSECT)."
@@ -401,18 +719,18 @@ msgstr ""
 "``parser.items(section, raw, vars)``. 후자의 호출은 지정된 ``section``\\에 대한 "
 "*option*, *value* 쌍의 리스트를 반환하며, 모든 보간이 확장됩니다 (``raw=True``\\가 제공되지 않는 한)."
 
-#: ../Doc/library/configparser.rst:430
+#: ../../library/configparser.rst:501
 msgid ""
 "The mapping protocol is implemented on top of the existing legacy API so "
 "that subclasses overriding the original interface still should have "
 "mappings working as expected."
 msgstr "매핑 프로토콜은 기존 레거시 API 위에 구현되므로 원래 인터페이스를 재정의하는 서브 클래스에서도 여전히 매핑이 작동해야 합니다."
 
-#: ../Doc/library/configparser.rst:436
+#: ../../library/configparser.rst:507
 msgid "Customizing Parser Behaviour"
 msgstr "구문 분석기 동작 사용자 정의"
 
-#: ../Doc/library/configparser.rst:438
+#: ../../library/configparser.rst:509
 msgid ""
 "There are nearly as many INI format variants as there are applications "
 "using it. :mod:`configparser` goes a long way to provide support for the "
@@ -424,17 +742,18 @@ msgstr ""
 "가능한 가장 큰 INI 스타일 집합을 지원하기 위해 먼 길을 갔습니다. 기본 기능은 주로 역사적 배경에 의해 결정되며 일부 기능을 "
 "사용자 정의하고 싶을 가능성이 큽니다."
 
-#: ../Doc/library/configparser.rst:444
+#: ../../library/configparser.rst:515
+#, fuzzy
 msgid ""
 "The most common way to change the way a specific config parser works is "
-"to use the :meth:`__init__` options:"
+"to use the :meth:`!__init__` options:"
 msgstr "특정 구성 구문 분석기의 작동 방식을 변경하는 가장 흔한 방법은 :meth:`__init__` 옵션을 사용하는 것입니다:"
 
-#: ../Doc/library/configparser.rst:447
+#: ../../library/configparser.rst:518
 msgid "*defaults*, default value: ``None``"
 msgstr "*defaults*, 기본값: ``None``"
 
-#: ../Doc/library/configparser.rst:449
+#: ../../library/configparser.rst:520
 msgid ""
 "This option accepts a dictionary of key-value pairs which will be "
 "initially put in the ``DEFAULT`` section.  This makes for an elegant way "
@@ -444,17 +763,18 @@ msgstr ""
 "이 옵션은 처음에 ``DEFAULT`` 섹션에 배치될 키-값 쌍의 딕셔너리를 받아들입니다. 이것은 지정하지 않으면 설명된 기본값과 "
 "같은 값이 되는 간결한 구성 파일을 지원하는 우아한 방법입니다."
 
-#: ../Doc/library/configparser.rst:454
+#: ../../library/configparser.rst:525
+#, fuzzy
 msgid ""
 "Hint: if you want to specify default values for a specific section, use "
-":meth:`read_dict` before you read the actual file."
+":meth:`~ConfigParser.read_dict` before you read the actual file."
 msgstr "힌트: 특정 섹션에 대한 기본값을 지정하려면, 실제 파일을 읽기 전에 :meth:`read_dict`\\를 사용하십시오."
 
-#: ../Doc/library/configparser.rst:457
+#: ../../library/configparser.rst:528
 msgid "*dict_type*, default value: :class:`dict`"
 msgstr "*dict_type*, 기본값: :class:`dict`"
 
-#: ../Doc/library/configparser.rst:459
+#: ../../library/configparser.rst:530
 msgid ""
 "This option has a major impact on how the mapping protocol will behave "
 "and how the written configuration files look.  With the standard "
@@ -464,13 +784,13 @@ msgstr ""
 "이 옵션은 매핑 프로토콜의 작동 방식과 기록된 구성 파일의 꼴에 큰 영향을 미칩니다. 표준 딕셔너리를 사용하면, 모든 섹션이 구문 "
 "분석기에 추가된 순서대로 저장됩니다. 섹션 내의 옵션도 마찬가지입니다."
 
-#: ../Doc/library/configparser.rst:464
+#: ../../library/configparser.rst:535
 msgid ""
 "An alternative dictionary type can be used for example to sort sections "
 "and options on write-back."
 msgstr "대체 딕셔너리 형을 사용하여 예를 들어 다시 쓸 때 섹션과 옵션을 정렬할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:467
+#: ../../library/configparser.rst:538
 msgid ""
 "Please note: there are ways to add a set of key-value pairs in a single "
 "operation.  When you use a regular dictionary in those operations, the "
@@ -479,11 +799,31 @@ msgstr ""
 "참고: 단일 연산에서 키-값 쌍의 집합을 추가하는 방법이 있습니다. 이러한 연산에서 일반 딕셔너리를 사용하면 키 순서가 유지됩니다."
 " 예를 들면:"
 
-#: ../Doc/library/configparser.rst:489
+#: ../../library/configparser.rst:542
+#, python-brace-format
+msgid ""
+">>> parser = configparser.ConfigParser()\n"
+">>> parser.read_dict({'section1': {'key1': 'value1',\n"
+"...                                'key2': 'value2',\n"
+"...                                'key3': 'value3'},\n"
+"...                   'section2': {'keyA': 'valueA',\n"
+"...                                'keyB': 'valueB',\n"
+"...                                'keyC': 'valueC'},\n"
+"...                   'section3': {'foo': 'x',\n"
+"...                                'bar': 'y',\n"
+"...                                'baz': 'z'}\n"
+"... })\n"
+">>> parser.sections()\n"
+"['section1', 'section2', 'section3']\n"
+">>> [option for option in parser['section3']]\n"
+"['foo', 'bar', 'baz']"
+msgstr ""
+
+#: ../../library/configparser.rst:560
 msgid "*allow_no_value*, default value: ``False``"
 msgstr "*allow_no_value*, 기본값: ``False``"
 
-#: ../Doc/library/configparser.rst:491
+#: ../../library/configparser.rst:562
 msgid ""
 "Some configuration files are known to include settings without values, "
 "but which otherwise conform to the syntax supported by "
@@ -494,11 +834,42 @@ msgstr ""
 " 것으로 알려져 있습니다. 생성자에 대한 *allow_no_value* 매개 변수를 사용하여 이러한 값을 받아들여야 함을 표시할 수"
 " 있습니다:"
 
-#: ../Doc/library/configparser.rst:526
+#: ../../library/configparser.rst:567
+msgid ""
+">>> import configparser\n"
+"\n"
+">>> sample_config = \"\"\"\n"
+"... [mysqld]\n"
+"...   user = mysql\n"
+"...   pid-file = /var/run/mysqld/mysqld.pid\n"
+"...   skip-external-locking\n"
+"...   old_passwords = 1\n"
+"...   skip-bdb\n"
+"...   # we don't need ACID today\n"
+"...   skip-innodb\n"
+"... \"\"\"\n"
+">>> config = configparser.ConfigParser(allow_no_value=True)\n"
+">>> config.read_string(sample_config)\n"
+"\n"
+">>> # Settings with values are treated as before:\n"
+">>> config[\"mysqld\"][\"user\"]\n"
+"'mysql'\n"
+"\n"
+">>> # Settings without values provide None:\n"
+">>> config[\"mysqld\"][\"skip-bdb\"]\n"
+"\n"
+">>> # Settings which aren't specified still raise an error:\n"
+">>> config[\"mysqld\"][\"does-not-exist\"]\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"KeyError: 'does-not-exist'"
+msgstr ""
+
+#: ../../library/configparser.rst:597
 msgid "*delimiters*, default value: ``('=', ':')``"
 msgstr "*delimiters*, 기본값: ``('=', ':')``"
 
-#: ../Doc/library/configparser.rst:528
+#: ../../library/configparser.rst:599
 msgid ""
 "Delimiters are substrings that delimit keys from values within a section."
 " The first occurrence of a delimiting substring on a line is considered a"
@@ -507,21 +878,21 @@ msgstr ""
 "구분자(delimiters)는 섹션 내의 값에서 키를 구분하는 부분 문자열입니다. 줄에서 처음 나타나는 구분하는 부분 문자열을 "
 "구분자로 간주합니다. 이는 값에 (하지만 키는 아닙니다) 구분자가 포함될 수 있음을 의미합니다."
 
-#: ../Doc/library/configparser.rst:532
+#: ../../library/configparser.rst:603
 msgid ""
 "See also the *space_around_delimiters* argument to "
 ":meth:`ConfigParser.write`."
 msgstr ":meth:`ConfigParser.write`\\에 대한 *space_around_delimiters* 인자도 참조하십시오."
 
-#: ../Doc/library/configparser.rst:535
+#: ../../library/configparser.rst:606
 msgid "*comment_prefixes*, default value: ``('#', ';')``"
 msgstr "*comment_prefixes*, 기본값: ``('#', ';')``"
 
-#: ../Doc/library/configparser.rst:537
+#: ../../library/configparser.rst:608
 msgid "*inline_comment_prefixes*, default value: ``None``"
 msgstr "*inline_comment_prefixes*, 기본값 : ``None``"
 
-#: ../Doc/library/configparser.rst:539
+#: ../../library/configparser.rst:610
 msgid ""
 "Comment prefixes are strings that indicate the start of a valid comment "
 "within a config file. *comment_prefixes* are used only on otherwise empty"
@@ -535,7 +906,7 @@ msgstr ""
 "(예를 들어 섹션 이름, 옵션 및 빈 줄 역시) 뒤에 사용될 수 있습니다. 기본적으로 인라인 주석은 비활성화되어 있으며 "
 "``'#'``\\과 ``';'``\\이 전체 줄 주석의 접두사로 사용됩니다."
 
-#: ../Doc/library/configparser.rst:546
+#: ../../library/configparser.rst:617
 msgid ""
 "In previous versions of :mod:`configparser` behaviour matched "
 "``comment_prefixes=('#',';')`` and ``inline_comment_prefixes=(';',)``."
@@ -543,7 +914,7 @@ msgstr ""
 ":mod:`configparser`\\의 이전 버전에서는 동작이 ``comment_prefixes=('#',';')``\\와 "
 "``inline_comment_prefixes=(';',)``\\와 일치했습니다."
 
-#: ../Doc/library/configparser.rst:550
+#: ../../library/configparser.rst:621
 msgid ""
 "Please note that config parsers don't support escaping of comment "
 "prefixes so using *inline_comment_prefixes* may prevent users from "
@@ -557,32 +928,77 @@ msgstr ""
 "*inline_comment_prefixes*\\를 설정하지 마십시오. 어떤 상황에서든, 여러 줄 값에서 줄의 시작 부분에 주석 "
 "접두사 문자를 저장하는 유일한 방법은 접두사를 보간하는 것입니다, 예를 들어::"
 
-#: ../Doc/library/configparser.rst:596
+#: ../../library/configparser.rst:628
+#, python-brace-format
+msgid ""
+">>> from configparser import ConfigParser, ExtendedInterpolation\n"
+">>> parser = ConfigParser(interpolation=ExtendedInterpolation())\n"
+">>> # the default BasicInterpolation could be used as well\n"
+">>> parser.read_string(\"\"\"\n"
+"... [DEFAULT]\n"
+"... hash = #\n"
+"...\n"
+"... [hashes]\n"
+"... shebang =\n"
+"...   ${hash}!/usr/bin/env python\n"
+"...   ${hash} -*- coding: utf-8 -*-\n"
+"...\n"
+"... extensions =\n"
+"...   enabled_extension\n"
+"...   another_extension\n"
+"...   #disabled_by_comment\n"
+"...   yet_another_extension\n"
+"...\n"
+"... interpolation not necessary = if # is not at line start\n"
+"... even in multiline values = line #1\n"
+"...   line #2\n"
+"...   line #3\n"
+"... \"\"\")\n"
+">>> print(parser['hashes']['shebang'])\n"
+"\n"
+"#!/usr/bin/env python\n"
+"# -*- coding: utf-8 -*-\n"
+">>> print(parser['hashes']['extensions'])\n"
+"\n"
+"enabled_extension\n"
+"another_extension\n"
+"yet_another_extension\n"
+">>> print(parser['hashes']['interpolation not necessary'])\n"
+"if # is not at line start\n"
+">>> print(parser['hashes']['even in multiline values'])\n"
+"line #1\n"
+"line #2\n"
+"line #3"
+msgstr ""
+
+#: ../../library/configparser.rst:667
 msgid "*strict*, default value: ``True``"
 msgstr "*strict*, 기본값: ``True``"
 
-#: ../Doc/library/configparser.rst:598
+#: ../../library/configparser.rst:669
+#, fuzzy
 msgid ""
 "When set to ``True``, the parser will not allow for any section or option"
-" duplicates while reading from a single source (using :meth:`read_file`, "
-":meth:`read_string` or :meth:`read_dict`).  It is recommended to use "
-"strict parsers in new applications."
+" duplicates while reading from a single source (using "
+":meth:`~ConfigParser.read_file`, :meth:`~ConfigParser.read_string` or "
+":meth:`~ConfigParser.read_dict`).  It is recommended to use strict "
+"parsers in new applications."
 msgstr ""
 "``True``\\로 설정하면, 구문 분석기는 단일 소스에서 읽는 (:meth:`read_file`, "
 ":meth:`read_string` 또는 :meth:`read_dict`\\를 사용해서) 동안 섹션이나 옵션 중복을 허용하지 "
 "않습니다. 새로운 응용 프로그램에서는 엄격한(strict) 구문 분석기를 사용하는 것이 좋습니다."
 
-#: ../Doc/library/configparser.rst:603
+#: ../../library/configparser.rst:674
 msgid ""
 "In previous versions of :mod:`configparser` behaviour matched "
 "``strict=False``."
 msgstr ":mod:`configparser`\\의 이전 버전에서는 동작이 ``strict=False``\\와 일치했습니다."
 
-#: ../Doc/library/configparser.rst:607
+#: ../../library/configparser.rst:678
 msgid "*empty_lines_in_values*, default value: ``True``"
 msgstr "*empty_lines_in_values*, 기본값: ``True``"
 
-#: ../Doc/library/configparser.rst:609
+#: ../../library/configparser.rst:680
 msgid ""
 "In config parsers, values can span multiple lines as long as they are "
 "indented more than the key that holds them.  By default parsers also let "
@@ -595,7 +1011,16 @@ msgstr ""
 " 줄도 값의 일부가 되도록 합니다. 동시에, 가독성을 높이기 위해 키를 임의로 들여 쓸 수 있습니다. 결과적으로, 구성 파일이 "
 "커지고 복잡해지면, 사용자가 파일 구조를 쉽게 놓칠 수 있습니다. 예를 들어 봅시다:"
 
-#: ../Doc/library/configparser.rst:624
+#: ../../library/configparser.rst:687
+msgid ""
+"[Section]\n"
+"key = multiline\n"
+"  value with a gotcha\n"
+"\n"
+" this = is still a part of the multiline value of 'key'"
+msgstr ""
+
+#: ../../library/configparser.rst:695
 msgid ""
 "This can be especially problematic for the user to see if she's using a "
 "proportional font to edit the file.  That is why when your application "
@@ -607,13 +1032,13 @@ msgstr ""
 " 줄이 있는 값이 필요하지 않으면, 허용하지 않는 것이 좋습니다. 이렇게 하면 빈 줄이 매번 키를 분리합니다. 위의 예에서는, "
 "``key``\\와 ``this``\\의 두 키를 생성합니다."
 
-#: ../Doc/library/configparser.rst:630
+#: ../../library/configparser.rst:701
 msgid ""
 "*default_section*, default value: ``configparser.DEFAULTSECT`` (that is: "
 "``\"DEFAULT\"``)"
 msgstr "*default_section*, 기본값: ``configparser.DEFAULTSECT`` (즉: ``\"DEFAULT\"``)"
 
-#: ../Doc/library/configparser.rst:633
+#: ../../library/configparser.rst:704
 msgid ""
 "The convention of allowing a special section of default values for other "
 "sections or interpolation purposes is a powerful concept of this library,"
@@ -634,11 +1059,11 @@ msgstr ""
 "``parser_instance.default_section`` 어트리뷰트를 사용하여 꺼낼 수 있으며 실행 시간에 수정될 수 "
 "있습니다 (즉 파일을 한 형식에서 다른 형식으로 변환하기 위해)."
 
-#: ../Doc/library/configparser.rst:644
+#: ../../library/configparser.rst:715
 msgid "*interpolation*, default value: ``configparser.BasicInterpolation``"
 msgstr "*interpolation*, 기본값: ``configparser.BasicInterpolation``"
 
-#: ../Doc/library/configparser.rst:646
+#: ../../library/configparser.rst:717
 msgid ""
 "Interpolation behaviour may be customized by providing a custom handler "
 "through the *interpolation* argument. ``None`` can be used to turn off "
@@ -653,11 +1078,12 @@ msgstr ""
 "<#interpolation-of-values>`_\\에 있습니다. :class:`RawConfigParser` 의 기본값은 "
 "``None``\\입니다."
 
-#: ../Doc/library/configparser.rst:653
+#: ../../library/configparser.rst:724
 msgid "*converters*, default value: not set"
 msgstr "*converters*, 기본값: 설정되지 않음"
 
-#: ../Doc/library/configparser.rst:655
+#: ../../library/configparser.rst:726
+#, fuzzy, python-brace-format
 msgid ""
 "Config parsers provide option value getters that perform type conversion."
 "  By default :meth:`~ConfigParser.getint`, "
@@ -666,8 +1092,8 @@ msgid ""
 " a subclass or pass a dictionary where each key is a name of the "
 "converter and each value is a callable implementing said conversion.  For"
 " instance, passing ``{'decimal': decimal.Decimal}`` would add "
-":meth:`getdecimal` on both the parser object and all section proxies.  In"
-" other words, it will be possible to write both "
+":meth:`!getdecimal` on both the parser object and all section proxies.  "
+"In other words, it will be possible to write both "
 "``parser_instance.getdecimal('section', 'key', fallback=0)`` and "
 "``parser_instance['section'].getdecimal('key', 0)``."
 msgstr ""
@@ -679,7 +1105,7 @@ msgstr ""
 "``parser_instance.getdecimal('section', 'key', fallback=0)``\\과 "
 "``parser_instance['section'].getdecimal('key', 0)``\\을 모두 쓸 수 있습니다."
 
-#: ../Doc/library/configparser.rst:666
+#: ../../library/configparser.rst:737
 msgid ""
 "If the converter needs to access the state of the parser, it can be "
 "implemented as a method on a config parser subclass.  If the name of this"
@@ -690,7 +1116,7 @@ msgstr ""
 " ``get``\\으로 시작하면, 모든 섹션 프락시에서 dict 호환 형식으로 사용할 수 있습니다 (위의 "
 "``getdecimal()`` 예를 참조하십시오)."
 
-#: ../Doc/library/configparser.rst:671
+#: ../../library/configparser.rst:742
 msgid ""
 "More advanced customization may be achieved by overriding default values "
 "of these parser attributes.  The defaults are defined on the classes, so "
@@ -699,7 +1125,7 @@ msgstr ""
 "이러한 구문 분석기 어트리뷰트의 기본값을 재정의하여 더 고급 사용자 정의를 수행할 수 있습니다. 기본값은 클래스에서 정의되므로, "
 "서브 클래스나 어트리뷰트 대입으로 재정의할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:677
+#: ../../library/configparser.rst:748
 msgid ""
 "By default when using :meth:`~ConfigParser.getboolean`, config parsers "
 "consider the following values ``True``: ``'1'``, ``'yes'``, ``'true'``, "
@@ -712,7 +1138,21 @@ msgstr ""
 "``False``\\로 간주합니다: ``'0'``, ``'no'``, ``'false'``, ``'off'``. 문자열과 불리언 "
 "결과를 사용자 정의 딕셔너리로 지정하여 이를 재정의할 수 있습니다. 예를 들면:"
 
-#: ../Doc/library/configparser.rst:695
+#: ../../library/configparser.rst:754
+#, python-brace-format
+msgid ""
+">>> custom = configparser.ConfigParser()\n"
+">>> custom['section1'] = {'funky': 'nope'}\n"
+">>> custom['section1'].getboolean('funky')\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"ValueError: Not a boolean: nope\n"
+">>> custom.BOOLEAN_STATES = {'sure': True, 'nope': False}\n"
+">>> custom['section1'].getboolean('funky')\n"
+"False"
+msgstr ""
+
+#: ../../library/configparser.rst:766
 msgid ""
 "Other typical Boolean pairs include ``accept``/``reject`` or "
 "``enabled``/``disabled``."
@@ -720,7 +1160,7 @@ msgstr ""
 "다른 일반적인 불리언 쌍에는 ``accept``/``reject``\\나 ``enabled``/``disabled``\\가 "
 "포함됩니다."
 
-#: ../Doc/library/configparser.rst:700
+#: ../../library/configparser.rst:772
 msgid ""
 "This method transforms option names on every read, get, or set operation."
 "  The default converts the name to lowercase.  This also means that when "
@@ -730,7 +1170,31 @@ msgstr ""
 "이 메서드는 모든 읽기, get 또는 set 연산에서 옵션 이름을 변환합니다. 기본값은 이름을 소문자로 변환합니다. 이는 또한 구성"
 " 파일을 기록할 때 모든 키가 소문자가 됨을 의미합니다. 이것이 부적절하다면 이 메서드를 재정의하십시오. 예를 들면:"
 
-#: ../Doc/library/configparser.rst:730
+#: ../../library/configparser.rst:778
+msgid ""
+">>> config = \"\"\"\n"
+"... [Section1]\n"
+"... Key = Value\n"
+"...\n"
+"... [Section2]\n"
+"... AnotherKey = Value\n"
+"... \"\"\"\n"
+">>> typical = configparser.ConfigParser()\n"
+">>> typical.read_string(config)\n"
+">>> list(typical['Section1'].keys())\n"
+"['key']\n"
+">>> list(typical['Section2'].keys())\n"
+"['anotherkey']\n"
+">>> custom = configparser.RawConfigParser()\n"
+">>> custom.optionxform = lambda option: option\n"
+">>> custom.read_string(config)\n"
+">>> list(custom['Section1'].keys())\n"
+"['Key']\n"
+">>> list(custom['Section2'].keys())\n"
+"['AnotherKey']"
+msgstr ""
+
+#: ../../library/configparser.rst:802
 msgid ""
 "The optionxform function transforms option names to a canonical form. "
 "This should be an idempotent function: if the name is already in "
@@ -739,7 +1203,7 @@ msgstr ""
 "optionxform 함수는 옵션 이름을 규범적 형식으로 변환합니다. 이 함수는 멱등적(idempotent) 함수여야 합니다: "
 "이름이 이미 규범적 형식이면, 변경되지 않은 상태로 반환해야 합니다."
 
-#: ../Doc/library/configparser.rst:737
+#: ../../library/configparser.rst:809
 msgid ""
 "A compiled regular expression used to parse section headers.  The default"
 " matches ``[section]`` to the name ``\"section\"``.  Whitespace is "
@@ -751,7 +1215,28 @@ msgstr ""
 "``\"section\"``\\과 일치시킵니다. 공백은 섹션 이름의 일부로 간주해서, ``[  larch  ]``\\는 이름이 "
 "``\"  larch  \"``\\인 섹션으로 읽힙니다. 이것이 부적절하다면 이 어트리뷰트를 재정의하십시오. 예를 들면:"
 
-#: ../Doc/library/configparser.rst:765
+#: ../../library/configparser.rst:815
+msgid ""
+">>> import re\n"
+">>> config = \"\"\"\n"
+"... [Section 1]\n"
+"... option = value\n"
+"...\n"
+"... [  Section 2  ]\n"
+"... another = val\n"
+"... \"\"\"\n"
+">>> typical = configparser.ConfigParser()\n"
+">>> typical.read_string(config)\n"
+">>> typical.sections()\n"
+"['Section 1', '  Section 2  ']\n"
+">>> custom = configparser.ConfigParser()\n"
+">>> custom.SECTCRE = re.compile(r\"\\[ *(?P<header>[^]]+?) *\\]\")\n"
+">>> custom.read_string(config)\n"
+">>> custom.sections()\n"
+"['Section 1', 'Section 2']"
+msgstr ""
+
+#: ../../library/configparser.rst:837
 msgid ""
 "While ConfigParser objects also use an ``OPTCRE`` attribute for "
 "recognizing option lines, it's not recommended to override it because "
@@ -761,11 +1246,11 @@ msgstr ""
 "ConfigParser 객체는 옵션 줄을 인식하기 위해 ``OPTCRE`` 어트리뷰트도 사용하지만, 생성자 옵션 "
 "*allow_no_value*\\와 *delimiters*\\를 방해하기 때문에 재정의하지 않는 것이 좋습니다."
 
-#: ../Doc/library/configparser.rst:771
+#: ../../library/configparser.rst:843
 msgid "Legacy API Examples"
 msgstr "레거시 API 예제"
 
-#: ../Doc/library/configparser.rst:773
+#: ../../library/configparser.rst:845
 msgid ""
 "Mainly because of backwards compatibility concerns, :mod:`configparser` "
 "provides also a legacy API with explicit ``get``/``set`` methods.  While "
@@ -777,19 +1262,106 @@ msgstr ""
 "레거시 API도 제공합니다. 아래에 설명된 메서드에 대한 유효한 사용 사례가 있지만, 새 프로젝트에는 매핑 프로토콜 액세스가 "
 "선호됩니다. 레거시 API는 때때로 더 고급이고, 저수준(low-level)이며 완전히 반 직관적입니다."
 
-#: ../Doc/library/configparser.rst:779
+#: ../../library/configparser.rst:851
 msgid "An example of writing to a configuration file::"
 msgstr "구성 파일에 쓰는 예::"
 
-#: ../Doc/library/configparser.rst:802
+#: ../../library/configparser.rst:853
+#, python-format
+msgid ""
+"import configparser\n"
+"\n"
+"config = configparser.RawConfigParser()\n"
+"\n"
+"# Please note that using RawConfigParser's set functions, you can assign\n"
+"# non-string values to keys internally, but will receive an error when\n"
+"# attempting to write to a file or when you get it in non-raw mode. "
+"Setting\n"
+"# values using the mapping protocol or ConfigParser's set() does not "
+"allow\n"
+"# such assignments to take place.\n"
+"config.add_section('Section1')\n"
+"config.set('Section1', 'an_int', '15')\n"
+"config.set('Section1', 'a_bool', 'true')\n"
+"config.set('Section1', 'a_float', '3.1415')\n"
+"config.set('Section1', 'baz', 'fun')\n"
+"config.set('Section1', 'bar', 'Python')\n"
+"config.set('Section1', 'foo', '%(bar)s is %(baz)s!')\n"
+"\n"
+"# Writing our configuration file to 'example.cfg'\n"
+"with open('example.cfg', 'w') as configfile:\n"
+"    config.write(configfile)"
+msgstr ""
+
+#: ../../library/configparser.rst:874
 msgid "An example of reading the configuration file again::"
 msgstr "구성 파일을 다시 읽는 예::"
 
-#: ../Doc/library/configparser.rst:820
+#: ../../library/configparser.rst:876
+#, python-format
+msgid ""
+"import configparser\n"
+"\n"
+"config = configparser.RawConfigParser()\n"
+"config.read('example.cfg')\n"
+"\n"
+"# getfloat() raises an exception if the value is not a float\n"
+"# getint() and getboolean() also do this for their respective types\n"
+"a_float = config.getfloat('Section1', 'a_float')\n"
+"an_int = config.getint('Section1', 'an_int')\n"
+"print(a_float + an_int)\n"
+"\n"
+"# Notice that the next output does not interpolate '%(bar)s' or "
+"'%(baz)s'.\n"
+"# This is because we are using a RawConfigParser().\n"
+"if config.getboolean('Section1', 'a_bool'):\n"
+"    print(config.get('Section1', 'foo'))"
+msgstr ""
+
+#: ../../library/configparser.rst:892
 msgid "To get interpolation, use :class:`ConfigParser`::"
 msgstr "보간을 얻으려면, :class:`ConfigParser`\\를 사용하십시오::"
 
-#: ../Doc/library/configparser.rst:853
+#: ../../library/configparser.rst:894
+#, python-brace-format, python-format
+msgid ""
+"import configparser\n"
+"\n"
+"cfg = configparser.ConfigParser()\n"
+"cfg.read('example.cfg')\n"
+"\n"
+"# Set the optional *raw* argument of get() to True if you wish to disable"
+"\n"
+"# interpolation in a single get operation.\n"
+"print(cfg.get('Section1', 'foo', raw=False))  # -> \"Python is fun!\"\n"
+"print(cfg.get('Section1', 'foo', raw=True))   # -> \"%(bar)s is "
+"%(baz)s!\"\n"
+"\n"
+"# The optional *vars* argument is a dict with members that will take\n"
+"# precedence in interpolation.\n"
+"print(cfg.get('Section1', 'foo', vars={'bar': 'Documentation',\n"
+"                                       'baz': 'evil'}))\n"
+"\n"
+"# The optional *fallback* argument can be used to provide a fallback "
+"value\n"
+"print(cfg.get('Section1', 'foo'))\n"
+"      # -> \"Python is fun!\"\n"
+"\n"
+"print(cfg.get('Section1', 'foo', fallback='Monty is not.'))\n"
+"      # -> \"Python is fun!\"\n"
+"\n"
+"print(cfg.get('Section1', 'monster', fallback='No such things as "
+"monsters.'))\n"
+"      # -> \"No such things as monsters.\"\n"
+"\n"
+"# A bare print(cfg.get('Section1', 'monster')) would raise NoOptionError\n"
+"# but we can also use:\n"
+"\n"
+"print(cfg.get('Section1', 'monster', fallback=None))\n"
+"      # -> None"
+msgstr ""
+
+#: ../../library/configparser.rst:925
 msgid ""
 "Default values are available in both types of ConfigParsers.  They are "
 "used in interpolation if an option used is not defined elsewhere. ::"
@@ -797,11 +1369,26 @@ msgstr ""
 "기본값은 두 가지 유형의 ConfigParser 모두에서 사용할 수 있습니다. 사용된 옵션이 다른 곳에 정의되어 있지 않으면 보간에"
 " 사용됩니다. ::"
 
-#: ../Doc/library/configparser.rst:871
+#: ../../library/configparser.rst:928
+#, python-brace-format
+msgid ""
+"import configparser\n"
+"\n"
+"# New instance with 'bar' and 'baz' defaulting to 'Life' and 'hard' each\n"
+"config = configparser.ConfigParser({'bar': 'Life', 'baz': 'hard'})\n"
+"config.read('example.cfg')\n"
+"\n"
+"print(config.get('Section1', 'foo'))     # -> \"Python is fun!\"\n"
+"config.remove_option('Section1', 'bar')\n"
+"config.remove_option('Section1', 'baz')\n"
+"print(config.get('Section1', 'foo'))     # -> \"Life is hard!\""
+msgstr ""
+
+#: ../../library/configparser.rst:943
 msgid "ConfigParser Objects"
 msgstr "ConfigParser 객체"
 
-#: ../Doc/library/configparser.rst:875
+#: ../../library/configparser.rst:953
 msgid ""
 "The main configuration parser.  When *defaults* is given, it is "
 "initialized into the dictionary of intrinsic defaults.  When *dict_type* "
@@ -812,7 +1399,7 @@ msgstr ""
 "메인 구성 구문 분석기. *defaults*\\가 주어지면, 내장 기본값의 딕셔너리로 초기화됩니다. *dict_type*\\이 "
 "제공되면, 섹션 리스트, 섹션 내의 옵션 및 기본값에 대한 딕셔너리 객체를 만드는 데 사용됩니다."
 
-#: ../Doc/library/configparser.rst:880
+#: ../../library/configparser.rst:958
 msgid ""
 "When *delimiters* is given, it is used as the set of substrings that "
 "divide keys from values.  When *comment_prefixes* is given, it will be "
@@ -826,7 +1413,7 @@ msgstr ""
 "*inline_comment_prefixes*\\가 주어지면, 비어 있지 않은 줄에서 주석을 시작하는 접두사의 부분 문자열 집합으로"
 " 사용됩니다."
 
-#: ../Doc/library/configparser.rst:886
+#: ../../library/configparser.rst:964
 msgid ""
 "When *strict* is ``True`` (the default), the parser won't allow for any "
 "section or option duplicates while reading from a single source (file, "
@@ -845,18 +1432,21 @@ msgstr ""
 "빈 줄이 값의 일부로 유지됩니다. *allow_no_value*\\가 ``True``\\이면 (기본값: ``False``), 값이 "
 "없는 옵션이 허용됩니다; 이들에 대해 저장되는 값은 ``None``\\이며 후행 구분자 없이 직렬화됩니다."
 
-#: ../Doc/library/configparser.rst:896
+#: ../../library/configparser.rst:974
+#, fuzzy
 msgid ""
 "When *default_section* is given, it specifies the name for the special "
 "section holding default values for other sections and interpolation "
 "purposes (normally named ``\"DEFAULT\"``).  This value can be retrieved "
-"and changed on runtime using the ``default_section`` instance attribute."
+"and changed at runtime using the ``default_section`` instance attribute. "
+"This won't re-evaluate an already parsed config file, but will be used "
+"when writing parsed settings to a new config file."
 msgstr ""
 "*default_section*\\이 주어지면, 다른 섹션과 보간 목적의 기본값을 담는 특수한 섹션의 이름을 지정합니다 (보통 "
 "``\"DEFAULT\"``\\라는 이름). 이 값은 ``default_section`` 인스턴스 어트리뷰트를 사용하여 실행 시간에"
 " 꺼내고 변경할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:901
+#: ../../library/configparser.rst:981
 msgid ""
 "Interpolation behaviour may be customized by providing a custom handler "
 "through the *interpolation* argument. ``None`` can be used to turn off "
@@ -869,7 +1459,7 @@ msgstr ""
 "``zc.buildout``\\에서 영감을 얻은 고급 변형을 제공합니다. 이 주제에 관한 자세한 내용은 `전용 설명서 섹션 "
 "<#interpolation-of-values>`_\\에 있습니다."
 
-#: ../Doc/library/configparser.rst:907
+#: ../../library/configparser.rst:987
 #, python-format
 msgid ""
 "All option names used in interpolation will be passed through the "
@@ -882,23 +1472,31 @@ msgstr ""
 "예를 들어, (옵션 이름을 소문자로 변환하는) :meth:`optionxform`\\의 기본 구현을 사용하면, 값 ``foo "
 "%(bar)s``\\와 ``foo %(BAR)s``\\가 동등합니다."
 
-#: ../Doc/library/configparser.rst:913
+#: ../../library/configparser.rst:993
+#, fuzzy
 msgid ""
 "When *converters* is given, it should be a dictionary where each key "
 "represents the name of a type converter and each value is a callable "
 "implementing the conversion from string to the desired datatype.  Every "
-"converter gets its own corresponding :meth:`get*()` method on the parser "
+"converter gets its own corresponding :meth:`!get*` method on the parser "
 "object and section proxies."
 msgstr ""
 "*converters*\\가 주어지면, 각 키는 형 변환기의 이름을 나타내고 각 값은 문자열에서 원하는 데이터형으로의 변환을 "
 "구현하는 콜러블인 딕셔너리이어야 합니다. 모든 변환기는 구문 분석기 객체와 섹션 프락시에서 자신만의 해당 :meth:`get*()`"
 " 메서드를 갖습니다."
 
-#: ../Doc/library/configparser.rst:919
+#: ../../library/configparser.rst:999
+msgid ""
+"When *allow_unnamed_section* is ``True`` (default: ``False``), the first "
+"section name can be omitted. See the `\"Unnamed Sections\" section "
+"<#unnamed-sections>`_."
+msgstr ""
+
+#: ../../library/configparser.rst:1028
 msgid "The default *dict_type* is :class:`collections.OrderedDict`."
 msgstr "기본 *dict_type*\\은 :class:`collections.OrderedDict`\\입니다."
 
-#: ../Doc/library/configparser.rst:922
+#: ../../library/configparser.rst:1031 ../../library/configparser.rst:1320
 msgid ""
 "*allow_no_value*, *delimiters*, *comment_prefixes*, *strict*, "
 "*empty_lines_in_values*, *default_section* and *interpolation* were "
@@ -907,36 +1505,48 @@ msgstr ""
 "*allow_no_value*, *delimiters*, *comment_prefixes*, *strict*, "
 "*empty_lines_in_values*, *default_section* 및 *interpolation*\\이 추가되었습니다."
 
-#: ../Doc/library/configparser.rst:927
+#: ../../library/configparser.rst:1036 ../../library/configparser.rst:1325
 msgid "The *converters* argument was added."
 msgstr "*converters* 인자가 추가되었습니다."
 
-#: ../Doc/library/configparser.rst:930
+#: ../../library/configparser.rst:1039
+#, fuzzy
 msgid ""
-"The *defaults* argument is read with :meth:`read_dict()`, providing "
+"The *defaults* argument is read with :meth:`read_dict`, providing "
 "consistent behavior across the parser: non-string keys and values are "
 "implicitly converted to strings."
 msgstr ""
 "*defaults* 인자는 :meth:`read_dict()`\\로 읽혀, 구문 분석기 전체에 일관된 동작을 제공합니다: 문자열이 "
 "아닌 키와 값은 묵시적으로 문자열로 변환됩니다."
 
-#: ../Doc/library/configparser.rst:935 ../Doc/library/configparser.rst:1213
+#: ../../library/configparser.rst:1044 ../../library/configparser.rst:1328
 msgid ""
 "The default *dict_type* is :class:`dict`, since it now preserves "
 "insertion order."
 msgstr "이제 삽입 순서를 유지하므로, 기본 *dict_type*\\은 :class:`dict`\\입니다."
 
-#: ../Doc/library/configparser.rst:941
+#: ../../library/configparser.rst:1048
+msgid ""
+"Raise a :exc:`MultilineContinuationError` when *allow_no_value* is "
+"``True``, and a key without a value is continued with an indented line."
+msgstr ""
+
+#: ../../library/configparser.rst:1052 ../../library/configparser.rst:1332
+#, fuzzy
+msgid "The *allow_unnamed_section* argument was added."
+msgstr "*converters* 인자가 추가되었습니다."
+
+#: ../../library/configparser.rst:1057
 msgid "Return a dictionary containing the instance-wide defaults."
 msgstr "인스턴스 전체 기본값을 포함하는 딕셔너리를 반환합니다."
 
-#: ../Doc/library/configparser.rst:946
+#: ../../library/configparser.rst:1062
 msgid ""
 "Return a list of the sections available; the *default section* is not "
 "included in the list."
 msgstr "사용 가능한 섹션 리스트를 반환합니다; *기본값 섹션*\\은 리스트에 포함되지 않습니다."
 
-#: ../Doc/library/configparser.rst:952
+#: ../../library/configparser.rst:1068
 msgid ""
 "Add a section named *section* to the instance.  If a section by the given"
 " name already exists, :exc:`DuplicateSectionError` is raised.  If the "
@@ -948,21 +1558,21 @@ msgstr ""
 ":exc:`ValueError`\\가 발생합니다. 섹션의 이름은 문자열이어야 합니다; 그렇지 않으면, "
 ":exc:`TypeError`\\가 발생합니다."
 
-#: ../Doc/library/configparser.rst:957
+#: ../../library/configparser.rst:1073
 msgid "Non-string section names raise :exc:`TypeError`."
 msgstr "문자열이 아닌 섹션 이름은 :exc:`TypeError`\\를 발생시킵니다."
 
-#: ../Doc/library/configparser.rst:963
+#: ../../library/configparser.rst:1079
 msgid ""
 "Indicates whether the named *section* is present in the configuration. "
 "The *default section* is not acknowledged."
 msgstr "이름 지정된 *section*\\이 구성에 있는지를 나타냅니다. *기본값 섹션*\\은 인정되지 않습니다."
 
-#: ../Doc/library/configparser.rst:969
+#: ../../library/configparser.rst:1085
 msgid "Return a list of options available in the specified *section*."
 msgstr "지정된 *section*\\에서 사용 가능한 옵션 리스트를 반환합니다."
 
-#: ../Doc/library/configparser.rst:974
+#: ../../library/configparser.rst:1090
 msgid ""
 "If the given *section* exists, and contains the given *option*, return "
 ":const:`True`; otherwise return :const:`False`.  If the specified "
@@ -972,13 +1582,13 @@ msgstr ""
 "않으면 :const:`False`\\를 반환합니다. 지정된 *section*\\이 :const:`None`\\이거나 빈 문자열이면,"
 " DEFAULT로 가정합니다."
 
-#: ../Doc/library/configparser.rst:981
+#: ../../library/configparser.rst:1097
 msgid ""
 "Attempt to read and parse an iterable of filenames, returning a list of "
 "filenames which were successfully parsed."
 msgstr "파일명들의 이터러블을 읽고 구문 분석하여, 성공적으로 구문 분석된 파일명의 리스트를 반환합니다."
 
-#: ../Doc/library/configparser.rst:984
+#: ../../library/configparser.rst:1100
 msgid ""
 "If *filenames* is a string, a :class:`bytes` object or a :term:`path-like"
 " object`, it is treated as a single filename.  If a file named in "
@@ -993,7 +1603,7 @@ msgstr ""
 "무시됩니다. 이는 잠재적인 구성 파일 위치(예를 들어, 현재 디렉터리, 사용자의 홈 디렉터리 및 일부 시스템 전체 디렉터리)의 "
 "이터러블을 지정할 수 있도록 설계되었으며, 이터러블에 있는 존재하는 모든 구성 파일을 읽습니다."
 
-#: ../Doc/library/configparser.rst:993
+#: ../../library/configparser.rst:1109
 msgid ""
 "If none of the named files exist, the :class:`ConfigParser` instance will"
 " contain an empty dataset.  An application which requires initial values "
@@ -1004,21 +1614,32 @@ msgstr ""
 "초깃값을 로드해야 하는 응용 프로그램은 선택적 파일에 대해 :meth:`read`\\를 호출하기 전에 "
 ":meth:`read_file`\\을 사용하여 필수 파일을 로드해야 합니다::"
 
-#: ../Doc/library/configparser.rst:1006
+#: ../../library/configparser.rst:1115
 msgid ""
-"The *encoding* parameter.  Previously, all files were read using the "
-"default encoding for :func:`open`."
+"import configparser, os\n"
+"\n"
+"config = configparser.ConfigParser()\n"
+"config.read_file(open('defaults.cfg'))\n"
+"config.read(['site.cfg', os.path.expanduser('~/.myapp.cfg')],\n"
+"            encoding='cp1250')"
+msgstr ""
+
+#: ../../library/configparser.rst:1122
+#, fuzzy
+msgid ""
+"Added the *encoding* parameter. Previously, all files were read using the"
+" default encoding for :func:`open`."
 msgstr "*encoding* 매개 변수. 이전에는, :func:`open`\\의 기본 인코딩을 사용하여 모든 파일을 읽었습니다."
 
-#: ../Doc/library/configparser.rst:1010
+#: ../../library/configparser.rst:1126
 msgid "The *filenames* parameter accepts a :term:`path-like object`."
 msgstr "*filenames* 매개 변수는 :term:`경로류 객체 <path-like object>`\\를 받아들입니다."
 
-#: ../Doc/library/configparser.rst:1013
+#: ../../library/configparser.rst:1129
 msgid "The *filenames* parameter accepts a :class:`bytes` object."
 msgstr "*filenames* 매개 변수는 :class:`bytes` 객체를 받아들입니다."
 
-#: ../Doc/library/configparser.rst:1019
+#: ../../library/configparser.rst:1135
 msgid ""
 "Read and parse configuration data from *f* which must be an iterable "
 "yielding Unicode strings (for example files opened in text mode)."
@@ -1026,24 +1647,26 @@ msgstr ""
 "*f*\\에서 구성 데이터를 읽고 구문 분석합니다. *f*\\는 유니코드 문자열을 산출하는 이터러블 이어야 합니다 (예를 들어 "
 "텍스트 모드로 열린 파일)."
 
-#: ../Doc/library/configparser.rst:1022
+#: ../../library/configparser.rst:1138
+#, fuzzy
 msgid ""
 "Optional argument *source* specifies the name of the file being read.  If"
-" not given and *f* has a :attr:`name` attribute, that is used for "
+" not given and *f* has a :attr:`!name` attribute, that is used for "
 "*source*; the default is ``'<???>'``."
 msgstr ""
 "선택적 인자 *source*\\는 읽을 파일의 이름을 지정합니다. 지정하지 않고 *f*\\에 :attr:`name` 어트리뷰트가 "
 "있으면, 이것이 *source*\\로 사용됩니다; 기본값은 ``'<???>'``\\입니다."
 
-#: ../Doc/library/configparser.rst:1026
-msgid "Replaces :meth:`readfp`."
+#: ../../library/configparser.rst:1142
+#, fuzzy
+msgid "Replaces :meth:`!readfp`."
 msgstr ":meth:`readfp`\\를 대체합니다."
 
-#: ../Doc/library/configparser.rst:1031
+#: ../../library/configparser.rst:1147
 msgid "Parse configuration data from a string."
 msgstr "문자열에서 구성 데이터를 구문 분석합니다."
 
-#: ../Doc/library/configparser.rst:1033
+#: ../../library/configparser.rst:1149
 msgid ""
 "Optional argument *source* specifies a context-specific name of the "
 "string passed.  If not given, ``'<string>'`` is used.  This should "
@@ -1052,7 +1675,7 @@ msgstr ""
 "선택적 인자 *source*\\는 전달된 string의 문맥 특정 이름을 지정합니다. 지정하지 않으면, "
 "``'<string>'``\\이 사용됩니다. 일반적으로 파일 시스템 경로나 URL이어야 합니다."
 
-#: ../Doc/library/configparser.rst:1042
+#: ../../library/configparser.rst:1158
 msgid ""
 "Load configuration from any object that provides a dict-like ``items()`` "
 "method.  Keys are section names, values are dictionaries with keys and "
@@ -1064,7 +1687,7 @@ msgstr ""
 " 하는 키와 값이 들어 있는 딕셔너리입니다. 사용된 딕셔너리 형이 순서를 유지하면, 섹션과 해당 키가 순서대로 추가됩니다. 값은 "
 "자동으로 문자열로 변환됩니다."
 
-#: ../Doc/library/configparser.rst:1048
+#: ../../library/configparser.rst:1164
 msgid ""
 "Optional argument *source* specifies a context-specific name of the "
 "dictionary passed.  If not given, ``<dict>`` is used."
@@ -1072,11 +1695,11 @@ msgstr ""
 "선택적 인자 *source*\\는 전달된 dictionary의 문맥 특정 이름을 지정합니다. 지정하지 않으면, "
 "``<dict>``\\가 사용됩니다."
 
-#: ../Doc/library/configparser.rst:1051
+#: ../../library/configparser.rst:1167
 msgid "This method can be used to copy state between parsers."
 msgstr "이 메서드를 사용하면 구문 분석 기간에 상태를 복사할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:1058
+#: ../../library/configparser.rst:1174
 msgid ""
 "Get an *option* value for the named *section*.  If *vars* is provided, it"
 " must be a dictionary.  The *option* is looked up in *vars* (if "
@@ -1089,7 +1712,7 @@ msgstr ""
 " 수 없고 *fallback*\\이 제공되면, 대체 값으로 사용됩니다. ``None``\\은 *fallback* 값으로 제공될 수 "
 "있습니다."
 
-#: ../Doc/library/configparser.rst:1064
+#: ../../library/configparser.rst:1180
 msgid ""
 "All the ``'%'`` interpolations are expanded in the return values, unless "
 "the *raw* argument is true.  Values for interpolation keys are looked up "
@@ -1098,7 +1721,7 @@ msgstr ""
 "*raw* 인자가 참이 아닌 한, 모든 ``'%'`` 보간이 반환 값에서 확장됩니다. 보간 키의 값은 옵션과 같은 방식으로 "
 "조회됩니다."
 
-#: ../Doc/library/configparser.rst:1068
+#: ../../library/configparser.rst:1184
 msgid ""
 "Arguments *raw*, *vars* and *fallback* are keyword only to protect users "
 "from trying to use the third argument as the *fallback* fallback "
@@ -1107,7 +1730,7 @@ msgstr ""
 "인자 *raw*, *vars* 및 *fallback*\\은 사용자가 세 번째 인자를 *fallback* 폴 백으로 사용하지 못하도록"
 " 하기 위해 키워드 전용입니다 (특히 매핑 프로토콜을 사용할 때)."
 
-#: ../Doc/library/configparser.rst:1076
+#: ../../library/configparser.rst:1192
 msgid ""
 "A convenience method which coerces the *option* in the specified "
 "*section* to an integer.  See :meth:`get` for explanation of *raw*, "
@@ -1116,16 +1739,17 @@ msgstr ""
 "지정된 *section*\\의 *option*\\을 정수로 강제 변환하는 편의 메서드. *raw*, *vars* 및 "
 "*fallback*\\에 대한 설명은 :meth:`get`\\을 참조하십시오."
 
-#: ../Doc/library/configparser.rst:1083
+#: ../../library/configparser.rst:1199
+#, fuzzy
 msgid ""
 "A convenience method which coerces the *option* in the specified "
-"*section* to a floating point number.  See :meth:`get` for explanation of"
+"*section* to a floating-point number.  See :meth:`get` for explanation of"
 " *raw*, *vars* and *fallback*."
 msgstr ""
 "지정된 *section*\\의 *option*\\을 부동 소수점 수로 강제 변환하는 편의 메서드. *raw*, *vars* 및 "
 "*fallback*\\에 대한 설명은 :meth:`get`\\을 참조하십시오."
 
-#: ../Doc/library/configparser.rst:1090
+#: ../../library/configparser.rst:1206
 msgid ""
 "A convenience method which coerces the *option* in the specified "
 "*section* to a Boolean value.  Note that the accepted values for the "
@@ -1142,7 +1766,7 @@ msgstr ""
 "문자열 값은 대소 문자를 구분하지 않고 확인됩니다. 다른 모든 값은 :exc:`ValueError`\\를 발생시킵니다. *raw*,"
 " *vars* 및 *fallback*\\에 대한 설명은 :meth:`get`\\을 참조하십시오."
 
-#: ../Doc/library/configparser.rst:1103
+#: ../../library/configparser.rst:1219
 msgid ""
 "When *section* is not given, return a list of *section_name*, "
 "*section_proxy* pairs, including DEFAULTSECT."
@@ -1150,7 +1774,7 @@ msgstr ""
 "*section*\\이 제공되지 않으면, DEFAULTSECT를 포함하여, *section_name*, *section_proxy*"
 " 쌍의 리스트를 반환합니다."
 
-#: ../Doc/library/configparser.rst:1106
+#: ../../library/configparser.rst:1222
 msgid ""
 "Otherwise, return a list of *name*, *value* pairs for the options in the "
 "given *section*.  Optional arguments have the same meaning as for the "
@@ -1159,7 +1783,7 @@ msgstr ""
 "그렇지 않으면, 주어진 *section*\\의 옵션에 대해 *name*, *value* 쌍의 리스트를 반환합니다. 선택적 인자는 "
 ":meth:`get` 메서드에서와 같은 의미입니다."
 
-#: ../Doc/library/configparser.rst:1110
+#: ../../library/configparser.rst:1226
 msgid ""
 "Items present in *vars* no longer appear in the result.  The previous "
 "behaviour mixed actual parser options with variables provided for "
@@ -1168,7 +1792,7 @@ msgstr ""
 "*vars*\\에 있는 항목은 더는 결과에 나타나지 않습니다. 이전 동작은 실제 구문 분석기 옵션과 보간을 위해 제공된 변수를 "
 "혼합했습니다."
 
-#: ../Doc/library/configparser.rst:1118
+#: ../../library/configparser.rst:1234
 msgid ""
 "If the given section exists, set the given option to the specified value;"
 " otherwise raise :exc:`NoSectionError`.  *option* and *value* must be "
@@ -1178,7 +1802,7 @@ msgstr ""
 "발생시킵니다. *option*\\과 *value*\\는 문자열이어야 합니다; 그렇지 않으면, :exc:`TypeError`\\가 "
 "발생합니다."
 
-#: ../Doc/library/configparser.rst:1125
+#: ../../library/configparser.rst:1241
 msgid ""
 "Write a representation of the configuration to the specified :term:`file "
 "object`, which must be opened in text mode (accepting strings).  This "
@@ -1190,7 +1814,14 @@ msgstr ""
 "기록합니다. 이 표현은 향후 :meth:`read` 호출로 구문 분석할 수 있습니다. "
 "*space_around_delimiters*\\가 참이면, 키와 값 사이의 구분자는 공백으로 둘러싸입니다."
 
-#: ../Doc/library/configparser.rst:1134
+#: ../../library/configparser.rst:1249
+msgid ""
+"Comments in the original configuration file are not preserved when "
+"writing the configuration back. What is considered a comment, depends on "
+"the given values for *comment_prefix* and *inline_comment_prefix*."
+msgstr ""
+
+#: ../../library/configparser.rst:1257
 msgid ""
 "Remove the specified *option* from the specified *section*.  If the "
 "section does not exist, raise :exc:`NoSectionError`.  If the option "
@@ -1201,7 +1832,7 @@ msgstr ""
 ":exc:`NoSectionError`\\를 발생시킵니다. 제거되는 옵션이 존재했으면 :const:`True`\\를 반환합니다; "
 "그렇지 않으면 :const:`False`\\를 반환합니다."
 
-#: ../Doc/library/configparser.rst:1142
+#: ../../library/configparser.rst:1265
 msgid ""
 "Remove the specified *section* from the configuration.  If the section in"
 " fact existed, return ``True``.  Otherwise return ``False``."
@@ -1209,7 +1840,7 @@ msgstr ""
 "지정된 *section*\\을 구성에서 제거합니다. 실제로 섹션이 존재하면, ``True``\\를 반환합니다. 그렇지 않으면 "
 "``False``\\를 반환합니다."
 
-#: ../Doc/library/configparser.rst:1148
+#: ../../library/configparser.rst:1271
 msgid ""
 "Transforms the option name *option* as found in an input file or as "
 "passed in by client code to the form that should be used in the internal "
@@ -1221,7 +1852,7 @@ msgstr ""
 "변환합니다. 기본 구현은 *option*\\의 소문자 버전을 반환합니다; 이 동작에 영향을 주기 위해 서브 클래스가 이것을 "
 "재정의하거나 클라이언트 코드가 인스턴스에 이 이름의 어트리뷰트를 설정할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:1154
+#: ../../library/configparser.rst:1277
 msgid ""
 "You don't need to subclass the parser to use this method, you can also "
 "set it on an instance, to a function that takes a string argument and "
@@ -1231,51 +1862,39 @@ msgstr ""
 "이 메서드를 사용하기 위해 구문 분석기를 서브 클래싱할 필요는 없으며, 문자열 인자를 취해서 문자열을 반환하는 함수로 인스턴스에 "
 "설정할 수도 있습니다. 예를 들어 ``str``\\로 설정하면 옵션 이름이 대소 문자를 구분하게 됩니다::"
 
-#: ../Doc/library/configparser.rst:1162
+#: ../../library/configparser.rst:1282
+msgid ""
+"cfgparser = ConfigParser()\n"
+"cfgparser.optionxform = str"
+msgstr ""
+
+#: ../../library/configparser.rst:1285
 msgid ""
 "Note that when reading configuration files, whitespace around the option "
 "names is stripped before :meth:`optionxform` is called."
 msgstr "구성 파일을 읽을 때, :meth:`optionxform`\\이 호출되기 전에 옵션 이름 주위의 공백이 제거됨에 유의하십시오."
 
-#: ../Doc/library/configparser.rst:1168
-msgid "Use :meth:`read_file` instead."
-msgstr "대신 :meth:`read_file`\\을 사용하십시오."
-
-#: ../Doc/library/configparser.rst:1171
-msgid ":meth:`readfp` now iterates on *fp* instead of calling ``fp.readline()``."
-msgstr ":meth:`readfp`\\는 이제 ``fp.readline()``\\을 호출하는 대신 *fp*\\를 이터레이트 합니다."
-
-#: ../Doc/library/configparser.rst:1174
+#: ../../library/configparser.rst:1291
 msgid ""
-"For existing code calling :meth:`readfp` with arguments which don't "
-"support iteration, the following generator may be used as a wrapper "
-"around the file-like object::"
+"A special object representing a section name used to reference the "
+"unnamed section (see :ref:`unnamed-sections`)."
 msgstr ""
-"이터레이션을 지원하지 않는 인자로 :meth:`readfp`\\를 호출하는 기존 코드의 경우, 다음과 같은 제너레이터를 파일류 "
-"객체를 감싸는 래퍼로 사용할 수 있습니다::"
 
-#: ../Doc/library/configparser.rst:1184
+#: ../../library/configparser.rst:1296
+#, fuzzy
 msgid ""
-"Instead of ``parser.readfp(fp)`` use "
-"``parser.read_file(readline_generator(fp))``."
-msgstr ""
-"``parser.readfp(fp)`` 대신 ``parser.read_file(readline_generator(fp))``\\를 "
-"사용하십시오."
-
-#: ../Doc/library/configparser.rst:1190
-msgid ""
-"The maximum depth for recursive interpolation for :meth:`get` when the "
-"*raw* parameter is false.  This is relevant only when the default "
-"*interpolation* is used."
+"The maximum depth for recursive interpolation for "
+":meth:`~configparser.ConfigParser.get` when the *raw* parameter is false."
+"  This is relevant only when the default *interpolation* is used."
 msgstr ""
 "*raw* 매개 변수가 거짓일 때 :meth:`get`\\의 재귀 보간의 최대 깊이. 기본 *interpolation*\\을 사용할"
 " 때만 의미 있습니다."
 
-#: ../Doc/library/configparser.rst:1198
+#: ../../library/configparser.rst:1304
 msgid "RawConfigParser Objects"
 msgstr "RawConfigParser 객체"
 
-#: ../Doc/library/configparser.rst:1208
+#: ../../library/configparser.rst:1315
 msgid ""
 "Legacy variant of the :class:`ConfigParser`.  It has interpolation "
 "disabled by default and allows for non-string section names, option "
@@ -1286,7 +1905,7 @@ msgstr ""
 "키워드 인자 처리뿐만 아니라 안전하지 않은 ``add_section``\\과 ``set`` 메서드를 통해 문자열이 아닌 섹션 이름,"
 " 옵션 이름 및 값을 허용합니다."
 
-#: ../Doc/library/configparser.rst:1218
+#: ../../library/configparser.rst:1336
 msgid ""
 "Consider using :class:`ConfigParser` instead which checks types of the "
 "values to be stored internally.  If you don't want interpolation, you can"
@@ -1295,7 +1914,7 @@ msgstr ""
 "내부에 저장되는 값의 형을 검사하는 :class:`ConfigParser`\\를 대신 사용하는 것을 고려하십시오. 보간을 원하지 "
 "않으면, ``ConfigParser(interpolation=None)`` 을 사용할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:1225
+#: ../../library/configparser.rst:1343
 msgid ""
 "Add a section named *section* to the instance.  If a section by the given"
 " name already exists, :exc:`DuplicateSectionError` is raised.  If the "
@@ -1305,7 +1924,7 @@ msgstr ""
 ":exc:`DuplicateSectionError` 가 발생합니다. *기본값 섹션* 이름이 전달되면, "
 ":exc:`ValueError`\\가 발생합니다."
 
-#: ../Doc/library/configparser.rst:1229
+#: ../../library/configparser.rst:1347
 msgid ""
 "Type of *section* is not checked which lets users create non-string named"
 " sections.  This behaviour is unsupported and may cause internal errors."
@@ -1313,7 +1932,7 @@ msgstr ""
 "*section*\\의 형을 검사하지 않아서 사용자가 문자열이 아닌 섹션을 만들 수 있도록 합니다. 이 동작은 지원되지 않으며 내부"
 " 에러를 일으킬 수 있습니다."
 
-#: ../Doc/library/configparser.rst:1235
+#: ../../library/configparser.rst:1353
 msgid ""
 "If the given section exists, set the given option to the specified value;"
 " otherwise raise :exc:`NoSectionError`.  While it is possible to use "
@@ -1327,7 +1946,7 @@ msgstr ""
 " 참으로 설정된 :class:`ConfigParser`)를 사용할 수 있지만, 전체 기능(보간과 파일로의 출력을 포함하는)은 문자열"
 " 값으로만 수행할 수 있습니다."
 
-#: ../Doc/library/configparser.rst:1242
+#: ../../library/configparser.rst:1360
 msgid ""
 "This method lets users assign non-string values to keys internally.  This"
 " behaviour is unsupported and will cause errors when attempting to write "
@@ -1337,34 +1956,37 @@ msgstr ""
 "이 메서드를 사용하면 문자열이 아닌 값을 키에 내부적으로 대입할 수 있습니다. 이 동작은 지원되지 않으며 파일에 쓰려고 하거나 비 "
 "원시 모드에서 가져오려고 할 때 에러가 발생합니다. 이러한 대입을 허용하지 않는 **매핑 프로토콜 API를 사용하십시오**."
 
-#: ../Doc/library/configparser.rst:1249
+#: ../../library/configparser.rst:1367
 msgid "Exceptions"
 msgstr "예외"
 
-#: ../Doc/library/configparser.rst:1253
+#: ../../library/configparser.rst:1371
 msgid "Base class for all other :mod:`configparser` exceptions."
 msgstr "다른 모든 :mod:`configparser` 예외의 베이스 클래스."
 
-#: ../Doc/library/configparser.rst:1258
+#: ../../library/configparser.rst:1376
 msgid "Exception raised when a specified section is not found."
 msgstr "지정된 섹션을 찾지 못할 때 발생하는 예외."
 
-#: ../Doc/library/configparser.rst:1263
+#: ../../library/configparser.rst:1381
+#, fuzzy
 msgid ""
-"Exception raised if :meth:`add_section` is called with the name of a "
-"section that is already present or in strict parsers when a section if "
-"found more than once in a single input file, string or dictionary."
+"Exception raised if :meth:`~ConfigParser.add_section` is called with the "
+"name of a section that is already present or in strict parsers when a "
+"section if found more than once in a single input file, string or "
+"dictionary."
 msgstr ""
 "이미 존재하는 이름으로 :meth:`add_section`\\을 호출하거나 엄격한(strict) 구문 분석기에서 단일 입력 파일, "
 "문자열 또는 딕셔너리에서 섹션이 두 번 이상 발견될 때 발생하는 예외."
 
-#: ../Doc/library/configparser.rst:1267
+#: ../../library/configparser.rst:1385
+#, fuzzy
 msgid ""
-"Optional ``source`` and ``lineno`` attributes and arguments to "
-":meth:`__init__` were added."
+"Added the optional *source* and *lineno* attributes and parameters to "
+":meth:`!__init__`."
 msgstr "선택적 ``source``\\와 ``lineno`` 어트리뷰트 및 :meth:`__init__`\\에 대한 인자가 추가되었습니다."
 
-#: ../Doc/library/configparser.rst:1274
+#: ../../library/configparser.rst:1392
 msgid ""
 "Exception raised by strict parsers if a single option appears twice "
 "during reading from a single file, string or dictionary. This catches "
@@ -1375,19 +1997,19 @@ msgstr ""
 " 이는 맞춤법과 대소 문자 구분과 관련된 에러를 잡습니다, 예를 들어 딕셔너리에는 대소 문자를 구분하지 않는 같은 구성 키를 "
 "나타내는 두 개의 키가 있을 수 있습니다."
 
-#: ../Doc/library/configparser.rst:1282
+#: ../../library/configparser.rst:1400
 msgid ""
 "Exception raised when a specified option is not found in the specified "
 "section."
 msgstr "지정된 섹션에서 지정된 옵션을 찾지 못할 때 발생하는 예외."
 
-#: ../Doc/library/configparser.rst:1288
+#: ../../library/configparser.rst:1406
 msgid ""
 "Base class for exceptions raised when problems occur performing string "
 "interpolation."
 msgstr "문자열 보간 수행 시 문제가 발생할 때 발생하는 예외의 베이스 클래스."
 
-#: ../Doc/library/configparser.rst:1294
+#: ../../library/configparser.rst:1412
 msgid ""
 "Exception raised when string interpolation cannot be completed because "
 "the number of iterations exceeds :const:`MAX_INTERPOLATION_DEPTH`.  "
@@ -1396,13 +2018,13 @@ msgstr ""
 "이터레이션 횟수가 :const:`MAX_INTERPOLATION_DEPTH`\\를 초과하여 문자열 보간을 완료할 수 없을 때 "
 "발생하는 예외. :exc:`InterpolationError`\\의 서브 클래스."
 
-#: ../Doc/library/configparser.rst:1301
+#: ../../library/configparser.rst:1419
 msgid ""
 "Exception raised when an option referenced from a value does not exist. "
 "Subclass of :exc:`InterpolationError`."
 msgstr "값에서 참조된 옵션이 존재하지 않을 때 발생하는 예외. :exc:`InterpolationError`\\의 서브 클래스."
 
-#: ../Doc/library/configparser.rst:1307
+#: ../../library/configparser.rst:1425
 msgid ""
 "Exception raised when the source text into which substitutions are made "
 "does not conform to the required syntax.  Subclass of "
@@ -1411,29 +2033,37 @@ msgstr ""
 "치환이 이루어질 소스 텍스트가 요구되는 문법을 준수하지 않을 때 발생하는 예외. :exc:`InterpolationError`\\의"
 " 서브 클래스."
 
-#: ../Doc/library/configparser.rst:1313
+#: ../../library/configparser.rst:1431
 msgid ""
 "Exception raised when attempting to parse a file which has no section "
 "headers."
 msgstr "섹션 헤더가 없는 파일을 구문 분석하려고 할 때 발생하는 예외."
 
-#: ../Doc/library/configparser.rst:1319
+#: ../../library/configparser.rst:1437
 msgid "Exception raised when errors occur attempting to parse a file."
 msgstr "파일 구문 분석 중에 에러가 발생할 때 발생하는 예외."
 
-#: ../Doc/library/configparser.rst:1321
+#: ../../library/configparser.rst:1439
+#, fuzzy
 msgid ""
-"The ``filename`` attribute and :meth:`__init__` argument were renamed to "
-"``source`` for consistency."
+"The ``filename`` attribute and :meth:`!__init__` constructor argument "
+"were removed.  They have been available using the name ``source`` since "
+"3.2."
 msgstr ""
 "일관성을 위해 ``filename`` 어트리뷰트와 :meth:`__init__` 인자의 이름이 ``source``\\로 "
 "변경되었습니다."
 
-#: ../Doc/library/configparser.rst:1327
+#: ../../library/configparser.rst:1445
+msgid ""
+"Exception raised when a key without a corresponding value is continued "
+"with an indented line."
+msgstr ""
+
+#: ../../library/configparser.rst:1451
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../Doc/library/configparser.rst:1328
+#: ../../library/configparser.rst:1452
 msgid ""
 "Config parsers allow for heavy customization.  If you are interested in "
 "changing the behaviour outlined by the footnote reference, consult the "
@@ -1441,4 +2071,63 @@ msgid ""
 msgstr ""
 "구성 구문 분석기는 심도 있는 사용자 정의를 허용합니다. 각주 참조로 요약된 동작을 변경하는 데 관심이 있으면 `구문 분석기 동작 "
 "사용자 정의 <Customizing Parser Behaviour_>`_ 섹션을 참조하십시오."
+
+#: ../../library/configparser.rst:16
+msgid ".ini"
+msgstr ""
+
+#: ../../library/configparser.rst:16
+msgid "file"
+msgstr ""
+
+#: ../../library/configparser.rst:16
+msgid "configuration"
+msgstr ""
+
+#: ../../library/configparser.rst:16
+msgid "ini file"
+msgstr ""
+
+#: ../../library/configparser.rst:16
+msgid "Windows ini file"
+msgstr ""
+
+#: ../../library/configparser.rst:367
+msgid "% (percent)"
+msgstr ""
+
+#: ../../library/configparser.rst:367 ../../library/configparser.rst:400
+#, fuzzy
+msgid "interpolation in configuration files"
+msgstr "값의 보간"
+
+#: ../../library/configparser.rst:400
+msgid "$ (dollar)"
+msgstr ""
+
+#~ msgid "Use :meth:`read_file` instead."
+#~ msgstr "대신 :meth:`read_file`\\을 사용하십시오."
+
+#~ msgid ""
+#~ ":meth:`readfp` now iterates on *fp* "
+#~ "instead of calling ``fp.readline()``."
+#~ msgstr ":meth:`readfp`\\는 이제 ``fp.readline()``\\을 호출하는 대신 *fp*\\를 이터레이트 합니다."
+
+#~ msgid ""
+#~ "For existing code calling :meth:`readfp` "
+#~ "with arguments which don't support "
+#~ "iteration, the following generator may "
+#~ "be used as a wrapper around the"
+#~ " file-like object::"
+#~ msgstr ""
+#~ "이터레이션을 지원하지 않는 인자로 :meth:`readfp`\\를 "
+#~ "호출하는 기존 코드의 경우, 다음과 같은 제너레이터를 "
+#~ "파일류 객체를 감싸는 래퍼로 사용할 수 있습니다::"
+
+#~ msgid ""
+#~ "Instead of ``parser.readfp(fp)`` use "
+#~ "``parser.read_file(readline_generator(fp))``."
+#~ msgstr ""
+#~ "``parser.readfp(fp)`` 대신 "
+#~ "``parser.read_file(readline_generator(fp))``\\를 사용하십시오."
 

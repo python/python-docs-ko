@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 08:18+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/c-api/weakref.rst:6
+#: ../../c-api/weakref.rst:6
 msgid "Weak Reference Objects"
 msgstr "약한 참조 객체"
 
-#: ../Doc/c-api/weakref.rst:8
+#: ../../c-api/weakref.rst:8
 msgid ""
 "Python supports *weak references* as first-class objects.  There are two "
 "specific object types which directly implement weak references.  The "
@@ -30,21 +30,27 @@ msgstr ""
 "파이썬은 *약한 참조*\\를 1급 객체로 지원합니다. 약한 참조를 직접 구현하는 두 가지 구체적인 객체 형이 있습니다. 첫 번째는 "
 "간단한 참조 객체이며, 두 번째는 가능한 한 원래 객체의 프락시 역할을 합니다."
 
-#: ../Doc/c-api/weakref.rst:16
+#: ../../c-api/weakref.rst:16
+#, fuzzy
 msgid ""
-"Return true if *ob* is either a reference or proxy object.  This function"
-" always succeeds."
+"Return non-zero if *ob* is either a reference or proxy object.  This "
+"function always succeeds."
 msgstr "*ob*\\가 참조 객체나 프락시 객체면 참을 반환합니다. 이 함수는 항상 성공합니다."
 
-#: ../Doc/c-api/weakref.rst:22
-msgid "Return true if *ob* is a reference object.  This function always succeeds."
+#: ../../c-api/weakref.rst:22
+#, fuzzy
+msgid ""
+"Return non-zero if *ob* is a reference object.  This function always "
+"succeeds."
 msgstr "*ob*\\가 참조 객체면 참을 반환합니다. 이 함수는 항상 성공합니다."
 
-#: ../Doc/c-api/weakref.rst:27
-msgid "Return true if *ob* is a proxy object.  This function always succeeds."
+#: ../../c-api/weakref.rst:27
+#, fuzzy
+msgid "Return non-zero if *ob* is a proxy object.  This function always succeeds."
 msgstr "*ob*\\가 프락시 객체면 참을 반환합니다. 이 함수는 항상 성공합니다."
 
-#: ../Doc/c-api/weakref.rst:32
+#: ../../c-api/weakref.rst:32
+#, fuzzy
 msgid ""
 "Return a weak reference object for the object *ob*.  This will always "
 "return a new reference, but is not guaranteed to create a new object; an "
@@ -52,8 +58,8 @@ msgid ""
 "*callback*, can be a callable object that receives notification when *ob*"
 " is garbage collected; it should accept a single parameter, which will be"
 " the weak reference object itself. *callback* may also be ``None`` or "
-"``NULL``.  If *ob* is not a weakly-referencable object, or if *callback* "
-"is not callable, ``None``, or ``NULL``, this will return ``NULL`` and "
+"``NULL``.  If *ob* is not a weakly referenceable object, or if *callback*"
+" is not callable, ``None``, or ``NULL``, this will return ``NULL`` and "
 "raise :exc:`TypeError`."
 msgstr ""
 "*ob* 객체에 대한 약한 참조 객체를 반환합니다. 이것은 항상 새로운 참조를 돌려주지만, 새로운 객체를 생성하는 것이 보장되지는 "
@@ -63,7 +69,8 @@ msgstr ""
 "아니거나, *callback*\\이 콜러블, ``None`` 또는 ``NULL``\\이 아니면, ``NULL``\\을 반환하고 "
 ":exc:`TypeError`\\를 발생시킵니다."
 
-#: ../Doc/c-api/weakref.rst:44
+#: ../../c-api/weakref.rst:44
+#, fuzzy
 msgid ""
 "Return a weak reference proxy object for the object *ob*.  This will "
 "always return a new reference, but is not guaranteed to create a new "
@@ -71,8 +78,8 @@ msgid ""
 "*callback*, can be a callable object that receives notification when *ob*"
 " is garbage collected; it should accept a single parameter, which will be"
 " the weak reference object itself. *callback* may also be ``None`` or "
-"``NULL``.  If *ob* is not a weakly-referencable object, or if *callback* "
-"is not callable, ``None``, or ``NULL``, this will return ``NULL`` and "
+"``NULL``.  If *ob* is not a weakly referenceable object, or if *callback*"
+" is not callable, ``None``, or ``NULL``, this will return ``NULL`` and "
 "raise :exc:`TypeError`."
 msgstr ""
 "*ob* 객체에 대한 약한 참조 프락시 객체를 반환합니다. 이것은 항상 새로운 참조를 돌려주지만, 새로운 객체를 생성하는 것이 "
@@ -82,25 +89,85 @@ msgstr ""
 "아니거나, *callback*\\이 콜러블, ``None`` 또는 ``NULL``\\이 아니면, ``NULL``\\을 반환하고 "
 ":exc:`TypeError`\\를 발생시킵니다."
 
-#: ../Doc/c-api/weakref.rst:56
+#: ../../c-api/weakref.rst:56
 msgid ""
-"Return the referenced object from a weak reference, *ref*.  If the "
-"referent is no longer live, returns :const:`Py_None`."
+"Get a :term:`strong reference` to the referenced object from a weak "
+"reference, *ref*, into *\\*pobj*."
+msgstr ""
+
+#: ../../c-api/weakref.rst:59
+msgid ""
+"On success, set *\\*pobj* to a new :term:`strong reference` to the "
+"referenced object and return 1."
+msgstr ""
+
+#: ../../c-api/weakref.rst:61
+msgid "If the reference is dead, set *\\*pobj* to ``NULL`` and return 0."
+msgstr ""
+
+#: ../../c-api/weakref.rst:62
+msgid "On error, raise an exception and return -1."
+msgstr ""
+
+#: ../../c-api/weakref.rst:69
+#, fuzzy
+msgid ""
+"Return a :term:`borrowed reference` to the referenced object from a weak "
+"reference, *ref*.  If the referent is no longer live, returns "
+"``Py_None``."
 msgstr "약한 참조(*ref*)로부터 참조된 객체를 반환합니다. 참조가 더는 살아있지 않으면, :const:`Py_None`\\을 반환합니다."
 
-#: ../Doc/c-api/weakref.rst:61
+#: ../../c-api/weakref.rst:74
+#, fuzzy
 msgid ""
-"This function returns a **borrowed reference** to the referenced object. "
-"This means that you should always call :c:func:`Py_INCREF` on the object "
-"except if you know that it cannot be destroyed while you are still using "
-"it."
+"This function returns a :term:`borrowed reference` to the referenced "
+"object. This means that you should always call :c:func:`Py_INCREF` on the"
+" object except when it cannot be destroyed before the last usage of the "
+"borrowed reference."
 msgstr ""
 "이 함수는 참조된 객체에 대한 **빌린 참조**\\를 반환합니다. 이는 객체를 계속 사용하는 동안 객체가 파괴될 수 없음을 알고 "
 "있을 때를 제외하고, 객체에 대해 항상 :c:func:`Py_INCREF`\\를 호출해야 함을 뜻합니다."
 
-#: ../Doc/c-api/weakref.rst:69
-msgid ""
-"Similar to :c:func:`PyWeakref_GetObject`, but implemented as a macro that"
-" does no error checking."
+#: ../../c-api/weakref.rst:79 ../../c-api/weakref.rst:87
+msgid "Use :c:func:`PyWeakref_GetRef` instead."
+msgstr ""
+
+#: ../../c-api/weakref.rst:85
+#, fuzzy
+msgid "Similar to :c:func:`PyWeakref_GetObject`, but does no error checking."
 msgstr ":c:func:`PyWeakref_GetObject`\\와 유사하지만, 에러 검사를 수행하지 않는 매크로로 구현됩니다."
+
+#: ../../c-api/weakref.rst:93
+msgid ""
+"This function is called by the :c:member:`~PyTypeObject.tp_dealloc` "
+"handler to clear weak references."
+msgstr ""
+
+#: ../../c-api/weakref.rst:96
+msgid ""
+"This iterates through the weak references for *object* and calls "
+"callbacks for those references which have one. It returns when all "
+"callbacks have been attempted."
+msgstr ""
+
+#: ../../c-api/weakref.rst:103
+msgid "Clears the weakrefs for *object* without calling the callbacks."
+msgstr ""
+
+#: ../../c-api/weakref.rst:105
+msgid ""
+"This function is called by the :c:member:`~PyTypeObject.tp_dealloc` "
+"handler for types with finalizers (i.e., :meth:`~object.__del__`).  The "
+"handler for those objects first calls :c:func:`PyObject_ClearWeakRefs` to"
+" clear weakrefs and call their callbacks, then the finalizer, and finally"
+" this function to clear any weakrefs that may have been created by the "
+"finalizer."
+msgstr ""
+
+#: ../../c-api/weakref.rst:111
+msgid ""
+"In most circumstances, it's more appropriate to use "
+":c:func:`PyObject_ClearWeakRefs` to clear weakrefs instead of this "
+"function."
+msgstr ""
 

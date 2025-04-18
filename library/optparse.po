@@ -7,33 +7,222 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 03:37+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2
-msgid ":mod:`optparse` --- Parser for command line options"
+#: ../../library/optparse.rst:2
+#, fuzzy
+msgid ":mod:`!optparse` --- Parser for command line options"
 msgstr ":mod:`optparse` --- 명령 줄 옵션용 구문 분석기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:11
+#: ../../library/optparse.rst:10
 msgid "**Source code:** :source:`Lib/optparse.py`"
 msgstr "**소스 코드:** :source:`Lib/optparse.py`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:13
-msgid ""
-"The :mod:`optparse` module is deprecated and will not be developed "
-"further; development will continue with the :mod:`argparse` module."
-msgstr ":mod:`optparse` 모듈은 폐지되었으며 더는 개발되지 않습니다; 개발은 :mod:`argparse` 모듈로 계속될 것입니다."
+#: ../../library/optparse.rst:17
+msgid "Choosing an argument parsing library"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:19
+#: ../../library/optparse.rst:19
+msgid "The standard library includes three argument parsing libraries:"
+msgstr ""
+
+#: ../../library/optparse.rst:21
+msgid ""
+":mod:`getopt`: a module that closely mirrors the procedural C ``getopt`` "
+"API. Included in the standard library since before the initial Python 1.0"
+" release."
+msgstr ""
+
+#: ../../library/optparse.rst:23
+msgid ""
+":mod:`optparse`: a declarative replacement for ``getopt`` that provides "
+"equivalent functionality without requiring each application to implement "
+"its own procedural option parsing logic. Included in the standard library"
+" since the Python 2.3 release."
+msgstr ""
+
+#: ../../library/optparse.rst:27
+msgid ""
+":mod:`argparse`: a more opinionated alternative to ``optparse`` that "
+"provides more functionality by default, at the expense of reduced "
+"application flexibility in controlling exactly how arguments are "
+"processed. Included in the standard library since the Python 2.7 and "
+"Python 3.2 releases."
+msgstr ""
+
+#: ../../library/optparse.rst:32
+msgid ""
+"In the absence of more specific argument parsing design constraints, "
+":mod:`argparse` is the recommended choice for implementing command line "
+"applications, as it offers the highest level of baseline functionality "
+"with the least application level code."
+msgstr ""
+
+#: ../../library/optparse.rst:36
+msgid ""
+":mod:`getopt` is retained almost entirely for backwards compatibility "
+"reasons. However, it also serves a niche use case as a tool for "
+"prototyping and testing command line argument handling in "
+"``getopt``-based C applications."
+msgstr ""
+
+#: ../../library/optparse.rst:40
+msgid ""
+":mod:`optparse` should be considered as an alternative to :mod:`argparse`"
+" in the following cases:"
+msgstr ""
+
+#: ../../library/optparse.rst:43
+msgid ""
+"an application is already using :mod:`optparse` and doesn't want to risk "
+"the subtle behavioural changes that may arise when migrating to "
+":mod:`argparse`"
+msgstr ""
+
+#: ../../library/optparse.rst:45
+msgid ""
+"the application requires additional control over the way options and "
+"positional parameters are interleaved on the command line (including the "
+"ability to disable the interleaving feature completely)"
+msgstr ""
+
+#: ../../library/optparse.rst:48
+msgid ""
+"the application requires additional control over the incremental parsing "
+"of command line elements (while ``argparse`` does support this, the exact"
+" way it works in practice is undesirable for some use cases)"
+msgstr ""
+
+#: ../../library/optparse.rst:51
+msgid ""
+"the application requires additional control over the handling of options "
+"which accept parameter values that may start with ``-`` (such as "
+"delegated options to be passed to invoked subprocesses)"
+msgstr ""
+
+#: ../../library/optparse.rst:54
+msgid ""
+"the application requires some other command line parameter processing "
+"behavior which ``argparse`` does not support, but which can be "
+"implemented in terms of the lower level interface offered by ``optparse``"
+msgstr ""
+
+#: ../../library/optparse.rst:58
+msgid ""
+"These considerations also mean that :mod:`optparse` is likely to provide "
+"a better foundation for library authors writing third party command line "
+"argument processing libraries."
+msgstr ""
+
+#: ../../library/optparse.rst:62
+msgid ""
+"As a concrete example, consider the following two command line argument "
+"parsing configurations, the first using ``optparse``, and the second "
+"using ``argparse``:"
+msgstr ""
+
+#: ../../library/optparse.rst:66
+msgid ""
+"import optparse\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    parser = optparse.OptionParser()\n"
+"    parser.add_option('-o', '--output')\n"
+"    parser.add_option('-v', dest='verbose', action='store_true')\n"
+"    opts, args = parser.parse_args()\n"
+"    process(args, output=opts.output, verbose=opts.verbose)"
+msgstr ""
+
+#: ../../library/optparse.rst:77
+msgid ""
+"import argparse\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    parser = argparse.ArgumentParser()\n"
+"    parser.add_argument('-o', '--output')\n"
+"    parser.add_argument('-v', dest='verbose', action='store_true')\n"
+"    parser.add_argument('rest', nargs='*')\n"
+"    args = parser.parse_args()\n"
+"    process(args.rest, output=args.output, verbose=args.verbose)"
+msgstr ""
+
+#: ../../library/optparse.rst:89
+msgid ""
+"The most obvious difference is that in the ``optparse`` version, the non-"
+"option arguments are processed separately by the application after the "
+"option processing is complete. In the ``argparse`` version, positional "
+"arguments are declared and processed in the same way as the named "
+"options."
+msgstr ""
+
+#: ../../library/optparse.rst:94
+msgid ""
+"However, the ``argparse`` version will also handle some parameter "
+"combination differently from the way the ``optparse`` version would "
+"handle them. For example (amongst other differences):"
+msgstr ""
+
+#: ../../library/optparse.rst:98
+msgid ""
+"supplying ``-o -v`` gives ``output=\"-v\"`` and ``verbose=False`` when "
+"using ``optparse``, but a usage error with ``argparse`` (complaining that"
+" no value has been supplied for ``-o/--output``, since ``-v`` is "
+"interpreted as meaning the verbosity flag)"
+msgstr ""
+
+#: ../../library/optparse.rst:102
+msgid ""
+"similarly, supplying ``-o --`` gives ``output=\"--\"`` and ``args=()`` "
+"when using ``optparse``, but a usage error with ``argparse`` (also "
+"complaining that no value has been supplied for ``-o/--output``, since "
+"``--`` is interpreted as terminating the option processing and treating "
+"all remaining values as positional arguments)"
+msgstr ""
+
+#: ../../library/optparse.rst:107
+msgid ""
+"supplying ``-o=foo`` gives ``output=\"=foo\"`` when using ``optparse``, "
+"but gives ``output=\"foo\"`` with ``argparse`` (since ``=`` is special "
+"cased as an alternative separator for option parameter values)"
+msgstr ""
+
+#: ../../library/optparse.rst:111
+msgid ""
+"Whether these differing behaviors in the ``argparse`` version are "
+"considered desirable or a problem will depend on the specific command "
+"line application use case."
+msgstr ""
+
+#: ../../library/optparse.rst:117
+msgid ""
+":pypi:`click` is a third party argument processing library (originally "
+"based on ``optparse``), which allows command line applications to be "
+"developed as a set of decorated command implementation functions."
+msgstr ""
+
+#: ../../library/optparse.rst:121
+msgid ""
+"Other third party libraries, such as :pypi:`typer` or :pypi:`msgspec-"
+"click`, allow command line interfaces to be specified in ways that more "
+"effectively integrate with static checking of Python type annotations."
+msgstr ""
+
+#: ../../library/optparse.rst:127
+msgid "Introduction"
+msgstr ""
+
+#: ../../library/optparse.rst:129
+#, fuzzy
 msgid ""
 ":mod:`optparse` is a more convenient, flexible, and powerful library for "
-"parsing command-line options than the old :mod:`getopt` module.  "
+"parsing command-line options than the minimalist :mod:`getopt` module. "
 ":mod:`optparse` uses a more declarative style of command-line parsing: "
 "you create an instance of :class:`OptionParser`, populate it with "
 "options, and parse the command line. :mod:`optparse` allows users to "
@@ -46,27 +235,47 @@ msgstr ""
 ":mod:`optparse`\\를 사용하면 사용자가 전통적인 GNU/POSIX 문법으로 옵션을 지정할 수 있으며, 추가로 사용법과 "
 "도움말 메시지를 생성할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:26
+#: ../../library/optparse.rst:137
 msgid "Here's an example of using :mod:`optparse` in a simple script::"
 msgstr "다음은 간단한 스크립트에서 :mod:`optparse`\\를 사용하는 예입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:39
+#: ../../library/optparse.rst:139
+msgid ""
+"from optparse import OptionParser\n"
+"...\n"
+"parser = OptionParser()\n"
+"parser.add_option(\"-f\", \"--file\", dest=\"filename\",\n"
+"                  help=\"write report to FILE\", metavar=\"FILE\")\n"
+"parser.add_option(\"-q\", \"--quiet\",\n"
+"                  action=\"store_false\", dest=\"verbose\", default=True,"
+"\n"
+"                  help=\"don't print status messages to stdout\")\n"
+"\n"
+"(options, args) = parser.parse_args()"
+msgstr ""
+
+#: ../../library/optparse.rst:150
 msgid ""
 "With these few lines of code, users of your script can now do the \"usual"
 " thing\" on the command-line, for example::"
 msgstr "이 몇 줄의 코드로, 스크립트 사용자는 이제 명령 줄에서 \"일반적인 작업\"을 수행 할 수 있습니다, 예를 들면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:44
+#: ../../library/optparse.rst:153
+msgid "<yourscript> --file=outfile -q"
+msgstr ""
+
+#: ../../library/optparse.rst:155
+#, fuzzy
 msgid ""
 "As it parses the command line, :mod:`optparse` sets attributes of the "
-"``options`` object returned by :meth:`parse_args` based on user-supplied "
-"command-line values.  When :meth:`parse_args` returns from parsing this "
-"command line, ``options.filename`` will be ``\"outfile\"`` and "
-"``options.verbose`` will be ``False``.  :mod:`optparse` supports both "
-"long and short options, allows short options to be merged together, and "
-"allows options to be associated with their arguments in a variety of "
-"ways.  Thus, the following command lines are all equivalent to the above "
-"example::"
+"``options`` object returned by :meth:`~OptionParser.parse_args` based on "
+"user-supplied command-line values.  When :meth:`~OptionParser.parse_args`"
+" returns from parsing this command line, ``options.filename`` will be "
+"``\"outfile\"`` and ``options.verbose`` will be ``False``.  "
+":mod:`optparse` supports both long and short options, allows short "
+"options to be merged together, and allows options to be associated with "
+"their arguments in a variety of ways.  Thus, the following command lines "
+"are all equivalent to the above example::"
 msgstr ""
 "명령 줄을 구문 분석할 때, :mod:`optparse`\\는 사용자가 제공한 명령 줄 값을 기반으로 "
 ":meth:`parse_args`\\에서 반환한 ``options`` 객체의 어트리뷰트를 설정합니다. 이 명령 줄 구문 분석에서 "
@@ -75,47 +284,74 @@ msgstr ""
 " 모두 지원하고, 짧은 옵션을 함께 병합하도록 하며, 다양한 방법으로 옵션을 인자와 연관시킬 수 있습니다. 따라서 다음 명령 줄은 "
 "모두 위의 예와 동등합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:58
+#: ../../library/optparse.rst:164
+msgid ""
+"<yourscript> -f outfile --quiet\n"
+"<yourscript> --quiet --file outfile\n"
+"<yourscript> -q -foutfile\n"
+"<yourscript> -qfoutfile"
+msgstr ""
+
+#: ../../library/optparse.rst:169
 msgid "Additionally, users can run one of the following ::"
 msgstr "또한, 사용자는 다음 중 하나를 실행할 수 있습니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:63
+#: ../../library/optparse.rst:171
+msgid ""
+"<yourscript> -h\n"
+"<yourscript> --help"
+msgstr ""
+
+#: ../../library/optparse.rst:174
 msgid ""
 "and :mod:`optparse` will print out a brief summary of your script's "
 "options:"
 msgstr "그러면 :mod:`optparse`\\는 스크립트 옵션에 대한 간략한 요약을 인쇄합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:74
+#: ../../library/optparse.rst:176
+msgid ""
+"Usage: <yourscript> [options]\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -f FILE, --file=FILE  write report to FILE\n"
+"  -q, --quiet           don't print status messages to stdout"
+msgstr ""
+
+#: ../../library/optparse.rst:185
 msgid ""
 "where the value of *yourscript* is determined at runtime (normally from "
 "``sys.argv[0]``)."
 msgstr "여기서 *yourscript*\\의 값은 (일반적으로 ``sys.argv[0]``\\에서) 실행 시간에 결정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:81
+#: ../../library/optparse.rst:192
 msgid "Background"
 msgstr "배경"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:83
+#: ../../library/optparse.rst:194
+#, fuzzy
 msgid ""
 ":mod:`optparse` was explicitly designed to encourage the creation of "
-"programs with straightforward, conventional command-line interfaces.  To "
-"that end, it supports only the most common command-line syntax and "
-"semantics conventionally used under Unix.  If you are unfamiliar with "
-"these conventions, read this section to acquaint yourself with them."
+"programs with straightforward command-line interfaces that follow the "
+"conventions established by the :c:func:`!getopt` family of functions "
+"available to C developers. To that end, it supports only the most common "
+"command-line syntax and semantics conventionally used under Unix.  If you"
+" are unfamiliar with these conventions, reading this section will allow "
+"you to acquaint yourself with them."
 msgstr ""
 ":mod:`optparse`\\는 간단하고 전통적인 명령 줄 인터페이스를 갖는 프로그램을 만들 수 있도록 명시적으로 설계되었습니다."
 " 이를 위해, 유닉스에서 전통적으로 사용되는 가장 일반적인 명령 줄 문법과 의미 체계만 지원합니다. 이러한 규칙에 익숙하지 않으면,"
 " 이 섹션을 읽고 숙지하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:93
+#: ../../library/optparse.rst:205
 msgid "Terminology"
 msgstr "용어"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:104
+#: ../../library/optparse.rst:207
 msgid "argument"
 msgstr "인자(argument)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:96
+#: ../../library/optparse.rst:208
 msgid ""
 "a string entered on the command-line, and passed by the shell to "
 "``execl()`` or ``execv()``.  In Python, arguments are elements of "
@@ -126,7 +362,7 @@ msgstr ""
 "``sys.argv[1:]``\\의 요소입니다 (``sys.argv[0]``\\은 실행 중인 프로그램의 이름입니다). 유닉스 셸은 "
 "\"워드(word)\"라는 용어도 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:101
+#: ../../library/optparse.rst:213
 msgid ""
 "It is occasionally desirable to substitute an argument list other than "
 "``sys.argv[1:]``, so you should read \"argument\" as \"an element of "
@@ -136,11 +372,11 @@ msgstr ""
 "때때로 ``sys.argv[1:]`` 이외의 인자 리스트로 대체하는 것이 바람직해서, \"인자\"를 "
 "\"``sys.argv[1:]``\\이나 ``sys.argv[1:]``\\의 대체로 제공된 다른 리스트의 요소\"로 읽어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:134
+#: ../../library/optparse.rst:218
 msgid "option"
 msgstr "옵션(option)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:107
+#: ../../library/optparse.rst:219
 msgid ""
 "an argument used to supply extra information to guide or customize the "
 "execution of a program.  There are many different syntaxes for options; "
@@ -157,17 +393,17 @@ msgstr ""
 " GNU 프로젝트는 하이픈으로 구분된 일련의 단어가 뒤따르는 ``--``\\를 도입했습니다, 예를 들어 ``--file``\\이나 "
 "``--dry-run``. 이들이 :mod:`optparse`\\에서 제공하는 유일한 두 가지 옵션 문법입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:116
+#: ../../library/optparse.rst:228
 msgid "Some other option syntaxes that the world has seen include:"
 msgstr "세상에 등장했던 다른 옵션 문법은 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:118
+#: ../../library/optparse.rst:230
 msgid ""
 "a hyphen followed by a few letters, e.g. ``-pf`` (this is *not* the same "
 "as multiple options merged into a single argument)"
 msgstr "몇 개의 문자가 뒤따르는 하이픈, 예를 들어 ``-pf`` (이것은 하나의 인자로 병합된 여러 옵션과 같은 것이 *아닙니다*)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:121
+#: ../../library/optparse.rst:233
 msgid ""
 "a hyphen followed by a whole word, e.g. ``-file`` (this is technically "
 "equivalent to the previous syntax, but they aren't usually seen in the "
@@ -176,34 +412,35 @@ msgstr ""
 "전체 단어가 뒤따르는 하이픈, 예를 들어 ``-file`` (기술적으로 이전 문법과 동등하지만, 일반적으로 같은 프로그램에서 "
 "등장하지 않습니다)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:125
+#: ../../library/optparse.rst:237
 msgid ""
 "a plus sign followed by a single letter, or a few letters, or a word, "
 "e.g. ``+f``, ``+rgb``"
 msgstr "단일 문자나 몇 개의 문자 또는 단어가 뒤따르는 더하기 기호, 예를 들어 ``+f``, ``+rgb``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:128
+#: ../../library/optparse.rst:240
 msgid ""
 "a slash followed by a letter, or a few letters, or a word, e.g. ``/f``, "
 "``/file``"
 msgstr "단일 문자나 몇 개의 문자 또는 단어가 뒤따르는 슬래시, 예를 들어 ``/f``, ``/file``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:131
+#: ../../library/optparse.rst:243
+#, fuzzy
 msgid ""
 "These option syntaxes are not supported by :mod:`optparse`, and they "
 "never will be.  This is deliberate: the first three are non-standard on "
 "any environment, and the last only makes sense if you're exclusively "
-"targeting VMS, MS-DOS, and/or Windows."
+"targeting Windows or certain legacy platforms (e.g. VMS, MS-DOS)."
 msgstr ""
 "이러한 옵션 문법들은 :mod:`optparse`\\에서 지원되지 않으며, 앞으로도 지원되지 않을 것입니다. 이것은 의도적입니다: "
 "처음 세 가지는 모든 환경에서 표준이 아니며, 마지막은 VMS, MS-DOS 및/또는 윈도우만 대상으로 하는 경우에만 의미가 "
 "있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:160
+#: ../../library/optparse.rst:248
 msgid "option argument"
 msgstr "옵션 인자(option argument)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:137
+#: ../../library/optparse.rst:249
 msgid ""
 "an argument that follows an option, is closely associated with that "
 "option, and is consumed from the argument list when that option is. With "
@@ -213,11 +450,23 @@ msgstr ""
 "옵션 뒤에 오는 인자는 해당 옵션과 밀접하게 연관되어 있으며, 해당 옵션이 있으면 인자 목록에서 사용됩니다. "
 ":mod:`optparse`\\를 사용하면, 옵션 인자가 해당 옵션과 별도의 인자로 있을 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:147
+#: ../../library/optparse.rst:254
+msgid ""
+"-f foo\n"
+"--file foo"
+msgstr ""
+
+#: ../../library/optparse.rst:259
 msgid "or included in the same argument:"
 msgstr "또는 같은 인자에 포함될 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:154
+#: ../../library/optparse.rst:261
+msgid ""
+"-ffoo\n"
+"--file=foo"
+msgstr ""
+
+#: ../../library/optparse.rst:266
 msgid ""
 "Typically, a given option either takes an argument or it doesn't. Lots of"
 " people want an \"optional option arguments\" feature, meaning that some "
@@ -232,22 +481,22 @@ msgstr ""
 "있습니다: ``-a``\\가 선택적 인자를 취하고 ``-b``\\가 완전히 다른 옵션이면 ``-ab``\\를 어떻게 해석합니까? "
 "이러한 모호성 때문에, :mod:`optparse`\\는 이 기능을 지원하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:165
+#: ../../library/optparse.rst:274
 msgid "positional argument"
 msgstr "위치 인자(positional argument)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:163
+#: ../../library/optparse.rst:275
 msgid ""
 "something leftover in the argument list after options have been parsed, "
 "i.e. after options and their arguments have been parsed and removed from "
 "the argument list."
 msgstr "옵션이 구문 분석된 후, 즉 옵션과 해당 인자가 구문 분석되고 인자 목록에서 제거된 후 인자 목록에 남은 것."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:171
+#: ../../library/optparse.rst:279
 msgid "required option"
 msgstr "필수 옵션(required option)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:168
+#: ../../library/optparse.rst:280
 msgid ""
 "an option that must be supplied on the command-line; note that the phrase"
 " \"required option\" is self-contradictory in English.  :mod:`optparse` "
@@ -257,11 +506,15 @@ msgstr ""
 "명령 줄에서 제공해야 하는 옵션; \"필수 옵션\"이라는 문구는 영어에서 모순된다는 점에 유의하십시오. "
 ":mod:`optparse`\\는 필수 옵션을 구현하는 것을 방해하지 않지만, 그다지 도움을 주지도 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:173
+#: ../../library/optparse.rst:285
 msgid "For example, consider this hypothetical command-line::"
 msgstr "예를 들어, 다음 가상 명령 줄을 고려하십시오::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:177
+#: ../../library/optparse.rst:287
+msgid "prog -v --report report.txt foo bar"
+msgstr ""
+
+#: ../../library/optparse.rst:289
 msgid ""
 "``-v`` and ``--report`` are both options.  Assuming that ``--report`` "
 "takes one argument, ``report.txt`` is an option argument.  ``foo`` and "
@@ -270,11 +523,11 @@ msgstr ""
 "``-v``\\와 ``--report``\\는 둘 다 옵션입니다. ``--report``\\가 하나의 인자를 취한다고 가정하면, "
 "``report.txt``\\는 옵션 인자입니다. ``foo``\\와 ``bar``\\는 위치 인자입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:185
+#: ../../library/optparse.rst:297
 msgid "What are options for?"
 msgstr "옵션은 무엇을 위한 것입니까?"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:187
+#: ../../library/optparse.rst:299
 msgid ""
 "Options are used to provide extra information to tune or customize the "
 "execution of a program.  In case it wasn't clear, options are usually "
@@ -290,7 +543,7 @@ msgstr ""
 " 선택하십시오. 옵션 없이도 실행될 수 있으며 여전히 의미가 있습니까? 주요 예외는 ``find``, ``tar`` 및 "
 "``dd``\\입니다 --- 모두 비표준 문법과 혼란스러운 인터페이스 때문에 올바로 비판을 받은 돌연변이 괴짜입니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:195
+#: ../../library/optparse.rst:307
 msgid ""
 "Lots of people want their programs to have \"required options\".  Think "
 "about it. If it's required, then it's *not optional*!  If there is a "
@@ -300,7 +553,7 @@ msgstr ""
 "많은 사람이 프로그램에 \"필수 옵션\"이 있기를 원합니다. 생각해보십시오. 필수라면, 그것은 *선택적(optional)이 "
 "아닙니다*! 당신의 프로그램이 성공적으로 실행하기 위해 절대적으로 필요한 정보가 있다면, 그것이 바로 위치 인자의 목적입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:200
+#: ../../library/optparse.rst:312
 msgid ""
 "As an example of good command-line interface design, consider the humble "
 "``cp`` utility, for copying files.  It doesn't make much sense to try to "
@@ -312,7 +565,13 @@ msgstr ""
 "제공하지 않고 파일을 복사하는 것은 의미가 없습니다. 따라서, 인자 없이 실행하면 ``cp``\\가 실패합니다. 그러나 옵션이 전혀"
 " 필수로 요구하지 않는 유연하고 유용한 문법을 갖습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:209
+#: ../../library/optparse.rst:318
+msgid ""
+"cp SOURCE DEST\n"
+"cp SOURCE ... DEST-DIR"
+msgstr ""
+
+#: ../../library/optparse.rst:321
 msgid ""
 "You can get pretty far with just that.  Most ``cp`` implementations "
 "provide a bunch of options to tweak exactly how the files are copied: you"
@@ -326,17 +585,17 @@ msgstr ""
 "중 어느 것도 한 파일을 다른 파일로 복사하거나 여러 파일을 다른 디렉터리로 복사하는 ``cp``\\의 핵심 임무를 방해하지 "
 "않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:220
+#: ../../library/optparse.rst:332
 msgid "What are positional arguments for?"
 msgstr "위치 인자는 무엇을 위한 것입니까?"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:222
+#: ../../library/optparse.rst:334
 msgid ""
 "Positional arguments are for those pieces of information that your "
 "program absolutely, positively requires to run."
 msgstr "위치 인자는 프로그램이 실행하기 위해 절대적으로 필요로하는 정보를 위한 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:225
+#: ../../library/optparse.rst:337
 msgid ""
 "A good user interface should have as few absolute requirements as "
 "possible.  If your program requires 17 distinct pieces of information in "
@@ -351,7 +610,7 @@ msgstr ""
 " 전에 포기하고 떠납니다. 이것은 사용자 인터페이스가 명령 줄이든, 구성 파일이든, GUI이든 상관없이 적용됩니다: 사용자에게 "
 "그렇게 많은 요구를 하면, 대부분은 단순히 포기할 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:233
+#: ../../library/optparse.rst:345
 msgid ""
 "In short, try to minimize the amount of information that users are "
 "absolutely required to supply---use sensible defaults whenever possible."
@@ -369,11 +628,11 @@ msgstr ""
 "프로그램이 더 유연해지고, 구현은 더 복잡해집니다. 물론 유연성이 너무 많으면 단점도 있습니다; 너무 많은 옵션은 사용자를 압도하고"
 " 코드 유지 관리를 훨씬 더 어렵게 만들 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:246
+#: ../../library/optparse.rst:358
 msgid "Tutorial"
 msgstr "자습서"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:248
+#: ../../library/optparse.rst:360
 msgid ""
 "While :mod:`optparse` is quite flexible and powerful, it's also "
 "straightforward to use in most cases.  This section covers the code "
@@ -382,7 +641,7 @@ msgstr ""
 ":mod:`optparse`\\는 매우 유연하고 강력하지만, 대부분의 경우 사용하기도 간단합니다. 이 섹션에서는 모든 "
 ":mod:`optparse` 기반 프로그램에 공통적인 코드 패턴을 다룹니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:252
+#: ../../library/optparse.rst:364
 msgid ""
 "First, you need to import the OptionParser class; then, early in the main"
 " program, create an OptionParser instance::"
@@ -390,11 +649,24 @@ msgstr ""
 "먼저, OptionParser 클래스를 임포트 해야 합니다; 그런 다음 메인 프로그램의 초기에, OptionParser 인스턴스를 "
 "만듭니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:259
+#: ../../library/optparse.rst:367
+msgid ""
+"from optparse import OptionParser\n"
+"...\n"
+"parser = OptionParser()"
+msgstr ""
+
+#: ../../library/optparse.rst:371
 msgid "Then you can start defining options.  The basic syntax is::"
 msgstr "그런 다음 옵션 정의를 시작할 수 있습니다. 기본 문법은 다음과 같습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:264
+#: ../../library/optparse.rst:373
+msgid ""
+"parser.add_option(opt_str, ...,\n"
+"                  attr=value, ...)"
+msgstr ""
+
+#: ../../library/optparse.rst:376
 msgid ""
 "Each option has one or more option strings, such as ``-f`` or ``--file``,"
 " and several option attributes that tell :mod:`optparse` what to expect "
@@ -403,13 +675,17 @@ msgstr ""
 "각 옵션에는 ``-f``\\나 ``--file``\\과 같은 하나 이상의 옵션 문자열이 있고, 명령 줄에서 해당 옵션을 발견했을 때"
 " :mod:`optparse`\\가 기대하는 것과 수행 할 작업을 알려주는 여러 옵션 어트리뷰트가 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:268
+#: ../../library/optparse.rst:380
 msgid ""
 "Typically, each option will have one short option string and one long "
 "option string, e.g.::"
 msgstr "일반적으로, 각 옵션에는 하나의 짧은 옵션 문자열과 하나의 긴 옵션 문자열이 있습니다, 예를 들어::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:273
+#: ../../library/optparse.rst:383
+msgid "parser.add_option(\"-f\", \"--file\", ...)"
+msgstr ""
+
+#: ../../library/optparse.rst:385
 msgid ""
 "You're free to define as many short option strings and as many long "
 "option strings as you like (including zero), as long as there is at least"
@@ -418,7 +694,7 @@ msgstr ""
 "전체적으로 적어도 하나의 옵션 문자열이 있는 한 원하는 만큼 짧은 옵션 문자열과 긴 옵션 문자열을 (없는 것도 포함합니다) 자유롭게"
 " 정의 할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:277
+#: ../../library/optparse.rst:389
 msgid ""
 "The option strings passed to :meth:`OptionParser.add_option` are "
 "effectively labels for the option defined by that call.  For brevity, we "
@@ -430,25 +706,32 @@ msgstr ""
 "레이블입니다. 간결함을 위해, 명령 줄에서 *옵션을 만난다*\\를 자주 언급할 것입니다; 실제로는, "
 ":mod:`optparse`\\가 *옵션 문자열*\\을 만나고 이것으로 옵션을 찾습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:283
+#: ../../library/optparse.rst:395
 msgid ""
 "Once all of your options are defined, instruct :mod:`optparse` to parse "
 "your program's command line::"
 msgstr "일단 모든 옵션이 정의되면, :mod:`optparse`\\가 프로그램의 명령 줄을 구문 분석하도록 지시합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:288
+#: ../../library/optparse.rst:398
+msgid "(options, args) = parser.parse_args()"
+msgstr ""
+
+#: ../../library/optparse.rst:400
+#, fuzzy
 msgid ""
-"(If you like, you can pass a custom argument list to :meth:`parse_args`, "
-"but that's rarely necessary: by default it uses ``sys.argv[1:]``.)"
+"(If you like, you can pass a custom argument list to "
+":meth:`~OptionParser.parse_args`, but that's rarely necessary: by default"
+" it uses ``sys.argv[1:]``.)"
 msgstr ""
 "(원한다면, 사용자 정의 인자 리스트를 :meth:`parse_args`\\에 전달할 수 있지만, 거의 필요하지 않습니다: "
 "기본적으로 ``sys.argv[1:]``\\을 사용합니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:291
-msgid ":meth:`parse_args` returns two values:"
+#: ../../library/optparse.rst:403
+#, fuzzy
+msgid ":meth:`~OptionParser.parse_args` returns two values:"
 msgstr ":meth:`parse_args`\\는 두 가지 값을 반환합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:293
+#: ../../library/optparse.rst:405
 msgid ""
 "``options``, an object containing values for all of your options---e.g. "
 "if ``--file`` takes a single string argument, then ``options.file`` will "
@@ -458,11 +741,11 @@ msgstr ""
 "``options``, 모든 옵션에 대한 값을 포함하는 객체---예를 들어 ``--file``\\이 단일 문자열 인자를 취하면, "
 "``options.file``\\은 사용자가 제공한 파일명이거나, 사용자가 해당 옵션을 제공하지 않으면 ``None``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:298
+#: ../../library/optparse.rst:410
 msgid "``args``, the list of positional arguments leftover after parsing options"
 msgstr "``args``, 옵션 구문 분석 후 남은 위치 인자 리스트"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:300
+#: ../../library/optparse.rst:412
 msgid ""
 "This tutorial section only covers the four most important option "
 "attributes: :attr:`~Option.action`, :attr:`~Option.type`, "
@@ -473,11 +756,11 @@ msgstr ""
 ":attr:`~Option.type`, :attr:`~Option.dest` (destination) 및 "
 ":attr:`~Option.help`\\만 다룹니다. 이 중, :attr:`~Option.action`\\이 가장 기본입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:309
+#: ../../library/optparse.rst:421
 msgid "Understanding option actions"
 msgstr "옵션 액션의 이해"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:311
+#: ../../library/optparse.rst:423
 msgid ""
 "Actions tell :mod:`optparse` what to do when it encounters an option on "
 "the command line.  There is a fixed set of actions hard-coded into "
@@ -491,17 +774,17 @@ msgstr ""
 "extending-optparse`\\에서 다루는 고급 주제입니다. 대부분의 액션은 :mod:`optparse`\\에게 어떤 변수에"
 " 값을 저장하도록 지시합니다---예를 들어, 명령 줄에서 문자열을 취해서 ``options``\\의 어트리뷰트에 저장합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:318
+#: ../../library/optparse.rst:430
 msgid ""
 "If you don't specify an option action, :mod:`optparse` defaults to "
 "``store``."
 msgstr "옵션 액션을 지정하지 않으면, :mod:`optparse`\\의 기본값은 ``store``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:324
+#: ../../library/optparse.rst:436
 msgid "The store action"
 msgstr "store 액션"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:326
+#: ../../library/optparse.rst:438
 msgid ""
 "The most common option action is ``store``, which tells :mod:`optparse` "
 "to take the next argument (or the remainder of the current argument), "
@@ -511,27 +794,41 @@ msgstr ""
 "가장 일반적인 옵션 액션은 ``store``\\로, :mod:`optparse`\\에게 다음 인자(또는 현재 인자의 나머지)를 "
 "취하고, 올바른 형인지 확인한 다음, 선택한 대상에 저장하도록 지시합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:330
+#: ../../library/optparse.rst:442
 msgid "For example::"
 msgstr "예를 들면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:335
+#: ../../library/optparse.rst:444
+msgid ""
+"parser.add_option(\"-f\", \"--file\",\n"
+"                  action=\"store\", type=\"string\", dest=\"filename\")"
+msgstr ""
+
+#: ../../library/optparse.rst:447
 msgid ""
 "Now let's make up a fake command line and ask :mod:`optparse` to parse "
 "it::"
 msgstr "이제 가짜 명령 줄을 만들고 :mod:`optparse`\\에게 구문 분석을 요청합시다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:340
+#: ../../library/optparse.rst:449
+msgid ""
+"args = [\"-f\", \"foo.txt\"]\n"
+"(options, args) = parser.parse_args(args)"
+msgstr ""
+
+#: ../../library/optparse.rst:452
+#, fuzzy
 msgid ""
 "When :mod:`optparse` sees the option string ``-f``, it consumes the next "
 "argument, ``foo.txt``, and stores it in ``options.filename``.  So, after "
-"this call to :meth:`parse_args`, ``options.filename`` is ``\"foo.txt\"``."
+"this call to :meth:`~OptionParser.parse_args`, ``options.filename`` is "
+"``\"foo.txt\"``."
 msgstr ""
 ":mod:`optparse`\\가 옵션 문자열 ``-f``\\를 보면, 다음 인자인 ``foo.txt``\\를 소비하고, "
 "``options.filename``\\에 저장합니다. 따라서, 이 :meth:`parse_args` 호출 후, "
 "``options.filename``\\은 ``\"foo.txt\"``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:344
+#: ../../library/optparse.rst:456
 msgid ""
 "Some other option types supported by :mod:`optparse` are ``int`` and "
 "``float``. Here's an option that expects an integer argument::"
@@ -539,7 +836,11 @@ msgstr ""
 ":mod:`optparse`\\에서 지원하는 다른 옵션 형은 ``int``\\와 ``float``\\입니다. 정수 인자를 기대하는 "
 "옵션은 다음과 같습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:349
+#: ../../library/optparse.rst:459
+msgid "parser.add_option(\"-n\", type=\"int\", dest=\"num\")"
+msgstr ""
+
+#: ../../library/optparse.rst:461
 msgid ""
 "Note that this option has no long option string, which is perfectly "
 "acceptable. Also, there's no explicit action, since the default is "
@@ -548,7 +849,7 @@ msgstr ""
 "이 옵션에는 긴 옵션 문자열이 없는데, 완벽하게 허용됩니다. 또한, 기본값이 ``store``\\이기 때문에 명시적인 액션이 "
 "없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:352
+#: ../../library/optparse.rst:464
 msgid ""
 "Let's parse another fake command-line.  This time, we'll jam the option "
 "argument right up against the option: since ``-n42`` (one argument) is "
@@ -557,11 +858,17 @@ msgstr ""
 "다른 가짜 명령 줄을 구문 분석해 봅시다. 이번에는, 옵션 인자를 옵션 바로 다음에 붙일 것입니다: ``-n42``\\(하나의 "
 "인자)는 ``-n 42``\\(두 개의 인자)와 동등하므로, 다음 코드는 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:359
+#: ../../library/optparse.rst:468
+msgid ""
+"(options, args) = parser.parse_args([\"-n42\"])\n"
+"print(options.num)"
+msgstr ""
+
+#: ../../library/optparse.rst:471
 msgid "will print ``42``."
 msgstr "``42``\\를 인쇄합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:361
+#: ../../library/optparse.rst:473
 msgid ""
 "If you don't specify a type, :mod:`optparse` assumes ``string``.  "
 "Combined with the fact that the default action is ``store``, that means "
@@ -570,7 +877,11 @@ msgstr ""
 "형을 지정하지 않으면, :mod:`optparse`\\는 ``string``\\을 가정합니다. 기본 액션이 ``store``\\라는"
 " 사실과 결합하면, 첫 번째 예제를 훨씬 더 짧게 만들 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:367
+#: ../../library/optparse.rst:477
+msgid "parser.add_option(\"-f\", \"--file\", dest=\"filename\")"
+msgstr ""
+
+#: ../../library/optparse.rst:479
 msgid ""
 "If you don't supply a destination, :mod:`optparse` figures out a sensible"
 " default from the option strings: if the first long option string is "
@@ -582,7 +893,7 @@ msgstr ""
 " ``--foo-bar``\\이면 기본 대상은 ``foo_bar``\\입니다. 긴 옵션 문자열이 없으면, "
 ":mod:`optparse`\\는 첫 번째 짧은 옵션 문자열을 찾습니다: ``-f``\\의 기본 대상은 ``f``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:373
+#: ../../library/optparse.rst:485
 msgid ""
 ":mod:`optparse` also includes the built-in ``complex`` type.  Adding "
 "types is covered in section :ref:`optparse-extending-optparse`."
@@ -590,11 +901,11 @@ msgstr ""
 ":mod:`optparse`\\는 내장 ``complex`` 형도 포함합니다. 형 추가는 섹션 :ref:`optparse-"
 "extending-optparse`\\에서 다룹니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:380
+#: ../../library/optparse.rst:492
 msgid "Handling boolean (flag) options"
 msgstr "불리언 (플래그) 옵션 처리하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:382
+#: ../../library/optparse.rst:494
 msgid ""
 "Flag options---set a variable to true or false when a particular option "
 "is seen---are quite common.  :mod:`optparse` supports them with two "
@@ -606,7 +917,13 @@ msgstr ""
 "``store_true``\\와 ``store_false``\\의 두 가지 별도의 액션으로 지원합니다. 예를 들어, "
 "``-v``\\로 켜고 ``-q``\\로 끄는 ``verbose`` 플래그가 있을 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:390
+#: ../../library/optparse.rst:499
+msgid ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\")\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\")"
+msgstr ""
+
+#: ../../library/optparse.rst:502
 msgid ""
 "Here we have two different options with the same destination, which is "
 "perfectly OK.  (It just means you have to be a bit careful when setting "
@@ -615,7 +932,7 @@ msgstr ""
 "여기에 대상이 같은 두 가지 옵션이 있는데, 완벽하게 괜찮습니다. (단지 기본값을 설정할 때 약간 주의해야 함을 뜻합니다---아래를"
 " 참조하십시오.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:394
+#: ../../library/optparse.rst:506
 msgid ""
 "When :mod:`optparse` encounters ``-v`` on the command line, it sets "
 "``options.verbose`` to ``True``; when it encounters ``-q``, "
@@ -625,55 +942,47 @@ msgstr ""
 "``True``\\로 설정합니다; ``-q``\\를 만나면 ``options.verbose``\\는 ``False``\\로 "
 "설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:402
+#: ../../library/optparse.rst:514
 msgid "Other actions"
 msgstr "다른 액션들"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:404
+#: ../../library/optparse.rst:516
 msgid "Some other actions supported by :mod:`optparse` are:"
 msgstr ":mod:`optparse`\\에서 지원하는 다른 액션은 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:407
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:928
+#: ../../library/optparse.rst:518 ../../library/optparse.rst:1040
 msgid "``\"store_const\"``"
 msgstr "``\"store_const\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:407
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:928
-msgid "store a constant value"
-msgstr "상숫값을 저장합니다"
+#: ../../library/optparse.rst:519 ../../library/optparse.rst:1041
+msgid "store a constant value, pre-set via :attr:`Option.const`"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:410
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:937
+#: ../../library/optparse.rst:521 ../../library/optparse.rst:1049
 msgid "``\"append\"``"
 msgstr "``\"append\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:410
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:937
+#: ../../library/optparse.rst:522 ../../library/optparse.rst:1050
 msgid "append this option's argument to a list"
 msgstr "이 옵션의 인자를 리스트에 추가합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:413
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:943
+#: ../../library/optparse.rst:524 ../../library/optparse.rst:1055
 msgid "``\"count\"``"
 msgstr "``\"count\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:413
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:943
+#: ../../library/optparse.rst:525 ../../library/optparse.rst:1056
 msgid "increment a counter by one"
 msgstr "카운터를 1씩 증가시킵니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:416
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:946
+#: ../../library/optparse.rst:527 ../../library/optparse.rst:1058
 msgid "``\"callback\"``"
 msgstr "``\"callback\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:416
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:946
+#: ../../library/optparse.rst:528 ../../library/optparse.rst:1059
 msgid "call a specified function"
 msgstr "지정된 함수를 호출합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:418
+#: ../../library/optparse.rst:530
 msgid ""
 "These are covered in section :ref:`optparse-reference-guide`, and section"
 " :ref:`optparse-option-callbacks`."
@@ -681,11 +990,11 @@ msgstr ""
 "이들은 섹션 :ref:`optparse-reference-guide`\\와 섹션 :ref:`optparse-option-"
 "callbacks`\\에서 다룹니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:425
+#: ../../library/optparse.rst:537
 msgid "Default values"
 msgstr "기본값"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:427
+#: ../../library/optparse.rst:539
 msgid ""
 "All of the above examples involve setting some variable (the "
 "\"destination\") when certain command-line options are seen.  What "
@@ -700,7 +1009,7 @@ msgstr ""
 "때로는 더 많은 제어가 필요합니다. :mod:`optparse`\\는 각 대상에 대한 기본값을 제공할 수 있도록 하는데, 명령 줄이"
 " 구문 분석되기 전에 대입됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:434
+#: ../../library/optparse.rst:546
 msgid ""
 "First, consider the verbose/quiet example.  If we want :mod:`optparse` to"
 " set ``verbose`` to ``True`` unless ``-q`` is seen, then we can do this::"
@@ -708,7 +1017,14 @@ msgstr ""
 "먼저, verbose/quiet 예를 고려하십시오. ``-q``\\가 나타나지 않는 한 :mod:`optparse`\\가 "
 "``verbose``\\를 ``True``\\로 설정하도록 하려면, 다음과 같이 할 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:440
+#: ../../library/optparse.rst:549
+msgid ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\", "
+"default=True)\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\")"
+msgstr ""
+
+#: ../../library/optparse.rst:552
 msgid ""
 "Since default values apply to the *destination* rather than to any "
 "particular option, and these two options happen to have the same "
@@ -717,27 +1033,50 @@ msgstr ""
 "기본값은 특정 옵션이 아닌 *대상(destination)*\\에 적용되고, 이 두 옵션은 같은 대상을 갖기 때문에, 다음과 정확히 "
 "동등합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:447
+#: ../../library/optparse.rst:556
+msgid ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\")\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\", "
+"default=True)"
+msgstr ""
+
+#: ../../library/optparse.rst:559
 msgid "Consider this::"
 msgstr "이걸 생각해봅시다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:452
+#: ../../library/optparse.rst:561
+msgid ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\", "
+"default=False)\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\", "
+"default=True)"
+msgstr ""
+
+#: ../../library/optparse.rst:564
 msgid ""
 "Again, the default value for ``verbose`` will be ``True``: the last "
 "default value supplied for any particular destination is the one that "
 "counts."
 msgstr "다시, ``verbose``\\의 기본값은 ``True``\\입니다: 특정 대상에 대해 제공되는 마지막 기본값이 사용되는 값입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:455
+#: ../../library/optparse.rst:567
+#, fuzzy
 msgid ""
 "A clearer way to specify default values is the :meth:`set_defaults` "
 "method of OptionParser, which you can call at any time before calling "
-":meth:`parse_args`::"
+":meth:`~OptionParser.parse_args`::"
 msgstr ""
 "기본값을 지정하는 더 명확한 방법은 OptionParser의 :meth:`set_defaults` 메서드인데, "
 ":meth:`parse_args`\\를 호출하기 전에 언제든지 호출할 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:462
+#: ../../library/optparse.rst:571
+msgid ""
+"parser.set_defaults(verbose=True)\n"
+"parser.add_option(...)\n"
+"(options, args) = parser.parse_args()"
+msgstr ""
+
+#: ../../library/optparse.rst:575
 msgid ""
 "As before, the last value specified for a given option destination is the"
 " one that counts.  For clarity, try to use one method or the other of "
@@ -746,11 +1085,11 @@ msgstr ""
 "이전과 마찬가지로, 주어진 옵션 대상에 대해 지정된 마지막 값이 사용됩니다. 명확성을 위해, 둘 다가 아닌 한 가지 방법을 사용하여"
 " 기본값을 설정하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:470
+#: ../../library/optparse.rst:583
 msgid "Generating help"
 msgstr "도움말 생성하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:472
+#: ../../library/optparse.rst:585
 msgid ""
 ":mod:`optparse`'s ability to generate help and usage text automatically "
 "is useful for creating user-friendly command-line interfaces.  All you "
@@ -762,7 +1101,26 @@ msgstr ""
 " 유용합니다. 각 옵션에 대해 :attr:`~Option.help` 값을 제공하고, 선택적으로 전체 프로그램에 대한 짧은 사용법 "
 "메시지를 제공하기만 하면 됩니다. 다음은 사용자에게 친숙한 (문서화된) 옵션으로 채워진 OptionParser입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:493
+#: ../../library/optparse.rst:591
+#, python-format
+msgid ""
+"usage = \"usage: %prog [options] arg1 arg2\"\n"
+"parser = OptionParser(usage=usage)\n"
+"parser.add_option(\"-v\", \"--verbose\",\n"
+"                  action=\"store_true\", dest=\"verbose\", default=True,\n"
+"                  help=\"make lots of noise [default]\")\n"
+"parser.add_option(\"-q\", \"--quiet\",\n"
+"                  action=\"store_false\", dest=\"verbose\",\n"
+"                  help=\"be vewwy quiet (I'm hunting wabbits)\")\n"
+"parser.add_option(\"-f\", \"--filename\",\n"
+"                  metavar=\"FILE\", help=\"write output to FILE\")\n"
+"parser.add_option(\"-m\", \"--mode\",\n"
+"                  default=\"intermediate\",\n"
+"                  help=\"interaction mode: novice, intermediate, \"\n"
+"                       \"or expert [default: %default]\")"
+msgstr ""
+
+#: ../../library/optparse.rst:606
 msgid ""
 "If :mod:`optparse` encounters either ``-h`` or ``--help`` on the command-"
 "line, or if you just call :meth:`parser.print_help`, it prints the "
@@ -771,23 +1129,41 @@ msgstr ""
 ":mod:`optparse`\\가 명령 줄에서 ``-h``\\나 ``--help``\\를 만나거나, "
 ":meth:`parser.print_help`\\를 호출하면, 다음을 표준 출력에 인쇄합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:510
+#: ../../library/optparse.rst:610
+msgid ""
+"Usage: <yourscript> [options] arg1 arg2\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -v, --verbose         make lots of noise [default]\n"
+"  -q, --quiet           be vewwy quiet (I'm hunting wabbits)\n"
+"  -f FILE, --filename=FILE\n"
+"                        write output to FILE\n"
+"  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or\n"
+"                        expert [default: intermediate]"
+msgstr ""
+
+#: ../../library/optparse.rst:623
 msgid ""
 "(If the help output is triggered by a help option, :mod:`optparse` exits "
 "after printing the help text.)"
 msgstr "(도움말 출력이 help 옵션으로 트리거 되면, :mod:`optparse`\\가 도움말 텍스트를 인쇄한 후 종료합니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:513
+#: ../../library/optparse.rst:626
 msgid ""
 "There's a lot going on here to help :mod:`optparse` generate the best "
 "possible help message:"
 msgstr "여기에는 :mod:`optparse`\\가 최상의 도움말 메시지를 생성하는 데 도움이 되는 많은 것들이 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:516
+#: ../../library/optparse.rst:629
 msgid "the script defines its own usage message::"
 msgstr "스크립트는 자체 사용법 메시지를 정의합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:520
+#: ../../library/optparse.rst:631
+msgid "usage = \"usage: %prog [options] arg1 arg2\""
+msgstr ""
+
+#: ../../library/optparse.rst:633
 msgid ""
 ":mod:`optparse` expands ``%prog`` in the usage string to the name of the "
 "current program, i.e. ``os.path.basename(sys.argv[0])``.  The expanded "
@@ -797,7 +1173,7 @@ msgstr ""
 "``os.path.basename(sys.argv[0])``\\으로 확장합니다. 확장된 문자열은 자세한 옵션 도움말 앞에 "
 "인쇄됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:524
+#: ../../library/optparse.rst:637
 msgid ""
 "If you don't supply a usage string, :mod:`optparse` uses a bland but "
 "sensible default: ``\"Usage: %prog [options]\"``, which is fine if your "
@@ -806,7 +1182,7 @@ msgstr ""
 "사용법 문자열을 제공하지 않으면, :mod:`optparse`\\는 단순하지만, 합리적인 기본값을 사용합니다: ``\"Usage: "
 "%prog [options]\"``, 이는 스크립트가 위치 인자를 취하지 않는다면 괜찮습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:528
+#: ../../library/optparse.rst:641
 msgid ""
 "every option defines a help string, and doesn't worry about line-"
 "wrapping---\\ :mod:`optparse` takes care of wrapping lines and making the"
@@ -815,20 +1191,26 @@ msgstr ""
 "모든 옵션은 도움말 문자열을 정의하고, 줄 바꿈에 대해 걱정하지 않습니다---\\ :mod:`optparse`\\는 줄 바꿈을 "
 "처리하고 도움말 출력을 보기 좋게 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:532
+#: ../../library/optparse.rst:645
+#, fuzzy
 msgid ""
-"options that take a value indicate this fact in their automatically-"
+"options that take a value indicate this fact in their automatically "
 "generated help message, e.g. for the \"mode\" option::"
 msgstr "값을 취하는 옵션은 자동으로 생성된 도움말 메시지에 이 사실을 나타냅니다, 예를 들어 \"mode\" 옵션의 경우::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:537
+#: ../../library/optparse.rst:648
+msgid "-m MODE, --mode=MODE"
+msgstr ""
+
+#: ../../library/optparse.rst:650
+#, fuzzy
 msgid ""
 "Here, \"MODE\" is called the meta-variable: it stands for the argument "
 "that the user is expected to supply to ``-m``/``--mode``.  By default, "
 ":mod:`optparse` converts the destination variable name to uppercase and "
 "uses that for the meta-variable.  Sometimes, that's not what you want---"
 "for example, the ``--filename`` option explicitly sets "
-"``metavar=\"FILE\"``, resulting in this automatically-generated option "
+"``metavar=\"FILE\"``, resulting in this automatically generated option "
 "description::"
 msgstr ""
 "여기서, \"MODE\"를 메타 변수(meta-variable)라고 합니다: 사용자가 ``-m``/``--mode``\\에 제공할 "
@@ -836,7 +1218,11 @@ msgstr ""
 "변수에 사용합니다. 때로는, 이것이 여러분이 원하는 것이 아닙니다---예를 들어, ``--filename`` 옵션은 명시적으로 "
 "``metavar=\"FILE\"``\\을 설정하여 다음과 같은 자동 생성 옵션 설명을 생성합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:546
+#: ../../library/optparse.rst:657
+msgid "-f FILE, --filename=FILE"
+msgstr ""
+
+#: ../../library/optparse.rst:659
 msgid ""
 "This is important for more than just saving space, though: the manually "
 "written help text uses the meta-variable ``FILE`` to clue the user in "
@@ -849,7 +1235,7 @@ msgstr ""
 "구문 ``-f FILE``\\과 비형식적 의미 설명 \"write output to FILE\" 사이에 연결이 있다는 단서를 "
 "사용자에게 알려줍니다. 이는 최종 사용자에게 도움말 텍스트를 훨씬 더 명확하고 유용하게 만드는 간단하지만, 효과적인 방법입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:552
+#: ../../library/optparse.rst:665
 #, python-format
 msgid ""
 "options that have a default value can include ``%default`` in the help "
@@ -861,11 +1247,11 @@ msgstr ""
 "이를 옵션 기본값의 :func:`str`\\로 대체합니다. 옵션에 기본값이 없으면 (또는 기본값이 ``None``\\이면), "
 "``%default``\\는 ``none``\\으로 확장됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:558
+#: ../../library/optparse.rst:671
 msgid "Grouping Options"
 msgstr "옵션 그룹화하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:560
+#: ../../library/optparse.rst:673
 msgid ""
 "When dealing with many options, it is convenient to group these options "
 "for better help output.  An :class:`OptionParser` can contain several "
@@ -874,30 +1260,29 @@ msgstr ""
 "많은 옵션을 다룰 때, 더 나은 도움말 출력을 위해 이러한 옵션을 그룹화하는 것이 편리합니다. "
 ":class:`OptionParser`\\에는 여러 옵션 그룹이 포함될 수 있으며 각 그룹에는 여러 옵션이 포함될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:564
+#: ../../library/optparse.rst:677
 msgid "An option group is obtained using the class :class:`OptionGroup`:"
 msgstr "옵션 그룹은 클래스 :class:`OptionGroup`\\을 사용하여 얻습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:568
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1620
+#: ../../library/optparse.rst:681 ../../library/optparse.rst:1752
 msgid "where"
 msgstr "여기서"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:570
+#: ../../library/optparse.rst:683
 msgid ""
 "parser is the :class:`OptionParser` instance the group will be inserted "
 "in to"
 msgstr "parser는 그룹이 삽입될 :class:`OptionParser` 인스턴스입니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:572
+#: ../../library/optparse.rst:685
 msgid "title is the group title"
 msgstr "title은 그룹 제목입니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:573
+#: ../../library/optparse.rst:686
 msgid "description, optional, is a long description of the group"
 msgstr "description(선택 사항)은 그룹에 대한 자세한 설명입니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:575
+#: ../../library/optparse.rst:688
 msgid ""
 ":class:`OptionGroup` inherits from :class:`OptionContainer` (like "
 ":class:`OptionParser`) and so the :meth:`add_option` method can be used "
@@ -907,7 +1292,7 @@ msgstr ""
 ":class:`OptionContainer`\\에서 상속되므로 :meth:`add_option` 메서드를 사용하여 그룹에 옵션을 "
 "추가할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:579
+#: ../../library/optparse.rst:692
 msgid ""
 "Once all the options are declared, using the :class:`OptionParser` method"
 " :meth:`add_option_group` the group is added to the previously defined "
@@ -916,7 +1301,7 @@ msgstr ""
 "일단 모든 옵션이 선언되면, :class:`OptionParser` 메서드 :meth:`add_option_group`\\을 "
 "사용하여 그룹이 이전에 정의된 구문 분석기에 추가됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:582
+#: ../../library/optparse.rst:695
 msgid ""
 "Continuing with the parser defined in the previous section, adding an "
 ":class:`OptionGroup` to a parser is easy::"
@@ -924,27 +1309,102 @@ msgstr ""
 "이전 섹션에서 정의한 구문 분석기로 계속 진행하면, 구문 분석기에 :class:`OptionGroup`\\을 쉽게 추가할 수 "
 "있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:591
+#: ../../library/optparse.rst:698
+msgid ""
+"group = OptionGroup(parser, \"Dangerous Options\",\n"
+"                    \"Caution: use these options at your own risk.  \"\n"
+"                    \"It is believed that some of them bite.\")\n"
+"group.add_option(\"-g\", action=\"store_true\", help=\"Group option.\")\n"
+"parser.add_option_group(group)"
+msgstr ""
+
+#: ../../library/optparse.rst:704
 msgid "This would result in the following help output:"
 msgstr "그러면 다음과 같은 도움말이 출력됩니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:612
+#: ../../library/optparse.rst:706
+msgid ""
+"Usage: <yourscript> [options] arg1 arg2\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -v, --verbose         make lots of noise [default]\n"
+"  -q, --quiet           be vewwy quiet (I'm hunting wabbits)\n"
+"  -f FILE, --filename=FILE\n"
+"                        write output to FILE\n"
+"  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or\n"
+"                        expert [default: intermediate]\n"
+"\n"
+"  Dangerous Options:\n"
+"    Caution: use these options at your own risk.  It is believed that "
+"some\n"
+"    of them bite.\n"
+"\n"
+"    -g                  Group option."
+msgstr ""
+
+#: ../../library/optparse.rst:725
 msgid ""
 "A bit more complete example might involve using more than one group: "
 "still extending the previous example::"
 msgstr "좀 더 완전한 예는 둘 이상의 그룹을 수반할 수 있습니다: 여전히 이전 예를 확장합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:629
+#: ../../library/optparse.rst:728
+msgid ""
+"group = OptionGroup(parser, \"Dangerous Options\",\n"
+"                    \"Caution: use these options at your own risk.  \"\n"
+"                    \"It is believed that some of them bite.\")\n"
+"group.add_option(\"-g\", action=\"store_true\", help=\"Group option.\")\n"
+"parser.add_option_group(group)\n"
+"\n"
+"group = OptionGroup(parser, \"Debug Options\")\n"
+"group.add_option(\"-d\", \"--debug\", action=\"store_true\",\n"
+"                 help=\"Print debug information\")\n"
+"group.add_option(\"-s\", \"--sql\", action=\"store_true\",\n"
+"                 help=\"Print all SQL statements executed\")\n"
+"group.add_option(\"-e\", action=\"store_true\", help=\"Print every action"
+" done\")\n"
+"parser.add_option_group(group)"
+msgstr ""
+
+#: ../../library/optparse.rst:742
 msgid "that results in the following output:"
 msgstr "다음과 같은 출력을 줍니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:655
+#: ../../library/optparse.rst:744
+msgid ""
+"Usage: <yourscript> [options] arg1 arg2\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -v, --verbose         make lots of noise [default]\n"
+"  -q, --quiet           be vewwy quiet (I'm hunting wabbits)\n"
+"  -f FILE, --filename=FILE\n"
+"                        write output to FILE\n"
+"  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or expert"
+"\n"
+"                        [default: intermediate]\n"
+"\n"
+"  Dangerous Options:\n"
+"    Caution: use these options at your own risk.  It is believed that "
+"some\n"
+"    of them bite.\n"
+"\n"
+"    -g                  Group option.\n"
+"\n"
+"  Debug Options:\n"
+"    -d, --debug         Print debug information\n"
+"    -s, --sql           Print all SQL statements executed\n"
+"    -e                  Print every action done"
+msgstr ""
+
+#: ../../library/optparse.rst:768
 msgid ""
 "Another interesting method, in particular when working programmatically "
 "with option groups is:"
 msgstr "특히 옵션 그룹을 프로그래밍 방식으로 작업할 때, 또 다른 흥미로운 메서드는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:660
+#: ../../library/optparse.rst:773
 msgid ""
 "Return the :class:`OptionGroup` to which the short or long option string "
 "*opt_str* (e.g. ``'-o'`` or ``'--option'``) belongs. If there's no such "
@@ -954,11 +1414,11 @@ msgstr ""
 ":class:`OptionGroup`\\을 반환합니다. 그러한 :class:`OptionGroup`\\이 없으면, "
 "``None``\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:667
+#: ../../library/optparse.rst:780
 msgid "Printing a version string"
 msgstr "버전 문자열 인쇄하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:669
+#: ../../library/optparse.rst:782
 msgid ""
 "Similar to the brief usage string, :mod:`optparse` can also print a "
 "version string for your program.  You have to supply the string as the "
@@ -967,7 +1427,11 @@ msgstr ""
 "간단한 사용법 문자열과 유사하게, :mod:`optparse`\\는 프로그램의 버전 문자열을 인쇄 할 수도 있습니다. "
 "OptionParser에 ``version`` 인자로 문자열을 제공해야 합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:675
+#: ../../library/optparse.rst:786
+msgid "parser = OptionParser(usage=\"%prog [-f] [-q]\", version=\"%prog 1.0\")"
+msgstr ""
+
+#: ../../library/optparse.rst:788
 msgid ""
 "``%prog`` is expanded just like it is in ``usage``.  Apart from that, "
 "``version`` can contain anything you like.  When you supply it, "
@@ -981,17 +1445,23 @@ msgstr ""
 "명령 줄에서 이 옵션을 발견하면, (``%prog``\\를 대체하여) ``version`` 문자열을 확장하고, stdout에 인쇄한"
 " 다음, 종료합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:681
+#: ../../library/optparse.rst:794
 msgid "For example, if your script is called ``/usr/bin/foo``:"
 msgstr "예를 들어, 스크립트가 ``/usr/bin/foo``\\로 호출되면:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:688
+#: ../../library/optparse.rst:796
+msgid ""
+"$ /usr/bin/foo --version\n"
+"foo 1.0"
+msgstr ""
+
+#: ../../library/optparse.rst:801
 msgid ""
 "The following two methods can be used to print and get the ``version`` "
 "string:"
 msgstr "다음 두 가지 메서드를 사용하여 ``version`` 문자열을 인쇄하고 가져올 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:692
+#: ../../library/optparse.rst:805
 msgid ""
 "Print the version message for the current program (``self.version``) to "
 "*file* (default stdout).  As with :meth:`print_usage`, any occurrence of "
@@ -1002,17 +1472,17 @@ msgstr ""
 ":meth:`print_usage`\\와 마찬가지로, ``self.version``\\에 등장하는 ``%prog``\\는 현재 "
 "프로그램의 이름으로 대체됩니다. ``self.version``\\이 비어 있거나 정의되지 않았으면 아무 작업도 수행하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:699
+#: ../../library/optparse.rst:812
 msgid ""
 "Same as :meth:`print_version` but returns the version string instead of "
 "printing it."
 msgstr ":meth:`print_version`\\과 같지만 인쇄하는 대신 버전 문자열을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:706
+#: ../../library/optparse.rst:819
 msgid "How :mod:`optparse` handles errors"
 msgstr ":mod:`optparse`\\가 에러를 처리하는 방법"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:708
+#: ../../library/optparse.rst:821
 msgid ""
 "There are two broad classes of errors that :mod:`optparse` has to worry "
 "about: programmer errors and user errors.  Programmer errors are usually "
@@ -1028,7 +1498,7 @@ msgstr ""
 "예외(:exc:`optparse.OptionError`\\나 :exc:`TypeError`)를 발생시키고 프로그램이 충돌하도록 "
 "합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:715
+#: ../../library/optparse.rst:828
 msgid ""
 "Handling user errors is much more important, since they are guaranteed to"
 " happen no matter how stable your code is.  :mod:`optparse` can "
@@ -1044,7 +1514,15 @@ msgstr ""
 "있습니다. 또한, :func:`OptionParser.error`\\를 호출하여 응용 프로그램 정의 에러 조건을 알릴 수 "
 "있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:728
+#: ../../library/optparse.rst:836
+msgid ""
+"(options, args) = parser.parse_args()\n"
+"...\n"
+"if options.a and options.b:\n"
+"    parser.error(\"options -a and -b are mutually exclusive\")"
+msgstr ""
+
+#: ../../library/optparse.rst:841
 msgid ""
 "In either case, :mod:`optparse` handles the error the same way: it prints"
 " the program's usage message and an error message to standard error and "
@@ -1053,17 +1531,33 @@ msgstr ""
 "두 경우 모두, :mod:`optparse`\\는 같은 방식으로 에러를 처리합니다: 프로그램의 사용법 메시지와 에러 메시지를 표준 "
 "에러에 인쇄하고 에러 상태 2로 종료합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:732
+#: ../../library/optparse.rst:845
 msgid ""
 "Consider the first example above, where the user passes ``4x`` to an "
 "option that takes an integer:"
 msgstr "사용자가 정수를 취하는 옵션에 ``4x``\\를 전달하는 위의 첫 번째 예를 고려하십시오:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:742
+#: ../../library/optparse.rst:848
+msgid ""
+"$ /usr/bin/foo -n 4x\n"
+"Usage: foo [options]\n"
+"\n"
+"foo: error: option -n: invalid integer value: '4x'"
+msgstr ""
+
+#: ../../library/optparse.rst:855
 msgid "Or, where the user fails to pass a value at all:"
 msgstr "또는 사용자가 값을 전혀 전달하지 못하는 경우:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:751
+#: ../../library/optparse.rst:857
+msgid ""
+"$ /usr/bin/foo -n\n"
+"Usage: foo [options]\n"
+"\n"
+"foo: error: -n option requires an argument"
+msgstr ""
+
+#: ../../library/optparse.rst:864
 msgid ""
 ":mod:`optparse`\\ -generated error messages take care always to mention "
 "the option involved in the error; be sure to do the same when calling "
@@ -1072,7 +1566,7 @@ msgstr ""
 ":mod:`optparse`\\ -생성 에러 메시지는 항상 에러와 관련된 옵션을 언급하도록 주의를 기울입니다; 응용 프로그램 "
 "코드에서 :func:`OptionParser.error`\\를 호출할 때도 그래야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:755
+#: ../../library/optparse.rst:868
 msgid ""
 "If :mod:`optparse`'s default error-handling behaviour does not suit your "
 "needs, you'll need to subclass OptionParser and override its "
@@ -1082,29 +1576,55 @@ msgstr ""
 " :meth:`~OptionParser.exit` 및/또는 :meth:`~OptionParser.error` 메서드를 재정의해야 "
 "합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:763
+#: ../../library/optparse.rst:876
 msgid "Putting it all together"
 msgstr "모두 합치기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:765
+#: ../../library/optparse.rst:878
 msgid "Here's what :mod:`optparse`\\ -based scripts usually look like::"
 msgstr "일반적으로 :mod:`optparse` 기반 스크립트는 다음과 같습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:793
+#: ../../library/optparse.rst:880
+#, python-format
+msgid ""
+"from optparse import OptionParser\n"
+"...\n"
+"def main():\n"
+"    usage = \"usage: %prog [options] arg\"\n"
+"    parser = OptionParser(usage)\n"
+"    parser.add_option(\"-f\", \"--file\", dest=\"filename\",\n"
+"                      help=\"read data from FILENAME\")\n"
+"    parser.add_option(\"-v\", \"--verbose\",\n"
+"                      action=\"store_true\", dest=\"verbose\")\n"
+"    parser.add_option(\"-q\", \"--quiet\",\n"
+"                      action=\"store_false\", dest=\"verbose\")\n"
+"    ...\n"
+"    (options, args) = parser.parse_args()\n"
+"    if len(args) != 1:\n"
+"        parser.error(\"incorrect number of arguments\")\n"
+"    if options.verbose:\n"
+"        print(\"reading %s...\" % options.filename)\n"
+"    ...\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    main()"
+msgstr ""
+
+#: ../../library/optparse.rst:906
 msgid "Reference Guide"
 msgstr "레퍼런스 지침서"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:799
+#: ../../library/optparse.rst:912
 msgid "Creating the parser"
 msgstr "구문 분석기 만들기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:801
+#: ../../library/optparse.rst:914
 msgid ""
 "The first step in using :mod:`optparse` is to create an OptionParser "
 "instance."
 msgstr ":mod:`optparse`\\를 사용하는 첫 번째 단계는 OptionParser 인스턴스를 만드는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:805
+#: ../../library/optparse.rst:918
 msgid ""
 "The OptionParser constructor has no required arguments, but a number of "
 "optional keyword arguments.  You should always pass them as keyword "
@@ -1114,28 +1634,29 @@ msgstr ""
 "OptionParser 생성자에는 필수 인자가 없지만, 여러 선택적 키워드 인자가 있습니다. 이들을 항상 키워드 인자로 전달해야 "
 "합니다, 즉, 인자가 선언된 순서에 의존하지 마십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:814
+#: ../../library/optparse.rst:922
 msgid "``usage`` (default: ``\"%prog [options]\"``)"
 msgstr "``usage`` (기본값: ``\"%prog [options]\"``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:810
+#: ../../library/optparse.rst:923
+#, fuzzy
 msgid ""
 "The usage summary to print when your program is run incorrectly or with a"
 " help option.  When :mod:`optparse` prints the usage string, it expands "
 "``%prog`` to ``os.path.basename(sys.argv[0])`` (or to ``prog`` if you "
 "passed that keyword argument).  To suppress a usage message, pass the "
-"special value :data:`optparse.SUPPRESS_USAGE`."
+"special value :const:`optparse.SUPPRESS_USAGE`."
 msgstr ""
 "프로그램이 잘못 실행되거나 도움말(help) 옵션을 사용할 때 인쇄할 사용법 요약. :mod:`optparse`\\가 사용법 "
 "문자열을 인쇄할 때, ``%prog``\\를 ``os.path.basename(sys.argv[0])``\\(또는 해당 키워드 "
 "인자를 전달한 경우 ``prog``)으로 확장합니다. 사용법 메시지를 표시하지 않으려면, 특수 값 "
 ":data:`optparse.SUPPRESS_USAGE`\\를 전달하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:821
+#: ../../library/optparse.rst:929
 msgid "``option_list`` (default: ``[]``)"
 msgstr "``option_list`` (기본값: ``[]``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:817
+#: ../../library/optparse.rst:930
 msgid ""
 "A list of Option objects to populate the parser with.  The options in "
 "``option_list`` are added after any options in ``standard_option_list`` "
@@ -1148,19 +1669,19 @@ msgstr ""
 "옵션 뒤에 추가되지만, 모든 버전(version) 또는 도움말(help) 옵션 앞에 추가됩니다. 폐지되었습니다; 대신 구문 분석기를"
 " 만든 후 :meth:`add_option`\\을 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:824
+#: ../../library/optparse.rst:936
 msgid "``option_class`` (default: optparse.Option)"
 msgstr "``option_class`` (기본값: optparse.Option)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:824
+#: ../../library/optparse.rst:937
 msgid "Class to use when adding options to the parser in :meth:`add_option`."
 msgstr ":meth:`add_option`\\에서 구문 분석기에 옵션을 추가할 때 사용할 클래스."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:830
+#: ../../library/optparse.rst:939
 msgid "``version`` (default: ``None``)"
 msgstr "``version`` (기본값: ``None``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:827
+#: ../../library/optparse.rst:940
 msgid ""
 "A version string to print when the user supplies a version option. If you"
 " supply a true value for ``version``, :mod:`optparse` automatically adds "
@@ -1171,11 +1692,11 @@ msgstr ""
 ":mod:`optparse`\\는 단일 옵션 문자열 ``--version``\\으로 버전 옵션을 자동으로 추가합니다. 하위 문자열 "
 "``%prog``\\는 ``usage``\\와 마찬가지로 확장됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:835
+#: ../../library/optparse.rst:945
 msgid "``conflict_handler`` (default: ``\"error\"``)"
 msgstr "``conflict_handler`` (기본값: ``\"error\"``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:833
+#: ../../library/optparse.rst:946
 msgid ""
 "Specifies what to do when options with conflicting option strings are "
 "added to the parser; see section :ref:`optparse-conflicts-between-"
@@ -1184,11 +1705,11 @@ msgstr ""
 "충돌하는 옵션 문자열이 있는 옵션이 구문 분석기에 추가될 때 수행 할 작업을 지정합니다; 섹션 :ref:`optparse-"
 "conflicts-between-options`\\을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:841
+#: ../../library/optparse.rst:950
 msgid "``description`` (default: ``None``)"
 msgstr "``description`` (기본값: ``None``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:838
+#: ../../library/optparse.rst:951
 msgid ""
 "A paragraph of text giving a brief overview of your program. "
 ":mod:`optparse` reformats this paragraph to fit the current terminal "
@@ -1198,11 +1719,11 @@ msgstr ""
 "프로그램에 대한 간략한 개요를 제공하는 텍스트 단락. :mod:`optparse`\\는 현재 터미널 너비에 맞게 이 단락을 다시 "
 "포맷하고 사용자가 도움말을 요청할 때 인쇄합니다 (``usage`` 이후, 옵션 목록 이전)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:846
+#: ../../library/optparse.rst:956
 msgid "``formatter`` (default: a new :class:`IndentedHelpFormatter`)"
 msgstr "``formatter`` (기본값: 새 :class:`IndentedHelpFormatter`)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:844
+#: ../../library/optparse.rst:957
 msgid ""
 "An instance of optparse.HelpFormatter that will be used for printing help"
 " text.  :mod:`optparse` provides two concrete classes for this purpose: "
@@ -1211,11 +1732,11 @@ msgstr ""
 "도움말 텍스트를 인쇄하는 데 사용될 optparse.HelpFormatter의 인스턴스. :mod:`optparse`\\는 이 "
 "목적으로 두 개의 구상 클래스를 제공합니다: IndentedHelpFormatter 와 TitledHelpFormatter."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:850
+#: ../../library/optparse.rst:961
 msgid "``add_help_option`` (default: ``True``)"
 msgstr "``add_help_option`` (기본값: ``True``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:849
+#: ../../library/optparse.rst:962
 msgid ""
 "If true, :mod:`optparse` will add a help option (with option strings "
 "``-h`` and ``--help``) to the parser."
@@ -1223,11 +1744,11 @@ msgstr ""
 "참이면, :mod:`optparse`\\는 구문 분석기에 도움말 옵션(옵션 문자열 ``-h``\\와 ``--help``)을 "
 "추가합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:854
+#: ../../library/optparse.rst:965
 msgid "``prog``"
 msgstr "``prog``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:853
+#: ../../library/optparse.rst:966
 msgid ""
 "The string to use when expanding ``%prog`` in ``usage`` and ``version`` "
 "instead of ``os.path.basename(sys.argv[0])``."
@@ -1235,19 +1756,19 @@ msgstr ""
 "``usage``\\와 ``version``\\에서 ``%prog``\\를 확장할 때 "
 "``os.path.basename(sys.argv[0])`` 대신 사용할 문자열."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:856
+#: ../../library/optparse.rst:969
 msgid "``epilog`` (default: ``None``)"
 msgstr "``epilog`` (기본값: ``None``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:857
+#: ../../library/optparse.rst:970
 msgid "A paragraph of help text to print after the option help."
 msgstr "옵션 도움말 다음에 인쇄할 도움말 텍스트 단락."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:862
+#: ../../library/optparse.rst:975
 msgid "Populating the parser"
 msgstr "구문 분석기 채우기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:864
+#: ../../library/optparse.rst:977
 msgid ""
 "There are several ways to populate the parser with options.  The "
 "preferred way is by using :meth:`OptionParser.add_option`, as shown in "
@@ -1258,11 +1779,11 @@ msgstr ""
 "tutorial`\\에 표시된 대로, :meth:`OptionParser.add_option`\\을 사용하는 것입니다. "
 ":meth:`add_option`\\은 다음 두 가지 방법의 하나로 호출 할 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:868
+#: ../../library/optparse.rst:981
 msgid "pass it an Option instance (as returned by :func:`make_option`)"
 msgstr "(:func:`make_option`\\에서 반환되는 것과 같은) Option 인스턴스를 전달합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:870
+#: ../../library/optparse.rst:983
 msgid ""
 "pass it any combination of positional and keyword arguments that are "
 "acceptable to :func:`make_option` (i.e., to the Option constructor), and "
@@ -1271,13 +1792,24 @@ msgstr ""
 ":func:`make_option`\\(즉, Option 생성자)에 허용되는 위치와 키워드 인자의 조합을 전달합니다, 그러면 "
 "Option 인스턴스를 만듭니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:874
+#: ../../library/optparse.rst:987
 msgid ""
 "The other alternative is to pass a list of pre-constructed Option "
 "instances to the OptionParser constructor, as in::"
 msgstr "다른 대안은 다음과 같이 미리 생성된 Option 인스턴스 리스트를 OptionParser 생성자에 전달하는 것입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:885
+#: ../../library/optparse.rst:990
+msgid ""
+"option_list = [\n"
+"    make_option(\"-f\", \"--filename\",\n"
+"                action=\"store\", type=\"string\", dest=\"filename\"),\n"
+"    make_option(\"-q\", \"--quiet\",\n"
+"                action=\"store_false\", dest=\"verbose\"),\n"
+"    ]\n"
+"parser = OptionParser(option_list=option_list)"
+msgstr ""
+
+#: ../../library/optparse.rst:998
 msgid ""
 "(:func:`make_option` is a factory function for creating Option instances;"
 " currently it is an alias for the Option constructor.  A future version "
@@ -1290,11 +1822,11 @@ msgstr ""
 ":func:`make_option`\\은 인스턴스 화할 올바른 클래스를 선택할 것입니다. Option을 직접 인스턴스 화하지 "
 "마십시오.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:894
+#: ../../library/optparse.rst:1007
 msgid "Defining options"
 msgstr "옵션 정의하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:896
+#: ../../library/optparse.rst:1009
 msgid ""
 "Each Option instance represents a set of synonymous command-line option "
 "strings, e.g. ``-f`` and ``--file``.  You can specify any number of short"
@@ -1304,7 +1836,7 @@ msgstr ""
 "각 Option 인스턴스는 동의어 명령 줄 옵션 문자열 집합을 나타냅니다, 예를 들어 ``-f``\\와 ``--file``. 짧거나"
 " 긴 옵션 문자열을 얼마든지 지정할 수 있지만, 전체적으로 옵션 문자열을 적어도 하나 지정해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:900
+#: ../../library/optparse.rst:1013
 msgid ""
 "The canonical way to create an :class:`Option` instance is with the "
 ":meth:`add_option` method of :class:`OptionParser`."
@@ -1312,15 +1844,23 @@ msgstr ""
 ":class:`Option` 인스턴스를 만드는 규범적 방법은 :class:`OptionParser`\\의 "
 ":meth:`add_option` 메서드를 사용하는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:906
+#: ../../library/optparse.rst:1019
 msgid "To define an option with only a short option string::"
 msgstr "짧은 옵션 문자열로만 옵션을 정의하려면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:910
+#: ../../library/optparse.rst:1021
+msgid "parser.add_option(\"-f\", attr=value, ...)"
+msgstr ""
+
+#: ../../library/optparse.rst:1023
 msgid "And to define an option with only a long option string::"
 msgstr "그리고 긴 옵션 문자열로만 옵션을 정의하려면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:914
+#: ../../library/optparse.rst:1025
+msgid "parser.add_option(\"--foo\", attr=value, ...)"
+msgstr ""
+
+#: ../../library/optparse.rst:1027
 msgid ""
 "The keyword arguments define attributes of the new Option object.  The "
 "most important option attribute is :attr:`~Option.action`, and it largely"
@@ -1334,7 +1874,7 @@ msgstr ""
 "옵션 어트리뷰트를 전달하거나, 필수 어트리뷰트를 전달하지 못하면, :mod:`optparse`\\는 실수를 설명하는 "
 ":exc:`OptionError` 예외를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:920
+#: ../../library/optparse.rst:1033
 msgid ""
 "An option's *action* determines what :mod:`optparse` does when it "
 "encounters this option on the command-line.  The standard option actions "
@@ -1343,48 +1883,48 @@ msgstr ""
 "옵션의 *action*\\은 명령 줄에서 이 옵션을 만날 때 :mod:`optparse`\\가 수행하는 작업을 결정합니다. "
 ":mod:`optparse`\\에 하드 코딩된 표준 옵션 액션은 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:925
+#: ../../library/optparse.rst:1037
 msgid "``\"store\"``"
 msgstr "``\"store\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:925
+#: ../../library/optparse.rst:1038
 msgid "store this option's argument (default)"
 msgstr "이 옵션의 인자를 저장합니다 (기본값)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:931
+#: ../../library/optparse.rst:1043
 msgid "``\"store_true\"``"
 msgstr "``\"store_true\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:931
+#: ../../library/optparse.rst:1044
 msgid "store ``True``"
 msgstr "``True``\\를 저장합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:934
+#: ../../library/optparse.rst:1046
 msgid "``\"store_false\"``"
 msgstr "``\"store_false\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:934
+#: ../../library/optparse.rst:1047
 msgid "store ``False``"
 msgstr "``False``\\를 저장합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:940
+#: ../../library/optparse.rst:1052
 msgid "``\"append_const\"``"
 msgstr "``\"append_const\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:940
-msgid "append a constant value to a list"
+#: ../../library/optparse.rst:1053
+#, fuzzy
+msgid "append a constant value to a list, pre-set via :attr:`Option.const`"
 msgstr "리스트에 상숫값을 추가합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:949
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1226
+#: ../../library/optparse.rst:1061 ../../library/optparse.rst:1356
 msgid "``\"help\"``"
 msgstr "``\"help\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:949
+#: ../../library/optparse.rst:1062
 msgid "print a usage message including all options and the documentation for them"
 msgstr "모든 옵션과 해당 설명을 포함하는 사용법 메시지를 인쇄합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:951
+#: ../../library/optparse.rst:1064
 msgid ""
 "(If you don't supply an action, the default is ``\"store\"``.  For this "
 "action, you may also supply :attr:`~Option.type` and :attr:`~Option.dest`"
@@ -1394,43 +1934,86 @@ msgstr ""
 " :attr:`~Option.dest` 옵션 어트리뷰트도 제공할 수 있습니다; :ref:`optparse-standard-"
 "option-actions`\\을 참조하십시오.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:955
+#: ../../library/optparse.rst:1068
+#, fuzzy
 msgid ""
 "As you can see, most actions involve storing or updating a value "
 "somewhere. :mod:`optparse` always creates a special object for this, "
-"conventionally called ``options`` (it happens to be an instance of "
-":class:`optparse.Values`).  Option arguments (and various other values) "
-"are stored as attributes of this object, according to the "
-":attr:`~Option.dest` (destination) option attribute."
+"conventionally called ``options``, which is an instance of "
+":class:`optparse.Values`."
 msgstr ""
 "보시다시피, 대부분의 액션은 값을 어딘가에 저장하거나 갱신하는 것을 수반합니다. :mod:`optparse`\\는 항상 이를 위해 "
 "일반적으로 ``options``\\(:class:`optparse.Values`\\의 인스턴스)라고 하는 특수 객체를 만듭니다. "
 "옵션 인자(및 기타 다양한 값)는 :attr:`~Option.dest` (destination) 옵션 어트리뷰트에 따라, 이 객체의"
 " 어트리뷰트로 저장됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:961
+#: ../../library/optparse.rst:1074
+msgid ""
+"An object holding parsed argument names and values as attributes. "
+"Normally created by calling when calling :meth:`OptionParser.parse_args`,"
+" and can be overridden by a custom subclass passed to the *values* "
+"argument of :meth:`OptionParser.parse_args` (as described in :ref"
+":`optparse-parsing-arguments`)."
+msgstr ""
+
+#: ../../library/optparse.rst:1079
+msgid ""
+"Option arguments (and various other values) are stored as attributes of "
+"this object, according to the :attr:`~Option.dest` (destination) option "
+"attribute."
+msgstr ""
+
+#: ../../library/optparse.rst:1083
 msgid "For example, when you call ::"
 msgstr "예를 들어, 다음과 같이 호출할 때 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:965
+#: ../../library/optparse.rst:1085
+#, fuzzy
+msgid "parser.parse_args()"
+msgstr "``parser.rargs``"
+
+#: ../../library/optparse.rst:1087
 msgid ""
 "one of the first things :mod:`optparse` does is create the ``options`` "
 "object::"
 msgstr ":mod:`optparse`\\가 하는 첫 번째 작업 중 하나는 ``options`` 객체를 만드는 것입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:969
+#: ../../library/optparse.rst:1089
+#, fuzzy
+msgid "options = Values()"
+msgstr "옵션 어트리뷰트"
+
+#: ../../library/optparse.rst:1091
 msgid "If one of the options in this parser is defined with ::"
 msgstr "이 구문 분석기의 옵션 중 하나가 다음과 같이 정의되었으면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:973
+#: ../../library/optparse.rst:1093
+msgid ""
+"parser.add_option(\"-f\", \"--file\", action=\"store\", type=\"string\", "
+"dest=\"filename\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1095
 msgid "and the command-line being parsed includes any of the following::"
 msgstr "그리고 구문 분석 중인 명령 줄에는 다음 중 하나가 포함되면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:980
+#: ../../library/optparse.rst:1097
+msgid ""
+"-ffoo\n"
+"-f foo\n"
+"--file=foo\n"
+"--file foo"
+msgstr ""
+
+#: ../../library/optparse.rst:1102
 msgid "then :mod:`optparse`, on seeing this option, will do the equivalent of ::"
 msgstr ":mod:`optparse`\\는 이 옵션을 볼 때 다음과 동등한 일을 합니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:984
+#: ../../library/optparse.rst:1104
+msgid "options.filename = \"foo\""
+msgstr ""
+
+#: ../../library/optparse.rst:1106
 msgid ""
 "The :attr:`~Option.type` and :attr:`~Option.dest` option attributes are "
 "almost as important as :attr:`~Option.action`, but :attr:`~Option.action`"
@@ -1440,11 +2023,20 @@ msgstr ""
 ":attr:`~Option.action`\\만큼 중요하지만, :attr:`~Option.action`\\은 *모든* 옵션에 적합한 "
 "유일한 어트리뷰트입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:992
+#: ../../library/optparse.rst:1114
 msgid "Option attributes"
 msgstr "옵션 어트리뷰트"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:994
+#: ../../library/optparse.rst:1118
+msgid ""
+"A single command line argument, with various attributes passed by keyword"
+" to the constructor. Normally created with "
+":meth:`OptionParser.add_option` rather than directly, and can be "
+"overridden by a custom class via the *option_class* argument to "
+":class:`OptionParser`."
+msgstr ""
+
+#: ../../library/optparse.rst:1124
 msgid ""
 "The following option attributes may be passed as keyword arguments to "
 ":meth:`OptionParser.add_option`.  If you pass an option attribute that is"
@@ -1455,11 +2047,11 @@ msgstr ""
 "옵션과 관련이 없는 옵션 어트리뷰트를 전달하거나, 필수 옵션 어트리뷰트를 전달하지 못하면 :mod:`optparse`\\는 "
 ":exc:`OptionError`\\를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1001
+#: ../../library/optparse.rst:1131
 msgid "(default: ``\"store\"``)"
 msgstr "(기본값: ``\"store\"``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1003
+#: ../../library/optparse.rst:1133
 msgid ""
 "Determines :mod:`optparse`'s behaviour when this option is seen on the "
 "command line; the available options are documented :ref:`here <optparse-"
@@ -1468,11 +2060,11 @@ msgstr ""
 "이 옵션이 명령 줄에서 보일 때 :mod:`optparse`\\의 동작을 결정합니다; 사용 가능한 옵션은 :ref:`여기 "
 "<optparse-standard-option-actions>`\\에 설명되어 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1009
+#: ../../library/optparse.rst:1139
 msgid "(default: ``\"string\"``)"
 msgstr "(기본값: ``\"string\"``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1011
+#: ../../library/optparse.rst:1141
 msgid ""
 "The argument type expected by this option (e.g., ``\"string\"`` or "
 "``\"int\"``); the available option types are documented :ref:`here "
@@ -1481,12 +2073,11 @@ msgstr ""
 "이 옵션이 기대하는 인자 형 (예를 들어, ``\"string\"``\\이나 ``\"int\"``); 사용 가능한 옵션 형은 "
 ":ref:`여기 <optparse-standard-option-types>`\\에 설명되어 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1017
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1067
+#: ../../library/optparse.rst:1147 ../../library/optparse.rst:1197
 msgid "(default: derived from option strings)"
 msgstr "(기본값: 옵션 문자열에서 파생됩니다)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1019
+#: ../../library/optparse.rst:1149
 msgid ""
 "If the option's action implies writing or modifying a value somewhere, "
 "this tells :mod:`optparse` where to write it: :attr:`~Option.dest` names "
@@ -1497,7 +2088,7 @@ msgstr ""
 "알려줍니다: :attr:`~Option.dest`\\는 명령 줄을 구문 분석할 때 :mod:`optparse`\\가 빌드하는 "
 "``options`` 객체의 어트리뷰트의 이름을 정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1026
+#: ../../library/optparse.rst:1156
 msgid ""
 "The value to use for this option's destination if the option is not seen "
 "on the command line.  See also :meth:`OptionParser.set_defaults`."
@@ -1505,11 +2096,11 @@ msgstr ""
 "옵션이 명령 줄에서 보이지 않으면 이 옵션의 대상에 사용할 값. :meth:`OptionParser.set_defaults`\\도 "
 "참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1031
+#: ../../library/optparse.rst:1161
 msgid "(default: 1)"
 msgstr "(기본값: 1)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1033
+#: ../../library/optparse.rst:1163
 msgid ""
 "How many arguments of type :attr:`~Option.type` should be consumed when "
 "this option is seen.  If > 1, :mod:`optparse` will store a tuple of "
@@ -1518,17 +2109,17 @@ msgstr ""
 "이 옵션이 보일 때 소비되어야 하는 :attr:`~Option.type` 형의 인자 수입니다. > 1 이면, "
 ":mod:`optparse`\\는 값의 튜플을 :attr:`~Option.dest`\\에 저장합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1039
+#: ../../library/optparse.rst:1169
 msgid "For actions that store a constant value, the constant value to store."
 msgstr "상숫값을 저장하는 액션의 경우, 저장할 상숫값."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1043
+#: ../../library/optparse.rst:1173
 msgid ""
 "For options of type ``\"choice\"``, the list of strings the user may "
 "choose from."
 msgstr "``\"choice\"`` 형 옵션의 경우, 사용자가 이 중에서 선택할 수 있는 문자열 리스트."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1048
+#: ../../library/optparse.rst:1178
 msgid ""
 "For options with action ``\"callback\"``, the callable to call when this "
 "option is seen.  See section :ref:`optparse-option-callbacks` for detail "
@@ -1537,25 +2128,26 @@ msgstr ""
 "액션 ``\"callback\"``\\이 있는 옵션의 경우, 이 옵션이 보일 때 호출 할 콜러블. 콜러블에 전달된 인자에 대한 "
 "자세한 내용은 섹션 :ref:`optparse-option-callbacks`\\을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1055
+#: ../../library/optparse.rst:1185
 msgid ""
 "Additional positional and keyword arguments to pass to ``callback`` after"
 " the four standard callback arguments."
 msgstr "4개의 표준 콜백 인자 다음에 ``callback``\\에 전달할 추가 위치와 키워드 인자."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1060
+#: ../../library/optparse.rst:1190
+#, fuzzy
 msgid ""
 "Help text to print for this option when listing all available options "
 "after the user supplies a :attr:`~Option.help` option (such as "
 "``--help``).  If no help text is supplied, the option will be listed "
 "without help text.  To hide this option, use the special value "
-":data:`optparse.SUPPRESS_HELP`."
+":const:`optparse.SUPPRESS_HELP`."
 msgstr ""
 "사용자가 :attr:`~Option.help` 옵션을 제공한 (가령 ``--help``) 후 사용 가능한 모든 옵션을 나열할 때 이"
 " 옵션에 대해 인쇄할 도움말 텍스트. 도움말 텍스트가 제공되지 않으면, 옵션이 도움말 텍스트 없이 나열됩니다. 이 옵션을 숨기려면,"
 " 특수 값 :data:`optparse.SUPPRESS_HELP`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1069
+#: ../../library/optparse.rst:1199
 msgid ""
 "Stand-in for the option argument(s) to use when printing help text.  See "
 "section :ref:`optparse-tutorial` for an example."
@@ -1563,11 +2155,11 @@ msgstr ""
 "도움말 텍스트를 인쇄할 때 사용할 옵션 인자를 나타냅니다. 예제는 섹션 :ref:`optparse-tutorial`\\를 "
 "참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1076
+#: ../../library/optparse.rst:1206
 msgid "Standard option actions"
 msgstr "표준 옵션 액션"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1078
+#: ../../library/optparse.rst:1208
 msgid ""
 "The various option actions all have slightly different requirements and "
 "effects. Most actions have several relevant option attributes which you "
@@ -1578,7 +2170,7 @@ msgstr ""
 "위해 지정할 수 있는 몇 가지 연관된 옵션 어트리뷰트가 있습니다; 일부는 해당 액션을 사용하는 모든 옵션에 대해 지정해야 하는 필수"
 " 어트리뷰트가 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1083
+#: ../../library/optparse.rst:1213
 msgid ""
 "``\"store\"`` [relevant: :attr:`~Option.type`, :attr:`~Option.dest`, "
 ":attr:`~Option.nargs`, :attr:`~Option.choices`]"
@@ -1586,7 +2178,7 @@ msgstr ""
 "``\"store\"`` [연관된 옵션: :attr:`~Option.type`, :attr:`~Option.dest`, "
 ":attr:`~Option.nargs`, :attr:`~Option.choices`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1086
+#: ../../library/optparse.rst:1216
 msgid ""
 "The option must be followed by an argument, which is converted to a value"
 " according to :attr:`~Option.type` and stored in :attr:`~Option.dest`.  "
@@ -1600,7 +2192,7 @@ msgstr ""
 "인자가 소비됩니다; 모두 :attr:`~Option.type`\\에 따라 변환되고 :attr:`~Option.dest`\\에 튜플로"
 " 저장됩니다. :ref:`optparse-standard-option-types` 섹션을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1093
+#: ../../library/optparse.rst:1223
 msgid ""
 "If :attr:`~Option.choices` is supplied (a list or tuple of strings), the "
 "type defaults to ``\"choice\"``."
@@ -1608,11 +2200,11 @@ msgstr ""
 ":attr:`~Option.choices`\\가 제공되면 (문자열 리스트나 튜플), 형의 기본값은 "
 "``\"choice\"``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1096
+#: ../../library/optparse.rst:1226
 msgid "If :attr:`~Option.type` is not supplied, it defaults to ``\"string\"``."
 msgstr ":attr:`~Option.type`\\이 제공되지 않으면, 기본값은 ``\"string\"``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1098
+#: ../../library/optparse.rst:1228
 msgid ""
 "If :attr:`~Option.dest` is not supplied, :mod:`optparse` derives a "
 "destination from the first long option string (e.g., ``--foo-bar`` "
@@ -1625,24 +2217,38 @@ msgstr ""
 ":mod:`optparse`\\는 첫 번째 짧은 옵션 문자열에서 대상을 파생합니다 (예를 들어, ``-f``\\는 ``f``\\를 "
 "암시합니다)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1103
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1123
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1145
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1163
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1202
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1240
+#: ../../library/optparse.rst:1233 ../../library/optparse.rst:1253
+#: ../../library/optparse.rst:1275 ../../library/optparse.rst:1293
+#: ../../library/optparse.rst:1332 ../../library/optparse.rst:1370
 msgid "Example::"
 msgstr "예::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1108
+#: ../../library/optparse.rst:1235
+msgid ""
+"parser.add_option(\"-f\")\n"
+"parser.add_option(\"-p\", type=\"float\", nargs=3, dest=\"point\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1238
 msgid "As it parses the command line ::"
 msgstr "다음과 같은 명령 줄을 구문 분석할 때 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1112
+#: ../../library/optparse.rst:1240
+msgid "-f foo.txt -p 1 -3.5 4 -fbar.txt"
+msgstr ""
+
+#: ../../library/optparse.rst:1242
 msgid ":mod:`optparse` will set ::"
 msgstr ":mod:`optparse`\\는 다음과 같이 설정합니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1118
+#: ../../library/optparse.rst:1244
+msgid ""
+"options.f = \"foo.txt\"\n"
+"options.point = (1.0, -3.5, 4.0)\n"
+"options.f = \"bar.txt\""
+msgstr ""
+
+#: ../../library/optparse.rst:1248
 msgid ""
 "``\"store_const\"`` [required: :attr:`~Option.const`; relevant: "
 ":attr:`~Option.dest`]"
@@ -1650,33 +2256,55 @@ msgstr ""
 "``\"store_const\"`` [필수 옵션: :attr:`~Option.const`; 연관된 옵션: "
 ":attr:`~Option.dest`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1121
+#: ../../library/optparse.rst:1251
 msgid "The value :attr:`~Option.const` is stored in :attr:`~Option.dest`."
 msgstr "값 :attr:`~Option.const`\\는 :attr:`~Option.dest`\\에 저장됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1132
+#: ../../library/optparse.rst:1255
+msgid ""
+"parser.add_option(\"-q\", \"--quiet\",\n"
+"                  action=\"store_const\", const=0, dest=\"verbose\")\n"
+"parser.add_option(\"-v\", \"--verbose\",\n"
+"                  action=\"store_const\", const=1, dest=\"verbose\")\n"
+"parser.add_option(\"--noisy\",\n"
+"                  action=\"store_const\", const=2, dest=\"verbose\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1262
 msgid "If ``--noisy`` is seen, :mod:`optparse` will set  ::"
 msgstr "``--noisy``\\가 보이면, :mod:`optparse`\\는 다음과 같이 설정합니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1136
+#: ../../library/optparse.rst:1264
+msgid "options.verbose = 2"
+msgstr ""
+
+#: ../../library/optparse.rst:1266
 msgid "``\"store_true\"`` [relevant: :attr:`~Option.dest`]"
 msgstr "``\"store_true\"`` [연관된 옵션: :attr:`~Option.dest`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1138
+#: ../../library/optparse.rst:1268
 msgid ""
 "A special case of ``\"store_const\"`` that stores ``True`` to "
 ":attr:`~Option.dest`."
 msgstr "``True``\\를 :attr:`~Option.dest`\\에 저장하는 ``\"store_const\"``\\의 특별한 경우."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1141
+#: ../../library/optparse.rst:1271
 msgid "``\"store_false\"`` [relevant: :attr:`~Option.dest`]"
 msgstr "``\"store_false\"`` [연관된 옵션: :attr:`~Option.dest`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1143
+#: ../../library/optparse.rst:1273
 msgid "Like ``\"store_true\"``, but stores ``False``."
 msgstr "``\"store_true\"``\\와 비슷하지만, ``False``\\를 저장합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1150
+#: ../../library/optparse.rst:1277
+msgid ""
+"parser.add_option(\"--clobber\", action=\"store_true\", dest=\"clobber\")"
+"\n"
+"parser.add_option(\"--no-clobber\", action=\"store_false\", "
+"dest=\"clobber\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1280
 msgid ""
 "``\"append\"`` [relevant: :attr:`~Option.type`, :attr:`~Option.dest`, "
 ":attr:`~Option.nargs`, :attr:`~Option.choices`]"
@@ -1684,7 +2312,7 @@ msgstr ""
 "``\"append\"`` [연관된 옵션: :attr:`~Option.type`, :attr:`~Option.dest`, "
 ":attr:`~Option.nargs`, :attr:`~Option.choices`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1153
+#: ../../library/optparse.rst:1283
 msgid ""
 "The option must be followed by an argument, which is appended to the list"
 " in :attr:`~Option.dest`.  If no default value for :attr:`~Option.dest` "
@@ -1698,7 +2326,7 @@ msgstr ""
 " 발견할 때 빈 리스트가 자동으로 만들어집니다. :attr:`~Option.nargs` > 1 이면, 여러 인자가 소비되며, "
 ":attr:`~Option.nargs` 길이의 튜플이 :attr:`~Option.dest`\\에 추가됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1160
+#: ../../library/optparse.rst:1290
 msgid ""
 "The defaults for :attr:`~Option.type` and :attr:`~Option.dest` are the "
 "same as for the ``\"store\"`` action."
@@ -1706,17 +2334,31 @@ msgstr ""
 ":attr:`~Option.type`\\과 :attr:`~Option.dest`\\의 기본값은 ``\"store\"`` 액션의 "
 "경우와 같습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1167
+#: ../../library/optparse.rst:1295
+msgid "parser.add_option(\"-t\", \"--tracks\", action=\"append\", type=\"int\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1297
 msgid ""
 "If ``-t3`` is seen on the command-line, :mod:`optparse` does the "
 "equivalent of::"
 msgstr "``-t3``\\가 명령 줄에 보이면, :mod:`optparse`\\는 다음과 동등한 것을 수행합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1173
+#: ../../library/optparse.rst:1300
+msgid ""
+"options.tracks = []\n"
+"options.tracks.append(int(\"3\"))"
+msgstr ""
+
+#: ../../library/optparse.rst:1303
 msgid "If, a little later on, ``--tracks=4`` is seen, it does::"
 msgstr "잠시 후, ``--tracks=4``\\가 보이면, 다음을 수행합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1177
+#: ../../library/optparse.rst:1305
+msgid "options.tracks.append(int(\"4\"))"
+msgstr ""
+
+#: ../../library/optparse.rst:1307
 msgid ""
 "The ``append`` action calls the ``append`` method on the current value of"
 " the option.  This means that any default value specified must have an "
@@ -1729,7 +2371,16 @@ msgstr ""
 "``append`` 메서드가 있어야 함을 의미합니다. 또한, 기본값이 비어 있지 않으면, 기본 요소가 옵션의 구문 분석된 값에 "
 "존재하며, 명령 줄의 모든 값이 기본값 뒤에 추가됨을 의미합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1188
+#: ../../library/optparse.rst:1313
+msgid ""
+">>> parser.add_option(\"--files\", action=\"append\", "
+"default=['~/.mypkg/defaults'])\n"
+">>> opts, args = parser.parse_args(['--files', 'overrides.mypkg'])\n"
+">>> opts.files\n"
+"['~/.mypkg/defaults', 'overrides.mypkg']"
+msgstr ""
+
+#: ../../library/optparse.rst:1318
 msgid ""
 "``\"append_const\"`` [required: :attr:`~Option.const`; relevant: "
 ":attr:`~Option.dest`]"
@@ -1737,7 +2388,7 @@ msgstr ""
 "``\"append_const\"`` [필수 옵션: :attr:`~Option.const`; 연관된 옵션: "
 ":attr:`~Option.dest`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1191
+#: ../../library/optparse.rst:1321
 msgid ""
 "Like ``\"store_const\"``, but the value :attr:`~Option.const` is appended"
 " to :attr:`~Option.dest`; as with ``\"append\"``, :attr:`~Option.dest` "
@@ -1749,11 +2400,11 @@ msgstr ""
 ":attr:`~Option.dest`\\의 기본값은 ``None``\\이며, 옵션이 처음 발견될 때 빈 리스트가 자동으로 "
 "만들어집니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1196
+#: ../../library/optparse.rst:1326
 msgid "``\"count\"`` [relevant: :attr:`~Option.dest`]"
 msgstr "``\"count\"`` [연관된 옵션: :attr:`~Option.dest`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1198
+#: ../../library/optparse.rst:1328
 msgid ""
 "Increment the integer stored at :attr:`~Option.dest`.  If no default "
 "value is supplied, :attr:`~Option.dest` is set to zero before being "
@@ -1762,17 +2413,31 @@ msgstr ""
 ":attr:`~Option.dest`\\에 저장된 정수를 증가시킵니다. 기본값이 제공되지 않으면, "
 ":attr:`~Option.dest`\\는 처음으로 증가하기 전에 0으로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1206
+#: ../../library/optparse.rst:1334
+msgid "parser.add_option(\"-v\", action=\"count\", dest=\"verbosity\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1336
 msgid ""
 "The first time ``-v`` is seen on the command line, :mod:`optparse` does "
 "the equivalent of::"
 msgstr "``-v``\\가 명령 줄에서 처음 보이면, :mod:`optparse`\\는 다음과 동등한 작업을 수행합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1212
+#: ../../library/optparse.rst:1339
+msgid ""
+"options.verbosity = 0\n"
+"options.verbosity += 1"
+msgstr ""
+
+#: ../../library/optparse.rst:1342
 msgid "Every subsequent occurrence of ``-v`` results in  ::"
 msgstr "이후에 ``-v``\\가 나타날 때마다 다음과 같이 합니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1216
+#: ../../library/optparse.rst:1344
+msgid "options.verbosity += 1"
+msgstr ""
+
+#: ../../library/optparse.rst:1346
 msgid ""
 "``\"callback\"`` [required: :attr:`~Option.callback`; relevant: "
 ":attr:`~Option.type`, :attr:`~Option.nargs`, "
@@ -1782,17 +2447,21 @@ msgstr ""
 ":attr:`~Option.type`, :attr:`~Option.nargs`, "
 ":attr:`~Option.callback_args`, :attr:`~Option.callback_kwargs`]"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1220
+#: ../../library/optparse.rst:1350
 msgid ""
 "Call the function specified by :attr:`~Option.callback`, which is called "
 "as ::"
 msgstr ":attr:`~Option.callback`\\으로 지정된 함수를 호출합니다, 이 함수는 다음과 같이 호출됩니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1224
+#: ../../library/optparse.rst:1352 ../../library/optparse.rst:1750
+msgid "func(option, opt_str, value, parser, *args, **kwargs)"
+msgstr ""
+
+#: ../../library/optparse.rst:1354
 msgid "See section :ref:`optparse-option-callbacks` for more detail."
 msgstr "자세한 내용은 섹션 :ref:`optparse-option-callbacks`\\을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1228
+#: ../../library/optparse.rst:1358
 msgid ""
 "Prints a complete help message for all the options in the current option "
 "parser.  The help message is constructed from the ``usage`` string passed"
@@ -1802,16 +2471,17 @@ msgstr ""
 "현재 옵션 구문 분석기의 모든 옵션에 대한 전체 도움말 메시지를 인쇄합니다. 도움말 메시지는 OptionParser의 생성자에 "
 "전달된 ``usage`` 문자열과 모든 옵션에 전달된 :attr:`~Option.help` 문자열로 구성됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1233
+#: ../../library/optparse.rst:1363
+#, fuzzy
 msgid ""
 "If no :attr:`~Option.help` string is supplied for an option, it will "
 "still be listed in the help message.  To omit an option entirely, use the"
-" special value :data:`optparse.SUPPRESS_HELP`."
+" special value :const:`optparse.SUPPRESS_HELP`."
 msgstr ""
 "옵션에 :attr:`~Option.help` 문자열이 제공되지 않아도, 도움말 메시지에 나열됩니다. 옵션을 완전히 생략하려면, 특수"
 " 값 :data:`optparse.SUPPRESS_HELP`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1237
+#: ../../library/optparse.rst:1367
 msgid ""
 ":mod:`optparse` automatically adds a :attr:`~Option.help` option to all "
 "OptionParsers, so you do not normally need to create one."
@@ -1819,7 +2489,23 @@ msgstr ""
 ":mod:`optparse`\\는 모든 OptionParser에 :attr:`~Option.help` 옵션을 자동으로 추가하므로, "
 "일반적으로 만들 필요가 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1255
+#: ../../library/optparse.rst:1372
+msgid ""
+"from optparse import OptionParser, SUPPRESS_HELP\n"
+"\n"
+"# usually, a help option is added automatically, but that can\n"
+"# be suppressed using the add_help_option argument\n"
+"parser = OptionParser(add_help_option=False)\n"
+"\n"
+"parser.add_option(\"-h\", \"--help\", action=\"help\")\n"
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\",\n"
+"                  help=\"Be moderately verbose\")\n"
+"parser.add_option(\"--file\", dest=\"filename\",\n"
+"                  help=\"Input file to read data from\")\n"
+"parser.add_option(\"--secret\", help=SUPPRESS_HELP)"
+msgstr ""
+
+#: ../../library/optparse.rst:1385
 msgid ""
 "If :mod:`optparse` sees either ``-h`` or ``--help`` on the command line, "
 "it will print something like the following help message to stdout "
@@ -1828,17 +2514,27 @@ msgstr ""
 ":mod:`optparse`\\가 명령 줄에서 ``-h``\\나 ``--help``\\를 보면, 다음 도움말 메시지와 같은 내용을 "
 "stdout에 인쇄합니다 (``sys.argv[0]``\\이 ``\"foo.py\"``\\라고 가정합니다):"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1268
+#: ../../library/optparse.rst:1389
+msgid ""
+"Usage: foo.py [options]\n"
+"\n"
+"Options:\n"
+"  -h, --help        Show this help message and exit\n"
+"  -v                Be moderately verbose\n"
+"  --file=FILENAME   Input file to read data from"
+msgstr ""
+
+#: ../../library/optparse.rst:1398
 msgid ""
 "After printing the help message, :mod:`optparse` terminates your process "
 "with ``sys.exit(0)``."
 msgstr "도움말 메시지를 인쇄한 후, :mod:`optparse`\\는 ``sys.exit(0)``\\으로 프로세스를 종료합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1271
+#: ../../library/optparse.rst:1401
 msgid "``\"version\"``"
 msgstr "``\"version\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1273
+#: ../../library/optparse.rst:1403
 msgid ""
 "Prints the version number supplied to the OptionParser to stdout and "
 "exits. The version number is actually formatted and printed by the "
@@ -1852,11 +2548,11 @@ msgstr ""
 "OptionParser 생성자에 제공되는 경우에만 의미가 있습니다. :attr:`~Option.help` 옵션과 마찬가지로, "
 ":mod:`optparse`\\는 필요할 때 자동으로 추가하기 때문에, ``version`` 옵션을 거의 만들지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1284
+#: ../../library/optparse.rst:1414
 msgid "Standard option types"
 msgstr "표준 옵션 형"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1286
+#: ../../library/optparse.rst:1416
 msgid ""
 ":mod:`optparse` has five built-in option types: ``\"string\"``, "
 "``\"int\"``, ``\"choice\"``, ``\"float\"`` and ``\"complex\"``.  If you "
@@ -1867,7 +2563,7 @@ msgstr ""
 "``\"choice\"``, ``\"float\"`` 및 ``\"complex\"``. 새로운 옵션 형을 추가해야 하면, 섹션 "
 ":ref:`optparse-extending-optparse`\\를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1290
+#: ../../library/optparse.rst:1420
 msgid ""
 "Arguments to string options are not checked or converted in any way: the "
 "text on the command line is stored in the destination (or passed to the "
@@ -1876,27 +2572,27 @@ msgstr ""
 "문자열 옵션에 대한 인자는 어떤 방식으로도 검사되거나 변환되지 않습니다: 명령 줄의 텍스트는 있는 그대로 대상에 저장(또는 콜백에 "
 "전달)됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1293
+#: ../../library/optparse.rst:1423
 msgid "Integer arguments (type ``\"int\"``) are parsed as follows:"
 msgstr "정수 인자(``\"int\"`` 형)는 다음과 같이 구문 분석됩니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1295
+#: ../../library/optparse.rst:1425
 msgid "if the number starts with ``0x``, it is parsed as a hexadecimal number"
 msgstr "숫자가 ``0x``\\로 시작하면, 16진수로 구문 분석됩니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1297
+#: ../../library/optparse.rst:1427
 msgid "if the number starts with ``0``, it is parsed as an octal number"
 msgstr "숫자가 ``0``\\으로 시작하면, 8진수로 구문 분석됩니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1299
+#: ../../library/optparse.rst:1429
 msgid "if the number starts with ``0b``, it is parsed as a binary number"
 msgstr "숫자가 ``0b``\\로 시작하면, 이진수로 구문 분석됩니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1301
+#: ../../library/optparse.rst:1431
 msgid "otherwise, the number is parsed as a decimal number"
 msgstr "그렇지 않으면, 숫자는 10진수로 구문 분석됩니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1304
+#: ../../library/optparse.rst:1434
 msgid ""
 "The conversion is done by calling :func:`int` with the appropriate base "
 "(2, 8, 10, or 16).  If this fails, so will :mod:`optparse`, although with"
@@ -1905,7 +2601,7 @@ msgstr ""
 "변환은 적절한 진수(2, 8, 10 또는 16)로 :func:`int`\\를 호출하여 수행됩니다. 이것이 실패하면, 더 유용한 에러"
 " 메시지를 제공하기는 하지만, :mod:`optparse`\\도 마찬가지로 실패합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1308
+#: ../../library/optparse.rst:1438
 msgid ""
 "``\"float\"`` and ``\"complex\"`` option arguments are converted directly"
 " with :func:`float` and :func:`complex`, with similar error-handling."
@@ -1913,7 +2609,7 @@ msgstr ""
 "``\"float\"``\\와 ``\"complex\"`` 옵션 인자는 유사한 에러 처리로 :func:`float`\\와 "
 ":func:`complex`\\로 직접 변환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1311
+#: ../../library/optparse.rst:1441
 msgid ""
 "``\"choice\"`` options are a subtype of ``\"string\"`` options.  The "
 ":attr:`~Option.choices` option attribute (a sequence of strings) defines "
@@ -1926,88 +2622,99 @@ msgstr ""
 "사용자가 제공한 옵션 인자를 이 마스터 리스트와 비교하고 유효하지 않은 문자열이 주어지면 :exc:`OptionValueError`"
 " 를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1321
+#: ../../library/optparse.rst:1451
 msgid "Parsing arguments"
 msgstr "인자 구문 분석하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1323
+#: ../../library/optparse.rst:1453
+#, fuzzy
 msgid ""
 "The whole point of creating and populating an OptionParser is to call its"
-" :meth:`parse_args` method::"
+" :meth:`~OptionParser.parse_args` method."
 msgstr "OptionParser를 만들고 채우는 것의 요점은 :meth:`parse_args` 메서드를 호출하는 것입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1328
-msgid "where the input parameters are"
+#: ../../library/optparse.rst:1458
+msgid "Parse the command-line options found in *args*."
+msgstr ""
+
+#: ../../library/optparse.rst:1460
+#, fuzzy
+msgid "The input parameters are"
 msgstr "여기서 입력 매개 변수는"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1331
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1345
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1664
+#: ../../library/optparse.rst:1462 ../../library/optparse.rst:1476
+#: ../../library/optparse.rst:1794
 msgid "``args``"
 msgstr "``args``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1331
+#: ../../library/optparse.rst:1463
 msgid "the list of arguments to process (default: ``sys.argv[1:]``)"
 msgstr "처리할 인자의 리스트 (기본값: ``sys.argv[1:]``)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1336
+#: ../../library/optparse.rst:1465
 msgid "``values``"
 msgstr "``values``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1334
+#: ../../library/optparse.rst:1466
+#, fuzzy
 msgid ""
-"an :class:`optparse.Values` object to store option arguments in (default:"
-" a new instance of :class:`Values`) -- if you give an existing object, "
-"the option defaults will not be initialized on it"
+"a :class:`Values` object to store option arguments in (default: a new "
+"instance of :class:`Values`) -- if you give an existing object, the "
+"option defaults will not be initialized on it"
 msgstr ""
 "옵션 인자를 저장할 :class:`optparse.Values` 객체 (기본값: :class:`Values`\\의 새 인스턴스) "
 "-- 기존 객체를 제공하면, 옵션 기본값이 초기화되지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1338
-msgid "and the return values are"
+#: ../../library/optparse.rst:1470
+#, fuzzy
+msgid "and the return value is a pair ``(options, args)`` where"
 msgstr "그리고 반환 값은"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1342
+#: ../../library/optparse.rst:1472
 msgid "``options``"
 msgstr "``options``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1341
+#: ../../library/optparse.rst:1473
+#, fuzzy
 msgid ""
-"the same object that was passed in as ``values``, or the optparse.Values "
-"instance created by :mod:`optparse`"
+"the same object that was passed in as *values*, or the "
+"``optparse.Values`` instance created by :mod:`optparse`"
 msgstr "``values``\\로 전달된 것과 같은 객체, 또는 :mod:`optparse`\\가 만든 optparse.Values 인스턴스"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1345
+#: ../../library/optparse.rst:1477
 msgid "the leftover positional arguments after all options have been processed"
 msgstr "모든 옵션이 처리된 후 남은 위치 인자"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1347
+#: ../../library/optparse.rst:1479
+#, fuzzy
 msgid ""
 "The most common usage is to supply neither keyword argument.  If you "
 "supply ``values``, it will be modified with repeated :func:`setattr` "
 "calls (roughly one for every option argument stored to an option "
-"destination) and returned by :meth:`parse_args`."
+"destination) and returned by :meth:`~OptionParser.parse_args`."
 msgstr ""
 "가장 일반적인 사용법은 두 키워드 인자 중 어느 것도 제공하지 않는 것입니다. ``values``\\를 제공하면, 반복된 "
 ":func:`setattr` 호출(옵션 대상에 저장된 모든 옵션 인자에 대해 대략 하나씩)로 수정되고, "
 ":meth:`parse_args`\\에서 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1352
+#: ../../library/optparse.rst:1484
+#, fuzzy
 msgid ""
-"If :meth:`parse_args` encounters any errors in the argument list, it "
-"calls the OptionParser's :meth:`error` method with an appropriate end-"
-"user error message. This ultimately terminates your process with an exit "
-"status of 2 (the traditional Unix exit status for command-line errors)."
+"If :meth:`~OptionParser.parse_args` encounters any errors in the argument"
+" list, it calls the OptionParser's :meth:`error` method with an "
+"appropriate end-user error message. This ultimately terminates your "
+"process with an exit status of 2 (the traditional Unix exit status for "
+"command-line errors)."
 msgstr ""
 ":meth:`parse_args`\\가 인자 리스트에서 에러를 만나면, 적절한 최종 사용자 에러 메시지와 함께 "
 "OptionParser의 :meth:`error` 메서드를 호출합니다. 이는 궁극적으로 종료 상태 2(명령 줄 에러에 대한 전통적인"
 " 유닉스 종료 상태)로 프로세스를 종료합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1361
+#: ../../library/optparse.rst:1493
 msgid "Querying and manipulating your option parser"
 msgstr "옵션 구문 분석기를 조회하고 조작하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1363
+#: ../../library/optparse.rst:1495
 msgid ""
 "The default behavior of the option parser can be customized slightly, and"
 " you can also poke around your option parser and see what's there.  "
@@ -2016,7 +2723,7 @@ msgstr ""
 "옵션 구문 분석기의 기본 동작은 약간 사용자 정의 할 수 있으며, 옵션 구문 분석기를 들여다보고 거기에 무엇이 있는지 볼 수도 "
 "있습니다. OptionParser는 다음과 같은 몇 가지 메서드를 제공합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1369
+#: ../../library/optparse.rst:1501
 msgid ""
 "Set parsing to stop on the first non-option.  For example, if ``-a`` and "
 "``-b`` are both simple options that take no arguments, :mod:`optparse` "
@@ -2025,11 +2732,19 @@ msgstr ""
 "첫 번째 옵션이 아닌 것에서 중지하도록 구문 분석을 설정합니다. 예를 들어 ``-a``\\와 ``-b``\\가 모두 인자를 취하지 "
 "않는 간단한 옵션이면, :mod:`optparse`\\는 일반적으로 다음 문법을 허용합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1375
+#: ../../library/optparse.rst:1505
+msgid "prog -a arg1 -b arg2"
+msgstr ""
+
+#: ../../library/optparse.rst:1507
 msgid "and treats it as equivalent to  ::"
 msgstr "그리고 다음과 동등하게 취급합니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1379
+#: ../../library/optparse.rst:1509
+msgid "prog -a -b arg1 arg2"
+msgstr ""
+
+#: ../../library/optparse.rst:1511
 msgid ""
 "To disable this feature, call :meth:`disable_interspersed_args`.  This "
 "restores traditional Unix syntax, where option parsing stops with the "
@@ -2038,7 +2753,7 @@ msgstr ""
 "이 기능을 비활성화하려면, :meth:`disable_interspersed_args`\\를 호출하십시오. 이렇게 하면 옵션 구문 "
 "분석이 첫 번째 옵션이 아닌 인자에서 중지되는, 전통적인 유닉스 문법이 복원됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1383
+#: ../../library/optparse.rst:1515
 msgid ""
 "Use this if you have a command processor which runs another command which"
 " has options of its own and you want to make sure these options don't get"
@@ -2048,7 +2763,7 @@ msgstr ""
 "자체 옵션이 있는 다른 명령을 실행하는 명령 프로세서가 있고 이러한 옵션이 혼동되지 않도록 하려면 이것을 사용하십시오. 예를 들어,"
 " 각 명령에는 다른 옵션 집합이 있을 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1389
+#: ../../library/optparse.rst:1521
 msgid ""
 "Set parsing to not stop on the first non-option, allowing interspersing "
 "switches with command arguments.  This is the default behavior."
@@ -2056,7 +2771,7 @@ msgstr ""
 "첫 번째 옵션이 아닌 것에서 구문 분석이 중지되지 않도록 설정하여, 명령 인자와 스위치를 분산시킬 수 있도록 합니다. 이것이 기본 "
 "동작입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1394
+#: ../../library/optparse.rst:1526
 msgid ""
 "Returns the Option instance with the option string *opt_str*, or ``None``"
 " if no options have that option string."
@@ -2064,7 +2779,7 @@ msgstr ""
 "옵션 문자열 *opt_str*\\을 갖는 Option 인스턴스를 반환합니다, 또는 해당 옵션 문자열을 갖는 옵션이 없으면 "
 "``None``\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1399
+#: ../../library/optparse.rst:1531
 msgid ""
 "Return ``True`` if the OptionParser has an option with option string "
 "*opt_str* (e.g., ``-q`` or ``--verbose``)."
@@ -2072,7 +2787,7 @@ msgstr ""
 "OptionParser에 옵션 문자열 *opt_str*\\을 갖는 옵션이 있으면 ``True``\\를 반환합니다 (예를 들어, "
 "``-q``\\나 ``--verbose``)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1404
+#: ../../library/optparse.rst:1536
 msgid ""
 "If the :class:`OptionParser` has an option corresponding to *opt_str*, "
 "that option is removed.  If that option provided any other option "
@@ -2084,23 +2799,30 @@ msgstr ""
 "다른 옵션 문자열을 제공하면, 해당 옵션 문자열은 모두 유효하지 않게 됩니다. 이 :class:`OptionParser`\\에 "
 "속하는 옵션에서 *opt_str*\\이 등장하지 않으면, :exc:`ValueError`\\를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1413
+#: ../../library/optparse.rst:1545
 msgid "Conflicts between options"
 msgstr "옵션 간의 충돌"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1415
+#: ../../library/optparse.rst:1547
 msgid ""
 "If you're not careful, it's easy to define options with conflicting "
 "option strings::"
 msgstr "주의하지 않으면, 충돌하는 옵션 문자열을 갖는 옵션을 정의하기 쉽습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1422
+#: ../../library/optparse.rst:1550
+msgid ""
+"parser.add_option(\"-n\", \"--dry-run\", ...)\n"
+"...\n"
+"parser.add_option(\"-n\", \"--noisy\", ...)"
+msgstr ""
+
+#: ../../library/optparse.rst:1554
 msgid ""
 "(This is particularly true if you've defined your own OptionParser "
 "subclass with some standard options.)"
 msgstr "(일부 표준 옵션을 사용하여 자체 OptionParser 서브 클래스를 정의한 경우 특히 그렇습니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1425
+#: ../../library/optparse.rst:1557
 msgid ""
 "Every time you add an option, :mod:`optparse` checks for conflicts with "
 "existing options.  If it finds any, it invokes the current conflict-"
@@ -2110,41 +2832,57 @@ msgstr ""
 "옵션을 추가할 때마다, :mod:`optparse`\\는 기존 옵션과의 충돌을 확인합니다. 발견되면, 현재 충돌 처리 메커니즘을 "
 "호출합니다. 충돌 처리 메커니즘을 설정할 수 있는데, 생성자에서::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1431
+#: ../../library/optparse.rst:1561
+msgid "parser = OptionParser(..., conflict_handler=handler)"
+msgstr ""
+
+#: ../../library/optparse.rst:1563
 msgid "or with a separate call::"
 msgstr "또는 별도의 호출로 가능합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1435
+#: ../../library/optparse.rst:1565
+msgid "parser.set_conflict_handler(handler)"
+msgstr ""
+
+#: ../../library/optparse.rst:1567
 msgid "The available conflict handlers are:"
 msgstr "사용 가능한 충돌 처리기는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1439
+#: ../../library/optparse.rst:1569
 msgid "``\"error\"`` (default)"
 msgstr "``\"error\"`` (기본값)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1438
+#: ../../library/optparse.rst:1570
 msgid ""
 "assume option conflicts are a programming error and raise "
 ":exc:`OptionConflictError`"
 msgstr "옵션 충돌이 프로그래밍 에러라고 가정하고 :exc:`OptionConflictError` 를 발생시킵니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1443
+#: ../../library/optparse.rst:1573
 msgid "``\"resolve\"``"
 msgstr "``\"resolve\"``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1442
+#: ../../library/optparse.rst:1574
 msgid "resolve option conflicts intelligently (see below)"
 msgstr "옵션 충돌을 지능적으로 해결합니다 (아래를 참조하십시오)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1445
+#: ../../library/optparse.rst:1577
 msgid ""
 "As an example, let's define an :class:`OptionParser` that resolves "
 "conflicts intelligently and add conflicting options to it::"
 msgstr "예를 들어, 충돌을 지능적으로 해결하고 :class:`OptionParser`\\를 정의하고 충돌하는 옵션을 추가해 보겠습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1452
+#: ../../library/optparse.rst:1580
 msgid ""
-"At this point, :mod:`optparse` detects that a previously-added option is "
+"parser = OptionParser(conflict_handler=\"resolve\")\n"
+"parser.add_option(\"-n\", \"--dry-run\", ..., help=\"do no harm\")\n"
+"parser.add_option(\"-n\", \"--noisy\", ..., help=\"be noisy\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1584
+#, fuzzy
+msgid ""
+"At this point, :mod:`optparse` detects that a previously added option is "
 "already using the ``-n`` option string.  Since ``conflict_handler`` is "
 "``\"resolve\"``, it resolves the situation by removing ``-n`` from the "
 "earlier option's list of option strings.  Now ``--dry-run`` is the only "
@@ -2156,9 +2894,18 @@ msgstr ""
 "``-n``\\을 제거하여 상황을 해결합니다. 이제 ``--dry-run``\\은 사용자가 해당 옵션을 활성화하는 유일한 "
 "방법입니다. 사용자가 help를 요청하면, 도움말 메시지에 이것이 반영됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1463
+#: ../../library/optparse.rst:1590
 msgid ""
-"It's possible to whittle away the option strings for a previously-added "
+"Options:\n"
+"  --dry-run     do no harm\n"
+"  ...\n"
+"  -n, --noisy   be noisy"
+msgstr ""
+
+#: ../../library/optparse.rst:1595
+#, fuzzy
+msgid ""
+"It's possible to whittle away the option strings for a previously added "
 "option until there are none left, and the user has no way of invoking "
 "that option from the command-line.  In that case, :mod:`optparse` removes"
 " that option completely, so it doesn't show up in help text or anywhere "
@@ -2168,7 +2915,11 @@ msgstr ""
 "방법이 없을 가능성이 있습니다. 이 경우, :mod:`optparse`\\는 해당 옵션을 완전히 제거해서, 도움말 텍스트나 다른 "
 "곳에 표시되지 않습니다. 기존 OptionParser를 계속 사용해서::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1471
+#: ../../library/optparse.rst:1601
+msgid "parser.add_option(\"--dry-run\", ..., help=\"new dry-run option\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1603
 msgid ""
 "At this point, the original ``-n``/``--dry-run`` option is no longer "
 "accessible, so :mod:`optparse` removes it, leaving this help text::"
@@ -2176,11 +2927,19 @@ msgstr ""
 "이 시점에서, 원래 ``-n``/``--dry-run`` 옵션에 더는 액세스할 수 없어서, :mod:`optparse`\\는 해당 "
 "옵션을 제거하고, 다음 도움말 텍스트를 남깁니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1483
+#: ../../library/optparse.rst:1606
+msgid ""
+"Options:\n"
+"  ...\n"
+"  -n, --noisy   be noisy\n"
+"  --dry-run     new dry-run option"
+msgstr ""
+
+#: ../../library/optparse.rst:1615
 msgid "Cleanup"
 msgstr "정리"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1485
+#: ../../library/optparse.rst:1617
 msgid ""
 "OptionParser instances have several cyclic references.  This should not "
 "be a problem for Python's garbage collector, but you may wish to break "
@@ -2193,26 +2952,27 @@ msgstr ""
 "끝나면 OptionParser에서 :meth:`~OptionParser.destroy`\\를 호출하여 순환 참조를 명시적으로 끊을 "
 "수 있습니다. 이것은 OptionParser에서 큰 객체 그래프에 도달할 수 있는 장기 실행 응용 프로그램에서 특히 유용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1496
+#: ../../library/optparse.rst:1628
 msgid "Other methods"
 msgstr "기타 메서드"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1498
+#: ../../library/optparse.rst:1630
 msgid "OptionParser supports several other public methods:"
 msgstr "OptionParser는 몇 가지 다른 공용 메서드를 지원합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1502
+#: ../../library/optparse.rst:1634
+#, fuzzy
 msgid ""
 "Set the usage string according to the rules described above for the "
 "``usage`` constructor keyword argument.  Passing ``None`` sets the "
-"default usage string; use :data:`optparse.SUPPRESS_USAGE` to suppress a "
+"default usage string; use :const:`optparse.SUPPRESS_USAGE` to suppress a "
 "usage message."
 msgstr ""
 "``usage`` 생성자 키워드 인자에 대해 위에서 설명한 규칙에 따라 사용법 문자열을 설정합니다. ``None``\\을 전달하면 "
 "기본 사용법 문자열이 설정됩니다; 사용법 메시지를 억제하려면 :data:`optparse.SUPPRESS_USAGE`\\를 "
 "사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1508
+#: ../../library/optparse.rst:1640
 msgid ""
 "Print the usage message for the current program (``self.usage``) to "
 "*file* (default stdout).  Any occurrence of the string ``%prog`` in "
@@ -2223,13 +2983,13 @@ msgstr ""
 "``self.usage``\\에 등장하는 문자열 ``%prog``\\는 현재 프로그램의 이름으로 대체됩니다. "
 "``self.usage``\\가 비어 있거나 정의되지 않았으면 아무 작업도 수행하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1515
+#: ../../library/optparse.rst:1647
 msgid ""
 "Same as :meth:`print_usage` but returns the usage string instead of "
 "printing it."
 msgstr ":meth:`print_usage`\\와 같지만 인쇄하는 대신 사용법 문자열을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1520
+#: ../../library/optparse.rst:1652
 msgid ""
 "Set default values for several option destinations at once.  Using "
 ":meth:`set_defaults` is the preferred way to set default values for "
@@ -2241,15 +3001,34 @@ msgstr ""
 ":meth:`set_defaults`\\를 사용하여 옵션의 기본값을 설정하는 것이 좋습니다. 예를 들어, 여러 \"mode\" "
 "옵션이 모두 같은 대상을 설정하면, 그중 하나가 기본값을 설정할 수 있으며 마지막 옵션이 이깁니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1533
+#: ../../library/optparse.rst:1658
+msgid ""
+"parser.add_option(\"--advanced\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"advanced\",\n"
+"                  default=\"novice\")    # overridden below\n"
+"parser.add_option(\"--novice\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"novice\",\n"
+"                  default=\"advanced\")  # overrides above setting"
+msgstr ""
+
+#: ../../library/optparse.rst:1665
 msgid "To avoid this confusion, use :meth:`set_defaults`::"
 msgstr "이러한 혼동을 피하려면, :meth:`set_defaults`\\를 사용하십시오::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1545
+#: ../../library/optparse.rst:1667
+msgid ""
+"parser.set_defaults(mode=\"advanced\")\n"
+"parser.add_option(\"--advanced\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"advanced\")\n"
+"parser.add_option(\"--novice\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"novice\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1677
 msgid "Option Callbacks"
 msgstr "옵션 콜백"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1547
+#: ../../library/optparse.rst:1679
 msgid ""
 "When :mod:`optparse`'s built-in actions and types aren't quite enough for"
 " your needs, you have two choices: extend :mod:`optparse` or define a "
@@ -2261,25 +3040,25 @@ msgstr ""
 ":mod:`optparse`\\를 확장하거나 콜백 옵션을 정의합니다. :mod:`optparse`\\를 확장하는 것이 더 "
 "일반적이지만, 많은 간단한 경우에는 과합니다. 종종 간단한 콜백만 있으면 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1552
+#: ../../library/optparse.rst:1684
 msgid "There are two steps to defining a callback option:"
 msgstr "콜백 옵션을 정의하는 두 단계가 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1554
+#: ../../library/optparse.rst:1686
 msgid "define the option itself using the ``\"callback\"`` action"
 msgstr "``\"callback\"`` 액션을 사용하여 옵션 자체를 정의합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1556
+#: ../../library/optparse.rst:1688
 msgid ""
 "write the callback; this is a function (or method) that takes at least "
 "four arguments, as described below"
 msgstr "콜백을 작성합니다; 이것은 아래에 설명된 대로, 최소한 4개의 인자를 취하는 함수(또는 메서드)입니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1563
+#: ../../library/optparse.rst:1695
 msgid "Defining a callback option"
 msgstr "콜백 옵션 정의하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1565
+#: ../../library/optparse.rst:1697
 msgid ""
 "As always, the easiest way to define a callback option is by using the "
 ":meth:`OptionParser.add_option` method.  Apart from "
@@ -2290,7 +3069,11 @@ msgstr ""
 "것입니다. :attr:`~Option.action`\\과 별도로 지정해야 하는 유일한 옵션 어트리뷰트는 호출할 함수인 "
 "``callback``\\입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1571
+#: ../../library/optparse.rst:1701
+msgid "parser.add_option(\"-c\", action=\"callback\", callback=my_callback)"
+msgstr ""
+
+#: ../../library/optparse.rst:1703
 msgid ""
 "``callback`` is a function (or other callable object), so you must have "
 "already defined ``my_callback()`` when you create this callback option. "
@@ -2307,7 +3090,7 @@ msgstr ""
 " 상황에서는, 콜백이 임의의 수의 명령 줄 인자를 소비하도록 할 수 있습니다. 콜백 작성이 까다로워지는 곳입니다: 이 섹션의 "
 "뒷부분에서 다룹니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1580
+#: ../../library/optparse.rst:1712
 msgid ""
 ":mod:`optparse` always passes four particular arguments to your callback,"
 " and it will only pass additional arguments if you specify them via "
@@ -2318,21 +3101,25 @@ msgstr ""
 ":attr:`~Option.callback_args`\\와 :attr:`~Option.callback_kwargs`\\를 통해 "
 "지정하는 경우에만 추가 인자를 전달합니다. 따라서 최소 콜백 함수 서명은 다음과 같습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1587
+#: ../../library/optparse.rst:1717
+msgid "def my_callback(option, opt, value, parser):"
+msgstr ""
+
+#: ../../library/optparse.rst:1719
 msgid "The four arguments to a callback are described below."
 msgstr "콜백에 대한 네 가지 인자가 아래에 설명되어 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1589
+#: ../../library/optparse.rst:1721
 msgid ""
 "There are several other option attributes that you can supply when you "
 "define a callback option:"
 msgstr "콜백 옵션을 정의할 때 제공할 수 있는 몇 가지 다른 옵션 어트리뷰트가 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1596
+#: ../../library/optparse.rst:1724
 msgid ":attr:`~Option.type`"
 msgstr ":attr:`~Option.type`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1593
+#: ../../library/optparse.rst:1725
 msgid ""
 "has its usual meaning: as with the ``\"store\"`` or ``\"append\"`` "
 "actions, it instructs :mod:`optparse` to consume one argument and convert"
@@ -2343,11 +3130,11 @@ msgstr ""
 ":mod:`optparse`\\에게 하나의 인자를 소비하고 이를 :attr:`~Option.type`\\으로 변환하도록 지시합니다."
 " 그러나 :mod:`optparse`\\는 변환된 값을 어딘가에 저장하는 대신 콜백 함수에 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1602
+#: ../../library/optparse.rst:1730
 msgid ":attr:`~Option.nargs`"
 msgstr ":attr:`~Option.nargs`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1599
+#: ../../library/optparse.rst:1731
 msgid ""
 "also has its usual meaning: if it is supplied and > 1, :mod:`optparse` "
 "will consume :attr:`~Option.nargs` arguments, each of which must be "
@@ -2358,43 +3145,43 @@ msgstr ""
 "인자를 소비하며 각 인자는 :attr:`~Option.type`\\으로 변환 가능해야 합니다. 그런 다음 변환된 값의 튜플을 콜백에"
 " 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1605
+#: ../../library/optparse.rst:1736
 msgid ":attr:`~Option.callback_args`"
 msgstr ":attr:`~Option.callback_args`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1605
+#: ../../library/optparse.rst:1737
 msgid "a tuple of extra positional arguments to pass to the callback"
 msgstr "콜백에 전달할 추가 위치 인자의 튜플"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1609
+#: ../../library/optparse.rst:1739
 msgid ":attr:`~Option.callback_kwargs`"
 msgstr ":attr:`~Option.callback_kwargs`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1608
+#: ../../library/optparse.rst:1740
 msgid "a dictionary of extra keyword arguments to pass to the callback"
 msgstr "콜백에 전달할 추가 키워드 인자의 딕셔너리"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1614
+#: ../../library/optparse.rst:1746
 msgid "How callbacks are called"
 msgstr "콜백이 호출되는 방법"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1616
+#: ../../library/optparse.rst:1748
 msgid "All callbacks are called as follows::"
 msgstr "모든 콜백은 다음과 같이 호출됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1623
+#: ../../library/optparse.rst:1754
 msgid "``option``"
 msgstr "``option``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1623
+#: ../../library/optparse.rst:1755
 msgid "is the Option instance that's calling the callback"
 msgstr "콜백을 호출하는 Option 인스턴스입니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1630
+#: ../../library/optparse.rst:1757
 msgid "``opt_str``"
 msgstr "``opt_str``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1626
+#: ../../library/optparse.rst:1758
 msgid ""
 "is the option string seen on the command-line that's triggering the "
 "callback. (If an abbreviated long option was used, ``opt_str`` will be "
@@ -2406,11 +3193,11 @@ msgstr ""
 "규범적인 옵션 문자열이 됩니다---예를 들어 사용자가 ``--foobar``\\의 약어로 명령 줄에 ``--foo``\\를 "
 "입력하면, ``opt_str``\\은 ``\"--foobar\"``\\가 됩니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1637
+#: ../../library/optparse.rst:1764
 msgid "``value``"
 msgstr "``value``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1633
+#: ../../library/optparse.rst:1765
 msgid ""
 "is the argument to this option seen on the command-line.  :mod:`optparse`"
 " will only expect an argument if :attr:`~Option.type` is set; the type of"
@@ -2425,11 +3212,11 @@ msgstr ""
 "``None``\\이 됩니다. :attr:`~Option.nargs` > 1 이면, ``value``\\는 적절한 형의 값의 튜플이"
 " 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1660
+#: ../../library/optparse.rst:1771
 msgid "``parser``"
 msgstr "``parser``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1640
+#: ../../library/optparse.rst:1772
 msgid ""
 "is the OptionParser instance driving the whole thing, mainly useful "
 "because you can access some other interesting data through its instance "
@@ -2438,26 +3225,28 @@ msgstr ""
 "모든 것을 구동하는 OptionParser 인스턴스입니다, 인스턴스 어트리뷰트를 통해 다른 흥미로운 데이터에 액세스 할 수 있어서 "
 "주로 유용합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1647
+#: ../../library/optparse.rst:1775
 msgid "``parser.largs``"
 msgstr "``parser.largs``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1644
+#: ../../library/optparse.rst:1776
+#, fuzzy
 msgid ""
 "the current list of leftover arguments, ie. arguments that have been "
 "consumed but are neither options nor option arguments. Feel free to "
 "modify ``parser.largs``, e.g. by adding more arguments to it.  (This list"
-" will become ``args``, the second return value of :meth:`parse_args`.)"
+" will become ``args``, the second return value of "
+":meth:`~OptionParser.parse_args`.)"
 msgstr ""
 "남은 인자의 현재 리스트, 즉, 소비되었지만 옵션이나 옵션 인자가 아닌 인자. 예를 들어 더 많은 인자를 추가하여, "
 "``parser.largs``\\를 자유롭게 수정하십시오. (이 리스트는 :meth:`parse_args`\\의 두 번째 반환 값인"
 " ``args``\\가 됩니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1653
+#: ../../library/optparse.rst:1781
 msgid "``parser.rargs``"
 msgstr "``parser.rargs``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1650
+#: ../../library/optparse.rst:1782
 msgid ""
 "the current list of remaining arguments, ie. with ``opt_str`` and "
 "``value`` (if applicable) removed, and only the arguments following them "
@@ -2467,11 +3256,11 @@ msgstr ""
 "나머지 인자의 현재 리스트, 즉, ``opt_str``\\과 ``value``\\(해당한다면)가 제거되고, 그 뒤에 오는 인자만 "
 "그대로 남아 있습니다. 예를 들어 더 많은 인자를 소비하여, ``parser.rargs``\\를 자유롭게 수정하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1660
+#: ../../library/optparse.rst:1787
 msgid "``parser.values``"
 msgstr "``parser.values``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1656
+#: ../../library/optparse.rst:1788
 msgid ""
 "the object where option values are by default stored (an instance of "
 "optparse.OptionValues).  This lets callbacks use the same mechanism as "
@@ -2483,27 +3272,27 @@ msgstr ""
 "나머지 :mod:`optparse`\\와 같은 메커니즘을 사용할 수 있습니다; 전역이나 클로저를 엉망으로 만들 필요가 없습니다. "
 "명령 줄에서 이미 발견된 모든 옵션의 값에 액세스하거나 수정할 수도 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1663
+#: ../../library/optparse.rst:1795
 msgid ""
 "is a tuple of arbitrary positional arguments supplied via the "
 ":attr:`~Option.callback_args` option attribute."
 msgstr ":attr:`~Option.callback_args` 옵션 어트리뷰트를 통해 제공되는 임의의 위치 인자의 튜플입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1669
+#: ../../library/optparse.rst:1798
 msgid "``kwargs``"
 msgstr "``kwargs``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1667
+#: ../../library/optparse.rst:1799
 msgid ""
 "is a dictionary of arbitrary keyword arguments supplied via "
 ":attr:`~Option.callback_kwargs`."
 msgstr ":attr:`~Option.callback_kwargs`\\를 통해 제공된 임의의 키워드 인자의 딕셔너리입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1674
+#: ../../library/optparse.rst:1806
 msgid "Raising errors in a callback"
 msgstr "콜백에서 에러 발생시키기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1676
+#: ../../library/optparse.rst:1808
 msgid ""
 "The callback function should raise :exc:`OptionValueError` if there are "
 "any problems with the option or its argument(s).  :mod:`optparse` catches"
@@ -2517,25 +3306,34 @@ msgstr ""
 "메시지는 명확하고 간결하며 정확해야 하며 잘못된 옵션을 언급해야 합니다. 그렇지 않으면, 사용자는 자신이 무엇을 잘못했는지 파악하는"
 " 데 어려움을 겪을 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1686
+#: ../../library/optparse.rst:1818
 msgid "Callback example 1: trivial callback"
 msgstr "콜백 예제 1: 간단한 콜백"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1688
+#: ../../library/optparse.rst:1820
 msgid ""
 "Here's an example of a callback option that takes no arguments, and "
 "simply records that the option was seen::"
 msgstr "다음은 인자를 취하지 않고, 단순히 옵션이 발견되었음을 기록하는 콜백 옵션의 예입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1696
+#: ../../library/optparse.rst:1823
+msgid ""
+"def record_foo_seen(option, opt_str, value, parser):\n"
+"    parser.values.saw_foo = True\n"
+"\n"
+"parser.add_option(\"--foo\", action=\"callback\", "
+"callback=record_foo_seen)"
+msgstr ""
+
+#: ../../library/optparse.rst:1828
 msgid "Of course, you could do that with the ``\"store_true\"`` action."
 msgstr "물론 ``\"store_true\"`` 액션으로 그렇게 할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1702
+#: ../../library/optparse.rst:1834
 msgid "Callback example 2: check option order"
 msgstr "콜백 예제 2: 옵션 순서 확인"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1704
+#: ../../library/optparse.rst:1836
 msgid ""
 "Here's a slightly more interesting example: record the fact that ``-a`` "
 "is seen, but blow up if it comes after ``-b`` in the command-line.  ::"
@@ -2543,13 +3341,25 @@ msgstr ""
 "여기에 약간 더 흥미로운 예가 있습니다: ``-a``\\가 발견되었다는 사실을 기록하지만, 명령 줄에서 ``-b`` 뒤에 오면 "
 "폭발합니다. ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1719
+#: ../../library/optparse.rst:1839
+msgid ""
+"def check_order(option, opt_str, value, parser):\n"
+"    if parser.values.b:\n"
+"        raise OptionValueError(\"can't use -a after -b\")\n"
+"    parser.values.a = 1\n"
+"...\n"
+"parser.add_option(\"-a\", action=\"callback\", callback=check_order)\n"
+"parser.add_option(\"-b\", action=\"store_true\", dest=\"b\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1851
 msgid "Callback example 3: check option order (generalized)"
 msgstr "콜백 예제 3: 옵션 순서 확인 (일반화)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1721
+#: ../../library/optparse.rst:1853
+#, fuzzy
 msgid ""
-"If you want to re-use this callback for several similar options (set a "
+"If you want to reuse this callback for several similar options (set a "
 "flag, but blow up if ``-b`` has already been seen), it needs a bit of "
 "work: the error message and the flag that it sets must be generalized.  "
 "::"
@@ -2557,11 +3367,26 @@ msgstr ""
 "이 콜백을 몇 가지 유사한 옵션에 다시 사용하려면 (플래그를 설정하지만, ``-b``\\가 이미 보였으면 폭발함), 약간의 작업이 "
 "필요합니다: 에러 메시지와 설정하는 플래그를 일반화해야 합니다. ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1738
+#: ../../library/optparse.rst:1857
+#, python-format
+msgid ""
+"def check_order(option, opt_str, value, parser):\n"
+"    if parser.values.b:\n"
+"        raise OptionValueError(\"can't use %s after -b\" % opt_str)\n"
+"    setattr(parser.values, option.dest, 1)\n"
+"...\n"
+"parser.add_option(\"-a\", action=\"callback\", callback=check_order, "
+"dest='a')\n"
+"parser.add_option(\"-b\", action=\"store_true\", dest=\"b\")\n"
+"parser.add_option(\"-c\", action=\"callback\", callback=check_order, "
+"dest='c')"
+msgstr ""
+
+#: ../../library/optparse.rst:1870
 msgid "Callback example 4: check arbitrary condition"
 msgstr "콜백 예제 4: 임의 조건 확인"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1740
+#: ../../library/optparse.rst:1872
 msgid ""
 "Of course, you could put any condition in there---you're not limited to "
 "checking the values of already-defined options.  For example, if you have"
@@ -2571,17 +3396,30 @@ msgstr ""
 "물론, 여기에 어떤 조건도 넣을 수 있습니다---이미 정의된 옵션의 값을 확인하는 데 국한되지 않습니다. 예를 들어, 만월일 때 "
 "호출해서는 안 되는 옵션이 있으면, 다음과 같이 하면 됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1753
+#: ../../library/optparse.rst:1876
+#, python-format
+msgid ""
+"def check_moon(option, opt_str, value, parser):\n"
+"    if is_moon_full():\n"
+"        raise OptionValueError(\"%s option invalid when moon is full\"\n"
+"                               % opt_str)\n"
+"    setattr(parser.values, option.dest, 1)\n"
+"...\n"
+"parser.add_option(\"--foo\",\n"
+"                  action=\"callback\", callback=check_moon, dest=\"foo\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1885
 msgid ""
 "(The definition of ``is_moon_full()`` is left as an exercise for the "
 "reader.)"
 msgstr "(``is_moon_full()``\\의 정의는 독자를 위한 연습 문제로 남겨 둡니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1759
+#: ../../library/optparse.rst:1891
 msgid "Callback example 5: fixed arguments"
 msgstr "콜백 예제 5: 고정 인자"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1761
+#: ../../library/optparse.rst:1893
 msgid ""
 "Things get slightly more interesting when you define callback options "
 "that take a fixed number of arguments.  Specifying that a callback option"
@@ -2596,11 +3434,21 @@ msgstr ""
 ":attr:`~Option.type`\\을 정의하면, 옵션은 해당 형으로 변환 할 수 있어야 하는 하나의 인자를 취합니다; "
 ":attr:`~Option.nargs`\\를 추가로 정의하면, 옵션은 :attr:`~Option.nargs` 인자를 취합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1768
+#: ../../library/optparse.rst:1900
 msgid "Here's an example that just emulates the standard ``\"store\"`` action::"
 msgstr "다음은 표준 ``\"store\"`` 액션을 흉내 내는 예입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1777
+#: ../../library/optparse.rst:1902
+msgid ""
+"def store_value(option, opt_str, value, parser):\n"
+"    setattr(parser.values, option.dest, value)\n"
+"...\n"
+"parser.add_option(\"--foo\",\n"
+"                  action=\"callback\", callback=store_value,\n"
+"                  type=\"int\", nargs=3, dest=\"foo\")"
+msgstr ""
+
+#: ../../library/optparse.rst:1909
 msgid ""
 "Note that :mod:`optparse` takes care of consuming 3 arguments and "
 "converting them to integers for you; all you have to do is store them.  "
@@ -2609,11 +3457,11 @@ msgstr ""
 ":mod:`optparse`\\가 3개의 인자를 소비하고 이를 정수로 변환하는 작업을 처리함에 유의하십시오; 여러분이 해야 할 일은"
 " 그것들을 저장하는 것뿐입니다. (또는 무엇이든; 분명히 이 예제에서는 콜백이 필요하지 않습니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1785
+#: ../../library/optparse.rst:1917
 msgid "Callback example 6: variable arguments"
 msgstr "콜백 예제 6: 가변 인자"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1787
+#: ../../library/optparse.rst:1919
 msgid ""
 "Things get hairy when you want an option to take a variable number of "
 "arguments. For this case, you must write a callback, as :mod:`optparse` "
@@ -2628,17 +3476,17 @@ msgstr ""
 "줄 구문 분석의 복잡한 문제를 여러분이 처리해야 합니다. 특히, 콜백은 날(bare) ``--``\\와 ``-`` 인자에 대한 "
 "전통적인 규칙을 구현해야 합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1794
+#: ../../library/optparse.rst:1926
 msgid "either ``--`` or ``-`` can be option arguments"
 msgstr "``--``\\나 ``-``\\는 옵션 인자가 될 수 있습니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1796
+#: ../../library/optparse.rst:1928
 msgid ""
 "bare ``--`` (if not the argument to some option): halt command-line "
 "processing and discard the ``--``"
 msgstr "날 ``--`` (어떤 옵션에 대한 인자가 아닌 경우): 명령 줄 처리를 중단하고 ``--``\\를 버립니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1799
+#: ../../library/optparse.rst:1931
 msgid ""
 "bare ``-`` (if not the argument to some option): halt command-line "
 "processing but keep the ``-`` (append it to ``parser.largs``)"
@@ -2646,7 +3494,7 @@ msgstr ""
 "날 ``-`` (어떤 옵션에 대한 인자가 아닌 경우): 명령 줄 처리를 중지하지만 ``-``\\는 유지합니다 "
 "(``parser.largs``\\에 추가합니다)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1802
+#: ../../library/optparse.rst:1934
 msgid ""
 "If you want an option that takes a variable number of arguments, there "
 "are several subtle, tricky issues to worry about.  The exact "
@@ -2658,17 +3506,47 @@ msgstr ""
 " 여러분의 응용 프로그램을 위해 취하고자 하는 절충을 기반으로 할 것입니다 (이것이 :mod:`optparse`\\가 이런 종류의 "
 "것을 직접 지원하지 않는 이유입니다)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1808
+#: ../../library/optparse.rst:1940
 msgid ""
 "Nevertheless, here's a stab at a callback for an option with variable "
 "arguments::"
 msgstr "그런데도, 가변 인자가 있는 옵션에 대한 콜백에는 가시가 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1842
+#: ../../library/optparse.rst:1943
+msgid ""
+"def vararg_callback(option, opt_str, value, parser):\n"
+"    assert value is None\n"
+"    value = []\n"
+"\n"
+"    def floatable(str):\n"
+"        try:\n"
+"            float(str)\n"
+"            return True\n"
+"        except ValueError:\n"
+"            return False\n"
+"\n"
+"    for arg in parser.rargs:\n"
+"        # stop on --foo like options\n"
+"        if arg[:2] == \"--\" and len(arg) > 2:\n"
+"            break\n"
+"        # stop on -a, but not on -3 or -3.0\n"
+"        if arg[:1] == \"-\" and len(arg) > 1 and not floatable(arg):\n"
+"            break\n"
+"        value.append(arg)\n"
+"\n"
+"    del parser.rargs[:len(value)]\n"
+"    setattr(parser.values, option.dest, value)\n"
+"\n"
+"...\n"
+"parser.add_option(\"-c\", \"--callback\", dest=\"vararg_attr\",\n"
+"                  action=\"callback\", callback=vararg_callback)"
+msgstr ""
+
+#: ../../library/optparse.rst:1974
 msgid "Extending :mod:`optparse`"
 msgstr ":mod:`optparse` 확장하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1844
+#: ../../library/optparse.rst:1976
 msgid ""
 "Since the two major controlling factors in how :mod:`optparse` interprets"
 " command-line options are the action and type of each option, the most "
@@ -2677,11 +3555,11 @@ msgstr ""
 ":mod:`optparse`\\가 명령 줄 옵션을 해석하는 방법의 두 가지 주요 제어 요소는 각 옵션의 액션과 형이므로, 확장 "
 "방향은 새 액션과 새 형을 추가하는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1852
+#: ../../library/optparse.rst:1984
 msgid "Adding new types"
 msgstr "새로운 형 추가하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1854
+#: ../../library/optparse.rst:1986
 msgid ""
 "To add new types, you need to define your own subclass of "
 ":mod:`optparse`'s :class:`Option` class.  This class has a couple of "
@@ -2692,19 +3570,23 @@ msgstr ""
 "정의해야 합니다. 이 클래스에는 :mod:`optparse`\\의 형을 정의하는 몇 가지 어트리뷰트가 있습니다: "
 ":attr:`~Option.TYPES`\\와 :attr:`~Option.TYPE_CHECKER`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1860
+#: ../../library/optparse.rst:1992
 msgid ""
 "A tuple of type names; in your subclass, simply define a new tuple "
 ":attr:`TYPES` that builds on the standard one."
 msgstr "형 이름의 튜플; 여러분의 서브 클래스에서, 표준 튜플을 기반으로 하는 새 튜플 :attr:`TYPES`\\를 정의하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1865
+#: ../../library/optparse.rst:1997
 msgid ""
 "A dictionary mapping type names to type-checking functions.  A type-"
 "checking function has the following signature::"
 msgstr "형 이름을 형 검사 함수에 매핑하는 딕셔너리. 형 검사 함수는 다음과 같은 서명을 갖습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1870
+#: ../../library/optparse.rst:2000
+msgid "def check_mytype(option, opt, value)"
+msgstr ""
+
+#: ../../library/optparse.rst:2002
 msgid ""
 "where ``option`` is an :class:`Option` instance, ``opt`` is an option "
 "string (e.g., ``-f``), and ``value`` is the string from the command line "
@@ -2720,7 +3602,7 @@ msgstr ""
 ":meth:`OptionParser.parse_args`\\에서 반환한 OptionValues 인스턴스에 포함되거나 "
 "``value`` 매개 변수로 콜백에 전달됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1878
+#: ../../library/optparse.rst:2010
 msgid ""
 "Your type-checking function should raise :exc:`OptionValueError` if it "
 "encounters any problems.  :exc:`OptionValueError` takes a single string "
@@ -2734,7 +3616,7 @@ msgstr ""
 "그대로 전달되는 단일 문자열 인자를 취하며, 이는 차례로 프로그램 이름과 문자열 ``\"error:\"``\\를 앞에 붙이고 "
 "프로세스를 종료하기 전에 모든 것을 stderr에 인쇄합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1884
+#: ../../library/optparse.rst:2016
 msgid ""
 "Here's a silly example that demonstrates adding a ``\"complex\"`` option "
 "type to parse Python-style complex numbers on the command line.  (This is"
@@ -2745,11 +3627,17 @@ msgstr ""
 "우스꽝스러운 예입니다. (:mod:`optparse` 1.3은 복소수에 대한 기본 지원을 추가했기 때문에 전보다 훨씬 "
 "우스꽝스럽지만, 신경 쓰지 마십시오.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1889
+#: ../../library/optparse.rst:2021
 msgid "First, the necessary imports::"
 msgstr "첫째, 필요한 임포트::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1894
+#: ../../library/optparse.rst:2023
+msgid ""
+"from copy import copy\n"
+"from optparse import Option, OptionValueError"
+msgstr ""
+
+#: ../../library/optparse.rst:2026
 msgid ""
 "You need to define your type-checker first, since it's referred to later "
 "(in the :attr:`~Option.TYPE_CHECKER` class attribute of your Option "
@@ -2758,11 +3646,30 @@ msgstr ""
 "나중에 (Option 서브 클래스의 :attr:`~Option.TYPE_CHECKER` 클래스 어트리뷰트에서) 참조되므로, 형 "
 "검사기를 먼저 정의해야 합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1904
+#: ../../library/optparse.rst:2029
+#, python-format
+msgid ""
+"def check_complex(option, opt, value):\n"
+"    try:\n"
+"        return complex(value)\n"
+"    except ValueError:\n"
+"        raise OptionValueError(\n"
+"            \"option %s: invalid complex value: %r\" % (opt, value))"
+msgstr ""
+
+#: ../../library/optparse.rst:2036
 msgid "Finally, the Option subclass::"
 msgstr "마지막으로, Option 서브 클래스::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1911
+#: ../../library/optparse.rst:2038
+msgid ""
+"class MyOption (Option):\n"
+"    TYPES = Option.TYPES + (\"complex\",)\n"
+"    TYPE_CHECKER = copy(Option.TYPE_CHECKER)\n"
+"    TYPE_CHECKER[\"complex\"] = check_complex"
+msgstr ""
+
+#: ../../library/optparse.rst:2043
 msgid ""
 "(If we didn't make a :func:`copy` of :attr:`Option.TYPE_CHECKER`, we "
 "would end up modifying the :attr:`~Option.TYPE_CHECKER` attribute of "
@@ -2773,7 +3680,7 @@ msgstr ""
 ":mod:`optparse`\\의 Option 클래스의 :attr:`~Option.TYPE_CHECKER` 어트리뷰트를 수정하게 될"
 " 것입니다. 이것은 파이썬이기 때문에, 좋은 태도와 상식을 제외하고는 아무것도 이렇게 하는 것을 막을 수 없습니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1916
+#: ../../library/optparse.rst:2048
 msgid ""
 "That's it!  Now you can write a script that uses the new option type just"
 " like any other :mod:`optparse`\\ -based script, except you have to "
@@ -2782,7 +3689,13 @@ msgstr ""
 "이것이 전부입니다! 이제 OptionParser가 Option 대신 MyOption을 사용하도록 지시해야 한다는 점을 제외하고는, "
 "다른 :mod:`optparse` 기반 스크립트와 마찬가지로 새 옵션 형을 사용하는 스크립트를 작성할 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1923
+#: ../../library/optparse.rst:2052
+msgid ""
+"parser = OptionParser(option_class=MyOption)\n"
+"parser.add_option(\"-c\", type=\"complex\")"
+msgstr ""
+
+#: ../../library/optparse.rst:2055
 msgid ""
 "Alternately, you can build your own option list and pass it to "
 "OptionParser; if you don't use :meth:`add_option` in the above way, you "
@@ -2791,21 +3704,28 @@ msgstr ""
 "또는, 여러분 자신만의 옵션 목록을 만들어 OptionParser에 전달할 수 있습니다; 위의 방법으로 "
 ":meth:`add_option`\\을 사용하지 않으면, OptionParser에 사용할 옵션 클래스를 알려줄 필요가 없습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1934
+#: ../../library/optparse.rst:2059
+msgid ""
+"option_list = [MyOption(\"-c\", action=\"store\", type=\"complex\", "
+"dest=\"c\")]\n"
+"parser = OptionParser(option_list=option_list)"
+msgstr ""
+
+#: ../../library/optparse.rst:2066
 msgid "Adding new actions"
 msgstr "새로운 액션 추가하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1936
+#: ../../library/optparse.rst:2068
 msgid ""
 "Adding new actions is a bit trickier, because you have to understand that"
 " :mod:`optparse` has a couple of classifications for actions:"
 msgstr ":mod:`optparse`\\에는 액션에 대한 몇 가지 분류가 있음을 이해해야 해서, 새 액션을 추가하는 것은 약간 까다롭습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1942
+#: ../../library/optparse.rst:2071
 msgid "\"store\" actions"
 msgstr "\"저장\" 액션"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1940
+#: ../../library/optparse.rst:2072
 msgid ""
 "actions that result in :mod:`optparse` storing a value to an attribute of"
 " the current OptionValues instance; these options require a "
@@ -2814,11 +3734,11 @@ msgstr ""
 ":mod:`optparse`\\가 현재 OptionValues 인스턴스의 어트리뷰트에 값을 저장하는 결과를 주는 액션; 이러한 "
 "옵션을 사용하려면 Option 생성자에 :attr:`~Option.dest` 어트리뷰트를 제공해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1948
+#: ../../library/optparse.rst:2076
 msgid "\"typed\" actions"
 msgstr "\"형이 있는\" 액션"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1945
+#: ../../library/optparse.rst:2077
 msgid ""
 "actions that take a value from the command line and expect it to be of a "
 "certain type; or rather, a string that can be converted to a certain "
@@ -2828,7 +3748,7 @@ msgstr ""
 "명령 줄에서 값을 취하고 이것이 특정 형일 것으로 기대하는 액션; 또는, 특정 형으로 변환할 수 있는 문자열. 이러한 옵션을 "
 "사용하려면 Option 생성자에 :attr:`~Option.type` 어트리뷰트를 제공해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1950
+#: ../../library/optparse.rst:2082
 msgid ""
 "These are overlapping sets: some default \"store\" actions are "
 "``\"store\"``, ``\"store_const\"``, ``\"append\"``, and ``\"count\"``, "
@@ -2839,26 +3759,26 @@ msgstr ""
 "``\"append\"`` 및 ``\"count\"``\\이고, 기본 \"형이 있는\" 액션은 ``\"store\"``, "
 "``\"append\"`` 및 ``\"callback\"``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1954
+#: ../../library/optparse.rst:2086
 msgid ""
 "When you add an action, you need to categorize it by listing it in at "
 "least one of the following class attributes of Option (all are lists of "
 "strings):"
 msgstr "액션을 추가할 때, Option의 다음 클래스 어트리뷰트 중 하나 이상에 나열하여 분류해야 합니다 (모두 문자열 리스트입니다):"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1959
+#: ../../library/optparse.rst:2091
 msgid "All actions must be listed in ACTIONS."
 msgstr "모든 액션은 ACTIONS에 나열되어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1963
+#: ../../library/optparse.rst:2095
 msgid "\"store\" actions are additionally listed here."
 msgstr "\"저장\" 액션이 여기에 추가로 나열됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1967
+#: ../../library/optparse.rst:2099
 msgid "\"typed\" actions are additionally listed here."
 msgstr "\"형이 있는\" 액션이 여기에 추가로 나열됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1971
+#: ../../library/optparse.rst:2103
 msgid ""
 "Actions that always take a type (i.e. whose options always take a value) "
 "are additionally listed here.  The only effect of this is that "
@@ -2869,7 +3789,7 @@ msgstr ""
 ":mod:`optparse`\\가 :attr:`ALWAYS_TYPED_ACTIONS`\\에 액션이 나열되는 명시적인 형이 없는 "
 "옵션에 기본형인 ``\"string\"``\\을 대입한다는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1976
+#: ../../library/optparse.rst:2108
 msgid ""
 "In order to actually implement your new action, you must override "
 "Option's :meth:`take_action` method and add a case that recognizes your "
@@ -2878,7 +3798,7 @@ msgstr ""
 "새 액션을 실제로 구현하려면, Option의 :meth:`take_action` 메서드를 재정의하고 액션을 인식하는 케이스를 "
 "추가해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1979
+#: ../../library/optparse.rst:2111
 msgid ""
 "For example, let's add an ``\"extend\"`` action.  This is similar to the "
 "standard ``\"append\"`` action, but instead of taking a single value from"
@@ -2892,19 +3812,45 @@ msgstr ""
 "취해서 기존 리스트를 확장합니다. 즉, ``--names``\\가 ``\"string\"`` 형의 ``\"extend\"`` "
 "옵션이면, 다음과 같은 명령 줄은 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1988
+#: ../../library/optparse.rst:2118
+msgid "--names=foo,bar --names blah --names ding,dong"
+msgstr ""
+
+#: ../../library/optparse.rst:2120
 msgid "would result in a list  ::"
 msgstr "다음과 같은 리스트를 만듭니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:1992
+#: ../../library/optparse.rst:2122
+msgid "[\"foo\", \"bar\", \"blah\", \"ding\", \"dong\"]"
+msgstr ""
+
+#: ../../library/optparse.rst:2124
 msgid "Again we define a subclass of Option::"
 msgstr "다시 Option의 서브 클래스를 정의합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2009
+#: ../../library/optparse.rst:2126
+msgid ""
+"class MyOption(Option):\n"
+"\n"
+"    ACTIONS = Option.ACTIONS + (\"extend\",)\n"
+"    STORE_ACTIONS = Option.STORE_ACTIONS + (\"extend\",)\n"
+"    TYPED_ACTIONS = Option.TYPED_ACTIONS + (\"extend\",)\n"
+"    ALWAYS_TYPED_ACTIONS = Option.ALWAYS_TYPED_ACTIONS + (\"extend\",)\n"
+"\n"
+"    def take_action(self, action, dest, opt, value, values, parser):\n"
+"        if action == \"extend\":\n"
+"            lvalue = value.split(\",\")\n"
+"            values.ensure_value(dest, []).extend(lvalue)\n"
+"        else:\n"
+"            Option.take_action(\n"
+"                self, action, dest, opt, value, values, parser)"
+msgstr ""
+
+#: ../../library/optparse.rst:2141
 msgid "Features of note:"
 msgstr "참고할만한 특징:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2011
+#: ../../library/optparse.rst:2143
 msgid ""
 "``\"extend\"`` both expects a value on the command-line and stores that "
 "value somewhere, so it goes in both :attr:`~Option.STORE_ACTIONS` and "
@@ -2913,7 +3859,7 @@ msgstr ""
 "``\"extend\"``\\는 명령 줄에서 값을 기대하기도 하고 그 값을 어딘가에 저장하기도 하므로, "
 ":attr:`~Option.STORE_ACTIONS`\\와 :attr:`~Option.TYPED_ACTIONS` 모두에 들어갑니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2015
+#: ../../library/optparse.rst:2147
 msgid ""
 "to ensure that :mod:`optparse` assigns the default type of ``\"string\"``"
 " to ``\"extend\"`` actions, we put the ``\"extend\"`` action in "
@@ -2922,7 +3868,7 @@ msgstr ""
 ":mod:`optparse`\\가 기본형 ``\"string\"``\\을 ``\"extend\"`` 액션에 대입하도록 하기 위해, "
 ":attr:`~Option.ALWAYS_TYPED_ACTIONS`\\에도 ``\"extend\"`` 액션을 넣습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2019
+#: ../../library/optparse.rst:2151
 msgid ""
 ":meth:`MyOption.take_action` implements just this one new action, and "
 "passes control back to :meth:`Option.take_action` for the standard "
@@ -2931,7 +3877,7 @@ msgstr ""
 ":meth:`MyOption.take_action`\\은 이 하나의 새로운 액션만 구현하고, 표준 :mod:`optparse` "
 "액션을 위해 제어를 :meth:`Option.take_action`\\으로 되돌립니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2023
+#: ../../library/optparse.rst:2155
 msgid ""
 "``values`` is an instance of the optparse_parser.Values class, which "
 "provides the very useful :meth:`ensure_value` method. "
@@ -2942,18 +3888,23 @@ msgstr ""
 "optparse_parser.Values 클래스의 인스턴스입니다. :meth:`ensure_value`\\는 본질적으로 안전밸브가 "
 "있는 :func:`getattr`\\입니다; 다음과 같이 호출됩니다 ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/optparse.rst:2029
+#: ../../library/optparse.rst:2159
+msgid "values.ensure_value(attr, value)"
+msgstr ""
+
+#: ../../library/optparse.rst:2161
+#, fuzzy
 msgid ""
 "If the ``attr`` attribute of ``values`` doesn't exist or is ``None``, "
-"then ensure_value() first sets it to ``value``, and then returns 'value. "
-"This is very handy for actions like ``\"extend\"``, ``\"append\"``, and "
-"``\"count\"``, all of which accumulate data in a variable and expect that"
-" variable to be of a certain type (a list for the first two, an integer "
-"for the latter).  Using :meth:`ensure_value` means that scripts using "
-"your action don't have to worry about setting a default value for the "
-"option destinations in question; they can just leave the default as "
-"``None`` and :meth:`ensure_value` will take care of getting it right when"
-" it's needed."
+"then ensure_value() first sets it to ``value``, and then returns "
+"``value``. This is very handy for actions like ``\"extend\"``, "
+"``\"append\"``, and ``\"count\"``, all of which accumulate data in a "
+"variable and expect that variable to be of a certain type (a list for the"
+" first two, an integer for the latter).  Using :meth:`ensure_value` means"
+" that scripts using your action don't have to worry about setting a "
+"default value for the option destinations in question; they can just "
+"leave the default as ``None`` and :meth:`ensure_value` will take care of "
+"getting it right when it's needed."
 msgstr ""
 "``values``\\의 ``attr`` 어트리뷰트가 존재하지 않거나 ``None``\\이면, ensure_value()는 먼저 "
 "이를 ``value``\\로 설정한 다음, ``value``\\를 반환합니다. 이것은 ``\"extend\"``, "
@@ -2962,4 +3913,44 @@ msgstr ""
 ":meth:`ensure_value`\\를 사용한다는 것은 액션을 사용하는 스크립트가 문제의 옵션 대상에 대한 기본값 설정에 대해 "
 "걱정할 필요가 없음을 의미합니다; 기본값을 ``None``\\으로 그대로 둘 수 있으며 :meth:`ensure_value`\\는 "
 "필요할 때 올바르게 처리합니다."
+
+#: ../../library/optparse.rst:2172
+#, fuzzy
+msgid "Exceptions"
+msgstr "옵션(option)"
+
+#: ../../library/optparse.rst:2176
+msgid ""
+"Raised if an :class:`Option` instance is created with invalid or "
+"inconsistent arguments."
+msgstr ""
+
+#: ../../library/optparse.rst:2181
+msgid "Raised if conflicting options are added to an :class:`OptionParser`."
+msgstr ""
+
+#: ../../library/optparse.rst:2185
+msgid "Raised if an invalid option value is encountered on the command line."
+msgstr ""
+
+#: ../../library/optparse.rst:2189
+#, fuzzy
+msgid "Raised if an invalid option is passed on the command line."
+msgstr "다음과 같은 명령 줄을 구문 분석할 때 ::"
+
+#: ../../library/optparse.rst:2193
+msgid "Raised if an ambiguous option is passed on the command line."
+msgstr ""
+
+#~ msgid ""
+#~ "The :mod:`optparse` module is deprecated "
+#~ "and will not be developed further; "
+#~ "development will continue with the "
+#~ ":mod:`argparse` module."
+#~ msgstr ""
+#~ ":mod:`optparse` 모듈은 폐지되었으며 더는 개발되지 않습니다;"
+#~ " 개발은 :mod:`argparse` 모듈로 계속될 것입니다."
+
+#~ msgid "store a constant value"
+#~ msgstr "상숫값을 저장합니다"
 

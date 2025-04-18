@@ -7,28 +7,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 08:18+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/c-api/function.rst:6
+#: ../../c-api/function.rst:6
 msgid "Function Objects"
 msgstr "함수 객체"
 
-#: ../Doc/c-api/function.rst:10
+#: ../../c-api/function.rst:10
 msgid "There are a few functions specific to Python functions."
 msgstr "파이썬 함수와 관련된 몇 가지 함수가 있습니다."
 
-#: ../Doc/c-api/function.rst:15
+#: ../../c-api/function.rst:15
 msgid "The C structure used for functions."
 msgstr "함수에 사용되는 C 구조체."
 
-#: ../Doc/c-api/function.rst:22
+#: ../../c-api/function.rst:22
 msgid ""
 "This is an instance of :c:type:`PyTypeObject` and represents the Python "
 "function type.  It is exposed to Python programmers as "
@@ -37,7 +37,7 @@ msgstr ""
 "이것은 :c:type:`PyTypeObject`\\의 인스턴스이며 파이썬 함수 형을 나타냅니다. 파이썬 프로그래머에게 "
 "``types.FunctionType``\\으로 노출됩니다."
 
-#: ../Doc/c-api/function.rst:28
+#: ../../c-api/function.rst:28
 msgid ""
 "Return true if *o* is a function object (has type "
 ":c:data:`PyFunction_Type`). The parameter must not be ``NULL``.  This "
@@ -46,7 +46,7 @@ msgstr ""
 "*o*\\가 함수 객체(:c:data:`PyFunction_Type` 형)면 참을 반환합니다. 매개 변수는 ``NULL``\\이 "
 "아니어야 합니다. 이 함수는 항상 성공합니다."
 
-#: ../Doc/c-api/function.rst:34
+#: ../../c-api/function.rst:34
 msgid ""
 "Return a new function object associated with the code object *code*. "
 "*globals* must be a dictionary with the global variables accessible to "
@@ -55,82 +55,211 @@ msgstr ""
 "코드 객체 *code*\\와 연관된 새 함수 객체를 반환합니다. *globals*\\는 함수에서 액세스할 수 있는 전역 변수가 있는"
 " 딕셔너리이어야 합니다."
 
-#: ../Doc/c-api/function.rst:37
+#: ../../c-api/function.rst:37
+#, fuzzy
 msgid ""
 "The function's docstring and name are retrieved from the code object. "
-"*__module__* is retrieved from *globals*. The argument defaults, "
-"annotations and closure are set to ``NULL``. *__qualname__* is set to the"
-" same value as the function's name."
+":attr:`~function.__module__` is retrieved from *globals*. The argument "
+"defaults, annotations and closure are set to ``NULL``. "
+":attr:`~function.__qualname__` is set to the same value as the code "
+"object's :attr:`~codeobject.co_qualname` field."
 msgstr ""
 "함수의 독스트링과 이름은 코드 객체에서 가져옵니다. *__module__*\\은 *globals*\\에서 가져옵니다. 인자 기본값,"
 " 어노테이션 및 클로저는 ``NULL``\\로 설정됩니다. *__qualname__*\\은 함수의 이름과 같은 값으로 설정됩니다."
 
-#: ../Doc/c-api/function.rst:44
+#: ../../c-api/function.rst:46
+#, fuzzy
 msgid ""
 "As :c:func:`PyFunction_New`, but also allows setting the function "
-"object's ``__qualname__`` attribute.  *qualname* should be a unicode "
-"object or ``NULL``; if ``NULL``, the ``__qualname__`` attribute is set to"
-" the same value as its ``__name__`` attribute."
+"object's :attr:`~function.__qualname__` attribute. *qualname* should be a"
+" unicode object or ``NULL``; if ``NULL``, the :attr:`!__qualname__` "
+"attribute is set to the same value as the code object's "
+":attr:`~codeobject.co_qualname` field."
 msgstr ""
 ":c:func:`PyFunction_New`\\와 비슷하지만, 함수 객체의 ``__qualname__`` 어트리뷰트를 설정할 수도 "
 "있도록 합니다. *qualname*\\는 유니코드 객체나 ``NULL``\\이어야 합니다; ``NULL``\\이면, "
 "``__qualname__`` 어트리뷰트는 ``__name__`` 어트리뷰트와 같은 값으로 설정됩니다."
 
-#: ../Doc/c-api/function.rst:54
+#: ../../c-api/function.rst:57
 msgid "Return the code object associated with the function object *op*."
 msgstr "함수 객체 *op*\\와 연관된 코드 객체를 반환합니다."
 
-#: ../Doc/c-api/function.rst:59
+#: ../../c-api/function.rst:62
 msgid "Return the globals dictionary associated with the function object *op*."
 msgstr "함수 객체 *op*\\와 연관된 전역 딕셔너리를 반환합니다."
 
-#: ../Doc/c-api/function.rst:64
+#: ../../c-api/function.rst:67
 msgid ""
-"Return the *__module__* attribute of the function object *op*. This is "
-"normally a string containing the module name, but can be set to any other"
-" object by Python code."
+"Return a :term:`borrowed reference` to the :attr:`~function.__module__` "
+"attribute of the :ref:`function object <user-defined-funcs>` *op*. It can"
+" be *NULL*."
+msgstr ""
+
+#: ../../c-api/function.rst:71
+#, fuzzy
+msgid ""
+"This is normally a :class:`string <str>` containing the module name, but "
+"can be set to any other object by Python code."
 msgstr ""
 "함수 객체 *op*\\의 *__module__* 어트리뷰트를 반환합니다. 이것은 일반적으로 모듈 이름을 포함하는 문자열이지만, "
 "파이썬 코드로 다른 객체로 설정할 수 있습니다."
 
-#: ../Doc/c-api/function.rst:71
+#: ../../c-api/function.rst:77
 msgid ""
 "Return the argument default values of the function object *op*. This can "
 "be a tuple of arguments or ``NULL``."
 msgstr "함수 객체 *op*\\의 인자 기본값을 반환합니다. 이는 인자의 튜플이나 ``NULL``\\일 수 있습니다."
 
-#: ../Doc/c-api/function.rst:77
+#: ../../c-api/function.rst:83
 msgid ""
 "Set the argument default values for the function object *op*. *defaults* "
 "must be ``Py_None`` or a tuple."
 msgstr "함수 객체 *op*\\의 인자 기본값을 설정합니다. *defaults*\\는 ``Py_None`` 이나 튜플이어야 합니다."
 
-#: ../Doc/c-api/function.rst:80 ../Doc/c-api/function.rst:94
-#: ../Doc/c-api/function.rst:108
+#: ../../c-api/function.rst:86 ../../c-api/function.rst:109
+#: ../../c-api/function.rst:123
 msgid "Raises :exc:`SystemError` and returns ``-1`` on failure."
 msgstr "실패하면 :exc:`SystemError`\\를 발생시키고 ``-1``\\을 반환합니다."
 
-#: ../Doc/c-api/function.rst:85
+#: ../../c-api/function.rst:91
+msgid "Set the vectorcall field of a given function object *func*."
+msgstr ""
+
+#: ../../c-api/function.rst:93
+msgid ""
+"Warning: extensions using this API must preserve the behavior of the "
+"unaltered (default) vectorcall function!"
+msgstr ""
+
+#: ../../c-api/function.rst:100
 msgid ""
 "Return the closure associated with the function object *op*. This can be "
 "``NULL`` or a tuple of cell objects."
 msgstr "함수 객체 *op*\\와 연관된 클로저를 반환합니다. 이것은 ``NULL`` 이나 셀 객체의 튜플일 수 있습니다."
 
-#: ../Doc/c-api/function.rst:91
+#: ../../c-api/function.rst:106
 msgid ""
 "Set the closure associated with the function object *op*. *closure* must "
 "be ``Py_None`` or a tuple of cell objects."
 msgstr "함수 객체 *op*\\와 연관된 클로저를 설정합니다. *closure*\\는 ``Py_None`` 이나 셀 객체의 튜플이어야 합니다."
 
-#: ../Doc/c-api/function.rst:99
+#: ../../c-api/function.rst:114
 msgid ""
 "Return the annotations of the function object *op*. This can be a mutable"
 " dictionary or ``NULL``."
 msgstr "함수 객체 *op*\\의 어노테이션을 반환합니다. 이것은 가변 딕셔너리나 ``NULL`` 일 수 있습니다."
 
-#: ../Doc/c-api/function.rst:105
+#: ../../c-api/function.rst:120
 msgid ""
 "Set the annotations for the function object *op*. *annotations* must be a"
 " dictionary or ``Py_None``."
 msgstr "함수 객체 *op*\\의 어노테이션을 설정합니다. *annotations*\\은 딕셔너리나 ``Py_None`` 이어야 합니다."
+
+#: ../../c-api/function.rst:128
+msgid ""
+"Register *callback* as a function watcher for the current interpreter. "
+"Return an ID which may be passed to :c:func:`PyFunction_ClearWatcher`. In"
+" case of error (e.g. no more watcher IDs available), return ``-1`` and "
+"set an exception."
+msgstr ""
+
+#: ../../c-api/function.rst:138
+msgid ""
+"Clear watcher identified by *watcher_id* previously returned from "
+":c:func:`PyFunction_AddWatcher` for the current interpreter. Return ``0``"
+" on success, or ``-1`` and set an exception on error (e.g.  if the given "
+"*watcher_id* was never registered.)"
+msgstr ""
+
+#: ../../c-api/function.rst:148
+msgid "Enumeration of possible function watcher events:"
+msgstr ""
+
+#: ../../c-api/function.rst:150
+msgid "``PyFunction_EVENT_CREATE``"
+msgstr ""
+
+#: ../../c-api/function.rst:151
+msgid "``PyFunction_EVENT_DESTROY``"
+msgstr ""
+
+#: ../../c-api/function.rst:152
+msgid "``PyFunction_EVENT_MODIFY_CODE``"
+msgstr ""
+
+#: ../../c-api/function.rst:153
+msgid "``PyFunction_EVENT_MODIFY_DEFAULTS``"
+msgstr ""
+
+#: ../../c-api/function.rst:154
+msgid "``PyFunction_EVENT_MODIFY_KWDEFAULTS``"
+msgstr ""
+
+#: ../../c-api/function.rst:161
+msgid "Type of a function watcher callback function."
+msgstr ""
+
+#: ../../c-api/function.rst:163
+msgid ""
+"If *event* is ``PyFunction_EVENT_CREATE`` or ``PyFunction_EVENT_DESTROY``"
+" then *new_value* will be ``NULL``. Otherwise, *new_value* will hold a "
+":term:`borrowed reference` to the new value that is about to be stored in"
+" *func* for the attribute that is being modified."
+msgstr ""
+
+#: ../../c-api/function.rst:168
+msgid ""
+"The callback may inspect but must not modify *func*; doing so could have "
+"unpredictable effects, including infinite recursion."
+msgstr ""
+
+#: ../../c-api/function.rst:171
+msgid ""
+"If *event* is ``PyFunction_EVENT_CREATE``, then the callback is invoked "
+"after `func` has been fully initialized. Otherwise, the callback is "
+"invoked before the modification to *func* takes place, so the prior state"
+" of *func* can be inspected. The runtime is permitted to optimize away "
+"the creation of function objects when possible. In such cases no event "
+"will be emitted. Although this creates the possibility of an observable "
+"difference of runtime behavior depending on optimization decisions, it "
+"does not change the semantics of the Python code being executed."
+msgstr ""
+
+#: ../../c-api/function.rst:180
+msgid ""
+"If *event* is ``PyFunction_EVENT_DESTROY``,  Taking a reference in the "
+"callback to the about-to-be-destroyed function will resurrect it, "
+"preventing it from being freed at this time. When the resurrected object "
+"is destroyed later, any watcher callbacks active at that time will be "
+"called again."
+msgstr ""
+
+#: ../../c-api/function.rst:185
+msgid ""
+"If the callback sets an exception, it must return ``-1``; this exception "
+"will be printed as an unraisable exception using "
+":c:func:`PyErr_WriteUnraisable`. Otherwise it should return ``0``."
+msgstr ""
+
+#: ../../c-api/function.rst:189
+msgid ""
+"There may already be a pending exception set on entry to the callback. In"
+" this case, the callback should return ``0`` with the same exception "
+"still set. This means the callback may not call any other API that can "
+"set an exception unless it saves and clears the exception state first, "
+"and restores it before returning."
+msgstr ""
+
+#: ../../c-api/function.rst:8
+msgid "object"
+msgstr ""
+
+#: ../../c-api/function.rst:8
+#, fuzzy
+msgid "function"
+msgstr "함수 객체"
+
+#: ../../c-api/function.rst:20
+msgid "MethodType (in module types)"
+msgstr ""
 

@@ -7,60 +7,378 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 15:23+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/library/cmath.rst:2
-msgid ":mod:`cmath` --- Mathematical functions for complex numbers"
+#: ../../library/cmath.rst:2
+#, fuzzy
+msgid ":mod:`!cmath` --- Mathematical functions for complex numbers"
 msgstr ":mod:`cmath` --- 복소수를 위한 수학 함수"
 
-#: ../Doc/library/cmath.rst:9
+#: ../../library/cmath.rst:9
+#, fuzzy
 msgid ""
 "This module provides access to mathematical functions for complex "
 "numbers.  The functions in this module accept integers, floating-point "
 "numbers or complex numbers as arguments. They will also accept any Python"
-" object that has either a :meth:`__complex__` or a :meth:`__float__` "
-"method: these methods are used to convert the object to a complex or "
-"floating-point number, respectively, and the function is then applied to "
-"the result of the conversion."
+" object that has either a :meth:`~object.__complex__` or a "
+":meth:`~object.__float__` method: these methods are used to convert the "
+"object to a complex or floating-point number, respectively, and the "
+"function is then applied to the result of the conversion."
 msgstr ""
 "이 모듈은 복소수를 위한 수학 함수에 대한 액세스를 제공합니다. 이 모듈의 함수는 정수, 부동 소수점 수 또는 복소수를 인자로 "
 "받아들입니다. 이들은 또한 :meth:`__complex__`\\나 :meth:`__float__` 메서드를 가진 임의의 파이썬 "
 "객체를 받아들일 것입니다: 이 메서드는 객체를 각각 복소수나 부동 소수점 수로 변환하기 위해 사용되며, 함수는 변환 결과에 "
 "적용됩니다."
 
-#: ../Doc/library/cmath.rst:18
+#: ../../library/cmath.rst:18
 msgid ""
-"On platforms with hardware and system-level support for signed zeros, "
-"functions involving branch cuts are continuous on *both* sides of the "
-"branch cut: the sign of the zero distinguishes one side of the branch cut"
-" from the other.  On platforms that do not support signed zeros the "
-"continuity is as specified below."
+"For functions involving branch cuts, we have the problem of deciding how "
+"to define those functions on the cut itself. Following Kahan's \"Branch "
+"cuts for complex elementary functions\" paper, as well as Annex G of C99 "
+"and later C standards, we use the sign of zero to distinguish one side of"
+" the branch cut from the other: for a branch cut along (a portion of) the"
+" real axis we look at the sign of the imaginary part, while for a branch "
+"cut along the imaginary axis we look at the sign of the real part."
 msgstr ""
-"부호 있는 0에 대한 하드웨어와 시스템 수준 지원이 있는 플랫폼에서, 분지 절단(branch cut)을 수반하는 함수는 분지 절단의"
-" *양* 면에서 연속입니다: 0의 부호는 분지 절단의 한 면을 다른 면과 구별합니다. 부호 있는 0을 지원하지 않는 플랫폼에서 "
-"연속성은 아래에 지정된 것과 같습니다."
 
-#: ../Doc/library/cmath.rst:26
+#: ../../library/cmath.rst:26
+msgid ""
+"For example, the :func:`cmath.sqrt` function has a branch cut along the "
+"negative real axis. An argument of ``complex(-2.0, -0.0)`` is treated as "
+"though it lies *below* the branch cut, and so gives a result on the "
+"negative imaginary axis::"
+msgstr ""
+
+#: ../../library/cmath.rst:31
+msgid ""
+">>> cmath.sqrt(complex(-2.0, -0.0))\n"
+"-1.4142135623730951j"
+msgstr ""
+
+#: ../../library/cmath.rst:34
+msgid ""
+"But an argument of ``complex(-2.0, 0.0)`` is treated as though it lies "
+"above the branch cut::"
+msgstr ""
+
+#: ../../library/cmath.rst:37
+msgid ""
+">>> cmath.sqrt(complex(-2.0, 0.0))\n"
+"1.4142135623730951j"
+msgstr ""
+
+#: ../../library/cmath.rst:42
+#, fuzzy
+msgid "**Conversions to and from polar coordinates**"
+msgstr "극좌표 변환"
+
+#: ../../library/cmath.rst:44
+msgid ":func:`phase(z) <phase>`"
+msgstr ""
+
+#: ../../library/cmath.rst:44
+#, fuzzy
+msgid "Return the phase of *z*"
+msgstr "*x*\\의 사인을 반환합니다."
+
+#: ../../library/cmath.rst:45
+msgid ":func:`polar(z) <polar>`"
+msgstr ""
+
+#: ../../library/cmath.rst:45
+#, fuzzy
+msgid "Return the representation of *z* in polar coordinates"
+msgstr "극좌표 변환"
+
+#: ../../library/cmath.rst:46
+msgid ":func:`rect(r, phi) <rect>`"
+msgstr ""
+
+#: ../../library/cmath.rst:46
+#, fuzzy
+msgid "Return the complex number *z* with polar coordinates *r* and *phi*"
+msgstr ""
+"극좌표 *r*\\과 *phi*\\를 가지는 복소수 *x*\\를 반환합니다. ``r * (math.cos(phi) + "
+"math.sin(phi)*1j)``\\와 동등합니다."
+
+#: ../../library/cmath.rst:48
+#, fuzzy
+msgid "**Power and logarithmic functions**"
+msgstr "거듭제곱과 로그 함수"
+
+#: ../../library/cmath.rst:50
+msgid ":func:`exp(z) <exp>`"
+msgstr ""
+
+#: ../../library/cmath.rst:50
+msgid "Return *e* raised to the power *z*"
+msgstr ""
+
+#: ../../library/cmath.rst:51
+msgid ":func:`log(z[, base]) <log>`"
+msgstr ""
+
+#: ../../library/cmath.rst:51
+msgid "Return the logarithm of *z* to the given *base* (*e* by default)"
+msgstr ""
+
+#: ../../library/cmath.rst:52
+msgid ":func:`log10(z) <log10>`"
+msgstr ""
+
+#: ../../library/cmath.rst:52
+#, fuzzy
+msgid "Return the base-10 logarithm of *z*"
+msgstr "*x*\\의 사인을 반환합니다."
+
+#: ../../library/cmath.rst:53
+msgid ":func:`sqrt(z) <sqrt>`"
+msgstr ""
+
+#: ../../library/cmath.rst:53
+#, fuzzy
+msgid "Return the square root of *z*"
+msgstr "*x*\\의 사인을 반환합니다."
+
+#: ../../library/cmath.rst:55
+#, fuzzy
+msgid "**Trigonometric functions**"
+msgstr "삼각 함수"
+
+#: ../../library/cmath.rst:57
+msgid ":func:`acos(z) <acos>`"
+msgstr ""
+
+#: ../../library/cmath.rst:57
+#, fuzzy
+msgid "Return the arc cosine of *z*"
+msgstr "*x*\\의 코사인을 반환합니다."
+
+#: ../../library/cmath.rst:58
+msgid ":func:`asin(z) <asin>`"
+msgstr ""
+
+#: ../../library/cmath.rst:58
+#, fuzzy
+msgid "Return the arc sine of *z*"
+msgstr "*x*\\의 코사인을 반환합니다."
+
+#: ../../library/cmath.rst:59
+msgid ":func:`atan(z) <atan>`"
+msgstr ""
+
+#: ../../library/cmath.rst:59
+#, fuzzy
+msgid "Return the arc tangent of *z*"
+msgstr "*x*\\의 탄젠트를 반환합니다."
+
+#: ../../library/cmath.rst:60
+msgid ":func:`cos(z) <cos>`"
+msgstr ""
+
+#: ../../library/cmath.rst:60
+#, fuzzy
+msgid "Return the cosine of *z*"
+msgstr "*x*\\의 코사인을 반환합니다."
+
+#: ../../library/cmath.rst:61
+msgid ":func:`sin(z) <sin>`"
+msgstr ""
+
+#: ../../library/cmath.rst:61
+#, fuzzy
+msgid "Return the sine of *z*"
+msgstr "*x*\\의 사인을 반환합니다."
+
+#: ../../library/cmath.rst:62
+msgid ":func:`tan(z) <tan>`"
+msgstr ""
+
+#: ../../library/cmath.rst:62
+#, fuzzy
+msgid "Return the tangent of *z*"
+msgstr "*x*\\의 탄젠트를 반환합니다."
+
+#: ../../library/cmath.rst:64
+#, fuzzy
+msgid "**Hyperbolic functions**"
+msgstr "쌍곡선(hyperbolic) 함수"
+
+#: ../../library/cmath.rst:66
+msgid ":func:`acosh(z) <acosh>`"
+msgstr ""
+
+#: ../../library/cmath.rst:66
+#, fuzzy
+msgid "Return the inverse hyperbolic cosine of *z*"
+msgstr "*x*\\의 쌍곡선 코사인을 반환합니다."
+
+#: ../../library/cmath.rst:67
+msgid ":func:`asinh(z) <asinh>`"
+msgstr ""
+
+#: ../../library/cmath.rst:67
+#, fuzzy
+msgid "Return the inverse hyperbolic sine of *z*"
+msgstr "*x*\\의 쌍곡선 사인을 반환합니다."
+
+#: ../../library/cmath.rst:68
+msgid ":func:`atanh(z) <atanh>`"
+msgstr ""
+
+#: ../../library/cmath.rst:68
+#, fuzzy
+msgid "Return the inverse hyperbolic tangent of *z*"
+msgstr "*x*\\의 쌍곡선 탄젠트를 반환합니다."
+
+#: ../../library/cmath.rst:69
+msgid ":func:`cosh(z) <cosh>`"
+msgstr ""
+
+#: ../../library/cmath.rst:69
+#, fuzzy
+msgid "Return the hyperbolic cosine of *z*"
+msgstr "*x*\\의 쌍곡선 코사인을 반환합니다."
+
+#: ../../library/cmath.rst:70
+msgid ":func:`sinh(z) <sinh>`"
+msgstr ""
+
+#: ../../library/cmath.rst:70
+#, fuzzy
+msgid "Return the hyperbolic sine of *z*"
+msgstr "*x*\\의 쌍곡선 사인을 반환합니다."
+
+#: ../../library/cmath.rst:71
+msgid ":func:`tanh(z) <tanh>`"
+msgstr ""
+
+#: ../../library/cmath.rst:71
+#, fuzzy
+msgid "Return the hyperbolic tangent of *z*"
+msgstr "*x*\\의 쌍곡선 탄젠트를 반환합니다."
+
+#: ../../library/cmath.rst:73
+#, fuzzy
+msgid "**Classification functions**"
+msgstr "분류 함수"
+
+#: ../../library/cmath.rst:75
+msgid ":func:`isfinite(z) <isfinite>`"
+msgstr ""
+
+#: ../../library/cmath.rst:75
+msgid "Check if all components of *z* are finite"
+msgstr ""
+
+#: ../../library/cmath.rst:76
+msgid ":func:`isinf(z) <isinf>`"
+msgstr ""
+
+#: ../../library/cmath.rst:76
+msgid "Check if any component of *z* is infinite"
+msgstr ""
+
+#: ../../library/cmath.rst:77
+msgid ":func:`isnan(z) <isnan>`"
+msgstr ""
+
+#: ../../library/cmath.rst:77
+msgid "Check if any component of *z* is a NaN"
+msgstr ""
+
+#: ../../library/cmath.rst:78
+msgid ":func:`isclose(a, b, *, rel_tol, abs_tol) <isclose>`"
+msgstr ""
+
+#: ../../library/cmath.rst:78
+#, fuzzy
+msgid "Check if the values *a* and *b* are close to each other"
+msgstr "*a*\\와 *b* 값이 서로 가까우면 ``True``\\를 반환하고, 그렇지 않으면 ``False``\\를 반환합니다."
+
+#: ../../library/cmath.rst:80
+#, fuzzy
+msgid "**Constants**"
+msgstr "상수"
+
+#: ../../library/cmath.rst:82
+msgid ":data:`pi`"
+msgstr ""
+
+#: ../../library/cmath.rst:82
+msgid "*π* = 3.141592..."
+msgstr ""
+
+#: ../../library/cmath.rst:83
+msgid ":data:`e`"
+msgstr ""
+
+#: ../../library/cmath.rst:83
+msgid "*e* = 2.718281..."
+msgstr ""
+
+#: ../../library/cmath.rst:84
+msgid ":data:`tau`"
+msgstr ""
+
+#: ../../library/cmath.rst:84
+msgid "*τ* = 2\\ *π* = 6.283185..."
+msgstr ""
+
+#: ../../library/cmath.rst:85
+msgid ":data:`inf`"
+msgstr ""
+
+#: ../../library/cmath.rst:85
+msgid "Positive infinity"
+msgstr ""
+
+#: ../../library/cmath.rst:86
+msgid ":data:`infj`"
+msgstr ""
+
+#: ../../library/cmath.rst:86
+msgid "Pure imaginary infinity"
+msgstr ""
+
+#: ../../library/cmath.rst:87
+msgid ":data:`nan`"
+msgstr ""
+
+#: ../../library/cmath.rst:87
+msgid "\"Not a number\" (NaN)"
+msgstr ""
+
+#: ../../library/cmath.rst:88
+msgid ":data:`nanj`"
+msgstr ""
+
+#: ../../library/cmath.rst:88
+msgid "Pure imaginary NaN"
+msgstr ""
+
+#: ../../library/cmath.rst:93
 msgid "Conversions to and from polar coordinates"
 msgstr "극좌표 변환"
 
-#: ../Doc/library/cmath.rst:28
+#: ../../library/cmath.rst:95
+#, fuzzy
 msgid ""
 "A Python complex number ``z`` is stored internally using *rectangular* or"
 " *Cartesian* coordinates.  It is completely determined by its *real part*"
-" ``z.real`` and its *imaginary part* ``z.imag``.  In other words::"
+" ``z.real`` and its *imaginary part* ``z.imag``."
 msgstr ""
 "파이썬 복소수 ``z``\\는 *직교* 혹은 *데카르트* 좌표를 사용하여 내부적으로 저장됩니다. *실수부* ``z.real``\\과"
 " *허수부* ``z.imag``\\에 의해 완전히 결정됩니다. 다시 말해::"
 
-#: ../Doc/library/cmath.rst:35
+#: ../../library/cmath.rst:99
 msgid ""
 "*Polar coordinates* give an alternative way to represent a complex "
 "number.  In polar coordinates, a complex number *z* is defined by the "
@@ -74,235 +392,257 @@ msgstr ""
 "*z*\\에서 원점까지의 거리이며, 위상 *phi*\\는 양의 x축에서 원점과 *z*\\를 잇는 선분으로의 라디안(radian)으로"
 " 측정한 반 시계 방향 각도입니다."
 
-#: ../Doc/library/cmath.rst:42
+#: ../../library/cmath.rst:106
 msgid ""
 "The following functions can be used to convert from the native "
 "rectangular coordinates to polar coordinates and back."
 msgstr "네이티브 직교 좌표와 극좌표 간의 변환에 다음 함수를 사용할 수 있습니다."
 
-#: ../Doc/library/cmath.rst:47
+#: ../../library/cmath.rst:111
+#, fuzzy
 msgid ""
-"Return the phase of *x* (also known as the *argument* of *x*), as a "
-"float.  ``phase(x)`` is equivalent to ``math.atan2(x.imag, x.real)``.  "
-"The result lies in the range [-\\ *π*, *π*], and the branch cut for this "
-"operation lies along the negative real axis, continuous from above.  On "
-"systems with support for signed zeros (which includes most systems in "
-"current use), this means that the sign of the result is the same as the "
-"sign of ``x.imag``, even when ``x.imag`` is zero::"
+"Return the phase of *z* (also known as the *argument* of *z*), as a "
+"float. ``phase(z)`` is equivalent to ``math.atan2(z.imag, z.real)``.  The"
+" result lies in the range [-\\ *π*, *π*], and the branch cut for this "
+"operation lies along the negative real axis.  The sign of the result is "
+"the same as the sign of ``z.imag``, even when ``z.imag`` is zero::"
 msgstr ""
 "*x*\\의 위상(*x*\\의 *편각(argument)*\\이라고도 합니다)을 float로 반환합니다. ``phase(x)``\\는"
 " ``math.atan2(x.imag, x.real)``\\과 동등합니다. 결과는 [-\\ *π*, *π*] 범위에 놓이고, 이 "
 "작업의 분지 절단은 음의 실수 축에 놓이고, 위로부터 연속입니다. 부호 있는 0을 지원하는 시스템(현재 사용 중인 대부분의 시스템을"
 " 포함합니다)에서, 이는 결과의 부호가 ``x.imag``\\가 0일 때도 ``x.imag``\\의 부호와 같음을 의미합니다::"
 
-#: ../Doc/library/cmath.rst:64
+#: ../../library/cmath.rst:117
 msgid ""
-"The modulus (absolute value) of a complex number *x* can be computed "
+">>> phase(complex(-1.0, 0.0))\n"
+"3.141592653589793\n"
+">>> phase(complex(-1.0, -0.0))\n"
+"-3.141592653589793"
+msgstr ""
+
+#: ../../library/cmath.rst:125
+#, fuzzy
+msgid ""
+"The modulus (absolute value) of a complex number *z* can be computed "
 "using the built-in :func:`abs` function.  There is no separate "
 ":mod:`cmath` module function for this operation."
 msgstr ""
 "복소수 *x*\\의 모듈러스(절댓값)는 내장 :func:`abs` 함수를 사용하여 계산할 수 있습니다. 이 연산을 위한 별도의 "
 ":mod:`cmath` 모듈 함수는 없습니다."
 
-#: ../Doc/library/cmath.rst:71
+#: ../../library/cmath.rst:132
+#, fuzzy
 msgid ""
-"Return the representation of *x* in polar coordinates.  Returns a pair "
-"``(r, phi)`` where *r* is the modulus of *x* and phi is the phase of *x*."
-"  ``polar(x)`` is equivalent to ``(abs(x), phase(x))``."
+"Return the representation of *z* in polar coordinates.  Returns a pair "
+"``(r, phi)`` where *r* is the modulus of *z* and *phi* is the phase of "
+"*z*.  ``polar(z)`` is equivalent to ``(abs(z), phase(z))``."
 msgstr ""
 "*x* 표현을 극좌표로 반환합니다. 쌍 ``(r, phi)``\\를 반환합니다. 여기서 *r*\\은 *x*\\의 모듈러스이고 "
 "phi는 *x*\\의 위상입니다. ``polar(x)``\\는 ``(abs(x), phase(x))``\\와 동등합니다."
 
-#: ../Doc/library/cmath.rst:79
+#: ../../library/cmath.rst:140
+#, fuzzy
 msgid ""
-"Return the complex number *x* with polar coordinates *r* and *phi*. "
-"Equivalent to ``r * (math.cos(phi) + math.sin(phi)*1j)``."
+"Return the complex number *z* with polar coordinates *r* and *phi*. "
+"Equivalent to ``complex(r * math.cos(phi), r * math.sin(phi))``."
 msgstr ""
 "극좌표 *r*\\과 *phi*\\를 가지는 복소수 *x*\\를 반환합니다. ``r * (math.cos(phi) + "
 "math.sin(phi)*1j)``\\와 동등합니다."
 
-#: ../Doc/library/cmath.rst:84
+#: ../../library/cmath.rst:145
 msgid "Power and logarithmic functions"
 msgstr "거듭제곱과 로그 함수"
 
-#: ../Doc/library/cmath.rst:88
+#: ../../library/cmath.rst:149
+#, fuzzy
 msgid ""
-"Return *e* raised to the power *x*, where *e* is the base of natural "
+"Return *e* raised to the power *z*, where *e* is the base of natural "
 "logarithms."
 msgstr "*e*\\의 *x* 거듭제곱을 반환합니다. 여기서 *e*\\는 자연로그(natural logarithms)의 밑입니다."
 
-#: ../Doc/library/cmath.rst:94
+#: ../../library/cmath.rst:155
+#, fuzzy
 msgid ""
-"Returns the logarithm of *x* to the given *base*. If the *base* is not "
-"specified, returns the natural logarithm of *x*. There is one branch cut,"
-" from 0 along the negative real axis to -∞, continuous from above."
+"Return the logarithm of *z* to the given *base*. If the *base* is not "
+"specified, returns the natural logarithm of *z*. There is one branch cut,"
+" from 0 along the negative real axis to -∞."
 msgstr ""
 "주어진 *밑(base)*\\에 대한 *x*\\의 로그를 반환합니다. *base*\\가 지정되지 않으면, *x*\\의 자연로그를 "
 "반환합니다. 음의 실수 축을 따라 0에서부터 -∞ 까지 가고, 위로부터 연속인 하나의 분지 절단이 있습니다."
 
-#: ../Doc/library/cmath.rst:101
+#: ../../library/cmath.rst:162
+#, fuzzy
 msgid ""
-"Return the base-10 logarithm of *x*. This has the same branch cut as "
+"Return the base-10 logarithm of *z*. This has the same branch cut as "
 ":func:`log`."
 msgstr "*x*\\의 밑이 10인 로그를 반환합니다. 이것은 :func:`log`\\와 같은 분지 절단을 가집니다."
 
-#: ../Doc/library/cmath.rst:107
+#: ../../library/cmath.rst:168
+#, fuzzy
 msgid ""
-"Return the square root of *x*. This has the same branch cut as "
+"Return the square root of *z*. This has the same branch cut as "
 ":func:`log`."
 msgstr "*x*\\의 제곱근을 반환합니다. 이것은 :func:`log`\\와 같은 분지 절단을 가집니다."
 
-#: ../Doc/library/cmath.rst:111
+#: ../../library/cmath.rst:172
 msgid "Trigonometric functions"
 msgstr "삼각 함수"
 
-#: ../Doc/library/cmath.rst:115
+#: ../../library/cmath.rst:176
+#, fuzzy
 msgid ""
-"Return the arc cosine of *x*. There are two branch cuts: One extends "
-"right from 1 along the real axis to ∞, continuous from below. The other "
-"extends left from -1 along the real axis to -∞, continuous from above."
+"Return the arc cosine of *z*. There are two branch cuts: One extends "
+"right from 1 along the real axis to ∞. The other extends left from -1 "
+"along the real axis to -∞."
 msgstr ""
 "*x*\\의 아크 코사인을 반환합니다. 두 개의 분지 절단이 있습니다: 하나는 실수 축을 따라 1에서 오른쪽으로 ∞까지 확장하고, "
 "아래로부터 연속입니다. 다른 하나는 실수 축을 따라 -1에서 왼쪽으로 -∞까지 확장되고, 위에서부터 연속입니다."
 
-#: ../Doc/library/cmath.rst:122
-msgid "Return the arc sine of *x*. This has the same branch cuts as :func:`acos`."
+#: ../../library/cmath.rst:183
+#, fuzzy
+msgid "Return the arc sine of *z*. This has the same branch cuts as :func:`acos`."
 msgstr "*x*\\의 아크 사인을 반환합니다. 이것은 :func:`acos`\\와 같은 분지 절단을 가집니다."
 
-#: ../Doc/library/cmath.rst:127
+#: ../../library/cmath.rst:188
+#, fuzzy
 msgid ""
-"Return the arc tangent of *x*. There are two branch cuts: One extends "
-"from ``1j`` along the imaginary axis to ``∞j``, continuous from the "
-"right. The other extends from ``-1j`` along the imaginary axis to "
-"``-∞j``, continuous from the left."
+"Return the arc tangent of *z*. There are two branch cuts: One extends "
+"from ``1j`` along the imaginary axis to ``∞j``. The other extends from "
+"``-1j`` along the imaginary axis to ``-∞j``."
 msgstr ""
 "*x*\\의 아크 탄젠트를 반환합니다. 두 개의 분지 절단이 있습니다: 하나는 허수 축을 따라 ``1j``\\에서 "
 "``∞j``\\까지 확장되며, 오른쪽으로부터 연속입니다. 다른 하나는 허수 축을 따라 ``-1j``\\에서 ``-∞j``\\까지 "
 "확장되며, 왼쪽으로부터 연속입니다."
 
-#: ../Doc/library/cmath.rst:135
-msgid "Return the cosine of *x*."
+#: ../../library/cmath.rst:195
+#, fuzzy
+msgid "Return the cosine of *z*."
 msgstr "*x*\\의 코사인을 반환합니다."
 
-#: ../Doc/library/cmath.rst:140
-msgid "Return the sine of *x*."
+#: ../../library/cmath.rst:200
+#, fuzzy
+msgid "Return the sine of *z*."
 msgstr "*x*\\의 사인을 반환합니다."
 
-#: ../Doc/library/cmath.rst:145
-msgid "Return the tangent of *x*."
+#: ../../library/cmath.rst:205
+#, fuzzy
+msgid "Return the tangent of *z*."
 msgstr "*x*\\의 탄젠트를 반환합니다."
 
-#: ../Doc/library/cmath.rst:149
+#: ../../library/cmath.rst:209
 msgid "Hyperbolic functions"
 msgstr "쌍곡선(hyperbolic) 함수"
 
-#: ../Doc/library/cmath.rst:153
+#: ../../library/cmath.rst:213
+#, fuzzy
 msgid ""
-"Return the inverse hyperbolic cosine of *x*. There is one branch cut, "
-"extending left from 1 along the real axis to -∞, continuous from above."
+"Return the inverse hyperbolic cosine of *z*. There is one branch cut, "
+"extending left from 1 along the real axis to -∞."
 msgstr ""
 "*x*\\의 역 쌍곡선 코사인을 반환합니다. 하나의 분지 절단이 있습니다, 실수 축을 따라 1에서 왼쪽으로 -∞까지 확장되며 "
 "위로부터 연속입니다."
 
-#: ../Doc/library/cmath.rst:159
+#: ../../library/cmath.rst:219
+#, fuzzy
 msgid ""
-"Return the inverse hyperbolic sine of *x*. There are two branch cuts: One"
-" extends from ``1j`` along the imaginary axis to ``∞j``, continuous from "
-"the right.  The other extends from ``-1j`` along the imaginary axis to "
-"``-∞j``, continuous from the left."
+"Return the inverse hyperbolic sine of *z*. There are two branch cuts: One"
+" extends from ``1j`` along the imaginary axis to ``∞j``.  The other "
+"extends from ``-1j`` along the imaginary axis to ``-∞j``."
 msgstr ""
 "*x*\\의 역 쌍곡선 사인을 반환합니다. 두 개의 분지 절단이 있습니다: 하나는 허수 축을 따라 ``1j``\\에서 "
 "``∞j``\\까지 확장되며, 오른쪽으로부터 연속입니다. 다른 하나는 허수 축을 따라 ``-1j``\\에서 ``-∞j``\\까지 "
 "확장되며, 왼쪽으로부터 연속입니다."
 
-#: ../Doc/library/cmath.rst:167
+#: ../../library/cmath.rst:226
+#, fuzzy
 msgid ""
-"Return the inverse hyperbolic tangent of *x*. There are two branch cuts: "
-"One extends from ``1`` along the real axis to ``∞``, continuous from "
-"below. The other extends from ``-1`` along the real axis to ``-∞``, "
-"continuous from above."
+"Return the inverse hyperbolic tangent of *z*. There are two branch cuts: "
+"One extends from ``1`` along the real axis to ``∞``. The other extends "
+"from ``-1`` along the real axis to ``-∞``."
 msgstr ""
 "*x*\\의 역 쌍곡선 탄젠트를 반환합니다. 두 개의 분지 절단이 있습니다: 하나는 실수 축을 따라 ``1``\\에서 "
 "``∞``\\까지 확장되며, 아래로부터 연속입니다. 다른 하나는 실수 축을 따라 ``-1``\\에서 ``-∞``\\까지 확장되며, "
 "위로부터 연속입니다."
 
-#: ../Doc/library/cmath.rst:175
-msgid "Return the hyperbolic cosine of *x*."
+#: ../../library/cmath.rst:233
+#, fuzzy
+msgid "Return the hyperbolic cosine of *z*."
 msgstr "*x*\\의 쌍곡선 코사인을 반환합니다."
 
-#: ../Doc/library/cmath.rst:180
-msgid "Return the hyperbolic sine of *x*."
+#: ../../library/cmath.rst:238
+#, fuzzy
+msgid "Return the hyperbolic sine of *z*."
 msgstr "*x*\\의 쌍곡선 사인을 반환합니다."
 
-#: ../Doc/library/cmath.rst:185
-msgid "Return the hyperbolic tangent of *x*."
+#: ../../library/cmath.rst:243
+#, fuzzy
+msgid "Return the hyperbolic tangent of *z*."
 msgstr "*x*\\의 쌍곡선 탄젠트를 반환합니다."
 
-#: ../Doc/library/cmath.rst:189
+#: ../../library/cmath.rst:247
 msgid "Classification functions"
 msgstr "분류 함수"
 
-#: ../Doc/library/cmath.rst:193
+#: ../../library/cmath.rst:251
+#, fuzzy
 msgid ""
-"Return ``True`` if both the real and imaginary parts of *x* are finite, "
+"Return ``True`` if both the real and imaginary parts of *z* are finite, "
 "and ``False`` otherwise."
 msgstr "*x*\\의 실수부와 허수부가 모두 유한이면 ``True``\\를 반환하고, 그렇지 않으면 ``False``\\를 반환합니다."
 
-#: ../Doc/library/cmath.rst:201
+#: ../../library/cmath.rst:259
+#, fuzzy
 msgid ""
-"Return ``True`` if either the real or the imaginary part of *x* is an "
+"Return ``True`` if either the real or the imaginary part of *z* is an "
 "infinity, and ``False`` otherwise."
 msgstr "*x*\\의 실수부나 허수부 중 하나가 무한이면 ``True``\\를 반환하고, 그렇지 않으면 ``False``\\를 반환합니다."
 
-#: ../Doc/library/cmath.rst:207
+#: ../../library/cmath.rst:265
+#, fuzzy
 msgid ""
-"Return ``True`` if either the real or the imaginary part of *x* is a NaN,"
+"Return ``True`` if either the real or the imaginary part of *z* is a NaN,"
 " and ``False`` otherwise."
 msgstr "*x*\\의 실수부나 허수부 중 하나가 NaN이면 ``True``\\를 반환하고, 그렇지 않으면 ``False``\\를 반환합니다."
 
-#: ../Doc/library/cmath.rst:213
+#: ../../library/cmath.rst:271
 msgid ""
 "Return ``True`` if the values *a* and *b* are close to each other and "
 "``False`` otherwise."
 msgstr "*a*\\와 *b* 값이 서로 가까우면 ``True``\\를 반환하고, 그렇지 않으면 ``False``\\를 반환합니다."
 
-#: ../Doc/library/cmath.rst:216
+#: ../../library/cmath.rst:274
+#, fuzzy
 msgid ""
 "Whether or not two values are considered close is determined according to"
-" given absolute and relative tolerances."
+" given absolute and relative tolerances.  If no errors occur, the result "
+"will be: ``abs(a-b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)``."
 msgstr "두 값을 가까운 것으로 간주하는지는 주어진 절대와 상대 허용 오차에 따라 결정됩니다."
 
-#: ../Doc/library/cmath.rst:219
+#: ../../library/cmath.rst:278
+#, fuzzy
 msgid ""
 "*rel_tol* is the relative tolerance -- it is the maximum allowed "
 "difference between *a* and *b*, relative to the larger absolute value of "
 "*a* or *b*. For example, to set a tolerance of 5%, pass ``rel_tol=0.05``."
 "  The default tolerance is ``1e-09``, which assures that the two values "
-"are the same within about 9 decimal digits.  *rel_tol* must be greater "
-"than zero."
+"are the same within about 9 decimal digits.  *rel_tol* must be "
+"nonnegative and less than ``1.0``."
 msgstr ""
 "*rel_tol*\\은 상대 허용 오차입니다 -- *a*\\와 *b* 사이의 최대 허용 차이이고, *a*\\나 *b*\\의 절댓값 "
 "중 더 큰 값에 상대적입니다. 예를 들어, 5%의 허용 오차를 설정하려면, ``rel_tol=0.05``\\를 전달하십시오. 기본 "
 "허용 오차는 ``1e-09``\\이며, 이는 두 값이 약 9자리 십진 숫자 내에서 같음을 보장합니다. *rel_tol*\\은 0보다"
 " 커야 합니다."
 
-#: ../Doc/library/cmath.rst:225
+#: ../../library/cmath.rst:285
 msgid ""
-"*abs_tol* is the minimum absolute tolerance -- useful for comparisons "
-"near zero. *abs_tol* must be at least zero."
+"*abs_tol* is the absolute tolerance; it defaults to ``0.0`` and it must "
+"be nonnegative.  When comparing ``x`` to ``0.0``, ``isclose(x, 0)`` is "
+"computed as ``abs(x) <= rel_tol  * abs(x)``, which is ``False`` for any "
+"``x`` and rel_tol less than ``1.0``.  So add an appropriate positive "
+"abs_tol argument to the call."
 msgstr ""
-"*abs_tol*\\은 최소 절대 허용 오차입니다 -- 0에 가까운 비교에 유용합니다. *abs_tol*\\은 최소한 0이어야 "
-"합니다."
 
-#: ../Doc/library/cmath.rst:228
-msgid ""
-"If no errors occur, the result will be: ``abs(a-b) <= max(rel_tol * "
-"max(abs(a), abs(b)), abs_tol)``."
-msgstr ""
-"에러가 발생하지 않으면, 결과는 다음과 같습니다: ``abs(a-b) <= max(rel_tol * max(abs(a), "
-"abs(b)), abs_tol)``."
-
-#: ../Doc/library/cmath.rst:231
+#: ../../library/cmath.rst:291
 msgid ""
 "The IEEE 754 special values of ``NaN``, ``inf``, and ``-inf`` will be "
 "handled according to IEEE rules.  Specifically, ``NaN`` is not considered"
@@ -313,49 +653,49 @@ msgstr ""
 "``NaN``\\은 ``NaN``\\을 포함한 다른 모는 값과 가깝다고 간주하지 않습니다. ``inf``\\와 ``-inf``\\는"
 " 그들 자신하고만 가깝다고 간주합니다."
 
-#: ../Doc/library/cmath.rst:240
+#: ../../library/cmath.rst:300
 msgid ":pep:`485` -- A function for testing approximate equality"
 msgstr ":pep:`485` -- 근사 동등을 검사하는 함수."
 
-#: ../Doc/library/cmath.rst:244
+#: ../../library/cmath.rst:304
 msgid "Constants"
 msgstr "상수"
 
-#: ../Doc/library/cmath.rst:248
+#: ../../library/cmath.rst:308
 msgid "The mathematical constant *π*, as a float."
 msgstr "수학 상수 *π*\\의 float 값."
 
-#: ../Doc/library/cmath.rst:253
+#: ../../library/cmath.rst:313
 msgid "The mathematical constant *e*, as a float."
 msgstr "수학 상수 *e*\\의 float 값."
 
-#: ../Doc/library/cmath.rst:258
+#: ../../library/cmath.rst:318
 msgid "The mathematical constant *τ*, as a float."
 msgstr "수학 상수 *τ*\\의 float 값."
 
-#: ../Doc/library/cmath.rst:265
+#: ../../library/cmath.rst:325
 msgid "Floating-point positive infinity. Equivalent to ``float('inf')``."
 msgstr "부동 소수점 양의 무한대. ``float('inf')``\\와 동등합니다."
 
-#: ../Doc/library/cmath.rst:272
+#: ../../library/cmath.rst:332
 msgid ""
 "Complex number with zero real part and positive infinity imaginary part. "
 "Equivalent to ``complex(0.0, float('inf'))``."
 msgstr "0 실수부와 양의 무한대 허수부를 갖는 복소수. ``complex(0.0, float('inf'))``\\와 동등합니다."
 
-#: ../Doc/library/cmath.rst:280
+#: ../../library/cmath.rst:340
 msgid ""
 "A floating-point \"not a number\" (NaN) value.  Equivalent to "
 "``float('nan')``."
 msgstr "부동 소수점 \"not a number\" (NaN) 값. ``float('nan')``\\과 동등합니다."
 
-#: ../Doc/library/cmath.rst:288
+#: ../../library/cmath.rst:348
 msgid ""
 "Complex number with zero real part and NaN imaginary part. Equivalent to "
 "``complex(0.0, float('nan'))``."
 msgstr "0 실수부와 NaN 허수부를 갖는 복소수. ``complex(0.0, float('nan'))``\\과 동등합니다."
 
-#: ../Doc/library/cmath.rst:296
+#: ../../library/cmath.rst:356
 msgid ""
 "Note that the selection of functions is similar, but not identical, to "
 "that in module :mod:`math`.  The reason for having two modules is that "
@@ -371,7 +711,7 @@ msgstr ""
 "반환하기보다 예외를 발생시키는 것이 좋습니다. 또한, :mod:`cmath`\\에 정의된 함수는, 결과를 실수로 표현할 수 있을 "
 "때도 항상 복소수를 반환합니다 (이때 복소수의 허수부는 0입니다)."
 
-#: ../Doc/library/cmath.rst:304
+#: ../../library/cmath.rst:364
 msgid ""
 "A note on branch cuts: They are curves along which the given function "
 "fails to be continuous.  They are a necessary feature of many complex "
@@ -386,7 +726,7 @@ msgstr ""
 "(너무 기초적이지 않은) 아무 책이나 참고하면 됩니다. 수치 계산의 목적으로 분지 절단을 적절히 선택하는 방법에 대한 정보에 "
 "대해서는, 다음과 같은 좋은 참고 문헌이 있습니다:"
 
-#: ../Doc/library/cmath.rst:314
+#: ../../library/cmath.rst:374
 msgid ""
 "Kahan, W:  Branch cuts for complex elementary functions; or, Much ado "
 "about nothing's sign bit.  In Iserles, A., and Powell, M. (eds.), The "
@@ -396,4 +736,49 @@ msgstr ""
 "Kahan, W: Branch cuts for complex elementary functions; or, Much ado "
 "about nothing's sign bit. Iserles, A., and Powell, M. (eds.), The state "
 "of the art in numerical analysis. Clarendon Press (1987) pp165--211."
+
+#: ../../library/cmath.rst:354
+msgid "module"
+msgstr ""
+
+#: ../../library/cmath.rst:354
+msgid "math"
+msgstr ""
+
+#~ msgid ""
+#~ "On platforms with hardware and "
+#~ "system-level support for signed zeros, "
+#~ "functions involving branch cuts are "
+#~ "continuous on *both* sides of the "
+#~ "branch cut: the sign of the zero"
+#~ " distinguishes one side of the branch"
+#~ " cut from the other.  On platforms"
+#~ " that do not support signed zeros "
+#~ "the continuity is as specified below."
+#~ msgstr ""
+#~ "부호 있는 0에 대한 하드웨어와 시스템 수준 지원이"
+#~ " 있는 플랫폼에서, 분지 절단(branch cut)을 수반하는"
+#~ " 함수는 분지 절단의 *양* 면에서 연속입니다: 0의"
+#~ " 부호는 분지 절단의 한 면을 다른 면과 "
+#~ "구별합니다. 부호 있는 0을 지원하지 않는 플랫폼에서 "
+#~ "연속성은 아래에 지정된 것과 같습니다."
+
+#~ msgid ""
+#~ "*abs_tol* is the minimum absolute "
+#~ "tolerance -- useful for comparisons near"
+#~ " zero. *abs_tol* must be at least "
+#~ "zero."
+#~ msgstr ""
+#~ "*abs_tol*\\은 최소 절대 허용 오차입니다 -- 0에"
+#~ " 가까운 비교에 유용합니다. *abs_tol*\\은 최소한 0이어야"
+#~ " 합니다."
+
+#~ msgid ""
+#~ "If no errors occur, the result "
+#~ "will be: ``abs(a-b) <= max(rel_tol * "
+#~ "max(abs(a), abs(b)), abs_tol)``."
+#~ msgstr ""
+#~ "에러가 발생하지 않으면, 결과는 다음과 같습니다: "
+#~ "``abs(a-b) <= max(rel_tol * max(abs(a), "
+#~ "abs(b)), abs_tol)``."
 

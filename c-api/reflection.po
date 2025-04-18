@@ -7,77 +7,116 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 03:37+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:6
+#: ../../c-api/reflection.rst:6
 msgid "Reflection"
 msgstr "리플렉션"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:10
+#: ../../c-api/reflection.rst:12
+#, fuzzy
+msgid "Use :c:func:`PyEval_GetFrameBuiltins` instead."
+msgstr ":c:func:`PyThreadState_GetFrame`\\도 참조하십시오."
+
+#: ../../c-api/reflection.rst:14 ../../c-api/reflection.rst:66
 msgid ""
 "Return a dictionary of the builtins in the current execution frame, or "
 "the interpreter of the thread state if no frame is currently executing."
 msgstr "현재 실행 프레임이나 현재 실행 중인 프레임이 없으면 스레드 상태의 인터프리터의 builtins의 딕셔너리를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:16
+#: ../../c-api/reflection.rst:22
 msgid ""
-"Return a dictionary of the local variables in the current execution "
-"frame, or ``NULL`` if no frame is currently executing."
+"Use either :c:func:`PyEval_GetFrameLocals` to obtain the same behaviour "
+"as calling :func:`locals` in Python code, or else call "
+":c:func:`PyFrame_GetLocals` on the result of :c:func:`PyEval_GetFrame` to"
+" access the :attr:`~frame.f_locals` attribute of the currently executing "
+"frame."
+msgstr ""
+
+#: ../../c-api/reflection.rst:27
+#, fuzzy
+msgid ""
+"Return a mapping providing access to the local variables in the current "
+"execution frame, or ``NULL`` if no frame is currently executing."
 msgstr "현재 실행 프레임의 지역 변수 딕셔너리를 반환하거나, 현재 실행 중인 프레임이 없으면 ``NULL``\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:22
+#: ../../c-api/reflection.rst:30
+msgid ""
+"Refer to :func:`locals` for details of the mapping returned at different "
+"scopes."
+msgstr ""
+
+#: ../../c-api/reflection.rst:32
+msgid ""
+"As this function returns a :term:`borrowed reference`, the dictionary "
+"returned for :term:`optimized scopes <optimized scope>` is cached on the "
+"frame object and will remain alive as long as the frame object does. "
+"Unlike :c:func:`PyEval_GetFrameLocals` and :func:`locals`, subsequent "
+"calls to this function in the same frame will update the contents of the "
+"cached dictionary to reflect changes in the state of the local variables "
+"rather than returning a new snapshot."
+msgstr ""
+
+#: ../../c-api/reflection.rst:39
+msgid ""
+"As part of :pep:`667`, :c:func:`PyFrame_GetLocals`, :func:`locals`, and "
+":attr:`FrameType.f_locals <frame.f_locals>` no longer make use of the "
+"shared cache dictionary. Refer to the :ref:`What's New entry <whatsnew313"
+"-locals-semantics>` for additional details."
+msgstr ""
+
+#: ../../c-api/reflection.rst:50
+#, fuzzy
+msgid "Use :c:func:`PyEval_GetFrameGlobals` instead."
+msgstr ":c:func:`PyThreadState_GetFrame`\\도 참조하십시오."
+
+#: ../../c-api/reflection.rst:52
 msgid ""
 "Return a dictionary of the global variables in the current execution "
 "frame, or ``NULL`` if no frame is currently executing."
 msgstr "현재 실행 프레임의 전역 변수 딕셔너리를 반환하거나, 현재 실행 중인 프레임이 없으면 ``NULL``\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:28
+#: ../../c-api/reflection.rst:58
 msgid ""
 "Return the current thread state's frame, which is ``NULL`` if no frame is"
 " currently executing."
 msgstr "현재의 스레드 상태의 프레임을 반환합니다. 현재 실행 중의 프레임이 없으면 ``NULL``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:31
+#: ../../c-api/reflection.rst:61
 msgid "See also :c:func:`PyThreadState_GetFrame`."
 msgstr ":c:func:`PyThreadState_GetFrame`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:36
-msgid "Get the *frame* next outer frame."
-msgstr "*frame* 다음 외부 프레임을 가져옵니다."
+#: ../../c-api/reflection.rst:74
+#, fuzzy
+msgid ""
+"Return a dictionary of the local variables in the current execution "
+"frame, or ``NULL`` if no frame is currently executing. Equivalent to "
+"calling :func:`locals` in Python code."
+msgstr "현재 실행 프레임의 지역 변수 딕셔너리를 반환하거나, 현재 실행 중인 프레임이 없으면 ``NULL``\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:38
-msgid "Return a strong reference, or ``NULL`` if *frame* has no outer frame."
-msgstr "강한 참조를 반환하거나, *frame*\\에 외부 프레임이 없으면 ``NULL``\\을 반환합니다."
+#: ../../c-api/reflection.rst:78
+msgid ""
+"To access :attr:`~frame.f_locals` on the current frame without making an "
+"independent snapshot in :term:`optimized scopes <optimized scope>`, call "
+":c:func:`PyFrame_GetLocals` on the result of :c:func:`PyEval_GetFrame`."
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:40
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:60
-msgid "*frame* must not be ``NULL``."
-msgstr "*frame*\\은 ``NULL``\\이 아니어야 합니다."
+#: ../../c-api/reflection.rst:87
+#, fuzzy
+msgid ""
+"Return a dictionary of the global variables in the current execution "
+"frame, or ``NULL`` if no frame is currently executing. Equivalent to "
+"calling :func:`globals` in Python code."
+msgstr "현재 실행 프레임의 전역 변수 딕셔너리를 반환하거나, 현재 실행 중인 프레임이 없으면 ``NULL``\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:47
-msgid "Get the *frame* code."
-msgstr "*frame* 코드를 가져옵니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:49
-msgid "Return a strong reference."
-msgstr "강한 참조를 반환합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:51
-msgid "*frame* must not be ``NULL``. The result (frame code) cannot be ``NULL``."
-msgstr "*frame*\\은 ``NULL``\\이 아니어야 합니다. 결과(프레임 코드)는 ``NULL``\\일 수 없습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:58
-msgid "Return the line number that *frame* is currently executing."
-msgstr "*frame*\\이 현재 실행 중인 줄 번호를 반환합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:65
+#: ../../c-api/reflection.rst:96
 msgid ""
 "Return the name of *func* if it is a function, class or instance object, "
 "else the name of *func*\\s type."
@@ -85,7 +124,7 @@ msgstr ""
 "*func*\\가 함수, 클래스 또는 인스턴스 객체면 *func*\\의 이름을 반환하고, 그렇지 않으면 *func*\\의 형의 "
 "이름을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/c-api/reflection.rst:71
+#: ../../c-api/reflection.rst:102
 msgid ""
 "Return a description string, depending on the type of *func*. Return "
 "values include \"()\" for functions and methods, \" constructor\", \" "
@@ -95,4 +134,27 @@ msgstr ""
 "*func*\\의 형에 따라 설명 문자열을 반환합니다. 반환 값에는 함수 및 메서드의 \"()\", \" constructor\","
 " \" instance\" 및 \" object\" 가 포함됩니다. :c:func:`PyEval_GetFuncName`\\의 결과와"
 " 이어붙이면 *func*\\의 설명이 됩니다."
+
+#~ msgid "Get the *frame* next outer frame."
+#~ msgstr "*frame* 다음 외부 프레임을 가져옵니다."
+
+#~ msgid "Return a strong reference, or ``NULL`` if *frame* has no outer frame."
+#~ msgstr "강한 참조를 반환하거나, *frame*\\에 외부 프레임이 없으면 ``NULL``\\을 반환합니다."
+
+#~ msgid "*frame* must not be ``NULL``."
+#~ msgstr "*frame*\\은 ``NULL``\\이 아니어야 합니다."
+
+#~ msgid "Get the *frame* code."
+#~ msgstr "*frame* 코드를 가져옵니다."
+
+#~ msgid "Return a strong reference."
+#~ msgstr "강한 참조를 반환합니다."
+
+#~ msgid ""
+#~ "*frame* must not be ``NULL``. The "
+#~ "result (frame code) cannot be ``NULL``."
+#~ msgstr "*frame*\\은 ``NULL``\\이 아니어야 합니다. 결과(프레임 코드)는 ``NULL``\\일 수 없습니다."
+
+#~ msgid "Return the line number that *frame* is currently executing."
+#~ msgstr "*frame*\\이 현재 실행 중인 줄 번호를 반환합니다."
 

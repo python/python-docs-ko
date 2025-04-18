@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-19 18:31+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:8
+#: ../../extending/embedding.rst:8
 msgid "Embedding Python in Another Application"
 msgstr "다른 응용 프로그램에 파이썬 내장하기"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:10
+#: ../../extending/embedding.rst:10
 msgid ""
 "The previous chapters discussed how to extend Python, that is, how to "
 "extend the functionality of Python by attaching a library of C functions "
@@ -39,7 +39,7 @@ msgstr ""
 "있습니다; 한 가지 예는 사용자가 파이썬으로 스크립트를 작성하여 응용 프로그램을 필요에 맞게 조정할 수 있게 하는 것입니다. 일부 "
 "기능을 파이썬으로 작성하기가 더 쉽다면 직접 사용할 수도 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:20
+#: ../../extending/embedding.rst:20
 msgid ""
 "Embedding Python is similar to extending it, but not quite.  The "
 "difference is that when you extend Python, the main program of the "
@@ -52,7 +52,7 @@ msgstr ""
 "주 프로그램은 여전히 파이썬 인터프리터입니다. 반면에 파이썬을 내장하면 주 프로그램은 파이썬과 아무 관련이 없습니다 --- 대신 "
 "응용 프로그램 일부에서 간혹 파이썬 코드를 실행하기 위해 파이썬 인터프리터를 호출합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:26
+#: ../../extending/embedding.rst:26
 msgid ""
 "So if you are embedding Python, you are providing your own main program."
 "  One of the things this main program has to do is initialize the Python "
@@ -65,7 +65,7 @@ msgstr ""
 "인터프리터를 초기화하는 것입니다. 최소한, :c:func:`Py_Initialize` 함수를 호출해야 합니다. 파이썬에 명령 줄 "
 "인자를 전달하는 선택적 호출이 있습니다. 그런 다음 나중에 응용 프로그램의 어느 부분에서나 인터프리터를 호출할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:32
+#: ../../extending/embedding.rst:32
 msgid ""
 "There are several different ways to call the interpreter: you can pass a "
 "string containing Python statements to :c:func:`PyRun_SimpleString`, or "
@@ -79,21 +79,21 @@ msgstr ""
 "위해)을 :c:func:`PyRun_SimpleFile`\\에 전달할 수 있습니다. 또한, 이전 장에서 설명한 저수준의 연산을 "
 "호출하여 파이썬 객체를 만들고 사용할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:42
+#: ../../extending/embedding.rst:41
 msgid ":ref:`c-api-index`"
 msgstr ":ref:`c-api-index`"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:42
+#: ../../extending/embedding.rst:42
 msgid ""
 "The details of Python's C interface are given in this manual. A great "
 "deal of necessary information can be found here."
 msgstr "파이썬의 C 인터페이스에 대한 자세한 내용은 이 매뉴얼에 있습니다. 필요한 정보가 많이 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:49
+#: ../../extending/embedding.rst:49
 msgid "Very High Level Embedding"
 msgstr "매우 고수준의 내장"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:51
+#: ../../extending/embedding.rst:51
 msgid ""
 "The simplest form of embedding Python is the use of the very high level "
 "interface. This interface is intended to execute a Python script without "
@@ -104,13 +104,60 @@ msgstr ""
 "작용할 필요 없이 파이썬 스크립트를 실행하기 위한 것입니다. 이것은 예를 들어 파일에 대해 어떤 연산을 수행하는 데 사용될 수 "
 "있습니다. ::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:78
+#: ../../extending/embedding.rst:56
 msgid ""
-"The :c:func:`Py_SetProgramName` function should be called before "
-":c:func:`Py_Initialize` to inform the interpreter about paths to Python "
-"run-time libraries.  Next, the Python interpreter is initialized with "
-":c:func:`Py_Initialize`, followed by the execution of a hard-coded Python"
-" script that prints the date and time.  Afterwards, the "
+"#define PY_SSIZE_T_CLEAN\n"
+"#include <Python.h>\n"
+"\n"
+"int\n"
+"main(int argc, char *argv[])\n"
+"{\n"
+"    PyStatus status;\n"
+"    PyConfig config;\n"
+"    PyConfig_InitPythonConfig(&config);\n"
+"\n"
+"    /* optional but recommended */\n"
+"    status = PyConfig_SetBytesString(&config, &config.program_name, "
+"argv[0]);\n"
+"    if (PyStatus_Exception(status)) {\n"
+"        goto exception;\n"
+"    }\n"
+"\n"
+"    status = Py_InitializeFromConfig(&config);\n"
+"    if (PyStatus_Exception(status)) {\n"
+"        goto exception;\n"
+"    }\n"
+"    PyConfig_Clear(&config);\n"
+"\n"
+"    PyRun_SimpleString(\"from time import time,ctime\\n\"\n"
+"                       \"print('Today is', ctime(time()))\\n\");\n"
+"    if (Py_FinalizeEx() < 0) {\n"
+"        exit(120);\n"
+"    }\n"
+"    return 0;\n"
+"\n"
+"  exception:\n"
+"     PyConfig_Clear(&config);\n"
+"     Py_ExitStatusException(status);\n"
+"}"
+msgstr ""
+
+#: ../../extending/embedding.rst:92
+msgid ""
+"``#define PY_SSIZE_T_CLEAN`` was used to indicate that ``Py_ssize_t`` "
+"should be used in some APIs instead of ``int``. It is not necessary since"
+" Python 3.13, but we keep it here for backward compatibility. See :ref"
+":`arg-parsing-string-and-buffers` for a description of this macro."
+msgstr ""
+
+#: ../../extending/embedding.rst:97
+#, fuzzy
+msgid ""
+"Setting :c:member:`PyConfig.program_name` should be called before "
+":c:func:`Py_InitializeFromConfig` to inform the interpreter about paths "
+"to Python run-time libraries.  Next, the Python interpreter is "
+"initialized with :c:func:`Py_Initialize`, followed by the execution of a "
+"hard-coded Python script that prints the date and time.  Afterwards, the "
 ":c:func:`Py_FinalizeEx` call shuts the interpreter down, followed by the "
 "end of the program.  In a real program, you may want to get the Python "
 "script from another source, perhaps a text-editor routine, a file, or a "
@@ -126,11 +173,11 @@ msgstr ""
 "것은 :c:func:`PyRun_SimpleFile` 함수를 사용하면 더 잘할 수 있는데, 메모리 공간을 할당하고 파일 내용을 "
 "로드하는 번거로움을 덜어줍니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:93
+#: ../../extending/embedding.rst:112
 msgid "Beyond Very High Level Embedding: An overview"
 msgstr "매우 고수준 내장을 넘어서: 개요"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:95
+#: ../../extending/embedding.rst:114
 msgid ""
 "The high level interface gives you the ability to execute arbitrary "
 "pieces of Python code from your application, but exchanging data values "
@@ -142,7 +189,7 @@ msgstr ""
 " 번거롭습니다. 그러길 원한다면 저수준의 호출을 사용해야 합니다. 더 많은 C 코드를 작성해야 하는 대신, 거의 모든 것을 달성할 "
 "수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:100
+#: ../../extending/embedding.rst:119
 msgid ""
 "It should be noted that extending Python and embedding Python is quite "
 "the same activity, despite the different intent. Most topics discussed in"
@@ -152,37 +199,37 @@ msgstr ""
 "파이썬을 확장하는 것과 파이썬을 내장하는 것은 다른 의도에도 불구하고 꽤 똑같은 활동이라는 점에 유의해야 합니다. 이전 장에서 "
 "논의된 대부분 주제는 여전히 유효합니다. 이것을 보시려면, 파이썬에서 C로의 확장 코드가 실제로 하는 일을 생각해보십시오:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:105
+#: ../../extending/embedding.rst:124
 msgid "Convert data values from Python to C,"
 msgstr "데이터값을 파이썬에서 C로 변환하고,"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:107
+#: ../../extending/embedding.rst:126
 msgid "Perform a function call to a C routine using the converted values, and"
 msgstr "변환된 값을 사용하여 C 루틴으로 함수 호출을 수행하고,"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:109
+#: ../../extending/embedding.rst:128
 msgid "Convert the data values from the call from C to Python."
 msgstr "그 호출에서 얻은 데이터값을 C에서 파이썬으로 변환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:111
+#: ../../extending/embedding.rst:130
 msgid "When embedding Python, the interface code does:"
 msgstr "파이썬을 내장할 때, 인터페이스 코드는 다음을 수행합니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:113
+#: ../../extending/embedding.rst:132
 msgid "Convert data values from C to Python,"
 msgstr "데이터값을 C에서 파이썬으로 변환하고,"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:115
+#: ../../extending/embedding.rst:134
 msgid ""
 "Perform a function call to a Python interface routine using the converted"
 " values, and"
 msgstr "변환된 값을 사용하여 파이썬 인터페이스 루틴으로 함수 호출을 수행하고,"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:118
+#: ../../extending/embedding.rst:137
 msgid "Convert the data values from the call from Python to C."
 msgstr "그 호출에서 얻은 데이터 값을 파이썬에서 C로 변환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:120
+#: ../../extending/embedding.rst:139
 msgid ""
 "As you can see, the data conversion steps are simply swapped to "
 "accommodate the different direction of the cross-language transfer. The "
@@ -193,7 +240,7 @@ msgstr ""
 "보시다시피, 데이터 변환 단계가 언어 간 전송의 다른 방향을 수용하기 위해 단순히 교환됩니다. 유일한 차이점은 두 데이터 변환 간에"
 " 호출하는 루틴입니다. 확장할 때는 C 루틴을 호출하고, 내장할 때는 파이썬 루틴을 호출합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:125
+#: ../../extending/embedding.rst:144
 msgid ""
 "This chapter will not discuss how to convert data from Python to C and "
 "vice versa.  Also, proper use of references and dealing with errors is "
@@ -205,11 +252,11 @@ msgstr ""
 " 올바른 사용과 에러를 다루는 것을 이해하고 있다고 가정합니다. 이러한 측면은 인터프리터를 확장하는 것과 다르지 않으므로, 이전 "
 "장에서 필요한 정보를 참조할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:134
+#: ../../extending/embedding.rst:153
 msgid "Pure Embedding"
 msgstr "순수한 내장"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:136
+#: ../../extending/embedding.rst:155
 msgid ""
 "The first program aims to execute a function in a Python script. Like in "
 "the section about the very high level interface, the Python interpreter "
@@ -219,11 +266,89 @@ msgstr ""
 "첫 번째 프로그램은 파이썬 스크립트에 있는 함수를 실행하는 것을 목표로 합니다. 매우 고수준의 인터페이스에 관한 절에서와같이, "
 "파이썬 인터프리터는 애플리케이션과 직접 상호 작용하지 않습니다 (하지만 다음 절에서 바뀔 것입니다)."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:141
+#: ../../extending/embedding.rst:160
 msgid "The code to run a function defined in a Python script is:"
 msgstr "파이썬 스크립트에서 정의된 함수를 실행하는 코드는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:146
+#: ../../extending/embedding.rst:162
+#, python-format
+msgid ""
+"#define PY_SSIZE_T_CLEAN\n"
+"#include <Python.h>\n"
+"\n"
+"int\n"
+"main(int argc, char *argv[])\n"
+"{\n"
+"    PyObject *pName, *pModule, *pFunc;\n"
+"    PyObject *pArgs, *pValue;\n"
+"    int i;\n"
+"\n"
+"    if (argc < 3) {\n"
+"        fprintf(stderr,\"Usage: call pythonfile funcname [args]\\n\");\n"
+"        return 1;\n"
+"    }\n"
+"\n"
+"    Py_Initialize();\n"
+"    pName = PyUnicode_DecodeFSDefault(argv[1]);\n"
+"    /* Error checking of pName left out */\n"
+"\n"
+"    pModule = PyImport_Import(pName);\n"
+"    Py_DECREF(pName);\n"
+"\n"
+"    if (pModule != NULL) {\n"
+"        pFunc = PyObject_GetAttrString(pModule, argv[2]);\n"
+"        /* pFunc is a new reference */\n"
+"\n"
+"        if (pFunc && PyCallable_Check(pFunc)) {\n"
+"            pArgs = PyTuple_New(argc - 3);\n"
+"            for (i = 0; i < argc - 3; ++i) {\n"
+"                pValue = PyLong_FromLong(atoi(argv[i + 3]));\n"
+"                if (!pValue) {\n"
+"                    Py_DECREF(pArgs);\n"
+"                    Py_DECREF(pModule);\n"
+"                    fprintf(stderr, \"Cannot convert argument\\n\");\n"
+"                    return 1;\n"
+"                }\n"
+"                /* pValue reference stolen here: */\n"
+"                PyTuple_SetItem(pArgs, i, pValue);\n"
+"            }\n"
+"            pValue = PyObject_CallObject(pFunc, pArgs);\n"
+"            Py_DECREF(pArgs);\n"
+"            if (pValue != NULL) {\n"
+"                printf(\"Result of call: %ld\\n\", "
+"PyLong_AsLong(pValue));\n"
+"                Py_DECREF(pValue);\n"
+"            }\n"
+"            else {\n"
+"                Py_DECREF(pFunc);\n"
+"                Py_DECREF(pModule);\n"
+"                PyErr_Print();\n"
+"                fprintf(stderr,\"Call failed\\n\");\n"
+"                return 1;\n"
+"            }\n"
+"        }\n"
+"        else {\n"
+"            if (PyErr_Occurred())\n"
+"                PyErr_Print();\n"
+"            fprintf(stderr, \"Cannot find function \\\"%s\\\"\\n\", "
+"argv[2]);\n"
+"        }\n"
+"        Py_XDECREF(pFunc);\n"
+"        Py_DECREF(pModule);\n"
+"    }\n"
+"    else {\n"
+"        PyErr_Print();\n"
+"        fprintf(stderr, \"Failed to load \\\"%s\\\"\\n\", argv[1]);\n"
+"        return 1;\n"
+"    }\n"
+"    if (Py_FinalizeEx() < 0) {\n"
+"        return 120;\n"
+"    }\n"
+"    return 0;\n"
+"}\n"
+msgstr ""
+
+#: ../../extending/embedding.rst:165
 msgid ""
 "This code loads a Python script using ``argv[1]``, and calls the function"
 " named in ``argv[2]``.  Its integer arguments are the other values of the"
@@ -235,11 +360,28 @@ msgstr ""
 "정수 인자는 ``argv`` 배열의 남은 값들입니다. 이 프로그램을 :ref:`컴파일하고 링크하면 <compiling>` (완성된 "
 "실행 파일을 :program:`call`\\이라고 부릅시다), 다음과 같은 파이썬 스크립트를 실행하는 데 사용합니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:161
+#: ../../extending/embedding.rst:171
+msgid ""
+"def multiply(a,b):\n"
+"    print(\"Will compute\", a, \"times\", b)\n"
+"    c = 0\n"
+"    for i in range(0, a):\n"
+"        c = c + b\n"
+"    return c"
+msgstr ""
+
+#: ../../extending/embedding.rst:180
 msgid "then the result should be:"
 msgstr "그러면 결과는 다음과 같아야 합니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:169
+#: ../../extending/embedding.rst:182
+msgid ""
+"$ call multiply multiply 3 2\n"
+"Will compute 3 times 2\n"
+"Result of call: 6"
+msgstr ""
+
+#: ../../extending/embedding.rst:188
 msgid ""
 "Although the program is quite large for its functionality, most of the "
 "code is for data conversion between Python and C, and for error "
@@ -249,17 +391,38 @@ msgstr ""
 "프로그램이 기능보다 상당히 큰 편이지만, 대부분 코드는 파이썬과 C 사이의 데이터 변환과 에러 보고를 위한 것입니다. 파이썬 내장과"
 " 관련된 흥미로운 부분은 다음처럼 시작합니다 ::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:178
+#: ../../extending/embedding.rst:192
+msgid ""
+"Py_Initialize();\n"
+"pName = PyUnicode_DecodeFSDefault(argv[1]);\n"
+"/* Error checking of pName left out */\n"
+"pModule = PyImport_Import(pName);"
+msgstr ""
+
+#: ../../extending/embedding.rst:197
+#, fuzzy
 msgid ""
 "After initializing the interpreter, the script is loaded using "
 ":c:func:`PyImport_Import`.  This routine needs a Python string as its "
-"argument, which is constructed using the :c:func:`PyUnicode_FromString` "
-"data conversion routine. ::"
+"argument, which is constructed using the "
+":c:func:`PyUnicode_DecodeFSDefault` data conversion routine. ::"
 msgstr ""
 "인터프리터를 초기화한 후, 스크립트는 :c:func:`PyImport_Import`\\를 사용하여 로드됩니다. 이 루틴은 인자로 "
 "파이썬 문자열을 요구하는데, :c:func:`PyUnicode_FromString` 데이터 변환 루틴을 사용하여 구성됩니다. ::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:191
+#: ../../extending/embedding.rst:202
+#, python-brace-format
+msgid ""
+"pFunc = PyObject_GetAttrString(pModule, argv[2]);\n"
+"/* pFunc is a new reference */\n"
+"\n"
+"if (pFunc && PyCallable_Check(pFunc)) {\n"
+"    ...\n"
+"}\n"
+"Py_XDECREF(pFunc);"
+msgstr ""
+
+#: ../../extending/embedding.rst:210
 msgid ""
 "Once the script is loaded, the name we're looking for is retrieved using "
 ":c:func:`PyObject_GetAttrString`.  If the name exists, and the object "
@@ -271,7 +434,11 @@ msgstr ""
 "검색됩니다. 이름이 존재하고, 반환된 객체가 콜러블이면, 그것이 함수라고 안전하게 가정할 수 있습니다. 그런 다음 프로그램은 인자의"
 " 튜플을 일반적인 방법으로 구성하여 진행합니다. 그런 다음 파이썬 함수 호출은 이렇게 이루어집니다::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:199
+#: ../../extending/embedding.rst:216
+msgid "pValue = PyObject_CallObject(pFunc, pArgs);"
+msgstr ""
+
+#: ../../extending/embedding.rst:218
 msgid ""
 "Upon return of the function, ``pValue`` is either ``NULL`` or it contains"
 " a reference to the return value of the function.  Be sure to release the"
@@ -280,11 +447,11 @@ msgstr ""
 "함수가 반환되면, ``pValue``\\는 ``NULL``\\이거나 함수의 반환 값에 대한 참조를 포함합니다. 값을 검토한 후 "
 "참조를 해제해야 합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:207
+#: ../../extending/embedding.rst:226
 msgid "Extending Embedded Python"
 msgstr "내장된 파이썬을 확장하기"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:209
+#: ../../extending/embedding.rst:228
 msgid ""
 "Until now, the embedded Python interpreter had no access to functionality"
 " from the application itself.  The Python API allows this by extending "
@@ -302,7 +469,38 @@ msgstr ""
 "집합으로 간주하고, 일반 파이썬 확장을 작성하는 것처럼 파이썬에서 해당 루틴에 액세스할 수 있도록 연결 코드를 작성하십시오. 예를 "
 "들면::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:246
+#: ../../extending/embedding.rst:237
+msgid ""
+"static int numargs=0;\n"
+"\n"
+"/* Return the number of arguments of the application command line */\n"
+"static PyObject*\n"
+"emb_numargs(PyObject *self, PyObject *args)\n"
+"{\n"
+"    if(!PyArg_ParseTuple(args, \":numargs\"))\n"
+"        return NULL;\n"
+"    return PyLong_FromLong(numargs);\n"
+"}\n"
+"\n"
+"static PyMethodDef EmbMethods[] = {\n"
+"    {\"numargs\", emb_numargs, METH_VARARGS,\n"
+"     \"Return the number of arguments received by the process.\"},\n"
+"    {NULL, NULL, 0, NULL}\n"
+"};\n"
+"\n"
+"static PyModuleDef EmbModule = {\n"
+"    PyModuleDef_HEAD_INIT, \"emb\", NULL, -1, EmbMethods,\n"
+"    NULL, NULL, NULL, NULL\n"
+"};\n"
+"\n"
+"static PyObject*\n"
+"PyInit_emb(void)\n"
+"{\n"
+"    return PyModule_Create(&EmbModule);\n"
+"}"
+msgstr ""
+
+#: ../../extending/embedding.rst:265
 msgid ""
 "Insert the above code just above the :c:func:`main` function. Also, "
 "insert the following two statements before the call to "
@@ -311,26 +509,39 @@ msgstr ""
 "위의 코드를 :c:func:`main` 함수 바로 위에 삽입하십시오. 또한, :c:func:`Py_Initialize`\\에 대한 "
 "호출 전에 다음 두 문장을 삽입하십시오::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:252
+#: ../../extending/embedding.rst:268
+msgid ""
+"numargs = argc;\n"
+"PyImport_AppendInittab(\"emb\", &PyInit_emb);"
+msgstr ""
+
+#: ../../extending/embedding.rst:271
+#, fuzzy
 msgid ""
 "These two lines initialize the ``numargs`` variable, and make the "
-":func:`emb.numargs` function accessible to the embedded Python "
+":func:`!emb.numargs` function accessible to the embedded Python "
 "interpreter. With these extensions, the Python script can do things like"
 msgstr ""
 "이 두 줄은 ``numargs`` 변수를 초기화하고, :func:`emb.numargs` 함수를 내장된 파이썬 인터프리터가 액세스할"
 " 수 있도록 만듭니다. 이러한 확장을 통해, 파이썬 스크립트는 다음과 같은 작업을 수행할 수 있습니다"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:261
+#: ../../extending/embedding.rst:275
+msgid ""
+"import emb\n"
+"print(\"Number of arguments\", emb.numargs())"
+msgstr ""
+
+#: ../../extending/embedding.rst:280
 msgid ""
 "In a real application, the methods will expose an API of the application "
 "to Python."
 msgstr "실제 응용 프로그램에서, 이 방법은 응용 프로그램의 API를 파이썬에 노출합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:271
+#: ../../extending/embedding.rst:290
 msgid "Embedding Python in C++"
 msgstr "C++로 파이썬 내장하기"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:273
+#: ../../extending/embedding.rst:292
 msgid ""
 "It is also possible to embed Python in a C++ program; precisely how this "
 "is done will depend on the details of the C++ system used; in general you"
@@ -342,11 +553,11 @@ msgstr ""
 " 일반적으로 C++로 메인 프로그램을 작성하고, C++ 컴파일러를 사용하여 프로그램을 컴파일하고 링크해야 합니다. C++을 사용하여"
 " 파이썬 자체를 다시 컴파일할 필요는 없습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:282
+#: ../../extending/embedding.rst:301
 msgid "Compiling and Linking under Unix-like systems"
 msgstr "유닉스 계열 시스템에서 컴파일과 링크하기"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:284
+#: ../../extending/embedding.rst:303
 msgid ""
 "It is not necessarily trivial to find the right flags to pass to your "
 "compiler (and linker) in order to embed the Python interpreter into your "
@@ -357,7 +568,8 @@ msgstr ""
 "파이썬 인터프리터를 응용 프로그램에 내장하기 위해 컴파일러(와 링커)에 적절한 플래그를 찾는 것이 늘 간단하지는 않습니다. 특히, "
 "특히 파이썬이 자신에게 링크된 C 동적 확장(:file:`.so` 파일)으로 구현된 라이브러리 모듈을 로드해야 하기 때문입니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:290
+#: ../../extending/embedding.rst:309
+#, python-brace-format
 msgid ""
 "To find out the required compiler and linker flags, you can execute the "
 ":file:`python{X.Y}-config` script which is generated as part of the "
@@ -369,19 +581,35 @@ msgstr ""
 "실행할 수 있습니다 (:file:`python3-config` 스크립트도 사용 가능할 수 있습니다). 이 스크립트에는 여러 옵션이 "
 "있으며, 다음과 같은 것들은 여러분에 직접 유용할 것입니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:296
+#: ../../extending/embedding.rst:315
 msgid ""
 "``pythonX.Y-config --cflags`` will give you the recommended flags when "
 "compiling:"
 msgstr "``pythonX.Y-config --cflags``\\는 컴파일 할 때의 권장 플래그를 제공합니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:304
+#: ../../extending/embedding.rst:318
 msgid ""
-"``pythonX.Y-config --ldflags`` will give you the recommended flags when "
-"linking:"
+"$ /opt/bin/python3.11-config --cflags\n"
+"-I/opt/include/python3.11 -I/opt/include/python3.11 -Wsign-compare  "
+"-DNDEBUG -g -fwrapv -O3 -Wall"
+msgstr ""
+
+#: ../../extending/embedding.rst:323
+#, fuzzy
+msgid ""
+"``pythonX.Y-config --ldflags --embed`` will give you the recommended "
+"flags when linking:"
 msgstr "``pythonX.Y-config --ldflags``\\는 링크 할 때의 권장 플래그를 제공합니다:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:313
+#: ../../extending/embedding.rst:326
+msgid ""
+"$ /opt/bin/python3.11-config --ldflags --embed\n"
+"-L/opt/lib/python3.11/config-3.11-x86_64-linux-gnu -L/opt/lib "
+"-lpython3.11 -lpthread -ldl  -lutil -lm"
+msgstr ""
+
+#: ../../extending/embedding.rst:332
+#, python-brace-format
 msgid ""
 "To avoid confusion between several Python installations (and especially "
 "between the system Python and your own compiled Python), it is "
@@ -391,7 +619,7 @@ msgstr ""
 "여러 파이썬 설치 간의 (특히 시스템 파이썬과 여러분이 직접 컴파일한 파이썬 간의) 혼란을 피하려면, 위의 예와 같이 "
 ":file:`python{X.Y}-config`\\의 절대 경로를 사용하는 것이 좋습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/extending/embedding.rst:318
+#: ../../extending/embedding.rst:337
 msgid ""
 "If this procedure doesn't work for you (it is not guaranteed to work for "
 "all Unix-like platforms; however, we welcome :ref:`bug reports "
@@ -407,4 +635,13 @@ msgstr ""
 ":file:`Makefile`\\과 (그 위치를 찾으려면 "
 ":func:`sysconfig.get_makefile_filename`\\를 사용하십시오) 컴파일 옵션을 검사해야 합니다. 이때, "
 ":mod:`sysconfig` 모듈은 여러분이 결합하려는 구성 값을 프로그래밍 방식으로 추출하는 데 유용한 도구입니다. 예를 들어:"
+
+#: ../../extending/embedding.rst:346
+msgid ""
+">>> import sysconfig\n"
+">>> sysconfig.get_config_var('LIBS')\n"
+"'-lpthread -ldl  -lutil'\n"
+">>> sysconfig.get_config_var('LINKFORSHARED')\n"
+"'-Xlinker -export-dynamic'"
+msgstr ""
 

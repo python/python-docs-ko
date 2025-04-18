@@ -7,26 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-25 10:27+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/library/contextlib.rst:2
+#: ../../library/contextlib.rst:2
 msgid ""
 ":mod:`!contextlib` --- Utilities for :keyword:`!with`\\ -statement "
 "contexts"
 msgstr ":mod:`!contextlib` --- :keyword:`!with` 문 컨텍스트를 위한 유틸리티"
 
-#: ../Doc/library/contextlib.rst:7
+#: ../../library/contextlib.rst:7
 msgid "**Source code:** :source:`Lib/contextlib.py`"
 msgstr "**소스 코드:** :source:`Lib/contextlib.py`"
 
-#: ../Doc/library/contextlib.rst:11
+#: ../../library/contextlib.rst:11
 msgid ""
 "This module provides utilities for common tasks involving the "
 ":keyword:`with` statement. For more information see also "
@@ -35,15 +35,15 @@ msgstr ""
 "이 모듈은 :keyword:`with` 문이 수반되는 일반적인 작업을 위한 유틸리티를 제공합니다. 자세한 정보는 "
 ":ref:`typecontextmanager` 과 :ref:`context-managers`\\도 참조하십시오."
 
-#: ../Doc/library/contextlib.rst:17
+#: ../../library/contextlib.rst:17
 msgid "Utilities"
 msgstr "유틸리티"
 
-#: ../Doc/library/contextlib.rst:19
+#: ../../library/contextlib.rst:19
 msgid "Functions and classes provided:"
 msgstr "제공되는 함수와 클래스:"
 
-#: ../Doc/library/contextlib.rst:23
+#: ../../library/contextlib.rst:23
 msgid ""
 "An :term:`abstract base class` for classes that implement "
 ":meth:`object.__enter__` and :meth:`object.__exit__`. A default "
@@ -57,7 +57,7 @@ msgstr ""
 ":meth:`object.__enter__`\\의 기본 구현이 제공되지만 :meth:`object.__exit__`\\는 기본적으로"
 " ``None``\\을 반환하는 추상 메서드입니다. :ref:`typecontextmanager` 의 정의도 참조하십시오."
 
-#: ../Doc/library/contextlib.rst:34
+#: ../../library/contextlib.rst:34
 msgid ""
 "An :term:`abstract base class` for classes that implement "
 ":meth:`object.__aenter__` and :meth:`object.__aexit__`. A default "
@@ -72,35 +72,63 @@ msgstr ""
 "기본적으로 ``None``\\을 반환하는 추상 메서드입니다. :ref:`async-context-managers`\\의 정의도 "
 "참조하십시오."
 
-#: ../Doc/library/contextlib.rst:46
+#: ../../library/contextlib.rst:46
+#, fuzzy
 msgid ""
 "This function is a :term:`decorator` that can be used to define a factory"
 " function for :keyword:`with` statement context managers, without needing"
-" to create a class or separate :meth:`__enter__` and :meth:`__exit__` "
-"methods."
+" to create a class or separate :meth:`~object.__enter__` and "
+":meth:`~object.__exit__` methods."
 msgstr ""
 "이 함수는 클래스나 별도의 :meth:`__enter__`\\와 :meth:`__exit__` 메서드를 작성할 필요 없이, "
 ":keyword:`with` 문 컨텍스트 관리자를 위한 팩토리 함수를 정의하는 데 사용할 수 있는 :term:`데코레이터 "
 "<decorator>`\\입니다."
 
-#: ../Doc/library/contextlib.rst:50
+#: ../../library/contextlib.rst:50
+#, fuzzy
 msgid ""
 "While many objects natively support use in with statements, sometimes a "
 "resource needs to be managed that isn't a context manager in its own "
 "right, and doesn't implement a ``close()`` method for use with "
-"``contextlib.closing``"
+"``contextlib.closing``."
 msgstr ""
 "많은 객체가 자체적으로 with 문에서의 사용을 지원하지만, 스스로는 컨텍스트 관리자가 아니고 "
 "``contextlib.closing``\\과 함께 사용할 ``close()`` 메서드를 구현하지 않는 자원을 관리해야 하는 경우가"
 " 있습니다."
 
-#: ../Doc/library/contextlib.rst:54
+#: ../../library/contextlib.rst:54
 msgid ""
 "An abstract example would be the following to ensure correct resource "
 "management::"
 msgstr "올바른 자원 관리를 보장하기 위한 추상적인 예는 다음과 같습니다::"
 
-#: ../Doc/library/contextlib.rst:73
+#: ../../library/contextlib.rst:57
+msgid ""
+"from contextlib import contextmanager\n"
+"\n"
+"@contextmanager\n"
+"def managed_resource(*args, **kwds):\n"
+"    # Code to acquire resource, e.g.:\n"
+"    resource = acquire_resource(*args, **kwds)\n"
+"    try:\n"
+"        yield resource\n"
+"    finally:\n"
+"        # Code to release resource, e.g.:\n"
+"        release_resource(resource)"
+msgstr ""
+
+#: ../../library/contextlib.rst:69
+msgid "The function can then be used like this::"
+msgstr ""
+
+#: ../../library/contextlib.rst:71
+msgid ""
+">>> with managed_resource(timeout=3600) as resource:\n"
+"...     # Resource is released at the end of this block,\n"
+"...     # even if code in the block raises an exception"
+msgstr ""
+
+#: ../../library/contextlib.rst:75
 msgid ""
 "The function being decorated must return a :term:`generator`-iterator "
 "when called. This iterator must yield exactly one value, which will be "
@@ -111,7 +139,7 @@ msgstr ""
 "정확히 하나의 값을 산출해야 하며, 이는 :keyword:`with` 문의 :keyword:`!as` 절에 있는 대상에 연결됩니다 "
 "(있다면)."
 
-#: ../Doc/library/contextlib.rst:77
+#: ../../library/contextlib.rst:79
 msgid ""
 "At the point where the generator yields, the block nested in the "
 ":keyword:`with` statement is executed.  The generator is then resumed "
@@ -134,7 +162,7 @@ msgstr ""
 "제너레이터 컨텍스트 관리자가 :keyword:`!with` 문에 예외가 처리되었음을 표시하고, :keyword:`!with` 문 "
 "바로 다음에 오는 문장으로 실행이 재개됩니다."
 
-#: ../Doc/library/contextlib.rst:89
+#: ../../library/contextlib.rst:91
 msgid ""
 ":func:`contextmanager` uses :class:`ContextDecorator` so the context "
 "managers it creates can be used as decorators as well as in "
@@ -150,11 +178,11 @@ msgstr ""
 "만들어진 \"일회성\" 컨텍스트 관리자가 데코레이터로 사용하기 위해 컨텍스트 관리자가 여러 번의 호출을 지원해야 한다는 요구 사항을"
 " 충족시킬 수 있도록 합니다) ."
 
-#: ../Doc/library/contextlib.rst:96
+#: ../../library/contextlib.rst:98
 msgid "Use of :class:`ContextDecorator`."
 msgstr ":class:`ContextDecorator` 사용."
 
-#: ../Doc/library/contextlib.rst:102
+#: ../../library/contextlib.rst:104
 msgid ""
 "Similar to :func:`~contextlib.contextmanager`, but creates an "
 ":ref:`asynchronous context manager <async-context-managers>`."
@@ -162,34 +190,120 @@ msgstr ""
 ":func:`~contextlib.contextmanager`\\와 유사하지만, :ref:`비동기 컨텍스트 관리자 <async-"
 "context-managers>`\\를 만듭니다."
 
-#: ../Doc/library/contextlib.rst:105
+#: ../../library/contextlib.rst:107
+#, fuzzy
 msgid ""
 "This function is a :term:`decorator` that can be used to define a factory"
 " function for :keyword:`async with` statement asynchronous context "
 "managers, without needing to create a class or separate "
-":meth:`__aenter__` and :meth:`__aexit__` methods. It must be applied to "
-"an :term:`asynchronous generator` function."
+":meth:`~object.__aenter__` and :meth:`~object.__aexit__` methods. It must"
+" be applied to an :term:`asynchronous generator` function."
 msgstr ""
 "이 함수는 클래스나 별도의 :meth:`__aenter__`\\와 :meth:`__aexit__` 메서드를 작성할 필요 없이, "
 ":keyword:`async with` 문 비동기 컨텍스트 관리자를 위한 팩토리 함수를 정의하는 데 사용할 수 있는 "
 ":term:`데코레이터 <decorator>`\\입니다. :term:`비동기 제너레이터 <asynchronous "
 "generator>` 함수에 적용해야 합니다."
 
-#: ../Doc/library/contextlib.rst:111
+#: ../../library/contextlib.rst:113
 msgid "A simple example::"
 msgstr "간단한 예::"
 
-#: ../Doc/library/contextlib.rst:132
+#: ../../library/contextlib.rst:115
+msgid ""
+"from contextlib import asynccontextmanager\n"
+"\n"
+"@asynccontextmanager\n"
+"async def get_connection():\n"
+"    conn = await acquire_db_connection()\n"
+"    try:\n"
+"        yield conn\n"
+"    finally:\n"
+"        await release_db_connection(conn)\n"
+"\n"
+"async def get_all_users():\n"
+"    async with get_connection() as conn:\n"
+"        return conn.query('SELECT ...')"
+msgstr ""
+
+#: ../../library/contextlib.rst:131
+msgid ""
+"Context managers defined with :func:`asynccontextmanager` can be used "
+"either as decorators or with :keyword:`async with` statements::"
+msgstr ""
+
+#: ../../library/contextlib.rst:134
+#, python-brace-format
+msgid ""
+"import time\n"
+"from contextlib import asynccontextmanager\n"
+"\n"
+"@asynccontextmanager\n"
+"async def timeit():\n"
+"    now = time.monotonic()\n"
+"    try:\n"
+"        yield\n"
+"    finally:\n"
+"        print(f'it took {time.monotonic() - now}s to run')\n"
+"\n"
+"@timeit()\n"
+"async def main():\n"
+"    # ... async code ..."
+msgstr ""
+
+#: ../../library/contextlib.rst:149
+#, fuzzy
+msgid ""
+"When used as a decorator, a new generator instance is implicitly created "
+"on each function call. This allows the otherwise \"one-shot\" context "
+"managers created by :func:`asynccontextmanager` to meet the requirement "
+"that context managers support multiple invocations in order to be used as"
+" decorators."
+msgstr ""
+":func:`contextmanager`\\는 :class:`ContextDecorator`\\를 사용해서, 만들어진 컨텍스트 "
+"관리자를 :keyword:`with` 문뿐만 아니라 데코레이터로 사용할 수 있습니다. 데코레이터로 사용될 때, 새로운 제너레이터 "
+"인스턴스는 각 함수 호출마다 묵시적으로 만들어집니다 (이는 그렇지 않을 경우 :func:`contextmanager`\\에 의해 "
+"만들어진 \"일회성\" 컨텍스트 관리자가 데코레이터로 사용하기 위해 컨텍스트 관리자가 여러 번의 호출을 지원해야 한다는 요구 사항을"
+" 충족시킬 수 있도록 합니다) ."
+
+#: ../../library/contextlib.rst:154
+msgid ""
+"Async context managers created with :func:`asynccontextmanager` can be "
+"used as decorators."
+msgstr ""
+
+#: ../../library/contextlib.rst:161
 msgid ""
 "Return a context manager that closes *thing* upon completion of the "
 "block.  This is basically equivalent to::"
 msgstr "블록이 완료될 때 *thing*\\을 닫는 컨텍스트 관리자를 반환합니다. 이것은 기본적으로 다음과 동등합니다::"
 
-#: ../Doc/library/contextlib.rst:144
+#: ../../library/contextlib.rst:164
+msgid ""
+"from contextlib import contextmanager\n"
+"\n"
+"@contextmanager\n"
+"def closing(thing):\n"
+"    try:\n"
+"        yield thing\n"
+"    finally:\n"
+"        thing.close()"
+msgstr ""
+
+#: ../../library/contextlib.rst:173
 msgid "And lets you write code like this::"
 msgstr "그리고 다음과 같은 코드를 작성할 수 있도록 합니다::"
 
-#: ../Doc/library/contextlib.rst:153
+#: ../../library/contextlib.rst:175
+msgid ""
+"from contextlib import closing\n"
+"from urllib.request import urlopen\n"
+"\n"
+"with closing(urlopen('https://www.python.org')) as page:\n"
+"    for line in page:\n"
+"        print(line)"
+msgstr ""
+
+#: ../../library/contextlib.rst:182
 msgid ""
 "without needing to explicitly close ``page``.  Even if an error occurs, "
 "``page.close()`` will be called when the :keyword:`with` block is exited."
@@ -197,7 +311,61 @@ msgstr ""
 "``page``\\를 명시적으로 닫을 필요가 없습니다. 에러가 발생하더라도, :keyword:`with` 블록이 종료될 때 "
 "``page.close()``\\가 호출됩니다."
 
-#: ../Doc/library/contextlib.rst:161
+#: ../../library/contextlib.rst:187
+msgid ""
+"Most types managing resources support the :term:`context manager` "
+"protocol, which closes *thing* on leaving the :keyword:`with` statement. "
+"As such, :func:`!closing` is most useful for third party types that don't"
+" support context managers. This example is purely for illustration "
+"purposes, as :func:`~urllib.request.urlopen` would normally be used in a "
+"context manager."
+msgstr ""
+
+#: ../../library/contextlib.rst:196
+#, fuzzy
+msgid ""
+"Return an async context manager that calls the ``aclose()`` method of "
+"*thing* upon completion of the block.  This is basically equivalent to::"
+msgstr "블록이 완료될 때 *thing*\\을 닫는 컨텍스트 관리자를 반환합니다. 이것은 기본적으로 다음과 동등합니다::"
+
+#: ../../library/contextlib.rst:199
+msgid ""
+"from contextlib import asynccontextmanager\n"
+"\n"
+"@asynccontextmanager\n"
+"async def aclosing(thing):\n"
+"    try:\n"
+"        yield thing\n"
+"    finally:\n"
+"        await thing.aclose()"
+msgstr ""
+
+#: ../../library/contextlib.rst:208
+msgid ""
+"Significantly, ``aclosing()`` supports deterministic cleanup of async "
+"generators when they happen to exit early by :keyword:`break` or an "
+"exception.  For example::"
+msgstr ""
+
+#: ../../library/contextlib.rst:212
+msgid ""
+"from contextlib import aclosing\n"
+"\n"
+"async with aclosing(my_generator()) as values:\n"
+"    async for value in values:\n"
+"        if value == 42:\n"
+"            break"
+msgstr ""
+
+#: ../../library/contextlib.rst:219
+msgid ""
+"This pattern ensures that the generator's async exit code is executed in "
+"the same context as its iterations (so that exceptions and context "
+"variables work as expected, and the exit code isn't run after the "
+"lifetime of some task it depends on)."
+msgstr ""
+
+#: ../../library/contextlib.rst:231
 msgid ""
 "Return a context manager that returns *enter_result* from ``__enter__``, "
 "but otherwise does nothing. It is intended to be used as a stand-in for "
@@ -206,20 +374,76 @@ msgstr ""
 "``__enter__``\\에서 *enter_result*\\를 반환하지만, 그 외에는 아무것도 하지 않는 컨텍스트 관리자를 "
 "반환합니다. 선택적 컨텍스트 관리자를 위한 대체로 사용하기 위한 것입니다, 예를 들어::"
 
-#: ../Doc/library/contextlib.rst:175
+#: ../../library/contextlib.rst:235
+msgid ""
+"def myfunction(arg, ignore_exceptions=False):\n"
+"    if ignore_exceptions:\n"
+"        # Use suppress to ignore all exceptions.\n"
+"        cm = contextlib.suppress(Exception)\n"
+"    else:\n"
+"        # Do not ignore any exceptions, cm has no effect.\n"
+"        cm = contextlib.nullcontext()\n"
+"    with cm:\n"
+"        # Do something"
+msgstr ""
+
+#: ../../library/contextlib.rst:245
 msgid "An example using *enter_result*::"
 msgstr "*enter_result*\\를 사용하는 예::"
 
-#: ../Doc/library/contextlib.rst:193
+#: ../../library/contextlib.rst:247
+msgid ""
+"def process_file(file_or_path):\n"
+"    if isinstance(file_or_path, str):\n"
+"        # If string, open file\n"
+"        cm = open(file_or_path)\n"
+"    else:\n"
+"        # Caller is responsible for closing file\n"
+"        cm = nullcontext(file_or_path)\n"
+"\n"
+"    with cm as file:\n"
+"        # Perform processing on the file"
+msgstr ""
+
+#: ../../library/contextlib.rst:258
+#, fuzzy
+msgid ""
+"It can also be used as a stand-in for :ref:`asynchronous context managers"
+" <async-context-managers>`::"
+msgstr ""
+":func:`~contextlib.contextmanager`\\와 유사하지만, :ref:`비동기 컨텍스트 관리자 <async-"
+"context-managers>`\\를 만듭니다."
+
+#: ../../library/contextlib.rst:261
+msgid ""
+"async def send_http(session=None):\n"
+"    if not session:\n"
+"        # If no http session, create it with aiohttp\n"
+"        cm = aiohttp.ClientSession()\n"
+"    else:\n"
+"        # Caller is responsible for closing the session\n"
+"        cm = nullcontext(session)\n"
+"\n"
+"    async with cm as session:\n"
+"        # Send http requests with session"
+msgstr ""
+
+#: ../../library/contextlib.rst:274
+msgid ":term:`asynchronous context manager` support was added."
+msgstr ""
+
+#: ../../library/contextlib.rst:281
+#, fuzzy
 msgid ""
 "Return a context manager that suppresses any of the specified exceptions "
-"if they occur in the body of a with statement and then resumes execution "
-"with the first statement following the end of the with statement."
+"if they occur in the body of a :keyword:`!with` statement and then "
+"resumes execution with the first statement following the end of the "
+":keyword:`!with` statement."
 msgstr ""
 "with 문의 본문에서 발생하는 지정된 예외를 모두 억제한 후 with 문의 끝 다음에 오는 첫 번째 문장에서 실행을 재개하는 "
 "컨텍스트 관리자를 반환합니다."
 
-#: ../Doc/library/contextlib.rst:197
+#: ../../library/contextlib.rst:286
 msgid ""
 "As with any other mechanism that completely suppresses exceptions, this "
 "context manager should be used only to cover very specific errors where "
@@ -229,51 +453,113 @@ msgstr ""
 "예외를 완전히 억제하는 다른 메커니즘과 마찬가지로, 이 컨텍스트 관리자는 프로그램 실행을 조용히 계속하는 것이 옳은 것으로 알려진 "
 "매우 특정한 에러를 다루기 위해서만 사용해야 합니다."
 
-#: ../Doc/library/contextlib.rst:202
+#: ../../library/contextlib.rst:291
 msgid "For example::"
 msgstr "예를 들면::"
 
-#: ../Doc/library/contextlib.rst:212
+#: ../../library/contextlib.rst:293
+msgid ""
+"from contextlib import suppress\n"
+"\n"
+"with suppress(FileNotFoundError):\n"
+"    os.remove('somefile.tmp')\n"
+"\n"
+"with suppress(FileNotFoundError):\n"
+"    os.remove('someotherfile.tmp')"
+msgstr ""
+
+#: ../../library/contextlib.rst:301
 msgid "This code is equivalent to::"
 msgstr "이 코드는 다음과 동등합니다::"
 
-#: ../Doc/library/contextlib.rst:224 ../Doc/library/contextlib.rst:263
-#: ../Doc/library/contextlib.rst:273
+#: ../../library/contextlib.rst:303
+msgid ""
+"try:\n"
+"    os.remove('somefile.tmp')\n"
+"except FileNotFoundError:\n"
+"    pass\n"
+"\n"
+"try:\n"
+"    os.remove('someotherfile.tmp')\n"
+"except FileNotFoundError:\n"
+"    pass"
+msgstr ""
+
+#: ../../library/contextlib.rst:313 ../../library/contextlib.rst:362
+#: ../../library/contextlib.rst:372 ../../library/contextlib.rst:389
 msgid "This context manager is :ref:`reentrant <reentrant-cms>`."
 msgstr "이 컨텍스트 관리자는 :ref:`재진입 가능 <reentrant-cms>`\\합니다."
 
-#: ../Doc/library/contextlib.rst:231
+#: ../../library/contextlib.rst:315
+msgid ""
+"If the code within the :keyword:`!with` block raises a "
+":exc:`BaseExceptionGroup`, suppressed exceptions are removed from the "
+"group.  Any exceptions of the group which are not suppressed are re-"
+"raised in a new group which is created using the original group's "
+":meth:`~BaseExceptionGroup.derive` method."
+msgstr ""
+
+#: ../../library/contextlib.rst:323
+msgid ""
+"``suppress`` now supports suppressing exceptions raised as part of a "
+":exc:`BaseExceptionGroup`."
+msgstr ""
+
+#: ../../library/contextlib.rst:329
 msgid ""
 "Context manager for temporarily redirecting :data:`sys.stdout` to another"
 " file or file-like object."
 msgstr ":data:`sys.stdout`\\을 다른 파일이나 파일류 객체로 일시적으로 리디렉션 하기 위한 컨텍스트 관리자."
 
-#: ../Doc/library/contextlib.rst:234
+#: ../../library/contextlib.rst:332
 msgid ""
 "This tool adds flexibility to existing functions or classes whose output "
 "is hardwired to stdout."
 msgstr "이 도구는 출력이 stdout에 배선된 기존 함수나 클래스에 유연성을 추가합니다."
 
-#: ../Doc/library/contextlib.rst:237
+#: ../../library/contextlib.rst:335
+#, fuzzy
 msgid ""
 "For example, the output of :func:`help` normally is sent to *sys.stdout*."
 " You can capture that output in a string by redirecting the output to an "
-":class:`io.StringIO` object::"
+":class:`io.StringIO` object. The replacement stream is returned from the "
+"``__enter__`` method and so is available as the target of the "
+":keyword:`with` statement::"
 msgstr ""
 "예를 들어, :func:`help`\\의 출력은 일반적으로 *sys.stdout*\\으로 전송됩니다. 출력을 "
 ":class:`io.StringIO` 객체로 리디렉션 하여 해당 출력을 문자열로 캡처 할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:246
+#: ../../library/contextlib.rst:341
+msgid ""
+"with redirect_stdout(io.StringIO()) as f:\n"
+"    help(pow)\n"
+"s = f.getvalue()"
+msgstr ""
+
+#: ../../library/contextlib.rst:345
 msgid ""
 "To send the output of :func:`help` to a file on disk, redirect the output"
 " to a regular file::"
 msgstr ":func:`help`\\의 출력을 디스크의 파일로 보내려면, 출력을 일반 파일로 리디렉션 하십시오::"
 
-#: ../Doc/library/contextlib.rst:253
+#: ../../library/contextlib.rst:348
+msgid ""
+"with open('help.txt', 'w') as f:\n"
+"    with redirect_stdout(f):\n"
+"        help(pow)"
+msgstr ""
+
+#: ../../library/contextlib.rst:352
 msgid "To send the output of :func:`help` to *sys.stderr*::"
 msgstr ":func:`help`\\의 출력을 *sys.stderr*\\로 보내려면::"
 
-#: ../Doc/library/contextlib.rst:258
+#: ../../library/contextlib.rst:354
+msgid ""
+"with redirect_stdout(sys.stderr):\n"
+"    help(pow)"
+msgstr ""
+
+#: ../../library/contextlib.rst:357
 msgid ""
 "Note that the global side effect on :data:`sys.stdout` means that this "
 "context manager is not suitable for use in library code and most threaded"
@@ -284,7 +570,7 @@ msgstr ""
 "사용하기에 적합하지 않음을 의미합니다. 또한 서브 프로세스의 출력에는 영향을 미치지 않습니다. 그러나, 여전히 많은 유틸리티 "
 "스크립트에 유용한 접근법입니다."
 
-#: ../Doc/library/contextlib.rst:270
+#: ../../library/contextlib.rst:369
 msgid ""
 "Similar to :func:`~contextlib.redirect_stdout` but redirecting "
 ":data:`sys.stderr` to another file or file-like object."
@@ -292,13 +578,29 @@ msgstr ""
 ":func:`~contextlib.redirect_stdout`\\과 유사하지만, :data:`sys.stderr`\\를 다른 "
 "파일이나 파일류 객체로 리디렉션 합니다."
 
-#: ../Doc/library/contextlib.rst:280
+#: ../../library/contextlib.rst:379
+msgid ""
+"Non parallel-safe context manager to change the current working "
+"directory. As this changes a global state, the working directory, it is "
+"not suitable for use in most threaded or async contexts. It is also not "
+"suitable for most non-linear code execution, like generators, where the "
+"program execution is temporarily relinquished -- unless explicitly "
+"desired, you should not yield when this context manager is active."
+msgstr ""
+
+#: ../../library/contextlib.rst:386
+msgid ""
+"This is a simple wrapper around :func:`~os.chdir`, it changes the current"
+" working directory upon entering and restores the old one on exit."
+msgstr ""
+
+#: ../../library/contextlib.rst:396
 msgid ""
 "A base class that enables a context manager to also be used as a "
 "decorator."
 msgstr "컨텍스트 관리자를 데코레이터로도 사용할 수 있도록 하는 베이스 클래스."
 
-#: ../Doc/library/contextlib.rst:282
+#: ../../library/contextlib.rst:398
 msgid ""
 "Context managers inheriting from ``ContextDecorator`` have to implement "
 "``__enter__`` and ``__exit__`` as normal. ``__exit__`` retains its "
@@ -307,7 +609,7 @@ msgstr ""
 "``ContextDecorator``\\를 상속하는 컨텍스트 관리자는 일반적인 방식으로 ``__enter__``\\와 "
 "``__exit__``\\를 구현해야 합니다. ``__exit__``\\는 데코레이터로 사용될 때도 선택적 예외 처리를 유지합니다."
 
-#: ../Doc/library/contextlib.rst:286
+#: ../../library/contextlib.rst:402
 msgid ""
 "``ContextDecorator`` is used by :func:`contextmanager`, so you get this "
 "functionality automatically."
@@ -315,21 +617,72 @@ msgstr ""
 "``ContextDecorator``\\는 :func:`contextmanager`\\에서 사용되므로, 이 기능을 자동으로 얻게 "
 "됩니다."
 
-#: ../Doc/library/contextlib.rst:289
+#: ../../library/contextlib.rst:405
 msgid "Example of ``ContextDecorator``::"
 msgstr "``ContextDecorator``\\의 예::"
 
-#: ../Doc/library/contextlib.rst:318
+#: ../../library/contextlib.rst:407
+msgid ""
+"from contextlib import ContextDecorator\n"
+"\n"
+"class mycontext(ContextDecorator):\n"
+"    def __enter__(self):\n"
+"        print('Starting')\n"
+"        return self\n"
+"\n"
+"    def __exit__(self, *exc):\n"
+"        print('Finishing')\n"
+"        return False"
+msgstr ""
+
+#: ../../library/contextlib.rst:418 ../../library/contextlib.rst:490
+msgid "The class can then be used like this::"
+msgstr ""
+
+#: ../../library/contextlib.rst:420
+msgid ""
+">>> @mycontext()\n"
+"... def function():\n"
+"...     print('The bit in the middle')\n"
+"...\n"
+">>> function()\n"
+"Starting\n"
+"The bit in the middle\n"
+"Finishing\n"
+"\n"
+">>> with mycontext():\n"
+"...     print('The bit in the middle')\n"
+"...\n"
+"Starting\n"
+"The bit in the middle\n"
+"Finishing"
+msgstr ""
+
+#: ../../library/contextlib.rst:436
 msgid ""
 "This change is just syntactic sugar for any construct of the following "
 "form::"
 msgstr "이 변경은 단지 다음 형식의 구성에 대한 편의 문법일 뿐입니다::"
 
-#: ../Doc/library/contextlib.rst:324
+#: ../../library/contextlib.rst:438
+msgid ""
+"def f():\n"
+"    with cm():\n"
+"        # Do stuff"
+msgstr ""
+
+#: ../../library/contextlib.rst:442
 msgid "``ContextDecorator`` lets you instead write::"
 msgstr "``ContextDecorator``\\는 대신 다음과 같이 쓸 수 있도록 합니다::"
 
-#: ../Doc/library/contextlib.rst:330
+#: ../../library/contextlib.rst:444
+msgid ""
+"@cm()\n"
+"def f():\n"
+"    # Do stuff"
+msgstr ""
+
+#: ../../library/contextlib.rst:448
 msgid ""
 "It makes it clear that the ``cm`` applies to the whole function, rather "
 "than just a piece of it (and saving an indentation level is nice, too)."
@@ -337,7 +690,7 @@ msgstr ""
 "``cm``\\이 단지 함수의 일부가 아니라 전체 함수에 적용된다는 것을 분명히 합니다 (그리고 들여쓰기 수준을 절약하는 것도 "
 "좋습니다)."
 
-#: ../Doc/library/contextlib.rst:333
+#: ../../library/contextlib.rst:451
 msgid ""
 "Existing context managers that already have a base class can be extended "
 "by using ``ContextDecorator`` as a mixin class::"
@@ -345,7 +698,19 @@ msgstr ""
 "베이스 클래스가 이미 있는 기존 컨텍스트 관리자는 ``ContextDecorator``\\를 믹스인 클래스로 사용하여 확장할 수 "
 "있습니다::"
 
-#: ../Doc/library/contextlib.rst:346
+#: ../../library/contextlib.rst:454
+msgid ""
+"from contextlib import ContextDecorator\n"
+"\n"
+"class mycontext(ContextBaseClass, ContextDecorator):\n"
+"    def __enter__(self):\n"
+"        return self\n"
+"\n"
+"    def __exit__(self, *exc):\n"
+"        return False"
+msgstr ""
+
+#: ../../library/contextlib.rst:464
 msgid ""
 "As the decorated function must be able to be called multiple times, the "
 "underlying context manager must support use in multiple :keyword:`with` "
@@ -355,7 +720,53 @@ msgstr ""
 "데코레이트 된 함수는 여러 번 호출될 수 있어야 해서, 하부 컨텍스트 관리자는 여러 :keyword:`with` 문에서의 사용을 "
 "지원해야 합니다. 그렇지 않으면, 함수 내에 명시적인 :keyword:`!with` 문이 있는 원래 구문을 사용해야 합니다."
 
-#: ../Doc/library/contextlib.rst:356
+#: ../../library/contextlib.rst:474
+#, fuzzy
+msgid "Similar to :class:`ContextDecorator` but only for asynchronous functions."
+msgstr ":meth:`enter_context`\\와 유사하지만, 비동기 컨텍스트 관리자를 기대합니다."
+
+#: ../../library/contextlib.rst:476
+#, fuzzy
+msgid "Example of ``AsyncContextDecorator``::"
+msgstr "``ContextDecorator``\\의 예::"
+
+#: ../../library/contextlib.rst:478
+msgid ""
+"from asyncio import run\n"
+"from contextlib import AsyncContextDecorator\n"
+"\n"
+"class mycontext(AsyncContextDecorator):\n"
+"    async def __aenter__(self):\n"
+"        print('Starting')\n"
+"        return self\n"
+"\n"
+"    async def __aexit__(self, *exc):\n"
+"        print('Finishing')\n"
+"        return False"
+msgstr ""
+
+#: ../../library/contextlib.rst:492
+msgid ""
+">>> @mycontext()\n"
+"... async def function():\n"
+"...     print('The bit in the middle')\n"
+"...\n"
+">>> run(function())\n"
+"Starting\n"
+"The bit in the middle\n"
+"Finishing\n"
+"\n"
+">>> async def function():\n"
+"...    async with mycontext():\n"
+"...         print('The bit in the middle')\n"
+"...\n"
+">>> run(function())\n"
+"Starting\n"
+"The bit in the middle\n"
+"Finishing"
+msgstr ""
+
+#: ../../library/contextlib.rst:515
 msgid ""
 "A context manager that is designed to make it easy to programmatically "
 "combine other context managers and cleanup functions, especially those "
@@ -364,13 +775,28 @@ msgstr ""
 "다른 컨텍스트 관리자와 정리 함수, 특히 입력 데이터에 의해 선택적이거나 다른 방식으로 구동되는 것들을 프로그래밍 방식으로 쉽게 "
 "결합할 수 있도록 설계된 컨텍스트 관리자."
 
-#: ../Doc/library/contextlib.rst:360
+#: ../../library/contextlib.rst:519
 msgid ""
 "For example, a set of files may easily be handled in a single with "
 "statement as follows::"
 msgstr "예를 들어, 일련의 파일을 다음과 같이 단일 with 문으로 쉽게 처리할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:369
+#: ../../library/contextlib.rst:522
+msgid ""
+"with ExitStack() as stack:\n"
+"    files = [stack.enter_context(open(fname)) for fname in filenames]\n"
+"    # All opened files will automatically be closed at the end of\n"
+"    # the with statement, even if attempts to open files later\n"
+"    # in the list raise an exception"
+msgstr ""
+
+#: ../../library/contextlib.rst:528
+msgid ""
+"The :meth:`~object.__enter__` method returns the :class:`ExitStack` "
+"instance, and performs no additional operations."
+msgstr ""
+
+#: ../../library/contextlib.rst:531
 msgid ""
 "Each instance maintains a stack of registered callbacks that are called "
 "in reverse order when the instance is closed (either explicitly or "
@@ -381,7 +807,7 @@ msgstr ""
 "각 인스턴스는 인스턴스가 닫힐 때 (명시적으로 혹은 :keyword:`with` 문의 끝에서 묵시적으로) 역순으로 호출되는 등록된 "
 "콜백의 스택을 유지합니다. 컨텍스트 스택 인스턴스가 가비지 수집될 때 콜백이 묵시적으로 호출되지 *않음*\\에 유의하십시오."
 
-#: ../Doc/library/contextlib.rst:374
+#: ../../library/contextlib.rst:536
 msgid ""
 "This stack model is used so that context managers that acquire their "
 "resources in their ``__init__`` method (such as file objects) can be "
@@ -390,7 +816,7 @@ msgstr ""
 "이 스택 모델은 ``__init__`` 메서드에서 자원을 확보하는 컨텍스트 관리자(가령 파일 객체)가 올바르게 처리될 수 있도록 "
 "사용됩니다."
 
-#: ../Doc/library/contextlib.rst:378
+#: ../../library/contextlib.rst:540
 msgid ""
 "Since registered callbacks are invoked in the reverse order of "
 "registration, this ends up behaving as if multiple nested :keyword:`with`"
@@ -403,7 +829,7 @@ msgstr ""
 " 것처럼 작동합니다. 이것은 예외 처리로도 확장됩니다 - 내부 콜백이 예외를 억제하거나 바꾸면, 외부 콜백에는 갱신된 상태에 따른 "
 "인자가 전달됩니다."
 
-#: ../Doc/library/contextlib.rst:385
+#: ../../library/contextlib.rst:547
 msgid ""
 "This is a relatively low level API that takes care of the details of "
 "correctly unwinding the stack of exit callbacks. It provides a suitable "
@@ -413,16 +839,17 @@ msgstr ""
 "탈출 콜백의 스택을 올바르게 되감는 세부 사항을 다루는 비교적 저수준의 API입니다. 응용 프로그램 특정 방식으로 탈출 스택을 "
 "조작하는 고수준 컨텍스트 관리자에게 적절한 기반을 제공합니다."
 
-#: ../Doc/library/contextlib.rst:394
+#: ../../library/contextlib.rst:556
+#, fuzzy
 msgid ""
-"Enters a new context manager and adds its :meth:`__exit__` method to the "
-"callback stack. The return value is the result of the context manager's "
-"own :meth:`__enter__` method."
+"Enters a new context manager and adds its :meth:`~object.__exit__` method"
+" to the callback stack. The return value is the result of the context "
+"manager's own :meth:`~object.__enter__` method."
 msgstr ""
 "새로운 컨텍스트 관리자에 진입하고 :meth:`__exit__` 메서드를 콜백 스택에 추가합니다. 반환 값은 컨텍스트 관리자 고유의"
 " :meth:`__enter__` 메서드의 결과입니다."
 
-#: ../Doc/library/contextlib.rst:398
+#: ../../library/contextlib.rst:560
 msgid ""
 "These context managers may suppress exceptions just as they normally "
 "would if used directly as part of a :keyword:`with` statement."
@@ -430,59 +857,72 @@ msgstr ""
 "이러한 컨텍스트 관리자는 :keyword:`with` 문의 일부로 직접 사용되었다면 일반적으로 했을 것과 마찬가지로 예외를 억제할 "
 "수 있습니다."
 
-#: ../Doc/library/contextlib.rst:403
-msgid "Adds a context manager's :meth:`__exit__` method to the callback stack."
+#: ../../library/contextlib.rst:563
+msgid ""
+"Raises :exc:`TypeError` instead of :exc:`AttributeError` if *cm* is not a"
+" context manager."
+msgstr ""
+
+#: ../../library/contextlib.rst:569
+#, fuzzy
+msgid ""
+"Adds a context manager's :meth:`~object.__exit__` method to the callback "
+"stack."
 msgstr "컨텍스트 관리자의 :meth:`__exit__` 메서드를 콜백 스택에 추가합니다."
 
-#: ../Doc/library/contextlib.rst:405
+#: ../../library/contextlib.rst:571
+#, fuzzy
 msgid ""
 "As ``__enter__`` is *not* invoked, this method can be used to cover part "
-"of an :meth:`__enter__` implementation with a context manager's own "
-":meth:`__exit__` method."
+"of an :meth:`~object.__enter__` implementation with a context manager's "
+"own :meth:`~object.__exit__` method."
 msgstr ""
 "``__enter__``\\가 호출되지 *않기* 때문에, 이 메서드를 사용하여 컨텍스트 관리자 고유의 :meth:`__exit__`"
 " 메서드로 :meth:`__enter__` 구현의 일부를 보호(cover)하는 데 사용할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:409
+#: ../../library/contextlib.rst:575
+#, fuzzy
 msgid ""
 "If passed an object that is not a context manager, this method assumes it"
 " is a callback with the same signature as a context manager's "
-":meth:`__exit__` method and adds it directly to the callback stack."
+":meth:`~object.__exit__` method and adds it directly to the callback "
+"stack."
 msgstr ""
 "컨텍스트 관리자가 아닌 객체를 전달하면, 이 메서드는 해당 객체가 컨텍스트 관리자의 :meth:`__exit__` 메서드와 같은 "
 "서명을 가진 콜백인 것으로 가정하여 콜백 스택에 직접 추가합니다."
 
-#: ../Doc/library/contextlib.rst:413
+#: ../../library/contextlib.rst:579
+#, fuzzy
 msgid ""
 "By returning true values, these callbacks can suppress exceptions the "
-"same way context manager :meth:`__exit__` methods can."
+"same way context manager :meth:`~object.__exit__` methods can."
 msgstr "참값을 반환함으로써, 이 콜백은 컨텍스트 관리자 :meth:`__exit__` 메서드와 같은 방식으로 예외를 억제할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:416
+#: ../../library/contextlib.rst:582
 msgid ""
 "The passed in object is returned from the function, allowing this method "
 "to be used as a function decorator."
 msgstr "전달된 객체는 함수에서 반환되어, 이 메서드를 함수 데코레이터로 사용할 수 있도록 합니다."
 
-#: ../Doc/library/contextlib.rst:421
+#: ../../library/contextlib.rst:587
 msgid ""
 "Accepts an arbitrary callback function and arguments and adds it to the "
 "callback stack."
 msgstr "임의의 콜백 함수와 인자를 받아서 콜백 스택에 추가합니다."
 
-#: ../Doc/library/contextlib.rst:424
+#: ../../library/contextlib.rst:590
 msgid ""
 "Unlike the other methods, callbacks added this way cannot suppress "
 "exceptions (as they are never passed the exception details)."
 msgstr "다른 메서드와 달리, 이 방법으로 추가된 콜백은 예외를 무시할 수 없습니다 (예외 세부 정보가 전달되지 않기 때문입니다)."
 
-#: ../Doc/library/contextlib.rst:427
+#: ../../library/contextlib.rst:593
 msgid ""
 "The passed in callback is returned from the function, allowing this "
 "method to be used as a function decorator."
 msgstr "전달된 콜백은 함수에서 반환되어, 이 메서드를 함수 데코레이터로 사용할 수 있도록 합니다."
 
-#: ../Doc/library/contextlib.rst:432
+#: ../../library/contextlib.rst:598
 msgid ""
 "Transfers the callback stack to a fresh :class:`ExitStack` instance and "
 "returns it. No callbacks are invoked by this operation - instead, they "
@@ -492,13 +932,25 @@ msgstr ""
 "콜백 스택을 새로운 :class:`ExitStack` 인스턴스로 옮기고 그것을 반환합니다. 이 작업으로 아무런 콜백도 호출되지 "
 "않습니다 - 대신, 이제 새 스택이 닫힐 때 (명시적으로나 :keyword:`with` 문의 끝에서 묵시적으로) 호출됩니다."
 
-#: ../Doc/library/contextlib.rst:437
+#: ../../library/contextlib.rst:603
 msgid ""
 "For example, a group of files can be opened as an \"all or nothing\" "
 "operation as follows::"
 msgstr "예를 들어, 파일 그룹을 다음과 같이 \"전부 아니면 아무것도\" 방식으로 열 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:451
+#: ../../library/contextlib.rst:606
+msgid ""
+"with ExitStack() as stack:\n"
+"    files = [stack.enter_context(open(fname)) for fname in filenames]\n"
+"    # Hold onto the close method, but don't call it yet.\n"
+"    close_files = stack.pop_all().close\n"
+"    # If opening any file fails, all previously opened files will be\n"
+"    # closed automatically. If all files are opened successfully,\n"
+"    # they will remain open even after the with statement ends.\n"
+"    # close_files() can then be invoked explicitly to close them all."
+msgstr ""
+
+#: ../../library/contextlib.rst:617
 msgid ""
 "Immediately unwinds the callback stack, invoking callbacks in the reverse"
 " order of registration. For any context managers and exit callbacks "
@@ -508,7 +960,7 @@ msgstr ""
 "콜백 스택을 즉시 되감고, 등록 역순으로 콜백을 호출합니다. 등록된 모든 컨텍스트 관리자와 탈출 콜백에 전달되는 인자는 예외가 "
 "발생하지 않았음을 나타냅니다."
 
-#: ../Doc/library/contextlib.rst:458
+#: ../../library/contextlib.rst:624
 msgid ""
 "An :ref:`asynchronous context manager <async-context-managers>`, similar "
 "to :class:`ExitStack`, that supports combining both synchronous and "
@@ -518,51 +970,73 @@ msgstr ""
 ":class:`ExitStack`\\과 유사한 :ref:`비동기 컨텍스트 관리자 <async-context-managers>`, "
 "코루틴 정리 로직을 가질 뿐만 아니라 동기와 비동기 컨텍스트 관리자의 결합을 지원합니다."
 
-#: ../Doc/library/contextlib.rst:463
+#: ../../library/contextlib.rst:629
+#, fuzzy
 msgid ""
-"The :meth:`close` method is not implemented, :meth:`aclose` must be used "
-"instead."
+"The :meth:`~ExitStack.close` method is not implemented; :meth:`aclose` "
+"must be used instead."
 msgstr ":meth:`close` 메서드는 구현되지 않으며, 대신 :meth:`aclose`\\를 사용해야 합니다."
 
-#: ../Doc/library/contextlib.rst:468
+#: ../../library/contextlib.rst:635
+#, fuzzy
 msgid ""
-"Similar to :meth:`enter_context` but expects an asynchronous context "
-"manager."
+"Similar to :meth:`ExitStack.enter_context` but expects an asynchronous "
+"context manager."
 msgstr ":meth:`enter_context`\\와 유사하지만, 비동기 컨텍스트 관리자를 기대합니다."
 
-#: ../Doc/library/contextlib.rst:473
+#: ../../library/contextlib.rst:638
 msgid ""
-"Similar to :meth:`push` but expects either an asynchronous context "
-"manager or a coroutine function."
+"Raises :exc:`TypeError` instead of :exc:`AttributeError` if *cm* is not "
+"an asynchronous context manager."
+msgstr ""
+
+#: ../../library/contextlib.rst:644
+#, fuzzy
+msgid ""
+"Similar to :meth:`ExitStack.push` but expects either an asynchronous "
+"context manager or a coroutine function."
 msgstr ":meth:`push`\\와 유사하지만, 비동기 컨텍스트 관리자나 코루틴 함수를 기대합니다."
 
-#: ../Doc/library/contextlib.rst:478
-msgid "Similar to :meth:`callback` but expects a coroutine function."
+#: ../../library/contextlib.rst:649
+#, fuzzy
+msgid "Similar to :meth:`ExitStack.callback` but expects a coroutine function."
 msgstr ":meth:`callback`\\과 유사하지만 코루틴 함수를 기대합니다."
 
-#: ../Doc/library/contextlib.rst:482
-msgid "Similar to :meth:`close` but properly handles awaitables."
+#: ../../library/contextlib.rst:654
+#, fuzzy
+msgid "Similar to :meth:`ExitStack.close` but properly handles awaitables."
 msgstr ":meth:`close`\\와 유사하지만 어웨이터블을 올바르게 처리합니다."
 
-#: ../Doc/library/contextlib.rst:484
+#: ../../library/contextlib.rst:656
 msgid "Continuing the example for :func:`asynccontextmanager`::"
 msgstr ":func:`asynccontextmanager` 에 대한 예제를 계속합니다::"
 
-#: ../Doc/library/contextlib.rst:496
+#: ../../library/contextlib.rst:658
+msgid ""
+"async with AsyncExitStack() as stack:\n"
+"    connections = [await stack.enter_async_context(get_connection())\n"
+"        for i in range(5)]\n"
+"    # All opened connections will automatically be released at the end of"
+"\n"
+"    # the async with statement, even if attempts to open a connection\n"
+"    # later in the list raise an exception."
+msgstr ""
+
+#: ../../library/contextlib.rst:668
 msgid "Examples and Recipes"
 msgstr "예제와 조리법"
 
-#: ../Doc/library/contextlib.rst:498
+#: ../../library/contextlib.rst:670
 msgid ""
 "This section describes some examples and recipes for making effective use"
 " of the tools provided by :mod:`contextlib`."
 msgstr "이 섹션에서는 :mod:`contextlib`\\가 제공하는 도구를 효과적으로 사용하기 위한 몇 가지 예와 조리법에 관해 설명합니다."
 
-#: ../Doc/library/contextlib.rst:503
+#: ../../library/contextlib.rst:675
 msgid "Supporting a variable number of context managers"
 msgstr "일정하지 않은 수의 컨텍스트 관리자 지원"
 
-#: ../Doc/library/contextlib.rst:505
+#: ../../library/contextlib.rst:677
 msgid ""
 "The primary use case for :class:`ExitStack` is the one given in the class"
 " documentation: supporting a variable number of context managers and "
@@ -575,7 +1049,18 @@ msgstr ""
 "기타 정리 연산을 단일 :keyword:`with` 문에서 지원합니다. 가변성은 사용자 입력(가령 사용자 지정한 파일 모음을 여는 "
 "것)에 의해 구동되는 필요한 컨텍스트 관리자의 수나, 일부 선택적인 컨텍스트 관리자의 존재에서 비롯될 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:520
+#: ../../library/contextlib.rst:684
+msgid ""
+"with ExitStack() as stack:\n"
+"    for resource in resources:\n"
+"        stack.enter_context(resource)\n"
+"    if need_special_resource():\n"
+"        special = acquire_special_resource()\n"
+"        stack.callback(release_special_resource, special)\n"
+"    # Perform operations that use the acquired resources"
+msgstr ""
+
+#: ../../library/contextlib.rst:692
 msgid ""
 "As shown, :class:`ExitStack` also makes it quite easy to use "
 ":keyword:`with` statements to manage arbitrary resources that don't "
@@ -584,11 +1069,11 @@ msgstr ""
 "볼 수 있듯이, :class:`ExitStack`\\을 사용하면 :keyword:`with` 문을 사용하여 컨텍스트 관리자 "
 "프로토콜을 스스로 지원하지 않는 임의의 자원을 쉽게 관리할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:526
+#: ../../library/contextlib.rst:698
 msgid "Catching exceptions from ``__enter__`` methods"
 msgstr "``__enter__`` 메서드에서 발생하는 예외 잡기"
 
-#: ../Doc/library/contextlib.rst:528
+#: ../../library/contextlib.rst:700
 msgid ""
 "It is occasionally desirable to catch exceptions from an ``__enter__`` "
 "method implementation, *without* inadvertently catching exceptions from "
@@ -600,7 +1085,19 @@ msgstr ""
 "*않으면서*, ``__enter__`` 메서드 구현에서 발생하는 예외를 포착하는 것이 바람직합니다. "
 ":class:`ExitStack`\\을 사용하면 이를 위해 컨텍스트 관리자 프로토콜의 단계를 약간 분리할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:543
+#: ../../library/contextlib.rst:706
+msgid ""
+"stack = ExitStack()\n"
+"try:\n"
+"    x = stack.enter_context(cm)\n"
+"except Exception:\n"
+"    # handle __enter__ exception\n"
+"else:\n"
+"    with stack:\n"
+"        # Handle normal case"
+msgstr ""
+
+#: ../../library/contextlib.rst:715
 msgid ""
 "Actually needing to do this is likely to indicate that the underlying API"
 " should be providing a direct resource management interface for use with "
@@ -616,20 +1113,21 @@ msgstr ""
 "제공되는 자원 관리 API일 때, :class:`ExitStack`\\을 사용하면 :keyword:`with` 문에서 직접 처리할 "
 "수 없는 다양한 상황을 더 쉽게 처리할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:553
+#: ../../library/contextlib.rst:725
 msgid "Cleaning up in an ``__enter__`` implementation"
 msgstr "``__enter__`` 구현에서 정리하기"
 
-#: ../Doc/library/contextlib.rst:555
+#: ../../library/contextlib.rst:727
+#, fuzzy
 msgid ""
 "As noted in the documentation of :meth:`ExitStack.push`, this method can "
 "be useful in cleaning up an already allocated resource if later steps in "
-"the :meth:`__enter__` implementation fail."
+"the :meth:`~object.__enter__` implementation fail."
 msgstr ""
 ":meth:`ExitStack.push` 설명서에서 언급했듯이, 이 메서드는 :meth:`__enter__` 구현의 후반 단계가 "
 "실패하면 이미 할당된 자원을 정리하는 데 유용할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:559
+#: ../../library/contextlib.rst:731
 msgid ""
 "Here's an example of doing this for a context manager that accepts "
 "resource acquisition and release functions, along with an optional "
@@ -638,11 +1136,50 @@ msgstr ""
 "다음은 선택적 유효성 검증 함수와 함께 자원 확보와 해제 함수를 받아들이고 이를 컨텍스트 관리 프로토콜에 매핑하는 컨텍스트 관리자를"
 " 위해 이를 수행하는 예제입니다::"
 
-#: ../Doc/library/contextlib.rst:599
+#: ../../library/contextlib.rst:735
+#, python-brace-format
+msgid ""
+"from contextlib import contextmanager, AbstractContextManager, ExitStack\n"
+"\n"
+"class ResourceManager(AbstractContextManager):\n"
+"\n"
+"    def __init__(self, acquire_resource, release_resource, "
+"check_resource_ok=None):\n"
+"        self.acquire_resource = acquire_resource\n"
+"        self.release_resource = release_resource\n"
+"        if check_resource_ok is None:\n"
+"            def check_resource_ok(resource):\n"
+"                return True\n"
+"        self.check_resource_ok = check_resource_ok\n"
+"\n"
+"    @contextmanager\n"
+"    def _cleanup_on_error(self):\n"
+"        with ExitStack() as stack:\n"
+"            stack.push(self)\n"
+"            yield\n"
+"            # The validation check passed and didn't raise an exception\n"
+"            # Accordingly, we want to keep the resource, and pass it\n"
+"            # back to our caller\n"
+"            stack.pop_all()\n"
+"\n"
+"    def __enter__(self):\n"
+"        resource = self.acquire_resource()\n"
+"        with self._cleanup_on_error():\n"
+"            if not self.check_resource_ok(resource):\n"
+"                msg = \"Failed validation for {!r}\"\n"
+"                raise RuntimeError(msg.format(resource))\n"
+"        return resource\n"
+"\n"
+"    def __exit__(self, *exc_details):\n"
+"        # We don't need to duplicate any of our resource release logic\n"
+"        self.release_resource()"
+msgstr ""
+
+#: ../../library/contextlib.rst:771
 msgid "Replacing any use of ``try-finally`` and flag variables"
 msgstr "``try-finally``\\와 플래그 변수 사용 교체하기"
 
-#: ../Doc/library/contextlib.rst:601
+#: ../../library/contextlib.rst:773
 msgid ""
 "A pattern you will sometimes see is a ``try-finally`` statement with a "
 "flag variable to indicate whether or not the body of the ``finally`` "
@@ -653,7 +1190,19 @@ msgstr ""
 "때때로 보이는 패턴은 ``finally`` 절의 본문을 실행할지를 나타내는 플래그 변수가 있는 ``try-finally`` "
 "문입니다. 가장 간단한 형태(단지 대신 ``except`` 절을 사용하는 것만으로 이미 처리되었을 수 없는)는 다음과 같습니다::"
 
-#: ../Doc/library/contextlib.rst:615
+#: ../../library/contextlib.rst:778
+msgid ""
+"cleanup_needed = True\n"
+"try:\n"
+"    result = perform_operation()\n"
+"    if result:\n"
+"        cleanup_needed = False\n"
+"finally:\n"
+"    if cleanup_needed:\n"
+"        cleanup_resources()"
+msgstr ""
+
+#: ../../library/contextlib.rst:787
 msgid ""
 "As with any ``try`` statement based code, this can cause problems for "
 "development and review, because the setup code and the cleanup code can "
@@ -662,7 +1211,7 @@ msgstr ""
 "다른 ``try`` 문 기반 코드와 마찬가지로, 설정 코드와 정리 코드가 임의로 긴 코드 섹션으로 분리될 수 있어서 개발과 검토에 "
 "문제가 발생할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:619
+#: ../../library/contextlib.rst:791
 msgid ""
 ":class:`ExitStack` makes it possible to instead register a callback for "
 "execution at the end of a ``with`` statement, and then later decide to "
@@ -671,19 +1220,49 @@ msgstr ""
 ":class:`ExitStack`\\을 사용하면 대신 ``with`` 문의 끝에서 실행할 콜백을 등록한 다음 나중에 해당 콜백 "
 "실행을 건너뛰기로 할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:631
+#: ../../library/contextlib.rst:795
 msgid ""
-"This allows the intended cleanup up behaviour to be made explicit up "
-"front, rather than requiring a separate flag variable."
+"from contextlib import ExitStack\n"
+"\n"
+"with ExitStack() as stack:\n"
+"    stack.callback(cleanup_resources)\n"
+"    result = perform_operation()\n"
+"    if result:\n"
+"        stack.pop_all()"
+msgstr ""
+
+#: ../../library/contextlib.rst:803
+#, fuzzy
+msgid ""
+"This allows the intended cleanup behaviour to be made explicit up front, "
+"rather than requiring a separate flag variable."
 msgstr "이를 통해 별도의 플래그 변수를 요구하지 않고, 의도하는 정리 동작을 사전에 명시적으로 만들 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:634
+#: ../../library/contextlib.rst:806
 msgid ""
 "If a particular application uses this pattern a lot, it can be simplified"
 " even further by means of a small helper class::"
 msgstr "특정 응용 프로그램에서 이 패턴을 많이 사용한다면, 작은 도우미 클래스를 사용하여 훨씬 더 단순화할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:652
+#: ../../library/contextlib.rst:809
+msgid ""
+"from contextlib import ExitStack\n"
+"\n"
+"class Callback(ExitStack):\n"
+"    def __init__(self, callback, /, *args, **kwds):\n"
+"        super().__init__()\n"
+"        self.callback(callback, *args, **kwds)\n"
+"\n"
+"    def cancel(self):\n"
+"        self.pop_all()\n"
+"\n"
+"with Callback(cleanup_resources) as cb:\n"
+"    result = perform_operation()\n"
+"    if result:\n"
+"        cb.cancel()"
+msgstr ""
+
+#: ../../library/contextlib.rst:824
 msgid ""
 "If the resource cleanup isn't already neatly bundled into a standalone "
 "function, then it is still possible to use the decorator form of "
@@ -692,7 +1271,20 @@ msgstr ""
 "자원 정리가 아직 독립 함수로 깔끔하게 번들 되어 있지 않으면, :meth:`ExitStack.callback`\\의 데코레이터 "
 "형식을 사용하여 자원 정리를 미리 선언할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:667
+#: ../../library/contextlib.rst:829
+msgid ""
+"from contextlib import ExitStack\n"
+"\n"
+"with ExitStack() as stack:\n"
+"    @stack.callback\n"
+"    def cleanup_resources():\n"
+"        ...\n"
+"    result = perform_operation()\n"
+"    if result:\n"
+"        stack.pop_all()"
+msgstr ""
+
+#: ../../library/contextlib.rst:839
 msgid ""
 "Due to the way the decorator protocol works, a callback function declared"
 " this way cannot take any parameters. Instead, any resources to be "
@@ -701,11 +1293,11 @@ msgstr ""
 "데코레이터 프로토콜의 작동 방식으로 인해, 이 방법으로 선언된 콜백 함수는 아무런 매개 변수도 취할 수 없습니다. 대신 해제할 모든"
 " 자원은 클로저(closure) 변수로 액세스해야 합니다."
 
-#: ../Doc/library/contextlib.rst:673
+#: ../../library/contextlib.rst:845
 msgid "Using a context manager as a function decorator"
 msgstr "함수 데코레이터로 컨텍스트 관리자 사용하기"
 
-#: ../Doc/library/contextlib.rst:675
+#: ../../library/contextlib.rst:847
 msgid ""
 ":class:`ContextDecorator` makes it possible to use a context manager in "
 "both an ordinary ``with`` statement and also as a function decorator."
@@ -713,7 +1305,7 @@ msgstr ""
 ":class:`ContextDecorator`\\를 사용하면 일반적인 ``with`` 문과 함수 데코레이터 모두로 컨텍스트 관리자를"
 " 사용할 수 있습니다."
 
-#: ../Doc/library/contextlib.rst:678
+#: ../../library/contextlib.rst:850
 msgid ""
 "For example, it is sometimes useful to wrap functions or groups of "
 "statements with a logger that can track the time of entry and time of "
@@ -725,39 +1317,74 @@ msgstr ""
 "작업에 대한 함수 데코레이터와 컨텍스트 관리자를 모두 작성하는 대신, :class:`ContextDecorator`\\를 상속하면 "
 "두 가지 기능을 하나의 정의로 제공합니다::"
 
-#: ../Doc/library/contextlib.rst:699
+#: ../../library/contextlib.rst:856
+#, python-format
+msgid ""
+"from contextlib import ContextDecorator\n"
+"import logging\n"
+"\n"
+"logging.basicConfig(level=logging.INFO)\n"
+"\n"
+"class track_entry_and_exit(ContextDecorator):\n"
+"    def __init__(self, name):\n"
+"        self.name = name\n"
+"\n"
+"    def __enter__(self):\n"
+"        logging.info('Entering: %s', self.name)\n"
+"\n"
+"    def __exit__(self, exc_type, exc, exc_tb):\n"
+"        logging.info('Exiting: %s', self.name)"
+msgstr ""
+
+#: ../../library/contextlib.rst:871
 msgid "Instances of this class can be used as both a context manager::"
 msgstr "이 클래스의 인스턴스는 컨텍스트 관리자로 사용할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:705
+#: ../../library/contextlib.rst:873
+msgid ""
+"with track_entry_and_exit('widget loader'):\n"
+"    print('Some time consuming activity goes here')\n"
+"    load_widget()"
+msgstr ""
+
+#: ../../library/contextlib.rst:877
 msgid "And also as a function decorator::"
 msgstr "또한 함수 데코레이터로도 사용할 수 있습니다::"
 
-#: ../Doc/library/contextlib.rst:712
+#: ../../library/contextlib.rst:879
+msgid ""
+"@track_entry_and_exit('widget loader')\n"
+"def activity():\n"
+"    print('Some time consuming activity goes here')\n"
+"    load_widget()"
+msgstr ""
+
+#: ../../library/contextlib.rst:884
+#, fuzzy
 msgid ""
 "Note that there is one additional limitation when using context managers "
 "as function decorators: there's no way to access the return value of "
-":meth:`__enter__`. If that value is needed, then it is still necessary to"
-" use an explicit ``with`` statement."
+":meth:`~object.__enter__`. If that value is needed, then it is still "
+"necessary to use an explicit ``with`` statement."
 msgstr ""
 "컨텍스트 관리자를 함수 데코레이터로 사용할 때 한 가지 추가 제한 사항이 있음에 유의하십시오: :meth:`__enter__`\\의"
 " 반환 값에 액세스 할 수 있는 방법이 없습니다. 이 값이 필요하면, 여전히 명시적인 ``with`` 문을 사용할 필요가 있습니다."
 
-#: ../Doc/library/contextlib.rst:720
+#: ../../library/contextlib.rst:891
 msgid ":pep:`343` - The \"with\" statement"
 msgstr ":pep:`343`- \"with\" 문"
 
-#: ../Doc/library/contextlib.rst:720
+#: ../../library/contextlib.rst:892
 msgid ""
 "The specification, background, and examples for the Python "
 ":keyword:`with` statement."
 msgstr "파이썬 :keyword:`with` 문의 명세, 배경 및 예"
 
-#: ../Doc/library/contextlib.rst:726
+#: ../../library/contextlib.rst:898
 msgid "Single use, reusable and reentrant context managers"
 msgstr "일회용, 재사용 가능 및 재진입 가능 컨텍스트 관리자"
 
-#: ../Doc/library/contextlib.rst:728
+#: ../../library/contextlib.rst:900
 msgid ""
 "Most context managers are written in a way that means they can only be "
 "used effectively in a :keyword:`with` statement once. These single use "
@@ -769,7 +1396,7 @@ msgstr ""
 "작성됩니다. 이러한 일회용 컨텍스트 관리자는 사용될 때마다 새로 만들어야 합니다 - 두 번째로 사용하려고 하면 예외가 발생하거나 "
 "올바르게 작동하지 않습니다."
 
-#: ../Doc/library/contextlib.rst:734
+#: ../../library/contextlib.rst:906
 msgid ""
 "This common limitation means that it is generally advisable to create "
 "context managers directly in the header of the :keyword:`with` statement "
@@ -778,7 +1405,7 @@ msgstr ""
 "이 흔한 제한 사항은 일반적으로 컨텍스트 관리자가 사용되는 :keyword:`with` 문의 헤더에서 컨텍스트 관리자를 직접 "
 "만들도록 권고하게 합니다 (위의 모든 사용 예제에서 보이듯이)."
 
-#: ../Doc/library/contextlib.rst:738
+#: ../../library/contextlib.rst:910
 msgid ""
 "Files are an example of effectively single use context managers, since "
 "the first :keyword:`with` statement will close the file, preventing any "
@@ -787,7 +1414,7 @@ msgstr ""
 "파일은 효과적인 일회용 컨텍스트 관리자의 예입니다, 첫 번째 :keyword:`with` 문이 파일을 닫아서, 해당 파일 객체를 "
 "사용하는 추가 IO 연산을 막기 때문입니다."
 
-#: ../Doc/library/contextlib.rst:742
+#: ../../library/contextlib.rst:914
 msgid ""
 "Context managers created using :func:`contextmanager` are also single use"
 " context managers, and will complain about the underlying generator "
@@ -796,11 +1423,34 @@ msgstr ""
 ":func:`contextmanager`\\를 사용하여 만들어진 컨텍스트 관리자도 일회용 컨텍스트 관리자이며, 두 번째로 사용하려는"
 " 경우 하부 제너레이터가 산출에 실패하는 것에 대해 불평합니다::"
 
-#: ../Doc/library/contextlib.rst:770
+#: ../../library/contextlib.rst:918
+msgid ""
+">>> from contextlib import contextmanager\n"
+">>> @contextmanager\n"
+"... def singleuse():\n"
+"...     print(\"Before\")\n"
+"...     yield\n"
+"...     print(\"After\")\n"
+"...\n"
+">>> cm = singleuse()\n"
+">>> with cm:\n"
+"...     pass\n"
+"...\n"
+"Before\n"
+"After\n"
+">>> with cm:\n"
+"...     pass\n"
+"...\n"
+"Traceback (most recent call last):\n"
+"    ...\n"
+"RuntimeError: generator didn't yield"
+msgstr ""
+
+#: ../../library/contextlib.rst:942
 msgid "Reentrant context managers"
 msgstr "재진입 가능 컨텍스트 관리자"
 
-#: ../Doc/library/contextlib.rst:772
+#: ../../library/contextlib.rst:944
 msgid ""
 "More sophisticated context managers may be \"reentrant\". These context "
 "managers can not only be used in multiple :keyword:`with` statements, but"
@@ -811,24 +1461,43 @@ msgstr ""
 "사용될 수 있을 뿐만 아니라 이미 같은 컨텍스트 관리자를 사용하는 :keyword:`!with` 문 *내부에서* 사용될 수도 "
 "있습니다."
 
-#: ../Doc/library/contextlib.rst:777
+#: ../../library/contextlib.rst:949
+#, fuzzy
 msgid ""
 ":class:`threading.RLock` is an example of a reentrant context manager, as"
-" are :func:`suppress` and :func:`redirect_stdout`. Here's a very simple "
-"example of reentrant use::"
+" are :func:`suppress`, :func:`redirect_stdout`, and :func:`chdir`. Here's"
+" a very simple example of reentrant use::"
 msgstr ""
 ":class:`threading.RLock`\\은 :func:`suppress`\\와 "
 ":func:`redirect_stdout`\\과 같이 재진입 가능 컨텍스트 관리자의 예입니다. 재진입 사용의 매우 간단한 예는 "
 "다음과 같습니다::"
 
-#: ../Doc/library/contextlib.rst:796
+#: ../../library/contextlib.rst:953
+msgid ""
+">>> from contextlib import redirect_stdout\n"
+">>> from io import StringIO\n"
+">>> stream = StringIO()\n"
+">>> write_to_stream = redirect_stdout(stream)\n"
+">>> with write_to_stream:\n"
+"...     print(\"This is written to the stream rather than stdout\")\n"
+"...     with write_to_stream:\n"
+"...         print(\"This is also written to the stream\")\n"
+"...\n"
+">>> print(\"This is written directly to stdout\")\n"
+"This is written directly to stdout\n"
+">>> print(stream.getvalue())\n"
+"This is written to the stream rather than stdout\n"
+"This is also written to the stream"
+msgstr ""
+
+#: ../../library/contextlib.rst:968
 msgid ""
 "Real world examples of reentrancy are more likely to involve multiple "
 "functions calling each other and hence be far more complicated than this "
 "example."
 msgstr "재진입의 실제 예는 서로를 호출하는 여러 함수를 포함할 가능성이 높아서 이 예보다 훨씬 더 복잡합니다."
 
-#: ../Doc/library/contextlib.rst:800
+#: ../../library/contextlib.rst:972
 msgid ""
 "Note also that being reentrant is *not* the same thing as being thread "
 "safe. :func:`redirect_stdout`, for example, is definitely not thread "
@@ -839,11 +1508,11 @@ msgstr ""
 ":func:`redirect_stdout`\\은 :data:`sys.stdout`\\을 다른 스트림으로 연결하여 시스템 상태를 "
 "전역적으로 수정하므로 명백히 스레드 안전하지 않습니다."
 
-#: ../Doc/library/contextlib.rst:809
+#: ../../library/contextlib.rst:981
 msgid "Reusable context managers"
 msgstr "재사용 가능 컨텍스트 관리자"
 
-#: ../Doc/library/contextlib.rst:811
+#: ../../library/contextlib.rst:983
 msgid ""
 "Distinct from both single use and reentrant context managers are "
 "\"reusable\" context managers (or, to be completely explicit, \"reusable,"
@@ -858,7 +1527,7 @@ msgstr ""
 "관리자는 여러 번 사용되는 것을 지원하지만, 같은 컨텍스트 관리자 인스턴스가 포함하는 with 문에서 이미 사용되었으면 실패합니다 "
 "(또는 올바르게 작동하지 않습니다)."
 
-#: ../Doc/library/contextlib.rst:818
+#: ../../library/contextlib.rst:990
 msgid ""
 ":class:`threading.Lock` is an example of a reusable, but not reentrant, "
 "context manager (for a reentrant lock, it is necessary to use "
@@ -867,7 +1536,7 @@ msgstr ""
 ":class:`threading.Lock`\\은 재사용할 수 있지만 재진입할 수 없는 컨텍스트 관리자의 예입니다 (재진입 가능 록을"
 " 위해서는 :class:`threading.RLock`\\을 대신 사용해야 합니다)."
 
-#: ../Doc/library/contextlib.rst:822
+#: ../../library/contextlib.rst:994
 msgid ""
 "Another example of a reusable, but not reentrant, context manager is "
 ":class:`ExitStack`, as it invokes *all* currently registered callbacks "
@@ -877,7 +1546,36 @@ msgstr ""
 "재사용할 수 있지만 재진입할 수 없는 컨텍스트 관리자의 또 다른 예는 :class:`ExitStack`\\인 데, 콜백이 추가된 "
 "위치와 관계없이 with 문을 떠날 때 현재 등록된 콜백을 *모두* 호출하기 때문입니다::"
 
-#: ../Doc/library/contextlib.rst:853
+#: ../../library/contextlib.rst:999
+msgid ""
+">>> from contextlib import ExitStack\n"
+">>> stack = ExitStack()\n"
+">>> with stack:\n"
+"...     stack.callback(print, \"Callback: from first context\")\n"
+"...     print(\"Leaving first context\")\n"
+"...\n"
+"Leaving first context\n"
+"Callback: from first context\n"
+">>> with stack:\n"
+"...     stack.callback(print, \"Callback: from second context\")\n"
+"...     print(\"Leaving second context\")\n"
+"...\n"
+"Leaving second context\n"
+"Callback: from second context\n"
+">>> with stack:\n"
+"...     stack.callback(print, \"Callback: from outer context\")\n"
+"...     with stack:\n"
+"...         stack.callback(print, \"Callback: from inner context\")\n"
+"...         print(\"Leaving inner context\")\n"
+"...     print(\"Leaving outer context\")\n"
+"...\n"
+"Leaving inner context\n"
+"Callback: from inner context\n"
+"Callback: from outer context\n"
+"Leaving outer context"
+msgstr ""
+
+#: ../../library/contextlib.rst:1025
 msgid ""
 "As the output from the example shows, reusing a single stack object "
 "across multiple with statements works correctly, but attempting to nest "
@@ -887,9 +1585,26 @@ msgstr ""
 "예제의 결과가 보여주듯이, 여러 with 문에서 단일 스택 객체를 재사용하는 것은 올바르게 작동하지만, 중첩을 시도하면 가장 안쪽 "
 "with 문 끝에서 스택이 지워지기 때문에 바람직한 동작이 아닙니다."
 
-#: ../Doc/library/contextlib.rst:858
+#: ../../library/contextlib.rst:1030
 msgid ""
 "Using separate :class:`ExitStack` instances instead of reusing a single "
 "instance avoids that problem::"
 msgstr "단일 인스턴스를 재사용하는 대신 별도의 :class:`ExitStack` 인스턴스를 사용하면 이 문제를 피할 수 있습니다::"
+
+#: ../../library/contextlib.rst:1033
+msgid ""
+">>> from contextlib import ExitStack\n"
+">>> with ExitStack() as outer_stack:\n"
+"...     outer_stack.callback(print, \"Callback: from outer context\")\n"
+"...     with ExitStack() as inner_stack:\n"
+"...         inner_stack.callback(print, \"Callback: from inner context\")"
+"\n"
+"...         print(\"Leaving inner context\")\n"
+"...     print(\"Leaving outer context\")\n"
+"...\n"
+"Leaving inner context\n"
+"Callback: from inner context\n"
+"Leaving outer context\n"
+"Callback: from outer context"
+msgstr ""
 

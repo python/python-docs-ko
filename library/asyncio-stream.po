@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-19 18:31+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:7
+#: ../../library/asyncio-stream.rst:7
 msgid "Streams"
 msgstr "스트림"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:9
+#: ../../library/asyncio-stream.rst:9
 msgid "**Source code:** :source:`Lib/asyncio/streams.py`"
 msgstr "**소스 코드:** :source:`Lib/asyncio/streams.py`"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:13
+#: ../../library/asyncio-stream.rst:13
 msgid ""
 "Streams are high-level async/await-ready primitives to work with network "
 "connections.  Streams allow sending and receiving data without using "
@@ -33,31 +33,54 @@ msgstr ""
 "스트림은 네트워크 연결로 작업하기 위해, async/await에서 사용할 수 있는 고수준 프리미티브입니다. 스트림은 콜백이나 저수준"
 " 프로토콜과 트랜스포트를 사용하지 않고 데이터를 송수신할 수 있게 합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:19
+#: ../../library/asyncio-stream.rst:19
 msgid "Here is an example of a TCP echo client written using asyncio streams::"
 msgstr "다음은 asyncio 스트림을 사용하여 작성된 TCP 메아리 클라이언트의 예입니다::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:42
+#: ../../library/asyncio-stream.rst:22 ../../library/asyncio-stream.rst:430
+#, python-brace-format
+msgid ""
+"import asyncio\n"
+"\n"
+"async def tcp_echo_client(message):\n"
+"    reader, writer = await asyncio.open_connection(\n"
+"        '127.0.0.1', 8888)\n"
+"\n"
+"    print(f'Send: {message!r}')\n"
+"    writer.write(message.encode())\n"
+"    await writer.drain()\n"
+"\n"
+"    data = await reader.read(100)\n"
+"    print(f'Received: {data.decode()!r}')\n"
+"\n"
+"    print('Close the connection')\n"
+"    writer.close()\n"
+"    await writer.wait_closed()\n"
+"\n"
+"asyncio.run(tcp_echo_client('Hello World!'))"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:42
 msgid "See also the `Examples`_ section below."
 msgstr "아래의 `예제 <Examples_>`_ 절도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:46
+#: ../../library/asyncio-stream.rst:46
 msgid "Stream Functions"
 msgstr "스트림 함수"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:47
+#: ../../library/asyncio-stream.rst:47
 msgid ""
 "The following top-level asyncio functions can be used to create and work "
 "with streams:"
 msgstr "다음 최상위 asyncio 함수를 사용하여 스트림을 만들고 작업할 수 있습니다.:"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:56
+#: ../../library/asyncio-stream.rst:59
 msgid ""
 "Establish a network connection and return a pair of ``(reader, writer)`` "
 "objects."
 msgstr "네트워크 연결을 만들고 ``(reader, writer)`` 객체 쌍을 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:59
+#: ../../library/asyncio-stream.rst:62
 msgid ""
 "The returned *reader* and *writer* objects are instances of "
 ":class:`StreamReader` and :class:`StreamWriter` classes."
@@ -65,14 +88,7 @@ msgstr ""
 "반환된 *reader* 와 *writer* 객체는 :class:`StreamReader` 와 :class:`StreamWriter`"
 " 클래스의 인스턴스입니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:62
-msgid ""
-"The *loop* argument is optional and can always be determined "
-"automatically when this function is awaited from a coroutine."
-msgstr "*loop* 인자는 선택적이며 이 함수를 코루틴에서 기다릴 때 언제나 자동으로 결정될 수 있습니다."
-
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:65
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:98
+#: ../../library/asyncio-stream.rst:65 ../../library/asyncio-stream.rst:112
 msgid ""
 "*limit* determines the buffer size limit used by the returned "
 ":class:`StreamReader` instance.  By default the *limit* is set to 64 KiB."
@@ -80,22 +96,45 @@ msgstr ""
 "*limit*\\는 반환된 :class:`StreamReader` 인스턴스가 사용하는 버퍼 크기 한계를 결정합니다. 기본적으로 "
 "*limit*\\는 64KiB로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:69
+#: ../../library/asyncio-stream.rst:69
 msgid ""
 "The rest of the arguments are passed directly to "
 ":meth:`loop.create_connection`."
 msgstr "나머지 인자는 :meth:`loop.create_connection`\\로 직접 전달됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:74
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:127
-msgid "The *ssl_handshake_timeout* parameter."
+#: ../../library/asyncio-stream.rst:74 ../../library/asyncio-stream.rst:154
+msgid ""
+"The *sock* argument transfers ownership of the socket to the "
+":class:`StreamWriter` created. To close the socket, call its "
+":meth:`~asyncio.StreamWriter.close` method."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:78
+#, fuzzy
+msgid "Added the *ssl_handshake_timeout* parameter."
 msgstr "*ssl_handshake_timeout* 매개 변수."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:84
+#: ../../library/asyncio-stream.rst:81
+msgid "Added the *happy_eyeballs_delay* and *interleave* parameters."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:84 ../../library/asyncio-stream.rst:128
+#: ../../library/asyncio-stream.rst:164 ../../library/asyncio-stream.rst:195
+msgid "Removed the *loop* parameter."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:87 ../../library/asyncio-stream.rst:131
+#: ../../library/asyncio-stream.rst:167 ../../library/asyncio-stream.rst:198
+#: ../../library/asyncio-stream.rst:397
+#, fuzzy
+msgid "Added the *ssl_shutdown_timeout* parameter."
+msgstr "*ssl_handshake_timeout* 매개 변수."
+
+#: ../../library/asyncio-stream.rst:101
 msgid "Start a socket server."
 msgstr "소켓 서버를 시작합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:86
+#: ../../library/asyncio-stream.rst:103
 msgid ""
 "The *client_connected_cb* callback is called whenever a new client "
 "connection is established.  It receives a ``(reader, writer)`` pair as "
@@ -106,7 +145,7 @@ msgstr ""
 "``(reader, writer)`` 쌍을 받는데, :class:`StreamReader` 와 "
 ":class:`StreamWriter` 클래스의 인스턴스입니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:91
+#: ../../library/asyncio-stream.rst:108
 msgid ""
 "*client_connected_cb* can be a plain callable or a :ref:`coroutine "
 "function <coroutine>`; if it is a coroutine function, it will be "
@@ -115,77 +154,90 @@ msgstr ""
 "*client_connected_cb*\\는 일반 콜러블이나 :ref:`코루틴 함수 <coroutine>` 일 수 있습니다; 코루틴"
 " 함수면, 자동으로 :class:`Task`\\로 예약됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:95
-msgid ""
-"The *loop* argument is optional and can always be determined "
-"automatically when this method is awaited from a coroutine."
-msgstr "*loop* 인자는 선택적이며, 이 메서드를 코루틴이 기다릴 때 항상 자동으로 결정될 수 있습니다."
-
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:102
+#: ../../library/asyncio-stream.rst:116
 msgid ""
 "The rest of the arguments are passed directly to "
 ":meth:`loop.create_server`."
 msgstr "나머지 인자는 :meth:`loop.create_server`\\로 직접 전달됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:107
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:149
-msgid "The *ssl_handshake_timeout* and *start_serving* parameters."
+#: ../../library/asyncio-stream.rst:121 ../../library/asyncio-stream.rst:185
+msgid ""
+"The *sock* argument transfers ownership of the socket to the server "
+"created. To close the socket, call the server's "
+":meth:`~asyncio.Server.close` method."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:125
+#, fuzzy
+msgid "Added the *ssl_handshake_timeout* and *start_serving* parameters."
 msgstr "*ssl_handshake_timeout* 와 *start_serving* 매개 변수."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:111
+#: ../../library/asyncio-stream.rst:134
+#, fuzzy
+msgid "Added the *keep_alive* parameter."
+msgstr "*ssl_handshake_timeout* 매개 변수."
+
+#: ../../library/asyncio-stream.rst:139
 msgid "Unix Sockets"
 msgstr "유닉스 소켓"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:116
+#: ../../library/asyncio-stream.rst:145
 msgid ""
 "Establish a Unix socket connection and return a pair of ``(reader, "
 "writer)``."
 msgstr "유닉스 소켓 연결을 만들고 ``(reader, writer)`` 쌍을 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:119
+#: ../../library/asyncio-stream.rst:148
 msgid "Similar to :func:`open_connection` but operates on Unix sockets."
 msgstr ":func:`open_connection`\\과 비슷하지만, 유닉스 소켓에서 작동합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:121
+#: ../../library/asyncio-stream.rst:150
 msgid "See also the documentation of :meth:`loop.create_unix_connection`."
 msgstr ":meth:`loop.create_unix_connection`\\의 설명서도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:124
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:146
-msgid ":ref:`Availability <availability>`: Unix."
-msgstr ":ref:`가용성 <availability>`: 유닉스."
+#: ../../library/asyncio-stream.rst:158 ../../library/asyncio-stream.rst:189
+msgid "Availability"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:131
-msgid "The *path* parameter can now be a :term:`path-like object`"
+#: ../../library/asyncio-stream.rst:160
+#, fuzzy
+msgid ""
+"Added the *ssl_handshake_timeout* parameter. The *path* parameter can now"
+" be a :term:`path-like object`"
 msgstr "*path* 매개 변수는 이제 :term:`경로류 객체 <path-like object>`\\가 될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:139
+#: ../../library/asyncio-stream.rst:177
 msgid "Start a Unix socket server."
 msgstr "유닉스 소켓 서버를 시작합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:141
+#: ../../library/asyncio-stream.rst:179
 msgid "Similar to :func:`start_server` but works with Unix sockets."
 msgstr ":func:`start_server`\\와 비슷하지만, 유닉스 소켓에서 작동합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:143
+#: ../../library/asyncio-stream.rst:181
 msgid "See also the documentation of :meth:`loop.create_unix_server`."
 msgstr ":meth:`loop.create_unix_server`\\의 설명서도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:153
-msgid "The *path* parameter can now be a :term:`path-like object`."
-msgstr "*path* 매개 변수는 이제 :term:`경로류 객체 <path-like object>`\\가 될 수 있습니다."
+#: ../../library/asyncio-stream.rst:191
+#, fuzzy
+msgid ""
+"Added the *ssl_handshake_timeout* and *start_serving* parameters. The "
+"*path* parameter can now be a :term:`path-like object`."
+msgstr "*ssl_handshake_timeout* 와 *start_serving* 매개 변수."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:157
+#: ../../library/asyncio-stream.rst:203
 msgid "StreamReader"
 msgstr "StreamReader"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:161
+#: ../../library/asyncio-stream.rst:207
+#, fuzzy
 msgid ""
 "Represents a reader object that provides APIs to read data from the IO "
-"stream."
+"stream. As an :term:`asynchronous iterable`, the object supports the "
+":keyword:`async for` statement."
 msgstr "IO 스트림에서 데이터를 읽는 API를 제공하는 판독기(reader) 객체를 나타냅니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:164
+#: ../../library/asyncio-stream.rst:211
 msgid ""
 "It is not recommended to instantiate *StreamReader* objects directly; use"
 " :func:`open_connection` and :func:`start_server` instead."
@@ -193,41 +245,54 @@ msgstr ""
 "*StreamReader* 객체를 직접 인스턴스로 만드는 것은 권장되지 않습니다. 대신 "
 ":func:`open_connection`\\과 :func:`start_server`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:170
-msgid ""
-"Read up to *n* bytes.  If *n* is not provided, or set to ``-1``, read "
-"until EOF and return all read bytes."
+#: ../../library/asyncio-stream.rst:217
+msgid "Acknowledge the EOF."
 msgstr ""
-"최대 *n* 바이트를 읽습니다. *n*\\이 제공되지 않거나 ``-1``\\로 설정되면, EOF까지 읽은 후 모든 읽은 바이트를 "
-"반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:173
+#: ../../library/asyncio-stream.rst:222
+msgid "Read up to *n* bytes from the stream."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:224
+#, fuzzy
 msgid ""
-"If EOF was received and the internal buffer is empty, return an empty "
-"``bytes`` object."
+"If *n* is not provided or set to ``-1``, read until EOF, then return all "
+"read :class:`bytes`. If EOF was received and the internal buffer is "
+"empty, return an empty ``bytes`` object."
 msgstr "EOF를 수신했고 내부 버퍼가 비어 있으면, 빈 ``bytes`` 객체를 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:178
+#: ../../library/asyncio-stream.rst:229
+msgid "If *n* is ``0``, return an empty ``bytes`` object immediately."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:231
+msgid ""
+"If *n* is positive, return at most *n* available ``bytes`` as soon as at "
+"least 1 byte is available in the internal buffer. If EOF is received "
+"before any byte is read, return an empty ``bytes`` object."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:239
 msgid "Read one line, where \"line\" is a sequence of bytes ending with ``\\n``."
 msgstr "한 줄을 읽습니다. 여기서 \"줄\"은 ``\\n``\\로 끝나는 바이트의 시퀀스입니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:181
+#: ../../library/asyncio-stream.rst:242
 msgid ""
 "If EOF is received and ``\\n`` was not found, the method returns "
 "partially read data."
 msgstr "EOF를 수신했고, ``\\n``\\를 찾을 수 없으면, 이 메서드는 부분적으로 읽은 데이터를 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:184
+#: ../../library/asyncio-stream.rst:245
 msgid ""
 "If EOF is received and the internal buffer is empty, return an empty "
 "``bytes`` object."
 msgstr "EOF를 수신했고, 내부 버퍼가 비어 있으면 빈 ``bytes`` 객체를 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:189
+#: ../../library/asyncio-stream.rst:251
 msgid "Read exactly *n* bytes."
 msgstr "정확히 *n* 바이트를 읽습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:191
+#: ../../library/asyncio-stream.rst:253
 msgid ""
 "Raise an :exc:`IncompleteReadError` if EOF is reached before *n* can be "
 "read.  Use the :attr:`IncompleteReadError.partial` attribute to get the "
@@ -236,11 +301,11 @@ msgstr ""
 "*n* 바이트를 읽기 전에 EOF에 도달하면, :exc:`IncompleteReadError`\\를 일으킵니다. 부분적으로 읽은 "
 "데이터를 가져오려면 :attr:`IncompleteReadError.partial` 어트리뷰트를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:197
+#: ../../library/asyncio-stream.rst:260
 msgid "Read data from the stream until *separator* is found."
 msgstr "*separator*\\가 발견될 때까지 스트림에서 데이터를 읽습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:199
+#: ../../library/asyncio-stream.rst:262
 msgid ""
 "On success, the data and separator will be removed from the internal "
 "buffer (consumed). Returned data will include the separator at the end."
@@ -248,7 +313,7 @@ msgstr ""
 "성공하면, 데이터와 separator가 내부 버퍼에서 제거됩니다 (소비됩니다). 반환된 데이터에는 끝에 separator가 "
 "포함됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:203
+#: ../../library/asyncio-stream.rst:266
 msgid ""
 "If the amount of data read exceeds the configured stream limit, a "
 ":exc:`LimitOverrunError` exception is raised, and the data is left in the"
@@ -257,7 +322,7 @@ msgstr ""
 "읽은 데이터의 양이 구성된 스트림 제한을 초과하면 :exc:`LimitOverrunError` 예외가 발생하고, 데이터는 내부 "
 "버퍼에 그대로 남아 있으며 다시 읽을 수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:207
+#: ../../library/asyncio-stream.rst:270
 msgid ""
 "If EOF is reached before the complete separator is found, an "
 ":exc:`IncompleteReadError` exception is raised, and the internal buffer "
@@ -268,21 +333,34 @@ msgstr ""
 "버퍼가 재설정됩니다. :attr:`IncompleteReadError.partial` 어트리뷰트에는 separator 일부가 포함될"
 " 수 있습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:216
+#: ../../library/asyncio-stream.rst:275
+msgid ""
+"The *separator* may also be a tuple of separators. In this case the "
+"return value will be the shortest possible that has any separator as the "
+"suffix. For the purposes of :exc:`LimitOverrunError`, the shortest "
+"possible separator is considered to be the one that matched."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:285
+#, fuzzy
+msgid "The *separator* parameter may now be a :class:`tuple` of separators."
+msgstr "*path* 매개 변수는 이제 :term:`경로류 객체 <path-like object>`\\가 될 수 있습니다."
+
+#: ../../library/asyncio-stream.rst:290
 msgid "Return ``True`` if the buffer is empty and :meth:`feed_eof` was called."
 msgstr "버퍼가 비어 있고 :meth:`feed_eof`\\가 호출되었으면 ``True``\\를 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:221
+#: ../../library/asyncio-stream.rst:295
 msgid "StreamWriter"
 msgstr "StreamWriter"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:225
+#: ../../library/asyncio-stream.rst:299
 msgid ""
 "Represents a writer object that provides APIs to write data to the IO "
 "stream."
 msgstr "IO 스트림에 데이터를 쓰는 API를 제공하는 기록기(writer) 객체를 나타냅니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:228
+#: ../../library/asyncio-stream.rst:302
 msgid ""
 "It is not recommended to instantiate *StreamWriter* objects directly; use"
 " :func:`open_connection` and :func:`start_server` instead."
@@ -290,7 +368,7 @@ msgstr ""
 "*StreamWriter* 객체를 직접 인스턴스로 만드는 것은 권장되지 않습니다. 대신 "
 ":func:`open_connection`\\과 :func:`start_server`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:234
+#: ../../library/asyncio-stream.rst:308
 msgid ""
 "The method attempts to write the *data* to the underlying socket "
 "immediately. If that fails, the data is queued in an internal write "
@@ -299,12 +377,17 @@ msgstr ""
 "이 메서드는 하부 소켓에 *data*\\를 즉시 기록하려고 시도합니다. 실패하면, data는 보낼 수 있을 때까지 내부 쓰기 버퍼에"
 " 계류됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:238
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:250
+#: ../../library/asyncio-stream.rst:312 ../../library/asyncio-stream.rst:324
 msgid "The method should be used along with the ``drain()`` method::"
 msgstr "이 메서드는 ``drain()`` 메서드와 함께 사용해야 합니다::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:245
+#: ../../library/asyncio-stream.rst:314
+msgid ""
+"stream.write(data)\n"
+"await stream.drain()"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:319
 msgid ""
 "The method writes a list (or any iterable) of bytes to the underlying "
 "socket immediately. If that fails, the data is queued in an internal "
@@ -313,15 +396,30 @@ msgstr ""
 "이 메서드는 하부 소켓에 바이트열의 리스트(또는 임의의 이터러블)를 즉시 기록합니다. 실패하면, data는 보낼 수 있을 때까지 "
 "내부 쓰기 버퍼에 계류됩니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:257
+#: ../../library/asyncio-stream.rst:326
+msgid ""
+"stream.writelines(lines)\n"
+"await stream.drain()"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:331
 msgid "The method closes the stream and the underlying socket."
 msgstr "이 메서드는 스트림과 하부 소켓을 닫습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:259
-msgid "The method should be used along with the ``wait_closed()`` method::"
+#: ../../library/asyncio-stream.rst:333
+#, fuzzy
+msgid ""
+"The method should be used, though not mandatory, along with the "
+"``wait_closed()`` method::"
 msgstr "이 메서드는 ``wait_closed()`` 메서드와 함께 사용해야 합니다::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:266
+#: ../../library/asyncio-stream.rst:336
+msgid ""
+"stream.close()\n"
+"await stream.wait_closed()"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:341
 msgid ""
 "Return ``True`` if the underlying transport supports the "
 ":meth:`write_eof` method, ``False`` otherwise."
@@ -329,17 +427,17 @@ msgstr ""
 "하부 트랜스포트가 :meth:`write_eof` 메서드를 지원하면 ``True``\\를 반환하고, 그렇지 않으면 "
 "``False``\\를 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:271
+#: ../../library/asyncio-stream.rst:346
 msgid ""
 "Close the write end of the stream after the buffered write data is "
 "flushed."
 msgstr "버퍼링 된 쓰기 데이터가 플러시 된 후에 스트림의 쓰기 끝을 닫습니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:276
+#: ../../library/asyncio-stream.rst:351
 msgid "Return the underlying asyncio transport."
 msgstr "하부 asyncio 트랜스포트를 돌려줍니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:280
+#: ../../library/asyncio-stream.rst:355
 msgid ""
 "Access optional transport information; see "
 ":meth:`BaseTransport.get_extra_info` for details."
@@ -347,11 +445,17 @@ msgstr ""
 "선택적 트랜스포트 정보에 액세스합니다; 자세한 내용은 :meth:`BaseTransport.get_extra_info`\\를 "
 "참조하십시오."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:285
+#: ../../library/asyncio-stream.rst:361
 msgid "Wait until it is appropriate to resume writing to the stream. Example::"
 msgstr "스트림에 기록을 다시 시작하는 것이 적절할 때까지 기다립니다. 예::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:291
+#: ../../library/asyncio-stream.rst:364
+msgid ""
+"writer.write(data)\n"
+"await writer.drain()"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:367
 msgid ""
 "This is a flow control method that interacts with the underlying IO write"
 " buffer.  When the size of the buffer reaches the high watermark, "
@@ -363,33 +467,67 @@ msgstr ""
 "수위까지 내려가서 쓰기가 다시 시작될 수 있을 때까지 *drain()*\\은 블록합니다. 기다릴 것이 없으면, "
 ":meth:`drain`\\은 즉시 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:300
+#: ../../library/asyncio-stream.rst:378
+msgid "Upgrade an existing stream-based connection to TLS."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:380
+msgid "Parameters:"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:382
+msgid "*sslcontext*: a configured instance of :class:`~ssl.SSLContext`."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:384
+msgid ""
+"*server_hostname*: sets or overrides the host name that the target "
+"server's certificate will be matched against."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:387
+msgid ""
+"*ssl_handshake_timeout* is the time in seconds to wait for the TLS "
+"handshake to complete before aborting the connection.  ``60.0`` seconds "
+"if ``None`` (default)."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:391
+msgid ""
+"*ssl_shutdown_timeout* is the time in seconds to wait for the SSL "
+"shutdown to complete before aborting the connection. ``30.0`` seconds if "
+"``None`` (default)."
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:403
 msgid "Return ``True`` if the stream is closed or in the process of being closed."
 msgstr "스트림이 닫혔거나 닫히고 있으면 ``True``\\를 반환합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:307
+#: ../../library/asyncio-stream.rst:411
 msgid "Wait until the stream is closed."
 msgstr "스트림이 닫힐 때까지 기다립니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:309
+#: ../../library/asyncio-stream.rst:413
+#, fuzzy
 msgid ""
 "Should be called after :meth:`close` to wait until the underlying "
-"connection is closed."
+"connection is closed, ensuring that all data has been flushed before e.g."
+" exiting the program."
 msgstr "하부 연결이 닫힐 때까지 기다리려면 :meth:`close` 뒤에 호출해야 합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:316
+#: ../../library/asyncio-stream.rst:421
 msgid "Examples"
 msgstr "예제"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:321
+#: ../../library/asyncio-stream.rst:426
 msgid "TCP echo client using streams"
 msgstr "스트림을 사용하는 TCP 메아리 클라이언트"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:323
+#: ../../library/asyncio-stream.rst:428
 msgid "TCP echo client using the :func:`asyncio.open_connection` function::"
 msgstr ":func:`asyncio.open_connection` 함수를 사용하는 TCP 메아리 클라이언트::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:345
+#: ../../library/asyncio-stream.rst:452
 msgid ""
 "The :ref:`TCP echo client protocol "
 "<asyncio_example_tcp_echo_client_protocol>` example uses the low-level "
@@ -398,15 +536,49 @@ msgstr ""
 ":ref:`TCP 메아리 클라이언트 프로토콜 <asyncio_example_tcp_echo_client_protocol>` 예제는 "
 "저수준 :meth:`loop.create_connection` 메서드를 사용합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:352
+#: ../../library/asyncio-stream.rst:459
 msgid "TCP echo server using streams"
 msgstr "스트림을 사용하는 TCP 메아리 서버"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:354
+#: ../../library/asyncio-stream.rst:461
 msgid "TCP echo server using the :func:`asyncio.start_server` function::"
 msgstr ":func:`asyncio.start_server` 함수를 사용하는 TCP 메아리 서버::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:387
+#: ../../library/asyncio-stream.rst:463
+#, python-brace-format
+msgid ""
+"import asyncio\n"
+"\n"
+"async def handle_echo(reader, writer):\n"
+"    data = await reader.read(100)\n"
+"    message = data.decode()\n"
+"    addr = writer.get_extra_info('peername')\n"
+"\n"
+"    print(f\"Received {message!r} from {addr!r}\")\n"
+"\n"
+"    print(f\"Send: {message!r}\")\n"
+"    writer.write(data)\n"
+"    await writer.drain()\n"
+"\n"
+"    print(\"Close the connection\")\n"
+"    writer.close()\n"
+"    await writer.wait_closed()\n"
+"\n"
+"async def main():\n"
+"    server = await asyncio.start_server(\n"
+"        handle_echo, '127.0.0.1', 8888)\n"
+"\n"
+"    addrs = ', '.join(str(sock.getsockname()) for sock in server.sockets)"
+"\n"
+"    print(f'Serving on {addrs}')\n"
+"\n"
+"    async with server:\n"
+"        await server.serve_forever()\n"
+"\n"
+"asyncio.run(main())"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:495
 msgid ""
 "The :ref:`TCP echo server protocol "
 "<asyncio_example_tcp_echo_server_protocol>` example uses the "
@@ -415,35 +587,116 @@ msgstr ""
 ":ref:`TCP 메아리 서버 프로토콜 <asyncio_example_tcp_echo_server_protocol>` 예제는 "
 ":meth:`loop.create_server` 메서드를 사용합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:392
+#: ../../library/asyncio-stream.rst:500
 msgid "Get HTTP headers"
 msgstr "HTTP 헤더 가져오기"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:394
+#: ../../library/asyncio-stream.rst:502
 msgid ""
 "Simple example querying HTTP headers of the URL passed on the command "
 "line::"
 msgstr "명령 줄로 전달된 URL의 HTTP 헤더를 조회하는 간단한 예제::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:432
+#: ../../library/asyncio-stream.rst:504
+#, python-brace-format
+msgid ""
+"import asyncio\n"
+"import urllib.parse\n"
+"import sys\n"
+"\n"
+"async def print_http_headers(url):\n"
+"    url = urllib.parse.urlsplit(url)\n"
+"    if url.scheme == 'https':\n"
+"        reader, writer = await asyncio.open_connection(\n"
+"            url.hostname, 443, ssl=True)\n"
+"    else:\n"
+"        reader, writer = await asyncio.open_connection(\n"
+"            url.hostname, 80)\n"
+"\n"
+"    query = (\n"
+"        f\"HEAD {url.path or '/'} HTTP/1.0\\r\\n\"\n"
+"        f\"Host: {url.hostname}\\r\\n\"\n"
+"        f\"\\r\\n\"\n"
+"    )\n"
+"\n"
+"    writer.write(query.encode('latin-1'))\n"
+"    while True:\n"
+"        line = await reader.readline()\n"
+"        if not line:\n"
+"            break\n"
+"\n"
+"        line = line.decode('latin1').rstrip()\n"
+"        if line:\n"
+"            print(f'HTTP header> {line}')\n"
+"\n"
+"    # Ignore the body, close the socket\n"
+"    writer.close()\n"
+"    await writer.wait_closed()\n"
+"\n"
+"url = sys.argv[1]\n"
+"asyncio.run(print_http_headers(url))"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:541
 msgid "Usage::"
 msgstr "사용법::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:436
+#: ../../library/asyncio-stream.rst:543
+msgid "python example.py http://example.com/path/page.html"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:545
 msgid "or with HTTPS::"
 msgstr "또는 HTTPS를 사용하면::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:444
+#: ../../library/asyncio-stream.rst:547
+msgid "python example.py https://example.com/path/page.html"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:553
 msgid "Register an open socket to wait for data using streams"
 msgstr "스트림을 사용하여 데이터를 기다리는 열린 소켓 등록"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:446
+#: ../../library/asyncio-stream.rst:555
 msgid ""
 "Coroutine waiting until a socket receives data using the "
 ":func:`open_connection` function::"
 msgstr ":func:`open_connection` 함수를 사용하여 소켓이 데이터를 수신할 때까지 기다리는 코루틴::"
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:480
+#: ../../library/asyncio-stream.rst:558
+msgid ""
+"import asyncio\n"
+"import socket\n"
+"\n"
+"async def wait_for_data():\n"
+"    # Get a reference to the current event loop because\n"
+"    # we want to access low-level APIs.\n"
+"    loop = asyncio.get_running_loop()\n"
+"\n"
+"    # Create a pair of connected sockets.\n"
+"    rsock, wsock = socket.socketpair()\n"
+"\n"
+"    # Register the open socket to wait for data.\n"
+"    reader, writer = await asyncio.open_connection(sock=rsock)\n"
+"\n"
+"    # Simulate the reception of data from the network\n"
+"    loop.call_soon(wsock.send, 'abc'.encode())\n"
+"\n"
+"    # Wait for data\n"
+"    data = await reader.read(100)\n"
+"\n"
+"    # Got data, we are done: close the socket\n"
+"    print(\"Received:\", data.decode())\n"
+"    writer.close()\n"
+"    await writer.wait_closed()\n"
+"\n"
+"    # Close the second socket\n"
+"    wsock.close()\n"
+"\n"
+"asyncio.run(wait_for_data())"
+msgstr ""
+
+#: ../../library/asyncio-stream.rst:590
 msgid ""
 "The :ref:`register an open socket to wait for data using a protocol "
 "<asyncio_example_create_connection>` example uses a low-level protocol "
@@ -452,7 +705,7 @@ msgstr ""
 ":ref:`프로토콜을 사용하여 데이터를 기다리는 열린 소켓 등록 <asyncio_example_create_connection>` "
 "예제는 저수준 프로토콜과 :meth:`loop.create_connection` 메서드를 사용합니다."
 
-#: /Users/flowdas/works/docs/python/src/Doc/library/asyncio-stream.rst:484
+#: ../../library/asyncio-stream.rst:594
 msgid ""
 "The :ref:`watch a file descriptor for read events "
 "<asyncio_example_watch_fd>` example uses the low-level "
@@ -460,4 +713,31 @@ msgid ""
 msgstr ""
 ":ref:`파일 기술자에서 읽기 이벤트를 관찰하기 <asyncio_example_watch_fd>` 예제는 저수준 "
 ":meth:`loop.add_reader` 메서드를 사용하여 파일 기술자를 관찰합니다."
+
+#~ msgid ""
+#~ "The *loop* argument is optional and "
+#~ "can always be determined automatically "
+#~ "when this function is awaited from "
+#~ "a coroutine."
+#~ msgstr "*loop* 인자는 선택적이며 이 함수를 코루틴에서 기다릴 때 언제나 자동으로 결정될 수 있습니다."
+
+#~ msgid ""
+#~ "The *loop* argument is optional and "
+#~ "can always be determined automatically "
+#~ "when this method is awaited from a"
+#~ " coroutine."
+#~ msgstr "*loop* 인자는 선택적이며, 이 메서드를 코루틴이 기다릴 때 항상 자동으로 결정될 수 있습니다."
+
+#~ msgid ":ref:`Availability <availability>`: Unix."
+#~ msgstr ":ref:`가용성 <availability>`: 유닉스."
+
+#~ msgid ""
+#~ "Read up to *n* bytes.  If *n* "
+#~ "is not provided, or set to ``-1``,"
+#~ " read until EOF and return all "
+#~ "read bytes."
+#~ msgstr ""
+#~ "최대 *n* 바이트를 읽습니다. *n*\\이 제공되지 않거나"
+#~ " ``-1``\\로 설정되면, EOF까지 읽은 후 모든 "
+#~ "읽은 바이트를 반환합니다."
 

@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 03:37+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:6
+#: ../../library/asyncio-eventloop.rst:8
 msgid "Event Loop"
 msgstr "이벤트 루프"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:8
+#: ../../library/asyncio-eventloop.rst:10
 msgid ""
 "**Source code:** :source:`Lib/asyncio/events.py`, "
 ":source:`Lib/asyncio/base_events.py`"
@@ -28,11 +28,11 @@ msgstr ""
 "**소스 코드:** :source:`Lib/asyncio/events.py`, "
 ":source:`Lib/asyncio/base_events.py`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:14
+#: ../../library/asyncio-eventloop.rst:16
 msgid "Preface"
 msgstr "머리말"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:15
+#: ../../library/asyncio-eventloop.rst:17
 msgid ""
 "The event loop is the core of every asyncio application. Event loops run "
 "asynchronous tasks and callbacks, perform network IO operations, and run "
@@ -41,7 +41,7 @@ msgstr ""
 "이벤트 루프는 모든 asyncio 응용 프로그램의 핵심입니다. 이벤트 루프는 비동기 태스크 및 콜백을 실행하고 네트워크 IO 연산을"
 " 수행하며 자식 프로세스를 실행합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:19
+#: ../../library/asyncio-eventloop.rst:21
 msgid ""
 "Application developers should typically use the high-level asyncio "
 "functions, such as :func:`asyncio.run`, and should rarely need to "
@@ -53,42 +53,49 @@ msgstr ""
 " 객체를 참조하거나 메서드를 호출할 필요가 거의 없습니다. 이 절은 주로 이벤트 루프 동작을 세부적으로 제어해야 하는 저수준 코드,"
 " 라이브러리 및 프레임워크의 작성자를 대상으로 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:26
+#: ../../library/asyncio-eventloop.rst:28
 msgid "Obtaining the Event Loop"
 msgstr "이벤트 루프 얻기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:27
+#: ../../library/asyncio-eventloop.rst:29
 msgid ""
 "The following low-level functions can be used to get, set, or create an "
 "event loop:"
 msgstr "다음 저수준 함수를 사용하여 이벤트 루프를 가져오거나 설정하거나 만들 수 있습니다.:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:32
+#: ../../library/asyncio-eventloop.rst:34
 msgid "Return the running event loop in the current OS thread."
 msgstr "현재 OS 스레드에서 실행 중인 이벤트 루프를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:34
-msgid ""
-"If there is no running event loop a :exc:`RuntimeError` is raised. This "
-"function can only be called from a coroutine or a callback."
+#: ../../library/asyncio-eventloop.rst:36
+msgid "Raise a :exc:`RuntimeError` if there is no running event loop."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:38
+#, fuzzy
+msgid "This function can only be called from a coroutine or a callback."
 msgstr ""
 "실행 중인 이벤트 루프가 없으면 :exc:`RuntimeError`\\가 발생합니다. 이 함수는 코루틴이나 콜백에서만 호출할 수 "
 "있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:41
+#: ../../library/asyncio-eventloop.rst:44
 msgid "Get the current event loop."
 msgstr "현재의 이벤트 루프를 가져옵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:43
+#: ../../library/asyncio-eventloop.rst:46
 msgid ""
-"If there is no current event loop set in the current OS thread, the OS "
-"thread is main, and :func:`set_event_loop` has not yet been called, "
-"asyncio will create a new event loop and set it as the current one."
+"When called from a coroutine or a callback (e.g. scheduled with call_soon"
+" or similar API), this function will always return the running event "
+"loop."
 msgstr ""
-"현재 OS 스레드에 현재 이벤트 루프가 설정되어 있지 않고, OS 스레드가 메인이고, :func:`set_event_loop`\\가"
-" 아직 호출되지 않았으면, asyncio는 새 이벤트 루프를 만들어 현재 이벤트 루프로 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:48
+#: ../../library/asyncio-eventloop.rst:50
+msgid ""
+"If there is no running event loop set, the function will return the "
+"result of the ``get_event_loop_policy().get_event_loop()`` call."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:53
 msgid ""
 "Because this function has rather complex behavior (especially when custom"
 " event loop policies are in use), using the :func:`get_running_loop` "
@@ -98,23 +105,33 @@ msgstr ""
 "이 함수는 (특히 사용자 정의 이벤트 루프 정책을 사용할 때) 다소 복잡한 동작을 하므로, 코루틴과 콜백에서 "
 ":func:`get_event_loop`\\보다 :func:`get_running_loop` 함수를 사용하는 것이 좋습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:53
+#: ../../library/asyncio-eventloop.rst:58
+#, fuzzy
 msgid ""
-"Consider also using the :func:`asyncio.run` function instead of using "
-"lower level functions to manually create and close an event loop."
+"As noted above, consider using the higher-level :func:`asyncio.run` "
+"function, instead of using these lower level functions to manually create"
+" and close an event loop."
 msgstr ""
 "저수준 함수를 사용하여 수동으로 이벤트 루프를 만들고 닫는 대신 :func:`asyncio.run` 함수를 사용하는 것도 "
 "고려하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:58
-msgid "Set *loop* as a current event loop for the current OS thread."
+#: ../../library/asyncio-eventloop.rst:62
+msgid ""
+"Deprecation warning is emitted if there is no current event loop. In some"
+" future Python release this will become an error."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:68
+#, fuzzy
+msgid "Set *loop* as the current event loop for the current OS thread."
 msgstr "*loop*\\를 현재 OS 스레드의 현재 이벤트 루프로 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:62
-msgid "Create a new event loop object."
+#: ../../library/asyncio-eventloop.rst:72
+#, fuzzy
+msgid "Create and return a new event loop object."
 msgstr "새 이벤트 루프 객체를 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:64
+#: ../../library/asyncio-eventloop.rst:74
 msgid ""
 "Note that the behaviour of :func:`get_event_loop`, "
 ":func:`set_event_loop`, and :func:`new_event_loop` functions can be "
@@ -124,21 +141,21 @@ msgstr ""
 "함수의 동작은 :ref:`사용자 정의 이벤트 루프 정책 설정 <asyncio-policies>`\\에 의해 변경될 수 있음에 "
 "유의하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:70
+#: ../../library/asyncio-eventloop.rst:80
 msgid "Contents"
 msgstr "목차"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:71
+#: ../../library/asyncio-eventloop.rst:81
 msgid "This documentation page contains the following sections:"
 msgstr "이 설명서 페이지는 다음과 같은 절로 구성됩니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:73
+#: ../../library/asyncio-eventloop.rst:83
 msgid ""
 "The `Event Loop Methods`_ section is the reference documentation of the "
 "event loop APIs;"
 msgstr "`이벤트 루프 메서드 <Event Loop Methods_>`_ 절은 이벤트 루프 API의 레퍼런스 설명서입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:76
+#: ../../library/asyncio-eventloop.rst:86
 msgid ""
 "The `Callback Handles`_ section documents the :class:`Handle` and "
 ":class:`TimerHandle` instances which are returned from scheduling methods"
@@ -148,7 +165,7 @@ msgstr ""
 ":meth:`loop.call_later`\\와 같은 예약 메서드에서 반환된 :class:`Handle` 및 "
 ":class:`TimerHandle` 인스턴스를 설명합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:80
+#: ../../library/asyncio-eventloop.rst:90
 msgid ""
 "The `Server Objects`_ section documents types returned from event loop "
 "methods like :meth:`loop.create_server`;"
@@ -156,7 +173,7 @@ msgstr ""
 "`서버 객체 <Server Objects_>`_ 절은 :meth:`loop.create_server`\\와 같은 이벤트 루프 "
 "메서드에서 반환되는 형을 설명합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:83
+#: ../../library/asyncio-eventloop.rst:93
 msgid ""
 "The `Event Loop Implementations`_ section documents the "
 ":class:`SelectorEventLoop` and :class:`ProactorEventLoop` classes;"
@@ -164,27 +181,27 @@ msgstr ""
 "`이벤트 루프 구현 <Event Loop Implementations_>`_ 절은 :class:`SelectorEventLoop` "
 "및 :class:`ProactorEventLoop` 클래스를 설명합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:86
+#: ../../library/asyncio-eventloop.rst:96
 msgid "The `Examples`_ section showcases how to work with some event loop APIs."
 msgstr "`예제 <Examples_>`_ 절에서는 일부 이벤트 루프 API로 작업하는 방법을 보여줍니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:93
+#: ../../library/asyncio-eventloop.rst:103
 msgid "Event Loop Methods"
 msgstr "이벤트 루프 메서드"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:95
+#: ../../library/asyncio-eventloop.rst:105
 msgid "Event loops have **low-level** APIs for the following:"
 msgstr "이벤트 루프에는 다음과 같은 **저수준** API가 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:103
+#: ../../library/asyncio-eventloop.rst:113
 msgid "Running and stopping the loop"
 msgstr "루프 실행 및 중지"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:107
+#: ../../library/asyncio-eventloop.rst:117
 msgid "Run until the *future* (an instance of :class:`Future`) has completed."
 msgstr "*future*\\(:class:`Future`\\의 인스턴스)가 완료할 때까지 실행합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:110
+#: ../../library/asyncio-eventloop.rst:120
 msgid ""
 "If the argument is a :ref:`coroutine object <coroutine>` it is implicitly"
 " scheduled to run as a :class:`asyncio.Task`."
@@ -192,25 +209,26 @@ msgstr ""
 "인자가 :ref:`코루틴 객체 <coroutine>` 면, :class:`asyncio.Task`\\로 실행되도록 묵시적으로 예약 "
 "됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:113
+#: ../../library/asyncio-eventloop.rst:123
 msgid "Return the Future's result or raise its exception."
 msgstr "퓨처의 결과를 반환하거나 퓨처의 예외를 일으킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:117
+#: ../../library/asyncio-eventloop.rst:127
 msgid "Run the event loop until :meth:`stop` is called."
 msgstr ":meth:`stop`\\가 호출될 때까지 이벤트 루프를 실행합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:119
+#: ../../library/asyncio-eventloop.rst:129
+#, fuzzy
 msgid ""
-"If :meth:`stop` is called before :meth:`run_forever()` is called, the "
-"loop will poll the I/O selector once with a timeout of zero, run all "
-"callbacks scheduled in response to I/O events (and those that were "
-"already scheduled), and then exit."
+"If :meth:`stop` is called before :meth:`run_forever` is called, the loop "
+"will poll the I/O selector once with a timeout of zero, run all callbacks"
+" scheduled in response to I/O events (and those that were already "
+"scheduled), and then exit."
 msgstr ""
 ":meth:`run_forever()` 가 호출되기 전에 :meth:`stop` 이 호출되었으면, 루프는 시간제한 0으로 I/O "
 "셀렉터를 한 번 폴링하고, I/O 이벤트에 따라 예약된 모든 콜백(과 이미 예약된 것들)을 실행한 다음 종료합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:124
+#: ../../library/asyncio-eventloop.rst:134
 msgid ""
 "If :meth:`stop` is called while :meth:`run_forever` is running, the loop "
 "will run the current batch of callbacks and then exit. Note that new "
@@ -222,45 +240,46 @@ msgstr ""
 "실행한 다음 종료합니다. 콜백에 의해 예약되는 새 콜백은 이 경우 실행되지 않습니다; 대신 그것들은 다음에 "
 ":meth:`run_forever`\\나 :meth:`run_until_complete`\\가 호출될 때 실행됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:132
+#: ../../library/asyncio-eventloop.rst:142
 msgid "Stop the event loop."
 msgstr "이벤트 루프를 중지합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:136
+#: ../../library/asyncio-eventloop.rst:146
 msgid "Return ``True`` if the event loop is currently running."
 msgstr "이벤트 루프가 현재 실행 중이면 ``True`` 를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:140
+#: ../../library/asyncio-eventloop.rst:150
 msgid "Return ``True`` if the event loop was closed."
 msgstr "이벤트 루프가 닫혔으면 ``True`` 를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:144
+#: ../../library/asyncio-eventloop.rst:154
 msgid "Close the event loop."
 msgstr "이벤트 루프를 닫습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:146
+#: ../../library/asyncio-eventloop.rst:156
 msgid ""
 "The loop must not be running when this function is called. Any pending "
 "callbacks will be discarded."
 msgstr "이 함수를 호출할 때 루프는 반드시 실행 중이지 않아야 합니다. 계류 중인 모든 콜백을 버립니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:149
+#: ../../library/asyncio-eventloop.rst:159
 msgid ""
 "This method clears all queues and shuts down the executor, but does not "
 "wait for the executor to finish."
 msgstr "이 메서드는 모든 큐를 비우고 실행기를 종료하지만, 실행기가 완료할 때까지 기다리지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:152
+#: ../../library/asyncio-eventloop.rst:162
 msgid ""
 "This method is idempotent and irreversible.  No other methods should be "
 "called after the event loop is closed."
 msgstr "이 메서드는 멱등적(itempotent)이고 되돌릴 수 없습니다. 이벤트 루프가 닫힌 후에 다른 메서드를 호출해서는 안 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:157
+#: ../../library/asyncio-eventloop.rst:168
+#, fuzzy
 msgid ""
 "Schedule all currently open :term:`asynchronous generator` objects to "
-"close with an :meth:`~agen.aclose()` call.  After calling this method, "
-"the event loop will issue a warning if a new asynchronous generator is "
+"close with an :meth:`~agen.aclose` call.  After calling this method, the "
+"event loop will issue a warning if a new asynchronous generator is "
 "iterated. This should be used to reliably finalize all scheduled "
 "asynchronous generators."
 msgstr ""
@@ -268,35 +287,69 @@ msgstr ""
 ":meth:`~agen.aclose()` 호출로 닫도록 예약 합니다. 이 메서드를 호출한 후에는, 새 비동기 생성기가 이터레이트 "
 "되면 이벤트 루프에서 경고를 보냅니다. 예약된 모든 비동기 제너레이터를 신뢰성 있게 종료하는 데 사용해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:163
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:183
+#: ../../library/asyncio-eventloop.rst:174
 msgid ""
 "Note that there is no need to call this function when :func:`asyncio.run`"
 " is used."
 msgstr ":func:`asyncio.run`\\가 사용될 때 이 함수를 호출할 필요는 없다는 점에 유의하세요."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:166
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1074
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1456
+#: ../../library/asyncio-eventloop.rst:177
+#: ../../library/asyncio-eventloop.rst:1301
+#: ../../library/asyncio-eventloop.rst:1750
 msgid "Example::"
 msgstr "예::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:178
+#: ../../library/asyncio-eventloop.rst:179
+msgid ""
+"try:\n"
+"    loop.run_forever()\n"
+"finally:\n"
+"    loop.run_until_complete(loop.shutdown_asyncgens())\n"
+"    loop.close()"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:190
+#, fuzzy
 msgid ""
 "Schedule the closure of the default executor and wait for it to join all "
-"of the threads in the :class:`ThreadPoolExecutor`. After calling this "
-"method, a :exc:`RuntimeError` will be raised if "
-":meth:`loop.run_in_executor` is called while using the default executor."
+"of the threads in the :class:`~concurrent.futures.ThreadPoolExecutor`. "
+"Once this method has been called, using the default executor with "
+":meth:`loop.run_in_executor` will raise a :exc:`RuntimeError`."
 msgstr ""
 "기본 실행기의 닫힘을 예약하고 :class:`ThreadPoolExecutor`\\의 모든 스레드가 조인(join)될 때까지 "
 "기다립니다. 이 메서드를 호출한 후, 기본 실행기를 사용하는 동안 :meth:`loop.run_in_executor`\\가 호출되면"
 " :exc:`RuntimeError`\\가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:190
+#: ../../library/asyncio-eventloop.rst:196
+msgid ""
+"The *timeout* parameter specifies the amount of time (in :class:`float` "
+"seconds) the executor will be given to finish joining. With the default, "
+"``None``, the executor is allowed an unlimited amount of time."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:201
+msgid ""
+"If the *timeout* is reached, a :exc:`RuntimeWarning` is emitted and the "
+"default executor is terminated without waiting for its threads to finish "
+"joining."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:207
+msgid ""
+"Do not call this method when using :func:`asyncio.run`, as the latter "
+"handles default executor shutdown automatically."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:212
+#, fuzzy
+msgid "Added the *timeout* parameter."
+msgstr "``name`` 매개 변수가 추가되었습니다."
+
+#: ../../library/asyncio-eventloop.rst:216
 msgid "Scheduling callbacks"
 msgstr "콜백 예약하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:194
+#: ../../library/asyncio-eventloop.rst:220
 msgid ""
 "Schedule the *callback* :term:`callback` to be called with *args* "
 "arguments at the next iteration of the event loop."
@@ -304,14 +357,139 @@ msgstr ""
 "이벤트 루프의 다음 이터레이션 때 *args* 인자로 호출할 *callback* :term:`콜백 <callback>`\\을 "
 "예약합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:197
+#: ../../library/asyncio-eventloop.rst:223
+#, fuzzy
+msgid ""
+"Return an instance of :class:`asyncio.Handle`, which can be used later to"
+" cancel the callback."
+msgstr ":class:`asyncio.Handle` 인스턴스가 반환되는데, 나중에 콜백을 취소하는 데 사용할 수 있습니다."
+
+#: ../../library/asyncio-eventloop.rst:226
 msgid ""
 "Callbacks are called in the order in which they are registered. Each "
 "callback will be called exactly once."
 msgstr "콜백은 등록된 순서대로 호출됩니다. 각 콜백은 정확히 한 번 호출됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:200
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:263
+#: ../../library/asyncio-eventloop.rst:229
+#, fuzzy
+msgid ""
+"The optional keyword-only *context* argument specifies a custom "
+":class:`contextvars.Context` for the *callback* to run in. Callbacks use "
+"the current context when no *context* is provided."
+msgstr ""
+"선택적인 키워드 전용 *context* 인자는 *callback* 을 실행할 사용자 정의 "
+":class:`contextvars.Context` 를 지정할 수 있게 합니다. *context* 가 제공되지 않을 때는 현재 "
+"컨텍스트가 사용됩니다."
+
+#: ../../library/asyncio-eventloop.rst:233
+#, fuzzy
+msgid "Unlike :meth:`call_soon_threadsafe`, this method is not thread-safe."
+msgstr "이 메서드는 스레드 안전하지 않습니다."
+
+#: ../../library/asyncio-eventloop.rst:237
+#, fuzzy
+msgid ""
+"A thread-safe variant of :meth:`call_soon`. When scheduling callbacks "
+"from another thread, this function *must* be used, since "
+":meth:`call_soon` is not thread-safe."
+msgstr "스레드 안전한 :meth:`call_soon` 변형입니다. *다른 스레드에서* 콜백을 예약하는 데 사용해야 합니다."
+
+#: ../../library/asyncio-eventloop.rst:241
+msgid ""
+"This function is safe to be called from a reentrant context or signal "
+"handler, however, it is not safe or fruitful to use the returned handle "
+"in such contexts."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:244
+msgid ""
+"Raises :exc:`RuntimeError` if called on a loop that's been closed. This "
+"can happen on a secondary thread when the main application is shutting "
+"down."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:248
+msgid ""
+"See the :ref:`concurrency and multithreading <asyncio-multithreading>` "
+"section of the documentation."
+msgstr "설명서의 :ref:`동시성과 다중 스레딩 <asyncio-multithreading>` 절을 참고하십시오."
+
+#: ../../library/asyncio-eventloop.rst:251
+#: ../../library/asyncio-eventloop.rst:301
+#: ../../library/asyncio-eventloop.rst:321
+msgid ""
+"The *context* keyword-only parameter was added. See :pep:`567` for more "
+"details."
+msgstr "*context* 키워드 전용 매개 변수가 추가되었습니다. 자세한 정보는 :pep:`567`\\을 보십시오."
+
+#: ../../library/asyncio-eventloop.rst:259
+msgid ""
+"Most :mod:`asyncio` scheduling functions don't allow passing keyword "
+"arguments.  To do that, use :func:`functools.partial`::"
+msgstr ""
+"대부분 :mod:`asyncio` 예약 함수는 키워드 인자 전달을 허용하지 않습니다. 그렇게 하려면 "
+":func:`functools.partial`\\을 사용하십시오::"
+
+#: ../../library/asyncio-eventloop.rst:262
+msgid ""
+"# will schedule \"print(\"Hello\", flush=True)\"\n"
+"loop.call_soon(\n"
+"    functools.partial(print, \"Hello\", flush=True))"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:266
+msgid ""
+"Using partial objects is usually more convenient than using lambdas, as "
+"asyncio can render partial objects better in debug and error messages."
+msgstr ""
+"asyncio는 디버그 및 오류 메시지에서 partial 객체를 더욱 잘 표시할 수 있으므로, partial 객체를 사용하는 것이 "
+"람다를 사용하는 것보다 편리합니다."
+
+#: ../../library/asyncio-eventloop.rst:274
+msgid "Scheduling delayed callbacks"
+msgstr "지연된 콜백 예약"
+
+#: ../../library/asyncio-eventloop.rst:276
+msgid ""
+"Event loop provides mechanisms to schedule callback functions to be "
+"called at some point in the future.  Event loop uses monotonic clocks to "
+"track time."
+msgstr ""
+"이벤트 루프는 콜백 함수가 미래의 어떤 시점에서 호출되도록 예약하는 메커니즘을 제공합니다. 이벤트 루프는 단조 시계를 사용하여 "
+"시간을 추적합니다."
+
+#: ../../library/asyncio-eventloop.rst:283
+msgid ""
+"Schedule *callback* to be called after the given *delay* number of "
+"seconds (can be either an int or a float)."
+msgstr "지정된 *delay* 초 (int 또는 float) 뒤에 *callback* 이 호출되도록 예약합니다."
+
+#: ../../library/asyncio-eventloop.rst:286
+#: ../../library/asyncio-eventloop.rst:318
+msgid ""
+"An instance of :class:`asyncio.TimerHandle` is returned which can be used"
+" to cancel the callback."
+msgstr ":class:`asyncio.TimerHandle` 의 인스턴스가 반환되는데, 콜백을 취소하는 데 사용할 수 있습니다."
+
+#: ../../library/asyncio-eventloop.rst:289
+msgid ""
+"*callback* will be called exactly once.  If two callbacks are scheduled "
+"for exactly the same time, the order in which they are called is "
+"undefined."
+msgstr ""
+"*callback* 은 정확히 한번 호출됩니다. 두 콜백이 정확히 같은 시간에 예약되면, 어떤 것이 먼저 호출되는지는 정의되지 "
+"않습니다."
+
+#: ../../library/asyncio-eventloop.rst:293
+msgid ""
+"The optional positional *args* will be passed to the callback when it is "
+"called. If you want the callback to be called with keyword arguments use "
+":func:`functools.partial`."
+msgstr ""
+"선택적 위치 *args* 는 호출 될 때 콜백에 전달됩니다. 콜백을 키워드 인자로 호출하고 싶으면 "
+":func:`functools.partial` 를 사용하십시오."
+
+#: ../../library/asyncio-eventloop.rst:297
 msgid ""
 "An optional keyword-only *context* argument allows specifying a custom "
 ":class:`contextvars.Context` for the *callback* to run in. The current "
@@ -321,97 +499,7 @@ msgstr ""
 ":class:`contextvars.Context` 를 지정할 수 있게 합니다. *context* 가 제공되지 않을 때는 현재 "
 "컨텍스트가 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:204
-msgid ""
-"An instance of :class:`asyncio.Handle` is returned, which can be used "
-"later to cancel the callback."
-msgstr ":class:`asyncio.Handle` 인스턴스가 반환되는데, 나중에 콜백을 취소하는 데 사용할 수 있습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:207
-msgid "This method is not thread-safe."
-msgstr "이 메서드는 스레드 안전하지 않습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:211
-msgid ""
-"A thread-safe variant of :meth:`call_soon`.  Must be used to schedule "
-"callbacks *from another thread*."
-msgstr "스레드 안전한 :meth:`call_soon` 변형입니다. *다른 스레드에서* 콜백을 예약하는 데 사용해야 합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:214
-msgid ""
-"See the :ref:`concurrency and multithreading <asyncio-multithreading>` "
-"section of the documentation."
-msgstr "설명서의 :ref:`동시성과 다중 스레딩 <asyncio-multithreading>` 절을 참고하십시오."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:217
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:267
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:287
-msgid ""
-"The *context* keyword-only parameter was added. See :pep:`567` for more "
-"details."
-msgstr "*context* 키워드 전용 매개 변수가 추가되었습니다. 자세한 정보는 :pep:`567`\\을 보십시오."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:225
-msgid ""
-"Most :mod:`asyncio` scheduling functions don't allow passing keyword "
-"arguments.  To do that, use :func:`functools.partial`::"
-msgstr ""
-"대부분 :mod:`asyncio` 예약 함수는 키워드 인자 전달을 허용하지 않습니다. 그렇게 하려면 "
-":func:`functools.partial`\\을 사용하십시오::"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:232
-msgid ""
-"Using partial objects is usually more convenient than using lambdas, as "
-"asyncio can render partial objects better in debug and error messages."
-msgstr ""
-"asyncio는 디버그 및 오류 메시지에서 partial 객체를 더욱 잘 표시할 수 있으므로, partial 객체를 사용하는 것이 "
-"람다를 사용하는 것보다 편리합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:240
-msgid "Scheduling delayed callbacks"
-msgstr "지연된 콜백 예약"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:242
-msgid ""
-"Event loop provides mechanisms to schedule callback functions to be "
-"called at some point in the future.  Event loop uses monotonic clocks to "
-"track time."
-msgstr ""
-"이벤트 루프는 콜백 함수가 미래의 어떤 시점에서 호출되도록 예약하는 메커니즘을 제공합니다. 이벤트 루프는 단조 시계를 사용하여 "
-"시간을 추적합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:249
-msgid ""
-"Schedule *callback* to be called after the given *delay* number of "
-"seconds (can be either an int or a float)."
-msgstr "지정된 *delay* 초 (int 또는 float) 뒤에 *callback* 이 호출되도록 예약합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:252
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:284
-msgid ""
-"An instance of :class:`asyncio.TimerHandle` is returned which can be used"
-" to cancel the callback."
-msgstr ":class:`asyncio.TimerHandle` 의 인스턴스가 반환되는데, 콜백을 취소하는 데 사용할 수 있습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:255
-msgid ""
-"*callback* will be called exactly once.  If two callbacks are scheduled "
-"for exactly the same time, the order in which they are called is "
-"undefined."
-msgstr ""
-"*callback* 은 정확히 한번 호출됩니다. 두 콜백이 정확히 같은 시간에 예약되면, 어떤 것이 먼저 호출되는지는 정의되지 "
-"않습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:259
-msgid ""
-"The optional positional *args* will be passed to the callback when it is "
-"called. If you want the callback to be called with keyword arguments use "
-":func:`functools.partial`."
-msgstr ""
-"선택적 위치 *args* 는 호출 될 때 콜백에 전달됩니다. 콜백을 키워드 인자로 호출하고 싶으면 "
-":func:`functools.partial` 를 사용하십시오."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:271
+#: ../../library/asyncio-eventloop.rst:305
 msgid ""
 "In Python 3.7 and earlier with the default event loop implementation, the"
 " *delay* could not exceed one day. This has been fixed in Python 3.8."
@@ -419,7 +507,7 @@ msgstr ""
 "파이썬 3.7 및 이전 버전에서 기본 이벤트 루프 구현을 사용할 때, *delay*\\는 하루를 초과할 수 없었습니다. 이 문제는 "
 "파이썬 3.8에서 수정되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:278
+#: ../../library/asyncio-eventloop.rst:312
 msgid ""
 "Schedule *callback* to be called at the given absolute timestamp *when* "
 "(an int or a float), using the same time reference as :meth:`loop.time`."
@@ -427,11 +515,11 @@ msgstr ""
 "지정된 절대 타임스탬프 *when*\\(int 또는 float)에 *callback* 이 호출되도록 예약합니다. "
 ":meth:`loop.time` 과 같은 시간 참조를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:282
+#: ../../library/asyncio-eventloop.rst:316
 msgid "This method's behavior is the same as :meth:`call_later`."
 msgstr "이 메서드의 동작은 :meth:`call_later`\\와 같습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:291
+#: ../../library/asyncio-eventloop.rst:325
 msgid ""
 "In Python 3.7 and earlier with the default event loop implementation, the"
 " difference between *when* and the current time could not exceed one day."
@@ -440,13 +528,13 @@ msgstr ""
 "파이썬 3.7 및 이전 버전에서 기본 이벤트 루프 구현을 사용할 때, *when*\\와 현재 시각의 차이는 하루를 초과할 수 "
 "없었습니다. 이 문제는 파이썬 3.8에서 수정되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:298
+#: ../../library/asyncio-eventloop.rst:332
 msgid ""
 "Return the current time, as a :class:`float` value, according to the "
 "event loop's internal monotonic clock."
 msgstr "이벤트 루프의 내부 단조 시계에 따라, :class:`float` 값으로 현재 시각을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:302
+#: ../../library/asyncio-eventloop.rst:336
 msgid ""
 "In Python 3.7 and earlier timeouts (relative *delay* or absolute *when*) "
 "should not exceed one day.  This has been fixed in Python 3.8."
@@ -454,19 +542,19 @@ msgstr ""
 "파이썬 3.7 및 이전 버전에서 제한 시간(상대적인 *delay* 나 절대적인 *when*)은 1일을 초과하지 않아야 했습니다. 이"
 " 문제는 파이썬 3.8에서 수정되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:308
+#: ../../library/asyncio-eventloop.rst:342
 msgid "The :func:`asyncio.sleep` function."
 msgstr ":func:`asyncio.sleep` 함수."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:312
+#: ../../library/asyncio-eventloop.rst:346
 msgid "Creating Futures and Tasks"
 msgstr "퓨처와 태스크 만들기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:316
+#: ../../library/asyncio-eventloop.rst:350
 msgid "Create an :class:`asyncio.Future` object attached to the event loop."
 msgstr "이벤트 루프에 연결된 :class:`asyncio.Future` 객체를 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:318
+#: ../../library/asyncio-eventloop.rst:352
 msgid ""
 "This is the preferred way to create Futures in asyncio. This lets third-"
 "party event loops provide alternative implementations of the Future "
@@ -475,13 +563,14 @@ msgstr ""
 "이것이 asyncio에서 퓨처를 만드는 데 선호되는 방법입니다. 이렇게 하면 제삼자 이벤트 루프가 Future 객체의 다른 구현(더"
 " 나은 성능이나 계측(instrumentation))을 제공할 수 있습니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:326
+#: ../../library/asyncio-eventloop.rst:360
+#, fuzzy
 msgid ""
-"Schedule the execution of a :ref:`coroutine`. Return a :class:`Task` "
-"object."
+"Schedule the execution of :ref:`coroutine <coroutine>` *coro*. Return a "
+":class:`Task` object."
 msgstr ":ref:`coroutine` 의 실행을 예약합니다. :class:`Task` 객체를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:329
+#: ../../library/asyncio-eventloop.rst:363
 msgid ""
 "Third-party event loops can use their own subclass of :class:`Task` for "
 "interoperability. In this case, the result type is a subclass of "
@@ -490,7 +579,7 @@ msgstr ""
 "제삼자 이벤트 루프는 상호 운용성을 위해 자신만의 :class:`Task` 의 서브 클래스를 사용할 수 있습니다. 이 경우, 결과 "
 "형은 :class:`Task` 의 서브 클래스입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:333
+#: ../../library/asyncio-eventloop.rst:367
 msgid ""
 "If the *name* argument is provided and not ``None``, it is set as the "
 "name of the task using :meth:`Task.set_name`."
@@ -498,57 +587,77 @@ msgstr ""
 "*name* 인자가 제공되고 ``None``\\이 아니면, :meth:`Task.set_name`\\을 사용하여 태스크의 이름으로 "
 "설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:336
-msgid "Added the ``name`` parameter."
+#: ../../library/asyncio-eventloop.rst:370
+#, fuzzy
+msgid ""
+"An optional keyword-only *context* argument allows specifying a custom "
+":class:`contextvars.Context` for the *coro* to run in. The current "
+"context copy is created when no *context* is provided."
+msgstr ""
+"선택적인 키워드 전용 *context* 인자는 *callback* 을 실행할 사용자 정의 "
+":class:`contextvars.Context` 를 지정할 수 있게 합니다. *context* 가 제공되지 않을 때는 현재 "
+"컨텍스트가 사용됩니다."
+
+#: ../../library/asyncio-eventloop.rst:374
+#, fuzzy
+msgid "Added the *name* parameter."
 msgstr "``name`` 매개 변수가 추가되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:341
+#: ../../library/asyncio-eventloop.rst:377
+#, fuzzy
+msgid "Added the *context* parameter."
+msgstr "``name`` 매개 변수가 추가되었습니다."
+
+#: ../../library/asyncio-eventloop.rst:382
 msgid "Set a task factory that will be used by :meth:`loop.create_task`."
 msgstr ":meth:`loop.create_task` 에 의해 사용되는 태스크 팩토리를 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:344
+#: ../../library/asyncio-eventloop.rst:385
+#, fuzzy
 msgid ""
 "If *factory* is ``None`` the default task factory will be set. Otherwise,"
 " *factory* must be a *callable* with the signature matching ``(loop, "
-"coro)``, where *loop* is a reference to the active event loop, and *coro*"
-" is a coroutine object.  The callable must return a "
-":class:`asyncio.Future`-compatible object."
+"coro, **kwargs)``, where *loop* is a reference to the active event loop, "
+"and *coro* is a coroutine object.  The callable must pass on all "
+"*kwargs*, and return a :class:`asyncio.Task`-compatible object."
 msgstr ""
 "*factory* 가 ``None`` 이면 기본 태스크 팩토리가 설정됩니다. 그렇지 않으면, *factory* 는 반드시 *콜러블*"
 " 이어야 하고, ``(loop, coro)`` 과 일치하는 서명을 가져야 합니다. 여기서 *loop* 는 활성 이벤트 루프에 대한 "
 "참조가 되고, *coro* 는 코루틴 객체가 됩니다. 콜러블은 :class:`asyncio.Future` 호환 객체를 반환해야 "
 "합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:352
+#: ../../library/asyncio-eventloop.rst:393
 msgid "Return a task factory or ``None`` if the default one is in use."
 msgstr "태스크 팩토리를 반환하거나, 기본값이 사용 중이면 ``None`` 을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:356
+#: ../../library/asyncio-eventloop.rst:397
 msgid "Opening network connections"
 msgstr "네트워크 연결 열기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:365
+#: ../../library/asyncio-eventloop.rst:409
 msgid ""
 "Open a streaming transport connection to a given address specified by "
 "*host* and *port*."
 msgstr "주어진 *host* 와 *port*\\로 지정된 주소로의 스트리밍 트랜스포트 연결을 엽니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:368
+#: ../../library/asyncio-eventloop.rst:412
+#, fuzzy
 msgid ""
-"The socket family can be either :py:data:`~socket.AF_INET` or "
-":py:data:`~socket.AF_INET6` depending on *host* (or the *family* "
+"The socket family can be either :py:const:`~socket.AF_INET` or "
+":py:const:`~socket.AF_INET6` depending on *host* (or the *family* "
 "argument, if provided)."
 msgstr ""
 "소켓 패밀리는 *host*\\(또는 지정된 경우 *family*)에 따라 :py:data:`~socket.AF_INET` 또는 "
 ":py:data:`~socket.AF_INET6`\\일 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:372
-msgid "The socket type will be :py:data:`~socket.SOCK_STREAM`."
+#: ../../library/asyncio-eventloop.rst:416
+#, fuzzy
+msgid "The socket type will be :py:const:`~socket.SOCK_STREAM`."
 msgstr "소켓 유형은 :py:data:`~socket.SOCK_STREAM`\\이 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:374
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:990
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1006
+#: ../../library/asyncio-eventloop.rst:418
+#: ../../library/asyncio-eventloop.rst:1211
+#: ../../library/asyncio-eventloop.rst:1228
 msgid ""
 "*protocol_factory* must be a callable returning an :ref:`asyncio protocol"
 " <asyncio-protocol>` implementation."
@@ -556,23 +665,23 @@ msgstr ""
 "*protocol_factory* 는 반드시 :ref:`asyncio 프로토콜 <asyncio-protocol>` 구현을 반환하는 "
 "콜러블이어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:377
+#: ../../library/asyncio-eventloop.rst:421
 msgid ""
 "This method will try to establish the connection in the background. When "
 "successful, it returns a ``(transport, protocol)`` pair."
 msgstr "이 메서드는 백그라운드에서 연결을 맺으려고 시도합니다. 성공하면, ``(transport, protocol)`` 쌍을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:380
+#: ../../library/asyncio-eventloop.rst:424
 msgid "The chronological synopsis of the underlying operation is as follows:"
 msgstr "하부 연산의 시간순 개요는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:382
+#: ../../library/asyncio-eventloop.rst:426
 msgid ""
 "The connection is established and a :ref:`transport <asyncio-transport>` "
 "is created for it."
 msgstr "연결이 맺어지고, 이를 위한 :ref:`트랜스포트(transport) <asyncio-transport>` 가 만들어집니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:385
+#: ../../library/asyncio-eventloop.rst:429
 msgid ""
 "*protocol_factory* is called without arguments and is expected to return "
 "a :ref:`protocol <asyncio-protocol>` instance."
@@ -580,26 +689,26 @@ msgstr ""
 "*protocol_factory* 가 인자 없이 호출되고, :ref:`프로토콜(protocol) <asyncio-protocol>`"
 " 인스턴스를 반환할 것으로 기대됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:388
+#: ../../library/asyncio-eventloop.rst:432
 msgid ""
 "The protocol instance is coupled with the transport by calling its "
 ":meth:`~BaseProtocol.connection_made` method."
 msgstr "프로토콜 인스턴스는 :meth:`connection_made` 메서드를 호출함으로써 트랜스포트와 연결됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:391
+#: ../../library/asyncio-eventloop.rst:435
 msgid "A ``(transport, protocol)`` tuple is returned on success."
 msgstr "성공하면 ``(transport, protocol)`` 튜플이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:393
+#: ../../library/asyncio-eventloop.rst:437
 msgid "The created transport is an implementation-dependent bidirectional stream."
 msgstr "만들어진 트랜스포트는 구현 의존적인 양방향 스트림입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:396
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:518
+#: ../../library/asyncio-eventloop.rst:440
+#: ../../library/asyncio-eventloop.rst:573
 msgid "Other arguments:"
 msgstr "다른 인자들:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:398
+#: ../../library/asyncio-eventloop.rst:442
 msgid ""
 "*ssl*: if given and not false, a SSL/TLS transport is created (by default"
 " a plain TCP transport is created).  If *ssl* is a "
@@ -612,11 +721,11 @@ msgstr ""
 "*ssl* 이 :const:`True` 면, :func:`ssl.create_default_context` 가 반환하는 기본 "
 "컨텍스트가 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:404
+#: ../../library/asyncio-eventloop.rst:448
 msgid ":ref:`SSL/TLS security considerations <ssl-security>`"
 msgstr ":ref:`SSL/TLS 보안 고려 사항 <ssl-security>`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:406
+#: ../../library/asyncio-eventloop.rst:450
 msgid ""
 "*server_hostname* sets or overrides the hostname that the target server's"
 " certificate will be matched against.  Should only be passed if *ssl* is "
@@ -631,7 +740,7 @@ msgstr ""
 "기본값이 없고 *server_hostname* 값을 전달해야 합니다. *server_hostname* 이 빈 문자열이면, 호스트 "
 "이름 일치가 비활성화됩니다 (이것은 심각한 보안 위험으로, 잠재적인 중간자 공격을 허용하게 됩니다)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:414
+#: ../../library/asyncio-eventloop.rst:458
 msgid ""
 "*family*, *proto*, *flags* are the optional address family, protocol and "
 "flags to be passed through to getaddrinfo() for *host* resolution. If "
@@ -641,7 +750,7 @@ msgstr ""
 "*family*, *proto*, *flags* 는 *host* 결정을 위해 getaddrinfo() 에 전달할 선택적 주소 "
 "패밀리, 프로토콜, 플래그입니다. 주어지면, 이것들은 모두 해당하는 :mod:`socket` 모듈 상수에 대응하는 정수여야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:419
+#: ../../library/asyncio-eventloop.rst:463
 msgid ""
 "*happy_eyeballs_delay*, if given, enables Happy Eyeballs for this "
 "connection. It should be a floating-point number representing the amount "
@@ -655,7 +764,7 @@ msgstr ""
 ":rfc:`8305`\\에 정의된 \"연결 시도 지연(Connection Attempt Delay)\" 입니다. RFC에서 권장하는"
 " 적절한 기본값은 ``0.25``\\(250밀리 초)입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:427
+#: ../../library/asyncio-eventloop.rst:471
 msgid ""
 "*interleave* controls address reordering when a host name resolves to "
 "multiple IP addresses. If ``0`` or unspecified, no reordering is done, "
@@ -671,7 +780,7 @@ msgstr ""
 " 수(First Address Family Count)\"로 해석됩니다. 기본값은 *happy_eyeballs_delay*\\가 "
 "지정되지 않으면 ``0``\\이고, 지정되면 ``1``\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:436
+#: ../../library/asyncio-eventloop.rst:480
 msgid ""
 "*sock*, if given, should be an existing, already connected "
 ":class:`socket.socket` object to be used by the transport. If *sock* is "
@@ -683,18 +792,28 @@ msgstr ""
 "*sock* 이 주어지면, *host*, *port*, *family*, *proto*, *flags*, "
 "*happy_eyeballs_delay*, *interleave*, *local_addr* 를 지정해서는 안 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:442
+#: ../../library/asyncio-eventloop.rst:488
+#: ../../library/asyncio-eventloop.rst:604
+#: ../../library/asyncio-eventloop.rst:852
+msgid ""
+"The *sock* argument transfers ownership of the socket to the transport "
+"created. To close the socket, call the transport's "
+":meth:`~asyncio.BaseTransport.close` method."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:492
+#, fuzzy
 msgid ""
 "*local_addr*, if given, is a ``(local_host, local_port)`` tuple used to "
-"bind the socket to locally.  The *local_host* and *local_port* are looked"
-" up using ``getaddrinfo()``, similarly to *host* and *port*."
+"bind the socket locally.  The *local_host* and *local_port* are looked up"
+" using ``getaddrinfo()``, similarly to *host* and *port*."
 msgstr ""
 "*local_addr* 이 주어지면, 소켓을 로컬에 바인드 하는데 사용되는 ``(local_host, local_port)`` "
 "튜플이어야 합니다. *local_host* 와 *local_port* 는 *host* 및 *port* 와 유사하게 "
 "``getaddrinfo()`` 를 사용하여 조회됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:446
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:799
+#: ../../library/asyncio-eventloop.rst:496
+#: ../../library/asyncio-eventloop.rst:948
 msgid ""
 "*ssl_handshake_timeout* is (for a TLS connection) the time in seconds to "
 "wait for the TLS handshake to complete before aborting the connection. "
@@ -703,18 +822,60 @@ msgstr ""
 "*ssl_handshake_timeout* 은 (TLS 연결의 경우) 연결을 중단하기 전에 TLS 핸드 셰이크가 완료될 때까지 "
 "대기하는 시간(초)입니다. ``None`` (기본값) 이면 ``60.0`` 초가 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:452
+#: ../../library/asyncio-eventloop.rst:500
+#: ../../library/asyncio-eventloop.rst:759
+#: ../../library/asyncio-eventloop.rst:863
+#: ../../library/asyncio-eventloop.rst:952
+#, fuzzy
+msgid ""
+"*ssl_shutdown_timeout* is the time in seconds to wait for the SSL "
+"shutdown to complete before aborting the connection. ``30.0`` seconds if "
+"``None`` (default)."
+msgstr ""
+"*ssl_handshake_timeout* 은 (TLS 서버의 경우) 연결을 중단하기 전에 TLS 핸드 셰이크가 완료될 때까지 "
+"대기하는 시간(초)입니다. ``None`` (기본값) 이면 ``60.0`` 초가 사용됩니다."
+
+#: ../../library/asyncio-eventloop.rst:504
+msgid ""
+"*all_errors* determines what exceptions are raised when a connection "
+"cannot be created. By default, only a single ``Exception`` is raised: the"
+" first exception if there is only one or all errors have same message, or"
+" a single ``OSError`` with the error messages combined. When "
+"``all_errors`` is ``True``, an ``ExceptionGroup`` will be raised "
+"containing all exceptions (even if there is only one)."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:514
+#: ../../library/asyncio-eventloop.rst:771
+msgid "Added support for SSL/TLS in :class:`ProactorEventLoop`."
+msgstr ":class:`ProactorEventLoop`\\에 SSL/TLS에 대한 지원이 추가되었습니다."
+
+#: ../../library/asyncio-eventloop.rst:518
+#, fuzzy
+msgid ""
+"The socket option :ref:`socket.TCP_NODELAY <socket-unix-constants>` is "
+"set by default for all TCP connections."
+msgstr "소켓 옵션 :py:data:`~socket.TCP_NODELAY`\\는 기본적으로 모든 TCP 연결에 대해 설정됩니다."
+
+#: ../../library/asyncio-eventloop.rst:523
+#: ../../library/asyncio-eventloop.rst:873
+#, fuzzy
+msgid "Added the *ssl_handshake_timeout* parameter."
+msgstr "*ssl_handshake_timeout* 매개 변수."
+
+#: ../../library/asyncio-eventloop.rst:527
 msgid "Added the *happy_eyeballs_delay* and *interleave* parameters."
 msgstr "*happy_eyeballs_delay*\\와 *interleave* 매개 변수가 추가되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:454
+#: ../../library/asyncio-eventloop.rst:529
+#, fuzzy
 msgid ""
 "Happy Eyeballs Algorithm: Success with Dual-Stack Hosts. When a server's "
 "IPv4 path and protocol are working, but the server's IPv6 path and "
 "protocol are not working, a dual-stack client application experiences "
 "significant connection delay compared to an IPv4-only client.  This is "
-"undesirable because it causes the dual- stack client to have a worse user"
-" experience.  This document specifies requirements for algorithms that "
+"undesirable because it causes the dual-stack client to have a worse user "
+"experience.  This document specifies requirements for algorithms that "
 "reduce this user-visible delay and provides an algorithm."
 msgstr ""
 "Happy Eyeballs 알고리즘: 듀얼 스택 호스트의 성공. 서버의 IPv4 경로와 프로토콜이 작동하지만, 서버의 IPv6 "
@@ -722,29 +883,26 @@ msgstr ""
 "발생합니다. 이중 스택 클라이언트의 사용자 환경이 더 나빠지기 때문에 바람직하지 않습니다. 이 문서는 이런 사용자가 볼 수 있는 "
 "지연을 줄이고 알고리즘에 대한 요구 사항을 지정하고 알고리즘을 제공합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:463
-msgid "For more information: https://tools.ietf.org/html/rfc6555"
+#: ../../library/asyncio-eventloop.rst:538
+#, fuzzy
+msgid "For more information: https://datatracker.ietf.org/doc/html/rfc6555"
 msgstr "자세한 정보: https://tools.ietf.org/html/rfc6555"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:467
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:584
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:737
-msgid "The *ssl_handshake_timeout* parameter."
+#: ../../library/asyncio-eventloop.rst:542
+#: ../../library/asyncio-eventloop.rst:668
+#: ../../library/asyncio-eventloop.rst:785
+#: ../../library/asyncio-eventloop.rst:825
+#: ../../library/asyncio-eventloop.rst:877
+#: ../../library/asyncio-eventloop.rst:960
+#, fuzzy
+msgid "Added the *ssl_shutdown_timeout* parameter."
 msgstr "*ssl_handshake_timeout* 매개 변수."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:471
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:667
-msgid ""
-"The socket option :py:data:`~socket.TCP_NODELAY` is set by default for "
-"all TCP connections."
-msgstr "소켓 옵션 :py:data:`~socket.TCP_NODELAY`\\는 기본적으로 모든 TCP 연결에 대해 설정됩니다."
+#: ../../library/asyncio-eventloop.rst:544
+msgid "*all_errors* was added."
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:476
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:672
-msgid "Added support for SSL/TLS in :class:`ProactorEventLoop`."
-msgstr ":class:`ProactorEventLoop`\\에 SSL/TLS에 대한 지원이 추가되었습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:480
+#: ../../library/asyncio-eventloop.rst:549
 msgid ""
 "The :func:`open_connection` function is a high-level alternative API.  It"
 " returns a pair of (:class:`StreamReader`, :class:`StreamWriter`) that "
@@ -753,57 +911,28 @@ msgstr ""
 ":func:`open_connection` 함수는 고수준 대안 API입니다. async/await 코드에서 직접 사용할 수 있는 "
 "(:class:`StreamReader`, :class:`StreamWriter`) 쌍을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:491
-msgid ""
-"The parameter *reuse_address* is no longer supported, as using "
-":py:data:`~sockets.SO_REUSEADDR` poses a significant security concern for"
-" UDP. Explicitly passing ``reuse_address=True`` will raise an exception."
-msgstr ""
-"*reuse_address* 매개 변수는 더는 지원되지 않습니다, :py:data:`~sockets.SO_REUSEADDR`\\를 "
-"사용하면 UDP에서 심각한 보안 문제가 발생하기 때문입니다. ``reuse_address=True``\\를 명시적으로 전달하면 "
-"예외가 발생합니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:495
-msgid ""
-"When multiple processes with differing UIDs assign sockets to an "
-"identical UDP socket address with ``SO_REUSEADDR``, incoming packets can "
-"become randomly distributed among the sockets."
-msgstr ""
-"UID가 다른 여러 프로세스가 ``SO_REUSEADDR``\\를 사용하여 소켓을 같은 UDP 소켓 주소에 할당하면, 들어오는 "
-"패킷이 소켓 간에 무작위로 분산될 수 있습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:499
-msgid ""
-"For supported platforms, *reuse_port* can be used as a replacement for "
-"similar functionality. With *reuse_port*, "
-":py:data:`~sockets.SO_REUSEPORT` is used instead, which specifically "
-"prevents processes with differing UIDs from assigning sockets to the same"
-" socket address."
-msgstr ""
-"지원되는 플랫폼의 경우, *reuse_port*\\를 유사한 기능의 대체품으로 사용할 수 있습니다. *reuse_port*\\에서는"
-" :py:data:`~sockets.SO_REUSEPORT`\\가 대신 사용되는데, 다른 UID를 가진 프로세스가 같은 소켓 주소에"
-" 소켓을 할당하지 못하게 구체적으로 막습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:505
+#: ../../library/asyncio-eventloop.rst:560
 msgid "Create a datagram connection."
 msgstr "데이터 그램 연결을 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:507
+#: ../../library/asyncio-eventloop.rst:562
+#, fuzzy
 msgid ""
-"The socket family can be either :py:data:`~socket.AF_INET`, "
-":py:data:`~socket.AF_INET6`, or :py:data:`~socket.AF_UNIX`, depending on "
-"*host* (or the *family* argument, if provided)."
+"The socket family can be either :py:const:`~socket.AF_INET`, "
+":py:const:`~socket.AF_INET6`, or :py:const:`~socket.AF_UNIX`, depending "
+"on *host* (or the *family* argument, if provided)."
 msgstr ""
 "소켓 패밀리는 *host*\\(또는 주어지면 *family*)에 따라 :py:data:`~socket.AF_INET`, "
 ":py:data:`~socket.AF_INET6` 또는 :py:data:`~socket.AF_UNIX`\\일 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:511
-msgid "The socket type will be :py:data:`~socket.SOCK_DGRAM`."
+#: ../../library/asyncio-eventloop.rst:566
+#, fuzzy
+msgid "The socket type will be :py:const:`~socket.SOCK_DGRAM`."
 msgstr "소켓 유형은 :py:data:`~socket.SOCK_DGRAM`\\이 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:513
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:609
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:720
+#: ../../library/asyncio-eventloop.rst:568
+#: ../../library/asyncio-eventloop.rst:695
+#: ../../library/asyncio-eventloop.rst:844
 msgid ""
 "*protocol_factory* must be a callable returning a :ref:`protocol "
 "<asyncio-protocol>` implementation."
@@ -811,21 +940,22 @@ msgstr ""
 "*protocol_factory* 는 반드시 :ref:`프로토콜 <asyncio-protocol>` 구현을 반환하는 콜러블이어야 "
 "합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:516
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:570
+#: ../../library/asyncio-eventloop.rst:571
+#: ../../library/asyncio-eventloop.rst:650
 msgid "A tuple of ``(transport, protocol)`` is returned on success."
 msgstr "성공하면 ``(transport, protocol)`` 튜플이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:520
+#: ../../library/asyncio-eventloop.rst:575
+#, fuzzy
 msgid ""
 "*local_addr*, if given, is a ``(local_host, local_port)`` tuple used to "
-"bind the socket to locally.  The *local_host* and *local_port* are looked"
-" up using :meth:`getaddrinfo`."
+"bind the socket locally.  The *local_host* and *local_port* are looked up"
+" using :meth:`getaddrinfo`."
 msgstr ""
 "*local_addr* 이 주어지면, 소켓을 로컬에 바인드 하는 데 사용되는 ``(local_host, local_port)`` "
 "튜플입니다. *local_host* 와 *local_port* 는 :meth:`getaddrinfo`\\를 사용하여 조회됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:524
+#: ../../library/asyncio-eventloop.rst:579
 msgid ""
 "*remote_addr*, if given, is a ``(remote_host, remote_port)`` tuple used "
 "to connect the socket to a remote address.  The *remote_host* and "
@@ -835,7 +965,7 @@ msgstr ""
 "remote_port)`` 튜플입니다. *remote_host* 와 *remote_port* 는 "
 ":meth:`getaddrinfo`\\를 사용하여 조회됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:528
+#: ../../library/asyncio-eventloop.rst:583
 msgid ""
 "*family*, *proto*, *flags* are the optional address family, protocol and "
 "flags to be passed through to :meth:`getaddrinfo` for *host* resolution. "
@@ -846,25 +976,26 @@ msgstr ""
 "주소 패밀리, 프로토콜, 플래그입니다. 주어지면, 이것들은 모두 해당하는 :mod:`socket` 모듈 상수에 대응하는 정수여야 "
 "합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:533
+#: ../../library/asyncio-eventloop.rst:588
+#, fuzzy
 msgid ""
 "*reuse_port* tells the kernel to allow this endpoint to be bound to the "
 "same port as other existing endpoints are bound to, so long as they all "
 "set this flag when being created. This option is not supported on Windows"
-" and some Unixes. If the :py:data:`~socket.SO_REUSEPORT` constant is not "
-"defined then this capability is unsupported."
+" and some Unixes. If the :ref:`socket.SO_REUSEPORT <socket-unix-"
+"constants>` constant is not defined then this capability is unsupported."
 msgstr ""
 "*reuse_port* 는 모두 만들 때 이 플래그를 설정하는 한, 이 말단이 다른 기존 말단이 바인드 된 것과 같은 포트에 바인드"
 " 되도록 허용하도록 커널에 알려줍니다. 이 옵션은 윈도우나 일부 유닉스에서는 지원되지 않습니다. "
 ":py:data:`~socket.SO_REUSEPORT` 상수가 정의되어 있지 않으면, 이 기능은 지원되지 않는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:539
+#: ../../library/asyncio-eventloop.rst:594
 msgid ""
 "*allow_broadcast* tells the kernel to allow this endpoint to send "
 "messages to the broadcast address."
 msgstr "*allow_broadcast* 는 이 말단이 브로드캐스트 주소로 메시지를 보낼 수 있도록 커널에 알립니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:542
+#: ../../library/asyncio-eventloop.rst:597
 msgid ""
 "*sock* can optionally be specified in order to use a preexisting, already"
 " connected, :class:`socket.socket` object to be used by the transport. If"
@@ -875,7 +1006,7 @@ msgstr ""
 " 선택적으로 지정할 수 있습니다. 지정되면 *local_addr* 과 *remote_addr* 를 생략해야 합니다 (반드시 "
 ":const:`None` 이어야 합니다)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:547
+#: ../../library/asyncio-eventloop.rst:608
 msgid ""
 "See :ref:`UDP echo client protocol <asyncio-udp-echo-client-protocol>` "
 "and :ref:`UDP echo server protocol <asyncio-udp-echo-server-protocol>` "
@@ -884,37 +1015,73 @@ msgstr ""
 ":ref:`UDP 메아리 클라이언트 프로토콜 <asyncio-udp-echo-client-protocol>` 과 :ref:`UDP "
 "메아리 서버 프로토콜 <asyncio-udp-echo-server-protocol>` 예제를 참고하세요."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:550
+#: ../../library/asyncio-eventloop.rst:611
+#, fuzzy
 msgid ""
-"The *family*, *proto*, *flags*, *reuse_address*, *reuse_port, "
+"The *family*, *proto*, *flags*, *reuse_address*, *reuse_port*, "
 "*allow_broadcast*, and *sock* parameters were added."
 msgstr ""
 "*family*, *proto*, *flags*, *reuse_address*, *reuse_port*, "
 "*allow_broadcast*, *sock* 매개 변수가 추가되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:554
-msgid ""
-"The *reuse_address* parameter is no longer supported due to security "
-"concerns."
-msgstr "보안 문제로 인해 *reuse_address* 매개 변수는 더는 지원되지 않습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:558
+#: ../../library/asyncio-eventloop.rst:615
 msgid "Added support for Windows."
 msgstr "윈도우에 대한 지원이 추가되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:565
+#: ../../library/asyncio-eventloop.rst:618
+#, fuzzy
+msgid ""
+"The *reuse_address* parameter is no longer supported, as using "
+":ref:`socket.SO_REUSEADDR <socket-unix-constants>` poses a significant "
+"security concern for UDP. Explicitly passing ``reuse_address=True`` will "
+"raise an exception."
+msgstr ""
+"*reuse_address* 매개 변수는 더는 지원되지 않습니다, :py:data:`~sockets.SO_REUSEADDR`\\를 "
+"사용하면 UDP에서 심각한 보안 문제가 발생하기 때문입니다. ``reuse_address=True``\\를 명시적으로 전달하면 "
+"예외가 발생합니다."
+
+#: ../../library/asyncio-eventloop.rst:624
+msgid ""
+"When multiple processes with differing UIDs assign sockets to an "
+"identical UDP socket address with ``SO_REUSEADDR``, incoming packets can "
+"become randomly distributed among the sockets."
+msgstr ""
+"UID가 다른 여러 프로세스가 ``SO_REUSEADDR``\\를 사용하여 소켓을 같은 UDP 소켓 주소에 할당하면, 들어오는 "
+"패킷이 소켓 간에 무작위로 분산될 수 있습니다."
+
+#: ../../library/asyncio-eventloop.rst:628
+#, fuzzy
+msgid ""
+"For supported platforms, *reuse_port* can be used as a replacement for "
+"similar functionality. With *reuse_port*, :ref:`socket.SO_REUSEPORT "
+"<socket-unix-constants>` is used instead, which specifically prevents "
+"processes with differing UIDs from assigning sockets to the same socket "
+"address."
+msgstr ""
+"지원되는 플랫폼의 경우, *reuse_port*\\를 유사한 기능의 대체품으로 사용할 수 있습니다. *reuse_port*\\에서는"
+" :py:data:`~sockets.SO_REUSEPORT`\\가 대신 사용되는데, 다른 UID를 가진 프로세스가 같은 소켓 주소에"
+" 소켓을 할당하지 못하게 구체적으로 막습니다."
+
+#: ../../library/asyncio-eventloop.rst:635
+msgid ""
+"The *reuse_address* parameter, disabled since Python 3.8.1, 3.7.6 and "
+"3.6.10, has been entirely removed."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:645
 msgid "Create a Unix connection."
 msgstr "유닉스 연결을 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:567
+#: ../../library/asyncio-eventloop.rst:647
+#, fuzzy
 msgid ""
-"The socket family will be :py:data:`~socket.AF_UNIX`; socket type will be"
-" :py:data:`~socket.SOCK_STREAM`."
+"The socket family will be :py:const:`~socket.AF_UNIX`; socket type will "
+"be :py:const:`~socket.SOCK_STREAM`."
 msgstr ""
 "소켓 패밀리는 :py:data:`~socket.AF_UNIX`\\가 됩니다; 소켓 유형은 "
 ":py:data:`~socket.SOCK_STREAM`\\이 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:572
+#: ../../library/asyncio-eventloop.rst:652
 msgid ""
 "*path* is the name of a Unix domain socket and is required, unless a "
 "*sock* parameter is specified.  Abstract Unix sockets, :class:`str`, "
@@ -923,61 +1090,67 @@ msgstr ""
 "*path* 는 유닉스 도메인 소켓의 이름이며, *sock* 매개 변수가 지정되지 않으면 필수입니다. 추상 유닉스 소켓, "
 ":class:`str`, :class:`bytes`, :class:`~pathlib.Path` 경로가 지원됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:577
+#: ../../library/asyncio-eventloop.rst:657
 msgid ""
 "See the documentation of the :meth:`loop.create_connection` method for "
 "information about arguments to this method."
 msgstr "이 메서드의 인자에 관한 정보는 :meth:`loop.create_connection` 메서드의 설명서를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:581
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:701
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1057
-msgid ":ref:`Availability <availability>`: Unix."
-msgstr ":ref:`가용성 <availability>`: 유닉스."
+#: ../../library/asyncio-eventloop.rst:660
+#: ../../library/asyncio-eventloop.rst:816
+#: ../../library/asyncio-eventloop.rst:1281
+#: ../../library/asyncio-eventloop.rst:1821
+#: ../../library/asyncio-eventloop.rst:1828
+msgid "Availability"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:588
-msgid "The *path* parameter can now be a :term:`path-like object`."
+#: ../../library/asyncio-eventloop.rst:662
+#, fuzzy
+msgid ""
+"Added the *ssl_handshake_timeout* parameter. The *path* parameter can now"
+" be a :term:`path-like object`."
 msgstr "*path* 매개 변수는 이제 :term:`경로류 객체 <path-like object>` 가 될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:592
+#: ../../library/asyncio-eventloop.rst:672
 msgid "Creating network servers"
 msgstr "네트워크 서버 만들기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:602
+#: ../../library/asyncio-eventloop.rst:688
+#, fuzzy
 msgid ""
-"Create a TCP server (socket type :data:`~socket.SOCK_STREAM`) listening "
+"Create a TCP server (socket type :const:`~socket.SOCK_STREAM`) listening "
 "on *port* of the *host* address."
 msgstr ""
 "*host* 주소의 *port* 에서 리스닝하는 TCP 서버(소켓 유형 :data:`~socket.SOCK_STREAM`)를 "
 "만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:605
+#: ../../library/asyncio-eventloop.rst:691
 msgid "Returns a :class:`Server` object."
 msgstr ":class:`Server` 객체를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:607
+#: ../../library/asyncio-eventloop.rst:693
 msgid "Arguments:"
 msgstr "인자:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:612
+#: ../../library/asyncio-eventloop.rst:698
 msgid ""
 "The *host* parameter can be set to several types which determine where "
 "the server would be listening:"
 msgstr "*host* 매개 변수는 서버가 리스닝할 위치를 결정하는 여러 형으로 설정할 수 있습니다.:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:615
+#: ../../library/asyncio-eventloop.rst:701
 msgid ""
 "If *host* is a string, the TCP server is bound to a single network "
 "interface specified by *host*."
 msgstr "*host*\\가 문자열이면, TCP 서버는 *host*\\로 지정된 단일 네트워크 인터페이스에 바인딩 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:618
+#: ../../library/asyncio-eventloop.rst:704
 msgid ""
 "If *host* is a sequence of strings, the TCP server is bound to all "
 "network interfaces specified by the sequence."
 msgstr "*host*\\가 문자열의 시퀀스면, TCP 서버는 시퀀스로 지정된 모든 네트워크 인터페이스에 바인딩 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:621
+#: ../../library/asyncio-eventloop.rst:707
 msgid ""
 "If *host* is an empty string or ``None``, all interfaces are assumed and "
 "a list of multiple sockets will be returned (most likely one for IPv4 and"
@@ -986,22 +1159,31 @@ msgstr ""
 "*host*\\가 빈 문자열이거나 ``None``\\이면, 모든 인터페이스가 사용되는 것으로 가정하고, 여러 소켓의 리스트가 "
 "반환됩니다 (대체로 IPv4 하나와 IPv6 하나)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:625
+#: ../../library/asyncio-eventloop.rst:711
 msgid ""
-"*family* can be set to either :data:`socket.AF_INET` or "
-":data:`~socket.AF_INET6` to force the socket to use IPv4 or IPv6. If not "
-"set, the *family* will be determined from host name (defaults to "
-":data:`~socket.AF_UNSPEC`)."
+"The *port* parameter can be set to specify which port the server should "
+"listen on. If ``0`` or ``None`` (the default), a random unused port will "
+"be selected (note that if *host* resolves to multiple network interfaces,"
+" a different random port will be selected for each interface)."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:716
+#, fuzzy
+msgid ""
+"*family* can be set to either :const:`socket.AF_INET` or "
+":const:`~socket.AF_INET6` to force the socket to use IPv4 or IPv6. If not"
+" set, the *family* will be determined from host name (defaults to "
+":const:`~socket.AF_UNSPEC`)."
 msgstr ""
 "*family* 는 :data:`socket.AF_INET` 또는 :data:`~socket.AF_INET6` 중 하나로 설정되어,"
 " 소켓이 IPv4 또는 IPv6을 사용하게 할 수 있습니다. 설정되지 않으면, *family* 는 호스트 이름에 의해 "
 "결정됩니다(기본값 :data:`socket.AF_UNSPEC`)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:630
+#: ../../library/asyncio-eventloop.rst:721
 msgid "*flags* is a bitmask for :meth:`getaddrinfo`."
 msgstr "*flags* 은 :meth:`getaddrinfo`\\를 위한 비트 마스크입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:632
+#: ../../library/asyncio-eventloop.rst:723
 msgid ""
 "*sock* can optionally be specified in order to use a preexisting socket "
 "object. If specified, *host* and *port* must not be specified."
@@ -1009,7 +1191,14 @@ msgstr ""
 "*sock* 은 기존 소켓 객체를 사용하기 위해 선택적으로 지정할 수 있습니다. 지정되면, *host* 및 *port* 는 지정할 "
 "수 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:635
+#: ../../library/asyncio-eventloop.rst:728
+msgid ""
+"The *sock* argument transfers ownership of the socket to the server "
+"created. To close the socket, call the server's "
+":meth:`~asyncio.Server.close` method."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:732
 msgid ""
 "*backlog* is the maximum number of queued connections passed to "
 ":meth:`~socket.socket.listen` (defaults to 100)."
@@ -1017,13 +1206,13 @@ msgstr ""
 "*backlog* 는 :meth:`~socket.socket.listen` 으로 전달되는 최대 대기 연결 수 입니다 (기본값은 "
 "100)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:638
+#: ../../library/asyncio-eventloop.rst:735
 msgid ""
 "*ssl* can be set to an :class:`~ssl.SSLContext` instance to enable TLS "
 "over the accepted connections."
 msgstr "*ssl* 을 :class:`~ssl.SSLContext` 인스턴스로 설정하면, 들어오는 연결에 TLS를 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:641
+#: ../../library/asyncio-eventloop.rst:738
 msgid ""
 "*reuse_address* tells the kernel to reuse a local socket in ``TIME_WAIT``"
 " state, without waiting for its natural timeout to expire. If not "
@@ -1032,7 +1221,7 @@ msgstr ""
 "*reuse_address* 는, 일반적인 시간제한이 만료될 때까지 기다리지 않고, ``TIME_WAIT`` 상태의 로컬 소켓을 "
 "재사용하도록 커널에 알려줍니다. 지정하지 않으면 유닉스에서 자동으로 ``True`` 로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:646
+#: ../../library/asyncio-eventloop.rst:743
 msgid ""
 "*reuse_port* tells the kernel to allow this endpoint to be bound to the "
 "same port as other existing endpoints are bound to, so long as they all "
@@ -1042,7 +1231,18 @@ msgstr ""
 "*reuse_port* 는 모두 만들 때 이 플래그를 설정하는 한, 이 말단이 다른 기존 말단이 바인드 된 것과 같은 포트에 바인드"
 " 되도록 허용하도록 커널에 알려줍니다. 이 옵션은 윈도우에서 지원되지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:651
+#: ../../library/asyncio-eventloop.rst:748
+msgid ""
+"*keep_alive* set to ``True`` keeps connections active by enabling the "
+"periodic transmission of messages."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:753
+#, fuzzy
+msgid "Added the *keep_alive* parameter."
+msgstr "``name`` 매개 변수가 추가되었습니다."
+
+#: ../../library/asyncio-eventloop.rst:755
 msgid ""
 "*ssl_handshake_timeout* is (for a TLS server) the time in seconds to wait"
 " for the TLS handshake to complete before aborting the connection. "
@@ -1051,7 +1251,7 @@ msgstr ""
 "*ssl_handshake_timeout* 은 (TLS 서버의 경우) 연결을 중단하기 전에 TLS 핸드 셰이크가 완료될 때까지 "
 "대기하는 시간(초)입니다. ``None`` (기본값) 이면 ``60.0`` 초가 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:655
+#: ../../library/asyncio-eventloop.rst:763
 msgid ""
 "*start_serving* set to ``True`` (the default) causes the created server "
 "to start accepting connections immediately.  When set to ``False``, the "
@@ -1063,15 +1263,19 @@ msgstr ""
 " 로 설정되면, 사용자는 서버가 연결을 받기 시작하도록 :meth:`Server.start_serving` 이나 "
 ":meth:`Server.serve_forever`\\를 await 해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:663
-msgid "Added *ssl_handshake_timeout* and *start_serving* parameters."
-msgstr "*ssl_handshake_timeout* 과 *start_serving* 매개 변수 추가."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:676
+#: ../../library/asyncio-eventloop.rst:775
 msgid "The *host* parameter can be a sequence of strings."
 msgstr "*host* 매개 변수는 문자열의 시퀀스가 될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:680
+#: ../../library/asyncio-eventloop.rst:779
+#, fuzzy
+msgid ""
+"Added *ssl_handshake_timeout* and *start_serving* parameters. The socket "
+"option :ref:`socket.TCP_NODELAY <socket-unix-constants>` is set by "
+"default for all TCP connections."
+msgstr "소켓 옵션 :py:data:`~socket.TCP_NODELAY`\\는 기본적으로 모든 TCP 연결에 대해 설정됩니다."
+
+#: ../../library/asyncio-eventloop.rst:789
 msgid ""
 "The :func:`start_server` function is a higher-level alternative API that "
 "returns a pair of :class:`StreamReader` and :class:`StreamWriter` that "
@@ -1080,15 +1284,16 @@ msgstr ""
 ":func:`start_server` 함수는 async/await 코드에서 사용할 수 있는 :class:`StreamReader` "
 "및 :class:`StreamWriter` 쌍을 반환하는 고수준의 대체 API입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:689
+#: ../../library/asyncio-eventloop.rst:801
+#, fuzzy
 msgid ""
 "Similar to :meth:`loop.create_server` but works with the "
-":py:data:`~socket.AF_UNIX` socket family."
+":py:const:`~socket.AF_UNIX` socket family."
 msgstr ""
 ":meth:`loop.create_server`\\와 유사하지만, 소켓 패밀리 :py:data:`~socket.AF_UNIX` "
 "용입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:692
+#: ../../library/asyncio-eventloop.rst:804
 msgid ""
 "*path* is the name of a Unix domain socket, and is required, unless a "
 "*sock* argument is provided.  Abstract Unix sockets, :class:`str`, "
@@ -1097,48 +1302,59 @@ msgstr ""
 "*path* 는 유닉스 도메인 소켓의 이름이며, *sock* 매개 변수가 제공되지 않으면 필수입니다. 추상 유닉스 소켓, "
 ":class:`str`, :class:`bytes`, :class:`~pathlib.Path` 경로가 지원됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:697
+#: ../../library/asyncio-eventloop.rst:809
+msgid ""
+"If *cleanup_socket* is true then the Unix socket will automatically be "
+"removed from the filesystem when the server is closed, unless the socket "
+"has been replaced after the server has been created."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:813
 msgid ""
 "See the documentation of the :meth:`loop.create_server` method for "
 "information about arguments to this method."
 msgstr "이 메서드의 인자에 대한 정보는 :meth:`loop.create_server` 메서드의 설명서를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:704
-msgid "The *ssl_handshake_timeout* and *start_serving* parameters."
-msgstr "*ssl_handshake_timeout* 과 *start_serving* 매개 변수."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:708
-msgid "The *path* parameter can now be a :class:`~pathlib.Path` object."
+#: ../../library/asyncio-eventloop.rst:820
+#, fuzzy
+msgid ""
+"Added the *ssl_handshake_timeout* and *start_serving* parameters. The "
+"*path* parameter can now be a :class:`~pathlib.Path` object."
 msgstr "*path* 매개 변수는 이제 :class:`~pathlib.Path` 객체일 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:713
+#: ../../library/asyncio-eventloop.rst:829
+#, fuzzy
+msgid "Added the *cleanup_socket* parameter."
+msgstr "``name`` 매개 변수가 추가되었습니다."
+
+#: ../../library/asyncio-eventloop.rst:837
 msgid "Wrap an already accepted connection into a transport/protocol pair."
 msgstr "이미 받아들인 연결을 트랜스포트/프로토콜 쌍으로 래핑합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:715
+#: ../../library/asyncio-eventloop.rst:839
 msgid ""
 "This method can be used by servers that accept connections outside of "
 "asyncio but that use asyncio to handle them."
 msgstr "이 메서드는 asyncio 밖에서 연결을 받아들이지만, 그 연결을 처리하는데 asyncio 를 사용하는 서버에서 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:718
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:785
+#: ../../library/asyncio-eventloop.rst:842
+#: ../../library/asyncio-eventloop.rst:934
 msgid "Parameters:"
 msgstr "매개 변수:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:723
+#: ../../library/asyncio-eventloop.rst:847
 msgid ""
 "*sock* is a preexisting socket object returned from :meth:`socket.accept "
 "<socket.socket.accept>`."
 msgstr "*sock* 은 :meth:`socket.accept <socket.socket.accept>` 가 반환한 기존 소켓 객체입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:726
+#: ../../library/asyncio-eventloop.rst:856
 msgid ""
 "*ssl* can be set to an :class:`~ssl.SSLContext` to enable SSL over the "
 "accepted connections."
 msgstr "*ssl* 을 :class:`~ssl.SSLContext` 로 설정하면, 들어오는 연결에 SSL을 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:729
+#: ../../library/asyncio-eventloop.rst:859
 msgid ""
 "*ssl_handshake_timeout* is (for an SSL connection) the time in seconds to"
 " wait for the SSL handshake to complete before aborting the connection. "
@@ -1147,28 +1363,28 @@ msgstr ""
 "*ssl_handshake_timeout* 은 (SSL 연결의 경우) 연결을 중단하기 전에 SSL 핸드 셰이크가 완료될 때까지 "
 "대기하는 시간(초)입니다. ``None`` (기본값) 이면 ``60.0`` 초가 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:733
+#: ../../library/asyncio-eventloop.rst:867
 msgid "Returns a ``(transport, protocol)`` pair."
 msgstr "``(transport, protocol)`` 쌍을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:743
+#: ../../library/asyncio-eventloop.rst:881
 msgid "Transferring files"
 msgstr "파일 전송"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:748
+#: ../../library/asyncio-eventloop.rst:887
 msgid "Send a *file* over a *transport*.  Return the total number of bytes sent."
 msgstr "*file* 을 *transport* 로 보냅니다. 전송된 총 바이트 수를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:751
+#: ../../library/asyncio-eventloop.rst:890
 msgid "The method uses high-performance :meth:`os.sendfile` if available."
 msgstr "이 메서드는 가능한 경우 고성능 :meth:`os.sendfile` 을 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:753
+#: ../../library/asyncio-eventloop.rst:892
 msgid "*file* must be a regular file object opened in binary mode."
 msgstr "*file* 는 바이너리 모드로 열린 일반 파일 객체여야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:755
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:945
+#: ../../library/asyncio-eventloop.rst:894
+#: ../../library/asyncio-eventloop.rst:1155
 msgid ""
 "*offset* tells from where to start reading the file. If specified, "
 "*count* is the total number of bytes to transmit as opposed to sending "
@@ -1180,7 +1396,7 @@ msgstr ""
 "전송할 총 바이트 수를 지정합니다. 파일의 위치가 갱신됩니다, 이 메서드가 에러를 일으킬 때조차. 그리고, "
 ":meth:`file.tell() <io.IOBase.tell>` 는 실제 전송된 바이트 수를 얻는 데 사용될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:762
+#: ../../library/asyncio-eventloop.rst:901
 msgid ""
 "*fallback* set to ``True`` makes asyncio to manually read and send the "
 "file when the platform does not support the sendfile system call (e.g. "
@@ -1189,7 +1405,7 @@ msgstr ""
 "*fallback* 을 ``True`` 로 설정하면, 플랫폼이 sendfile 시스템 호출을 지원하지 않을 때 (가령 유닉스에서 "
 "SSL 소켓을 사용하거나 윈도우인 경우), asyncio 가 파일을 수동으로 읽고 보내도록 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:766
+#: ../../library/asyncio-eventloop.rst:905
 msgid ""
 "Raise :exc:`SendfileNotAvailableError` if the system does not support the"
 " *sendfile* syscall and *fallback* is ``False``."
@@ -1197,24 +1413,36 @@ msgstr ""
 "시스템이 *sendfile* 시스템 호출을 지원하지 않고 *fallback* 이 ``False`` 면 "
 ":exc:`SendfileNotAvailableError` 를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:773
+#: ../../library/asyncio-eventloop.rst:912
 msgid "TLS Upgrade"
 msgstr "TLS 업그레이드"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:779
+#: ../../library/asyncio-eventloop.rst:920
 msgid "Upgrade an existing transport-based connection to TLS."
 msgstr "기존 트랜스포트 기반 연결을 TLS로 업그레이드합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:781
+#: ../../library/asyncio-eventloop.rst:922
 msgid ""
-"Return a new transport instance, that the *protocol* must start using "
-"immediately after the *await*.  The *transport* instance passed to the "
-"*start_tls* method should never be used again."
+"Create a TLS coder/decoder instance and insert it between the *transport*"
+" and the *protocol*. The coder/decoder implements both *transport*-facing"
+" protocol and *protocol*-facing transport."
 msgstr ""
-"*protocol* 이 *await* 의 직후에 사용해야 하는 새로운 트랜스포트 인스턴스를 반환합니다. *start_tls* "
-"메서드에 전달된 *transport* 인스턴스는 절대로 다시 사용해서는 안 됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:787
+#: ../../library/asyncio-eventloop.rst:926
+msgid ""
+"Return the created two-interface instance. After *await*, the *protocol* "
+"must stop using the original *transport* and communicate with the "
+"returned object only because the coder caches *protocol*-side data and "
+"sporadically exchanges extra TLS session packets with *transport*."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:931
+msgid ""
+"In some situations (e.g. when the passed transport is already closing) "
+"this may return ``None``."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:936
 msgid ""
 "*transport* and *protocol* instances that methods like "
 ":meth:`~loop.create_server` and :meth:`~loop.create_connection` return."
@@ -1222,11 +1450,11 @@ msgstr ""
 ":meth:`~loop.create_server`\\와 :meth:`~loop.create_connection` 같은 메서드가 "
 "반환하는 *transport* 와 *protocol* 인스턴스."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:791
+#: ../../library/asyncio-eventloop.rst:940
 msgid "*sslcontext*: a configured instance of :class:`~ssl.SSLContext`."
 msgstr "*sslcontext*: 구성된 :class:`~ssl.SSLContext` 의 인스턴스."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:793
+#: ../../library/asyncio-eventloop.rst:942
 msgid ""
 "*server_side* pass ``True`` when a server-side connection is being "
 "upgraded (like the one created by :meth:`~loop.create_server`)."
@@ -1234,17 +1462,17 @@ msgstr ""
 "(:meth:`~loop.create_server` 에 의해 생성된 것과 같은) 서버 측 연결이 업그레이드될 때 "
 "*server_side* 에 ``True`` 를 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:796
+#: ../../library/asyncio-eventloop.rst:945
 msgid ""
 "*server_hostname*: sets or overrides the host name that the target "
 "server's certificate will be matched against."
 msgstr "*server_hostname*: 대상 서버의 인증서가 일치될 호스트 이름을 설정하거나 대체합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:807
+#: ../../library/asyncio-eventloop.rst:965
 msgid "Watching file descriptors"
 msgstr "파일 기술자 관찰하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:811
+#: ../../library/asyncio-eventloop.rst:969
 msgid ""
 "Start monitoring the *fd* file descriptor for read availability and "
 "invoke *callback* with the specified arguments once *fd* is available for"
@@ -1253,11 +1481,21 @@ msgstr ""
 "*fd* 파일 기술자가 읽기 가능한지 관찰하기 시작하고, 일단 *fd*\\가 읽기 가능해지면 지정한 인자로 *callback* 을 "
 "호출합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:817
-msgid "Stop monitoring the *fd* file descriptor for read availability."
+#: ../../library/asyncio-eventloop.rst:973
+#: ../../library/asyncio-eventloop.rst:987
+msgid ""
+"Any preexisting callback registered for *fd* is cancelled and replaced by"
+" *callback*."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:978
+#, fuzzy
+msgid ""
+"Stop monitoring the *fd* file descriptor for read availability. Returns "
+"``True`` if *fd* was previously being monitored for reads."
 msgstr "*fd* 파일 기술자가 읽기 가능한지 관찰하는 것을 중단합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:821
+#: ../../library/asyncio-eventloop.rst:983
 msgid ""
 "Start monitoring the *fd* file descriptor for write availability and "
 "invoke *callback* with the specified arguments once *fd* is available for"
@@ -1266,8 +1504,8 @@ msgstr ""
 "*fd* 파일 기술자가 쓰기 가능한지 관찰하기 시작하고, 일단 *fd*\\가 쓰기 가능해지면 지정한 인자로 *callback* 을 "
 "호출합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:825
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1044
+#: ../../library/asyncio-eventloop.rst:990
+#: ../../library/asyncio-eventloop.rst:1268
 msgid ""
 "Use :func:`functools.partial` :ref:`to pass keyword arguments <asyncio-"
 "pass-keywords>` to *callback*."
@@ -1275,21 +1513,24 @@ msgstr ""
 "*callback* 에 :ref:`키워드 인자를 전달하려면 <asyncio-pass-keywords>` "
 ":func:`functools.partial`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:830
-msgid "Stop monitoring the *fd* file descriptor for write availability."
+#: ../../library/asyncio-eventloop.rst:995
+#, fuzzy
+msgid ""
+"Stop monitoring the *fd* file descriptor for write availability. Returns "
+"``True`` if *fd* was previously being monitored for writes."
 msgstr "*fd* 파일 기술자가 쓰기 가능한지 관찰하는 것을 중단합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:832
+#: ../../library/asyncio-eventloop.rst:998
 msgid ""
 "See also :ref:`Platform Support <asyncio-platform-support>` section for "
 "some limitations of these methods."
 msgstr "이 메서드의 일부 제한 사항은 :ref:`플랫폼 지원 <asyncio-platform-support>` 절을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:837
+#: ../../library/asyncio-eventloop.rst:1003
 msgid "Working with socket objects directly"
 msgstr "소켓 객체로 직접 작업하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:839
+#: ../../library/asyncio-eventloop.rst:1005
 msgid ""
 "In general, protocol implementations that use transport-based APIs such "
 "as :meth:`loop.create_connection` and :meth:`loop.create_server` are "
@@ -1301,7 +1542,7 @@ msgstr ""
 "트랜스포트 기반 API를 사용하는 프로토콜 구현은 소켓을 직접 사용하는 구현보다 빠릅니다. 그러나, 성능이 결정적이지 않고 "
 ":class:`~socket.socket` 객체로 직접 작업하는 것이 더 편리한 사용 사례가 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:848
+#: ../../library/asyncio-eventloop.rst:1015
 msgid ""
 "Receive up to *nbytes* from *sock*.  Asynchronous version of "
 ":meth:`socket.recv() <socket.socket.recv>`."
@@ -1309,20 +1550,23 @@ msgstr ""
 "*sock* 에서 최대 *nbytes* 를 수신합니다. :meth:`socket.recv() <socket.socket.recv>`"
 " 의 비동기 버전."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:851
+#: ../../library/asyncio-eventloop.rst:1018
 msgid "Return the received data as a bytes object."
 msgstr "수신한 데이터를 바이트열 객체로 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:853
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:867
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:882
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:895
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:921
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:959
+#: ../../library/asyncio-eventloop.rst:1020
+#: ../../library/asyncio-eventloop.rst:1035
+#: ../../library/asyncio-eventloop.rst:1047
+#: ../../library/asyncio-eventloop.rst:1060
+#: ../../library/asyncio-eventloop.rst:1076
+#: ../../library/asyncio-eventloop.rst:1092
+#: ../../library/asyncio-eventloop.rst:1103
+#: ../../library/asyncio-eventloop.rst:1130
+#: ../../library/asyncio-eventloop.rst:1169
 msgid "*sock* must be a non-blocking socket."
 msgstr "*sock* 은 반드시 비 블로킹 소켓이어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:855
+#: ../../library/asyncio-eventloop.rst:1022
 msgid ""
 "Even though this method was always documented as a coroutine method, "
 "releases before Python 3.7 returned a :class:`Future`. Since Python 3.7 "
@@ -1331,7 +1575,7 @@ msgstr ""
 "이 메서드가 항상 코루틴 메서드라고 설명되어왔지만, 파이썬 3.7 이전에는 :class:`Future`\\를 반환했습니다. 파이썬 "
 "3.7부터, 이것은 ``async def`` 메서드입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:862
+#: ../../library/asyncio-eventloop.rst:1030
 msgid ""
 "Receive data from *sock* into the *buf* buffer.  Modeled after the "
 "blocking :meth:`socket.recv_into() <socket.socket.recv_into>` method."
@@ -1339,11 +1583,39 @@ msgstr ""
 "*sock* 에서 *buf* 버퍼로 데이터를 수신합니다. 블로킹 :meth:`socket.recv_into() "
 "<socket.socket.recv_into>` 메서드를 따라 만들어졌습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:865
+#: ../../library/asyncio-eventloop.rst:1033
 msgid "Return the number of bytes written to the buffer."
 msgstr "버퍼에 기록된 바이트 수를 돌려줍니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:873
+#: ../../library/asyncio-eventloop.rst:1042
+#, fuzzy
+msgid ""
+"Receive a datagram of up to *bufsize* from *sock*.  Asynchronous version "
+"of :meth:`socket.recvfrom() <socket.socket.recvfrom>`."
+msgstr ""
+"*sock* 에서 최대 *nbytes* 를 수신합니다. :meth:`socket.recv() <socket.socket.recv>`"
+" 의 비동기 버전."
+
+#: ../../library/asyncio-eventloop.rst:1045
+#, fuzzy
+msgid "Return a tuple of (received data, remote address)."
+msgstr "수신한 데이터를 바이트열 객체로 반환합니다."
+
+#: ../../library/asyncio-eventloop.rst:1054
+#, fuzzy
+msgid ""
+"Receive a datagram of up to *nbytes* from *sock* into *buf*. Asynchronous"
+" version of :meth:`socket.recvfrom_into() <socket.socket.recvfrom_into>`."
+msgstr ""
+"*sock* 에서 최대 *nbytes* 를 수신합니다. :meth:`socket.recv() <socket.socket.recv>`"
+" 의 비동기 버전."
+
+#: ../../library/asyncio-eventloop.rst:1058
+#, fuzzy
+msgid "Return a tuple of (number of bytes received, remote address)."
+msgstr "버퍼에 기록된 바이트 수를 돌려줍니다."
+
+#: ../../library/asyncio-eventloop.rst:1067
 msgid ""
 "Send *data* to the *sock* socket. Asynchronous version of "
 ":meth:`socket.sendall() <socket.socket.sendall>`."
@@ -1351,7 +1623,7 @@ msgstr ""
 "*data* 를 *sock* 소켓으로 보냅니다. :meth:`socket.sendall() "
 "<socket.socket.sendall>` 의 비동기 버전."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:876
+#: ../../library/asyncio-eventloop.rst:1070
 msgid ""
 "This method continues to send to the socket until either all data in "
 "*data* has been sent or an error occurs.  ``None`` is returned on "
@@ -1363,24 +1635,39 @@ msgstr ""
 "반환됩니다. 에러가 발생하면 예외가 발생합니다. 또한, 연결의 수신 단에서 성공적으로 처리한 (있기는 하다면) 데이터의 크기를 "
 "확인하는 방법은 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:884
+#: ../../library/asyncio-eventloop.rst:1078
+#: ../../library/asyncio-eventloop.rst:1132
 msgid ""
 "Even though the method was always documented as a coroutine method, "
-"before Python 3.7 it returned an :class:`Future`. Since Python 3.7, this "
+"before Python 3.7 it returned a :class:`Future`. Since Python 3.7, this "
 "is an ``async def`` method."
 msgstr ""
 "이 메서드가 항상 코루틴 메서드라고 설명되어왔지만, 파이썬 3.7 이전에는 :class:`Future`\\를 반환했습니다. 파이썬 "
 "3.7부터, 이것은 ``async def`` 메서드입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:891
+#: ../../library/asyncio-eventloop.rst:1086
+#, fuzzy
+msgid ""
+"Send a datagram from *sock* to *address*. Asynchronous version of "
+":meth:`socket.sendto() <socket.socket.sendto>`."
+msgstr ""
+"*data* 를 *sock* 소켓으로 보냅니다. :meth:`socket.sendall() "
+"<socket.socket.sendall>` 의 비동기 버전."
+
+#: ../../library/asyncio-eventloop.rst:1090
+#, fuzzy
+msgid "Return the number of bytes sent."
+msgstr "버퍼에 기록된 바이트 수를 돌려줍니다."
+
+#: ../../library/asyncio-eventloop.rst:1099
 msgid "Connect *sock* to a remote socket at *address*."
 msgstr "*sock*\\을 *address*\\에 있는 원격 소켓에 연결합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:893
+#: ../../library/asyncio-eventloop.rst:1101
 msgid "Asynchronous version of :meth:`socket.connect() <socket.socket.connect>`."
 msgstr ":meth:`socket.connect() <socket.socket.connect>` 의 비동기 버전."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:897
+#: ../../library/asyncio-eventloop.rst:1105
 msgid ""
 "``address`` no longer needs to be resolved.  ``sock_connect`` will try to"
 " check if the *address* is already resolved by calling "
@@ -1391,7 +1678,7 @@ msgstr ""
 ":func:`socket.inet_pton`\\을 호출하여 *address* 가 이미 결정되었는지를 검사합니다. 그렇지 않으면, "
 ":meth:`loop.getaddrinfo` 가 *address* 를 결정하는 데 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:906
+#: ../../library/asyncio-eventloop.rst:1114
 msgid ""
 ":meth:`loop.create_connection` and  :func:`asyncio.open_connection() "
 "<open_connection>`."
@@ -1399,7 +1686,7 @@ msgstr ""
 ":meth:`loop.create_connection`\\과 :func:`asyncio.open_connection() "
 "<open_connection>`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:912
+#: ../../library/asyncio-eventloop.rst:1121
 msgid ""
 "Accept a connection.  Modeled after the blocking :meth:`socket.accept() "
 "<socket.socket.accept>` method."
@@ -1407,7 +1694,7 @@ msgstr ""
 "연결을 받아들입니다. 블로킹 :meth:`socket.accept() <socket.socket.accept>` 메서드를 따라 "
 "만들어졌습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:915
+#: ../../library/asyncio-eventloop.rst:1124
 msgid ""
 "The socket must be bound to an address and listening for connections. The"
 " return value is a pair ``(conn, address)`` where *conn* is a *new* "
@@ -1418,32 +1705,23 @@ msgstr ""
 "소켓은 주소에 바인드 되어 연결을 리스닝해야 합니다. 반환 값은 ``(conn, address)`` 쌍인데, *conn* 은 연결로"
 " 데이터를 주고받을 수 있는 *새* 소켓 객체이고, *address* 는 연결의 반대편 끝의 소켓에 바인드 된 주소입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:923
-msgid ""
-"Even though the method was always documented as a coroutine method, "
-"before Python 3.7 it returned a :class:`Future`. Since Python 3.7, this "
-"is an ``async def`` method."
-msgstr ""
-"이 메서드가 항상 코루틴 메서드라고 설명되어왔지만, 파이썬 3.7 이전에는 :class:`Future`\\를 반환했습니다. 파이썬 "
-"3.7부터, 이것은 ``async def`` 메서드입니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:930
+#: ../../library/asyncio-eventloop.rst:1139
 msgid ":meth:`loop.create_server` and :func:`start_server`."
 msgstr ":meth:`loop.create_server`\\와 :func:`start_server`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:935
+#: ../../library/asyncio-eventloop.rst:1145
 msgid ""
 "Send a file using high-performance :mod:`os.sendfile` if possible. Return"
 " the total number of bytes sent."
 msgstr "가능하면 고성능 :mod:`os.sendfile` 을 사용하여 파일을 보냅니다. 전송된 총 바이트 수를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:938
+#: ../../library/asyncio-eventloop.rst:1148
 msgid ""
 "Asynchronous version of :meth:`socket.sendfile() "
 "<socket.socket.sendfile>`."
 msgstr ":meth:`socket.sendfile() <socket.socket.sendfile>`\\의 비동기 버전."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:940
+#: ../../library/asyncio-eventloop.rst:1150
 msgid ""
 "*sock* must be a non-blocking :const:`socket.SOCK_STREAM` "
 ":class:`~socket.socket`."
@@ -1451,11 +1729,11 @@ msgstr ""
 "*sock* 은 반드시 비 블로킹 :const:`socket.SOCK_STREAM` :class:`~socket.socket` "
 "이어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:943
+#: ../../library/asyncio-eventloop.rst:1153
 msgid "*file* must be a regular file object open in binary mode."
 msgstr "*file* 는 바이너리 모드로 열린 일반 파일 객체여야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:952
+#: ../../library/asyncio-eventloop.rst:1162
 msgid ""
 "*fallback*, when set to ``True``, makes asyncio manually read and send "
 "the file when the platform does not support the sendfile syscall (e.g. "
@@ -1464,7 +1742,7 @@ msgstr ""
 "*fallback* 을 ``True`` 로 설정하면, 플랫폼이 sendfile 시스템 호출을 지원하지 않을 때 (가령 유닉스에서 "
 "SSL 소켓을 사용하거나 윈도우인 경우), asyncio 가 파일을 수동으로 읽고 보내도록 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:956
+#: ../../library/asyncio-eventloop.rst:1166
 msgid ""
 "Raise :exc:`SendfileNotAvailableError` if the system does not support "
 "*sendfile* syscall and *fallback* is ``False``."
@@ -1472,19 +1750,29 @@ msgstr ""
 "시스템이 *sendfile* 시스템 호출을 지원하지 않고 *fallback* 이 ``False`` 면 "
 ":exc:`SendfileNotAvailableError` 를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:965
+#: ../../library/asyncio-eventloop.rst:1175
 msgid "DNS"
 msgstr "DNS"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:970
+#: ../../library/asyncio-eventloop.rst:1181
 msgid "Asynchronous version of :meth:`socket.getaddrinfo`."
 msgstr ":meth:`socket.getaddrinfo` 의 비동기 버전."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:974
+#: ../../library/asyncio-eventloop.rst:1186
 msgid "Asynchronous version of :meth:`socket.getnameinfo`."
 msgstr ":meth:`socket.getnameinfo` 의 비동기 버전."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:976
+#: ../../library/asyncio-eventloop.rst:1189
+msgid ""
+"Both *getaddrinfo* and *getnameinfo* internally utilize their synchronous"
+" versions through the loop's default thread pool executor. When this "
+"executor is saturated, these methods may experience delays, which higher-"
+"level networking libraries may report as increased timeouts. To mitigate "
+"this, consider using a custom executor for other user tasks, or setting a"
+" default executor with a larger number of workers."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1196
 msgid ""
 "Both *getaddrinfo* and *getnameinfo* methods were always documented to "
 "return a coroutine, but prior to Python 3.7 they were, in fact, returning"
@@ -1494,19 +1782,19 @@ msgstr ""
 "*getaddrinfo* 와 *getnameinfo* 메서드는 모두 코루틴 메서드라고 설명되어왔지만, 파이썬 3.7 이전에 실제로는"
 " :class:`asyncio.Future` 객체를 반환했습니다. 파이썬 3.7부터 두 가지 메서드 모두 코루틴입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:984
+#: ../../library/asyncio-eventloop.rst:1204
 msgid "Working with pipes"
 msgstr "파이프로 작업하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:988
+#: ../../library/asyncio-eventloop.rst:1209
 msgid "Register the read end of *pipe* in the event loop."
 msgstr "이벤트 루프에 *pipe*\\의 읽기용 끝을 등록합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:993
+#: ../../library/asyncio-eventloop.rst:1214
 msgid "*pipe* is a :term:`file-like object <file object>`."
 msgstr "*pipe*\\는 :term:`파일류 객체 <file object>`\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:995
+#: ../../library/asyncio-eventloop.rst:1216
 msgid ""
 "Return pair ``(transport, protocol)``, where *transport* supports the "
 ":class:`ReadTransport` interface and *protocol* is an object instantiated"
@@ -1516,22 +1804,22 @@ msgstr ""
 ":class:`ReadTransport` 인터페이스를 지원하고, *protocol*\\은 *protocol_factory*\\에 "
 "의해 인스턴스로 만들어진 객체입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:999
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1015
+#: ../../library/asyncio-eventloop.rst:1220
+#: ../../library/asyncio-eventloop.rst:1237
 msgid ""
 "With :class:`SelectorEventLoop` event loop, the *pipe* is set to non-"
 "blocking mode."
 msgstr ":class:`SelectorEventLoop` 이벤트 루프를 사용하면, *pipe* 는 비 블로킹 모드로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1004
+#: ../../library/asyncio-eventloop.rst:1226
 msgid "Register the write end of *pipe* in the event loop."
 msgstr "이벤트 루프에 *pipe*\\의 쓰기용 끝을 등록합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1009
+#: ../../library/asyncio-eventloop.rst:1231
 msgid "*pipe* is :term:`file-like object <file object>`."
 msgstr "*pipe*\\는 :term:`파일류 객체 <file object>`\\입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1011
+#: ../../library/asyncio-eventloop.rst:1233
 msgid ""
 "Return pair ``(transport, protocol)``, where *transport* supports "
 ":class:`WriteTransport` interface and *protocol* is an object "
@@ -1541,7 +1829,7 @@ msgstr ""
 ":class:`WriteTransport` 인터페이스를 지원하고, *protocol*\\은 *protocol_factory*\\에 "
 "의해 인스턴스로 만들어진 객체입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1020
+#: ../../library/asyncio-eventloop.rst:1242
 msgid ""
 ":class:`SelectorEventLoop` does not support the above methods on Windows."
 "  Use :class:`ProactorEventLoop` instead for Windows."
@@ -1549,21 +1837,21 @@ msgstr ""
 "윈도우에서 :class:`SelectorEventLoop`\\는 위의 메서드들을 지원하지 않습니다. 윈도우에서는 대신 "
 ":class:`ProactorEventLoop`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1025
+#: ../../library/asyncio-eventloop.rst:1247
 msgid ""
 "The :meth:`loop.subprocess_exec` and :meth:`loop.subprocess_shell` "
 "methods."
 msgstr ":meth:`loop.subprocess_exec` 와 :meth:`loop.subprocess_shell` 메서드."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1030
+#: ../../library/asyncio-eventloop.rst:1252
 msgid "Unix signals"
 msgstr "유닉스 시그널"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1034
+#: ../../library/asyncio-eventloop.rst:1258
 msgid "Set *callback* as the handler for the *signum* signal."
 msgstr "*callback*\\을 *signum* 시그널의 처리기로 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1036
+#: ../../library/asyncio-eventloop.rst:1260
 msgid ""
 "The callback will be invoked by *loop*, along with other queued callbacks"
 " and runnable coroutines of that event loop. Unlike signal handlers "
@@ -1574,7 +1862,7 @@ msgstr ""
 ":func:`signal.signal`\\을 사용하여 등록된 시그널 처리기와 달리, 이 함수로 등록된 콜백은 이벤트 루프와 상호 "
 "작용할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1041
+#: ../../library/asyncio-eventloop.rst:1265
 msgid ""
 "Raise :exc:`ValueError` if the signal number is invalid or uncatchable. "
 "Raise :exc:`RuntimeError` if there is a problem setting up the handler."
@@ -1582,47 +1870,99 @@ msgstr ""
 "시그널 번호가 유효하지 않거나 잡을 수 없으면 :exc:`ValueError` 를 발생시킵니다. 처리기를 설정하는 데 문제가 있는 "
 "경우 :exc:`RuntimeError` 를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1047
+#: ../../library/asyncio-eventloop.rst:1271
 msgid ""
 "Like :func:`signal.signal`, this function must be invoked in the main "
 "thread."
 msgstr ":func:`signal.signal`\\와 마찬가지로, 이 함수는 메인 스레드에서 호출되어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1052
+#: ../../library/asyncio-eventloop.rst:1276
 msgid "Remove the handler for the *sig* signal."
 msgstr "*sig* 시그널의 처리기를 제거합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1054
+#: ../../library/asyncio-eventloop.rst:1278
 msgid ""
 "Return ``True`` if the signal handler was removed, or ``False`` if no "
 "handler was set for the given signal."
 msgstr "시그널 처리기가 제거되면 ``True`` 를, 주어진 시그널에 처리기가 설정되지 않았으면 ``False`` 를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1061
+#: ../../library/asyncio-eventloop.rst:1285
 msgid "The :mod:`signal` module."
 msgstr ":mod:`signal` 모듈."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1065
+#: ../../library/asyncio-eventloop.rst:1289
 msgid "Executing code in thread or process pools"
 msgstr "스레드 또는 프로세스 풀에서 코드를 실행하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1069
+#: ../../library/asyncio-eventloop.rst:1293
 msgid "Arrange for *func* to be called in the specified executor."
 msgstr "지정된 실행기에서 *func* 가 호출되도록 배치합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1071
+#: ../../library/asyncio-eventloop.rst:1295
 msgid ""
 "The *executor* argument should be an :class:`concurrent.futures.Executor`"
-" instance. The default executor is used if *executor* is ``None``."
+" instance. The default executor is used if *executor* is ``None``. The "
+"default executor can be set by :meth:`loop.set_default_executor`, "
+"otherwise, a :class:`concurrent.futures.ThreadPoolExecutor` will be lazy-"
+"initialized and used by :func:`run_in_executor` if needed."
 msgstr ""
-"*executor* 인자는 :class:`~concurrent.futures.Executor` 인스턴스여야 합니다. "
-"*executor* 가 ``None`` 이면 기본 실행기가 사용됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1115
+#: ../../library/asyncio-eventloop.rst:1303
+msgid ""
+"import asyncio\n"
+"import concurrent.futures\n"
+"\n"
+"def blocking_io():\n"
+"    # File operations (such as logging) can block the\n"
+"    # event loop: run them in a thread pool.\n"
+"    with open('/dev/urandom', 'rb') as f:\n"
+"        return f.read(100)\n"
+"\n"
+"def cpu_bound():\n"
+"    # CPU-bound operations will block the event loop:\n"
+"    # in general it is preferable to run them in a\n"
+"    # process pool.\n"
+"    return sum(i * i for i in range(10 ** 7))\n"
+"\n"
+"async def main():\n"
+"    loop = asyncio.get_running_loop()\n"
+"\n"
+"    ## Options:\n"
+"\n"
+"    # 1. Run in the default loop's executor:\n"
+"    result = await loop.run_in_executor(\n"
+"        None, blocking_io)\n"
+"    print('default thread pool', result)\n"
+"\n"
+"    # 2. Run in a custom thread pool:\n"
+"    with concurrent.futures.ThreadPoolExecutor() as pool:\n"
+"        result = await loop.run_in_executor(\n"
+"            pool, blocking_io)\n"
+"        print('custom thread pool', result)\n"
+"\n"
+"    # 3. Run in a custom process pool:\n"
+"    with concurrent.futures.ProcessPoolExecutor() as pool:\n"
+"        result = await loop.run_in_executor(\n"
+"            pool, cpu_bound)\n"
+"        print('custom process pool', result)\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    asyncio.run(main())"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1343
+msgid ""
+"Note that the entry point guard (``if __name__ == '__main__'``) is "
+"required for option 3 due to the peculiarities of :mod:`multiprocessing`,"
+" which is used by :class:`~concurrent.futures.ProcessPoolExecutor`. See "
+":ref:`Safe importing of main module <multiprocessing-safe-main-import>`."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1348
 msgid "This method returns a :class:`asyncio.Future` object."
 msgstr "이 메서드는 :class:`asyncio.Future` 객체를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1117
+#: ../../library/asyncio-eventloop.rst:1350
 msgid ""
 "Use :func:`functools.partial` :ref:`to pass keyword arguments <asyncio-"
 "pass-keywords>` to *func*."
@@ -1630,7 +1970,7 @@ msgstr ""
 "*func* 에 :ref:`키워드 인자를 전달하려면 <asyncio-pass-keywords>` "
 ":func:`functools.partial`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1120
+#: ../../library/asyncio-eventloop.rst:1353
 msgid ""
 ":meth:`loop.run_in_executor` no longer configures the ``max_workers`` of "
 "the thread pool executor it creates, instead leaving it up to the thread "
@@ -1641,46 +1981,39 @@ msgstr ""
 "설정하지 않습니다. 대신 스레드 풀 실행기(:class:`~concurrent.futures.ThreadPoolExecutor`)가"
 " 스스로 기본값을 설정하도록 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1129
+#: ../../library/asyncio-eventloop.rst:1362
+#, fuzzy
 msgid ""
 "Set *executor* as the default executor used by :meth:`run_in_executor`. "
-"*executor* should be an instance of "
+"*executor* must be an instance of "
 ":class:`~concurrent.futures.ThreadPoolExecutor`."
 msgstr ""
 "*executor*\\를 :meth:`run_in_executor`\\에서 사용하는 기본 실행기로 설정합니다. "
 "*executor*\\는 :class:`~concurrent.futures.ThreadPoolExecutor`\\의 인스턴스여야 "
 "합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1133
-msgid ""
-"Using an executor that is not an instance of "
-":class:`~concurrent.futures.ThreadPoolExecutor` is deprecated and will "
-"trigger an error in Python 3.9."
-msgstr ""
-":class:`~concurrent.futures.ThreadPoolExecutor` 인스턴스가 아닌 실행기의 사용은 폐지되었고, "
-"파이썬 3.9에서는 에러를 일으키게 됩니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1138
+#: ../../library/asyncio-eventloop.rst:1366
+#, fuzzy
 msgid ""
 "*executor* must be an instance of "
-":class:`concurrent.futures.ThreadPoolExecutor`."
+":class:`~concurrent.futures.ThreadPoolExecutor`."
 msgstr ""
 "*executor*\\는 반드시 :class:`concurrent.futures.ThreadPoolExecutor`\\의 "
 "인스턴스여야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1143
+#: ../../library/asyncio-eventloop.rst:1372
 msgid "Error Handling API"
 msgstr "에러 처리 API"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1145
+#: ../../library/asyncio-eventloop.rst:1374
 msgid "Allows customizing how exceptions are handled in the event loop."
 msgstr "이벤트 루프에서 예외를 처리하는 방법을 사용자 정의 할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1149
+#: ../../library/asyncio-eventloop.rst:1378
 msgid "Set *handler* as the new event loop exception handler."
 msgstr "*handler* 를 새 이벤트 루프 예외 처리기로 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1151
+#: ../../library/asyncio-eventloop.rst:1380
 msgid ""
 "If *handler* is ``None``, the default exception handler will be set.  "
 "Otherwise, *handler* must be a callable with the signature matching "
@@ -1694,17 +2027,30 @@ msgstr ""
 "대한 참조가 될 것이고, ``context`` 는 예외에 관한 세부 정보를 담고 있는 ``dict`` 객체가 됩니다 "
 "(context에 대한 자세한 내용은 :meth:`call_exception_handler` 문서를 참조하십시오)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1161
+#: ../../library/asyncio-eventloop.rst:1388
+msgid ""
+"If the handler is called on behalf of a :class:`~asyncio.Task` or "
+":class:`~asyncio.Handle`, it is run in the :class:`contextvars.Context` "
+"of that task or callback handle."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1394
+msgid ""
+"The handler may be called in the :class:`~contextvars.Context` of the "
+"task or handle where the exception originated."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1399
 msgid ""
 "Return the current exception handler, or ``None`` if no custom exception "
 "handler was set."
 msgstr "현재 예외 처리기를 반환하거나, 사용자 정의 예외 처리기가 설정되지 않았으면 ``None`` 을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1168
+#: ../../library/asyncio-eventloop.rst:1406
 msgid "Default exception handler."
 msgstr "기본 예외 처리기."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1170
+#: ../../library/asyncio-eventloop.rst:1408
 msgid ""
 "This is called when an exception occurs and no exception handler is set. "
 "This can be called by a custom exception handler that wants to defer to "
@@ -1713,68 +2059,91 @@ msgstr ""
 "예외가 발생하고 예외 처리기가 설정되지 않았을 때 호출됩니다. 기본 동작으로 위임하려는 사용자 정의 예외 처리기가 호출할 수 "
 "있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1174
+#: ../../library/asyncio-eventloop.rst:1412
 msgid ""
 "*context* parameter has the same meaning as in "
 ":meth:`call_exception_handler`."
 msgstr "*context* 매개 변수는 :meth:`call_exception_handler` 에서와 같은 의미입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1179
+#: ../../library/asyncio-eventloop.rst:1417
 msgid "Call the current event loop exception handler."
 msgstr "현재 이벤트 루프 예외 처리기를 호출합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1181
+#: ../../library/asyncio-eventloop.rst:1419
 msgid ""
 "*context* is a ``dict`` object containing the following keys (new keys "
 "may be introduced in future Python versions):"
 msgstr "*context* 는 다음 키를 포함하는 ``dict`` 객체입니다 (새 키가 미래의 파이썬 버전에서 추가될 수 있습니다):"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1184
+#: ../../library/asyncio-eventloop.rst:1422
 msgid "'message': Error message;"
 msgstr "'message': 에러 메시지;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1185
+#: ../../library/asyncio-eventloop.rst:1423
 msgid "'exception' (optional): Exception object;"
 msgstr "'exception' (선택적): 예외 객체;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1186
+#: ../../library/asyncio-eventloop.rst:1424
 msgid "'future' (optional): :class:`asyncio.Future` instance;"
 msgstr "'future' (선택적): :class:`asyncio.Future` 인스턴스;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1187
+#: ../../library/asyncio-eventloop.rst:1425
+#, fuzzy
+msgid "'task' (optional): :class:`asyncio.Task` instance;"
+msgstr "'handle' (선택적): :class:`asyncio.Handle` 인스턴스;"
+
+#: ../../library/asyncio-eventloop.rst:1426
 msgid "'handle' (optional): :class:`asyncio.Handle` instance;"
 msgstr "'handle' (선택적): :class:`asyncio.Handle` 인스턴스;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1188
+#: ../../library/asyncio-eventloop.rst:1427
 msgid "'protocol' (optional): :ref:`Protocol <asyncio-protocol>` instance;"
 msgstr "'protocol' (선택적): :ref:`프로토콜 <asyncio-protocol>` 인스턴스;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1189
+#: ../../library/asyncio-eventloop.rst:1428
 msgid "'transport' (optional): :ref:`Transport <asyncio-transport>` instance;"
 msgstr "'transport' (선택적): :ref:`트랜스포트 <asyncio-transport>` 인스턴스;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1190
-msgid "'socket' (optional): :class:`socket.socket` instance."
+#: ../../library/asyncio-eventloop.rst:1429
+#, fuzzy
+msgid "'socket' (optional): :class:`socket.socket` instance;"
 msgstr "'socket' (선택적): :class:`socket.socket` 인스턴스."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1194
+#: ../../library/asyncio-eventloop.rst:1430
+msgid "'source_traceback' (optional): Traceback of the source;"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1431
+msgid "'handle_traceback' (optional): Traceback of the handle;"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1432
+msgid "'asyncgen' (optional): Asynchronous generator that caused"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1433
+#, fuzzy
+msgid "the exception."
+msgstr "기본 예외 처리기."
+
+#: ../../library/asyncio-eventloop.rst:1437
+#, fuzzy
 msgid ""
 "This method should not be overloaded in subclassed event loops.  For "
-"custom exception handling, use the :meth:`set_exception_handler()` "
-"method."
+"custom exception handling, use the :meth:`set_exception_handler` method."
 msgstr ""
 "이 메서드는 서브 클래스 된 이벤트 루프에서 재정의되지 않아야 합니다. 사용자 정의 예외 처리를 위해서는 "
 ":meth:`set_exception_handler()` 메서드를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1199
+#: ../../library/asyncio-eventloop.rst:1442
 msgid "Enabling debug mode"
 msgstr "디버그 모드 활성화"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1203
+#: ../../library/asyncio-eventloop.rst:1446
 msgid "Get the debug mode (:class:`bool`) of the event loop."
 msgstr "이벤트 루프의 디버그 모드(:class:`bool`)를 가져옵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1205
+#: ../../library/asyncio-eventloop.rst:1448
 msgid ""
 "The default value is ``True`` if the environment variable "
 ":envvar:`PYTHONASYNCIODEBUG` is set to a non-empty string, ``False`` "
@@ -1783,25 +2152,36 @@ msgstr ""
 "기본값은 환경 변수 :envvar:`PYTHONASYNCIODEBUG` 가 비어 있지 않은 문자열로 설정되면 ``True`` 이고,"
 " 그렇지 않으면 ``False`` 입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1211
+#: ../../library/asyncio-eventloop.rst:1454
 msgid "Set the debug mode of the event loop."
 msgstr "이벤트 루프의 디버그 모드를 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1215
+#: ../../library/asyncio-eventloop.rst:1458
 msgid ""
 "The new :ref:`Python Development Mode <devmode>` can now also be used to "
 "enable the debug mode."
 msgstr "이제 새로운 :ref:`파이썬 개발 모드 <devmode>`\\를 사용하여 디버그 모드를 활성화할 수도 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1220
+#: ../../library/asyncio-eventloop.rst:1463
+msgid ""
+"This attribute can be used to set the minimum execution duration in "
+"seconds that is considered \"slow\". When debug mode is enabled, \"slow\""
+" callbacks are logged."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1467
+msgid "Default value is 100 milliseconds."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1471
 msgid "The :ref:`debug mode of asyncio <asyncio-debug-mode>`."
 msgstr ":ref:`asyncio의 디버그 모드 <asyncio-debug-mode>`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1224
+#: ../../library/asyncio-eventloop.rst:1475
 msgid "Running Subprocesses"
 msgstr "자식 프로세스 실행하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1226
+#: ../../library/asyncio-eventloop.rst:1477
 msgid ""
 "Methods described in this subsections are low-level.  In regular "
 "async/await code consider using the high-level "
@@ -1812,34 +2192,36 @@ msgstr ""
 ":func:`asyncio.create_subprocess_shell` 및 "
 ":func:`asyncio.create_subprocess_exec` 편리 함수를 사용하는 것을 고려하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1233
+#: ../../library/asyncio-eventloop.rst:1484
+#, fuzzy
 msgid ""
-"The default asyncio event loop on **Windows** does not support "
-"subprocesses. See :ref:`Subprocess Support on Windows <asyncio-windows-"
-"subprocess>` for details."
+"On Windows, the default event loop :class:`ProactorEventLoop` supports "
+"subprocesses, whereas :class:`SelectorEventLoop` does not. See "
+":ref:`Subprocess Support on Windows <asyncio-windows-subprocess>` for "
+"details."
 msgstr ""
 "**Windows** 의 기본 asyncio 이벤트 루프는 자식 프로세스를 지원하지 않습니다. 자세한 내용은 :ref:`윈도우에서의"
 " 자식 프로세스 지원 <asyncio-windows-subprocess>`\\을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1241
+#: ../../library/asyncio-eventloop.rst:1496
 msgid "Create a subprocess from one or more string arguments specified by *args*."
 msgstr "*args*\\로 지정된 하나 이상의 문자열 인자로 서브 프로세스를 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1244
+#: ../../library/asyncio-eventloop.rst:1499
 msgid "*args* must be a list of strings represented by:"
 msgstr "*args*\\는 반드시 다음과 같은 것으로 표현되는 문자열의 목록이어야 합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1246
+#: ../../library/asyncio-eventloop.rst:1501
 msgid ":class:`str`;"
 msgstr ":class:`str`;"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1247
+#: ../../library/asyncio-eventloop.rst:1502
 msgid ""
 "or :class:`bytes`, encoded to the :ref:`filesystem encoding <filesystem-"
 "encoding>`."
 msgstr "또는 :ref:`파일 시스템 인코딩 <filesystem-encoding>`\\으로로 인코딩된 :class:`bytes`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1250
+#: ../../library/asyncio-eventloop.rst:1505
 msgid ""
 "The first string specifies the program executable, and the remaining "
 "strings specify the arguments.  Together, string arguments form the "
@@ -1848,7 +2230,7 @@ msgstr ""
 "첫 번째 문자열은 프로그램 실행 파일을 지정하고, 나머지 문자열은 인자를 지정합니다. 함께, 문자열 인자들은 프로그램의 "
 "``argv``\\를 구성합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1254
+#: ../../library/asyncio-eventloop.rst:1509
 msgid ""
 "This is similar to the standard library :class:`subprocess.Popen` class "
 "called with ``shell=False`` and the list of strings passed as the first "
@@ -1860,7 +2242,7 @@ msgstr ""
 ":class:`subprocess.Popen` 클래스와 유사합니다. 그러나 :class:`~subprocess.Popen`\\이 "
 "문자열 목록인 단일 인자를 받아들이지만, *subprocess_exec*\\는 여러 문자열 인자를 받아들입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1260
+#: ../../library/asyncio-eventloop.rst:1515
 msgid ""
 "The *protocol_factory* must be a callable returning a subclass of the "
 ":class:`asyncio.SubprocessProtocol` class."
@@ -1868,78 +2250,65 @@ msgstr ""
 "*protocol_factory*\\는 반드시 :class:`asyncio.SubprocessProtocol` 클래스의 서브 "
 "클래스를 반환하는 콜러블이어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1263
+#: ../../library/asyncio-eventloop.rst:1518
 msgid "Other parameters:"
 msgstr "다른 매개 변수:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1265
+#: ../../library/asyncio-eventloop.rst:1520
 msgid "*stdin* can be any of these:"
 msgstr "*stdin*\\은 다음 중 하나일 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1267
-msgid ""
-"a file-like object representing a pipe to be connected to the "
-"subprocess's standard input stream using :meth:`~loop.connect_write_pipe`"
+#: ../../library/asyncio-eventloop.rst:1522
+#: ../../library/asyncio-eventloop.rst:1533
+#: ../../library/asyncio-eventloop.rst:1543
+msgid "a file-like object"
 msgstr ""
-":meth:`~loop.connect_write_pipe`\\를 사용하여 자식 프로세스의 표준 입력 스트림에 연결될 파이프를 "
-"나타내는 파일류 객체"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1270
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1282
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1294
+#: ../../library/asyncio-eventloop.rst:1523
+msgid ""
+"an existing file descriptor (a positive integer), for example those "
+"created with :meth:`os.pipe`"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1524
+#: ../../library/asyncio-eventloop.rst:1534
+#: ../../library/asyncio-eventloop.rst:1544
 msgid ""
 "the :const:`subprocess.PIPE` constant (default) which will create a new "
 "pipe and connect it,"
 msgstr ":const:`subprocess.PIPE` 상수 (기본값), 새 파이프를 만들고 연결합니다,"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1272
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1284
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1296
+#: ../../library/asyncio-eventloop.rst:1526
+#: ../../library/asyncio-eventloop.rst:1536
+#: ../../library/asyncio-eventloop.rst:1546
 msgid ""
 "the value ``None`` which will make the subprocess inherit the file "
 "descriptor from this process"
 msgstr "서브 프로세스가 이 프로세스의 파일 기술자를 상속하게 하는 값 ``None``"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1274
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1286
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1298
+#: ../../library/asyncio-eventloop.rst:1528
+#: ../../library/asyncio-eventloop.rst:1538
+#: ../../library/asyncio-eventloop.rst:1548
 msgid ""
 "the :const:`subprocess.DEVNULL` constant which indicates that the special"
 " :data:`os.devnull` file will be used"
 msgstr "특수 :data:`os.devnull` 파일이 사용될 것임을 나타내는 :const:`subprocess.DEVNULL` 상수"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1277
+#: ../../library/asyncio-eventloop.rst:1531
 msgid "*stdout* can be any of these:"
 msgstr "*stdout*\\은 다음 중 하나일 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1279
-msgid ""
-"a file-like object representing a pipe to be connected to the "
-"subprocess's standard output stream using "
-":meth:`~loop.connect_write_pipe`"
-msgstr ""
-":meth:`~loop.connect_write_pipe`\\를 사용하여 자식 프로세스의 표준 출력 스트림에 연결될 파이프를 "
-"나타내는 파일류 객체"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1289
+#: ../../library/asyncio-eventloop.rst:1541
 msgid "*stderr* can be any of these:"
 msgstr "*stderr*\\은 다음 중 하나일 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1291
-msgid ""
-"a file-like object representing a pipe to be connected to the "
-"subprocess's standard error stream using :meth:`~loop.connect_write_pipe`"
-msgstr ""
-":meth:`~loop.connect_write_pipe`\\를 사용하여 자식 프로세스의 표준 에러 스트림에 연결될 파이프를 "
-"나타내는 파일류 객체"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1300
+#: ../../library/asyncio-eventloop.rst:1550
 msgid ""
 "the :const:`subprocess.STDOUT` constant which will connect the standard "
 "error stream to the process' standard output stream"
 msgstr ":const:`subprocess.STDOUT` 상수, 표준 에러 스트림을 프로세스의 표준 출력 스트림에 연결합니다"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1303
+#: ../../library/asyncio-eventloop.rst:1553
 msgid ""
 "All other keyword arguments are passed to :class:`subprocess.Popen` "
 "without interpretation, except for *bufsize*, *universal_newlines*, "
@@ -1950,7 +2319,7 @@ msgstr ""
 "*universal_newlines*, *shell*, *text*, *encoding* 및 *errors*\\는 예외인데, "
 "이것들은 지정되지 않아야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1308
+#: ../../library/asyncio-eventloop.rst:1558
 msgid ""
 "The ``asyncio`` subprocess API does not support decoding the streams as "
 "text. :func:`bytes.decode` can be used to convert the bytes returned from"
@@ -1959,13 +2328,21 @@ msgstr ""
 "``asyncio`` 서브 프로세스 API는 스트림을 텍스트로 디코딩하는 것을 지원하지 않습니다. "
 ":func:`bytes.decode`\\는 스트림에서 반환된 바이트열을 텍스트로 변환하는 데 사용될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1312
+#: ../../library/asyncio-eventloop.rst:1562
+msgid ""
+"If a file-like object passed as *stdin*, *stdout* or *stderr* represents "
+"a pipe, then the other side of this pipe should be registered with "
+":meth:`~loop.connect_write_pipe` or :meth:`~loop.connect_read_pipe` for "
+"use with the event loop."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1567
 msgid ""
 "See the constructor of the :class:`subprocess.Popen` class for "
 "documentation on other arguments."
 msgstr "다른 인자에 관한 설명은 :class:`subprocess.Popen` 클래스의 생성자를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1315
+#: ../../library/asyncio-eventloop.rst:1570
 msgid ""
 "Returns a pair of ``(transport, protocol)``, where *transport* conforms "
 "to the :class:`asyncio.SubprocessTransport` base class and *protocol* is "
@@ -1975,7 +2352,7 @@ msgstr ""
 ":class:`asyncio.SubprocessTransport` 베이스 클래스를 따르고, *protocol*\\은 "
 "*protocol_factory*\\에 의해 인스턴스로 만들어진 객체입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1323
+#: ../../library/asyncio-eventloop.rst:1579
 msgid ""
 "Create a subprocess from *cmd*, which can be a :class:`str` or a "
 ":class:`bytes` string encoded to the :ref:`filesystem encoding "
@@ -1984,13 +2361,13 @@ msgstr ""
 "플랫폼의 \"셸\" 구문을 사용하는 *cmd*\\로 자식 프로세스를 만듭니다. *cmd*\\는 :class:`str`\\이나 "
 ":ref:`파일 시스템 인코딩 <filesystem-encoding>`\\으로 인코딩된 :class:`bytes` 일 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1328
+#: ../../library/asyncio-eventloop.rst:1584
 msgid ""
 "This is similar to the standard library :class:`subprocess.Popen` class "
 "called with ``shell=True``."
 msgstr "이것은 ``shell=True``\\로 호출된 표준 라이브러리 :class:`subprocess.Popen` 클래스와 유사합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1331
+#: ../../library/asyncio-eventloop.rst:1587
 msgid ""
 "The *protocol_factory* must be a callable returning a subclass of the "
 ":class:`SubprocessProtocol` class."
@@ -1998,13 +2375,13 @@ msgstr ""
 "*protocol_factory*\\는 반드시 :class:`SubprocessProtocol` 클래스의 서브 클래스를 반환하는 "
 "콜러블이어야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1334
+#: ../../library/asyncio-eventloop.rst:1590
 msgid ""
 "See :meth:`~loop.subprocess_exec` for more details about the remaining "
 "arguments."
 msgstr "나머지 인자에 관한 자세한 내용은 :meth:`~loop.subprocess_exec`\\를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1337
+#: ../../library/asyncio-eventloop.rst:1593
 msgid ""
 "Returns a pair of ``(transport, protocol)``, where *transport* conforms "
 "to the :class:`SubprocessTransport` base class and *protocol* is an "
@@ -2014,7 +2391,7 @@ msgstr ""
 ":class:`SubprocessTransport` 베이스 클래스를 따르고, *protocol*\\은 "
 "*protocol_factory*\\에 의해 인스턴스로 만들어진 객체입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1342
+#: ../../library/asyncio-eventloop.rst:1598
 msgid ""
 "It is the application's responsibility to ensure that all whitespace and "
 "special characters are quoted appropriately to avoid `shell injection "
@@ -2028,11 +2405,11 @@ msgstr ""
 ":func:`shlex.quote` 함수를 사용하여 셸 명령을 구성하는 데 사용될 문자열에 있는 공백 및 특수 문자를 올바르게 "
 "이스케이프 할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1351
+#: ../../library/asyncio-eventloop.rst:1607
 msgid "Callback Handles"
 msgstr "콜백 핸들"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1355
+#: ../../library/asyncio-eventloop.rst:1611
 msgid ""
 "A callback wrapper object returned by :meth:`loop.call_soon`, "
 ":meth:`loop.call_soon_threadsafe`."
@@ -2040,41 +2417,45 @@ msgstr ""
 ":meth:`loop.call_soon`, :meth:`loop.call_soon_threadsafe` 에 의해 반환되는 콜백 래퍼"
 " 객체."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1360
+#: ../../library/asyncio-eventloop.rst:1616
+msgid "Return the :class:`contextvars.Context` object associated with the handle."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1623
 msgid ""
 "Cancel the callback.  If the callback has already been canceled or "
 "executed, this method has no effect."
 msgstr "콜백을 취소합니다. 콜백이 이미 취소되었거나 실행되었다면 이 메서드는 아무 효과가 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1365
+#: ../../library/asyncio-eventloop.rst:1628
 msgid "Return ``True`` if the callback was cancelled."
 msgstr "콜백이 취소되었으면 ``True`` 을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1371
+#: ../../library/asyncio-eventloop.rst:1634
 msgid ""
 "A callback wrapper object returned by :meth:`loop.call_later`, and "
 ":meth:`loop.call_at`."
 msgstr ":meth:`loop.call_later` 및 :meth:`loop.call_at` 에 의해 반환되는 콜백 래퍼 객체."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1374
+#: ../../library/asyncio-eventloop.rst:1637
 msgid "This class is a subclass of :class:`Handle`."
 msgstr "이 클래스는 :class:`Handle`\\의 서브 클래스입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1378
+#: ../../library/asyncio-eventloop.rst:1641
 msgid "Return a scheduled callback time as :class:`float` seconds."
 msgstr "예약된 콜백 시간을 :class:`float` 초로 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1380
+#: ../../library/asyncio-eventloop.rst:1643
 msgid ""
 "The time is an absolute timestamp, using the same time reference as "
 ":meth:`loop.time`."
 msgstr "시간은 절대 타임스탬프입니다. :meth:`loop.time` 과 같은 시간 참조를 사용합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1387
+#: ../../library/asyncio-eventloop.rst:1650
 msgid "Server Objects"
 msgstr "서버 객체"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1389
+#: ../../library/asyncio-eventloop.rst:1652
 msgid ""
 "Server objects are created by :meth:`loop.create_server`, "
 ":meth:`loop.create_unix_server`, :func:`start_server`, and "
@@ -2083,11 +2464,12 @@ msgstr ""
 "Server 객체는 :meth:`loop.create_server`, :meth:`loop.create_unix_server`, "
 ":func:`start_server`, :func:`start_unix_server`\\로 만듭니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1393
-msgid "Do not instantiate the class directly."
+#: ../../library/asyncio-eventloop.rst:1656
+#, fuzzy
+msgid "Do not instantiate the :class:`Server` class directly."
 msgstr "클래스의 인스턴스를 직접 만들지 마십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1397
+#: ../../library/asyncio-eventloop.rst:1660
 msgid ""
 "*Server* objects are asynchronous context managers.  When used in an "
 "``async with`` statement, it's guaranteed that the Server object is "
@@ -2097,43 +2479,93 @@ msgstr ""
 "*Server* 객체는 비동기 컨텍스트 관리자입니다. ``async with`` 문에서 사용될 때, ``async with`` 문이"
 " 완료되면 서버 객체가 닫혀 있고 새 연결을 받아들이지 않는다는 것이 보장됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1410
+#: ../../library/asyncio-eventloop.rst:1665
+msgid ""
+"srv = await loop.create_server(...)\n"
+"\n"
+"async with srv:\n"
+"    # some code\n"
+"\n"
+"# At this point, srv is closed and no longer accepts new connections."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1673
 msgid "Server object is an asynchronous context manager since Python 3.7."
 msgstr "Server 객체는 파이썬 3.7부터 비동기 컨텍스트 관리자입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1415
+#: ../../library/asyncio-eventloop.rst:1676
+msgid ""
+"This class was exposed publicly as ``asyncio.Server`` in Python 3.9.11, "
+"3.10.3 and 3.11."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1681
 msgid ""
 "Stop serving: close listening sockets and set the :attr:`sockets` "
 "attribute to ``None``."
 msgstr "서버를 중지합니다: 리스닝 소켓을 닫고 :attr:`sockets` 어트리뷰트를 ``None`` 으로 설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1418
+#: ../../library/asyncio-eventloop.rst:1684
 msgid ""
 "The sockets that represent existing incoming client connections are left "
 "open."
 msgstr "이미 받아들여진 클라이언트 연결을 나타내는 소켓은 열린 채로 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1421
+#: ../../library/asyncio-eventloop.rst:1687
+#, fuzzy
 msgid ""
-"The server is closed asynchronously, use the :meth:`wait_closed` "
-"coroutine to wait until the server is closed."
+"The server is closed asynchronously; use the :meth:`wait_closed` "
+"coroutine to wait until the server is closed (and no more connections are"
+" active)."
 msgstr "서버는 비동기적으로 닫힙니다. 서버가 닫힐 때까지 대기하려면 :meth:`wait_closed` 코루틴을 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1426
+#: ../../library/asyncio-eventloop.rst:1693
+#, fuzzy
+msgid "Close all existing incoming client connections."
+msgstr "이미 받아들여진 클라이언트 연결을 나타내는 소켓은 열린 채로 있습니다."
+
+#: ../../library/asyncio-eventloop.rst:1695
+msgid "Calls :meth:`~asyncio.BaseTransport.close` on all associated transports."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1698
+msgid ""
+":meth:`close` should be called before :meth:`close_clients` when closing "
+"the server to avoid races with new clients connecting."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1705
+msgid ""
+"Close all existing incoming client connections immediately, without "
+"waiting for pending operations to complete."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1708
+msgid "Calls :meth:`~asyncio.WriteTransport.abort` on all associated transports."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1711
+msgid ""
+":meth:`close` should be called before :meth:`abort_clients` when closing "
+"the server to avoid races with new clients connecting."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1718
 msgid "Return the event loop associated with the server object."
 msgstr "서버 객체와 연관된 이벤트 루프를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1432
+#: ../../library/asyncio-eventloop.rst:1725
 msgid "Start accepting connections."
 msgstr "연결을 받아들이기 시작합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1434
+#: ../../library/asyncio-eventloop.rst:1727
+#, fuzzy
 msgid ""
 "This method is idempotent, so it can be called when the server is already"
-" being serving."
+" serving."
 msgstr "이 메서드는 멱등적이라서, 서버가 이미 시작되었을 때도 호출 할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1437
+#: ../../library/asyncio-eventloop.rst:1730
 msgid ""
 "The *start_serving* keyword-only parameter to :meth:`loop.create_server` "
 "and :meth:`asyncio.start_server` allows creating a Server object that is "
@@ -2146,13 +2578,13 @@ msgstr ""
 "``Server.start_serving()``, 또는 :meth:`Server.serve_forever`\\를 사용하여 "
 "Server가 연결을 받아들이기 시작하도록 할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1448
+#: ../../library/asyncio-eventloop.rst:1742
 msgid ""
 "Start accepting connections until the coroutine is cancelled. "
 "Cancellation of ``serve_forever`` task causes the server to be closed."
 msgstr "코루틴이 취소될 때까지 연결을 받아들이기 시작합니다. ``serve_forever`` 태스크를 취소하면 서버가 닫힙니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1452
+#: ../../library/asyncio-eventloop.rst:1746
 msgid ""
 "This method can be called if the server is already accepting connections."
 "  Only one ``serve_forever`` task can exist per one *Server* object."
@@ -2160,19 +2592,40 @@ msgstr ""
 "이 메서드는 서버가 이미 연결을 받아들이고 있어도 호출 할 수 있습니다. 하나의 *Server* 객체 당 하나의 "
 "``serve_forever`` 태스크만 존재할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1474
+#: ../../library/asyncio-eventloop.rst:1752
+msgid ""
+"async def client_connected(reader, writer):\n"
+"    # Communicate with the client with\n"
+"    # reader/writer streams.  For example:\n"
+"    await reader.readline()\n"
+"\n"
+"async def main(host, port):\n"
+"    srv = await asyncio.start_server(\n"
+"        client_connected, host, port)\n"
+"    await srv.serve_forever()\n"
+"\n"
+"asyncio.run(main('127.0.0.1', 0))"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1768
 msgid "Return ``True`` if the server is accepting new connections."
 msgstr "서버가 새 연결을 받아들이고 있으면 ``True`` 를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1480
-msgid "Wait until the :meth:`close` method completes."
+#: ../../library/asyncio-eventloop.rst:1775
+#, fuzzy
+msgid ""
+"Wait until the :meth:`close` method completes and all active connections "
+"have finished."
 msgstr ":meth:`close` 메서드가 완료될 때까지 기다립니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1484
-msgid "List of :class:`socket.socket` objects the server is listening on."
+#: ../../library/asyncio-eventloop.rst:1780
+#, fuzzy
+msgid ""
+"List of socket-like objects, ``asyncio.trsock.TransportSocket``, which "
+"the server is listening on."
 msgstr "서버가 리스닝하고 있는 :class:`socket.socket` 객체의 리스트."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1486
+#: ../../library/asyncio-eventloop.rst:1783
 msgid ""
 "Prior to Python 3.7 ``Server.sockets`` used to return an internal list of"
 " server sockets directly.  In 3.7 a copy of that list is returned."
@@ -2180,11 +2633,11 @@ msgstr ""
 "파이썬 3.7 이전에는 ``Server.sockets`` 가 서버 소켓의 내부 리스트를 직접 반환했습니다. 3.7에서는 그 리스트의"
 " 복사본이 반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1495
+#: ../../library/asyncio-eventloop.rst:1793
 msgid "Event Loop Implementations"
 msgstr "이벤트 루프 구현"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1497
+#: ../../library/asyncio-eventloop.rst:1795
 msgid ""
 "asyncio ships with two different event loop implementations: "
 ":class:`SelectorEventLoop` and :class:`ProactorEventLoop`."
@@ -2192,19 +2645,21 @@ msgstr ""
 "asyncio에는 두 가지 이벤트 루프 구현이 함께 제공됩니다: :class:`SelectorEventLoop` 및 "
 ":class:`ProactorEventLoop`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1500
-msgid ""
-"By default asyncio is configured to use :class:`SelectorEventLoop` on "
-"Unix and :class:`ProactorEventLoop` on Windows."
+#: ../../library/asyncio-eventloop.rst:1798
+#, fuzzy
+msgid "By default asyncio is configured to use :class:`EventLoop`."
 msgstr ""
 "기본적으로 asyncio는 유닉스에서 :class:`SelectorEventLoop`\\를, 윈도우에서 "
 ":class:`ProactorEventLoop`\\를 사용하도록 구성됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1506
-msgid "An event loop based on the :mod:`selectors` module."
+#: ../../library/asyncio-eventloop.rst:1803
+#, fuzzy
+msgid ""
+"A subclass of :class:`AbstractEventLoop` based on the :mod:`selectors` "
+"module."
 msgstr ":mod:`selectors` 모듈을 기반으로 하는 이벤트 루프."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1508
+#: ../../library/asyncio-eventloop.rst:1806
 msgid ""
 "Uses the most efficient *selector* available for the given platform.  It "
 "is also possible to manually configure the exact selector implementation "
@@ -2213,44 +2668,69 @@ msgstr ""
 "주어진 플랫폼에서 사용할 수 있는 가장 효율적인 *selector*\\를 사용합니다. 정확한 셀렉터 구현을 수동으로 구성하여 사용할"
 " 수도 있습니다.::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1520
-msgid ":ref:`Availability <availability>`: Unix, Windows."
-msgstr ":ref:`가용성 <availability>`: 유닉스, 윈도우."
+#: ../../library/asyncio-eventloop.rst:1810
+msgid ""
+"import asyncio\n"
+"import selectors\n"
+"\n"
+"class MyPolicy(asyncio.DefaultEventLoopPolicy):\n"
+"   def new_event_loop(self):\n"
+"      selector = selectors.SelectSelector()\n"
+"      return asyncio.SelectorEventLoop(selector)\n"
+"\n"
+"asyncio.set_event_loop_policy(MyPolicy())"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1525
-msgid "An event loop for Windows that uses \"I/O Completion Ports\" (IOCP)."
+#: ../../library/asyncio-eventloop.rst:1826
+#, fuzzy
+msgid ""
+"A subclass of :class:`AbstractEventLoop` for Windows that uses \"I/O "
+"Completion Ports\" (IOCP)."
 msgstr "\"I/O 완료 포트\"(IOCP)를 사용하는 윈도우용 이벤트 루프."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1528
-msgid ":ref:`Availability <availability>`: Windows."
-msgstr ":ref:`가용성 <availability>`: 윈도우."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1531
+#: ../../library/asyncio-eventloop.rst:1832
+#, fuzzy
 msgid ""
-"`MSDN documentation on I/O Completion Ports <https://docs.microsoft.com"
-"/en-ca/windows/desktop/FileIO/i-o-completion-ports>`_."
+"`MSDN documentation on I/O Completion Ports "
+"<https://learn.microsoft.com/windows/win32/fileio/i-o-completion-"
+"ports>`_."
 msgstr ""
 "`I/O 완료 포트에 관한 MSDN 설명서 <https://docs.microsoft.com/en-"
 "ca/windows/desktop/FileIO/i-o-completion-ports>`_."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1537
+#: ../../library/asyncio-eventloop.rst:1837
+msgid ""
+"An alias to the most efficient available subclass of "
+":class:`AbstractEventLoop` for the given platform."
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1840
+#, fuzzy
+msgid ""
+"It is an alias to :class:`SelectorEventLoop` on Unix and "
+":class:`ProactorEventLoop` on Windows."
+msgstr ""
+"기본적으로 asyncio는 유닉스에서 :class:`SelectorEventLoop`\\를, 윈도우에서 "
+":class:`ProactorEventLoop`\\를 사용하도록 구성됩니다."
+
+#: ../../library/asyncio-eventloop.rst:1846
 msgid "Abstract base class for asyncio-compliant event loops."
 msgstr "asyncio 호환 이벤트 루프의 추상 베이스 클래스."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1539
+#: ../../library/asyncio-eventloop.rst:1848
+#, fuzzy
 msgid ""
-"The :ref:`Event Loop Methods <asyncio-event-loop>` section lists all "
-"methods that an alternative implementation of ``AbstractEventLoop`` "
-"should have defined."
+"The :ref:`asyncio-event-loop-methods` section lists all methods that an "
+"alternative implementation of ``AbstractEventLoop`` should have defined."
 msgstr ""
 ":ref:`이벤트 루프 메서드 <asyncio-event-loop>` 절은 ``AbstractEventLoop``\\의 다른 구현이"
 " 정의해야 하는 모든 메서드를 나열합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1545
+#: ../../library/asyncio-eventloop.rst:1854
 msgid "Examples"
 msgstr "예제"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1547
+#: ../../library/asyncio-eventloop.rst:1856
 msgid ""
 "Note that all examples in this section **purposefully** show how to use "
 "the low-level event loop APIs, such as :meth:`loop.run_forever` and "
@@ -2262,11 +2742,11 @@ msgstr ""
 " 같은 저수준 이벤트 루프 API를 사용하는 방법을 보여줍니다. 현대 asyncio 응용 프로그램은 거의 이런 식으로 작성할 필요가"
 " 없습니다; :func:`asyncio.run`\\과 같은 고수준 함수를 사용하는 것을 고려하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1557
+#: ../../library/asyncio-eventloop.rst:1866
 msgid "Hello World with call_soon()"
 msgstr "call_soon()을 사용하는 Hello World"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1559
+#: ../../library/asyncio-eventloop.rst:1868
 msgid ""
 "An example using the :meth:`loop.call_soon` method to schedule a "
 "callback. The callback displays ``\"Hello World\"`` and then stops the "
@@ -2275,17 +2755,39 @@ msgstr ""
 "콜백을 예약하기 위해 :meth:`loop.call_soon` 메서드를 사용하는 예제. 콜백은 ``\"Hello World\"`` "
 "를 표시한 다음 이벤트 루프를 중지합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1583
+#: ../../library/asyncio-eventloop.rst:1872
+msgid ""
+"import asyncio\n"
+"\n"
+"def hello_world(loop):\n"
+"    \"\"\"A callback to print 'Hello World' and stop the event loop\"\"\""
+"\n"
+"    print('Hello World')\n"
+"    loop.stop()\n"
+"\n"
+"loop = asyncio.new_event_loop()\n"
+"\n"
+"# Schedule a call to hello_world()\n"
+"loop.call_soon(hello_world, loop)\n"
+"\n"
+"# Blocking call interrupted by loop.stop()\n"
+"try:\n"
+"    loop.run_forever()\n"
+"finally:\n"
+"    loop.close()"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1892
 msgid ""
 "A similar :ref:`Hello World <coroutine>` example created with a coroutine"
 " and the :func:`run` function."
 msgstr "코루틴과 :func:`run` 함수로 작성된 유사한 :ref:`Hello World <coroutine>` 예제."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1590
+#: ../../library/asyncio-eventloop.rst:1899
 msgid "Display the current date with call_later()"
 msgstr "call_later()로 현재 날짜를 표시합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1592
+#: ../../library/asyncio-eventloop.rst:1901
 msgid ""
 "An example of a callback displaying the current date every second. The "
 "callback uses the :meth:`loop.call_later` method to reschedule itself "
@@ -2294,17 +2796,42 @@ msgstr ""
 "초마다 현재 날짜를 표시하는 콜백의 예입니다. 콜백은 :meth:`loop.call_later` 메서드를 사용하여 5초 동안 자신을"
 " 다시 예약한 다음 이벤트 루프를 중지합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1620
+#: ../../library/asyncio-eventloop.rst:1905
+msgid ""
+"import asyncio\n"
+"import datetime\n"
+"\n"
+"def display_date(end_time, loop):\n"
+"    print(datetime.datetime.now())\n"
+"    if (loop.time() + 1.0) < end_time:\n"
+"        loop.call_later(1, display_date, end_time, loop)\n"
+"    else:\n"
+"        loop.stop()\n"
+"\n"
+"loop = asyncio.new_event_loop()\n"
+"\n"
+"# Schedule the first call to display_date()\n"
+"end_time = loop.time() + 5.0\n"
+"loop.call_soon(display_date, end_time, loop)\n"
+"\n"
+"# Blocking call interrupted by loop.stop()\n"
+"try:\n"
+"    loop.run_forever()\n"
+"finally:\n"
+"    loop.close()"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1929
 msgid ""
 "A similar :ref:`current date <asyncio_example_sleep>` example created "
 "with a coroutine and the :func:`run` function."
 msgstr "코루틴과 :func:`run` 함수로 작성된 유사한 :ref:`현재 날짜 <asyncio_example_sleep>` 예제."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1627
+#: ../../library/asyncio-eventloop.rst:1936
 msgid "Watch a file descriptor for read events"
 msgstr "파일 기술자에서 읽기 이벤트를 관찰하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1629
+#: ../../library/asyncio-eventloop.rst:1938
 msgid ""
 "Wait until a file descriptor received some data using the "
 ":meth:`loop.add_reader` method and then close the event loop::"
@@ -2312,7 +2839,43 @@ msgstr ""
 ":meth:`loop.add_reader` 메서드를 사용하여 파일 기술자가 데이터를 수신할 때까지 기다렸다가 이벤트 루프를 "
 "닫습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1667
+#: ../../library/asyncio-eventloop.rst:1941
+msgid ""
+"import asyncio\n"
+"from socket import socketpair\n"
+"\n"
+"# Create a pair of connected file descriptors\n"
+"rsock, wsock = socketpair()\n"
+"\n"
+"loop = asyncio.new_event_loop()\n"
+"\n"
+"def reader():\n"
+"    data = rsock.recv(100)\n"
+"    print(\"Received:\", data.decode())\n"
+"\n"
+"    # We are done: unregister the file descriptor\n"
+"    loop.remove_reader(rsock)\n"
+"\n"
+"    # Stop the event loop\n"
+"    loop.stop()\n"
+"\n"
+"# Register the file descriptor for read event\n"
+"loop.add_reader(rsock, reader)\n"
+"\n"
+"# Simulate the reception of data from the network\n"
+"loop.call_soon(wsock.send, 'abc'.encode())\n"
+"\n"
+"try:\n"
+"    # Run the event loop\n"
+"    loop.run_forever()\n"
+"finally:\n"
+"    # We are done. Close sockets and the event loop.\n"
+"    rsock.close()\n"
+"    wsock.close()\n"
+"    loop.close()"
+msgstr ""
+
+#: ../../library/asyncio-eventloop.rst:1976
 msgid ""
 "A similar :ref:`example <asyncio_example_create_connection>` using "
 "transports, protocols, and the :meth:`loop.create_connection` method."
@@ -2320,7 +2883,7 @@ msgstr ""
 "트랜스포트, 프로토콜, :meth:`loop.create_connection` 메서드를 사용한 유사한 :ref:`예제 "
 "<asyncio_example_create_connection>`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1671
+#: ../../library/asyncio-eventloop.rst:1980
 msgid ""
 "Another similar :ref:`example <asyncio_example_create_connection-"
 "streams>` using the high-level :func:`asyncio.open_connection` function "
@@ -2329,19 +2892,160 @@ msgstr ""
 "고수준의 :func:`asyncio.open_connection` 함수와 스트림을 사용하는 또 다른 유사한 :ref:`예제 "
 "<asyncio_example_create_connection-streams>`."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1679
+#: ../../library/asyncio-eventloop.rst:1988
 msgid "Set signal handlers for SIGINT and SIGTERM"
 msgstr "SIGINT 및 SIGTERM에 대한 시그널 처리기 설정"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1681
+#: ../../library/asyncio-eventloop.rst:1990
 msgid "(This ``signals`` example only works on Unix.)"
 msgstr "(이 ``signals`` 예제는 유닉스에서만 작동합니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/asyncio-eventloop.rst:1683
+#: ../../library/asyncio-eventloop.rst:1992
+#, fuzzy
 msgid ""
-"Register handlers for signals :py:data:`SIGINT` and :py:data:`SIGTERM` "
-"using the :meth:`loop.add_signal_handler` method::"
+"Register handlers for signals :const:`~signal.SIGINT` and "
+":const:`~signal.SIGTERM` using the :meth:`loop.add_signal_handler` "
+"method::"
 msgstr ""
 ":meth:`loop.add_signal_handler` 메서드를 사용하여 :py:data:`SIGINT`\\와 "
 ":py:data:`SIGTERM` 시그널을 위한 처리기를 등록합니다::"
+
+#: ../../library/asyncio-eventloop.rst:1995
+#, python-brace-format, python-format
+msgid ""
+"import asyncio\n"
+"import functools\n"
+"import os\n"
+"import signal\n"
+"\n"
+"def ask_exit(signame, loop):\n"
+"    print(\"got signal %s: exit\" % signame)\n"
+"    loop.stop()\n"
+"\n"
+"async def main():\n"
+"    loop = asyncio.get_running_loop()\n"
+"\n"
+"    for signame in {'SIGINT', 'SIGTERM'}:\n"
+"        loop.add_signal_handler(\n"
+"            getattr(signal, signame),\n"
+"            functools.partial(ask_exit, signame, loop))\n"
+"\n"
+"    await asyncio.sleep(3600)\n"
+"\n"
+"print(\"Event loop running for 1 hour, press Ctrl+C to interrupt.\")\n"
+"print(f\"pid {os.getpid()}: send SIGINT or SIGTERM to exit.\")\n"
+"\n"
+"asyncio.run(main())"
+msgstr ""
+
+#~ msgid ""
+#~ "If there is no current event loop"
+#~ " set in the current OS thread, "
+#~ "the OS thread is main, and "
+#~ ":func:`set_event_loop` has not yet been "
+#~ "called, asyncio will create a new "
+#~ "event loop and set it as the "
+#~ "current one."
+#~ msgstr ""
+#~ "현재 OS 스레드에 현재 이벤트 루프가 설정되어 "
+#~ "있지 않고, OS 스레드가 메인이고, "
+#~ ":func:`set_event_loop`\\가 아직 호출되지 않았으면, "
+#~ "asyncio는 새 이벤트 루프를 만들어 현재 이벤트 "
+#~ "루프로 설정합니다."
+
+#~ msgid ""
+#~ "The *reuse_address* parameter is no "
+#~ "longer supported due to security "
+#~ "concerns."
+#~ msgstr "보안 문제로 인해 *reuse_address* 매개 변수는 더는 지원되지 않습니다."
+
+#~ msgid ":ref:`Availability <availability>`: Unix."
+#~ msgstr ":ref:`가용성 <availability>`: 유닉스."
+
+#~ msgid "Added *ssl_handshake_timeout* and *start_serving* parameters."
+#~ msgstr "*ssl_handshake_timeout* 과 *start_serving* 매개 변수 추가."
+
+#~ msgid "The *ssl_handshake_timeout* and *start_serving* parameters."
+#~ msgstr "*ssl_handshake_timeout* 과 *start_serving* 매개 변수."
+
+#~ msgid ""
+#~ "Return a new transport instance, that"
+#~ " the *protocol* must start using "
+#~ "immediately after the *await*.  The "
+#~ "*transport* instance passed to the "
+#~ "*start_tls* method should never be used"
+#~ " again."
+#~ msgstr ""
+#~ "*protocol* 이 *await* 의 직후에 사용해야 하는"
+#~ " 새로운 트랜스포트 인스턴스를 반환합니다. *start_tls* "
+#~ "메서드에 전달된 *transport* 인스턴스는 절대로 다시 "
+#~ "사용해서는 안 됩니다."
+
+#~ msgid ""
+#~ "Even though the method was always "
+#~ "documented as a coroutine method, before"
+#~ " Python 3.7 it returned an "
+#~ ":class:`Future`. Since Python 3.7, this "
+#~ "is an ``async def`` method."
+#~ msgstr ""
+#~ "이 메서드가 항상 코루틴 메서드라고 설명되어왔지만, 파이썬"
+#~ " 3.7 이전에는 :class:`Future`\\를 반환했습니다. 파이썬"
+#~ " 3.7부터, 이것은 ``async def`` 메서드입니다."
+
+#~ msgid ""
+#~ "The *executor* argument should be an "
+#~ ":class:`concurrent.futures.Executor` instance. The "
+#~ "default executor is used if *executor*"
+#~ " is ``None``."
+#~ msgstr ""
+#~ "*executor* 인자는 :class:`~concurrent.futures.Executor` "
+#~ "인스턴스여야 합니다. *executor* 가 ``None`` 이면 "
+#~ "기본 실행기가 사용됩니다."
+
+#~ msgid ""
+#~ "Using an executor that is not an"
+#~ " instance of "
+#~ ":class:`~concurrent.futures.ThreadPoolExecutor` is "
+#~ "deprecated and will trigger an error "
+#~ "in Python 3.9."
+#~ msgstr ""
+#~ ":class:`~concurrent.futures.ThreadPoolExecutor` 인스턴스가 아닌"
+#~ " 실행기의 사용은 폐지되었고, 파이썬 3.9에서는 에러를 "
+#~ "일으키게 됩니다."
+
+#~ msgid ""
+#~ "a file-like object representing a "
+#~ "pipe to be connected to the "
+#~ "subprocess's standard input stream using "
+#~ ":meth:`~loop.connect_write_pipe`"
+#~ msgstr ""
+#~ ":meth:`~loop.connect_write_pipe`\\를 사용하여 자식 프로세스의"
+#~ " 표준 입력 스트림에 연결될 파이프를 나타내는 파일류"
+#~ " 객체"
+
+#~ msgid ""
+#~ "a file-like object representing a "
+#~ "pipe to be connected to the "
+#~ "subprocess's standard output stream using "
+#~ ":meth:`~loop.connect_write_pipe`"
+#~ msgstr ""
+#~ ":meth:`~loop.connect_write_pipe`\\를 사용하여 자식 프로세스의"
+#~ " 표준 출력 스트림에 연결될 파이프를 나타내는 파일류"
+#~ " 객체"
+
+#~ msgid ""
+#~ "a file-like object representing a "
+#~ "pipe to be connected to the "
+#~ "subprocess's standard error stream using "
+#~ ":meth:`~loop.connect_write_pipe`"
+#~ msgstr ""
+#~ ":meth:`~loop.connect_write_pipe`\\를 사용하여 자식 프로세스의"
+#~ " 표준 에러 스트림에 연결될 파이프를 나타내는 파일류"
+#~ " 객체"
+
+#~ msgid ":ref:`Availability <availability>`: Unix, Windows."
+#~ msgstr ":ref:`가용성 <availability>`: 유닉스, 윈도우."
+
+#~ msgid ":ref:`Availability <availability>`: Windows."
+#~ msgstr ":ref:`가용성 <availability>`: 윈도우."
 

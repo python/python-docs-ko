@@ -7,24 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 03:37+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:2
-msgid ":mod:`pty` --- Pseudo-terminal utilities"
+#: ../../library/pty.rst:2
+#, fuzzy
+msgid ":mod:`!pty` --- Pseudo-terminal utilities"
 msgstr ":mod:`pty` --- 의사 터미널 유틸리티"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:11
+#: ../../library/pty.rst:11
 msgid "**Source code:** :source:`Lib/pty.py`"
 msgstr "**소스 코드:** :source:`Lib/pty.py`"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:15
+#: ../../library/pty.rst:15
 msgid ""
 "The :mod:`pty` module defines operations for handling the pseudo-terminal"
 " concept: starting another process and being able to write to and read "
@@ -33,20 +34,25 @@ msgstr ""
 ":mod:`pty` 모듈은 의사 터미널 개념을 처리하기 위한 연산을 정의합니다: 다른 프로세스를 시작하고, 그것의 제어 터미널에 "
 "프로그래밍 방식으로 쓰고 읽습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:19
+#: ../../library/pty.rst:19
+msgid "Availability"
+msgstr ""
+
+#: ../../library/pty.rst:21
+#, fuzzy
 msgid ""
-"Because pseudo-terminal handling is highly platform dependent, there is "
-"code to do it only for Linux. (The Linux code is supposed to work on "
-"other platforms, but hasn't been tested yet.)"
+"Pseudo-terminal handling is highly platform dependent. This code is "
+"mainly tested on Linux, FreeBSD, and macOS (it is supposed to work on "
+"other POSIX platforms but it's not been thoroughly tested)."
 msgstr ""
 "의사 터미널 처리는 플랫폼에 따라 매우 다르므로, 리눅스에서만 수행할 수 있는 코드가 있습니다. (리눅스 코드는 다른 플랫폼에서도 "
 "작동하리라고 기대되지만, 아직 테스트 되지는 않았습니다.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:23
+#: ../../library/pty.rst:25
 msgid "The :mod:`pty` module defines the following functions:"
 msgstr ":mod:`pty` 모듈은 다음 함수를 정의합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:28
+#: ../../library/pty.rst:30
 msgid ""
 "Fork. Connect the child's controlling terminal to a pseudo-terminal. "
 "Return value is ``(pid, fd)``. Note that the child  gets *pid* 0, and the"
@@ -58,7 +64,13 @@ msgstr ""
 " *fd*\\는 *유효하지 않음*\\에 유의하십시오. 부모의 반환 값은 자식의 *pid*\\이고, *fd*\\는 자식의 제어 "
 "터미널(또한, 자식의 표준 입력과 출력)에 연결된 파일 기술자입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:37
+#: ../../library/pty.rst:36
+msgid ""
+"On macOS the use of this function is unsafe when mixed with using higher-"
+"level system APIs, and that includes using :mod:`urllib.request`."
+msgstr ""
+
+#: ../../library/pty.rst:42
 msgid ""
 "Open a new pseudo-terminal pair, using :func:`os.openpty` if possible, or"
 " emulation code for generic Unix systems. Return a pair of file "
@@ -68,7 +80,7 @@ msgstr ""
 "가능하면 :func:`os.openpty`\\를 사용하고, 그렇지 않으면 일반 유닉스 시스템을 위한 에뮬레이션 코드를 사용해서 "
 "새로운 의사 터미널 쌍을 엽니다. 각각 마스터와 슬레이브인 파일 기술자 쌍 ``(master, slave)``\\를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:44
+#: ../../library/pty.rst:49
 msgid ""
 "Spawn a process, and connect its controlling terminal with the current "
 "process's standard io. This is often used to baffle programs which insist"
@@ -80,17 +92,25 @@ msgstr ""
 "프로그램을 조절하는 데 사용됩니다. pty 뒤에 스폰된 프로세스가 결국 종료할 것으로 기대하고, 그 때 *spawn*\\이 "
 "반환됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:50
+#: ../../library/pty.rst:55
+msgid ""
+"A loop copies STDIN of the current process to the child and data received"
+" from the child to STDOUT of the current process. It is not signaled to "
+"the child if STDIN of the current process closes down."
+msgstr ""
+
+#: ../../library/pty.rst:59
+#, fuzzy
 msgid ""
 "The functions *master_read* and *stdin_read* are passed a file descriptor"
 " which they should read from, and they should always return a byte "
 "string. In order to force spawn to return before the child process exits "
-"an :exc:`OSError` should be thrown."
+"an empty byte array should be returned to signal end of file."
 msgstr ""
 "함수 *master_read*\\와 *stdin_read*\\는 그들이 읽어야 할 파일 기술자를 전달받고, 항상 바이트열을 반환해야"
 " 합니다. 자식 프로세스가 종료하기 전에 spawn이 강제로 반환되게 하려면 :exc:`OSError`\\를 발생시켜야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:55
+#: ../../library/pty.rst:64
 msgid ""
 "The default implementation for both functions will read and return up to "
 "1024 bytes each time the function is called. The *master_read* callback "
@@ -102,7 +122,7 @@ msgstr ""
 " 마스터 파일 기술자가 전달되어 자식 프로세스의 출력을 읽으며, *stdin_read*\\는 파일 기술자 0을 전달받아, 부모 "
 "프로세스의 표준 입력을 읽습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:61
+#: ../../library/pty.rst:70
 msgid ""
 "Returning an empty byte string from either callback is interpreted as an "
 "end-of-file (EOF) condition, and that callback will not be called after "
@@ -117,44 +137,34 @@ msgstr ""
 "프로세스가 입력 없이 종료하지 않는 한, *spawn*\\은 영원히 반복됩니다. *master_read*\\가 EOF 신호를 보내면"
 " 같은 동작으로 이어집니다 (적어도 리눅스에서는)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:68
-msgid ""
-"If both callbacks signal EOF then *spawn* will probably never return, "
-"unless *select* throws an error on your platform when passed three empty "
-"lists. This is a bug, documented in `issue 26228 "
-"<https://bugs.python.org/issue26228>`_."
-msgstr ""
-"두 콜백이 모두 EOF 신호를 보내면, *select*\\가 세 개의 빈 리스트를 전달할 때 플랫폼에서 에러를 일으키지 않는 한 "
-"*spawn*\\은 아마도 절대 반환하지 않습니다. 이것은 버그이고, `issue 26228 "
-"<https://bugs.python.org/issue26228>`_\\에서 설명하고 있습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:72
+#: ../../library/pty.rst:77
 msgid "Return the exit status value from :func:`os.waitpid` on the child process."
 msgstr "자식 프로세스에 대한 :func:`os.waitpid`\\로부터 온 종료 상태 값을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:74
+#: ../../library/pty.rst:79
+#, fuzzy
 msgid ""
-":func:`waitstatus_to_exitcode` can be used to convert the exit status "
+":func:`os.waitstatus_to_exitcode` can be used to convert the exit status "
 "into an exit code."
 msgstr ":func:`waitstatus_to_exitcode`\\를 사용하여 종료 상태를 종료 코드로 변환할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:78
+#: ../../library/pty.rst:82
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``pty.spawn`` with argument "
 "``argv``."
 msgstr "인자 ``argv``\\로 :ref:`감사 이벤트 <auditing>` ``pty.spawn``\\을 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:79
+#: ../../library/pty.rst:84
 msgid ""
 ":func:`spawn` now returns the status value from :func:`os.waitpid` on the"
 " child process."
 msgstr "이제 :func:`spawn`\\은 자식 프로세스에 대한 :func:`os.waitpid`\\로부터 온 상태 값을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:84
+#: ../../library/pty.rst:89
 msgid "Example"
 msgstr "예제"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/pty.rst:88
+#: ../../library/pty.rst:93
 msgid ""
 "The following program acts like the Unix command :manpage:`script(1)`, "
 "using a pseudo-terminal to record all input and output of a terminal "
@@ -162,4 +172,54 @@ msgid ""
 msgstr ""
 "다음 프로그램은 유닉스 명령 :manpage:`script(1)`\\과 유사하게 동작하며, 의사 터미널을 사용하여 터미널 세션의 "
 "모든 입력과 출력을 \"typescript\"에 기록합니다. ::"
+
+#: ../../library/pty.rst:97
+#, python-format
+msgid ""
+"import argparse\n"
+"import os\n"
+"import pty\n"
+"import sys\n"
+"import time\n"
+"\n"
+"parser = argparse.ArgumentParser()\n"
+"parser.add_argument('-a', dest='append', action='store_true')\n"
+"parser.add_argument('-p', dest='use_python', action='store_true')\n"
+"parser.add_argument('filename', nargs='?', default='typescript')\n"
+"options = parser.parse_args()\n"
+"\n"
+"shell = sys.executable if options.use_python else os.environ.get('SHELL',"
+" 'sh')\n"
+"filename = options.filename\n"
+"mode = 'ab' if options.append else 'wb'\n"
+"\n"
+"with open(filename, mode) as script:\n"
+"    def read(fd):\n"
+"        data = os.read(fd, 1024)\n"
+"        script.write(data)\n"
+"        return data\n"
+"\n"
+"    print('Script started, file is', filename)\n"
+"    script.write(('Script started on %s\\n' % time.asctime()).encode())\n"
+"\n"
+"    pty.spawn(shell, read)\n"
+"\n"
+"    script.write(('Script done on %s\\n' % time.asctime()).encode())\n"
+"    print('Script done, file is', filename)"
+msgstr ""
+
+#~ msgid ""
+#~ "If both callbacks signal EOF then "
+#~ "*spawn* will probably never return, "
+#~ "unless *select* throws an error on "
+#~ "your platform when passed three empty"
+#~ " lists. This is a bug, documented "
+#~ "in `issue 26228 "
+#~ "<https://bugs.python.org/issue26228>`_."
+#~ msgstr ""
+#~ "두 콜백이 모두 EOF 신호를 보내면, *select*\\가"
+#~ " 세 개의 빈 리스트를 전달할 때 플랫폼에서 "
+#~ "에러를 일으키지 않는 한 *spawn*\\은 아마도 절대"
+#~ " 반환하지 않습니다. 이것은 버그이고, `issue 26228"
+#~ " <https://bugs.python.org/issue26228>`_\\에서 설명하고 있습니다."
 

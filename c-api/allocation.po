@@ -7,71 +7,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-26 18:49+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../Doc/c-api/allocation.rst:6
+#: ../../c-api/allocation.rst:6
 msgid "Allocating Objects on the Heap"
 msgstr "힙에 객체 할당하기"
 
-#: ../Doc/c-api/allocation.rst:17
+#: ../../c-api/allocation.rst:17
+#, fuzzy
 msgid ""
-"Initialize a newly-allocated object *op* with its type and initial "
-"reference.  Returns the initialized object.  If *type* indicates that the"
-" object participates in the cyclic garbage detector, it is added to the "
-"detector's set of observed objects. Other fields of the object are not "
-"affected."
+"Initialize a newly allocated object *op* with its type and initial "
+"reference.  Returns the initialized object.  Other fields of the object "
+"are not affected."
 msgstr ""
 "새로 할당된 객체 *op*\\를 형과 초기 참조로 초기화합니다. 초기화된 객체를 반환합니다. *type*\\이 객체가 순환 가비지 "
 "감지기에 참여함을 나타내면, 감지기의 감시되는 객체 집합에 추가됩니다. 객체의 다른 필드는 영향을 받지 않습니다."
 
-#: ../Doc/c-api/allocation.rst:26
+#: ../../c-api/allocation.rst:24
 msgid ""
 "This does everything :c:func:`PyObject_Init` does, and also initializes "
 "the length information for a variable-size object."
-msgstr ""
-"이것은 :c:func:`PyObject_Init`\\가 수행하는 모든 작업을 수행하고, 가변 크기 객체의 길이 정보도 초기화합니다."
+msgstr "이것은 :c:func:`PyObject_Init`\\가 수행하는 모든 작업을 수행하고, 가변 크기 객체의 길이 정보도 초기화합니다."
 
-#: ../Doc/c-api/allocation.rst:32
+#: ../../c-api/allocation.rst:30
+#, fuzzy
 msgid ""
 "Allocate a new Python object using the C structure type *TYPE* and the "
-"Python type object *type*.  Fields not defined by the Python object "
-"header are not initialized; the object's reference count will be one.  "
-"The size of the memory allocation is determined from the "
+"Python type object *typeobj* (``PyTypeObject*``). Fields not defined by "
+"the Python object header are not initialized. The caller will own the "
+"only reference to the object (i.e. its reference count will be one). The "
+"size of the memory allocation is determined from the "
 ":c:member:`~PyTypeObject.tp_basicsize` field of the type object."
 msgstr ""
-"C 구조체 형 *TYPE*\\과 파이썬 형 객체 *type*\\을 사용하여 새로운 파이썬 객체를 할당합니다. 파이썬 객체 헤더로 정의되지"
-" 않은 필드는 초기화되지 않습니다; 객체의 참조 횟수는 1이 됩니다. 메모리 할당의 크기는 형 객체의 "
+"C 구조체 형 *TYPE*\\과 파이썬 형 객체 *type*\\을 사용하여 새로운 파이썬 객체를 할당합니다. 파이썬 객체 헤더로 "
+"정의되지 않은 필드는 초기화되지 않습니다; 객체의 참조 횟수는 1이 됩니다. 메모리 할당의 크기는 형 객체의 "
 ":c:member:`~PyTypeObject.tp_basicsize` 필드에서 결정됩니다."
 
-#: ../Doc/c-api/allocation.rst:41
+#: ../../c-api/allocation.rst:38
+msgid ""
+"Note that this function is unsuitable if *typeobj* has "
+":c:macro:`Py_TPFLAGS_HAVE_GC` set. For such objects, use "
+":c:func:`PyObject_GC_New` instead."
+msgstr ""
+
+#: ../../c-api/allocation.rst:45
+#, fuzzy
 msgid ""
 "Allocate a new Python object using the C structure type *TYPE* and the "
-"Python type object *type*.  Fields not defined by the Python object "
-"header are not initialized.  The allocated memory allows for the *TYPE* "
-"structure plus *size* fields of the size given by the "
-":c:member:`~PyTypeObject.tp_itemsize` field of *type*.  This is useful "
-"for implementing objects like tuples, which are able to determine their "
-"size at construction time.  Embedding the array of fields into the same "
-"allocation decreases the number of allocations, improving the memory "
-"management efficiency."
+"Python type object *typeobj* (``PyTypeObject*``). Fields not defined by "
+"the Python object header are not initialized.  The allocated memory "
+"allows for the *TYPE* structure plus *size* (``Py_ssize_t``) fields of "
+"the size given by the :c:member:`~PyTypeObject.tp_itemsize` field of "
+"*typeobj*.  This is useful for implementing objects like tuples, which "
+"are able to determine their size at construction time.  Embedding the "
+"array of fields into the same allocation decreases the number of "
+"allocations, improving the memory management efficiency."
 msgstr ""
-"C 구조체 형 *TYPE*\\과 파이썬 타입 형 *type*\\을 사용하여 새로운 파이썬 객체를 할당합니다. 파이썬 객체 헤더로 정의되지"
-" 않은 필드는 초기화되지 않습니다. 할당된 메모리는 *TYPE* 구조체에 더해 *type*\\의 "
-":c:member:`~PyTypeObject.tp_itemsize` 필드에 의해 주어진 크기의 *size* 필드를 허용합니다. 이는 "
-"튜플과 같은 객체를 구현할 때 유용합니다. 튜플은 만들 때 크기를 결정할 수 있습니다. 같은 할당에 필드 배열을 포함 시키면, 할당 "
-"횟수가 줄어들어, 메모리 관리 효율성이 향상됩니다."
+"C 구조체 형 *TYPE*\\과 파이썬 타입 형 *type*\\을 사용하여 새로운 파이썬 객체를 할당합니다. 파이썬 객체 헤더로 "
+"정의되지 않은 필드는 초기화되지 않습니다. 할당된 메모리는 *TYPE* 구조체에 더해 *type*\\의 "
+":c:member:`~PyTypeObject.tp_itemsize` 필드에 의해 주어진 크기의 *size* 필드를 허용합니다. 이는"
+" 튜플과 같은 객체를 구현할 때 유용합니다. 튜플은 만들 때 크기를 결정할 수 있습니다. 같은 할당에 필드 배열을 포함 시키면, "
+"할당 횟수가 줄어들어, 메모리 관리 효율성이 향상됩니다."
 
-#: ../Doc/c-api/allocation.rst:53
+#: ../../c-api/allocation.rst:56
 msgid ""
-"Releases memory allocated to an object using :c:func:`PyObject_New` or "
-":c:func:`PyObject_NewVar`.  This is normally called from the "
+"Note that this function is unsuitable if *typeobj* has "
+":c:macro:`Py_TPFLAGS_HAVE_GC` set. For such objects, use "
+":c:func:`PyObject_GC_NewVar` instead."
+msgstr ""
+
+#: ../../c-api/allocation.rst:63
+#, fuzzy
+msgid ""
+"Releases memory allocated to an object using :c:macro:`PyObject_New` or "
+":c:macro:`PyObject_NewVar`.  This is normally called from the "
 ":c:member:`~PyTypeObject.tp_dealloc` handler specified in the object's "
 "type.  The fields of the object should not be accessed after this call as"
 " the memory is no longer a valid Python object."
@@ -80,19 +96,20 @@ msgstr ""
 "해제합니다. 이것은 일반적으로 객체의 형에 지정된 :c:member:`~PyTypeObject.tp_dealloc` 처리기에서 "
 "호출됩니다. 메모리가 더는 유효한 파이썬 객체가 아니므로, 이 호출 후에는 객체의 필드에 액세스해서는 안 됩니다."
 
-#: ../Doc/c-api/allocation.rst:62
+#: ../../c-api/allocation.rst:72
 msgid ""
 "Object which is visible in Python as ``None``.  This should only be "
 "accessed using the :c:macro:`Py_None` macro, which evaluates to a pointer"
 " to this object."
 msgstr ""
-"파이썬에서 ``None``\\으로 노출되는 객체. 이 객체에 대한 포인터로 평가되는 :c:macro:`Py_None` 매크로를 사용해서 "
-"액세스해야 합니다."
+"파이썬에서 ``None``\\으로 노출되는 객체. 이 객체에 대한 포인터로 평가되는 :c:macro:`Py_None` 매크로를 "
+"사용해서 액세스해야 합니다."
 
-#: ../Doc/c-api/allocation.rst:69
+#: ../../c-api/allocation.rst:79
 msgid ":c:func:`PyModule_Create`"
 msgstr ":c:func:`PyModule_Create`"
 
-#: ../Doc/c-api/allocation.rst:70
+#: ../../c-api/allocation.rst:80
 msgid "To allocate and create extension modules."
 msgstr "확장 모듈을 할당하고 만듭니다."
+

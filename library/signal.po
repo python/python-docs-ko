@@ -7,28 +7,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 03:37+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:2
-msgid ":mod:`signal` --- Set handlers for asynchronous events"
+#: ../../library/signal.rst:2
+#, fuzzy
+msgid ":mod:`!signal` --- Set handlers for asynchronous events"
 msgstr ":mod:`signal` --- 비동기 이벤트에 대한 처리기 설정"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:9
+#: ../../library/signal.rst:7
+msgid "**Source code:** :source:`Lib/signal.py`"
+msgstr ""
+
+#: ../../library/signal.rst:11
 msgid "This module provides mechanisms to use signal handlers in Python."
 msgstr "이 모듈은 파이썬에서 시그널 처리기를 사용하는 메커니즘을 제공합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:13
+#: ../../library/signal.rst:15
 msgid "General rules"
 msgstr "일반 규칙"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:15
+#: ../../library/signal.rst:17
 msgid ""
 "The :func:`signal.signal` function allows defining custom handlers to be "
 "executed when a signal is received.  A small number of default handlers "
@@ -42,7 +47,7 @@ msgstr ""
 "보고될 수 있습니다) :const:`SIGINT`\\는 부모 프로세스가 변경하지 않았다면 "
 ":exc:`KeyboardInterrupt` 예외로 번역됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:22
+#: ../../library/signal.rst:24
 msgid ""
 "A handler for a particular signal, once set, remains installed until it "
 "is explicitly reset (Python emulates the BSD style interface regardless "
@@ -52,11 +57,18 @@ msgstr ""
 "일단 설정되면, 특정 시그널에 대한 처리기는 명시적으로 재설정 될 때까지 (파이썬은 하부 구현과 관계없이 BSD 스타일 인터페이스를"
 " 흉내 냅니다) 설치된 상태로 유지됩니다. :const:`SIGCHLD`\\에 대한 처리기는 예외인데, 하부 구현을 따릅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:29
+#: ../../library/signal.rst:29
+msgid ""
+"On WebAssembly platforms, signals are emulated and therefore behave "
+"differently. Several functions and signals are not available on these "
+"platforms."
+msgstr ""
+
+#: ../../library/signal.rst:34
 msgid "Execution of Python signal handlers"
 msgstr "파이썬 시그널 처리기의 실행"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:31
+#: ../../library/signal.rst:36
 msgid ""
 "A Python signal handler does not get executed inside the low-level (C) "
 "signal handler.  Instead, the low-level signal handler sets a flag which "
@@ -68,7 +80,7 @@ msgstr ""
 " <virtual machine>`\\에게 나중에 (예를 들어 다음 :term:`바이트 코드 <bytecode>` 명령에서) 해당 "
 "파이썬 시그널 처리기를 실행하도록 지시하는 플래그를 설정합니다. 결과는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:37
+#: ../../library/signal.rst:42
 msgid ""
 "It makes little sense to catch synchronous errors like :const:`SIGFPE` or"
 " :const:`SIGSEGV` that are caused by an invalid operation in C code.  "
@@ -81,7 +93,7 @@ msgstr ""
 " 에러를 잡는 것은 그리 의미가 없습니다. 파이썬은 시그널 처리기에서 C 코드로 돌아오는데, 같은 시그널을 다시 발생시켜서, "
 "파이썬이 멈출 것입니다. 파이썬 3.3부터는, :mod:`faulthandler` 모듈을 사용하여 동기 에러를 보고할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:44
+#: ../../library/signal.rst:49
 msgid ""
 "A long-running calculation implemented purely in C (such as regular "
 "expression matching on a large body of text) may run uninterrupted for an"
@@ -91,11 +103,18 @@ msgstr ""
 "C로만 구현된 오래 실행되는 계산(가령 커다란 텍스트 본문에 대한 정규식 일치)은 수신된 시그널에 상관없이 임의의 시간 동안 "
 "중단없이 실행될 수 있습니다. 계산이 끝나면 파이썬 시그널 처리기가 호출됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:54
+#: ../../library/signal.rst:54
+msgid ""
+"If the handler raises an exception, it will be raised \"out of thin air\""
+" in the main thread. See the :ref:`note below <handlers-and-exceptions>` "
+"for a discussion."
+msgstr ""
+
+#: ../../library/signal.rst:62
 msgid "Signals and threads"
 msgstr "시그널과 스레드"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:56
+#: ../../library/signal.rst:64
 msgid ""
 "Python signal handlers are always executed in the main Python thread of "
 "the main interpreter, even if the signal was received in another thread."
@@ -107,24 +126,26 @@ msgstr ""
 "시그널을 스레드 간 통신 수단으로 사용할 수 없음을 의미합니다. 대신 :mod:`threading` 모듈의 동기화 프리미티브를 "
 "사용할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:61
+#: ../../library/signal.rst:69
 msgid ""
 "Besides, only the main thread of the main interpreter is allowed to set a"
 " new signal handler."
 msgstr "게다가, 메인 인터프리터의 메인 스레드만 새로운 시그널 처리기를 설정할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:65
+#: ../../library/signal.rst:73
 msgid "Module contents"
 msgstr "모듈 내용"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:67
+#: ../../library/signal.rst:75
+#, fuzzy
 msgid ""
 "signal (SIG*), handler (:const:`SIG_DFL`, :const:`SIG_IGN`) and sigmask "
 "(:const:`SIG_BLOCK`, :const:`SIG_UNBLOCK`, :const:`SIG_SETMASK`) related "
-"constants listed below were turned into :class:`enums <enum.IntEnum>`. "
-":func:`getsignal`, :func:`pthread_sigmask`, :func:`sigpending` and "
+"constants listed below were turned into :class:`enums <enum.IntEnum>` "
+"(:class:`Signals`, :class:`Handlers` and :class:`Sigmasks` respectively)."
+" :func:`getsignal`, :func:`pthread_sigmask`, :func:`sigpending` and "
 ":func:`sigwait` functions return human-readable :class:`enums "
-"<enum.IntEnum>`."
+"<enum.IntEnum>` as :class:`Signals` objects."
 msgstr ""
 "이하에 열거된 시그널 (SIG*), 처리기 (:const:`SIG_DFL`, :const:`SIG_IGN`) 및 sigmask "
 "(:const:`SIG_BLOCK`, :const:`SIG_UNBLOCK`, :const:`SIG_SETMASK`) 관련 상수는 "
@@ -132,11 +153,60 @@ msgstr ""
 ":func:`pthread_sigmask`, :func:`sigpending` 및 :func:`sigwait` 함수는 사람이 읽을 "
 "수 있는 :class:`열거형 <enum.IntEnum>`\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:77
+#: ../../library/signal.rst:85
+#, fuzzy
+msgid "The signal module defines three enums:"
+msgstr ":mod:`signal` 모듈은 하나의 예외를 정의합니다:"
+
+#: ../../library/signal.rst:89
+msgid ""
+":class:`enum.IntEnum` collection of SIG* constants and the CTRL_* "
+"constants."
+msgstr ""
+
+#: ../../library/signal.rst:95
+msgid ""
+":class:`enum.IntEnum` collection the constants :const:`SIG_DFL` and "
+":const:`SIG_IGN`."
+msgstr ""
+
+#: ../../library/signal.rst:101
+msgid ""
+":class:`enum.IntEnum` collection the constants :const:`SIG_BLOCK`, "
+":const:`SIG_UNBLOCK` and :const:`SIG_SETMASK`."
+msgstr ""
+
+#: ../../library/signal.rst:103 ../../library/signal.rst:136
+#: ../../library/signal.rst:142 ../../library/signal.rst:148
+#: ../../library/signal.rst:154 ../../library/signal.rst:160
+#: ../../library/signal.rst:166 ../../library/signal.rst:180
+#: ../../library/signal.rst:198 ../../library/signal.rst:206
+#: ../../library/signal.rst:217 ../../library/signal.rst:232
+#: ../../library/signal.rst:238 ../../library/signal.rst:244
+#: ../../library/signal.rst:262 ../../library/signal.rst:272
+#: ../../library/signal.rst:351 ../../library/signal.rst:390
+#: ../../library/signal.rst:414 ../../library/signal.rst:437
+#: ../../library/signal.rst:471 ../../library/signal.rst:501
+#: ../../library/signal.rst:508 ../../library/signal.rst:563
+#: ../../library/signal.rst:605 ../../library/signal.rst:620
+#: ../../library/signal.rst:646 ../../library/signal.rst:666
+msgid "Availability"
+msgstr ""
+
+#: ../../library/signal.rst:105 ../../library/signal.rst:473
+#, fuzzy
+msgid ""
+"See the man page :manpage:`sigprocmask(2)` and "
+":manpage:`pthread_sigmask(3)` for further information."
+msgstr ""
+":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
+":manpage:`sigprocmask(3)`\\과 :manpage:`pthread_sigmask(3)`\\을 참조하십시오."
+
+#: ../../library/signal.rst:111
 msgid "The variables defined in the :mod:`signal` module are:"
 msgstr ":mod:`signal` 모듈에 정의된 변수는 다음과 같습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:82
+#: ../../library/signal.rst:116
 msgid ""
 "This is one of two standard signal handling options; it will simply "
 "perform the default function for the signal.  For example, on most "
@@ -147,124 +217,118 @@ msgstr ""
 ":const:`SIGQUIT`\\의 기본 동작은 코어를 덤프하고 종료하는 것이지만, :const:`SIGCHLD`\\의 기본 동작은"
 " 단순히 무시하는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:90
+#: ../../library/signal.rst:124
 msgid ""
 "This is another standard signal handler, which will simply ignore the "
 "given signal."
 msgstr "이것은 주어진 시그널을 무시하는 또 다른 표준 시그널 처리기입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:96
+#: ../../library/signal.rst:130
 msgid "Abort signal from :manpage:`abort(3)`."
 msgstr ":manpage:`abort(3)`\\로 부터의 중단 시그널."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:100
+#: ../../library/signal.rst:134
 msgid "Timer signal from :manpage:`alarm(2)`."
 msgstr ":manpage:`alarm(2)`\\로 부터의 타이머 시그널."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:102
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:114
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:130
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:144
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:162
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:170
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:184
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:190
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:196
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:447
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:454
-msgid ":ref:`Availability <availability>`: Unix."
-msgstr ":ref:`가용성 <availability>`: 유닉스."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:106
+#: ../../library/signal.rst:140
 msgid "Interrupt from keyboard (CTRL + BREAK)."
 msgstr "키보드 인터럽트 (CTRL + BREAK)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:108
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:120
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:215
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:225
-msgid ":ref:`Availability <availability>`: Windows."
-msgstr ":ref:`가용성 <availability>`: 윈도우."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:112
+#: ../../library/signal.rst:146
 msgid "Bus error (bad memory access)."
 msgstr "버스 에러 (메모리 액세스 불량)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:118
+#: ../../library/signal.rst:152
 msgid "Child process stopped or terminated."
 msgstr "자식 프로세스가 중지되었거나 종료되었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:124
+#: ../../library/signal.rst:158
 msgid "Alias to :data:`SIGCHLD`."
 msgstr ":data:`SIGCHLD`\\에 대한 별칭."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:128
+#: ../../library/signal.rst:164
 msgid "Continue the process if it is currently stopped"
 msgstr "현재 중지되었으면 프로세스를 재개합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:134
+#: ../../library/signal.rst:170
 msgid "Floating-point exception. For example, division by zero."
 msgstr "부동 소수점 예외. 예를 들어, 0으로 나누기."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:137
+#: ../../library/signal.rst:173
 msgid ""
 ":exc:`ZeroDivisionError` is raised when the second argument of a division"
 " or modulo operation is zero."
 msgstr "나누기나 모듈로 연산의 두 번째 인자가 0이면 :exc:`ZeroDivisionError`\\가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:142
+#: ../../library/signal.rst:178
 msgid "Hangup detected on controlling terminal or death of controlling process."
 msgstr "제어 터미널이 끊어졌거나 제어 프로세스가 죽었습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:148
+#: ../../library/signal.rst:184
 msgid "Illegal instruction."
 msgstr "잘못된 명령어."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:152
+#: ../../library/signal.rst:188
 msgid "Interrupt from keyboard (CTRL + C)."
 msgstr "키보드 인터럽트 (CTRL + C)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:154
+#: ../../library/signal.rst:190
 msgid "Default action is to raise :exc:`KeyboardInterrupt`."
 msgstr "기본 액션은 :exc:`KeyboardInterrupt`\\를 발생시키는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:158
+#: ../../library/signal.rst:194
 msgid "Kill signal."
 msgstr "킬 시그널."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:160
+#: ../../library/signal.rst:196
 msgid "It cannot be caught, blocked, or ignored."
 msgstr "잡거나, 차단하거나, 무시할 수 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:166
+#: ../../library/signal.rst:202
 msgid "Broken pipe: write to pipe with no readers."
 msgstr "끊어진 파이프: 판독기가 없는 파이프에 쓰기."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:168
+#: ../../library/signal.rst:204
 msgid "Default action is to ignore the signal."
 msgstr "기본 동작은 시그널을 무시하는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:174
+#: ../../library/signal.rst:210
 msgid "Segmentation fault: invalid memory reference."
 msgstr "세그먼테이션 오류: 유효하지 않은 메모리 참조."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:178
+#: ../../library/signal.rst:214
+msgid ""
+"Stack fault on coprocessor. The Linux kernel does not raise this signal: "
+"it can only be raised in user space."
+msgstr ""
+
+#: ../../library/signal.rst:219
+#, fuzzy
+msgid ""
+"On architectures where the signal is available. See the man page "
+":manpage:`signal(7)` for further information."
+msgstr ""
+":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 :manpage:`signal(2)`\\를 "
+"참조하십시오."
+
+#: ../../library/signal.rst:226
 msgid "Termination signal."
 msgstr "종료 시그널."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:182
+#: ../../library/signal.rst:230
 msgid "User-defined signal 1."
 msgstr "사용자 정의 시그널 1."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:188
+#: ../../library/signal.rst:236
 msgid "User-defined signal 2."
 msgstr "사용자 정의 시그널 2."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:194
+#: ../../library/signal.rst:242
 msgid "Window resize signal."
 msgstr "창 크기 조정 시그널."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:200
+#: ../../library/signal.rst:248
 msgid ""
 "All the signal numbers are defined symbolically.  For example, the hangup"
 " signal is defined as :const:`signal.SIGHUP`; the variable names are "
@@ -281,13 +345,13 @@ msgstr ""
 ":manpage:`signal(2)`\\이고, 다른 시스템에서는 :manpage:`signal(7)`\\입니다). 모든 시스템이 "
 "같은 시그널 이름 집합을 정의하는 것은 아님에 유의하십시오; 시스템에서 정의한 이름만 이 모듈에서 정의합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:211
+#: ../../library/signal.rst:259
 msgid ""
 "The signal corresponding to the :kbd:`Ctrl+C` keystroke event. This "
 "signal can only be used with :func:`os.kill`."
 msgstr ":kbd:`Ctrl+C` 키 입력 이벤트에 해당하는 시그널. 이 시그널은 :func:`os.kill`\\에서만 사용할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:221
+#: ../../library/signal.rst:269
 msgid ""
 "The signal corresponding to the :kbd:`Ctrl+Break` keystroke event. This "
 "signal can only be used with :func:`os.kill`."
@@ -295,23 +359,26 @@ msgstr ""
 ":kbd:`Ctrl+Break` 키 입력 이벤트에 해당하는 시그널. 이 시그널은 :func:`os.kill`\\에서만 사용할 수 "
 "있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:231
-msgid "One more than the number of the highest signal number."
+#: ../../library/signal.rst:279
+#, fuzzy
+msgid ""
+"One more than the number of the highest signal number. Use "
+":func:`valid_signals` to get valid signal numbers."
 msgstr "가장 높은 시그널 번호보다 하나 큰 값."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:236
+#: ../../library/signal.rst:285
 msgid ""
 "Decrements interval timer in real time, and delivers :const:`SIGALRM` "
 "upon expiration."
 msgstr "간격 타이머(interval timer)를 실시간으로 감소시키고, 만료 시 :const:`SIGALRM`\\을 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:242
+#: ../../library/signal.rst:291
 msgid ""
 "Decrements interval timer only when the process is executing, and "
 "delivers SIGVTALRM upon expiration."
 msgstr "프로세스가 실행 중일 때만 간격 타이머(interval timer)를 감소시키고, 만료 시 SIGVTALRM을 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:248
+#: ../../library/signal.rst:297
 msgid ""
 "Decrements interval timer both when the process executes and when the "
 "system is executing on behalf of the process. Coupled with "
@@ -323,29 +390,29 @@ msgstr ""
 "ITIMER_VIRTUAL과 함께 사용되어, 이 타이머는 일반적으로 사용자와 커널 공간에서 응용 프로그램이 소비한 시간을 "
 "프로파일링하는 데 사용됩니다. 만료 시 SIGPROF를 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:256
+#: ../../library/signal.rst:305
 msgid ""
 "A possible value for the *how* parameter to :func:`pthread_sigmask` "
 "indicating that signals are to be blocked."
 msgstr ":func:`pthread_sigmask`\\의 *how* 매개 변수에 가능한 값으로 시그널이 차단됨을 나타냅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:263
+#: ../../library/signal.rst:312
 msgid ""
 "A possible value for the *how* parameter to :func:`pthread_sigmask` "
 "indicating that signals are to be unblocked."
 msgstr ":func:`pthread_sigmask`\\의 *how* 매개 변수에 가능한 값으로 시그널이 차단 해제됨을 나타냅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:270
+#: ../../library/signal.rst:319
 msgid ""
 "A possible value for the *how* parameter to :func:`pthread_sigmask` "
 "indicating that the signal mask is to be replaced."
 msgstr ":func:`pthread_sigmask`\\의 *how* 매개 변수에 가능한 값으로 시그널 마스크가 교체됨을 나타냅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:276
+#: ../../library/signal.rst:325
 msgid "The :mod:`signal` module defines one exception:"
 msgstr ":mod:`signal` 모듈은 하나의 예외를 정의합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:280
+#: ../../library/signal.rst:329
 msgid ""
 "Raised to signal an error from the underlying :func:`setitimer` or "
 ":func:`getitimer` implementation. Expect this error if an invalid "
@@ -356,17 +423,17 @@ msgstr ""
 "않은 간격 타이머나 음의 시간이 :func:`setitimer`\\에 전달되면 이 에러가 예상됩니다. 이 에러는 "
 ":exc:`OSError`\\의 서브 형입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:285
+#: ../../library/signal.rst:334
 msgid ""
 "This error used to be a subtype of :exc:`IOError`, which is now an alias "
 "of :exc:`OSError`."
 msgstr "이 에러는 :exc:`IOError`\\의 서브 형이었습니다, 이제는 :exc:`OSError`\\의 별칭입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:290
+#: ../../library/signal.rst:339
 msgid "The :mod:`signal` module defines the following functions:"
 msgstr ":mod:`signal` 모듈은 다음 함수를 정의합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:295
+#: ../../library/signal.rst:344
 msgid ""
 "If *time* is non-zero, this function requests that a :const:`SIGALRM` "
 "signal be sent to the process in *time* seconds. Any previously scheduled"
@@ -381,15 +448,14 @@ msgstr ""
 "알람이 전달되기까지 남은 초(seconds)입니다. *time*\\이 0이면, 알람이 예약되지 않고, 예약된 알람이 취소됩니다. "
 "반환 값이 0이면, 현재 예약된 알람이 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:303
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`alarm(2)` for further information."
+#: ../../library/signal.rst:353
+#, fuzzy
+msgid "See the man page :manpage:`alarm(2)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 :manpage:`alarm(2)`\\를 "
 "참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:308
+#: ../../library/signal.rst:358
 msgid ""
 "Return the current signal handler for the signal *signalnum*. The "
 "returned value may be a callable Python object, or one of the special "
@@ -405,16 +471,17 @@ msgstr ""
 ":const:`signal.SIG_DFL`\\은 시그널을 처리하는 기본 방법이 이전에 사용 중임을 의미하고, ``None``\\은 "
 "이전 시그널 처리기가 파이썬에서 설치되지 않았음을 의미합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:319
+#: ../../library/signal.rst:369
+#, fuzzy
 msgid ""
-"Return the system description of the signal *signalnum*, such as "
-"\"Interrupt\", \"Segmentation fault\", etc. Returns :const:`None` if the "
-"signal is not recognized."
+"Returns the description of signal *signalnum*, such as \"Interrupt\" for "
+":const:`SIGINT`. Returns :const:`None` if *signalnum* has no description."
+" Raises :exc:`ValueError` if *signalnum* is invalid."
 msgstr ""
 "시그널 *signalnum*\\의 시스템 설명을 반환합니다, 가령 \"Interrupt\", \"Segmentation "
 "fault\", 등. 시그널이 인식되지 않으면 :const:`None`\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:328
+#: ../../library/signal.rst:378
 msgid ""
 "Return the set of valid signal numbers on this platform.  This can be "
 "less than ``range(1, NSIG)`` if some signals are reserved by the system "
@@ -423,21 +490,20 @@ msgstr ""
 "이 플랫폼에서 유효한 시그널 번호 집합을 반환합니다. 일부 시그널이 시스템에서 내부 용으로 예약되었으면 ``range(1, "
 "NSIG)``\\보다 작을 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:337
+#: ../../library/signal.rst:387
 msgid ""
 "Cause the process to sleep until a signal is received; the appropriate "
 "handler will then be called.  Returns nothing."
 msgstr "시그널이 수신될 때까지 프로세스를 휴면 상태로 만듭니다; 그런 다음 적절한 처리기가 호출됩니다. 아무것도 반환하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:342
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`signal(2)` for further information."
+#: ../../library/signal.rst:392
+#, fuzzy
+msgid "See the man page :manpage:`signal(2)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 :manpage:`signal(2)`\\를 "
 "참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:343
+#: ../../library/signal.rst:394
 msgid ""
 "See also :func:`sigwait`, :func:`sigwaitinfo`, :func:`sigtimedwait` and "
 ":func:`sigpending`."
@@ -445,11 +511,11 @@ msgstr ""
 ":func:`sigwait`, :func:`sigwaitinfo`, :func:`sigtimedwait` 및 "
 ":func:`sigpending`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:349
+#: ../../library/signal.rst:400
 msgid "Sends a signal to the calling process. Returns nothing."
 msgstr "호출하는 프로세스에 시그널을 보냅니다. 아무것도 반환하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:356
+#: ../../library/signal.rst:407
 msgid ""
 "Send signal *sig* to the process referred to by file descriptor *pidfd*. "
 "Python does not currently support the *siginfo* parameter; it must be "
@@ -460,15 +526,11 @@ msgstr ""
 "지원하지 않습니다; ``None``\\이어야 합니다. *flags* 인자는 향후 확장을 위해 제공됩니다; 현재는 플래그 값이 "
 "정의되어 있지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:361
+#: ../../library/signal.rst:412
 msgid "See the :manpage:`pidfd_send_signal(2)` man page for more information."
 msgstr "자세한 내용은 :manpage:`pidfd_send_signal(2)` 매뉴얼 페이지를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:363
-msgid ":ref:`Availability <availability>`: Linux 5.1+"
-msgstr ":ref:`가용성 <availability>`: 리눅스 5.1+"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:369
+#: ../../library/signal.rst:420
 msgid ""
 "Send the signal *signalnum* to the thread *thread_id*, another thread in "
 "the same process as the caller.  The target thread can be executing any "
@@ -485,9 +547,10 @@ msgstr ""
 " 파이썬 스레드에 시그널을 보내는 것의 유일한 용도는 실행 중인 시스템 호출이 :exc:`InterruptedError`\\로 "
 "실패하도록 하는 것입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:377
+#: ../../library/signal.rst:428
+#, fuzzy
 msgid ""
-"Use :func:`threading.get_ident()` or the :attr:`~threading.Thread.ident` "
+"Use :func:`threading.get_ident` or the :attr:`~threading.Thread.ident` "
 "attribute of :class:`threading.Thread` objects to get a suitable value "
 "for *thread_id*."
 msgstr ""
@@ -495,7 +558,7 @@ msgstr ""
 ":class:`threading.Thread` 객체의 :attr:`~threading.Thread.ident` 어트리뷰트를 "
 "사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:381
+#: ../../library/signal.rst:432
 msgid ""
 "If *signalnum* is 0, then no signal is sent, but error checking is still "
 "performed; this can be used to check if the target thread is still "
@@ -504,7 +567,7 @@ msgstr ""
 "*signalnum*\\이 0이면, 시그널이 전송되지 않지만, 여전히 에러 검사가 수행됩니다; 대상 스레드가 여전히 실행 중인지 "
 "확인하는 데 사용할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:385
+#: ../../library/signal.rst:435
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``signal.pthread_kill`` with "
 "arguments ``thread_id``, ``signalnum``."
@@ -512,19 +575,18 @@ msgstr ""
 "인자 ``thread_id``, ``signalnum``\\으로 :ref:`감사 이벤트 <auditing>` "
 "``signal.pthread_kill``\\을 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:388
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`pthread_kill(3)` for further information."
+#: ../../library/signal.rst:439
+#, fuzzy
+msgid "See the man page :manpage:`pthread_kill(3)` for further  information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
 ":manpage:`pthread_kill(3)`\\을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:389
+#: ../../library/signal.rst:441
 msgid "See also :func:`os.kill`."
 msgstr ":func:`os.kill`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:396
+#: ../../library/signal.rst:448
 msgid ""
 "Fetch and/or change the signal mask of the calling thread.  The signal "
 "mask is the set of signals whose delivery is currently blocked for the "
@@ -533,17 +595,17 @@ msgstr ""
 "호출하는 스레드의 시그널 마스크를 가져오거나 변경하거나 가져오면서 변경합니다. 시그널 마스크는 호출자에게 현재 배달이 차단된 시그널"
 " 집합입니다. 이전 시그널 마스크를 시그널 집합으로 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:400
+#: ../../library/signal.rst:452
 msgid "The behavior of the call is dependent on the value of *how*, as follows."
 msgstr "호출의 동작은 다음과 같이 *how* 값에 따라 다릅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:402
+#: ../../library/signal.rst:454
 msgid ""
 ":data:`SIG_BLOCK`: The set of blocked signals is the union of the current"
 " set and the *mask* argument."
 msgstr ":data:`SIG_BLOCK`: 차단된 시그널 집합은 현재 집합과 *mask* 인자의 합집합입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:404
+#: ../../library/signal.rst:456
 msgid ""
 ":data:`SIG_UNBLOCK`: The signals in *mask* are removed from the current "
 "set of blocked signals.  It is permissible to attempt to unblock a signal"
@@ -552,13 +614,14 @@ msgstr ""
 ":data:`SIG_UNBLOCK`: *mask*\\에 있는 시그널이 차단된 시그널의 현재 집합에서 제거됩니다. 차단되지 않은 "
 "시그널을 차단 해제하려고 시도할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:407
+#: ../../library/signal.rst:459
 msgid ""
 ":data:`SIG_SETMASK`: The set of blocked signals is set to the *mask* "
 "argument."
 msgstr ":data:`SIG_SETMASK`: 차단된 시그널 집합이 *mask* 인자로 설정됩니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:410
+#: ../../library/signal.rst:462
+#, python-brace-format
 msgid ""
 "*mask* is a set of signal numbers (e.g. {:const:`signal.SIGINT`, "
 ":const:`signal.SIGTERM`}). Use :func:`~signal.valid_signals` for a full "
@@ -568,7 +631,7 @@ msgstr ""
 ":const:`signal.SIGTERM`}). 모든 시그널을 포함한 전체 마스크를 얻으려면 "
 ":func:`~signal.valid_signals`\\를 사용하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:414
+#: ../../library/signal.rst:466
 msgid ""
 "For example, ``signal.pthread_sigmask(signal.SIG_BLOCK, [])`` reads the "
 "signal mask of the calling thread."
@@ -576,24 +639,15 @@ msgstr ""
 "예를 들어, ``signal.pthread_sigmask(signal.SIG_BLOCK, [])``\\은 호출하는 스레드의 시그널 "
 "마스크를 읽습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:417
+#: ../../library/signal.rst:469
 msgid ":data:`SIGKILL` and :data:`SIGSTOP` cannot be blocked."
 msgstr ":data:`SIGKILL`\\과 :data:`SIGSTOP`\\은 차단할 수 없습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:421
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`sigprocmask(3)` and :manpage:`pthread_sigmask(3)` for further "
-"information."
-msgstr ""
-":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
-":manpage:`sigprocmask(3)`\\과 :manpage:`pthread_sigmask(3)`\\을 참조하십시오."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:422
+#: ../../library/signal.rst:476
 msgid "See also :func:`pause`, :func:`sigpending` and :func:`sigwait`."
 msgstr ":func:`pause`, :func:`sigpending` 및 :func:`sigwait`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:429
+#: ../../library/signal.rst:483
 msgid ""
 "Sets given interval timer (one of :const:`signal.ITIMER_REAL`, "
 ":const:`signal.ITIMER_VIRTUAL` or :const:`signal.ITIMER_PROF`) specified "
@@ -608,7 +662,7 @@ msgstr ""
 ":const:`signal.ITIMER_PROF` 중 하나)를 설정합니다. *which*\\로 지정된 간격 타이머는 "
 "*seconds*\\를 0으로 설정하여 지울 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:436
+#: ../../library/signal.rst:490
 msgid ""
 "When an interval timer fires, a signal is sent to the process. The signal"
 " sent is dependent on the timer being used; :const:`signal.ITIMER_REAL` "
@@ -621,31 +675,34 @@ msgstr ""
 ":const:`signal.ITIMER_VIRTUAL`\\은 :const:`SIGVTALRM`\\을, "
 ":const:`signal.ITIMER_PROF`\\는 :const:`SIGPROF`\\를 전달합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:442
+#: ../../library/signal.rst:496
 msgid "The old values are returned as a tuple: (delay, interval)."
 msgstr "이전 값은 튜플로 반환됩니다: (지연, 간격)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:444
+#: ../../library/signal.rst:498
 msgid ""
 "Attempting to pass an invalid interval timer will cause an "
 ":exc:`ItimerError`."
 msgstr "유효하지 않은 간격 타이머를 전달하려고 하면 :exc:`ItimerError`\\가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:452
+#: ../../library/signal.rst:506
 msgid "Returns current value of a given interval timer specified by *which*."
 msgstr "*which*\\로 지정된 주어진 간격 타이머의 현재 값을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:459
+#: ../../library/signal.rst:513
+#, fuzzy
 msgid ""
-"Set the wakeup file descriptor to *fd*.  When a signal is received, the "
-"signal number is written as a single byte into the fd.  This can be used "
-"by a library to wakeup a poll or select call, allowing the signal to be "
-"fully processed."
+"Set the wakeup file descriptor to *fd*.  When a signal your program has "
+"registered a signal handler for is received, the signal number is written"
+" as a single byte into the fd.  If you haven't registered a signal "
+"handler for the signals you care about, then nothing will be written to "
+"the wakeup fd. This can be used by a library to wakeup a poll or select "
+"call, allowing the signal to be fully processed."
 msgstr ""
 "웨이크업 파일 기술자를 *fd*\\로 설정합니다. 시그널이 수신되면 시그널 번호는 단일 바이트로 fd에 기록됩니다. 라이브러리에서 "
 "poll이나 select 호출을 깨워서, 시그널을 완전히 처리하는 데 사용될 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:464
+#: ../../library/signal.rst:520
 msgid ""
 "The old wakeup fd is returned (or -1 if file descriptor wakeup was not "
 "enabled).  If *fd* is -1, file descriptor wakeup is disabled. If not -1, "
@@ -656,8 +713,7 @@ msgstr ""
 "웨이크업이 비활성화됩니다. -1이 아니면, *fd*\\는 비 블로킹이어야 합니다. poll이나 select를 다시 호출하기 전에 "
 "*fd*\\에서 바이트를 제거하는 것은 라이브러리의 책임입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:469
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:523
+#: ../../library/signal.rst:525 ../../library/signal.rst:580
 msgid ""
 "When threads are enabled, this function can only be called from :ref:`the"
 " main thread of the main interpreter <signals-and-threads>`; attempting "
@@ -667,7 +723,7 @@ msgstr ""
 "스레드가 활성화되었을 때, 이 함수는 :ref:`메인 인터프리터의 메인 스레드 <signals-and-threads>`\\에서만 "
 "호출할 수 있습니다; 다른 스레드에서 호출하려고 하면 :exc:`ValueError` 예외가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:474
+#: ../../library/signal.rst:530
 msgid ""
 "There are two common ways to use this function. In both approaches, you "
 "use the fd to wake up when a signal arrives, but then they differ in how "
@@ -676,7 +732,7 @@ msgstr ""
 "이 함수를 사용하는 일반적인 두 가지 방법이 있습니다. 두 방법 모두, 시그널이 도착할 때 깨어나기 위해 fd를 사용하지만, "
 "*어떤* 시그널이나 시그널들이 도착했는지 판단하는 방법이 다릅니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:479
+#: ../../library/signal.rst:535
 msgid ""
 "In the first approach, we read the data out of the fd's buffer, and the "
 "byte values give you the signal numbers. This is simple, but in rare "
@@ -691,7 +747,7 @@ msgstr ""
 "시그널이 손실될 수 있습니다. 이 방법을 사용하면, 시그널이 손실될 때 최소한 stderr에 경고가 인쇄되도록 "
 "``warn_on_full_buffer=True``\\를 설정해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:488
+#: ../../library/signal.rst:544
 msgid ""
 "In the second approach, we use the wakeup fd *only* for wakeups, and "
 "ignore the actual byte values. In this case, all we care about is whether"
@@ -704,15 +760,15 @@ msgstr ""
 "것은 fd의 버퍼가 비어 있는지 비어 있지 않은지 입니다; 가득 찬 버퍼는 전혀 문제를 가리키지 않습니다. 이 방법을 사용하면, "
 "사용자가 가짜 경고 메시지로 혼동되지 않도록 ``warn_on_full_buffer=False``\\를 설정해야 합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:495
+#: ../../library/signal.rst:551
 msgid "On Windows, the function now also supports socket handles."
 msgstr "윈도우에서, 이 함수는 이제 소켓 핸들도 지원합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:498
+#: ../../library/signal.rst:554
 msgid "Added ``warn_on_full_buffer`` parameter."
 msgstr "``warn_on_full_buffer`` 매개 변수를 추가했습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:503
+#: ../../library/signal.rst:559
 msgid ""
 "Change system call restart behaviour: if *flag* is :const:`False`, system"
 " calls will be restarted when interrupted by signal *signalnum*, "
@@ -721,24 +777,24 @@ msgstr ""
 "시스템 호출 재시작 동작을 변경합니다: *flag*\\가 :const:`False`\\이면, 시그널 *signalnum*\\에 의해"
 " 인터럽트 될 때 시스템 호출이 다시 시작되고, 그렇지 않으면 시스템 호출이 중단됩니다. 아무것도 반환하지 않습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:509
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`siginterrupt(3)` for further information."
+#: ../../library/signal.rst:565
+#, fuzzy
+msgid "See the man page :manpage:`siginterrupt(3)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
 ":manpage:`siginterrupt(3)`\\을 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:510
+#: ../../library/signal.rst:567
+#, fuzzy
 msgid ""
 "Note that installing a signal handler with :func:`signal` will reset the "
 "restart behaviour to interruptible by implicitly calling "
-":c:func:`siginterrupt` with a true *flag* value for the given signal."
+":c:func:`!siginterrupt` with a true *flag* value for the given signal."
 msgstr ""
 ":func:`signal`\\로 시그널 처리기를 설치하면 주어진 시그널에 대해 *flag* 값을 참으로 "
 ":c:func:`siginterrupt`\\를 묵시적으로 호출하여 재시작 동작을 인터럽트 가능으로 재설정합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:517
+#: ../../library/signal.rst:574
 msgid ""
 "Set the handler for signal *signalnum* to the function *handler*.  "
 "*handler* can be a callable Python object taking two arguments (see "
@@ -753,7 +809,7 @@ msgstr ""
 ":func:`getsignal` 설명을 참조하십시오). (자세한 내용은 유닉스 매뉴얼 페이지 "
 ":manpage:`signal(2)`\\를 참조하십시오.)"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:528
+#: ../../library/signal.rst:585
 msgid ""
 "The *handler* is called with two arguments: the signal number and the "
 "current stack frame (``None`` or a frame object; for a description of "
@@ -765,7 +821,7 @@ msgstr ""
 "객체에 대한 설명은, :ref:`형 계층에 있는 설명 <frame-objects>`\\을 참조하거나 :mod:`inspect` "
 "모듈의 어트리뷰트 설명을 참조하십시오)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:533
+#: ../../library/signal.rst:590
 msgid ""
 "On Windows, :func:`signal` can only be called with :const:`SIGABRT`, "
 ":const:`SIGFPE`, :const:`SIGILL`, :const:`SIGINT`, :const:`SIGSEGV`, "
@@ -780,26 +836,25 @@ msgstr ""
 " 시스템이 같은 시그널 이름 집합을 정의하는 것은 아님에 유의하십시오; 시그널 이름이 ``SIG*`` 모듈 수준 상수로 정의되지 "
 "않으면 :exc:`AttributeError`\\가 발생합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:544
+#: ../../library/signal.rst:601
 msgid ""
 "Examine the set of signals that are pending for delivery to the calling "
 "thread (i.e., the signals which have been raised while blocked).  Return "
 "the set of the pending signals."
 msgstr "호출하는 스레드로 전달 계류 중인 시그널 집합을 검사합니다 (즉, 차단된 동안 발생한 시그널). 계류 중인 시그널 집합을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:550
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`sigpending(2)` for further information."
+#: ../../library/signal.rst:607
+#, fuzzy
+msgid "See the man page :manpage:`sigpending(2)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
 ":manpage:`sigpending(2)`\\를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:551
+#: ../../library/signal.rst:609
 msgid "See also :func:`pause`, :func:`pthread_sigmask` and :func:`sigwait`."
 msgstr ":func:`pause`, :func:`pthread_sigmask` 및 :func:`sigwait`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:558
+#: ../../library/signal.rst:616
 msgid ""
 "Suspend execution of the calling thread until the delivery of one of the "
 "signals specified in the signal set *sigset*.  The function accepts the "
@@ -809,15 +864,14 @@ msgstr ""
 "시그널 집합 *sigset*\\에 지정된 시그널 중 하나가 전달될 때까지 호출하는 스레드의 실행을 일시 중단합니다. 이 함수는 "
 "시그널을 받아들이고 (계류 중인 시그널 목록에서 제거합니다), 시그널 번호를 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:564
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`sigwait(3)` for further information."
+#: ../../library/signal.rst:622
+#, fuzzy
+msgid "See the man page :manpage:`sigwait(3)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 :manpage:`sigwait(3)`\\을 "
 "참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:565
+#: ../../library/signal.rst:624
 msgid ""
 "See also :func:`pause`, :func:`pthread_sigmask`, :func:`sigpending`, "
 ":func:`sigwaitinfo` and :func:`sigtimedwait`."
@@ -825,7 +879,7 @@ msgstr ""
 ":func:`pause`, :func:`pthread_sigmask`, :func:`sigpending`, "
 ":func:`sigwaitinfo` 및 :func:`sigtimedwait`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:573
+#: ../../library/signal.rst:632
 msgid ""
 "Suspend execution of the calling thread until the delivery of one of the "
 "signals specified in the signal set *sigset*.  The function accepts the "
@@ -841,7 +895,7 @@ msgstr ""
 " 중이면, 함수는 해당 시그널에 대한 정보와 함께 즉시 반환합니다. 전달된 시그널에 대해 시그널 처리기가 호출되지 않습니다. 이 "
 "함수는 *sigset*\\에 없는 시그널에 의해 중단되면 :exc:`InterruptedError`\\를 발생시킵니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:582
+#: ../../library/signal.rst:641
 msgid ""
 "The return value is an object representing the data contained in the "
 ":c:type:`siginfo_t` structure, namely: :attr:`si_signo`, :attr:`si_code`,"
@@ -852,19 +906,18 @@ msgstr ""
 ":attr:`si_code`, :attr:`si_errno`, :attr:`si_pid`, :attr:`si_uid`, "
 ":attr:`si_status`, :attr:`si_band`\\를 표현하는 객체입니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:589
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`sigwaitinfo(2)` for further information."
+#: ../../library/signal.rst:648
+#, fuzzy
+msgid "See the man page :manpage:`sigwaitinfo(2)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
 ":manpage:`sigwaitinfo(2)`\\를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:590
+#: ../../library/signal.rst:650
 msgid "See also :func:`pause`, :func:`sigwait` and :func:`sigtimedwait`."
 msgstr ":func:`pause`, :func:`sigwait` 및 :func:`sigtimedwait`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:594
+#: ../../library/signal.rst:654
 msgid ""
 "The function is now retried if interrupted by a signal not in *sigset* "
 "and the signal handler does not raise an exception (see :pep:`475` for "
@@ -873,29 +926,29 @@ msgstr ""
 "이 함수는 이제 *sigset*\\에 없는 시그널에 의해 중단되고 시그널 처리기가 예외를 발생시키지 않으면 재시도됩니다 (이유는 "
 ":pep:`475`\\를 참조하십시오)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:602
+#: ../../library/signal.rst:662
+#, fuzzy
 msgid ""
 "Like :func:`sigwaitinfo`, but takes an additional *timeout* argument "
-"specifying a timeout. If *timeout* is specified as :const:`0`, a poll is "
+"specifying a timeout. If *timeout* is specified as ``0``, a poll is "
 "performed. Returns :const:`None` if a timeout occurs."
 msgstr ""
 ":func:`sigwaitinfo`\\와 유사하지만, 시간제한을 지정하는 추가 *timeout* 인자를 취합니다. "
 "*timeout*\\이 :const:`0`\\으로 지정되면, 폴링이 수행됩니다. 시간제한 초과가 발생하면 "
 ":const:`None`\\을 반환합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:608
-msgid ""
-":ref:`Availability <availability>`: Unix.  See the man page "
-":manpage:`sigtimedwait(2)` for further information."
+#: ../../library/signal.rst:668
+#, fuzzy
+msgid "See the man page :manpage:`sigtimedwait(2)` for further information."
 msgstr ""
 ":ref:`가용성 <availability>`: 유닉스. 자세한 내용은 매뉴얼 페이지 "
 ":manpage:`sigtimedwait(2)`\\를 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:609
+#: ../../library/signal.rst:670
 msgid "See also :func:`pause`, :func:`sigwait` and :func:`sigwaitinfo`."
 msgstr ":func:`pause`, :func:`sigwait` 및 :func:`sigwaitinfo`\\도 참조하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:613
+#: ../../library/signal.rst:674
 msgid ""
 "The function is now retried with the recomputed *timeout* if interrupted "
 "by a signal not in *sigset* and the signal handler does not raise an "
@@ -904,11 +957,12 @@ msgstr ""
 "이 함수는 이제 *sigset*\\에 없는 시그널에 의해 중단되고 시그널 처리기가 예외를 발생시키지 않으면 다시 계산된 "
 "*timeout*\\으로 재시도됩니다 (이유는 :pep:`475`\\를 참조하십시오)."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:622
-msgid "Example"
+#: ../../library/signal.rst:683
+#, fuzzy
+msgid "Examples"
 msgstr "예"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:624
+#: ../../library/signal.rst:685
 msgid ""
 "Here is a minimal example program. It uses the :func:`alarm` function to "
 "limit the time spent waiting to open a file; this is useful if the file "
@@ -922,11 +976,31 @@ msgstr ""
 "정지됩니다. 해결책은 파일을 열기 전에 5초 알람을 설정하는 것입니다; 작업이 너무 오래 걸리면, 알람 시그널이 전송되고, 처리기가"
 " 예외를 발생시킵니다. ::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:647
+#: ../../library/signal.rst:692
+#, python-brace-format
+msgid ""
+"import signal, os\n"
+"\n"
+"def handler(signum, frame):\n"
+"    signame = signal.Signals(signum).name\n"
+"    print(f'Signal handler called with signal {signame} ({signum})')\n"
+"    raise OSError(\"Couldn't open device!\")\n"
+"\n"
+"# Set the signal handler and a 5-second alarm\n"
+"signal.signal(signal.SIGALRM, handler)\n"
+"signal.alarm(5)\n"
+"\n"
+"# This open() may hang indefinitely\n"
+"fd = os.open('/dev/ttyS0', os.O_RDWR)\n"
+"\n"
+"signal.alarm(0)          # Disable the alarm"
+msgstr ""
+
+#: ../../library/signal.rst:709
 msgid "Note on SIGPIPE"
 msgstr "SIGPIPE에 대한 참고 사항"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:649
+#: ../../library/signal.rst:711
 msgid ""
 "Piping output of your program to tools like :manpage:`head(1)` will cause"
 " a :const:`SIGPIPE` signal to be sent to your process when the receiver "
@@ -939,14 +1013,131 @@ msgstr ""
 " Broken pipe`\\와 같은 예외를 일으킵니다. 이 경우를 처리하려면, 다음과 같이 이 예외를 포착하도록 진입점을 "
 "감싸십시오::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/signal.rst:676
+#: ../../library/signal.rst:717
+msgid ""
+"import os\n"
+"import sys\n"
+"\n"
+"def main():\n"
+"    try:\n"
+"        # simulate large output (your code replaces this loop)\n"
+"        for x in range(10000):\n"
+"            print(\"y\")\n"
+"        # flush output here to force SIGPIPE to be triggered\n"
+"        # while inside this try block.\n"
+"        sys.stdout.flush()\n"
+"    except BrokenPipeError:\n"
+"        # Python flushes standard streams on exit; redirect remaining "
+"output\n"
+"        # to devnull to avoid another BrokenPipeError at shutdown\n"
+"        devnull = os.open(os.devnull, os.O_WRONLY)\n"
+"        os.dup2(devnull, sys.stdout.fileno())\n"
+"        sys.exit(1)  # Python exits with error code 1 on EPIPE\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    main()"
+msgstr ""
+
+#: ../../library/signal.rst:738
+#, fuzzy
 msgid ""
 "Do not set :const:`SIGPIPE`'s disposition to :const:`SIG_DFL` in order to"
 " avoid :exc:`BrokenPipeError`.  Doing that would cause your program to "
-"exit unexpectedly also whenever any socket connection is interrupted "
-"while your program is still writing to it."
+"exit unexpectedly whenever any socket connection is interrupted while "
+"your program is still writing to it."
 msgstr ""
 ":exc:`BrokenPipeError`\\를 피하고자 :const:`SIGPIPE`\\의 배치를 "
 ":const:`SIG_DFL`\\로 설정하지 마십시오. 그렇게 하면 프로그램이 여전히 쓰고 있는 동안 소켓 연결이 중단될 때마다 "
 "프로그램이 예기치 않게 종료되도록 합니다."
+
+#: ../../library/signal.rst:747
+#, fuzzy
+msgid "Note on Signal Handlers and Exceptions"
+msgstr ":mod:`signal` 모듈은 하나의 예외를 정의합니다:"
+
+#: ../../library/signal.rst:749
+msgid ""
+"If a signal handler raises an exception, the exception will be propagated"
+" to the main thread and may be raised after any :term:`bytecode` "
+"instruction. Most notably, a :exc:`KeyboardInterrupt` may appear at any "
+"point during execution. Most Python code, including the standard library,"
+" cannot be made robust against this, and so a :exc:`KeyboardInterrupt` "
+"(or any other exception resulting from a signal handler) may on rare "
+"occasions put the program in an unexpected state."
+msgstr ""
+
+#: ../../library/signal.rst:756
+msgid "To illustrate this issue, consider the following code::"
+msgstr ""
+
+#: ../../library/signal.rst:758
+msgid ""
+"class SpamContext:\n"
+"    def __init__(self):\n"
+"        self.lock = threading.Lock()\n"
+"\n"
+"    def __enter__(self):\n"
+"        # If KeyboardInterrupt occurs here, everything is fine\n"
+"        self.lock.acquire()\n"
+"        # If KeyboardInterrupt occurs here, __exit__ will not be called\n"
+"        ...\n"
+"        # KeyboardInterrupt could occur just before the function returns\n"
+"\n"
+"    def __exit__(self, exc_type, exc_val, exc_tb):\n"
+"        ...\n"
+"        self.lock.release()"
+msgstr ""
+
+#: ../../library/signal.rst:773
+msgid ""
+"For many programs, especially those that merely want to exit on "
+":exc:`KeyboardInterrupt`, this is not a problem, but applications that "
+"are complex or require high reliability should avoid raising exceptions "
+"from signal handlers. They should also avoid catching "
+":exc:`KeyboardInterrupt` as a means of gracefully shutting down.  "
+"Instead, they should install their own :const:`SIGINT` handler. Below is "
+"an example of an HTTP server that avoids :exc:`KeyboardInterrupt`::"
+msgstr ""
+
+#: ../../library/signal.rst:781
+msgid ""
+"import signal\n"
+"import socket\n"
+"from selectors import DefaultSelector, EVENT_READ\n"
+"from http.server import HTTPServer, SimpleHTTPRequestHandler\n"
+"\n"
+"interrupt_read, interrupt_write = socket.socketpair()\n"
+"\n"
+"def handler(signum, frame):\n"
+"    print('Signal handler called with signal', signum)\n"
+"    interrupt_write.send(b'\\0')\n"
+"signal.signal(signal.SIGINT, handler)\n"
+"\n"
+"def serve_forever(httpd):\n"
+"    sel = DefaultSelector()\n"
+"    sel.register(interrupt_read, EVENT_READ)\n"
+"    sel.register(httpd, EVENT_READ)\n"
+"\n"
+"    while True:\n"
+"        for key, _ in sel.select():\n"
+"            if key.fileobj == interrupt_read:\n"
+"                interrupt_read.recv(1)\n"
+"                return\n"
+"            if key.fileobj == httpd:\n"
+"                httpd.handle_request()\n"
+"\n"
+"print(\"Serving on port 8000\")\n"
+"httpd = HTTPServer(('', 8000), SimpleHTTPRequestHandler)\n"
+"serve_forever(httpd)\n"
+"print(\"Shutdown...\")"
+msgstr ""
+
+#~ msgid ":ref:`Availability <availability>`: Unix."
+#~ msgstr ":ref:`가용성 <availability>`: 유닉스."
+
+#~ msgid ":ref:`Availability <availability>`: Windows."
+#~ msgstr ":ref:`가용성 <availability>`: 윈도우."
+
+#~ msgid ":ref:`Availability <availability>`: Linux 5.1+"
+#~ msgstr ":ref:`가용성 <availability>`: 리눅스 5.1+"
 

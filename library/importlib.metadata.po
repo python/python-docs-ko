@@ -7,34 +7,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 03:37+0900\n"
+"POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:5
-msgid "Using :mod:`!importlib.metadata`"
-msgstr ":mod:`!importlib.metadata` 사용하기"
+#: ../../library/importlib.metadata.rst:5
+msgid ":mod:`!importlib.metadata` -- Accessing package metadata"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:8
+#: ../../library/importlib.metadata.rst:11
+msgid "``importlib.metadata`` is no longer provisional."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:14
+msgid "**Source code:** :source:`Lib/importlib/metadata/__init__.py`"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:16
+#, fuzzy
 msgid ""
-"This functionality is provisional and may deviate from the usual version "
-"semantics of the standard library."
-msgstr "이 기능은 잠정적이며 표준 라이브러리의 일반적인 버전 의미와 다를 수 있습니다."
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:11
-msgid ""
-"``importlib.metadata`` is a library that provides for access to installed"
-" package metadata.  Built in part on Python's import system, this library"
-" intends to replace similar functionality in the `entry point API`_ and "
-"`metadata API`_ of ``pkg_resources``.  Along with "
-":mod:`importlib.resources` in Python 3.7 and newer (backported as "
-"`importlib_resources`_ for older versions of Python), this can eliminate "
-"the need to use the older and less efficient ``pkg_resources`` package."
+"``importlib.metadata`` is a library that provides access to the metadata "
+"of an installed `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_, such as its entry points or its top-level names (`Import "
+"Package <https://packaging.python.org/en/latest/glossary/#term-Import-"
+"Package>`_\\s, modules, if any). Built in part on Python's import system,"
+" this library intends to replace similar functionality in the `entry "
+"point API`_ and `metadata API`_ of ``pkg_resources``.  Along with "
+":mod:`importlib.resources`, this package can eliminate the need to use "
+"the older and less efficient ``pkg_resources`` package."
 msgstr ""
 "``importlib.metadata``\\는 설치된 패키지 메타 데이터에 대한 액세스를 제공하는 라이브러리입니다. 파이썬의 임포트"
 " 시스템에 내장된 이 라이브러리는 ``pkg_resources``\\의 `진입 지점 API <entry point "
@@ -42,54 +48,111 @@ msgstr ""
 "이상의 :mod:`importlib.resources`\\(이전 버전의 파이썬을 위해 `importlib_resources`_\\로"
 " 역 이식되었습니다)와 함께, 오래되고 덜 효율적인 ``pkg_resources`` 패키지를 사용할 필요를 제거합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:20
+#: ../../library/importlib.metadata.rst:27
 msgid ""
-"By \"installed package\" we generally mean a third-party package "
+"``importlib.metadata`` operates on third-party *distribution packages* "
 "installed into Python's ``site-packages`` directory via tools such as "
-"`pip <https://pypi.org/project/pip/>`_.  Specifically, it means a package"
-" with either a discoverable ``dist-info`` or ``egg-info`` directory, and "
-"metadata defined by :pep:`566` or its older specifications. By default, "
-"package metadata can live on the file system or in zip archives on "
-":data:`sys.path`.  Through an extension mechanism, the metadata can live "
-"almost anywhere."
+":pypi:`pip`. Specifically, it works with distributions with discoverable "
+"``dist-info`` or ``egg-info`` directories, and metadata defined by the "
+"`Core metadata specifications "
+"<https://packaging.python.org/en/latest/specifications/core-metadata"
+"/#core-metadata>`_."
 msgstr ""
-"\"설치된 패키지\"는 일반적으로 `pip <https://pypi.org/project/pip/>`_ 와 같은 도구를 통해 "
-"파이썬의 ``site-packages`` 디렉터리에 설치된 제삼자 패키지를 의미합니다. 특히, 발견 가능한 ``dist-"
-"info``\\나 ``egg-info`` 디렉터리와 :pep:`566` 또는 이전 명세로 정의된 메타 데이터가 있는 패키지를 "
-"의미합니다. 기본적으로, 패키지 메타 데이터는 파일 시스템이나 :data:`sys.path`\\의 zip 저장소에서 살 수 "
-"있습니다. 확장 메커니즘을 통해, 메타 데이터는 거의 모든 곳에서 살아갈 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:31
+#: ../../library/importlib.metadata.rst:36
+msgid ""
+"These are *not* necessarily equivalent to or correspond 1:1 with the top-"
+"level *import package* names that can be imported inside Python code. One"
+" *distribution package* can contain multiple *import packages* (and "
+"single modules), and one top-level *import package* may map to multiple "
+"*distribution packages* if it is a namespace package. You can use "
+":ref:`packages_distributions() <package-distributions>` to get a mapping "
+"between them."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:47
+msgid ""
+"By default, distribution metadata can live on the file system or in zip "
+"archives on :data:`sys.path`.  Through an extension mechanism, the "
+"metadata can live almost anywhere."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:55
+msgid "https://importlib-metadata.readthedocs.io/"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:56
+msgid ""
+"The documentation for ``importlib_metadata``, which supplies a backport "
+"of ``importlib.metadata``. This includes an `API reference <https"
+"://importlib-metadata.readthedocs.io/en/latest/api.html>`__ for this "
+"module's classes and functions, as well as a `migration guide <https"
+"://importlib-metadata.readthedocs.io/en/latest/migration.html>`__ for "
+"existing users of ``pkg_resources``."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:67
 msgid "Overview"
 msgstr "개요"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:33
+#: ../../library/importlib.metadata.rst:69
+#, fuzzy
 msgid ""
-"Let's say you wanted to get the version string for a package you've "
-"installed using ``pip``.  We start by creating a virtual environment and "
-"installing something into it:"
+"Let's say you wanted to get the version string for a `Distribution "
+"Package <https://packaging.python.org/en/latest/glossary/#term-"
+"Distribution-Package>`_ you've installed using ``pip``.  We start by "
+"creating a virtual environment and installing something into it:"
 msgstr ""
 "``pip``\\를 사용하여 설치한 패키지의 버전 문자열을 얻고 싶다고 가정해 봅시다. 우선 가상 환경을 만들고 그 안에 뭔가 "
 "설치합니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:43
+#: ../../library/importlib.metadata.rst:74
+msgid ""
+"$ python -m venv example\n"
+"$ source example/bin/activate\n"
+"(example) $ python -m pip install wheel"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:80
 msgid "You can get the version string for ``wheel`` by running the following:"
 msgstr "다음을 실행하여 ``wheel``\\에 대한 버전 문자열을 얻을 수 있습니다:"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:52
+#: ../../library/importlib.metadata.rst:82
 msgid ""
-"You can also get the set of entry points keyed by group, such as "
+"(example) $ python\n"
+">>> from importlib.metadata import version\n"
+">>> version('wheel')\n"
+"'0.32.3'"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:89
+#, fuzzy
+msgid ""
+"You can also get a collection of entry points selectable by properties of"
+" the EntryPoint (typically 'group' or 'name'), such as "
 "``console_scripts``, ``distutils.commands`` and others.  Each group "
-"contains a sequence of :ref:`EntryPoint <entry-points>` objects."
+"contains a collection of :ref:`EntryPoint <entry-points>` objects."
 msgstr ""
 "``console_scripts``, ``distutils.commands``\\와 다른 것들과 같은 그룹 키로 진입 지점 집합을 "
 "얻을 수도 있습니다. 각 그룹은 :ref:`EntryPoint <entry-points>` 객체의 시퀀스를 포함합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:56
+#: ../../library/importlib.metadata.rst:93
 msgid "You can get the :ref:`metadata for a distribution <metadata>`::"
 msgstr "여러분은 :ref:`배포 메타데이터 <metadata>`\\를 얻을 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:61
+#: ../../library/importlib.metadata.rst:95
+msgid ""
+">>> list(metadata('wheel'))\n"
+"['Metadata-Version', 'Name', 'Version', 'Summary', 'Home-page', 'Author',"
+" 'Author-email', 'Maintainer', 'Maintainer-email', 'License', 'Project-"
+"URL', 'Project-URL', 'Project-URL', 'Keywords', 'Platform', 'Classifier',"
+" 'Classifier', 'Classifier', 'Classifier', 'Classifier', 'Classifier', "
+"'Classifier', 'Classifier', 'Classifier', 'Classifier', 'Classifier', "
+"'Classifier', 'Requires-Python', 'Provides-Extra', 'Requires-Dist', "
+"'Requires-Dist']"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:98
 msgid ""
 "You can also get a :ref:`distribution's version number <version>`, list "
 "its :ref:`constituent files <files>`, and get a list of the "
@@ -98,101 +161,387 @@ msgstr ""
 "또한 :ref:`배포의 버전 번호 <version>`\\를 가져오고, :ref:`구성 파일 <files>`\\을 나열하고, 배포의 "
 ":ref:`요구사항 <requirements>` 리스트를 얻을 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:67
+#: ../../library/importlib.metadata.rst:105
+msgid ""
+"Subclass of :class:`ModuleNotFoundError` raised by several functions in "
+"this module when queried for a distribution package which is not "
+"installed in the current Python environment."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:111
 msgid "Functional API"
 msgstr "기능적 API"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:69
+#: ../../library/importlib.metadata.rst:113
 msgid "This package provides the following functionality via its public API."
 msgstr "이 패키지는 공용 API를 통해 다음과 같은 기능을 제공합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:75
+#: ../../library/importlib.metadata.rst:119
 msgid "Entry points"
 msgstr "진입 지점"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:77
+#: ../../library/importlib.metadata.rst:123
 msgid ""
-"The ``entry_points()`` function returns a dictionary of all entry points,"
-" keyed by group.  Entry points are represented by ``EntryPoint`` "
-"instances; each ``EntryPoint`` has a ``.name``, ``.group``, and "
-"``.value`` attributes and a ``.load()`` method to resolve the value.  "
+"Returns a :class:`EntryPoints` instance describing entry points for the "
+"current environment. Any given keyword parameters are passed to the "
+":meth:`!select` method for comparison to the attributes of the individual"
+" entry point definitions."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:128
+msgid ""
+"Note: it is not currently possible to query for entry points based on "
+"their :attr:`!EntryPoint.dist` attribute (as different "
+":class:`!Distribution` instances do not currently compare equal, even if "
+"they have the same attributes)"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:134
+msgid "Details of a collection of installed entry points."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:136
+msgid ""
+"Also provides a ``.groups`` attribute that reports all identified entry "
+"point groups, and a ``.names`` attribute that reports all identified "
+"entry point names."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:142
+msgid "Details of an installed entry point."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:144
+#, fuzzy
+msgid ""
+"Each :class:`!EntryPoint` instance has ``.name``, ``.group``, and "
+"``.value`` attributes and a ``.load()`` method to resolve the value. "
 "There are also ``.module``, ``.attr``, and ``.extras`` attributes for "
-"getting the components of the ``.value`` attribute::"
+"getting the components of the ``.value`` attribute, and ``.dist`` for "
+"obtaining information regarding the distribution package that provides "
+"the entry point."
 msgstr ""
 "``entry_points()`` 함수는 그룹 키를 갖는 모든 진입 지점의 딕셔너리를 반환합니다. 진입 지점은 "
 "``EntryPoint`` 인스턴스로 나타냅니다; 각 ``EntryPoint``\\에는 ``.name``, ``.group`` 및 "
 "``.value`` 어트리뷰트가 있고 값을 결정하는 ``.load()`` 메서드가 있습니다. ``.value`` 어트리뷰트의 구성 "
 "요소를 가져오기 위한 ``.module``, ``.attr`` 및 ``.extras`` 어트리뷰트도 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:101
+#: ../../library/importlib.metadata.rst:150
+#, fuzzy
+msgid "Query all entry points::"
+msgstr "진입 지점"
+
+#: ../../library/importlib.metadata.rst:152
+#, fuzzy
+msgid ">>> eps = entry_points()"
+msgstr "진입 지점"
+
+#: ../../library/importlib.metadata.rst:154
+msgid ""
+"The :func:`!entry_points` function returns a :class:`!EntryPoints` "
+"object, a collection of all :class:`!EntryPoint` objects with ``names`` "
+"and ``groups`` attributes for convenience::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:158
+msgid ""
+">>> sorted(eps.groups)\n"
+"['console_scripts', 'distutils.commands', 'distutils.setup_keywords', "
+"'egg_info.writers', 'setuptools.installation']"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:161
+msgid ""
+":class:`!EntryPoints` has a :meth:`!select` method to select entry points"
+" matching specific properties. Select entry points in the "
+"``console_scripts`` group::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:165
+msgid ">>> scripts = eps.select(group='console_scripts')"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:167
+msgid ""
+"Equivalently, since :func:`!entry_points` passes keyword arguments "
+"through to select::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:170
+msgid ">>> scripts = entry_points(group='console_scripts')"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:172
+msgid "Pick out a specific script named \"wheel\" (found in the wheel project)::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:174
+msgid ""
+">>> 'wheel' in scripts.names\n"
+"True\n"
+">>> wheel = scripts['wheel']"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:178
+msgid "Equivalently, query for that entry point during selection::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:180
+msgid ""
+">>> (wheel,) = entry_points(group='console_scripts', name='wheel')\n"
+">>> (wheel,) = entry_points().select(group='console_scripts', "
+"name='wheel')"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:183
+msgid "Inspect the resolved entry point::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:185
+msgid ""
+">>> wheel\n"
+"EntryPoint(name='wheel', value='wheel.cli:main', group='console_scripts')"
+"\n"
+">>> wheel.module\n"
+"'wheel.cli'\n"
+">>> wheel.attr\n"
+"'main'\n"
+">>> wheel.extras\n"
+"[]\n"
+">>> main = wheel.load()\n"
+">>> main\n"
+"<function main at 0x103528488>"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:197
+#, fuzzy
 msgid ""
 "The ``group`` and ``name`` are arbitrary values defined by the package "
 "author and usually a client will wish to resolve all entry points for a "
 "particular group.  Read `the setuptools docs "
-"<https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-"
-"discovery-of-services-and-plugins>`_ for more information on entry "
-"points, their definition, and usage."
+"<https://setuptools.pypa.io/en/latest/userguide/entry_point.html>`_ for "
+"more information on entry points, their definition, and usage."
 msgstr ""
 "``group``\\과 ``name``\\은 패키지 저자가 정의한 임의의 값이며 일반적으로 클라이언트는 특정 그룹에 대한 모든 진입"
 " 지점을 찾으려고 합니다. 진입 지점의 정의와 사용법에 대한 자세한 정보는 `the setuptools docs "
 "<https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-"
 "discovery-of-services-and-plugins>`_\\를 읽으십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:111
+#: ../../library/importlib.metadata.rst:203
+msgid ""
+"The \"selectable\" entry points were introduced in ``importlib_metadata``"
+" 3.6 and Python 3.10. Prior to those changes, ``entry_points`` accepted "
+"no parameters and always returned a dictionary of entry points, keyed by "
+"group. With ``importlib_metadata`` 5.0 and Python 3.12, ``entry_points`` "
+"always returns an ``EntryPoints`` object. See "
+":pypi:`backports.entry_points_selectable` for compatibility options."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:212
+msgid ""
+"``EntryPoint`` objects no longer present a tuple-like interface "
+"(:meth:`~object.__getitem__`)."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:219
 msgid "Distribution metadata"
 msgstr "배포 메타데이터"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:113
+#: ../../library/importlib.metadata.rst:223
 msgid ""
-"Every distribution includes some metadata, which you can extract using "
-"the ``metadata()`` function::"
+"Return the distribution metadata corresponding to the named distribution "
+"package as a :class:`PackageMetadata` instance."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:226
+#: ../../library/importlib.metadata.rst:275
+#: ../../library/importlib.metadata.rst:296
+#: ../../library/importlib.metadata.rst:359
+#: ../../library/importlib.metadata.rst:410
+msgid ""
+"Raises :exc:`PackageNotFoundError` if the named distribution package is "
+"not installed in the current Python environment."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:231
+msgid ""
+"A concrete implementation of the `PackageMetadata protocol <https"
+"://importlib-"
+"metadata.readthedocs.io/en/latest/api.html#importlib_metadata.PackageMetadata>`_."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:234
+msgid ""
+"In addition to providing the defined protocol methods and attributes, "
+"subscripting the instance is equivalent to calling the :meth:`!get` "
+"method."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:237
+#, fuzzy
+msgid ""
+"Every `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_ includes some metadata, which you can extract using the "
+":func:`!metadata` function::"
 msgstr "모든 배포는 ``metadata()`` 함수를 사용하여 추출할 수 있는 몇 가지 메타 데이터가 포함되어 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:118
+#: ../../library/importlib.metadata.rst:240
+msgid ">>> wheel_metadata = metadata('wheel')"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:242
+#, fuzzy
 msgid ""
-"The keys of the returned data structure [#f1]_ name the metadata "
-"keywords, and their values are returned unparsed from the distribution "
-"metadata::"
+"The keys of the returned data structure name the metadata keywords, and "
+"the values are returned unparsed from the distribution metadata::"
 msgstr ""
 "반환된 데이터 구조의 [#f1]_ 키는 메타데이터 키워드의 이름을 지정하고, 해당 값은 배포 메타데이터에서 구문 분석하지 않은 채로"
 " 반환됩니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:128
+#: ../../library/importlib.metadata.rst:245
+msgid ""
+">>> wheel_metadata['Requires-Python']\n"
+"'>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*'"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:248
+msgid ""
+":class:`PackageMetadata` also presents a :attr:`!json` attribute that "
+"returns all the metadata in a JSON-compatible form per :PEP:`566`::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:251
+msgid ""
+">>> wheel_metadata.json['requires_python']\n"
+"'>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*'"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:254
+#: ../../library/importlib.metadata.rst:453
+msgid ""
+"The full set of available metadata is not described here. See the PyPA "
+"`Core metadata specification "
+"<https://packaging.python.org/en/latest/specifications/core-metadata"
+"/#core-metadata>`_ for additional details."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:257
+msgid ""
+"The ``Description`` is now included in the metadata when presented "
+"through the payload. Line continuation characters have been removed."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:261
+msgid "The ``json`` attribute was added."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:267
 msgid "Distribution versions"
 msgstr "배포 버전"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:130
+#: ../../library/importlib.metadata.rst:271
 msgid ""
-"The ``version()`` function is the quickest way to get a distribution's "
-"version number, as a string::"
+"Return the installed distribution package `version "
+"<https://packaging.python.org/en/latest/specifications/core-"
+"metadata/#version>`__ for the named distribution package."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:278
+#, fuzzy
+msgid ""
+"The :func:`!version` function is the quickest way to get a `Distribution "
+"Package <https://packaging.python.org/en/latest/glossary/#term-"
+"Distribution-Package>`_'s version number, as a string::"
 msgstr "``version()`` 함수는 배포의 버전 번호를 문자열로 가져오는 가장 빠른 방법입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:140
+#: ../../library/importlib.metadata.rst:282
+msgid ""
+">>> version('wheel')\n"
+"'0.32.3'"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:289
 msgid "Distribution files"
 msgstr "배포 파일"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:142
+#: ../../library/importlib.metadata.rst:293
 msgid ""
-"You can also get the full set of files contained within a distribution.  "
-"The ``files()`` function takes a distribution package name and returns "
-"all of the files installed by this distribution.  Each file object "
-"returned is a ``PackagePath``, a :class:`pathlib.Path` derived object "
-"with additional ``dist``, ``size``, and ``hash`` properties as indicated "
-"by the metadata.  For example::"
+"Return the full set of files contained within the named distribution "
+"package."
 msgstr ""
-"배포에 포함된 전체 파일 집합을 가져올 수도 있습니다. ``files()`` 함수는 배포 패키지 이름을 받아들이고 이 배포가 설치 "
-"한 모든 파일을 반환합니다. 반환된 각 파일 객체는 ``PackagePath``\\인데, 메타 데이터가 알려주는 ``dist``, "
-"``size`` 및 ``hash`` 프로퍼티가 추가된 :class:`pathlib.Path` 파생 객체입니다. 예를 들면::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:158
+#: ../../library/importlib.metadata.rst:299
+msgid ""
+"Returns :const:`None` if the distribution is found but the installation "
+"database records reporting the files associated with the distribuion "
+"package are missing."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:305
+msgid ""
+"A :class:`pathlib.PurePath` derived object with additional ``dist``, "
+"``size``, and ``hash`` properties corresponding to the distribution "
+"package's installation metadata for that file."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:309
+msgid ""
+"The :func:`!files` function takes a `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_ name and returns all of the files installed by this "
+"distribution. Each file is reported as a :class:`PackagePath` instance. "
+"For example::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:314
+msgid ""
+">>> util = [p for p in files('wheel') if 'util.py' in str(p)][0]\n"
+">>> util\n"
+"PackagePath('wheel/util.py')\n"
+">>> util.size\n"
+"859\n"
+">>> util.dist\n"
+"<importlib.metadata._hooks.PathDistribution object at 0x101e0cef0>\n"
+">>> util.hash\n"
+"<FileHash mode: sha256 value: bYkw5oMccfazVCoYQwKkkemoVyMAFoR34mmKBx8R1NI>"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:324
 msgid "Once you have the file, you can also read its contents::"
 msgstr "일단 파일을 얻으면, 내용을 읽을 수도 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:169
+#: ../../library/importlib.metadata.rst:326
 msgid ""
-"In the case where the metadata file listing files (RECORD or SOURCES.txt)"
-" is missing, ``files()`` will return ``None``. The caller may wish to "
-"wrap calls to ``files()`` in `always_iterable <https://more-"
+">>> print(util.read_text())\n"
+"import base64\n"
+"import sys\n"
+"...\n"
+"def as_bytes(s):\n"
+"    if isinstance(s, text_type):\n"
+"        return s.encode('utf-8')\n"
+"    return s"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:335
+msgid ""
+"You can also use the :meth:`!locate` method to get the absolute path to "
+"the file::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:338
+msgid ""
+">>> util.locate()\n"
+"PosixPath('/home/gustav/example/lib/site-packages/wheel/util.py')"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:341
+#, fuzzy
+msgid ""
+"In the case where the metadata file listing files (``RECORD`` or "
+"``SOURCES.txt``) is missing, :func:`!files` will return :const:`None`. "
+"The caller may wish to wrap calls to :func:`!files` in `always_iterable "
+"<https://more-"
 "itertools.readthedocs.io/en/stable/api.html#more_itertools.always_iterable>`_"
 " or otherwise guard against this condition if the target distribution is "
 "not known to have the metadata present."
@@ -203,77 +552,218 @@ msgstr ""
 "itertools.readthedocs.io/en/stable/api.html#more_itertools.always_iterable>`_\\이나"
 " 다른 것으로 감쌀 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:180
+#: ../../library/importlib.metadata.rst:352
 msgid "Distribution requirements"
 msgstr "배포 요구 사항"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:182
+#: ../../library/importlib.metadata.rst:356
 msgid ""
-"To get the full set of requirements for a distribution, use the "
-"``requires()`` function::"
+"Return the declared dependency specifiers for the named distribution "
+"package."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:362
+#, fuzzy
+msgid ""
+"To get the full set of requirements for a `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_, use the :func:`!requires` function::"
 msgstr "배포의 전체 요구 사항을 얻으려면, ``requires()`` 함수를 사용하십시오::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:190
+#: ../../library/importlib.metadata.rst:366
+msgid ""
+">>> requires('wheel')\n"
+"[\"pytest (>=3.0.0) ; extra == 'test'\", \"pytest-cov ; extra == 'test'\"]"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:374
+msgid "Mapping import to distribution packages"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:378
+msgid ""
+"Return a mapping from the top level module and import package names found"
+" via :data:`sys.meta_path` to the names of the distribution packages (if "
+"any) that provide the corresponding files."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:382
+msgid ""
+"To allow for namespace packages (which may have members provided by "
+"multiple distribution packages), each top level import name maps to a "
+"list of distribution names rather than mapping directly to a single name."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:386
+msgid ""
+"A convenience method to resolve the `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_ name (or names, in the case of a namespace package) that "
+"provide each importable top-level Python module or `Import Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Import-"
+"Package>`_::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:391
+#, python-brace-format
+msgid ""
+">>> packages_distributions()\n"
+"{'importlib_metadata': ['importlib-metadata'], 'yaml': ['PyYAML'], "
+"'jaraco': ['jaraco.classes', 'jaraco.functools'], ...}"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:394
+msgid ""
+"Some editable installs, `do not supply top-level names "
+"<https://github.com/pypa/packaging-problems/issues/609>`_, and thus this "
+"function is not reliable with such installs."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:403
 msgid "Distributions"
 msgstr "배포"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:192
+#: ../../library/importlib.metadata.rst:407
 msgid ""
-"While the above API is the most common and convenient usage, you can get "
-"all of that information from the ``Distribution`` class.  A "
-"``Distribution`` is an abstract object that represents the metadata for a"
-" Python package.  You can get the ``Distribution`` instance::"
+"Return a :class:`Distribution` instance describing the named distribution"
+" package."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:415
+msgid "Details of an installed distribution package."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:417
+msgid ""
+"Note: different :class:`!Distribution` instances do not currently compare"
+" equal, even if they relate to the same installed distribution and "
+"accordingly have the same attributes."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:421
+#, fuzzy
+msgid ""
+"While the module level API described above is the most common and "
+"convenient usage, you can get all of that information from the "
+":class:`!Distribution` class. :class:`!Distribution` is an abstract "
+"object that represents the metadata for a Python `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_. You can get the concrete :class:`!Distribution` subclass "
+"instance for an installed distribution package by calling the "
+":func:`distribution` function::"
 msgstr ""
 "위의 API가 가장 일반적이며 편리한 사용법이지만, ``Distribution`` 클래스에서 모든 정보를 얻을 수 있습니다. "
 "``Distribution``\\은 파이썬 패키지의 메타 데이터를 나타내는 추상 객체입니다. ``Distribution`` "
 "인스턴스를 얻을 수 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:200
+#: ../../library/importlib.metadata.rst:428
+msgid ""
+">>> from importlib.metadata import distribution\n"
+">>> dist = distribution('wheel')\n"
+">>> type(dist)\n"
+"<class 'importlib.metadata.PathDistribution'>"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:433
+#, fuzzy
 msgid ""
 "Thus, an alternative way to get the version number is through the "
-"``Distribution`` instance::"
+":class:`!Distribution` instance::"
 msgstr "따라서, 버전 번호를 얻는 다른 방법은 ``Distribution`` 인스턴스를 사용하는 것입니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:206
+#: ../../library/importlib.metadata.rst:436
 msgid ""
-"There are all kinds of additional metadata available on the "
-"``Distribution`` instance::"
+">>> dist.version\n"
+"'0.32.3'"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:439
+#, fuzzy
+msgid ""
+"There are all kinds of additional metadata available on "
+":class:`!Distribution` instances::"
 msgstr "``Distribution`` 인스턴스에서 사용할 수 있는 모든 종류의 추가 메타 데이터가 있습니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:214
+#: ../../library/importlib.metadata.rst:442
 msgid ""
-"The full set of available metadata is not described here.  See :pep:`566`"
-" for additional details."
-msgstr "사용 가능한 메타 데이터의 전체 집합은 여기에서 설명하지 않습니다. 자세한 내용은 :pep:`566`\\을 참조하십시오."
+">>> dist.metadata['Requires-Python']\n"
+"'>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*'\n"
+">>> dist.metadata['License']\n"
+"'MIT'"
+msgstr ""
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:219
+#: ../../library/importlib.metadata.rst:447
+msgid ""
+"For editable packages, an ``origin`` property may present :pep:`610` "
+"metadata::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:450
+msgid ""
+">>> dist.origin.url\n"
+"'file:///path/to/wheel-0.32.3.editable-py3-none-any.whl'"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:456
+msgid "The ``.origin`` property was added."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:460
+#, fuzzy
+msgid "Distribution Discovery"
+msgstr "배포 파일"
+
+#: ../../library/importlib.metadata.rst:462
+msgid ""
+"By default, this package provides built-in support for discovery of "
+"metadata for file system and zip file `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_\\s. This metadata finder search defaults to ``sys.path``, but "
+"varies slightly in how it interprets those values from how other import "
+"machinery does. In particular:"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:466
+msgid ""
+"``importlib.metadata`` does not honor :class:`bytes` objects on "
+"``sys.path``."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:467
+msgid ""
+"``importlib.metadata`` will incidentally honor :py:class:`pathlib.Path` "
+"objects on ``sys.path`` even though such values will be ignored for "
+"imports."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:471
 msgid "Extending the search algorithm"
 msgstr "검색 알고리즘 확장하기"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:221
+#: ../../library/importlib.metadata.rst:473
+#, fuzzy
 msgid ""
-"Because package metadata is not available through :data:`sys.path` "
-"searches, or package loaders directly, the metadata for a package is "
-"found through import system :ref:`finders <finders-and-loaders>`.  To "
-"find a distribution package's metadata, ``importlib.metadata`` queries "
-"the list of :term:`meta path finders <meta path finder>` on "
-":data:`sys.meta_path`."
+"Because `Distribution Package "
+"<https://packaging.python.org/en/latest/glossary/#term-Distribution-"
+"Package>`_ metadata is not available through :data:`sys.path` searches, "
+"or package loaders directly, the metadata for a distribution is found "
+"through import system :ref:`finders <finders-and-loaders>`.  To find a "
+"distribution package's metadata, ``importlib.metadata`` queries the list "
+"of :term:`meta path finders <meta path finder>` on :data:`sys.meta_path`."
 msgstr ""
 "패키지 메타 데이터는 :data:`sys.path` 검색이나 패키지 로더를 통해 직접 사용할 수 없으므로, 패키지의 메타 데이터는 "
 "임포트 시스템 :ref:`파인더 <finders-and-loaders>`\\를 통해 찾습니다. 배포 패키지의 메타 데이터를 찾기 "
 "위해, ``importlib.metadata``\\는 :data:`sys.meta_path`\\의 :term:`메타 경로 파인더 "
 "<meta path finder>`\\의 리스트를 조회합니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:227
+#: ../../library/importlib.metadata.rst:481
 msgid ""
-"The default ``PathFinder`` for Python includes a hook that calls into "
-"``importlib.metadata.MetadataPathFinder`` for finding distributions "
-"loaded from typical file-system-based paths."
+"By default ``importlib.metadata`` installs a finder for distribution "
+"packages found on the file system. This finder doesn't actually find any "
+"*distributions*, but it can find their metadata."
 msgstr ""
-"파이썬의 기본 ``PathFinder``\\에는 일반적인 파일 시스템 기반 경로에서 로드된 배포를 찾기 위해 "
-"``importlib.metadata.MetadataPathFinder``\\를 호출하는 훅이 포함되어 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:231
+#: ../../library/importlib.metadata.rst:486
 msgid ""
 "The abstract class :py:class:`importlib.abc.MetaPathFinder` defines the "
 "interface expected of finders by Python's import system. "
@@ -287,7 +777,16 @@ msgstr ""
 "파인더에서 선택적인 ``find_distributions`` 콜러블을 조회함으로써 이 프로토콜을 확장하고 이 확장된 인터페이스를 "
 "다음과 같은 추상 메서드를 정의하는 ``DistributionFinder`` 추상 베이스 클래스로 제공합니다::"
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:245
+#: ../../library/importlib.metadata.rst:494
+msgid ""
+"@abc.abstractmethod\n"
+"def find_distributions(context=DistributionFinder.Context()):\n"
+"    \"\"\"Return an iterable of all Distribution instances capable of\n"
+"    loading the metadata for packages for the indicated ``context``.\n"
+"    \"\"\""
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:500
 msgid ""
 "The ``DistributionFinder.Context`` object provides ``.path`` and "
 "``.name`` properties indicating the path to search and name to match and "
@@ -296,7 +795,7 @@ msgstr ""
 "``DistributionFinder.Context`` 객체는 검색할 경로와 일치할 이름을 가리키는 ``.path``\\와 "
 "``.name`` 프로퍼티를 제공하고 다른 관련 문맥을 제공할 수 있습니다."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:249
+#: ../../library/importlib.metadata.rst:504
 msgid ""
 "What this means in practice is that to support finding distribution "
 "package metadata in locations other than the file system, subclass "
@@ -308,18 +807,208 @@ msgstr ""
 "``Distribution``\\을 서브 클래싱하고 추상 메서드를 구현해야 한다는 것입니다. 그런 다음 사용자 정의 파인더의 "
 "``find_distributions()`` 메서드에서, 이 파생된 ``Distribution``\\의 인스턴스를 반환하십시오."
 
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:262
-msgid "Footnotes"
-msgstr "각주"
-
-#: /Users/flowdas/works/docs/python-docs-ko/src/Doc/library/importlib.metadata.rst:263
-msgid ""
-"Technically, the returned distribution metadata object is an "
-":class:`email.message.EmailMessage` instance, but this is an "
-"implementation detail, and not part of the stable API.  You should only "
-"use dictionary-like methods and syntax to access the metadata contents."
+#: ../../library/importlib.metadata.rst:511
+msgid "Example"
 msgstr ""
-"기술적으로, 반환된 배포 메타 데이터 객체는 :class:`email.message.EmailMessage` 인스턴스이지만, 이것은"
-" 구현 세부 사항이며 안정 API의 일부는 아닙니다. 메타 데이터 내용에 액세스하려면, 딕셔너리와 같은 메서드와 문법을 사용해야 "
-"합니다."
+
+#: ../../library/importlib.metadata.rst:513
+msgid ""
+"Consider for example a custom finder that loads Python modules from a "
+"database::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:516
+msgid ""
+"class DatabaseImporter(importlib.abc.MetaPathFinder):\n"
+"    def __init__(self, db):\n"
+"        self.db = db\n"
+"\n"
+"    def find_spec(self, fullname, target=None) -> ModuleSpec:\n"
+"        return self.db.spec_from_name(fullname)\n"
+"\n"
+"sys.meta_path.append(DatabaseImporter(connect_db(...)))"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:525
+msgid ""
+"That importer now presumably provides importable modules from a database,"
+" but it provides no metadata or entry points. For this custom importer to"
+" provide metadata, it would also need to implement "
+"``DistributionFinder``::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:530
+#, python-brace-format
+msgid ""
+"from importlib.metadata import DistributionFinder\n"
+"\n"
+"class DatabaseImporter(DistributionFinder):\n"
+"    ...\n"
+"\n"
+"    def find_distributions(self, context=DistributionFinder.Context()):\n"
+"        query = dict(name=context.name) if context.name else {}\n"
+"        for dist_record in self.db.query_distributions(query):\n"
+"            yield DatabaseDistribution(dist_record)"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:540
+msgid ""
+"In this way, ``query_distributions`` would return records for each "
+"distribution served by the database matching the query. For example, if "
+"``requests-1.0`` is in the database, ``find_distributions`` would yield a"
+" ``DatabaseDistribution`` for ``Context(name='requests')`` or "
+"``Context(name=None)``."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:546
+msgid ""
+"For the sake of simplicity, this example ignores ``context.path``\\. The "
+"``path`` attribute defaults to ``sys.path`` and is the set of import "
+"paths to be considered in the search. A ``DatabaseImporter`` could "
+"potentially function without any concern for a search path. Assuming the "
+"importer does no partitioning, the \"path\" would be irrelevant. In order"
+" to illustrate the purpose of ``path``, the example would need to "
+"illustrate a more complex ``DatabaseImporter`` whose behavior varied "
+"depending on ``sys.path``/``PYTHONPATH``. In that case, the "
+"``find_distributions`` should honor the ``context.path`` and only yield "
+"``Distribution``\\ s pertinent to that path."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:557
+msgid "``DatabaseDistribution``, then, would look something like::"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:559
+#, python-brace-format
+msgid ""
+"class DatabaseDistribution(importlib.metadata.Distribution):\n"
+"    def __init__(self, record):\n"
+"        self.record = record\n"
+"\n"
+"    def read_text(self, filename):\n"
+"        \"\"\"\n"
+"        Read a file like \"METADATA\" for the current distribution.\n"
+"        \"\"\"\n"
+"        if filename == \"METADATA\":\n"
+"            return f\"\"\"Name: {self.record.name}\n"
+"Version: {self.record.version}\n"
+"\"\"\"\n"
+"        if filename == \"entry_points.txt\":\n"
+"            return \"\\n\".join(\n"
+"              f\"\"\"[{ep.group}]\\n{ep.name}={ep.value}\"\"\"\n"
+"              for ep in self.record.entry_points)\n"
+"\n"
+"    def locate_file(self, path):\n"
+"        raise RuntimeError(\"This distribution has no file system\")"
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:579
+msgid ""
+"This basic implementation should provide metadata and entry points for "
+"packages served by the ``DatabaseImporter``, assuming that the ``record``"
+" supplies suitable ``.name``, ``.version``, and ``.entry_points`` "
+"attributes."
+msgstr ""
+
+#: ../../library/importlib.metadata.rst:584
+msgid ""
+"The ``DatabaseDistribution`` may also provide other metadata files, like "
+"``RECORD`` (required for ``Distribution.files``) or override the "
+"implementation of ``Distribution.files``. See the source for more "
+"inspiration."
+msgstr ""
+
+#~ msgid "Using :mod:`!importlib.metadata`"
+#~ msgstr ":mod:`!importlib.metadata` 사용하기"
+
+#~ msgid ""
+#~ "This functionality is provisional and "
+#~ "may deviate from the usual version "
+#~ "semantics of the standard library."
+#~ msgstr "이 기능은 잠정적이며 표준 라이브러리의 일반적인 버전 의미와 다를 수 있습니다."
+
+#~ msgid ""
+#~ "By \"installed package\" we generally "
+#~ "mean a third-party package installed "
+#~ "into Python's ``site-packages`` directory "
+#~ "via tools such as `pip "
+#~ "<https://pypi.org/project/pip/>`_.  Specifically, it "
+#~ "means a package with either a "
+#~ "discoverable ``dist-info`` or ``egg-"
+#~ "info`` directory, and metadata defined "
+#~ "by :pep:`566` or its older "
+#~ "specifications. By default, package metadata"
+#~ " can live on the file system or"
+#~ " in zip archives on :data:`sys.path`.  "
+#~ "Through an extension mechanism, the "
+#~ "metadata can live almost anywhere."
+#~ msgstr ""
+#~ "\"설치된 패키지\"는 일반적으로 `pip "
+#~ "<https://pypi.org/project/pip/>`_ 와 같은 도구를 통해"
+#~ " 파이썬의 ``site-packages`` 디렉터리에 설치된 제삼자"
+#~ " 패키지를 의미합니다. 특히, 발견 가능한 ``dist-"
+#~ "info``\\나 ``egg-info`` 디렉터리와 :pep:`566` "
+#~ "또는 이전 명세로 정의된 메타 데이터가 있는 "
+#~ "패키지를 의미합니다. 기본적으로, 패키지 메타 데이터는 파일"
+#~ " 시스템이나 :data:`sys.path`\\의 zip 저장소에서 살 "
+#~ "수 있습니다. 확장 메커니즘을 통해, 메타 데이터는 "
+#~ "거의 모든 곳에서 살아갈 수 있습니다."
+
+#~ msgid ""
+#~ "You can also get the full set "
+#~ "of files contained within a "
+#~ "distribution.  The ``files()`` function takes"
+#~ " a distribution package name and "
+#~ "returns all of the files installed "
+#~ "by this distribution.  Each file object"
+#~ " returned is a ``PackagePath``, a "
+#~ ":class:`pathlib.Path` derived object with "
+#~ "additional ``dist``, ``size``, and ``hash``"
+#~ " properties as indicated by the "
+#~ "metadata.  For example::"
+#~ msgstr ""
+#~ "배포에 포함된 전체 파일 집합을 가져올 수도 "
+#~ "있습니다. ``files()`` 함수는 배포 패키지 이름을 "
+#~ "받아들이고 이 배포가 설치 한 모든 파일을 "
+#~ "반환합니다. 반환된 각 파일 객체는 ``PackagePath``\\인데,"
+#~ " 메타 데이터가 알려주는 ``dist``, ``size`` 및"
+#~ " ``hash`` 프로퍼티가 추가된 :class:`pathlib.Path` "
+#~ "파생 객체입니다. 예를 들면::"
+
+#~ msgid ""
+#~ "The full set of available metadata "
+#~ "is not described here.  See :pep:`566`"
+#~ " for additional details."
+#~ msgstr "사용 가능한 메타 데이터의 전체 집합은 여기에서 설명하지 않습니다. 자세한 내용은 :pep:`566`\\을 참조하십시오."
+
+#~ msgid ""
+#~ "The default ``PathFinder`` for Python "
+#~ "includes a hook that calls into "
+#~ "``importlib.metadata.MetadataPathFinder`` for finding "
+#~ "distributions loaded from typical file-"
+#~ "system-based paths."
+#~ msgstr ""
+#~ "파이썬의 기본 ``PathFinder``\\에는 일반적인 파일 시스템"
+#~ " 기반 경로에서 로드된 배포를 찾기 위해 "
+#~ "``importlib.metadata.MetadataPathFinder``\\를 호출하는 훅이 "
+#~ "포함되어 있습니다."
+
+#~ msgid "Footnotes"
+#~ msgstr "각주"
+
+#~ msgid ""
+#~ "Technically, the returned distribution "
+#~ "metadata object is an "
+#~ ":class:`email.message.EmailMessage` instance, but "
+#~ "this is an implementation detail, and"
+#~ " not part of the stable API.  "
+#~ "You should only use dictionary-like "
+#~ "methods and syntax to access the "
+#~ "metadata contents."
+#~ msgstr ""
+#~ "기술적으로, 반환된 배포 메타 데이터 객체는 "
+#~ ":class:`email.message.EmailMessage` 인스턴스이지만, 이것은 구현"
+#~ " 세부 사항이며 안정 API의 일부는 아닙니다. 메타"
+#~ " 데이터 내용에 액세스하려면, 딕셔너리와 같은 메서드와 "
+#~ "문법을 사용해야 합니다."
 
