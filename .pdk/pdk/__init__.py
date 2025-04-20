@@ -132,6 +132,41 @@ class Command:
                         relpath.unlink()
                         relpath.with_suffix(".mo").unlink(missing_ok=True)
 
+    def coverage(self):
+        """Calculate translation coverage."""
+        os.chdir(MSG_DIR)
+        total = translated = fuzzy = 0
+        items = []
+        for root, _, files in os.walk("."):
+            for filename in files:
+                if not filename.endswith(".po"):
+                    continue
+                path = pathlib.Path(root, filename)
+                if str(path) == "whatsnew/changelog.po":
+                    continue
+                with path.open() as f:
+                    catalog = read_po(f, abort_invalid=True)
+                file_total = file_translated = file_fuzzy = 0
+                for msg in catalog:
+                    if not msg.id:
+                        continue
+                    file_total += len(msg.id)
+                    if not msg.fuzzy and msg.string:
+                        file_translated += len(msg.id)
+                    elif msg.fuzzy:
+                        file_fuzzy += len(msg.id)
+                total += file_total
+                translated += file_translated
+                fuzzy += file_fuzzy
+                items.append((file_total - file_translated, path))
+        for remaining, path in sorted(items):
+            if remaining:
+                print(f"{remaining:7d} {path}")
+        print(f"{total - translated:7d} Remaining")
+        print(f"{fuzzy:7d} Fuzzy")
+        print(f"{total:7d} Total")
+        print(f"{translated * 100.0 / total:.2f}%")
+
 
 def main():
     fire.Fire(Command)
