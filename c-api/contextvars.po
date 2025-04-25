@@ -39,6 +39,11 @@ msgid ""
 "// in 3.7.1+:\n"
 "PyObject *PyContext_New(void);"
 msgstr ""
+"// in 3.7.0:\n"
+"PyContext *PyContext_New(void);\n"
+"\n"
+"// in 3.7.1+:\n"
+"PyObject *PyContext_New(void);"
 
 #: ../../c-api/contextvars.rst:26
 msgid "See :issue:`34762` for more details."
@@ -144,7 +149,6 @@ msgid "Context variable functions:"
 msgstr "컨텍스트 변수 함수:"
 
 #: ../../c-api/contextvars.rst:109
-#, fuzzy
 msgid ""
 "Create a new ``ContextVar`` object.  The *name* parameter is used for "
 "introspection and debug purposes.  The *def* parameter specifies a "
@@ -152,7 +156,8 @@ msgid ""
 " error has occurred, this function returns ``NULL``."
 msgstr ""
 "새 ``ContextVar`` 객체를 만듭니다. *name* 매개 변수는 인트로스펙션과 디버그 목적으로 사용됩니다. *def* 매개"
-" 변수는 선택적으로 컨텍스트 변수의 기본값을 지정할 수 있습니다. 에러가 발생하면, 이 함수는 ``NULL``\\을 반환합니다."
+" 변수는 컨텍스트 변수의 기본값을 지정할 수 있습니다. ``NULL``\\은 기본값 없음입니다. 에러가 발생하면, 이 함수는 "
+"``NULL``\\을 반환합니다."
 
 #: ../../c-api/contextvars.rst:116
 msgid ""
@@ -184,18 +189,16 @@ msgid "``NULL``"
 msgstr "``NULL``"
 
 #: ../../c-api/contextvars.rst:127
-#, fuzzy
 msgid "Except for ``NULL``, the function returns a new reference."
-msgstr "값이 발견되면, 이 함수는 그것에 대한 새 참조를 만듭니다."
+msgstr "``NULL``\\일 때를 제외하고, 이 함수는 새 참조를 반환합니다."
 
 #: ../../c-api/contextvars.rst:131
-#, fuzzy
 msgid ""
 "Set the value of *var* to *value* in the current context.  Returns a new "
 "token object for this change, or ``NULL`` if an error has occurred."
 msgstr ""
-"현재 컨텍스트에서 *var*\\의 값을 *value*\\로 설정합니다. :c:type:`PyObject` 객체에 대한 포인터를 "
-"반환하거나, 에러가 발생하면 ``NULL``\\을 반환합니다."
+"현재 컨텍스트에서 *var*\\의 값을 *value*\\로 설정합니다. 이 변경에 대한 새 토큰 객체를 반환하거나, 에러가 발생하면"
+" ``NULL``\\을 반환합니다."
 
 #: ../../c-api/contextvars.rst:136
 msgid ""
@@ -205,10 +208,4 @@ msgid ""
 msgstr ""
 "*var* 컨텍스트 변수의 상태를 *token*\\을 반환한 :c:func:`PyContextVar_Set` 호출 전의 상태로 "
 "재설정합니다. 이 함수는 성공 시 ``0``\\을 반환하고, 에러 시 ``-1``\\을 반환합니다."
-
-#~ msgid ""
-#~ "Clear the context variable free list."
-#~ " Return the total number of freed "
-#~ "items.  This function always succeeds."
-#~ msgstr "컨텍스트 변수 자유 목록을 지웁니다. 해제된 총 항목 수를 반환합니다. 이 함수는 항상 성공합니다."
 
