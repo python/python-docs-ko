@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/trace.rst:2
-#, fuzzy
 msgid ":mod:`!trace` --- Trace or track Python statement execution"
-msgstr ":mod:`trace` --- 파이썬 문장 실행 추적"
+msgstr ":mod:`!trace` --- 파이썬 문장 실행 추적"
 
 #: ../../library/trace.rst:7
 msgid "**Source code:** :source:`Lib/trace.py`"
@@ -316,4 +315,19 @@ msgid ""
 "r = tracer.results()\n"
 "r.write_results(show_missing=True, coverdir=\".\")"
 msgstr ""
+"import sys\n"
+"import trace\n"
+"\n"
+"# Trace 객체를 만들고, 무시할 대상과, 추적할지, 줄을 셀지 또는 둘 다 수행할지를 지정합니다.\n"
+"tracer = trace.Trace(\n"
+"    ignoredirs=[sys.prefix, sys.exec_prefix],\n"
+"    trace=0,\n"
+"    count=1)\n"
+"\n"
+"# 주어진 tracer를 사용해서 새 명령을 실행합니다\n"
+"tracer.run('main()')\n"
+"\n"
+"# 보고서를 만들어, 현재 디렉터리에 출력을 넣습니다\n"
+"r = tracer.results()\n"
+"r.write_results(show_missing=True, coverdir=\".\")"
 
