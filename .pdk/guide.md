@@ -77,6 +77,7 @@ associative array: 연관 배열
 asterisk: 애스터리스크
 backslash: 역 슬래시
 body: 바디
+barrier: 장벽
 buffer: 버퍼
 buffered: 버퍼드
 built-in: 내장
