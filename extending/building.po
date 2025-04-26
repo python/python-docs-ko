@@ -29,7 +29,6 @@ msgstr ""
 "``.pyd``)."
 
 #: ../../extending/building.rst:12
-#, fuzzy
 msgid ""
 "To be importable, the shared library must be available on "
 ":envvar:`PYTHONPATH`, and must be named after the module name, with an "
@@ -37,14 +36,13 @@ msgid ""
 "generated automatically."
 msgstr ""
 "임포트 할 수 있으려면, 공유 라이브러리가 :envvar:`PYTHONPATH`\\에 있어야 하며, 모듈 이름을 따라 적절한 "
-"확장자를 붙여서 이름 지어야 합니다. distutils를 사용하면, 올바른 파일 이름이 자동으로 생성됩니다."
+"확장자를 붙여서 이름 지어야 합니다. setuptools를 사용하면, 올바른 파일 이름이 자동으로 생성됩니다."
 
 #: ../../extending/building.rst:16
 msgid "The initialization function has the signature:"
 msgstr "초기화 함수는 다음과 같은 서명을 갖습니다:"
 
 #: ../../extending/building.rst:20
-#, fuzzy
 msgid ""
 "It returns either a fully initialized module, or a :c:type:`PyModuleDef` "
 "instance. See :ref:`initializing-modules` for details."
@@ -76,6 +74,12 @@ msgid ""
 "        suffix = b'U_' + name.encode('punycode').replace(b'-', b'_')\n"
 "    return b'PyInit' + suffix"
 msgstr ""
+"def initfunc_name(name):\n"
+"    try:\n"
+"        suffix = b'_' + name.encode('ascii')\n"
+"    except UnicodeEncodeError:\n"
+"        suffix = b'U_' + name.encode('punycode').replace(b'-', b'_')\n"
+"    return b'PyInit' + suffix"
 
 #: ../../extending/building.rst:39
 msgid ""
@@ -90,9 +94,8 @@ msgstr ""
 ":pep:`489`\\의 *\"한 라이브러리에 여러 모듈\"* 절을 참조하십시오."
 
 #: ../../extending/building.rst:52
-#, fuzzy
 msgid "Building C and C++ Extensions with setuptools"
-msgstr "distutils로 C와 C++ 확장 빌드하기"
+msgstr "setuptools로 C와 C++ 확장 빌드하기"
 
 #: ../../extending/building.rst:54
 msgid ""
