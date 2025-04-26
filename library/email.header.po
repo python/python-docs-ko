@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/email.header.rst:2
-#, fuzzy
 msgid ":mod:`!email.header`: Internationalized headers"
-msgstr ":mod:`email.header`: 국제화된 헤더"
+msgstr ":mod:`!email.header`: 국제화된 헤더"
 
 #: ../../library/email.header.rst:7
 msgid "**Source code:** :source:`Lib/email/header.py`"
@@ -100,6 +99,13 @@ msgid ""
 ">>> msg.as_string()\n"
 "'Subject: =?iso-8859-1?q?p=F6stal?=\\n\\n'"
 msgstr ""
+">>> from email.message import Message\n"
+">>> from email.header import Header\n"
+">>> msg = Message()\n"
+">>> h = Header('p\\xf6stal', 'iso-8859-1')\n"
+">>> msg['Subject'] = h\n"
+">>> msg.as_string()\n"
+"'Subject: =?iso-8859-1?q?p=F6stal?=\\n\\n'"
 
 #: ../../library/email.header.rst:50
 msgid ""
@@ -154,7 +160,6 @@ msgstr ""
 " 집합과 후속 :meth:`append` 호출의 기본값으로 사용됩니다."
 
 #: ../../library/email.header.rst:77
-#, fuzzy
 msgid ""
 "The maximum line length can be specified explicitly via *maxlinelen*.  "
 "For splitting the first line to a shorter value (to account for the field"
@@ -165,7 +170,7 @@ msgid ""
 msgstr ""
 "최대 줄 길이는 *maxlinelen*\\을 통해 명시적으로 지정할 수 있습니다. (*s*\\에 포함되지 않은 필드 헤더를 고려하기"
 " 위해, 예를 들어 :mailheader:`Subject`) 첫 번째 줄을 더 짧은 값으로 분할하려면 *header_name*\\에"
-" 필드 이름을 전달하십시오. 기본 *maxlinelen*\\은 76이고, *header_name*\\의 기본값은 "
+" 필드 이름을 전달하십시오. 기본 *maxlinelen*\\은 78이고, *header_name*\\의 기본값은 "
 "``None``\\입니다, 이는 긴 분할 헤더의 첫 번째 줄을 고려하지 않음을 의미합니다."
 
 #: ../../library/email.header.rst:84
@@ -348,6 +353,9 @@ msgid ""
 ">>> decode_header('=?iso-8859-1?q?p=F6stal?=')\n"
 "[(b'p\\xf6stal', 'iso-8859-1')]"
 msgstr ""
+">>> from email.header import decode_header\n"
+">>> decode_header('=?iso-8859-1?q?p=F6stal?=')\n"
+"[(b'p\\xf6stal', 'iso-8859-1')]"
 
 #: ../../library/email.header.rst:195
 msgid ""
