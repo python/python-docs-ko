@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/sched.rst:2
-#, fuzzy
 msgid ":mod:`!sched` --- Event scheduler"
-msgstr ":mod:`sched` --- 이벤트 스케줄러"
+msgstr ":mod:`!sched` --- 이벤트 스케줄러"
 
 #: ../../library/sched.rst:9
 msgid "**Source code:** :source:`Lib/sched.py`"
@@ -93,6 +92,33 @@ msgid ""
 "From print_time 1652342840.369612 default\n"
 "1652342840.3697174"
 msgstr ""
+">>> import sched, time\n"
+">>> s = sched.scheduler(time.time, time.sleep)\n"
+">>> def print_time(a='default'):\n"
+"...     print(\"From print_time\", time.time(), a)\n"
+"...\n"
+">>> def print_some_times():\n"
+"...     print(time.time())\n"
+"...     s.enter(10, 1, print_time)\n"
+"...     s.enter(5, 2, print_time, argument=('positional',))\n"
+"...     # 우선순위가 더 높음에도 불구하고, enter() 가 상대적이라서 'keyword' 는 'positional' "
+"다음에 실행됩니다\n"
+"...     s.enter(5, 1, print_time, kwargs={'a': 'keyword'})\n"
+"...     s.enterabs(1_650_000_000, 10, print_time, argument=(\"first "
+"enterabs\",))\n"
+"...     s.enterabs(1_650_000_000, 5, print_time, argument=(\"second "
+"enterabs\",))\n"
+"...     s.run()\n"
+"...     print(time.time())\n"
+"...\n"
+">>> print_some_times()\n"
+"1652342830.3640375\n"
+"From print_time 1652342830.3642538 second enterabs\n"
+"From print_time 1652342830.3643398 first enterabs\n"
+"From print_time 1652342835.3694863 positional\n"
+"From print_time 1652342835.3696074 keyword\n"
+"From print_time 1652342840.369612 default\n"
+"1652342840.3697174"
 
 #: ../../library/sched.rst:67
 msgid "Scheduler Objects"
@@ -157,14 +183,13 @@ msgid "Return ``True`` if the event queue is empty."
 msgstr "이벤트 큐가 비어있으면 ``True``\\를 반환합니다."
 
 #: ../../library/sched.rst:118
-#, fuzzy
 msgid ""
 "Run all scheduled events. This method will wait  (using the *delayfunc* "
 "function passed to the constructor) for the next event, then execute it "
 "and so on until there are no more scheduled events."
 msgstr ""
-"모든 예약된 이벤트를 실행합니다. 이 메서드는 다음 이벤트를 (생성자에 전달된 :func:`delayfunc` 함수를 사용하여) "
-"기다린 다음 예약된 이벤트가 소진될 때까지 계속 실행합니다."
+"모든 예약된 이벤트를 실행합니다. 이 메서드는 다음 이벤트를 (생성자에 전달된 *delayfunc* 함수를 사용하여) 기다린 다음 "
+"예약된 이벤트가 소진될 때까지 계속 실행합니다."
 
 #: ../../library/sched.rst:122
 msgid ""
@@ -212,5 +237,5 @@ msgstr ""
 
 #: ../../library/sched.rst:11
 msgid "event scheduling"
-msgstr ""
+msgstr "이벤트 스케줄링"
 
