@@ -27,7 +27,6 @@ msgid ""
 msgstr "이 객체 사용에 대한 자세한 정보는 :ref:`using-capsules`\\를 참조하십시오."
 
 #: ../../c-api/capsule.rst:17
-#, fuzzy
 msgid ""
 "This subtype of :c:type:`PyObject` represents an opaque value, useful for"
 " C extension modules who need to pass an opaque value (as a "
@@ -37,7 +36,7 @@ msgid ""
 " APIs defined in dynamically loaded modules."
 msgstr ""
 "이 :c:type:`PyObject`\\의 서브 형은 불투명한 값을 나타내며, 파이썬 코드를 통해 다른 C 코드로 불투명한 "
-"값(:c:type:`void*` 포인터로)을 전달해야 하는 C 확장 모듈에 유용합니다. 이것은 한 모듈에서 정의된 C 함수 포인터를"
+"값(:c:expr:`void*` 포인터로)을 전달해야 하는 C 확장 모듈에 유용합니다. 이것은 한 모듈에서 정의된 C 함수 포인터를"
 " 다른 모듈에서 사용할 수 있게 만드는 데 종종 사용되므로, 일반 임포트 메커니즘을 사용하여 동적으로 로드된 모듈에 정의된 C "
 "API에 액세스할 수 있습니다."
 
@@ -47,7 +46,7 @@ msgstr "캡슐에 대한 파괴자(destructor) 콜백 형. 이렇게 정의됩�
 
 #: ../../c-api/capsule.rst:29
 msgid "typedef void (*PyCapsule_Destructor)(PyObject *);"
-msgstr ""
+msgstr "typedef void (*PyCapsule_Destructor)(PyObject *);"
 
 #: ../../c-api/capsule.rst:31
 msgid ""
@@ -104,7 +103,6 @@ msgid ""
 msgstr "캡슐에 저장된 *pointer*\\를 가져옵니다. 실패하면, 예외를 설정하고 ``NULL``\\을 반환합니다."
 
 #: ../../c-api/capsule.rst:65
-#, fuzzy
 msgid ""
 "The *name* parameter must compare exactly to the name stored in the "
 "capsule. If the name stored in the capsule is ``NULL``, the *name* passed"
@@ -112,7 +110,7 @@ msgid ""
 "to compare capsule names."
 msgstr ""
 "*name* 매개 변수는 캡슐에 저장된 이름과 정확하게 비교되어야 합니다. 캡슐에 저장된 이름이 ``NULL``\\이면, 전달된 "
-"*name*\\도 ``NULL`` 이어야 합니다. 파이썬은 C 함수 :c:func:`strcmp`\\를 사용하여 캡슐 이름을 "
+"*name*\\도 ``NULL`` 이어야 합니다. 파이썬은 C 함수 :c:func:`!strcmp`\\를 사용하여 캡슐 이름을 "
 "비교합니다."
 
 #: ../../c-api/capsule.rst:73
@@ -161,7 +159,6 @@ msgstr ""
 ":c:func:`PyCapsule_IsValid` 나 :c:func:`PyErr_Occurred`\\를 사용하십시오."
 
 #: ../../c-api/capsule.rst:103
-#, fuzzy
 msgid ""
 "Import a pointer to a C object from a capsule attribute in a module.  The"
 " *name* parameter should specify the full name to the attribute, as in "
@@ -169,10 +166,7 @@ msgid ""
 "string exactly."
 msgstr ""
 "모듈의 캡슐 어트리뷰트에서 C 객체에 대한 포인터를 임포트 합니다. *name* 매개 변수는 ``module.attribute`` "
-"처럼 어트리뷰트의 전체 이름을 지정해야 합니다. 캡슐에 저장된 *name*\\은, 이 문자열과 정확히 일치해야 합니다. "
-"*no_block*\\이 참이면, 블록하지 않고 모듈을 임포트 합니다 "
-"(:c:func:`PyImport_ImportModuleNoBlock`\\를 사용해서). *no_block*\\이 거짓이면, 모듈을"
-" 평범하게 임포트 합니다 (:c:func:`PyImport_ImportModule`\\을 사용해서)."
+"처럼 어트리뷰트의 전체 이름을 지정해야 합니다. 캡슐에 저장된 *name*\\은, 이 문자열과 정확히 일치해야 합니다."
 
 #: ../../c-api/capsule.rst:108
 msgid ""
@@ -182,7 +176,7 @@ msgstr "성공하면 캡슐의 내부 *pointer*\\를 반환합니다. 실패하�
 
 #: ../../c-api/capsule.rst:111
 msgid "*no_block* has no effect anymore."
-msgstr ""
+msgstr "*no_block*\\은 더는 효과가 없습니다."
 
 #: ../../c-api/capsule.rst:117
 msgid ""
@@ -198,14 +192,13 @@ msgstr ""
 ":c:func:`PyCapsule_GetPointer`\\를 참조하십시오.)"
 
 #: ../../c-api/capsule.rst:123
-#, fuzzy
 msgid ""
 "In other words, if :c:func:`PyCapsule_IsValid` returns a true value, "
 "calls to any of the accessors (any function starting with "
 "``PyCapsule_Get``) are guaranteed to succeed."
 msgstr ""
-"즉, :c:func:`PyCapsule_IsValid`\\가 참값을 반환하면, 모든 "
-"접근자(:c:func:`PyCapsule_Get`\\으로 시작하는 모든 함수)에 대한 호출이 성공함이 보장됩니다."
+"즉, :c:func:`PyCapsule_IsValid`\\가 참값을 반환하면, 모든 접근자(``PyCapsule_Get``\\으로 "
+"시작하는 모든 함수)에 대한 호출이 성공함이 보장됩니다."
 
 #: ../../c-api/capsule.rst:127
 msgid ""
@@ -245,10 +238,9 @@ msgstr "*capsule* 내부의 void 포인터를 *pointer*\\로 설정합니다. �
 
 #: ../../c-api/capsule.rst:8
 msgid "object"
-msgstr ""
+msgstr "객체"
 
 #: ../../c-api/capsule.rst:8
-#, fuzzy
 msgid "Capsule"
 msgstr "캡슐"
 
