@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/xml.dom.pulldom.rst:2
-#, fuzzy
 msgid ":mod:`!xml.dom.pulldom` --- Support for building partial DOM trees"
-msgstr ":mod:`xml.dom.pulldom` --- 부분 DOM 트리 구축 지원"
+msgstr ":mod:`!xml.dom.pulldom` --- 부분 DOM 트리 구축 지원"
 
 #: ../../library/xml.dom.pulldom.rst:9
 msgid "**Source code:** :source:`Lib/xml/dom/pulldom.py`"
@@ -70,6 +69,13 @@ msgid ""
 "parser.setFeature(feature_external_ges, True)\n"
 "parse(filename, parser=parser)"
 msgstr ""
+"from xml.dom.pulldom import parse\n"
+"from xml.sax import make_parser\n"
+"from xml.sax.handler import feature_external_ges\n"
+"\n"
+"parser = make_parser()\n"
+"parser.setFeature(feature_external_ges, True)\n"
+"parse(filename, parser=parser)"
 
 #: ../../library/xml.dom.pulldom.rst:43
 msgid "Example::"
@@ -86,6 +92,14 @@ msgid ""
 "            doc.expandNode(node)\n"
 "            print(node.toxml())"
 msgstr ""
+"from xml.dom import pulldom\n"
+"\n"
+"doc = pulldom.parse('sales_items.xml')\n"
+"for event, node in doc:\n"
+"    if event == pulldom.START_ELEMENT and node.tagName == 'item':\n"
+"        if int(node.getAttribute('price')) > 50:\n"
+"            doc.expandNode(node)\n"
+"            print(node.toxml())"
 
 #: ../../library/xml.dom.pulldom.rst:54
 msgid "``event`` is a constant and can be one of:"
@@ -192,9 +206,8 @@ msgid "DOMEventStream Objects"
 msgstr "DOMEventStream 객체"
 
 #: ../../library/xml.dom.pulldom.rst:117
-#, fuzzy
 msgid "Support for :meth:`~object.__getitem__` method has been removed."
-msgstr ":meth:`시퀀스 프로토콜 <__getitem__>` 지원은 폐지되었습니다."
+msgstr ":meth:`~object.__getitem__` 메서드 지원은 제거했습니다."
 
 #: ../../library/xml.dom.pulldom.rst:122
 msgid ""
@@ -232,4 +245,16 @@ msgid ""
 "text <div>and more</div></p>'\n"
 "        print(node.toxml())"
 msgstr ""
+"from xml.dom import pulldom\n"
+"\n"
+"xml = '<html><title>Foo</title> <p>Some text <div>and more</div></p> "
+"</html>'\n"
+"doc = pulldom.parseString(xml)\n"
+"for event, node in doc:\n"
+"    if event == pulldom.START_ELEMENT and node.tagName == 'p':\n"
+"        # 다음 문장은 '<p/>' 만 인쇄합니다\n"
+"        print(node.toxml())\n"
+"        doc.expandNode(node)\n"
+"        # 다음 문장은 노드와 모든 자식을 인쇄합니다 '<p>Some text <div>and more</div></p>'\n"
+"        print(node.toxml())"
 
