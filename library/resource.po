@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/resource.rst:2
-#, fuzzy
 msgid ":mod:`!resource` --- Resource usage information"
-msgstr ":mod:`resource` --- 자원 사용 정보"
+msgstr ":mod:`!resource` --- 자원 사용 정보"
 
 #: ../../library/resource.rst:13
 msgid ""
@@ -306,7 +305,6 @@ msgstr ""
 "mbuf들의 양을 제한합니다."
 
 #: ../../library/resource.rst:245
-#, fuzzy
 msgid ""
 "The maximum size (in bytes) of the swap space that may be reserved or "
 "used by all of this user id's processes. This limit is enforced only if "
@@ -316,16 +314,17 @@ msgid ""
 msgstr ""
 "이 사용자 ID의 모든 프로세스에서 예약하거나 사용할 수 있는 스와프 공간의 최대 크기 (바이트). 이 제한은 "
 "vm.overcommit sysctl의 비트 1이 설정되었을 때만 적용됩니다. 이 sysctl에 대한 자세한 설명은 "
-":manpage:`tuning(7)`\\를 참조하십시오."
+"`tuning(7) "
+"<https://man.freebsd.org/cgi/man.cgi?query=tuning&sektion=7>`__\\를 "
+"참조하십시오."
 
 #: ../../library/resource.rst:258
 msgid "The maximum number of pseudo-terminals created by this user id."
 msgstr "이 사용자 ID로 만들어지는 최대 의사 터미널(pseudo-terminal) 수."
 
 #: ../../library/resource.rst:266
-#, fuzzy
 msgid "The maximum number of kqueues this user id is allowed to create."
-msgstr "이 사용자 ID로 만들어지는 최대 의사 터미널(pseudo-terminal) 수."
+msgstr "이 사용자 ID로 만들 수 있는 최대 kqueue 수."
 
 #: ../../library/resource.rst:273
 msgid "Resource Usage"
@@ -336,7 +335,6 @@ msgid "These functions are used to retrieve resource usage information:"
 msgstr "이 함수는 자원 사용량 정보를 조회하는 데 사용됩니다:"
 
 #: ../../library/resource.rst:280
-#, fuzzy
 msgid ""
 "This function returns an object that describes the resources consumed by "
 "either the current process or its children, as specified by the *who* "
@@ -344,7 +342,7 @@ msgid ""
 ":const:`!RUSAGE_\\*` constants described below."
 msgstr ""
 "이 함수는 *who* 매개 변수에 지정된 대로 현재 프로세스나 그 자식이 소비한 자원을 설명하는 객체를 반환합니다. *who* 매개"
-" 변수는 아래에 설명된 :const:`RUSAGE_\\*` 상수 중 하나를 사용하여 지정해야 합니다."
+" 변수는 아래에 설명된 :const:`!RUSAGE_\\*` 상수 중 하나를 사용하여 지정해야 합니다."
 
 #: ../../library/resource.rst:285
 msgid "A simple example::"
@@ -364,6 +362,17 @@ msgid ""
 "   _ = 1 + 1\n"
 "print(getrusage(RUSAGE_SELF))"
 msgstr ""
+"from resource import *\n"
+"import time\n"
+"\n"
+"# CPU 병목이 아닌 작업\n"
+"time.sleep(3)\n"
+"print(getrusage(RUSAGE_SELF))\n"
+"\n"
+"# CPU 병목 작업\n"
+"for i in range(10 ** 8):\n"
+"   _ = 1 + 1\n"
+"print(getrusage(RUSAGE_SELF))"
 
 #: ../../library/resource.rst:299
 msgid ""
@@ -384,7 +393,6 @@ msgid ""
 msgstr "이전 버전과의 호환성을 위해, 반환 값은 16개 요소의 튜플로 액세스 할 수도 있습니다."
 
 #: ../../library/resource.rst:307
-#, fuzzy
 msgid ""
 "The fields :attr:`ru_utime` and :attr:`ru_stime` of the return value are "
 "floating-point values representing the amount of time spent executing in "
@@ -617,12 +625,11 @@ msgid ""
 msgstr "시스템 페이지의 바이트 수를 반환합니다. (하드웨어 페이지 크기와 같을 필요는 없습니다.)"
 
 #: ../../library/resource.rst:358
-#, fuzzy
 msgid ""
 "The following :const:`!RUSAGE_\\*` symbols are passed to the "
 ":func:`getrusage` function to specify which processes information should "
 "be provided for."
-msgstr "다음 :const:`RUSAGE_\\*` 기호는 :func:`getrusage` 함수에 전달되어 제공할 프로세스 정보를 지정합니다."
+msgstr "다음 :const:`!RUSAGE_\\*` 기호는 :func:`getrusage` 함수에 전달되어 제공할 프로세스 정보를 지정합니다."
 
 #: ../../library/resource.rst:364
 msgid ""
@@ -658,21 +665,4 @@ msgid ""
 msgstr ""
 "현재 스레드가 소비한 자원을 요청하기 위해 :func:`getrusage`\\에 전달합니다. 모든 시스템에서 사용 가능한 것은 "
 "아닙니다."
-
-#~ msgid ""
-#~ ":ref:`Availability <availability>`: Linux 2.6.36 "
-#~ "or later with glibc 2.13 or later."
-#~ msgstr ":ref:`가용성 <availability>`: glibc 2.13 이상이 설치된 리눅스 2.6.36 이상."
-
-#~ msgid ":ref:`Availability <availability>`: Linux 2.6.8 or later."
-#~ msgstr ":ref:`가용성 <availability>`: 리눅스 2.6.8 이상."
-
-#~ msgid ":ref:`Availability <availability>`: Linux 2.6.12 or later."
-#~ msgstr ":ref:`가용성 <availability>`: 리눅스 2.6.12 이상."
-
-#~ msgid ":ref:`Availability <availability>`: Linux 2.6.25 or later."
-#~ msgstr ":ref:`가용성 <availability>`: 리눅스 2.6.25 이상."
-
-#~ msgid ":ref:`Availability <availability>`: FreeBSD 9 or later."
-#~ msgstr ":ref:`가용성 <availability>`: FreeBSD 9 이상."
 
