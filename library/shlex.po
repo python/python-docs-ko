@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/shlex.rst:2
-#, fuzzy
 msgid ":mod:`!shlex` --- Simple lexical analysis"
-msgstr ":mod:`shlex` --- 간단한 어휘 분석"
+msgstr ":mod:`!shlex` --- 간단한 어휘 분석"
 
 #: ../../library/shlex.rst:12
 msgid "**Source code:** :source:`Lib/shlex.py`"
@@ -55,11 +54,10 @@ msgstr ""
 "작동하지만, *posix* 인자가 거짓이면 비 POSIX 모드를 사용합니다."
 
 #: ../../library/shlex.rst:33
-#, fuzzy
 msgid ""
 "Passing ``None`` for *s* argument now raises an exception, rather than "
 "reading :data:`sys.stdin`."
-msgstr "*s*\\에 ``None``\\을 전달하면 향후 파이썬 버전에서 예외가 발생할 것입니다."
+msgstr "*s* 인자에 ``None``\\을 전달하면 이제 :data:`sys.stdin`\\을 읽는 대신 예외를 일으킵니다."
 
 #: ../../library/shlex.rst:39
 msgid ""
@@ -607,6 +605,19 @@ msgid ""
 "';',\n"
 "'(', 'def', 'ghi', ')']"
 msgstr ""
+">>> import shlex\n"
+">>> text = \"a && b; c && d || e; f >'abc'; (def \\\"ghi\\\")\"\n"
+">>> s = shlex.shlex(text, posix=True)\n"
+">>> s.whitespace_split = True\n"
+">>> list(s)\n"
+"['a', '&&', 'b;', 'c', '&&', 'd', '||', 'e;', 'f', '>abc;', '(def', "
+"'ghi)']\n"
+">>> s = shlex.shlex(text, posix=True, punctuation_chars=True)\n"
+">>> s.whitespace_split = True\n"
+">>> list(s)\n"
+"['a', '&&', 'b', ';', 'c', '&&', 'd', '||', 'e', ';', 'f', '>', 'abc', "
+"';',\n"
+"'(', 'def', 'ghi', ')']"
 
 #: ../../library/shlex.rst:427
 msgid ""
@@ -630,6 +641,10 @@ msgid ""
 ">>> list(s)\n"
 "['a', '&', '&', 'b', '||', 'c']"
 msgstr ""
+">>> import shlex\n"
+">>> s = shlex.shlex(\"a && b || c\", punctuation_chars=\"|\")\n"
+">>> list(s)\n"
+"['a', '&', '&', 'b', '||', 'c']"
 
 #: ../../library/shlex.rst:439
 msgid ""
@@ -650,6 +665,11 @@ msgid ""
 ">>> list(s)\n"
 "['~/a', '&&', 'b-c', '--color=auto', '||', 'd', '*.py?']"
 msgstr ""
+">>> import shlex\n"
+">>> s = shlex.shlex('~/a && b-c --color=auto || d *.py?',\n"
+"...                 punctuation_chars=True)\n"
+">>> list(s)\n"
+"['~/a', '&&', 'b-c', '--color=auto', '||', 'd', '*.py?']"
 
 #: ../../library/shlex.rst:450
 msgid ""
