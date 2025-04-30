@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/selectors.rst:2
-#, fuzzy
 msgid ":mod:`!selectors` --- High-level I/O multiplexing"
-msgstr ":mod:`selectors` --- 고수준 I/O 다중화"
+msgstr ":mod:`!selectors` --- 고수준 I/O 다중화"
 
 #: ../../library/selectors.rst:9
 msgid "**Source code:** :source:`Lib/selectors.py`"
@@ -40,7 +39,6 @@ msgstr ""
 "수준 프리미티브를 정확하게 제어하고 싶지 않으면, 사용자는 이 모듈을 대신 사용하는 것이 좋습니다."
 
 #: ../../library/selectors.rst:20
-#, fuzzy
 msgid ""
 "It defines a :class:`BaseSelector` abstract base class, along with "
 "several concrete implementations (:class:`KqueueSelector`, "
@@ -51,8 +49,9 @@ msgid ""
 msgstr ""
 "여러 파일 객체에 대한 I/O 준비 알림을 기다리는 데 사용할 수 있는 몇 가지 구체적인 구현 "
 "(:class:`KqueueSelector`, :class:`EpollSelector`...)과 함께 "
-":class:`BaseSelector` 추상 베이스 클래스를 정의합니다. 다음에서 \"파일 객체\"는 :meth:`fileno()`"
-" 메서드가 있는 모든 객체나 날 파일 기술자를 가리킵니다. :term:`파일 객체 <file object>`\\를 참조하십시오."
+":class:`BaseSelector` 추상 베이스 클래스를 정의합니다. 다음에서 \"파일 객체\"는 "
+":meth:`~io.IOBase.fileno` 메서드가 있는 모든 객체나 날 파일 기술자를 가리킵니다. :term:`파일 객체 "
+"<file object>`\\를 참조하십시오."
 
 #: ../../library/selectors.rst:26
 msgid ""
@@ -110,6 +109,12 @@ msgid ""
 "+-- DevpollSelector\n"
 "+-- KqueueSelector"
 msgstr ""
+"BaseSelector\n"
+"+-- SelectSelector\n"
+"+-- PollSelector\n"
+"+-- EpollSelector\n"
+"+-- DevpollSelector\n"
+"+-- KqueueSelector"
 
 #: ../../library/selectors.rst:56
 msgid ""
@@ -232,14 +237,13 @@ msgid "Change a registered file object's monitored events or attached data."
 msgstr "등록된 파일 객체의 감시되는 이벤트나 첨부된 데이터를 변경합니다."
 
 #: ../../library/selectors.rst:137
-#, fuzzy
 msgid ""
 "This is equivalent to ``BaseSelector.unregister(fileobj)`` followed by "
 "``BaseSelector.register(fileobj, events, data)``, except that it can be "
 "implemented more efficiently."
 msgstr ""
-"이것은 더 효율적으로 구현될 수 있다는 점을 제외하면, :meth:`BaseSelector.unregister(fileobj)` "
-"다음에 :meth:`BaseSelector.register(fileobj, events, data)`\\하는 것과 동등합니다."
+"이것은 더 효율적으로 구현될 수 있다는 점을 제외하면, ``BaseSelector.unregister(fileobj)`` 다음에 "
+"``BaseSelector.register(fileobj, events, data)``\\하는 것과 동등합니다."
 
 #: ../../library/selectors.rst:141
 msgid ""
@@ -425,10 +429,36 @@ msgid ""
 "        callback = key.data\n"
 "        callback(key.fileobj, mask)"
 msgstr ""
-
-#~ msgid ":const:`EVENT_READ`"
-#~ msgstr ":const:`EVENT_READ`"
-
-#~ msgid ":const:`EVENT_WRITE`"
-#~ msgstr ":const:`EVENT_WRITE`"
+"import selectors\n"
+"import socket\n"
+"\n"
+"sel = selectors.DefaultSelector()\n"
+"\n"
+"def accept(sock, mask):\n"
+"    conn, addr = sock.accept()  # 준비돼 있어야 합니다\n"
+"    print('accepted', conn, 'from', addr)\n"
+"    conn.setblocking(False)\n"
+"    sel.register(conn, selectors.EVENT_READ, read)\n"
+"\n"
+"def read(conn, mask):\n"
+"    data = conn.recv(1000)  # 준비돼 있어야 합니다\n"
+"    if data:\n"
+"        print('echoing', repr(data), 'to', conn)\n"
+"        conn.send(data)  # 블록하지 않기를 바랍니다\n"
+"    else:\n"
+"        print('closing', conn)\n"
+"        sel.unregister(conn)\n"
+"        conn.close()\n"
+"\n"
+"sock = socket.socket()\n"
+"sock.bind(('localhost', 1234))\n"
+"sock.listen(100)\n"
+"sock.setblocking(False)\n"
+"sel.register(sock, selectors.EVENT_READ, accept)\n"
+"\n"
+"while True:\n"
+"    events = sel.select()\n"
+"    for key, mask in events:\n"
+"        callback = key.data\n"
+"        callback(key.fileobj, mask)"
 
