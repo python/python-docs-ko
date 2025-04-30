@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/filecmp.rst:2
-#, fuzzy
 msgid ":mod:`!filecmp` --- File and Directory Comparisons"
-msgstr ":mod:`filecmp` --- 파일과 디렉터리 비교"
+msgstr ":mod:`!filecmp` --- 파일과 디렉터리 비교"
 
 #: ../../library/filecmp.rst:9
 msgid "**Source code:** :source:`Lib/filecmp.py`"
@@ -52,12 +51,14 @@ msgid ""
 " and modification time) of both files are identical, the files are taken "
 "to be equal."
 msgstr ""
+"*shallow*\\가 참이고 두 파일의 :func:`os.stat` 서명(파일 유형, 크기, 수정 시간)이 동일하면, 파일을 "
+"같다고 취급합니다."
 
 #: ../../library/filecmp.rst:29
 msgid ""
 "Otherwise, the files are treated as different if their sizes or contents "
 "differ."
-msgstr ""
+msgstr "그렇지 않으면, 파일의 크기나 내용이 다를 때 다르다고 취급합니다."
 
 #: ../../library/filecmp.rst:31
 msgid ""
@@ -122,7 +123,6 @@ msgid "The :class:`dircmp` class"
 msgstr ":class:`dircmp` 클래스"
 
 #: ../../library/filecmp.rst:75
-#, fuzzy
 msgid ""
 "Construct a new directory comparison object, to compare the directories "
 "*a* and *b*.  *ignore* is a list of names to ignore, and defaults to "
@@ -130,22 +130,21 @@ msgid ""
 " defaults to ``[os.curdir, os.pardir]``."
 msgstr ""
 "*a*\\와 *b* 디렉터리를 비교하기 위한, 새로운 디렉터리 비교 객체를 만듭니다. *ignore*\\는 무시할 이름 리스트며, "
-"기본값은 :attr:`filecmp.DEFAULT_IGNORES`\\입니다. *hide*\\는 숨길 이름 리스트며 기본값은 "
+"기본값은 :const:`filecmp.DEFAULT_IGNORES`\\입니다. *hide*\\는 숨길 이름 리스트며 기본값은 "
 "``[os.curdir, os.pardir]``\\입니다."
 
 #: ../../library/filecmp.rst:80
-#, fuzzy
 msgid ""
 "The :class:`dircmp` class compares files by doing *shallow* comparisons "
 "as described for :func:`filecmp.cmp` by default using the *shallow* "
 "parameter."
 msgstr ""
-":class:`dircmp` 클래스는 :func:`filecmp.cmp`\\에서 설명한 대로 *얕은(shallow)* 비교를 "
-"수행하여 파일을 비교합니다."
+":class:`dircmp` 클래스는 (*shallow* 매개 변수를 지원하지만) 기본적으로는 "
+":func:`filecmp.cmp`\\에서 설명하는 *얕은(shallow)* 비교를 통해 파일을 비교합니다."
 
 #: ../../library/filecmp.rst:86
 msgid "Added the *shallow* parameter."
-msgstr ""
+msgstr "*shallow* 매개 변수를 추가했습니다."
 
 #: ../../library/filecmp.rst:88
 msgid "The :class:`dircmp` class provides the following methods:"
@@ -177,14 +176,13 @@ msgstr ""
 " 어트리뷰트를 제공합니다."
 
 #: ../../library/filecmp.rst:108
-#, fuzzy
 msgid ""
 "Note that via :meth:`~object.__getattr__` hooks, all attributes are "
 "computed lazily, so there is no speed penalty if only those attributes "
 "which are lightweight to compute are used."
 msgstr ""
-":meth:`__getattr__` 훅을 통해, 모든 어트리뷰트가 느긋하게(lazily) 계산되므로, 계산하기가 가벼운 어트리뷰트만"
-" 사용하면 속도가 저하되지 않습니다."
+":meth:`~object.__getattr__` 훅을 통해, 모든 어트리뷰트가 느긋하게(lazily) 계산되므로, 계산하기가 "
+"가벼운 어트리뷰트만 사용하면 속도가 저하되지 않습니다."
 
 #: ../../library/filecmp.rst:115
 msgid "The directory *a*."
@@ -250,6 +248,8 @@ msgid ""
 "instances (or MyDirCmp instances if this instance is of type MyDirCmp, a "
 "subclass of :class:`dircmp`)."
 msgstr ""
+":attr:`common_dirs`\\의 이름을 :class:`dircmp` 인스턴스로 (또는 이 인스턴스가 "
+":class:`dircmp`\\의 서브 클래스인 MyDirCmp 형이면 MyDirCmp 인스턴스로) 매핑하는 딕셔너리."
 
 #: ../../library/filecmp.rst:187
 msgid ""
@@ -284,19 +284,15 @@ msgid ""
 ">>> dcmp = dircmp('dir1', 'dir2')\n"
 ">>> print_diff_files(dcmp)"
 msgstr ""
-
-#~ msgid ""
-#~ "If *shallow* is true, files with "
-#~ "identical :func:`os.stat` signatures are taken"
-#~ " to be equal.  Otherwise, the "
-#~ "contents of the files are compared."
-#~ msgstr ""
-#~ "*shallow*\\가 참이면 같은 :func:`os.stat` 서명을 "
-#~ "갖는 파일을 같다고 취급합니다. 그렇지 않으면 파일의 "
-#~ "내용을 비교합니다."
-
-#~ msgid ""
-#~ "A dictionary mapping names in "
-#~ ":attr:`common_dirs` to :class:`dircmp` objects."
-#~ msgstr ":attr:`common_dirs`\\의 이름을 :class:`dircmp` 객체로 매핑하는 딕셔너리."
+">>> from filecmp import dircmp\n"
+">>> def print_diff_files(dcmp):\n"
+"...     for name in dcmp.diff_files:\n"
+"...         print(\"diff_file %s found in %s and %s\" % (name, dcmp.left,"
+"\n"
+"...               dcmp.right))\n"
+"...     for sub_dcmp in dcmp.subdirs.values():\n"
+"...         print_diff_files(sub_dcmp)\n"
+"...\n"
+">>> dcmp = dircmp('dir1', 'dir2')\n"
+">>> print_diff_files(dcmp)"
 
