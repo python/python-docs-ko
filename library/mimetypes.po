@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/mimetypes.rst:2
-#, fuzzy
 msgid ":mod:`!mimetypes` --- Map filenames to MIME types"
-msgstr ":mod:`mimetypes` --- 파일명을 MIME 유형에 매핑"
+msgstr ":mod:`!mimetypes` --- 파일명을 MIME 유형에 매핑"
 
 #: ../../library/mimetypes.rst:9
 msgid "**Source code:** :source:`Lib/mimetypes.py`"
@@ -102,9 +101,8 @@ msgstr ""
 "*strict*\\가 ``False``\\일 때, 추가로 표준이 아니지만, 일반적으로 사용되는 MIME 유형도 인식됩니다."
 
 #: ../../library/mimetypes.rst:54
-#, fuzzy
 msgid "Added support for *url* being a :term:`path-like object`."
-msgstr ":term:`경로류 객체 <path-like object>` url에 대한 지원이 추가되었습니다."
+msgstr ":term:`경로류 객체 <path-like object>` *url*\\에 대한 지원이 추가되었습니다."
 
 #: ../../library/mimetypes.rst:57
 msgid ""
@@ -113,17 +111,16 @@ msgid ""
 msgstr ""
 
 #: ../../library/mimetypes.rst:66
-#, fuzzy
 msgid ""
 "Guess the type of a file based on its path, given by *path*. Similar to "
 "the :func:`guess_type` function, but accepts a path instead of URL. Path "
 "can be a string, a bytes object or a :term:`path-like object`."
 msgstr ""
-"*url*\\로 주어진 파일명, 경로 또는 URL에 기반한 파일의 유형을 추측합니다. URL은 문자열이나 :term:`경로류 객체 "
-"<path-like object>`\\일 수 있습니다."
+"*path*\\로 주어진 경로에 기반하여 파일의 유형을 추측합니다. :func:`guess_type` 함수와 유사하지만, URL "
+"대신 경로를 받습니다. 경로는 문자열, 바이트열 객체 혹은 :term:`경로류 객체 <path-like object>`\\일 수 "
+"있습니다."
 
 #: ../../library/mimetypes.rst:75
-#, fuzzy
 msgid ""
 "Guess the extensions for a file based on its MIME type, given by *type*. "
 "The return value is a list of strings giving all possible filename "
@@ -134,7 +131,8 @@ msgid ""
 msgstr ""
 "*type*\\으로 주어진 MIME 유형을 기반으로 파일의 확장자를 추측합니다. 반환 값은 가능한 모든 파일명 확장자를 제공하는 "
 "문자열 리스트인데, 선행 점(``'.'``)을 포함합니다. 확장자는 특정 데이터 스트림과 연관되었음이 보장되지는 않지만, "
-":func:`guess_type`\\에 의해 MIME 유형 *type*\\으로 매핑됩니다."
+":func:`guess_type`\\과 :func:`guess_file_type`\\에 의해 MIME 유형 *type*\\으로 "
+"매핑됩니다."
 
 #: ../../library/mimetypes.rst:81 ../../library/mimetypes.rst:93
 msgid ""
@@ -143,7 +141,6 @@ msgid ""
 msgstr "선택적 *strict* 인자는 :func:`guess_type` 함수에서와 같은 의미를 가집니다."
 
 #: ../../library/mimetypes.rst:86
-#, fuzzy
 msgid ""
 "Guess the extension for a file based on its MIME type, given by *type*. "
 "The return value is a string giving a filename extension, including the "
@@ -154,8 +151,8 @@ msgid ""
 msgstr ""
 "*type*\\으로 주어진 MIME 유형을 기반으로 파일의 확장자를 추측합니다. 반환 값은 파일명 확장자를 제공하는 문자열인데, "
 "선행 점(``'.'``)을 포함합니다. 확장자는 특정 데이터 스트림과 연관되었음이 보장되지는 않지만, "
-":func:`guess_type`\\에 의해 MIME 유형 *type*\\으로 매핑됩니다. *type*\\에 대해 추측할 수 있는 "
-"확장이 없으면, ``None``\\이 반환됩니다."
+":func:`guess_type`\\과 :func:`guess_file_type`\\에 의해 MIME 유형 *type*\\으로 "
+"매핑됩니다. *type*\\에 대해 추측할 수 있는 확장이 없으면, ``None``\\이 반환됩니다."
 
 #: ../../library/mimetypes.rst:95
 msgid ""
@@ -285,6 +282,16 @@ msgid ""
 ">>> mimetypes.types_map['.tgz']\n"
 "'application/x-tar-gz'"
 msgstr ""
+">>> import mimetypes\n"
+">>> mimetypes.init()\n"
+">>> mimetypes.knownfiles\n"
+"['/etc/mime.types', '/etc/httpd/mime.types', ... ]\n"
+">>> mimetypes.suffix_map['.tgz']\n"
+"'.tar.gz'\n"
+">>> mimetypes.encodings_map['.gz']\n"
+"'gzip'\n"
+">>> mimetypes.types_map['.tgz']\n"
+"'application/x-tar-gz'"
 
 #: ../../library/mimetypes.rst:193
 msgid "MimeTypes Objects"
@@ -375,11 +382,10 @@ msgid ""
 msgstr ":func:`guess_type` 함수와 유사하고, 객체의 일부로 저장된 테이블을 사용합니다."
 
 #: ../../library/mimetypes.rst:258
-#, fuzzy
 msgid ""
 "Similar to the :func:`guess_file_type` function, using the tables stored "
 "as part of the object."
-msgstr ":func:`guess_type` 함수와 유사하고, 객체의 일부로 저장된 테이블을 사용합니다."
+msgstr ":func:`guess_file_type` 함수와 유사하고, 객체의 일부로 저장된 테이블을 사용합니다."
 
 #: ../../library/mimetypes.rst:266
 msgid ""
@@ -424,25 +430,21 @@ msgstr "가용성"
 #: ../../library/mimetypes.rst:11 ../../library/mimetypes.rst:31
 #: ../../library/mimetypes.rst:64
 msgid "MIME"
-msgstr ""
+msgstr "MIME"
 
 #: ../../library/mimetypes.rst:11
 msgid "content type"
-msgstr ""
+msgstr "콘텐츠 유형"
 
 #: ../../library/mimetypes.rst:31 ../../library/mimetypes.rst:64
 msgid "headers"
-msgstr ""
+msgstr "헤더"
 
 #: ../../library/mimetypes.rst:145
 msgid "file"
-msgstr ""
+msgstr "파일"
 
 #: ../../library/mimetypes.rst:145
-#, fuzzy
 msgid "mime.types"
-msgstr "MimeTypes 객체"
-
-#~ msgid ":ref:`Availability <availability>`: Windows."
-#~ msgstr ":ref:`가용성 <availability>`: 윈도우."
+msgstr "mime.types"
 
