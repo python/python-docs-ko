@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/gc.rst:2
-#, fuzzy
 msgid ":mod:`!gc` --- Garbage Collector interface"
-msgstr ":mod:`gc` --- 가비지 수거기 인터페이스"
+msgstr ":mod:`!gc` --- 가비지 수거기 인터페이스"
 
 #: ../../library/gc.rst:12
 msgid ""
@@ -60,7 +59,6 @@ msgid "Return ``True`` if automatic collection is enabled."
 msgstr "자동 수거가 활성화되었으면 ``True``\\를 반환합니다."
 
 #: ../../library/gc.rst:43
-#, fuzzy
 msgid ""
 "With no arguments, run a full collection.  The optional argument "
 "*generation* may be an integer specifying which generation to collect "
@@ -69,8 +67,8 @@ msgid ""
 "returned."
 msgstr ""
 "인자가 없으면, 전체 수거를 실행합니다. 선택적 인자 *generation*\\은 어떤 세대를 수거할지 지정하는 정수(0에서 2)일"
-" 수 있습니다. 세대 번호가 유효하지 않으면 :exc:`ValueError`\\가 발생합니다. 발견된 도달할 수 "
-"없는(unreachable) 객체의 수가 반환됩니다."
+" 수 있습니다. 세대 번호가 유효하지 않으면 :exc:`ValueError`\\가 발생합니다. 수거된 객체와 수거할 수 없는 객체의"
+" 합을 반환합니다."
 
 #: ../../library/gc.rst:48
 msgid ""
@@ -102,14 +100,13 @@ msgid "Return the debugging flags currently set."
 msgstr "현재 설정된 디버깅 플래그를 반환합니다."
 
 #: ../../library/gc.rst:71
-#, fuzzy
 msgid ""
 "Returns a list of all objects tracked by the collector, excluding the "
 "list returned. If *generation* is not ``None``, return only the objects "
 "tracked by the collector that are in that generation."
 msgstr ""
-"반환된 리스트를 제외하고, 수거기에서 추적한 모든 객체의 리스트를 반환합니다. *generation*\\이 None이 아니면, "
-"수거기가 추적한 해당 세대에 있는 객체만 반환합니다."
+"반환된 리스트를 제외하고, 수거기에서 추적한 모든 객체의 리스트를 반환합니다. *generation*\\이 ``None``\\이 "
+"아니면, 수거기가 추적한 해당 세대에 있는 객체만 반환합니다."
 
 #: ../../library/gc.rst:75
 msgid "New *generation* parameter."
@@ -287,6 +284,18 @@ msgid ""
 ">>> gc.is_tracked({\"a\": []})\n"
 "True"
 msgstr ""
+">>> gc.is_tracked(0)\n"
+"False\n"
+">>> gc.is_tracked(\"a\")\n"
+"False\n"
+">>> gc.is_tracked([])\n"
+"True\n"
+">>> gc.is_tracked({})\n"
+"False\n"
+">>> gc.is_tracked({\"a\": 1})\n"
+"False\n"
+">>> gc.is_tracked({\"a\": []})\n"
+"True"
 
 #: ../../library/gc.rst:191
 msgid ""
@@ -311,12 +320,26 @@ msgid ""
 ">>> gc.is_finalized(x)\n"
 "True"
 msgstr ""
+">>> x = None\n"
+">>> class Lazarus:\n"
+"...     def __del__(self):\n"
+"...         global x\n"
+"...         x = self\n"
+"...\n"
+">>> lazarus = Lazarus()\n"
+">>> gc.is_finalized(lazarus)\n"
+"False\n"
+">>> del lazarus\n"
+">>> gc.is_finalized(x)\n"
+"True"
 
 #: ../../library/gc.rst:212
 msgid ""
 "Freeze all the objects tracked by the garbage collector; move them to a "
 "permanent generation and ignore them in all the future collections."
 msgstr ""
+"가비지 수거기가 추적한 모든 객체를 고정합니다; 그들을 영구 세대(permanent generation)로 이동하고 향후 모든 "
+"수거에서 그들을 무시합니다."
 
 #: ../../library/gc.rst:215
 msgid ""
@@ -374,13 +397,12 @@ msgstr ""
 ":const:`DEBUG_UNCOLLECTABLE`\\이 설정되면, 추가로 모든 수거 할 수 없는 객체가 인쇄됩니다."
 
 #: ../../library/gc.rst:261
-#, fuzzy
 msgid ""
 "Following :pep:`442`, objects with a :meth:`~object.__del__` method don't"
 " end up in :data:`gc.garbage` anymore."
 msgstr ""
-":pep:`442`\\에 따라, :meth:`__del__` 메서드를 가진 객체는 더는 :attr:`gc.garbage`\\에 "
-"들어가지 않습니다."
+":pep:`442`\\에 따라, :meth:`~object.__del__` 메서드를 가진 객체는 더는 "
+":data:`gc.garbage`\\에 들어가지 않습니다."
 
 #: ../../library/gc.rst:267
 msgid ""
