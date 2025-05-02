@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/email.utils.rst:2
-#, fuzzy
 msgid ":mod:`!email.utils`: Miscellaneous utilities"
-msgstr ":mod:`email.utils`: 기타 유틸리티"
+msgstr ":mod:`!email.utils`: 기타 유틸리티"
 
 #: ../../library/email.utils.rst:7
 msgid "**Source code:** :source:`Lib/email/utils.py`"
@@ -32,7 +31,6 @@ msgid ""
 msgstr ":mod:`email.utils` 모듈에서 제공되는 몇 가지 유용한 유틸리티가 있습니다:"
 
 #: ../../library/email.utils.rst:16
-#, fuzzy
 msgid ""
 "Return local time as an aware datetime object.  If called without "
 "arguments, return current time.  Otherwise *dt* argument should be a "
@@ -43,14 +41,12 @@ msgid ""
 msgstr ""
 "지역 시간을 어웨어 datetime 객체로 반환합니다. 인자 없이 호출되면, 현재 시각을 반환합니다. 그렇지 않으면 *dt* 인자가"
 " :class:`~datetime.datetime` 인스턴스여야 하며, 시스템 시간대 데이터베이스에 따라 지역 시간대로 변환됩니다."
-" *dt*\\가 나이브하면 (즉, ``dt.tzinfo``\\가 ``None``\\이면), 지역 시간으로 간주합니다. 이 경우, "
-"*isdst*\\에 대한 양수나 0 값은 ``localtime`` 이 지정된 시간에 서머 타임(예를 들어, 일광 절약 시간)이 "
-"유효한지 그렇지 않은지를 처음에 가정하게 합니다. *isdst*\\에 대한 음수 값은 ``localtime`` 이 서머 타임이 "
-"지정된 시간에 유효한지를 결정하게 합니다."
+" *dt*\\가 나이브하면 (즉, ``dt.tzinfo``\\가 ``None``\\이면), 지역 시간으로 간주합니다. *isdst*"
+" 매개 변수는 무시합니다."
 
 #: ../../library/email.utils.rst:25
 msgid "The *isdst* parameter."
-msgstr ""
+msgstr "*isdst* 매개 변수."
 
 #: ../../library/email.utils.rst:30
 msgid ""
@@ -143,7 +139,6 @@ msgid "Added the *charset* option."
 msgstr "*charset* 옵션이 추가되었습니다."
 
 #: ../../library/email.utils.rst:92
-#, fuzzy
 msgid ""
 "This method returns a list of 2-tuples of the form returned by "
 "``parseaddr()``. *fieldvalues* is a sequence of header field values as "
@@ -152,7 +147,7 @@ msgid ""
 msgstr ""
 "이 메서드는 ``parseaddr()``\\에 의해 반환된 형식의 2-튜플 리스트를 반환합니다. *fieldvalues*\\는 "
 ":meth:`Message.get_all <email.message.Message.get_all>`\\에 의해 반환될 수 있는 헤더"
-" 필드 값의 시퀀스입니다. 다음은 메시지의 모든 수신자를 얻는 간단한 예입니다::"
+" 필드 값의 시퀀스입니다."
 
 #: ../../library/email.utils.rst:98
 msgid "Here's a simple example that gets all the recipients of a message::"
@@ -168,6 +163,13 @@ msgid ""
 "resent_ccs = msg.get_all('resent-cc', [])\n"
 "all_recipients = getaddresses(tos + ccs + resent_tos + resent_ccs)"
 msgstr ""
+"from email.utils import getaddresses\n"
+"\n"
+"tos = msg.get_all('to', [])\n"
+"ccs = msg.get_all('cc', [])\n"
+"resent_tos = msg.get_all('resent-to', [])\n"
+"resent_ccs = msg.get_all('resent-cc', [])\n"
+"all_recipients = getaddresses(tos + ccs + resent_tos + resent_ccs)"
 
 #: ../../library/email.utils.rst:114
 msgid ""
@@ -202,7 +204,6 @@ msgstr ""
 "``0``\\입니다, UTC를 나타냅니다. 결과 튜플의 인덱스 6, 7 및 8은 사용할 수 없음에 유의하십시오."
 
 #: ../../library/email.utils.rst:135
-#, fuzzy
 msgid ""
 "The inverse of :func:`format_datetime`.  Performs the same function as "
 ":func:`parsedate`, but on success returns a :mod:`~datetime.datetime`; "
@@ -217,10 +218,11 @@ msgid ""
 ":class:`~datetime.tzinfo`."
 msgstr ""
 ":func:`format_datetime`\\의 역. :func:`parsedate`\\와 같은 기능을 수행하지만, 성공 시에 "
-":mod:`~datetime.datetime`\\을 반환합니다. 입력 date의 시간대가 ``-0000``\\이면, "
-"``datetime``\\은 나이브 ``datetime``\\이 되고, date가 RFC를 준수하면 UTC로 시간이 표시되지만, "
-"date가 온 메시지의 실제 소스 시간대는 표시되지 않습니다. 입력 date에 다른 유효한 시간대 오프셋이 있으면, "
-"``datetime``\\은 해당 :class:`~datetime.timezone` "
+":mod:`~datetime.datetime`\\을 반환합니다; 그렇지 않으면, 23보다 큰 시간이나 -24 와 24 시간 사이에 "
+"있지 않은 시간대와 같이 *date* 가 잘못된 값을 가질 때 ``ValueError``\\가 발생합니다. 입력 date의 시간대가"
+" ``-0000``\\이면, ``datetime``\\은 나이브 ``datetime``\\이 되고, date가 RFC를 준수하면 "
+"UTC로 시간이 표시되지만, date가 온 메시지의 실제 소스 시간대는 표시되지 않습니다. 입력 date에 다른 유효한 시간대 "
+"오프셋이 있으면, ``datetime``\\은 해당 :class:`~datetime.timezone` "
 ":class:`~datetime.tzinfo`\\가 있는 어웨어 ``datetime``\\이 됩니다."
 
 #: ../../library/email.utils.rst:151
@@ -238,10 +240,9 @@ msgstr ":rfc:`2822`\\에 따르는 날짜 문자열을 반환합니다, 예를 �
 
 #: ../../library/email.utils.rst:160
 msgid "Fri, 09 Nov 2001 01:08:47 -0000"
-msgstr ""
+msgstr "Fri, 09 Nov 2001 01:08:47 -0000"
 
 #: ../../library/email.utils.rst:162
-#, fuzzy
 msgid ""
 "Optional *timeval* if given is a floating-point time value as accepted by"
 " :func:`time.gmtime` and :func:`time.localtime`, otherwise the current "
