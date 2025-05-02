@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/operator.rst:2
-#, fuzzy
 msgid ":mod:`!operator` --- Standard operators as functions"
-msgstr ":mod:`operator` --- 함수로서의 표준 연산자"
+msgstr ":mod:`!operator` --- 함수로서의 표준 연산자"
 
 #: ../../library/operator.rst:9
 msgid "**Source code:** :source:`Lib/operator.py`"
@@ -76,16 +75,15 @@ msgid ""
 msgstr "논리 연산도 일반적으로 모든 객체에 적용 할 수 있으며, 진릿값 검사, 아이덴티티 검사 및 불리언 연산을 지원합니다:"
 
 #: ../../library/operator.rst:61
-#, fuzzy
 msgid ""
 "Return the outcome of :keyword:`not` *obj*.  (Note that there is no "
 ":meth:`!__not__` method for object instances; only the interpreter core "
 "defines this operation.  The result is affected by the "
 ":meth:`~object.__bool__` and :meth:`~object.__len__` methods.)"
 msgstr ""
-":keyword:`not` *obj*\\의 결과를 반환합니다. (객체 인스턴스에는 :meth:`__not__` 메서드가 없음에 "
-"유의하십시오; 인터프리터의 코어만이 이 연산을 정의합니다. 결과는 :meth:`__bool__`\\과 :meth:`__len__` "
-"메서드의 영향을 받습니다.)"
+":keyword:`not` *obj*\\의 결과를 반환합니다. (객체 인스턴스에는 :meth:`!__not__` 메서드가 없음에 "
+"유의하십시오; 인터프리터의 코어만이 이 연산을 정의합니다. 결과는 :meth:`~object.__bool__`\\과 "
+":meth:`~object.__len__` 메서드의 영향을 받습니다.)"
 
 #: ../../library/operator.rst:69
 msgid ""
@@ -224,13 +222,12 @@ msgid "Set the value of *a* at index *b* to *c*."
 msgstr "인덱스 *b*\\의 *a*\\의 값을 *c*\\로 설정합니다."
 
 #: ../../library/operator.rst:247
-#, fuzzy
 msgid ""
 "Return an estimated length for the object *obj*. First try to return its "
 "actual length, then an estimate using :meth:`object.__length_hint__`, and"
 " finally return the default value."
 msgstr ""
-"*o* 객체의 추정된 길이를 반환합니다. 먼저 실제 길이를 반환하려고 시도한 다음, "
+"*obj* 객체의 추정된 길이를 반환합니다. 먼저 실제 길이를 반환하려고 시도한 다음, "
 ":meth:`object.__length_hint__`\\를 사용하여 추정치를 반환하려고 하고, 마지막으로 default 값을 "
 "반환합니다."
 
@@ -240,7 +237,7 @@ msgstr ""
 
 #: ../../library/operator.rst:259
 msgid "Return ``obj(*args, **kwargs)``."
-msgstr ""
+msgstr "``obj(*args, **kwargs)``\\를 반환합니다."
 
 #: ../../library/operator.rst:264
 msgid ""
@@ -306,16 +303,31 @@ msgid ""
 "        obj = getattr(obj, name)\n"
 "    return obj"
 msgstr ""
+"def attrgetter(*items):\n"
+"    if any(not isinstance(item, str) for item in items):\n"
+"        raise TypeError('attribute name must be a string')\n"
+"    if len(items) == 1:\n"
+"        attr = items[0]\n"
+"        def g(obj):\n"
+"            return resolve_attr(obj, attr)\n"
+"    else:\n"
+"        def g(obj):\n"
+"            return tuple(resolve_attr(obj, attr) for attr in items)\n"
+"    return g\n"
+"\n"
+"def resolve_attr(obj, attr):\n"
+"    for name in attr.split(\".\"):\n"
+"        obj = getattr(obj, name)\n"
+"    return obj"
 
 #: ../../library/operator.rst:308
-#, fuzzy
 msgid ""
 "Return a callable object that fetches *item* from its operand using the "
 "operand's :meth:`~object.__getitem__` method.  If multiple items are "
 "specified, returns a tuple of lookup values.  For example:"
 msgstr ""
-"피연산자의 :meth:`__getitem__` 메서드를 사용하여 피연산자에서 *item*\\을 꺼내는 콜러블 객체를 반환합니다. "
-"여러 항목이 지정되면, 조회 값의 튜플을 반환합니다. 예를 들어:"
+"피연산자의 :meth:`~object.__getitem__` 메서드를 사용하여 피연산자에서 *item*\\을 꺼내는 콜러블 객체를 "
+"반환합니다. 여러 항목이 지정되면, 조회 값의 튜플을 반환합니다. 예를 들어:"
 
 #: ../../library/operator.rst:312
 msgid "After ``f = itemgetter(2)``, the call ``f(r)`` returns ``r[2]``."
@@ -341,17 +353,25 @@ msgid ""
 "            return tuple(obj[item] for item in items)\n"
 "    return g"
 msgstr ""
+"def itemgetter(*items):\n"
+"    if len(items) == 1:\n"
+"        item = items[0]\n"
+"        def g(obj):\n"
+"            return obj[item]\n"
+"    else:\n"
+"        def g(obj):\n"
+"            return tuple(obj[item] for item in items)\n"
+"    return g"
 
 #: ../../library/operator.rst:329
-#, fuzzy
 msgid ""
 "The items can be any type accepted by the operand's "
 ":meth:`~object.__getitem__` method.  Dictionaries accept any "
 ":term:`hashable` value.  Lists, tuples, and strings accept an index or a "
 "slice:"
 msgstr ""
-"항목은 피연산자의 :meth:`__getitem__` 메서드에서 허용되는 모든 형이 될 수 있습니다. 딕셔너리는 모든 해시 가능 "
-"값을 허용합니다. 리스트, 튜플 및 문자열은 인덱스나 슬라이스를 허용합니다:"
+"항목은 피연산자의 :meth:`~object.__getitem__` 메서드에서 허용되는 모든 형이 될 수 있습니다. 딕셔너리는 모든"
+" :term:`해시 가능 <hashable>` 값을 허용합니다. 리스트, 튜플 및 문자열은 인덱스나 슬라이스를 허용합니다:"
 
 #: ../../library/operator.rst:343
 msgid ""
@@ -389,6 +409,10 @@ msgid ""
 "        return getattr(obj, name)(*args, **kwargs)\n"
 "    return caller"
 msgstr ""
+"def methodcaller(name, /, *args, **kwargs):\n"
+"    def caller(obj):\n"
+"        return getattr(obj, name)(*args, **kwargs)\n"
+"    return caller"
 
 #: ../../library/operator.rst:376
 msgid "Mapping Operators to Functions"
