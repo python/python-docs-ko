@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
@@ -18,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/atexit.rst:2
-#, fuzzy
 msgid ":mod:`!atexit` --- Exit handlers"
-msgstr ":mod:`atexit` --- 종료 처리기"
+msgstr ":mod:`!atexit` --- 종료 처리기"
 
 #: ../../library/atexit.rst:12
 msgid ""
@@ -79,7 +77,6 @@ msgstr ""
 " 한다는 가정입니다."
 
 #: ../../library/atexit.rst:43
-#, fuzzy
 msgid ""
 "If an exception is raised during execution of the exit handlers, a "
 "traceback is printed (unless :exc:`SystemExit` is raised) and the "
@@ -87,7 +84,7 @@ msgid ""
 "chance to run, the last exception to be raised is re-raised."
 msgstr ""
 "종료 처리기의 실행 중에 예외가 발생하면 (:exc:`SystemExit`\\가 발생하지 않는다면) 트레이스백이 인쇄되고 예외 "
-"정보가 저장됩니다. 모든 종료 처리기가 실행될 기회를 얻은 후에 발생한 마지막 예외를 다시 일으킵니다."
+"정보가 저장됩니다. 모든 종료 처리기가 실행될 기회를 얻은 후에, 발생한 마지막 예외를 다시 일으킵니다."
 
 #: ../../library/atexit.rst:48
 msgid ""
@@ -120,6 +117,10 @@ msgid ""
 "unregistration, so function references do not need to have matching "
 "identities."
 msgstr ""
+"인터프리터 종료 시 실행할 함수 목록에서 *func* 를 제거합니다. :func:`unregister` 는 *func* 가 이전에 "
+"등록되지 않았다면 아무것도 하지 않습니다. *func*\\가 두 번 이상 등록되었으면, :mod:`atexit` 호출 스택에서 해당"
+" 함수를 모두 제거합니다. 등록을 해제하는 동안 내부적으로 동등 비교(``==``)가 사용되므로, 함수 참조는 대응하는 아이덴티티가"
+" 필요 없습니다."
 
 #: ../../library/atexit.rst:74
 msgid "Module :mod:`readline`"
@@ -166,6 +167,23 @@ msgid ""
 "\n"
 "atexit.register(savecounter)"
 msgstr ""
+"try:\n"
+"    with open('counterfile') as infile:\n"
+"        _count = int(infile.read())\n"
+"except FileNotFoundError:\n"
+"    _count = 0\n"
+"\n"
+"def incrcounter(n):\n"
+"    global _count\n"
+"    _count = _count + n\n"
+"\n"
+"def savecounter():\n"
+"    with open('counterfile', 'w') as outfile:\n"
+"        outfile.write('%d' % _count)\n"
+"\n"
+"import atexit\n"
+"\n"
+"atexit.register(savecounter)"
 
 #: ../../library/atexit.rst:107
 msgid ""
@@ -185,6 +203,14 @@ msgid ""
 "# or:\n"
 "atexit.register(goodbye, adjective='nice', name='Donny')"
 msgstr ""
+"def goodbye(name, adjective):\n"
+"    print('Goodbye %s, it was %s to meet you.' % (name, adjective))\n"
+"\n"
+"import atexit\n"
+"\n"
+"atexit.register(goodbye, 'Donny', 'nice')\n"
+"# or:\n"
+"atexit.register(goodbye, adjective='nice', name='Donny')"
 
 #: ../../library/atexit.rst:119
 msgid "Usage as a :term:`decorator`::"
@@ -198,26 +224,13 @@ msgid ""
 "def goodbye():\n"
 "    print('You are now leaving the Python sector.')"
 msgstr ""
+"import atexit\n"
+"\n"
+"@atexit.register\n"
+"def goodbye():\n"
+"    print('You are now leaving the Python sector.')"
 
 #: ../../library/atexit.rst:127
 msgid "This only works with functions that can be called without arguments."
 msgstr "이 방법은 인자 없이 호출할 수 있는 함수에서만 작동합니다."
-
-#~ msgid ""
-#~ "Remove *func* from the list of "
-#~ "functions to be run at interpreter "
-#~ "shutdown.  After calling :func:`unregister`, "
-#~ "*func* is guaranteed not to be "
-#~ "called when the interpreter shuts down,"
-#~ " even if it was registered more "
-#~ "than once.  :func:`unregister` silently does"
-#~ " nothing if *func* was not previously"
-#~ " registered."
-#~ msgstr ""
-#~ "인터프리터 종료 시 실행할 함수 목록에서 *func* "
-#~ "를 제거합니다. :func:`unregister`\\를 호출한 후에는, "
-#~ "인터프리터가 종료할 때 *func* 이 호출되지 않음이 "
-#~ "보장됩니다. 두 번 이상 등록했더라도 그렇습니다. "
-#~ ":func:`unregister` 는 *func* 가 이전에 등록되지"
-#~ " 않았다면 아무것도 하지 않습니다."
 
