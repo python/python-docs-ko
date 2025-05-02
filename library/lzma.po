@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/lzma.rst:2
-#, fuzzy
 msgid ":mod:`!lzma` --- Compression using the LZMA algorithm"
-msgstr ":mod:`lzma` --- LZMA 알고리즘을 사용한 압축"
+msgstr ":mod:`!lzma` --- LZMA 알고리즘을 사용한 압축"
 
 #: ../../library/lzma.rst:12
 msgid "**Source code:** :source:`Lib/lzma.py`"
@@ -38,7 +37,6 @@ msgstr ""
 " 지원하는 파일 인터페이스도 포함되어 있습니다."
 
 #: ../../library/lzma.rst:21
-#, fuzzy
 msgid ""
 "The interface provided by this module is very similar to that of the "
 ":mod:`bz2` module. Note that :class:`LZMAFile` and :class:`bz2.BZ2File` "
@@ -46,9 +44,9 @@ msgid ""
 "instance from multiple threads, it is necessary to protect it with a "
 "lock."
 msgstr ""
-"이 모듈에서 제공하는 인터페이스는 :mod:`bz2` 모듈의 인터페이스와 매우 유사합니다. 그러나, "
-":class:`LZMAFile`\\은 :class:`bz2.BZ2File`\\과 달리 스레드 안전하지 *않아서*, 여러 스레드에서 "
-"단일 :class:`LZMAFile` 인스턴스를 사용해야 하면 록으로 보호해야 합니다."
+"이 모듈에서 제공하는 인터페이스는 :mod:`bz2` 모듈의 인터페이스와 매우 유사합니다. :class:`LZMAFile`\\과 "
+":class:`bz2.BZ2File`\\은 스레드 안전하지 *않아서*, 여러 스레드에서 단일 :class:`LZMAFile` "
+"인스턴스를 사용해야 하면 록으로 보호해야 합니다."
 
 #: ../../library/lzma.rst:29
 msgid ""
@@ -181,21 +179,19 @@ msgstr ""
 "투명하게 디코딩됩니다."
 
 #: ../../library/lzma.rst:102
-#, fuzzy
 msgid ""
 ":class:`LZMAFile` supports all the members specified by "
 ":class:`io.BufferedIOBase`, except for :meth:`~io.BufferedIOBase.detach` "
 "and :meth:`~io.IOBase.truncate`. Iteration and the :keyword:`with` "
 "statement are supported."
 msgstr ""
-":class:`LZMAFile`\\은 :meth:`detach`\\와 :meth:`truncate`\\를 제외하고, "
-":class:`io.BufferedIOBase` 가 지정하는 모든 멤버를 지원합니다. 이터레이션과 :keyword:`with` 문이"
-" 지원됩니다."
+":class:`LZMAFile`\\은 :meth:`~io.BufferedIOBase.detach`\\와 "
+":meth:`~io.IOBase.truncate`\\를 제외하고, :class:`io.BufferedIOBase` 가 지정하는 모든"
+" 멤버를 지원합니다. 이터레이션과 :keyword:`with` 문이 지원됩니다."
 
 #: ../../library/lzma.rst:107
-#, fuzzy
 msgid "The following method and attributes are also provided:"
-msgstr "다음과 같은 메서드도 제공됩니다:"
+msgstr "다음과 같은 메서드와 어트리뷰트도 제공됩니다:"
 
 #: ../../library/lzma.rst:111
 msgid ""
@@ -484,14 +480,13 @@ msgstr ""
 "때문에), :attr:`~.needs_input` 어트리뷰트는 ``True``\\로 설정됩니다."
 
 #: ../../library/lzma.rst:275
-#, fuzzy
 msgid ""
 "Attempting to decompress data after the end of stream is reached raises "
 "an :exc:`EOFError`.  Any data found after the end of the stream is "
 "ignored and saved in the :attr:`~.unused_data` attribute."
 msgstr ""
-"스트림 끝에 도달한 후 데이터 압축 해제를 시도하면 `EOFError`\\가 발생합니다. 스트림 끝 이후에 발견되는 모든 데이터는 "
-"무시되고 :attr:`~.unused_data` 어트리뷰트에 저장됩니다."
+"스트림 끝에 도달한 후 데이터 압축 해제를 시도하면 :exc:`EOFError`\\가 발생합니다. 스트림 끝 이후에 발견되는 모든 "
+"데이터는 무시되고 :attr:`~.unused_data` 어트리뷰트에 저장됩니다."
 
 #: ../../library/lzma.rst:279
 msgid "Added the *max_length* parameter."
@@ -751,6 +746,9 @@ msgid ""
 "with lzma.open(\"file.xz\") as f:\n"
 "    file_content = f.read()"
 msgstr ""
+"import lzma\n"
+"with lzma.open(\"file.xz\") as f:\n"
+"    file_content = f.read()"
 
 #: ../../library/lzma.rst:411
 msgid "Creating a compressed file::"
@@ -763,6 +761,10 @@ msgid ""
 "with lzma.open(\"file.xz\", \"w\") as f:\n"
 "    f.write(data)"
 msgstr ""
+"import lzma\n"
+"data = b\"Insert Data Here\"\n"
+"with lzma.open(\"file.xz\", \"w\") as f:\n"
+"    f.write(data)"
 
 #: ../../library/lzma.rst:418
 msgid "Compressing data in memory::"
@@ -774,6 +776,9 @@ msgid ""
 "data_in = b\"Insert Data Here\"\n"
 "data_out = lzma.compress(data_in)"
 msgstr ""
+"import lzma\n"
+"data_in = b\"Insert Data Here\"\n"
+"data_out = lzma.compress(data_in)"
 
 #: ../../library/lzma.rst:424
 msgid "Incremental compression::"
@@ -790,6 +795,14 @@ msgid ""
 "# Concatenate all the partial results:\n"
 "result = b\"\".join([out1, out2, out3, out4])"
 msgstr ""
+"import lzma\n"
+"lzc = lzma.LZMACompressor()\n"
+"out1 = lzc.compress(b\"Some data\\n\")\n"
+"out2 = lzc.compress(b\"Another piece of data\\n\")\n"
+"out3 = lzc.compress(b\"Even more data\\n\")\n"
+"out4 = lzc.flush()\n"
+"# 모든 부분 결과를 이어 붙입니다:\n"
+"result = b\"\".join([out1, out2, out3, out4])"
 
 #: ../../library/lzma.rst:435
 msgid "Writing compressed data to an already-open file::"
@@ -804,6 +817,12 @@ msgid ""
 "        lzf.write(b\"This *will* be compressed\\n\")\n"
 "    f.write(b\"Not compressed\\n\")"
 msgstr ""
+"import lzma\n"
+"with open(\"file.xz\", \"wb\") as f:\n"
+"    f.write(b\"This data will not be compressed\\n\")\n"
+"    with lzma.open(f, \"w\") as lzf:\n"
+"        lzf.write(b\"This *will* be compressed\\n\")\n"
+"    f.write(b\"Not compressed\\n\")"
 
 #: ../../library/lzma.rst:444
 msgid "Creating a compressed file using a custom filter chain::"
@@ -820,4 +839,11 @@ msgid ""
 "with lzma.open(\"file.xz\", \"w\", filters=my_filters) as f:\n"
 "    f.write(b\"blah blah blah\")"
 msgstr ""
+"import lzma\n"
+"my_filters = [\n"
+"    {\"id\": lzma.FILTER_DELTA, \"dist\": 5},\n"
+"    {\"id\": lzma.FILTER_LZMA2, \"preset\": 7 | lzma.PRESET_EXTREME},\n"
+"]\n"
+"with lzma.open(\"file.xz\", \"w\", filters=my_filters) as f:\n"
+"    f.write(b\"blah blah blah\")"
 
