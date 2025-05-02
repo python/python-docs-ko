@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/textwrap.rst:2
-#, fuzzy
 msgid ":mod:`!textwrap` --- Text wrapping and filling"
-msgstr ":mod:`textwrap` --- 텍스트 래핑과 채우기"
+msgstr ":mod:`!textwrap` --- 텍스트 래핑과 채우기"
 
 #: ../../library/textwrap.rst:10
 msgid "**Source code:** :source:`Lib/textwrap.py`"
@@ -47,13 +46,10 @@ msgstr ""
 "없는 출력 줄의 리스트를 반환합니다."
 
 #: ../../library/textwrap.rst:31
-#, fuzzy
 msgid ""
 "Optional keyword arguments correspond to the instance attributes of "
 ":class:`TextWrapper`, documented below."
-msgstr ""
-"선택적 키워드 인자는 아래에 설명된 :class:`TextWrapper`\\의 인스턴스 어트리뷰트에 해당합니다. *width*\\의"
-" 기본값은 ``70``\\입니다."
+msgstr "선택적 키워드 인자는 아래에 설명된 :class:`TextWrapper`\\의 인스턴스 어트리뷰트에 해당합니다."
 
 #: ../../library/textwrap.rst:34
 msgid ""
@@ -71,7 +67,7 @@ msgstr ""
 
 #: ../../library/textwrap.rst:48
 msgid "\"\\n\".join(wrap(text, ...))"
-msgstr ""
+msgstr "\"\\n\".join(wrap(text, ...))"
 
 #: ../../library/textwrap.rst:50
 msgid ""
@@ -84,7 +80,6 @@ msgid "Collapse and truncate the given *text* to fit in the given *width*."
 msgstr "주어진 *width*\\에 맞게 주어진 *text*\\를 축약하거나 자릅니다."
 
 #: ../../library/textwrap.rst:60
-#, fuzzy
 msgid ""
 "First the whitespace in *text* is collapsed (all whitespace is replaced "
 "by single spaces).  If the result fits in the *width*, it is returned. "
@@ -92,8 +87,8 @@ msgid ""
 "words plus the *placeholder* fit within *width*::"
 msgstr ""
 "먼저 *text*\\에 있는 공백이 축약됩니다 (모든 공백이 단일 스페이스로 치환됩니다). 결과가 *width*\\에 맞으면 "
-"반환됩니다. 그렇지 않으면, 나머지 단어와 :attr:`placeholder`\\가 :attr:`width` 내에 맞도록 충분한 "
-"단어가 끝에서 삭제됩니다::"
+"반환됩니다. 그렇지 않으면, 나머지 단어와 *placeholder*\\가 *width* 내에 맞도록 충분한 단어가 끝에서 "
+"삭제됩니다::"
 
 #: ../../library/textwrap.rst:65
 msgid ""
@@ -104,6 +99,12 @@ msgid ""
 ">>> textwrap.shorten(\"Hello world\", width=10, placeholder=\"...\")\n"
 "'Hello...'"
 msgstr ""
+">>> textwrap.shorten(\"Hello  world!\", width=12)\n"
+"'Hello world!'\n"
+">>> textwrap.shorten(\"Hello  world!\", width=11)\n"
+"'Hello [...]'\n"
+">>> textwrap.shorten(\"Hello world\", width=10, placeholder=\"...\")\n"
+"'Hello...'"
 
 #: ../../library/textwrap.rst:72
 msgid ""
@@ -162,6 +163,14 @@ msgid ""
 "    print(repr(s))          # prints '    hello\\n      world\\n    '\n"
 "    print(repr(dedent(s)))  # prints 'hello\\n  world\\n'"
 msgstr ""
+"def test():\n"
+"    # 빈 줄을 피하려고 첫 줄을 \\ 로 끝냅니다!\n"
+"    s = '''\\\n"
+"    hello\n"
+"      world\n"
+"    '''\n"
+"    print(repr(s))          # '    hello\\n      world\\n    ' 를 인쇄합니다\n"
+"    print(repr(dedent(s)))  # 'hello\\n  world\\n' 를 인쇄합니다"
 
 #: ../../library/textwrap.rst:108
 msgid "Add *prefix* to the beginning of selected lines in *text*."
@@ -183,6 +192,9 @@ msgid ""
 ">>> indent(s, '  ')\n"
 "'  hello\\n\\n \\n  world'"
 msgstr ""
+">>> s = 'hello\\n\\n \\nworld'\n"
+">>> indent(s, '  ')\n"
+"'  hello\\n\\n \\n  world'"
 
 #: ../../library/textwrap.rst:121
 msgid ""
@@ -201,6 +213,11 @@ msgid ""
 "+\n"
 "+ world"
 msgstr ""
+">>> print(indent(s, '+ ', lambda line: True))\n"
+"+ hello\n"
+"+\n"
+"+\n"
+"+ world"
 
 #: ../../library/textwrap.rst:134
 msgid ""
@@ -236,7 +253,7 @@ msgstr ""
 
 #: ../../library/textwrap.rst:150
 msgid "wrapper = TextWrapper(initial_indent=\"* \")"
-msgstr ""
+msgstr "wrapper = TextWrapper(initial_indent=\"* \")"
 
 #: ../../library/textwrap.rst:152
 msgid "is the same as  ::"
@@ -247,9 +264,10 @@ msgid ""
 "wrapper = TextWrapper()\n"
 "wrapper.initial_indent = \"* \""
 msgstr ""
+"wrapper = TextWrapper()\n"
+"wrapper.initial_indent = \"* \""
 
 #: ../../library/textwrap.rst:157
-#, fuzzy
 msgid ""
 "You can reuse the same :class:`TextWrapper` object many times, and you "
 "can change any of its options through direct assignment to instance "
@@ -275,13 +293,12 @@ msgstr ""
 ":class:`TextWrapper`\\는 :attr:`width` 문자보다 긴 출력 줄이 없음을 보장합니다."
 
 #: ../../library/textwrap.rst:175
-#, fuzzy
 msgid ""
 "(default: ``True``) If true, then all tab characters in *text* will be "
 "expanded to spaces using the :meth:`~str.expandtabs` method of *text*."
 msgstr ""
-"(기본값: ``True``) 참이면, *text*\\의 모든 탭 문자가 *text*\\의 :meth:`expandtabs` 메서드를"
-" 사용하여 스페이스로 확장됩니다."
+"(기본값: ``True``) 참이면, *text*\\의 모든 탭 문자가 *text*\\의 :meth:`~str.expandtabs`"
+" 메서드를 사용하여 스페이스로 확장됩니다."
 
 #: ../../library/textwrap.rst:181
 msgid ""
@@ -353,7 +370,6 @@ msgstr ""
 "계산에 포함됩니다."
 
 #: ../../library/textwrap.rst:235
-#, fuzzy
 msgid ""
 "(default: ``False``) If true, :class:`TextWrapper` attempts to detect "
 "sentence endings and ensure that sentences are always separated by "
@@ -372,7 +388,7 @@ msgstr ""
 
 #: ../../library/textwrap.rst:244
 msgid "[...] Dr. Frankenstein's monster [...]"
-msgstr ""
+msgstr "[...] Dr. Frankenstein's monster [...]"
 
 #: ../../library/textwrap.rst:246
 msgid "and \"Spot.\" in ::"
@@ -380,7 +396,7 @@ msgstr "다음에 나오는 \"Spot.\" 사이의 차이점을 탐지할 수 없�
 
 #: ../../library/textwrap.rst:248
 msgid "[...] See Spot. See Spot run [...]"
-msgstr ""
+msgstr "[...] See Spot. See Spot run [...]"
 
 #: ../../library/textwrap.rst:250
 msgid ":attr:`fix_sentence_endings` is false by default."
@@ -465,9 +481,9 @@ msgstr "*text*\\에 있는 단일 문단을 래핑하고, 래핑 된 문단을 �
 
 #: ../../library/textwrap.rst:285
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: ../../library/textwrap.rst:285
 msgid "placeholder"
-msgstr ""
+msgstr "플레이스홀더"
 
