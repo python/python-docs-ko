@@ -132,7 +132,6 @@ msgid ""
 msgstr "Future는 비동기 연산의 최종 결과를 나타냅니다. 스레드 안전하지 않습니다."
 
 #: ../../library/asyncio-future.rst:86
-#, fuzzy
 msgid ""
 "Future is an :term:`awaitable` object.  Coroutines can await on Future "
 "objects until they either have a result or an exception set, or until "
@@ -140,7 +139,7 @@ msgid ""
 " is same."
 msgstr ""
 "Future는 :term:`어웨이터블 <awaitable>` 객체입니다. 코루틴은 결과나 예외가 설정되거나 취소될 때까지 "
-"Future 객체를 기다릴 수 있습니다."
+"Future 객체를 기다릴 수 있습니다. Future는 여러번 어웨이트할 수 있으며 결과는 같습니다."
 
 #: ../../library/asyncio-future.rst:91
 msgid ""
@@ -198,7 +197,6 @@ msgid ""
 msgstr "Future가 *취소(cancelled)*\\되었으면, 이 메서드는 :exc:`CancelledError` 예외를 발생시킵니다."
 
 #: ../../library/asyncio-future.rst:122
-#, fuzzy
 msgid ""
 "If the Future's result isn't yet available, this method raises an "
 ":exc:`InvalidStateError` exception."
@@ -209,7 +207,6 @@ msgid "Mark the Future as *done* and set its result."
 msgstr "Future를 *완료(done)*\\로 표시하고, 그 결과를 설정합니다."
 
 #: ../../library/asyncio-future.rst:129 ../../library/asyncio-future.rst:136
-#, fuzzy
 msgid "Raises an :exc:`InvalidStateError` error if the Future is already *done*."
 msgstr "Future가 이미 *완료(done)*\\했으면, :exc:`InvalidStateError` 에러를 발생시킵니다."
 
@@ -244,6 +241,8 @@ msgid ""
 "if not fut.cancelled():\n"
 "    fut.set_result(42)"
 msgstr ""
+"if not fut.cancelled():\n"
+"    fut.set_result(42)"
 
 #: ../../library/asyncio-future.rst:159
 msgid "Add a callback to be run when the Future is *done*."
@@ -283,6 +282,9 @@ msgid ""
 "fut.add_done_callback(\n"
 "    functools.partial(print, \"Future:\"))"
 msgstr ""
+"# \"fut\"가 완료되면 'print(\"Future:\", fut)'를 호출합니다.\n"
+"fut.add_done_callback(\n"
+"    functools.partial(print, \"Future:\"))"
 
 #: ../../library/asyncio-future.rst:178
 msgid ""
@@ -314,9 +316,8 @@ msgstr ""
 " 않으면 Future의 상태를 *취소(cancelled)*\\로 변경하고, 콜백을 예약한 다음 ``True``\\를 반환합니다."
 
 #: ../../library/asyncio-future.rst:197
-#, fuzzy
 msgid "Added the *msg* parameter."
-msgstr "``msg`` 매개 변수를 추가했습니다."
+msgstr "*msg* 매개 변수를 추가했습니다."
 
 #: ../../library/asyncio-future.rst:202
 msgid "Return the exception that was set on this Future."
@@ -379,6 +380,33 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"async def set_after(fut, delay, value):\n"
+"    # *delay* 초 동안 잠잡니다.\n"
+"    await asyncio.sleep(delay)\n"
+"\n"
+"    # *fut* 퓨처의 결과로 *value* 를 설정합니다.\n"
+"    fut.set_result(value)\n"
+"\n"
+"async def main():\n"
+"    # 현재 이벤트 루프를 얻습니다.\n"
+"    loop = asyncio.get_running_loop()\n"
+"\n"
+"    # 새로운 Future 객체를 만듭니다.\n"
+"    fut = loop.create_future()\n"
+"\n"
+"    # 병렬 태스크로 \"set_after()\" 코루틴을 실행합니다.\n"
+"    # 이벤트 루프에 대한 참조를 이미 가지고 있으므로, 여기서는 저수준 \"loop.create_task()\"\n"
+"    # API를 사용하고 있습니다.\n"
+"    # 그렇지 않다면 그저 \"asyncio.create_task()\" 를 사용할 수 있었습니다.\n"
+"    loop.create_task(\n"
+"        set_after(fut, 1, '... world'))\n"
+"\n"
+"    print('hello ...')\n"
+"\n"
+"    # *fut* 에 결과가 올 때까지 기다렸다가 (1초) 그것을 인쇄합니다.\n"
+"    print(await fut)\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../library/asyncio-future.rst:257
 msgid ""
@@ -428,11 +456,10 @@ msgstr ""
 ":func:`concurrent.futures.as_completed` 함수와 호환되지 않습니다."
 
 #: ../../library/asyncio-future.rst:278
-#, fuzzy
 msgid ""
 ":meth:`asyncio.Future.cancel` accepts an optional ``msg`` argument, but "
 ":meth:`concurrent.futures.Future.cancel` does not."
 msgstr ""
 ":meth:`asyncio.Future.cancel`\\은 선택적 ``msg`` 인자를 받아들이지만, "
-":func:`concurrent.futures.cancel`\\은 받아들이지 않습니다."
+":meth:`concurrent.futures.Future.cancel`\\은 받아들이지 않습니다."
 
