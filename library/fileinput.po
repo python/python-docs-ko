@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/fileinput.rst:2
-#, fuzzy
 msgid ":mod:`!fileinput` --- Iterate over lines from multiple input streams"
-msgstr ":mod:`fileinput` --- 여러 입력 스트림에서 줄을 이터레이트 하기"
+msgstr ":mod:`!fileinput` --- 여러 입력 스트림에서 줄을 이터레이트 하기"
 
 #: ../../library/fileinput.rst:10
 msgid "**Source code:** :source:`Lib/fileinput.py`"
@@ -44,6 +43,9 @@ msgid ""
 "for line in fileinput.input(encoding=\"utf-8\"):\n"
 "    process(line)"
 msgstr ""
+"import fileinput\n"
+"for line in fileinput.input(encoding=\"utf-8\"):\n"
+"    process(line)"
 
 #: ../../library/fileinput.rst:24
 msgid ""
@@ -97,7 +99,6 @@ msgid ""
 msgstr "줄은 줄 바꿈이 그대로 유지된 채로 반환됩니다. 즉, 파일의 마지막 줄에는 줄 바꿈이 없을 수도 있습니다."
 
 #: ../../library/fileinput.rst:49
-#, fuzzy
 msgid ""
 "You can control how files are opened by providing an opening hook via the"
 " *openhook* parameter to :func:`fileinput.input` or :func:`FileInput`. "
@@ -107,9 +108,10 @@ msgid ""
 "additional keyword arguments. This module provides a "
 ":func:`hook_compressed` to support compressed files."
 msgstr ""
-":func:`fileinput.input`\\이나 :class:`FileInput()`\\의 *openhook* 매개 변수를 통해 "
-"열기 훅을 제공하여 파일을 여는 방법을 제어할 수 있습니다. 훅은 두 개의 인자 *filename*\\과 *mode*\\를 취하고,"
-" 그에 따라 열린 파일류 객체를 반환하는 함수여야 합니다. 이 모듈에는 두 가지 유용한 훅이 이미 제공됩니다."
+":func:`fileinput.input`\\이나 :func:`FileInput`\\의 *openhook* 매개 변수를 통해 열기 "
+"훅을 제공하여 파일을 여는 방법을 제어할 수 있습니다. 훅은 두 개의 인자 *filename*\\과 *mode*\\를 취하고, 그에"
+" 따라 열린 파일류 객체를 반환하는 함수여야 합니다. *encoding* 및/또는 *errors*\\가 지정되면, 추가 키워드 "
+"인자로 훅에 전달됩니다. 이 모듈은 압축 파일을 지원하기 위해 :func:`hook_compressed`\\를 제공합니다."
 
 #: ../../library/fileinput.rst:56
 msgid "The following function is the primary interface of this module:"
@@ -141,6 +143,10 @@ msgid ""
 "    for line in f:\n"
 "        process(line)"
 msgstr ""
+"with fileinput.input(files=('spam.txt', 'eggs.txt'), encoding=\"utf-8\") "
+"as f:\n"
+"    for line in f:\n"
+"        process(line)"
 
 #: ../../library/fileinput.rst:74 ../../library/fileinput.rst:170
 msgid "Can be used as a context manager."
@@ -153,7 +159,7 @@ msgstr "키워드 매개 변수 *mode*\\와 *openhook*\\은 이제 키워드 전
 #: ../../library/fileinput.rst:80 ../../library/fileinput.rst:176
 #: ../../library/fileinput.rst:210
 msgid "The keyword-only parameter *encoding* and *errors* are added."
-msgstr ""
+msgstr "키워드 전용 매개 변수 *encoding* 와 *errors*\\를 추가했습니다."
 
 #: ../../library/fileinput.rst:84
 msgid ""
@@ -234,7 +240,6 @@ msgid ""
 msgstr "모듈이 제공하는 시퀀스 동작을 구현하는 클래스는 서브 클래싱에도 사용할 수 있습니다:"
 
 #: ../../library/fileinput.rst:146
-#, fuzzy
 msgid ""
 "Class :class:`FileInput` is the implementation; its methods "
 ":meth:`filename`, :meth:`fileno`, :meth:`lineno`, :meth:`filelineno`, "
@@ -247,19 +252,18 @@ msgid ""
 msgstr ""
 ":class:`FileInput` 클래스는 구현입니다; 그 메서드 :meth:`filename`, :meth:`fileno`, "
 ":meth:`lineno`, :meth:`filelineno`, :meth:`isfirstline`, :meth:`isstdin`,"
-" :meth:`nextfile` 및 :meth:`close`\\는 모듈에 있는 같은 이름의 함수에 해당합니다. 또한 다음 입력 줄을"
-" 반환하는 :meth:`~io.TextIOBase.readline` 메서드와 시퀀스 동작을 구현하는 "
-":meth:`__getitem__` 메서드가 있습니다. 시퀀스는 엄격하게 순차적으로 액세스해야 합니다; 무작위 액세스와 "
-":meth:`~io.TextIOBase.readline`\\은 혼합될 수 없습니다."
+" :meth:`nextfile` 및 :meth:`close`\\는 모듈에 있는 같은 이름의 함수에 해당합니다. 또한 "
+":term:`이터러블 <iterable>`\\이고, 다음 입력 줄을 반환하는 "
+":meth:`~io.TextIOBase.readline` 메서드가 있습니다. 시퀀스는 엄격하게 순차적으로 액세스해야 합니다; 무작위"
+" 액세스와 :meth:`~io.TextIOBase.readline`\\은 혼합될 수 없습니다."
 
 #: ../../library/fileinput.rst:154
-#, fuzzy
 msgid ""
 "With *mode* you can specify which file mode will be passed to "
 ":func:`open`. It must be one of ``'r'`` and ``'rb'``."
 msgstr ""
-"*mode*\\로 :func:`open`\\에 전달할 파일 모드를 지정할 수 있습니다. ``'r'``, ``'rU'``, "
-"``'U'`` 및 ``'rb'`` 중 하나여야 합니다."
+"*mode*\\로 :func:`open`\\에 전달할 파일 모드를 지정할 수 있습니다. ``'r'`` 과 ``'rb'`` 중 "
+"하나여야 합니다."
 
 #: ../../library/fileinput.rst:157
 msgid ""
@@ -290,6 +294,8 @@ msgid ""
 "with FileInput(files=('spam.txt', 'eggs.txt')) as input:\n"
 "    process(input)"
 msgstr ""
+"with FileInput(files=('spam.txt', 'eggs.txt')) as input:\n"
+"    process(input)"
 
 #: ../../library/fileinput.rst:173
 msgid "The keyword parameter *mode* and *openhook* are now keyword-only."
@@ -299,7 +305,7 @@ msgstr "키워드 매개 변수 *mode*\\와 *openhook*\\은 이제 키워드 전
 msgid ""
 "The ``'rU'`` and ``'U'`` modes and the :meth:`!__getitem__` method have "
 "been removed."
-msgstr ""
+msgstr "``'rU'`` 및 ``'U'`` 모드와 :meth:`!__getitem__` 메서드는 제거했습니다."
 
 #: ../../library/fileinput.rst:184
 msgid ""
@@ -345,12 +351,13 @@ msgid ""
 msgstr ""
 
 #: ../../library/fileinput.rst:208
-#, fuzzy
 msgid ""
 "Usage example:  ``fi = "
 "fileinput.FileInput(openhook=fileinput.hook_compressed, "
 "encoding=\"utf-8\")``"
-msgstr "사용 예: ``fi = fileinput.FileInput(openhook=fileinput.hook_compressed)``"
+msgstr ""
+"사용 예: ``fi = fileinput.FileInput(openhook=fileinput.hook_compressed, "
+"encoding=\"utf-8\")``"
 
 #: ../../library/fileinput.rst:216
 msgid ""
@@ -379,10 +386,4 @@ msgid ""
 "This function is deprecated since :func:`fileinput.input` and "
 ":class:`FileInput` now have *encoding* and *errors* parameters."
 msgstr ""
-
-#~ msgid "The ``'rU'`` and ``'U'`` modes."
-#~ msgstr "``'rU'``\\와 ``'U'`` 모드."
-
-#~ msgid "Support for :meth:`__getitem__` method is deprecated."
-#~ msgstr ":meth:`__getitem__` 메서드에 대한 지원은 폐지되었습니다."
 
