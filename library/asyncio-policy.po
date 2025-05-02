@@ -38,14 +38,13 @@ msgid ""
 msgstr ""
 
 #: ../../library/asyncio-policy.rst:24
-#, fuzzy
 msgid ""
 "Custom event loop policies can control the behavior of "
 ":func:`get_event_loop`, :func:`set_event_loop`, and "
 ":func:`new_event_loop`."
 msgstr ""
-"사용자 정의 이벤트 루프 정책을 사용하여, :func:`get_event_loop`, :func:`set_event_loop` 및 "
-":func:`new_event_loop` 함수의 동작을 사용자 정의할 수 있습니다."
+"사용자 정의 이벤트 루프 정책은 :func:`get_event_loop`, :func:`set_event_loop` 및 "
+":func:`new_event_loop`\\의 동작을 제어할 수 있습니다."
 
 #: ../../library/asyncio-policy.rst:27
 msgid ""
@@ -316,14 +315,13 @@ msgid ""
 msgstr "메인 외의 OS 스레드에서 asyncio 이벤트 루프가 실행되는 경우에도 신뢰성 있게 작동합니다."
 
 #: ../../library/asyncio-policy.rst:240
-#, fuzzy
 msgid ""
 "There is no noticeable overhead when handling a big number of children "
 "(*O*\\ (1) each time a child terminates), but starting a thread per "
 "process requires extra memory."
 msgstr ""
-"많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없습니다만 (자식이 종료될 때마다 *O(1)*), 프로세스마다 스레드를 시작하는 "
-"데 추가 메모리가 필요합니다."
+"많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없습니다만 (자식이 종료될 때마다 *O*\\ (1)), 프로세스마다 스레드를 "
+"시작하는 데 추가 메모리가 필요합니다."
 
 #: ../../library/asyncio-policy.rst:243
 msgid "This watcher is used by default."
@@ -353,14 +351,13 @@ msgid ""
 msgstr "감시자가 일단 설치되면 다른 스레드에서 서브 프로세스를 실행하는 데 제한이 없습니다."
 
 #: ../../library/asyncio-policy.rst:259
-#, fuzzy
 msgid ""
 "The solution is safe but it has a significant overhead when handling a "
 "big number of processes (*O*\\ (*n*) each time a :py:data:`SIGCHLD` is "
 "received)."
 msgstr ""
 "이 해법은 안전하지만 많은 수의 프로세스를 처리할 때 상당한 오버헤드가 있습니다 (:py:data:`SIGCHLD`\\가 수신될 "
-"때마다 *O(n)*)."
+"때마다 *O*\\ (*n*))."
 
 #: ../../library/asyncio-policy.rst:269
 msgid ""
@@ -373,14 +370,13 @@ msgstr ""
 "발생합니다)."
 
 #: ../../library/asyncio-policy.rst:276
-#, fuzzy
 msgid ""
 "This solution is as safe as :class:`MultiLoopChildWatcher` and has the "
 "same *O*\\ (*n*) complexity but requires a running event loop in the main"
 " thread to work."
 msgstr ""
-"이 해법은 :class:`MultiLoopChildWatcher`\\만큼 안전하고 같은 *O(N)* 복잡성을 갖고 있지만, "
-"작동하려면 메인 스레드에서 실행 중인 이벤트 루프가 필요합니다."
+"이 해법은 :class:`MultiLoopChildWatcher`\\만큼 안전하고 같은 *O*\\ (*n*) 복잡성을 갖고 있지만,"
+" 작동하려면 메인 스레드에서 실행 중인 이벤트 루프가 필요합니다."
 
 #: ../../library/asyncio-policy.rst:283
 msgid ""
@@ -392,11 +388,10 @@ msgstr ""
 " 망가뜨리고 그들의 종료를 기다릴 수 있습니다."
 
 #: ../../library/asyncio-policy.rst:287
-#, fuzzy
 msgid ""
 "There is no noticeable overhead when handling a big number of children "
 "(*O*\\ (1) each time a child terminates)."
-msgstr "많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없습니다 (자식이 종료될 때마다 *O(1)*)."
+msgstr "많은 수의 자식을 처리할 때 눈에 띄는 오버헤드가 없습니다 (자식이 종료될 때마다 *O*\\ (1))."
 
 #: ../../library/asyncio-policy.rst:290
 msgid ""
@@ -447,6 +442,18 @@ msgid ""
 "\n"
 "asyncio.set_event_loop_policy(MyEventLoopPolicy())"
 msgstr ""
+"class MyEventLoopPolicy(asyncio.DefaultEventLoopPolicy):\n"
+"\n"
+"    def get_event_loop(self):\n"
+"        \"\"\"이벤트 루프를 가져옵니다.\n"
+"\n"
+"        None이거나 EventLoop의 인스턴스일 수 있습니다.\n"
+"        \"\"\"\n"
+"        loop = super().get_event_loop()\n"
+"        # loop로 무언가를 합니다 ...\n"
+"        return loop\n"
+"\n"
+"asyncio.set_event_loop_policy(MyEventLoopPolicy())"
 
 #~ msgid ""
 #~ "An event loop policy is a global"
