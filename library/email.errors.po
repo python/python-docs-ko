@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/email.errors.rst:2
-#, fuzzy
 msgid ":mod:`!email.errors`: Exception and Defect classes"
-msgstr ":mod:`email.errors`: 예외와 결함 클래스"
+msgstr ":mod:`!email.errors`: 예외와 결함 클래스"
 
 #: ../../library/email.errors.rst:7
 msgid "**Source code:** :source:`Lib/email/errors.py`"
@@ -75,7 +74,6 @@ msgid "Deprecated and no longer used."
 msgstr "폐지되었고 더는 사용되지 않습니다."
 
 #: ../../library/email.errors.rst:48
-#, fuzzy
 msgid ""
 "Raised if the :meth:`~email.message.Message.attach` method is called on "
 "an instance of a class derived from "
@@ -84,10 +82,11 @@ msgid ""
 "multiply inherits from :exc:`MessageError` and the built-in "
 ":exc:`TypeError`."
 msgstr ""
-":meth:`Message.add_payload`\\는 폐지되었으므로, 실제로 이 예외는 거의 발생하지 않습니다. 그러나 "
-":class:`~email.mime.nonmultipart.MIMENonMultipart`\\에서 파생된 클래스(예를 들어 "
+":class:`~email.mime.nonmultipart.MIMENonMultipart`\\에서 파생된 클래스(가령 "
 ":class:`~email.mime.image.MIMEImage`)의 인스턴스에서 "
-":meth:`~email.message.Message.attach` 메서드를 호출하면 예외가 발생할 수도 있습니다."
+":meth:`~email.message.Message.attach` 메서드를 호출할 때 발생합니다. "
+":exc:`MultipartConversionError`\\는 :exc:`MessageError`\\와 내장 "
+":exc:`TypeError`\\에서 다중 상속됩니다."
 
 #: ../../library/email.errors.rst:58
 msgid ""
@@ -99,16 +98,15 @@ msgstr ""
 msgid ""
 "This is the base class for all defects found when parsing email messages."
 " It is derived from :exc:`ValueError`."
-msgstr ""
+msgstr "이메일 메시지를 구문 분석할 때 발견되는 모든 결함에 대한 베이스 클래스입니다. :exc:`ValueError`\\에서 파생됩니다."
 
 #: ../../library/email.errors.rst:69
-#, fuzzy
 msgid ""
 "This is the base class for all defects found when parsing email headers. "
 "It is derived from :exc:`MessageDefect`."
 msgstr ""
-"이것은 :mod:`email` 패키지가 발생시킬 수 있는 모든 예외의 베이스 클래스입니다. 표준 :exc:`Exception` "
-"클래스에서 파생되며 추가 메서드를 정의하지 않습니다."
+"이메일 헤더를 구문 분석할 때 발견되는 모든 결함에 대한 베이스 클래스입니다. :exc:`MessageDefect`\\에서 "
+"파생됩니다."
 
 #: ../../library/email.errors.rst:72
 msgid ""
@@ -132,129 +130,90 @@ msgid ""
 msgstr "모든 결함 클래스는 :class:`email.errors.MessageDefect`\\의 서브 클래스입니다."
 
 #: ../../library/email.errors.rst:82
-#, fuzzy
 msgid ""
 "A message claimed to be a multipart, but had no :mimetype:`boundary` "
 "parameter."
-msgstr ""
-":class:`NoBoundaryInMultipartDefect` -- 메시지가 멀티 파트라고 주장했지만, "
-":mimetype:`boundary` 파라미터가 없습니다."
+msgstr "메시지가 멀티 파트라고 주장했지만, :mimetype:`boundary` 파라미터가 없습니다."
 
 #: ../../library/email.errors.rst:87
-#, fuzzy
 msgid ""
 "The start boundary claimed in the :mailheader:`Content-Type` header was "
 "never found."
-msgstr ""
-":class:`StartBoundaryNotFoundDefect` -- :mailheader:`Content-Type` 헤더에서 "
-"주장하는 시작 경계를 찾지 못했습니다."
+msgstr ":mailheader:`Content-Type` 헤더에서 주장하는 시작 경계를 찾지 못했습니다."
 
 #: ../../library/email.errors.rst:92
-#, fuzzy
 msgid ""
 "A start boundary was found, but no corresponding close boundary was ever "
 "found."
-msgstr ""
-":class:`CloseBoundaryNotFoundDefect` -- 시작 경계가 발견되었지만, 해당하는 종료 경계가 발견되지 "
-"않았습니다."
+msgstr "시작 경계가 발견되었지만, 해당하는 종료 경계가 발견되지 않았습니다."
 
 #: ../../library/email.errors.rst:99
-#, fuzzy
 msgid "The message had a continuation line as its first header line."
-msgstr ""
-":class:`FirstHeaderLineIsContinuationDefect` -- 메시지의 첫 번째 헤더 줄에 연장 "
-"줄(continuation line)이 있습니다."
+msgstr "메시지의 첫 번째 헤더 줄에 연장 줄(continuation line)이 있습니다."
 
 #: ../../library/email.errors.rst:103
-#, fuzzy
 msgid "A \"Unix From\" header was found in the middle of a header block."
-msgstr ":class:`MisplacedEnvelopeHeaderDefect` - 헤더 블록 중간에 \"Unix From\" 헤더가 있습니다."
+msgstr "헤더 블록 중간에 \"Unix From\" 헤더가 있습니다."
 
 #: ../../library/email.errors.rst:107
-#, fuzzy
 msgid ""
 "A line was found while parsing headers that had no leading white space "
 "but contained no ':'.  Parsing continues assuming that the line "
 "represents the first line of the body."
 msgstr ""
-":class:`MissingHeaderBodySeparatorDefect` - 헤더를 구문 분석하는 중에 선행 공백이 없지만 ':'"
-" 가 포함되지 않은 줄이 발견되었습니다. 그 줄이 본문의 첫 번째 줄을 나타내는 것으로 가정하여 구문 분석이 계속됩니다."
+"헤더를 구문 분석하는 중에 선행 공백이 없지만 ':' 가 포함되지 않은 줄이 발견되었습니다. 그 줄이 본문의 첫 번째 줄을 나타내는"
+" 것으로 가정하여 구문 분석이 계속됩니다."
 
 #: ../../library/email.errors.rst:115
-#, fuzzy
 msgid "A header was found that was missing a colon, or was otherwise malformed."
-msgstr ":class:`MalformedHeaderDefect` -- 콜론이 없거나 다른 식으로 잘못된 헤더가 발견되었습니다."
+msgstr "콜론이 없거나 다른 식으로 잘못된 헤더가 발견되었습니다."
 
 #: ../../library/email.errors.rst:117
 msgid "This defect has not been used for several Python versions."
 msgstr "이 결함은 여러 파이썬 버전에서 사용되지 않았습니다."
 
 #: ../../library/email.errors.rst:122
-#, fuzzy
 msgid ""
 "A message claimed to be a :mimetype:`multipart`, but no subparts were "
 "found. Note that when a message has this defect, its "
 ":meth:`~email.message.Message.is_multipart` method may return ``False`` "
 "even though its content type claims to be :mimetype:`multipart`."
 msgstr ""
-":class:`MultipartInvariantViolationDefect` -- 메시지가 "
-":mimetype:`multipart`\\라고 주장했지만, 서브 파트가 없습니다. 메시지에 이 결함이 있으면, 콘텐츠 유형이 "
-":mimetype:`multipart`\\라고 주장하더라도 "
+"메시지가 :mimetype:`multipart`\\라고 주장했지만, 서브 파트가 없습니다. 메시지에 이 결함이 있으면, 콘텐츠 "
+"유형이 :mimetype:`multipart`\\라고 주장하더라도 "
 ":meth:`~email.message.Message.is_multipart` 메서드는 ``False``\\를 반환할 수 있음에 "
 "유의하십시오."
 
 #: ../../library/email.errors.rst:129
-#, fuzzy
 msgid ""
 "When decoding a block of base64 encoded bytes, the padding was not "
 "correct. Enough padding is added to perform the decode, but the resulting"
 " decoded bytes may be invalid."
 msgstr ""
-":class:`InvalidBase64PaddingDefect` -- base64로 인코딩된 바이트열 블록을 디코딩할 때, 패딩이 "
-"올바르지 않습니다. 디코딩을 수행하기 위해 충분한 패딩이 추가되지만, 바이트열을 디코딩한 결과는 유효하지 않을 수 있습니다."
+"base64로 인코딩된 바이트열 블록을 디코딩할 때, 패딩이 올바르지 않습니다. 디코딩을 수행하기 위해 충분한 패딩이 추가되지만, "
+"바이트열을 디코딩한 결과는 유효하지 않을 수 있습니다."
 
 #: ../../library/email.errors.rst:135
-#, fuzzy
 msgid ""
 "When decoding a block of base64 encoded bytes, characters outside the "
 "base64 alphabet were encountered.  The characters are ignored, but the "
 "resulting decoded bytes may be invalid."
 msgstr ""
-":class:`InvalidBase64CharactersDefect` -- base64로 인코딩된 바이트열 블록을 디코딩할 때, "
-"base64 알파벳 이외의 문자가 발견되었습니다. 문자는 무시되지만, 바이트열을 디코딩한 결과는 유효하지 않을 수 있습니다."
+"base64로 인코딩된 바이트열 블록을 디코딩할 때, base64 알파벳 이외의 문자가 발견되었습니다. 문자는 무시되지만, "
+"바이트열을 디코딩한 결과는 유효하지 않을 수 있습니다."
 
 #: ../../library/email.errors.rst:141
-#, fuzzy
 msgid ""
 "When decoding a block of base64 encoded bytes, the number of non-padding "
 "base64 characters was invalid (1 more than a multiple of 4).  The encoded"
 " block was kept as-is."
 msgstr ""
-":class:`InvalidBase64LengthDefect` -- base64로 인코딩된 바이트열 블록을 디코딩할 때, 비 패딩 "
-"base64 문자 수가 유효하지 않습니다 (4의 배수보다 1이 큽니다). 인코딩된 블록은 그대로 유지됩니다."
+"base64로 인코딩된 바이트열 블록을 디코딩할 때, 비 패딩 base64 문자 수가 유효하지 않습니다 (4의 배수보다 1이 "
+"큽니다). 인코딩된 블록은 그대로 유지됩니다."
 
 #: ../../library/email.errors.rst:147
 msgid ""
 "When decoding an invalid or unparsable date field.  The original value is"
 " kept as-is."
 msgstr ""
-
-#~ msgid ""
-#~ "Raised when a payload is added to"
-#~ " a :class:`~email.message.Message` object using"
-#~ " :meth:`add_payload`, but the payload is"
-#~ " already a scalar and the message's"
-#~ " :mailheader:`Content-Type` main type is"
-#~ " not either :mimetype:`multipart` or "
-#~ "missing.  :exc:`MultipartConversionError` multiply "
-#~ "inherits from :exc:`MessageError` and the "
-#~ "built-in :exc:`TypeError`."
-#~ msgstr ""
-#~ ":meth:`add_payload`\\를 사용하여 페이 로드가 "
-#~ ":class:`~email.message.Message` 객체에 추가되었지만, 페이 "
-#~ "로드가 이미 스칼라(scalar)이고 메시지의 :mailheader"
-#~ ":`Content-Type` 메인 유형이 :mimetype:`multipart`\\도"
-#~ " 아니고 누락되지도 않았으면 발생합니다. "
-#~ ":exc:`MultipartConversionError`\\는 :exc:`MessageError`\\와 "
-#~ "내장 :exc:`TypeError`\\에서 다중 상속됩니다."
 
