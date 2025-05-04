@@ -17,16 +17,14 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/stat.rst:2
-#, fuzzy
 msgid ":mod:`!stat` --- Interpreting :func:`~os.stat` results"
-msgstr ":mod:`stat` --- :func:`~os.stat` 결과 해석하기"
+msgstr ":mod:`!stat` --- :func:`~os.stat` 결과 해석하기"
 
 #: ../../library/stat.rst:10
 msgid "**Source code:** :source:`Lib/stat.py`"
 msgstr "**소스 코드:** :source:`Lib/stat.py`"
 
 #: ../../library/stat.rst:14
-#, fuzzy
 msgid ""
 "The :mod:`stat` module defines constants and functions for interpreting "
 "the results of :func:`os.stat`, :func:`os.fstat` and :func:`os.lstat` (if"
@@ -35,8 +33,8 @@ msgid ""
 "for your system."
 msgstr ""
 ":mod:`stat` 모듈은 :func:`os.stat`, :func:`os.fstat` 및 :func:`os.lstat`\\의 "
-"(이들이 존재한다면) 결과를 해석하기 위한 상수와 함수를 정의합니다. :c:func:`stat`, :c:func:`fstat` 및 "
-":c:func:`lstat` 호출에 대한 자세한 내용은 여러분의 시스템 설명서를 참조하십시오."
+"(이들이 존재한다면) 결과를 해석하기 위한 상수와 함수를 정의합니다. :c:func:`stat`, :c:func:`!fstat` 및"
+" :c:func:`!lstat` 호출에 대한 자세한 내용은 여러분의 시스템 설명서를 참조하십시오."
 
 #: ../../library/stat.rst:19
 msgid "The stat module is backed by a C implementation."
@@ -105,14 +103,12 @@ msgstr ""
 " 끈끈한(sticky) 비트, set-group-id 및 set-user-id 비트 (지원하는 시스템에서)."
 
 #: ../../library/stat.rst:91
-#, fuzzy
 msgid ""
 "Return the portion of the file's mode that describes the file type (used "
 "by the :func:`!S_IS\\*` functions above)."
-msgstr "파일 유형을 기술하는 파일 모드 부분을 반환합니다 (위의 :func:`S_IS\\*` 함수에서 사용됩니다)."
+msgstr "파일 유형을 기술하는 파일 모드 부분을 반환합니다 (위의 :func:`!S_IS\\*` 함수에서 사용됩니다)."
 
 #: ../../library/stat.rst:94
-#, fuzzy
 msgid ""
 "Normally, you would use the :func:`!os.path.is\\*` functions for testing "
 "the type of a file; the functions here are useful when you are doing "
@@ -121,9 +117,9 @@ msgid ""
 "checking for information about a file that isn't handled by "
 ":mod:`os.path`, like the tests for block and character devices."
 msgstr ""
-"일반적으로, 파일 유형을 검사하는 데 :func:`os.path.is\\*` 함수를 사용합니다; 이 함수들은 같은 파일에 대해 여러"
-" 개의 검사를 수행하고, 검사마다 :c:func:`stat` 시스템 호출 하는 오버헤드를 피하려고 할 때 유용합니다. 또한, 블록과"
-" 문자 장치 검사와 같이, :mod:`os.path`\\에서 처리되지 않는 파일에 대한 정보를 확인할 때 유용합니다."
+"일반적으로, 파일 유형을 검사하는 데 :func:`!os.path.is\\*` 함수를 사용합니다; 이 함수들은 같은 파일에 대해 "
+"여러 개의 검사를 수행하고, 검사마다 :c:func:`stat` 시스템 호출 하는 오버헤드를 피하려고 할 때 유용합니다. 또한, "
+"블록과 문자 장치 검사와 같이, :mod:`os.path`\\에서 처리되지 않는 파일에 대한 정보를 확인할 때 유용합니다."
 
 #: ../../library/stat.rst:101
 msgid "Example::"
@@ -158,6 +154,31 @@ msgid ""
 "if __name__ == '__main__':\n"
 "    walktree(sys.argv[1], visitfile)"
 msgstr ""
+"import os, sys\n"
+"from stat import *\n"
+"\n"
+"def walktree(top, callback):\n"
+"    '''top에 뿌리를 둔 디렉터리 트리를 재귀적으로 탐색해 내려가면서,\n"
+"       각 일반 파일에 대해 콜백 함수를 호출합니다'''\n"
+"\n"
+"    for f in os.listdir(top):\n"
+"        pathname = os.path.join(top, f)\n"
+"        mode = os.lstat(pathname).st_mode\n"
+"        if S_ISDIR(mode):\n"
+"            # 디렉터리입니다, 재귀적으로 내려갑니다\n"
+"            walktree(pathname, callback)\n"
+"        elif S_ISREG(mode):\n"
+"            # 파일입니다, 콜백 함수를 호출합니다.\n"
+"            callback(pathname)\n"
+"        else:\n"
+"            # 알 수 없는 파일 유형입니다, 메시지를 인쇄합니다\n"
+"            print('Skipping %s' % pathname)\n"
+"\n"
+"def visitfile(file):\n"
+"    print('visiting', file)\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    walktree(sys.argv[1], visitfile)"
 
 #: ../../library/stat.rst:129
 msgid ""
@@ -440,9 +461,8 @@ msgid "The file may not be renamed or deleted."
 msgstr "파일의 이름을 변경하거나 삭제할 수 없습니다."
 
 #: ../../library/stat.rst:381
-#, fuzzy
 msgid "The file is stored compressed (macOS 10.6+)."
-msgstr "파일은 압축되어 저장됩니다 (맥 OS X 10.6+)."
+msgstr "파일은 압축되어 저장됩니다 (맥 OS 10.6+)."
 
 #: ../../library/stat.rst:385
 msgid "Used for handling document IDs (macOS)"
@@ -453,9 +473,8 @@ msgid "The file needs an entitlement for reading or writing (macOS 10.13+)"
 msgstr ""
 
 #: ../../library/stat.rst:397
-#, fuzzy
 msgid "The file should not be displayed in a GUI (macOS 10.5+)."
-msgstr "파일을 GUI에 표시하면 안 됩니다 (맥 OS X 10.5+)."
+msgstr "파일을 GUI에 표시하면 안 됩니다 (맥 OS 10.5+)."
 
 #: ../../library/stat.rst:401
 msgid "All super-user changeable flags"
@@ -486,17 +505,14 @@ msgid "The file is a snapshot file."
 msgstr "파일은 스냅숏(snapshot) 파일입니다."
 
 #: ../../library/stat.rst:449
-#, fuzzy
 msgid "The file is a firmlink (macOS 10.15+)"
-msgstr "파일은 압축되어 저장됩니다 (맥 OS X 10.6+)."
+msgstr ""
 
 #: ../../library/stat.rst:455
-#, fuzzy
 msgid "The file is a dataless object (macOS 10.15+)"
-msgstr "파일은 압축되어 저장됩니다 (맥 OS X 10.6+)."
+msgstr ""
 
 #: ../../library/stat.rst:459
-#, fuzzy
 msgid ""
 "See the \\*BSD or macOS systems man page :manpage:`chflags(2)` for more "
 "information."
