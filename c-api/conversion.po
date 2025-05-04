@@ -54,7 +54,6 @@ msgstr ""
 "함수가 제공하지 않는 수준의 일관된 동작을 보장하는 것입니다."
 
 #: ../../c-api/conversion.rst:28
-#, fuzzy
 msgid ""
 "The wrappers ensure that ``str[size-1]`` is always ``'\\0'`` upon return."
 " They never write more than *size* bytes (including the trailing "
@@ -64,8 +63,9 @@ msgid ""
 "would determine the necessary buffer size."
 msgstr ""
 "래퍼는 반환 시 ``str[size-1]``\\이 항상 ``'\\0'``\\이 되도록 합니다. str에 *size* 바이트(후행 "
-"``'\\0'`` 포함)를 초과해서 쓰지 않습니다. 두 함수 모두 ``str != NULL``, ``size > 0`` 및 "
-"``format != NULL``\\을 요구합니다."
+"``'\\0'`` 포함)를 초과해서 쓰지 않습니다. 두 함수 모두 ``str != NULL``, ``size > 0``, "
+"``format != NULL`` 및 ``size < INT_MAX``\\를 요구합니다. 이는 필요한 버퍼 크기를 결정하는 C99 "
+"``n = snprintf(NULL, 0, ...)``\\에 해당하는 것이 없다는 뜻임에 유의하십시오."
 
 #: ../../c-api/conversion.rst:34
 msgid ""
@@ -152,7 +152,6 @@ msgid "See also the Unix man page :manpage:`strtol(3)`."
 msgstr ""
 
 #: ../../c-api/conversion.rst:89
-#, fuzzy
 msgid ""
 "Convert a string ``s`` to a :c:expr:`double`, raising a Python exception "
 "on failure.  The set of accepted strings corresponds to the set of "
@@ -160,7 +159,7 @@ msgid ""
 " must not have leading or trailing whitespace. The conversion is "
 "independent of the current locale."
 msgstr ""
-"문자열 ``s``\\를 :c:type:`double`\\로 변환하고, 실패 시 파이썬 예외를 발생시킵니다. 허용되는 문자열 집합은 "
+"문자열 ``s``\\를 :c:expr:`double`\\로 변환하고, 실패 시 파이썬 예외를 발생시킵니다. 허용되는 문자열 집합은 "
 "``s``\\가 선행이나 후행 공백을 가질 수 없다는 점을 제외하고는 파이썬의 :func:`float` 생성자가 허용하는 문자열 "
 "집합에 대응합니다. 변환은 현재 로케일과 독립적입니다."
 
@@ -208,12 +207,11 @@ msgid ""
 msgstr "변환 중 다른 에러가 발생하면 (예를 들어 메모리 부족 에러), 적절한 파이썬 예외를 설정하고 ``-1.0``\\을 반환합니다."
 
 #: ../../c-api/conversion.rst:123
-#, fuzzy
 msgid ""
 "Convert a :c:expr:`double` *val* to a string using supplied "
 "*format_code*, *precision*, and *flags*."
 msgstr ""
-"제공된 *format_code*, *precision* 및 *flags*\\를 사용하여 :c:type:`double` "
+"제공된 *format_code*, *precision* 및 *flags*\\를 사용하여 :c:expr:`double` "
 "*val*\\을 문자열로 변환합니다."
 
 #: ../../c-api/conversion.rst:126
@@ -277,22 +275,20 @@ msgstr ""
 ":c:func:`PyMem_Free`\\를 호출하여 반환된 문자열을 해제해야 합니다."
 
 #: ../../c-api/conversion.rst:157
-#, fuzzy
 msgid ""
 "Case insensitive comparison of strings. The function works almost "
 "identically to :c:func:`!strcmp` except that it ignores the case."
 msgstr ""
-"대소 문자 구분 없는 문자열 비교. 이 함수는 대소 문자를 무시한다는 점만 제외하면 :c:func:`strcmp`\\와 거의 같게 "
-"작동합니다."
+"대소 문자 구분 없는 문자열 비교. 이 함수는 대소 문자를 무시한다는 점만 제외하면 :c:func:`!strcmp`\\와 거의 같게"
+" 작동합니다."
 
 #: ../../c-api/conversion.rst:163
-#, fuzzy
 msgid ""
 "Case insensitive comparison of strings. The function works almost "
 "identically to :c:func:`!strncmp` except that it ignores the case."
 msgstr ""
-"대소 문자 구분 없는 문자열 비교. 이 함수는 대소 문자를 무시한다는 점만 제외하면 :c:func:`strncmp`\\와 거의 같게"
-" 작동합니다."
+"대소 문자 구분 없는 문자열 비교. 이 함수는 대소 문자를 무시한다는 점만 제외하면 :c:func:`!strncmp`\\와 거의 "
+"같게 작동합니다."
 
 #~ msgid ""
 #~ "If the platform doesn't have "
