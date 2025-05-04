@@ -17,12 +17,10 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/faulthandler.rst:2
-#, fuzzy
 msgid ":mod:`!faulthandler` --- Dump the Python traceback"
-msgstr ":mod:`faulthandler` --- 파이썬 트레이스백 덤프"
+msgstr ":mod:`!faulthandler` --- 파이썬 트레이스백 덤프"
 
 #: ../../library/faulthandler.rst:11
-#, fuzzy
 msgid ""
 "This module contains functions to dump Python tracebacks explicitly, on a"
 " fault, after a timeout, or on a user signal. Call "
@@ -34,13 +32,13 @@ msgid ""
 " the :option:`-X` ``faulthandler`` command line option."
 msgstr ""
 "이 모듈은 결함(fault) 시, 시간 초과 후 또는 사용자 시그널에 파이썬 트레이스백을 명시적으로 덤프하는 함수를 포함합니다. "
-":const:`SIGSEGV`, :const:`SIGFPE`, :const:`SIGABRT`, :const:`SIGBUS` 및 "
-":const:`SIGILL` 시그널에 대한 결함 처리기를 설치하려면 :func:`faulthandler.enable`\\를 "
-"호출하십시오. :envvar:`PYTHONFAULTHANDLER` 환경 변수를 설정하거나 :option:`-X` "
-"``faulthandler`` 명령 줄 옵션을 사용하여 시작할 때 활성화할 수도 있습니다."
+":const:`~signal.SIGSEGV`, :const:`~signal.SIGFPE`, "
+":const:`~signal.SIGABRT`, :const:`~signal.SIGBUS` 및 "
+":const:`~signal.SIGILL` 시그널에 대한 결함 처리기를 설치하려면 "
+":func:`faulthandler.enable`\\를 호출하십시오. :envvar:`PYTHONFAULTHANDLER` 환경 "
+"변수를 설정하거나 :option:`-X` ``faulthandler`` 명령 줄 옵션을 사용하여 시작할 때 활성화할 수도 있습니다."
 
 #: ../../library/faulthandler.rst:19
-#, fuzzy
 msgid ""
 "The fault handler is compatible with system fault handlers like Apport or"
 " the Windows fault handler. The module uses an alternative stack for "
@@ -48,7 +46,7 @@ msgid ""
 " allows it to dump the traceback even on a stack overflow."
 msgstr ""
 "결함 처리기는 Apport나 윈도우 결함 처리기(Windows fault handler)와 같은 시스템 결함 처리기와 호환됩니다. "
-"이 모듈은 :c:func:`sigaltstack` 함수를 사용할 수 있으면 시그널 처리기에 대체 스택을 사용합니다. 이것은 스택 "
+"이 모듈은 :c:func:`!sigaltstack` 함수를 사용할 수 있으면 시그널 처리기에 대체 스택을 사용합니다. 이것은 스택 "
 "오버플로에서조차 트레이스백을 덤프할 수 있도록 합니다."
 
 #: ../../library/faulthandler.rst:24
@@ -152,7 +150,6 @@ msgid "Fault handler state"
 msgstr "결함 처리기 상태"
 
 #: ../../library/faulthandler.rst:74
-#, fuzzy
 msgid ""
 "Enable the fault handler: install handlers for the "
 ":const:`~signal.SIGSEGV`, :const:`~signal.SIGFPE`, "
@@ -161,8 +158,9 @@ msgid ""
 "*all_threads* is ``True``, produce tracebacks for every running thread. "
 "Otherwise, dump only the current thread."
 msgstr ""
-"결함 처리기를 활성화합니다: :const:`SIGSEGV`, :const:`SIGFPE`, :const:`SIGABRT`, "
-":const:`SIGBUS` 및 :const:`SIGILL` 시그널에 대한 처리기를 설치하여 파이썬 트레이스백을 덤프합니다. "
+"결함 처리기를 활성화합니다: :const:`~signal.SIGSEGV`, :const:`~signal.SIGFPE`, "
+":const:`~signal.SIGABRT`, :const:`~signal.SIGBUS` 및 "
+":const:`~signal.SIGILL` 시그널에 대한 처리기를 설치하여 파이썬 트레이스백을 덤프합니다. "
 "*all_threads*\\가 ``True``\\면 실행 중인 모든 스레드에 대한 트레이스백을 생성합니다. 그렇지 않으면, 현재 "
 "스레드만 덤프합니다."
 
@@ -199,7 +197,6 @@ msgid "Dumping the tracebacks after a timeout"
 msgstr "시간 초과 후에 트레이스백 덤프하기"
 
 #: ../../library/faulthandler.rst:109
-#, fuzzy
 msgid ""
 "Dump the tracebacks of all threads, after a timeout of *timeout* seconds,"
 " or every *timeout* seconds if *repeat* is ``True``.  If *exit* is "
@@ -211,7 +208,7 @@ msgid ""
 msgstr ""
 "*timeout* 초의 시간제한 후, 또는 *repeat*\\가 ``True``\\면 매 *timeout* 초마다, 모든 스레드의 "
 "트레이스백을 덤프합니다. *exit*\\가 ``True``\\면, 트레이스백을 덤프한 후 status=1 로 "
-":c:func:`_exit`\\를 호출합니다. (:c:func:`_exit`\\가 프로세스를 즉시 종료함에 유의하십시오. 파일 "
+":c:func:`!_exit`\\를 호출합니다. (:c:func:`!_exit`\\가 프로세스를 즉시 종료함에 유의하십시오. 파일 "
 "버퍼를 플러시 하는 것과 같은 정리 작업을 수행하지 않습니다.) 함수가 두 번 호출되면, 새 호출은 이전 매개 변수를 대체하고 "
 "시간제한을 다시 설정합니다. 타이머는 1초 미만의 해상도를 갖습니다."
 
@@ -316,4 +313,17 @@ msgid ""
 "  File \"<stdin>\", line 1 in <module>\n"
 "Segmentation fault"
 msgstr ""
+"$ python -c \"import ctypes; ctypes.string_at(0)\"\n"
+"Segmentation fault\n"
+"\n"
+"$ python -q -X faulthandler\n"
+">>> import ctypes\n"
+">>> ctypes.string_at(0)\n"
+"Fatal Python error: Segmentation fault\n"
+"\n"
+"Current thread 0x00007fb899f39700 (most recent call first):\n"
+"  File \"/home/python/cpython/Lib/ctypes/__init__.py\", line 486 in "
+"string_at\n"
+"  File \"<stdin>\", line 1 in <module>\n"
+"Segmentation fault"
 
