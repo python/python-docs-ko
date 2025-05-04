@@ -54,7 +54,7 @@ msgstr "파이썬 개발 모드를 활성화하는 것은 다음 명령과 유�
 
 #: ../../library/devmode.rst:24
 msgid "PYTHONMALLOC=debug PYTHONASYNCIODEBUG=1 python -W default -X faulthandler"
-msgstr ""
+msgstr "PYTHONMALLOC=debug PYTHONASYNCIODEBUG=1 python -W default -X faulthandler"
 
 #: ../../library/devmode.rst:26
 msgid "Effects of the Python Development Mode:"
@@ -145,16 +145,16 @@ msgstr ""
 "``default``\\로 설정하십시오."
 
 #: ../../library/devmode.rst:61
-#, fuzzy
 msgid ""
 "Call :func:`faulthandler.enable` at Python startup to install handlers "
 "for the :const:`~signal.SIGSEGV`, :const:`~signal.SIGFPE`, "
 ":const:`~signal.SIGABRT`, :const:`~signal.SIGBUS` and "
 ":const:`~signal.SIGILL` signals to dump the Python traceback on a crash."
 msgstr ""
-"파이썬 시작 시 :func:`faulthandler.enable`\\을 호출하여 :const:`SIGSEGV`, "
-":const:`SIGFPE`, :const:`SIGABRT`, :const:`SIGBUS` 및 :const:`SIGILL` 시그널에"
-" 대한 처리기를 설치하여 충돌 시 파이썬 트레이스백을 덤프합니다."
+"파이썬 시작 시 :func:`faulthandler.enable`\\을 호출하여 :const:`~signal.SIGSEGV`, "
+":const:`~signal.SIGFPE`, :const:`~signal.SIGABRT`, "
+":const:`~signal.SIGBUS` 및 :const:`~signal.SIGILL` 시그널에 대한 처리기를 설치하여 충돌 시 "
+"파이썬 트레이스백을 덤프합니다."
 
 #: ../../library/devmode.rst:66
 msgid ""
@@ -202,11 +202,10 @@ msgid "The :class:`io.IOBase` destructor logs ``close()`` exceptions."
 msgstr ":class:`io.IOBase` 파괴자는 ``close()`` 예외를 로그 합니다."
 
 #: ../../library/devmode.rst:85
-#, fuzzy
 msgid ""
 "Set the :attr:`~sys.flags.dev_mode` attribute of :data:`sys.flags` to "
 "``True``."
-msgstr ":attr:`sys.flags`\\의 :attr:`~sys.flags.dev_mode` 어트리뷰트를 ``True``\\로 설정합니다."
+msgstr ":data:`sys.flags`\\의 :attr:`~sys.flags.dev_mode` 어트리뷰트를 ``True``\\로 설정합니다."
 
 #: ../../library/devmode.rst:88
 msgid ""
@@ -271,6 +270,16 @@ msgid ""
 "if __name__ == \"__main__\":\n"
 "    main()"
 msgstr ""
+"import sys\n"
+"\n"
+"def main():\n"
+"    fp = open(sys.argv[1])\n"
+"    nlines = len(fp.readlines())\n"
+"    print(nlines)\n"
+"    # 파일이 묵시적으로 닫힙니다\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    main()"
 
 #: ../../library/devmode.rst:127
 msgid ""
@@ -285,6 +294,8 @@ msgid ""
 "$ python script.py README.txt\n"
 "269"
 msgstr ""
+"$ python script.py README.txt\n"
+"269"
 
 #: ../../library/devmode.rst:135
 msgid ""
@@ -301,6 +312,12 @@ msgid ""
 "  main()\n"
 "ResourceWarning: Enable tracemalloc to get the object allocation traceback"
 msgstr ""
+"$ python -X dev script.py README.txt\n"
+"269\n"
+"script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper "
+"name='README.rst' mode='r' encoding='UTF-8'>\n"
+"  main()\n"
+"ResourceWarning: Enable tracemalloc to get the object allocation traceback"
 
 #: ../../library/devmode.rst:145
 msgid ""
@@ -321,6 +338,16 @@ msgid ""
 "  File \"script.py\", lineno 4\n"
 "    fp = open(sys.argv[1])"
 msgstr ""
+"$ python -X dev -X tracemalloc=5 script.py README.rst\n"
+"269\n"
+"script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper "
+"name='README.rst' mode='r' encoding='UTF-8'>\n"
+"  main()\n"
+"Object allocated at (most recent call last):\n"
+"  File \"script.py\", lineno 10\n"
+"    main()\n"
+"  File \"script.py\", lineno 4\n"
+"    fp = open(sys.argv[1])"
 
 #: ../../library/devmode.rst:160
 msgid "The fix is to close explicitly the file. Example using a context manager::"
@@ -334,6 +361,11 @@ msgid ""
 "        nlines = len(fp.readlines())\n"
 "    print(nlines)"
 msgstr ""
+"def main():\n"
+"    # 블록에서 빠져나갈 때 파일을 명시적으로 닫습니다\n"
+"    with open(sys.argv[1]) as fp:\n"
+"        nlines = len(fp.readlines())\n"
+"    print(nlines)"
 
 #: ../../library/devmode.rst:168
 msgid ""
@@ -367,6 +399,16 @@ msgid ""
 "\n"
 "main()"
 msgstr ""
+"import os\n"
+"\n"
+"def main():\n"
+"    fp = open(__file__)\n"
+"    firstline = fp.readline()\n"
+"    print(firstline.rstrip())\n"
+"    os.close(fp.fileno())\n"
+"    # 파일이 묵시적으로 닫힙니다\n"
+"\n"
+"main()"
 
 #: ../../library/devmode.rst:190
 msgid "By default, Python does not emit any warning:"
@@ -377,6 +419,8 @@ msgid ""
 "$ python script.py\n"
 "import os"
 msgstr ""
+"$ python script.py\n"
+"import os"
 
 #: ../../library/devmode.rst:197
 msgid ""
@@ -402,6 +446,19 @@ msgid ""
 "    main()\n"
 "OSError: [Errno 9] Bad file descriptor"
 msgstr ""
+"$ python -X dev script.py\n"
+"import os\n"
+"script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper "
+"name='script.py' mode='r' encoding='UTF-8'>\n"
+"  main()\n"
+"ResourceWarning: Enable tracemalloc to get the object allocation "
+"traceback\n"
+"Exception ignored in: <_io.TextIOWrapper name='script.py' mode='r' "
+"encoding='UTF-8'>\n"
+"Traceback (most recent call last):\n"
+"  File \"script.py\", line 10, in <module>\n"
+"    main()\n"
+"OSError: [Errno 9] Bad file descriptor"
 
 #: ../../library/devmode.rst:213
 msgid ""
