@@ -188,6 +188,7 @@ parentheses: 괄호
 parse tree: 파스 트리
 parser: 파서
 phase: 시기
+placeholder: 자리 표시자
 positional argument: 위치 인자
 procedure: 프로시저
 prompt: 프롬프트
