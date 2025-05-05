@@ -71,9 +71,8 @@ msgstr ""
 "메서드를 호출하여 얻을 수 있습니다."
 
 #: ../../library/asyncio-queue.rst:39
-#, fuzzy
 msgid "Removed the *loop* parameter."
-msgstr "*loop* 매개 변수"
+msgstr "*loop* 매개 변수를 제거했습니다."
 
 #: ../../library/asyncio-queue.rst:43
 msgid "This class is :ref:`not thread safe <asyncio-multithreading>`."
@@ -92,12 +91,11 @@ msgid "Return ``True`` if there are :attr:`maxsize` items in the queue."
 msgstr "큐에 :attr:`maxsize` 항목이 있으면 ``True``\\를 반환합니다."
 
 #: ../../library/asyncio-queue.rst:57
-#, fuzzy
 msgid ""
 "If the queue was initialized with ``maxsize=0`` (the default), then "
 ":meth:`full` never returns ``True``."
 msgstr ""
-"큐가 ``maxsize=0`` (기본값)으로 초기화되었으면, :meth:`full()`\\은 절대 ``True``\\를 반환하지 "
+"큐가 ``maxsize=0`` (기본값)으로 초기화되었으면, :meth:`full`\\은 절대 ``True``\\를 반환하지 "
 "않습니다."
 
 #: ../../library/asyncio-queue.rst:63
@@ -178,19 +176,17 @@ msgid ""
 msgstr ""
 
 #: ../../library/asyncio-queue.rst:121
-#, fuzzy
 msgid "Indicate that a formerly enqueued work item is complete."
-msgstr "이전에 큐에 넣은 작업이 완료되었음을 나타냅니다."
+msgstr "이전에 큐에 넣은 작업 항목이 완료되었음을 나타냅니다."
 
 #: ../../library/asyncio-queue.rst:123
-#, fuzzy
 msgid ""
 "Used by queue consumers. For each :meth:`~Queue.get` used to fetch a work"
 " item, a subsequent call to :meth:`task_done` tells the queue that the "
 "processing on the work item is complete."
 msgstr ""
-"큐 소비자가 사용합니다. 작업을 꺼내는 데 사용된 :meth:`~Queue.get` 마다, 뒤따르는 :meth:`task_done`"
-" 호출은 작업에 관한 처리가 완료되었음을 큐에 알려줍니다."
+"큐 소비자가 사용합니다. 작업 항목을 꺼내는 데 사용된 :meth:`~Queue.get` 마다, 뒤따르는 "
+":meth:`task_done` 호출은 작업 항목에 관한 처리가 완료되었음을 큐에 알려줍니다."
 
 #: ../../library/asyncio-queue.rst:127
 msgid ""
@@ -254,11 +250,10 @@ msgid ""
 msgstr ":meth:`~Queue.put_nowait` 메서드가 *maxsize*\\에 도달한 큐에 호출될 때 발생하는 예외입니다."
 
 #: ../../library/asyncio-queue.rst:177
-#, fuzzy
 msgid ""
 "Exception raised when :meth:`~Queue.put` or :meth:`~Queue.get` is called "
 "on a queue which has been shut down."
-msgstr ":meth:`~Queue.put_nowait` 메서드가 *maxsize*\\에 도달한 큐에 호출될 때 발생하는 예외입니다."
+msgstr ":meth:`~Queue.put` 이나 :meth:`~Queue.get` 메서드가 종료된 큐에 호출될 때 발생하는 예외입니다."
 
 #: ../../library/asyncio-queue.rst:184
 msgid "Examples"
@@ -328,4 +323,58 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"import asyncio\n"
+"import random\n"
+"import time\n"
+"\n"
+"\n"
+"async def worker(name, queue):\n"
+"    while True:\n"
+"        # 큐에서 \"작업 항목\"을 가져옵니다.\n"
+"        sleep_for = await queue.get()\n"
+"\n"
+"        # \"sleep_for\" 초 동안 잡니다.\n"
+"        await asyncio.sleep(sleep_for)\n"
+"\n"
+"        # 큐에 \"작업 항목\"이 처리되었음을 알립니다.\n"
+"        queue.task_done()\n"
+"\n"
+"        print(f'{name} has slept for {sleep_for:.2f} seconds')\n"
+"\n"
+"\n"
+"async def main():\n"
+"    # \"작업 부하\"를 저장하는 데 사용할 큐를 만듭니다.\n"
+"    queue = asyncio.Queue()\n"
+"\n"
+"    # 무작위 대기 시간을 만들어서 큐에 넣습니다.\n"
+"    total_sleep_time = 0\n"
+"    for _ in range(20):\n"
+"        sleep_for = random.uniform(0.05, 1.0)\n"
+"        total_sleep_time += sleep_for\n"
+"        queue.put_nowait(sleep_for)\n"
+"\n"
+"    # 큐를 동시에 처리할 세 개의 worker 태스크를 만듭니다.\n"
+"    tasks = []\n"
+"    for i in range(3):\n"
+"        task = asyncio.create_task(worker(f'worker-{i}', queue))\n"
+"        tasks.append(task)\n"
+"\n"
+"    # 큐가 완전히 처리될 때까지 기다립니다.\n"
+"    started_at = time.monotonic()\n"
+"    await queue.join()\n"
+"    total_slept_for = time.monotonic() - started_at\n"
+"\n"
+"    # worker 태스크를 취소합니다.\n"
+"    for task in tasks:\n"
+"        task.cancel()\n"
+"    # 모든 worker 태스크가 취소될 때까지 기다립니다.\n"
+"    await asyncio.gather(*tasks, return_exceptions=True)\n"
+"\n"
+"    print('====')\n"
+"    print(f'3 workers slept in parallel for {total_slept_for:.2f} "
+"seconds')\n"
+"    print(f'total expected sleep time: {total_sleep_time:.2f} seconds')\n"
+"\n"
+"\n"
+"asyncio.run(main())"
 
