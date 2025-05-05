@@ -44,10 +44,9 @@ def chdir_Doc():
 
 
 def remove_nonprintables(text):
-    nps = ''.join(sorted(set(chr(i)
-                  for i in range(128)) - set(string.printable)))
+    nps = "".join(sorted(set(chr(i) for i in range(128)) - set(string.printable)))
     table = str.maketrans(nps, nps[0] * len(nps))
-    text = text.translate(table).replace(nps[0], '')
+    text = text.translate(table).replace(nps[0], "")
     return text.lstrip()
 
 
@@ -57,10 +56,11 @@ class Command:
         os.chdir(MSG_DIR / "..")
         if pathlib.Path("cpython").exists():
             shutil.rmtree("cpython")
-        sh(f"git clone --single-branch -b {os.environ['PDK_BRANCH']} https://github.com/python/cpython")
+        sh(
+            f"git clone --single-branch -b {os.environ['PDK_BRANCH']} https://github.com/python/cpython"
+        )
         sh(f"git checkout {os.environ['PDK_REVISION']}", chdir="cpython")
-        LC_MESSAGES = pathlib.Path(
-            "cpython/Doc/locales/ko/LC_MESSAGES").absolute()
+        LC_MESSAGES = pathlib.Path("cpython/Doc/locales/ko/LC_MESSAGES").absolute()
         create_symlink(LC_MESSAGES, MSG_DIR)
 
     def build(self):
@@ -99,10 +99,10 @@ class Command:
         write_po(f, catalog)
         odata = f.getvalue()
         if idata.encode() != odata:
-            with open(pofile, 'wb') as f:
+            with open(pofile, "wb") as f:
                 f.write(odata)
         else:
-            print('already formatted')
+            print("already formatted")
         fuzzy_count = empty_count = 0
         for msg in catalog:
             if not msg.id:
@@ -112,9 +112,9 @@ class Command:
             elif not msg.string:
                 empty_count += 1
         if fuzzy_count:
-            print(f'{fuzzy_count} fuzzy messages found')
+            print(f"{fuzzy_count} fuzzy messages found")
         if empty_count:
-            print(f'{empty_count} untranslated messages found')
+            print(f"{empty_count} untranslated messages found")
 
     def find_obsoletes(self, *, delete=False):
         """Find obsolete .po files."""
@@ -166,6 +166,12 @@ class Command:
         print(f"{fuzzy:7d} Fuzzy")
         print(f"{total:7d} Total")
         print(f"{translated * 100.0 / total:.2f}%")
+
+    def glean(self, filename, *, revision=None, verbose=False):
+        """Try to resolve fuzzy entries."""
+        from .gleaner import glean
+
+        glean(filename, revision=revision, verbose=verbose)
 
 
 def main():
