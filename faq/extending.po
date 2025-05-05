@@ -69,7 +69,6 @@ msgid ""
 msgstr "수행하려는 작업에 따라, 여러분 만의 C 확장을 작성하는 여러 가지 대안이 있습니다."
 
 #: ../../faq/extending.rst:44
-#, fuzzy
 msgid ""
 "`Cython <https://cython.org>`_ and its relative `Pyrex "
 "<https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/>`_ are "
@@ -77,13 +76,12 @@ msgid ""
 " corresponding C code.  Cython and Pyrex make it possible to write an "
 "extension without having to learn Python's C API."
 msgstr ""
-"`Cython <http://cython.org>`_\\과 관련 `Pyrex "
-"<https://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/>`_\\는 약간 수정된 "
+"`Cython <https://cython.org>`_\\과 관련 `Pyrex "
+"<https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/>`_\\는 약간 수정된 "
 "파이썬 형식을 받아들이고 해당 C 코드를 생성하는 컴파일러입니다. Cython과 Pyrex를 사용하면 파이썬의 C API를 배우지 "
 "않고도 확장을 작성할 수 있습니다."
 
 #: ../../faq/extending.rst:50
-#, fuzzy
 msgid ""
 "If you need to interface to some C or C++ library for which no Python "
 "extension currently exists, you can try wrapping the library's data types"
@@ -95,10 +93,9 @@ msgid ""
 " libraries."
 msgstr ""
 "현재 파이썬 확장이 없는 일부 C나 C++ 라이브러리에 대한 인터페이스가 필요하면, 라이브러리의 데이터형과 함수를 `SWIG "
-"<http://www.swig.org>`_\\과 같은 도구로 래핑할 수 있습니다. `SIP "
-"<https://riverbankcomputing.com/software/sip/intro>`__, `CXX "
-"<http://cxx.sourceforge.net/>`_, `Boost "
-"<http://www.boost.org/libs/python/doc/index.html>`_ 또는 `Weave "
+"<https://www.swig.org>`_\\과 같은 도구로 래핑할 수 있습니다. `SIP <https://github.com"
+"/Python-SIP/sip>`__, `CXX <https://cxx.sourceforge.net/>`_, `Boost "
+"<https://www.boost.org/libs/python/doc/index.html>`_ 또는 `Weave "
 "<https://github.com/scipy/weave>`_\\도 C++ 라이브러리 래핑의 대안입니다."
 
 #: ../../faq/extending.rst:61
@@ -138,7 +135,6 @@ msgid "How do I extract C values from a Python object?"
 msgstr "파이썬 객체에서 C값을 어떻게 추출합니까?"
 
 #: ../../faq/extending.rst:82
-#, fuzzy
 msgid ""
 "That depends on the object's type.  If it's a tuple, "
 ":c:func:`PyTuple_Size` returns its length and :c:func:`PyTuple_GetItem` "
@@ -147,10 +143,9 @@ msgid ""
 msgstr ""
 "이는 객체의 형에 따라 다릅니다. 튜플이면, :c:func:`PyTuple_Size`\\는 길이를 반환하고 "
 ":c:func:`PyTuple_GetItem`\\은 지정된 인덱스의 항목을 반환합니다. 리스트는 비슷한 함수를 가지고 있습니다, "
-":c:func:`PyListSize`\\와 :c:func:`PyList_GetItem`."
+":c:func:`PyList_Size`\\와 :c:func:`PyList_GetItem`."
 
 #: ../../faq/extending.rst:87
-#, fuzzy
 msgid ""
 "For bytes, :c:func:`PyBytes_Size` returns its length and "
 ":c:func:`PyBytes_AsStringAndSize` provides a pointer to its value and its"
@@ -159,7 +154,7 @@ msgid ""
 msgstr ""
 "바이트열에서는, :c:func:`PyBytes_Size`\\는 길이를 반환하고 "
 ":c:func:`PyBytes_AsStringAndSize`\\는 값과 길이에 대한 포인터를 제공합니다. 파이썬 바이트열 객체는 "
-"널(null) 바이트를 포함할 수 있어서 C의 :c:func:`strlen`\\을 사용할 수 없음에 유의하십시오."
+"널(null) 바이트를 포함할 수 있어서 C의 :c:func:`!strlen`\\을 사용할 수 없음에 유의하십시오."
 
 #: ../../faq/extending.rst:92
 msgid ""
@@ -214,6 +209,9 @@ msgid ""
 "PyObject_CallMethod(PyObject *object, const char *method_name,\n"
 "                    const char *arg_format, ...);"
 msgstr ""
+"PyObject *\n"
+"PyObject_CallMethod(PyObject *object, const char *method_name,\n"
+"                    const char *arg_format, ...);"
 
 #: ../../faq/extending.rst:121
 msgid ""
@@ -241,6 +239,13 @@ msgid ""
 "        Py_DECREF(res);\n"
 "}"
 msgstr ""
+"res = PyObject_CallMethod(f, \"seek\", \"(ii)\", 10, 0);\n"
+"if (res == NULL) {\n"
+"        ... an exception occurred ...\n"
+"}\n"
+"else {\n"
+"        Py_DECREF(res);\n"
+"}"
 
 #: ../../faq/extending.rst:135
 msgid ""
@@ -284,6 +289,13 @@ msgid ""
 "foo\n"
 "hello world!"
 msgstr ""
+">>> import io, sys\n"
+">>> sys.stdout = io.StringIO()\n"
+">>> print('foo')\n"
+">>> print('hello world!')\n"
+">>> sys.stderr.write(sys.stdout.getvalue())\n"
+"foo\n"
+"hello world!"
 
 #: ../../faq/extending.rst:161
 msgid "A custom object to do the same would look like this:"
@@ -306,6 +318,20 @@ msgid ""
 "foo\n"
 "hello world!"
 msgstr ""
+">>> import io, sys\n"
+">>> class StdoutCatcher(io.TextIOBase):\n"
+"...     def __init__(self):\n"
+"...         self.data = []\n"
+"...     def write(self, stuff):\n"
+"...         self.data.append(stuff)\n"
+"...\n"
+">>> import sys\n"
+">>> sys.stdout = StdoutCatcher()\n"
+">>> print('foo')\n"
+">>> print('hello world!')\n"
+">>> sys.stderr.write(''.join(sys.stdout.data))\n"
+"foo\n"
+"hello world!"
 
 #: ../../faq/extending.rst:182
 msgid "How do I access a module written in Python from C?"
@@ -317,7 +343,7 @@ msgstr "다음과 같이 모듈 객체에 대한 포인터를 얻을 수 있습�
 
 #: ../../faq/extending.rst:186
 msgid "module = PyImport_ImportModule(\"<modulename>\");"
-msgstr ""
+msgstr "module = PyImport_ImportModule(\"<modulename>\");"
 
 #: ../../faq/extending.rst:188
 msgid ""
@@ -339,7 +365,7 @@ msgstr "그런 다음, 다음과 같이 모듈의 어트리뷰트(즉 모듈에 
 
 #: ../../faq/extending.rst:197
 msgid "attr = PyObject_GetAttrString(module, \"<attrname>\");"
-msgstr ""
+msgstr "attr = PyObject_GetAttrString(module, \"<attrname>\");"
 
 #: ../../faq/extending.rst:199
 msgid ""
@@ -398,7 +424,7 @@ msgstr "``.gdbinit`` 파일에서 (또는 대화식으로) 다음 명령을 추�
 
 #: ../../faq/extending.rst:231
 msgid "br _PyImport_LoadDynamicModule"
-msgstr ""
+msgstr "br _PyImport_LoadDynamicModule"
 
 #: ../../faq/extending.rst:235
 msgid "Then, when you run GDB:"
@@ -413,6 +439,12 @@ msgid ""
 "gdb) br myfunction.c:50\n"
 "gdb) continue"
 msgstr ""
+"$ gdb /local/bin/python\n"
+"gdb) run myscript.py\n"
+"gdb) continue # repeat until your extension is loaded\n"
+"gdb) finish   # so that your extension is loaded\n"
+"gdb) br myfunction.c:50\n"
+"gdb) continue"
 
 #: ../../faq/extending.rst:247
 msgid ""
@@ -421,23 +453,18 @@ msgid ""
 msgstr "리눅스 시스템에서 파이썬 모듈을 컴파일하고 싶지만, 일부 파일이 없습니다. 왜 그렇습니까?"
 
 #: ../../faq/extending.rst:249
-#, fuzzy, python-brace-format
 msgid ""
 "Most packaged versions of Python omit some files required for compiling "
 "Python extensions."
-msgstr ""
-"대부분의 포장된 버전의 파이썬은 파이썬 확장을 컴파일하는 데 필요한 다양한 파일이 포함된 "
-":file:`/usr/lib/python2.{x}/config/` 디렉터리가 포함되어 있지 않습니다."
+msgstr "대부분의 포장된 버전의 파이썬은 파이썬 확장을 컴파일하는 데 필요한 일부 파일을 생략하고 있습니다."
 
 #: ../../faq/extending.rst:252
-#, fuzzy
 msgid "For Red Hat, install the python3-devel RPM to get the necessary files."
-msgstr "레드햇의 경우, 필요한 파일을 얻으려면 python-devel RPM을 설치하십시오."
+msgstr "레드햇의 경우, 필요한 파일을 얻으려면 python3-devel RPM을 설치하십시오."
 
 #: ../../faq/extending.rst:254
-#, fuzzy
 msgid "For Debian, run ``apt-get install python3-dev``."
-msgstr "데비안의 경우, ``apt-get install python-dev``\\를 실행하십시오."
+msgstr "데비안의 경우, ``apt-get install python3-dev``\\를 실행하십시오."
 
 #: ../../faq/extending.rst:257
 msgid "How do I tell \"incomplete input\" from \"invalid input\"?"
@@ -508,67 +535,12 @@ msgstr ""
 "있습니다."
 
 #: ../../faq/extending.rst:288
-#, fuzzy
 msgid ""
 "The Boost Python Library (BPL, "
 "https://www.boost.org/libs/python/doc/index.html) provides a way of doing"
 " this from C++ (i.e. you can inherit from an extension class written in "
 "C++ using the BPL)."
 msgstr ""
-"Boost 파이썬 라이브러리(BPL, http://www.boost.org/libs/python/doc/index.html)는 "
+"Boost 파이썬 라이브러리(BPL, https://www.boost.org/libs/python/doc/index.html)는 "
 "C++에서 이를 수행하는 방법을 제공합니다 (즉, BPL을 사용하여 C++로 작성된 확장 클래스를 상속할 수 있습니다)."
-
-#~ msgid ""
-#~ "However sometimes you have to run "
-#~ "the embedded Python interpreter in the"
-#~ " same thread as your rest application"
-#~ " and you can't allow the "
-#~ ":c:func:`PyRun_InteractiveLoop` to stop while "
-#~ "waiting for user input.  The one "
-#~ "solution then is to call "
-#~ ":c:func:`PyParser_ParseString` and test for "
-#~ "``e.error`` equal to ``E_EOF``, which "
-#~ "means the input is incomplete.  Here's"
-#~ " a sample code fragment, untested, "
-#~ "inspired by code from Alex Farber::"
-#~ msgstr ""
-#~ "그러나 때로는 나머지 응용 프로그램과 같은 스레드에서 "
-#~ "내장된 파이썬 인터프리터를 실행해야 하고, 사용자 입력을"
-#~ " 기다리는 동안 :c:func:`PyRun_InteractiveLoop`\\를 중지할"
-#~ " 수 없습니다. 한 가지 해결책은 "
-#~ ":c:func:`PyParser_ParseString`\\을 호출하고 ``e.error``\\가 "
-#~ "``E_EOF``\\와 같은지를 검사하는 것인데, 이는 입력이 "
-#~ "불완전하다는 것을 의미합니다. 다음은 Alex Farber의 "
-#~ "코드에서 영감을 얻은 테스트 되지 않은 샘플 코드"
-#~ " 조각입니다::"
-
-#~ msgid ""
-#~ "Another solution is trying to compile"
-#~ " the received string with "
-#~ ":c:func:`Py_CompileString`. If it compiles "
-#~ "without errors, try to execute the "
-#~ "returned code object by calling "
-#~ ":c:func:`PyEval_EvalCode`. Otherwise save the "
-#~ "input for later. If the compilation "
-#~ "fails, find out if it's an error"
-#~ " or just more input is required "
-#~ "- by extracting the message string "
-#~ "from the exception tuple and comparing"
-#~ " it to the string \"unexpected EOF"
-#~ " while parsing\".  Here is a complete"
-#~ " example using the GNU readline "
-#~ "library (you may want to ignore "
-#~ "**SIGINT** while calling readline())::"
-#~ msgstr ""
-#~ "다른 해결책은 수신된 문자열을 "
-#~ ":c:func:`Py_CompileString`\\으로 컴파일하려고 하는 것입니다. "
-#~ "에러 없이 컴파일되면, :c:func:`PyEval_EvalCode`\\를 호출하여"
-#~ " 반환된 코드 객체를 실행해 보십시오. 그렇지 않으면"
-#~ " 나중을 위해 입력을 저장하십시오. 컴파일이 실패하면, "
-#~ "예외 튜플에서 메시지 문자열을 추출하고 이를 "
-#~ "\"unexpected EOF while parsing\" 문자열과 "
-#~ "비교하여 에러인지 단지 더 많은 입력이 필요한지를 "
-#~ "확인하십시오. 다음은 GNU readline 라이브러리를 사용하는 "
-#~ "완전한 예제입니다 (readline()을 호출하는 동안 "
-#~ "**SIGINT**\\를 무시하고자 할 수 있습니다)::"
 
