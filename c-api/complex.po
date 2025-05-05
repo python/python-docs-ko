@@ -44,7 +44,6 @@ msgstr ""
 "전체에서 일관됩니다."
 
 #: ../../c-api/complex.rst:26
-#, fuzzy
 msgid ""
 "The C structure which corresponds to the value portion of a Python "
 "complex number object.  Most of the functions for dealing with complex "
@@ -52,11 +51,11 @@ msgid ""
 "appropriate."
 msgstr ""
 "파이썬 복소수 객체의 값 부분에 해당하는 C 구조체. 복소수 객체를 다루는 대부분 함수는 이 형의 구조체를 입력 또는 출력값으로 "
-"적절하게 사용합니다. 다음과 같이 정의됩니다::"
+"적절하게 사용합니다."
 
 #: ../../c-api/complex.rst:33
 msgid "The structure is defined as::"
-msgstr ""
+msgstr "구조체는 다음과 같이 정의됩니다::"
 
 #: ../../c-api/complex.rst:35
 #, python-brace-format
@@ -66,6 +65,10 @@ msgid ""
 "    double imag;\n"
 "} Py_complex;"
 msgstr ""
+"typedef struct {\n"
+"    double real;\n"
+"    double imag;\n"
+"} Py_complex;"
 
 #: ../../c-api/complex.rst:43
 msgid ""
@@ -80,11 +83,10 @@ msgid ""
 msgstr "C :c:type:`Py_complex` 표현을 사용하여 두 복소수의 차이를 반환합니다."
 
 #: ../../c-api/complex.rst:55
-#, fuzzy
 msgid ""
 "Return the negation of the complex number *num*, using the C "
 ":c:type:`Py_complex` representation."
-msgstr "C :c:type:`Py_complex` 표현을 사용하여 복소수 *complex*\\의 음의 값을 반환합니다."
+msgstr "C :c:type:`Py_complex` 표현을 사용하여 복소수 *num*\\의 음의 값을 반환합니다."
 
 #: ../../c-api/complex.rst:61
 msgid ""
@@ -99,13 +101,12 @@ msgid ""
 msgstr "C :c:type:`Py_complex` 표현을 사용하여 두 복소수의 몫을 반환합니다."
 
 #: ../../c-api/complex.rst:70
-#, fuzzy
 msgid ""
 "If *divisor* is null, this method returns zero and sets :c:data:`errno` "
 "to :c:macro:`!EDOM`."
 msgstr ""
 "*divisor*\\가 null이면, 이 메서드는 0을 반환하고, :c:data:`errno`\\를 "
-":c:data:`EDOM`\\으로 설정합니다."
+":c:macro:`!EDOM`\\으로 설정합니다."
 
 #: ../../c-api/complex.rst:76
 msgid ""
@@ -114,13 +115,12 @@ msgid ""
 msgstr "C :c:type:`Py_complex` 표현을 사용하여 *num*\\의 *exp* 거듭제곱을 반환합니다."
 
 #: ../../c-api/complex.rst:79
-#, fuzzy
 msgid ""
 "If *num* is null and *exp* is not a positive real number, this method "
 "returns zero and sets :c:data:`errno` to :c:macro:`!EDOM`."
 msgstr ""
 "*num*\\이 null이고 *exp*\\가 양의 실수가 아니면, 이 메서드는 0을 반환하고 :c:data:`errno`\\를 "
-":c:data:`EDOM`\\으로 설정합니다."
+":c:macro:`!EDOM`\\으로 설정합니다."
 
 #: ../../c-api/complex.rst:84
 msgid "Complex Numbers as Python Objects"
@@ -158,26 +158,26 @@ msgstr ""
 "아니면 참을 반환합니다. 이 함수는 항상 성공합니다."
 
 #: ../../c-api/complex.rst:112
-#, fuzzy
 msgid ""
 "Create a new Python complex number object from a C :c:type:`Py_complex` "
 "value. Return ``NULL`` with an exception set on error."
-msgstr "C :c:type:`Py_complex` 값으로 새로운 파이썬 복소수 객체를 만듭니다."
+msgstr ""
+"C :c:type:`Py_complex` 값으로 새로운 파이썬 복소수 객체를 만듭니다. 에러면 예외를 설정하고 ``NULL``\\을"
+" 반환합니다."
 
 #: ../../c-api/complex.rst:118
-#, fuzzy
 msgid ""
 "Return a new :c:type:`PyComplexObject` object from *real* and *imag*. "
 "Return ``NULL`` with an exception set on error."
-msgstr "*real* 및 *imag*\\로 새로운 :c:type:`PyComplexObject` 객체를 반환합니다."
+msgstr ""
+"*real* 및 *imag*\\로 새로운 :c:type:`PyComplexObject` 객체를 반환합니다. 에러면 예외를 설정하고 "
+"``NULL``\\을 반환합니다."
 
 #: ../../c-api/complex.rst:124
-#, fuzzy
 msgid "Return the real part of *op* as a C :c:expr:`double`."
-msgstr "*op*\\의 실수부를 C :c:type:`double`\\로 반환합니다."
+msgstr "*op*\\의 실수부를 C :c:expr:`double`\\로 반환합니다."
 
 #: ../../c-api/complex.rst:126
-#, fuzzy
 msgid ""
 "If *op* is not a Python complex number object but has a "
 ":meth:`~object.__complex__` method, this method will first be called to "
@@ -185,29 +185,27 @@ msgid ""
 "is not defined then it falls back to call :c:func:`PyFloat_AsDouble` and "
 "returns its result."
 msgstr ""
-"*op*\\가 파이썬 복소수 객체가 아니지만 :meth:`__complex__` 메서드가 있으면, 이 메서드는 먼저 *op*\\를 "
-"파이썬 복소수 객체로 변환하도록 그 메서드를 호출합니다. ``__complex __()``\\가 정의되지 않았으면 "
-":meth:`__float__`\\로 대체합니다. ``__float__()``\\가 정의되지 않았으면 "
-":meth:`__index__`\\로 대체합니다. 실패하면, 이 메서드는 ``-1.0``\\를 실숫값으로 반환합니다."
+"*op*\\가 파이썬 복소수 객체가 아니지만 :meth:`~object.__complex__` 메서드가 있으면, 이 메서드는 먼저 "
+"*op*\\를 파이썬 복소수 객체로 변환하도록 그 메서드를 호출합니다. :meth:`!__complex__`\\가 정의되지 않았으면"
+" :c:func:`PyFloat_AsDouble`\\을 호출하는 것으로 대체하고 그 결과를 반환합니다."
 
 #: ../../c-api/complex.rst:132 ../../c-api/complex.rst:148
 msgid ""
 "Upon failure, this method returns ``-1.0`` with an exception set, so one "
 "should call :c:func:`PyErr_Occurred` to check for errors."
 msgstr ""
+"실패하면, 이 메서드는 예외를 설정하고 ``-1.0``\\을 반환합니다. :c:func:`PyErr_Occurred`\\를 호출하여"
+" 에러를 확인해야 합니다."
 
 #: ../../c-api/complex.rst:135 ../../c-api/complex.rst:151
-#, fuzzy
 msgid "Use :meth:`~object.__complex__` if available."
-msgstr "사용할 수 있다면 :meth:`__index__`\\를 사용합니다."
+msgstr "사용할 수 있다면 :meth:`~object.__complex__`\\를 사용합니다."
 
 #: ../../c-api/complex.rst:140
-#, fuzzy
 msgid "Return the imaginary part of *op* as a C :c:expr:`double`."
-msgstr "*op*\\의 허수부를 C :c:type:`double`\\로 반환합니다."
+msgstr "*op*\\의 허수부를 C :c:expr:`double`\\로 반환합니다."
 
 #: ../../c-api/complex.rst:142
-#, fuzzy
 msgid ""
 "If *op* is not a Python complex number object but has a "
 ":meth:`~object.__complex__` method, this method will first be called to "
@@ -215,17 +213,15 @@ msgid ""
 "is not defined then it falls back to call :c:func:`PyFloat_AsDouble` and "
 "returns ``0.0`` on success."
 msgstr ""
-"*op*\\가 파이썬 복소수 객체가 아니지만 :meth:`__complex__` 메서드가 있으면, 이 메서드는 먼저 *op*\\를 "
-"파이썬 복소수 객체로 변환하도록 그 메서드를 호출합니다. ``__complex __()``\\가 정의되지 않았으면 "
-":meth:`__float__`\\로 대체합니다. ``__float__()``\\가 정의되지 않았으면 "
-":meth:`__index__`\\로 대체합니다. 실패하면, 이 메서드는 ``-1.0``\\를 실숫값으로 반환합니다."
+"*op*\\가 파이썬 복소수 객체가 아니지만 :meth:`~object.__complex__` 메서드가 있으면, 이 메서드는 먼저 "
+"*op*\\를 파이썬 복소수 객체로 변환하도록 그 메서드를 호출합니다. :meth:`!__complex__`\\가 정의되지 않았으면"
+" :c:func:`PyFloat_AsDouble`\\을 호출하는 것으로 대체하고 성공할 때 ``0.0``\\을 반환합니다."
 
 #: ../../c-api/complex.rst:156
 msgid "Return the :c:type:`Py_complex` value of the complex number *op*."
 msgstr "복소수 *op*\\의 :c:type:`Py_complex` 값을 반환합니다."
 
 #: ../../c-api/complex.rst:158
-#, fuzzy
 msgid ""
 "If *op* is not a Python complex number object but has a "
 ":meth:`~object.__complex__` method, this method will first be called to "
@@ -234,10 +230,10 @@ msgid ""
 ":meth:`!__float__` is not defined then it falls back to "
 ":meth:`~object.__index__`."
 msgstr ""
-"*op*\\가 파이썬 복소수 객체가 아니지만 :meth:`__complex__` 메서드가 있으면, 이 메서드는 먼저 *op*\\를 "
-"파이썬 복소수 객체로 변환하도록 그 메서드를 호출합니다. ``__complex __()``\\가 정의되지 않았으면 "
-":meth:`__float__`\\로 대체합니다. ``__float__()``\\가 정의되지 않았으면 "
-":meth:`__index__`\\로 대체합니다. 실패하면, 이 메서드는 ``-1.0``\\를 실숫값으로 반환합니다."
+"*op*\\가 파이썬 복소수 객체가 아니지만 :meth:`~object.__complex__` 메서드가 있으면, 이 메서드는 먼저 "
+"*op*\\를 파이썬 복소수 객체로 변환하도록 그 메서드를 호출합니다. :meth:`!__complex__`\\가 정의되지 않았으면"
+" :meth:`~object.__float__`\\로 대체합니다. :meth:`!__float__`\\가 정의되지 않았으면 "
+":meth:`~object.__index__`\\로 대체합니다."
 
 #: ../../c-api/complex.rst:164
 msgid ""
@@ -245,18 +241,19 @@ msgid ""
 ":c:member:`~Py_complex.real` set to ``-1.0`` and with an exception set, "
 "so one should call :c:func:`PyErr_Occurred` to check for errors."
 msgstr ""
+"실패하면, 이 메서드는 예외를 설정하고 :c:member:`~Py_complex.real`\\을 ``-1.0``\\으로 설정한 "
+":c:type:`Py_complex`\\를 반환합니다. :c:func:`PyErr_Occurred`\\를 호출하여 에러를 확인해야 "
+"합니다."
 
 #: ../../c-api/complex.rst:168
-#, fuzzy
 msgid "Use :meth:`~object.__index__` if available."
-msgstr "사용할 수 있다면 :meth:`__index__`\\를 사용합니다."
+msgstr "사용할 수 있다면 :meth:`~object.__index__`\\를 사용합니다."
 
 #: ../../c-api/complex.rst:8
 msgid "object"
-msgstr ""
+msgstr "객체"
 
 #: ../../c-api/complex.rst:8
-#, fuzzy
 msgid "complex number"
-msgstr "복소수 객체"
+msgstr "복소수"
 
