@@ -17,20 +17,20 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/graphlib.rst:2
-#, fuzzy
 msgid ":mod:`!graphlib` --- Functionality to operate with graph-like structures"
-msgstr ":mod:`graphlib` --- 그래프와 유사한 구조에 작동하는 기능"
+msgstr ":mod:`!graphlib` --- 그래프와 유사한 구조에 작동하는 기능"
 
 #: ../../library/graphlib.rst:8
 msgid "**Source code:** :source:`Lib/graphlib.py`"
 msgstr "**소스 코드:** :source:`Lib/graphlib.py`"
 
 #: ../../library/graphlib.rst:20
-#, fuzzy
 msgid ""
 "Provides functionality to topologically sort a graph of :term:`hashable` "
 "nodes."
-msgstr "해시 가능 노드의 그래프(graph)를 위상 정렬(topological sort)하는 기능을 제공합니다."
+msgstr ""
+":term:`해시 가능 <hashable>` 노드의 그래프(graph)를 위상 정렬(topological sort)하는 기능을 "
+"제공합니다."
 
 #: ../../library/graphlib.rst:22
 msgid ""
@@ -110,6 +110,10 @@ msgid ""
 ">>> tuple(ts.static_order())\n"
 "('A', 'C', 'B', 'D')"
 msgstr ""
+">>> graph = {\"D\": {\"B\", \"C\"}, \"C\": {\"A\"}, \"B\": {\"A\"}}\n"
+">>> ts = TopologicalSorter(graph)\n"
+">>> tuple(ts.static_order())\n"
+"('A', 'C', 'B', 'D')"
 
 #: ../../library/graphlib.rst:60
 msgid ""
@@ -143,15 +147,32 @@ msgid ""
 "    node = finalized_tasks_queue.get()\n"
 "    topological_sorter.done(node)"
 msgstr ""
+"topological_sorter = TopologicalSorter()\n"
+"\n"
+"# 'topological_sorter' 에 노드를 추가합니다...\n"
+"\n"
+"topological_sorter.prepare()\n"
+"while topological_sorter.is_active():\n"
+"    for node in topological_sorter.get_ready():\n"
+"        # 작업자 스레드나 프로세스는 'task_queue' 큐에서 작업할 노드를 꺼냅니다.\n"
+"        task_queue.put(node)\n"
+"\n"
+"    # 노드의 작업이 완료되면, 작업자는 노드를 'finalized_tasks_queue' 에 넣어서\n"
+"    # 작업할 더 많은 노드를 얻을 수 있도록 합니다. 'is_active()'의 정의는, 이 시점에서,\n"
+"    # 아직 'done()'으로 전달되지 않은 하나 이상의 노드가 'task_queue'에 있다고 보장해서,\n"
+"    # 이 블로킹 'get()'은 (결국) 성공합니다. 'done()'을 호출한 후, 다시 'get_ready()'를\n"
+"    # 호출하도록 루프로 돌아가서, 새로 풀려난 노드를 논리적으로 가능한 한 빨리 'task_queue'에\n"
+"    # 넣습니다.\n"
+"    node = finalized_tasks_queue.get()\n"
+"    topological_sorter.done(node)"
 
 #: ../../library/graphlib.rst:87
-#, fuzzy
 msgid ""
 "Add a new node and its predecessors to the graph. Both the *node* and all"
 " elements in *predecessors* must be :term:`hashable`."
 msgstr ""
-"새 노드와 그 선행 노드를 그래프에 추가합니다. *node*\\와 *predecessors*\\의 모든 요소는 모두 해시 가능해야 "
-"합니다."
+"새 노드와 그 선행 노드를 그래프에 추가합니다. *node*\\와 *predecessors*\\의 모든 요소는 모두 "
+":term:`해시 가능 <hashable>`\\해야 합니다."
 
 #: ../../library/graphlib.rst:90
 msgid ""
@@ -204,17 +225,18 @@ msgstr ""
 ":meth:`TopologicalSorter.get_ready`\\에 의해 반환된 수보다 작으면 진행할 수 있습니다."
 
 #: ../../library/graphlib.rst:118
-#, fuzzy
 msgid ""
 "The :meth:`~object.__bool__` method of this class defers to this "
 "function, so instead of::"
-msgstr "이 클래스의 :meth:`~TopologicalSorter.__bool__` 메서드는 이 함수로 위임됩니다, 그래서 다음 대신::"
+msgstr "이 클래스의 :meth:`~object.__bool__` 메서드는 이 함수로 위임됩니다, 그래서 다음 대신::"
 
 #: ../../library/graphlib.rst:121
 msgid ""
 "if ts.is_active():\n"
 "    ..."
 msgstr ""
+"if ts.is_active():\n"
+"    ..."
 
 #: ../../library/graphlib.rst:124
 msgid "it is possible to simply do::"
@@ -225,6 +247,8 @@ msgid ""
 "if ts:\n"
 "    ..."
 msgstr ""
+"if ts:\n"
+"    ..."
 
 #: ../../library/graphlib.rst:129 ../../library/graphlib.rst:152
 msgid ""
@@ -271,15 +295,15 @@ msgstr ""
 "처리된 모든 새 노드를 반환합니다. 더는 진행할 수 없으면, 빈 튜플이 반환됩니다."
 
 #: ../../library/graphlib.rst:157
-#, fuzzy
 msgid ""
 "Returns an iterator object which will iterate over nodes in a topological"
 " order. When using this method, :meth:`~TopologicalSorter.prepare` and "
 ":meth:`~TopologicalSorter.done` should not be called. This method is "
 "equivalent to::"
 msgstr ""
-"위상 순서로 노드의 이터러블을 반환합니다. 이 메서드를 사용하면 :meth:`TopologicalSorter.prepare`\\나 "
-":meth:`TopologicalSorter.done`\\을 호출할 필요가 없습니다. 이 방법은 다음과 동등합니다::"
+"노드들을 위상 순서로 이터레이트하는 이터레이터 객체를 반환합니다. 이 메서드를 사용할 때, "
+":meth:`~TopologicalSorter.prepare`\\와 :meth:`~TopologicalSorter.done`\\은 "
+"호출하지 않아야 합니다. 이 메서드는 다음과 동등합니다::"
 
 #: ../../library/graphlib.rst:162
 msgid ""
@@ -290,6 +314,12 @@ msgid ""
 "        yield from node_group\n"
 "        self.done(*node_group)"
 msgstr ""
+"def static_order(self):\n"
+"    self.prepare()\n"
+"    while self.is_active():\n"
+"        node_group = self.get_ready()\n"
+"        yield from node_group\n"
+"        self.done(*node_group)"
 
 #: ../../library/graphlib.rst:169
 msgid ""
@@ -311,6 +341,17 @@ msgid ""
 ">>> print([*ts2.static_order()])\n"
 "[0, 2, 1, 3]"
 msgstr ""
+">>> ts = TopologicalSorter()\n"
+">>> ts.add(3, 2, 1)\n"
+">>> ts.add(1, 0)\n"
+">>> print([*ts.static_order()])\n"
+"[2, 0, 1, 3]\n"
+"\n"
+">>> ts2 = TopologicalSorter()\n"
+">>> ts2.add(1, 0)\n"
+">>> ts2.add(3, 2, 1)\n"
+">>> print([*ts2.static_order()])\n"
+"[0, 2, 1, 3]"
 
 #: ../../library/graphlib.rst:186
 msgid ""
@@ -347,7 +388,6 @@ msgstr ""
 "예외에 포함됩니다."
 
 #: ../../library/graphlib.rst:207
-#, fuzzy
 msgid ""
 "The detected cycle can be accessed via the second element in the "
 ":attr:`~BaseException.args` attribute of the exception instance and "
@@ -356,7 +396,7 @@ msgid ""
 " the first and the last node will be the same, to make it clear that it "
 "is cyclic."
 msgstr ""
-"감지된 순환은 예외 인스턴스의 :attr:`~CycleError.args` 속성에서 두 번째 요소를 통해 액세스 할 수 있으며 각 "
-"노드가 그래프에서 리스트에 있는 다음 노드의 직전 선행 노드가 되도록 노드 리스트로 구성됩니다. 보고된 리스트에서, 순환임을 분명히"
-" 하기 위해, 처음과 마지막 노드는 같습니다."
+"감지된 순환은 예외 인스턴스의 :attr:`~BaseException.args` 어트리뷰트에서 두 번째 요소를 통해 액세스 할 수 "
+"있으며 각 노드가 그래프에서 리스트에 있는 다음 노드의 직전 선행 노드가 되도록 노드 리스트로 구성됩니다. 보고된 리스트에서, "
+"순환임을 분명히 하기 위해, 처음과 마지막 노드는 같습니다."
 
