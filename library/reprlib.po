@@ -17,22 +17,20 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/reprlib.rst:2
-#, fuzzy
 msgid ":mod:`!reprlib` --- Alternate :func:`repr` implementation"
-msgstr ":mod:`reprlib` --- 대안 :func:`repr` 구현"
+msgstr ":mod:`!reprlib` --- 대안 :func:`repr` 구현"
 
 #: ../../library/reprlib.rst:9
 msgid "**Source code:** :source:`Lib/reprlib.py`"
 msgstr "**소스 코드:** :source:`Lib/reprlib.py`"
 
 #: ../../library/reprlib.rst:13
-#, fuzzy
 msgid ""
 "The :mod:`!reprlib` module provides a means for producing object "
 "representations with limits on the size of the resulting strings. This is"
 " used in the Python debugger and may be useful in other contexts as well."
 msgstr ""
-":mod:`reprlib` 모듈은 결과 문자열의 크기에 제한이 있는 객체 표현을 생성하는 수단을 제공합니다. 파이썬 디버거에서 "
+":mod:`!reprlib` 모듈은 결과 문자열의 크기에 제한이 있는 객체 표현을 생성하는 수단을 제공합니다. 파이썬 디버거에서 "
 "사용되며 다른 문맥에서도 유용할 수 있습니다."
 
 #: ../../library/reprlib.rst:17
@@ -58,7 +56,7 @@ msgstr ""
 
 #: ../../library/reprlib.rst:32
 msgid "aRepr = reprlib.Repr(maxlevel=3)"
-msgstr ""
+msgstr "aRepr = reprlib.Repr(maxlevel=3)"
 
 #: ../../library/reprlib.rst:34
 msgid "Is equivalent to::"
@@ -69,6 +67,8 @@ msgid ""
 "aRepr = reprlib.Repr()\n"
 "aRepr.maxlevel = 3"
 msgstr ""
+"aRepr = reprlib.Repr()\n"
+"aRepr.maxlevel = 3"
 
 #: ../../library/reprlib.rst:39
 msgid ""
@@ -100,25 +100,24 @@ msgstr ""
 "반환하지만, 대부분의 크기에는 제한이 있습니다."
 
 #: ../../library/reprlib.rst:60
-#, fuzzy
 msgid ""
 "In addition to size-limiting tools, the module also provides a decorator "
 "for detecting recursive calls to :meth:`~object.__repr__` and "
 "substituting a placeholder string instead."
 msgstr ""
-"크기 제한 도구 외에도, 모듈은 :meth:`__repr__`\\에 대한 재귀 호출을 감지하고 대신 자리 표시자 문자열을 치환하는 "
-"데코레이터를 제공합니다."
+"크기 제한 도구 외에도, 모듈은 :meth:`~object.__repr__`\\에 대한 재귀 호출을 감지하고 대신 자리 표시자 "
+"문자열을 치환하는 데코레이터를 제공합니다."
 
 #: ../../library/reprlib.rst:69
-#, fuzzy
 msgid ""
 "Decorator for :meth:`~object.__repr__` methods to detect recursive calls "
 "within the same thread.  If a recursive call is made, the *fillvalue* is "
 "returned, otherwise, the usual :meth:`!__repr__` call is made.  For "
 "example:"
 msgstr ""
-"같은 스레드 내에서의 재귀 호출을 감지하는 :meth:`__repr__` 메서드용 데코레이터. 재귀 호출이 이루어지면, "
-"*fillvalue*\\가 반환되고, 그렇지 않으면 평상시의 :meth:`__repr__` 호출이 수행됩니다. 예를 들어:"
+"같은 스레드 내에서의 재귀 호출을 감지하는 :meth:`~object.__repr__` 메서드용 데코레이터. 재귀 호출이 "
+"이루어지면, *fillvalue*\\가 반환되고, 그렇지 않으면 평상시의 :meth:`!__repr__` 호출이 수행됩니다. 예를 "
+"들어:"
 
 #: ../../library/reprlib.rst:73
 msgid ""
@@ -134,6 +133,17 @@ msgid ""
 ">>> print(m)\n"
 "<'a'|'b'|'c'|...|'x'>"
 msgstr ""
+">>> from reprlib import recursive_repr\n"
+">>> class MyList(list):\n"
+"...     @recursive_repr()\n"
+"...     def __repr__(self):\n"
+"...         return '<' + '|'.join(map(repr, self)) + '>'\n"
+"...\n"
+">>> m = MyList('abc')\n"
+">>> m.append(m)\n"
+">>> m.append('x')\n"
+">>> print(m)\n"
+"<'a'|'b'|'c'|...|'x'>"
 
 #: ../../library/reprlib.rst:93
 msgid "Repr Objects"
@@ -212,6 +222,13 @@ msgid ""
 ">>> print(aRepr.repr(example))\n"
 "[1, 'spam', {'a': 2, 'b': 'spam eggs', 'c': {3: 4.5, 6: []}}, 'ham']"
 msgstr ""
+">>> example = [\n"
+"...     1, 'spam', {'a': 2, 'b': 'spam eggs', 'c': {3: 4.5, 6: []}}, "
+"'ham']\n"
+">>> import reprlib\n"
+">>> aRepr = reprlib.Repr()\n"
+">>> print(aRepr.repr(example))\n"
+"[1, 'spam', {'a': 2, 'b': 'spam eggs', 'c': {3: 4.5, 6: []}}, 'ham']"
 
 #: ../../library/reprlib.rst:162
 msgid ""
@@ -238,6 +255,21 @@ msgid ""
 "-->'ham',\n"
 "]"
 msgstr ""
+">>> aRepr.indent = '-->'\n"
+">>> print(aRepr.repr(example))\n"
+"[\n"
+"-->1,\n"
+"-->'spam',\n"
+"-->{\n"
+"-->-->'a': 2,\n"
+"-->-->'b': 'spam eggs',\n"
+"-->-->'c': {\n"
+"-->-->-->3: 4.5,\n"
+"-->-->-->6: [],\n"
+"-->-->},\n"
+"-->},\n"
+"-->'ham',\n"
+"]"
 
 #: ../../library/reprlib.rst:183
 msgid ""
@@ -264,6 +296,21 @@ msgid ""
 "    'ham',\n"
 "]"
 msgstr ""
+">>> aRepr.indent = 4\n"
+">>> print(aRepr.repr(example))\n"
+"[\n"
+"    1,\n"
+"    'spam',\n"
+"    {\n"
+"        'a': 2,\n"
+"        'b': 'spam eggs',\n"
+"        'c': {\n"
+"            3: 4.5,\n"
+"            6: [],\n"
+"        },\n"
+"    },\n"
+"    'ham',\n"
+"]"
 
 #: ../../library/reprlib.rst:209
 msgid ""
@@ -301,7 +348,6 @@ msgid "Subclassing Repr Objects"
 msgstr "Repr 객체 서브 클래싱"
 
 #: ../../library/reprlib.rst:236
-#, fuzzy
 msgid ""
 "The use of dynamic dispatching by :meth:`Repr.repr1` allows subclasses of"
 " :class:`Repr` to add support for additional built-in object types or to "
@@ -310,7 +356,7 @@ msgid ""
 msgstr ""
 ":meth:`Repr.repr1`\\에 의한 동적 디스패치의 사용은 :class:`Repr`\\의 서브 클래스가 추가 내장 객체 "
 "형에 대한 지원을 추가하거나 이미 지원되는 형의 처리를 수정할 수 있도록 합니다. 이 예제는 파일 객체에 대한 특별한 지원이 어떻게"
-" 추가될 수 있는지 보여줍니다::"
+" 추가될 수 있는지 보여줍니다:"
 
 #: ../../library/reprlib.rst:241
 #, python-brace-format
@@ -328,16 +374,28 @@ msgid ""
 "aRepr = MyRepr()\n"
 "print(aRepr.repr(sys.stdin))         # prints '<stdin>'"
 msgstr ""
+"import reprlib\n"
+"import sys\n"
+"\n"
+"class MyRepr(reprlib.Repr):\n"
+"\n"
+"    def repr_TextIOWrapper(self, obj, level):\n"
+"        if obj.name in {'<stdin>', '<stdout>', '<stderr>'}:\n"
+"            return obj.name\n"
+"        return repr(obj)\n"
+"\n"
+"aRepr = MyRepr()\n"
+"print(aRepr.repr(sys.stdin))         # '<stdin>' 을 인쇄합니다"
 
 #: ../../library/reprlib.rst:256
 msgid "<stdin>"
-msgstr ""
+msgstr "<stdin>"
 
 #: ../../library/reprlib.rst:65
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: ../../library/reprlib.rst:65
 msgid "placeholder"
-msgstr ""
+msgstr "자리 표시자"
 
