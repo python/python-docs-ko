@@ -54,7 +54,6 @@ msgstr ""
 "사용해야 합니다."
 
 #: ../../library/email.compat32-message.rst:26
-#, fuzzy
 msgid ""
 "An email message consists of *headers* and a *payload*.  Headers must be "
 ":rfc:`5322` style names and values, where the field name and value are "
@@ -65,7 +64,7 @@ msgid ""
 "indicated by the message having a MIME type such as "
 ":mimetype:`multipart/\\*` or :mimetype:`message/rfc822`."
 msgstr ""
-"이메일 메시지는 *헤더(headers)*\\와 *페이 로드(payload)*\\로 구성됩니다. 헤더는 :rfc:`5233` 스타일 "
+"이메일 메시지는 *헤더(headers)*\\와 *페이 로드(payload)*\\로 구성됩니다. 헤더는 :rfc:`5322` 스타일 "
 "이름과 값이어야 하며, 필드 이름과 값은 콜론으로 구분됩니다. 콜론은 필드 이름이나 필드 값의 일부가 아닙니다. 페이 로드는 간단한"
 " 텍스트 메시지, 바이너리 객체 또는 각각 자체 헤더 집합과 자체 페이 로드가 있는 서브 메시지의 구조화된 시퀀스일 수 있습니다. "
 "후자의 페이 로드 유형은 :mimetype:`multipart/\\*`\\나 :mimetype:`message/rfc822`\\와 "
@@ -158,7 +157,6 @@ msgstr ""
 "있습니다 (예를 들어, MIME 경계가 생성되거나 수정될 수 있습니다)."
 
 #: ../../library/email.compat32-message.rst:84
-#, fuzzy
 msgid ""
 "Note that this method is provided as a convenience and may not always "
 "format the message the way you want.  For example, by default it does not"
@@ -182,6 +180,12 @@ msgid ""
 "g.flatten(msg)\n"
 "text = fp.getvalue()"
 msgstr ""
+"from io import StringIO\n"
+"from email.generator import Generator\n"
+"fp = StringIO()\n"
+"g = Generator(fp, mangle_from_=True, maxheaderlen=60)\n"
+"g.flatten(msg)\n"
+"text = fp.getvalue()"
 
 #: ../../library/email.compat32-message.rst:98
 msgid ""
@@ -199,13 +203,12 @@ msgid "the *policy* keyword argument was added."
 msgstr "*policy* 키워드 인자가 추가되었습니다."
 
 #: ../../library/email.compat32-message.rst:108
-#, fuzzy
 msgid ""
 "Equivalent to :meth:`.as_string`.  Allows ``str(msg)`` to produce a "
 "string containing the formatted message."
 msgstr ""
-":meth:`.as_string()`\\과 동등합니다. ``str(msg)``\\가 포맷된 메시지를 포함하는 문자열을 생성할 수 "
-"있도록 합니다."
+":meth:`.as_string`\\과 동등합니다. ``str(msg)``\\가 포맷된 메시지를 포함하는 문자열을 생성할 수 있도록"
+" 합니다."
 
 #: ../../library/email.compat32-message.rst:114
 msgid ""
@@ -223,7 +226,6 @@ msgstr ""
 " 생성된 일부 포매팅을 제어하는 데 사용할 수 있습니다."
 
 #: ../../library/email.compat32-message.rst:126
-#, fuzzy
 msgid ""
 "Note that this method is provided as a convenience and may not always "
 "format the message the way you want.  For example, by default it does not"
@@ -247,15 +249,20 @@ msgid ""
 "g.flatten(msg)\n"
 "text = fp.getvalue()"
 msgstr ""
+"from io import BytesIO\n"
+"from email.generator import BytesGenerator\n"
+"fp = BytesIO()\n"
+"g = BytesGenerator(fp, mangle_from_=True, maxheaderlen=60)\n"
+"g.flatten(msg)\n"
+"text = fp.getvalue()"
 
 #: ../../library/email.compat32-message.rst:146
-#, fuzzy
 msgid ""
 "Equivalent to :meth:`.as_bytes`.  Allows ``bytes(msg)`` to produce a "
 "bytes object containing the formatted message."
 msgstr ""
-":meth:`.as_bytes()`\\와 동등합니다. ``bytes(msg)``\\가 포맷된 메시지를 포함하는 바이트열 객체를 "
-"생성할 수 있도록 합니다."
+":meth:`.as_bytes`\\와 동등합니다. ``bytes(msg)``\\가 포맷된 메시지를 포함하는 바이트열 객체를 생성할 "
+"수 있도록 합니다."
 
 #: ../../library/email.compat32-message.rst:154
 msgid ""
@@ -509,7 +516,6 @@ msgid ""
 msgstr "모든 경우에, 메시지에 존재하는 봉투 헤더는 매핑 인터페이스에 포함되지 않습니다."
 
 #: ../../library/email.compat32-message.rst:299
-#, fuzzy
 msgid ""
 "In a model generated from bytes, any header values that (in contravention"
 " of the RFCs) contain non-ASCII bytes will, when retrieved through this "
@@ -517,7 +523,7 @@ msgid ""
 " charset of ``unknown-8bit``."
 msgstr ""
 "바이트열에서 생성된 모델에서, (RFC에 반하여) 비 ASCII 바이트를 포함하는 헤더 값은, 이 인터페이스를 통해 꺼낼 때, 문자"
-" 집합이 `unknown-8bit`\\인 :class:`~email.header.Header` 객체로 표시됩니다."
+" 집합이 ``unknown-8bit``\\인 :class:`~email.header.Header` 객체로 표시됩니다."
 
 #: ../../library/email.compat32-message.rst:307
 msgid "Return the total number of headers, including duplicates."
@@ -537,6 +543,8 @@ msgid ""
 "if 'message-id' in myMessage:\n"
 "   print('Message-ID:', myMessage['message-id'])"
 msgstr ""
+"if 'message-id' in myMessage:\n"
+"   print('Message-ID:', myMessage['message-id'])"
 
 #: ../../library/email.compat32-message.rst:322
 msgid ""
@@ -578,6 +586,8 @@ msgid ""
 "del msg['subject']\n"
 "msg['subject'] = 'Python roolz!'"
 msgstr ""
+"del msg['subject']\n"
+"msg['subject'] = 'Python roolz!'"
 
 #: ../../library/email.compat32-message.rst:347
 msgid ""
@@ -601,14 +611,13 @@ msgid ""
 msgstr "메시지의 모든 필드 헤더와 값을 포함하는 2-튜플의 리스트를 반환합니다."
 
 #: ../../library/email.compat32-message.rst:370
-#, fuzzy
 msgid ""
 "Return the value of the named header field.  This is identical to "
 ":meth:`~object.__getitem__` except that optional *failobj* is returned if"
 " the named header is missing (defaults to ``None``)."
 msgstr ""
 "명명된 헤더 필드의 값을 반환합니다. 명명된 헤더가 없으면 선택적 *failobj*\\가 반환된다는 점을 제외하고는 "
-":meth:`__getitem__`\\과 동일합니다 (기본값은 ``None``\\입니다)."
+":meth:`~object.__getitem__`\\과 동일합니다 (기본값은 ``None``\\입니다)."
 
 #: ../../library/email.compat32-message.rst:374
 msgid "Here are some additional useful methods:"
@@ -666,7 +675,7 @@ msgstr "예를 들면 다음과 같습니다::"
 
 #: ../../library/email.compat32-message.rst:407
 msgid "msg.add_header('Content-Disposition', 'attachment', filename='bud.gif')"
-msgstr ""
+msgstr "msg.add_header('Content-Disposition', 'attachment', filename='bud.gif')"
 
 #: ../../library/email.compat32-message.rst:409
 msgid "This will add a header that looks like ::"
@@ -674,7 +683,7 @@ msgstr "이것은 다음과 같은 헤더를 추가합니다 ::"
 
 #: ../../library/email.compat32-message.rst:411
 msgid "Content-Disposition: attachment; filename=\"bud.gif\""
-msgstr ""
+msgstr "Content-Disposition: attachment; filename=\"bud.gif\""
 
 #: ../../library/email.compat32-message.rst:413
 msgid "An example with non-ASCII characters::"
@@ -685,6 +694,8 @@ msgid ""
 "msg.add_header('Content-Disposition', 'attachment',\n"
 "               filename=('iso-8859-1', '', 'Fußballer.ppt'))"
 msgstr ""
+"msg.add_header('Content-Disposition', 'attachment',\n"
+"               filename=('iso-8859-1', '', 'Fußballer.ppt'))"
 
 #: ../../library/email.compat32-message.rst:418
 msgid "Which produces ::"
@@ -692,7 +703,7 @@ msgstr "이것은 다음을 생성합니다 ::"
 
 #: ../../library/email.compat32-message.rst:420
 msgid "Content-Disposition: attachment; filename*=\"iso-8859-1''Fu%DFballer.ppt\""
-msgstr ""
+msgstr "Content-Disposition: attachment; filename*=\"iso-8859-1''Fu%DFballer.ppt\""
 
 #: ../../library/email.compat32-message.rst:425
 msgid ""
@@ -855,6 +866,8 @@ msgid ""
 "rawparam = msg.get_param('foo')\n"
 "param = email.utils.collapse_rfc2231_value(rawparam)"
 msgstr ""
+"rawparam = msg.get_param('foo')\n"
+"param = email.utils.collapse_rfc2231_value(rawparam)"
 
 #: ../../library/email.compat32-message.rst:522
 msgid ""
@@ -1097,6 +1110,15 @@ msgid ""
 "message/rfc822\n"
 "text/plain"
 msgstr ""
+">>> for part in msg.walk():\n"
+"...     print(part.get_content_type())\n"
+"multipart/report\n"
+"text/plain\n"
+"message/delivery-status\n"
+"text/plain\n"
+"text/plain\n"
+"message/rfc822\n"
+"text/plain"
 
 #: ../../library/email.compat32-message.rst:686
 msgid ""
@@ -1131,6 +1153,24 @@ msgid ""
 "    message/rfc822\n"
 "        text/plain"
 msgstr ""
+">>> for part in msg.walk():\n"
+"...     print(part.get_content_maintype() == 'multipart',\n"
+"...           part.is_multipart())\n"
+"True True\n"
+"False False\n"
+"False True\n"
+"False False\n"
+"False False\n"
+"False True\n"
+"False False\n"
+">>> _structure(msg)\n"
+"multipart/report\n"
+"    text/plain\n"
+"    message/delivery-status\n"
+"        text/plain\n"
+"        text/plain\n"
+"    message/rfc822\n"
+"        text/plain"
 
 #: ../../library/email.compat32-message.rst:713
 msgid ""
