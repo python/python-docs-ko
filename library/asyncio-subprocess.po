@@ -61,6 +61,23 @@ msgid ""
 "\n"
 "asyncio.run(run('ls /zzz'))"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def run(cmd):\n"
+"    proc = await asyncio.create_subprocess_shell(\n"
+"        cmd,\n"
+"        stdout=asyncio.subprocess.PIPE,\n"
+"        stderr=asyncio.subprocess.PIPE)\n"
+"\n"
+"    stdout, stderr = await proc.communicate()\n"
+"\n"
+"    print(f'[{cmd!r} exited with {proc.returncode}]')\n"
+"    if stdout:\n"
+"        print(f'[stdout]\\n{stdout.decode()}')\n"
+"    if stderr:\n"
+"        print(f'[stderr]\\n{stderr.decode()}')\n"
+"\n"
+"asyncio.run(run('ls /zzz'))"
 
 #: ../../library/asyncio-subprocess.rst:40
 msgid "will print::"
@@ -72,6 +89,9 @@ msgid ""
 "[stderr]\n"
 "ls: /zzz: No such file or directory"
 msgstr ""
+"['ls /zzz' exited with 1]\n"
+"[stderr]\n"
+"ls: /zzz: No such file or directory"
 
 #: ../../library/asyncio-subprocess.rst:46
 msgid ""
@@ -93,6 +113,12 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"async def main():\n"
+"    await asyncio.gather(\n"
+"        run('ls /zzz'),\n"
+"        run('sleep 1; echo \"hello\"'))\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../library/asyncio-subprocess.rst:58
 msgid "See also the `Examples`_ subsection."
@@ -108,16 +134,16 @@ msgstr "서브 프로세스를 만듭니다."
 
 #: ../../library/asyncio-subprocess.rst:70
 #: ../../library/asyncio-subprocess.rst:89
-#, fuzzy
 msgid ""
 "The *limit* argument sets the buffer limit for :class:`StreamReader` "
 "wrappers for :attr:`~asyncio.subprocess.Process.stdout` and "
 ":attr:`~asyncio.subprocess.Process.stderr` (if :const:`subprocess.PIPE` "
 "is passed to *stdout* and *stderr* arguments)."
 msgstr ""
-"*limit* 인자는 :attr:`Process.stdout` 과 :attr:`Process.stderr`\\에 대한 "
-":class:`StreamReader` 래퍼의 버퍼 한계를 설정합니다 (:attr:`subprocess.PIPE`\\가 "
-"*stdout* 및 *stderr* 인자에 전달되었을 때)."
+"*limit* 인자는 :attr:`~asyncio.subprocess.Process.stdout` 과 "
+":attr:`~asyncio.subprocess.Process.stderr`\\에 대한 :class:`StreamReader` "
+"래퍼의 버퍼 한계를 설정합니다 (:const:`subprocess.PIPE`\\가 *stdout* 및 *stderr* 인자에 "
+"전달되었을 때)."
 
 #: ../../library/asyncio-subprocess.rst:74
 #: ../../library/asyncio-subprocess.rst:93
@@ -132,9 +158,8 @@ msgstr "다른 매개 변수에 관해서는 :meth:`loop.subprocess_exec`\\의 �
 
 #: ../../library/asyncio-subprocess.rst:79
 #: ../../library/asyncio-subprocess.rst:107
-#, fuzzy
 msgid "Removed the *loop* parameter."
-msgstr "*loop* 매개 변수"
+msgstr "*loop* 매개 변수를 제거했습니다."
 
 #: ../../library/asyncio-subprocess.rst:87
 msgid "Run the *cmd* shell command."
@@ -193,18 +218,16 @@ msgid "Can be passed to the *stdin*, *stdout* or *stderr* parameters."
 msgstr "*stdin*, *stdout* 또는 *stderr* 매개 변수로 전달될 수 있습니다."
 
 #: ../../library/asyncio-subprocess.rst:133
-#, fuzzy
 msgid ""
 "If *PIPE* is passed to *stdin* argument, the :attr:`Process.stdin "
 "<asyncio.subprocess.Process.stdin>` attribute will point to a "
 ":class:`~asyncio.StreamWriter` instance."
 msgstr ""
 "*PIPE*\\가 *stdin* 인자로 전달되면, :attr:`Process.stdin "
-"<asyncio.subprocess.Process.stdin>` 어트리뷰트는 :class:`StreamWriter` 인스턴스를 "
-"가리킵니다."
+"<asyncio.subprocess.Process.stdin>` 어트리뷰트는 :class:`~asyncio.StreamWriter`"
+" 인스턴스를 가리킵니다."
 
 #: ../../library/asyncio-subprocess.rst:137
-#, fuzzy
 msgid ""
 "If *PIPE* is passed to *stdout* or *stderr* arguments, the "
 ":attr:`Process.stdout <asyncio.subprocess.Process.stdout>` and "
@@ -213,8 +236,8 @@ msgid ""
 msgstr ""
 "*PIPE*\\가 *stdout* 이나 *stderr* 인자로 전달되면, :attr:`Process.stdout "
 "<asyncio.subprocess.Process.stdout>` 과 :attr:`Process.stderr "
-"<asyncio.subprocess.Process.stderr>` 어트리뷰트는 :class:`StreamReader` 인스턴스를 "
-"가리 킵니다."
+"<asyncio.subprocess.Process.stderr>` 어트리뷰트는 "
+":class:`~asyncio.StreamReader` 인스턴스를 가리 킵니다."
 
 #: ../../library/asyncio-subprocess.rst:145
 msgid ""
@@ -248,14 +271,13 @@ msgstr ""
 "래퍼입니다."
 
 #: ../../library/asyncio-subprocess.rst:167
-#, fuzzy
 msgid ""
 "An object that wraps OS processes created by the "
 ":func:`~asyncio.create_subprocess_exec` and "
 ":func:`~asyncio.create_subprocess_shell` functions."
 msgstr ""
-":func:`create_subprocess_exec` 와 :func:`create_subprocess_shell` 함수로 만들어진"
-" OS 프로세스를 감싸는 객체."
+":func:`~asyncio.create_subprocess_exec` 와 "
+":func:`~asyncio.create_subprocess_shell` 함수로 만들어진 OS 프로세스를 감싸는 객체."
 
 #: ../../library/asyncio-subprocess.rst:171
 msgid ""
@@ -272,7 +294,6 @@ msgid ""
 msgstr "Popen과 달리, Process 인스턴스에는 :meth:`~subprocess.Popen.poll` 메서드와 동등한 것이 없습니다;"
 
 #: ../../library/asyncio-subprocess.rst:178
-#, fuzzy
 msgid ""
 "the :meth:`~asyncio.subprocess.Process.communicate` and "
 ":meth:`~asyncio.subprocess.Process.wait` methods don't have a *timeout* "
@@ -280,7 +301,7 @@ msgid ""
 msgstr ""
 ":meth:`~asyncio.subprocess.Process.communicate` 와 "
 ":meth:`~asyncio.subprocess.Process.wait` 메서드에는 *timeout* 매개 변수가 없습니다: "
-":func:`wait_for` 함수를 사용하십시오;"
+":func:`~asyncio.wait_for` 함수를 사용하십시오;"
 
 #: ../../library/asyncio-subprocess.rst:182
 msgid ""
@@ -334,7 +355,7 @@ msgstr "데이터를 *stdin*\\으로 보냅니다 (*input*\\이 ``None``\\이 �
 
 #: ../../library/asyncio-subprocess.rst:214
 msgid "closes *stdin*;"
-msgstr ""
+msgstr "*stdin*\\을 닫습니다;"
 
 #: ../../library/asyncio-subprocess.rst:215
 msgid "read data from *stdout* and *stderr*, until EOF is reached;"
@@ -384,87 +405,79 @@ msgstr "데이터가 메모리에 버퍼링 되므로, 데이터 크기가 크�
 
 #: ../../library/asyncio-subprocess.rst:239
 msgid "*stdin* gets closed when ``input=None`` too."
-msgstr ""
+msgstr "``input=None``\\일 때도 *stdin*\\이 닫힙니다."
 
 #: ../../library/asyncio-subprocess.rst:243
 msgid "Sends the signal *signal* to the child process."
 msgstr "시그널 *signal*\\를 자식 프로세스로 보냅니다."
 
 #: ../../library/asyncio-subprocess.rst:247
-#, fuzzy
 msgid ""
 "On Windows, :py:const:`~signal.SIGTERM` is an alias for "
 ":meth:`terminate`. ``CTRL_C_EVENT`` and ``CTRL_BREAK_EVENT`` can be sent "
 "to processes started with a *creationflags* parameter which includes "
 "``CREATE_NEW_PROCESS_GROUP``."
 msgstr ""
-"윈도우에서, :py:data:`SIGTERM`\\은 :meth:`terminate`\\의 별칭입니다. ``CTRL_C_EVENT``"
-" 와 ``CTRL_BREAK_EVENT``\\는 ``CREATE_NEW_PROCESS_GROUP``\\을 포함하는 "
-"*creationflags* 매개 변수로 시작된 프로세스로 전송될 수 있습니다."
+"윈도우에서, :py:const:`~signal.SIGTERM`\\은 :meth:`terminate`\\의 별칭입니다. "
+"``CTRL_C_EVENT`` 와 ``CTRL_BREAK_EVENT``\\는 "
+"``CREATE_NEW_PROCESS_GROUP``\\을 포함하는 *creationflags* 매개 변수로 시작된 프로세스로 전송될"
+" 수 있습니다."
 
 #: ../../library/asyncio-subprocess.rst:254
 msgid "Stop the child process."
 msgstr "자식 프로세스를 중지합니다."
 
 #: ../../library/asyncio-subprocess.rst:256
-#, fuzzy
 msgid ""
 "On POSIX systems this method sends :py:const:`~signal.SIGTERM` to the "
 "child process."
-msgstr "POSIX 시스템에서 이 메서드는 :py:data:`signal.SIGTERM`\\를 자식 프로세스로 보냅니다."
+msgstr "POSIX 시스템에서 이 메서드는 :py:const:`~signal.SIGTERM`\\를 자식 프로세스로 보냅니다."
 
 #: ../../library/asyncio-subprocess.rst:259
-#, fuzzy
 msgid ""
 "On Windows the Win32 API function :c:func:`!TerminateProcess` is called "
 "to stop the child process."
-msgstr "윈도우에서는 Win32 API 함수 :c:func:`TerminateProcess`\\가 호출되어 자식 프로세스를 중지합니다."
+msgstr "윈도우에서는 Win32 API 함수 :c:func:`!TerminateProcess`\\가 호출되어 자식 프로세스를 중지합니다."
 
 #: ../../library/asyncio-subprocess.rst:264
-#, fuzzy
 msgid "Kill the child process."
-msgstr "자식 프로세스를 중지합니다."
+msgstr "자식 프로세스를 죽입니다."
 
 #: ../../library/asyncio-subprocess.rst:266
-#, fuzzy
 msgid ""
 "On POSIX systems this method sends :py:data:`~signal.SIGKILL` to the "
 "child process."
-msgstr "POSIX 시스템에서 이 메서드는 :py:data:`SIGKILL`\\를 자식 프로세스로 보냅니다."
+msgstr "POSIX 시스템에서 이 메서드는 :py:data:`~signal.SIGKILL`\\를 자식 프로세스로 보냅니다."
 
 #: ../../library/asyncio-subprocess.rst:269
 msgid "On Windows this method is an alias for :meth:`terminate`."
 msgstr "윈도우에서 이 메서드는 :meth:`terminate`\\의 별칭입니다."
 
 #: ../../library/asyncio-subprocess.rst:273
-#, fuzzy
 msgid ""
 "Standard input stream (:class:`~asyncio.StreamWriter`) or ``None`` if the"
 " process was created with ``stdin=None``."
 msgstr ""
-"표준 입력 스트림(:class:`StreamWriter`) 또는 프로세스가 ``stdin=None``\\으로 만들어졌으면 "
-"``None``."
+"표준 입력 스트림(:class:`~asyncio.StreamWriter`) 또는 프로세스가 ``stdin=None``\\으로 "
+"만들어졌으면 ``None``."
 
 #: ../../library/asyncio-subprocess.rst:278
-#, fuzzy
 msgid ""
 "Standard output stream (:class:`~asyncio.StreamReader`) or ``None`` if "
 "the process was created with ``stdout=None``."
 msgstr ""
-"표준 출력 스트림(:class:`StreamReader`) 또는 프로세스가 ``stdout=None``\\으로 만들어졌으면 "
-"``None``."
+"표준 출력 스트림(:class:`~asyncio.StreamReader`) 또는 프로세스가 ``stdout=None``\\으로 "
+"만들어졌으면 ``None``."
 
 #: ../../library/asyncio-subprocess.rst:283
-#, fuzzy
 msgid ""
 "Standard error stream (:class:`~asyncio.StreamReader`) or ``None`` if the"
 " process was created with ``stderr=None``."
 msgstr ""
-"표준 에러 스트림(:class:`StreamReader`) 또는 프로세스가 ``stderr=None``\\으로 만들어졌으면 "
-"``None``."
+"표준 에러 스트림(:class:`~asyncio.StreamReader`) 또는 프로세스가 ``stderr=None``\\으로 "
+"만들어졌으면 ``None``."
 
 #: ../../library/asyncio-subprocess.rst:288
-#, fuzzy
 msgid ""
 "Use the :meth:`communicate` method rather than "
 ":attr:`process.stdin.write() <stdin>`, :attr:`await process.stdout.read()"
@@ -473,7 +486,7 @@ msgid ""
 "child process."
 msgstr ""
 ":attr:`process.stdin.write() <stdin>`, :attr:`await process.stdout.read()"
-" <stdout>` 또는 :attr:`await process.stderr.read <stderr>` 대신 "
+" <stdout>` 또는 :attr:`await process.stderr.read() <stderr>` 대신 "
 ":meth:`communicate` 메서드를 사용하십시오. 이렇게 하면 스트림이 읽기나 쓰기를 일시 중지하고 자식 프로세스를 "
 "블록하는 것으로 인한 교착 상태가 발생하지 않습니다."
 
@@ -482,12 +495,13 @@ msgid "Process identification number (PID)."
 msgstr "프로세스 식별 번호 (PID)."
 
 #: ../../library/asyncio-subprocess.rst:299
-#, fuzzy
 msgid ""
 "Note that for processes created by the "
 ":func:`~asyncio.create_subprocess_shell` function, this attribute is the "
 "PID of the spawned shell."
-msgstr ":func:`create_subprocess_shell` 함수로 만들어진 프로세스의 경우, 이 어트리뷰트는 생성된 셸의 PID입니다."
+msgstr ""
+":func:`~asyncio.create_subprocess_shell` 함수로 만들어진 프로세스의 경우, 이 어트리뷰트는 생성된 "
+"셸의 PID입니다."
 
 #: ../../library/asyncio-subprocess.rst:304
 msgid "Return code of the process when it exits."
@@ -598,6 +612,27 @@ msgid ""
 "date = asyncio.run(get_date())\n"
 "print(f\"Current date: {date}\")"
 msgstr ""
+"import asyncio\n"
+"import sys\n"
+"\n"
+"async def get_date():\n"
+"    code = 'import datetime; print(datetime.datetime.now())'\n"
+"\n"
+"    # 서브 프로세스를 만듭니다; 표준 출력을 파이프로 리디렉트합니다.\n"
+"    proc = await asyncio.create_subprocess_exec(\n"
+"        sys.executable, '-c', code,\n"
+"        stdout=asyncio.subprocess.PIPE)\n"
+"\n"
+"    # 한 줄의 출력을 읽습니다.\n"
+"    data = await proc.stdout.readline()\n"
+"    line = data.decode('ascii').rstrip()\n"
+"\n"
+"    # 서브 프로세스 종료를 기다립니다.\n"
+"    await proc.wait()\n"
+"    return line\n"
+"\n"
+"date = asyncio.run(get_date())\n"
+"print(f\"Current date: {date}\")"
 
 #: ../../library/asyncio-subprocess.rst:380
 msgid ""
@@ -606,7 +641,4 @@ msgid ""
 msgstr ""
 "저수준 API를 사용하여 작성된 :ref:`같은 예제 <asyncio_example_subprocess_proto>`\\도 "
 "참조하십시오."
-
-#~ msgid "Kill the child."
-#~ msgstr "자식을 죽입니다."
 
