@@ -40,7 +40,7 @@ msgstr ""
 
 #: ../../c-api/call.rst:17
 msgid "PyObject *tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);"
-msgstr ""
+msgstr "PyObject *tp_call(PyObject *callable, PyObject *args, PyObject *kwargs);"
 
 #: ../../c-api/call.rst:19
 msgid ""
@@ -63,7 +63,6 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_init`\\도 인자를 이런 식으로 전달합니다."
 
 #: ../../c-api/call.rst:29
-#, fuzzy
 msgid ""
 "To call an object, use :c:func:`PyObject_Call` or another :ref:`call API "
 "<capi-call>`."
@@ -129,7 +128,6 @@ msgstr ""
 "kwargs 딕셔너리로 변환해야 하면, 벡터콜을 구현할 이유가 없습니다."
 
 #: ../../c-api/call.rst:74
-#, fuzzy
 msgid ""
 "Classes can implement the vectorcall protocol by enabling the "
 ":c:macro:`Py_TPFLAGS_HAVE_VECTORCALL` flag and setting "
@@ -137,7 +135,7 @@ msgid ""
 "object structure where a *vectorcallfunc* appears. This is a pointer to a"
 " function with the following signature:"
 msgstr ""
-"클래스는 :const:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그를 활성화하고 "
+"클래스는 :c:macro:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그를 활성화하고 "
 ":c:member:`~PyTypeObject.tp_vectorcall_offset`\\을 *vectorcallfunc* 가 등장하는"
 " 객체 구조체 내부의 오프셋으로 설정하여 벡터콜 프로토콜을 구현할 수 있습니다. 이것은 다음과 같은 서명을 갖는 함수를 가리키는 "
 "포인터입니다:"
@@ -161,13 +159,12 @@ msgid "*nargsf* is the number of positional arguments plus possibly the"
 msgstr "*nargsf*\\는 위치 인자의 수에"
 
 #: ../../c-api/call.rst:87
-#, fuzzy
 msgid ""
 ":c:macro:`PY_VECTORCALL_ARGUMENTS_OFFSET` flag. To get the actual number "
 "of positional arguments from *nargsf*, use :c:func:`PyVectorcall_NARGS`."
 msgstr ""
-":const:`PY_VECTORCALL_ARGUMENTS_OFFSET` 플래그를 더한 것입니다. *nargsf*\\에서 실제 위치 "
-"인자 수를 얻으려면, :c:func:`PyVectorcall_NARGS`\\를 사용하십시오."
+":c:macro:`PY_VECTORCALL_ARGUMENTS_OFFSET` 플래그를 더한 것입니다. *nargsf*\\에서 실제 "
+"위치 인자 수를 얻으려면, :c:func:`PyVectorcall_NARGS`\\를 사용하십시오."
 
 #: ../../c-api/call.rst:90
 msgid "*kwnames* is a tuple containing the names of the keyword arguments;"
@@ -202,7 +199,6 @@ msgstr ""
 "있음을 의미합니다."
 
 #: ../../c-api/call.rst:106
-#, fuzzy
 msgid ""
 "Whenever they can do so cheaply (without additional allocation), callers "
 "are encouraged to use :c:macro:`PY_VECTORCALL_ARGUMENTS_OFFSET`. Doing so"
@@ -210,8 +206,8 @@ msgid ""
 "(which include a prepended *self* argument) very efficiently."
 msgstr ""
 "(추가 할당 없이) 저렴하게 할 수 있을 때마다, 호출자는 "
-":const:`PY_VECTORCALL_ARGUMENTS_OFFSET`\\을 사용하는 것이 좋습니다. 이렇게 하면 연결된 메서드와 "
-"같은 콜러블이 후속 호출(앞에 *self* 인자를 포함하는)을 매우 효율적으로 만들 수 있습니다."
+":c:macro:`PY_VECTORCALL_ARGUMENTS_OFFSET`\\을 사용하는 것이 좋습니다. 이렇게 하면 연결된 "
+"메서드와 같은 콜러블이 후속 호출(앞에 *self* 인자를 포함하는)을 매우 효율적으로 만들 수 있습니다."
 
 #: ../../c-api/call.rst:113
 msgid ""
@@ -257,7 +253,7 @@ msgstr "벡터콜 *nargsf* 인자가 주어지면, 실제 인자 수를 반환�
 
 #: ../../c-api/call.rst:140
 msgid "(Py_ssize_t)(nargsf & ~PY_VECTORCALL_ARGUMENTS_OFFSET)"
-msgstr ""
+msgstr "(Py_ssize_t)(nargsf & ~PY_VECTORCALL_ARGUMENTS_OFFSET)"
 
 #: ../../c-api/call.rst:142
 msgid ""
@@ -292,7 +288,6 @@ msgstr ""
 "호출합니다."
 
 #: ../../c-api/call.rst:164
-#, fuzzy
 msgid ""
 "This is a specialized function, intended to be put in the "
 ":c:member:`~PyTypeObject.tp_call` slot or be used in an implementation of"
@@ -300,15 +295,14 @@ msgid ""
 " flag and it does not fall back to ``tp_call``."
 msgstr ""
 "이것은 :c:member:`~PyTypeObject.tp_call` 슬롯에 넣거나 ``tp_call`` 구현에 사용하기 위한 특수 "
-"함수입니다. :const:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그를 확인하지 않고 ``tp_call``\\로 폴 "
-"백하지 않습니다."
+"함수입니다. :c:macro:`Py_TPFLAGS_HAVE_VECTORCALL` 플래그를 확인하지 않고 ``tp_call``\\로 "
+"폴 백하지 않습니다."
 
 #: ../../c-api/call.rst:175
 msgid "Object Calling API"
 msgstr "객체 호출 API"
 
 #: ../../c-api/call.rst:177
-#, fuzzy
 msgid ""
 "Various functions are available for calling a Python object. Each "
 "converts its arguments to a convention supported by the called object – "
@@ -514,12 +508,11 @@ msgstr ""
 "인자가 제공되지 않음을 나타냅니다."
 
 #: ../../c-api/call.rst:276
-#, fuzzy
 msgid ""
 "Note that if you only pass :c:expr:`PyObject *` args, "
 ":c:func:`PyObject_CallFunctionObjArgs` is a faster alternative."
 msgstr ""
-":c:type:`PyObject *` 인자만 전달한다면 :c:func:`PyObject_CallFunctionObjArgs` 가 더"
+":c:expr:`PyObject *` 인자만 전달한다면 :c:func:`PyObject_CallFunctionObjArgs` 가 더"
 " 빠른 대안임에 유의하십시오."
 
 #: ../../c-api/call.rst:279
@@ -546,12 +539,11 @@ msgid ""
 msgstr "이것은 다음 파이썬 표현식과 동등합니다: ``obj.name(arg1, arg2, ...)``."
 
 #: ../../c-api/call.rst:297
-#, fuzzy
 msgid ""
 "Note that if you only pass :c:expr:`PyObject *` args, "
 ":c:func:`PyObject_CallMethodObjArgs` is a faster alternative."
 msgstr ""
-":c:type:`PyObject *` 인자만 전달한다면 :c:func:`PyObject_CallMethodObjArgs` 가 더 "
+":c:expr:`PyObject *` 인자만 전달한다면 :c:func:`PyObject_CallMethodObjArgs` 가 더 "
 "빠른 대안임에 유의하십시오."
 
 #: ../../c-api/call.rst:300
@@ -559,13 +551,12 @@ msgid "The types of *name* and *format* were changed from ``char *``."
 msgstr "*name*\\과 *format*\\의 형이 ``char *``\\에서 변경되었습니다."
 
 #: ../../c-api/call.rst:306
-#, fuzzy
 msgid ""
 "Call a callable Python object *callable*, with a variable number of "
 ":c:expr:`PyObject *` arguments.  The arguments are provided as a variable"
 " number of parameters followed by *NULL*."
 msgstr ""
-"가변 개수의 :c:type:`PyObject *` 인자로 콜러블 파이썬 객체 *callable*\\을 호출합니다. 인자는 "
+"가변 개수의 :c:expr:`PyObject *` 인자로 콜러블 파이썬 객체 *callable*\\을 호출합니다. 인자는 "
 "*NULL*\\로 끝나는 가변 개수의 매개 변수로 제공됩니다."
 
 #: ../../c-api/call.rst:313
@@ -575,7 +566,6 @@ msgid ""
 msgstr "이것은 다음 파이썬 표현식과 동등합니다: ``callable(arg1, arg2, ...)``."
 
 #: ../../c-api/call.rst:319
-#, fuzzy
 msgid ""
 "Call a method of the Python object *obj*, where the name of the method is"
 " given as a Python string object in *name*.  It is called with a variable"
@@ -583,7 +573,7 @@ msgid ""
 " a variable number of parameters followed by *NULL*."
 msgstr ""
 "파이썬 객체 *obj*\\의 메서드를 호출합니다. 여기서 메서드 이름은 *name*\\에서 파이썬 문자열 객체로 제공됩니다. 가변 "
-"개수의 :c:type:`PyObject *` 인자로 호출됩니다. 인자는 *NULL*\\로 끝나는 가변 개수의 매개 변수로 "
+"개수의 :c:expr:`PyObject *` 인자로 호출됩니다. 인자는 *NULL*\\로 끝나는 가변 개수의 매개 변수로 "
 "제공됩니다."
 
 #: ../../c-api/call.rst:330
@@ -633,7 +623,6 @@ msgstr ""
 "된 딕셔너리가 있지만, 위치 인자에 대한 튜플이 없을 때만 사용해야 합니다."
 
 #: ../../c-api/call.rst:379
-#, fuzzy
 msgid ""
 "Call a method using the vectorcall calling convention. The name of the "
 "method is given as a Python string *name*. The object whose method is "
@@ -647,18 +636,17 @@ msgstr ""
 "벡터콜 호출 규칙을 사용하여 메서드를 호출합니다. 메서드 이름은 파이썬 문자열 *name*\\으로 제공됩니다. 메서드가 호출되는 "
 "객체는 *args[0]*\\이며, *args[1]*\\에서 시작하는 *args* 배열은 호출의 인자를 나타냅니다. 하나 이상의 위치"
 " 인자가 있어야 합니다. *nargsf*\\는 *args[0]*\\을 포함한 위치 인자의 수이며, ``args[0]`` 값이 "
-"일시적으로 변경될 수 있으면 :const:`PY_VECTORCALL_ARGUMENTS_OFFSET`\\이 더해집니다. 키워드 인자는"
-" :c:func:`PyObject_Vectorcall`\\에서처럼 전달될 수 있습니다."
+"일시적으로 변경될 수 있으면 :c:macro:`PY_VECTORCALL_ARGUMENTS_OFFSET`\\이 더해집니다. 키워드 "
+"인자는 :c:func:`PyObject_Vectorcall`\\에서처럼 전달될 수 있습니다."
 
 #: ../../c-api/call.rst:388
-#, fuzzy
 msgid ""
 "If the object has the :c:macro:`Py_TPFLAGS_METHOD_DESCRIPTOR` feature, "
 "this will call the unbound method object with the full *args* vector as "
 "arguments."
 msgstr ""
-"객체에 :const:`Py_TPFLAGS_METHOD_DESCRIPTOR` 기능이 있으면, 전체 *args* 벡터를 인자로 연결되지"
-" 않은 메서드 객체를 호출합니다."
+"객체에 :c:macro:`Py_TPFLAGS_METHOD_DESCRIPTOR` 기능이 있으면, 전체 *args* 벡터를 인자로 "
+"연결되지 않은 메서드 객체를 호출합니다."
 
 #: ../../c-api/call.rst:399
 msgid "Call Support API"
