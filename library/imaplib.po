@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/imaplib.rst:2
-#, fuzzy
 msgid ":mod:`!imaplib` --- IMAP4 protocol client"
-msgstr ":mod:`imaplib` --- IMAP4 프로토콜 클라이언트"
+msgstr ":mod:`!imaplib` --- IMAP4 프로토콜 클라이언트"
 
 #: ../../library/imaplib.rst:14
 msgid "**Source code:** :source:`Lib/imaplib.py`"
@@ -57,7 +56,6 @@ msgid ""
 msgstr ":mod:`imaplib` 모듈은 세 가지 클래스를 제공하며, :class:`IMAP4`\\는 베이스 클래스입니다:"
 
 #: ../../library/imaplib.rst:37
-#, fuzzy
 msgid ""
 "This class implements the actual IMAP4 protocol.  The connection is "
 "created and protocol version (IMAP4 or IMAP4rev1) is determined when the "
@@ -70,7 +68,7 @@ msgstr ""
 "이 클래스는 실제 IMAP4 프로토콜을 구현합니다. 연결이 만들어지고 인스턴스가 초기화될 때 프로토콜 버전(IMAP4 또는 "
 "IMAP4rev1)이 결정됩니다. *host*\\를 지정하지 않으면, ``''``\\(로컬 호스트)가 사용됩니다. *port*\\를"
 " 생략하면, 표준 IMAP4 포트(143)가 사용됩니다. 선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 "
-"지정합니다. timeout이 제공되지 않거나 None이면, 전역 기본 소켓 시간제한이 사용됩니다."
+"지정합니다. timeout이 제공되지 않거나 ``None``\\이면, 전역 기본 소켓 시간제한이 사용됩니다."
 
 #: ../../library/imaplib.rst:44
 msgid ""
@@ -89,6 +87,11 @@ msgid ""
 "...\n"
 "('OK', [b'Nothing Accomplished. d25if65hy903weo.87'])"
 msgstr ""
+">>> from imaplib import IMAP4\n"
+">>> with IMAP4(\"domain.org\") as M:\n"
+"...     M.noop()\n"
+"...\n"
+"('OK', [b'Nothing Accomplished. d25if65hy903weo.87'])"
 
 #: ../../library/imaplib.rst:54
 msgid "Support for the :keyword:`with` statement was added."
@@ -150,32 +153,30 @@ msgstr ""
 "객체입니다. 모범 사례는 :ref:`ssl-security`\\을 읽으십시오."
 
 #: ../../library/imaplib.rst:99
-#, fuzzy
 msgid ""
 "The optional *timeout* parameter specifies a timeout in seconds for the "
 "connection attempt. If timeout is not given or is ``None``, the global "
 "default socket timeout is used."
 msgstr ""
-"선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 지정합니다. timeout이 제공되지 않거나 None이면, "
-"전역 기본 소켓 시간제한이 사용됩니다."
+"선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 지정합니다. timeout이 제공되지 않거나 "
+"``None``\\이면, 전역 기본 소켓 시간제한이 사용됩니다."
 
 #: ../../library/imaplib.rst:103
 msgid "*ssl_context* parameter was added."
 msgstr "*ssl_context* 매개 변수가 추가되었습니다."
 
 #: ../../library/imaplib.rst:106
-#, fuzzy
 msgid ""
 "The class now supports hostname check with "
 ":attr:`ssl.SSLContext.check_hostname` and *Server Name Indication* (see "
 ":const:`ssl.HAS_SNI`)."
 msgstr ""
 "이 클래스는 이제 :attr:`ssl.SSLContext.check_hostname`\\과 *서버 이름 표시(Server Name "
-"Indication)*\\로 호스트명 확인을 지원합니다 (:data:`ssl.HAS_SNI`\\를 참조하십시오)."
+"Indication)*\\로 호스트명 확인을 지원합니다 (:const:`ssl.HAS_SNI`\\를 참조하십시오)."
 
 #: ../../library/imaplib.rst:114
 msgid "The deprecated *keyfile* and *certfile* parameters have been removed."
-msgstr ""
+msgstr "폐지된 *keyfile* 과 *certfile* 매개 변수를 제거했습니다."
 
 #: ../../library/imaplib.rst:117
 msgid "The second subclass allows for connections created by a child process:"
@@ -263,7 +264,6 @@ msgid "IMAP4 Objects"
 msgstr "IMAP4 객체"
 
 #: ../../library/imaplib.rst:179
-#, fuzzy
 msgid ""
 "All IMAP4rev1 commands are represented by methods of the same name, "
 "either uppercase or lowercase."
@@ -339,7 +339,7 @@ msgstr "*authobject*\\는 콜러블 객체여야 합니다::"
 
 #: ../../library/imaplib.rst:219
 msgid "data = authobject(response)"
-msgstr ""
+msgstr "data = authobject(response)"
 
 #: ../../library/imaplib.rst:221
 msgid ""
@@ -502,7 +502,6 @@ msgid "Send ``NOOP`` to server."
 msgstr "서버에 ``NOOP``\\을 보냅니다."
 
 #: ../../library/imaplib.rst:361
-#, fuzzy
 msgid ""
 "Opens socket to *port* at *host*. The optional *timeout* parameter "
 "specifies a timeout in seconds for the connection attempt. If timeout is "
@@ -515,9 +514,9 @@ msgid ""
 ":meth:`IMAP4.shutdown` methods. You may override this method."
 msgstr ""
 "*host*\\의 *port*\\로 소켓을 엽니다. 선택적 *timeout* 매개 변수는 연결 시도에 대한 시간제한을 초로 "
-"지정합니다. timeout이 제공되지 않거나 None이면, 전역 기본 소켓 시간제한이 사용됩니다. 또한 *timeout* 매개 "
-"변수가 0으로 설정되면, 비 블로킹 소켓을 만들지 못하도록 :class:`ValueError`\\를 발생시킴에 유의하십시오. 이 "
-"메서드는 :class:`IMAP4` 생성자에 의해 묵시적으로 호출됩니다. 이 메서드로 맺어진 연결 객체는 "
+"지정합니다. timeout이 제공되지 않거나 ``None``\\이면, 전역 기본 소켓 시간제한이 사용됩니다. 또한 *timeout*"
+" 매개 변수가 0으로 설정되면, 비 블로킹 소켓을 만들지 못하도록 :class:`ValueError`\\를 발생시킴에 유의하십시오."
+" 이 메서드는 :class:`IMAP4` 생성자에 의해 묵시적으로 호출됩니다. 이 메서드로 맺어진 연결 객체는 "
 ":meth:`IMAP4.read`, :meth:`IMAP4.readline`, :meth:`IMAP4.send` 및 "
 ":meth:`IMAP4.shutdown` 메서드에서 사용됩니다. 이 메서드를 재정의할 수 있습니다."
 
@@ -599,6 +598,11 @@ msgid ""
 "# or:\n"
 "typ, msgnums = M.search(None, '(FROM \"LDJ\")')"
 msgstr ""
+"# M은 연결된 IMAP4 인스턴스입니다...\n"
+"typ, msgnums = M.search(None, 'FROM', '\"LDJ\"')\n"
+"\n"
+"# 또는:\n"
+"typ, msgnums = M.search(None, '(FROM \"LDJ\")')"
 
 #: ../../library/imaplib.rst:435
 msgid ""
@@ -697,14 +701,13 @@ msgstr ""
 "객체여야 합니다. IMAP 연결의 암호화를 활성화합니다. 모범 사례는 :ref:`ssl-security`\\을 읽으십시오."
 
 #: ../../library/imaplib.rst:503
-#, fuzzy
 msgid ""
 "The method now supports hostname check with "
 ":attr:`ssl.SSLContext.check_hostname` and *Server Name Indication* (see "
 ":const:`ssl.HAS_SNI`)."
 msgstr ""
 "이 메서드는 이제 :attr:`ssl.SSLContext.check_hostname`\\과 *서버 이름 표시(Server Name "
-"Indication)*\\로 호스트명 확인을 지원합니다 (:data:`ssl.HAS_SNI`\\를 참조하십시오)."
+"Indication)*\\로 호스트명 확인을 지원합니다 (:const:`ssl.HAS_SNI`\\를 참조하십시오)."
 
 #: ../../library/imaplib.rst:511
 msgid "Request named status conditions for *mailbox*."
@@ -731,9 +734,12 @@ msgid ""
 "   M.store(num, '+FLAGS', '\\\\Deleted')\n"
 "M.expunge()"
 msgstr ""
+"typ, data = M.search(None, 'ALL')\n"
+"for num in data[0].split():\n"
+"   M.store(num, '+FLAGS', '\\\\Deleted')\n"
+"M.expunge()"
 
 #: ../../library/imaplib.rst:529
-#, fuzzy
 msgid ""
 "Creating flags containing ']' (for example: \"[test]\") violates "
 ":rfc:`3501` (the IMAP protocol).  However, imaplib has historically "
@@ -748,8 +754,8 @@ msgstr ""
 "']'을 포함하는 플래그를 만드는 것은 (예를 들어: \"[test]\") :rfc:`3501`\\(IMAP 프로토콜)을 "
 "위반합니다. 그러나, imaplib는 역사적으로 이러한 태그를 만들 수 있도록 허락했고, Gmail과 같은 널리 사용되는 IMAP "
 "서버는 이러한 플래그를 받아들이고 생성합니다. 역시 이러한 태그를 생성하는 비 파이썬 프로그램이 있습니다. RFC 위반이고 IMAP"
-" 클라이언트와 서버가 엄격해야 하기는 하지만, 그런데도 imaplib는 이전 버전과의 호환성을 위해 이러한 태그를 만들도록 계속 "
-"허락하며, 파이썬 3.6부터는 실제 호환성을 향상하기 때문에 서버에서 보낸다면 처리합니다."
+" 클라이언트와 서버가 엄격해야 하기는 하지만, imaplib는 이전 버전과의 호환성을 위해 이러한 태그를 만들도록 계속 허락하며, "
+"파이썬 3.6부터는 실제 호환성을 향상하기 때문에 서버에서 보낸다면 처리합니다."
 
 #: ../../library/imaplib.rst:541
 msgid "Subscribe to new mailbox."
@@ -771,7 +777,6 @@ msgid ""
 msgstr "스레드 구성원은 연속된 부모와 자식을 나타내는 스페이스로 구분된 0개 이상의 메시지 번호로 구성됩니다."
 
 #: ../../library/imaplib.rst:552
-#, fuzzy
 msgid ""
 "Thread has two arguments before the *search_criterion* argument(s); a "
 "*threading_algorithm*, and the searching *charset*.  Note that unlike "
@@ -786,7 +791,7 @@ msgstr ""
 "thread에는 *search_criterion* 인자 앞에 두 개의 인자가 있습니다; *threading_algorithm*\\과"
 " 검색 *charset*. ``search``\\와 달리, 검색 *charset* 인자는 필수임에 유의하십시오. ``uid "
 "search``\\가 ``search``\\에 해당하는 방식으로 ``thread``\\에 해당하는 ``uid thread`` 명령도"
-" 있습니다. ``thread`` 명령은 먼저 검색 기준의 문자열 해석을 위해 charset 인자를 사용하여 주어진 검색 기준과 "
+" 있습니다. ``thread`` 명령은 먼저 검색 기준의 문자열 해석을 위해 *charset* 인자를 사용하여 주어진 검색 기준과 "
 "일치하는 메시지를 사서함에서 검색합니다. 그런 다음 지정된 스레딩 알고리즘에 따라 스레드 된 일치 메시지들을 반환합니다."
 
 #: ../../library/imaplib.rst:567
@@ -874,54 +879,31 @@ msgid ""
 "M.close()\n"
 "M.logout()"
 msgstr ""
+"import getpass, imaplib\n"
+"\n"
+"M = imaplib.IMAP4(host='example.org')\n"
+"M.login(getpass.getuser(), getpass.getpass())\n"
+"M.select()\n"
+"typ, data = M.search(None, 'ALL')\n"
+"for num in data[0].split():\n"
+"    typ, data = M.fetch(num, '(RFC822)')\n"
+"    print('Message %s\\n%s\\n' % (num, data[0][1]))\n"
+"M.close()\n"
+"M.logout()"
 
 #: ../../library/imaplib.rst:16
 msgid "IMAP4"
-msgstr ""
+msgstr "IMAP4"
 
 #: ../../library/imaplib.rst:16
 msgid "protocol"
-msgstr ""
+msgstr "프로토콜"
 
 #: ../../library/imaplib.rst:16
 msgid "IMAP4_SSL"
-msgstr ""
+msgstr "IMAP4_SSL"
 
 #: ../../library/imaplib.rst:16
-#, fuzzy
 msgid "IMAP4_stream"
-msgstr "IMAP4 예"
-
-#~ msgid ""
-#~ "*keyfile* and *certfile* are a legacy"
-#~ " alternative to *ssl_context* - they "
-#~ "can point to PEM-formatted private "
-#~ "key and certificate chain files for "
-#~ "the SSL connection.  Note that the "
-#~ "*keyfile*/*certfile* parameters are mutually "
-#~ "exclusive with *ssl_context*, a "
-#~ ":class:`ValueError` is raised if "
-#~ "*keyfile*/*certfile* is provided along with"
-#~ " *ssl_context*."
-#~ msgstr ""
-#~ "*keyfile*\\과 *certfile*\\은 *ssl_context*\\의 레거시 "
-#~ "대안입니다 - SSL 연결을 위한 PEM 형식 개인"
-#~ " 키와 인증서 체인 파일을 가리킬 수 있습니다. "
-#~ "*keyfile*/*certfile* 매개 변수는 *ssl_context*\\와 "
-#~ "상호 배타적이며, *keyfile*/*certfile*\\이 *ssl_context*\\와"
-#~ " 함께 제공되면 :class:`ValueError`\\가 발생함에 "
-#~ "유의하십시오."
-
-#~ msgid ""
-#~ "*keyfile* and *certfile* are deprecated "
-#~ "in favor of *ssl_context*. Please use"
-#~ " :meth:`ssl.SSLContext.load_cert_chain` instead, or "
-#~ "let :func:`ssl.create_default_context` select the"
-#~ " system's trusted CA certificates for "
-#~ "you."
-#~ msgstr ""
-#~ "*keyfile*\\과 *certfile*\\은 폐지되었고 *ssl_context*\\로"
-#~ " 대체되었습니다. 대신 :meth:`ssl.SSLContext.load_cert_chain`\\을"
-#~ " 사용하거나, :func:`ssl.create_default_context`\\가 시스템의 "
-#~ "신뢰할 수 있는 CA 인증서를 선택하도록 하십시오."
+msgstr "IMAP4_stream"
 
