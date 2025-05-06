@@ -119,8 +119,13 @@ def glean(filename, *, revision=None, verbose=False):
     str2msg = {}
     for msg in before:
         if msg.string:
-            assert msg.string not in str2msg
-            str2msg[msg.string] = msg
+            if msg.string in str2msg:
+                print("WARNING: msgstr confict:")
+                print(f"\tmsgstr {msg.string!r}")
+                print(f"\tmsgid {str2msg[msg.string].id!r}")
+                print(f"\tmsgid {msg.id!r}")
+            else:
+                str2msg[msg.string] = msg
 
     # after 의 fuzzy 메시지들의 msgstr 과 같은 메시지를 before 에서 찾아서 쌍을 만든다
     pairs = []
