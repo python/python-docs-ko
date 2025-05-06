@@ -17,16 +17,14 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/zoneinfo.rst:2
-#, fuzzy
 msgid ":mod:`!zoneinfo` --- IANA time zone support"
-msgstr ":mod:`zoneinfo` --- IANA 시간대 지원"
+msgstr ":mod:`!zoneinfo` --- IANA 시간대 지원"
 
 #: ../../library/zoneinfo.rst:12
 msgid "**Source code:** :source:`Lib/zoneinfo`"
-msgstr ""
+msgstr "**소스 코드:** :source:`Lib/zoneinfo`"
 
 #: ../../library/zoneinfo.rst:16
-#, fuzzy
 msgid ""
 "The :mod:`zoneinfo` module provides a concrete time zone implementation "
 "to support the IANA time zone database as originally specified in "
@@ -37,8 +35,8 @@ msgid ""
 msgstr ""
 ":mod:`zoneinfo` 모듈은 원래 :pep:`615`\\에서 지정된 대로 IANA 시간대 데이터베이스를 지원하기 위한 구상 "
 "시간대 구현을 제공합니다. 기본적으로, :mod:`zoneinfo`\\는 가능하면 시스템의 시간대 데이터를 사용합니다; 사용 가능한"
-" 시스템 시간대 데이터가 없으면, 라이브러리는 PyPI에 있는 자사(first-party) `tzdata`_ 패키지를 사용하는 "
-"것으로 대체합니다."
+" 시스템 시간대 데이터가 없으면, 라이브러리는 PyPI에 있는 자사(first-party) :pypi:`tzdata` 패키지를 "
+"사용하는 것으로 대체합니다."
 
 #: ../../library/zoneinfo.rst:24
 msgid "Module: :mod:`datetime`"
@@ -53,9 +51,8 @@ msgstr ""
 ":class:`~datetime.datetime` 형을 제공합니다."
 
 #: ../../library/zoneinfo.rst:28
-#, fuzzy
 msgid "Package :pypi:`tzdata`"
-msgstr "패키지 `tzdata`_"
+msgstr "패키지 :pypi:`tzdata`"
 
 #: ../../library/zoneinfo.rst:29
 msgid ""
@@ -105,6 +102,16 @@ msgid ""
 ">>> dt.tzname()\n"
 "'PDT'"
 msgstr ""
+">>> from zoneinfo import ZoneInfo\n"
+">>> from datetime import datetime, timedelta\n"
+"\n"
+">>> dt = datetime(2020, 10, 31, 12, "
+"tzinfo=ZoneInfo(\"America/Los_Angeles\"))\n"
+">>> print(dt)\n"
+"2020-10-31 12:00:00-07:00\n"
+"\n"
+">>> dt.tzname()\n"
+"'PDT'"
 
 #: ../../library/zoneinfo.rst:52
 msgid ""
@@ -123,6 +130,13 @@ msgid ""
 ">>> dt_add.tzname()\n"
 "'PST'"
 msgstr ""
+">>> dt_add = dt + timedelta(days=1)\n"
+"\n"
+">>> print(dt_add)\n"
+"2020-11-01 12:00:00-08:00\n"
+"\n"
+">>> dt_add.tzname()\n"
+"'PST'"
 
 #: ../../library/zoneinfo.rst:63
 msgid ""
@@ -147,6 +161,13 @@ msgid ""
 ">>> print(dt.replace(fold=1))\n"
 "2020-11-01 01:00:00-08:00"
 msgstr ""
+">>> dt = datetime(2020, 11, 1, 1, "
+"tzinfo=ZoneInfo(\"America/Los_Angeles\"))\n"
+">>> print(dt)\n"
+"2020-11-01 01:00:00-07:00\n"
+"\n"
+">>> print(dt.replace(fold=1))\n"
+"2020-11-01 01:00:00-08:00"
 
 #: ../../library/zoneinfo.rst:76
 msgid ""
@@ -168,13 +189,23 @@ msgid ""
 ">>> print((dt_utc + timedelta(hours=1)).astimezone(LOS_ANGELES))\n"
 "2020-11-01 01:00:00-08:00"
 msgstr ""
+">>> from datetime import timezone\n"
+">>> LOS_ANGELES = ZoneInfo(\"America/Los_Angeles\")\n"
+">>> dt_utc = datetime(2020, 11, 1, 8, tzinfo=timezone.utc)\n"
+"\n"
+">>> # PDT -> PST 전환 전\n"
+">>> print(dt_utc.astimezone(LOS_ANGELES))\n"
+"2020-11-01 01:00:00-07:00\n"
+"\n"
+">>> # PDT -> PST 전환 후\n"
+">>> print((dt_utc + timedelta(hours=1)).astimezone(LOS_ANGELES))\n"
+"2020-11-01 01:00:00-08:00"
 
 #: ../../library/zoneinfo.rst:92
 msgid "Data sources"
 msgstr "데이터 소스"
 
 #: ../../library/zoneinfo.rst:94
-#, fuzzy
 msgid ""
 "The ``zoneinfo`` module does not directly provide time zone data, and "
 "instead pulls time zone information from the system time zone database or"
@@ -186,8 +217,8 @@ msgid ""
 ":class:`ZoneInfo` will raise :exc:`ZoneInfoNotFoundError`."
 msgstr ""
 "``zoneinfo`` 모듈은 시간대 데이터를 직접 제공하지 않고, 시스템 시간대 데이터베이스나 자사(first-party) "
-"PyPI 패키지 `tzdata`_\\(있다면)에서 시간대 정보를 가져옵니다. 특히 윈도우 시스템을 포함한 일부 시스템에는 사용 "
-"가능한 IANA 데이터베이스가 없어서, 시간대 데이터가 필요한 플랫폼 간 호환성을 목표로 하는 프로젝트는 tzdata에 대한 "
+"PyPI 패키지 :pypi:`tzdata`\\(있다면)에서 시간대 정보를 가져옵니다. 특히 윈도우 시스템을 포함한 일부 시스템에는 "
+"사용 가능한 IANA 데이터베이스가 없어서, 시간대 데이터가 필요한 플랫폼 간 호환성을 목표로 하는 프로젝트는 tzdata에 대한 "
 "종속성을 선언하는 것이 좋습니다. 시스템 데이터나 tzdata를 모두 사용할 수 없으면, :class:`ZoneInfo`\\에 대한"
 " 모든 호출은 :exc:`ZoneInfoNotFoundError`\\를 발생시킵니다."
 
@@ -235,7 +266,6 @@ msgid "Compile-time configuration"
 msgstr "컴파일 시간 구성"
 
 #: ../../library/zoneinfo.rst:125
-#, fuzzy
 msgid ""
 "The default :data:`TZPATH` includes several common deployment locations "
 "for the time zone database (except on Windows, where there are no \"well-"
@@ -249,8 +279,8 @@ msgstr ""
 "기본 :data:`TZPATH`\\에는 시간대 데이터베이스에 대한 몇 가지 일반적인 배포 위치가 포함되어 있습니다 (윈도우는 "
 "예외인데, 시간대 데이터에 대한 \"잘 알려진\" 위치가 없습니다). POSIX 시스템에서, 시스템 시간대 데이터가 배치된 위치를 "
 "알고 있는 다운 스트림 배포자와 소스에서 파이썬을 빌드하는 사람은 컴파일 시간 옵션 ``TZPATH``\\(또는, 더 가능성 있는,"
-" ``configure`` 플래그 ``--with-tzpath``)를 지정하여 기본 시간대 경로를 변경할 수 있습니다. "
-":data:`os.pathsep`\\으로 구분된 문자열이어야 합니다."
+" :option:`configure flag --with-tzpath <--with-tzpath>`)를 지정하여 기본 시간대 경로를"
+" 변경할 수 있습니다. :data:`os.pathsep`\\으로 구분된 문자열이어야 합니다."
 
 #: ../../library/zoneinfo.rst:134
 msgid ""
@@ -335,6 +365,9 @@ msgid ""
 "b = ZoneInfo(key)\n"
 "assert a is b"
 msgstr ""
+"a = ZoneInfo(key)\n"
+"b = ZoneInfo(key)\n"
+"assert a is b"
 
 #: ../../library/zoneinfo.rst:188
 msgid ""
@@ -422,14 +455,13 @@ msgstr ""
 "``only_keys``\\에 전달되었지만, 캐시에서 찾을 수 없는 키는 무시됩니다."
 
 #: ../../library/zoneinfo.rst:243
-#, fuzzy
 msgid ""
 "Invoking this function may change the semantics of datetimes using "
 "``ZoneInfo`` in surprising ways; this modifies module state and thus may "
 "have wide-ranging effects. Only use it if you know that you need to."
 msgstr ""
-"이 함수를 호출하면 예기치 못한 방식으로 ``ZoneInfo``\\를 사용하는 날짜 시간의 의미를 변경할 수 있습니다; 이는 "
-"프로세스 전체의 전역 상태를 수정하므로 광범위한 영향을 미칠 수 있습니다. 필요한 경우에만 사용하십시오."
+"이 함수를 호출하면 예기치 못한 방식으로 ``ZoneInfo``\\를 사용하는 날짜 시간의 의미를 변경할 수 있습니다; 이는 모듈 "
+"상태를 수정하므로 광범위한 영향을 미칠 수 있습니다. 필요한 경우에만 사용하십시오."
 
 #: ../../library/zoneinfo.rst:248
 msgid "The class has one attribute:"
@@ -488,6 +520,13 @@ msgid ""
 ">>> f\"{dt.isoformat()} [{dt.tzinfo}]\"\n"
 "'2020-04-01T03:15:00+12:00 [Pacific/Kwajalein]'"
 msgstr ""
+">>> zone = ZoneInfo(\"Pacific/Kwajalein\")\n"
+">>> str(zone)\n"
+"'Pacific/Kwajalein'\n"
+"\n"
+">>> dt = datetime(2020, 4, 1, 3, 15, tzinfo=zone)\n"
+">>> f\"{dt.isoformat()} [{dt.tzinfo}]\"\n"
+"'2020-04-01T03:15:00+12:00 [Pacific/Kwajalein]'"
 
 #: ../../library/zoneinfo.rst:283
 msgid ""
@@ -539,6 +578,10 @@ msgid ""
 ">>> a is b\n"
 "True"
 msgstr ""
+">>> a = ZoneInfo(\"Europe/Berlin\")\n"
+">>> b = pickle.loads(europe_berlin_pkl)\n"
+">>> a is b\n"
+"True"
 
 #: ../../library/zoneinfo.rst:314
 msgid ""
@@ -561,6 +604,10 @@ msgid ""
 ">>> a is b\n"
 "False"
 msgstr ""
+">>> a = ZoneInfo(\"Europe/Berlin\")\n"
+">>> b = pickle.loads(europe_berlin_pkl_nc)\n"
+">>> a is b\n"
+"False"
 
 #: ../../library/zoneinfo.rst:328
 msgid ""
