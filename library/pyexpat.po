@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/pyexpat.rst:2
-#, fuzzy
 msgid ":mod:`!xml.parsers.expat` --- Fast XML parsing using Expat"
-msgstr ":mod:`xml.parsers.expat` --- Expat을 사용한 빠른 XML 구문 분석"
+msgstr ":mod:`!xml.parsers.expat` --- Expat을 사용한 빠른 XML 구문 분석"
 
 #: ../../library/pyexpat.rst:21
 msgid ""
@@ -133,6 +132,12 @@ msgid ""
 "  <elem2 xmlns=\"\" />\n"
 "</root>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<root xmlns    = \"http://default-namespace.org/\"\n"
+"      xmlns:py = \"http://www.python.org/ns/\">\n"
+"  <py:elem1 />\n"
+"  <elem2 xmlns=\"\" />\n"
+"</root>"
 
 #: ../../library/pyexpat.rst:100
 msgid ""
@@ -146,6 +151,9 @@ msgid ""
 "http://www.python.org/ns/ elem1\n"
 "elem2"
 msgstr ""
+"http://default-namespace.org/ root\n"
+"http://www.python.org/ns/ elem1\n"
+"elem2"
 
 #: ../../library/pyexpat.rst:107
 msgid ""
@@ -339,7 +347,6 @@ msgstr ""
 "크기를 설정할 수 있습니다. 크기가 변경되면 버퍼가 플러시 됩니다."
 
 #: ../../library/pyexpat.rst:248
-#, fuzzy
 msgid ""
 "Setting this to true causes the :class:`xmlparser` object to buffer "
 "textual content returned by Expat to avoid multiple calls to the "
@@ -352,7 +359,7 @@ msgstr ""
 "이 값을 참으로 설정하면 :class:`xmlparser` 객체가 Expat에서 반환한 텍스트 내용을 버퍼링하여 가능할 때마다 "
 ":meth:`CharacterDataHandler` 콜백을 여러 번 호출하지 않도록 합니다. Expat은 일반적으로 모든 줄 끝에서"
 " 문자 데이터를 덩어리로 나누기 때문에 성능을 크게 향상할 수 있습니다. 이 어트리뷰트는 기본적으로 거짓이며, 언제든지 변경될 수 "
-"있습니다."
+"있습니다. 거짓일 때, 줄 넘김이 없는 데이터도 덩어리노 나뉠 수 있음에 유의하십시오."
 
 #: ../../library/pyexpat.rst:259
 msgid ""
@@ -545,7 +552,6 @@ msgid "Called for every processing instruction."
 msgstr "모든 처리 명령어(processing instruction)에서 호출됩니다."
 
 #: ../../library/pyexpat.rst:408
-#, fuzzy
 msgid ""
 "Called for character data.  This will be called for normal character "
 "data, CDATA marked content, and ignorable whitespace.  Applications which"
@@ -559,7 +565,9 @@ msgstr ""
 "문자 데이터에 대해 호출됩니다. 일반 문자 데이터, CDATA 표시 내용 및 무시할 수 있는 공백에 대해 호출됩니다. 이들을 "
 "구별해야 하는 응용 프로그램은 :attr:`StartCdataSectionHandler`, "
 ":attr:`EndCdataSectionHandler` 및 :attr:`ElementDeclHandler` 콜백을 사용하여 필요한 "
-"정보를 수집할 수 있습니다."
+"정보를 수집할 수 있습니다. 문자 데이터는 짧더라도 덩어리로 묶일 수 있어서 "
+":meth:`CharacterDataHandler`\\에 대한 호출을 여러 번 받을 수 있음에 유의하십시오. 이를 피하려면 "
+":attr:`buffer_text` 인스턴스 어프리뷰트를 ``True``\\로 설정하십시오."
 
 #: ../../library/pyexpat.rst:420
 msgid ""
@@ -738,6 +746,13 @@ msgid ""
 "except ExpatError as err:\n"
 "    print(\"Error:\", errors.messages[err.code])"
 msgstr ""
+"from xml.parsers.expat import ParserCreate, ExpatError, errors\n"
+"\n"
+"p = ParserCreate()\n"
+"try:\n"
+"    p.Parse(some_xml_document)\n"
+"except ExpatError as err:\n"
+"    print(\"Error:\", errors.messages[err.code])"
 
 #: ../../library/pyexpat.rst:549
 msgid ""
@@ -793,6 +808,26 @@ msgid ""
 "<child2 name=\"fred\">More text</child2>\n"
 "</parent>\"\"\", 1)"
 msgstr ""
+"import xml.parsers.expat\n"
+"\n"
+"# 3개의 처리기 함수\n"
+"def start_element(name, attrs):\n"
+"    print('Start element:', name, attrs)\n"
+"def end_element(name):\n"
+"    print('End element:', name)\n"
+"def char_data(data):\n"
+"    print('Character data:', repr(data))\n"
+"\n"
+"p = xml.parsers.expat.ParserCreate()\n"
+"\n"
+"p.StartElementHandler = start_element\n"
+"p.EndElementHandler = end_element\n"
+"p.CharacterDataHandler = char_data\n"
+"\n"
+"p.Parse(\"\"\"<?xml version=\"1.0\"?>\n"
+"<parent id=\"top\"><child1 name=\"paul\">Text goes here</child1>\n"
+"<child2 name=\"fred\">More text</child2>\n"
+"</parent>\"\"\", 1)"
 
 #: ../../library/pyexpat.rst:594
 msgid "The output from this program is::"
@@ -812,6 +847,16 @@ msgid ""
 "Character data: '\\n'\n"
 "End element: parent"
 msgstr ""
+"Start element: parent {'id': 'top'}\n"
+"Start element: child1 {'name': 'paul'}\n"
+"Character data: 'Text goes here'\n"
+"End element: child1\n"
+"Character data: '\\n'\n"
+"Start element: child2 {'name': 'fred'}\n"
+"Character data: 'More text'\n"
+"End element: child2\n"
+"Character data: '\\n'\n"
+"End element: parent"
 
 #: ../../library/pyexpat.rst:611
 msgid "Content Model Descriptions"
@@ -1128,13 +1173,13 @@ msgstr ""
 
 #: ../../library/pyexpat.rst:26
 msgid "Expat"
-msgstr ""
+msgstr "Expat"
 
 #: ../../library/pyexpat.rst:36
 msgid "module"
-msgstr ""
+msgstr "모듈"
 
 #: ../../library/pyexpat.rst:36
 msgid "pyexpat"
-msgstr ""
+msgstr "pyexpat"
 
