@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/queue.rst:2
-#, fuzzy
 msgid ":mod:`!queue` --- A synchronized queue class"
-msgstr ":mod:`queue` --- 동기화된 큐 클래스"
+msgstr ":mod:`!queue` --- 동기화된 큐 클래스"
 
 #: ../../library/queue.rst:7
 msgid "**Source code:** :source:`Lib/queue.py`"
@@ -36,7 +35,6 @@ msgstr ""
 "스레드 프로그래밍에서 특히 유용합니다. 이 모듈의 :class:`Queue` 클래스는 필요한 모든 로킹 개념을 구현합니다."
 
 #: ../../library/queue.rst:16
-#, fuzzy
 msgid ""
 "The module implements three types of queue, which differ only in the "
 "order in which the entries are retrieved.  In a :abbr:`FIFO (first-in, "
@@ -111,14 +109,13 @@ msgstr ""
 "도달하면, 큐 항목이 소비될 때까지 삽입이 블록 됩니다. *maxsize*\\가 0보다 작거나 같으면, 큐 크기는 무한합니다."
 
 #: ../../library/queue.rst:59
-#, fuzzy
 msgid ""
 "The lowest valued entries are retrieved first (the lowest valued entry is"
 " the one that would be returned by ``min(entries)``).  A typical pattern "
 "for entries is a tuple in the form: ``(priority_number, data)``."
 msgstr ""
-"가장 낮은 값을 갖는 항목이 먼저 꺼내집니다 (가장 낮은 값을 갖는 항목은 ``sorted(list(entries))[0]`` 에 "
-"의해 반환되는 항목입니다). 항목의 전형적인 패턴은 ``(priority_number, data)`` 형식의 튜플입니다."
+"가장 낮은 값을 갖는 항목이 먼저 꺼내집니다 (가장 낮은 값을 갖는 항목은 ``min(entries)`` 에 의해 반환될 "
+"항목입니다). 항목의 전형적인 패턴은 ``(priority_number, data)`` 형식의 튜플입니다."
 
 #: ../../library/queue.rst:63
 msgid ""
@@ -136,6 +133,13 @@ msgid ""
 "    priority: int\n"
 "    item: Any=field(compare=False)"
 msgstr ""
+"from dataclasses import dataclass, field\n"
+"from typing import Any\n"
+"\n"
+"@dataclass(order=True)\n"
+"class PrioritizedItem:\n"
+"    priority: int\n"
+"    item: Any=field(compare=False)"
 
 #: ../../library/queue.rst:76
 msgid ""
@@ -164,13 +168,12 @@ msgstr ""
 ":class:`Queue` 객체에 호출될 때 발생하는 예외."
 
 #: ../../library/queue.rst:98
-#, fuzzy
 msgid ""
 "Exception raised when :meth:`~Queue.put` or :meth:`~Queue.get` is called "
 "on a :class:`Queue` object which has been shut down."
 msgstr ""
-"비 블로킹 :meth:`~Queue.get`\\(또는 :meth:`~Queue.get_nowait`)이 비어있는 "
-":class:`Queue` 객체에 호출될 때 발생하는 예외."
+":meth:`~Queue.put`\\(또는 :meth:`~Queue.put`)이 종료된 :class:`Queue` 객체에 호출될 때"
+" 발생하는 예외."
 
 #: ../../library/queue.rst:107
 msgid "Queue Objects"
@@ -216,7 +219,6 @@ msgstr ""
 "``False``\\를 반환하면, put()에 대한 후속 호출이 블록 되지 않는다고 보장하는 것은 아닙니다."
 
 #: ../../library/queue.rst:138
-#, fuzzy
 msgid ""
 "Put *item* into the queue.  If optional args *block* is true and "
 "*timeout* is ``None`` (the default), block if necessary until a free slot"
@@ -237,9 +239,8 @@ msgid "Raises :exc:`ShutDown` if the queue has been shut down."
 msgstr ""
 
 #: ../../library/queue.rst:151
-#, fuzzy
 msgid "Equivalent to ``put(item, block=False)``."
-msgstr "``put(item, False)``\\와 동등합니다."
+msgstr "``put(item, block=False)``\\와 동등합니다."
 
 #: ../../library/queue.rst:156 ../../library/queue.rst:297
 msgid ""
@@ -258,7 +259,6 @@ msgstr ""
 "무시됩니다)."
 
 #: ../../library/queue.rst:163
-#, fuzzy
 msgid ""
 "Prior to 3.0 on POSIX systems, and for all versions on Windows, if "
 "*block* is true and *timeout* is ``None``, this operation goes into an "
@@ -322,7 +322,6 @@ msgid "Blocks until all items in the queue have been gotten and processed."
 msgstr "큐의 모든 항목을 꺼내서 처리할 때까지 블록합니다."
 
 #: ../../library/queue.rst:201
-#, fuzzy
 msgid ""
 "The count of unfinished tasks goes up whenever an item is added to the "
 "queue. The count goes down whenever a consumer thread calls "
@@ -364,6 +363,28 @@ msgid ""
 "q.join()\n"
 "print('All work completed')"
 msgstr ""
+"import threading\n"
+"import queue\n"
+"\n"
+"q = queue.Queue()\n"
+"\n"
+"def worker():\n"
+"    while True:\n"
+"        item = q.get()\n"
+"        print(f'Working on {item}')\n"
+"        print(f'Finished {item}')\n"
+"        q.task_done()\n"
+"\n"
+"# 작업자 스레드를 켭니다.\n"
+"threading.Thread(target=worker, daemon=True).start()\n"
+"\n"
+"# 작업자에게 30개의 작업 요청을 보냅니다.\n"
+"for item in range(30):\n"
+"    q.put(item)\n"
+"\n"
+"# 모든 작업이 완료될 때까지 블록합니다.\n"
+"q.join()\n"
+"print('All work completed')"
 
 #: ../../library/queue.rst:234
 msgid "Terminating queues"
@@ -413,7 +434,6 @@ msgstr ""
 "않습니다."
 
 #: ../../library/queue.rst:269
-#, fuzzy
 msgid ""
 "Return ``True`` if the queue is empty, ``False`` otherwise.  If empty() "
 "returns ``False`` it doesn't guarantee that a subsequent call to get() "
@@ -443,11 +463,12 @@ msgid ""
 msgstr ""
 
 #: ../../library/queue.rst:291
-#, fuzzy
 msgid ""
 "Equivalent to ``put(item, block=False)``, provided for compatibility with"
 " :meth:`Queue.put_nowait`."
-msgstr "``put(item)``\\과 동등합니다, :meth:`Queue.put_nowait`\\와의 호환성을 위해 제공됩니다."
+msgstr ""
+"``put(item, block=False)``\\과 동등합니다, :meth:`Queue.put_nowait`\\와의 호환성을 위해"
+" 제공됩니다."
 
 #: ../../library/queue.rst:312
 msgid "Class :class:`multiprocessing.Queue`"
@@ -469,30 +490,4 @@ msgstr ""
 ":class:`collections.deque`\\는 록을 필요로하지 않고 인덱싱을 지원하는 빠른 원자적 "
 ":meth:`~collections.deque.append`\\와 :meth:`~collections.deque.popleft` "
 "연산을 제공하는 크기 제한 없는 큐의 대체 구현입니다."
-
-#~ msgid ""
-#~ "Remove and return an item from the"
-#~ " queue. If optional args *block* is"
-#~ " true and *timeout* is ``None`` (the"
-#~ " default), block if necessary until "
-#~ "an item is available. If *timeout* "
-#~ "is a positive number, it blocks at"
-#~ " most *timeout* seconds and raises "
-#~ "the :exc:`Empty` exception if no item"
-#~ " was available within that time. "
-#~ "Otherwise (*block* is false), return an"
-#~ " item if one is immediately "
-#~ "available, else raise the :exc:`Empty` "
-#~ "exception (*timeout* is ignored in that"
-#~ " case)."
-#~ msgstr ""
-#~ "큐에서 항목을 제거하고 반환합니다. 선택적 인자 "
-#~ "*block*\\이 참이고 *timeout*\\이 ``None``\\(기본값)이면, "
-#~ "항목이 사용 가능할 때까지 필요하면 블록합니다. "
-#~ "*timeout*\\이 양수면, 최대 *timeout* 초 동안 "
-#~ "블록하고 그 시간 내에 사용 가능한 항목이 없으면"
-#~ " :exc:`Empty` 예외가 발생합니다. 그렇지 않으면 "
-#~ "(*block*\\이 거짓), 즉시 사용할 수 있는 항목이"
-#~ " 있으면 반환하고, 그렇지 않으면 :exc:`Empty` 예외를"
-#~ " 발생시킵니다 (이때 *timeout*\\은 무시됩니다)."
 
