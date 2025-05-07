@@ -17,21 +17,19 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/fcntl.rst:2
-#, fuzzy
 msgid ":mod:`!fcntl` --- The ``fcntl`` and ``ioctl`` system calls"
-msgstr ":mod:`fcntl` --- ``fcntl``\\과 ``ioctl`` 시스템 호출"
+msgstr ":mod:`!fcntl` --- ``fcntl``\\과 ``ioctl`` 시스템 호출"
 
 #: ../../library/fcntl.rst:16
-#, fuzzy
 msgid ""
 "This module performs file and I/O control on file descriptors. It is an "
 "interface to the :c:func:`fcntl` and :c:func:`ioctl` Unix routines. See "
 "the :manpage:`fcntl(2)` and :manpage:`ioctl(2)` Unix manual pages for "
 "full details."
 msgstr ""
-"이 모듈은 파일 기술자에 대한 파일 제어와 I/O 제어를 수행합니다. :c:func:`fcntl`\\과 :c:func:`ioctl`"
-" 유닉스 루틴에 대한 인터페이스입니다. 이 호출에 대한 자세한 설명은 :manpage:`fcntl(2)`\\과 "
-":manpage:`ioctl(2)` 유닉스 매뉴얼 페이지를 참조하십시오."
+"이 모듈은 파일 기술자에 대한 파일과 I/O 제어를 수행합니다. :c:func:`fcntl`\\과 :c:func:`ioctl` "
+"유닉스 루틴에 대한 인터페이스입니다. 자세한 설명은 :manpage:`fcntl(2)`\\과 :manpage:`ioctl(2)` "
+"유닉스 매뉴얼 페이지를 참조하십시오."
 
 #: ../../library/fcntl.rst:21
 msgid "Availability"
@@ -57,17 +55,15 @@ msgid ""
 msgstr "이 모듈의 연산은 :exc:`IOError`\\를 발생시켰는데, 이제는 :exc:`OSError`\\를 발생시킵니다."
 
 #: ../../library/fcntl.rst:33
-#, fuzzy
 msgid ""
 "The :mod:`!fcntl` module now contains ``F_ADD_SEALS``, ``F_GET_SEALS``, "
 "and ``F_SEAL_*`` constants for sealing of :func:`os.memfd_create` file "
 "descriptors."
 msgstr ""
-"fcntl 모듈에는 이제 :func:`os.memfd_create` 파일 기술자를 봉인(seal)하기 위한 "
+":mod:`!fcntl` 모듈에는 이제 :func:`os.memfd_create` 파일 기술자를 봉인(seal)하기 위한 "
 "``F_ADD_SEALS``, ``F_GET_SEALS`` 및 ``F_SEAL_*`` 상수가 포함됩니다."
 
 #: ../../library/fcntl.rst:38
-#, fuzzy
 msgid ""
 "On macOS, the :mod:`!fcntl` module exposes the ``F_GETPATH`` constant, "
 "which obtains the path of a file from a file descriptor. On "
@@ -75,9 +71,10 @@ msgid ""
 "``F_OFD_SETLK`` and ``F_OFD_SETLKW`` constants, which are used when "
 "working with open file description locks."
 msgstr ""
-"macOS에서, fcntl 모듈은 파일 기술자에서 파일의 경로를 얻는 ``F_GETPATH`` 상수를 노출합니다. "
-"리눅스(>=3.15)에서, fcntl 모듈은 열린 파일 기술 록(open file description locks)으로 작동하는 "
-"``F_OFD_GETLK``, ``F_OFD_SETLK`` 및 ``F_OFD_SETLKW`` 상수를 노출합니다."
+"macOS에서, :mod:`!fcntl` 모듈은 파일 기술자에서 파일의 경로를 얻는 ``F_GETPATH`` 상수를 노출합니다. "
+"리눅스(>=3.15)에서, :mod:`!fcntl` 모듈은 열린 파일 기술 록(open file description "
+"locks)으로 작업할 때 사용되는 ``F_OFD_GETLK``, ``F_OFD_SETLK`` 및 ``F_OFD_SETLKW`` "
+"상수를 노출합니다."
 
 #: ../../library/fcntl.rst:45
 msgid ""
@@ -155,9 +152,8 @@ msgstr ""
 "버퍼로 반환된 정보가 1024바이트보다 크면, 세그멘테이션 위반이나 더 미묘한 데이터 손상이 발생할 가능성이 큽니다."
 
 #: ../../library/fcntl.rst:104
-#, fuzzy
 msgid "If the :c:func:`fcntl` call fails, an :exc:`OSError` is raised."
-msgstr ":c:func:`fcntl`\\이 실패하면, :exc:`OSError`\\가 발생합니다."
+msgstr ":c:func:`fcntl` 호출이 실패하면, :exc:`OSError`\\가 발생합니다."
 
 #: ../../library/fcntl.rst:106
 msgid ""
@@ -230,9 +226,8 @@ msgstr ""
 "버퍼가 :func:`ioctl`\\로 전달되고, 정적 버퍼를 제공된 버퍼로 다시 복사하기 때문입니다."
 
 #: ../../library/fcntl.rst:142
-#, fuzzy
 msgid "If the :c:func:`ioctl` call fails, an :exc:`OSError` exception is raised."
-msgstr ":c:func:`ioctl`\\이 실패하면, :exc:`OSError` 예외가 발생합니다."
+msgstr ":c:func:`ioctl` 호출이 실패하면, :exc:`OSError` 예외가 발생합니다."
 
 #: ../../library/fcntl.rst:144
 msgid "An example::"
@@ -251,6 +246,16 @@ msgid ""
 ">>> buf\n"
 "array('h', [13341])"
 msgstr ""
+">>> import array, fcntl, struct, termios, os\n"
+">>> os.getpgrp()\n"
+"13341\n"
+">>> struct.unpack('h', fcntl.ioctl(0, termios.TIOCGPGRP, \"  \"))[0]\n"
+"13341\n"
+">>> buf = array.array('h', [0])\n"
+">>> fcntl.ioctl(0, termios.TIOCGPGRP, buf, 1)\n"
+"0\n"
+">>> buf\n"
+"array('h', [13341])"
 
 #: ../../library/fcntl.rst:157
 msgid ""
@@ -272,9 +277,8 @@ msgstr ""
 "(일부 시스템에서는, 이 함수가 :c:func:`fcntl`\\를 사용하여 에뮬레이트됩니다.)"
 
 #: ../../library/fcntl.rst:167
-#, fuzzy
 msgid "If the :c:func:`flock` call fails, an :exc:`OSError` exception is raised."
-msgstr ":c:func:`flock`\\이 실패하면, :exc:`OSError` 예외가 발생합니다."
+msgstr ":c:func:`flock` 호출이 실패하면, :exc:`OSError` 예외가 발생합니다."
 
 #: ../../library/fcntl.rst:169
 msgid ""
@@ -297,26 +301,23 @@ msgstr ""
 
 #: ../../library/fcntl.rst:181
 msgid "Release an existing lock."
-msgstr ""
+msgstr "기존 잠금 해제."
 
 #: ../../library/fcntl.rst:185
-#, fuzzy
 msgid "Acquire a shared lock."
-msgstr ":const:`LOCK_SH` -- 공유 잠금 획득"
+msgstr "공유 잠금 획득."
 
 #: ../../library/fcntl.rst:189
-#, fuzzy
 msgid "Acquire an exclusive lock."
-msgstr ":const:`LOCK_EX` -- 배타적 잠금 획득"
+msgstr "배타적 잠금 획득."
 
 #: ../../library/fcntl.rst:193
 msgid ""
 "Bitwise OR with any of the other three ``LOCK_*`` constants to make the "
 "request non-blocking."
-msgstr ""
+msgstr "다른 세 개의 ``LOCK_*`` 상수와 비트별 OR 하여 요청을 비 블로킹으로 만듭니다."
 
 #: ../../library/fcntl.rst:196
-#, fuzzy
 msgid ""
 "If :const:`!LOCK_NB` is used and the lock cannot be acquired, an "
 ":exc:`OSError` will be raised and the exception will have an *errno* "
@@ -325,11 +326,10 @@ msgid ""
 "values).  On at least some systems, :const:`!LOCK_EX` can only be used if"
 " the file descriptor refers to a file opened for writing."
 msgstr ""
-"*cmd*\\가 :const:`LOCK_SH`\\나 :const:`LOCK_EX` 일 때, 잠금 획득시 블로킹을 피하고자 "
-":const:`LOCK_NB`\\와 비트별 OR 될 수 있습니다. :const:`LOCK_NB`\\가 사용되고 잠금을 얻을 수 없을"
-" 때, :exc:`OSError`\\가 발생하고 *errno* 어트리뷰트가 :const:`EACCES`\\나 "
-":const:`EAGAIN`\\으로 설정됩니다 (운영 체제에 따라 다릅니다; 이식성을 위해서 두 값을 모두 확인하십시오). 적어도 "
-"일부 시스템에서, :const:`LOCK_EX`\\는 파일 기술자가 쓰기 위해 열린 파일을 참조할 때만 사용할 수 있습니다."
+":const:`!LOCK_NB`\\가 사용되고 잠금을 얻을 수 없을 때, :exc:`OSError`\\가 발생하고 *errno* "
+"어트리뷰트가 :const:`~errno.EACCES`\\나 :const:`~errno.EAGAIN`\\으로 설정됩니다 (운영 체제에"
+" 따라 다릅니다; 이식성을 위해서 두 값을 모두 확인하십시오). 적어도 일부 시스템에서, :const:`!LOCK_EX`\\는 파일"
+" 기술자가 쓰기 위해 열린 파일을 참조할 때만 사용할 수 있습니다."
 
 #: ../../library/fcntl.rst:203
 msgid ""
@@ -341,19 +341,16 @@ msgstr ""
 "*whence*\\는 :func:`io.IOBase.seek`\\에서와 같은데, 구체적으로 다음과 같습니다:"
 
 #: ../../library/fcntl.rst:207
-#, fuzzy
 msgid "``0`` -- relative to the start of the file (:const:`os.SEEK_SET`)"
-msgstr ":const:`0` -- 파일의 시작에 상대적 (:data:`os.SEEK_SET`)"
+msgstr "``0`` -- 파일의 시작에 상대적 (:const:`os.SEEK_SET`)"
 
 #: ../../library/fcntl.rst:208
-#, fuzzy
 msgid "``1`` -- relative to the current buffer position (:const:`os.SEEK_CUR`)"
-msgstr ":const:`1` -- 현재 버퍼 위치에 상대적 (:data:`os.SEEK_CUR`)"
+msgstr "``1`` -- 현재 버퍼 위치에 상대적 (:const:`os.SEEK_CUR`)"
 
 #: ../../library/fcntl.rst:209
-#, fuzzy
 msgid "``2`` -- relative to the end of the file (:const:`os.SEEK_END`)"
-msgstr ":const:`2` -- 파일의 끝에 상대적 (:data:`os.SEEK_END`)"
+msgstr "``2`` -- 파일의 끝에 상대적 (:const:`os.SEEK_END`)"
 
 #: ../../library/fcntl.rst:211
 msgid ""
@@ -386,6 +383,13 @@ msgid ""
 "lockdata = struct.pack('hhllhh', fcntl.F_WRLCK, 0, 0, 0, 0, 0)\n"
 "rv = fcntl.fcntl(f, fcntl.F_SETLKW, lockdata)"
 msgstr ""
+"import struct, fcntl, os\n"
+"\n"
+"f = open(...)\n"
+"rv = fcntl.fcntl(f, fcntl.F_SETFL, os.O_NDELAY)\n"
+"\n"
+"lockdata = struct.pack('hhllhh', fcntl.F_WRLCK, 0, 0, 0, 0, 0)\n"
+"rv = fcntl.fcntl(f, fcntl.F_SETLKW, lockdata)"
 
 #: ../../library/fcntl.rst:227
 msgid ""
@@ -403,29 +407,25 @@ msgid "Module :mod:`os`"
 msgstr "모듈 :mod:`os`"
 
 #: ../../library/fcntl.rst:236
-#, fuzzy
 msgid ""
 "If the locking flags :const:`~os.O_SHLOCK` and :const:`~os.O_EXLOCK` are "
 "present in the :mod:`os` module (on BSD only), the :func:`os.open` "
 "function provides an alternative to the :func:`lockf` and :func:`flock` "
 "functions."
 msgstr ""
-"잠금 플래그 :data:`~os.O_SHLOCK`\\과 :data:`~os.O_EXLOCK`\\이 :mod:`os` 모듈에 있으면 "
-"(BSD에만 해당합니다), :func:`os.open` 함수는 :func:`lockf`\\와 :func:`flock` 함수의 대안을"
-" 제공합니다."
+"잠금 플래그 :const:`~os.O_SHLOCK`\\과 :const:`~os.O_EXLOCK`\\이 :mod:`os` 모듈에 "
+"있으면 (BSD에만 해당합니다), :func:`os.open` 함수는 :func:`lockf`\\와 :func:`flock` 함수의"
+" 대안을 제공합니다."
 
 #: ../../library/fcntl.rst:10
 msgid "UNIX"
-msgstr ""
+msgstr "UNIX"
 
 #: ../../library/fcntl.rst:10
 msgid "file control"
-msgstr ""
+msgstr "파일 제어"
 
 #: ../../library/fcntl.rst:10
 msgid "I/O control"
-msgstr ""
-
-#~ msgid ":const:`LOCK_UN` -- unlock"
-#~ msgstr ":const:`LOCK_UN` -- 잠금 해제"
+msgstr "I/O 제어"
 
