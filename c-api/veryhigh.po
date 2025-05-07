@@ -30,7 +30,6 @@ msgstr ""
 "작용하도록 하지는 않습니다."
 
 #: ../../c-api/veryhigh.rst:14
-#, fuzzy
 msgid ""
 "Several of these functions accept a start symbol from the grammar as a "
 "parameter.  The available start symbols are :c:data:`Py_eval_input`, "
@@ -38,11 +37,10 @@ msgid ""
 "described following the functions which accept them as parameters."
 msgstr ""
 "이러한 함수 중 일부는 문법의 시작 기호를 매개 변수로 받아들입니다. 사용 가능한 시작 기호는 "
-":const:`Py_eval_input`, :const:`Py_file_input` 및 "
-":const:`Py_single_input`\\입니다. 이것들은 이들을 매개 변수로 받아들이는 함수 뒤에 설명됩니다."
+":c:data:`Py_eval_input`, :c:data:`Py_file_input` 및 "
+":c:data:`Py_single_input`\\입니다. 이것들은 이들을 매개 변수로 받아들이는 함수 뒤에 설명됩니다."
 
 #: ../../c-api/veryhigh.rst:19
-#, fuzzy
 msgid ""
 "Note also that several of these functions take :c:expr:`FILE*` "
 "parameters.  One particular issue which needs to be handled carefully is "
@@ -53,9 +51,9 @@ msgid ""
 "these functions if it is certain that they were created by the same "
 "library that the Python runtime is using."
 msgstr ""
-"또한 이 함수 중 일부는 :c:type:`FILE*` 매개 변수를 취합니다. 주의해서 다루어야 할 한 가지 문제는 다른 C "
+"또한 이 함수 중 일부는 :c:expr:`FILE*` 매개 변수를 취합니다. 주의해서 다루어야 할 한 가지 문제는 다른 C "
 "라이브러리의 :c:type:`FILE` 구조체가 다르고, 호환되지 않을 수 있다는 것입니다. (적어도) 윈도우에서는, 동적으로 "
-"링크된 확장에서 실제로 다른 라이브러리를 사용할 수 있어서, :c:type:`FILE*` 매개 변수가 파이썬 런타임이 사용하고 있는"
+"링크된 확장에서 실제로 다른 라이브러리를 사용할 수 있어서, :c:expr:`FILE*` 매개 변수가 파이썬 런타임이 사용하고 있는"
 " 것과 같은 라이브러리에서 만들어진 것이 확실할 때만 이러한 함수에 전달되도록 주의해야 합니다."
 
 #: ../../c-api/veryhigh.rst:30
@@ -83,7 +81,6 @@ msgstr ""
 "``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: ../../c-api/veryhigh.rst:48
-#, fuzzy
 msgid ""
 "If *fp* refers to a file associated with an interactive device (console "
 "or terminal input or Unix pseudo-terminal), return the value of "
@@ -97,17 +94,17 @@ msgstr ""
 ":c:func:`PyRun_InteractiveLoop`\\의 값을 반환하고, 그렇지 않으면 "
 ":c:func:`PyRun_SimpleFile`\\의 결과를 반환합니다. *filename*\\은 파일 시스템 "
 "인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. *filename*\\이 "
-"``NULL``\\이면, 이 함수는 파일명으로 ``\"???\"``\\를 사용합니다."
+"``NULL``\\이면, 이 함수는 파일명으로 ``\"???\"``\\를 사용합니다. *closeit*\\이 참이면, "
+"``PyRun_SimpleFileExFlags()``\\이 반환하기 전에 파일이 닫힙니다."
 
 #: ../../c-api/veryhigh.rst:60
-#, fuzzy
 msgid ""
 "This is a simplified interface to :c:func:`PyRun_SimpleStringFlags` "
 "below, leaving the :c:struct:`PyCompilerFlags`\\* argument set to "
 "``NULL``."
 msgstr ""
 "아래 :c:func:`PyRun_SimpleStringFlags` 의 단순화된 인터페이스입니다. "
-":c:type:`PyCompilerFlags`\\* 인자를 ``NULL``\\로 설정된 상태로 남겨둡니다."
+":c:struct:`PyCompilerFlags`\\* 인자를 ``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: ../../c-api/veryhigh.rst:66
 msgid ""
@@ -122,14 +119,13 @@ msgstr ""
 "반환합니다. 에러가 있으면, 예외 정보를 얻을 방법이 없습니다. *flags*\\의 의미는 아래를 참조하십시오."
 
 #: ../../c-api/veryhigh.rst:72
-#, fuzzy
 msgid ""
 "Note that if an otherwise unhandled :exc:`SystemExit` is raised, this "
 "function will not return ``-1``, but exit the process, as long as "
 ":c:member:`PyConfig.inspect` is zero."
 msgstr ""
-"처리되지 않은 :exc:`SystemExit`\\가 발생하면, 이 함수는 ``Py_InspectFlag``\\가 설정되어 있지 않은"
-" 한 ``-1``\\을 반환하지 않고 프로세스를 종료함에 유의하십시오."
+"처리되지 않은 :exc:`SystemExit`\\가 발생하면, 이 함수는 :c:member:`PyConfig.inspect`\\가 "
+"0인 한 ``-1``\\을 반환하지 않고 프로세스를 종료함에 유의하십시오."
 
 #: ../../c-api/veryhigh.rst:79
 msgid ""
@@ -148,7 +144,6 @@ msgstr ""
 "``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: ../../c-api/veryhigh.rst:91
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyRun_SimpleStringFlags`, but the Python source code "
 "is read from *fp* instead of an in-memory string. *filename* should be "
@@ -157,9 +152,9 @@ msgid ""
 "``PyRun_SimpleFileExFlags()`` returns."
 msgstr ""
 ":c:func:`PyRun_SimpleStringFlags` 와 비슷하지만, 메모리에 있는 문자열 대신 *fp*\\에서 파이썬 소스"
-" 코드를 읽습니다. *filename*\\은 파일의 이름이어야 하며, 파일 시스템 "
-"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. *closeit*\\이 참이면 "
-"PyRun_SimpleFileExFlags 가 반환하기 전에 파일이 닫힙니다."
+" 코드를 읽습니다. *filename*\\은 파일의 이름이어야 하며, :term:`파일시스템 인코딩과 에러 처리기 "
+"<filesystem encoding and error handler>`\\로 디코딩됩니다. *closeit*\\이 참이면 "
+"``PyRun_SimpleFileExFlags()`` 가 반환하기 전에 파일이 닫힙니다."
 
 #: ../../c-api/veryhigh.rst:98
 msgid ""
@@ -179,7 +174,6 @@ msgstr ""
 "``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: ../../c-api/veryhigh.rst:110
-#, fuzzy
 msgid ""
 "Read and execute a single statement from a file associated with an "
 "interactive device according to the *flags* argument.  The user will be "
@@ -187,8 +181,8 @@ msgid ""
 "the :term:`filesystem encoding and error handler`."
 msgstr ""
 "*flags* 인자에 따라 대화식 장치와 연관된 파일에서 단일 문장을 읽고 실행합니다. ``sys.ps1``\\과 "
-"``sys.ps2``\\를 사용하여 사용자에게 프롬프트 합니다. *filename*\\은 파일 시스템 "
-"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다."
+"``sys.ps2``\\를 사용하여 사용자에게 프롬프트 합니다. *filename*\\은 :term:`파일시스템 인코딩과 에러 "
+"처리기 <filesystem encoding and error handler>`\\로 디코딩됩니다."
 
 #: ../../c-api/veryhigh.rst:115
 msgid ""
@@ -211,7 +205,6 @@ msgstr ""
 "``NULL``\\로 설정된 상태로 남겨둡니다."
 
 #: ../../c-api/veryhigh.rst:130
-#, fuzzy
 msgid ""
 "Read and execute statements from a file associated with an interactive "
 "device until EOF is reached.  The user will be prompted using ``sys.ps1``"
@@ -220,9 +213,9 @@ msgid ""
 "upon failure."
 msgstr ""
 "EOF에 도달할 때까지 대화식 장치와 연관된 파일에서 문장을 읽고 실행합니다. ``sys.ps1``\\과 ``sys.ps2``\\를"
-" 사용하여 사용자에게 프롬프트 합니다. *filename*\\은 파일 시스템 "
-"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. EOF에서 ``0``\\을 반환하거나, "
-"실패하면 음수를 반환합니다."
+" 사용하여 사용자에게 프롬프트 합니다. *filename*\\은 :term:`파일시스템 인코딩과 에러 처리기 <filesystem "
+"encoding and error handler>`\\로 디코딩됩니다. EOF에서 ``0``\\을 반환하거나, 실패하면 음수를 "
+"반환합니다."
 
 #: ../../c-api/veryhigh.rst:138
 msgid ""
@@ -329,7 +322,6 @@ msgstr ""
 "설정된 상태로 남겨둡니다."
 
 #: ../../c-api/veryhigh.rst:212
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyRun_StringFlags`, but the Python source code is "
 "read from *fp* instead of an in-memory string. *filename* should be the "
@@ -338,8 +330,8 @@ msgid ""
 ":c:func:`PyRun_FileExFlags` returns."
 msgstr ""
 ":c:func:`PyRun_StringFlags`\\와 유사하지만, 파이썬 소스 코드는 메모리에 있는 문자열 대신 *fp*\\에서 "
-"읽습니다. *filename*\\은 파일명이어야 하며 파일 시스템 "
-"인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다. *closeit*\\이 참이면 "
+"읽습니다. *filename*\\은 파일명이어야 하며 :term:`파일시스템 인코딩과 에러 처리기 <filesystem "
+"encoding and error handler>`\\로 디코딩됩니다. *closeit*\\이 참이면 "
 ":c:func:`PyRun_FileExFlags`\\가 반환되기 전에 파일이 닫힙니다."
 
 #: ../../c-api/veryhigh.rst:221
@@ -359,7 +351,6 @@ msgstr ""
 "``-1``\\로 설정된 상태로 유지합니다."
 
 #: ../../c-api/veryhigh.rst:233
-#, fuzzy
 msgid ""
 "Parse and compile the Python source code in *str*, returning the "
 "resulting code object.  The start token is given by *start*; this can be "
@@ -371,8 +362,8 @@ msgid ""
 " cannot be parsed or compiled."
 msgstr ""
 "*str*\\에 있는 파이썬 소스 코드를 구문 분석하고 컴파일하여 결과 코드 객체를 반환합니다. 시작 토큰은 *start*\\로 "
-"주어집니다; 이것은 컴파일될 수 있는 코드를 제한하는 데 사용될 수 있으며 :const:`Py_eval_input`, "
-":const:`Py_file_input` 또는 :const:`Py_single_input`\\이어야 합니다. "
+"주어집니다; 이것은 컴파일될 수 있는 코드를 제한하는 데 사용될 수 있으며 :c:data:`Py_eval_input`, "
+":c:data:`Py_file_input` 또는 :c:data:`Py_single_input`\\이어야 합니다. "
 "*filename*\\으로 지정된 파일명은 코드 객체를 구성하는 데 사용되며 트레이스백이나 :exc:`SyntaxError` 예외 "
 "메시지에 나타날 수 있습니다. 코드를 구문 분석할 수 없거나 컴파일할 수 없으면 ``NULL``\\을 반환합니다."
 
@@ -389,13 +380,12 @@ msgstr ""
 "(어서션이 제거되고 ``__debug__``\\가 거짓) 또는 ``2`` (독스트링도 제거됩니다)입니다."
 
 #: ../../c-api/veryhigh.rst:252
-#, fuzzy
 msgid ""
 "Like :c:func:`Py_CompileStringObject`, but *filename* is a byte string "
 "decoded from the :term:`filesystem encoding and error handler`."
 msgstr ""
-":c:func:`Py_CompileStringObject`\\와 유사하지만, *filename*\\은 파일 시스템 "
-"인코딩(:func:`os.fsdecode`)으로 디코딩된 바이트 문자열입니다."
+":c:func:`Py_CompileStringObject`\\와 유사하지만, *filename*\\은 :term:`파일시스템 "
+"인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 디코딩된 바이트 문자열입니다."
 
 #: ../../c-api/veryhigh.rst:259
 msgid ""
@@ -488,14 +478,14 @@ msgstr ""
 "import``\\는 *flags*\\를 수정할 수 있습니다."
 
 #: ../../c-api/veryhigh.rst:332
-#, fuzzy
 msgid ""
 "Whenever ``PyCompilerFlags *flags`` is ``NULL``, "
 ":c:member:`~PyCompilerFlags.cf_flags` is treated as equal to ``0``, and "
 "any modification due to ``from __future__ import`` is discarded."
 msgstr ""
-"``PyCompilerFlags *flags``\\가 ``NULL``\\일 때마다, :attr:`cf_flags`\\는 "
-"``0``\\과 같다고 취급되며, ``from __future__ import``\\로 인한 수정은 버립니다."
+"``PyCompilerFlags *flags``\\가 ``NULL``\\일 때마다, "
+":c:member:`~PyCompilerFlags.cf_flags`\\는 ``0``\\과 같다고 취급되며, ``from "
+"__future__ import``\\로 인한 수정은 버립니다."
 
 #: ../../c-api/veryhigh.rst:338
 msgid "Compiler flags."
@@ -508,11 +498,12 @@ msgid ""
 msgstr "*cf_feature_version*\\은 부 파이썬 버전입니다. ``PY_MINOR_VERSION``\\으로 초기화되어야 합니다."
 
 #: ../../c-api/veryhigh.rst:345
-#, fuzzy
 msgid ""
 "The field is ignored by default, it is used if and only if "
 "``PyCF_ONLY_AST`` flag is set in :c:member:`~PyCompilerFlags.cf_flags`."
-msgstr "이 필드는 기본적으로 무시되며, ``PyCF_ONLY_AST`` 플래그가 *cf_flags*\\에 설정된 경우에만 사용됩니다."
+msgstr ""
+"이 필드는 기본적으로 무시되며, ``PyCF_ONLY_AST`` 플래그가 "
+":c:member:`~PyCompilerFlags.cf_flags`\\에 설정된 경우에만 사용됩니다."
 
 #: ../../c-api/veryhigh.rst:348
 msgid "Added *cf_feature_version* field."
@@ -540,118 +531,5 @@ msgstr ""
 #: ../../c-api/veryhigh.rst:301 ../../c-api/veryhigh.rst:309
 #: ../../c-api/veryhigh.rst:318
 msgid "Py_CompileString (C function)"
-msgstr ""
-
-#~ msgid ""
-#~ "The main program for the standard "
-#~ "interpreter.  This is made available for"
-#~ " programs which embed Python.  The "
-#~ "*argc* and *argv* parameters should be"
-#~ " prepared exactly as those which are"
-#~ " passed to a C program's "
-#~ ":c:func:`main` function (converted to wchar_t"
-#~ " according to the user's locale).  It"
-#~ " is important to note that the "
-#~ "argument list may be modified (but "
-#~ "the contents of the strings pointed "
-#~ "to by the argument list are not)."
-#~ " The return value will be ``0`` "
-#~ "if the interpreter exits normally (i.e.,"
-#~ " without an exception), ``1`` if the"
-#~ " interpreter exits due to an "
-#~ "exception, or ``2`` if the parameter "
-#~ "list does not represent a valid "
-#~ "Python command line."
-#~ msgstr ""
-#~ "표준 인터프리터의 메인 프로그램. 이것은 파이썬을 내장하는"
-#~ " 프로그램을 위해 제공됩니다. *argc*\\와 *argv* 매개"
-#~ " 변수는 C 프로그램의 :c:func:`main` 함수에 전달되는"
-#~ " 것과 정확히 일치하도록 준비해야 합니다 (사용자의 "
-#~ "로케일에 따라 wchar_t로 변환됩니다). 인자 목록이 "
-#~ "수정될 수 있음에 유의해야 합니다 (하지만 인자 "
-#~ "목록이 가리키는 문자열의 내용은 수정되지 않습니다). "
-#~ "인터프리터가 정상적으로 (즉, 예외 없이) 종료되면 반환"
-#~ " 값은 ``0``, 예외로 인해 인터프리터가 종료되면 "
-#~ "``1``, 매개 변수 목록이 유효한 파이썬 명령 "
-#~ "줄을 나타내지 않으면 ``2``\\가 됩니다."
-
-#~ msgid ""
-#~ "Note that if an otherwise unhandled "
-#~ ":exc:`SystemExit` is raised, this function "
-#~ "will not return ``1``, but exit "
-#~ "the process, as long as "
-#~ "``Py_InspectFlag`` is not set."
-#~ msgstr ""
-#~ "처리되지 않은 :exc:`SystemExit`\\가 발생하면, 이 함수는"
-#~ " ``Py_InspectFlag``\\가 설정되어 있지 않은 한 "
-#~ "``1``\\을 반환하지 않고 프로세스를 종료함에 유의하십시오."
-
-#~ msgid "Similar to :c:func:`Py_Main` but *argv* is an array of bytes strings."
-#~ msgstr ":c:func:`Py_Main`\\과 유사하지만 *argv*\\는 바이트 문자열의 배열입니다."
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyParser_SimpleParseStringFlagsFilename` below, "
-#~ "leaving  *filename* set to ``NULL`` and"
-#~ " *flags* set to ``0``."
-#~ msgstr ""
-#~ "아래 :c:func:`PyParser_SimpleParseStringFlagsFilename`\\의 "
-#~ "단순화된 인터페이스입니다. *filename*\\을 ``NULL``\\로, "
-#~ "*flags*\\를 ``0``\\으로 설정된 상태로 남겨둡니다."
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyParser_SimpleParseStringFlagsFilename` below, "
-#~ "leaving  *filename* set to ``NULL``."
-#~ msgstr ""
-#~ "아래 :c:func:`PyParser_SimpleParseStringFlagsFilename`\\의 "
-#~ "단순화된 인터페이스입니다. 이것은 *filename*\\을 ``NULL``\\로"
-#~ " 설정된 상태로 남겨둡니다."
-
-#~ msgid ""
-#~ "Parse Python source code from *str* "
-#~ "using the start token *start* according"
-#~ " to the *flags* argument.  The result"
-#~ " can be used to create a code"
-#~ " object which can be evaluated "
-#~ "efficiently. This is useful if a "
-#~ "code fragment must be evaluated many "
-#~ "times. *filename* is decoded from the"
-#~ " filesystem encoding "
-#~ "(:func:`sys.getfilesystemencoding`)."
-#~ msgstr ""
-#~ "*flags* 인자에 따라 시작 토큰 *start*\\를 "
-#~ "사용하여 *str*\\에서 파이썬 소스 코드를 구문 "
-#~ "분석합니다. 결과는 효율적으로 평가될 수 있는 코드 "
-#~ "객체를 생성하는 데 사용될 수 있습니다. 코드 "
-#~ "조각을 여러 번 평가해야 하는 경우에 유용합니다. "
-#~ "*filename*\\은 파일 시스템 "
-#~ "인코딩(:func:`sys.getfilesystemencoding`)으로 디코딩됩니다."
-
-#~ msgid ""
-#~ "This is a simplified interface to "
-#~ ":c:func:`PyParser_SimpleParseFileFlags` below, leaving "
-#~ "*flags* set to ``0``."
-#~ msgstr ""
-#~ "아래 :c:func:`PyParser_SimpleParseFileFlags` 의 단순화된"
-#~ " 인터페이스입니다. *flags*\\를 ``0``\\으로 설정된 상태로 "
-#~ "남겨둡니다."
-
-#~ msgid ""
-#~ "Similar to "
-#~ ":c:func:`PyParser_SimpleParseStringFlagsFilename`, but the"
-#~ " Python source code is read from "
-#~ "*fp* instead of an in-memory "
-#~ "string."
-#~ msgstr ""
-#~ ":c:func:`PyParser_SimpleParseStringFlagsFilename`\\와 유사하지만, "
-#~ "파이썬 소스 코드는 메모리에 있는 문자열 대신 "
-#~ "*fp*\\에서 읽습니다."
-
-#~ msgid ""
-#~ "The C structure of the objects "
-#~ "used to describe frame objects. The "
-#~ "fields of this type are subject to"
-#~ " change at any time."
-#~ msgstr "프레임 객체를 기술하는 데 사용되는 객체의 C 구조체. 이 형의 필드는 언제든지 변경될 수 있습니다."
+msgstr "Py_CompileString (C 함수)"
 
