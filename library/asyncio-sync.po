@@ -74,9 +74,8 @@ msgid ":class:`BoundedSemaphore`"
 msgstr ":class:`BoundedSemaphore`"
 
 #: ../../library/asyncio-sync.rst:31
-#, fuzzy
 msgid ":class:`Barrier`"
-msgstr ":class:`Event`"
+msgstr ":class:`Barrier`"
 
 #: ../../library/asyncio-sync.rst:38
 msgid "Lock"
@@ -104,6 +103,11 @@ msgid ""
 "async with lock:\n"
 "    # access shared state"
 msgstr ""
+"lock = asyncio.Lock()\n"
+"\n"
+"# ... 나중에\n"
+"async with lock:\n"
+"    # 공유 상태를 액세스합니다"
 
 #: ../../library/asyncio-sync.rst:56 ../../library/asyncio-sync.rst:201
 #: ../../library/asyncio-sync.rst:309
@@ -121,13 +125,20 @@ msgid ""
 "finally:\n"
 "    lock.release()"
 msgstr ""
+"lock = asyncio.Lock()\n"
+"\n"
+"# ... 나중에\n"
+"await lock.acquire()\n"
+"try:\n"
+"    # 공유 상태를 액세스합니다\n"
+"finally:\n"
+"    lock.release()"
 
 #: ../../library/asyncio-sync.rst:67 ../../library/asyncio-sync.rst:113
 #: ../../library/asyncio-sync.rst:189 ../../library/asyncio-sync.rst:297
 #: ../../library/asyncio-sync.rst:353
-#, fuzzy
 msgid "Removed the *loop* parameter."
-msgstr "*loop* 매개 변수"
+msgstr "*loop* 매개 변수를 제거했습니다."
 
 #: ../../library/asyncio-sync.rst:73
 msgid "Acquire the lock."
@@ -221,6 +232,26 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"async def waiter(event):\n"
+"    print('waiting for it ...')\n"
+"    await event.wait()\n"
+"    print('... got it!')\n"
+"\n"
+"async def main():\n"
+"    # Event 객체를 만듭니다.\n"
+"    event = asyncio.Event()\n"
+"\n"
+"    # 'event'가 설정될 때까지 대기 할 Task를 만듭니다.\n"
+"    waiter_task = asyncio.create_task(waiter(event))\n"
+"\n"
+"    # 1초 동안 잠잔 후에 event를 설정합니다.\n"
+"    await asyncio.sleep(1)\n"
+"    event.set()\n"
+"\n"
+"    # waiter 태스크가 끝날 때까지 기다립니다.\n"
+"    await waiter_task\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../library/asyncio-sync.rst:144
 msgid "Wait until the event is set."
@@ -308,6 +339,11 @@ msgid ""
 "async with cond:\n"
 "    await cond.wait()"
 msgstr ""
+"cond = asyncio.Condition()\n"
+"\n"
+"# ... 나중에\n"
+"async with cond:\n"
+"    await cond.wait()"
 
 #: ../../library/asyncio-sync.rst:203
 msgid ""
@@ -320,6 +356,14 @@ msgid ""
 "finally:\n"
 "    cond.release()"
 msgstr ""
+"cond = asyncio.Condition()\n"
+"\n"
+"# ... 나중에\n"
+"await cond.acquire()\n"
+"try:\n"
+"    await cond.wait()\n"
+"finally:\n"
+"    cond.release()"
 
 #: ../../library/asyncio-sync.rst:215
 msgid "Acquire the underlying lock."
@@ -334,11 +378,10 @@ msgstr ""
 "``True``\\를 반환합니다."
 
 #: ../../library/asyncio-sync.rst:222
-#, fuzzy
 msgid ""
 "Wake up *n* tasks (1 by default) waiting on this condition.  If fewer "
 "than *n* tasks are waiting they are all awakened."
-msgstr "이 조건을 기다리는 최대 *n* 태스크(기본적으로 1개)를 깨웁니다. 대기 중인 태스크가 없으면 이 메서드는 no-op입니다."
+msgstr "이 조건을 기다리는 *n* 태스크(기본적으로 1개)를 깨웁니다. 대기 중인 태스크가 *n* 개 보다 작으면 모두 깨어납니다."
 
 #: ../../library/asyncio-sync.rst:225 ../../library/asyncio-sync.rst:240
 msgid ""
@@ -401,12 +444,13 @@ msgid "Wait until a predicate becomes *true*."
 msgstr "predicate가 *참*\\이 될 때까지 기다립니다."
 
 #: ../../library/asyncio-sync.rst:274
-#, fuzzy
 msgid ""
 "The predicate must be a callable which result will be interpreted as a "
 "boolean value.  The method will repeatedly :meth:`~Condition.wait` until "
 "the predicate evaluates to *true*. The final value is the return value."
-msgstr "predicate는 논릿값으로 해석될 결과를 돌려주는 콜러블이어야 합니다. 최종값이 반환 값입니다."
+msgstr ""
+"predicate는 논릿값으로 해석될 결과를 돌려주는 콜러블이어야 합니다. 메서드는 predicate가 *참*\\으로 평가될 때까지"
+" 반복적으로 :meth:`~Condition.wait`\\합니다. 최종값이 반환 값입니다."
 
 #: ../../library/asyncio-sync.rst:281
 msgid "Semaphore"
@@ -450,6 +494,11 @@ msgid ""
 "async with sem:\n"
 "    # work with shared resource"
 msgstr ""
+"sem = asyncio.Semaphore(10)\n"
+"\n"
+"# ... 나중에\n"
+"async with sem:\n"
+"    # 공유 자원으로 작업합니다"
 
 #: ../../library/asyncio-sync.rst:311
 msgid ""
@@ -462,6 +511,14 @@ msgid ""
 "finally:\n"
 "    sem.release()"
 msgstr ""
+"sem = asyncio.Semaphore(10)\n"
+"\n"
+"# ... 나중에\n"
+"await sem.acquire()\n"
+"try:\n"
+"    # 공유 자원으로 작업합니다\n"
+"finally:\n"
+"    sem.release()"
 
 #: ../../library/asyncio-sync.rst:323
 msgid "Acquire a semaphore."
@@ -513,12 +570,11 @@ msgstr ""
 
 #: ../../library/asyncio-sync.rst:358
 msgid "Barrier"
-msgstr ""
+msgstr "Barrier"
 
 #: ../../library/asyncio-sync.rst:362
-#, fuzzy
 msgid "A barrier object.  Not thread-safe."
-msgstr "이벤트 객체. 스레드 안전하지 않습니다."
+msgstr "장벽 객체. 스레드 안전하지 않습니다."
 
 #: ../../library/asyncio-sync.rst:364
 msgid ""
@@ -562,6 +618,26 @@ msgid ""
 "\n"
 "asyncio.run(example_barrier())"
 msgstr ""
+"async def example_barrier():\n"
+"   # 3자 간 장벽\n"
+"   b = asyncio.Barrier(3)\n"
+"\n"
+"   # 기다리는 태스크를 2개 만듭니다\n"
+"   asyncio.create_task(b.wait())\n"
+"   asyncio.create_task(b.wait())\n"
+"\n"
+"   await asyncio.sleep(0)\n"
+"   print(b)\n"
+"\n"
+"   # 세 번째 .wait() 호출은 장벽을 통과합니다\n"
+"   await b.wait()\n"
+"   print(b)\n"
+"   print(\"barrier passed\")\n"
+"\n"
+"   await asyncio.sleep(0)\n"
+"   print(b)\n"
+"\n"
+"asyncio.run(example_barrier())"
 
 #: ../../library/asyncio-sync.rst:400
 msgid "Result of this example is::"
@@ -574,6 +650,10 @@ msgid ""
 "barrier passed\n"
 "<asyncio.locks.Barrier object at 0x... [filling, waiters:0/3]>"
 msgstr ""
+"<asyncio.locks.Barrier object at 0x... [filling, waiters:2/3]>\n"
+"<asyncio.locks.Barrier object at 0x... [draining, waiters:0/3]>\n"
+"barrier passed\n"
+"<asyncio.locks.Barrier object at 0x... [filling, waiters:0/3]>"
 
 #: ../../library/asyncio-sync.rst:412
 msgid ""
@@ -603,6 +683,11 @@ msgid ""
 "      # Only one task prints this\n"
 "      print('End of *draining phase*')"
 msgstr ""
+"...\n"
+"async with barrier as position:\n"
+"   if position == 0:\n"
+"      # 오직 한 태스크만 이것을 인쇄합니다\n"
+"      print('End of *draining phase*')"
 
 #: ../../library/asyncio-sync.rst:430
 msgid ""
