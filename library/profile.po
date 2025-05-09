@@ -105,6 +105,9 @@ msgid ""
 "import re\n"
 "cProfile.run('re.compile(\"foo|bar\")')"
 msgstr ""
+"import cProfile\n"
+"import re\n"
+"cProfile.run('re.compile(\"foo|bar\")')"
 
 #: ../../library/profile.rst:63
 msgid ""
@@ -136,19 +139,32 @@ msgid ""
 "     1    0.000    0.000    0.000    0.000 _compiler.py:598(_code)\n"
 "     1    0.000    0.000    0.000    0.000 _parser.py:435(_parse_sub)"
 msgstr ""
+"214 function calls (207 primitive calls) in 0.002 seconds\n"
+"\n"
+"Ordered by: cumulative time\n"
+"\n"
+"ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n"
+"     1    0.000    0.000    0.002    0.002 {built-in method "
+"builtins.exec}\n"
+"     1    0.000    0.000    0.001    0.001 <string>:1(<module>)\n"
+"     1    0.000    0.000    0.001    0.001 __init__.py:250(compile)\n"
+"     1    0.000    0.000    0.001    0.001 __init__.py:289(_compile)\n"
+"     1    0.000    0.000    0.000    0.000 _compiler.py:759(compile)\n"
+"     1    0.000    0.000    0.000    0.000 _parser.py:937(parse)\n"
+"     1    0.000    0.000    0.000    0.000 _compiler.py:598(_code)\n"
+"     1    0.000    0.000    0.000    0.000 _parser.py:435(_parse_sub)"
 
 #: ../../library/profile.rst:83
-#, fuzzy
 msgid ""
 "The first line indicates that 214 calls were monitored.  Of those calls, "
 "207 were :dfn:`primitive`, meaning that the call was not induced via "
 "recursion. The next line: ``Ordered by: cumulative time`` indicates the "
 "output is sorted by the ``cumtime`` values. The column headings include:"
 msgstr ""
-"첫 번째 줄은 197개의 호출이 관찰되었음을 나타냅니다. 이 호출 중 192개는 "
+"첫 번째 줄은 214개의 호출이 관찰되었음을 나타냅니다. 이 호출 중 207개는 "
 ":dfn:`프리미티브(primitive)`\\였으며, 이는 호출이 재귀를 통해 유발되지 않았음을 의미합니다. 다음 줄: "
-"``Ordered by: standard name``, 은 가장 오른쪽 열의 텍스트 문자열이 출력을 정렬하는 데 사용되었음을 "
-"나타냅니다. 열 제목은 다음과 같습니다:"
+"``Ordered by: cumulative time``, 은 출력이 ``cumtime`` 값으로 정렬되었음을 나타냅니다. 열 "
+"제목은 다음과 같습니다:"
 
 #: ../../library/profile.rst:88
 msgid "ncalls"
@@ -223,6 +239,9 @@ msgid ""
 "import re\n"
 "cProfile.run('re.compile(\"foo|bar\")', 'restats')"
 msgstr ""
+"import cProfile\n"
+"import re\n"
+"cProfile.run('re.compile(\"foo|bar\")', 'restats')"
 
 #: ../../library/profile.rst:121
 msgid ""
@@ -243,26 +262,25 @@ msgid ""
 "python -m cProfile [-o output_file] [-s sort_order] (-m module | "
 "myscript.py)"
 msgstr ""
+"python -m cProfile [-o output_file] [-s sort_order] (-m module | "
+"myscript.py)"
 
 #: ../../library/profile.rst:135
-#, fuzzy
 msgid "Writes the profile results to a file instead of to stdout."
-msgstr "``-o``\\는 stdout 대신 파일에 프로파일 결과를 씁니다."
+msgstr "stdout 대신 파일에 프로파일 결과를 씁니다."
 
 #: ../../library/profile.rst:139
-#, fuzzy
 msgid ""
 "Specifies one of the :func:`~pstats.Stats.sort_stats` sort values to sort"
 " the output by. This only applies when :option:`-o <cProfile -o>` is not "
 "supplied."
 msgstr ""
-"``-s``\\는 출력을 정렬할 :func:`~pstats.Stats.sort_stats` 정렬 값 중 하나를 지정합니다. 이는 "
-"``-o``\\가 제공되지 않은 경우에만 적용됩니다."
+"출력을 정렬할 :func:`~pstats.Stats.sort_stats` 정렬 값 중 하나를 지정합니다. 이는 :option:`-o"
+" <cProfile -o>`\\가 제공되지 않은 경우에만 적용됩니다."
 
 #: ../../library/profile.rst:145
-#, fuzzy
 msgid "Specifies that a module is being profiled instead of a script."
-msgstr "``-m``\\은 스크립트 대신 모듈이 프로파일링 되도록 지정합니다."
+msgstr "스크립트 대신 모듈이 프로파일링 되도록 지정합니다."
 
 #: ../../library/profile.rst:147
 msgid "Added the ``-m`` option to :mod:`cProfile`."
@@ -288,6 +306,10 @@ msgid ""
 "p = pstats.Stats('restats')\n"
 "p.strip_dirs().sort_stats(-1).print_stats()"
 msgstr ""
+"import pstats\n"
+"from pstats import SortKey\n"
+"p = pstats.Stats('restats')\n"
+"p.strip_dirs().sort_stats(-1).print_stats()"
 
 #: ../../library/profile.rst:161
 msgid ""
@@ -307,6 +329,8 @@ msgid ""
 "p.sort_stats(SortKey.NAME)\n"
 "p.print_stats()"
 msgstr ""
+"p.sort_stats(SortKey.NAME)\n"
+"p.print_stats()"
 
 #: ../../library/profile.rst:170
 msgid ""
@@ -319,7 +343,7 @@ msgstr ""
 
 #: ../../library/profile.rst:174
 msgid "p.sort_stats(SortKey.CUMULATIVE).print_stats(10)"
-msgstr ""
+msgstr "p.sort_stats(SortKey.CUMULATIVE).print_stats(10)"
 
 #: ../../library/profile.rst:176
 msgid ""
@@ -338,7 +362,7 @@ msgstr "어떤 함수가 많이 반복되고 많은 시간이 걸리는지 알�
 
 #: ../../library/profile.rst:183
 msgid "p.sort_stats(SortKey.TIME).print_stats(10)"
-msgstr ""
+msgstr "p.sort_stats(SortKey.TIME).print_stats(10)"
 
 #: ../../library/profile.rst:185
 msgid ""
@@ -352,7 +376,7 @@ msgstr "다음과 같은 것도 시도해 볼 수 있습니다::"
 
 #: ../../library/profile.rst:190
 msgid "p.sort_stats(SortKey.FILENAME).print_stats('__init__')"
-msgstr ""
+msgstr "p.sort_stats(SortKey.FILENAME).print_stats('__init__')"
 
 #: ../../library/profile.rst:192
 msgid ""
@@ -365,7 +389,7 @@ msgstr ""
 
 #: ../../library/profile.rst:196
 msgid "p.sort_stats(SortKey.TIME, SortKey.CUMULATIVE).print_stats(.5, 'init')"
-msgstr ""
+msgstr "p.sort_stats(SortKey.TIME, SortKey.CUMULATIVE).print_stats(.5, 'init')"
 
 #: ../../library/profile.rst:198
 msgid ""
@@ -388,7 +412,7 @@ msgstr ""
 
 #: ../../library/profile.rst:206
 msgid "p.print_callers(.5, 'init')"
-msgstr ""
+msgstr "p.print_callers(.5, 'init')"
 
 #: ../../library/profile.rst:208
 msgid "and you would get a list of callers for each of the listed functions."
@@ -405,6 +429,8 @@ msgid ""
 "p.print_callees()\n"
 "p.add('restats')"
 msgstr ""
+"p.print_callees()\n"
+"p.add('restats')"
 
 #: ../../library/profile.rst:216
 msgid ""
@@ -436,7 +462,7 @@ msgstr ""
 
 #: ../../library/profile.rst:235
 msgid "exec(command, __main__.__dict__, __main__.__dict__)"
-msgstr ""
+msgstr "exec(command, __main__.__dict__, __main__.__dict__)"
 
 #: ../../library/profile.rst:237
 msgid ""
@@ -451,18 +477,17 @@ msgstr ""
 "인스턴스로 전달되어 결과 정렬 방법을 제어합니다."
 
 #: ../../library/profile.rst:245
-#, fuzzy
 msgid ""
 "This function is similar to :func:`run`, with added arguments to supply "
 "the globals and locals mappings for the *command* string. This routine "
 "executes::"
 msgstr ""
-"이 함수는 :func:`run`\\과 유사하며, *command* 문자열에 대한 전역(globals)과 지역(locals) "
-"딕셔너리를 제공하기 위한 인자가 추가되었습니다. 이 루틴은 다음을 실행합니다::"
+"이 함수는 :func:`run`\\과 유사하며, *command* 문자열에 대한 전역(globals)과 지역(locals) 매핑 "
+"제공하기 위한 인자가 추가되었습니다. 이 루틴은 다음을 실행합니다::"
 
 #: ../../library/profile.rst:249
 msgid "exec(command, globals, locals)"
-msgstr ""
+msgstr "exec(command, globals, locals)"
 
 #: ../../library/profile.rst:251
 msgid "and gathers profiling statistics as in the :func:`run` function above."
@@ -509,6 +534,17 @@ msgid ""
 "ps.print_stats()\n"
 "print(s.getvalue())"
 msgstr ""
+"import cProfile, pstats, io\n"
+"from pstats import SortKey\n"
+"pr = cProfile.Profile()\n"
+"pr.enable()\n"
+"# ... 뭔가 합니다 ...\n"
+"pr.disable()\n"
+"s = io.StringIO()\n"
+"sortby = SortKey.CUMULATIVE\n"
+"ps = pstats.Stats(pr, stream=s).sort_stats(sortby)\n"
+"ps.print_stats()\n"
+"print(s.getvalue())"
 
 #: ../../library/profile.rst:280
 msgid ""
@@ -528,6 +564,12 @@ msgid ""
 "\n"
 "    pr.print_stats()"
 msgstr ""
+"import cProfile\n"
+"\n"
+"with cProfile.Profile() as pr:\n"
+"    # ... 뭔가 합니다 ...\n"
+"\n"
+"    pr.print_stats()"
 
 #: ../../library/profile.rst:290
 msgid "Added context manager support."
@@ -950,7 +992,7 @@ msgstr ""
 
 #: ../../library/profile.rst:507
 msgid "print_stats(.1, 'foo:')"
-msgstr ""
+msgstr "print_stats(.1, 'foo:')"
 
 #: ../../library/profile.rst:509
 #, python-format
@@ -964,7 +1006,7 @@ msgstr ""
 
 #: ../../library/profile.rst:513
 msgid "print_stats('foo:', .1)"
-msgstr ""
+msgstr "print_stats('foo:', .1)"
 
 #: ../../library/profile.rst:515
 #, python-format
@@ -1172,9 +1214,12 @@ msgid ""
 "for i in range(5):\n"
 "    print(pr.calibrate(10000))"
 msgstr ""
+"import profile\n"
+"pr = profile.Profile()\n"
+"for i in range(5):\n"
+"    print(pr.calibrate(10000))"
 
 #: ../../library/profile.rst:641
-#, fuzzy
 msgid ""
 "The method executes the number of Python calls given by the argument, "
 "directly and again under the profiler, measuring the time for both. It "
@@ -1184,9 +1229,8 @@ msgid ""
 "about 4.04e-6."
 msgstr ""
 "이 메서드는 인자가 제공한 횟수의 파이썬 호출을, 직접하고 프로파일러하에서 다시 하면서, 두 두 시간을 측정합니다. 그런 다음 "
-"프로파일러 이벤트 당 숨겨진 오버헤드를 계산하여 부동 소수점으로 반환합니다. 예를 들어, Mac OS X를 실행하는 1.8Ghz "
-"인텔 코어 i5에서, 그리고 파이썬의 time.process_time()을 타이머로 사용할 때, 매직 넘버는 약 "
-"4.04e-6입니다."
+"프로파일러 이벤트 당 숨겨진 오버헤드를 계산하여 부동 소수점으로 반환합니다. 예를 들어, 맥 OS를 실행하는 1.8Ghz 인텔 코어"
+" i5에서, 그리고 파이썬의 time.process_time()을 타이머로 사용할 때, 매직 넘버는 약 4.04e-6입니다."
 
 #: ../../library/profile.rst:647
 msgid ""
@@ -1215,6 +1259,17 @@ msgid ""
 "# 3. Specify computed bias in instance constructor.\n"
 "pr = profile.Profile(bias=your_computed_bias)"
 msgstr ""
+"import profile\n"
+"\n"
+"# 1. 이후에 만들어지는 모든 Profile 인스턴스에 계산된 바이어스를 적용합니다.\n"
+"profile.Profile.bias = your_computed_bias\n"
+"\n"
+"# 2. 특정 Profile 인스턴스에 계산된 바이어스를 적용합니다.\n"
+"pr = profile.Profile()\n"
+"pr.bias = your_computed_bias\n"
+"\n"
+"# 3. 인스턴스 생성자에 계산된 바이어스를 지정합니다.\n"
+"pr = profile.Profile(bias=your_computed_bias)"
 
 #: ../../library/profile.rst:665
 msgid ""
@@ -1238,7 +1293,7 @@ msgstr ""
 
 #: ../../library/profile.rst:677
 msgid "pr = profile.Profile(your_time_func)"
-msgstr ""
+msgstr "pr = profile.Profile(your_time_func)"
 
 #: ../../library/profile.rst:679
 msgid ""
@@ -1268,7 +1323,6 @@ msgstr ""
 " 빠른 버전의 디스패치 루틴을 얻게 됩니다."
 
 #: ../../library/profile.rst:690
-#, fuzzy
 msgid ""
 "Be warned that you should calibrate the profiler class for the timer "
 "function that you choose (see :ref:`profile-calibration`).  For most "
@@ -1303,10 +1357,9 @@ msgstr ""
 
 #: ../../library/profile.rst:706
 msgid "pr = cProfile.Profile(your_integer_time_func, 0.001)"
-msgstr ""
+msgstr "pr = cProfile.Profile(your_integer_time_func, 0.001)"
 
 #: ../../library/profile.rst:708
-#, fuzzy
 msgid ""
 "As the :class:`cProfile.Profile` class cannot be calibrated, custom timer"
 " functions should be used with care and should be as fast as possible.  "
@@ -1314,8 +1367,8 @@ msgid ""
 "code it in the C source of the internal :mod:`!_lsprof` module."
 msgstr ""
 ":class:`cProfile.Profile` 클래스를 보정할 수 없어서, 사용자 정의 타이머 함수는 주의해서 사용해야 하고 가능한"
-" 한 빨라야 합니다. 사용자 정의 타이머로 최상의 결과를 얻으려면, 내부 :mod:`_lsprof` 모듈의 C 소스에 하드 코딩해야"
-" 할 수도 있습니다."
+" 한 빨라야 합니다. 사용자 정의 타이머로 최상의 결과를 얻으려면, 내부 :mod:`!_lsprof` 모듈의 C 소스에 하드 "
+"코딩해야 할 수도 있습니다."
 
 #: ../../library/profile.rst:713
 msgid ""
@@ -1327,11 +1380,10 @@ msgstr ""
 "추가합니다. 예를 들어, :func:`time.perf_counter`\\를 참조하십시오."
 
 #: ../../library/profile.rst:16
-#, fuzzy
 msgid "deterministic profiling"
-msgstr "결정론적 프로파일링이란 무엇입니까?"
+msgstr "결정론적 프로파일링"
 
 #: ../../library/profile.rst:16
 msgid "profiling, deterministic"
-msgstr ""
+msgstr "프로파일링, 결정론적"
 
