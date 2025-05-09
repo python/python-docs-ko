@@ -17,16 +17,14 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/timeit.rst:2
-#, fuzzy
 msgid ":mod:`!timeit` --- Measure execution time of small code snippets"
-msgstr ":mod:`timeit` --- 작은 코드 조각의 실행 시간 측정"
+msgstr ":mod:`!timeit` --- 작은 코드 조각의 실행 시간 측정"
 
 #: ../../library/timeit.rst:7
 msgid "**Source code:** :source:`Lib/timeit.py`"
 msgstr "**소스 코드:** :source:`Lib/timeit.py`"
 
 #: ../../library/timeit.rst:15
-#, fuzzy
 msgid ""
 "This module provides a simple way to time small bits of Python code. It "
 "has both a :ref:`timeit-command-line-interface` as well as a "
@@ -37,7 +35,7 @@ msgid ""
 msgstr ""
 "이 모듈은 파이썬 코드의 작은 조각의 시간을 측정하는 간단한 방법을 제공합니다. :ref:`timeit-command-line-"
 "interface`\\뿐만 아니라 :ref:`콜러블 <python-interface>`\\도 있습니다. 실행 시간을 측정에 따르는 "
-"흔한 함정들을 피할 수 있습니다. O'Reilly가 출판한 *Python Cookbook*\\에 있는 Tim Peters의 "
+"흔한 함정들을 피할 수 있습니다. O'Reilly가 출판한 *Python Cookbook* 2판에 있는 Tim Peters의 "
 "\"Algorithms\" 장의 개요도 참조하십시오."
 
 #: ../../library/timeit.rst:23
@@ -61,6 +59,12 @@ msgid ""
 "$ python -m timeit \"'-'.join(map(str, range(100)))\"\n"
 "10000 loops, best of 5: 23.2 usec per loop"
 msgstr ""
+"$ python -m timeit \"'-'.join(str(n) for n in range(100))\"\n"
+"10000 loops, best of 5: 30.2 usec per loop\n"
+"$ python -m timeit \"'-'.join([str(n) for n in range(100)])\"\n"
+"10000 loops, best of 5: 27.5 usec per loop\n"
+"$ python -m timeit \"'-'.join(map(str, range(100)))\"\n"
+"10000 loops, best of 5: 23.2 usec per loop"
 
 #: ../../library/timeit.rst:37
 msgid "This can be achieved from the :ref:`python-interface` with::"
@@ -78,6 +82,15 @@ msgid ""
 ">>> timeit.timeit('\"-\".join(map(str, range(100)))', number=10000)\n"
 "0.23702679807320237"
 msgstr ""
+">>> import timeit\n"
+">>> timeit.timeit('\"-\".join(str(n) for n in range(100))', number=10000)"
+"\n"
+"0.3018611848820001\n"
+">>> timeit.timeit('\"-\".join([str(n) for n in range(100)])', "
+"number=10000)\n"
+"0.2727368790656328\n"
+">>> timeit.timeit('\"-\".join(map(str, range(100)))', number=10000)\n"
+"0.23702679807320237"
 
 #: ../../library/timeit.rst:47
 msgid "A callable can also be passed from the :ref:`python-interface`::"
@@ -89,6 +102,9 @@ msgid ""
 "\n"
 "0.19665591977536678"
 msgstr ""
+">>> timeit.timeit(lambda: \"-\".join(map(str, range(100))), number=10000)"
+"\n"
+"0.19665591977536678"
 
 #: ../../library/timeit.rst:52
 msgid ""
@@ -143,6 +159,8 @@ msgid ""
 "seconds. An alternative, time.perf_counter_ns, returns integer "
 "nanoseconds."
 msgstr ""
+"기본 타이머, 항상 time.perf_counter() 이고, 초 단위의 float를 반환합니다. 대안인 "
+"time.perf_counter_ns 는 나노초 단위의 정수를 반환합니다."
 
 #: ../../library/timeit.rst:95
 msgid ":func:`time.perf_counter` is now the default timer."
@@ -197,7 +215,6 @@ msgstr ""
 "타이밍 오버헤드가 약간 더 커집니다."
 
 #: ../../library/timeit.rst:127
-#, fuzzy
 msgid ""
 "Time *number* executions of the main statement.  This executes the setup "
 "statement once, and then returns the time it takes to execute the main "
@@ -207,8 +224,8 @@ msgid ""
 "function to be used are passed to the constructor."
 msgstr ""
 "주 문장의 *number* 실행의 시간을 측정합니다. setup 문장을 한 번 실행한 다음, 주 문장을 여러 번 실행하는 데 걸리는"
-" 시간을 초 단위로 float로 반환합니다. 인자는 루프를 통과하는 횟수이며, 기본값은 백만입니다. 주 문장, setup 문장 및 "
-"사용할 타이머 함수는 생성자에 전달됩니다."
+" 시간을 반환합니다. 기본 타이머는 초 단위의 float를 반환합니다. 인자는 루프를 통과하는 횟수이며, 기본값은 백만입니다. 주 "
+"문장, setup 문장 및 사용할 타이머 함수는 생성자에 전달됩니다."
 
 #: ../../library/timeit.rst:136
 msgid ""
@@ -226,14 +243,13 @@ msgstr ""
 
 #: ../../library/timeit.rst:143
 msgid "timeit.Timer('for i in range(10): oct(i)', 'gc.enable()').timeit()"
-msgstr ""
+msgstr "timeit.Timer('for i in range(10): oct(i)', 'gc.enable()').timeit()"
 
 #: ../../library/timeit.rst:148
 msgid "Automatically determine how many times to call :meth:`.timeit`."
 msgstr ":meth:`.timeit`\\를 호출하는 횟수를 자동으로 결정합니다."
 
 #: ../../library/timeit.rst:150
-#, fuzzy
 msgid ""
 "This is a convenience function that calls :meth:`.timeit` repeatedly so "
 "that the total time >= 0.2 second, returning the eventual (number of "
@@ -302,6 +318,11 @@ msgid ""
 "except Exception:\n"
 "    t.print_exc()"
 msgstr ""
+"t = Timer(...)       # try/except 바깥\n"
+"try:\n"
+"    t.timeit(...)    # 또는 t.repeat(...)\n"
+"except Exception:\n"
+"    t.print_exc()"
 
 #: ../../library/timeit.rst:199
 msgid ""
@@ -327,6 +348,8 @@ msgid ""
 "python -m timeit [-n N] [-r N] [-u U] [-s S] [-p] [-v] [-h] [statement "
 "...]"
 msgstr ""
+"python -m timeit [-n N] [-r N] [-u U] [-s S] [-p] [-v] [-h] [statement "
+"...]"
 
 #: ../../library/timeit.rst:213
 msgid "Where the following options are understood:"
@@ -353,11 +376,12 @@ msgstr ""
 ":func:`time.process_time`\\을 사용합니다"
 
 #: ../../library/timeit.rst:238
-#, fuzzy
 msgid ""
 "specify a time unit for timer output; can select ``nsec``, ``usec``, "
 "``msec``, or ``sec``"
-msgstr "타이머 출력의 시간 단위를 지정합니다; nsec, usec, msec 또는 sec 중에서 선택할 수 있습니다."
+msgstr ""
+"타이머 출력의 시간 단위를 지정합니다; ``nsec``, ``usec``, ``msec`` 또는 ``sec`` 중에서 선택할 수 "
+"있습니다."
 
 #: ../../library/timeit.rst:244
 msgid "print raw timing results; repeat for more digits precision"
@@ -429,6 +453,12 @@ msgid ""
 "\"text.find(char)\"\n"
 "1000000 loops, best of 5: 0.342 usec per loop"
 msgstr ""
+"$ python -m timeit -s \"text = 'sample string'; char = 'g'\" \"char in "
+"text\"\n"
+"5000000 loops, best of 5: 0.0877 usec per loop\n"
+"$ python -m timeit -s \"text = 'sample string'; char = 'g'\" "
+"\"text.find(char)\"\n"
+"1000000 loops, best of 5: 0.342 usec per loop"
 
 #: ../../library/timeit.rst:287
 msgid ""
@@ -450,6 +480,13 @@ msgid ""
 "char = \"g\"')\n"
 "1.7246671520006203"
 msgstr ""
+">>> import timeit\n"
+">>> timeit.timeit('char in text', setup='text = \"sample string\"; char ="
+" \"g\"')\n"
+"0.41440500499993504\n"
+">>> timeit.timeit('text.find(char)', setup='text = \"sample string\"; "
+"char = \"g\"')\n"
+"1.7246671520006203"
 
 #: ../../library/timeit.rst:302
 msgid "The same can be done using the :class:`Timer` class and its methods::"
@@ -466,6 +503,14 @@ msgid ""
 "[0.40183617287970225, 0.37027556854118704, 0.38344867356679524, "
 "0.3712595970846668, 0.37866875250654886]"
 msgstr ""
+">>> import timeit\n"
+">>> t = timeit.Timer('char in text', setup='text = \"sample string\"; "
+"char = \"g\"')\n"
+">>> t.timeit()\n"
+"0.3955516149999312\n"
+">>> t.repeat()\n"
+"[0.40183617287970225, 0.37027556854118704, 0.38344867356679524, "
+"0.3712595970846668, 0.37866875250654886]"
 
 #: ../../library/timeit.rst:312
 msgid ""
@@ -492,6 +537,17 @@ msgid ""
 "$ python -m timeit \"if hasattr(int, '__bool__'): pass\"\n"
 "100000 loops, best of 5: 2.23 usec per loop"
 msgstr ""
+"$ python -m timeit \"try:\" \"  str.__bool__\" \"except AttributeError:\""
+" \"  pass\"\n"
+"20000 loops, best of 5: 15.7 usec per loop\n"
+"$ python -m timeit \"if hasattr(str, '__bool__'): pass\"\n"
+"50000 loops, best of 5: 4.26 usec per loop\n"
+"\n"
+"$ python -m timeit \"try:\" \"  int.__bool__\" \"except AttributeError:\""
+" \"  pass\"\n"
+"200000 loops, best of 5: 1.43 usec per loop\n"
+"$ python -m timeit \"if hasattr(int, '__bool__'): pass\"\n"
+"100000 loops, best of 5: 2.23 usec per loop"
 
 #: ../../library/timeit.rst:330
 msgid ""
@@ -522,6 +578,32 @@ msgid ""
 ">>> timeit.timeit(stmt=s, number=100000)\n"
 "0.08588060699912603"
 msgstr ""
+">>> import timeit\n"
+">>> # 어트리뷰트가 없습니다\n"
+">>> s = \"\"\"\\\n"
+"... try:\n"
+"...     str.__bool__\n"
+"... except AttributeError:\n"
+"...     pass\n"
+"... \"\"\"\n"
+">>> timeit.timeit(stmt=s, number=100000)\n"
+"0.9138244460009446\n"
+">>> s = \"if hasattr(str, '__bool__'): pass\"\n"
+">>> timeit.timeit(stmt=s, number=100000)\n"
+"0.5829014980008651\n"
+">>>\n"
+">>> # 어트리뷰트가 있습니다\n"
+">>> s = \"\"\"\\\n"
+"... try:\n"
+"...     int.__bool__\n"
+"... except AttributeError:\n"
+"...     pass\n"
+"... \"\"\"\n"
+">>> timeit.timeit(stmt=s, number=100000)\n"
+"0.04215312199994514\n"
+">>> s = \"if hasattr(int, '__bool__'): pass\"\n"
+">>> timeit.timeit(stmt=s, number=100000)\n"
+"0.08588060699912603"
 
 #: ../../library/timeit.rst:358
 msgid ""
@@ -541,6 +623,13 @@ msgid ""
 "    import timeit\n"
 "    print(timeit.timeit(\"test()\", setup=\"from __main__ import test\"))"
 msgstr ""
+"def test():\n"
+"    \"\"\"멍청한 테스트 함수\"\"\"\n"
+"    L = [i for i in range(100)]\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    import timeit\n"
+"    print(timeit.timeit(\"test()\", setup=\"from __main__ import test\"))"
 
 #: ../../library/timeit.rst:369
 msgid ""
@@ -564,15 +653,21 @@ msgid ""
 "import timeit\n"
 "print(timeit.timeit('[func(42) for func in (f,g,h)]', globals=globals()))"
 msgstr ""
+"def f(x):\n"
+"    return x**2\n"
+"def g(x):\n"
+"    return x**4\n"
+"def h(x):\n"
+"    return x**8\n"
+"\n"
+"import timeit\n"
+"print(timeit.timeit('[func(42) for func in (f,g,h)]', globals=globals()))"
 
 #: ../../library/timeit.rst:9
 msgid "Benchmarking"
-msgstr ""
+msgstr "벤치마킹"
 
 #: ../../library/timeit.rst:9
 msgid "Performance"
-msgstr ""
-
-#~ msgid "The default timer, which is always :func:`time.perf_counter`."
-#~ msgstr "기본 타이머, 항상 :func:`time.perf_counter`\\입니다."
+msgstr "성능"
 
