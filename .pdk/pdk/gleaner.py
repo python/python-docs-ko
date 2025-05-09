@@ -25,9 +25,10 @@ def find_invariant(immutables, i1, i2):
     for k1, k2 in immutables:
         if k1 > i1:
             break
-        # flowdas: k2 > i1 조건을 넣지 않으면 오른쪽 이어붙이기를 허용하게된다.
-        #   왼쪽 이어붙이기도 막아야할까?
-        if k2 >= i2 and k2 > i1:
+        # flowdas: i2 > k1 and k2 > i1 조건을 넣지 않으면 이어붙이기를 허용하게된다.
+        #   이어붙이기를 허용하게되면 P_INVARIANT 를 벗어나게될 가능성이 높아지고, 재검색해야 할 필요가 생긴다.
+        #   재검색과 결합하여 이 조건을 완화하려는 시도의 득실은 떠져보지 않았다.
+        if k2 >= i2 and i2 > k1 and k2 > i1:
             return k1, k2
 
 
