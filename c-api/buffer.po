@@ -79,7 +79,6 @@ msgstr ""
 " 될 수 있습니다."
 
 #: ../../c-api/buffer.rst:45
-#, fuzzy
 msgid ""
 "An example consumer of the buffer interface is the "
 ":meth:`~io.BufferedIOBase.write` method of file objects: any object that "
@@ -91,7 +90,7 @@ msgid ""
 " or reject exporting of read-write and read-only buffers."
 msgstr ""
 "버퍼 인터페이스의 소비자 예는 파일 객체의 :meth:`~io.BufferedIOBase.write` 메서드입니다: 버퍼 "
-"인터페이스를 통해 일련의 바이트를 내보낼 수 있는 모든 객체는 파일에 기록될 수 있습니다. :meth:`write`\\가 전달된 "
+"인터페이스를 통해 일련의 바이트를 내보낼 수 있는 모든 객체는 파일에 기록될 수 있습니다. :meth:`!write`\\가 전달된 "
 "객체의 내부 내용에 대한 읽기 전용 액세스만 필요하지만, :meth:`~io.BufferedIOBase.readinto`\\와 같은"
 " 다른 메서드는 인자의 내용에 쓰기 액세스가 필요합니다. 버퍼 인터페이스는 객체가 읽기-쓰기와 읽기 전용 버퍼를 선택적으로 "
 "허용하거나 거부할 수 있도록 합니다."
@@ -184,7 +183,6 @@ msgid ""
 msgstr ":term:`연속 <contiguous>` 배열의 경우, 값은 메모리 블록의 시작을 가리킵니다."
 
 #: ../../c-api/buffer.rst:104
-#, fuzzy
 msgid ""
 "A new reference to the exporting object. The reference is owned by the "
 "consumer and automatically released (i.e. reference count decremented) "
@@ -192,7 +190,8 @@ msgid ""
 "equivalent of the return value of any standard C-API function."
 msgstr ""
 "제공하는(exporting) 객체에 대한 새 참조. 참조는 소비자가 소유하고, :c:func:`PyBuffer_Release`\\에"
-" 의해 자동으로 감소하고 ``NULL``\\로 설정됩니다. 이 필드는 표준 C-API 함수의 반환 값과 동등합니다."
+" 의해 자동으로 해제되고 (즉 참조 횟수가 감소합니다) ``NULL``\\로 설정됩니다. 이 필드는 표준 C-API 함수의 반환 "
+"값과 동등합니다."
 
 #: ../../c-api/buffer.rst:111
 msgid ""
@@ -273,21 +272,19 @@ msgstr ""
 ":c:member:`~Py_buffer.itemsize`\\를 무시하고 ``itemsize == 1``\\로 가정해야 합니다."
 
 #: ../../c-api/buffer.rst:152
-#, fuzzy
 msgid ""
 "A *NULL* terminated string in :mod:`struct` module style syntax "
 "describing the contents of a single item. If this is ``NULL``, ``\"B\"`` "
 "(unsigned bytes) is assumed."
 msgstr ""
-"단일 항목의 내용을 설명하는 :mod:`struct` 모듈 스타일 문법의 *NUL* 종료 문자열. 이것이 ``NULL``\\이면, "
-"``\"B\"``\\(부호 없는 바이트)를 가정합니다."
+"단일 항목의 내용을 설명하는 :mod:`struct` 모듈 스타일 문법의 *NULL* 종료 문자열. 이것이 ``NULL``\\이면,"
+" ``\"B\"``\\(부호 없는 바이트)를 가정합니다."
 
 #: ../../c-api/buffer.rst:156
 msgid "This field is controlled by the :c:macro:`PyBUF_FORMAT` flag."
 msgstr "이 필드는 :c:macro:`PyBUF_FORMAT` 플래그로 제어됩니다."
 
 #: ../../c-api/buffer.rst:160
-#, fuzzy
 msgid ""
 "The number of dimensions the memory represents as an n-dimensional array."
 " If it is ``0``, :c:member:`~Py_buffer.buf` points to a single item "
@@ -299,7 +296,7 @@ msgstr ""
 "메모리가 n 차원 배열로 나타내는 차원 수. ``0``\\이면, :c:member:`~Py_buffer.buf`\\는 스칼라를 "
 "나타내는 단일 항목을 가리 킵니다. 이 경우, :c:member:`~Py_buffer.shape`, "
 ":c:member:`~Py_buffer.strides` 및 :c:member:`~Py_buffer.suboffsets`\\는 반드시"
-" ``NULL`` 이어야 합니다."
+" ``NULL`` 이어야 합니다. 최대 차원 수는 :c:macro:`PyBUF_MAX_NDIM`\\으로 지정됩니다."
 
 #: ../../c-api/buffer.rst:168
 msgid ""
@@ -394,18 +391,17 @@ msgstr ""
 
 #: ../../c-api/buffer.rst:218
 msgid "Constants:"
-msgstr ""
+msgstr "상수:"
 
 #: ../../c-api/buffer.rst:222
-#, fuzzy
 msgid ""
 "The maximum number of dimensions the memory represents. Exporters MUST "
 "respect this limit, consumers of multi-dimensional buffers SHOULD be able"
 " to handle up to :c:macro:`!PyBUF_MAX_NDIM` dimensions. Currently set to "
 "64."
 msgstr ""
-"매크로 :c:macro:`PyBUF_MAX_NDIM`\\는 최대 차원 수를 64로 제한합니다. 제공자는 이 제한을 존중해야 하며, "
-"다차원 버퍼의 소비자는 :c:macro:`PyBUF_MAX_NDIM` 차원까지 처리할 수 있어야 합니다."
+"메모리가 나타내는 최대 차원 수 입니다. 제공자는 이 제한을 존중해야 하며, 다차원 버퍼의 소비자는 "
+":c:macro:`!PyBUF_MAX_NDIM` 차원까지 처리할 수 있어야 합니다. 현재 64로 설정되었습니다."
 
 #: ../../c-api/buffer.rst:231
 msgid "Buffer request types"
@@ -423,11 +419,10 @@ msgstr ""
 "*flags* 인자를 사용합니다."
 
 #: ../../c-api/buffer.rst:238
-#, fuzzy
 msgid ""
 "All :c:type:`Py_buffer` fields are unambiguously defined by the request "
 "type."
-msgstr "모든 :c:data:`Py_buffer` 필드는 요청 유형에 의해 모호하지 않게 정의됩니다."
+msgstr "모든 :c:type:`Py_buffer` 필드는 요청 유형에 의해 모호하지 않게 정의됩니다."
 
 #: ../../c-api/buffer.rst:242
 msgid "request-independent fields"
@@ -450,7 +445,6 @@ msgid "readonly, format"
 msgstr "readonly, format"
 
 #: ../../c-api/buffer.rst:252
-#, fuzzy
 msgid ""
 "Controls the :c:member:`~Py_buffer.readonly` field. If set, the exporter "
 "MUST provide a writable buffer or else report failure. Otherwise, the "
@@ -461,7 +455,8 @@ msgid ""
 msgstr ""
 ":c:member:`~Py_buffer.readonly` 필드를 제어합니다. 설정되면, 제공자는 반드시 쓰기 가능한 버퍼를 "
 "제공하거나 실패를 보고해야 합니다. 그렇지 않으면, 제공자는 읽기 전용 버퍼나 쓰기 가능 버퍼를 제공할 수 있지만, 모든 소비자에 "
-"대해 일관성을 유지해야 합니다."
+"대해 일관성을 유지해야 합니다. 예를 들어, 간단한 쓰기 가능 버퍼를 요청하려면 :c:expr:`PyBUF_SIMPLE | "
+"PyBUF_WRITABLE`\\을 사용할 수 있습니다."
 
 #: ../../c-api/buffer.rst:260
 msgid ""
@@ -483,14 +478,14 @@ msgstr ""
 "플래그로 사용되어 간단한 쓰기 가능한 버퍼를 요청할 수 있습니다."
 
 #: ../../c-api/buffer.rst:268
-#, fuzzy
 msgid ""
 ":c:macro:`PyBUF_FORMAT` must be \\|'d to any of the flags except "
 ":c:macro:`PyBUF_SIMPLE`, because the latter already implies format ``B`` "
 "(unsigned bytes). :c:macro:`!PyBUF_FORMAT` cannot be used on its own."
 msgstr ""
-":c:macro:`PyBUF_FORMAT`\\은 :c:macro:`PyBUF_SIMPLE`\\을 제외한 임의의 플래그와 \\| 될 "
-"수 있습니다. PyBUF_SIMPLE은 이미 형식 ``B``\\(부호 없는 바이트)를 의미합니다."
+":c:macro:`PyBUF_FORMAT`\\은 :c:macro:`PyBUF_SIMPLE`\\을 제외한 임의의 플래그와 \\| "
+"되어야 합니다. PyBUF_SIMPLE 은 이미 형식 ``B``\\(부호 없는 바이트)를 의미하기 때문입니다. "
+":c:macro:`!PyBUF_FORMAT`\\은 단독으로 사용할 수 없습니다."
 
 #: ../../c-api/buffer.rst:274
 msgid "shape, strides, suboffsets"
@@ -677,6 +672,9 @@ msgid ""
 "strides[n-1];\n"
 "item = *((typeof(item) *)ptr);"
 msgstr ""
+"ptr = (char *)buf + indices[0] * strides[0] + ... + indices[n-1] * "
+"strides[n-1];\n"
+"item = *((typeof(item) *)ptr);"
 
 #: ../../c-api/buffer.rst:375
 msgid ""
@@ -716,6 +714,30 @@ msgid ""
 "\n"
 "    return 0 <= offset+imin and offset+imax+itemsize <= memlen"
 msgstr ""
+"def verify_structure(memlen, itemsize, ndim, shape, strides, offset):\n"
+"    \"\"\"매개 변수가 할당된 메모리 범위 내에서 유효한 배열을 나타내는지 확인합니다:\n"
+"           char *mem: 물리적 메모리 블록의 시작\n"
+"           memlen: 물리적 메모리 블록의 길이\n"
+"           offset: (char *)buf - mem\n"
+"    \"\"\"\n"
+"    if offset % itemsize:\n"
+"        return False\n"
+"    if offset < 0 or offset+itemsize > memlen:\n"
+"        return False\n"
+"    if any(v % itemsize for v in strides):\n"
+"        return False\n"
+"\n"
+"    if ndim <= 0:\n"
+"        return ndim == 0 and not shape and not strides\n"
+"    if 0 in shape:\n"
+"        return True\n"
+"\n"
+"    imin = sum(strides[j]*(shape[j]-1) for j in range(ndim)\n"
+"               if strides[j] <= 0)\n"
+"    imax = sum(strides[j]*(shape[j]-1) for j in range(ndim)\n"
+"               if strides[j] > 0)\n"
+"\n"
+"    return 0 <= offset+imin and offset+imax+itemsize <= memlen"
 
 #: ../../c-api/buffer.rst:409
 msgid "PIL-style: shape, strides and suboffsets"
@@ -761,6 +783,18 @@ msgid ""
 "    return (void*)pointer;\n"
 "}"
 msgstr ""
+"void *get_item_pointer(int ndim, void *buf, Py_ssize_t *strides,\n"
+"                       Py_ssize_t *suboffsets, Py_ssize_t *indices) {\n"
+"    char *pointer = (char*)buf;\n"
+"    int i;\n"
+"    for (i = 0; i < ndim; i++) {\n"
+"        pointer += strides[i] * indices[i];\n"
+"        if (suboffsets[i] >=0 ) {\n"
+"            pointer = *((char**)pointer) + suboffsets[i];\n"
+"        }\n"
+"    }\n"
+"    return (void*)pointer;\n"
+"}"
 
 #: ../../c-api/buffer.rst:439
 msgid "Buffer-related functions"
@@ -778,15 +812,14 @@ msgstr ""
 "성공합니다."
 
 #: ../../c-api/buffer.rst:450
-#, fuzzy
 msgid ""
 "Send a request to *exporter* to fill in *view* as specified by  *flags*. "
 "If the exporter cannot provide a buffer of the exact type, it MUST raise "
 ":exc:`BufferError`, set ``view->obj`` to ``NULL`` and return ``-1``."
 msgstr ""
 "*flags*\\에 지정된 대로 *view*\\를 채우도록 *exporter*\\에게 요청을 보냅니다. 제공자(exporter)가 "
-"정확한 유형의 버퍼를 제공할 수 없다면, :c:data:`PyExc_BufferError`\\를 일으키고, "
-"``view->obj``\\를 ``NULL``\\로 설정하고, ``-1``\\를 반환해야 합니다."
+"정확한 유형의 버퍼를 제공할 수 없다면, :exc:`BufferError`\\를 일으키고, ``view->obj``\\를 "
+"``NULL``\\로 설정하고, ``-1``\\를 반환해야 합니다."
 
 #: ../../c-api/buffer.rst:455
 msgid ""
@@ -813,15 +846,15 @@ msgstr ""
 "소비자가 버퍼로 작업한 후에는, :c:func:`PyBuffer_Release`\\를 정확히 한 번 호출해야 합니다."
 
 #: ../../c-api/buffer.rst:468
-#, fuzzy
 msgid ""
 "Release the buffer *view* and release the :term:`strong reference` (i.e. "
 "decrement the reference count) to the view's supporting object, "
 "``view->obj``. This function MUST be called when the buffer is no longer "
 "being used, otherwise reference leaks may occur."
 msgstr ""
-"버퍼 *view*\\를 해제하고 ``view->obj``\\에 대한 참조 횟수를 감소시킵니다. 버퍼가 더는 사용되지 않을 때, 이 "
-"함수를 반드시 호출해야 합니다. 그렇지 않으면 참조 누수가 발생할 수 있습니다."
+"버퍼 *view*\\를 해제하고 뷰의 지원 객체인 ``view->obj``\\에 대한 :term:`강한 참조 <strong "
+"reference>`\\를 해제합니다 (즉 참조 횟수를 감소시킵니다). 버퍼가 더는 사용되지 않을 때, 이 함수를 반드시 호출해야 "
+"합니다. 그렇지 않으면 참조 누수가 발생할 수 있습니다."
 
 #: ../../c-api/buffer.rst:473
 msgid ""
@@ -830,13 +863,12 @@ msgid ""
 msgstr ":c:func:`PyObject_GetBuffer`\\를 통해 얻지 않은 버퍼에 이 함수를 호출하는 것은 에러입니다."
 
 #: ../../c-api/buffer.rst:479
-#, fuzzy
 msgid ""
 "Return the implied :c:member:`~Py_buffer.itemsize` from "
 ":c:member:`~Py_buffer.format`. On error, raise an exception and return "
 "-1."
 msgstr ""
-":c:data:`~Py_buffer.format`\\이 암시하는 :c:data:`~Py_buffer.itemsize`\\를 "
+":c:member:`~Py_buffer.format`\\이 암시하는 :c:member:`~Py_buffer.itemsize`\\를 "
 "반환합니다. 에러가 발생하면, 예외를 발생시키고 -1을 반환합니다."
 
 #: ../../c-api/buffer.rst:487
@@ -923,15 +955,14 @@ msgstr ""
 "*view*\\를 채웁니다."
 
 #: ../../c-api/buffer.rst:538
-#, fuzzy
 msgid ""
 "On success, set ``view->obj`` to a new reference to *exporter* and return"
 " 0. Otherwise, raise :exc:`BufferError`, set ``view->obj`` to ``NULL`` "
 "and return ``-1``;"
 msgstr ""
 "성공하면, ``view->obj``\\를 *exporter*\\에 대한 새 참조로 설정하고, 0을 반환합니다. 그렇지 않으면, "
-":c:data:`PyExc_BufferError`\\를 일으키고, ``view->obj``\\를 ``NULL``\\로 설정한 다음 "
-"``-1``\\을 반환합니다."
+":exc:`BufferError`\\를 일으키고, ``view->obj``\\를 ``NULL``\\로 설정한 다음 ``-1``\\을"
+" 반환합니다."
 
 #: ../../c-api/buffer.rst:542
 msgid ""
@@ -944,40 +975,34 @@ msgstr ""
 "*exporter*\\가 ``NULL``\\이어야 합니다."
 
 #: ../../c-api/buffer.rst:3
-#, fuzzy
 msgid "buffer protocol"
 msgstr "버퍼 프로토콜"
 
 #: ../../c-api/buffer.rst:3
-#, fuzzy
 msgid "buffer interface"
-msgstr "버퍼 구조체"
+msgstr "버퍼 인터페이스"
 
 #: ../../c-api/buffer.rst:3
-#, fuzzy
 msgid "(see buffer protocol)"
-msgstr "버퍼 프로토콜"
+msgstr "(버퍼 프로토콜을 보십시오)"
 
 #: ../../c-api/buffer.rst:3
-#, fuzzy
 msgid "buffer object"
-msgstr "버퍼 프로토콜"
+msgstr "버퍼 객체"
 
 #: ../../c-api/buffer.rst:32
 msgid "PyBufferProcs (C type)"
-msgstr ""
+msgstr "PyBufferProcs (C 형)"
 
 #: ../../c-api/buffer.rst:295
-#, fuzzy
 msgid "contiguous"
-msgstr "연속성"
+msgstr "연속"
 
 #: ../../c-api/buffer.rst:295
-#, fuzzy
 msgid "C-contiguous"
-msgstr "연속성"
+msgstr "C-연속"
 
 #: ../../c-api/buffer.rst:295
 msgid "Fortran contiguous"
-msgstr ""
+msgstr "포트란 연속"
 
