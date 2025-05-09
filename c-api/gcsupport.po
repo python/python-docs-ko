@@ -34,7 +34,6 @@ msgstr ""
 "수집에 대한 어떤 명시적인 지원을 제공할 필요가 없습니다."
 
 #: ../../c-api/gcsupport.rst:15
-#, fuzzy
 msgid ""
 "To create a container type, the :c:member:`~PyTypeObject.tp_flags` field "
 "of the type object must include the :c:macro:`Py_TPFLAGS_HAVE_GC` and "
@@ -43,13 +42,13 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_clear` implementation must also be provided."
 msgstr ""
 "컨테이너형을 만들려면, 형 객체의 :c:member:`~PyTypeObject.tp_flags` 필드가 "
-":const:`Py_TPFLAGS_HAVE_GC`\\를 포함해야 하고 "
+":c:macro:`Py_TPFLAGS_HAVE_GC`\\를 포함해야 하고 "
 ":c:member:`~PyTypeObject.tp_traverse` 처리기 구현을 제공해야 합니다. 형의 인스턴스가 가변이면, "
 ":c:member:`~PyTypeObject.tp_clear` 구현도 제공해야 합니다."
 
 #: ../../c-api/gcsupport.rst:21
 msgid ":c:macro:`Py_TPFLAGS_HAVE_GC`"
-msgstr ""
+msgstr ":c:macro:`Py_TPFLAGS_HAVE_GC`"
 
 #: ../../c-api/gcsupport.rst:22
 msgid ""
@@ -63,13 +62,12 @@ msgid "Constructors for container types must conform to two rules:"
 msgstr "컨테이너형의 생성자는 두 가지 규칙을 준수해야 합니다:"
 
 #: ../../c-api/gcsupport.rst:28
-#, fuzzy
 msgid ""
 "The memory for the object must be allocated using "
 ":c:macro:`PyObject_GC_New` or :c:macro:`PyObject_GC_NewVar`."
 msgstr ""
-"객체의 메모리는 :c:func:`PyObject_GC_New` 나 :c:func:`PyObject_GC_NewVar`\\를 사용하여"
-" 할당해야 합니다."
+"객체의 메모리는 :c:macro:`PyObject_GC_New` 나 :c:macro:`PyObject_GC_NewVar`\\를 "
+"사용하여 할당해야 합니다."
 
 #: ../../c-api/gcsupport.rst:31
 msgid ""
@@ -115,22 +113,20 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/gcsupport.rst:57
-#, fuzzy
 msgid ""
 "Analogous to :c:macro:`PyObject_New` but for container objects with the "
 ":c:macro:`Py_TPFLAGS_HAVE_GC` flag set."
 msgstr ""
-":c:func:`PyObject_New`\\와 유사하지만, :const:`Py_TPFLAGS_HAVE_GC` 플래그가 설정된 "
+":c:macro:`PyObject_New`\\와 유사하지만, :c:macro:`Py_TPFLAGS_HAVE_GC` 플래그가 설정된 "
 "컨테이너 객체를 위한 것."
 
 #: ../../c-api/gcsupport.rst:62
-#, fuzzy
 msgid ""
 "Analogous to :c:macro:`PyObject_NewVar` but for container objects with "
 "the :c:macro:`Py_TPFLAGS_HAVE_GC` flag set."
 msgstr ""
-":c:func:`PyObject_NewVar`\\와 유사하지만, :const:`Py_TPFLAGS_HAVE_GC` 플래그가 설정된 "
-"컨테이너 객체를 위한 것."
+":c:macro:`PyObject_NewVar`\\와 유사하지만, :c:macro:`Py_TPFLAGS_HAVE_GC` 플래그가 "
+"설정된 컨테이너 객체를 위한 것."
 
 #: ../../c-api/gcsupport.rst:67
 msgid ""
@@ -156,20 +152,21 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/gcsupport.rst:88
-#, fuzzy
 msgid ""
 "Resize an object allocated by :c:macro:`PyObject_NewVar`. Returns the "
 "resized object of type ``TYPE*`` (refers to any C type) or ``NULL`` on "
 "failure."
 msgstr ""
-":c:func:`PyObject_NewVar`\\에 의해 할당된 객체의 크기를 변경합니다. 크기가 조정된 객체나 실패하면 "
-"``NULL``\\을 반환합니다. *op*\\는 아직 수집기가 추적하지 않아야 합니다."
+":c:macro:`PyObject_NewVar`\\에 의해 할당된 객체의 크기를 변경합니다. 형 ``TYPE*`` (모든 C 형을 "
+"나타냅니다) 의 크기가 조정된 객체나 실패하면 ``NULL``\\을 반환합니다."
 
 #: ../../c-api/gcsupport.rst:92
 msgid ""
 "*op* must be of type :c:expr:`PyVarObject *` and must not be tracked by "
 "the collector yet. *newsize* must be of type :c:type:`Py_ssize_t`."
 msgstr ""
+"*op*\\는 형 :c:expr:`PyVarObject *`\\이어야 하고 아직 수거기가 추적하지 않아야 합니다. "
+"*newsize*\\는 형 :c:type:`Py_ssize_t`\\이어야 합니다."
 
 #: ../../c-api/gcsupport.rst:99
 msgid ""
@@ -179,7 +176,7 @@ msgid ""
 "followed by the :c:member:`~PyTypeObject.tp_traverse` handler become "
 "valid, usually near the end of the constructor."
 msgstr ""
-"수집기가 추적하는 컨테이너 객체 집합에 객체 *op*\\를 추가합니다. 수집기는 예기치 않은 시간에 실행될 수 있으므로 추적되는 "
+"수거기가 추적하는 컨테이너 객체 집합에 객체 *op*\\를 추가합니다. 수거기는 예기치 않은 시간에 실행될 수 있으므로 추적되는 "
 "동안 객체가 유효해야 합니다. :c:member:`~PyTypeObject.tp_traverse` 처리기가 탐색하는 모든 필드가 "
 "유효해지면 호출해야 합니다, 보통 생성자의 끝부분 근처입니다."
 
@@ -220,13 +217,12 @@ msgid "This is analogous to the Python function :func:`gc.is_finalized`."
 msgstr "이것은 파이썬 함수 :func:`gc.is_finalized`\\에 해당합니다."
 
 #: ../../c-api/gcsupport.rst:136
-#, fuzzy
 msgid ""
 "Releases memory allocated to an object using :c:macro:`PyObject_GC_New` "
 "or :c:macro:`PyObject_GC_NewVar`."
 msgstr ""
-":c:func:`PyObject_GC_New` 나 :c:func:`PyObject_GC_NewVar`\\를 사용하여 객체에 할당된 "
-"메모리를 해제합니다."
+":c:macro:`PyObject_GC_New` 나 :c:macro:`PyObject_GC_NewVar`\\를 사용하여 객체에 "
+"할당된 메모리를 해제합니다."
 
 #: ../../c-api/gcsupport.rst:142
 msgid ""
@@ -237,20 +233,19 @@ msgid ""
 "this for the object before any of the fields used by the "
 ":c:member:`~PyTypeObject.tp_traverse` handler become invalid."
 msgstr ""
-"수집기가 추적하는 컨테이너 객체 집합에서 *op* 객체를 제거합니다. :c:func:`PyObject_GC_Track`\\를 이 "
+"수거기가 추적하는 컨테이너 객체 집합에서 *op* 객체를 제거합니다. :c:func:`PyObject_GC_Track`\\를 이 "
 "객체에 대해 다시 호출하여 추적 객체 집합에 다시 추가할 수 있음에 유의하십시오. "
 "할당해제자(:c:member:`~PyTypeObject.tp_dealloc` 처리기)는 "
 ":c:member:`~PyTypeObject.tp_traverse` 처리기에서 사용하는 필드가 무효화 되기 전에 객체에 대해 이 "
 "함수를 호출해야 합니다."
 
 #: ../../c-api/gcsupport.rst:151
-#, fuzzy
 msgid ""
 "The :c:func:`!_PyObject_GC_TRACK` and :c:func:`!_PyObject_GC_UNTRACK` "
 "macros have been removed from the public C API."
 msgstr ""
-":c:func:`_PyObject_GC_TRACK`\\과 :c:func:`_PyObject_GC_UNTRACK` 매크로는 공용 C "
-"API에서 제거되었습니다."
+":c:func:`!_PyObject_GC_TRACK`\\과 :c:func:`!_PyObject_GC_UNTRACK` 매크로는 공용 "
+"C API에서 제거되었습니다."
 
 #: ../../c-api/gcsupport.rst:154
 msgid ""
@@ -325,6 +320,13 @@ msgid ""
 "    return 0;\n"
 "}"
 msgstr ""
+"static int\n"
+"my_traverse(Noddy *self, visitproc visit, void *arg)\n"
+"{\n"
+"    Py_VISIT(self->foo);\n"
+"    Py_VISIT(self->bar);\n"
+"    return 0;\n"
+"}"
 
 #: ../../c-api/gcsupport.rst:198
 msgid ""
@@ -345,12 +347,11 @@ msgid ""
 msgstr ""
 "참조 순환을 생성했을 수 있는 참조를 삭제합니다. 불변 객체는 참조 순환을 직접 생성할 수 없으므로, 이 메서드를 정의 할 필요가 "
 "없습니다. 이 메서드를 호출한 후에도 객체가 유효해야 합니다 (단지 참조에 대해 :c:func:`Py_DECREF`\\를 호출하지 "
-"마십시오). 이 객체가 참조 순환에 참여하고 있음을 수집기가 감지하면 이 메서드를 호출합니다."
+"마십시오). 이 객체가 참조 순환에 참여하고 있음을 수거기가 감지하면 이 메서드를 호출합니다."
 
 #: ../../c-api/gcsupport.rst:213
-#, fuzzy
 msgid "Controlling the Garbage Collector State"
-msgstr "순환 가비지 수집 지원"
+msgstr "가비지 수거기 상태 제어하기"
 
 #: ../../c-api/gcsupport.rst:215
 msgid ""
@@ -392,9 +393,8 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/gcsupport.rst:256
-#, fuzzy
 msgid "Querying Garbage Collector State"
-msgstr "순환 가비지 수집 지원"
+msgstr "가비지 수거기 상태 조회하기"
 
 #: ../../c-api/gcsupport.rst:258
 msgid ""
