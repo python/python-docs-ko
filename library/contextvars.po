@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.7\n"
@@ -18,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/contextvars.rst:2
-#, fuzzy
 msgid ":mod:`!contextvars` --- Context Variables"
-msgstr ":mod:`contextvars` --- 컨텍스트 변수"
+msgstr ":mod:`!contextvars` --- 컨텍스트 변수"
 
 #: ../../library/contextvars.rst:11
 msgid ""
@@ -36,14 +34,13 @@ msgstr ""
 "비동기 프레임워크에서 현재 컨텍스트를 관리하는 데 사용해야 합니다."
 
 #: ../../library/contextvars.rst:17
-#, fuzzy
 msgid ""
 "Context managers that have state should use Context Variables instead of "
 ":func:`threading.local` to prevent their state from bleeding to other "
 "code unexpectedly, when used in concurrent code."
 msgstr ""
 "상태가 있는 컨텍스트 관리자는 동시성 코드에서 상태가 예기치 않게 다른 코드로 유출되는 것을 방지하기 위해 "
-":func:`threading.local()` 대신 컨텍스트 변수를 사용해야 합니다."
+":func:`threading.local` 대신 컨텍스트 변수를 사용해야 합니다."
 
 #: ../../library/contextvars.rst:21
 msgid "See also :pep:`567` for additional details."
@@ -59,7 +56,7 @@ msgstr "이 클래스는 새로운 컨텍스트 변수를 선언하는 데 사�
 
 #: ../../library/contextvars.rst:33
 msgid "var: ContextVar[int] = ContextVar('var', default=42)"
-msgstr ""
+msgstr "var: ContextVar[int] = ContextVar('var', default=42)"
 
 #: ../../library/contextvars.rst:35
 msgid ""
@@ -153,6 +150,14 @@ msgid ""
 "# After the reset call the var has no value again, so\n"
 "# var.get() would raise a LookupError."
 msgstr ""
+"var = ContextVar('var')\n"
+"\n"
+"token = var.set('new value')\n"
+"# 'var'를 사용하는 코드; var.get() 은 'new value'를 반환합니다.\n"
+"var.reset(token)\n"
+"\n"
+"# reset 호출 후에 var에는 값이 다시 없으므로, var.get() 은\n"
+"# LookupError를 발생시킵니다."
 
 #: ../../library/contextvars.rst:99
 msgid ""
@@ -170,14 +175,13 @@ msgid ""
 msgstr "읽기 전용 프로퍼티. 토큰을 생성 한 :class:`ContextVar` 객체를 가리 킵니다."
 
 #: ../../library/contextvars.rst:111
-#, fuzzy
 msgid ""
 "A read-only property.  Set to the value the variable had before the "
 ":meth:`ContextVar.set` method call that created the token. It points to "
 ":attr:`Token.MISSING` if the variable was not set before the call."
 msgstr ""
-"읽기 전용 프로퍼티. 토큰을 생성 한 :meth:`ContextVar.set` 메서드 호출 전 변수의 값으로 설정됩니다. "
-":attr:`Token.MISSING` 은 호출 전에 변수가 설정되지 않았음을 나타냅니다."
+"읽기 전용 프로퍼티. 토큰을 생성 한 :meth:`ContextVar.set` 메서드 호출 전 변수의 값으로 설정됩니다. 호출 전에"
+" 변수가 설정되지 않았으면 :attr:`Token.MISSING`\\을 가리킵니다."
 
 #: ../../library/contextvars.rst:118
 msgid "A marker object used by :attr:`Token.old_value`."
@@ -202,16 +206,17 @@ msgid ""
 "ctx: Context = copy_context()\n"
 "print(list(ctx.items()))"
 msgstr ""
+"ctx: Context = copy_context()\n"
+"print(list(ctx.items()))"
 
 #: ../../library/contextvars.rst:134
-#, fuzzy
 msgid ""
 "The function has an *O*\\ (1) complexity, i.e. works equally fast for "
 "contexts with a few context variables and for contexts that have a lot of"
 " them."
 msgstr ""
-"이 함수는 O(1) 복잡도를 갖고 있습니다. 즉, 몇 가지 컨텍스트 변수가 있는 컨텍스트와 컨텍스트 변수가 잔뜩 있는 컨텍스트에 "
-"대해 똑같이 빠르게 작동합니다."
+"이 함수는 *O*\\ (1) 복잡도를 갖고 있습니다. 즉, 몇 가지 컨텍스트 변수가 있는 컨텍스트와 컨텍스트 변수가 잔뜩 있는 "
+"컨텍스트에 대해 똑같이 빠르게 작동합니다."
 
 #: ../../library/contextvars.rst:141
 msgid "A mapping of :class:`ContextVars <ContextVar>` to their values."
@@ -281,19 +286,17 @@ msgid "Context implements the :class:`collections.abc.Mapping` interface."
 msgstr "Context는 :class:`collections.abc.Mapping` 인터페이스를 구현합니다."
 
 #: ../../library/contextvars.rst:181
-#, fuzzy
 msgid ""
 "Enters the Context, executes ``callable(*args, **kwargs)``, then exits "
 "the Context.  Returns *callable*'s return value, or propagates an "
 "exception if one occurred."
 msgstr ""
-"*run* 메서드가 호출된 컨텍스트 객체에서 ``callable(*args, **kwargs)`` 코드를 실행합니다. 실행 결과를 "
-"반환하거나 예외가 발생하면 예외를 전파합니다."
+"컨텍스트에 진입하고, ``callable(*args, **kwargs)``\\를 실행한 다음, 컨텍스트에서 빠져나옵니다. "
+"*callable*\\의 반환값을 반환하거나, 예외가 발생하면 예외를 전파합니다."
 
 #: ../../library/contextvars.rst:185
-#, fuzzy
 msgid "Example:"
-msgstr "예를 들면::"
+msgstr "예제:"
 
 #: ../../library/contextvars.rst:187
 msgid ""
@@ -328,6 +331,35 @@ msgid ""
 "# However, outside of 'ctx', 'var' is still set to 'spam':\n"
 "print(var.get())  # 'spam'"
 msgstr ""
+"import contextvars\n"
+"\n"
+"var = contextvars.ContextVar('var')\n"
+"var.set('spam')\n"
+"print(var.get())  # 'spam'\n"
+"\n"
+"ctx = contextvars.copy_context()\n"
+"\n"
+"def main():\n"
+"    # 'var' 는 'copy_context()' 와 'ctx.run(main)' 을\n"
+"    # 호출하기 전에 'spam' 으로 설정되었습니다. 그래서:\n"
+"    print(var.get())  # 'spam'\n"
+"    print(ctx[var])  # 'spam'\n"
+"\n"
+"    var.set('ham')\n"
+"\n"
+"    # 이제, 'var' 를 'ham' 으로 설정한 후에:\n"
+"    print(var.get())  # 'ham'\n"
+"    print(ctx[var])  # 'ham'\n"
+"\n"
+"# 'main' 함수가 'var' 에 적용한 모든 변경은 'ctx' 에 포함됩니다.\n"
+"ctx.run(main)\n"
+"\n"
+"# 'main()' 함수는 'ctx' 컨텍스트에서 실행되었으므로,\n"
+"# 'var' 에 대한 변경은 'ctx' 에 포함되어 있습니다:\n"
+"print(ctx[var])  # 'ham'\n"
+"\n"
+"# 그러나, 'ctx' 외부에서, 'var' 는 여전히 'spam' 으로 설정되어있습니다:\n"
+"print(var.get())  # 'spam'"
 
 #: ../../library/contextvars.rst:233
 msgid "Return a shallow copy of the context object."
@@ -439,6 +471,48 @@ msgid ""
 "#     telnet 127.0.0.1 8081\n"
 "#     curl 127.0.0.1:8081"
 msgstr ""
+"import asyncio\n"
+"import contextvars\n"
+"\n"
+"client_addr_var = contextvars.ContextVar('client_addr')\n"
+"\n"
+"def render_goodbye():\n"
+"    # 현재 처리중인 클라이언트의 주소를 이 함수에 명시 적으로 전달하지 않고도\n"
+"    # 액세스 할 수 있습니다.\n"
+"\n"
+"    client_addr = client_addr_var.get()\n"
+"    return f'Good bye, client @ {client_addr}\\r\\n'.encode()\n"
+"\n"
+"async def handle_request(reader, writer):\n"
+"    addr = writer.transport.get_extra_info('socket').getpeername()\n"
+"    client_addr_var.set(addr)\n"
+"\n"
+"    # 우리가 호출하는 모든 코드에서 이제 'client_addr_var.get()' 을\n"
+"    # 호출하여 클라이언트의 주소를 가져올 수 있습니다.\n"
+"\n"
+"    while True:\n"
+"        line = await reader.readline()\n"
+"        print(line)\n"
+"        if not line.strip():\n"
+"            break\n"
+"\n"
+"    writer.write(b'HTTP/1.1 200 OK\\r\\n')  # status line\n"
+"    writer.write(b'\\r\\n')  # headers\n"
+"    writer.write(render_goodbye())  # body\n"
+"    writer.close()\n"
+"\n"
+"async def main():\n"
+"    srv = await asyncio.start_server(\n"
+"        handle_request, '127.0.0.1', 8081)\n"
+"\n"
+"    async with srv:\n"
+"        await srv.serve_forever()\n"
+"\n"
+"asyncio.run(main())\n"
+"\n"
+"# 테스트하려면 telnet이나 curl을 사용할 수 있습니다:\n"
+"#     telnet 127.0.0.1 8081\n"
+"#     curl 127.0.0.1:8081"
 
 #~ msgid ""
 #~ "Any changes to any context variables "
