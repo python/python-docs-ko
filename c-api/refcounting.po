@@ -21,11 +21,10 @@ msgid "Reference Counting"
 msgstr "참조 횟수"
 
 #: ../../c-api/refcounting.rst:10
-#, fuzzy
 msgid ""
 "The functions and macros in this section are used for managing reference "
 "counts of Python objects."
-msgstr "이 섹션의 매크로는 파이썬 객체의 참조 횟수를 관리하는 데 사용됩니다."
+msgstr "이 섹션의 함수와 매크로는 파이썬 객체의 참조 횟수를 관리하는 데 사용됩니다."
 
 #: ../../c-api/refcounting.rst:16
 msgid "Get the reference count of the Python object *o*."
@@ -93,13 +92,12 @@ msgid "When done using the object, release is by calling :c:func:`Py_DECREF`."
 msgstr ""
 
 #: ../../c-api/refcounting.rst:61
-#, fuzzy
 msgid ""
 "The object must not be ``NULL``; if you aren't sure that it isn't "
 "``NULL``, use :c:func:`Py_XINCREF`."
 msgstr ""
-"객체 *o*\\에 대한 참조 횟수를 늘립니다. 객체는 ``NULL`` 일 수 없습니다; ``NULL``\\이 아닌지 확실하지 "
-"않으면, :c:func:`Py_XINCREF`\\를 사용하십시오."
+"객체는 ``NULL`` 일 수 없습니다; ``NULL``\\이 아닌지 확실하지 않으면, :c:func:`Py_XINCREF`\\를 "
+"사용하십시오."
 
 #: ../../c-api/refcounting.rst:64
 msgid ""
@@ -137,13 +135,15 @@ msgstr ""
 
 #: ../../c-api/refcounting.rst:91
 msgid "For example::"
-msgstr ""
+msgstr "예를 들어::"
 
 #: ../../c-api/refcounting.rst:93
 msgid ""
 "Py_INCREF(obj);\n"
 "self->attr = obj;"
 msgstr ""
+"Py_INCREF(obj);\n"
+"self->attr = obj;"
 
 #: ../../c-api/refcounting.rst:96
 msgid "can be written as::"
@@ -151,7 +151,7 @@ msgstr ""
 
 #: ../../c-api/refcounting.rst:98
 msgid "self->attr = Py_NewRef(obj);"
-msgstr ""
+msgstr "self->attr = Py_NewRef(obj);"
 
 #: ../../c-api/refcounting.rst:100
 msgid "See also :c:func:`Py_INCREF`."
@@ -172,15 +172,13 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/refcounting.rst:121
-#, fuzzy
 msgid ""
 "Once the last :term:`strong reference` is released (i.e. the object's "
 "reference count reaches 0), the object's type's deallocation function "
 "(which must not be ``NULL``) is invoked."
 msgstr ""
-"객체 *o*\\에 대한 참조 횟수를 감소시킵니다. 객체는 ``NULL`` 일 수 없습니다; ``NULL``\\이 아닌지 확실하지 "
-"않으면, :c:func:`Py_XDECREF`\\를 사용하십시오. 참조 횟수가 0이 되면, 객체 형의 할당 해제 함수 (반드시 "
-"``NULL``\\이 아니어야 합니다)가 호출됩니다."
+"마지막 :term:`강한 참조 <strong reference>`\\가 해제되면 (즉 객체의 참조 횟수가 0이 되면), 객체 형의 "
+"할당 해제 함수 (반드시 ``NULL``\\이 아니어야 합니다)가 호출됩니다."
 
 #: ../../c-api/refcounting.rst:126
 msgid ""
@@ -189,13 +187,12 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/refcounting.rst:129
-#, fuzzy
 msgid ""
 "The object must not be ``NULL``; if you aren't sure that it isn't "
 "``NULL``, use :c:func:`Py_XDECREF`."
 msgstr ""
-"객체 *o*\\에 대한 참조 횟수를 늘립니다. 객체는 ``NULL`` 일 수 없습니다; ``NULL``\\이 아닌지 확실하지 "
-"않으면, :c:func:`Py_XINCREF`\\를 사용하십시오."
+"객체는 ``NULL`` 일 수 없습니다; ``NULL``\\이 아닌지 확실하지 않으면, :c:func:`Py_XDECREF`\\를 "
+"사용하십시오."
 
 #: ../../c-api/refcounting.rst:132
 msgid ""
@@ -204,7 +201,6 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/refcounting.rst:138
-#, fuzzy
 msgid ""
 "The deallocation function can cause arbitrary Python code to be invoked "
 "(e.g. when a class instance with a :meth:`~object.__del__` method is "
@@ -216,11 +212,11 @@ msgid ""
 "deleted object in a temporary variable, update the list data structure, "
 "and then call :c:func:`Py_DECREF` for the temporary variable."
 msgstr ""
-"할당 해제 함수는 임의의 파이썬 코드가 호출되도록 할 수 있습니다 (예를 들어, :meth:`__del__` 메서드가 있는 클래스 "
-"인스턴스가 할당 해제될 때). 이러한 코드에서의 예외는 전파되지 않지만, 실행된 코드는 모든 파이썬 전역 변수에 자유롭게 액세스할 "
-"수 있습니다. 이것은 :c:func:`Py_DECREF`\\가 호출되기 전에 전역 변수에서 도달할 수 있는 모든 객체가 일관성 있는"
-" 상태에 있어야 함을 뜻합니다. 예를 들어, 리스트에서 객체를 삭제하는 코드는 삭제된 객체에 대한 참조를 임시 변수에 복사하고, "
-"리스트 데이터 구조를 갱신한 다음, 임시 변수에 대해 :c:func:`Py_DECREF`\\를 호출해야 합니다."
+"할당 해제 함수는 임의의 파이썬 코드가 호출되도록 할 수 있습니다 (예를 들어, :meth:`~object.__del__` 메서드가"
+" 있는 클래스 인스턴스가 할당 해제될 때). 이러한 코드에서의 예외는 전파되지 않지만, 실행된 코드는 모든 파이썬 전역 변수에 "
+"자유롭게 액세스할 수 있습니다. 이것은 :c:func:`Py_DECREF`\\가 호출되기 전에 전역 변수에서 도달할 수 있는 모든 "
+"객체가 일관성 있는 상태에 있어야 함을 뜻합니다. 예를 들어, 리스트에서 객체를 삭제하는 코드는 삭제된 객체에 대한 참조를 임시 "
+"변수에 복사하고, 리스트 데이터 구조를 갱신한 다음, 임시 변수에 대해 :c:func:`Py_DECREF`\\를 호출해야 합니다."
 
 #: ../../c-api/refcounting.rst:153
 msgid ""
@@ -230,7 +226,6 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/refcounting.rst:160
-#, fuzzy
 msgid ""
 "Release a :term:`strong reference` for object *o*. The object may be "
 "``NULL``, in which case the macro has no effect; otherwise the effect is "
@@ -240,17 +235,17 @@ msgid ""
 " variable and sets the argument to ``NULL`` before releasing the "
 "reference."
 msgstr ""
-"객체 *o*\\에 대한 참조 횟수를 감소시킵니다. 객체는 ``NULL`` 일 수 있습니다, 이때 매크로는 효과가 없습니다; 그렇지 "
-"않으면 인자도 ``NULL``\\로 설정된다는 점을 제외하고는, 효과가 :c:func:`Py_DECREF`\\와 같습니다. 매크로가"
-" 임시 변수를 신중하게 사용하고, 참조 횟수를 줄이기 전에 인자를 ``NULL``\\로 설정하기 때문에, "
-":c:func:`Py_DECREF`\\에 대한 경고는 전달된 객체와 관련하여 적용되지 않습니다."
+"객체 *o*\\에 대한 :term:`강한 참조 <strong reference>`\\를 해제합니다. 객체는 ``NULL`` 일 수 "
+"있습니다, 이때 매크로는 효과가 없습니다; 그렇지 않으면 인자도 ``NULL``\\로 설정된다는 점을 제외하고는, 효과가 "
+":c:func:`Py_DECREF`\\와 같습니다. 매크로가 임시 변수를 신중하게 사용하고, 참조를 해제하기 전에 인자를 "
+"``NULL``\\로 설정하기 때문에, :c:func:`Py_DECREF`\\에 대한 경고는 전달된 객체와 관련하여 적용되지 "
+"않습니다."
 
 #: ../../c-api/refcounting.rst:168
-#, fuzzy
 msgid ""
 "It is a good idea to use this macro whenever releasing a reference to an "
 "object that might be traversed during garbage collection."
-msgstr "가비지 수집 중에 탐색 될 수 있는 객체의 참조 횟수를 감소시킬 때마다 이 매크로를 사용하는 것이 좋습니다."
+msgstr "가비지 수집 중에 탐색 될 수 있는 객체에 대한 참조를 해제할 때마다 이 매크로를 사용하는 것이 좋습니다."
 
 #: ../../c-api/refcounting.rst:171
 msgid ""
@@ -287,6 +282,8 @@ msgid ""
 "Py_DECREF(dst);\n"
 "dst = src;"
 msgstr ""
+"Py_DECREF(dst);\n"
+"dst = src;"
 
 #: ../../c-api/refcounting.rst:200
 msgid "The safe way is::"
@@ -294,7 +291,7 @@ msgstr ""
 
 #: ../../c-api/refcounting.rst:202
 msgid "Py_SETREF(dst, src);"
-msgstr ""
+msgstr "Py_SETREF(dst, src);"
 
 #: ../../c-api/refcounting.rst:204
 msgid ""
