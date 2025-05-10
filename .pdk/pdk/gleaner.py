@@ -72,7 +72,7 @@ def patch_message(old, new, *, verbose=False):
             count -= 1
         for old_block, new_block in blocks.items():
             # flowdas: 변경 후에도 P_INVARIANT 패턴을 유지하지 못한다면 안전하지 않다.
-            if P_INVARIANT.match(new_block):
+            if P_INVARIANT.fullmatch(new_block):
                 print(f"{old_block} --> {new_block}")
                 new.string = new.string.replace(old_block, new_block)
                 changed = True
