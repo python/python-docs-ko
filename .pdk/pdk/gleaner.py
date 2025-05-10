@@ -41,6 +41,7 @@ def locations(msg):
 
 def patch_message(old, new, *, verbose=False):
     print(locations(new))
+    print(":#, fuzzy")
     changed = False
     invariants = [m.span() for m in P_INVARIANT.finditer(old.id)]
     if invariants:
@@ -101,6 +102,18 @@ def print_diff(old, new):
     print("\n")
 
 
+def fill_pure_invariants(catalog):
+    # 번역되지 않은 것들 중 순수하게 invariant 들을 같은 값으로 채운다.
+    changed = False
+    for msg in catalog:
+        if not msg.string and P_INVARIANT.fullmatch(msg.id):
+            print(locations(msg))
+            msg.string = msg.id
+            print(f"fill {msg.id}")
+            changed = True
+    return changed
+
+
 def glean(filename, *, revision=None, verbose=False):
     # update 전후의 .po 파일을 before 와 after 로 읽어들인다
     with open(filename) as f:
@@ -141,6 +154,8 @@ def glean(filename, *, revision=None, verbose=False):
             changed = True
         print()
         print_diff(old, new)
+
+    changed = fill_pure_invariants(after) or changed
 
     # 변경된 after 를 저장한다
     if changed:
