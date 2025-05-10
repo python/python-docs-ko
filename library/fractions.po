@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/fractions.rst:2
-#, fuzzy
 msgid ":mod:`!fractions` --- Rational numbers"
-msgstr ":mod:`fractions` --- 유리수"
+msgstr ":mod:`!fractions` --- 유리수"
 
 #: ../../library/fractions.rst:10
 msgid "**Source code:** :source:`Lib/fractions.py`"
@@ -38,7 +37,6 @@ msgid ""
 msgstr "Fraction 인스턴스는 한 쌍의 정수, 다른 유리수 또는 문자열로 만들 수 있습니다."
 
 #: ../../library/fractions.rst:26
-#, fuzzy
 msgid ""
 "The first version requires that *numerator* and *denominator* are "
 "instances of :class:`numbers.Rational` and returns a new "
@@ -58,8 +56,8 @@ msgid ""
 msgstr ""
 "첫 번째 버전에서는 *numerator* 와 *denominator*\\가 :class:`numbers.Rational`\\의 "
 "인스턴스이고, ``numerator/denominator`` 값의 새 :class:`Fraction` 인스턴스를 반환합니다. "
-"*denominator*\\가 :const:`0`\\이면, :exc:`ZeroDivisionError`\\를 발생시킵니다. 두 번째"
-" 버전에서는 *other_fraction*\\이 :class:`numbers.Rational`\\의 인스턴스이고, 같은 값을 가진 "
+"*denominator*\\가 ``0``\\이면, :exc:`ZeroDivisionError`\\를 발생시킵니다. 두 번째 "
+"버전에서는 *other_fraction*\\이 :class:`numbers.Rational`\\의 인스턴스이고, 같은 값을 가진 "
 ":class:`Fraction` 인스턴스를 반환합니다. 다음 두 버전은 :class:`float` 나 "
 ":class:`decimal.Decimal` 인스턴스를 받아들이고, 정확히 같은 값의 :class:`Fraction` 인스턴스를 "
 "반환합니다. 이진 부동 소수점(:ref:`tut-fp-issues` 참조)의 일반적인 문제로 인해, "
@@ -70,10 +68,9 @@ msgstr ""
 
 #: ../../library/fractions.rst:41
 msgid "[sign] numerator ['/' denominator]"
-msgstr ""
+msgstr "[sign] numerator ['/' denominator]"
 
 #: ../../library/fractions.rst:43
-#, fuzzy
 msgid ""
 "where the optional ``sign`` may be either '+' or '-' and ``numerator`` "
 "and ``denominator`` (if present) are strings of decimal digits "
@@ -84,9 +81,10 @@ msgid ""
 "have leading and/or trailing whitespace. Here are some examples::"
 msgstr ""
 "이때, 선택적 ``sign``\\은 '+' 나 '-'일 수 있으며 ``numerator`` 와 "
-"``denominator``\\(있다면)는 십진수 문자열입니다. 또한, 유한한 값을 나타내고 :class:`float` 생성자에서 "
-"허용하는 모든 문자열은 :class:`Fraction` 생성자에서도 허용됩니다. 모든 형식에서, 입력 문자열에는 선행과/이나 후행 "
-"공백이 있을 수도 있습니다. 여기 예제가 있습니다::"
+"``denominator``\\(있다면)는 십진수 문자열입니다 (밑줄은 코드에서 정수 리터럴과 마찬가지로 숫자를 구분하는 데 사용할"
+" 수 있습니다). 또한, 유한한 값을 나타내고 :class:`float` 생성자에서 허용하는 모든 문자열은 "
+":class:`Fraction` 생성자에서도 허용됩니다. 모든 형식에서, 입력 문자열에는 선행과/이나 후행 공백이 있을 수도 "
+"있습니다. 여기 예제가 있습니다::"
 
 #: ../../library/fractions.rst:52
 msgid ""
@@ -115,9 +113,32 @@ msgid ""
 ">>> Fraction(Decimal('1.1'))\n"
 "Fraction(11, 10)"
 msgstr ""
+">>> from fractions import Fraction\n"
+">>> Fraction(16, -10)\n"
+"Fraction(-8, 5)\n"
+">>> Fraction(123)\n"
+"Fraction(123, 1)\n"
+">>> Fraction()\n"
+"Fraction(0, 1)\n"
+">>> Fraction('3/7')\n"
+"Fraction(3, 7)\n"
+">>> Fraction(' -3/7 ')\n"
+"Fraction(-3, 7)\n"
+">>> Fraction('1.414213 \\t\\n')\n"
+"Fraction(1414213, 1000000)\n"
+">>> Fraction('-.125')\n"
+"Fraction(-1, 8)\n"
+">>> Fraction('7e-6')\n"
+"Fraction(7, 1000000)\n"
+">>> Fraction(2.25)\n"
+"Fraction(9, 4)\n"
+">>> Fraction(1.1)\n"
+"Fraction(2476979795053773, 2251799813685248)\n"
+">>> from decimal import Decimal\n"
+">>> Fraction(Decimal('1.1'))\n"
+"Fraction(11, 10)"
 
 #: ../../library/fractions.rst:78
-#, fuzzy
 msgid ""
 "The :class:`Fraction` class inherits from the abstract base class "
 ":class:`numbers.Rational`, and implements all of the methods and "
@@ -126,8 +147,9 @@ msgid ""
 ":class:`Fraction` has the following properties and methods:"
 msgstr ""
 ":class:`Fraction` 클래스는 추상 베이스 클래스 :class:`numbers.Rational`\\를 상속하며, 그 "
-"클래스의 모든 메서드와 연산을 구현합니다. :class:`Fraction` 인스턴스는 해시 가능하고, 불변으로 취급해야 합니다. "
-"또한, :class:`Fraction`\\에는 다음과 같은 프로퍼티와 메서드가 있습니다:"
+"클래스의 모든 메서드와 연산을 구현합니다. :class:`Fraction` 인스턴스는 :term:`해시 가능 "
+"<hashable>`\\하고, 불변으로 취급해야 합니다. 또한, :class:`Fraction`\\에는 다음과 같은 프로퍼티와 "
+"메서드가 있습니다:"
 
 #: ../../library/fractions.rst:84
 msgid ""
@@ -138,7 +160,6 @@ msgstr ""
 "인스턴스를 받아들입니다."
 
 #: ../../library/fractions.rst:88
-#, fuzzy
 msgid ""
 "The :func:`math.gcd` function is now used to normalize the *numerator* "
 "and *denominator*. :func:`math.gcd` always returns an :class:`int` type. "
@@ -188,26 +209,24 @@ msgid "Denominator of the Fraction in lowest term."
 msgstr "기약 분수로 나타낼 때 Fraction의 분모."
 
 #: ../../library/fractions.rst:124
-#, fuzzy
 msgid ""
 "Return a tuple of two integers, whose ratio is equal to the original "
 "Fraction.  The ratio is in lowest terms and has a positive denominator."
-msgstr "비율이 Fraction과 같고 양의 분모를 갖는 두 정수의 튜플을 반환합니다."
+msgstr "비율이 원래 Fraction과 같습니다. 비율은 양의 분모를 갖는 가장 작은 항으로 표현됩니다."
 
 #: ../../library/fractions.rst:132
 msgid "Return ``True`` if the Fraction is an integer."
 msgstr ""
 
 #: ../../library/fractions.rst:138
-#, fuzzy
 msgid ""
 "Alternative constructor which only accepts instances of :class:`float` or"
 " :class:`numbers.Integral`. Beware that ``Fraction.from_float(0.3)`` is "
 "not the same value as ``Fraction(3, 10)``."
 msgstr ""
-"이 클래스 메서드는 :class:`float` *flt*\\의 정확한 값을 나타내는 :class:`Fraction`\\을 "
-"생성합니다. ``Fraction.from_float(0.3)``\\가 ``Fraction(3, 10)``\\와 같은 값이 아니라는 "
-"점에 유의하십시오."
+":class:`float` 나 :class:`numbers.Integral`\\의 인스턴스만 받아들이는 대체 생성자. "
+"``Fraction.from_float(0.3)``\\가 ``Fraction(3, 10)``\\와 같은 값이 아니라는 점에 "
+"유의하십시오."
 
 #: ../../library/fractions.rst:144
 msgid ""
@@ -216,13 +235,12 @@ msgid ""
 msgstr "파이썬 3.2 이상에서는, :class:`float`\\에서 직접 :class:`Fraction` 인스턴스를 생성할 수도 있습니다."
 
 #: ../../library/fractions.rst:150
-#, fuzzy
 msgid ""
 "Alternative constructor which only accepts instances of "
 ":class:`decimal.Decimal` or :class:`numbers.Integral`."
 msgstr ""
-":class:`Fraction` 생성자는 이제 :class:`float`\\와 :class:`decimal.Decimal` "
-"인스턴스를 받아들입니다."
+":class:`decimal.Decimal` 나 :class:`numbers.Integral`\\의 인스턴스만 받아들이는 대체 "
+"생성자."
 
 #: ../../library/fractions.rst:155
 msgid ""
@@ -328,6 +346,24 @@ msgid ""
 ">>> \"{:.2%} price increase\".format(Fraction(new_price, old_price) - 1)\n"
 "'34.67% price increase'"
 msgstr ""
+">>> from fractions import Fraction\n"
+">>> format(Fraction(103993, 33102), '_')\n"
+"'103_993/33_102'\n"
+">>> format(Fraction(1, 7), '.^+10')\n"
+"'...+1/7...'\n"
+">>> format(Fraction(3, 1), '')\n"
+"'3'\n"
+">>> format(Fraction(3, 1), '#')\n"
+"'3/1'\n"
+">>> format(Fraction(1, 7), '.40g')\n"
+"'0.1428571428571428571428571428571428571429'\n"
+">>> format(Fraction('1234567.855'), '_.2f')\n"
+"'1_234_567.86'\n"
+">>> f\"{Fraction(355, 113):*>20.6e}\"\n"
+"'********3.141593e+00'\n"
+">>> old_price, new_price = 499, 672\n"
+">>> \"{:.2%} price increase\".format(Fraction(new_price, old_price) - 1)\n"
+"'34.67% price increase'"
 
 #: ../../library/fractions.rst:251
 msgid "Module :mod:`numbers`"
