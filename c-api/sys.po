@@ -21,7 +21,6 @@ msgid "Operating System Utilities"
 msgstr "운영 체제 유틸리티"
 
 #: ../../c-api/sys.rst:11
-#, fuzzy
 msgid ""
 "Return the file system representation for *path*. If the object is a "
 ":class:`str` or :class:`bytes` object, then a new :term:`strong "
@@ -31,12 +30,12 @@ msgid ""
 " is raised and ``NULL`` is returned."
 msgstr ""
 "*path*\\에 대한 파일 시스템 표현을 반환합니다. 객체가 :class:`str`\\이나 :class:`bytes` 객체이면, "
-"참조 횟수가 증가합니다. 객체가 :class:`os.PathLike` 인터페이스를 구현하면, "
-":meth:`~os.PathLike.__fspath__`\\가 :class:`str`\\나 :class:`bytes` 객체일 때 "
-"반환됩니다. 그렇지 않으면, :exc:`TypeError`\\가 발생하고 ``NULL``\\이 반환됩니다."
+"새 :term:`강한 참조 <strong reference>`\\를 반환합니다. 객체가 :class:`os.PathLike` "
+"인터페이스를 구현하면, :meth:`~os.PathLike.__fspath__`\\가 :class:`str`\\나 "
+":class:`bytes` 객체일 때 반환됩니다. 그렇지 않으면, :exc:`TypeError`\\가 발생하고 ``NULL``\\이"
+" 반환됩니다."
 
 #: ../../c-api/sys.rst:24
-#, fuzzy
 msgid ""
 "Return true (nonzero) if the standard I/O file *fp* with name *filename* "
 "is deemed interactive.  This is the case for files for which "
@@ -46,9 +45,9 @@ msgid ""
 "``'???'``."
 msgstr ""
 "이름이 *filename*\\인 표준 I/O 파일 *fp*\\를 대화식으로 간주하면 참(0이 아닙니다)을 반환합니다. "
-"``isatty(fileno(fp))``\\가 참인 파일의 경우입니다. 전역 플래그 "
-":c:data:`Py_InteractiveFlag`\\가 참이면, 이 함수는 *filename* 포인터가 ``NULL``\\이거나 "
-"이름이 문자열 ``'<stdin>'``\\이나 ``'???'`` 중 하나와 같을 때도 참을 반환합니다."
+"``isatty(fileno(fp))``\\가 참인 파일의 경우입니다. "
+":c:member:`PyConfig.interactive`\\가 0이 아니면, 이 함수는 *filename* 포인터가 "
+"``NULL``\\이거나 이름이 문자열 ``'<stdin>'``\\이나 ``'???'`` 중 하나와 같을 때도 참을 반환합니다."
 
 #: ../../c-api/sys.rst:30
 msgid "This function must not be called before Python is initialized."
@@ -144,7 +143,6 @@ msgid "This function is superseded by :c:func:`PyOS_AfterFork_Child()`."
 msgstr "이 함수는 :c:func:`PyOS_AfterFork_Child()`\\로 대체되었습니다."
 
 #: ../../c-api/sys.rst:103
-#, fuzzy
 msgid ""
 "Return true when the interpreter runs out of stack space.  This is a "
 "reliable check, but is only available when :c:macro:`!USE_STACKCHECK` is "
@@ -152,33 +150,29 @@ msgid ""
 "Visual C++ compiler). :c:macro:`!USE_STACKCHECK` will be defined "
 "automatically; you should never change the definition in your own code."
 msgstr ""
-"인터프리터에 스택 공간이 부족하면 참을 반환합니다. 이것은 신뢰성 있는 확인이지만, :const:`USE_STACKCHECK`\\이"
-" 정의되어 있을 때만 사용할 수 있습니다 (현재 마이크로소프트 Visual C++ 컴파일러를 사용하는 윈도우에서). "
-":const:`USE_STACKCHECK`\\은 자동으로 정의됩니다; 여러분 자신의 코드에서 정의를 변경해서는 안 됩니다."
+"인터프리터에 스택 공간이 부족하면 참을 반환합니다. 이것은 신뢰성 있는 확인이지만, "
+":c:macro:`!USE_STACKCHECK`\\이 정의되어 있을 때만 사용할 수 있습니다 (현재 마이크로소프트 Visual "
+"C++ 컴파일러를 사용하는 특정 버전의 윈도우에서). :c:macro:`!USE_STACKCHECK`\\은 자동으로 정의됩니다; "
+"여러분 자신의 코드에서 정의를 변경해서는 안 됩니다."
 
 #: ../../c-api/sys.rst:115
-#, fuzzy
 msgid ""
 "Return the current signal handler for signal *i*.  This is a thin wrapper"
 " around either :c:func:`!sigaction` or :c:func:`!signal`.  Do not call "
 "those functions directly!"
 msgstr ""
-"시그널 *i*\\에 대한 현재 시그널 처리기를 반환합니다. 이것은 :c:func:`sigaction`\\이나 "
-":c:func:`signal`\\을 감싸는 얇은 래퍼입니다. 그 함수들을 직접 호출하지 마십시오! "
-":c:type:`PyOS_sighandler_t`\\는 :c:type:`void (\\*)(int)`\\의 typedef "
-"별칭입니다."
+"시그널 *i*\\에 대한 현재 시그널 처리기를 반환합니다. 이것은 :c:func:`!sigaction`\\이나 "
+":c:func:`!signal`\\을 감싸는 얇은 래퍼입니다. 그 함수들을 직접 호출하지 마십시오!"
 
 #: ../../c-api/sys.rst:122
-#, fuzzy
 msgid ""
 "Set the signal handler for signal *i* to be *h*; return the old signal "
 "handler. This is a thin wrapper around either :c:func:`!sigaction` or "
 ":c:func:`!signal`.  Do not call those functions directly!"
 msgstr ""
 "시그널 *i*\\의 시그널 처리기를 *h*\\로 설정합니다; 이전 시그널 처리기를 반환합니다. 이것은 "
-":c:func:`sigaction`\\이나 :c:func:`signal`\\을 감싸는 얇은 래퍼입니다. 그 함수들을 직접 호출하지 "
-"마십시오! :c:type:`PyOS_sighandler_t`\\는 :c:type:`void (\\*)(int)`\\의 typedef"
-" 별칭입니다."
+":c:func:`!sigaction`\\이나 :c:func:`!signal`\\을 감싸는 얇은 래퍼입니다. 그 함수들을 직접 "
+"호출하지 마십시오!"
 
 #: ../../c-api/sys.rst:129
 msgid ""
@@ -195,7 +189,6 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/sys.rst:137
-#, fuzzy
 msgid ""
 "Decode a byte string from the :term:`filesystem encoding and error "
 "handler`. If the error handler is :ref:`surrogateescape error handler "
@@ -204,9 +197,10 @@ msgid ""
 "character, the bytes are escaped using the surrogateescape error handler "
 "instead of decoding them."
 msgstr ""
-":ref:`surrogateescape 에러 처리기 <surrogateescape>`\\를 사용하여 로케일 인코딩에서 바이트열을 "
-"디코딩합니다: 디코딩할 수 없는 바이트열은 U+DC80..U+DCFF 범위의 문자로 디코딩됩니다. 바이트 시퀀스를 서로게이트 문자로"
-" 디코딩 할 수 있으면, 이들을 디코딩하는 대신 surrogateescape 에러 처리기를 사용하여 바이트열를 이스케이프 합니다."
+":term:`파일시스템 인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 "
+"바이트열을 디코딩합니다. 에러 처리기가 :ref:`surrogateescape 에러 처리기 <surrogateescape>`\\면,"
+" 디코딩할 수 없는 바이트열은 U+DC80..U+DCFF 범위의 문자로 디코딩됩니다; 그리고, 바이트 시퀀스를 서로게이트 문자로 "
+"디코딩 할 수 있으면, 이들을 디코딩하는 대신 surrogateescape 에러 처리기를 사용하여 바이트열를 이스케이프 합니다."
 
 #: ../../c-api/sys.rst:144
 msgid ""
@@ -257,42 +251,38 @@ msgstr ""
 ":c:func:`PyUnicode_DecodeLocaleAndSize` 함수."
 
 #: ../../c-api/sys.rst:169 ../../c-api/sys.rst:211
-#, fuzzy
 msgid ""
 "The function now uses the UTF-8 encoding in the :ref:`Python UTF-8 Mode "
 "<utf8-mode>`."
-msgstr "이 함수는 파이썬 UTF-8 모드에서 UTF-8 인코딩을 사용합니다."
+msgstr "이 함수는 이제 :ref:`파이썬 UTF-8 모드 <utf8-mode>`\\에서 UTF-8 인코딩을 사용합니다."
 
 #: ../../c-api/sys.rst:173
-#, fuzzy
 msgid ""
 "The function now uses the UTF-8 encoding on Windows if "
 ":c:member:`PyPreConfig.legacy_windows_fs_encoding` is zero;"
 msgstr ""
-"이 함수는 이제 윈도우에서 :c:data:`Py_LegacyWindowsFSEncodingFlag`\\가 0이면 UTF-8 인코딩을"
-" 사용합니다;"
+"이 함수는 이제 윈도우에서 :c:member:`PyPreConfig.legacy_windows_fs_encoding`\\가 0이면 "
+"UTF-8 인코딩을 사용합니다;"
 
 #: ../../c-api/sys.rst:180
-#, fuzzy
 msgid ""
 "Encode a wide character string to the :term:`filesystem encoding and "
 "error handler`. If the error handler is :ref:`surrogateescape error "
 "handler <surrogateescape>`, surrogate characters in the range "
 "U+DC80..U+DCFF are converted to bytes 0x80..0xFF."
 msgstr ""
-":ref:`surrogateescape 에러 처리기 <surrogateescape>`\\를 사용하여 와이드 문자(wide "
-"character) 문자열을 로케일 인코딩으로 인코딩합니다: U+DC80..U+DCFF 범위의 서로게이트 문자는 바이트 "
-"0x80..0xFF로 변환됩니다."
+"와이드 문자(wide character) 문자열을 :term:`파일시스템 인코딩과 에러 처리기 <filesystem encoding"
+" and error handler>`\\로 인코딩합니다. 에러 처리기가 :ref:`surrogateescape 에러 처리기 "
+"<surrogateescape>`\\면 U+DC80..U+DCFF 범위의 서로게이트 문자는 바이트 0x80..0xFF로 변환됩니다."
 
 #: ../../c-api/sys.rst:185
-#, fuzzy
 msgid ""
 "Return a pointer to a newly allocated byte string, use "
 ":c:func:`PyMem_Free` to free the memory. Return ``NULL`` on encoding "
 "error or memory allocation error."
 msgstr ""
 "새로 할당된 바이트열에 대한 포인터를 반환합니다, 메모리를 해제하려면 :c:func:`PyMem_Free`\\를 사용하십시오. "
-"인코딩 에러나 메모리 할당 에러 시 ``NULL``\\을 반환합니다"
+"인코딩 에러나 메모리 할당 에러 시 ``NULL``\\을 반환합니다."
 
 #: ../../c-api/sys.rst:189
 msgid ""
@@ -317,13 +307,12 @@ msgstr ""
 "함수."
 
 #: ../../c-api/sys.rst:215
-#, fuzzy
 msgid ""
 "The function now uses the UTF-8 encoding on Windows if "
 ":c:member:`PyPreConfig.legacy_windows_fs_encoding` is zero."
 msgstr ""
-"이 함수는 이제 윈도우에서 :c:data:`Py_LegacyWindowsFSEncodingFlag`\\가 0이면 UTF-8 인코딩을"
-" 사용합니다;"
+"이 함수는 이제 윈도우에서 :c:member:`PyPreConfig.legacy_windows_fs_encoding`\\이 0이면 "
+"UTF-8 인코딩을 사용합니다."
 
 #: ../../c-api/sys.rst:223
 msgid "System Functions"
@@ -445,7 +434,6 @@ msgid "The *event* string argument must not be *NULL*."
 msgstr ""
 
 #: ../../c-api/sys.rst:300
-#, fuzzy
 msgid ""
 "If any hooks have been added, *format* and other arguments will be used "
 "to construct a tuple to pass. Apart from ``N``, the same format "
@@ -454,8 +442,7 @@ msgid ""
 msgstr ""
 "훅이 추가되었으면, *format*\\과 기타 인자를 사용하여 전달할 튜플을 구성합니다. ``N`` 외에도, "
 ":c:func:`Py_BuildValue`\\에서 사용된 것과 같은 포맷 문자를 사용할 수 있습니다. 빌드된 값이 튜플이 아니면, "
-"단일 요소 튜플에 추가됩니다. (``N`` 포맷 옵션은 참조를 소비하지만, 이 함수에 대한 인자가 소비될지를 알 방법이 없기 "
-"때문에, 사용하면 참조 누수가 발생할 수 있습니다.)"
+"단일 요소 튜플에 추가됩니다."
 
 #: ../../c-api/sys.rst:305
 msgid ""
@@ -463,16 +450,17 @@ msgid ""
 "since there is no way to know whether arguments to this function will be "
 "consumed, using it may cause reference leaks."
 msgstr ""
+"``N`` 포맷 옵션은 사용하지 않아야 합니다. 참조를 소비하지만, 이 함수에 대한 인자가 소비될지를 알 방법이 없기 때문에, "
+"사용하면 참조 누수가 발생할 수 있습니다."
 
 #: ../../c-api/sys.rst:309
-#, fuzzy
 msgid ""
 "Note that ``#`` format characters should always be treated as "
 ":c:type:`Py_ssize_t`, regardless of whether ``PY_SSIZE_T_CLEAN`` was "
 "defined."
 msgstr ""
-"``PY_SSIZE_T_CLEAN``\\이 정의되었는지와 관계없이, ``#`` 포맷 문자는 항상 ``Py_ssize_t``\\로 "
-"처리되어야 합니다."
+"``PY_SSIZE_T_CLEAN``\\이 정의되었는지와 관계없이, ``#`` 포맷 문자는 항상 "
+":c:type:`Py_ssize_t`\\로 처리되어야 합니다."
 
 #: ../../c-api/sys.rst:312
 msgid ":func:`sys.audit` performs the same function from Python code."
@@ -483,11 +471,12 @@ msgid "See also :c:func:`PySys_AuditTuple`."
 msgstr ""
 
 #: ../../c-api/sys.rst:320
-#, fuzzy
 msgid ""
 "Require :c:type:`Py_ssize_t` for ``#`` format characters. Previously, an "
 "unavoidable deprecation warning was raised."
-msgstr "``#`` 포맷 문자에 대해 ``Py_ssize_t``\\를 요구합니다. 이전에는, 피할 수 없는 폐지 경고가 발생했습니다."
+msgstr ""
+"``#`` 포맷 문자에 대해 :c:type:`Py_ssize_t`\\를 요구합니다. 이전에는, 피할 수 없는 폐지 경고가 "
+"발생했습니다."
 
 #: ../../c-api/sys.rst:326
 msgid ""
@@ -497,7 +486,6 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/sys.rst:334
-#, fuzzy
 msgid ""
 "Append the callable *hook* to the list of active auditing hooks. Return "
 "zero on success and non-zero on failure. If the runtime has been "
@@ -544,7 +532,6 @@ msgstr ""
 ":ref:`감사 이벤트 표 <audit-events>`\\에 나열되어 있습니다. 자세한 내용은 각 함수 설명서에 있습니다."
 
 #: ../../c-api/sys.rst:357 ../../c-api/sys.rst:359
-#, fuzzy
 msgid ""
 "If the interpreter is initialized, this function raises an auditing event"
 " ``sys.addaudithook`` with no arguments. If any existing hooks raise an "
@@ -569,7 +556,6 @@ msgid "Process Control"
 msgstr "프로세스 제어"
 
 #: ../../c-api/sys.rst:387
-#, fuzzy
 msgid ""
 "Print a fatal error message and kill the process.  No cleanup is "
 "performed. This function should only be invoked when a condition is "
@@ -580,7 +566,7 @@ msgid ""
 msgstr ""
 "치명적인 에러 메시지를 인쇄하고 프로세스를 죽입니다. 아무런 정리도 수행되지 않습니다. 이 함수는 파이썬 인터프리터를 계속 사용하는"
 " 것이 위험한 조건이 감지되었을 때만 호출해야 합니다; 예를 들어, 객체 관리가 손상된 것으로 보일 때. 유닉스에서는, 표준 C "
-"라이브러리 함수 :c:func:`abort`\\가 호출되어 :file:`core` 파일을 생성하려고 시도합니다."
+"라이브러리 함수 :c:func:`!abort`\\가 호출되어 :file:`core` 파일을 생성하려고 시도합니다."
 
 #: ../../c-api/sys.rst:394
 msgid ""
@@ -633,25 +619,23 @@ msgstr ""
 
 #: ../../c-api/sys.rst:101
 msgid "USE_STACKCHECK (C macro)"
-msgstr ""
+msgstr "USE_STACKCHECK (C 매크로)"
 
 #: ../../c-api/sys.rst:385
 msgid "abort (C function)"
-msgstr ""
+msgstr "abort (C 함수)"
 
 #: ../../c-api/sys.rst:404 ../../c-api/sys.rst:418
 msgid "Py_FinalizeEx (C function)"
-msgstr ""
+msgstr "Py_FinalizeEx (C 함수)"
 
 #: ../../c-api/sys.rst:404
-#, fuzzy
 msgid "exit (C function)"
-msgstr "시스템 함수"
+msgstr "exit (C 함수)"
 
 #: ../../c-api/sys.rst:418
-#, fuzzy
 msgid "cleanup functions"
-msgstr "시스템 함수"
+msgstr "정리 함수"
 
 #~ msgid "Encoding, highest priority to lowest priority:"
 #~ msgstr "인코딩, 가장 높은 우선순위에서 가장 낮은 우선순위로:"
