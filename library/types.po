@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/types.rst:2
-#, fuzzy
 msgid ":mod:`!types` --- Dynamic type creation and names for built-in types"
-msgstr ":mod:`types` --- 동적 형 생성과 내장형 이름"
+msgstr ":mod:`!types` --- 동적 형 생성과 내장형 이름"
 
 #: ../../library/types.rst:7
 msgid "**Source code:** :source:`Lib/types.py`"
@@ -64,7 +63,6 @@ msgstr ""
 "``metaclass``)."
 
 #: ../../library/types.rst:33
-#, fuzzy
 msgid ""
 "The *exec_body* argument is a callback that is used to populate the "
 "freshly created class namespace. It should accept the class namespace as "
@@ -73,7 +71,7 @@ msgid ""
 "in ``lambda ns: None``."
 msgstr ""
 "*exec_body* 인자는 새로 만들어진 클래스 이름 공간을 채우는 데 사용되는 콜백입니다. 클래스 이름 공간을 유일한 인자로 "
-"받아들이고 클래스 내용으로 이름 공간을 직접 갱신해야 합니다. 콜백이 제공되지 않으면, ``lambda ns: ns``\\를 "
+"받아들이고 클래스 내용으로 이름 공간을 직접 갱신해야 합니다. 콜백이 제공되지 않으면, ``lambda ns: None``\\를 "
 "전달하는 것과 같은 효과가 있습니다."
 
 #: ../../library/types.rst:43
@@ -134,7 +132,6 @@ msgid "Resolve MRO entries dynamically as specified by :pep:`560`."
 msgstr ":pep:`560`\\의 명세에 따라 MRO 항목을 동적으로 결정합니다."
 
 #: ../../library/types.rst:76
-#, fuzzy
 msgid ""
 "This function looks for items in *bases* that are not instances of "
 ":class:`type`, and returns a tuple where each such object that has an "
@@ -143,10 +140,10 @@ msgid ""
 ":class:`type`, or it doesn't have an :meth:`!__mro_entries__` method, "
 "then it is included in the return tuple unchanged."
 msgstr ""
-"이 함수는 :class:`type`\\의 인스턴스가 아닌 항목들을 *bases*\\에서 찾고, ``__mro_entries__`` "
-"메서드가 있는 각 객체가 이 메서드 호출의 언 패킹 된 결과로 대체된 튜플을 반환합니다. *bases* 항목이 "
-":class:`type`\\의 인스턴스이거나, ``__mro_entries__`` 메서드가 없으면, 반환 튜플에 변경되지 않은 "
-"상태로 포함됩니다."
+"이 함수는 :class:`type`\\의 인스턴스가 아닌 항목들을 *bases*\\에서 찾고, "
+":meth:`~object.__mro_entries__` 메서드가 있는 각 객체가 이 메서드 호출의 언 패킹 된 결과로 대체된 "
+"튜플을 반환합니다. *bases* 항목이 :class:`type`\\의 인스턴스이거나, :meth:`!__mro_entries__`"
+" 메서드가 없으면, 반환 튜플에 변경되지 않은 상태로 포함됩니다."
 
 #: ../../library/types.rst:87
 msgid ""
@@ -166,7 +163,7 @@ msgstr ""
 
 #: ../../library/types.rst:97
 msgid "Examples::"
-msgstr ""
+msgstr "예제::"
 
 #: ../../library/types.rst:99
 #, python-brace-format
@@ -195,6 +192,29 @@ msgid ""
 "assert int.__bases__ == (object,)\n"
 "assert get_original_bases(int) == (object,)"
 msgstr ""
+"from typing import TypeVar, Generic, NamedTuple, TypedDict\n"
+"\n"
+"T = TypeVar(\"T\")\n"
+"class Foo(Generic[T]): ...\n"
+"class Bar(Foo[int], float): ...\n"
+"class Baz(list[str]): ...\n"
+"Eggs = NamedTuple(\"Eggs\", [(\"a\", int), (\"b\", str)])\n"
+"Spam = TypedDict(\"Spam\", {\"a\": int, \"b\": str})\n"
+"\n"
+"assert Bar.__bases__ == (Foo, float)\n"
+"assert get_original_bases(Bar) == (Foo[int], float)\n"
+"\n"
+"assert Baz.__bases__ == (list,)\n"
+"assert get_original_bases(Baz) == (list[str],)\n"
+"\n"
+"assert Eggs.__bases__ == (tuple,)\n"
+"assert get_original_bases(Eggs) == (NamedTuple,)\n"
+"\n"
+"assert Spam.__bases__ == (dict,)\n"
+"assert get_original_bases(Spam) == (TypedDict,)\n"
+"\n"
+"assert int.__bases__ == (object,)\n"
+"assert get_original_bases(int) == (object,)"
 
 #: ../../library/types.rst:127
 msgid ":pep:`560` - Core support for typing module and generic types"
@@ -271,11 +291,10 @@ msgid ""
 msgstr "비동기 제너레이터 함수가 만든, :term:`비동기 제너레이터 <asynchronous generator>`-이터레이터 객체의 형."
 
 #: ../../library/types.rst:191
-#, fuzzy
 msgid ""
 "The type of :ref:`code objects <code-objects>` such as returned by "
 ":func:`compile`."
-msgstr ":func:`compile`\\이 반환하는 것과 같은 코드 객체의 형."
+msgstr ":func:`compile`\\이 반환하는 것과 같은 :ref:`코드 객체 <code-objects>`\\의 형."
 
 #: ../../library/types.rst:193
 msgid ""
@@ -298,11 +317,10 @@ msgstr ""
 "화에서만 발생하며, 일반 컴파일에서는 발생하지 않습니다."
 
 #: ../../library/types.rst:201
-#, fuzzy
 msgid ""
 "The type for cell objects: such objects are used as containers for a "
 "function's :term:`closure variables <closure variable>`."
-msgstr "셀 객체의 형: 이러한 객체는 함수의 자유 변수(free variables)에 대한 컨테이너로 사용됩니다."
+msgstr "셀 객체의 형: 이러한 객체는 함수의 :term:`클로저 변수 <closure variable>`\\에 대한 컨테이너로 사용됩니다."
 
 #: ../../library/types.rst:209
 msgid "The type of methods of user-defined class instances."
@@ -369,7 +387,7 @@ msgstr ""
 
 #: ../../library/types.rst:269
 msgid ":func:`importlib.util.module_from_spec`"
-msgstr ""
+msgstr ":func:`importlib.util.module_from_spec`"
 
 #: ../../library/types.rst:270
 msgid ""
@@ -409,6 +427,12 @@ msgid ""
 ">>> dict[str, int] == GenericAlias(dict, (str, int))\n"
 "True"
 msgstr ""
+">>> from types import GenericAlias\n"
+"\n"
+">>> list[int] == GenericAlias(list, (int,))\n"
+"True\n"
+">>> dict[str, int] == GenericAlias(dict, (str, int))\n"
+"True"
 
 #: ../../library/types.rst:300
 msgid "This type can now be subclassed."
@@ -435,11 +459,10 @@ msgid "The type of :ref:`union type expressions<types-union>`."
 msgstr ""
 
 #: ../../library/types.rst:319
-#, fuzzy
 msgid ""
 "The type of traceback objects such as found in "
 "``sys.exception().__traceback__``."
-msgstr "``sys.exc_info()[2]``\\에서 발견되는 것과 같은 트레이스백 객체의 형."
+msgstr "``sys.exception().__traceback__``\\에서 발견되는 것과 같은 트레이스백 객체의 형."
 
 #: ../../library/types.rst:321
 msgid ""
@@ -451,14 +474,14 @@ msgstr ""
 "<traceback-objects>`\\를 참조하십시오."
 
 #: ../../library/types.rst:328
-#, fuzzy
 msgid ""
 "The type of :ref:`frame objects <frame-objects>` such as found in "
 ":attr:`tb.tb_frame <traceback.tb_frame>` if ``tb`` is a traceback object."
-msgstr "``tb``\\가 트레이스백 객체일 때 ``tb.tb_frame``\\에서 발견되는 것과 같은 프레임 객체의 형."
+msgstr ""
+"``tb``\\가 트레이스백 객체일 때 :attr:`tb.tb_frame <traceback.tb_frame>`\\에서 발견되는 "
+"것과 같은 :ref:`프레임 객체 <frame-objects>`\\의 형."
 
 #: ../../library/types.rst:334
-#, fuzzy
 msgid ""
 "The type of objects defined in extension modules with ``PyGetSetDef``, "
 "such as :attr:`FrameType.f_locals <frame.f_locals>` or "
@@ -466,9 +489,10 @@ msgid ""
 "attributes; it has the same purpose as the :class:`property` type, but "
 "for classes defined in extension modules."
 msgstr ""
-"``FrameType.f_locals``\\나 ``array.array.typecode``\\와 같은, "
-"``PyGetSetDef``\\가 있는 확장 모듈에서 정의된 객체의 형. 이 형은 객체 어트리뷰트에 대한 디스크립터로 사용됩니다. "
-":class:`property` 형과 같은 목적을 갖지만, 확장 모듈에 정의된 클래스에 사용됩니다."
+":attr:`FrameType.f_locals <frame.f_locals>`\\나 "
+"``array.array.typecode``\\와 같은, ``PyGetSetDef``\\가 있는 확장 모듈에서 정의된 객체의 형. "
+"이 형은 객체 어트리뷰트에 대한 디스크립터로 사용됩니다. :class:`property` 형과 같은 목적을 갖지만, 확장 모듈에 "
+"정의된 클래스에 사용됩니다."
 
 #: ../../library/types.rst:343
 msgid ""
@@ -565,9 +589,8 @@ msgid "Return a reverse iterator over the keys of the underlying mapping."
 msgstr "하부 매핑의 키(keys)에 대한 역 이터레이터를 반환합니다."
 
 #: ../../library/types.rst:420
-#, fuzzy
 msgid "Return a hash of the underlying mapping."
-msgstr "하부 매핑의 얕은 사본을 반환합니다."
+msgstr "하부 매핑의 해시를 반환합니다."
 
 #: ../../library/types.rst:426
 msgid "The type of :ref:`capsule objects <capsules>`."
@@ -624,6 +647,21 @@ msgid ""
 "           return self.__dict__ == other.__dict__\n"
 "        return NotImplemented"
 msgstr ""
+"class SimpleNamespace:\n"
+"    def __init__(self, mapping_or_iterable=(), /, **kwargs):\n"
+"        self.__dict__.update(mapping_or_iterable)\n"
+"        self.__dict__.update(kwargs)\n"
+"\n"
+"    def __repr__(self):\n"
+"        items = (f\"{k}={v!r}\" for k, v in self.__dict__.items())\n"
+"        return \"{}({})\".format(type(self).__name__, \", \".join(items))"
+"\n"
+"\n"
+"    def __eq__(self, other):\n"
+"        if isinstance(self, SimpleNamespace) and isinstance(other, "
+"SimpleNamespace):\n"
+"           return self.__dict__ == other.__dict__\n"
+"        return NotImplemented"
 
 #: ../../library/types.rst:469
 msgid ""
@@ -678,7 +716,6 @@ msgid "Coroutine Utility Functions"
 msgstr "코루틴 유틸리티 함수"
 
 #: ../../library/types.rst:504
-#, fuzzy
 msgid ""
 "This function transforms a :term:`generator` function into a "
 ":term:`coroutine function` which returns a generator-based coroutine. The"
@@ -690,8 +727,8 @@ msgstr ""
 "이 함수는 :term:`제너레이터 <generator>` 함수를 제너레이터 기반 코루틴을 반환하는 :term:`코루틴 함수 "
 "<coroutine function>`\\로 변환합니다. 제너레이터 기반 코루틴은 여전히 :term:`제너레이터 이터레이터 "
 "<generator iterator>`\\이지만, :term:`코루틴 <coroutine>` 객체로도 간주하며 "
-":term:`어웨이터블 <awaitable>`\\입니다. 그러나, 반드시 :meth:`__await__` 메서드를 구현할 필요는 "
-"없습니다."
+":term:`어웨이터블 <awaitable>`\\입니다. 그러나, 반드시 :meth:`~object.__await__` 메서드를 "
+"구현할 필요는 없습니다."
 
 #: ../../library/types.rst:511
 msgid "If *gen_func* is a generator function, it will be modified in-place."
@@ -710,11 +747,11 @@ msgstr ""
 
 #: ../../library/types.rst:189
 msgid "built-in function"
-msgstr ""
+msgstr "내장 함수"
 
 #: ../../library/types.rst:189
 msgid "compile"
-msgstr ""
+msgstr "컴파일"
 
 #~ msgid ""
 #~ "Return a copy of the code object"
