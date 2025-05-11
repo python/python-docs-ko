@@ -121,7 +121,6 @@ msgstr ""
 "노출합니다."
 
 #: ../../library/weakref.rst:68
-#, fuzzy
 msgid ""
 "Not all objects can be weakly referenced. Objects which support weak "
 "references include class instances, functions written in Python (but not "
@@ -129,10 +128,10 @@ msgid ""
 " object>`, :term:`generators <generator>`, type objects, sockets, arrays,"
 " deques, regular expression pattern objects, and code objects."
 msgstr ""
-"모든 객체를 약하게 참조할 수 있는 것은 아닙니다; 가능한 객체에는 클래스 인스턴스, 파이썬으로 작성된 함수 (C로 작성된 함수는 "
-"아닙니다), 인스턴스 메서드, 집합, 불변 집합(frozenset), 일부 :term:`파일 객체 <file object>`, "
-":term:`제너레이터 <generator>`, 형 객체, 소켓, 배열, 데크(deque), 정규식 패턴 객체 및 코드 객체가 "
-"포함됩니다."
+"모든 객체를 약하게 참조할 수 있는 것은 아닙니다. 약한 참조를 지원하는 객체에는 클래스 인스턴스, 파이썬으로 작성된 함수 (C로 "
+"작성된 함수는 아닙니다), 인스턴스 메서드, 집합, 불변 집합(frozenset), 일부 :term:`파일 객체 <file "
+"object>`, :term:`제너레이터 <generator>`, 형 객체, 소켓, 배열, 데크(deque), 정규식 패턴 객체 및"
+" 코드 객체가 포함됩니다."
 
 #: ../../library/weakref.rst:74
 msgid "Added support for thread.lock, threading.Lock, and code objects."
@@ -154,6 +153,10 @@ msgid ""
 "\n"
 "obj = Dict(red=1, green=2, blue=3)   # this object is weak referenceable"
 msgstr ""
+"class Dict(dict):\n"
+"    pass\n"
+"\n"
+"obj = Dict(red=1, green=2, blue=3)   # 이 객체는 약한 참조할 수 있습니다"
 
 #: ../../library/weakref.rst:87
 msgid ""
@@ -201,14 +204,13 @@ msgstr ""
 "오래전에 등록된 콜백 순으로 호출됩니다."
 
 #: ../../library/weakref.rst:112
-#, fuzzy
 msgid ""
 "Exceptions raised by the callback will be noted on the standard error "
 "output, but cannot be propagated; they are handled in exactly the same "
 "way as exceptions raised from an object's :meth:`~object.__del__` method."
 msgstr ""
-"콜백에 의해 발생한 예외는 표준 에러 출력에 표시되지만, 전파될 수는 없습니다; 객체의 :meth:`__del__` 메서드에서 "
-"발생한 예외와 정확히 같은 방식으로 처리됩니다."
+"콜백에 의해 발생한 예외는 표준 에러 출력에 표시되지만, 전파될 수는 없습니다; 객체의 :meth:`~object.__del__` "
+"메서드에서 발생한 예외와 정확히 같은 방식으로 처리됩니다."
 
 #: ../../library/weakref.rst:116
 msgid ""
@@ -251,7 +253,6 @@ msgid "Added the :attr:`__callback__` attribute."
 msgstr ":attr:`__callback__` 어트리뷰트를 추가했습니다."
 
 #: ../../library/weakref.rst:140
-#, fuzzy
 msgid ""
 "Return a proxy to *object* which uses a weak reference.  This supports "
 "use of the proxy in most contexts instead of requiring the explicit "
@@ -323,6 +324,13 @@ msgid ""
 ">>> d[k2] = 2   # d = {k1: 2}\n"
 ">>> del k1      # d = {}"
 msgstr ""
+">>> class T(str): pass\n"
+"...\n"
+">>> k1, k2 = T(), T()\n"
+">>> d = weakref.WeakKeyDictionary()\n"
+">>> d[k1] = 1   # d = {k1: 1}\n"
+">>> d[k2] = 2   # d = {k1: 2}\n"
+">>> del k1      # d = {}"
 
 #: ../../library/weakref.rst:188
 msgid "A workaround would be to remove the key prior to reassignment::"
@@ -340,6 +348,14 @@ msgid ""
 ">>> d[k2] = 2   # d = {k2: 2}\n"
 ">>> del k1      # d = {k2: 2}"
 msgstr ""
+">>> class T(str): pass\n"
+"...\n"
+">>> k1, k2 = T(), T()\n"
+">>> d = weakref.WeakKeyDictionary()\n"
+">>> d[k1] = 1   # d = {k1: 1}\n"
+">>> del d[k1]\n"
+">>> d[k2] = 2   # d = {k2: 2}\n"
+">>> del k1      # d = {k2: 2}"
 
 #: ../../library/weakref.rst:199 ../../library/weakref.rst:220
 msgid "Added support for ``|`` and ``|=`` operators, as specified in :pep:`584`."
@@ -369,13 +385,12 @@ msgid ""
 msgstr "값을 약하게 참조하는 매핑 클래스. 값에 대한 강한 참조가 더는 존재하지 않을 때 딕셔너리의 항목이 삭제됩니다."
 
 #: ../../library/weakref.rst:223
-#, fuzzy
 msgid ""
 ":class:`WeakValueDictionary` objects have an additional method that has "
 "the same issues as the :meth:`WeakKeyDictionary.keyrefs` method."
 msgstr ""
-":class:`WeakValueDictionary` 객체에는 :class:`WeakKeyDictionary` 객체의 "
-":meth:`keyrefs` 메서드와 같은 문제가 있는 추가 메서드가 있습니다."
+":class:`WeakValueDictionary` 객체에는 :class:`WeakKeyDictionary.keyrefs` 메서드와"
+" 같은 문제가 있는 추가 메서드가 있습니다."
 
 #: ../../library/weakref.rst:229
 msgid "Return an iterable of the weak references to the values."
@@ -419,6 +434,23 @@ msgid ""
 ">>> r()\n"
 ">>>"
 msgstr ""
+">>> class C:\n"
+"...     def method(self):\n"
+"...         print(\"method called!\")\n"
+"...\n"
+">>> c = C()\n"
+">>> r = weakref.ref(c.method)\n"
+">>> r()\n"
+">>> r = weakref.WeakMethod(c.method)\n"
+">>> r()\n"
+"<bound method C.method of <__main__.C object at 0x7fc859830220>>\n"
+">>> r()()\n"
+"method called!\n"
+">>> del c\n"
+">>> gc.collect()\n"
+"0\n"
+">>> r()\n"
+">>>"
 
 #: ../../library/weakref.rst:264
 msgid ""
@@ -448,7 +480,6 @@ msgstr ""
 ":const:`None`\\이 반환됩니다."
 
 #: ../../library/weakref.rst:280
-#, fuzzy
 msgid ""
 "Exceptions raised by finalizer callbacks during garbage collection will "
 "be shown on the standard error output, but cannot be propagated.  They "
@@ -456,7 +487,7 @@ msgid ""
 ":meth:`~object.__del__` method or a weak reference's callback."
 msgstr ""
 "가비지 수거 중에 파이널라이저 콜백에서 발생한 예외는 표준 에러 출력에 표시되지만, 전파할 수는 없습니다. 객체의 "
-":meth:`__del__` 메서드나 약한 참조의 콜백에서 발생하는 예외와 같은 방식으로 처리됩니다."
+":meth:`~object.__del__` 메서드나 약한 참조의 콜백에서 발생하는 예외와 같은 방식으로 처리됩니다."
 
 #: ../../library/weakref.rst:286
 msgid ""
@@ -595,6 +626,14 @@ msgid ""
 "    print(\"Object is still live!\")\n"
 "    o.do_something_useful()"
 msgstr ""
+"# r은 약한 참조 객체입니다\n"
+"o = r()\n"
+"if o is None:\n"
+"    # 참조대상이 가비지 수거되었습니다\n"
+"    print(\"Object has been deallocated; can't frobnicate.\")\n"
+"else:\n"
+"    print(\"Object is still live!\")\n"
+"    o.do_something_useful()"
 
 #: ../../library/weakref.rst:400
 msgid ""
@@ -652,6 +691,23 @@ msgid ""
 "            ob = (ob, self.__counter)\n"
 "        return ob"
 msgstr ""
+"import weakref\n"
+"\n"
+"class ExtendedRef(weakref.ref):\n"
+"    def __init__(self, ob, callback=None, /, **annotations):\n"
+"        super().__init__(ob, callback)\n"
+"        self.__counter = 0\n"
+"        for k, v in annotations.items():\n"
+"            setattr(self, k, v)\n"
+"\n"
+"    def __call__(self):\n"
+"        \"\"\"참조대상과 참조가 호출된 횟수를 포함하는 쌍을 반환합니다.\n"
+"        \"\"\"\n"
+"        ob = super().__call__()\n"
+"        if ob is not None:\n"
+"            self.__counter += 1\n"
+"            ob = (ob, self.__counter)\n"
+"        return ob"
 
 #: ../../library/weakref.rst:438
 msgid "Example"
@@ -681,6 +737,17 @@ msgid ""
 "def id2obj(oid):\n"
 "    return _id2obj_dict[oid]"
 msgstr ""
+"import weakref\n"
+"\n"
+"_id2obj_dict = weakref.WeakValueDictionary()\n"
+"\n"
+"def remember(obj):\n"
+"    oid = id(obj)\n"
+"    _id2obj_dict[oid] = obj\n"
+"    return oid\n"
+"\n"
+"def id2obj(oid):\n"
+"    return _id2obj_dict[oid]"
 
 #: ../../library/weakref.rst:465
 msgid "Finalizer Objects"
@@ -727,11 +794,15 @@ msgid ""
 ">>> exit()\n"
 "obj dead or exiting"
 msgstr ""
+">>> obj = Object()\n"
+">>> weakref.finalize(obj, print, \"obj dead or exiting\")\n"
+"<finalize object at ...; for 'Object' at ...>\n"
+">>> exit()\n"
+"obj dead or exiting"
 
 #: ../../library/weakref.rst:526
-#, fuzzy
 msgid "Comparing finalizers with :meth:`~object.__del__` methods"
-msgstr "파이널라이저와 :meth:`__del__` 메서드의 비교"
+msgstr "파이널라이저와 :meth:`~object.__del__` 메서드의 비교"
 
 #: ../../library/weakref.rst:528
 msgid ""
@@ -747,20 +818,18 @@ msgid "the object is garbage collected,"
 msgstr "객체가 가비지 수거됩니다,"
 
 #: ../../library/weakref.rst:533
-#, fuzzy
 msgid "the object's :meth:`!remove` method is called, or"
-msgstr "객체의 :meth:`remove` 메서드가 호출됩니다, 또는"
+msgstr "객체의 :meth:`!remove` 메서드가 호출됩니다, 또는"
 
 #: ../../library/weakref.rst:534
 msgid "the program exits."
 msgstr "프로그램이 종료합니다."
 
 #: ../../library/weakref.rst:536
-#, fuzzy
 msgid ""
 "We might try to implement the class using a :meth:`~object.__del__` "
 "method as follows::"
-msgstr "다음과 같이 :meth:`__del__` 메서드를 사용하여 클래스를 구현하려고 시도할 수 있습니다::"
+msgstr "다음과 같이 :meth:`~object.__del__` 메서드를 사용하여 클래스를 구현하려고 시도할 수 있습니다::"
 
 #: ../../library/weakref.rst:539
 msgid ""
@@ -780,28 +849,41 @@ msgid ""
 "    def __del__(self):\n"
 "        self.remove()"
 msgstr ""
+"class TempDir:\n"
+"    def __init__(self):\n"
+"        self.name = tempfile.mkdtemp()\n"
+"\n"
+"    def remove(self):\n"
+"        if self.name is not None:\n"
+"            shutil.rmtree(self.name)\n"
+"            self.name = None\n"
+"\n"
+"    @property\n"
+"    def removed(self):\n"
+"        return self.name is None\n"
+"\n"
+"    def __del__(self):\n"
+"        self.remove()"
 
 #: ../../library/weakref.rst:555
-#, fuzzy
 msgid ""
 "Starting with Python 3.4, :meth:`~object.__del__` methods no longer "
 "prevent reference cycles from being garbage collected, and module globals"
 " are no longer forced to :const:`None` during :term:`interpreter "
 "shutdown`. So this code should work without any issues on CPython."
 msgstr ""
-"파이썬 3.4부터, :meth:`__del__` 메서드는 더는 참조 순환이 가비지 수거되는 것을 막지 않으며, "
+"파이썬 3.4부터, :meth:`~object.__del__` 메서드는 더는 참조 순환이 가비지 수거되는 것을 막지 않으며, "
 ":term:`인터프리터 종료 <interpreter shutdown>` 중에 모듈 전역이 더는 :const:`None`\\으로 "
 "강제되지 않습니다. 따라서 이 코드는 CPython에서 아무런 문제 없이 작동해야 합니다."
 
 #: ../../library/weakref.rst:560
-#, fuzzy
 msgid ""
 "However, handling of :meth:`~object.__del__` methods is notoriously "
 "implementation specific, since it depends on internal details of the "
 "interpreter's garbage collector implementation."
 msgstr ""
-"그러나, :meth:`__del__` 메서드의 처리는 인터프리터의 가비지 수거기 구현에 대한 내부 세부 사항에 의존하기 때문에 "
-"구현에 따라 다르기로 악명 높습니다."
+"그러나, :meth:`~object.__del__` 메서드의 처리는 인터프리터의 가비지 수거기 구현에 대한 내부 세부 사항에 "
+"의존하기 때문에 구현에 따라 다르기로 악명 높습니다."
 
 #: ../../library/weakref.rst:564
 msgid ""
@@ -825,6 +907,18 @@ msgid ""
 "    def removed(self):\n"
 "        return not self._finalizer.alive"
 msgstr ""
+"class TempDir:\n"
+"    def __init__(self):\n"
+"        self.name = tempfile.mkdtemp()\n"
+"        self._finalizer = weakref.finalize(self, shutil.rmtree, "
+"self.name)\n"
+"\n"
+"    def remove(self):\n"
+"        self._finalizer()\n"
+"\n"
+"    @property\n"
+"    def removed(self):\n"
+"        return not self._finalizer.alive"
 
 #: ../../library/weakref.rst:580
 msgid ""
@@ -851,6 +945,10 @@ msgid ""
 "    # implicit reference to the module globals from the function body\n"
 "weakref.finalize(sys.modules[__name__], unloading_module)"
 msgstr ""
+"import weakref, sys\n"
+"def unloading_module():\n"
+"    # 함수 바디에서 모듈 전역으로의 묵시적 참조\n"
+"weakref.finalize(sys.modules[__name__], unloading_module)"
 
 #: ../../library/weakref.rst:596
 msgid ""
