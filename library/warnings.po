@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/warnings.rst:2
-#, fuzzy
 msgid ":mod:`!warnings` --- Warning control"
-msgstr ":mod:`warnings` --- 경고 제어"
+msgstr ":mod:`!warnings` --- 경고 제어"
 
 #: ../../library/warnings.rst:7
 msgid "**Source code:** :source:`Lib/warnings.py`"
@@ -240,9 +239,8 @@ msgid ":exc:`ResourceWarning`"
 msgstr ":exc:`ResourceWarning`"
 
 #: ../../library/warnings.rst:107
-#, fuzzy
 msgid "Base category for warnings related to resource usage (ignored by default)."
-msgstr "자원 사용과 관련된 경고의 베이스 범주."
+msgstr "자원 사용과 관련된 경고의 베이스 범주 (기본적으로 무시됩니다)."
 
 #: ../../library/warnings.rst:111
 msgid ""
@@ -351,6 +349,9 @@ msgid ""
 " the warning message must contain (case-insensitively), ignoring any "
 "whitespace at the start or end of *message*."
 msgstr ""
+"*message*\\는 경고 메시지의 시작 부분이 대소문자를 구분 없이 일치해야 하는 정규식을 포함하는 문자열입니다. "
+":option:`-W`\\와 :envvar:`PYTHONWARNINGS`\\에서, *message*\\는 경고 메시지의 시작 부분에"
+" (대소문자 구분 없이) 포함되어야 하는 리터럴 문자열로, *message*\\의 시작이나 끝에 있는 공백은 무시합니다."
 
 #: ../../library/warnings.rst:162
 msgid ""
@@ -368,6 +369,9 @@ msgid ""
 "that the fully qualified module name must be equal to (case-sensitively),"
 " ignoring any whitespace at the start or end of *module*."
 msgstr ""
+"*module*\\은 완전히 정규화된 모듈 이름의 시작 부분이 대소문자를 구분하여 일치해야 하는 정규식을 포함하는 문자열입니다. "
+":option:`-W`\\와 :envvar:`PYTHONWARNINGS`\\에서, *module*\\은 완전히 정규화된 모듈 이름과"
+" (대소문자 구분하여) 같아야 하는 리터럴 문자열로, *module*\\의 시작이나 끝에 있는 공백은 무시합니다."
 
 #: ../../library/warnings.rst:171
 msgid ""
@@ -444,7 +448,7 @@ msgstr "개별 경고 필터는 콜론으로 구분된 필드의 시퀀스로 �
 
 #: ../../library/warnings.rst:209
 msgid "action:message:category:module:line"
-msgstr ""
+msgstr "action:message:category:module:line"
 
 #: ../../library/warnings.rst:211
 msgid ""
@@ -480,6 +484,13 @@ msgid ""
 "\"mymodule\"\n"
 "error:::mymodule             # Convert warnings to errors in \"mymodule\""
 msgstr ""
+"default                      # 모든 경고를 표시합니다 (설사 기본적으로 무시되더라도)\n"
+"ignore                       # 모든 경고를 무시합니다\n"
+"error                        # 모든 경고를 에러로 변환합니다\n"
+"error::ResourceWarning       # ResourceWarning 메시지를 에러로 취급합니다\n"
+"default::DeprecationWarning  # DeprecationWarning 메시지를 표시합니다\n"
+"ignore,default:::mymodule    # \"mymodule\"이 트리거 한 경고만 보고합니다\n"
+"error:::mymodule             # \"mymodule\"에서 경고를 에러로 변환합니다"
 
 #: ../../library/warnings.rst:234
 msgid "Default Warning Filter"
@@ -509,13 +520,17 @@ msgid ""
 "ignore::ImportWarning\n"
 "ignore::ResourceWarning"
 msgstr ""
+"default::DeprecationWarning:__main__\n"
+"ignore::DeprecationWarning\n"
+"ignore::PendingDeprecationWarning\n"
+"ignore::ImportWarning\n"
+"ignore::ResourceWarning"
 
 #: ../../library/warnings.rst:249
-#, fuzzy
 msgid ""
 "In a :ref:`debug build <debug-build>`, the list of default warning "
 "filters is empty."
-msgstr "디버그 빌드에서, 기본 경고 필터 목록은 비어 있습니다."
+msgstr ":ref:`디버그 빌드 <debug-build>`\\에서, 기본 경고 필터 목록은 비어 있습니다."
 
 #: ../../library/warnings.rst:251
 msgid ""
@@ -567,6 +582,11 @@ msgid ""
 "    import warnings\n"
 "    warnings.simplefilter(\"ignore\")"
 msgstr ""
+"import sys\n"
+"\n"
+"if not sys.warnoptions:\n"
+"    import warnings\n"
+"    warnings.simplefilter(\"ignore\")"
 
 #: ../../library/warnings.rst:282
 msgid ""
@@ -588,6 +608,12 @@ msgid ""
 "    os.environ[\"PYTHONWARNINGS\"] = \"default\" # Also affect "
 "subprocesses"
 msgstr ""
+"import sys\n"
+"\n"
+"if not sys.warnoptions:\n"
+"    import os, warnings\n"
+"    warnings.simplefilter(\"default\") # 이 프로세스의 필터를 변경합니다\n"
+"    os.environ[\"PYTHONWARNINGS\"] = \"default\" # 서브 프로세스에도 영향을 줍니다"
 
 #: ../../library/warnings.rst:293
 msgid ""
@@ -607,6 +633,9 @@ msgid ""
 "warnings.filterwarnings(\"default\", category=DeprecationWarning,\n"
 "                                   module=user_ns.get(\"__name__\"))"
 msgstr ""
+"import warnings\n"
+"warnings.filterwarnings(\"default\", category=DeprecationWarning,\n"
+"                                   module=user_ns.get(\"__name__\"))"
 
 #: ../../library/warnings.rst:306
 msgid "Temporarily Suppressing Warnings"
@@ -634,6 +663,14 @@ msgid ""
 "    warnings.simplefilter(\"ignore\")\n"
 "    fxn()"
 msgstr ""
+"import warnings\n"
+"\n"
+"def fxn():\n"
+"    warnings.warn(\"deprecated\", DeprecationWarning)\n"
+"\n"
+"with warnings.catch_warnings():\n"
+"    warnings.simplefilter(\"ignore\")\n"
+"    fxn()"
 
 #: ../../library/warnings.rst:322
 msgid ""
@@ -681,6 +718,20 @@ msgid ""
 "    assert issubclass(w[-1].category, DeprecationWarning)\n"
 "    assert \"deprecated\" in str(w[-1].message)"
 msgstr ""
+"import warnings\n"
+"\n"
+"def fxn():\n"
+"    warnings.warn(\"deprecated\", DeprecationWarning)\n"
+"\n"
+"with warnings.catch_warnings(record=True) as w:\n"
+"    # Cause all warnings to always be triggered.\n"
+"    warnings.simplefilter(\"always\")\n"
+"    # Trigger a warning.\n"
+"    fxn()\n"
+"    # Verify some things\n"
+"    assert len(w) == 1\n"
+"    assert issubclass(w[-1].category, DeprecationWarning)\n"
+"    assert \"deprecated\" in str(w[-1].message)"
 
 #: ../../library/warnings.rst:356
 msgid ""
@@ -801,16 +852,17 @@ msgid ""
 "def deprecated_api(message):\n"
 "    warnings.warn(message, DeprecationWarning, stacklevel=2)"
 msgstr ""
+"def deprecated_api(message):\n"
+"    warnings.warn(message, DeprecationWarning, stacklevel=2)"
 
 #: ../../library/warnings.rst:426
-#, fuzzy
 msgid ""
 "This makes the warning refer to ``deprecated_api``'s caller, rather than "
 "to the source of ``deprecated_api`` itself (since the latter would defeat"
 " the purpose of the warning message)."
 msgstr ""
-"이것은 경고가 :func:`deprecation` 자체의 소스가 아닌 :func:`deprecation`\\의 호출자를 참조하게 "
-"합니다 (전자는 경고 메시지의 목적을 무효로 하기 때문입니다)."
+"이것은 경고가 ``deprecated_api`` 자체의 소스가 아닌 ``deprecated_api``\\의 호출자를 참조하게 합니다"
+" (전자는 경고 메시지의 목적을 무효로 하기 때문입니다)."
 
 #: ../../library/warnings.rst:430
 msgid ""
@@ -840,6 +892,19 @@ msgid ""
 "def another_way(**kw):\n"
 "    lower.one_way(**kw)"
 msgstr ""
+"# example/lower.py\n"
+"_warn_skips = (os.path.dirname(__file__),)\n"
+"\n"
+"def one_way(r_luxury_yacht=None, t_wobbler_mangrove=None):\n"
+"    if r_luxury_yacht:\n"
+"        warnings.warn(\"Please migrate to t_wobbler_mangrove=.\",\n"
+"                      skip_file_prefixes=_warn_skips)\n"
+"\n"
+"# example/higher.py\n"
+"from . import lower\n"
+"\n"
+"def another_way(**kw):\n"
+"    lower.one_way(**kw)"
 
 #: ../../library/warnings.rst:453
 msgid ""
@@ -972,7 +1037,7 @@ msgstr ""
 
 #: ../../library/warnings.rst:547
 msgid "Usage::"
-msgstr ""
+msgstr "사용법::"
 
 #: ../../library/warnings.rst:549
 msgid ""
@@ -993,6 +1058,22 @@ msgid ""
 "@overload\n"
 "def g(x: str) -> int: ..."
 msgstr ""
+"from warnings import deprecated\n"
+"from typing import overload\n"
+"\n"
+"@deprecated(\"Use B instead\")\n"
+"class A:\n"
+"    pass\n"
+"\n"
+"@deprecated(\"Use g instead\")\n"
+"def f():\n"
+"    pass\n"
+"\n"
+"@overload\n"
+"@deprecated(\"int support is deprecated\")\n"
+"def g(x: int) -> int: ...\n"
+"@overload\n"
+"def g(x: str) -> int: ..."
 
 #: ../../library/warnings.rst:566
 msgid ""
@@ -1079,25 +1160,6 @@ msgid "Added the *action*, *category*, *lineno*, and *append* parameters."
 msgstr ""
 
 #: ../../library/warnings.rst:9
-#, fuzzy
 msgid "warnings"
-msgstr "경고 테스트"
-
-#~ msgid ""
-#~ "*message* is a string containing a "
-#~ "regular expression that the start of "
-#~ "the warning message must match.  The "
-#~ "expression is compiled to always be "
-#~ "case-insensitive."
-#~ msgstr ""
-#~ "*message*\\는 경고 메시지의 시작이 일치해야 하는 "
-#~ "정규식을 포함하는 문자열입니다. 정규식은 항상 대소 문자를"
-#~ " 구분하지 않도록 컴파일됩니다."
-
-#~ msgid ""
-#~ "*module* is a string containing a "
-#~ "regular expression that the module name"
-#~ " must match.  The expression is "
-#~ "compiled to be case-sensitive."
-#~ msgstr "*module*\\은 모듈 이름이 일치해야 하는 정규식을 포함하는 문자열입니다. 정규식은 대소 문자를 구분하도록 컴파일됩니다."
+msgstr "경고"
 
