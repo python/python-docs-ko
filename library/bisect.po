@@ -17,16 +17,14 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/bisect.rst:2
-#, fuzzy
 msgid ":mod:`!bisect` --- Array bisection algorithm"
-msgstr ":mod:`bisect` --- 배열 이진 분할 알고리즘"
+msgstr ":mod:`!bisect` --- 배열 이진 분할 알고리즘"
 
 #: ../../library/bisect.rst:10
 msgid "**Source code:** :source:`Lib/bisect.py`"
 msgstr "**소스 코드:** :source:`Lib/bisect.py`"
 
 #: ../../library/bisect.rst:14
-#, fuzzy
 msgid ""
 "This module provides support for maintaining a list in sorted order "
 "without having to sort the list after each insertion.  For long lists of "
@@ -34,9 +32,7 @@ msgid ""
 "over linear searches or frequent resorting."
 msgstr ""
 "이 모듈은 정렬된 리스트를 삽입 후에 다시 정렬할 필요 없도록 관리할 수 있도록 지원합니다. 값비싼 비교 연산이 포함된 항목의 긴 "
-"리스트의 경우, 이는 일반적인 방법에 비해 개선된 것입니다. 이 모듈은 기본적인 이진 분할 알고리즘을 사용하기 때문에 "
-":mod:`bisect`\\라고 불립니다. 소스 코드는 알고리즘의 실제 예로서 가장 유용할 수 있습니다 (경계 조건은 이미 "
-"옳습니다!)."
+"리스트의 경우, 이는 선형 검색이나 빈번한 재정렬에 비해 개선된 것입니다."
 
 #: ../../library/bisect.rst:19
 msgid ""
@@ -48,6 +44,10 @@ msgid ""
 "found.  Instead, the functions only call the :meth:`~object.__lt__` "
 "method and will return an insertion point between values in an array."
 msgstr ""
+"이 모듈은 기본적인 이진 분할 알고리즘을 사용하기 때문에 :mod:`bisect`\\라고 불립니다. 특정 값을 검색하는 다른 이진 "
+"분할 도구와 달리, 이 모듈의 함수는 삽입 지점을 찾도록 설계되었습니다. 따라서, 함수는 값을 찾았는지 판단하기 위해 "
+":meth:`~object.__eq__` 메서드를 호출하지 않습니다. 대신, 함수는 :meth:`~object.__lt__` "
+"메서드만 호출하고 배열에 있는 값 사이의 삽입 지점을 반환합니다."
 
 #: ../../library/bisect.rst:29
 msgid "The following functions are provided:"
@@ -69,15 +69,15 @@ msgstr ""
 "``list.insert()``\\의 첫 번째 매개 변수로 사용하기에 적합합니다."
 
 #: ../../library/bisect.rst:41
-#, fuzzy
 msgid ""
 "The returned insertion point *ip* partitions the array *a* into two "
 "slices such that ``all(elem < x for elem in a[lo : ip])`` is true for the"
 " left slice and ``all(elem >= x for elem in a[ip : hi])`` is true for the"
 " right slice."
 msgstr ""
-"반환된 삽입 위치 *i*\\는 배열 *a*\\를 이분하여, 왼쪽은 ``all(val < x for val in a[lo:i])``,"
-" 오른쪽은 ``all(val >= x for val in a[i:hi])``\\이 되도록 만듭니다."
+"반환된 삽입 위치 *ip*\\는 배열 *a*\\를 두 개의 조각으로 분할하여, 왼쪽에 대해서는 ``all(elem < x for "
+"elem in a[lo : ip])``\\이 참이고, 오른쪽에 대해서는 ``all(elem >= x for elem in a[ip "
+": hi])``\\이 참이 되도록 만듭니다."
 
 #: ../../library/bisect.rst:46
 msgid ""
@@ -96,27 +96,26 @@ msgstr ""
 #: ../../library/bisect.rst:53 ../../library/bisect.rst:67
 #: ../../library/bisect.rst:85 ../../library/bisect.rst:105
 msgid "Added the *key* parameter."
-msgstr ""
+msgstr "*key* 매개 변수를 추가했습니다."
 
 #: ../../library/bisect.rst:60
-#, fuzzy
 msgid ""
 "Similar to :py:func:`~bisect.bisect_left`, but returns an insertion point"
 " which comes after (to the right of) any existing entries of *x* in *a*."
 msgstr ""
-":func:`bisect_left`\\와 비슷하지만, *a*\\에 있는 *x*\\의 기존 항목 뒤(오른쪽)에 오는 삽입 위치를 "
-"반환합니다."
+":py:func:`~bisect.bisect_left`\\와 비슷하지만, *a*\\에 있는 *x*\\의 기존 항목 뒤(오른쪽)에 "
+"오는 삽입 위치를 반환합니다."
 
 #: ../../library/bisect.rst:63
-#, fuzzy
 msgid ""
 "The returned insertion point *ip* partitions the array *a* into two "
 "slices such that ``all(elem <= x for elem in a[lo : ip])`` is true for "
 "the left slice and ``all(elem > x for elem in a[ip : hi])`` is true for "
 "the right slice."
 msgstr ""
-"반환된 삽입 위치 *i*\\는 배열 *a*\\를 이분하여, 왼쪽은 ``all(val <= x for val in "
-"a[lo:i])``, 오른쪽은 ``all(val > x for val in a[i:hi])``\\이 되도록 만듭니다."
+"반환된 삽입 위치 *ip*\\는 배열 *a*\\를 두 개의 조각으로 분할하여, 왼쪽에 대해서는 ``all(elem <= x for "
+"elem in a[lo : ip])``\\이 참이고, 오른쪽에 대해서는 ``all(elem > x for elem in a[ip :"
+" hi])``\\이 참이 되도록 만듭니다."
 
 #: ../../library/bisect.rst:73
 msgid "Insert *x* in *a* in sorted order."
@@ -142,11 +141,12 @@ msgid ""
 msgstr ""
 
 #: ../../library/bisect.rst:92
-#, fuzzy
 msgid ""
 "Similar to :py:func:`~bisect.insort_left`, but inserting *x* in *a* after"
 " any existing entries of *x*."
-msgstr ":func:`insort_left`\\와 비슷하지만, *a*\\에 *x*\\를 *x*\\의 기존 항목 다음에 삽입합니다."
+msgstr ""
+":py:func:`~bisect.insort_left`\\와 비슷하지만, *a*\\에 *x*\\를 *x*\\의 기존 항목 다음에 "
+"삽입합니다."
 
 #: ../../library/bisect.rst:95
 msgid ""
@@ -196,7 +196,6 @@ msgid ""
 msgstr ""
 
 #: ../../library/bisect.rst:135
-#, fuzzy
 msgid ""
 "The `SortedCollection recipe "
 "<https://code.activestate.com/recipes/577197-sortedcollection/>`_ uses "
@@ -214,15 +213,14 @@ msgid "Searching Sorted Lists"
 msgstr "정렬된 리스트 검색하기"
 
 #: ../../library/bisect.rst:145
-#, fuzzy
 msgid ""
 "The above `bisect functions`_ are useful for finding insertion points but"
 " can be tricky or awkward to use for common searching tasks. The "
 "following five functions show how to transform them into the standard "
 "lookups for sorted lists::"
 msgstr ""
-"위의 :func:`bisect` 함수는 삽입 위치를 찾는 데 유용하지만, 일반적인 검색 작업에 사용하기가 까다롭거나 어색할 수 "
-"있습니다. 다음 다섯 함수는 정렬된 리스트에 대한 표준 조회로 변환하는 방법을 보여줍니다::"
+"위의 `bisect functions`_\\는 삽입 위치를 찾는 데 유용하지만, 일반적인 검색 작업에 사용하기가 까다롭거나 어색할 "
+"수 있습니다. 다음 다섯 함수는 정렬된 리스트에 대한 표준 조회로 변환하는 방법을 보여줍니다::"
 
 #: ../../library/bisect.rst:150
 msgid ""
@@ -261,23 +259,55 @@ msgid ""
 "        return a[i]\n"
 "    raise ValueError"
 msgstr ""
+"def index(a, x):\n"
+"    'x 와 정확히 같은 가장 왼쪽의 값을 찾습니다'\n"
+"    i = bisect_left(a, x)\n"
+"    if i != len(a) and a[i] == x:\n"
+"        return i\n"
+"    raise ValueError\n"
+"\n"
+"def find_lt(a, x):\n"
+"    'x보다 작은 가장 오른쪽 값을 찾습니다'\n"
+"    i = bisect_left(a, x)\n"
+"    if i:\n"
+"        return a[i-1]\n"
+"    raise ValueError\n"
+"\n"
+"def find_le(a, x):\n"
+"    'x보다 작거나 같은 가장 오른쪽 값을 찾습니다'\n"
+"    i = bisect_right(a, x)\n"
+"    if i:\n"
+"        return a[i-1]\n"
+"    raise ValueError\n"
+"\n"
+"def find_gt(a, x):\n"
+"    'x보다 큰 가장 왼쪽 값을 찾습니다'\n"
+"    i = bisect_right(a, x)\n"
+"    if i != len(a):\n"
+"        return a[i]\n"
+"    raise ValueError\n"
+"\n"
+"def find_ge(a, x):\n"
+"    'x보다 크거나 같은 가장 왼쪽 항목을 찾습니다'\n"
+"    i = bisect_left(a, x)\n"
+"    if i != len(a):\n"
+"        return a[i]\n"
+"    raise ValueError"
 
 #: ../../library/bisect.rst:187
-#, fuzzy
 msgid "Examples"
-msgstr "다른 예제"
+msgstr "예제"
 
 #: ../../library/bisect.rst:191
-#, fuzzy
 msgid ""
 "The :py:func:`~bisect.bisect` function can be useful for numeric table "
 "lookups. This example uses :py:func:`~bisect.bisect` to look up a letter "
 "grade for an exam score (say) based on a set of ordered numeric "
 "breakpoints: 90 and up is an 'A', 80 to 89 is a 'B', and so on::"
 msgstr ""
-":func:`bisect` 함수는 숫자 테이블 조회에 유용할 수 있습니다. 이 예제는 :func:`bisect`\\를 사용하여 "
-"(가령) 시험 점수에 대한 문자 등급을 조회하는데, 정렬된 숫자 경계점 집합에 기반합니다: 90 이상은 'A', 80에서 89는 "
-"'B' 등입니다::"
+":py:func:`~bisect.bisect` 함수는 숫자 테이블 조회에 유용할 수 있습니다. 이 예제는 "
+":py:func:`~bisect.bisect`\\를 사용하여 (가령) 시험 점수에 대한 문자 등급을 조회하는데, 정렬된 숫자 경계점"
+" 집합에 기반합니다: 90 이상은 'A', 80에서 89는 'B' 등입니다::"
 
 #: ../../library/bisect.rst:196
 msgid ""
@@ -288,6 +318,12 @@ msgid ""
 ">>> [grade(score) for score in [33, 99, 77, 70, 89, 90, 100]]\n"
 "['F', 'A', 'C', 'C', 'B', 'A', 'A']"
 msgstr ""
+">>> def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):\n"
+"...     i = bisect(breakpoints, score)\n"
+"...     return grades[i]\n"
+"...\n"
+">>> [grade(score) for score in [33, 99, 77, 70, 89, 90, 100]]\n"
+"['F', 'A', 'C', 'C', 'B', 'A', 'A']"
 
 #: ../../library/bisect.rst:203
 msgid ""
@@ -328,14 +364,42 @@ msgid ""
 " Movie(name='Aliens', released=1986, director='Cameron'),\n"
 " Movie(name='Titanic', released=1997, director='Cameron')]"
 msgstr ""
+">>> from collections import namedtuple\n"
+">>> from operator import attrgetter\n"
+">>> from bisect import bisect, insort\n"
+">>> from pprint import pprint\n"
+"\n"
+">>> Movie = namedtuple('Movie', ('name', 'released', 'director'))\n"
+"\n"
+">>> movies = [\n"
+"...     Movie('Jaws', 1975, 'Spielberg'),\n"
+"...     Movie('Titanic', 1997, 'Cameron'),\n"
+"...     Movie('The Birds', 1963, 'Hitchcock'),\n"
+"...     Movie('Aliens', 1986, 'Cameron')\n"
+"... ]\n"
+"\n"
+">>> # 1960년 이후 개봉한 최초의 영화를 찾습니다\n"
+">>> by_year = attrgetter('released')\n"
+">>> movies.sort(key=by_year)\n"
+">>> movies[bisect(movies, 1960, key=by_year)]\n"
+"Movie(name='The Birds', released=1963, director='Hitchcock')\n"
+"\n"
+">>> # 정렬 순서를 유지하면서 영화를 삽입합니다\n"
+">>> romance = Movie('Love Story', 1970, 'Hiller')\n"
+">>> insort(movies, romance, key=by_year)\n"
+">>> pprint(movies)\n"
+"[Movie(name='The Birds', released=1963, director='Hitchcock'),\n"
+" Movie(name='Love Story', released=1970, director='Hiller'),\n"
+" Movie(name='Jaws', released=1975, director='Spielberg'),\n"
+" Movie(name='Aliens', released=1986, director='Cameron'),\n"
+" Movie(name='Titanic', released=1997, director='Cameron')]"
 
 #: ../../library/bisect.rst:237
-#, fuzzy
 msgid ""
 "If the key function is expensive, it is possible to avoid repeated "
 "function calls by searching a list of precomputed keys to find the index "
 "of a record::"
-msgstr "대신, 해당 레코드의 인덱스를 찾기 위해 미리 계산된 키 리스트를 검색하는 것이 좋습니다::"
+msgstr "키 함수가 비싸면, 미리 계산된 키 목록을 검색하여 레코드의 인덱스를 찾으면 반복돠는 함수 호출을 피할 수 있습니다::"
 
 #: ../../library/bisect.rst:240
 msgid ""
@@ -351,6 +415,18 @@ msgid ""
 ">>> data[bisect_left(keys, 8)]\n"
 "('yellow', 8)"
 msgstr ""
+">>> data = [('red', 5), ('blue', 1), ('yellow', 8), ('black', 0)]\n"
+">>> data.sort(key=lambda r: r[1])       # 또는 operator.itemgetter(1) 를 "
+"사용하세요.\n"
+">>> keys = [r[1] for r in data]         # 미리 계산된 키 리스트.\n"
+">>> data[bisect_left(keys, 0)]\n"
+"('black', 0)\n"
+">>> data[bisect_left(keys, 1)]\n"
+"('blue', 1)\n"
+">>> data[bisect_left(keys, 5)]\n"
+"('red', 5)\n"
+">>> data[bisect_left(keys, 8)]\n"
+"('yellow', 8)"
 
 #~ msgid ""
 #~ "Insert *x* in *a* in sorted order."
