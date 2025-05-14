@@ -17,14 +17,12 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/sysconfig.rst:2
-#, fuzzy
 msgid ":mod:`!sysconfig` --- Provide access to Python's configuration information"
-msgstr ":mod:`sysconfig` --- 파이썬의 구성 정보에 접근하기"
+msgstr ":mod:`!sysconfig` --- 파이썬의 구성 정보에 접근하기"
 
 #: ../../library/sysconfig.rst:12
-#, fuzzy
 msgid "**Source code:** :source:`Lib/sysconfig`"
-msgstr "**소스 코드:** :source:`Lib/sysconfig.py`"
+msgstr "**소스 코드:** :source:`Lib/sysconfig`"
 
 #: ../../library/sysconfig.rst:19
 msgid ""
@@ -40,7 +38,6 @@ msgid "Configuration variables"
 msgstr "구성 변수"
 
 #: ../../library/sysconfig.rst:27
-#, fuzzy
 msgid ""
 "A Python distribution contains a :file:`Makefile` and a "
 ":file:`pyconfig.h` header file that are necessary to build both the "
@@ -48,7 +45,7 @@ msgid ""
 "``setuptools``."
 msgstr ""
 "Python 배포판에는 :file:`Makefile` 과 :file:`pyconfig.h` 헤더 파일이 들어 있습니다. 이 파일은 "
-"파이썬 바이너리 자체와 :mod:`distutils` 를 사용하여 컴파일된 타사 C 확장을 빌드하는 데 필요합니다."
+"파이썬 바이너리 자체와 ``setuptools`` 를 사용하여 컴파일된 타사 C 확장을 빌드하는 데 필요합니다."
 
 #: ../../library/sysconfig.rst:31
 msgid ""
@@ -103,13 +100,19 @@ msgid ""
 ">>> sysconfig.get_config_vars('AR', 'CXX')\n"
 "['ar', 'g++']"
 msgstr ""
+">>> import sysconfig\n"
+">>> sysconfig.get_config_var('Py_ENABLE_SHARED')\n"
+"0\n"
+">>> sysconfig.get_config_var('LIBDIR')\n"
+"'/usr/local/lib'\n"
+">>> sysconfig.get_config_vars('AR', 'CXX')\n"
+"['ar', 'g++']"
 
 #: ../../library/sysconfig.rst:68
 msgid "Installation paths"
 msgstr "설치 경로"
 
 #: ../../library/sysconfig.rst:70
-#, fuzzy
 msgid ""
 "Python uses an installation scheme that differs depending on the platform"
 " and on the installation options.  These schemes are stored in "
@@ -118,40 +121,37 @@ msgid ""
 " where to copy files to."
 msgstr ""
 "파이썬은 플랫폼과 설치 옵션에 따라 다른 설치 스킴을 사용합니다. 이 스킴은 :const:`os.name` 에 의해 반환된 값을 "
-"기반으로 하는 고유한 식별자로 :mod:`sysconfig` 에 저장됩니다."
+"기반으로 하는 고유한 식별자로 :mod:`sysconfig` 에 저장됩니다. 이 스킴은 패키지 설치기가 파일을 복사할 위치를 "
+"결정하는 데 사용됩니다."
 
 #: ../../library/sysconfig.rst:75
-#, fuzzy
 msgid "Python currently supports nine schemes:"
-msgstr "파이썬은 현재 7가지 스킴을 지원합니다:"
+msgstr "파이썬은 현재 9가지 스킴을 지원합니다:"
 
 #: ../../library/sysconfig.rst:77
-#, fuzzy
 msgid ""
 "*posix_prefix*: scheme for POSIX platforms like Linux or macOS.  This is "
 "the default scheme used when Python or a component is installed."
 msgstr ""
-"*posix_prefix*: 리눅스나 맥 OS X 같은 포직스(POSIX) 플랫폼을 위한 스킴. 이것은 파이썬이나 컴포넌트가 설치될"
-" 때 사용되는 기본 스킴입니다."
+"*posix_prefix*: 리눅스나 맥 OS 같은 포직스(POSIX) 플랫폼용 스킴. 이것은 파이썬이나 컴포넌트가 설치될 때 "
+"사용되는 기본 스킴입니다."
 
 #: ../../library/sysconfig.rst:79
-#, fuzzy
 msgid ""
 "*posix_home*: scheme for POSIX platforms, when the *home* option is used."
 " This scheme defines paths located under a specific home prefix."
 msgstr ""
-"*posix_user*: 컴포넌트가 Distutils를 통해 설치되고 *user* 옵션이 사용될 때 사용되는 포직스 플랫폼을 위한 "
-"스킴. 이 스킴은 사용자 홈 디렉터리 아래에 있는 경로를 정의합니다."
+"*posix_home*: *home* 옵션이 사용될 때, 포직스 플랫폼용 스킴. 이 스킴은 특정 홈 접두어 아래에 있는 경로를 "
+"정의합니다."
 
 #: ../../library/sysconfig.rst:81
-#, fuzzy
 msgid ""
 "*posix_user*: scheme for POSIX platforms, when the *user* option is used."
 " This scheme defines paths located under the user's home directory "
 "(:const:`site.USER_BASE`)."
 msgstr ""
-"*posix_user*: 컴포넌트가 Distutils를 통해 설치되고 *user* 옵션이 사용될 때 사용되는 포직스 플랫폼을 위한 "
-"스킴. 이 스킴은 사용자 홈 디렉터리 아래에 있는 경로를 정의합니다."
+"*posix_user*: *user* 옵션이 사용될 때, 포직스 플랫폼용 스킴. 이 스킴은 사용자 홈 디렉터리 아래에 있는 경로를 "
+"정의합니다 (:const:`site.USER_BASE`)."
 
 #: ../../library/sysconfig.rst:84
 msgid ""
@@ -160,18 +160,14 @@ msgid ""
 msgstr ""
 
 #: ../../library/sysconfig.rst:86
-#, fuzzy
 msgid ""
 "*nt*: scheme for Windows. This is the default scheme used when Python or "
 "a component is installed."
-msgstr ""
-"*posix_prefix*: 리눅스나 맥 OS X 같은 포직스(POSIX) 플랫폼을 위한 스킴. 이것은 파이썬이나 컴포넌트가 설치될"
-" 때 사용되는 기본 스킴입니다."
+msgstr "*nt*: 윈도우용 스킴. 이것은 파이썬이나 컴포넌트가 설치될 때 사용되는 기본 스킴입니다."
 
 #: ../../library/sysconfig.rst:88
-#, fuzzy
 msgid "*nt_user*: scheme for Windows, when the *user* option is used."
-msgstr "*nt_user*: *user* 옵션이 사용될 때 NT 플랫폼용 스킴."
+msgstr "*nt_user*: *user* 옵션이 사용될 때, 윈도우용 스킴."
 
 #: ../../library/sysconfig.rst:89
 msgid ""
@@ -186,9 +182,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/sysconfig.rst:93
-#, fuzzy
 msgid "*osx_framework_user*: scheme for macOS, when the *user* option is used."
-msgstr "*nt_user*: *user* 옵션이 사용될 때 NT 플랫폼용 스킴."
+msgstr "*osx_framework_user*: *user* 옵션이 사용될, 맥 OS용 스킴."
 
 #: ../../library/sysconfig.rst:95
 msgid ""
@@ -213,25 +208,22 @@ msgid "*platlib*: directory for site-specific, platform-specific files."
 msgstr "*platlib*: 사이트마다, 플랫폼마다 다른 파일용 디렉터리."
 
 #: ../../library/sysconfig.rst:103
-#, fuzzy
 msgid ""
 "*purelib*: directory for site-specific, non-platform-specific files "
 "('pure' Python)."
-msgstr "*purelib*: 사이트마다 다르지만, 플랫폼마다 다르지 않은 파일이 들어있는 디렉터리."
+msgstr "*purelib*: 사이트마다 다르지만, 플랫폼마다 다르지 않은 파일이 들어있는 디렉터리 ('순수한' 파이썬')."
 
 #: ../../library/sysconfig.rst:104
-#, fuzzy
 msgid ""
 "*include*: directory for non-platform-specific header files for the "
 "Python C-API."
-msgstr "*include*: 플랫폼마다 다르지 않은 헤더 파일용 디렉터리."
+msgstr "*include*: 파이썬 C-API 를 위한 플랫폼마다 다르지 않은 헤더 파일용 디렉터리."
 
 #: ../../library/sysconfig.rst:106
-#, fuzzy
 msgid ""
 "*platinclude*: directory for platform-specific header files for the "
 "Python C-API."
-msgstr "*platinclude*: 플랫폼마다 다른 헤더 파일용 디렉터리."
+msgstr "*platinclude*: 파이썬 C-API 를 위한 플랫폼마다 다른 헤더 파일용 디렉터리."
 
 #: ../../library/sysconfig.rst:108
 msgid "*scripts*: directory for script files."
@@ -263,126 +255,125 @@ msgstr ""
 
 #: ../../library/sysconfig.rst:126
 msgid "``posix_user``"
-msgstr ""
+msgstr "``posix_user``"
 
 #: ../../library/sysconfig.rst:129 ../../library/sysconfig.rst:144
 #: ../../library/sysconfig.rst:159 ../../library/sysconfig.rst:187
 #: ../../library/sysconfig.rst:229 ../../library/sysconfig.rst:245
 msgid "Path"
-msgstr ""
+msgstr "경로"
 
 #: ../../library/sysconfig.rst:129 ../../library/sysconfig.rst:144
 #: ../../library/sysconfig.rst:159 ../../library/sysconfig.rst:187
 #: ../../library/sysconfig.rst:229 ../../library/sysconfig.rst:245
-#, fuzzy
 msgid "Installation directory"
-msgstr "설치 경로"
+msgstr "설치 디렉터리"
 
 #: ../../library/sysconfig.rst:131 ../../library/sysconfig.rst:146
 #: ../../library/sysconfig.rst:161 ../../library/sysconfig.rst:189
 #: ../../library/sysconfig.rst:231 ../../library/sysconfig.rst:247
 msgid "*stdlib*"
-msgstr ""
+msgstr "*stdlib*"
 
 #: ../../library/sysconfig.rst:131 ../../library/sysconfig.rst:132
 #, python-brace-format
 msgid ":file:`{userbase}/lib/python{X.Y}`"
-msgstr ""
+msgstr ":file:`{userbase}/lib/python{X.Y}`"
 
 #: ../../library/sysconfig.rst:132 ../../library/sysconfig.rst:147
 #: ../../library/sysconfig.rst:162 ../../library/sysconfig.rst:190
 #: ../../library/sysconfig.rst:232 ../../library/sysconfig.rst:248
 msgid "*platstdlib*"
-msgstr ""
+msgstr "*platstdlib*"
 
 #: ../../library/sysconfig.rst:133 ../../library/sysconfig.rst:148
 #: ../../library/sysconfig.rst:163 ../../library/sysconfig.rst:191
 #: ../../library/sysconfig.rst:233 ../../library/sysconfig.rst:249
 msgid "*platlib*"
-msgstr ""
+msgstr "*platlib*"
 
 #: ../../library/sysconfig.rst:133 ../../library/sysconfig.rst:134
 #, python-brace-format
 msgid ":file:`{userbase}/lib/python{X.Y}/site-packages`"
-msgstr ""
+msgstr ":file:`{userbase}/lib/python{X.Y}/site-packages`"
 
 #: ../../library/sysconfig.rst:134 ../../library/sysconfig.rst:149
 #: ../../library/sysconfig.rst:164 ../../library/sysconfig.rst:192
 #: ../../library/sysconfig.rst:234 ../../library/sysconfig.rst:250
 msgid "*purelib*"
-msgstr ""
+msgstr "*purelib*"
 
 #: ../../library/sysconfig.rst:135 ../../library/sysconfig.rst:150
 #: ../../library/sysconfig.rst:165 ../../library/sysconfig.rst:193
 #: ../../library/sysconfig.rst:235 ../../library/sysconfig.rst:251
 msgid "*include*"
-msgstr ""
+msgstr "*include*"
 
 #: ../../library/sysconfig.rst:135 ../../library/sysconfig.rst:165
 #, python-brace-format
 msgid ":file:`{userbase}/include/python{X.Y}`"
-msgstr ""
+msgstr ":file:`{userbase}/include/python{X.Y}`"
 
 #: ../../library/sysconfig.rst:136 ../../library/sysconfig.rst:151
 #: ../../library/sysconfig.rst:166 ../../library/sysconfig.rst:195
 #: ../../library/sysconfig.rst:237 ../../library/sysconfig.rst:253
 msgid "*scripts*"
-msgstr ""
+msgstr "*scripts*"
 
 #: ../../library/sysconfig.rst:136 ../../library/sysconfig.rst:166
 #, python-brace-format
 msgid ":file:`{userbase}/bin`"
-msgstr ""
+msgstr ":file:`{userbase}/bin`"
 
 #: ../../library/sysconfig.rst:137 ../../library/sysconfig.rst:152
 #: ../../library/sysconfig.rst:167 ../../library/sysconfig.rst:196
 #: ../../library/sysconfig.rst:238 ../../library/sysconfig.rst:254
 msgid "*data*"
-msgstr ""
+msgstr "*data*"
 
 #: ../../library/sysconfig.rst:137 ../../library/sysconfig.rst:152
 #: ../../library/sysconfig.rst:167
 #, python-brace-format
 msgid ":file:`{userbase}`"
-msgstr ""
+msgstr ":file:`{userbase}`"
 
 #: ../../library/sysconfig.rst:141
 msgid "``nt_user``"
-msgstr ""
+msgstr "``nt_user``"
 
 #: ../../library/sysconfig.rst:146 ../../library/sysconfig.rst:147
 #, python-brace-format
 msgid ":file:`{userbase}\\\\Python{XY}`"
-msgstr ""
+msgstr ":file:`{userbase}\\\\Python{XY}`"
 
 #: ../../library/sysconfig.rst:148 ../../library/sysconfig.rst:149
 #, python-brace-format
 msgid ":file:`{userbase}\\\\Python{XY}\\\\site-packages`"
-msgstr ""
+msgstr ":file:`{userbase}\\\\Python{XY}\\\\site-packages`"
 
 #: ../../library/sysconfig.rst:150
 #, python-brace-format
 msgid ":file:`{userbase}\\\\Python{XY}\\\\Include`"
-msgstr ""
+msgstr ":file:`{userbase}\\\\Python{XY}\\\\Include`"
 
 #: ../../library/sysconfig.rst:151
 #, python-brace-format
 msgid ":file:`{userbase}\\\\Python{XY}\\\\Scripts`"
-msgstr ""
+msgstr ":file:`{userbase}\\\\Python{XY}\\\\Scripts`"
 
 #: ../../library/sysconfig.rst:156
 msgid "``osx_framework_user``"
-msgstr ""
+msgstr "``osx_framework_user``"
 
 #: ../../library/sysconfig.rst:161 ../../library/sysconfig.rst:162
 #, python-brace-format
 msgid ":file:`{userbase}/lib/python`"
-msgstr ""
+msgstr ":file:`{userbase}/lib/python`"
 
 #: ../../library/sysconfig.rst:163 ../../library/sysconfig.rst:164
 #, python-brace-format
 msgid ":file:`{userbase}/lib/python/site-packages`"
-msgstr ""
+msgstr ":file:`{userbase}/lib/python/site-packages`"
 
 #: ../../library/sysconfig.rst:174
 msgid "Home scheme"
@@ -400,33 +391,33 @@ msgstr ""
 
 #: ../../library/sysconfig.rst:184
 msgid "``posix_home``"
-msgstr ""
+msgstr "``posix_home``"
 
 #: ../../library/sysconfig.rst:189 ../../library/sysconfig.rst:190
 #: ../../library/sysconfig.rst:191 ../../library/sysconfig.rst:192
 #, python-brace-format
 msgid ":file:`{home}/lib/python`"
-msgstr ""
+msgstr ":file:`{home}/lib/python`"
 
 #: ../../library/sysconfig.rst:193 ../../library/sysconfig.rst:194
 #, python-brace-format
 msgid ":file:`{home}/include/python`"
-msgstr ""
+msgstr ":file:`{home}/include/python`"
 
 #: ../../library/sysconfig.rst:194 ../../library/sysconfig.rst:236
 #: ../../library/sysconfig.rst:252
 msgid "*platinclude*"
-msgstr ""
+msgstr "*platinclude*"
 
 #: ../../library/sysconfig.rst:195
 #, python-brace-format
 msgid ":file:`{home}/bin`"
-msgstr ""
+msgstr ":file:`{home}/bin`"
 
 #: ../../library/sysconfig.rst:196
 #, python-brace-format
 msgid ":file:`{home}`"
-msgstr ""
+msgstr ":file:`{home}`"
 
 #: ../../library/sysconfig.rst:203
 msgid "Prefix scheme"
@@ -468,68 +459,66 @@ msgstr ""
 
 #: ../../library/sysconfig.rst:226
 msgid "``posix_prefix``"
-msgstr ""
+msgstr "``posix_prefix``"
 
 #: ../../library/sysconfig.rst:231 ../../library/sysconfig.rst:232
 #, python-brace-format
 msgid ":file:`{prefix}/lib/python{X.Y}`"
-msgstr ""
+msgstr ":file:`{prefix}/lib/python{X.Y}`"
 
 #: ../../library/sysconfig.rst:233 ../../library/sysconfig.rst:234
 #, python-brace-format
 msgid ":file:`{prefix}/lib/python{X.Y}/site-packages`"
-msgstr ""
+msgstr ":file:`{prefix}/lib/python{X.Y}/site-packages`"
 
 #: ../../library/sysconfig.rst:235 ../../library/sysconfig.rst:236
 #, python-brace-format
 msgid ":file:`{prefix}/include/python{X.Y}`"
-msgstr ""
+msgstr ":file:`{prefix}/include/python{X.Y}`"
 
 #: ../../library/sysconfig.rst:237
 #, python-brace-format
 msgid ":file:`{prefix}/bin`"
-msgstr ""
+msgstr ":file:`{prefix}/bin`"
 
 #: ../../library/sysconfig.rst:238 ../../library/sysconfig.rst:254
 #, python-brace-format
 msgid ":file:`{prefix}`"
-msgstr ""
+msgstr ":file:`{prefix}`"
 
 #: ../../library/sysconfig.rst:242
 msgid "``nt``"
-msgstr ""
+msgstr "``nt``"
 
 #: ../../library/sysconfig.rst:247 ../../library/sysconfig.rst:248
 #, python-brace-format
 msgid ":file:`{prefix}\\\\Lib`"
-msgstr ""
+msgstr ":file:`{prefix}\\\\Lib`"
 
 #: ../../library/sysconfig.rst:249 ../../library/sysconfig.rst:250
 #, python-brace-format
 msgid ":file:`{prefix}\\\\Lib\\\\site-packages`"
-msgstr ""
+msgstr ":file:`{prefix}\\\\Lib\\\\site-packages`"
 
 #: ../../library/sysconfig.rst:251 ../../library/sysconfig.rst:252
 #, python-brace-format
 msgid ":file:`{prefix}\\\\Include`"
-msgstr ""
+msgstr ":file:`{prefix}\\\\Include`"
 
 #: ../../library/sysconfig.rst:253
 #, python-brace-format
 msgid ":file:`{prefix}\\\\Scripts`"
-msgstr ""
+msgstr ":file:`{prefix}\\\\Scripts`"
 
 #: ../../library/sysconfig.rst:259
-#, fuzzy
 msgid "Installation path functions"
-msgstr "설치 경로"
+msgstr "설치 경로 함수"
 
 #: ../../library/sysconfig.rst:261
-#, fuzzy
 msgid ""
 ":mod:`sysconfig` provides some functions to determine these installation "
 "paths."
-msgstr ":mod:`sysconfig` 는 이러한 경로를 결정하는 몇 가지 함수를 제공합니다."
+msgstr ":mod:`sysconfig` 는 이러한 설치 경로를 결정하는 몇 가지 함수를 제공합니다."
 
 #: ../../library/sysconfig.rst:265
 msgid ""
@@ -538,9 +527,8 @@ msgid ""
 msgstr "현재 :mod:`sysconfig` 에서 지원되는 모든 스킴을 포함하는 튜플을 돌려줍니다."
 
 #: ../../library/sysconfig.rst:271
-#, fuzzy
 msgid "Return the default scheme name for the current platform."
-msgstr "*scheme* 을 제공하지 않으면, 현재 플랫폼에 대한 기본 스킴을 사용합니다."
+msgstr "현재 플랫폼에 대한 기본 스킴 이름을 반환합니다."
 
 #: ../../library/sysconfig.rst:273
 msgid ""
@@ -639,7 +627,6 @@ msgstr ""
 "그렇지 않으면, 현재 플랫폼의 기본 스킴이 사용됩니다."
 
 #: ../../library/sysconfig.rst:338
-#, fuzzy
 msgid ""
 "If *vars* is provided, it must be a dictionary of variables that will "
 "update the dictionary returned by :func:`get_config_vars`."
@@ -652,9 +639,8 @@ msgid ""
 msgstr "*expand* 가 ``False`` 로 설정되면, 경로는 변수를 사용하여 확장되지 않습니다."
 
 #: ../../library/sysconfig.rst:344
-#, fuzzy
 msgid "If *name* is not found, raise a :exc:`KeyError`."
-msgstr "*name* 을 찾지 못하면 ``None`` 을 반환합니다."
+msgstr "*name* 을 찾지 못하면, :exc:`KeyError`\\를 발생시킵니다."
 
 #: ../../library/sysconfig.rst:349
 msgid ""
@@ -702,7 +688,6 @@ msgid "Return a string that identifies the current platform."
 msgstr "현재의 플랫폼을 식별하는 문자열을 돌려줍니다."
 
 #: ../../library/sysconfig.rst:377
-#, fuzzy
 msgid ""
 "This is used mainly to distinguish platform-specific build directories "
 "and platform-specific built distributions.  Typically includes the OS "
@@ -711,8 +696,8 @@ msgid ""
 "Linux, the kernel version isn't particularly important."
 msgstr ""
 "이는 주로 플랫폼별 빌드 디렉터리와 플랫폼별로 빌드 된 배포판을 구별하기 위해 사용됩니다. 포함된 정확한 정보는 OS에 따라 "
-"다르지만, 일반적으로 OS 이름과 버전 및 아키텍처를 포함합니다 ('os.uname()' 에서 제공됩니다); 예를 들어, 리눅스에서"
-" 커널 버전은 특별히 중요하지 않습니다."
+"다르지만, 일반적으로 OS 이름과 버전 및 아키텍처를 포함합니다 (:func:`os.uname` 에서 제공됩니다); 예를 들어, "
+"리눅스에서 커널 버전은 특별히 중요하지 않습니다."
 
 #: ../../library/sysconfig.rst:383
 msgid "Examples of returned values:"
@@ -735,23 +720,20 @@ msgid "Windows will return one of:"
 msgstr "윈도우는 다음 중 하나를 반환합니다:"
 
 #: ../../library/sysconfig.rst:391
-#, fuzzy
 msgid "win-amd64 (64-bit Windows on AMD64, aka x86_64, Intel64, and EM64T)"
 msgstr "win-amd64 (AMD64의 64비트 윈도우, 일명 x86_64, Intel64, EM64T 등)"
 
 #: ../../library/sysconfig.rst:392
-#, fuzzy
 msgid "win-arm64 (64-bit Windows on ARM64, aka AArch64)"
-msgstr "win-amd64 (AMD64의 64비트 윈도우, 일명 x86_64, Intel64, EM64T 등)"
+msgstr "win-arm64 (ARM64의 64비트 윈도우, 일명 AArch64)"
 
 #: ../../library/sysconfig.rst:393
 msgid "win32 (all others - specifically, sys.platform is returned)"
 msgstr "win32 (기타 모든 것 - 구체적으로, sys.platform이 반환됩니다)"
 
 #: ../../library/sysconfig.rst:395
-#, fuzzy
 msgid "macOS can return:"
-msgstr "맥 OS X 는 다음을 반환 할 수 있습니다:"
+msgstr "맥 OS는 다음을 반환 할 수 있습니다:"
 
 #: ../../library/sysconfig.rst:397
 msgid "macosx-10.6-ppc"
@@ -842,6 +824,27 @@ msgid ""
 "        ARFLAGS = \"rc\"\n"
 "        ..."
 msgstr ""
+"$ python -m sysconfig\n"
+"Platform: \"macosx-10.4-i386\"\n"
+"Python version: \"3.2\"\n"
+"Current installation scheme: \"posix_prefix\"\n"
+"\n"
+"Paths:\n"
+"        data = \"/usr/local\"\n"
+"        include = \"/Users/tarek/Dev/svn.python.org/py3k/Include\"\n"
+"        platinclude = \".\"\n"
+"        platlib = \"/usr/local/lib/python3.2/site-packages\"\n"
+"        platstdlib = \"/usr/local/lib/python3.2\"\n"
+"        purelib = \"/usr/local/lib/python3.2/site-packages\"\n"
+"        scripts = \"/usr/local/bin\"\n"
+"        stdlib = \"/usr/local/lib/python3.2\"\n"
+"\n"
+"Variables:\n"
+"        AC_APPLE_UNIVERSAL_BUILD = \"0\"\n"
+"        AIX_GENUINE_CPLUSPLUS = \"0\"\n"
+"        AR = \"ar\"\n"
+"        ARFLAGS = \"rc\"\n"
+"        ..."
 
 #: ../../library/sysconfig.rst:462
 msgid ""
@@ -853,34 +856,6 @@ msgstr ""
 "및 :func:`get_config_vars` 에 의해 반환된 정보를 표준 출력에 인쇄합니다."
 
 #: ../../library/sysconfig.rst:14
-#, fuzzy
 msgid "configuration information"
-msgstr "구성 변수"
-
-#~ msgid ""
-#~ "Every new component that is installed"
-#~ " using :mod:`distutils` or a Distutils-"
-#~ "based system will follow the same "
-#~ "scheme to copy its file in the "
-#~ "right places."
-#~ msgstr ""
-#~ ":mod:`distutils` 또는 Distutils 기반 시스템을 "
-#~ "사용하여 설치되는 모든 새로운 구성 요소는 파일을 "
-#~ "올바른 장소에 복사하기 위해 같은 스킴을 따릅니다."
-
-#~ msgid ""
-#~ "*posix_home*: scheme for POSIX platforms "
-#~ "used when a *home* option is used"
-#~ " upon installation.  This scheme is "
-#~ "used when a component is installed "
-#~ "through Distutils with a specific home"
-#~ " prefix."
-#~ msgstr ""
-#~ "*posix_home*: 설치 시 *home* 옵션을 사용할 "
-#~ "때 사용되는 포직스 플랫폼을 위한 스킴. 이 스킴은"
-#~ " 특정 홈 접두어를 써서 Distutils를 통해 구성"
-#~ " 요소가 설치될 때 사용됩니다."
-
-#~ msgid "*nt*: scheme for NT platforms like Windows."
-#~ msgstr "*nt*: 윈도우와 같은 NT 플랫폼을 위한 스킴."
+msgstr "구성 정보"
 
