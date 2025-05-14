@@ -17,14 +17,12 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/zipfile.rst:2
-#, fuzzy
 msgid ":mod:`!zipfile` --- Work with ZIP archives"
-msgstr ":mod:`zipfile` --- ZIP 아카이브 작업"
+msgstr ":mod:`!zipfile` --- ZIP 아카이브 작업"
 
 #: ../../library/zipfile.rst:10
-#, fuzzy
 msgid "**Source code:** :source:`Lib/zipfile/`"
-msgstr "**소스 코드:** :source:`Lib/zipfile.py`"
+msgstr "**소스 코드:** :source:`Lib/zipfile/`"
 
 #: ../../library/zipfile.rst:14
 msgid ""
@@ -166,9 +164,8 @@ msgid ""
 msgstr "사용된 형식과 알고리즘의 저자인 Phil Katz의 ZIP 파일 형식에 대한 설명서."
 
 #: ../../library/zipfile.rst:136
-#, fuzzy
 msgid "`Info-ZIP Home Page <https://infozip.sourceforge.net/>`_"
-msgstr "`Info-ZIP 홈페이지 <http://www.info-zip.org/>`_"
+msgstr "`Info-ZIP 홈페이지 <https://infozip.sourceforge.net/>`_"
 
 #: ../../library/zipfile.rst:137
 msgid ""
@@ -300,6 +297,8 @@ msgid ""
 "with ZipFile('spam.zip', 'w') as myzip:\n"
 "    myzip.write('eggs.txt')"
 msgstr ""
+"with ZipFile('spam.zip', 'w') as myzip:\n"
+"    myzip.write('eggs.txt')"
 
 #: ../../library/zipfile.rst:210
 msgid ""
@@ -350,9 +349,8 @@ msgid "Add the *compresslevel* parameter."
 msgstr "*compresslevel* 매개 변수를 추가했습니다."
 
 #: ../../library/zipfile.rst:244
-#, fuzzy
 msgid "The *strict_timestamps* keyword-only parameter."
-msgstr "*strict_timestamps* 키워드 전용 인자"
+msgstr "*strict_timestamps* 키워드 전용 매개 변수"
 
 #: ../../library/zipfile.rst:247
 msgid ""
@@ -391,7 +389,6 @@ msgid "Return a list of archive members by name."
 msgstr "아카이브 멤버의 리스트를 이름으로 반환합니다."
 
 #: ../../library/zipfile.rst:279
-#, fuzzy
 msgid ""
 "Access a member of the archive as a binary file-like object.  *name* can "
 "be either the name of a file within the archive or a :class:`ZipInfo` "
@@ -401,7 +398,7 @@ msgid ""
 msgstr ""
 "아카이브 멤버를 바이너리 파일류 객체로 액세스합니다. *name*\\은 아카이브 내의 파일 이름이거나 :class:`ZipInfo`"
 " 객체일 수 있습니다. 포함될 때 *mode* 매개 변수는 ``'r'``\\(기본값)이거나 ``'w'`` 이어야 합니다. "
-"*pwd*\\는 암호화된 ZIP 파일을 해독하는 데 사용되는 비밀번호입니다."
+"*pwd*\\는 암호화된 ZIP 파일을 해독하는 데 사용되는 :class:`bytes` 객체인 비밀번호입니다."
 
 #: ../../library/zipfile.rst:285
 msgid ""
@@ -415,9 +412,11 @@ msgid ""
 "    with myzip.open('eggs.txt') as myfile:\n"
 "        print(myfile.read())"
 msgstr ""
+"with ZipFile('spam.zip') as myzip:\n"
+"    with myzip.open('eggs.txt') as myfile:\n"
+"        print(myfile.read())"
 
 #: ../../library/zipfile.rst:292
-#, fuzzy
 msgid ""
 "With *mode* ``'r'`` the file-like object (``ZipExtFile``) is read-only "
 "and provides the following methods: :meth:`~io.BufferedIOBase.read`, "
@@ -429,8 +428,8 @@ msgstr ""
 "*mode* ``'r'``\\에서 파일류 객체(``ZipExtFile``)는 읽기 전용이며 다음 메서드를 제공합니다: "
 ":meth:`~io.BufferedIOBase.read`, :meth:`~io.IOBase.readline`, "
 ":meth:`~io.IOBase.readlines`, :meth:`~io.IOBase.seek`, "
-":meth:`~io.IOBase.tell`, :meth:`__iter__`, :meth:`~iterator.__next__`. "
-"이러한 객체는 ZipFile과 독립적으로 작동할 수 있습니다."
+":meth:`~io.IOBase.tell`, :meth:`~container.__iter__`, "
+":meth:`~iterator.__next__`. 이러한 객체는 ZipFile과 독립적으로 작동할 수 있습니다."
 
 #: ../../library/zipfile.rst:299
 msgid ""
@@ -481,11 +480,12 @@ msgstr ""
 "텍스트 파일을 읽으려면 :class:`io.TextIOWrapper`\\를 사용하십시오."
 
 #: ../../library/zipfile.rst:324
-#, fuzzy
 msgid ""
 ":meth:`ZipFile.open` can now be used to write files into the archive with"
 " the ``mode='w'`` option."
-msgstr "이제 :meth:`open`\\은 이제 ``mode='w'`` 옵션으로 파일을 아카이브에 기록하는 데 사용될 수 있습니다."
+msgstr ""
+"이제 :meth:`ZipFile.open`\\은 이제 ``mode='w'`` 옵션으로 파일을 아카이브에 기록하는 데 사용될 수 "
+"있습니다."
 
 #: ../../library/zipfile.rst:328
 msgid ""
@@ -503,7 +503,6 @@ msgid ""
 msgstr ""
 
 #: ../../library/zipfile.rst:341
-#, fuzzy
 msgid ""
 "Extract a member from the archive to the current working directory; "
 "*member* must be its full name or a :class:`ZipInfo` object.  Its file "
@@ -514,7 +513,8 @@ msgid ""
 msgstr ""
 "아카이브에서 현재 작업 디렉터리로 멤버를 추출합니다. *member*\\는 전체 이름이거나 :class:`ZipInfo` 객체여야 "
 "합니다. 파일 정보는 최대한 정확하게 추출됩니다. *path*\\는 추출할 다른 디렉터리를 지정합니다. *member*\\는 파일 "
-"이름이나 :class:`ZipInfo` 객체일 수 있습니다. *pwd*\\는 암호화된 파일에 사용되는 비밀번호입니다."
+"이름이나 :class:`ZipInfo` 객체일 수 있습니다. *pwd*\\는 암호화된 파일에 사용되는 :class:`bytes` "
+"객체인 비밀번호입니다."
 
 #: ../../library/zipfile.rst:347
 msgid "Returns the normalized path created (a directory or new file)."
@@ -549,7 +549,6 @@ msgid "The *path* parameter accepts a :term:`path-like object`."
 msgstr "*path* 매개 변수는 :term:`경로류 객체 <path-like object>`\\를 받아들입니다."
 
 #: ../../library/zipfile.rst:369
-#, fuzzy
 msgid ""
 "Extract all members from the archive to the current working directory.  "
 "*path* specifies a different directory to extract to.  *members* is "
@@ -559,7 +558,7 @@ msgid ""
 msgstr ""
 "아카이브에서 현재 작업 디렉터리로 모든 멤버를 추출합니다. *path*\\는 추출할 다른 디렉터리를 지정합니다. "
 "*members*\\는 선택적이며 :meth:`namelist`\\가 반환한 리스트의 부분 집합이어야 합니다. *pwd*\\는 "
-"암호화된 파일에 사용되는 비밀번호입니다."
+"암호화된 파일에 사용되는 :class:`bytes` 객체인 비밀번호입니다."
 
 #: ../../library/zipfile.rst:376
 msgid ""
@@ -586,14 +585,12 @@ msgid "Print a table of contents for the archive to ``sys.stdout``."
 msgstr "아카이브의 목차를 ``sys.stdout``\\으로 인쇄합니다."
 
 #: ../../library/zipfile.rst:397
-#, fuzzy
 msgid ""
 "Set *pwd* (a :class:`bytes` object) as default password to extract "
 "encrypted files."
-msgstr "암호화된 파일을 추출하기 위해 *pwd*\\를 기본 비밀번호로 설정합니다."
+msgstr "암호화된 파일을 추출하기 위해 *pwd*\\(:class:`bytes` 객체)를 기본 비밀번호로 설정합니다."
 
 #: ../../library/zipfile.rst:402
-#, fuzzy
 msgid ""
 "Return the bytes of the file *name* in the archive.  *name* is the name "
 "of the file in the archive, or a :class:`ZipInfo` object.  The archive "
@@ -607,8 +604,8 @@ msgid ""
 msgstr ""
 "아카이브에서 파일 *name*\\의 바이트열을 반환합니다. *name*\\은 아카이브의 파일 이름이나 :class:`ZipInfo`"
 " 객체입니다. 아카이브는 읽기(read)나 추가(append)로 열려 있어야 합니다. *pwd*\\는 암호화된 파일에 사용되는 "
-"비밀번호이며, 지정되면 :meth:`setpassword`\\로 설정된 기본 비밀번호를 대체합니다. "
-":const:`ZIP_STORED`, :const:`ZIP_DEFLATED`, :const:`ZIP_BZIP2` 또는 "
+":class:`bytes` 객체인 비밀번호이며, 지정되면 :meth:`setpassword`\\로 설정된 기본 비밀번호를 "
+"대체합니다. :const:`ZIP_STORED`, :const:`ZIP_DEFLATED`, :const:`ZIP_BZIP2` 또는 "
 ":const:`ZIP_LZMA` 이외의 압축 방법을 사용하는 ZipFile에서 :meth:`read`\\를 호출하면 "
 ":exc:`NotImplementedError` 가 발생합니다. 해당 압축 모듈을 사용할 수 없는 경우에도 에러가 발생합니다."
 
@@ -824,9 +821,8 @@ msgid "Path objects expose the following features of :mod:`pathlib.Path` objects
 msgstr "Path 객체는 :mod:`pathlib.Path` 객체의 다음 기능을 노출합니다:"
 
 #: ../../library/zipfile.rst:557
-#, fuzzy
 msgid "Path objects are traversable using the ``/`` operator or ``joinpath``."
-msgstr "``/`` 연산자를 사용하여 Path 객체를 순회할 수 있습니다."
+msgstr "``/`` 연산자나 ``joinpath``\\를 사용하여 Path 객체를 순회할 수 있습니다."
 
 #: ../../library/zipfile.rst:561
 msgid "The final path component."
@@ -872,9 +868,8 @@ msgid "Return ``True`` if the current context references a file."
 msgstr "현재 컨텍스트가 파일을 참조하면 ``True``\\를 반환합니다."
 
 #: ../../library/zipfile.rst:598
-#, fuzzy
 msgid "Return ``True`` if the current context references a symbolic link."
-msgstr "현재 컨텍스트가 파일을 참조하면 ``True``\\를 반환합니다."
+msgstr "현재 컨텍스트가 심볼릭 링크를 참조하면 ``True``\\를 반환합니다."
 
 #: ../../library/zipfile.rst:602
 msgid "Previously, ``is_symlink`` would unconditionally return ``False``."
@@ -897,9 +892,8 @@ msgid "Added :data:`Path.suffix` property."
 msgstr ""
 
 #: ../../library/zipfile.rst:620
-#, fuzzy
 msgid "The final path component, without its suffix."
-msgstr "최종 경로 구성 요소."
+msgstr "접미사(suffix)가 없는 최종 경로 구성 요소."
 
 #: ../../library/zipfile.rst:622
 msgid "Added :data:`Path.stem` property."
@@ -938,6 +932,9 @@ msgid ""
 ">>> Path(...).joinpath('child', 'grandchild')\n"
 ">>> Path(...) / 'child' / 'grandchild'"
 msgstr ""
+">>> Path(...).joinpath('child').joinpath('grandchild')\n"
+">>> Path(...).joinpath('child', 'grandchild')\n"
+">>> Path(...) / 'child' / 'grandchild'"
 
 #: ../../library/zipfile.rst:658
 msgid ""
@@ -965,9 +962,8 @@ msgstr ""
 "*optimize*\\를 취합니다."
 
 #: ../../library/zipfile.rst:678
-#, fuzzy
 msgid "Added the *optimize* parameter."
-msgstr "*optimize* 매개 변수."
+msgstr "*optimize* 매개 변수를 추가했습니다."
 
 #: ../../library/zipfile.rst:684
 msgid ""
@@ -1046,6 +1042,12 @@ msgid ""
 "...\n"
 ">>> zf.writepy('myprog', filterfunc=notests)"
 msgstr ""
+">>> zf = PyZipFile('myprog.zip')\n"
+">>> def notests(s):\n"
+"...     fn = os.path.basename(s)\n"
+"...     return (not (fn == 'test' or fn.startswith('test_')))\n"
+"...\n"
+">>> zf.writepy('myprog', filterfunc=notests)"
 
 #: ../../library/zipfile.rst:725
 msgid "The :meth:`writepy` method makes archives with file names like this::"
@@ -1059,11 +1061,15 @@ msgid ""
 "test/bogus/__init__.pyc      # Subpackage directory\n"
 "test/bogus/myfile.pyc        # Submodule test.bogus.myfile"
 msgstr ""
+"string.pyc                   # 최상위 이름\n"
+"test/__init__.pyc            # 패키지 디렉터리\n"
+"test/testall.pyc             # 모듈 test.testall\n"
+"test/bogus/__init__.pyc      # 서브 패키지 디렉터리\n"
+"test/bogus/myfile.pyc        # 서브 모듈 test.bogus.myfile"
 
 #: ../../library/zipfile.rst:734
-#, fuzzy
 msgid "Added the *filterfunc* parameter."
-msgstr "*filterfunc* 매개 변수."
+msgstr "*filterfunc* 매개 변수를 추가했습니다."
 
 #: ../../library/zipfile.rst:737
 msgid "The *pathname* parameter accepts a :term:`path-like object`."
@@ -1117,9 +1123,8 @@ msgid "The *filename* parameter accepts a :term:`path-like object`."
 msgstr "*filename* 매개 변수는 :term:`경로류 객체 <path-like object>`\\를 받아들입니다."
 
 #: ../../library/zipfile.rst:779
-#, fuzzy
 msgid "Added the *strict_timestamps* keyword-only parameter."
-msgstr "*strict_timestamps* 키워드 전용 인자"
+msgstr "*strict_timestamps* 키워드 전용 매개 변수를 추가했습니다."
 
 #: ../../library/zipfile.rst:783
 msgid "Instances have the following methods and attributes:"
@@ -1287,7 +1292,7 @@ msgstr "새 ZIP 아카이브를 만들려면 :option:`-c` 옵션 뒤에 이름�
 
 #: ../../library/zipfile.rst:914
 msgid "$ python -m zipfile -c monty.zip spam.txt eggs.txt"
-msgstr ""
+msgstr "$ python -m zipfile -c monty.zip spam.txt eggs.txt"
 
 #: ../../library/zipfile.rst:918
 msgid "Passing a directory is also acceptable:"
@@ -1295,7 +1300,7 @@ msgstr "디렉터리 전달도 허용됩니다:"
 
 #: ../../library/zipfile.rst:920
 msgid "$ python -m zipfile -c monty.zip life-of-brian_1979/"
-msgstr ""
+msgstr "$ python -m zipfile -c monty.zip life-of-brian_1979/"
 
 #: ../../library/zipfile.rst:924
 msgid ""
@@ -1305,7 +1310,7 @@ msgstr "ZIP 아카이브를 지정된 디렉터리로 추출하려면, :option:`
 
 #: ../../library/zipfile.rst:927
 msgid "$ python -m zipfile -e monty.zip target-dir/"
-msgstr ""
+msgstr "$ python -m zipfile -e monty.zip target-dir/"
 
 #: ../../library/zipfile.rst:931
 msgid "For a list of the files in a ZIP archive, use the :option:`-l` option:"
@@ -1313,7 +1318,7 @@ msgstr "ZIP 아카이브에 있는 파일 목록을 보려면, :option:`-l` 옵�
 
 #: ../../library/zipfile.rst:933
 msgid "$ python -m zipfile -l monty.zip"
-msgstr ""
+msgstr "$ python -m zipfile -l monty.zip"
 
 #: ../../library/zipfile.rst:939
 msgid "Command-line options"
