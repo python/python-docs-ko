@@ -42,7 +42,6 @@ msgstr ""
 " 라이브러리에 있는 내용을 배우고 이 단계를 건너뛸 수 있게 됩니다.)"
 
 #: ../../faq/library.rst:21
-#, fuzzy
 msgid ""
 "For third-party packages, search the `Python Package Index "
 "<https://pypi.org>`_ or try `Google <https://www.google.com>`_ or another"
@@ -92,6 +91,8 @@ msgid ""
 "import sys\n"
 "print(sys.builtin_module_names)"
 msgstr ""
+"import sys\n"
+"print(sys.builtin_module_names)"
 
 #: ../../faq/library.rst:47
 msgid "How do I make a Python script executable on Unix?"
@@ -122,7 +123,7 @@ msgstr "두 번째는 여러 가지 방법으로 수행 할 수 있습니다. �
 
 #: ../../faq/library.rst:59
 msgid "#!/usr/local/bin/python"
-msgstr ""
+msgstr "#!/usr/local/bin/python"
 
 #: ../../faq/library.rst:61
 msgid ""
@@ -143,7 +144,7 @@ msgstr ""
 
 #: ../../faq/library.rst:69
 msgid "#!/usr/bin/env python"
-msgstr ""
+msgstr "#!/usr/bin/env python"
 
 #: ../../faq/library.rst:71
 msgid ""
@@ -171,6 +172,10 @@ msgid ""
 "exec python $0 ${1+\"$@\"}\n"
 "\"\"\""
 msgstr ""
+"#! /bin/sh\n"
+"\"\"\":\"\n"
+"exec python $0 ${1+\"$@\"}\n"
+"\"\"\""
 
 #: ../../faq/library.rst:86
 msgid ""
@@ -180,7 +185,7 @@ msgstr "작은 단점은 이것이 스크립트의 __doc__ 문자열을 정의�
 
 #: ../../faq/library.rst:89
 msgid "__doc__ = \"\"\"...Whatever...\"\"\""
-msgstr ""
+msgstr "__doc__ = \"\"\"...Whatever...\"\"\""
 
 #: ../../faq/library.rst:94
 msgid "Is there a curses/termcap package for Python?"
@@ -214,11 +219,10 @@ msgid "Is there an equivalent to C's onexit() in Python?"
 msgstr "파이썬에 C의 onexit()와 동등한 것이 있습니까?"
 
 #: ../../faq/library.rst:113
-#, fuzzy
 msgid ""
 "The :mod:`atexit` module provides a register function that is similar to "
 "C's :c:func:`!onexit`."
-msgstr ":mod:`atexit` 모듈은 C의 :c:func:`onexit`\\와 유사한 등록 함수를 제공합니다."
+msgstr ":mod:`atexit` 모듈은 C의 :c:func:`!onexit`\\와 유사한 등록 함수를 제공합니다."
 
 #: ../../faq/library.rst:118
 msgid "Why don't my signal handlers work?"
@@ -232,7 +236,7 @@ msgstr "가장 흔한 문제점은 시그널 처리기가 잘못된 인자 목�
 
 #: ../../faq/library.rst:123
 msgid "handler(signum, frame)"
-msgstr ""
+msgstr "handler(signum, frame)"
 
 #: ../../faq/library.rst:125
 msgid "so it should be declared with two parameters::"
@@ -243,6 +247,8 @@ msgid ""
 "def handler(signum, frame):\n"
 "    ..."
 msgstr ""
+"def handler(signum, frame):\n"
+"    ..."
 
 #: ../../faq/library.rst:132
 msgid "Common tasks"
@@ -291,6 +297,8 @@ msgid ""
 "if __name__ == \"__main__\":\n"
 "    main_logic()"
 msgstr ""
+"if __name__ == \"__main__\":\n"
+"    main_logic()"
 
 #: ../../faq/library.rst:157
 msgid "at the bottom of the main module of your program."
@@ -323,6 +331,8 @@ msgid ""
 "if __name__ == \"__main__\":\n"
 "    self_test()"
 msgstr ""
+"if __name__ == \"__main__\":\n"
+"    self_test()"
 
 #: ../../faq/library.rst:173
 msgid ""
@@ -338,7 +348,6 @@ msgid "How do I create documentation from doc strings?"
 msgstr "독스트링으로 설명서를 어떻게 만듭니까?"
 
 #: ../../faq/library.rst:181
-#, fuzzy
 msgid ""
 "The :mod:`pydoc` module can create HTML from the doc strings in your "
 "Python source code.  An alternative for creating API documentation purely"
@@ -346,8 +355,8 @@ msgid ""
 " <https://www.sphinx-doc.org>`_ can also include docstring content."
 msgstr ""
 ":mod:`pydoc` 모듈은 파이썬 소스 코드의 독스트링에서 HTML을 만들 수 있습니다. 순수하게 독스트링에서 API 설명서를 "
-"만드는 대안은 `epydoc <http://epydoc.sourceforge.net/>`_\\입니다. `Sphinx <http"
-"://sphinx-doc.org>`_\\도 독스트링 내용을 포함할 수 있습니다."
+"만드는 대안은 `epydoc <https://epydoc.sourceforge.net/>`_\\입니다. `Sphinx "
+"<https://www.sphinx-doc.org>`_\\도 독스트링 내용을 포함할 수 있습니다."
 
 #: ../../faq/library.rst:188
 msgid "How do I get a single keypress at a time?"
@@ -408,6 +417,17 @@ msgid ""
 "\n"
 "time.sleep(10)  # <---------------------------!"
 msgstr ""
+"import threading, time\n"
+"\n"
+"def thread_task(name, n):\n"
+"    for i in range(n):\n"
+"        print(name, i)\n"
+"\n"
+"for i in range(10):\n"
+"    T = threading.Thread(target=thread_task, args=(str(i), i))\n"
+"    T.start()\n"
+"\n"
+"time.sleep(10)  # <---------------------------!"
 
 #: ../../faq/library.rst:265
 msgid ""
@@ -436,6 +456,16 @@ msgid ""
 "\n"
 "time.sleep(10)"
 msgstr ""
+"def thread_task(name, n):\n"
+"    time.sleep(0.001)  # <--------------------!\n"
+"    for i in range(n):\n"
+"        print(name, i)\n"
+"\n"
+"for i in range(10):\n"
+"    T = threading.Thread(target=thread_task, args=(str(i), i))\n"
+"    T.start()\n"
+"\n"
+"time.sleep(10)"
 
 #: ../../faq/library.rst:282
 msgid ""
@@ -520,6 +550,41 @@ msgid ""
 "print('Main thread sleeping')\n"
 "time.sleep(5)"
 msgstr ""
+"import threading, queue, time\n"
+"\n"
+"# 작업자 스레드는 큐에서 작업을 가져옵니다.\n"
+"# 큐가 비어 있으면, 더는 작업이 없다고 가정하고 종료합니다.\n"
+"# (실제 상황에서는 작업자가 종료할 때까지 실행합니다.)\n"
+"def worker():\n"
+"    print('Running worker')\n"
+"    time.sleep(0.1)\n"
+"    while True:\n"
+"        try:\n"
+"            arg = q.get(block=False)\n"
+"        except queue.Empty:\n"
+"            print('Worker', threading.current_thread(), end=' ')\n"
+"            print('queue empty')\n"
+"            break\n"
+"        else:\n"
+"            print('Worker', threading.current_thread(), end=' ')\n"
+"            print('running with argument', arg)\n"
+"            time.sleep(0.5)\n"
+"\n"
+"# 큐를 만듭니다\n"
+"q = queue.Queue()\n"
+"\n"
+"# 5 작업자의 풀을 시작합니다\n"
+"for i in range(5):\n"
+"    t = threading.Thread(target=worker, name='worker %i' % (i+1))\n"
+"    t.start()\n"
+"\n"
+"# 큐에 작업을 추가하기 시작합니다\n"
+"for i in range(50):\n"
+"    q.put(i)\n"
+"\n"
+"# 스레드가 실행할 시간을 줍니다\n"
+"print('Main thread sleeping')\n"
+"time.sleep(5)"
 
 #: ../../faq/library.rst:340
 msgid "When run, this will produce the following output:"
@@ -547,6 +612,25 @@ msgid ""
 "5\n"
 "..."
 msgstr ""
+"Running worker\n"
+"Running worker\n"
+"Running worker\n"
+"Running worker\n"
+"Running worker\n"
+"Main thread sleeping\n"
+"Worker <Thread(worker 1, started 130283832797456)> running with argument "
+"0\n"
+"Worker <Thread(worker 2, started 130283824404752)> running with argument "
+"1\n"
+"Worker <Thread(worker 3, started 130283816012048)> running with argument "
+"2\n"
+"Worker <Thread(worker 4, started 130283807619344)> running with argument "
+"3\n"
+"Worker <Thread(worker 5, started 130283799226640)> running with argument "
+"4\n"
+"Worker <Thread(worker 1, started 130283832797456)> running with argument "
+"5\n"
+"..."
 
 #: ../../faq/library.rst:358
 msgid ""
@@ -606,6 +690,17 @@ msgid ""
 "D1.update(D2)\n"
 "D.keys()"
 msgstr ""
+"L.append(x)\n"
+"L1.extend(L2)\n"
+"x = L[i]\n"
+"x = L.pop()\n"
+"L1[i:j] = L2\n"
+"L.sort()\n"
+"x = y\n"
+"x.field = y\n"
+"D[x] = y\n"
+"D1.update(D2)\n"
+"D.keys()"
 
 #: ../../faq/library.rst:392
 msgid "These aren't::"
@@ -618,17 +713,21 @@ msgid ""
 "L[i] = L[j]\n"
 "D[x] = D[x] + 1"
 msgstr ""
+"i = i+1\n"
+"L.append(L[-1])\n"
+"L[i] = L[j]\n"
+"D[x] = D[x] + 1"
 
 #: ../../faq/library.rst:399
-#, fuzzy
 msgid ""
 "Operations that replace other objects may invoke those other objects' "
 ":meth:`~object.__del__` method when their reference count reaches zero, "
 "and that can affect things.  This is especially true for the mass updates"
 " to dictionaries and lists.  When in doubt, use a mutex!"
 msgstr ""
-"다른 객체를 대체하는 연산은 객체의 참조 횟수가 0에 도달할 때 그들의 :meth:`__del__` 메서드를 호출할 수 있으며, "
-"이는 영향을 줄 수 있습니다. 이것은 딕셔너리와 리스트의 대량 갱신 때 특히 그렇습니다. 의심스러우면, 뮤텍스를 사용하십시오!"
+"다른 객체를 대체하는 연산은 객체의 참조 횟수가 0에 도달할 때 그들의 :meth:`~object.__del__` 메서드를 호출할 "
+"수 있으며, 이는 영향을 줄 수 있습니다. 이것은 딕셔너리와 리스트의 대량 갱신 때 특히 그렇습니다. 의심스러우면, 뮤텍스를 "
+"사용하십시오!"
 
 #: ../../faq/library.rst:406
 msgid "Can't we get rid of the Global Interpreter Lock?"
@@ -659,7 +758,7 @@ msgid ""
 msgstr ""
 
 #: ../../faq/library.rst:422
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The current work to remove the GIL is based on a `fork of Python 3.9 with"
 " the GIL removed <https://github.com/colesbury/nogil>`_ by Sam Gross. "
@@ -674,14 +773,16 @@ msgid ""
 "  The Python 3.9 fork is the first attempt at removing the GIL with an "
 "acceptable performance impact."
 msgstr ""
-"파이썬 1.5 시절에, Greg Stein은 실제로 GIL을 제거하고 세밀한 록으로 대체한 포괄적인 패치 모음(\"자유로운 "
-"스레딩\" 패치)을 구현했습니다. Adam Olsen은 최근 그의 `python-safethread "
+"현재 GIL을 제거하는 작업은 Sam Gross의 `GIL이 제거된 파이썬 3.9 포크 "
+"<https://github.ckom/colesbury/nogil>`_\\를 기반으로 합니다. 그 이전에는, 파이썬 1.5 시절에,"
+" Greg Stein은 실제로 GIL을 제거하고 세밀한 록으로 대체한 포괄적인 패치 모음(\"자유로운 스레딩\" 패치)을 "
+"구현했습니다. Adam Olsen은 그의 `python-safethread "
 "<https://code.google.com/archive/p/python-safethread>`_ 프로젝트에서 유사한 실험을 "
-"수행했습니다. 불행히도, 두 실험 모두 GIL 제거를 보상하는 데 필요한 세밀한 록의 양으로 인해 단일 스레드 성능이 급격히 "
-"떨어졌습니다 (적어도 30% 더 느립니다)."
+"수행했습니다. 불행히도, 이 두 초기 실험 모두 GIL 제거를 보상하는 데 필요한 세밀한 록의 양으로 인해 단일 스레드 성능이 "
+"급격히 떨어졌습니다 (적어도 30% 더 느립니다). 파이썬 3.9 포크는 성능에 영향을 미치지 않으면서 GIL을 제거하려는 첫 번째"
+" 시도입니다."
 
 #: ../../faq/library.rst:437
-#, fuzzy
 msgid ""
 "The presence of the GIL in current Python releases doesn't mean that you "
 "can't make good use of Python on multi-CPU machines! You just have to be "
@@ -692,9 +793,9 @@ msgid ""
 ":mod:`multiprocessing` module provides a lower-level API in case you want"
 " more control over dispatching of tasks."
 msgstr ""
-"그렇다고 다중 CPU 기계에서 파이썬을 제대로 사용할 수는 없다는 뜻은 아닙니다! 여러 *스레드* 대신에 여러 *프로세스*\\로 "
-"작업을 분할하는 창의력을 발휘해야 합니다. 새로운 :mod:`concurrent.futures` 모듈의 "
-":class:`~concurrent.futures.ProcessPoolExecutor` 클래스는 그렇게 하는 쉬운 방법을 "
+"현재 파이썬 배포판에 GIL이 있다는 것이 다중 CPU 기계에서 파이썬을 제대로 사용할 수는 없다는 뜻은 아닙니다! 여러 *스레드*"
+" 대신에 여러 *프로세스*\\로 작업을 분할하는 창의력을 발휘해야 합니다. 새로운 :mod:`concurrent.futures` "
+"모듈의 :class:`~concurrent.futures.ProcessPoolExecutor` 클래스는 그렇게 하는 쉬운 방법을 "
 "제공합니다; :mod:`multiprocessing` 모듈은 작업 디스패치에 대한 제어를 더 원할 때를 위한 저수준 API를 "
 "제공합니다."
 
@@ -823,6 +924,11 @@ msgid ""
 "    s = f.read(8)\n"
 "    x, y, z = struct.unpack(\">hhl\", s)"
 msgstr ""
+"import struct\n"
+"\n"
+"with open(filename, \"rb\") as f:\n"
+"    s = f.read(8)\n"
+"    x, y, z = struct.unpack(\">hhl\", s)"
 
 #: ../../faq/library.rst:518
 msgid ""
@@ -873,13 +979,12 @@ msgid "How do I access the serial (RS232) port?"
 msgstr "직렬 (RS232) 포트에 어떻게 액세스합니까?"
 
 #: ../../faq/library.rst:625
-#, fuzzy
 msgid "For Win32, OSX, Linux, BSD, Jython, IronPython:"
-msgstr "Win32, POSIX(리눅스, BSD 등), Jython의 경우:"
+msgstr "Win32, OSX, Linux, BSD, Jython, IronPython의 경우:"
 
 #: ../../faq/library.rst:627
 msgid ":pypi:`pyserial`"
-msgstr ""
+msgstr ":pypi:`pyserial`"
 
 #: ../../faq/library.rst:629
 msgid "For Unix, see a Usenet post by Mitch Chapman:"
@@ -938,6 +1043,9 @@ msgid ""
 "os.close(stdout.fileno())\n"
 "os.close(stderr.fileno())"
 msgstr ""
+"os.close(stdin.fileno())\n"
+"os.close(stdout.fileno())\n"
+"os.close(stderr.fileno())"
 
 #: ../../faq/library.rst:659
 msgid "Or you can use the numeric constants 0, 1 and 2, respectively."
@@ -1013,6 +1121,22 @@ msgid ""
 "server.sendmail(fromaddr, toaddrs, msg)\n"
 "server.quit()"
 msgstr ""
+"import sys, smtplib\n"
+"\n"
+"fromaddr = input(\"From: \")\n"
+"toaddrs  = input(\"To: \").split(',')\n"
+"print(\"Enter message, end with ^D:\")\n"
+"msg = ''\n"
+"while True:\n"
+"    line = sys.stdin.readline()\n"
+"    if not line:\n"
+"        break\n"
+"    msg += line\n"
+"\n"
+"# 실제 우편 전송\n"
+"server = smtplib.SMTP('localhost')\n"
+"server.sendmail(fromaddr, toaddrs, msg)\n"
+"server.quit()"
 
 #: ../../faq/library.rst:712
 msgid ""
@@ -1041,6 +1165,18 @@ msgid ""
 "if sts != 0:\n"
 "    print(\"Sendmail exit status\", sts)"
 msgstr ""
+"import os\n"
+"\n"
+"SENDMAIL = \"/usr/sbin/sendmail\"  # sendmail location\n"
+"p = os.popen(\"%s -t -i\" % SENDMAIL, \"w\")\n"
+"p.write(\"To: receiver@example.com\\n\")\n"
+"p.write(\"Subject: test\\n\")\n"
+"p.write(\"\\n\")  # 헤더와 본문을 구분하는 빈 줄\n"
+"p.write(\"Some text\\n\")\n"
+"p.write(\"some more text\\n\")\n"
+"sts = p.close()\n"
+"if sts != 0:\n"
+"    print(\"Sendmail exit status\", sts)"
 
 #: ../../faq/library.rst:732
 msgid "How do I avoid blocking in the connect() method of a socket?"
@@ -1053,7 +1189,6 @@ msgid ""
 msgstr ":mod:`select` 모듈이 소켓의 비동기 I/O를 지원하는 데 흔히 사용됩니다."
 
 #: ../../faq/library.rst:737
-#, fuzzy
 msgid ""
 "To prevent the TCP connect from blocking, you can set the socket to non-"
 "blocking mode.  Then when you do the :meth:`~socket.socket.connect`, you "
@@ -1064,12 +1199,11 @@ msgid ""
 "what's returned on your system."
 msgstr ""
 "TCP 연결이 블록 되지 않도록 하기 위해, 소켓을 비 블로킹 모드로 설정할 수 있습니다. 그런 다음 "
-":meth:`socket.connect`\\를 수행하면, 즉시 연결되거나 (그다지 가능성이 없습니다) 에러 번호를 "
+":meth:`~socket.socket.connect`\\를 수행하면, 즉시 연결되거나 (그다지 가능성이 없습니다) 에러 번호를 "
 "``.errno``\\에 포함하는 예외가 발생합니다. ``errno.EINPROGRESS``\\는 연결이 진행 중이지만, 아직 "
 "완료되지 않았음을 나타냅니다. OS마다 다른 값을 반환해서, 여러분의 시스템에서 무엇이 반환되는지 확인해야 합니다."
 
 #: ../../faq/library.rst:745
-#, fuzzy
 msgid ""
 "You can use the :meth:`~socket.socket.connect_ex` method to avoid "
 "creating an exception. It will just return the errno value. To poll, you "
@@ -1077,13 +1211,12 @@ msgid ""
 "``errno.EISCONN`` indicate that you're connected -- or you can pass this "
 "socket to :meth:`select.select` to check if it's writable."
 msgstr ""
-"예외를 피하려면 :meth:`socket.connect_ex` 메서드를 사용할 수 있습니다. errno 값만 반환합니다. "
-"폴링하려면, 나중에 :meth:`socket.connect_ex`\\를 다시 호출할 수 있습니다 -- ``0``\\이나 "
-"``errno.EISCONN``\\은 연결되었음을 나타냅니다 -- 또는 이 소켓을 :meth:`select.select`\\로 "
-"전달하여 쓸 수 있는지 확인할 수 있습니다."
+"예외를 피하려면 :meth:`~socket.socket.connect_ex` 메서드를 사용할 수 있습니다. errno 값만 "
+"반환합니다. 폴링하려면, 나중에 :meth:`~socket.socket.connect_ex`\\를 다시 호출할 수 있습니다 -- "
+"``0``\\이나 ``errno.EISCONN``\\은 연결되었음을 나타냅니다 -- 또는 이 소켓을 "
+":meth:`select.select`\\로 전달하여 쓸 수 있는지 확인할 수 있습니다."
 
 #: ../../faq/library.rst:753
-#, fuzzy
 msgid ""
 "The :mod:`asyncio` module provides a general purpose single-threaded and "
 "concurrent asynchronous library, which can be used for writing non-"
@@ -1091,8 +1224,8 @@ msgid ""
 "library is a popular and feature-rich alternative."
 msgstr ""
 ":mod:`asyncio` 모듈은 비 블로킹 네트워크 코드를 작성하는 데 사용할 수 있는 범용 단일 스레드 및 동시성 비동기 "
-"라이브러리를 제공합니다. 제삼자 `Twisted <https://twistedmatrix.com/trac/>`_ 라이브러리는 널리 "
-"사용되는 기능이 풍부한 대안입니다."
+"라이브러리를 제공합니다. 제삼자 `Twisted <https://twisted.org/>`_ 라이브러리는 널리 사용되는 기능이 "
+"풍부한 대안입니다."
 
 #: ../../faq/library.rst:761
 msgid "Databases"
@@ -1159,9 +1292,10 @@ msgid ""
 "import random\n"
 "random.random()"
 msgstr ""
+"import random\n"
+"random.random()"
 
 #: ../../faq/library.rst:799
-#, fuzzy
 msgid "This returns a random floating-point number in the range [0, 1)."
 msgstr "이것은 [0, 1) 범위의 무작위 부동 소수점 숫자를 반환합니다."
 
@@ -1174,7 +1308,6 @@ msgid "``randrange(a, b)`` chooses an integer in the range [a, b)."
 msgstr "``randrange(a, b)``\\는 [a, b) 범위의 정수를 선택합니다."
 
 #: ../../faq/library.rst:804
-#, fuzzy
 msgid "``uniform(a, b)`` chooses a floating-point number in the range [a, b)."
 msgstr "``uniform(a, b)``\\는 [a, b) 범위의 부동 소수점 숫자를 선택합니다."
 
