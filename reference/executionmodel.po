@@ -147,7 +147,6 @@ msgstr ""
 "수도 있습니다."
 
 #: ../../reference/executionmodel.rst:89
-#, fuzzy
 msgid ""
 "If a name is bound in a block, it is a local variable of that block, "
 "unless declared as :keyword:`nonlocal` or :keyword:`global`.  If a name "
@@ -157,8 +156,8 @@ msgid ""
 msgstr ""
 "만약 이름이 블록 내에서 연결되면, :keyword:`nonlocal` 이나 :keyword:`global` 로 선언되지 않는 "
 "이상, 그 블록의 지역 변수입니다. 만약 이름이 모듈 수준에서 연결되면, 전역 변수입니다. (모듈 코드 블록의 변수들 지역이면서 "
-"전역입니다.) 만약 변수가 코드 블록에서 사용되지만, 거기에서 정의되지 않았으면 :dfn:`자유 변수 (free variable)`"
-" 입니다."
+"전역입니다.) 만약 변수가 코드 블록에서 사용되지만, 거기에서 정의되지 않았으면 :term:`자유 변수 <free "
+"variable>` 입니다."
 
 #: ../../reference/executionmodel.rst:95
 msgid ""
@@ -207,7 +206,6 @@ msgstr ""
 ":exc:`UnboundLocalError` 는 :exc:`NameError` 의 서브 클래스입니다."
 
 #: ../../reference/executionmodel.rst:127
-#, fuzzy
 msgid ""
 "If a name binding operation occurs anywhere within a code block, all uses"
 " of the name within the block are treated as references to the current "
@@ -221,10 +219,10 @@ msgstr ""
 "만약 이름 연결 연산이 코드 블록 내의 어디에서 건 일어난다면, 그 블록 내에서 그 이름의 모든 사용은 현재 블록을 가리키는 것으로"
 " 취급됩니다. 이것은 연결되기 전에 블록에서 사용될 때 에러로 이어질 수 있습니다. 이 규칙은 미묘합니다. 파이썬에는 "
 "선언(declaration)이 없고, 이름 연결 연산이 코드 블록 내의 어디에서나 일어날 수 있도록 허락합니다. 코드 블록의 지역 "
-"변수는 블록의 텍스트 전체에서 이름 연결 연산을 찾아야 결정될 수 있습니다."
+"변수는 블록의 텍스트 전체에서 이름 연결 연산을 찾아야 결정될 수 있습니다. 예제는 :ref:`UnboundLocalError 에 "
+"관한 FAQ 항목 <faq-unboundlocalerror>`\\을 참조하세요."
 
 #: ../../reference/executionmodel.rst:136
-#, fuzzy
 msgid ""
 "If the :keyword:`global` statement occurs within a block, all uses of the"
 " names specified in the statement refer to the bindings of those names in"
@@ -240,8 +238,9 @@ msgstr ""
 "만약 :keyword:`global` 문이 블록 내에서 나오면, 문장에서 지정한 이름의 모든 사용은 최상위 이름 공간(top-"
 "level namespace)에 연결된 것을 가리키게 됩니다. 최상위 이름 공간에서 이름을 검색한다는 것은, 전역 이름 공간, 즉 "
 "코드 블록을 포함하는 모듈의 이름 공간, 과 내장 이름 공간, 모듈 :mod:`builtins` 의 이름 공간, 을 검색한다는 "
-"뜻입니다. 전역 이름 공간이 먼저 검색됩니다. 거기에서 이름이 발견되지 않으면, 내장 이름 공간을 검색합니다. "
-":keyword:`!global` 문은 그 이름을 사용하기 전에 나와야 합니다."
+"뜻입니다. 전역 이름 공간이 먼저 검색됩니다. 거기에서 이름이 발견되지 않으면, 내장 이름 공간을 다음에 검색합니다. 내장 이름 "
+"공간에서도 이름이 발견되지 않으면, 전역 이름 공간에 새 변수가 만들어집니다. global 문은 나열된 이름을 사용하기 전에 나와야"
+" 합니다."
 
 #: ../../reference/executionmodel.rst:146
 msgid ""
@@ -254,7 +253,6 @@ msgstr ""
 "둘러싸는 스코프가 global 문을 포함한다면, 그 자유 변수는 전역으로 취급됩니다."
 
 #: ../../reference/executionmodel.rst:152
-#, fuzzy
 msgid ""
 "The :keyword:`nonlocal` statement causes corresponding names to refer to "
 "previously bound variables in the nearest enclosing function scope. "
@@ -264,6 +262,7 @@ msgid ""
 msgstr ""
 ":keyword:`nonlocal` 문은 대응하는 이름이 가장 가까이서 둘러싸는 함수 스코프에서 이미 연결된 이름을 가리키도록 "
 "만듭니다. 만약 주어진 이름이 둘러싸는 함수 스코프 어디에도 없다면 컴파일 시점에 :exc:`SyntaxError` 를 일으킵니다."
+" :ref:`형 매개 변수 <type-params>`\\는 :keyword:`!nonlocal` 문으로 재연결할 수 없습니다."
 
 #: ../../reference/executionmodel.rst:160
 msgid ""
@@ -275,7 +274,6 @@ msgstr ""
 " 불립니다."
 
 #: ../../reference/executionmodel.rst:163
-#, fuzzy
 msgid ""
 "Class definition blocks and arguments to :func:`exec` and :func:`eval` "
 "are special in the context of name resolution. A class definition is an "
@@ -293,9 +291,9 @@ msgstr ""
 "클래스 정의 블록과 :func:`exec` 와 :func:`eval` 로 전달되는 인자는 특별한 이름 검색 문맥을 갖습니다. 클래스"
 " 정의는 이름을 사용하고 정의할 수 있는 실행 가능한 문장입니다. 이 참조들은 연결되지 않은 지역 변수를 전역 이름 공간에서 "
 "찾는다는 점을 제외하고는 이름 검색의 일반적인 규칙을 따릅니다. 클래스 정의의 이름 공간은 클래스의 어트리뷰트 딕셔너리가 됩니다. "
-"클래스 블록에서 정의된 이름들의 스코프는 클래스 블록으로 제한됩니다; 메서드들의 코드 블록으로 확대되지 않습니다 -- 이것은 "
-"컴프리헨션과 제너레이터 표현을 포함하는데 이것들이 함수 스코프를 사용해서 구현되기 때문입니다. 이것은 다음과 같은 것이 실패한다는 "
-"뜻입니다::"
+"클래스 블록에서 정의된 이름들의 스코프는 클래스 블록으로 제한됩니다; 메서드들의 코드 블록으로 확대되지 않습니다. 이것은 "
+"컴프리헨션과 제너레이터 표현을 포함하지만, 둘러싸는 클래스 스코프에 액세스하는 :ref:`어노테이션 스코프 <annotation-"
+"scopes>`\\는 포함하지 않습니다. 이것은 다음과 같은 것이 실패한다는 뜻입니다::"
 
 #: ../../reference/executionmodel.rst:176
 msgid ""
@@ -303,6 +301,9 @@ msgid ""
 "    a = 42\n"
 "    b = list(a + i for i in range(10))"
 msgstr ""
+"class A:\n"
+"    a = 42\n"
+"    b = list(a + i for i in range(10))"
 
 #: ../../reference/executionmodel.rst:180
 msgid "However, the following will succeed::"
@@ -316,6 +317,11 @@ msgid ""
 "\n"
 "print(A.Alias.__value__)  # <type 'A.Nested'>"
 msgstr ""
+"class A:\n"
+"    type Alias = Nested\n"
+"    class Nested: pass\n"
+"\n"
+"print(A.Alias.__value__)  # <type 'A.Nested'>"
 
 #: ../../reference/executionmodel.rst:191
 msgid "Annotation scopes"
@@ -446,6 +452,17 @@ msgid ""
 "  ...\n"
 "ZeroDivisionError: division by zero"
 msgstr ""
+">>> type Alias = 1/0\n"
+">>> Alias.__value__\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"ZeroDivisionError: division by zero\n"
+">>> def func[T: 1/0](): pass\n"
+">>> T = func.__type_params__[0]\n"
+">>> T.__bound__\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"ZeroDivisionError: division by zero"
 
 #: ../../reference/executionmodel.rst:267
 msgid ""
@@ -470,6 +487,11 @@ msgid ""
 "type Parenthesized = tuple[Literal[\"(\"], Expr, Literal[\")\"]]\n"
 "type Expr = SimpleExpr | tuple[SimpleExpr, Literal[\"+\", \"-\"], Expr]"
 msgstr ""
+"from typing import Literal\n"
+"\n"
+"type SimpleExpr = int | Parenthesized\n"
+"type Parenthesized = tuple[Literal[\"(\"], Expr, Literal[\")\"]]\n"
+"type Expr = SimpleExpr | tuple[SimpleExpr, Literal[\"+\", \"-\"], Expr]"
 
 #: ../../reference/executionmodel.rst:281
 msgid ""
@@ -529,6 +551,11 @@ msgid ""
 "i = 42\n"
 "f()"
 msgstr ""
+"i = 10\n"
+"def f():\n"
+"    print(i)\n"
+"i = 42\n"
+"f()"
 
 #: ../../reference/executionmodel.rst:326
 msgid ""
@@ -599,7 +626,6 @@ msgstr ""
 "예외가 :exc:`SystemExit` 인 경우를 제외하고, 스택 트레이스백을 인쇄합니다."
 
 #: ../../reference/executionmodel.rst:378
-#, fuzzy
 msgid ""
 "Exceptions are identified by class instances.  The :keyword:`except` "
 "clause is selected depending on the class of the instance: it must "
@@ -609,8 +635,8 @@ msgid ""
 "condition."
 msgstr ""
 "예외는 클래스 인스턴스로 구분됩니다. :keyword:`except` 절은 인스턴스의 클래스에 따라 선택됩니다: 인스턴스의 클래스나"
-" 그것의 베이스 클래스를 가리켜야 합니다. 인스턴스는 핸들러가 수신할 수 있고 예외적인 조건에 대한 추가적인 정보를 포함할 수 "
-"있습니다."
+" 그것의 :term:`비가상(non-virtual) 베이스 클래스 <abstract base class>`\\를 가리켜야 합니다. "
+"인스턴스는 핸들러가 수신할 수 있고 예외적인 조건에 대한 추가적인 정보를 포함할 수 있습니다."
 
 #: ../../reference/executionmodel.rst:386
 msgid ""
@@ -641,120 +667,112 @@ msgid ""
 msgstr "이 한계는 이 연산들 때문에 실행되는 코드가 모듈이 컴파일되는 시점에는 존재하지 않았기 때문입니다."
 
 #: ../../reference/executionmodel.rst:8
-#, fuzzy
 msgid "execution model"
 msgstr "실행 모델"
 
 #: ../../reference/executionmodel.rst:8
 msgid "code"
-msgstr ""
+msgstr "코드"
 
 #: ../../reference/executionmodel.rst:8 ../../reference/executionmodel.rst:17
 msgid "block"
-msgstr ""
+msgstr "블록"
 
 #: ../../reference/executionmodel.rst:31 ../../reference/executionmodel.rst:292
-#, fuzzy
 msgid "execution"
-msgstr "실행 모델"
+msgstr "실행"
 
 #: ../../reference/executionmodel.rst:31
 msgid "frame"
-msgstr ""
+msgstr "프레임"
 
 #: ../../reference/executionmodel.rst:42
 msgid "namespace"
-msgstr ""
+msgstr "이름 공간"
 
 #: ../../reference/executionmodel.rst:42 ../../reference/executionmodel.rst:103
 msgid "scope"
-msgstr ""
+msgstr "스코프"
 
 #: ../../reference/executionmodel.rst:51
 msgid "name"
-msgstr ""
+msgstr "이름"
 
 #: ../../reference/executionmodel.rst:51
-#, fuzzy
 msgid "binding"
-msgstr "이름의 연결"
+msgstr "연결"
 
 #: ../../reference/executionmodel.rst:57
 msgid "from"
-msgstr ""
+msgstr "from"
 
 #: ../../reference/executionmodel.rst:57
 msgid "import statement"
-msgstr ""
+msgstr "임포트 문"
 
 #: ../../reference/executionmodel.rst:87
 msgid "free"
-msgstr ""
+msgstr "자유"
 
 #: ../../reference/executionmodel.rst:87
 msgid "variable"
-msgstr ""
+msgstr "변수"
 
 #: ../../reference/executionmodel.rst:111
 msgid "environment"
-msgstr ""
+msgstr "환경"
 
 #: ../../reference/executionmodel.rst:117
 msgid "NameError (built-in exception)"
-msgstr ""
+msgstr "NameError (내장 예외)"
 
 #: ../../reference/executionmodel.rst:117
 msgid "UnboundLocalError"
-msgstr ""
+msgstr "UnboundLocalError"
 
 #: ../../reference/executionmodel.rst:158
 msgid "module"
-msgstr ""
+msgstr "모듈"
 
 #: ../../reference/executionmodel.rst:158
 msgid "__main__"
-msgstr ""
+msgstr "__main__"
 
 #: ../../reference/executionmodel.rst:292
 msgid "restricted"
-msgstr ""
+msgstr "제한된"
 
 #: ../../reference/executionmodel.rst:342
-#, fuzzy
 msgid "exception"
 msgstr "예외"
 
 #: ../../reference/executionmodel.rst:344
-#, fuzzy
 msgid "raise an exception"
-msgstr "예외"
+msgstr "예외를 발생시키다"
 
 #: ../../reference/executionmodel.rst:344
-#, fuzzy
 msgid "handle an exception"
-msgstr "예외"
+msgstr "예외를 처리하다"
 
 #: ../../reference/executionmodel.rst:344
-#, fuzzy
 msgid "exception handler"
-msgstr "예외"
+msgstr "예외 처리기"
 
 #: ../../reference/executionmodel.rst:344
 msgid "errors"
-msgstr ""
+msgstr "에러"
 
 #: ../../reference/executionmodel.rst:344
 msgid "error handling"
-msgstr ""
+msgstr "에러 처리"
 
 #: ../../reference/executionmodel.rst:365
-#, fuzzy
 msgid "termination model"
-msgstr "실행 모델"
+msgstr "종료 모델"
 
 #: ../../reference/executionmodel.rst:372
 msgid "SystemExit (built-in exception)"
-msgstr ""
+msgstr "SystemExit (내장 예외)"
 
 #~ msgid ""
 #~ "The following constructs bind names: "
