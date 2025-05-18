@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/gettext.rst:2
-#, fuzzy
 msgid ":mod:`!gettext` --- Multilingual internationalization services"
-msgstr ":mod:`gettext` --- 다국어 국제화 서비스"
+msgstr ":mod:`!gettext` --- 다국어 국제화 서비스"
 
 #: ../../library/gettext.rst:10
 msgid "**Source code:** :source:`Lib/gettext.py`"
@@ -97,14 +96,13 @@ msgstr ""
 "않으면 전역 도메인이 *domain*\\으로 설정되어 반환됩니다."
 
 #: ../../library/gettext.rst:59
-#, fuzzy
 msgid ""
 "Return the localized translation of *message*, based on the current "
 "global domain, language, and locale directory.  This function is usually "
 "aliased as :func:`!_` in the local namespace (see examples below)."
 msgstr ""
 "현재 전역 도메인, 언어 및 로케일 디렉터리를 기반으로, *message*\\의 현지화 된 번역을 반환합니다. 이 함수는 일반적으로"
-" 지역 이름 공간에서 :func:`_`\\로 별칭이 지정됩니다 (아래 예를 참조하십시오)."
+" 지역 이름 공간에서 :func:`!_`\\로 별칭이 지정됩니다 (아래 예를 참조하십시오)."
 
 #: ../../library/gettext.rst:66
 msgid "Like :func:`.gettext`, but look the message up in the specified *domain*."
@@ -150,13 +148,12 @@ msgstr ""
 "제한됩니다."
 
 #: ../../library/gettext.rst:101
-#, fuzzy
 msgid ""
 "Note that GNU :program:`gettext` also defines a :func:`!dcgettext` "
 "method, but this was deemed not useful and so it is currently "
 "unimplemented."
 msgstr ""
-"GNU :program:`gettext`\\가 :func:`dcgettext` 메서드도 정의하지만, 이것을 유용하지 않은 것으로 "
+"GNU :program:`gettext`\\가 :func:`!dcgettext` 메서드도 정의하지만, 이것을 유용하지 않은 것으로 "
 "간주해서 현재 구현되지 않았음에 유의하십시오."
 
 #: ../../library/gettext.rst:104
@@ -173,13 +170,19 @@ msgid ""
 "# ...\n"
 "print(_('This is a translatable string.'))"
 msgstr ""
+"import gettext\n"
+"gettext.bindtextdomain('myapplication', '/path/to/my/language/directory')"
+"\n"
+"gettext.textdomain('myapplication')\n"
+"_ = gettext.gettext\n"
+"# ...\n"
+"print(_('This is a translatable string.'))"
 
 #: ../../library/gettext.rst:115
 msgid "Class-based API"
 msgstr "클래스 기반 API"
 
 #: ../../library/gettext.rst:117
-#, fuzzy
 msgid ""
 "The class-based API of the :mod:`gettext` module gives you more "
 "flexibility and greater convenience than the GNU :program:`gettext` API."
@@ -192,7 +195,7 @@ msgstr ""
 ":mod:`gettext` 모듈의 클래스 기반 API는 GNU :program:`gettext` API보다 더 많은 유연성과 "
 "편리성을 제공합니다. 파이썬 응용 프로그램과 모듈을 현지화하는 권장되는 방법입니다. :mod:`!gettext`\\는 GNU "
 ":file:`.mo` 형식 파일의 구문 분석을 구현하고 문자열을 반환하는 메서드가 있는 :class:`GNUTranslations`"
-" 클래스를 정의합니다. 이 클래스의 인스턴스는 내장 이름 공간에 함수 :func:`_`\\로 자신을 설치할 수도 있습니다."
+" 클래스를 정의합니다. 이 클래스의 인스턴스는 내장 이름 공간에 함수 :func:`!_`\\로 자신을 설치할 수도 있습니다."
 
 #: ../../library/gettext.rst:127
 msgid ""
@@ -246,7 +249,6 @@ msgstr ""
 "반환됩니다. *all*\\이 제공되면, 언어 리스트나 환경 변수에 나타나는 순서대로 모든 파일 이름의 리스트를 반환합니다."
 
 #: ../../library/gettext.rst:153
-#, fuzzy
 msgid ""
 "Return a ``*Translations`` instance based on the *domain*, *localedir*, "
 "and *languages*, which are first passed to :func:`find` to get a list of "
@@ -255,13 +257,11 @@ msgid ""
 "*class_* if provided, otherwise :class:`GNUTranslations`.  The class's "
 "constructor must take a single :term:`file object` argument."
 msgstr ""
-"*domain*, *localedir* 및 *languages*\\를 기반으로 하는 :class:`*Translations` "
-"인스턴스를 반환합니다. 이 인스턴스는 연관된 :file:`.mo` 파일 경로 리스트를 얻기 위해 먼저 :func:`find`\\로 "
-"전달됩니다. 동일한 :file:`.mo` 파일 이름을 갖는 인스턴스는 캐시 됩니다. 인스턴스화되는 실제 클래스는 제공된다면 "
+"*domain*, *localedir* 및 *languages*\\를 기반으로 하는 ``*Translations`` 인스턴스를 "
+"반환합니다. 이 인스턴스는 연관된 :file:`.mo` 파일 경로 리스트를 얻기 위해 먼저 :func:`find`\\로 전달됩니다."
+" 동일한 :file:`.mo` 파일 이름을 갖는 인스턴스는 캐시 됩니다. 인스턴스화되는 실제 클래스는 제공된다면 "
 "*class_*\\이고, 그렇지 않으면 :class:`GNUTranslations`\\입니다. 클래스의 생성자는 단일 "
-":term:`파일 객체 <file object>` 인자를 취해야 합니다. 제공되면, *codeset*\\은 "
-":meth:`~NullTranslations.lgettext`\\와 :meth:`~NullTranslations.lngettext`"
-" 메서드에서 번역된 문자열을 인코딩하는 데 사용되는 문자 집합을 변경합니다."
+":term:`파일 객체 <file object>` 인자를 취해야 합니다."
 
 #: ../../library/gettext.rst:160
 msgid ""
@@ -284,24 +284,21 @@ msgstr ""
 "발생시키고, *fallback*\\이 참이면 :class:`NullTranslations` 인스턴스를 반환합니다."
 
 #: ../../library/gettext.rst:169
-#, fuzzy
 msgid ":exc:`IOError` used to be raised, it is now an alias of :exc:`OSError`."
-msgstr ":exc:`OSError` 대신 :exc:`IOError`\\를 발생시킵니다."
+msgstr "이전에는 :exc:`IOError`\\가 발생했지만, 이제는 :exc:`OSError`\\의 별칭입니다."
 
 #: ../../library/gettext.rst:172
-#, fuzzy
 msgid "*codeset* parameter is removed."
-msgstr "*codeset* 매개 변수."
+msgstr "*codeset* 매개 변수를 제거했습니다."
 
 #: ../../library/gettext.rst:177
-#, fuzzy
 msgid ""
 "This installs the function :func:`!_` in Python's builtins namespace, "
 "based on *domain* and *localedir* which are passed to the function "
 ":func:`translation`."
 msgstr ""
-":func:`translation`\\에 전달되는 *domain*, *localedir* 및 *codeset*\\을 기반으로, "
-"파이썬의 내장 이름 공간에 :func:`_` 함수를 설치합니다."
+":func:`translation`\\에 전달되는 *domain* 와 *localedir*\\을 기반으로, 파이썬의 내장 이름 "
+"공간에 :func:`!_` 함수를 설치합니다."
 
 #: ../../library/gettext.rst:180
 msgid ""
@@ -312,32 +309,30 @@ msgstr ""
 " 참조하십시오."
 
 #: ../../library/gettext.rst:183
-#, fuzzy
 msgid ""
 "As seen below, you usually mark the strings in your application that are "
 "candidates for translation, by wrapping them in a call to the :func:`!_` "
 "function, like this::"
 msgstr ""
-"아래에서 볼 수 있듯이, 일반적으로 다음과 같이 :func:`_` 함수에 대한 호출로 래핑하여, 응용 프로그램에 있는 번역 후보 "
+"아래에서 볼 수 있듯이, 일반적으로 다음과 같이 :func:`!_` 함수에 대한 호출로 래핑하여, 응용 프로그램에 있는 번역 후보 "
 "문자열을 표시합니다::"
 
 #: ../../library/gettext.rst:187
 msgid "print(_('This string will be translated.'))"
-msgstr ""
+msgstr "print(_('This string will be translated.'))"
 
 #: ../../library/gettext.rst:189
-#, fuzzy
 msgid ""
 "For convenience, you want the :func:`!_` function to be installed in "
 "Python's builtins namespace, so it is easily accessible in all modules of"
 " your application."
 msgstr ""
-"편의상, :func:`_` 함수를 파이썬의 내장 이름 공간에 설치하여, 응용 프로그램의 모든 모듈에서 쉽게 액세스할 수 있도록 "
+"편의상, :func:`!_` 함수를 파이썬의 내장 이름 공간에 설치하여, 응용 프로그램의 모든 모듈에서 쉽게 액세스할 수 있도록 "
 "합니다."
 
 #: ../../library/gettext.rst:193
 msgid "*names* is now a keyword-only parameter."
-msgstr ""
+msgstr "*names*\\는 이제 키워드 전용 매개 변수입니다."
 
 #: ../../library/gettext.rst:197
 msgid "The :class:`NullTranslations` class"
@@ -422,11 +417,10 @@ msgstr ""
 "파생 클래스에서 재정의됩니다."
 
 #: ../../library/gettext.rst:260
-#, fuzzy
 msgid ""
 "Return a dictionary containing the metadata found in the message catalog "
 "file."
-msgstr "메시지 카탈로그 파일에서 발견된 메타 데이터를 포함하는 딕셔너리인, \"보호된\" :attr:`_info` 변수를 반환합니다."
+msgstr "메시지 카탈로그 파일에서 발견된 메타 데이터를 포함하는 딕셔너리를 반환합니다."
 
 #: ../../library/gettext.rst:266
 msgid "Return the encoding of the message catalog file."
@@ -439,19 +433,17 @@ msgid ""
 msgstr "이 메서드는 :meth:`.gettext`\\를 내장 이름 공간에 설치하여, ``_``\\에 연결합니다."
 
 #: ../../library/gettext.rst:274
-#, fuzzy
 msgid ""
 "If the *names* parameter is given, it must be a sequence containing the "
 "names of functions you want to install in the builtins namespace in "
 "addition to :func:`!_`.  Supported names are ``'gettext'``, "
 "``'ngettext'``, ``'pgettext'``, and ``'npgettext'``."
 msgstr ""
-"*names* 매개 변수가 제공되면, :func:`_`\\에 더해서 내장 이름 공간에 설치하려는 함수 이름이 포함된 시퀀스여야 "
-"합니다. 지원되는 이름은 ``'gettext'``, ``'ngettext'``, ``'pgettext'``, "
-"``'npgettext'``, ``'lgettext'`` 및 ``'lngettext'`` 입니다."
+"*names* 매개 변수가 제공되면, :func:`!_`\\에 더해서 내장 이름 공간에 설치하려는 함수 이름이 포함된 시퀀스여야 "
+"합니다. 지원되는 이름은 ``'gettext'``, ``'ngettext'``, ``'pgettext'`` 및 "
+"``'npgettext'`` 입니다."
 
 #: ../../library/gettext.rst:279
-#, fuzzy
 msgid ""
 "Note that this is only one way, albeit the most convenient way, to make "
 "the :func:`!_` function available to your application.  Because it "
@@ -459,9 +451,9 @@ msgid ""
 "namespace, localized modules should never install :func:`!_`. Instead, "
 "they should use this code to make :func:`!_` available to their module::"
 msgstr ""
-"이것은 :func:`_` 함수를 응용 프로그램에서 사용할 수 있게 하는 가장 편리한 방법이지만, 한 가지 방법일 뿐입니다. 전체 "
-"응용 프로그램, 특히 내장 이름 공간에 영향을 주기 때문에, 현지화된 모듈은 절대 :func:`_`\\를 설치하지 않아야 합니다. "
-"대신, 다음과 같은 코드를 사용하여 :func:`_`\\를 모듈에서 사용할 수 있게 해야 합니다::"
+"이것은 :func:`!_` 함수를 응용 프로그램에서 사용할 수 있게 하는 가장 편리한 방법이지만, 한 가지 방법일 뿐입니다. 전체 "
+"응용 프로그램, 특히 내장 이름 공간에 영향을 주기 때문에, 현지화된 모듈은 절대 :func:`!_`\\를 설치하지 않아야 합니다."
+" 대신, 다음과 같은 코드를 사용하여 :func:`!_`\\를 모듈에서 사용할 수 있게 해야 합니다::"
 
 #: ../../library/gettext.rst:285
 msgid ""
@@ -469,13 +461,15 @@ msgid ""
 "t = gettext.translation('mymodule', ...)\n"
 "_ = t.gettext"
 msgstr ""
+"import gettext\n"
+"t = gettext.translation('mymodule', ...)\n"
+"_ = t.gettext"
 
 #: ../../library/gettext.rst:289
-#, fuzzy
 msgid ""
 "This puts :func:`!_` only in the module's global namespace and so only "
 "affects calls within this module."
-msgstr "이는 :func:`_`\\를 모듈의 전역 이름 공간에만 넣기 때문에 이 모듈 내에서의 호출에만 영향을 줍니다."
+msgstr "이는 :func:`!_`\\를 모듈의 전역 이름 공간에만 넣기 때문에 이 모듈 내에서의 호출에만 영향을 줍니다."
 
 #: ../../library/gettext.rst:292
 msgid "Added ``'pgettext'`` and ``'npgettext'``."
@@ -486,19 +480,17 @@ msgid "The :class:`GNUTranslations` class"
 msgstr ":class:`GNUTranslations` 클래스"
 
 #: ../../library/gettext.rst:299
-#, fuzzy
 msgid ""
 "The :mod:`!gettext` module provides one additional class derived from "
 ":class:`NullTranslations`: :class:`GNUTranslations`.  This class "
 "overrides :meth:`!_parse` to enable reading GNU :program:`gettext` format"
 " :file:`.mo` files in both big-endian and little-endian format."
 msgstr ""
-":mod:`gettext` 모듈은 :class:`NullTranslations`\\에서 파생된 클래스를 하나 더 제공합니다: "
-":class:`GNUTranslations`. 이 클래스는 :meth:`_parse`\\를 재정의하여 빅 엔디안과 리틀 엔디안 "
+":mod:`!gettext` 모듈은 :class:`NullTranslations`\\에서 파생된 클래스를 하나 더 제공합니다: "
+":class:`GNUTranslations`. 이 클래스는 :meth:`!_parse`\\를 재정의하여 빅 엔디안과 리틀 엔디안 "
 "형식의 GNU :program:`gettext` 형식 :file:`.mo` 파일을 읽을 수 있도록 합니다."
 
 #: ../../library/gettext.rst:304
-#, fuzzy
 msgid ""
 ":class:`GNUTranslations` parses optional metadata out of the translation "
 "catalog. It is convention with GNU :program:`gettext` to include metadata"
@@ -514,25 +506,23 @@ msgstr ""
 ":class:`GNUTranslations`\\는 번역 카탈로그에서 선택적 메타 데이터를 구문 분석합니다. 빈 문자열의 번역으로 "
 "메타 데이터를 포함하는 것이 GNU :program:`gettext`\\의 관례입니다. 이 메타 데이터는 :rfc:`822` 스타일"
 " ``key: value`` 쌍이며, ``Project-Id-Version`` 키를 포함해야 합니다. 키 ``Content-"
-"Type``\\이 발견되면, ``charset`` 프로퍼티를 사용하여 \"보호된\" :attr:`_charset` 인스턴스 변수를 "
-"초기화하고, 찾을 수 없으면 기본값은 ``None``\\입니다. 문자 집합 인코딩이 지정되면, 카탈로그에서 읽은 모든 메시지 id와"
-" 메시지 문자열이 이 인코딩을 사용하여 유니코드로 변환되고, 그렇지 않으면 ASCII로 가정합니다."
+"Type``\\이 발견되면, ``charset`` 프로퍼티를 사용하여 \"보호된\" :attr:`!_charset` 인스턴스 변수를"
+" 초기화하고, 찾을 수 없으면 기본값은 ``None``\\입니다. 문자 집합 인코딩이 지정되면, 카탈로그에서 읽은 모든 메시지 "
+"id와 메시지 문자열이 이 인코딩을 사용하여 유니코드로 변환되고, 그렇지 않으면 ASCII로 가정합니다."
 
 #: ../../library/gettext.rst:314
-#, fuzzy
 msgid ""
 "Since message ids are read as Unicode strings too, all ``*gettext()`` "
 "methods will assume message ids as Unicode strings, not byte strings."
 msgstr ""
-"메시지 id도 유니코드 문자열로 읽기 때문에, 모든 :meth:`*gettext` 메서드는 메시지 id를 바이트 문자열이 아닌 "
-"유니코드 문자열로 가정합니다."
+"메시지 id도 유니코드 문자열로 읽기 때문에, 모든 ``*gettext()`` 메서드는 메시지 id를 바이트 문자열이 아닌 유니코드"
+" 문자열로 가정합니다."
 
 #: ../../library/gettext.rst:317
-#, fuzzy
 msgid ""
 "The entire set of key/value pairs are placed into a dictionary and set as"
 " the \"protected\" :attr:`!_info` instance variable."
-msgstr "키/값 쌍의 전체 집합이 딕셔너리에 배치되고 \"보호된\" :attr:`_info` 인스턴스 변수로 설정됩니다."
+msgstr "키/값 쌍의 전체 집합이 딕셔너리에 배치되고 \"보호된\" :attr:`!_info` 인스턴스 변수로 설정됩니다."
 
 #: ../../library/gettext.rst:320
 msgid ""
@@ -595,6 +585,12 @@ msgid ""
 "    'There are %(num)d files in this directory',\n"
 "    n) % {'num': n}"
 msgstr ""
+"n = len(os.listdir('.'))\n"
+"cat = GNUTranslations(somefile)\n"
+"message = cat.ngettext(\n"
+"    'There is %(num)d file in this directory',\n"
+"    'There are %(num)d files in this directory',\n"
+"    n) % {'num': n}"
 
 #: ../../library/gettext.rst:360
 msgid ""
@@ -661,15 +657,18 @@ msgid ""
 "_ = cat.gettext\n"
 "print(_('hello world'))"
 msgstr ""
+"import gettext\n"
+"cat = gettext.Catalog(domain, localedir)\n"
+"_ = cat.gettext\n"
+"print(_('hello world'))"
 
 #: ../../library/gettext.rst:404
-#, fuzzy
 msgid ""
 "For compatibility with this older module, the function :func:`!Catalog` "
 "is an alias for the :func:`translation` function described above."
 msgstr ""
-"이 이전 모듈과의 호환성을 위해, 함수 :func:`Catalog`\\는 위에서 설명한 :func:`translation` 함수의 "
-"별칭입니다."
+"이 이전 모듈과의 호환성을 위해, 함수 :func:`!Catalog`\\는 위에서 설명한 :func:`translation` 함수의"
+" 별칭입니다."
 
 #: ../../library/gettext.rst:407
 msgid ""
@@ -716,7 +715,6 @@ msgid ""
 msgstr "메시지 문자열이 올바르게 번역되도록 :mod:`gettext` 모듈을 사용합니다"
 
 #: ../../library/gettext.rst:430
-#, fuzzy
 msgid ""
 "In order to prepare your code for I18N, you need to look at all the "
 "strings in your files.  Any string that needs to be translated should be "
@@ -724,7 +722,8 @@ msgid ""
 " :func:`_ <gettext>`.  For example::"
 msgstr ""
 "I18N을 위해 여러분의 코드를 준비하려면, 파일의 모든 문자열을 확인해야 합니다. 번역해야 할 모든 문자열은 "
-"``_('...')``\\로 감싸서 표시해야 합니다 --- 즉, 함수 :func:`_`\\에 대한 호출. 예를 들면::"
+"``_('...')``\\로 감싸서 표시해야 합니다 --- 즉, 함수 :func:`_ <gettext>`\\에 대한 호출. 예를 "
+"들면::"
 
 #: ../../library/gettext.rst:434
 msgid ""
@@ -733,6 +732,10 @@ msgid ""
 "with open(filename, 'w') as fp:\n"
 "    fp.write(message)"
 msgstr ""
+"filename = 'mylog.txt'\n"
+"message = _('writing a log message')\n"
+"with open(filename, 'w') as fp:\n"
+"    fp.write(message)"
 
 #: ../../library/gettext.rst:439
 msgid ""
@@ -744,7 +747,6 @@ msgstr ""
 "``'mylog.txt'``\\와 ``'w'``\\는 그렇지 않습니다."
 
 #: ../../library/gettext.rst:442
-#, fuzzy
 msgid ""
 "There are a few tools to extract the strings meant for translation. The "
 "original GNU :program:`gettext` only supported C or C++ source code but "
@@ -758,10 +760,10 @@ msgid ""
 msgstr ""
 "번역을 위한 문자열을 추출하는 몇 가지 도구가 있습니다. 원래 GNU :program:`gettext`\\는 C나 C++ 소스 "
 "코드만 지원했지만, 확장 버전 :program:`xgettext`\\는 파이썬을 포함하여 여러 언어로 작성된 코드를 스캔하여 번역 "
-"가능으로 표시된 문자열을 찾습니다. `Babel <http://babel.pocoo.org/>`__\\은 메시지 카탈로그를 추출하고"
-" 컴파일하는 :file:`pybabel` 스크립트를 포함하는 파이썬 국제화 라이브러리입니다. :program:`xpot`\\이라는 "
-"François Pinard의 프로그램도 비슷한 작업을 수행하며 그의 `po-utils 패키지 "
-"<https://github.com/pinard/po-utils>`__\\의 일부로 제공됩니다."
+"가능으로 표시된 문자열을 찾습니다. `Babel <https://babel.pocoo.org/>`__\\은 메시지 카탈로그를 "
+"추출하고 컴파일하는 :file:`pybabel` 스크립트를 포함하는 파이썬 국제화 라이브러리입니다. "
+":program:`xpot`\\이라는 François Pinard의 프로그램도 비슷한 작업을 수행하며 그의 `po-utils 패키지"
+" <https://github.com/pinard/po-utils>`__\\의 일부로 제공됩니다."
 
 #: ../../library/gettext.rst:452
 msgid ""
@@ -850,13 +852,15 @@ msgid ""
 "t = gettext.translation('spam', '/usr/share/locale')\n"
 "_ = t.gettext"
 msgstr ""
+"import gettext\n"
+"t = gettext.translation('spam', '/usr/share/locale')\n"
+"_ = t.gettext"
 
 #: ../../library/gettext.rst:502
 msgid "Localizing your application"
 msgstr "응용 프로그램 현지화"
 
 #: ../../library/gettext.rst:504
-#, fuzzy
 msgid ""
 "If you are localizing your application, you can install the :func:`!_` "
 "function globally into the built-in namespace, usually in the main driver"
@@ -864,8 +868,8 @@ msgid ""
 "files just use ``_('...')`` without having to explicitly install it in "
 "each file."
 msgstr ""
-"응용 프로그램을 현지화한다면, :func:`_` 함수를 전역적으로 내장 이름 공간에 설치할 수 있습니다, 일반적으로 응용 프로그램의"
-" 메인 드라이버 파일에서. 이렇게 하면 모든 응용 프로그램별 파일이 각 파일에 명시적으로 설치하지 않고도 "
+"응용 프로그램을 현지화한다면, :func:`!_` 함수를 전역적으로 내장 이름 공간에 설치할 수 있습니다, 일반적으로 응용 "
+"프로그램의 메인 드라이버 파일에서. 이렇게 하면 모든 응용 프로그램별 파일이 각 파일에 명시적으로 설치하지 않고도 "
 "``_('...')``\\를 사용할 수 있습니다."
 
 #: ../../library/gettext.rst:509
@@ -879,6 +883,8 @@ msgid ""
 "import gettext\n"
 "gettext.install('myapplication')"
 msgstr ""
+"import gettext\n"
+"gettext.install('myapplication')"
 
 #: ../../library/gettext.rst:515
 msgid ""
@@ -891,6 +897,8 @@ msgid ""
 "import gettext\n"
 "gettext.install('myapplication', '/usr/share/locale')"
 msgstr ""
+"import gettext\n"
+"gettext.install('myapplication', '/usr/share/locale')"
 
 #: ../../library/gettext.rst:523
 msgid "Changing languages on the fly"
@@ -920,6 +928,20 @@ msgid ""
 "# ... more time goes by, user selects language 3\n"
 "lang3.install()"
 msgstr ""
+"import gettext\n"
+"\n"
+"lang1 = gettext.translation('myapplication', languages=['en'])\n"
+"lang2 = gettext.translation('myapplication', languages=['fr'])\n"
+"lang3 = gettext.translation('myapplication', languages=['de'])\n"
+"\n"
+"# 언어 1을 사용하는 것으로 시작합니다\n"
+"lang1.install()\n"
+"\n"
+"# ... 시간이 지난 후에, 사용자가 언어 2를 선택합니다\n"
+"lang2.install()\n"
+"\n"
+"# ... 시간이 더 흐른 후에, 사용자가 언어 3을 선택합니다\n"
+"lang3.install()"
 
 #: ../../library/gettext.rst:546
 msgid "Deferred translations"
@@ -945,6 +967,14 @@ msgid ""
 "for a in animals:\n"
 "    print(a)"
 msgstr ""
+"animals = ['mollusk',\n"
+"           'albatross',\n"
+"           'rat',\n"
+"           'penguin',\n"
+"           'python', ]\n"
+"# ...\n"
+"for a in animals:\n"
+"    print(a)"
 
 #: ../../library/gettext.rst:561
 msgid ""
@@ -975,9 +1005,21 @@ msgid ""
 "for a in animals:\n"
 "    print(_(a))"
 msgstr ""
+"def _(message): return message\n"
+"\n"
+"animals = [_('mollusk'),\n"
+"           _('albatross'),\n"
+"           _('rat'),\n"
+"           _('penguin'),\n"
+"           _('python'), ]\n"
+"\n"
+"del _\n"
+"\n"
+"# ...\n"
+"for a in animals:\n"
+"    print(_(a))"
 
 #: ../../library/gettext.rst:581
-#, fuzzy
 msgid ""
 "This works because the dummy definition of :func:`!_` simply returns the "
 "string unchanged.  And this dummy definition will temporarily override "
@@ -985,18 +1027,17 @@ msgid ""
 ":keyword:`del` command). Take care, though if you have a previous "
 "definition of :func:`!_` in the local namespace."
 msgstr ""
-"이것이 작동하는 이유는 :func:`_`\\의 더미 정의가 단순히 문자열을 변경하지 않고 반환하기 때문입니다. 그리고 이 더미 "
-"정의는 내장 이름 공간에서 :func:`_`\\의 정의를 일시적으로 재정의합니다 (:keyword:`del` 명령까지). 지역 이름"
-" 공간에 :func:`_`\\의 이전 정의가 있다면 주의하십시오."
+"이것이 작동하는 이유는 :func:`!_`\\의 더미 정의가 단순히 문자열을 변경하지 않고 반환하기 때문입니다. 그리고 이 더미 "
+"정의는 내장 이름 공간에서 :func:`!_`\\의 정의를 일시적으로 재정의합니다 (:keyword:`del` 명령까지). 지역 "
+"이름 공간에 :func:`!_`\\의 이전 정의가 있다면 주의하십시오."
 
 #: ../../library/gettext.rst:587
-#, fuzzy
 msgid ""
 "Note that the second use of :func:`!_` will not identify \"a\" as being "
 "translatable to the :program:`gettext` program, because the parameter is "
 "not a string literal."
 msgstr ""
-":func:`_`\\의 두 번째 사용은 매개 변수가 문자열 리터럴이 아니기 때문에 :program:`gettext` 프로그램이 "
+":func:`!_`\\의 두 번째 사용은 매개 변수가 문자열 리터럴이 아니기 때문에 :program:`gettext` 프로그램이 "
 "\"a\"를 번역 가능하다고 식별하지 않음에 유의하십시오."
 
 #: ../../library/gettext.rst:591
@@ -1017,9 +1058,19 @@ msgid ""
 "for a in animals:\n"
 "    print(_(a))"
 msgstr ""
+"def N_(message): return message\n"
+"\n"
+"animals = [N_('mollusk'),\n"
+"           N_('albatross'),\n"
+"           N_('rat'),\n"
+"           N_('penguin'),\n"
+"           N_('python'), ]\n"
+"\n"
+"# ...\n"
+"for a in animals:\n"
+"    print(_(a))"
 
 #: ../../library/gettext.rst:605
-#, fuzzy
 msgid ""
 "In this case, you are marking translatable strings with the function "
 ":func:`!N_`, which won't conflict with any definition of :func:`!_`. "
@@ -1030,11 +1081,11 @@ msgid ""
 "The choice of :func:`!N_` here is totally arbitrary; it could have just "
 "as easily been :func:`!MarkThisStringForTranslation`."
 msgstr ""
-"이 경우, 번역 가능한 문자열을 :func:`N_` 함수로 표시하는데, :func:`_`\\의 정의와 충돌하지 않습니다. 그러나, "
-":func:`N_`\\로 표시된 번역 가능한 문자열을 찾도록 메시지 추출 프로그램을 가르쳐야 할 필요가 있습니다. "
+"이 경우, 번역 가능한 문자열을 :func:`!N_` 함수로 표시하는데, :func:`!_`\\의 정의와 충돌하지 않습니다. "
+"그러나, :func:`!N_`\\로 표시된 번역 가능한 문자열을 찾도록 메시지 추출 프로그램을 가르쳐야 할 필요가 있습니다. "
 ":program:`xgettext`, :program:`pygettext`, ``pybabel extract`` 및 "
 ":program:`xpot`\\은 모두 :option:`!-k` 명령 줄 스위치를 사용하여 이를 지원합니다. 여기서 "
-":func:`N_`\\의 선택은 완전히 임의적입니다; :func:`MarkThisStringForTranslation`\\처럼 "
+":func:`!N_`\\의 선택은 완전히 임의적입니다; :func:`!MarkThisStringForTranslation`\\처럼 "
 "무엇이든 될 수 있습니다."
 
 #: ../../library/gettext.rst:616
@@ -1085,7 +1136,7 @@ msgid "Footnotes"
 msgstr "각주"
 
 #: ../../library/gettext.rst:639
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "The default locale directory is system dependent; for example, on Red Hat"
 " Linux it is :file:`/usr/share/locale`, but on Solaris it is "
@@ -1095,9 +1146,9 @@ msgid ""
 " this reason, it is always best to call :func:`bindtextdomain` with an "
 "explicit absolute path at the start of your application."
 msgstr ""
-"기본 로케일 디렉터리는 시스템에 따라 다릅니다; 예를 들어 RedHat 리눅스에서는 "
+"기본 로케일 디렉터리는 시스템에 따라 다릅니다; 예를 들어 Red Hat 리눅스에서는 "
 ":file:`/usr/share/locale`\\이지만, Solaris에서는 :file:`/usr/lib/locale`\\입니다. "
-":mod:`gettext` 모듈은 이러한 시스템 종속 기본값을 지원하려고 하지 않습니다; 대신 기본값은 "
+":mod:`!gettext` 모듈은 이러한 시스템 종속 기본값을 지원하려고 하지 않습니다; 대신 기본값은 "
 ":file:`{sys.base_prefix}/share/locale`\\입니다 (:data:`sys.base_prefix`\\를 "
 "참조하십시오). 이런 이유로, 항상 응용 프로그램 시작 시 명시적 절대 경로를 사용하여 "
 ":func:`bindtextdomain`\\을 호출하는 것이 가장 좋습니다."
@@ -1108,110 +1159,13 @@ msgstr "위의 :func:`bindtextdomain`\\에 대한 각주를 참조하십시오."
 
 #: ../../library/gettext.rst:56
 msgid "_ (underscore)"
-msgstr ""
+msgstr "_ (언더스코어)"
 
 #: ../../library/gettext.rst:56
 msgid "gettext"
-msgstr ""
+msgstr "gettext"
 
 #: ../../library/gettext.rst:394
 msgid "GNOME"
-msgstr ""
-
-#~ msgid ""
-#~ "Bind the *domain* to *codeset*, changing"
-#~ " the encoding of byte strings "
-#~ "returned by the :func:`lgettext`, "
-#~ ":func:`ldgettext`, :func:`lngettext` and "
-#~ ":func:`ldngettext` functions. If *codeset* is"
-#~ " omitted, then the current binding is"
-#~ " returned."
-#~ msgstr ""
-#~ "*domain*\\을 *codeset*\\에 바인드하여, :func:`lgettext`,"
-#~ " :func:`ldgettext`, :func:`lngettext` 및 "
-#~ ":func:`ldngettext` 함수에 의해 반환되는 바이트 문자열의"
-#~ " 인코딩을 변경합니다. *codeset*\\이 생략되면, 현재 "
-#~ "바인딩이 반환됩니다."
-
-#~ msgid ""
-#~ "Equivalent to the corresponding functions "
-#~ "without the ``l`` prefix (:func:`.gettext`,"
-#~ " :func:`dgettext`, :func:`ngettext` and "
-#~ ":func:`dngettext`), but the translation is "
-#~ "returned as a byte string encoded "
-#~ "in the preferred system encoding if "
-#~ "no other encoding was explicitly set "
-#~ "with :func:`bind_textdomain_codeset`."
-#~ msgstr ""
-#~ "``l`` 접두어가 없는 해당 함수(:func:`.gettext`, "
-#~ ":func:`dgettext`, :func:`ngettext` 및 "
-#~ ":func:`dngettext`)와 동등하지만, "
-#~ ":func:`bind_textdomain_codeset`\\으로 명시적으로 설정된 다른 "
-#~ "인코딩이 없으면 선호하는 시스템 인코딩으로 인코딩된 바이트"
-#~ " 문자열로 번역이 반환됩니다."
-
-#~ msgid ""
-#~ "These functions should be avoided in "
-#~ "Python 3, because they return encoded"
-#~ " bytes.  It's much better to use "
-#~ "alternatives which return Unicode strings "
-#~ "instead, since most Python applications "
-#~ "will want to manipulate human readable"
-#~ " text as strings instead of bytes."
-#~ "  Further, it's possible that you may"
-#~ " get unexpected Unicode-related exceptions"
-#~ " if there are encoding problems with"
-#~ " the translated strings."
-#~ msgstr ""
-#~ "이 함수는 인코딩된 바이트열을 반환해서, 파이썬 3에서는"
-#~ " 피해야 합니다. 대부분의 파이썬 응용 프로그램은 사람이"
-#~ " 읽을 수 있는 텍스트를 바이트열 대신 문자열로 "
-#~ "조작하기를 원하기 때문에, 유니코드 문자열을 반환하는 대안을"
-#~ " 사용하는 것이 훨씬 좋습니다. 또한, 번역된 문자열에"
-#~ " 인코딩 문제가 있으면 예기치 않은 유니코드 관련 "
-#~ "예외가 발생할 수 있습니다."
-
-#~ msgid ""
-#~ "Equivalent to :meth:`.gettext` and "
-#~ ":meth:`.ngettext`, but the translation is "
-#~ "returned as a byte string encoded "
-#~ "in the preferred system encoding if "
-#~ "no encoding was explicitly set with "
-#~ ":meth:`set_output_charset`. Overridden in derived"
-#~ " classes."
-#~ msgstr ""
-#~ ":meth:`.gettext` 및 :meth:`.ngettext`\\와 동등하지만, "
-#~ ":meth:`set_output_charset`\\으로 인코딩을 명시적으로 설정하지 "
-#~ "않았으면 선호하는 시스템 인코딩으로 인코딩된 바이트 문자열로"
-#~ " 번역이 반환됩니다. 파생 클래스에서 재정의됩니다."
-
-#~ msgid ""
-#~ "These methods should be avoided in "
-#~ "Python 3.  See the warning for the"
-#~ " :func:`lgettext` function."
-#~ msgstr "이 메서드들은 파이썬 3에서 피해야 합니다. :func:`lgettext` 함수에 대한 경고를 참조하십시오."
-
-#~ msgid ""
-#~ "Return the encoding used to return "
-#~ "translated messages in :meth:`.lgettext` and"
-#~ " :meth:`.lngettext`."
-#~ msgstr ""
-#~ ":meth:`.lgettext`\\와 :meth:`.lngettext`\\에서 번역된 메시지를"
-#~ " 반환하는 데 사용되는 인코딩을 반환합니다."
-
-#~ msgid "Change the encoding used to return translated messages."
-#~ msgstr "번역된 메시지를 반환하는 데 사용되는 인코딩을 변경합니다."
-
-#~ msgid ""
-#~ "Equivalent to :meth:`.gettext` and "
-#~ ":meth:`.ngettext`, but the translation is "
-#~ "returned as a byte string encoded "
-#~ "in the preferred system encoding if "
-#~ "no encoding  was explicitly set with "
-#~ ":meth:`~NullTranslations.set_output_charset`."
-#~ msgstr ""
-#~ ":meth:`.gettext`\\와 :meth:`.ngettext`\\와 동등하지만, "
-#~ ":meth:`~NullTranslations.set_output_charset`\\으로 인코딩이 "
-#~ "명시적으로 설정되지 않았으면 선호하는 시스템 인코딩으로 "
-#~ "인코딩된 바이트 문자열로 번역이 반환됩니다."
+msgstr "GNOME"
 
