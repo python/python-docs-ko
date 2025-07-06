@@ -82,6 +82,22 @@ msgid ""
 "        a, b = b, a+b\n"
 "    return result"
 msgstr ""
+"# 피보나치 수 모듈\n"
+"\n"
+"def fib(n):    # n 보다 작은 피보나치 수열을 인쇄합니다\n"
+"    a, b = 0, 1\n"
+"    while a < n:\n"
+"        print(a, end=' ')\n"
+"        a, b = b, a+b\n"
+"    print()\n"
+"\n"
+"def fib2(n):   # n 보다 작은 피보나치 수열을 돌려줍니다\n"
+"    result = []\n"
+"    a, b = 0, 1\n"
+"    while a < n:\n"
+"        result.append(a)\n"
+"        a, b = b, a+b\n"
+"    return result"
 
 #: ../../tutorial/modules.rst:45
 msgid ""
@@ -91,18 +107,18 @@ msgstr "이제 파이썬 인터프리터에 들어가서 이 모듈을 다음과
 
 #: ../../tutorial/modules.rst:48
 msgid ">>> import fibo"
-msgstr ""
+msgstr ">>> import fibo"
 
 #: ../../tutorial/modules.rst:50
-#, fuzzy
 msgid ""
 "This does not add the names of the functions defined in ``fibo``  "
 "directly to the current :term:`namespace` (see :ref:`tut-scopes` for more"
 " details); it only adds the module name ``fibo`` there. Using the module "
 "name you can access the functions::"
 msgstr ""
-"이렇게 한다고 ``fibo`` 에 정의된 함수들의 이름이 현재 심볼 테이블에 직접 들어가지는 않습니다; 오직 모듈 이름 "
-"``fibo`` 만 들어갈 뿐입니다. 이 모듈 이름을 사용해서 함수들을 액세스할 수 있습니다::"
+"이렇게 한다고 ``fibo`` 에 정의된 함수들의 이름을 현재 :term:`이름 공간 <namespace>`\\에 직접 추가하지는 "
+"않습니다 (자세한 내용은 :ref:`tut-scopes`\\를 참조하세요); 오직 모듈 이름 ``fibo`` 만 추가할 뿐입니다. "
+"이 모듈 이름을 사용해서 함수들을 액세스할 수 있습니다::"
 
 #: ../../tutorial/modules.rst:55
 msgid ""
@@ -113,6 +129,12 @@ msgid ""
 ">>> fibo.__name__\n"
 "'fibo'"
 msgstr ""
+">>> fibo.fib(1000)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987\n"
+">>> fibo.fib2(100)\n"
+"[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
+">>> fibo.__name__\n"
+"'fibo'"
 
 #: ../../tutorial/modules.rst:62
 msgid "If you intend to use a function often you can assign it to a local name::"
@@ -124,6 +146,9 @@ msgid ""
 ">>> fib(500)\n"
 "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 msgstr ""
+">>> fib = fibo.fib\n"
+">>> fib(500)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 
 #: ../../tutorial/modules.rst:72
 msgid "More on Modules"
@@ -141,7 +166,6 @@ msgstr ""
 "임포트 문에서 모듈 이름이 *처음* 등장할 때만 실행됩니다. [#]_ (이것들은 파일이 스크립트로 실행될 때도 실행됩니다.)"
 
 #: ../../tutorial/modules.rst:79
-#, fuzzy
 msgid ""
 "Each module has its own private namespace, which is used as the global "
 "namespace by all functions defined in the module. Thus, the author of a "
@@ -151,13 +175,12 @@ msgid ""
 "with the same notation used to refer to its functions, "
 "``modname.itemname``."
 msgstr ""
-"각 모듈은 자신만의 심볼 테이블을 갖고 있는데, 그 모듈에서 정의된 함수들의 전역 심볼 테이블로 사용됩니다. 그래서, 모듈의 저자는"
-" 사용자의 전역 변수와 우연히 충돌할 것을 걱정하지 않고 전역 변수를 사용할 수 있습니다. 반면에, 여러분이 무얼 하는지 안다면, "
+"각 모듈은 자신만의 이름 공간을 갖고 있는데, 그 모듈에서 정의된 함수들의 전역 이름 공간으로 사용됩니다. 그래서, 모듈의 저자는 "
+"사용자의 전역 변수와 우연히 충돌할 것을 걱정하지 않고 전역 변수를 사용할 수 있습니다. 반면에, 여러분이 무얼 하는지 안다면, "
 "모듈의 함수를 참조하는데 사용된 것과 같은 표기법으로 모듈의 전역 변수들을 건드릴 수 있습니다, "
 "``modname.itemname``."
 
 #: ../../tutorial/modules.rst:86
-#, fuzzy
 msgid ""
 "Modules can import other modules.  It is customary but not required to "
 "place all :keyword:`import` statements at the beginning of a module (or "
@@ -166,17 +189,16 @@ msgid ""
 "the module's global namespace."
 msgstr ""
 "모듈은 다른 모듈들을 임포트할 수 있습니다. 모든 :keyword:`import` 문들을 모듈의 처음에 놓는 것이 관례지만 반드시 "
-"그래야 하는 것은 아닙니다 (그 점에 관한 한 스크립트도 마찬가집니다). 임포트되는 모듈 이름은 임포트하는 모듈의 전역 심볼 "
-"테이블에 들어갑니다."
+"그래야 하는 것은 아닙니다 (그 점에 관한 한 스크립트도 마찬가집니다). 임포트되는 모듈 이름은, 모듈의 최상위 수준(함수나 "
+"클래스의 바깥)에 배치되면, 임포트하는 모듈의 전역 이름 공간에 추가됩니다."
 
 #: ../../tutorial/modules.rst:91
-#, fuzzy
 msgid ""
 "There is a variant of the :keyword:`import` statement that imports names "
 "from a module directly into the importing module's namespace.  For "
 "example::"
 msgstr ""
-"모듈에 들어있는 이름들을 직접 임포트하는 모듈의 심볼 테이블로 임포트하는 :keyword:`import` 문의 변종이 있습니다. "
+"모듈에 들어있는 이름들을 직접 임포트하는 모듈의 이름 공간으로 임포트하는 :keyword:`import` 문의 변종이 있습니다. "
 "예를 들어::"
 
 #: ../../tutorial/modules.rst:94
@@ -185,13 +207,15 @@ msgid ""
 ">>> fib(500)\n"
 "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 msgstr ""
+">>> from fibo import fib, fib2\n"
+">>> fib(500)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 
 #: ../../tutorial/modules.rst:98
-#, fuzzy
 msgid ""
 "This does not introduce the module name from which the imports are taken "
 "in the local namespace (so in the example, ``fibo`` is not defined)."
-msgstr "이것은 지역 심볼 테이블에 임포트되는 모듈의 이름을 만들지 않습니다 (그래서 이 예에서는, ``fibo`` 가 정의되지 않습니다)."
+msgstr "이것은 지역 이름 공간에 임포트되는 모듈의 이름을 만들지 않습니다 (그래서 이 예에서는, ``fibo`` 가 정의되지 않습니다)."
 
 #: ../../tutorial/modules.rst:101
 msgid "There is even a variant to import all names that a module defines::"
@@ -203,6 +227,9 @@ msgid ""
 ">>> fib(500)\n"
 "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 msgstr ""
+">>> from fibo import *\n"
+">>> fib(500)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 
 #: ../../tutorial/modules.rst:107
 msgid ""
@@ -235,6 +262,9 @@ msgid ""
 ">>> fib.fib(500)\n"
 "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 msgstr ""
+">>> import fibo as fib\n"
+">>> fib.fib(500)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 
 #: ../../tutorial/modules.rst:125
 msgid ""
@@ -255,6 +285,9 @@ msgid ""
 ">>> fibonacci(500)\n"
 "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 msgstr ""
+">>> from fibo import fib as fibonacci\n"
+">>> fibonacci(500)\n"
+"0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
 
 #: ../../tutorial/modules.rst:137
 msgid ""
@@ -278,7 +311,7 @@ msgstr "여러분이 파이썬 모듈을 이렇게 실행하면 ::"
 
 #: ../../tutorial/modules.rst:151
 msgid "python fibo.py <arguments>"
-msgstr ""
+msgstr "python fibo.py <arguments>"
 
 #: ../../tutorial/modules.rst:153
 msgid ""
@@ -295,6 +328,9 @@ msgid ""
 "    import sys\n"
 "    fib(int(sys.argv[1]))"
 msgstr ""
+"if __name__ == \"__main__\":\n"
+"    import sys\n"
+"    fib(int(sys.argv[1]))"
 
 #: ../../tutorial/modules.rst:161
 msgid ""
@@ -310,6 +346,8 @@ msgid ""
 "$ python fibo.py 50\n"
 "0 1 1 2 3 5 8 13 21 34"
 msgstr ""
+"$ python fibo.py 50\n"
+"0 1 1 2 3 5 8 13 21 34"
 
 #: ../../tutorial/modules.rst:170
 msgid "If the module is imported, the code is not run::"
@@ -320,6 +358,8 @@ msgid ""
 ">>> import fibo\n"
 ">>>"
 msgstr ""
+">>> import fibo\n"
+">>>"
 
 #: ../../tutorial/modules.rst:175
 msgid ""
@@ -335,7 +375,6 @@ msgid "The Module Search Path"
 msgstr "모듈 검색 경로"
 
 #: ../../tutorial/modules.rst:186
-#, fuzzy
 msgid ""
 "When a module named :mod:`!spam` is imported, the interpreter first "
 "searches for a built-in module with that name. These module names are "
@@ -344,9 +383,10 @@ msgid ""
 "by the variable :data:`sys.path`.  :data:`sys.path` is initialized from "
 "these locations:"
 msgstr ""
-":mod:`spam` 이라는 이름의 모듈이 임포트될 때, 인터프리터는 먼저 그 이름의 내장 모듈을 찾습니다. 발견되지 않으면, 변수"
-" :data:`sys.path` 로 주어지는 디렉터리들에서 :file:`spam.py` 라는 이름의 파일을 찾습니다. "
-":data:`sys.path` 는 이 위치들로 초기화됩니다:"
+":mod:`!spam` 이라는 이름의 모듈이 임포트될 때, 인터프리터는 먼저 그 이름의 내장 모듈을 찾습니다. 이 모듈 이름들은 "
+":data:`sys.builtin_module_names`\\에 나열됩니다. 발견되지 않으면, 변수 :data:`sys.path` "
+"로 주어지는 디렉터리들에서 :file:`spam.py` 라는 이름의 파일을 찾습니다. :data:`sys.path` 는 이 위치들로"
+" 초기화됩니다:"
 
 #: ../../tutorial/modules.rst:192
 msgid ""
@@ -364,11 +404,11 @@ msgstr ":envvar:`PYTHONPATH` (디렉터리 이름들의 목록, 셸 변수 :envv
 msgid ""
 "The installation-dependent default (by convention including a ``site-"
 "packages`` directory, handled by the :mod:`site` module)."
-msgstr ""
+msgstr "설치 의존적인 기본값 (관례에 따라 ``site-packages`` 디렉터리를 포함합니다, :mod:`site` 모듈이 처리합니다)."
 
 #: ../../tutorial/modules.rst:199
 msgid "More details are at :ref:`sys-path-init`."
-msgstr ""
+msgstr "자세한 내용은 :ref:`sys-path-init`\\에서 확인할 수 있습니다."
 
 #: ../../tutorial/modules.rst:202
 msgid ""
@@ -519,6 +559,15 @@ msgid ""
 "Yuck!\n"
 "C>"
 msgstr ""
+">>> import sys\n"
+">>> sys.ps1\n"
+"'>>> '\n"
+">>> sys.ps2\n"
+"'... '\n"
+">>> sys.ps1 = 'C> '\n"
+"C> print('Yuck!')\n"
+"Yuck!\n"
+"C>"
 
 #: ../../tutorial/modules.rst:292
 msgid ""
@@ -543,6 +592,8 @@ msgid ""
 ">>> import sys\n"
 ">>> sys.path.append('/ufs/guido/lib/python')"
 msgstr ""
+">>> import sys\n"
+">>> sys.path.append('/ufs/guido/lib/python')"
 
 #: ../../tutorial/modules.rst:307
 msgid "The :func:`dir` Function"
@@ -591,6 +642,40 @@ msgid ""
 "'version_info',\n"
 " 'warnoptions']"
 msgstr ""
+">>> import fibo, sys\n"
+">>> dir(fibo)\n"
+"['__name__', 'fib', 'fib2']\n"
+">>> dir(sys)\n"
+"['__breakpointhook__', '__displayhook__', '__doc__', '__excepthook__',\n"
+" '__interactivehook__', '__loader__', '__name__', '__package__', "
+"'__spec__',\n"
+" '__stderr__', '__stdin__', '__stdout__', '__unraisablehook__',\n"
+" '_clear_type_cache', '_current_frames', '_debugmallocstats', "
+"'_framework',\n"
+" '_getframe', '_git', '_home', '_xoptions', 'abiflags', 'addaudithook',\n"
+" 'api_version', 'argv', 'audit', 'base_exec_prefix', 'base_prefix',\n"
+" 'breakpointhook', 'builtin_module_names', 'byteorder', 'call_tracing',\n"
+" 'callstats', 'copyright', 'displayhook', 'dont_write_bytecode', "
+"'exc_info',\n"
+" 'excepthook', 'exec_prefix', 'executable', 'exit', 'flags', "
+"'float_info',\n"
+" 'float_repr_style', 'get_asyncgen_hooks', "
+"'get_coroutine_origin_tracking_depth',\n"
+" 'getallocatedblocks', 'getdefaultencoding', 'getdlopenflags',\n"
+" 'getfilesystemencodeerrors', 'getfilesystemencoding', 'getprofile',\n"
+" 'getrecursionlimit', 'getrefcount', 'getsizeof', 'getswitchinterval',\n"
+" 'gettrace', 'hash_info', 'hexversion', 'implementation', 'int_info',\n"
+" 'intern', 'is_finalizing', 'last_traceback', 'last_type', 'last_value',\n"
+" 'maxsize', 'maxunicode', 'meta_path', 'modules', 'path', 'path_hooks',\n"
+" 'path_importer_cache', 'platform', 'prefix', 'ps1', 'ps2', "
+"'pycache_prefix',\n"
+" 'set_asyncgen_hooks', 'set_coroutine_origin_tracking_depth', "
+"'setdlopenflags',\n"
+" 'setprofile', 'setrecursionlimit', 'setswitchinterval', 'settrace', "
+"'stderr',\n"
+" 'stdin', 'stdout', 'thread_info', 'unraisablehook', 'version', "
+"'version_info',\n"
+" 'warnoptions']"
 
 #: ../../tutorial/modules.rst:338
 msgid ""
@@ -606,6 +691,11 @@ msgid ""
 ">>> dir()\n"
 "['__builtins__', '__name__', 'a', 'fib', 'fibo', 'sys']"
 msgstr ""
+">>> a = [1, 2, 3, 4, 5]\n"
+">>> import fibo\n"
+">>> fib = fibo.fib\n"
+">>> dir()\n"
+"['__builtins__', '__name__', 'a', 'fib', 'fibo', 'sys']"
 
 #: ../../tutorial/modules.rst:346
 msgid "Note that it lists all types of names: variables, modules, functions, etc."
@@ -662,13 +752,51 @@ msgid ""
 "'vars',\n"
 " 'zip']"
 msgstr ""
+">>> import builtins\n"
+">>> dir(builtins)\n"
+"['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException',\n"
+" 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning',\n"
+" 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError',\n"
+" 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning',\n"
+" 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False',\n"
+" 'FileExistsError', 'FileNotFoundError', 'FloatingPointError',\n"
+" 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError',\n"
+" 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError',\n"
+" 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError',\n"
+" 'MemoryError', 'NameError', 'None', 'NotADirectoryError', "
+"'NotImplemented',\n"
+" 'NotImplementedError', 'OSError', 'OverflowError',\n"
+" 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError',\n"
+" 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning',\n"
+" 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError',\n"
+" 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError',\n"
+" 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError',\n"
+" 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', "
+"'UserWarning',\n"
+" 'ValueError', 'Warning', 'ZeroDivisionError', '_', '__build_class__',\n"
+" '__debug__', '__doc__', '__import__', '__name__', '__package__', 'abs',\n"
+" 'all', 'any', 'ascii', 'bin', 'bool', 'bytearray', 'bytes', 'callable',\n"
+" 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits',\n"
+" 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit',"
+"\n"
+" 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', "
+"'hasattr',\n"
+" 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass',"
+"\n"
+" 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview',\n"
+" 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', "
+"'property',\n"
+" 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice',"
+"\n"
+" 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', "
+"'vars',\n"
+" 'zip']"
 
 #: ../../tutorial/modules.rst:389
 msgid "Packages"
 msgstr "패키지"
 
 #: ../../tutorial/modules.rst:391
-#, fuzzy
 msgid ""
 "Packages are a way of structuring Python's module namespace by using "
 "\"dotted module names\".  For example, the module name :mod:`!A.B` "
@@ -679,7 +807,7 @@ msgid ""
 "from having to worry about each other's module names."
 msgstr ""
 "패키지는 \"점으로 구분된 모듈 이름\" 를 써서 파이썬의 모듈 이름 공간을 구조화하는 방법입니다. 예를 들어, 모듈 이름 "
-":mod:`A.B` 는 ``A`` 라는 이름의 패키지에 있는 ``B`` 라는 이름의 서브 모듈을 가리킵니다. 모듈의 사용이 다른 "
+":mod:`!A.B` 는 ``A`` 라는 이름의 패키지에 있는 ``B`` 라는 이름의 서브 모듈을 가리킵니다. 모듈의 사용이 다른 "
 "모듈의 저자들이 서로의 전역 변수 이름들을 걱정할 필요 없게 만드는 것과 마찬가지로, 점으로 구분된 모듈의 이름들은 NumPy 나 "
 "Pillow 과 같은 다중 모듈 패키지들의 저자들이 서로의 모듈 이름들을 걱정할 필요 없게 만듭니다."
 
@@ -730,6 +858,29 @@ msgid ""
 "              karaoke.py\n"
 "              ..."
 msgstr ""
+"sound/                          최상위 패키지\n"
+"      __init__.py               sound 패키지 초기화\n"
+"      formats/                  파일 형식 변환을 위한 서브 패키지\n"
+"              __init__.py\n"
+"              wavread.py\n"
+"              wavwrite.py\n"
+"              aiffread.py\n"
+"              aiffwrite.py\n"
+"              auread.py\n"
+"              auwrite.py\n"
+"              ...\n"
+"      effects/                  음향 효과를 위한 서브 패키지\n"
+"              __init__.py\n"
+"              echo.py\n"
+"              surround.py\n"
+"              reverse.py\n"
+"              ...\n"
+"      filters/                  필터를 위한 서브 패키지\n"
+"              __init__.py\n"
+"              equalizer.py\n"
+"              vocoder.py\n"
+"              karaoke.py\n"
+"              ..."
 
 #: ../../tutorial/modules.rst:436
 msgid ""
@@ -738,7 +889,6 @@ msgid ""
 msgstr "패키지를 임포트할 때, 파이썬은 ``sys.path`` 에 있는 디렉터리들을 검색하면서 패키지 서브 디렉터리를 찾습니다."
 
 #: ../../tutorial/modules.rst:439
-#, fuzzy
 msgid ""
 "The :file:`__init__.py` files are required to make Python treat "
 "directories containing the file as packages (unless using a "
@@ -749,10 +899,11 @@ msgid ""
 "also execute initialization code for the package or set the ``__all__`` "
 "variable, described later."
 msgstr ""
-"파이썬이 디렉터리를 패키지로 취급하게 만들기 위해서 :file:`__init__.py` 파일이 필요합니다. 이렇게 하면 "
-"``string`` 처럼 흔히 쓰는 이름의 디렉터리가, 의도하지 않게 모듈 검색 경로의 뒤에 등장하는 올바른 모듈들을 가리는 일을 "
-"방지합니다. 가장 간단한 경우, :file:`__init__.py` 는 그냥 빈 파일일 수 있지만, 패키지의 초기화 코드를 "
-"실행하거나 뒤에서 설명하는 ``__all__`` 변수를 설정할 수 있습니다."
+"파이썬이 디렉터리를 패키지로 취급하게 만들기 위해서 :file:`__init__.py` 파일이 필요합니다 (비교적 고급 기능인 "
+":term:`이름 공간 패키지 <namespace package>`\\를 사용하지 않는다면). 이렇게 하면 ``string`` 처럼"
+" 흔히 쓰는 이름의 디렉터리가, 의도하지 않게 모듈 검색 경로의 뒤에 등장하는 올바른 모듈들을 가리는 일을 방지합니다. 가장 간단한"
+" 경우, :file:`__init__.py` 는 그냥 빈 파일일 수 있지만, 패키지의 초기화 코드를 실행하거나 뒤에서 설명하는 "
+"``__all__`` 변수를 설정할 수 있습니다."
 
 #: ../../tutorial/modules.rst:447
 msgid ""
@@ -762,18 +913,17 @@ msgstr "패키지 사용자는 패키지로부터 개별 모듈을 임포트할 
 
 #: ../../tutorial/modules.rst:450
 msgid "import sound.effects.echo"
-msgstr ""
+msgstr "import sound.effects.echo"
 
 #: ../../tutorial/modules.rst:452
-#, fuzzy
 msgid ""
 "This loads the submodule :mod:`!sound.effects.echo`.  It must be "
 "referenced with its full name. ::"
-msgstr "이것은 서브 모듈 :mod:`sound.effects.echo` 를 로드합니다. 전체 이름으로 참조되어야 합니다. ::"
+msgstr "이것은 서브 모듈 :mod:`!sound.effects.echo` 를 로드합니다. 전체 이름으로 참조되어야 합니다. ::"
 
 #: ../../tutorial/modules.rst:455
 msgid "sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)"
-msgstr ""
+msgstr "sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)"
 
 #: ../../tutorial/modules.rst:457
 msgid "An alternative way of importing the submodule is::"
@@ -781,20 +931,19 @@ msgstr "서브 모듈을 임포트하는 다른 방법은 이렇습니다::"
 
 #: ../../tutorial/modules.rst:459
 msgid "from sound.effects import echo"
-msgstr ""
+msgstr "from sound.effects import echo"
 
 #: ../../tutorial/modules.rst:461
-#, fuzzy
 msgid ""
 "This also loads the submodule :mod:`!echo`, and makes it available "
 "without its package prefix, so it can be used as follows::"
 msgstr ""
-"이것도 서브 모듈 :mod:`echo` 를 로드하고, 패키지 접두어 없이 사용할 수 있게 합니다. 그래서 이런 식으로 사용할 수 "
+"이것도 서브 모듈 :mod:`!echo` 를 로드하고, 패키지 접두어 없이 사용할 수 있게 합니다. 그래서 이런 식으로 사용할 수 "
 "있습니다::"
 
 #: ../../tutorial/modules.rst:464
 msgid "echo.echofilter(input, output, delay=0.7, atten=4)"
-msgstr ""
+msgstr "echo.echofilter(input, output, delay=0.7, atten=4)"
 
 #: ../../tutorial/modules.rst:466
 msgid ""
@@ -804,20 +953,19 @@ msgstr "또 다른 방법은 원하는 함수나 변수를 직접 임포트하�
 
 #: ../../tutorial/modules.rst:468
 msgid "from sound.effects.echo import echofilter"
-msgstr ""
+msgstr "from sound.effects.echo import echofilter"
 
 #: ../../tutorial/modules.rst:470
-#, fuzzy
 msgid ""
 "Again, this loads the submodule :mod:`!echo`, but this makes its function"
 " :func:`!echofilter` directly available::"
 msgstr ""
-"또다시, 이것은 서브 모듈 :mod:`echo` 를 로드하지만, 함수 :func:`echofilter` 를 직접 사용할 수 있게 "
-"만듭니다::"
+"또다시, 이것은 서브 모듈 :mod:`!echo` 를 로드하지만, 함수 :func:`!echofilter` 를 직접 사용할 수 있게"
+" 만듭니다::"
 
 #: ../../tutorial/modules.rst:473
 msgid "echofilter(input, output, delay=0.7, atten=4)"
-msgstr ""
+msgstr "echofilter(input, output, delay=0.7, atten=4)"
 
 #: ../../tutorial/modules.rst:475
 msgid ""
@@ -884,16 +1032,15 @@ msgstr ""
 
 #: ../../tutorial/modules.rst:511
 msgid "__all__ = [\"echo\", \"surround\", \"reverse\"]"
-msgstr ""
+msgstr "__all__ = [\"echo\", \"surround\", \"reverse\"]"
 
 #: ../../tutorial/modules.rst:513
-#, fuzzy
 msgid ""
 "This would mean that ``from sound.effects import *`` would import the "
 "three named submodules of the :mod:`!sound.effects` package."
 msgstr ""
-"이것은 ``from sound.effects import *`` 이 :mod:`sound.effects` 패키지의 세 서브 모듈들을"
-" 임포트하게 됨을 의미합니다."
+"이것은 ``from sound.effects import *`` 가 :mod:`!sound.effects` 패키지의 이름을 지정한 "
+"세 서브 모듈들을 임포트하게 됨을 의미합니다."
 
 #: ../../tutorial/modules.rst:516
 msgid ""
@@ -904,6 +1051,10 @@ msgid ""
 "*not* the ``reverse`` submodule, because it is shadowed by the locally "
 "defined ``reverse`` function::"
 msgstr ""
+"서브 모듈이 지역적으로 정의된 이름에 의해 가려질 수 있음에 유의하세요. 예를 들어, ``reverse`` 함수를 "
+":file:`sound/effects/__init__.py` 파일에 추가하면, ``from sound.effects import "
+"*``\\는 ``echo``\\와 ``surround`` 두 서브 모듈만 임포트할 뿐, ``reverse`` 서브 모듈은 임포트하지"
+" *않습니다*. 지역적으로 정의된 ``reverse`` 함수에 의해 가려지기 때문입니다::"
 
 #: ../../tutorial/modules.rst:523
 msgid ""
@@ -918,9 +1069,16 @@ msgid ""
 "    return msg[::-1]    #     in the case of a 'from sound.effects import"
 " *'"
 msgstr ""
+"__all__ = [\n"
+"    \"echo\",      # 'echo.py' 파일을 가리킵니다\n"
+"    \"surround\",  # 'surround.py' 파일을 가리킵니다\n"
+"    \"reverse\",   # !!! 이제 'reverse' 함수를 가리킵니다 !!!\n"
+"]\n"
+"\n"
+"def reverse(msg: str):  # <-- 'from sound.effects import *' 의 경우에,\n"
+"    return msg[::-1]    #     이 이름이 'reverse.py' 서비 모듈을 가립니다"
 
 #: ../../tutorial/modules.rst:532
-#, fuzzy
 msgid ""
 "If ``__all__`` is not defined, the statement ``from sound.effects import "
 "*`` does *not* import all submodules from the package "
@@ -933,11 +1091,11 @@ msgid ""
 ":keyword:`import` statements.  Consider this code::"
 msgstr ""
 "``__all__`` 이 정의되지 않으면, 문장 ``from sound.effects import *`` 은 패키지 "
-":mod:`sound.effects` 의 모든 서브 모듈들을 현재 이름 공간으로 임포트 하지 *않습니다*; 이것은 오직 패키지 "
-":mod:`sound.effects` 가 임포트 되도록 만들고 (:file:`__init__.py` 에 있는 초기화 코드들이 수행될"
-" 수 있습니다), 그 패키지가 정의하는 이름들을 임포트 합니다. 이 이름들은 :file:`__init__.py` 가 정의하는 모든 "
-"이름 (그리고 명시적으로 로드된 서브 모듈들)을 포함합니다. 이 이름들에는 사전에 :keyword:`import` 문으로 명시적으로"
-" 로드된 패키지의 서브 모듈들 역시 포함됩니다. 이 코드를 생각해봅시다::"
+":mod:`!sound.effects` 의 모든 서브 모듈들을 현재 이름 공간으로 임포트 하지 *않습니다*; 이것은 오직 패키지 "
+":mod:`!sound.effects` 가 임포트 되도록 만들고 (:file:`__init__.py` 에 있는 초기화 코드들이 "
+"수행될 수 있습니다), 그 패키지가 정의하는 이름들을 임포트 합니다. 이 이름들은 :file:`__init__.py` 가 정의하는 "
+"모든 이름 (그리고 명시적으로 로드된 서브 모듈들)을 포함합니다. 이 이름들에는 사전에 :keyword:`import` 문으로 "
+"명시적으로 로드된 패키지의 서브 모듈들 역시 포함됩니다. 이 코드를 생각해봅시다::"
 
 #: ../../tutorial/modules.rst:541
 msgid ""
@@ -945,17 +1103,19 @@ msgid ""
 "import sound.effects.surround\n"
 "from sound.effects import *"
 msgstr ""
+"import sound.effects.echo\n"
+"import sound.effects.surround\n"
+"from sound.effects import *"
 
 #: ../../tutorial/modules.rst:545
-#, fuzzy
 msgid ""
 "In this example, the :mod:`!echo` and :mod:`!surround` modules are "
 "imported in the current namespace because they are defined in the "
 ":mod:`!sound.effects` package when the ``from...import`` statement is "
 "executed.  (This also works when ``__all__`` is defined.)"
 msgstr ""
-"이 예에서, :mod:`echo` 와 :mod:`surround` 모듈이 현재 이름 공간으로 임포트 되는데, "
-"``from...import`` 문이 실행될 때 :mod:`sound.effects` 패키지에 정의되기 때문입니다. "
+"이 예에서, :mod:`!echo` 와 :mod:`!surround` 모듈이 현재 이름 공간으로 임포트 되는데, "
+"``from...import`` 문이 실행될 때 :mod:`!sound.effects` 패키지에 정의되기 때문입니다. "
 "(``__all__`` 이 정의될 때도 마찬가집니다.)"
 
 #: ../../tutorial/modules.rst:550
@@ -982,7 +1142,6 @@ msgid "Intra-package References"
 msgstr "패키지 내부 간의 참조"
 
 #: ../../tutorial/modules.rst:565
-#, fuzzy
 msgid ""
 "When packages are structured into subpackages (as with the :mod:`!sound` "
 "package in the example), you can use absolute imports to refer to "
@@ -991,13 +1150,12 @@ msgid ""
 " :mod:`!sound.effects` package, it can use ``from sound.effects import "
 "echo``."
 msgstr ""
-"패키지가 서브 패키지들로 구조화될 때 (예에서 나온 :mod:`sound` 패키지처럼), 이웃 패키지의 서브 모듈을 가리키는데 절대"
-" 임포트를 사용할 수 있습니다. 예를 들어, 모듈 :mod:`sound.filters.vocoder` 이 "
-":mod:`sound.effects` 패키지의 :mod:`echo` 모듈이 필요하면, ``from sound.effects "
+"패키지가 서브 패키지들로 구조화될 때 (예에서 나온 :mod:`!sound` 패키지처럼), 이웃 패키지의 서브 모듈을 가리키는데 "
+"절대 임포트를 사용할 수 있습니다. 예를 들어, 모듈 :mod:`!sound.filters.vocoder` 이 "
+":mod:`!sound.effects` 패키지의 :mod:`!echo` 모듈이 필요하면, ``from sound.effects "
 "import echo`` 를 사용할 수 있습니다."
 
 #: ../../tutorial/modules.rst:571
-#, fuzzy
 msgid ""
 "You can also write relative imports, with the ``from module import name``"
 " form of import statement.  These imports use leading dots to indicate "
@@ -1005,7 +1163,7 @@ msgid ""
 "the :mod:`!surround` module for example, you might use::"
 msgstr ""
 "상대 임포트를 쓸 수도 있는데, ``from module import name`` 형태의 임포트 문을 사용합니다. 이 임포트는 상대"
-" 임포트에 수반되는 현재와 부모 패키지를 가리키기 위해 앞에 붙는 점을 사용합니다. 예를 들어, :mod:`surround` "
+" 임포트에 수반되는 현재와 부모 패키지를 가리키기 위해 앞에 붙는 점을 사용합니다. 예를 들어, :mod:`!surround` "
 "모듈에서, 이렇게 사용할 수 있습니다::"
 
 #: ../../tutorial/modules.rst:576
@@ -1014,6 +1172,9 @@ msgid ""
 "from .. import formats\n"
 "from ..filters import equalizer"
 msgstr ""
+"from . import echo\n"
+"from .. import formats\n"
+"from ..filters import equalizer"
 
 #: ../../tutorial/modules.rst:580
 msgid ""
@@ -1030,7 +1191,6 @@ msgid "Packages in Multiple Directories"
 msgstr "여러 디렉터리에 있는 패키지"
 
 #: ../../tutorial/modules.rst:588
-#, fuzzy
 msgid ""
 "Packages support one more special attribute, :attr:`~module.__path__`.  "
 "This is initialized to be a :term:`sequence` of strings containing the "
@@ -1039,9 +1199,10 @@ msgid ""
 "so affects future searches for modules and subpackages contained in the "
 "package."
 msgstr ""
-"패키지는 특별한 어트리뷰트 하나를 더 지원합니다, :attr:`__path__`. 이것은 패키지의 "
-":file:`__init__.py` 파일을 실행하기 전에, 이 파일이 들어있는 디렉터리의 이름을 포함하는 리스트로 초기화됩니다. 이"
-" 변수는 수정할 수 있습니다; 그렇게 하면 그 이후로 패키지에 포함된 모듈과 서브 패키지를 검색하는 데 영향을 주게 됩니다."
+"패키지는 특별한 어트리뷰트 하나를 더 지원합니다, :attr:`~module.__path__`. 이것은 패키지의 "
+":file:`__init__.py` 파일을 실행하기 전에, 이 파일이 들어있는 디렉터리의 이름을 포함하는 문자열의 "
+":term:`시퀀스 <sequence>`\\로 초기화됩니다. 이 변수는 수정할 수 있습니다; 그렇게 하면 그 이후로 패키지에 포함된"
+" 모듈과 서브 패키지를 검색하는 데 영향을 주게 됩니다."
 
 #: ../../tutorial/modules.rst:595
 msgid ""
@@ -1054,39 +1215,34 @@ msgid "Footnotes"
 msgstr "각주"
 
 #: ../../tutorial/modules.rst:601
-#, fuzzy
 msgid ""
 "In fact function definitions are also 'statements' that are 'executed'; "
 "the execution of a module-level function definition adds the function "
 "name to the module's global namespace."
-msgstr "사실 함수 정의도 '실행' 되는 '문장' 입니다; 모듈 수준의 함수 정의를 실행하면 함수의 이름이 전역 심볼 테이블에 들어갑니다."
+msgstr "사실 함수 정의도 '실행' 되는 '문장' 입니다; 모듈 수준의 함수 정의를 실행하면 함수의 이름을 전역 이름 공간에 추가합니다."
 
 #: ../../tutorial/modules.rst:184 ../../tutorial/modules.rst:267
 #: ../../tutorial/modules.rst:348
-#, fuzzy
 msgid "module"
 msgstr "모듈"
 
 #: ../../tutorial/modules.rst:184
 msgid "search"
-msgstr ""
+msgstr "검색"
 
 #: ../../tutorial/modules.rst:184
 msgid "path"
-msgstr ""
+msgstr "경로"
 
 #: ../../tutorial/modules.rst:267
 msgid "sys"
-msgstr ""
+msgstr "sys"
 
 #: ../../tutorial/modules.rst:348
 msgid "builtins"
-msgstr ""
+msgstr "builtins"
 
 #: ../../tutorial/modules.rst:493
 msgid "__all__"
-msgstr ""
-
-#~ msgid "The installation-dependent default."
-#~ msgstr "설치 의존적인 기본값"
+msgstr "__all__"
 
