@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/test.rst:2
-#, fuzzy
 msgid ":mod:`!test` --- Regression tests package for Python"
-msgstr ":mod:`test` --- 파이썬 용 회귀 테스트 패키지"
+msgstr ":mod:`!test` --- 파이썬 용 회귀 테스트 패키지"
 
 #: ../../library/test.rst:10
 msgid ""
@@ -136,6 +135,36 @@ msgid ""
 "if __name__ == '__main__':\n"
 "    unittest.main()"
 msgstr ""
+"import unittest\n"
+"from test import support\n"
+"\n"
+"class MyTestCase1(unittest.TestCase):\n"
+"\n"
+"    # setUp()과 tearDown()은 필요할 때만 사용합니다\n"
+"\n"
+"    def setUp(self):\n"
+"        ... 테스트 준비를 위해 실행할 코드 ...\n"
+"\n"
+"    def tearDown(self):\n"
+"        ... 테스트 후 정리를 위해 실행할 코드 ...\n"
+"\n"
+"    def test_feature_one(self):\n"
+"        # feature one을 테스트합니다.\n"
+"        ... 테스트 코드 ...\n"
+"\n"
+"    def test_feature_two(self):\n"
+"        # feature two를 테스트합니다.\n"
+"        ... 테스트 코드 ...\n"
+"\n"
+"    ... 더 많은 테스트 메서드 ...\n"
+"\n"
+"class MyTestCase2(unittest.TestCase):\n"
+"    ... MyTestCase1 과 같은 구조 ...\n"
+"\n"
+"... 더 많은 테스트 클래스 ...\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    unittest.main()"
 
 #: ../../library/test.rst:88
 msgid ""
@@ -246,9 +275,23 @@ msgid ""
 "class AcceptTuples(TestFuncAcceptsSequencesMixin, unittest.TestCase):\n"
 "    arg = (1, 2, 3)"
 msgstr ""
+"class TestFuncAcceptsSequencesMixin:\n"
+"\n"
+"    func = mySuperWhammyFunction\n"
+"\n"
+"    def test_func(self):\n"
+"        self.func(self.arg)\n"
+"\n"
+"class AcceptLists(TestFuncAcceptsSequencesMixin, unittest.TestCase):\n"
+"    arg = [1, 2, 3]\n"
+"\n"
+"class AcceptStrings(TestFuncAcceptsSequencesMixin, unittest.TestCase):\n"
+"    arg = 'abc'\n"
+"\n"
+"class AcceptTuples(TestFuncAcceptsSequencesMixin, unittest.TestCase):\n"
+"    arg = (1, 2, 3)"
 
 #: ../../library/test.rst:145
-#, fuzzy
 msgid ""
 "When using this pattern, remember that all classes that inherit from "
 ":class:`unittest.TestCase` are run as tests.  The "
@@ -257,8 +300,8 @@ msgid ""
 " from :class:`unittest.TestCase`."
 msgstr ""
 "이 패턴을 사용할 때, :class:`unittest.TestCase`\\를 상속한 모든 클래스가 테스트로 실행된다는 점을 "
-"기억하십시오. 위 예제의 :class:`Mixin` 클래스는 데이터가 없어서 자체적으로 실행할 수 없기 때문에, "
-":class:`unittest.TestCase`\\를 상속하지 않습니다."
+"기억하십시오. 위 예제의 :class:`!TestFuncAcceptsSequencesMixin` 클래스는 데이터가 없어서 자체적으로"
+" 실행할 수 없기 때문에, :class:`unittest.TestCase`\\를 상속하지 않습니다."
 
 #: ../../library/test.rst:153
 msgid "Test Driven Development"
@@ -432,12 +475,10 @@ msgid "See also :data:`INTERNET_TIMEOUT`."
 msgstr ":data:`INTERNET_TIMEOUT`\\도 참조하십시오."
 
 #: ../../library/test.rst:273
-#, fuzzy
 msgid "Timeout in seconds for network requests going to the internet."
 msgstr "인터넷으로 가는 네트워크 요청에 대한 초 단위 제한 시간."
 
 #: ../../library/test.rst:275
-#, fuzzy
 msgid ""
 "The timeout is short enough to prevent a test to wait for too long if the"
 " internet request is blocked for whatever reason."
@@ -628,9 +669,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/test.rst:426
-#, fuzzy
 msgid "Example::"
-msgstr "사용 예::"
+msgstr "예제::"
 
 #: ../../library/test.rst:428
 msgid ""
@@ -638,11 +678,13 @@ msgid ""
 "    if check():\n"
 "        break"
 msgstr ""
+"for _ in support.busy_retry(support.SHORT_TIMEOUT):\n"
+"    if check():\n"
+"        break"
 
 #: ../../library/test.rst:432 ../../library/test.rst:456
-#, fuzzy
 msgid "Example of error=False usage::"
-msgstr "사용 예::"
+msgstr "error=False 사용 예::"
 
 #: ../../library/test.rst:434
 msgid ""
@@ -652,6 +694,11 @@ msgid ""
 "else:\n"
 "    raise RuntimeError('my custom error')"
 msgstr ""
+"for _ in support.busy_retry(support.SHORT_TIMEOUT, error=False):\n"
+"    if check():\n"
+"        break\n"
+"else:\n"
+"    raise RuntimeError('my custom error')"
 
 #: ../../library/test.rst:442
 msgid "Wait strategy that applies exponential backoff."
@@ -678,6 +725,9 @@ msgid ""
 "    if check():\n"
 "        break"
 msgstr ""
+"for _ in support.sleeping_retry(support.SHORT_TIMEOUT):\n"
+"    if check():\n"
+"        break"
 
 #: ../../library/test.rst:458
 msgid ""
@@ -687,6 +737,11 @@ msgid ""
 "else:\n"
 "    raise RuntimeError('my custom error')"
 msgstr ""
+"for _ in support.sleeping_retry(support.SHORT_TIMEOUT, error=False):\n"
+"    if check():\n"
+"        break\n"
+"else:\n"
+"    raise RuntimeError('my custom error')"
 
 #: ../../library/test.rst:466
 msgid ""
@@ -702,9 +757,8 @@ msgid "Return ``True`` if Python was not built with ``-O0`` or ``-Og``."
 msgstr "파이썬이 ``-O0``\\이나 ``-Og``\\로 빌드되지 않았으면 ``True``\\를 반환합니다."
 
 #: ../../library/test.rst:478
-#, fuzzy
 msgid "Return :const:`_testcapi.WITH_PYMALLOC`."
-msgstr ":data:`_testcapi.WITH_PYMALLOC`\\을 반환합니다."
+msgstr ":const:`_testcapi.WITH_PYMALLOC`\\을 반환합니다."
 
 #: ../../library/test.rst:483
 msgid ""
@@ -750,13 +804,14 @@ msgstr ""
 "방지하기 위해 안드로이드 시스템을 위한 최소 간격을 정의합니다."
 
 #: ../../library/test.rst:519
-#, fuzzy
 msgid ""
 "Use this check to guard CPython's implementation-specific tests or to run"
 " them only on the implementations guarded by the arguments.  This "
 "function returns ``True`` or ``False`` depending on the host platform. "
 "Example usage::"
-msgstr "이 검사를 사용하여 CPython의 구현 별 테스트를 보호하거나 인자로 보호되는 구현에서만 실행합니다::"
+msgstr ""
+"이 검사를 사용하여 CPython의 구현 별 테스트를 보호하거나 인자로 보호되는 구현에서만 실행합니다. 이 함수는 호스트 플랫폼에 "
+"따라 ``True``\\나 ``False``\\를 반환합니다. 사용 예::"
 
 #: ../../library/test.rst:524
 msgid ""
@@ -764,6 +819,9 @@ msgid ""
 "check_impl_detail(jython=True)    # Only on Jython.\n"
 "check_impl_detail(cpython=False)  # Everywhere except CPython."
 msgstr ""
+"check_impl_detail()               # CPython에서만 (기본값).\n"
+"check_impl_detail(jython=True)    # Jython에서만.\n"
+"check_impl_detail(cpython=False)  # CPython을 제외한 모든 곳."
 
 #: ../../library/test.rst:531
 msgid ""
@@ -815,6 +873,11 @@ msgid ""
 "assert stdout.getvalue() == \"hello\\n\"\n"
 "assert stderr.getvalue() == \"error\\n\""
 msgstr ""
+"with captured_stdout() as stdout, captured_stderr() as stderr:\n"
+"    print(\"hello\")\n"
+"    print(\"error\", file=sys.stderr)\n"
+"assert stdout.getvalue() == \"hello\\n\"\n"
+"assert stderr.getvalue() == \"error\\n\""
 
 #: ../../library/test.rst:574
 msgid "Example use with input stream::"
@@ -829,11 +892,16 @@ msgid ""
 "    captured = input()\n"
 "self.assertEqual(captured, \"hello\")"
 msgstr ""
+"with captured_stdin() as stdin:\n"
+"    stdin.write('hello\\n')\n"
+"    stdin.seek(0)\n"
+"    # sys.stdin에서 소비하는 테스트 코드를 호출합니다\n"
+"    captured = input()\n"
+"self.assertEqual(captured, \"hello\")"
 
 #: ../../library/test.rst:586
-#, fuzzy
 msgid "A context manager that temporary disables :mod:`faulthandler`."
-msgstr "프로세스 umask를 임시로 설정하는 컨텍스트 관리자."
+msgstr ":mod:`faulthandler`\\를 일시적으로 비활성화하는 컨텍스트 관리자."
 
 #: ../../library/test.rst:591
 msgid ""
@@ -847,11 +915,10 @@ msgstr ""
 "의미합니다."
 
 #: ../../library/test.rst:599
-#, fuzzy
 msgid ""
 "A context manager that disables the garbage collector on entry. On exit, "
 "the garbage collector is restored to its prior state."
-msgstr "진입할 때 가비지 수거기를 비활성화하고 탈출할 때 다시 활성화하는 컨텍스트 관리자."
+msgstr "진입할 때 가비지 수거기를 비활성화하는 컨텍스트 관리자. 탈출할 때, 가비지 수거기는 이전 상태로 복원됩니다."
 
 #: ../../library/test.rst:605
 msgid "Context manager to swap out an attribute with a new object."
@@ -867,6 +934,8 @@ msgid ""
 "with swap_attr(obj, \"attr\", 5):\n"
 "    ..."
 msgstr ""
+"with swap_attr(obj, \"attr\", 5):\n"
+"    ..."
 
 #: ../../library/test.rst:612
 msgid ""
@@ -893,6 +962,8 @@ msgid ""
 "with swap_item(obj, \"item\", 5):\n"
 "    ..."
 msgstr ""
+"with swap_item(obj, \"item\", 5):\n"
+"    ..."
 
 #: ../../library/test.rst:630
 msgid ""
@@ -974,11 +1045,10 @@ msgstr ""
 "관련 추적기(tracker) 이슈를 식별하는 관련 주석이 있어야 합니다."
 
 #: ../../library/test.rst:699
-#, fuzzy
 msgid ""
 "A decorator that skips the decorated test on TLS certification validation"
 " failures."
-msgstr "TLS 인증서 유효성 검사 실패 시 :exc:`unittest.SkipTest`\\를 발생시킵니다."
+msgstr "TLS 인증서 유효성 검사 실패 시 데코레이트된 테스트를 건너뛰는 데코레이터."
 
 #: ../../library/test.rst:704
 msgid ""
@@ -998,31 +1068,22 @@ msgid ""
 msgstr "특정 시간대에서 함수를 실행하기 위한 데코레이터로, 완료된 후 올바르게 재설정합니다."
 
 #: ../../library/test.rst:718
-#, fuzzy
 msgid ""
 "Decorator for the minimum version when running test on FreeBSD.  If the "
 "FreeBSD version is less than the minimum, the test is skipped."
-msgstr ""
-"FreeBSD에서 테스트를 실행할 때 최소 버전을 위한 데코레이터. FreeBSD 버전이 최소 버전보다 낮으면, "
-":exc:`unittest.SkipTest`\\를 발생시킵니다."
+msgstr "FreeBSD에서 테스트를 실행할 때 최소 버전을 위한 데코레이터. FreeBSD 버전이 최소 버전보다 낮으면, 테스트를 건너뜁니다."
 
 #: ../../library/test.rst:724
-#, fuzzy
 msgid ""
 "Decorator for the minimum version when running test on Linux.  If the "
 "Linux version is less than the minimum, the test is skipped."
-msgstr ""
-"리눅스에서 테스트를 실행할 때 최소 버전을 위한 데코레이터. 리눅스 버전이 최소 버전보다 낮으면, "
-":exc:`unittest.SkipTest`\\를 발생시킵니다."
+msgstr "리눅스에서 테스트를 실행할 때 최소 버전을 위한 데코레이터. 리눅스 버전이 최소 버전보다 낮으면, 테스트를 건너뜁니다."
 
 #: ../../library/test.rst:730
-#, fuzzy
 msgid ""
 "Decorator for the minimum version when running test on macOS.  If the "
 "macOS version is less than the minimum, the test is skipped."
-msgstr ""
-"Mac OS X에서 테스트를 실행할 때 최소 버전을 위한 데코레이터. MAC OS X 버전이 최소 버전보다 낮으면, "
-":exc:`unittest.SkipTest`\\를 발생시킵니다."
+msgstr "macOS에서 테스트를 실행할 때 최소 버전을 위한 데코레이터. macOS 버전이 최소 버전보다 낮으면, 테스트를 건너뜁니다."
 
 #: ../../library/test.rst:736
 msgid ""
@@ -1059,11 +1120,10 @@ msgid "Decorator for only running the test if :data:`HAVE_DOCSTRINGS`."
 msgstr ":data:`HAVE_DOCSTRINGS`\\일 때만 테스트를 실행하는 데코레이터."
 
 #: ../../library/test.rst:777
-#, fuzzy
 msgid ""
 "Decorator for only running the test if :ref:`Limited C API "
 "<limited-c-api>` is available."
-msgstr ":data:`HAVE_DOCSTRINGS`\\일 때만 테스트를 실행하는 데코레이터."
+msgstr ":ref:`제한된 C API <limited-c-api>`\\를 사용할 수 있을 때만 테스트를 실행하는 데코레이터."
 
 #: ../../library/test.rst:783
 msgid "Decorator for tests only applicable to CPython."
@@ -1119,9 +1179,8 @@ msgstr ""
 "``False``\\이면, ``-M``\\가 지정되지 않은 경우 테스트가 더미 실행을 지원하지 않음을 의미합니다."
 
 #: ../../library/test.rst:822
-#, fuzzy
 msgid "Decorator for tests that fill the address space."
-msgstr "주소 공간을 채우는 테스트용 데코레이터. *f*\\는 래핑 할 함수입니다."
+msgstr "주소 공간을 채우는 테스트용 데코레이터."
 
 #: ../../library/test.rst:827
 msgid ""
@@ -1196,6 +1255,15 @@ msgid ""
 "# cm.unraisable attribute no longer exists at this point\n"
 "# (to break a reference cycle)"
 msgstr ""
+"with support.catch_unraisable_exception() as cm:\n"
+"    # \"발생시킬 수 없는 예외\"를 만드는 코드\n"
+"    ...\n"
+"\n"
+"    # 발생시킬 수 없는 예외를 확인합니다: cm.unraisable 을 사용하십시오\n"
+"    ...\n"
+"\n"
+"# 이 지점에서 cm.unraisable 어프리뷰트는 더는 존재하지 않습니다\n"
+"# (참조 순환을 끊고자)"
 
 #: ../../library/test.rst:883
 msgid ""
@@ -1218,6 +1286,11 @@ msgid ""
 "def load_tests(*args):\n"
 "    return load_package_tests(os.path.dirname(__file__), *args)"
 msgstr ""
+"import os\n"
+"from test.support import load_package_tests\n"
+"\n"
+"def load_tests(*args):\n"
+"    return load_package_tests(os.path.dirname(__file__), *args)"
 
 #: ../../library/test.rst:898
 msgid ""
@@ -1256,9 +1329,8 @@ msgstr ""
 ":exc:`unittest.SkipTest`\\를 발생시킵니다."
 
 #: ../../library/test.rst:924
-#, fuzzy
 msgid "Assert instances of *cls* are deallocated after iterating."
-msgstr "이터레이션 후 *iter*\\가 할당 해제되었음을 어서션 합니다."
+msgstr "이터레이션 후 *cls*\\의 인스턴스가 할당 해제되었음을 어서션 합니다."
 
 #: ../../library/test.rst:929
 msgid ""
@@ -1296,23 +1368,21 @@ msgstr ""
 " 가능합니다 (``csv``\\와 그것의 ``_csv`` 처럼)."
 
 #: ../../library/test.rst:948
-#, fuzzy
 msgid ""
 "The *extra* argument can be a set of names that wouldn't otherwise be "
 "automatically detected as \"public\", like objects without a proper "
 ":attr:`~definition.__module__` attribute. If provided, it will be added "
 "to the automatically detected ones."
 msgstr ""
-"*extra* 인자는 적절한 ``__module__`` 어트리뷰트가 없는 객체처럼, \"공용\"으로 자동 감지되지 않는 이름 집합일"
-" 수 있습니다. 제공되면, 자동 감지된 항목에 추가됩니다."
+"*extra* 인자는 적절한 :attr:`~definition.__module__` 어트리뷰트가 없는 객체처럼, \"공용\"으로 "
+"자동 감지되지 않는 이름 집합일 수 있습니다. 제공되면, 자동 감지된 항목에 추가됩니다."
 
 #: ../../library/test.rst:952
-#, fuzzy
 msgid ""
 "The *not_exported* argument can be a set of names that must not be "
 "treated as part of the public API even though their names indicate "
 "otherwise."
-msgstr "*blacklist* 인자는 이름이 공용처럼 보이더라도 공용 API의 일부로 취급해서는 안 되는 이름 집합일 수 있습니다."
+msgstr "*not_exported* 인자는 이름이 공용처럼 보이더라도 공용 API의 일부로 취급해서는 안 되는 이름 집합일 수 있습니다."
 
 #: ../../library/test.rst:955 ../../library/test.rst:1582
 msgid "Example use::"
@@ -1338,6 +1408,22 @@ msgid ""
 "        support.check__all__(self, bar, ('bar', '_bar'),\n"
 "                             extra=extra, not_exported=not_exported)"
 msgstr ""
+"import bar\n"
+"import foo\n"
+"import unittest\n"
+"from test import support\n"
+"\n"
+"class MiscTestCase(unittest.TestCase):\n"
+"    def test__all__(self):\n"
+"        support.check__all__(self, foo)\n"
+"\n"
+"class OtherTestCase(unittest.TestCase):\n"
+"    def test__all__(self):\n"
+"        extra = {'BAR_CONST', 'FOO_CONST'}\n"
+"        not_exported = {'baz'}  # 문서화되지 않은 이름.\n"
+"        # bar는 _bar에서 API의 일부를 임포트 합니다.\n"
+"        support.check__all__(self, bar, ('bar', '_bar'),\n"
+"                             extra=extra, not_exported=not_exported)"
 
 #: ../../library/test.rst:978
 msgid ""
@@ -1379,20 +1465,18 @@ msgstr ""
 "비활성화합니다."
 
 #: ../../library/test.rst:1013
-#, fuzzy
 msgid ""
 "On UNIX, :func:`resource.setrlimit` is used to set "
 ":const:`resource.RLIMIT_CORE`'s soft limit to 0 to prevent coredump file "
 "creation."
 msgstr ""
 "유닉스에서는, :func:`resource.setrlimit`\\를 사용하여 "
-":attr:`resource.RLIMIT_CORE`\\의 소프트 제한을 0으로 설정하여 코어 덤프 파일 생성을 방지하는 데 "
+":const:`resource.RLIMIT_CORE`\\의 소프트 제한을 0으로 설정하여 코어 덤프 파일 생성을 방지하는 데 "
 "사용됩니다."
 
 #: ../../library/test.rst:1017
-#, fuzzy
 msgid "On both platforms, the old value is restored by :meth:`~object.__exit__`."
-msgstr "두 플랫폼 모두에서, 이전 값은 :meth:`__exit__`\\에 의해 복원됩니다."
+msgstr "두 플랫폼 모두에서, 이전 값은 :meth:`~object.__exit__`\\에 의해 복원됩니다."
 
 #: ../../library/test.rst:1022
 msgid ""
@@ -1500,7 +1584,6 @@ msgstr ""
 "설정됩니다. 이렇게 하면 다른 사람이 테스트 기간 중 우리의 호스트/포트에 바인딩하는 것을 방지할 수 있습니다."
 
 #: ../../library/test.rst:1109
-#, fuzzy
 msgid ""
 "Bind a Unix socket, raising :exc:`unittest.SkipTest` if "
 ":exc:`PermissionError` is raised."
@@ -1596,19 +1679,17 @@ msgstr ""
 "``(return code, stdout, stderr)`` 튜플을 반환함을 어서션 합니다."
 
 #: ../../library/test.rst:1171
-#, fuzzy
 msgid ""
 "If the *__cleanenv* keyword-only parameter is set, *env_vars* is used as "
 "a fresh environment."
-msgstr "``__cleanenv`` 키워드가 설정되면, *env_vars*\\가 새로운 환경으로 사용됩니다."
+msgstr "*__cleanenv* 키워드 전용 매개변수가 설정되면, *env_vars*\\가 새로운 환경으로 사용됩니다."
 
 #: ../../library/test.rst:1174
-#, fuzzy
 msgid ""
 "Python is started in isolated mode (command line option ``-I``), except "
 "if the *__isolated* keyword-only parameter is set to ``False``."
 msgstr ""
-"파이썬은 ``__isolated`` 키워드가 ``False``\\로 설정된 경우를 제외하고, 격리 모드(명령 줄 옵션 "
+"파이썬은 *__isolated* 키워드 전용 매개변수가 ``False``\\로 설정된 경우를 제외하고, 격리 모드(명령 줄 옵션 "
 "``-I``)에서 시작됩니다."
 
 #: ../../library/test.rst:1183
@@ -1713,16 +1794,14 @@ msgid "Throws :exc:`AssertionError` if *opname* is found."
 msgstr "*opname*\\이 발견되면 :exc:`AssertionError`\\를 던집니다."
 
 #: ../../library/test.rst:1270
-#, fuzzy
 msgid ":mod:`test.support.threading_helper` --- Utilities for threading tests"
-msgstr ":mod:`test.support.socket_helper` --- 소켓 테스트용 유틸리티"
+msgstr ":mod:`test.support.threading_helper` --- threading 테스트용 유틸리티"
 
 #: ../../library/test.rst:1275
-#, fuzzy
 msgid ""
 "The :mod:`test.support.threading_helper` module provides support for "
 "threading tests."
-msgstr ":mod:`test.support.socket_helper` 모듈은 소켓 테스트를 지원합니다."
+msgstr ":mod:`test.support.threading_helper` 모듈은 threading 테스트를 지원합니다."
 
 #: ../../library/test.rst:1282
 msgid ""
@@ -1771,7 +1850,6 @@ msgstr ""
 "컨텍스트 관리자."
 
 #: ../../library/test.rst:1321
-#, fuzzy
 msgid "Attributes set when an exception is caught:"
 msgstr "예외가 포착될 때 설정되는 어트리뷰트:"
 
@@ -1813,16 +1891,25 @@ msgid ""
 "# exists at this point\n"
 "# (to avoid reference cycles)"
 msgstr ""
+"with threading_helper.catch_threading_exception() as cm:\n"
+"    # 예외를 발생시키는 스레드를 생성하는 코드\n"
+"    ...\n"
+"\n"
+"    # 스레드 예외를 확인합니다, cm 어트리뷰트를 사용하십시오:\n"
+"    # exc_type, exc_value, exc_traceback, thread\n"
+"    ...\n"
+"\n"
+"# 이 지점에서 cm 의 exc_type, exc_value, exc_traceback, thread 어트리뷰트는\n"
+"# 더는 존재하지 않습니다\n"
+"# (참조 순환을 피하고자)"
 
 #: ../../library/test.rst:1350
-#, fuzzy
 msgid ":mod:`test.support.os_helper` --- Utilities for os tests"
-msgstr ":mod:`test.support.socket_helper` --- 소켓 테스트용 유틸리티"
+msgstr ":mod:`test.support.os_helper` --- os 테스트용 유틸리티"
 
 #: ../../library/test.rst:1355
-#, fuzzy
 msgid "The :mod:`test.support.os_helper` module provides support for os tests."
-msgstr ":mod:`test.support.socket_helper` 모듈은 소켓 테스트를 지원합니다."
+msgstr ":mod:`test.support.os_helper` 모듈은 os 테스트를 지원합니다."
 
 #: ../../library/test.rst:1362
 msgid "A non-ASCII character encodable by :func:`os.fsencode`."
@@ -1886,7 +1973,6 @@ msgid "Added dictionary interface."
 msgstr "딕셔너리 인터페이스가 추가되었습니다."
 
 #: ../../library/test.rst:1417
-#, fuzzy
 msgid ""
 "Simple :term:`path-like object`.  It implements the "
 ":meth:`~os.PathLike.__fspath__` method which just returns the *path* "
@@ -1894,8 +1980,8 @@ msgid ""
 ":meth:`!__fspath__`."
 msgstr ""
 "단순 :term:`경로류 객체 <path-like object>`. 단지 *path* 인자를 반환하는 "
-":meth:`__fspath__` 메서드를 구현합니다. *path*\\가 예외이면, :meth:`!__fspath__`\\에서 "
-"발생시킵니다."
+":meth:`~os.PathLike.__fspath__` 메서드를 구현합니다. *path*\\가 예외이면, "
+":meth:`!__fspath__`\\에서 발생시킵니다."
 
 #: ../../library/test.rst:1425
 msgid ""
@@ -1949,7 +2035,6 @@ msgid ""
 msgstr "임시 파일을 여닫아서 잘못된 파일 기술자를 만든 다음, 그 기술자를 반환합니다."
 
 #: ../../library/test.rst:1479
-#, fuzzy
 msgid ""
 "Call :func:`os.rmdir` on *filename*.  On Windows platforms, this is "
 "wrapped with a wait loop that checks for the existence of the file, which"
@@ -1957,10 +2042,9 @@ msgid ""
 " deletion."
 msgstr ""
 "*filename*\\에 대해 :func:`os.rmdir`\\을 호출합니다. 윈도우 플랫폼에서는, 파일의 존재를 확인하는 대기 "
-"루프로 래핑 됩니다."
+"루프로 래핑 됩니다. 이는 파일을 열려있는 상태로 유지하고 삭제를 막을 수 있는 안티바이러스 프로그램 때문에 필요합니다."
 
 #: ../../library/test.rst:1487
-#, fuzzy
 msgid ""
 "Call :func:`shutil.rmtree` on *path* or call :func:`os.lstat` and "
 ":func:`os.rmdir` to remove a path and its contents.  As with "
@@ -1968,8 +2052,8 @@ msgid ""
 " checks for the existence of the files."
 msgstr ""
 "*path*\\에 대해 :func:`shutil.rmtree`\\를 호출하거나 :func:`os.lstat`\\과 "
-":func:`os.rmdir`\\을 호출하여 경로와 해당 내용을 제거합니다. 윈도우 플랫폼에서, 이것은 파일의 존재를 확인하는 대기"
-" 루프로 래핑 됩니다."
+":func:`os.rmdir`\\을 호출하여 경로와 해당 내용을 제거합니다. :func:`rmdir`\\과 마찬가지로, 윈도우 "
+"플랫폼에서, 이것은 파일의 존재를 확인하는 대기 루프로 래핑 됩니다."
 
 #: ../../library/test.rst:1495
 msgid "A decorator for running tests that require support for symbolic links."
@@ -2026,26 +2110,23 @@ msgid "A context manager that temporarily sets the process umask."
 msgstr "프로세스 umask를 임시로 설정하는 컨텍스트 관리자."
 
 #: ../../library/test.rst:1536
-#, fuzzy
 msgid ""
 "Call :func:`os.unlink` on *filename*.  As with :func:`rmdir`, on Windows "
 "platforms, this is wrapped with a wait loop that checks for the existence"
 " of the file."
 msgstr ""
-"*filename*\\에 대해 :func:`os.unlink`\\를 호출합니다. 윈도우 플랫폼에서는, 파일의 존재를 확인하는 대기 "
-"루프로 래핑 됩니다."
+"*filename*\\에 대해 :func:`os.unlink`\\를 호출합니다. :func:`rmdir`\\과 마친가지로, 윈도우 "
+"플랫폼에서는, 파일의 존재를 확인하는 대기 루프로 래핑 됩니다."
 
 #: ../../library/test.rst:1542
-#, fuzzy
 msgid ":mod:`test.support.import_helper` --- Utilities for import tests"
-msgstr ":mod:`test.support.socket_helper` --- 소켓 테스트용 유틸리티"
+msgstr ":mod:`test.support.import_helper` --- 임포트 테스트용 유틸리티"
 
 #: ../../library/test.rst:1547
-#, fuzzy
 msgid ""
 "The :mod:`test.support.import_helper` module provides support for import "
 "tests."
-msgstr ":mod:`test.support.socket_helper` 모듈은 소켓 테스트를 지원합니다."
+msgstr ":mod:`test.support.import_helper` 모듈은 임포트 테스트를 지원합니다."
 
 #: ../../library/test.rst:1554
 msgid ""
@@ -2108,6 +2189,11 @@ msgid ""
 "py_warnings = import_fresh_module('warnings', blocked=['_warnings'])\n"
 "c_warnings = import_fresh_module('warnings', fresh=['_warnings'])"
 msgstr ""
+"# 나머지 테스트 스위트에서 사용 중인 버전에 영향을 주지 않고 테스트용 경고 모듈의 사본을\n"
+"# 얻습니다. 한 사본은 C 구현을 사용하고, 다른 사본은 순수한 파이썬 대체 구현을 사용하도록\n"
+"# 강요됩니다.\n"
+"py_warnings = import_fresh_module('warnings', blocked=['_warnings'])\n"
+"c_warnings = import_fresh_module('warnings', fresh=['_warnings'])"
 
 #: ../../library/test.rst:1596
 msgid ""
@@ -2155,25 +2241,25 @@ msgstr ""
 "pyc 파일이 있어야 합니다."
 
 #: ../../library/test.rst:1634
-#, fuzzy
 msgid ""
 "A context manager to force import to return a new module reference.  This"
 " is useful for testing module-level behaviors, such as the emission of a "
 ":exc:`DeprecationWarning` on import.  Example usage::"
 msgstr ""
-"새 모듈 참조를 반환하도록 임포트를 강제하는 컨텍스트 관리자. 이는 임포트 시 DeprecationWarning의 방출과 같은 모듈"
-" 수준 동작을 테스트하는 데 유용합니다. 사용 예::"
+"새 모듈 참조를 반환하도록 임포트를 강제하는 컨텍스트 관리자. 이는 임포트 시 :exc:`DeprecationWarning`\\의 "
+"방출과 같은 모듈 수준 동작을 테스트하는 데 유용합니다. 사용 예::"
 
 #: ../../library/test.rst:1638
 msgid ""
 "with CleanImport('foo'):\n"
 "    importlib.import_module('foo')  # New reference."
 msgstr ""
+"with CleanImport('foo'):\n"
+"    importlib.import_module('foo')  # 새 참조."
 
 #: ../../library/test.rst:1644
-#, fuzzy
 msgid "A context manager to temporarily add directories to :data:`sys.path`."
-msgstr "sys.path에 디렉터리를 임시로 추가하는 컨텍스트 관리자."
+msgstr ":data:`sys.path`\\에 디렉터리를 임시로 추가하는 컨텍스트 관리자."
 
 #: ../../library/test.rst:1646
 msgid ""
@@ -2194,16 +2280,14 @@ msgstr ""
 "유의하십시오."
 
 #: ../../library/test.rst:1656
-#, fuzzy
 msgid ":mod:`test.support.warnings_helper` --- Utilities for warnings tests"
-msgstr ":mod:`test.support.socket_helper` --- 소켓 테스트용 유틸리티"
+msgstr ":mod:`test.support.warnings_helper` --- warnings 테스트용 유틸리티"
 
 #: ../../library/test.rst:1661
-#, fuzzy
 msgid ""
 "The :mod:`test.support.warnings_helper` module provides support for "
 "warnings tests."
-msgstr ":mod:`test.support.socket_helper` 모듈은 소켓 테스트를 지원합니다."
+msgstr ":mod:`test.support.warnings_helper` 모듈은 warnings 테스트를 지원합니다."
 
 #: ../../library/test.rst:1668
 msgid ""
@@ -2220,6 +2304,9 @@ msgid ""
 "def test_suppress_warning():\n"
 "    # do something"
 msgstr ""
+"@warning_helper.ignore_warnings(category=DeprecationWarning)\n"
+"def test_suppress_warning():\n"
+"    # 뭔가 합니다"
 
 #: ../../library/test.rst:1683
 msgid ""
@@ -2250,7 +2337,6 @@ msgstr ""
 "아니면, 예외 오프셋과 비교합니다."
 
 #: ../../library/test.rst:1704
-#, fuzzy
 msgid ""
 "A convenience wrapper for :func:`warnings.catch_warnings` that makes it "
 "easier to test that a warning was correctly raised.  It is approximately "
@@ -2258,7 +2344,7 @@ msgid ""
 ":meth:`warnings.simplefilter` set to ``always`` and with the option to "
 "automatically validate the results that are recorded."
 msgstr ""
-"경고가 올바르게 발생했는지 테스트하기 쉽게 하는 :func:`warnings.catch_warnings()` 용 편의 래퍼. "
+"경고가 올바르게 발생했는지 테스트하기 쉽게 하는 :func:`warnings.catch_warnings` 용 편의 래퍼. "
 ":meth:`warnings.simplefilter`\\를 ``always``\\로 설정하고 기록된 결과를 자동으로 검증하는 옵션을"
 " 사용하여 ``warnings.catch_warnings(record=True)``\\를 호출하는 것과 거의 동등합니다."
 
@@ -2285,7 +2371,7 @@ msgstr "인자가 지정되지 않으면, 기본값은 다음과 같습니다::"
 
 #: ../../library/test.rst:1721
 msgid "check_warnings((\"\", Warning), quiet=True)"
-msgstr ""
+msgstr "check_warnings((\"\", Warning), quiet=True)"
 
 #: ../../library/test.rst:1723
 msgid "In this case all warnings are caught and no errors are raised."
@@ -2325,6 +2411,10 @@ msgid ""
 "    exec('assert(False, \"Hey!\")')\n"
 "    warnings.warn(UserWarning(\"Hide me!\"))"
 msgstr ""
+"with check_warnings((\"assertion is always true\", SyntaxWarning),\n"
+"                    (\"\", UserWarning)):\n"
+"    exec('assert(False, \"Hey!\")')\n"
+"    warnings.warn(UserWarning(\"Hide me!\"))"
 
 #: ../../library/test.rst:1744
 msgid ""
@@ -2350,6 +2440,15 @@ msgid ""
 "    w.reset()\n"
 "    assert len(w.warnings) == 0"
 msgstr ""
+"with check_warnings(quiet=True) as w:\n"
+"    warnings.warn(\"foo\")\n"
+"    assert str(w.args[0]) == \"foo\"\n"
+"    warnings.warn(\"bar\")\n"
+"    assert str(w.args[0]) == \"bar\"\n"
+"    assert str(w.warnings[0].args[0]) == \"foo\"\n"
+"    assert str(w.warnings[1].args[0]) == \"bar\"\n"
+"    w.reset()\n"
+"    assert len(w.warnings) == 0"
 
 #: ../../library/test.rst:1761
 msgid ""
