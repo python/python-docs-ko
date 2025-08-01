@@ -17,18 +17,16 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/multiprocessing.shared_memory.rst:2
-#, fuzzy
 msgid ""
 ":mod:`!multiprocessing.shared_memory` --- Shared memory for direct access"
 " across processes"
-msgstr ":mod:`multiprocessing.shared_memory` --- 프로세스 간 직접 액세스를 위한 공유 메모리를 제공합니다"
+msgstr ":mod:`!multiprocessing.shared_memory` --- 프로세스 간 직접 액세스를 위한 공유 메모리"
 
 #: ../../library/multiprocessing.shared_memory.rst:7
 msgid "**Source code:** :source:`Lib/multiprocessing/shared_memory.py`"
 msgstr "**소스 코드:** :source:`Lib/multiprocessing/shared_memory.py`"
 
 #: ../../library/multiprocessing.shared_memory.rst:18
-#, fuzzy
 msgid ""
 "This module provides a class, :class:`SharedMemory`, for the allocation "
 "and management of shared memory to be accessed by one or more processes "
@@ -41,10 +39,10 @@ msgstr ""
 "이 모듈은 멀티 코어나 대칭 멀티 프로세서 (SMP) 기계에서 하나 이상의 프로세스가 액세스할 공유 메모리의 할당과 관리를 위한 "
 "클래스 :class:`SharedMemory`\\를 제공합니다. 특히 별개의 프로세스에 걸친 공유 메모리의 수명 주기 관리를 "
 "지원하기 위해, :class:`~multiprocessing.managers.BaseManager` 서브 클래스인 "
-":class:`SharedMemoryManager`\\도 ``multiprocessing.managers`` 모듈에서 제공됩니다."
+":class:`~multiprocessing.managers.SharedMemoryManager`\\도 "
+":mod:`multiprocessing.managers` 모듈에서 제공됩니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:26
-#, fuzzy
 msgid ""
 "In this module, shared memory refers to \"POSIX style\" shared memory "
 "blocks (though is not necessarily implemented explicitly as such) and "
@@ -59,7 +57,7 @@ msgid ""
 " communications requiring the serialization/deserialization and copying "
 "of data."
 msgstr ""
-"이 모듈에서, 공유 메모리는 \"시스템 V 스타일\" 공유 메모리 블록을 가리키며 (꼭 그런 식으로 구현돼야 할 필요는 없습니다),"
+"이 모듈에서, 공유 메모리는 \"POSIX 스타일\" 공유 메모리 블록을 가리키며 (꼭 그런 식으로 구현돼야 할 필요는 없습니다),"
 " \"분산 공유 메모리\"를 가리키지는 않습니다. 이 스타일의 공유 메모리는 개별 프로세스가 잠재적으로 휘발성 메모리의 공통 (또는"
 " 공유) 영역을 읽고 쓸 수 있게 합니다. 프로세스는 일반적으로 자체 프로세스 메모리 공간에만 액세스 할 수 있도록 제한되지만, "
 "공유 메모리는 프로세스 간에 데이터를 공유 할 수 있도록 해서, 프로세스 간에 대신 해당 데이터가 포함된 메시지를 보낼 필요가 "
@@ -67,7 +65,6 @@ msgstr ""
 "비교하여 상당한 성능상의 이점을 얻을 수 있습니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:41
-#, fuzzy
 msgid ""
 "Create an instance of the :class:`!SharedMemory` class for either "
 "creating a new shared memory block or attaching to an existing shared "
@@ -76,12 +73,11 @@ msgid ""
 "name and a different process can attach to that same shared memory block "
 "using that same name."
 msgstr ""
-"새 공유 메모리 블록을 만들거나 기존 공유 메모리 블록에 연결합니다. 각 공유 메모리 블록에는 고유한 이름이 지정됩니다. 이런 "
-"식으로, 하나의 프로세스가 특정 이름을 가진 공유 메모리 블록을 생성 할 수 있으며, 다른 프로세스가 같은 이름을 사용하여 같은 "
-"공유 메모리 블록에 연결할 수 있습니다."
+"새 공유 메모리 블록을 만들거나 기존 공유 메모리 블록에 연결하기 위해 :class:`!SharedMemory` 클래스의 인스턴스를"
+" 만듭니다. 각 공유 메모리 블록에는 고유한 이름이 지정됩니다. 이런 식으로, 하나의 프로세스가 특정 이름을 가진 공유 메모리 "
+"블록을 생성 할 수 있으며, 다른 프로세스가 같은 이름을 사용하여 같은 공유 메모리 블록에 연결할 수 있습니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:48
-#, fuzzy
 msgid ""
 "As a resource for sharing data across processes, shared memory blocks may"
 " outlive the original process that created them.  When one process no "
@@ -91,35 +87,30 @@ msgid ""
 ":meth:`unlink` method should be called to ensure proper cleanup."
 msgstr ""
 "프로세스 간에 데이터를 공유하기 위한 자원으로서, 공유 메모리 블록은 생성한 원래 프로세스보다 오래갈 수 있습니다. 한 프로세스가 "
-"더는 다른 프로세스가 필요로 할 수도 있는 공유 메모리 블록에 대한 액세스를 필요로하지 않으면 :meth:`close()` 메서드를"
-" 호출해야 합니다. 어떤 프로세스에서도 공유 메모리 블록이 더는 필요하지 않으면, 적절한 정리를 위해 :meth:`unlink()`"
-" 메서드를 호출해야 합니다."
+"더는 다른 프로세스가 필요로 할 수도 있는 공유 메모리 블록에 대한 액세스를 필요로하지 않으면 :meth:`close` 메서드를 "
+"호출해야 합니다. 어떤 프로세스에서도 공유 메모리 블록이 더는 필요하지 않으면, 적절한 정리를 위해 :meth:`unlink` "
+"메서드를 호출해야 합니다."
 
 #: ../../library/multiprocessing.shared_memory.rst
 msgid "Parameters"
-msgstr ""
+msgstr "매개 변수"
 
 #: ../../library/multiprocessing.shared_memory.rst:55
-#, fuzzy
 msgid ""
 "The unique name for the requested shared memory, specified as a string. "
 "When creating a new shared memory block, if ``None`` (the default) is "
 "supplied for the name, a novel name will be generated."
 msgstr ""
-"*name*\\은 문자열로 지정된 요청된 공유 메모리의 고유한 이름입니다. 새 공유 메모리 블록을 만들 때, 이름에 "
-"``None``\\(기본값)이 제공되면, 새로운 이름이 생성됩니다."
+"문자열로 지정된, 요청된 공유 메모리의 고유한 이름. 새 공유 메모리 블록을 만들 때, 이름에 ``None``\\(기본값)이 "
+"제공되면, 새로운 이름이 생성됩니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:61
-#, fuzzy
 msgid ""
 "Control whether a new shared memory block is created (``True``) or an "
 "existing shared memory block is attached (``False``)."
-msgstr ""
-"*create*\\는 새 공유 메모리 블록을 만들지(``True``), 또는 기존 공유 메모리 블록을 연결할지(``False``)를"
-" 제어합니다."
+msgstr "새 공유 메모리 블록을 만들지(``True``), 또는 기존 공유 메모리 블록을 연결할지(``False``)를 제어합니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:65
-#, fuzzy
 msgid ""
 "The requested number of bytes when creating a new shared memory block. "
 "Because some platforms choose to allocate chunks of memory based upon "
@@ -127,9 +118,9 @@ msgid ""
 "block may be larger or equal to the size requested. When attaching to an "
 "existing shared memory block, the *size* parameter is ignored."
 msgstr ""
-"*size*\\는 새 공유 메모리 블록을 만들 때 요청된 바이트 수를 지정합니다. 일부 플랫폼은 해당 플랫폼의 메모리 페이지 크기를"
-" 기반으로 메모리 덩어리를 할당하기 때문에, 공유 메모리 블록의 정확한 크기는 요청한 크기보다 크거나 같을 수 있습니다. 기존 공유"
-" 메모리 블록에 연결할 때는, ``size`` 매개 변수가 무시됩니다."
+"새 공유 메모리 블록을 만들 때 요청된 바이트 수. 일부 플랫폼은 해당 플랫폼의 메모리 페이지 크기를 기반으로 메모리 덩어리를 "
+"할당하기 때문에, 공유 메모리 블록의 정확한 크기는 요청한 크기보다 크거나 같을 수 있습니다. 기존 공유 메모리 블록에 연결할 "
+"때는, *size* 매개 변수가 무시됩니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:73
 msgid ""
@@ -224,18 +215,37 @@ msgid ""
 ">>> shm_a.close()\n"
 ">>> shm_a.unlink()  # Call unlink only once to release the shared memory"
 msgstr ""
+">>> from multiprocessing import shared_memory\n"
+">>> shm_a = shared_memory.SharedMemory(create=True, size=10)\n"
+">>> type(shm_a.buf)\n"
+"<class 'memoryview'>\n"
+">>> buffer = shm_a.buf\n"
+">>> len(buffer)\n"
+"10\n"
+">>> buffer[:4] = bytearray([22, 33, 44, 55])  # 여러 바이트를 한 번에 수정합니다\n"
+">>> buffer[4] = 100                           # 한 번에 한 바이트씩 수정합니다\n"
+">>> # 기존 공유 메모리 블록에 연결합니다\n"
+">>> shm_b = shared_memory.SharedMemory(shm_a.name)\n"
+">>> import array\n"
+">>> array.array('b', shm_b.buf[:5])  # 새 array.array로 데이터를 복사합니다\n"
+"array('b', [22, 33, 44, 55, 100])\n"
+">>> shm_b.buf[:5] = b'howdy'  # shm_b를 통해 bytes를 사용해서 수정합니다\n"
+">>> bytes(shm_a.buf[:5])      # shm_a를 통해 액세스합니다\n"
+"b'howdy'\n"
+">>> shm_b.close()   # 각 SharedMemory 인스턴스를 닫습니다\n"
+">>> shm_a.close()\n"
+">>> shm_a.unlink()  # 공유 메모리를 해제하기 위해 오직 한 번만 unlink를 호출합니다"
 
 #: ../../library/multiprocessing.shared_memory.rst:154
-#, fuzzy
 msgid ""
 "The following example demonstrates a practical use of the "
 ":class:`SharedMemory` class with `NumPy arrays <https://numpy.org/>`_, "
 "accessing the same :class:`!numpy.ndarray` from two distinct Python "
 "shells:"
 msgstr ""
-"다음 예제는 두 개의 다른 파이썬 셸에서 같은 ``numpy.ndarray``\\에 액세스하는, `NumPy 배열 "
-"<https://www.numpy.org/>`_\\과 함께 :class:`SharedMemory` 클래스를 사용하는 실용적인 방법을"
-" 보여줍니다:"
+"다음 예제는 두 개의 다른 파이썬 셸에서 같은 :class:`!numpy.ndarray`\\에 액세스하는, `NumPy 배열 "
+"<https://numpy.org/>`_\\과 함께 :class:`SharedMemory` 클래스를 사용하는 실용적인 방법을 "
+"보여줍니다:"
 
 #: ../../library/multiprocessing.shared_memory.rst:158
 msgid ""
@@ -284,18 +294,58 @@ msgid ""
 ">>> shm.unlink()  # Free and release the shared memory block at the very "
 "end"
 msgstr ""
+">>> # 첫 번째 파이썬 대화형 셸에서\n"
+">>> import numpy as np\n"
+">>> a = np.array([1, 1, 2, 3, 5, 8])  # 기존 NumPy 배열로 시작합니다\n"
+">>> from multiprocessing import shared_memory\n"
+">>> shm = shared_memory.SharedMemory(create=True, size=a.nbytes)\n"
+">>> # 이제 공유 메모리에 NumPy 배열을 만듭니다\n"
+">>> b = np.ndarray(a.shape, dtype=a.dtype, buffer=shm.buf)\n"
+">>> b[:] = a[:]  # 원래 데이터를 공유 메모리로 복사합니다\n"
+">>> b\n"
+"array([1, 1, 2, 3, 5, 8])\n"
+">>> type(b)\n"
+"<class 'numpy.ndarray'>\n"
+">>> type(a)\n"
+"<class 'numpy.ndarray'>\n"
+">>> shm.name  # 이름을 지정하지 않았으므로, 우리를 위해 이름이 선택되었습니다\n"
+"'psm_21467_46075'\n"
+"\n"
+">>> # 같은 셸이나 같은 기계 상의 새로운 파이썬 셀에서\n"
+">>> import numpy as np\n"
+">>> from multiprocessing import shared_memory\n"
+">>> # 기존 공유 메모리 블록에 연결합니다\n"
+">>> existing_shm = shared_memory.SharedMemory(name='psm_21467_46075')\n"
+">>> # 이 예제에서 a.shape은 (6,)이고 a.dtype은 np.int64 입니다\n"
+">>> c = np.ndarray((6,), dtype=np.int64, buffer=existing_shm.buf)\n"
+">>> c\n"
+"array([1, 1, 2, 3, 5, 8])\n"
+">>> c[-1] = 888\n"
+">>> c\n"
+"array([  1,   1,   2,   3,   5, 888])\n"
+"\n"
+">>> # 첫 번째 파이썬 대화형 셸로 돌아가면, b가 이 변경을 반영합니다\n"
+">>> b\n"
+"array([  1,   1,   2,   3,   5, 888])\n"
+"\n"
+">>> # 두 번째 파이썬 셀 내에서 정리합니다\n"
+">>> del c  # 필요 없습니다; 단순히 배열이 더는 사용되지 않는다는 것을 강조하기 위함입니다\n"
+">>> existing_shm.close()\n"
+"\n"
+">>> # 첫 번째 파이썬 셀 내에서 정리합니다\n"
+">>> del b  # 필요 없습니다; 단순히 배열이 더는 사용되지 않는다는 것을 강조하기 위함입니다\n"
+">>> shm.close()\n"
+">>> shm.unlink()  # 제일 끝에서 공유 메모리 블록을 해제하고 반납합니다"
 
 #: ../../library/multiprocessing.shared_memory.rst:208
-#, fuzzy
 msgid ""
 "A subclass of :class:`multiprocessing.managers.BaseManager` which can be "
 "used for the management of shared memory blocks across processes."
 msgstr ""
 "프로세스 간 공유 메모리 블록을 관리하는 데 사용할 수 있는 "
-":class:`~multiprocessing.managers.BaseManager`\\의 서브 클래스."
+":class:`multiprocessing.managers.BaseManager`\\의 서브 클래스."
 
 #: ../../library/multiprocessing.shared_memory.rst:211
-#, fuzzy
 msgid ""
 "A call to :meth:`~multiprocessing.managers.BaseManager.start` on a "
 ":class:`!SharedMemoryManager` instance causes a new process to be "
@@ -310,15 +360,15 @@ msgid ""
 "through a :class:`!SharedMemoryManager`, we avoid the need to manually "
 "track and trigger the freeing of shared memory resources."
 msgstr ""
-":class:`SharedMemoryManager` 인스턴스에서 "
+":class:`!SharedMemoryManager` 인스턴스에서 "
 ":meth:`~multiprocessing.managers.BaseManager.start`\\를 호출하면 새 프로세스가 "
 "시작됩니다. 이 새로운 프로세스의 유일한 목적은 이를 통해 생성된 모든 공유 메모리 블록의 수명 주기를 관리하는 것입니다. 해당 "
 "프로세스가 관리하는 모든 공유 메모리 블록의 해제를 시작시키려면, 해당 인스턴스에서 "
-":meth:`~multiprocessing.managers.BaseManager.shutdown()`\\을 호출하십시오. 그러면 이"
-" 프로세스에 의해 관리되는 모든 :class:`SharedMemory` 객체에 대해 "
-":meth:`SharedMemory.unlink()` 호출을 일으키고, 그런 다음 프로세스 자체를 중지합니다. "
-"``SharedMemoryManager``\\를 통해 ``SharedMemory`` 인스턴스를 생성함으로써, 공유 메모리 자원을 "
-"수동으로 추적하여 해제할 필요가 없습니다."
+":meth:`~multiprocessing.managers.BaseManager.shutdown`\\을 호출하십시오. 그러면 이 "
+"프로세스에 의해 관리되는 모든 :class:`SharedMemory` 객체에 대해 "
+":meth:`~multiprocessing.shared_memory.SharedMemory.unlink` 호출을 일으키고, 그런 "
+"다음 프로세스 자체를 중지합니다. :class:`!SharedMemoryManager`\\를 통해 "
+":class:`!SharedMemory` 인스턴스를 생성함으로써, 공유 메모리 자원을 수동으로 추적하여 해제할 필요가 없습니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:223
 msgid ""
@@ -330,7 +380,6 @@ msgstr ""
 "객체(:class:`ShareableList`)를 만드는 메서드를 제공합니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:227
-#, fuzzy
 msgid ""
 "Refer to :class:`~multiprocessing.managers.BaseManager` for a description"
 " of the inherited *address* and *authkey* optional input arguments and "
@@ -338,29 +387,28 @@ msgid ""
 ":class:`!SharedMemoryManager` service from other processes."
 msgstr ""
 "상속된 *address*\\와 *authkey* 선택적 입력 인자에 대한 설명과 이 인자를 사용하여 다른 프로세스의 기존 "
-"``SharedMemoryManager`` 서비스에 연결하는 방법에 대해서는 "
-":class:`multiprocessing.managers.BaseManager`\\를 참조하십시오."
+":class:`!SharedMemoryManager` 서비스에 연결하는 방법에 대해서는 "
+":class:`~multiprocessing.managers.BaseManager`\\를 참조하십시오."
 
 #: ../../library/multiprocessing.shared_memory.rst:234
-#, fuzzy
 msgid ""
 "Create and return a new :class:`SharedMemory` object with the specified "
 "*size* in bytes."
-msgstr "바이트로 지정된 ``size`` 크기의 새로운 :class:`SharedMemory` 객체를 만들고 반환합니다."
+msgstr "바이트로 지정된 *size* 크기의 새로운 :class:`SharedMemory` 객체를 만들고 반환합니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:239
-#, fuzzy
 msgid ""
 "Create and return a new :class:`ShareableList` object, initialized by the"
 " values from the input *sequence*."
-msgstr "입력 ``sequence``\\의 값으로 초기화된, 새 :class:`ShareableList` 객체를 만들고 반환합니다."
+msgstr "입력 *sequence*\\의 값으로 초기화된, 새 :class:`ShareableList` 객체를 만들고 반환합니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:243
-#, fuzzy
 msgid ""
 "The following example demonstrates the basic mechanisms of a "
 ":class:`~multiprocessing.managers.SharedMemoryManager`:"
-msgstr "다음 예제는 :class:`SharedMemoryManager`\\의 기본 메커니즘을 보여줍니다:"
+msgstr ""
+"다음 예제는 :class:`~multiprocessing.managers.SharedMemoryManager`\\의 기본 메커니즘을"
+" 보여줍니다:"
 
 #: ../../library/multiprocessing.shared_memory.rst:246
 msgid ""
@@ -377,17 +425,28 @@ msgid ""
 "ShareableList(['a', 'l', 'p', 'h', 'a'], name='psm_6572_12221')\n"
 ">>> smm.shutdown()  # Calls unlink() on sl, raw_shm, and another_sl"
 msgstr ""
+">>> from multiprocessing.managers import SharedMemoryManager\n"
+">>> smm = SharedMemoryManager()\n"
+">>> smm.start()  # 공유 메모리 블록을 관리하는 프로세스를 시작합니다\n"
+">>> sl = smm.ShareableList(range(4))\n"
+">>> sl\n"
+"ShareableList([0, 1, 2, 3], name='psm_6572_7512')\n"
+">>> raw_shm = smm.SharedMemory(size=128)\n"
+">>> another_sl = smm.ShareableList('alpha')\n"
+">>> another_sl\n"
+"ShareableList(['a', 'l', 'p', 'h', 'a'], name='psm_6572_12221')\n"
+">>> smm.shutdown()  # sl, raw_shm, 및 another_sl 에 대해 unlink()를 호출합니다"
 
 #: ../../library/multiprocessing.shared_memory.rst:261
-#, fuzzy
 msgid ""
 "The following example depicts a potentially more convenient pattern for "
 "using :class:`~multiprocessing.managers.SharedMemoryManager` objects via "
 "the :keyword:`with` statement to ensure that all shared memory blocks are"
 " released after they are no longer needed:"
 msgstr ""
-"다음 예제는 :keyword:`with` 문을 통해 :class:`SharedMemoryManager` 객체를 사용하여 더는 "
-"필요하지 않은 모든 공유 메모리 블록이 해제되도록 하는, 잠재적으로 더 편리한 패턴을 보여줍니다:"
+"다음 예제는 :keyword:`with` 문을 통해 "
+":class:`~multiprocessing.managers.SharedMemoryManager` 객체를 사용하여 더는 필요하지 "
+"않은 모든 공유 메모리 블록이 해제되도록 하는, 잠재적으로 더 편리한 패턴을 보여줍니다:"
 
 #: ../../library/multiprocessing.shared_memory.rst:266
 msgid ""
@@ -404,17 +463,27 @@ msgid ""
 "...     total_result = sum(sl)  # Consolidate the partial results now in "
 "sl"
 msgstr ""
+">>> with SharedMemoryManager() as smm:\n"
+"...     sl = smm.ShareableList(range(2000))\n"
+"...     # 작업을 두 프로세스로 나누고, 부분적인 결과를 sl에 저장합니다\n"
+"...     p1 = Process(target=do_work, args=(sl, 0, 1000))\n"
+"...     p2 = Process(target=do_work, args=(sl, 1000, 2000))\n"
+"...     p1.start()\n"
+"...     p2.start()  # multiprocessing.Pool이 더 효율적일 수 있습니다\n"
+"...     p1.join()\n"
+"...     p2.join()   # 두 프로세스가 모두 작업을 끝낼 때까지 기다립니다\n"
+"...     total_result = sum(sl)  # 이제 sl에 있는 부분 결과들을 통합합니다"
 
 #: ../../library/multiprocessing.shared_memory.rst:280
-#, fuzzy
 msgid ""
 "When using a :class:`~multiprocessing.managers.SharedMemoryManager` in a "
 ":keyword:`with` statement, the shared memory blocks created using that "
 "manager are all released when the :keyword:`!with` statement's code block"
 " finishes execution."
 msgstr ""
-":keyword:`with` 문에서 :class:`SharedMemoryManager`\\를 사용할 때, "
-":keyword:`with` 문의 코드 블록 실행이 완료되면 해당 관리자를 사용하여 만들어진 공유 메모리 블록이 모두 해제됩니다."
+":keyword:`with` 문에서 "
+":class:`~multiprocessing.managers.SharedMemoryManager`\\를 사용할 때, "
+":keyword:`!with` 문의 코드 블록 실행이 완료되면 해당 관리자를 사용하여 만들어진 공유 메모리 블록이 모두 해제됩니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:288
 msgid ""
@@ -425,15 +494,15 @@ msgstr ""
 
 #: ../../library/multiprocessing.shared_memory.rst:292
 msgid ":class:`int` (signed 64-bit)"
-msgstr ""
+msgstr ":class:`int` (부호있는 64-비트)"
 
 #: ../../library/multiprocessing.shared_memory.rst:293
 msgid ":class:`float`"
-msgstr ""
+msgstr ":class:`float`"
 
 #: ../../library/multiprocessing.shared_memory.rst:294
 msgid ":class:`bool`"
-msgstr ""
+msgstr ":class:`bool`"
 
 #: ../../library/multiprocessing.shared_memory.rst:295
 msgid ":class:`str` (less than 10M bytes each when encoded as UTF-8)"
@@ -445,7 +514,7 @@ msgstr ""
 
 #: ../../library/multiprocessing.shared_memory.rst:297
 msgid "``None``"
-msgstr ""
+msgstr "``None``"
 
 #: ../../library/multiprocessing.shared_memory.rst:299
 msgid ""
@@ -456,17 +525,15 @@ msgid ""
 msgstr ""
 
 #: ../../library/multiprocessing.shared_memory.rst:305
-#, fuzzy
 msgid ""
 "*sequence* is used in populating a new :class:`!ShareableList` full of "
 "values. Set to ``None`` to instead attach to an already existing "
 ":class:`!ShareableList` by its unique shared memory name."
 msgstr ""
-"*sequence*\\는 새로운 ``ShareableList``\\를 값으로 가득 채우는 데 사용됩니다. 고유한 공유 메모리 "
-"이름으로 이미 존재하는 ``ShareableList``\\에 대신 연결하려면 ``None``\\으로 설정하십시오."
+"*sequence*\\는 새로운 :class:`!ShareableList`\\를 값으로 가득 채우는 데 사용됩니다. 고유한 공유 "
+"메모리 이름으로 이미 존재하는 :class:`!ShareableList`\\에 대신 연결하려면 ``None``\\으로 설정하십시오."
 
 #: ../../library/multiprocessing.shared_memory.rst:309
-#, fuzzy
 msgid ""
 "*name* is the unique name for the requested shared memory, as described "
 "in the definition for :class:`SharedMemory`.  When attaching to an "
@@ -474,8 +541,8 @@ msgid ""
 "unique name while leaving *sequence* set to ``None``."
 msgstr ""
 "*name*\\은 :class:`SharedMemory`\\에 대한 정의에서 설명한 대로, 요청된 공유 메모리의 고유한 이름입니다."
-" 기존 ``ShareableList``\\에 연결할 때, ``sequence``\\를 ``None``\\으로 설정하고 공유 메모리 "
-"블록의 고유한 이름을 지정하십시오."
+" 기존 :class:`!ShareableList`\\에 연결할 때, *sequence*\\를 ``None``\\으로 설정하고 공유 "
+"메모리 블록의 고유한 이름을 지정하십시오."
 
 #: ../../library/multiprocessing.shared_memory.rst:316
 msgid ""
@@ -512,20 +579,31 @@ msgid ""
 "b'\\x03\\x02\\x01\\x00\\x00\\x00'\n"
 ">>> padded.shm.unlink()"
 msgstr ""
+">>> from multiprocessing import shared_memory\n"
+">>> nul_bug_demo = shared_memory.ShareableList(['?\\x00', "
+"b'\\x03\\x02\\x01\\x00\\x00\\x00'])\n"
+">>> nul_bug_demo[0]\n"
+"'?'\n"
+">>> nul_bug_demo[1]\n"
+"b'\\x03\\x02\\x01'\n"
+">>> nul_bug_demo.shm.unlink()\n"
+">>> padded = shared_memory.ShareableList(['?\\x00\\x07', "
+"b'\\x03\\x02\\x01\\x00\\x00\\x00\\x07'])\n"
+">>> padded[0][:-1]\n"
+"'?\\x00'\n"
+">>> padded[1][:-1]\n"
+"b'\\x03\\x02\\x01\\x00\\x00\\x00'\n"
+">>> padded.shm.unlink()"
 
 #: ../../library/multiprocessing.shared_memory.rst:345
-#, fuzzy
 msgid "Return the number of occurrences of *value*."
-msgstr "``value``\\의 발생 횟수를 반환합니다."
+msgstr "*value*\\의 발생 횟수를 반환합니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:349
-#, fuzzy
 msgid ""
 "Return first index position of *value*. Raise :exc:`ValueError` if "
 "*value* is not present."
-msgstr ""
-"``value``\\의 첫 번째 인덱스 위치를 반환합니다. ``value``\\가 없으면 :exc:`ValueError`\\를 "
-"발생시킵니다."
+msgstr "*value*\\의 첫 번째 인덱스 위치를 반환합니다. *value*\\가 없으면 :exc:`ValueError`\\를 발생시킵니다."
 
 #: ../../library/multiprocessing.shared_memory.rst:354
 msgid ""
@@ -564,15 +642,15 @@ msgstr ""
 
 #: ../../library/multiprocessing.shared_memory.rst:11
 msgid "Shared Memory"
-msgstr ""
+msgstr "공유 메모리"
 
 #: ../../library/multiprocessing.shared_memory.rst:11
 msgid "POSIX Shared Memory"
-msgstr ""
+msgstr "POSIX 공유 메모리"
 
 #: ../../library/multiprocessing.shared_memory.rst:11
 msgid "Named Shared Memory"
-msgstr ""
+msgstr "이름 지정 공유 메모리"
 
 #~ msgid ""
 #~ "Closes access to the shared memory "
