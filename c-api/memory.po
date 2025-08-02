@@ -98,6 +98,15 @@ msgid ""
 "free(buf); /* malloc'ed */\n"
 "return res;"
 msgstr ""
+"PyObject *res;\n"
+"char *buf = (char *) malloc(BUFSIZ); /* I/O 용 */\n"
+"\n"
+"if (buf == NULL)\n"
+"    return PyErr_NoMemory();\n"
+"...buf 를 사용하는 I/O 연산을 수행합니다...\n"
+"res = PyBytes_FromString(buf);\n"
+"free(buf); /* malloc 으로 할당했습니다 */\n"
+"return res;"
 
 #: ../../c-api/memory.rst:68
 msgid ""
@@ -109,7 +118,6 @@ msgstr ""
 "바이트열 객체의 할당에만 관여합니다."
 
 #: ../../c-api/memory.rst:72
-#, fuzzy
 msgid ""
 "In most situations, however, it is recommended to allocate memory from "
 "the Python heap specifically because the latter is under control of the "
@@ -230,7 +238,6 @@ msgstr ""
 "interpreter lock>`\\을 유지할 필요는 없습니다."
 
 #: ../../c-api/memory.rst:145
-#, fuzzy
 msgid ""
 "The :ref:`default raw memory allocator <default-memory-allocators>` uses "
 "the following functions: :c:func:`malloc`, :c:func:`calloc`, "
@@ -238,17 +245,16 @@ msgid ""
 " 1)``) when requesting zero bytes."
 msgstr ""
 ":ref:`기본 원시 메모리 할당자 <default-memory-allocators>`\\는 다음 함수를 사용합니다: "
-":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` 및 :c:func:`free`; "
+":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` 및 :c:func:`!free`; "
 "0바이트를 요청할 때 ``malloc(1)``\\(또는 ``calloc(1, 1)``)을 호출합니다."
 
 #: ../../c-api/memory.rst:154 ../../c-api/memory.rst:225
 #: ../../c-api/memory.rst:335
-#, fuzzy
 msgid ""
 "Allocates *n* bytes and returns a pointer of type :c:expr:`void*` to the "
 "allocated memory, or ``NULL`` if the request fails."
 msgstr ""
-"*n* 바이트를 할당하고 할당된 메모리를 가리키는 :c:type:`void*` 형의 포인터를 반환하거나, 요청이 실패하면 "
+"*n* 바이트를 할당하고 할당된 메모리를 가리키는 :c:expr:`void*` 형의 포인터를 반환하거나, 요청이 실패하면 "
 "``NULL``\\을 반환합니다."
 
 #: ../../c-api/memory.rst:157
@@ -262,13 +268,12 @@ msgstr ""
 
 #: ../../c-api/memory.rst:164 ../../c-api/memory.rst:235
 #: ../../c-api/memory.rst:345
-#, fuzzy
 msgid ""
 "Allocates *nelem* elements each whose size in bytes is *elsize* and "
 "returns a pointer of type :c:expr:`void*` to the allocated memory, or "
 "``NULL`` if the request fails. The memory is initialized to zeros."
 msgstr ""
-"크기가 각각 *elsize* 바이트인 *nelem* 개의 요소를 할당하고 할당된 메모리를 가리키는 :c:type:`void*` 형의"
+"크기가 각각 *elsize* 바이트인 *nelem* 개의 요소를 할당하고 할당된 메모리를 가리키는 :c:expr:`void*` 형의"
 " 포인터를 반환하거나, 요청이 실패하면 ``NULL``\\을 반환합니다. 메모리는 0으로 초기화됩니다."
 
 #: ../../c-api/memory.rst:168
@@ -426,17 +431,15 @@ msgid ""
 msgstr "편의를 위해 다음과 같은 형 지향 매크로가 제공됩니다. *TYPE*\\이 모든 C형을 나타냄에 유의하십시오."
 
 #: ../../c-api/memory.rst:277
-#, fuzzy
 msgid ""
 "Same as :c:func:`PyMem_Malloc`, but allocates ``(n * sizeof(TYPE))`` "
 "bytes of memory.  Returns a pointer cast to ``TYPE*``.  The memory will "
 "not have been initialized in any way."
 msgstr ""
 ":c:func:`PyMem_Malloc`\\과 같지만, ``(n * sizeof(TYPE))`` 바이트의 메모리를 할당합니다. "
-":c:type:`TYPE*`\\로 캐스트 된 포인터를 반환합니다. 메모리는 어떤 식으로든 초기화되지 않습니다."
+"``TYPE*``\\로 캐스트 된 포인터를 반환합니다. 메모리는 어떤 식으로든 초기화되지 않습니다."
 
 #: ../../c-api/memory.rst:284
-#, fuzzy
 msgid ""
 "Same as :c:func:`PyMem_Realloc`, but the memory block is resized to ``(n "
 "* sizeof(TYPE))`` bytes.  Returns a pointer cast to ``TYPE*``. On return,"
@@ -444,8 +447,8 @@ msgid ""
 "of failure."
 msgstr ""
 ":c:func:`PyMem_Realloc`\\과 같지만, 메모리 블록의 크기는 ``(n * sizeof(TYPE))`` 바이트로 "
-"조정됩니다. :c:type:`TYPE*`\\로 캐스트 된 포인터를 반환합니다. 반환한 후에, *p*\\는 새로운 메모리 영역에 대한"
-" 포인터이거나, 실패하면 ``NULL``\\이 됩니다."
+"조정됩니다. ``TYPE*``\\로 캐스트 된 포인터를 반환합니다. 반환한 후에, *p*\\는 새로운 메모리 영역에 대한 "
+"포인터이거나, 실패하면 ``NULL``\\이 됩니다."
 
 #: ../../c-api/memory.rst:289
 msgid ""
@@ -653,23 +656,20 @@ msgid "Legend:"
 msgstr "범례:"
 
 #: ../../c-api/memory.rst:400
-#, fuzzy
 msgid "Name: value for :envvar:`PYTHONMALLOC` environment variable."
-msgstr "이름: :envvar:`PYTHONMALLOC` 환경 변수의 값"
+msgstr "이름: :envvar:`PYTHONMALLOC` 환경 변수의 값."
 
 #: ../../c-api/memory.rst:401
-#, fuzzy
 msgid ""
 "``malloc``: system allocators from the standard C library, C functions: "
 ":c:func:`malloc`, :c:func:`calloc`, :c:func:`realloc` and :c:func:`free`."
 msgstr ""
 "``malloc``: 표준 C 라이브러리의 시스템 할당자, C 함수: :c:func:`malloc`, "
-":c:func:`calloc`, :c:func:`realloc` 및 :c:func:`free`"
+":c:func:`calloc`, :c:func:`realloc` 및 :c:func:`free`."
 
 #: ../../c-api/memory.rst:403
-#, fuzzy
 msgid "``pymalloc``: :ref:`pymalloc memory allocator <pymalloc>`."
-msgstr "``pymalloc``: :ref:`pymalloc 메모리 할당자 <pymalloc>`"
+msgstr "``pymalloc``: :ref:`pymalloc 메모리 할당자 <pymalloc>`."
 
 #: ../../c-api/memory.rst:404
 msgid ""
@@ -678,11 +678,10 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/memory.rst:406
-#, fuzzy
 msgid ""
 "\"+ debug\": with :ref:`debug hooks on the Python memory allocators "
 "<pymem-debug-hooks>`."
-msgstr "\"+ 디버그\": :c:func:`PyMem_SetupDebugHooks` 에 의해 설치된 디버그 훅 포함"
+msgstr "\"+ 디버그\": :ref:`파이썬 메모리 할당기의 디버그 훅 <pymem-debug-hooks>` 포함."
 
 #: ../../c-api/memory.rst:408
 msgid "\"Debug build\": :ref:`Python build in debug mode <debug-build>`."
@@ -693,11 +692,10 @@ msgid "Customize Memory Allocators"
 msgstr "메모리 할당자 사용자 정의"
 
 #: ../../c-api/memory.rst:419
-#, fuzzy
 msgid ""
 "Structure used to describe a memory block allocator. The structure has "
 "the following fields:"
-msgstr "메모리 블록 할당자를 기술하는 데 사용되는 구조체. 구조체에는 네 개의 필드가 있습니다:"
+msgstr "메모리 블록 할당자를 기술하는 데 사용되는 구조체. 구조체에는 다음과 같은 필드가 있습니다:"
 
 #: ../../c-api/memory.rst:423 ../../c-api/memory.rst:670
 msgid "Field"
@@ -748,12 +746,11 @@ msgid "free a memory block"
 msgstr "메모리 블록을 해제합니다"
 
 #: ../../c-api/memory.rst:437
-#, fuzzy
 msgid ""
 "The :c:type:`!PyMemAllocator` structure was renamed to "
 ":c:type:`PyMemAllocatorEx` and a new ``calloc`` field was added."
 msgstr ""
-":c:type:`PyMemAllocator` 구조체의 이름이 :c:type:`PyMemAllocatorEx`\\로 바뀌고 새로운 "
+":c:type:`!PyMemAllocator` 구조체의 이름이 :c:type:`PyMemAllocatorEx`\\로 바뀌고 새로운 "
 "``calloc`` 필드가 추가되었습니다."
 
 #: ../../c-api/memory.rst:444
@@ -828,13 +825,12 @@ msgid ""
 msgstr "새 할당자는 0바이트를 요청할 때 고유한 ``NULL``\\이 아닌 포인터를 반환해야 합니다."
 
 #: ../../c-api/memory.rst:487
-#, fuzzy
 msgid ""
 "For the :c:macro:`PYMEM_DOMAIN_RAW` domain, the allocator must be thread-"
 "safe: the :term:`GIL <global interpreter lock>` is not held when the "
 "allocator is called."
 msgstr ""
-":c:data:`PYMEM_DOMAIN_RAW` 도메인의 경우, 할당자는 스레드 안전해야 합니다: 할당자가 호출될 때 "
+":c:macro:`PYMEM_DOMAIN_RAW` 도메인의 경우, 할당자는 스레드 안전해야 합니다: 할당자가 호출될 때 "
 ":term:`GIL <global interpreter lock>`\\을 잡지 않습니다."
 
 #: ../../c-api/memory.rst:491
@@ -892,9 +888,8 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/memory.rst:532
-#, fuzzy
 msgid "Debug hooks on the Python memory allocators"
-msgstr "파이썬 메모리 할당자 함수에 있는 버그를 감지하기 위한 훅을 설정합니다."
+msgstr "파이썬 메모리 할당자의 디버그 훅"
 
 #: ../../c-api/memory.rst:534
 msgid ""
@@ -905,15 +900,13 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/memory.rst:539
-#, fuzzy
 msgid ""
 "The :envvar:`PYTHONMALLOC` environment variable can be used to install "
 "debug hooks on a Python compiled in release mode (ex: "
 "``PYTHONMALLOC=debug``)."
 msgstr ""
-"파이썬이 디버그 모드에서 컴파일되면 이러한 훅은 :ref:`기본적으로 설치됩니다 <default-memory-"
-"allocators>`. :envvar:`PYTHONMALLOC` 환경 변수를 사용하여 릴리스 모드에서 컴파일된 파이썬에 디버그 "
-"훅을 설치할 수 있습니다."
+":envvar:`PYTHONMALLOC` 환경 변수를 사용하여 릴리스 모드에서 컴파일된 파이썬에 디버그 훅을 설치할 수 있습니다 "
+"(예: ``PYTHONMALLOC=debug``)."
 
 #: ../../c-api/memory.rst:542
 msgid ""
@@ -922,7 +915,6 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/memory.rst:545
-#, fuzzy
 msgid ""
 "These debug hooks fill dynamically allocated memory blocks with special, "
 "recognizable bit patterns. Newly allocated memory is filled with the byte"
@@ -932,44 +924,42 @@ msgid ""
 "(``PYMEM_FORBIDDENBYTE``). Strings of these bytes are unlikely to be "
 "valid addresses, floats, or ASCII strings."
 msgstr ""
-"새로 할당된 메모리는 바이트 ``0xCD``\\(``CLEANBYTE``)로 채워지고, 해제된 메모리는 바이트 "
-"``0xDD``\\(``DEADBYTE``)로 채워집니다. 메모리 블록은 \"금지된 바이트\"(``FORBIDDENBYTE``: "
-"바이트 ``0xFD``)로 둘러싸여 있습니다."
+"이 디버그 훅은 동적으로 할당된 메모리 블록을 특수하고, 인식 가능한 비트 패턴으로 채웁니다. 새로 할당된 메모리는 바이트 "
+"``0xCD``\\(``PYMEM_CLEANBYTE``)로 채워지고, 해제된 메모리는 바이트 "
+"``0xDD``\\(``PYMEM_DEADBYTE``)로 채워집니다. 메모리 블록은 바이트 ``0xFD`` "
+"(``PYMEM_FORBIDDENBYTE``)로 채워진 \"금지된 바이트\"로 둘러싸입니다. 이 바이트들의 문자열은 유효한 주소, "
+"부동 소수점 또는 ASCII 문자열일 가능성이 낮습니다."
 
 #: ../../c-api/memory.rst:552
 msgid "Runtime checks:"
 msgstr "실행 시간 검사:"
 
 #: ../../c-api/memory.rst:554
-#, fuzzy
 msgid ""
 "Detect API violations. For example, detect if :c:func:`PyObject_Free` is "
 "called on a memory block allocated by :c:func:`PyMem_Malloc`."
 msgstr ""
-"API 위반 탐지, 예: :c:func:`PyMem_Malloc`\\이 할당한 버퍼에 대해 호출된 "
-":c:func:`PyObject_Free`"
+"API 위반 탐지. 예를 들어, :c:func:`PyMem_Malloc`\\이 할당한 메모리 블록에 "
+":c:func:`PyObject_Free`\\가 호출되었는지 탐지합니다."
 
 #: ../../c-api/memory.rst:556
-#, fuzzy
 msgid "Detect write before the start of the buffer (buffer underflow)."
-msgstr "버퍼 시작 전에 쓰기 감지 (버퍼 언더플로)"
+msgstr "버퍼 시작 전에 쓰기 감지 (버퍼 언더플로)."
 
 #: ../../c-api/memory.rst:557
-#, fuzzy
 msgid "Detect write after the end of the buffer (buffer overflow)."
-msgstr "버퍼 끝 뒤에 쓰기 감지 (버퍼 오버플로)"
+msgstr "버퍼 끝 뒤에 쓰기 감지 (버퍼 오버플로)."
 
 #: ../../c-api/memory.rst:558
-#, fuzzy
 msgid ""
 "Check that the :term:`GIL <global interpreter lock>` is held when "
 "allocator functions of :c:macro:`PYMEM_DOMAIN_OBJ` (ex: "
 ":c:func:`PyObject_Malloc`) and :c:macro:`PYMEM_DOMAIN_MEM` (ex: "
 ":c:func:`PyMem_Malloc`) domains are called."
 msgstr ""
-":c:data:`PYMEM_DOMAIN_OBJ`\\(예: :c:func:`PyObject_Malloc`)와 "
-":c:data:`PYMEM_DOMAIN_MEM`\\(예: :c:func:`PyMem_Malloc`) 도메인의 할당자 함수가 호출될 "
-"때 :term:`GIL <global interpreter lock>`\\이 유지되는지 확인"
+":c:macro:`PYMEM_DOMAIN_OBJ`\\(예: :c:func:`PyObject_Malloc`)와 "
+":c:macro:`PYMEM_DOMAIN_MEM`\\(예: :c:func:`PyMem_Malloc`) 도메인의 할당자 함수가 호출될"
+" 때 :term:`GIL <global interpreter lock>`\\이 유지되는지 확인."
 
 #: ../../c-api/memory.rst:563
 msgid ""
@@ -993,7 +983,7 @@ msgstr ""
 
 #: ../../c-api/memory.rst:574
 msgid "``p[-2*S:-S]``"
-msgstr ""
+msgstr "``p[-2*S:-S]``"
 
 #: ../../c-api/memory.rst:575
 msgid ""
@@ -1003,7 +993,7 @@ msgstr ""
 
 #: ../../c-api/memory.rst:577
 msgid "``p[-S]``"
-msgstr ""
+msgstr "``p[-S]``"
 
 #: ../../c-api/memory.rst:578
 msgid "API identifier (ASCII character):"
@@ -1023,7 +1013,7 @@ msgstr ""
 
 #: ../../c-api/memory.rst:584
 msgid "``p[-S+1:0]``"
-msgstr ""
+msgstr "``p[-S+1:0]``"
 
 #: ../../c-api/memory.rst:585
 msgid "Copies of PYMEM_FORBIDDENBYTE.  Used to catch under- writes and reads."
@@ -1031,7 +1021,7 @@ msgstr ""
 
 #: ../../c-api/memory.rst:587
 msgid "``p[0:N]``"
-msgstr ""
+msgstr "``p[0:N]``"
 
 #: ../../c-api/memory.rst:588
 msgid ""
@@ -1046,7 +1036,7 @@ msgstr ""
 
 #: ../../c-api/memory.rst:596
 msgid "``p[N:N+S]``"
-msgstr ""
+msgstr "``p[N:N+S]``"
 
 #: ../../c-api/memory.rst:597
 msgid "Copies of PYMEM_FORBIDDENBYTE.  Used to catch over- writes and reads."
@@ -1054,7 +1044,7 @@ msgstr ""
 
 #: ../../c-api/memory.rst:599
 msgid "``p[N+S:N+2*S]``"
-msgstr ""
+msgstr "``p[N+S:N+2*S]``"
 
 #: ../../c-api/memory.rst:600
 msgid ""
@@ -1087,7 +1077,6 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/memory.rst:619
-#, fuzzy
 msgid ""
 "The :c:func:`PyMem_SetupDebugHooks` function now also works on Python "
 "compiled in release mode.  On error, the debug hooks now use "
@@ -1096,29 +1085,27 @@ msgid ""
 "functions of :c:macro:`PYMEM_DOMAIN_OBJ` and :c:macro:`PYMEM_DOMAIN_MEM` "
 "domains are called."
 msgstr ""
-"이 함수는 이제 릴리스 모드에서 컴파일된 파이썬에서도 작동합니다. 에러가 발생하면, 디버그 훅은 이제 "
-":mod:`tracemalloc`\\을 사용하여 메모리 블록이 할당된 곳의 트레이스백을 가져옵니다. 또한 디버그 훅은 이제 "
-":c:data:`PYMEM_DOMAIN_OBJ`\\와 :c:data:`PYMEM_DOMAIN_MEM` 도메인의 함수가 호출될 때 "
-"GIL을 잡는지 확인합니다."
+":c:func:`PyMem_SetupDebugHooks` 함수는 이제 릴리스 모드에서 컴파일된 파이썬에서도 작동합니다. 에러가 "
+"발생하면, 디버그 훅은 이제 :mod:`tracemalloc`\\을 사용하여 메모리 블록이 할당된 곳의 트레이스백을 가져옵니다. "
+"또한 디버그 훅은 이제 :c:macro:`PYMEM_DOMAIN_OBJ`\\와 :c:macro:`PYMEM_DOMAIN_MEM` "
+"도메인의 함수가 호출될 때 GIL을 잡는지 확인합니다."
 
 #: ../../c-api/memory.rst:627
-#, fuzzy
 msgid ""
 "Byte patterns ``0xCB`` (``PYMEM_CLEANBYTE``), ``0xDB`` "
 "(``PYMEM_DEADBYTE``) and ``0xFB`` (``PYMEM_FORBIDDENBYTE``) have been "
 "replaced with ``0xCD``, ``0xDD`` and ``0xFD`` to use the same values than"
 " Windows CRT debug ``malloc()`` and ``free()``."
 msgstr ""
-"바이트 패턴 ``0xCB``\\(``CLEANBYTE``), ``0xDB``\\(``DEADBYTE``) 및 "
-"``0xFB``\\(``FORBIDDENBYTE``)는 윈도우 CRT 디버그 ``malloc()`` 및 ``free()``\\와 "
-"같은 값을 사용하도록 ``0xCD``, ``0xDD`` 및 ``0xFD``\\로 대체되었습니다."
+"바이트 패턴 ``0xCB``\\(``PYMEM_CLEANBYTE``), ``0xDB``\\(``PYMEM_DEADBYTE``) 및 "
+"``0xFB``\\(``PYMEM_FORBIDDENBYTE``)는 윈도우 CRT 디버그 ``malloc()`` 및 "
+"``free()``\\와 같은 값을 사용하도록 ``0xCD``, ``0xDD`` 및 ``0xFD``\\로 대체되었습니다."
 
 #: ../../c-api/memory.rst:637
 msgid "The pymalloc allocator"
 msgstr "pymalloc 할당자"
 
 #: ../../c-api/memory.rst:639
-#, fuzzy
 msgid ""
 "Python has a *pymalloc* allocator optimized for small objects (smaller or"
 " equal to 512 bytes) with a short lifetime. It uses memory mappings "
@@ -1126,34 +1113,32 @@ msgid ""
 " or 1 MiB on 64-bit platforms. It falls back to :c:func:`PyMem_RawMalloc`"
 " and :c:func:`PyMem_RawRealloc` for allocations larger than 512 bytes."
 msgstr ""
-"파이썬에는 수명이 짧은 작은 (512바이트 이하) 객체에 최적화된 *pymalloc* 할당자가 있습니다. 256 KiB의 고정 "
-"크기를 갖는 \"아레나(arena)\"라는 메모리 매핑을 사용합니다. 512 바이트보다 큰 할당의 경우 "
-":c:func:`PyMem_RawMalloc`\\과 :c:func:`PyMem_RawRealloc`\\으로 대체됩니다."
+"파이썬에는 수명이 짧은 작은 (512바이트 이하) 객체에 최적화된 *pymalloc* 할당자가 있습니다. 32-비트 플랫폼에서는 "
+"256 KiB, 64-비트 플랫폼에서는 1 MiB의 고정 크기를 갖는 \"아레나(arena)\"라는 메모리 매핑을 사용합니다. "
+"512 바이트보다 큰 할당의 경우 :c:func:`PyMem_RawMalloc`\\과 "
+":c:func:`PyMem_RawRealloc`\\으로 대체됩니다."
 
 #: ../../c-api/memory.rst:645
-#, fuzzy
 msgid ""
 "*pymalloc* is the :ref:`default allocator <default-memory-allocators>` of"
 " the :c:macro:`PYMEM_DOMAIN_MEM` (ex: :c:func:`PyMem_Malloc`) and "
 ":c:macro:`PYMEM_DOMAIN_OBJ` (ex: :c:func:`PyObject_Malloc`) domains."
 msgstr ""
-"*pymalloc*\\은 :c:data:`PYMEM_DOMAIN_MEM`\\(예: :c:func:`PyMem_Malloc`)과 "
-":c:data:`PYMEM_DOMAIN_OBJ`\\(예: :c:func:`PyObject_Malloc`) 도메인의 :ref:`기본 "
-"할당자 <default-memory-allocators>`\\입니다."
+"*pymalloc*\\은 :c:macro:`PYMEM_DOMAIN_MEM`\\(예: :c:func:`PyMem_Malloc`)과 "
+":c:macro:`PYMEM_DOMAIN_OBJ`\\(예: :c:func:`PyObject_Malloc`) 도메인의 :ref:`기본"
+" 할당자 <default-memory-allocators>`\\입니다."
 
 #: ../../c-api/memory.rst:649
 msgid "The arena allocator uses the following functions:"
 msgstr "아레나 할당자는 다음 함수를 사용합니다:"
 
 #: ../../c-api/memory.rst:651
-#, fuzzy
 msgid ":c:func:`!VirtualAlloc` and :c:func:`!VirtualFree` on Windows,"
-msgstr "윈도우에서 :c:func:`VirtualAlloc`\\과 :c:func:`VirtualFree`,"
+msgstr "윈도우에서 :c:func:`!VirtualAlloc`\\과 :c:func:`!VirtualFree`,"
 
 #: ../../c-api/memory.rst:652
-#, fuzzy
 msgid ":c:func:`!mmap` and :c:func:`!munmap` if available,"
-msgstr "사용할 수 있으면 :c:func:`mmap`\\과 :c:func:`munmap`"
+msgstr "사용할 수 있으면 :c:func:`!mmap`\\과 :c:func:`!munmap`"
 
 #: ../../c-api/memory.rst:653
 msgid ":c:func:`malloc` and :c:func:`free` otherwise."
@@ -1202,9 +1187,8 @@ msgid "Set the arena allocator."
 msgstr "아레나 할당자를 설정합니다."
 
 #: ../../c-api/memory.rst:690
-#, fuzzy
 msgid "The mimalloc allocator"
-msgstr "pymalloc 할당자"
+msgstr "mimalloc 할당자"
 
 #: ../../c-api/memory.rst:694
 msgid ""
@@ -1269,6 +1253,15 @@ msgid ""
 "PyMem_Free(buf); /* allocated with PyMem_Malloc */\n"
 "return res;"
 msgstr ""
+"PyObject *res;\n"
+"char *buf = (char *) PyMem_Malloc(BUFSIZ); /* I/O 용 */\n"
+"\n"
+"if (buf == NULL)\n"
+"    return PyErr_NoMemory();\n"
+"/* ...buf 를 사용하는 I/O 연산을 수행합니다... */\n"
+"res = PyBytes_FromString(buf);\n"
+"PyMem_Free(buf); /* PyMem_Malloc 으로 할당했습니다 */\n"
+"return res;"
 
 #: ../../c-api/memory.rst:738
 msgid "The same code using the type-oriented function set::"
@@ -1286,6 +1279,15 @@ msgid ""
 "PyMem_Del(buf); /* allocated with PyMem_New */\n"
 "return res;"
 msgstr ""
+"PyObject *res;\n"
+"char *buf = PyMem_New(char, BUFSIZ); /* I/O 용 */\n"
+"\n"
+"if (buf == NULL)\n"
+"    return PyErr_NoMemory();\n"
+"/* ...buf 를 사용하는 I/O 연산을 수행합니다... */\n"
+"res = PyBytes_FromString(buf);\n"
+"PyMem_Del(buf); /* PyMem_New 로 할당했습니다 */\n"
+"return res;"
 
 #: ../../c-api/memory.rst:750
 msgid ""
@@ -1311,17 +1313,23 @@ msgid ""
 "free(buf2);       /* Right -- allocated via malloc() */\n"
 "free(buf1);       /* Fatal -- should be PyMem_Del()  */"
 msgstr ""
+"char *buf1 = PyMem_New(char, BUFSIZ);\n"
+"char *buf2 = (char *) malloc(BUFSIZ);\n"
+"char *buf3 = (char *) PyMem_Malloc(BUFSIZ);\n"
+"...\n"
+"PyMem_Del(buf3);  /* 잘못되었습니다 -- PyMem_Free() 이어야 합니다 */\n"
+"free(buf2);       /* 올바릅니다 -- malloc() 으로 할당되었습니다 */\n"
+"free(buf1);       /* 치명적입니다 -- PyMem_Del() 이어야 합니다 */"
 
 #: ../../c-api/memory.rst:765
-#, fuzzy
 msgid ""
 "In addition to the functions aimed at handling raw memory blocks from the"
 " Python heap, objects in Python are allocated and released with "
 ":c:macro:`PyObject_New`, :c:macro:`PyObject_NewVar` and "
 ":c:func:`PyObject_Del`."
 msgstr ""
-"파이썬 힙에서 원시 메모리 블록을 처리하기 위한 함수 외에도, 파이썬의 객체는 :c:func:`PyObject_New`, "
-":c:func:`PyObject_NewVar` 및 :c:func:`PyObject_Del`\\로 할당되고 해제됩니다."
+"파이썬 힙에서 원시 메모리 블록을 처리하기 위한 함수 외에도, 파이썬의 객체는 :c:macro:`PyObject_New`, "
+":c:macro:`PyObject_NewVar` 및 :c:func:`PyObject_Del`\\로 할당되고 해제됩니다."
 
 #: ../../c-api/memory.rst:769
 msgid ""
@@ -1331,17 +1339,17 @@ msgstr "이것들은 C로 새로운 객체 형을 정의하고 구현하는 것�
 
 #: ../../c-api/memory.rst:43
 msgid "malloc (C function)"
-msgstr ""
+msgstr "malloc (C 함수)"
 
 #: ../../c-api/memory.rst:43
 msgid "calloc (C function)"
-msgstr ""
+msgstr "calloc (C 함수)"
 
 #: ../../c-api/memory.rst:43
 msgid "realloc (C function)"
-msgstr ""
+msgstr "realloc (C 함수)"
 
 #: ../../c-api/memory.rst:43
 msgid "free (C function)"
-msgstr ""
+msgstr "free (C 함수)"
 
