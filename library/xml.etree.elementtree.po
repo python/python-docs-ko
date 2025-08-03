@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/xml.etree.elementtree.rst:2
-#, fuzzy
 msgid ":mod:`!xml.etree.ElementTree` --- The ElementTree XML API"
-msgstr ":mod:`xml.etree.ElementTree` --- ElementTree XML API"
+msgstr ":mod:`!xml.etree.ElementTree` --- ElementTree XML API"
 
 #: ../../library/xml.etree.elementtree.rst:9
 msgid "**Source code:** :source:`Lib/xml/etree/ElementTree.py`"
@@ -38,9 +37,8 @@ msgid "This module will use a fast implementation whenever available."
 msgstr "이 모듈은 가능할 때마다 빠른 구현을 사용합니다."
 
 #: ../../library/xml.etree.elementtree.rst:19
-#, fuzzy
 msgid "The :mod:`!xml.etree.cElementTree` module is deprecated."
-msgstr ":mod:`xml.etree.cElementTree` 모듈은 폐지되었습니다."
+msgstr ":mod:`!xml.etree.cElementTree` 모듈은 폐지되었습니다."
 
 #: ../../library/xml.etree.elementtree.rst:25
 msgid ""
@@ -89,11 +87,10 @@ msgid "Parsing XML"
 msgstr "XML 구문 분석하기"
 
 #: ../../library/xml.etree.elementtree.rst:52
-#, fuzzy
 msgid ""
 "We'll be using the fictive :file:`country_data.xml` XML document as the "
 "sample data for this section:"
-msgstr "이 섹션의 샘플 데이터로 다음 XML 문서를 사용합니다:"
+msgstr "이 섹션의 샘플 데이터로 가상의 :file:`country_data.xml` XML 문서를 사용합니다:"
 
 #: ../../library/xml.etree.elementtree.rst:54
 msgid ""
@@ -121,6 +118,29 @@ msgid ""
 "    </country>\n"
 "</data>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<data>\n"
+"    <country name=\"Liechtenstein\">\n"
+"        <rank>1</rank>\n"
+"        <year>2008</year>\n"
+"        <gdppc>141100</gdppc>\n"
+"        <neighbor name=\"Austria\" direction=\"E\"/>\n"
+"        <neighbor name=\"Switzerland\" direction=\"W\"/>\n"
+"    </country>\n"
+"    <country name=\"Singapore\">\n"
+"        <rank>4</rank>\n"
+"        <year>2011</year>\n"
+"        <gdppc>59900</gdppc>\n"
+"        <neighbor name=\"Malaysia\" direction=\"N\"/>\n"
+"    </country>\n"
+"    <country name=\"Panama\">\n"
+"        <rank>68</rank>\n"
+"        <year>2011</year>\n"
+"        <gdppc>13600</gdppc>\n"
+"        <neighbor name=\"Costa Rica\" direction=\"W\"/>\n"
+"        <neighbor name=\"Colombia\" direction=\"E\"/>\n"
+"    </country>\n"
+"</data>"
 
 #: ../../library/xml.etree.elementtree.rst:80
 msgid "We can import this data by reading from a file::"
@@ -132,6 +152,9 @@ msgid ""
 "tree = ET.parse('country_data.xml')\n"
 "root = tree.getroot()"
 msgstr ""
+"import xml.etree.ElementTree as ET\n"
+"tree = ET.parse('country_data.xml')\n"
+"root = tree.getroot()"
 
 #: ../../library/xml.etree.elementtree.rst:86
 msgid "Or directly from a string::"
@@ -139,7 +162,7 @@ msgstr "또는 문자열에서 직접::"
 
 #: ../../library/xml.etree.elementtree.rst:88
 msgid "root = ET.fromstring(country_data_as_string)"
-msgstr ""
+msgstr "root = ET.fromstring(country_data_as_string)"
 
 #: ../../library/xml.etree.elementtree.rst:90
 msgid ""
@@ -166,6 +189,10 @@ msgid ""
 ">>> root.attrib\n"
 "{}"
 msgstr ""
+">>> root.tag\n"
+"'data'\n"
+">>> root.attrib\n"
+"{}"
 
 #: ../../library/xml.etree.elementtree.rst:101
 msgid "It also has children nodes over which we can iterate::"
@@ -181,6 +208,12 @@ msgid ""
 "country {'name': 'Singapore'}\n"
 "country {'name': 'Panama'}"
 msgstr ""
+">>> for child in root:\n"
+"...     print(child.tag, child.attrib)\n"
+"...\n"
+"country {'name': 'Liechtenstein'}\n"
+"country {'name': 'Singapore'}\n"
+"country {'name': 'Panama'}"
 
 #: ../../library/xml.etree.elementtree.rst:110
 msgid "Children are nested, and we can access specific child nodes by index::"
@@ -191,6 +224,8 @@ msgid ""
 ">>> root[0][1].text\n"
 "'2008'"
 msgstr ""
+">>> root[0][1].text\n"
+"'2008'"
 
 #: ../../library/xml.etree.elementtree.rst:118
 msgid ""
@@ -255,6 +290,17 @@ msgid ""
 "end\n"
 "mytag text= sometext more text"
 msgstr ""
+">>> parser = ET.XMLPullParser(['start', 'end'])\n"
+">>> parser.feed('<mytag>sometext')\n"
+">>> list(parser.read_events())\n"
+"[('start', <Element 'mytag' at 0x7fa66db2be58>)]\n"
+">>> parser.feed(' more text</mytag>')\n"
+">>> for event, elem in parser.read_events():\n"
+"...     print(event)\n"
+"...     print(elem.tag, 'text=', elem.text)\n"
+"...\n"
+"end\n"
+"mytag text= sometext more text"
 
 #: ../../library/xml.etree.elementtree.rst:159
 msgid ""
@@ -312,6 +358,14 @@ msgid ""
 "{'name': 'Costa Rica', 'direction': 'W'}\n"
 "{'name': 'Colombia', 'direction': 'E'}"
 msgstr ""
+">>> for neighbor in root.iter('neighbor'):\n"
+"...     print(neighbor.attrib)\n"
+"...\n"
+"{'name': 'Austria', 'direction': 'E'}\n"
+"{'name': 'Switzerland', 'direction': 'W'}\n"
+"{'name': 'Malaysia', 'direction': 'N'}\n"
+"{'name': 'Costa Rica', 'direction': 'W'}\n"
+"{'name': 'Colombia', 'direction': 'E'}"
 
 #: ../../library/xml.etree.elementtree.rst:190
 msgid ""
@@ -336,6 +390,14 @@ msgid ""
 "Singapore 4\n"
 "Panama 68"
 msgstr ""
+">>> for country in root.findall('country'):\n"
+"...     rank = country.find('rank').text\n"
+"...     name = country.get('name')\n"
+"...     print(name, rank)\n"
+"...\n"
+"Liechtenstein 1\n"
+"Singapore 4\n"
+"Panama 68"
 
 #: ../../library/xml.etree.elementtree.rst:204
 msgid ""
@@ -384,6 +446,12 @@ msgid ""
 "...\n"
 ">>> tree.write('output.xml')"
 msgstr ""
+">>> for rank in root.iter('rank'):\n"
+"...     new_rank = int(rank.text) + 1\n"
+"...     rank.text = str(new_rank)\n"
+"...     rank.set('updated', 'yes')\n"
+"...\n"
+">>> tree.write('output.xml')"
 
 #: ../../library/xml.etree.elementtree.rst:228
 #: ../../library/xml.etree.elementtree.rst:272
@@ -416,6 +484,29 @@ msgid ""
 "    </country>\n"
 "</data>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<data>\n"
+"    <country name=\"Liechtenstein\">\n"
+"        <rank updated=\"yes\">2</rank>\n"
+"        <year>2008</year>\n"
+"        <gdppc>141100</gdppc>\n"
+"        <neighbor name=\"Austria\" direction=\"E\"/>\n"
+"        <neighbor name=\"Switzerland\" direction=\"W\"/>\n"
+"    </country>\n"
+"    <country name=\"Singapore\">\n"
+"        <rank updated=\"yes\">5</rank>\n"
+"        <year>2011</year>\n"
+"        <gdppc>59900</gdppc>\n"
+"        <neighbor name=\"Malaysia\" direction=\"N\"/>\n"
+"    </country>\n"
+"    <country name=\"Panama\">\n"
+"        <rank updated=\"yes\">69</rank>\n"
+"        <year>2011</year>\n"
+"        <gdppc>13600</gdppc>\n"
+"        <neighbor name=\"Costa Rica\" direction=\"W\"/>\n"
+"        <neighbor name=\"Colombia\" direction=\"E\"/>\n"
+"    </country>\n"
+"</data>"
 
 #: ../../library/xml.etree.elementtree.rst:256
 msgid ""
@@ -435,6 +526,13 @@ msgid ""
 "...\n"
 ">>> tree.write('output.xml')"
 msgstr ""
+">>> for country in root.findall('country'):\n"
+"...     # root.findall() 를 사용하여 순회 중 제거를 피합니다\n"
+"...     rank = int(country.find('rank').text)\n"
+"...     if rank > 50:\n"
+"...         root.remove(country)\n"
+"...\n"
+">>> tree.write('output.xml')"
 
 #: ../../library/xml.etree.elementtree.rst:267
 msgid ""
@@ -466,6 +564,22 @@ msgid ""
 "    </country>\n"
 "</data>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<data>\n"
+"    <country name=\"Liechtenstein\">\n"
+"        <rank updated=\"yes\">2</rank>\n"
+"        <year>2008</year>\n"
+"        <gdppc>141100</gdppc>\n"
+"        <neighbor name=\"Austria\" direction=\"E\"/>\n"
+"        <neighbor name=\"Switzerland\" direction=\"W\"/>\n"
+"    </country>\n"
+"    <country name=\"Singapore\">\n"
+"        <rank updated=\"yes\">5</rank>\n"
+"        <year>2011</year>\n"
+"        <gdppc>59900</gdppc>\n"
+"        <neighbor name=\"Malaysia\" direction=\"N\"/>\n"
+"    </country>\n"
+"</data>"
 
 #: ../../library/xml.etree.elementtree.rst:294
 msgid "Building XML documents"
@@ -486,6 +600,12 @@ msgid ""
 ">>> ET.dump(a)\n"
 "<a><b /><c><d /></c></a>"
 msgstr ""
+">>> a = ET.Element('a')\n"
+">>> b = ET.SubElement(a, 'b')\n"
+">>> c = ET.SubElement(a, 'c')\n"
+">>> d = ET.SubElement(c, 'd')\n"
+">>> ET.dump(a)\n"
+"<a><b /><c><d /></c></a>"
 
 #: ../../library/xml.etree.elementtree.rst:307
 msgid "Parsing XML with Namespaces"
@@ -535,6 +655,21 @@ msgid ""
 "    </actor>\n"
 "</actors>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<actors xmlns:fictional=\"http://characters.example.com\"\n"
+"        xmlns=\"http://people.example.com\">\n"
+"    <actor>\n"
+"        <name>John Cleese</name>\n"
+"        <fictional:character>Lancelot</fictional:character>\n"
+"        <fictional:character>Archie Leach</fictional:character>\n"
+"    </actor>\n"
+"    <actor>\n"
+"        <name>Eric Idle</name>\n"
+"        <fictional:character>Sir Robin</fictional:character>\n"
+"        <fictional:character>Gunther</fictional:character>\n"
+"        <fictional:character>Commander Clement</fictional:character>\n"
+"    </actor>\n"
+"</actors>"
 
 #: ../../library/xml.etree.elementtree.rst:338
 msgid ""
@@ -556,6 +691,13 @@ msgid ""
 "actor.findall('{http://characters.example.com}character'):\n"
 "        print(' |-->', char.text)"
 msgstr ""
+"root = fromstring(xml_text)\n"
+"for actor in root.findall('{http://people.example.com}actor'):\n"
+"    name = actor.find('{http://people.example.com}name')\n"
+"    print(name.text)\n"
+"    for char in "
+"actor.findall('{http://characters.example.com}character'):\n"
+"        print(' |-->', char.text)"
 
 #: ../../library/xml.etree.elementtree.rst:349
 msgid ""
@@ -577,6 +719,14 @@ msgid ""
 "    for char in actor.findall('role:character', ns):\n"
 "        print(' |-->', char.text)"
 msgstr ""
+"ns = {'real_person': 'http://people.example.com',\n"
+"      'role': 'http://characters.example.com'}\n"
+"\n"
+"for actor in root.findall('real_person:actor', ns):\n"
+"    name = actor.find('real_person:name', ns)\n"
+"    print(name.text)\n"
+"    for char in actor.findall('role:character', ns):\n"
+"        print(' |-->', char.text)"
 
 #: ../../library/xml.etree.elementtree.rst:361
 msgid "These two approaches both output::"
@@ -592,6 +742,13 @@ msgid ""
 " |--> Gunther\n"
 " |--> Commander Clement"
 msgstr ""
+"John Cleese\n"
+" |--> Lancelot\n"
+" |--> Archie Leach\n"
+"Eric Idle\n"
+" |--> Sir Robin\n"
+" |--> Gunther\n"
+" |--> Commander Clement"
 
 #: ../../library/xml.etree.elementtree.rst:375
 msgid "XPath support"
@@ -644,6 +801,24 @@ msgid ""
 "# All 'neighbor' nodes that are the second child of their parent\n"
 "root.findall(\".//neighbor[2]\")"
 msgstr ""
+"import xml.etree.ElementTree as ET\n"
+"\n"
+"root = ET.fromstring(countrydata)\n"
+"\n"
+"# 최상위 엘리먼트\n"
+"root.findall(\".\")\n"
+"\n"
+"# 최상위 엘리먼트의 모든 'country' 자식의 'neighbor' 손자\n"
+"root.findall(\"./country/neighbor\")\n"
+"\n"
+"# 'year' 자식이 있고 name='Singapore'인 노드\n"
+"root.findall(\".//year/..[@name='Singapore']\")\n"
+"\n"
+"# name='Singapore'인 노드의 자식인 'year' 노드\n"
+"root.findall(\".//*[@name='Singapore']/year\")\n"
+"\n"
+"# 부모의 두 번째 자식인 모든 'neighbor' 노드\n"
+"root.findall(\".//neighbor[2]\")"
 
 #: ../../library/xml.etree.elementtree.rst:409
 #, python-brace-format
@@ -658,6 +833,8 @@ msgid ""
 "# All dublin-core \"title\" tags in the document\n"
 "root.findall(\".//{http://purl.org/dc/elements/1.1/}title\")"
 msgstr ""
+"# 문서의 모든 더블린 코어(dublin-core) \"title\" 태그\n"
+"root.findall(\".//{http://purl.org/dc/elements/1.1/}title\")"
 
 #: ../../library/xml.etree.elementtree.rst:416
 msgid "Supported XPath syntax"
@@ -762,16 +939,14 @@ msgid ""
 msgstr "주어진 어트리뷰트가 주어진 값을 갖는 모든 엘리먼트를 선택합니다. 값은 따옴표를 포함할 수 없습니다."
 
 #: ../../library/xml.etree.elementtree.rst:457
-#, fuzzy
 msgid "``[@attrib!='value']``"
-msgstr "``[@attrib='value']``"
+msgstr "``[@attrib!='value']``"
 
 #: ../../library/xml.etree.elementtree.rst:457
-#, fuzzy
 msgid ""
 "Selects all elements for which the given attribute does not have the "
 "given value. The value cannot contain quotes."
-msgstr "주어진 어트리뷰트가 주어진 값을 갖는 모든 엘리먼트를 선택합니다. 값은 따옴표를 포함할 수 없습니다."
+msgstr "주어진 어트리뷰트가 주어진 값을 갖지 않는 모든 엘리먼트를 선택합니다. 값은 따옴표를 포함할 수 없습니다."
 
 #: ../../library/xml.etree.elementtree.rst:463
 msgid "``[tag]``"
@@ -794,16 +969,14 @@ msgid ""
 msgstr "자손을 포함한 전체 텍스트 내용이 주어진 ``text``\\와 같은 모든 엘리먼트를 선택합니다."
 
 #: ../../library/xml.etree.elementtree.rst:471
-#, fuzzy
 msgid "``[.!='text']``"
-msgstr "``[.='text']``"
+msgstr "``[.!='text']``"
 
 #: ../../library/xml.etree.elementtree.rst:471
-#, fuzzy
 msgid ""
 "Selects all elements whose complete text content, including descendants, "
 "does not equal the given ``text``."
-msgstr "자손을 포함한 전체 텍스트 내용이 주어진 ``text``\\와 같은 모든 엘리먼트를 선택합니다."
+msgstr "자손을 포함한 전체 텍스트 내용이 주어진 ``text``\\와 다른 모든 엘리먼트를 선택합니다."
 
 #: ../../library/xml.etree.elementtree.rst:477
 msgid "``[tag='text']``"
@@ -818,17 +991,15 @@ msgstr ""
 "선택합니다."
 
 #: ../../library/xml.etree.elementtree.rst:481
-#, fuzzy
 msgid "``[tag!='text']``"
-msgstr "``[tag='text']``"
+msgstr "``[tag!='text']``"
 
 #: ../../library/xml.etree.elementtree.rst:481
-#, fuzzy
 msgid ""
 "Selects all elements that have a child named ``tag`` whose complete text "
 "content, including descendants, does not equal the given ``text``."
 msgstr ""
-"자손을 포함한 전체 텍스트 내용이 지정된 ``text``\\와 같은 이름이 ``tag``\\인 자식이 있는 모든 엘리먼트를 "
+"자손을 포함한 전체 텍스트 내용이 지정된 ``text``\\와 다른 이름이 ``tag``\\인 자식이 있는 모든 엘리먼트를 "
 "선택합니다."
 
 #: ../../library/xml.etree.elementtree.rst:487
@@ -869,7 +1040,6 @@ msgid "`C14N 2.0 <https://www.w3.org/TR/xml-c14n2/>`_ transformation function."
 msgstr "`C14N 2.0 <https://www.w3.org/TR/xml-c14n2/>`_ 변환 함수."
 
 #: ../../library/xml.etree.elementtree.rst:510
-#, fuzzy
 msgid ""
 "Canonicalization is a way to normalise XML output in a way that allows "
 "byte-by-byte comparisons and digital signatures.  It reduces the freedom "
@@ -909,6 +1079,14 @@ msgid ""
 "with open(\"c14n_output.xml\", mode='w', encoding='utf-8') as out_file:\n"
 "    canonicalize(from_file=\"inputfile.xml\", out=out_file)"
 msgstr ""
+"xml_data = \"<root>...</root>\"\n"
+"print(canonicalize(xml_data))\n"
+"\n"
+"with open(\"c14n_output.xml\", mode='w', encoding='utf-8') as out_file:\n"
+"    canonicalize(xml_data, out=out_file)\n"
+"\n"
+"with open(\"c14n_output.xml\", mode='w', encoding='utf-8') as out_file:\n"
+"    canonicalize(from_file=\"inputfile.xml\", out=out_file)"
 
 #: ../../library/xml.etree.elementtree.rst:534
 msgid "The configuration *options* are as follows:"
@@ -1055,7 +1233,6 @@ msgstr ""
 "``True``\\를 반환합니다."
 
 #: ../../library/xml.etree.elementtree.rst:620
-#, fuzzy
 msgid ""
 "Parses an XML section into an element tree incrementally, and reports "
 "what's going on to the user.  *source* is a filename or :term:`file "
@@ -1080,7 +1257,8 @@ msgstr ""
 "선택적 구문 분석기 인스턴스입니다. 지정하지 않으면 표준 :class:`XMLParser` 구문 분석기가 사용됩니다. "
 "*parser*\\는 :class:`XMLParser`\\의 서브 클래스여야 하며 기본 :class:`TreeBuilder` 만 "
 "대상으로 사용할 수 있습니다. ``(event, elem)`` 쌍을 제공하는 :term:`이터레이터 <iterator>`\\를 "
-"반환합니다."
+"반환합니다; *source*\\가 완전히 읽힌 후 결과 XML 트리의 루트 엘리먼트를 참조하는 ``root`` 어트리뷰트가 "
+"있습니다. 이터레이터는 *source*\\가 파일명일 때, 내부 파일 객체를 닫는 :meth:`!close` 메서드를 제공합니다."
 
 #: ../../library/xml.etree.elementtree.rst:636
 msgid ""
@@ -1147,14 +1325,13 @@ msgstr ""
 "반환합니다."
 
 #: ../../library/xml.etree.elementtree.rst:676
-#, fuzzy
 msgid ""
 "Note that :class:`XMLParser` skips over processing instructions in the "
 "input instead of creating PI objects for them. An :class:`ElementTree` "
 "will only contain processing instruction nodes if they have been inserted"
 " into to the tree using one of the :class:`Element` methods."
 msgstr ""
-":class:`XMLParser`\\는 처리 명령 객체를 작성하는 대신 입력에서 처리 명령을 건너뜀에 유의하십시오. "
+":class:`XMLParser`\\는 PI 객체를 작성하는 대신 입력에서 처리 명령을 건너뜀에 유의하십시오. "
 ":class:`ElementTree`\\는 :class:`Element` 메서드 중 하나를 사용하여 트리에 삽입된 처리 명령 노드만"
 " 포함합니다."
 
@@ -1211,15 +1388,13 @@ msgstr ""
 #: ../../library/xml.etree.elementtree.rst:718
 #: ../../library/xml.etree.elementtree.rst:745
 #: ../../library/xml.etree.elementtree.rst:1199
-#, fuzzy
 msgid "Added the *short_empty_elements* parameter."
-msgstr "*short_empty_elements* 매개 변수."
+msgstr "*short_empty_elements* 매개 변수를 추가했습니다."
 
 #: ../../library/xml.etree.elementtree.rst:721
 #: ../../library/xml.etree.elementtree.rst:748
-#, fuzzy
 msgid "Added the *xml_declaration* and *default_namespace* parameters."
-msgstr "*xml_declaration*\\과 *default_namespace* 매개 변수."
+msgstr "*xml_declaration*\\과 *default_namespace* 매개 변수를 추가했습니다."
 
 #: ../../library/xml.etree.elementtree.rst:724
 msgid ""
@@ -1318,6 +1493,10 @@ msgid ""
 "  <xi:include href=\"source.xml\" parse=\"xml\" />\n"
 "</document>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<document xmlns:xi=\"http://www.w3.org/2001/XInclude\">\n"
+"  <xi:include href=\"source.xml\" parse=\"xml\" />\n"
+"</document>"
 
 #: ../../library/xml.etree.elementtree.rst:793
 msgid ""
@@ -1345,6 +1524,12 @@ msgid ""
 "\n"
 "ElementInclude.include(root)"
 msgstr ""
+"from xml.etree import ElementTree, ElementInclude\n"
+"\n"
+"tree = ElementTree.parse(\"document.xml\")\n"
+"root = tree.getroot()\n"
+"\n"
+"ElementInclude.include(root)"
 
 #: ../../library/xml.etree.elementtree.rst:806
 #, python-brace-format
@@ -1363,6 +1548,9 @@ msgid ""
 "  <para>This is a paragraph.</para>\n"
 "</document>"
 msgstr ""
+"<document xmlns:xi=\"http://www.w3.org/2001/XInclude\">\n"
+"  <para>This is a paragraph.</para>\n"
+"</document>"
 
 #: ../../library/xml.etree.elementtree.rst:814
 msgid ""
@@ -1387,6 +1575,10 @@ msgid ""
 "  Copyright (c) <xi:include href=\"year.txt\" parse=\"text\" />.\n"
 "</document>"
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<document xmlns:xi=\"http://www.w3.org/2001/XInclude\">\n"
+"  Copyright (c) <xi:include href=\"year.txt\" parse=\"text\" />.\n"
+"</document>"
 
 #: ../../library/xml.etree.elementtree.rst:825
 msgid "The result might look something like:"
@@ -1398,9 +1590,11 @@ msgid ""
 "  Copyright (c) 2003.\n"
 "</document>"
 msgstr ""
+"<document xmlns:xi=\"http://www.w3.org/2001/XInclude\">\n"
+"  Copyright (c) 2003.\n"
+"</document>"
 
 #: ../../library/xml.etree.elementtree.rst:845
-#, fuzzy
 msgid ""
 "Default loader. This default loader reads an included resource from disk."
 " *href* is a URL.  *parse* is for parse mode either \"xml\" or \"text\". "
@@ -1412,12 +1606,11 @@ msgid ""
 msgstr ""
 "기본 로더. 이 기본 로더는 디스크에서 포함되는 리소스를 읽습니다. *href*\\는 URL입니다. *parse*\\는 구문 분석 "
 "모드로 \"xml\" 이나 \"text\"입니다. *encoding*\\은 선택적 텍스트 인코딩입니다. 지정하지 않으면, 인코딩은 "
-"``utf-8``\\입니다. 확장된 리소스를 반환합니다. 구문 분석 모드가 ``\"xml\"``\\이면, ElementTree "
-"인스턴스입니다. 구문 분석 모드가 \"text\"이면, 유니코드 문자열입니다. 로더가 실패하면, None을 반환하거나 예외를 "
-"발생시킬 수 있습니다."
+"``utf-8``\\입니다. 확장된 리소스를 반환합니다. 구문 분석 모드가 ``\"xml\"``\\이면, "
+":class:`~xml.etree.ElementTree.Element` 인스턴스입니다. 구문 분석 모드가 "
+"``\"text\"``\\이면, 문자열입니다. 로더가 실패하면, ``None``\\을 반환하거나 예외를 발생시킬 수 있습니다."
 
 #: ../../library/xml.etree.elementtree.rst:856
-#, fuzzy
 msgid ""
 "This function expands XInclude directives in-place in tree pointed by "
 "*elem*. *elem* is either the root :class:`~xml.etree.ElementTree.Element`"
@@ -1430,16 +1623,17 @@ msgid ""
 "Limited to reduce the risk of malicious content explosion. Pass ``None`` "
 "to disable the limitation."
 msgstr ""
-"이 함수는 XInclude 지시어를 확장합니다. *elem*\\은 루트 엘리먼트입니다. *loader*\\는 선택적 리소스 "
+"이 함수는 *elem*\\이 가리키는 트리 내에서 XInclude 지시어를 제자리에서(in-place) 확장합니다. "
+"*elem*\\은 루트 :class:`~xml.etree.ElementTree.Element`\\이거나 그런 엘리먼트를 찾기 위한 "
+":class:`~xml.etree.ElementTree.ElementTree` 인스턴스입니다. *loader*\\는 선택적 리소스 "
 "로더입니다. 생략하면, 기본값은 :func:`default_loader`\\입니다. 주어지면, "
 ":func:`default_loader`\\와 같은 인터페이스를 구현하는 콜러블 이어야 합니다. *base_url*\\은 상대적인 "
 "포함 파일 참조를 결정하기 위한 원본 파일의 베이스 URL입니다. *max_depth*\\는 최대 재귀 포함 수입니다. 악의적인 "
-"내용 폭발의 위험을 줄이도록 제한되었습니다. 제한을 비활성화하려면 음수 값을 전달하십시오."
+"내용 폭발의 위험을 줄이도록 제한되었습니다. 제한을 비활성화하려면 ``None``\\을 전달하십시오."
 
 #: ../../library/xml.etree.elementtree.rst:866
-#, fuzzy
 msgid "Added the *base_url* and *max_depth* parameters."
-msgstr "*base_url*\\과 *max_depth* 매개 변수."
+msgstr "*base_url*\\과 *max_depth* 매개 변수를 추가했습니다."
 
 #: ../../library/xml.etree.elementtree.rst:873
 msgid "Element Objects"
@@ -1485,7 +1679,7 @@ msgstr ""
 
 #: ../../library/xml.etree.elementtree.rst:907
 msgid "<a><b>1<c>2<d/>3</c></b>4</a>"
-msgstr ""
+msgstr "<a><b>1<c>2<d/>3</c></b>4</a>"
 
 #: ../../library/xml.etree.elementtree.rst:911
 msgid ""
@@ -1572,13 +1766,12 @@ msgstr ""
 ":class:`Element`\\가 아니면 :exc:`TypeError`\\를 발생시킵니다."
 
 #: ../../library/xml.etree.elementtree.rst:974
-#, fuzzy
 msgid ""
 "Appends *subelements* from an iterable of elements. Raises "
 ":exc:`TypeError` if a subelement is not an :class:`Element`."
 msgstr ""
-"0개 이상의 엘리먼트가 있는 시퀀스 객체로 제공되는 *subelements*\\를 추가합니다. 서브 엘리먼트가 "
-":class:`Element`\\가 아니면 :exc:`TypeError`\\를 발생시킵니다."
+"엘리먼트의 이터러블에서 *subelements*\\를 추가합니다. 서브 엘리먼트가 :class:`Element`\\가 아니면 "
+":exc:`TypeError`\\를 발생시킵니다."
 
 #: ../../library/xml.etree.elementtree.rst:982
 msgid ""
@@ -1690,15 +1883,15 @@ msgstr ""
 ":meth:`~object.__len__` 시퀀스 형 메서드도 지원합니다."
 
 #: ../../library/xml.etree.elementtree.rst:1062
-#, fuzzy
 msgid ""
 "Caution: Elements with no subelements will test as ``False``.  In a "
 "future release of Python, all elements will test as ``True`` regardless "
 "of whether subelements exist.  Instead, prefer explicit ``len(elem)`` or "
 "``elem is not None`` tests.::"
 msgstr ""
-"주의: 서브 엘리먼트가 없는 엘리먼트는 ``False``\\로 테스트 됩니다. 이 동작은 이후 버전에서 변경될 것입니다. 대신 "
-"구체적으로 ``len(elem)``\\이나 ``elem is None`` 테스트를 사용하십시오. ::"
+"주의: 서브 엘리먼트가 없는 엘리먼트는 ``False``\\로 테스트 됩니다. 미래에 출시되는 파이썬에서, 모든 엘리먼트는 서브 "
+"엘리먼트가 존재하든 안 하든 관계없이 ``True``\\로 테스트될 것입니다. 대신, 명시적인 ``len(elem)``\\이나 "
+"``elem is not None`` 테스트를 사용하십시오.::"
 
 #: ../../library/xml.etree.elementtree.rst:1067
 msgid ""
@@ -1710,6 +1903,13 @@ msgid ""
 "if element is None:\n"
 "    print(\"element not found\")"
 msgstr ""
+"element = root.find('foo')\n"
+"\n"
+"if not element:  # 주의!\n"
+"    print(\"element not found, or element has no subelements\")\n"
+"\n"
+"if element is None:\n"
+"    print(\"element not found\")"
 
 #: ../../library/xml.etree.elementtree.rst:1075
 msgid "Testing the truth value of an Element emits :exc:`DeprecationWarning`."
@@ -1767,6 +1967,14 @@ msgid ""
 "            attrib.clear()\n"
 "            attrib.update(attribs)"
 msgstr ""
+"def reorder_attributes(root):\n"
+"    for el in root.iter():\n"
+"        attrib = el.attrib\n"
+"        if len(attrib) > 1:\n"
+"            # 어트리뷰트 순서를 조정합니다, 예를 들어 정렬로\n"
+"            attribs = sorted(attrib.items())\n"
+"            attrib.clear()\n"
+"            attrib.update(attribs)"
 
 #: ../../library/xml.etree.elementtree.rst:1112
 msgid "ElementTree Objects"
@@ -1897,6 +2105,15 @@ msgid ""
 "    </body>\n"
 "</html>"
 msgstr ""
+"<html>\n"
+"    <head>\n"
+"        <title>Example page</title>\n"
+"    </head>\n"
+"    <body>\n"
+"        <p>Moved to <a href=\"http://example.org/\">example.org</a>\n"
+"        or <a href=\"http://example.com/\">example.com</a>.</p>\n"
+"    </body>\n"
+"</html>"
 
 #: ../../library/xml.etree.elementtree.rst:1219
 msgid ""
@@ -1922,6 +2139,20 @@ msgid ""
 "...\n"
 ">>> tree.write(\"output.xhtml\")"
 msgstr ""
+">>> from xml.etree.ElementTree import ElementTree\n"
+">>> tree = ElementTree()\n"
+">>> tree.parse(\"index.xhtml\")\n"
+"<Element 'html' at 0xb77e6fac>\n"
+">>> p = tree.find(\"body/p\")     # body에서 처음 등장하는 태그 p를 찾습니다\n"
+">>> p\n"
+"<Element 'p' at 0xb77ec26c>\n"
+">>> links = list(p.iter(\"a\"))   # 모든 링크의 리스트를 반환합니다\n"
+">>> links\n"
+"[<Element 'a' at 0xb77ec2ac>, <Element 'a' at 0xb77ec1cc>]\n"
+">>> for i in links:             # 발견된 모든 링크를 이터레이트 합니다\n"
+"...     i.attrib[\"target\"] = \"blank\"\n"
+"...\n"
+">>> tree.write(\"output.xhtml\")"
 
 #: ../../library/xml.etree.elementtree.rst:1239
 msgid "QName Objects"
@@ -2013,7 +2244,6 @@ msgid ""
 msgstr "주어진 *text*\\로 주석을 만듭니다. ``insert_comments``\\가 참이면, 트리에 추가합니다."
 
 #: ../../library/xml.etree.elementtree.rst:1312
-#, fuzzy
 msgid ""
 "Creates a process instruction with the given *target* name and *text*. If"
 " ``insert_pis`` is true, this will also add it to the tree."
@@ -2084,7 +2314,6 @@ msgstr ""
 "파일에 지정된 인코딩을 대체합니다."
 
 #: ../../library/xml.etree.elementtree.rst:1376
-#, fuzzy
 msgid ""
 "Parameters are now :ref:`keyword-only <keyword-only_parameter>`. The "
 "*html* argument is no longer supported."
@@ -2178,6 +2407,37 @@ msgid ""
 ">>> parser.close()\n"
 "4"
 msgstr ""
+">>> from xml.etree.ElementTree import XMLParser\n"
+">>> class MaxDepth:                     # 구문 분석기의 대상 객체\n"
+"...     maxDepth = 0\n"
+"...     depth = 0\n"
+"...     def start(self, tag, attrib):   # 여는 태그마다 호출됩니다.\n"
+"...         self.depth += 1\n"
+"...         if self.depth > self.maxDepth:\n"
+"...             self.maxDepth = self.depth\n"
+"...     def end(self, tag):             # 닫는 태그마다 호출됩니다.\n"
+"...         self.depth -= 1\n"
+"...     def data(self, data):\n"
+"...         pass            # 우리는 데이터로 아무것도 할 필요가 없습니다.\n"
+"...     def close(self):    # 모든 데이터가 구문 분석되었을 때 호출됩니다.\n"
+"...         return self.maxDepth\n"
+"...\n"
+">>> target = MaxDepth()\n"
+">>> parser = XMLParser(target=target)\n"
+">>> exampleXml = \"\"\"\n"
+"... <a>\n"
+"...   <b>\n"
+"...   </b>\n"
+"...   <b>\n"
+"...     <c>\n"
+"...       <d>\n"
+"...       </d>\n"
+"...     </c>\n"
+"...   </b>\n"
+"... </a>\"\"\"\n"
+">>> parser.feed(exampleXml)\n"
+">>> parser.close()\n"
+"4"
 
 #: ../../library/xml.etree.elementtree.rst:1454
 msgid "XMLPullParser Objects"
