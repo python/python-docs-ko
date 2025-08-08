@@ -294,6 +294,8 @@ msgid ""
 ">>> async def coro():\n"
 "...     return 'spam'"
 msgstr ""
+">>> async def coro():\n"
+"...     return 'spam'"
 
 #: ../../whatsnew/3.5.rst:181
 msgid ""
@@ -342,6 +344,28 @@ msgid ""
 "finally:\n"
 "    loop.close()"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def http_get(domain):\n"
+"    reader, writer = await asyncio.open_connection(domain, 80)\n"
+"\n"
+"    writer.write(b'\\r\\n'.join([\n"
+"        b'GET / HTTP/1.1',\n"
+"        b'Host: %b' % domain.encode('latin-1'),\n"
+"        b'Connection: close',\n"
+"        b'', b''\n"
+"    ]))\n"
+"\n"
+"    async for line in reader:\n"
+"        print('>>>', line)\n"
+"\n"
+"    writer.close()\n"
+"\n"
+"loop = asyncio.get_event_loop()\n"
+"try:\n"
+"    loop.run_until_complete(http_get('example.com'))\n"
+"finally:\n"
+"    loop.close()"
 
 #: ../../whatsnew/3.5.rst:215
 msgid ""
@@ -369,6 +393,22 @@ msgid ""
 "finally:\n"
 "    loop.close()"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def coro(name, lock):\n"
+"    print('coro {}: waiting for lock'.format(name))\n"
+"    async with lock:\n"
+"        print('coro {}: holding the lock'.format(name))\n"
+"        await asyncio.sleep(1)\n"
+"        print('coro {}: releasing the lock'.format(name))\n"
+"\n"
+"loop = asyncio.get_event_loop()\n"
+"lock = asyncio.Lock()\n"
+"coros = asyncio.gather(coro(1, lock), coro(2, lock))\n"
+"try:\n"
+"    loop.run_until_complete(coros)\n"
+"finally:\n"
+"    loop.close()"
 
 #: ../../whatsnew/3.5.rst:235
 msgid "will output::"
@@ -383,6 +423,12 @@ msgid ""
 "coro 1: holding the lock\n"
 "coro 1: releasing the lock"
 msgstr ""
+"coro 2: waiting for lock\n"
+"coro 2: holding the lock\n"
+"coro 1: waiting for lock\n"
+"coro 2: releasing the lock\n"
+"coro 1: holding the lock\n"
+"coro 1: releasing the lock"
 
 #: ../../whatsnew/3.5.rst:244
 msgid ""
@@ -452,7 +498,7 @@ msgstr ""
 
 #: ../../whatsnew/3.5.rst:285
 msgid "S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)"
-msgstr ""
+msgstr "S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)"
 
 #: ../../whatsnew/3.5.rst:287
 msgid "instead of::"
@@ -463,6 +509,8 @@ msgid ""
 "S = dot((dot(H, beta) - r).T,\n"
 "        dot(inv(dot(dot(H, V), H.T)), dot(H, beta) - r))"
 msgstr ""
+"S = dot((dot(H, beta) - r).T,\n"
+"        dot(inv(dot(dot(H, V), H.T)), dot(H, beta) - r))"
 
 #: ../../whatsnew/3.5.rst:292
 msgid "NumPy 1.10 has support for the new operator::"
@@ -485,6 +533,20 @@ msgid ""
 ">>> x @ m\n"
 "array([ 1., 1., 1.])"
 msgstr ""
+">>> import numpy\n"
+"\n"
+">>> x = numpy.ones(3)\n"
+">>> x\n"
+"array([ 1., 1., 1.])\n"
+"\n"
+">>> m = numpy.eye(3)\n"
+">>> m\n"
+"array([[ 1., 0., 0.],\n"
+"       [ 0., 1., 0.],\n"
+"       [ 0., 0., 1.]])\n"
+"\n"
+">>> x @ m\n"
+"array([ 1., 1., 1.])"
 
 #: ../../whatsnew/3.5.rst:312
 msgid ":pep:`465` -- A dedicated infix operator for matrix multiplication"
@@ -520,6 +582,15 @@ msgid ""
 ">>> fn(**{'a': 1, 'c': 3}, **{'b': 2, 'd': 4})\n"
 "1 2 3 4"
 msgstr ""
+">>> print(*[1], *[2], 3, *[4, 5])\n"
+"1 2 3 4 5\n"
+"\n"
+">>> def fn(a, b, c, d):\n"
+"...     print(a, b, c, d)\n"
+"...\n"
+"\n"
+">>> fn(**{'a': 1, 'c': 3}, **{'b': 2, 'd': 4})\n"
+"1 2 3 4"
 
 #: ../../whatsnew/3.5.rst:335
 msgid ""
@@ -544,6 +615,17 @@ msgid ""
 ">>> {'x': 1, **{'y': 2}}\n"
 "{'x': 1, 'y': 2}"
 msgstr ""
+">>> *range(4), 4\n"
+"(0, 1, 2, 3, 4)\n"
+"\n"
+">>> [*range(4), 4]\n"
+"[0, 1, 2, 3, 4]\n"
+"\n"
+">>> {*range(4), 4, *(5, 6, 7)}\n"
+"{0, 1, 2, 3, 4, 5, 6, 7}\n"
+"\n"
+">>> {'x': 1, **{'y': 2}}\n"
+"{'x': 1, 'y': 2}"
 
 #: ../../whatsnew/3.5.rst:352
 msgid ":pep:`448` -- Additional Unpacking Generalizations"
@@ -595,6 +677,11 @@ msgid ""
 ">>> b'x=%i y=%f' % (1, 2.5)\n"
 "b'x=1 y=2.500000'"
 msgstr ""
+">>> b'Hello %b!' % b'World'\n"
+"b'Hello World!'\n"
+"\n"
+">>> b'x=%i y=%f' % (1, 2.5)\n"
+"b'x=1 y=2.500000'"
 
 #: ../../whatsnew/3.5.rst:381
 msgid ""
@@ -615,6 +702,14 @@ msgid ""
 ">>> b'price: %a' % '10€'\n"
 "b\"price: '10\\\\u20ac'\""
 msgstr ""
+">>> b'Hello %b!' % 'World'\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: %b requires bytes, or an object that implements __bytes__, not"
+" 'str'\n"
+"\n"
+">>> b'price: %a' % '10€'\n"
+"b\"price: '10\\\\u20ac'\""
 
 #: ../../whatsnew/3.5.rst:392
 #, python-format
@@ -680,9 +775,10 @@ msgid ""
 "def greeting(name: str) -> str:\n"
 "    return 'Hello ' + name"
 msgstr ""
+"def greeting(name: str) -> str:\n"
+"    return 'Hello ' + name"
 
 #: ../../whatsnew/3.5.rst:425
-#, fuzzy
 msgid ""
 "While these annotations are available at runtime through the usual "
 ":attr:`~object.__annotations__` attribute, *no automatic type checking "
@@ -690,9 +786,9 @@ msgid ""
 "type checker (e.g. `mypy <https://mypy-lang.org>`_) will be used for on-"
 "demand source code analysis."
 msgstr ""
-"이러한 어노테이션은 일반적인 :attr:`__annotations__` 어트리뷰트를 통해 실행 시간에 사용할 수 있지만, *어떤 "
-"자동 형 검사도 실행 시간에 일어나지 않습니다*. 대신, 별도의 오프라인 형 검사기(예를 들어 `mypy <http://mypy-"
-"lang.org>`_)가 필요할 때 소스 코드 분석에 사용되는 것으로 가정합니다."
+"이러한 어노테이션은 일반적인 :attr:`~object.__annotations__` 어트리뷰트를 통해 실행 시간에 사용할 수 "
+"있지만, *어떤 자동 형 검사도 실행 시간에 일어나지 않습니다*. 대신, 별도의 오프라인 형 검사기(예를 들어 `mypy "
+"<https://mypy-lang.org>`_)가 필요할 때 소스 코드 분석에 사용되는 것으로 가정합니다."
 
 #: ../../whatsnew/3.5.rst:431
 msgid ""
@@ -771,6 +867,9 @@ msgid ""
 "    if not entry.name.startswith('.') and entry.is_file():\n"
 "        print(entry.name)"
 msgstr ""
+"for entry in os.scandir(path):\n"
+"    if not entry.name.startswith('.') and entry.is_file():\n"
+"        print(entry.name)"
 
 #: ../../whatsnew/3.5.rst:472
 msgid ""
@@ -787,14 +886,13 @@ msgid "PEP 475: Retry system calls failing with EINTR"
 msgstr "PEP 475: EINTR로 실패한 시스템 호출 재시도"
 
 #: ../../whatsnew/3.5.rst:481
-#, fuzzy
 msgid ""
 "An :py:const:`errno.EINTR` error code is returned whenever a system call,"
 " that is waiting for I/O, is interrupted by a signal.  Previously, Python"
 " would raise :exc:`InterruptedError` in such cases.  This meant that, "
 "when writing a Python application, the developer had two choices:"
 msgstr ""
-":py:data:`errno.EINTR` 에러 코드는 I/O를 기다리는 시스템 호출이 시그널에 의해 중단될 때마다 반환됩니다. "
+":py:const:`errno.EINTR` 에러 코드는 I/O를 기다리는 시스템 호출이 시그널에 의해 중단될 때마다 반환됩니다. "
 "이전에는, 이러한 경우에 파이썬이 :exc:`InterruptedError`\\를 발생시켰습니다. 이는 파이썬 응용 프로그램을 "
 "작성할 때 개발자가 두 가지 선택을 할 수 있음을 의미합니다:"
 
@@ -819,7 +917,7 @@ msgstr ""
 
 #: ../../whatsnew/3.5.rst:494
 msgid "print(\"Hello World\")"
-msgstr ""
+msgstr "print(\"Hello World\")"
 
 #: ../../whatsnew/3.5.rst:496
 msgid "and::"
@@ -834,6 +932,12 @@ msgid ""
 "    except InterruptedError:\n"
 "        continue"
 msgstr ""
+"while True:\n"
+"    try:\n"
+"        print(\"Hello World\")\n"
+"        break\n"
+"    except InterruptedError:\n"
+"        continue"
 
 #: ../../whatsnew/3.5.rst:505
 msgid ""
@@ -884,14 +988,13 @@ msgstr ""
 ":func:`~os.writev`;"
 
 #: ../../whatsnew/3.5.rst:529
-#, fuzzy
 msgid ""
 "special cases: :func:`os.close` and :func:`os.dup2` now ignore "
 ":py:const:`~errno.EINTR` errors; the syscall is not retried (see the PEP "
 "for the rationale);"
 msgstr ""
-"특수한 경우: :func:`os.close`\\와 :func:`os.dup2`\\는 이제 :py:data:`~errno.EINTR`"
-" 에러를 무시합니다; 시스템 호출은 재시도되지 않습니다 (이유는 PEP를 참조하십시오);"
+"특수한 경우: :func:`os.close`\\와 :func:`os.dup2`\\는 이제 "
+":py:const:`~errno.EINTR` 에러를 무시합니다; 시스템 호출은 재시도되지 않습니다 (이유는 PEP를 참조하십시오);"
 
 #: ../../whatsnew/3.5.rst:533
 msgid ""
@@ -997,6 +1100,22 @@ msgid ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "RuntimeError: generator raised StopIteration"
 msgstr ""
+">>> from __future__ import generator_stop\n"
+"\n"
+">>> def gen():\n"
+"...     next(iter([]))\n"
+"...     yield\n"
+"...\n"
+">>> next(gen())\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 2, in gen\n"
+"StopIteration\n"
+"\n"
+"The above exception was the direct cause of the following exception:\n"
+"\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"RuntimeError: generator raised StopIteration"
 
 #: ../../whatsnew/3.5.rst:595
 msgid ""
@@ -1046,6 +1165,13 @@ msgid ""
 ">>> math.isclose(a, b, rel_tol=1e-6)\n"
 "False"
 msgstr ""
+">>> import math\n"
+">>> a = 5.0\n"
+">>> b = 4.99998\n"
+">>> math.isclose(a, b, rel_tol=1e-5)\n"
+"True\n"
+">>> math.isclose(a, b, rel_tol=1e-6)\n"
+"False"
 
 #: ../../whatsnew/3.5.rst:625
 msgid ""
@@ -1063,6 +1189,13 @@ msgid ""
 ">>> math.isclose(a, b, abs_tol=0.00001)\n"
 "False"
 msgstr ""
+">>> import math\n"
+">>> a = 5.0\n"
+">>> b = 4.99998\n"
+">>> math.isclose(a, b, abs_tol=0.00003)\n"
+"True\n"
+">>> math.isclose(a, b, abs_tol=0.00001)\n"
+"False"
 
 #: ../../whatsnew/3.5.rst:638
 msgid ":pep:`485` -- A function for testing approximate equality"
@@ -1261,6 +1394,8 @@ msgid ""
 "$ python -m zipapp myapp\n"
 "$ python myapp.pyz"
 msgstr ""
+"$ python -m zipapp myapp\n"
+"$ python myapp.pyz"
 
 #: ../../whatsnew/3.5.rst:752
 msgid ""
@@ -1519,13 +1654,12 @@ msgid "cgi"
 msgstr "cgi"
 
 #: ../../whatsnew/3.5.rst:881
-#, fuzzy
 msgid ""
 "The :class:`!FieldStorage` class now supports the :term:`context manager`"
 " protocol.  (Contributed by Berker Peksag in :issue:`20289`.)"
 msgstr ""
-":class:`~cgi.FieldStorage` 클래스는 이제 :term:`컨텍스트 관리자 <context manager>` "
-"프로토콜을 지원합니다. (Contributed by Berker Peksag in :issue:`20289`.)"
+":class:`!FieldStorage` 클래스는 이제 :term:`컨텍스트 관리자 <context manager>` 프로토콜을 "
+"지원합니다. (Contributed by Berker Peksag in :issue:`20289`.)"
 
 #: ../../whatsnew/3.5.rst:886
 msgid "cmath"
@@ -1612,6 +1746,10 @@ msgid ""
 "Point.x.__doc__ = 'abscissa'\n"
 "Point.y.__doc__ = 'ordinate'"
 msgstr ""
+"Point = namedtuple('Point', ['x', 'y'])\n"
+"Point.__doc__ += ': Cartesian coordinate'\n"
+"Point.x.__doc__ = 'abscissa'\n"
+"Point.y.__doc__ = 'ordinate'"
 
 #: ../../whatsnew/3.5.rst:928
 msgid "(Contributed by Berker Peksag in :issue:`24064`.)"
@@ -1669,13 +1807,12 @@ msgstr ""
 "Selivanov in :issue:`24184`.)"
 
 #: ../../whatsnew/3.5.rst:953
-#, fuzzy
 msgid ""
 "For earlier Python versions, a backport of the new ABCs is available in "
 "an external :pypi:`PyPI package <backports_abc>`."
 msgstr ""
-"이전 파이썬 버전의 경우, 새 ABC의 역 이식을 외부 `PyPI 패키지 "
-"<https://pypi.org/project/backports_abc>`_\\에서 사용할 수 있습니다."
+"이전 파이썬 버전의 경우, 새 ABC의 역 이식을 외부 :pypi:`PyPI 패키지 <backports_abc>`\\에서 사용할 수"
+" 있습니다."
 
 #: ../../whatsnew/3.5.rst:958
 msgid "compileall"
@@ -1781,6 +1918,21 @@ msgid ""
 ">>> section.getlist('list')\n"
 "['a', 'b', 'c', 'd', 'e', 'f', 'g']"
 msgstr ""
+">>> import configparser\n"
+">>> conv = {}\n"
+">>> conv['list'] = lambda v: [e.strip() for e in v.split() if e.strip()]\n"
+">>> cfg = configparser.ConfigParser(converters=conv)\n"
+">>> cfg.read_string(\"\"\"\n"
+"... [s]\n"
+"... list = a b c d e f g\n"
+"... \"\"\")\n"
+">>> cfg.get('s', 'list')\n"
+"'a b c d e f g'\n"
+">>> cfg.getlist('s', 'list')\n"
+"['a', 'b', 'c', 'd', 'e', 'f', 'g']\n"
+">>> section = cfg['s']\n"
+">>> section.getlist('list')\n"
+"['a', 'b', 'c', 'd', 'e', 'f', 'g']"
 
 #: ../../whatsnew/3.5.rst:1016
 msgid "(Contributed by Łukasz Langa in :issue:`18159`.)"
@@ -1812,6 +1964,13 @@ msgid ""
 ">>> f.getvalue()\n"
 "'WARNING:root:warning\\n'"
 msgstr ""
+">>> import contextlib, io, logging\n"
+">>> f = io.StringIO()\n"
+">>> with contextlib.redirect_stderr(f):\n"
+"...     logging.warning('warning')\n"
+"...\n"
+">>> f.getvalue()\n"
+"'WARNING:root:warning\\n'"
 
 #: ../../whatsnew/3.5.rst:1035
 msgid "(Contributed by Berker Peksag in :issue:`22389`.)"
@@ -1835,16 +1994,15 @@ msgid "curses"
 msgstr "curses"
 
 #: ../../whatsnew/3.5.rst:1048
-#, fuzzy
 msgid ""
 "The new :func:`~curses.update_lines_cols` function updates the "
 ":data:`LINES` and :data:`COLS` module variables.  This is useful for "
 "detecting manual screen resizing.  (Contributed by Arnon Yaari in "
 ":issue:`4254`.)"
 msgstr ""
-"새로운 :func:`~curses.update_lines_cols` 함수는 :envvar:`LINES`\\와 "
-":envvar:`COLS` 환경 변수를 갱신합니다. 이것은 수동 화면 크기 조정을 감지하는 데 유용합니다. (Contributed "
-"by Arnon Yaari in :issue:`4254`.)"
+"새로운 :func:`~curses.update_lines_cols` 함수는 :data:`LINES`\\와 :data:`COLS` "
+"모듈 변수를 갱신합니다. 이것은 수동 화면 크기 조정을 감지하는 데 유용합니다. (Contributed by Arnon Yaari "
+"in :issue:`4254`.)"
 
 #: ../../whatsnew/3.5.rst:1054
 msgid "dbm"
@@ -1900,13 +2058,12 @@ msgstr ""
 "(Contributed by Antoine Pitrou in :issue:`5309`.)"
 
 #: ../../whatsnew/3.5.rst:1082
-#, fuzzy
 msgid ""
 "The ``distutils`` module now supports ``xz`` compression, and can be "
 "enabled by passing ``xztar`` as an argument to ``bdist --format``. "
 "(Contributed by Serhiy Storchaka in :issue:`16314`.)"
 msgstr ""
-":mod:`distutils` 모듈은 이제 ``xz`` 압축을 지원하며, ``xztar``\\를 인자로 ``bdist "
+"``distutils`` 모듈은 이제 ``xz`` 압축을 지원하며, ``xztar``\\를 인자로 ``bdist "
 "--format``\\에 전달하여 활성화 할 수 있습니다. (Contributed by Serhiy Storchaka in "
 ":issue:`16314`.)"
 
@@ -2001,6 +2158,11 @@ msgid ""
 ">>> Animal.dog\n"
 "<Animal.dog: 11>"
 msgstr ""
+">>> Animal = enum.Enum('Animal', 'cat dog', start=10)\n"
+">>> Animal.cat\n"
+"<Animal.cat: 10>\n"
+">>> Animal.dog\n"
+"<Animal.dog: 11>"
 
 #: ../../whatsnew/3.5.rst:1134
 msgid "(Contributed by Ethan Furman in :issue:`21706`.)"
@@ -2087,6 +2249,13 @@ msgid ""
 ">>> list(heapq.merge(reversed(a), reversed(b), key=len, reverse=True))\n"
 "['55555', '6666', '777', '88', '9']"
 msgstr ""
+">>> import heapq\n"
+">>> a = ['9', '777', '55555']\n"
+">>> b = ['88', '6666']\n"
+">>> list(heapq.merge(a, b, key=len))\n"
+"['9', '88', '777', '6666', '55555']\n"
+">>> list(heapq.merge(reversed(a), reversed(b), key=len, reverse=True))\n"
+"['55555', '6666', '777', '88', '9']"
 
 #: ../../whatsnew/3.5.rst:1189
 msgid "(Contributed by Raymond Hettinger in :issue:`13742`.)"
@@ -2136,6 +2305,14 @@ msgid ""
 "    except http.client.RemoteDisconnected:\n"
 "        pass"
 msgstr ""
+"import http.client\n"
+"conn = http.client.HTTPConnection('www.python.org')\n"
+"for retries in range(3):\n"
+"    try:\n"
+"        conn.request('GET', '/')\n"
+"        resp = conn.getresponse()\n"
+"    except http.client.RemoteDisconnected:\n"
+"        pass"
 
 #: ../../whatsnew/3.5.rst:1219
 msgid "(Contributed by Martin Panter in :issue:`3566`.)"
@@ -2202,7 +2379,6 @@ msgid "imghdr"
 msgstr "imghdr"
 
 #: ../../whatsnew/3.5.rst:1255
-#, fuzzy
 msgid ""
 "The :func:`!what` function now recognizes the `OpenEXR "
 "<https://www.openexr.com>`_ format (contributed by Martin Vignali and "
@@ -2210,10 +2386,10 @@ msgid ""
 "<https://en.wikipedia.org/wiki/WebP>`_ format (contributed by Fabrice "
 "Aneche and Claudiu Popa in :issue:`20197`.)"
 msgstr ""
-":func:`~imghdr.what` 함수는 이제 `OpenEXR <http://www.openexr.com>`_ "
-"형식(contributed by Martin Vignali and Claudiu Popa in :issue:`20295`) 및 "
-"`WebP <https://en.wikipedia.org/wiki/WebP>`_ 형식(contributed by Fabrice "
-"Aneche and Claudiu Popa in :issue:`20197`)을 인식합니다."
+":func:`!what` 함수는 이제 `OpenEXR <https://www.openexr.com>`_ 형식(contributed "
+"by Martin Vignali and Claudiu Popa in :issue:`20295`) 및 `WebP "
+"<https://en.wikipedia.org/wiki/WebP>`_ 형식(contributed by Fabrice Aneche "
+"and Claudiu Popa in :issue:`20197`)을 인식합니다."
 
 #: ../../whatsnew/3.5.rst:1263
 msgid "importlib"
@@ -2287,6 +2463,11 @@ msgid ""
 ">>> ba.arguments\n"
 "OrderedDict([('a', 'spam'), ('b', 'ham'), ('args', ())])"
 msgstr ""
+">>> def foo(a, b='ham', *args): pass\n"
+">>> ba = inspect.signature(foo).bind('spam')\n"
+">>> ba.apply_defaults()\n"
+">>> ba.arguments\n"
+"OrderedDict([('a', 'spam'), ('b', 'ham'), ('args', ())])"
 
 #: ../../whatsnew/3.5.rst:1299
 msgid "(Contributed by Yury Selivanov in :issue:`24190`.)"
@@ -2381,6 +2562,11 @@ msgid ""
 ">>> ipaddress.IPv4Network(('127.0.0.0', '255.0.0.0'))\n"
 "IPv4Network('127.0.0.0/8')"
 msgstr ""
+">>> import ipaddress\n"
+">>> ipaddress.IPv4Network(('127.0.0.0', 8))\n"
+"IPv4Network('127.0.0.0/8')\n"
+">>> ipaddress.IPv4Network(('127.0.0.0', '255.0.0.0'))\n"
+"IPv4Network('127.0.0.0/8')"
 
 #: ../../whatsnew/3.5.rst:1348
 msgid "(Contributed by Peter Moody and Antoine Pitrou in :issue:`16531`.)"
@@ -2406,6 +2592,13 @@ msgid ""
 ">>> addr6.reverse_pointer\n"
 "'1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa'"
 msgstr ""
+">>> import ipaddress\n"
+">>> addr = ipaddress.IPv4Address('127.0.0.1')\n"
+">>> addr.reverse_pointer\n"
+"'1.0.0.127.in-addr.arpa'\n"
+">>> addr6 = ipaddress.IPv6Address('::1')\n"
+">>> addr6.reverse_pointer\n"
+"'1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa'"
 
 #: ../../whatsnew/3.5.rst:1362
 msgid "(Contributed by Leon Weber in :issue:`20480`.)"
@@ -2478,6 +2671,15 @@ msgid ""
 ">>> locale.delocalize('1,234.56')\n"
 "'1234.56'"
 msgstr ""
+">>> import locale\n"
+">>> locale.setlocale(locale.LC_NUMERIC, 'de_DE.UTF-8')\n"
+"'de_DE.UTF-8'\n"
+">>> locale.delocalize('1.234,56')\n"
+"'1234.56'\n"
+">>> locale.setlocale(locale.LC_NUMERIC, 'en_US.UTF-8')\n"
+"'en_US.UTF-8'\n"
+">>> locale.delocalize('1,234.56')\n"
+"'1234.56'"
 
 #: ../../whatsnew/3.5.rst:1404
 msgid "(Contributed by Cédric Krier in :issue:`13918`.)"
@@ -2509,6 +2711,12 @@ msgid ""
 "...     logging.error('exception', exc_info=ex)\n"
 "ERROR:root:exception"
 msgstr ""
+">>> import logging\n"
+">>> try:\n"
+"...     1/0\n"
+"... except ZeroDivisionError as ex:\n"
+"...     logging.error('exception', exc_info=ex)\n"
+"ERROR:root:exception"
 
 #: ../../whatsnew/3.5.rst:1423
 msgid "(Contributed by Yury Selivanov in :issue:`20537`.)"
@@ -2671,7 +2879,6 @@ msgstr ""
 ":issue:`22181`.)"
 
 #: ../../whatsnew/3.5.rst:1500
-#, fuzzy
 msgid ""
 "New :func:`~os.get_blocking` and :func:`~os.set_blocking` functions allow"
 " getting and setting a file descriptor's blocking mode "
@@ -2679,7 +2886,7 @@ msgid ""
 ":issue:`22054`.)"
 msgstr ""
 "새로운 :func:`~os.get_blocking`\\과 :func:`~os.set_blocking` 함수를 사용하여 파일 기술자의"
-" 블로킹 모드(:data:`~os.O_NONBLOCK`)를 가져오고 설정할 수 있습니다 (Contributed by Victor "
+" 블로킹 모드(:const:`~os.O_NONBLOCK`)를 가져오고 설정할 수 있습니다 (Contributed by Victor "
 "Stinner in :issue:`22054`.)"
 
 #: ../../whatsnew/3.5.rst:1504
@@ -2707,6 +2914,11 @@ msgid ""
 ">>> os.path.commonpath(['/usr/lib', '/usr/local/lib'])\n"
 "'/usr'"
 msgstr ""
+">>> os.path.commonprefix(['/usr/lib', '/usr/local/lib'])\n"
+"'/usr/l'\n"
+"\n"
+">>> os.path.commonpath(['/usr/lib', '/usr/local/lib'])\n"
+"'/usr'"
 
 #: ../../whatsnew/3.5.rst:1518
 msgid "(Contributed by Rafik Draoui and Serhiy Storchaka in :issue:`10395`.)"
@@ -2733,6 +2945,11 @@ msgid ""
 ">>> p1.samefile(p2)\n"
 "True"
 msgstr ""
+">>> import pathlib\n"
+">>> p1 = pathlib.Path('/etc/hosts')\n"
+">>> p2 = pathlib.Path('/etc/../etc/hosts')\n"
+">>> p1.samefile(p2)\n"
+"True"
 
 #: ../../whatsnew/3.5.rst:1534
 msgid "(Contributed by Vajrasky Kok and Antoine Pitrou in :issue:`19775`.)"
@@ -2797,6 +3014,10 @@ msgid ""
 ">>> p.expanduser().write_text('ham')\n"
 "3"
 msgstr ""
+">>> import pathlib\n"
+">>> p = pathlib.Path('~/spam42')\n"
+">>> p.expanduser().write_text('ham')\n"
+"3"
 
 #: ../../whatsnew/3.5.rst:1563
 msgid "(Contributed by Christopher Welborn in :issue:`20218`.)"
@@ -2850,6 +3071,12 @@ msgid ""
 ">>> pat.match('bbc')\n"
 "<_sre.SRE_Match object; span=(0, 3), match='bbc'>"
 msgstr ""
+">>> import re\n"
+">>> pat = re.compile(r'(a|b).(?<=\\1)c')\n"
+">>> pat.match('aac')\n"
+"<_sre.SRE_Match object; span=(0, 3), match='aac'>\n"
+">>> pat.match('bbc')\n"
+"<_sre.SRE_Match object; span=(0, 3), match='bbc'>"
 
 #: ../../whatsnew/3.5.rst:1596
 msgid "(Contributed by Serhiy Storchaka in :issue:`9179`.)"
@@ -2893,6 +3120,13 @@ msgid ""
 "   ...\n"
 "sre_constants.error: multiple repeat at position 16 (line 3, column 7)"
 msgstr ""
+">>> re.compile(\"\"\"\n"
+"...     (?x)\n"
+"...     .++\n"
+"... \"\"\")\n"
+"Traceback (most recent call last):\n"
+"   ...\n"
+"sre_constants.error: multiple repeat at position 16 (line 3, column 7)"
 
 #: ../../whatsnew/3.5.rst:1619
 msgid "(Contributed by Serhiy Storchaka in :issue:`22578`.)"
@@ -2976,7 +3210,6 @@ msgid "smtpd"
 msgstr "smtpd"
 
 #: ../../whatsnew/3.5.rst:1666
-#, fuzzy
 msgid ""
 "Both the :class:`!SMTPServer` and :class:`!SMTPChannel` classes now "
 "accept a *decode_data* keyword argument to determine if the ``DATA`` "
@@ -2988,16 +3221,14 @@ msgid ""
 "accept keyword arguments. (Contributed by Maciej Szulik in "
 ":issue:`19662`.)"
 msgstr ""
-"이제 :class:`~smtpd.SMTPServer`\\와 :class:`~smtpd.SMTPChannel` 클래스 모두 "
-"*decode_data* 키워드 인자를 받아 SMTP 트랜잭션의 ``DATA`` 부분이 ``\"utf-8\"`` 코덱을 사용하여 "
-"디코딩되는지 아니면 대신 바이트 문자열로 :meth:`SMTPServer.process_message() "
-"<smtpd.SMTPServer.process_message>` 메서드에 제공되는지 확인합니다. 이전 버전과의 호환성을 위해 "
-"기본값은 ``True``\\이지만, 파이썬 3.6에서는 ``False``\\로 변경됩니다. *decode_data*\\가 "
+"이제 :class:`!SMTPServer`\\와 :class:`!SMTPChannel` 클래스 모두 *decode_data* 키워드"
+" 인자를 받아 SMTP 트랜잭션의 ``DATA`` 부분이 ``\"utf-8\"`` 코덱을 사용하여 디코딩되는지 아니면 대신 바이트 "
+"문자열로 :meth:`!SMTPServer.process_message` 메서드에 제공되는지 확인합니다. 이전 버전과의 호환성을 "
+"위해 기본값은 ``True``\\이지만, 파이썬 3.6에서는 ``False``\\로 변경됩니다. *decode_data*\\가 "
 "``False``\\로 설정되면, ``process_message`` 메서드는 키워드 인자를 받아들일 준비가 되어 있어야 합니다. "
 "(Contributed by Maciej Szulik in :issue:`19662`.)"
 
 #: ../../whatsnew/3.5.rst:1677
-#, fuzzy
 msgid ""
 "The :class:`!SMTPServer` class now advertises the ``8BITMIME`` extension "
 "(:rfc:`6152`) if *decode_data* has been set ``True``.  If the client "
@@ -3005,15 +3236,13 @@ msgid ""
 ":meth:`!SMTPServer.process_message` via the *mail_options* keyword. "
 "(Contributed by Milan Oberkirch and R.  David Murray in :issue:`21795`.)"
 msgstr ""
-"*decode_data*\\가 ``True``\\로 설정되면 :class:`~smtpd.SMTPServer` 클래스는 이제 "
+"*decode_data*\\가 ``True``\\로 설정되면 :class:`!SMTPServer` 클래스는 이제 "
 "``8BITMIME`` 확장(:rfc:`6152`)을 알립니다. 클라이언트가 ``MAIL`` 명령에 "
 "``BODY=8BITMIME``\\를 지정하면, *mail_options* 키워드를 통해 "
-":meth:`SMTPServer.process_message() "
-"<smtpd.SMTPServer.process_message>`\\로 전달됩니다. (Contributed by Milan "
+":meth:`!SMTPServer.process_message`\\로 전달됩니다. (Contributed by Milan "
 "Oberkirch and R.  David Murray in :issue:`21795`.)"
 
 #: ../../whatsnew/3.5.rst:1684
-#, fuzzy
 msgid ""
 "The :class:`!SMTPServer` class now also supports the ``SMTPUTF8`` "
 "extension (:rfc:`6531`: Internationalized Email).  If the client "
@@ -3023,23 +3252,21 @@ msgid ""
 "correctly handle the ``SMTPUTF8`` data. (Contributed by Milan Oberkirch "
 "in :issue:`21725`.)"
 msgstr ""
-":class:`~smtpd.SMTPServer` 클래스는 이제 ``SMTPUTF8`` 확장(:rfc:`6531`: 국제화된 "
-"이메일)도 지원합니다. 클라이언트가 ``MAIL`` 명령에 ``SMTPUTF8 BODY=8BITMIME``\\을 지정하면, "
-"*mail_options* 키워드를 통해 :meth:`SMTPServer.process_message() "
-"<smtpd.SMTPServer.process_message>`\\로 전달됩니다. ``SMTPUTF8`` 데이터를 올바르게 처리하는"
-" 것은 ``process_message`` 메서드의 책임입니다. (Contributed by Milan Oberkirch in "
-":issue:`21725`.)"
+":class:`!SMTPServer` 클래스는 이제 ``SMTPUTF8`` 확장(:rfc:`6531`: 국제화된 이메일)도 "
+"지원합니다. 클라이언트가 ``MAIL`` 명령에 ``SMTPUTF8 BODY=8BITMIME``\\을 지정하면, "
+"*mail_options* 키워드를 통해 :meth:`!SMTPServer.process_message`\\로 전달됩니다. "
+"``SMTPUTF8`` 데이터를 올바르게 처리하는 것은 ``process_message`` 메서드의 책임입니다. "
+"(Contributed by Milan Oberkirch in :issue:`21725`.)"
 
 #: ../../whatsnew/3.5.rst:1692
-#, fuzzy
 msgid ""
 "It is now possible to provide, directly or via name resolution, IPv6 "
 "addresses in the :class:`!SMTPServer` constructor, and have it "
 "successfully connect.  (Contributed by Milan Oberkirch in "
 ":issue:`14758`.)"
 msgstr ""
-"이제 :class:`~smtpd.SMTPServer` 생성자에 직접 또는 이름 결정(name resolution)을 통해 IPv6 "
-"주소를 제공하고 성공적으로 연결할 수 있습니다. (Contributed by Milan Oberkirch in "
+"이제 :class:`!SMTPServer` 생성자에 직접 또는 이름 결정(name resolution)을 통해 IPv6 주소를 "
+"제공하고 성공적으로 연결할 수 있습니다. (Contributed by Milan Oberkirch in "
 ":issue:`14758`.)"
 
 #: ../../whatsnew/3.5.rst:1698
@@ -3083,13 +3310,12 @@ msgid "sndhdr"
 msgstr "sndhdr"
 
 #: ../../whatsnew/3.5.rst:1717
-#, fuzzy
 msgid ""
 "The :func:`!what` and :func:`!whathdr` functions  now return a "
 ":func:`~collections.namedtuple`.  (Contributed by Claudiu Popa in "
 ":issue:`18615`.)"
 msgstr ""
-":func:`~sndhdr.what`\\과 :func:`~sndhdr.whathdr` 함수는 이제 "
+":func:`!what`\\과 :func:`!whathdr` 함수는 이제 "
 ":func:`~collections.namedtuple`\\을 반환합니다. (Contributed by Claudiu Popa in"
 " :issue:`18615`.)"
 
@@ -3214,7 +3440,6 @@ msgstr ""
 "하는지 지정하는 데 사용할 수 있습니다."
 
 #: ../../whatsnew/3.5.rst:1783
-#, fuzzy
 msgid ""
 "The new :meth:`SSLSocket.selected_alpn_protocol() "
 "<ssl.SSLSocket.selected_alpn_protocol>` returns the protocol that was "
@@ -3223,7 +3448,7 @@ msgid ""
 msgstr ""
 "새로운 :meth:`SSLSocket.selected_alpn_protocol() "
 "<ssl.SSLSocket.selected_alpn_protocol>`\\은 TLS 핸드 셰이크 중에 선택된 프로토콜을 반환합니다."
-" :data:`~ssl.HAS_ALPN` 플래그는 ALPN 지원이 있는지를 나타냅니다."
+" :const:`~ssl.HAS_ALPN` 플래그는 ALPN 지원이 있는지를 나타냅니다."
 
 #: ../../whatsnew/3.5.rst:1790
 msgid "Other Changes"
@@ -3361,6 +3586,19 @@ msgid ""
 "CompletedProcess(args=['ls', '-l', '/dev/null'], returncode=0,\n"
 "stdout=b'crw-rw-rw- 1 root root 1, 3 Jan 23 16:23 /dev/null\\n')"
 msgstr ""
+">>> subprocess.run([\"ls\", \"-l\"])  # doesn't capture output\n"
+"CompletedProcess(args=['ls', '-l'], returncode=0)\n"
+"\n"
+">>> subprocess.run(\"exit 1\", shell=True, check=True)\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"subprocess.CalledProcessError: Command 'exit 1' returned non-zero exit "
+"status 1\n"
+"\n"
+">>> subprocess.run([\"ls\", \"-l\", \"/dev/null\"], "
+"stdout=subprocess.PIPE)\n"
+"CompletedProcess(args=['ls', '-l', '/dev/null'], returncode=0,\n"
+"stdout=b'crw-rw-rw- 1 root root 1, 3 Jan 23 16:23 /dev/null\\n')"
 
 #: ../../whatsnew/3.5.rst:1864
 msgid "sys"
@@ -3506,15 +3744,14 @@ msgid "tkinter"
 msgstr "tkinter"
 
 #: ../../whatsnew/3.5.rst:1938
-#, fuzzy
 msgid ""
 "The :mod:`!tkinter._fix` module used for setting up the Tcl/Tk "
 "environment on Windows has been replaced by a private function in the "
 ":mod:`!_tkinter` module which makes no permanent changes to environment "
 "variables. (Contributed by Zachary Ware in :issue:`20035`.)"
 msgstr ""
-"윈도우에서 Tcl/Tk 환경을 설정하는 데 사용되는 :mod:`tkinter._fix` 모듈은 환경 변수를 영구적으로 변경하지 않는"
-" :mod:`_tkinter` 모듈의 내부 함수로 대체되었습니다. (Contributed by Zachary Ware in "
+"윈도우에서 Tcl/Tk 환경을 설정하는 데 사용되는 :mod:`!tkinter._fix` 모듈은 환경 변수를 영구적으로 변경하지 "
+"않는 :mod:`!_tkinter` 모듈의 내부 함수로 대체되었습니다. (Contributed by Zachary Ware in "
 ":issue:`20035`.)"
 
 #: ../../whatsnew/3.5.rst:1947
@@ -3522,15 +3759,14 @@ msgid "traceback"
 msgstr "traceback"
 
 #: ../../whatsnew/3.5.rst:1949
-#, fuzzy
 msgid ""
 "New :func:`~traceback.walk_stack` and :func:`~traceback.walk_tb` "
 "functions to conveniently traverse frame and :ref:`traceback objects "
 "<traceback-objects>`. (Contributed by Robert Collins in :issue:`17911`.)"
 msgstr ""
 "새로운 :func:`~traceback.walk_stack`\\과 :func:`~traceback.walk_tb` 함수로 프레임과 "
-"트레이스백 객체를 편리하게 탐색 할 수 있습니다. (Contributed by Robert Collins in "
-":issue:`17911`.)"
+":ref:`트레이스백 객체 <traceback-objects>`\\를 편리하게 탐색 할 수 있습니다. (Contributed by "
+"Robert Collins in :issue:`17911`.)"
 
 #: ../../whatsnew/3.5.rst:1954
 msgid ""
@@ -3583,13 +3819,12 @@ msgid "unicodedata"
 msgstr "unicodedata"
 
 #: ../../whatsnew/3.5.rst:1980
-#, fuzzy
 msgid ""
 "The :mod:`unicodedata` module now uses data from `Unicode 8.0.0 "
 "<https://unicode.org/versions/Unicode8.0.0/>`_."
 msgstr ""
 ":mod:`unicodedata` 모듈은 이제 `유니코드 8.0.0 "
-"<http://unicode.org/versions/Unicode8.0.0/>`_\\의 데이터를 사용합니다."
+"<https://unicode.org/versions/Unicode8.0.0/>`_\\의 데이터를 사용합니다."
 
 #: ../../whatsnew/3.5.rst:1985
 msgid "unittest"
@@ -3821,14 +4056,13 @@ msgid "Other module-level changes"
 msgstr "기타 모듈 수준 변경"
 
 #: ../../whatsnew/3.5.rst:2099
-#, fuzzy
 msgid ""
 "Many functions in the :mod:`mmap`, :mod:`!ossaudiodev`, :mod:`socket`, "
 ":mod:`ssl`, and :mod:`codecs` modules now accept writable :term:`bytes-"
 "like objects <bytes-like object>`. (Contributed by Serhiy Storchaka in "
 ":issue:`23001`.)"
 msgstr ""
-":mod:`mmap`, :mod:`ossaudiodev`, :mod:`socket`, :mod:`ssl` 및 "
+":mod:`mmap`, :mod:`!ossaudiodev`, :mod:`socket`, :mod:`ssl` 및 "
 ":mod:`codecs` 모듈의 많은 함수는 이제 쓰기 가능한 :term:`바이트열류 객체 <bytes-like "
 "object>`\\를 받아들입니다. (Contributed by Serhiy Storchaka in :issue:`23001`.)"
 
@@ -4048,13 +4282,12 @@ msgstr ""
 "in :issue:`19676`.)"
 
 #: ../../whatsnew/3.5.rst:2195
-#, fuzzy
 msgid ""
 "A new :c:func:`PyErr_FormatV` function similar to :c:func:`PyErr_Format`,"
 " but accepts a :c:type:`va_list` argument. (Contributed by Antoine Pitrou"
 " in :issue:`18711`.)"
 msgstr ""
-":c:func:`PyErr_Format`\\과 유사하지만 ``va_list`` 인자를 받아들이는 새로운 "
+":c:func:`PyErr_Format`\\과 유사하지만 :c:type:`va_list` 인자를 받아들이는 새로운 "
 ":c:func:`PyErr_FormatV` 함수. (Contributed by Antoine Pitrou in "
 ":issue:`18711`.)"
 
@@ -4096,14 +4329,14 @@ msgid ""
 msgstr ":c:member:`PyTypeObject.tp_finalize` 슬롯은 이제 안정적인 ABI의 일부입니다."
 
 #: ../../whatsnew/3.5.rst:2215
-#, fuzzy
 msgid ""
 "Windows builds now require Microsoft Visual C++ 14.0, which is available "
 "as part of `Visual Studio 2015 <https://visualstudio.microsoft.com/en/vs"
 "/older-downloads/#visual-studio-2015-and-other-products>`_."
 msgstr ""
-"이제 윈도우 빌드에는 `Visual Studio 2015 <https://www.visualstudio.com/>`_\\의 일부로 "
-"제공되는 Microsoft Visual C++ 14.0이 필요합니다."
+"이제 윈도우 빌드에는 `Visual Studio 2015 <https://visualstudio.microsoft.com/en/vs"
+"/older-downloads/#visual-studio-2015-and-other-products>`_\\의 일부로 제공되는 "
+"Microsoft Visual C++ 14.0이 필요합니다."
 
 #: ../../whatsnew/3.5.rst:2218
 msgid ""
@@ -4249,7 +4482,6 @@ msgid ""
 msgstr ":func:`asyncio.async` 함수는 폐지되었고 :func:`~asyncio.ensure_future`\\로 대체합니다."
 
 #: ../../whatsnew/3.5.rst:2299
-#, fuzzy
 msgid ""
 "The :mod:`!smtpd` module has in the past always decoded the DATA portion "
 "of email messages using the ``utf-8`` codec.  This can now be controlled "
@@ -4258,9 +4490,9 @@ msgid ""
 "*decode_data* keyword with an appropriate value to avoid the deprecation "
 "warning."
 msgstr ""
-":mod:`smtpd` 모듈은 과거에 항상 ``utf-8`` 코덱을 사용하여 이메일 메시지의 DATA 부분을 디코딩했습니다. 이제 "
-":class:`~smtpd.SMTPServer`\\에 대한 새로운 *decode_data* 키워드로 제어 할 수 있습니다. 기본값은"
-" ``True``\\이지만, 이 기본값은 폐지되었습니다. 폐지 경고를 방지하려면 적절한 값으로 *decode_data* 키워드를 "
+":mod:`!smtpd` 모듈은 과거에 항상 ``utf-8`` 코덱을 사용하여 이메일 메시지의 DATA 부분을 디코딩했습니다. 이제"
+" :class:`!SMTPServer`\\에 대한 새로운 *decode_data* 키워드로 제어 할 수 있습니다. 기본값은 "
+"``True``\\이지만, 이 기본값은 폐지되었습니다. 폐지 경고를 방지하려면 적절한 값으로 *decode_data* 키워드를 "
 "지정하십시오."
 
 #: ../../whatsnew/3.5.rst:2305
@@ -4444,6 +4676,8 @@ msgid ""
 "f(1 for x in [1], *args)\n"
 "f(1 for x in [1], **kwargs)"
 msgstr ""
+"f(1 for x in [1], *args)\n"
+"f(1 for x in [1], **kwargs)"
 
 #: ../../whatsnew/3.5.rst:2392
 msgid ""
@@ -4479,14 +4713,13 @@ msgstr ""
 "참조하십시오."
 
 #: ../../whatsnew/3.5.rst:2408
-#, fuzzy
 msgid ""
 "The :meth:`ssl.SSLSocket.send` method now raises either "
 ":exc:`ssl.SSLWantReadError` or :exc:`ssl.SSLWantWriteError` on a non-"
 "blocking socket if the operation would block.  Previously, it would "
 "return ``0``.  (Contributed by Nikolaus Rath in :issue:`20951`.)"
 msgstr ""
-":meth:`ssl.SSLSocket.send()` 메서드는 이제 연산이 블록 되려고 하면 비 블로킹 소켓에서 "
+":meth:`ssl.SSLSocket.send` 메서드는 이제 연산이 블록 되려고 하면 비 블로킹 소켓에서 "
 ":exc:`ssl.SSLWantReadError` 나 :exc:`ssl.SSLWantWriteError`\\를 발생시킵니다. "
 "이전에는 ``0``\\을 반환했습니다. (Contributed by Nikolaus Rath in :issue:`20951`.)"
 
@@ -4505,7 +4738,6 @@ msgstr ""
 "Stinner in :issue:`21205`.)"
 
 #: ../../whatsnew/3.5.rst:2420
-#, fuzzy
 msgid ""
 "The deprecated \"strict\" mode and argument of "
 ":class:`~html.parser.HTMLParser`, :meth:`!HTMLParser.error`, and the "
@@ -4515,7 +4747,7 @@ msgid ""
 "(Contributed by Berker Peksag in :issue:`21047`.)"
 msgstr ""
 "폐지된 \"strict\" 모드와 :class:`~html.parser.HTMLParser`\\의 인자, "
-":meth:`HTMLParser.error` 및 :exc:`HTMLParserError` 예외가 제거되었습니다. "
+":meth:`!HTMLParser.error` 및 :exc:`!HTMLParserError` 예외가 제거되었습니다. "
 "(Contributed by Ezio Melotti in :issue:`15114`.) "
 ":class:`~html.parser.HTMLParser`\\의 *convert_charrefs* 인자는 이제 기본적으로 "
 "``True``\\입니다. (Contributed by Berker Peksag in :issue:`21047`.)"
@@ -4616,7 +4848,6 @@ msgstr ""
 "변수는 폐지되었으며 이제 무시됩니다. (Contributed by Demian Brecht in :issue:`2211`.)"
 
 #: ../../whatsnew/3.5.rst:2469
-#, fuzzy
 msgid ""
 ":pep:`488` has removed ``.pyo`` files from Python and introduced the "
 "optional ``opt-`` tag in ``.pyc`` file names. The "
@@ -4632,17 +4863,16 @@ msgstr ""
 ":pep:`488`\\은 파이썬에서 ``.pyo`` 파일을 제거하고 ``.pyc`` 파일 이름에 선택적 ``opt-`` 태그를 "
 "도입했습니다. :func:`importlib.util.cache_from_source`\\는 ``opt-`` 태그를 제어하는 데 "
 "도움이 되는 *optimization* 매개 변수를 얻었습니다. 이로 인해, 함수의 *debug_override* 매개 변수는 이제"
-" 폐지되었습니다. 또한 `.pyo` 파일은 더는 파이썬 인터프리터에 대한 파일 인자로 지원되지 않아서 자체적으로 배포될 때 (즉, "
-"소스 없는 코드 배포) 용도가 없습니다. 파이썬 3.5에서 바이트 코드의 매직 넘버가 변경되었기 때문에, 이전 버전의 파이썬에서 "
-"가져온 모든 이전 `.pyo` 파일은 이 PEP에 관계없이 유효하지 않습니다."
+" 폐지되었습니다. 또한 ``.pyo`` 파일은 더는 파이썬 인터프리터에 대한 파일 인자로 지원되지 않아서 자체적으로 배포될 때 "
+"(즉, 소스 없는 코드 배포) 용도가 없습니다. 파이썬 3.5에서 바이트 코드의 매직 넘버가 변경되었기 때문에, 이전 버전의 "
+"파이썬에서 가져온 모든 이전 ``.pyo`` 파일은 이 PEP에 관계없이 유효하지 않습니다."
 
 #: ../../whatsnew/3.5.rst:2480
-#, fuzzy
 msgid ""
 "The :mod:`socket` module now exports the "
 ":const:`~socket.CAN_RAW_FD_FRAMES` constant on linux 3.6 and greater."
 msgstr ""
-":mod:`socket` 모듈은 이제 리눅스 3.6 이상에서 :data:`~socket.CAN_RAW_FD_FRAMES` 상수를 "
+":mod:`socket` 모듈은 이제 리눅스 3.6 이상에서 :const:`~socket.CAN_RAW_FD_FRAMES` 상수를 "
 "내보냅니다."
 
 #: ../../whatsnew/3.5.rst:2483
@@ -4718,15 +4948,13 @@ msgid "Changes in the C API"
 msgstr "C API의 변경"
 
 #: ../../whatsnew/3.5.rst:2516
-#, fuzzy
 msgid ""
 "The undocumented :c:member:`!format` member of the (non-public) "
 ":c:type:`PyMemoryViewObject` structure has been removed. All extensions "
 "relying on the relevant parts in ``memoryobject.h`` must be rebuilt."
 msgstr ""
-"(비공개) :c:type:`PyMemoryViewObject` 구조체의 문서화되지 않은 "
-":c:member:`~PyMemoryViewObject.format` 멤버가 제거되었습니다. ``memoryobject.h``\\의"
-" 관련 부분에 의존하는 모든 확장은 다시 빌드해야 합니다."
+"(비공개) :c:type:`PyMemoryViewObject` 구조체의 문서화되지 않은 :c:member:`!format` 멤버가 "
+"제거되었습니다. ``memoryobject.h``\\의 관련 부분에 의존하는 모든 확장은 다시 빌드해야 합니다."
 
 #: ../../whatsnew/3.5.rst:2521
 msgid ""
@@ -4737,19 +4965,17 @@ msgstr ""
 "``calloc`` 필드가 추가되었습니다."
 
 #: ../../whatsnew/3.5.rst:2524
-#, fuzzy
 msgid ""
 "Removed non-documented macro :c:macro:`!PyObject_REPR()` which leaked "
 "references. Use format character ``%R`` in "
 ":c:func:`PyUnicode_FromFormat`-like functions to format the :func:`repr` "
 "of the object. (Contributed by Serhiy Storchaka in :issue:`22453`.)"
 msgstr ""
-"참조를 누출한 문서화되지 않은 매크로 :c:macro:`PyObject_REPR`\\을 제거했습니다. "
+"참조를 누출한 문서화되지 않은 매크로 :c:macro:`!PyObject_REPR()`\\을 제거했습니다. "
 ":c:func:`PyUnicode_FromFormat`\\과 유사한 함수에서 객체의 :func:`repr`\\을 포맷하려면 포맷 "
 "문자 ``%R``\\을 사용하십시오. (Contributed by Serhiy Storchaka in :issue:`22453`.)"
 
 #: ../../whatsnew/3.5.rst:2529
-#, fuzzy
 msgid ""
 "Because the lack of the :attr:`~type.__module__` attribute breaks "
 "pickling and introspection, a deprecation warning is now raised for "
@@ -4757,12 +4983,12 @@ msgid ""
 "be an :exc:`AttributeError` in the future. (Contributed by Serhiy "
 "Storchaka in :issue:`20204`.)"
 msgstr ""
-":attr:`__module__` 어트리뷰트가 없으면 피클링과 인트로스펙션이 망가지므로, :attr:`__module__` "
-"어트리뷰트가 없는 내장형에 대해 폐지 경고가 발생합니다. 이것은 향후 AttributeError가 될 것입니다. "
-"(Contributed by Serhiy Storchaka in :issue:`20204`.)"
+":attr:`~type.__module__` 어트리뷰트가 없으면 피클링과 인트로스펙션이 망가지므로, "
+":attr:`~type.__module__` 어트리뷰트가 없는 내장형에 대해 폐지 경고가 발생합니다. 이것은 향후 "
+":exc:`AttributeError`\\가 될 것입니다. (Contributed by Serhiy Storchaka in "
+":issue:`20204`.)"
 
 #: ../../whatsnew/3.5.rst:2535
-#, fuzzy
 msgid ""
 "As part of the :pep:`492` implementation, the ``tp_reserved`` slot of "
 ":c:type:`PyTypeObject` was replaced with a "
@@ -4770,8 +4996,8 @@ msgid ""
 " for new types, structures and functions."
 msgstr ""
 ":pep:`492` 구현의 일부로, :c:type:`PyTypeObject`\\의 ``tp_reserved`` 슬롯이 "
-":c:member:`tp_as_async` 슬롯으로 대체되었습니다. 새로운 형, 구조체 및 함수는 :ref:`coro-"
-"objects`\\를 참조하십시오."
+":c:member:`~PyTypeObject.tp_as_async` 슬롯으로 대체되었습니다. 새로운 형, 구조체 및 함수는 :ref"
+":`coro-objects`\\를 참조하십시오."
 
 #: ../../whatsnew/3.5.rst:2542
 msgid "Notable changes in Python 3.5.4"
