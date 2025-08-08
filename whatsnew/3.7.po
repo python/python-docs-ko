@@ -265,6 +265,16 @@ msgid ""
 "class B:\n"
 "    ..."
 msgstr ""
+"class C:\n"
+"    @classmethod\n"
+"    def from_string(cls, source: str) -> C:\n"
+"        ...\n"
+"\n"
+"    def validate_b(self, obj: B) -> bool:\n"
+"        ...\n"
+"\n"
+"class B:\n"
+"    ..."
 
 #: ../../whatsnew/3.7.rst:169
 msgid ""
@@ -277,7 +287,7 @@ msgstr ""
 
 #: ../../whatsnew/3.7.rst:172
 msgid "from __future__ import annotations"
-msgstr ""
+msgstr "from __future__ import annotations"
 
 #: ../../whatsnew/3.7.rst:174
 msgid "It will become the default in Python 3.10."
@@ -385,14 +395,13 @@ msgid "PEP 540: Forced UTF-8 Runtime Mode"
 msgstr "PEP 540: 강제 UTF-8 실행시간 모드"
 
 #: ../../whatsnew/3.7.rst:234
-#, fuzzy
 msgid ""
 "The new :option:`-X` ``utf8`` command line option and "
 ":envvar:`PYTHONUTF8` environment variable can be used to enable the "
 ":ref:`Python UTF-8 Mode <utf8-mode>`."
 msgstr ""
 "새로운 :option:`-X` ``utf8`` 명령행 옵션과 :envvar:`PYTHONUTF8` 환경 변수를 사용하여 "
-"CPython *UTF-8 모드* 를 활성화할 수 있습니다."
+":ref:`파이썬 UTF-8 모드 <utf8-mode>`\\를 활성화할 수 있습니다."
 
 #: ../../whatsnew/3.7.rst:238
 msgid ""
@@ -490,7 +499,6 @@ msgid "PEP 539: New C API for Thread-Local Storage"
 msgstr "PEP 539: 스레드-로컬 저장소를 위한 새로운 C API"
 
 #: ../../whatsnew/3.7.rst:291
-#, fuzzy
 msgid ""
 "While Python provides a C API for thread-local storage support; the "
 "existing :ref:`Thread Local Storage (TLS) API <thread-local-storage-api>`"
@@ -499,12 +507,11 @@ msgid ""
 "that is neither POSIX-compliant, nor portable in any practical sense."
 msgstr ""
 "파이썬은 스레드 로컬 저장소 지원을 위한 C API를 제공하지만; 기존 :ref:`스레드 로컬 저장소 (TLS) API "
-"<thread-local-storage-api>` 는 모든 플랫폼에서 TLS 키로 :c:type:`int`\\를 사용합니다. 이것은"
+"<thread-local-storage-api>` 는 모든 플랫폼에서 TLS 키로 :c:expr:`int`\\를 사용합니다. 이것은"
 " 공식적으로 지원되는 플랫폼에서는 일반적으로 문제가 되지 않지만, POSIX를 준수하지도 실용적인 의미에서 이식성이 있지도 "
 "않습니다."
 
 #: ../../whatsnew/3.7.rst:297
-#, fuzzy
 msgid ""
 ":pep:`539` changes this by providing a new :ref:`Thread Specific Storage "
 "(TSS) API <thread-specific-storage-api>` to CPython which supersedes use "
@@ -517,13 +524,12 @@ msgid ""
 msgstr ""
 ":pep:`539` 는 CPython에 새로운 :ref:`스레드 특정 저장소 (TSS) API <thread-specific-"
 "storage-api>` 를 제공해서 이를 변경하는데, CPython 인터프리터 내에서 기존 TLS API의 사용을 대체하는 동시에"
-" 기존 API를 폐지합니다. TSS API는 TSS 키를 나타내는데 :c:type:`int` 대신 "
+" 기존 API를 폐지합니다. TSS API는 TSS 키를 나타내는데 :c:expr:`int` 대신 "
 ":c:type:`Py_tss_t`\\라는 새로운 형을 사용합니다. 이 형은 하부 TLS 구현에 따라 달라질 수 있는 불투명 한 "
-"형입니다. 그래서 네이티브 TLS 키가 :c:type:`int`\\로 안전하게 캐스팅될 수 없는 방식으로 정의된 플랫폼에서 "
+"형입니다. 그래서 네이티브 TLS 키가 :c:expr:`int`\\로 안전하게 캐스팅될 수 없는 방식으로 정의된 플랫폼에서 "
 "CPython을 빌드 할 수 있게 합니다."
 
 #: ../../whatsnew/3.7.rst:306
-#, fuzzy
 msgid ""
 "Note that on platforms where the native TLS key is defined in a way that "
 "cannot be safely cast to :c:expr:`int`, all functions of the existing TLS"
@@ -531,7 +537,7 @@ msgid ""
 " that the old API is not supported on platforms where it cannot be used "
 "reliably, and that no effort will be made to add such support."
 msgstr ""
-"네이티브 TLS 키가 :c:type:`int`\\로 안전하게 캐스팅될 수 없는 방식으로 정의된 플랫폼에서는, 기존 TLS API의 "
+"네이티브 TLS 키가 :c:expr:`int`\\로 안전하게 캐스팅될 수 없는 방식으로 정의된 플랫폼에서는, 기존 TLS API의 "
 "모든 함수는 작동하지 않고 즉시 실패를 반환합니다. 이는 이전 API가 신뢰성 있게 사용될 수 없는 플랫폼에서 지원되지 않으며, "
 "이러한 지원을 추가하기 위한 노력이 없을 것을 분명하게 나타냅니다."
 
@@ -575,7 +581,6 @@ msgid "PEP 564: New Time Functions With Nanosecond Resolution"
 msgstr "PEP 564: 나노초 해상도의 새로운 시간 함수"
 
 #: ../../whatsnew/3.7.rst:341
-#, fuzzy
 msgid ""
 "The resolution of clocks in modern systems can exceed the limited "
 "precision of a floating-point number returned by the :func:`time.time` "
@@ -615,15 +620,13 @@ msgid "The new functions return the number of nanoseconds as an integer value."
 msgstr "새로운 함수는 나노초의 수를 정숫값으로 반환합니다."
 
 #: ../../whatsnew/3.7.rst:356
-#, fuzzy
 msgid ""
 ":pep:`Measurements <0564#annex-clocks-resolution-in-python>` show that on"
 " Linux and Windows the resolution of :func:`time.time_ns` is "
 "approximately 3 times better than that of :func:`time.time`."
 msgstr ""
-"`측정 <https://www.python.org/dev/peps/pep-0564/#annex-clocks-resolution-"
-"in-python>`_\\에 의하면 리눅스와 윈도우에서 :func:`time.time_ns` 의 해상도는 "
-":func:`time.time` 보다 약 3배 정밀합니다."
+":pep:`측정 <0564#annex-clocks-resolution-in-python>`\\에 의하면 리눅스와 윈도우에서 "
+":func:`time.time_ns` 의 해상도는 :func:`time.time` 보다 약 3배 정밀합니다."
 
 #: ../../whatsnew/3.7.rst:362
 msgid ":pep:`564` -- Add new time functions with nanosecond resolution"
@@ -920,7 +923,6 @@ msgstr ""
 "``str(x)`` 과 동등합니다. (Contributed by Serhiy Storchaka in :issue:`28974`.)"
 
 #: ../../whatsnew/3.7.rst:526
-#, fuzzy
 msgid ""
 "In order to better support dynamic creation of stack traces, "
 ":class:`types.TracebackType` can now be instantiated from Python code, "
@@ -929,8 +931,9 @@ msgid ""
 "in :issue:`30579`.)"
 msgstr ""
 "이제 스택 트레이스의 동적 생성을 더욱 잘 지원하기 위해, 파이썬 코드에서 :class:`types.TracebackType` 의 "
-"인스턴스를 만들 수 있고, :ref:`트레이스백 <traceback-objects>` 의 ``tb_next`` 어트리뷰트에 쓸 수 "
-"있습니다. (Contributed by Nathaniel J. Smith in :issue:`30579`.)"
+"인스턴스를 만들 수 있고, :ref:`트레이스백 <traceback-objects>` 의 "
+":attr:`~traceback.tb_next` 어트리뷰트에 쓸 수 있습니다. (Contributed by Nathaniel J. "
+"Smith in :issue:`30579`.)"
 
 #: ../../whatsnew/3.7.rst:532
 msgid ""
@@ -945,7 +948,6 @@ msgstr ""
 "(Contributed by Nick Coghlan in :issue:`33053`.)"
 
 #: ../../whatsnew/3.7.rst:538
-#, fuzzy
 msgid ""
 "The new :option:`-X` ``importtime`` option or the "
 ":envvar:`PYTHONPROFILEIMPORTTIME` environment variable can be used to "
@@ -953,7 +955,7 @@ msgid ""
 ":issue:`31415`.)"
 msgstr ""
 "새 :option:`-X` ``importtime`` 옵션 또는 :envvar:`PYTHONPROFILEIMPORTTIME` 환경 "
-"변수는 각 모듈 임포트의 타이밍을 보여주기 위해 사용될 수 있습니다. (Contributed by Victor Stinner in "
+"변수는 각 모듈 임포트의 타이밍을 보여주기 위해 사용될 수 있습니다. (Contributed by Inada Naoki in "
 ":issue:`31415`.)"
 
 #: ../../whatsnew/3.7.rst:545
@@ -1026,6 +1028,14 @@ msgid ""
 "p = Point(1.5, 2.5)\n"
 "print(p)   # produces \"Point(x=1.5, y=2.5, z=0.0)\""
 msgstr ""
+"@dataclass\n"
+"class Point:\n"
+"    x: float\n"
+"    y: float\n"
+"    z: float = 0.0\n"
+"\n"
+"p = Point(1.5, 2.5)\n"
+"print(p)   # produces \"Point(x=1.5, y=2.5, z=0.0)\""
 
 #: ../../whatsnew/3.7.rst:593
 msgid ":pep:`557` -- Data Classes"
@@ -1040,7 +1050,6 @@ msgid "importlib.resources"
 msgstr "importlib.resources"
 
 #: ../../whatsnew/3.7.rst:602
-#, fuzzy
 msgid ""
 "The new :mod:`importlib.resources` module provides several new APIs and "
 "one new ABC for access to, opening, and reading *resources* inside "
@@ -1054,21 +1063,20 @@ msgstr ""
 "내부의 *리소스* 에 접근하고 읽는 것을 지원합니다. 리소스는 대략 패키지 안의 파일과 비슷하지만, 물리적인 파일 시스템에 있는 "
 "실제 파일 일 필요는 없습니다. 모듈 로더는 이 새로운 API를 지원하기 위해 "
 ":class:`importlib.abc.ResourceReader` 인스턴스를 반환하는 "
-":meth:`get_resource_reader()` 함수를 제공 할 수 있습니다. 내장 파일 경로 로더와 zip 파일 로더는 모두"
-" 이것을 지원합니다."
+":meth:`get_resource_reader` 함수를 제공 할 수 있습니다. 내장 파일 경로 로더와 zip 파일 로더는 모두 "
+"이것을 지원합니다."
 
 #: ../../whatsnew/3.7.rst:610
 msgid "Contributed by Barry Warsaw and Brett Cannon in :issue:`32248`."
 msgstr "Contributed by Barry Warsaw and Brett Cannon in :issue:`32248`."
 
 #: ../../whatsnew/3.7.rst:614
-#, fuzzy
 msgid ""
 "`importlib_resources <https://importlib-"
 "resources.readthedocs.io/en/latest/>`_ -- a PyPI backport for earlier "
 "Python versions."
 msgstr ""
-"`importlib_resources <http://importlib-"
+"`importlib_resources <https://importlib-"
 "resources.readthedocs.io/en/latest/>`_ -- 이전 파이썬 버전을 위한 PyPI 역 이식."
 
 #: ../../whatsnew/3.7.rst:619
@@ -1166,7 +1174,6 @@ msgstr ""
 "Pitrou in :issue:`31819`.)"
 
 #: ../../whatsnew/3.7.rst:669
-#, fuzzy
 msgid ""
 "The new :func:`asyncio.current_task` function returns the currently "
 "running :class:`~asyncio.Task` instance, and the new "
@@ -1177,9 +1184,8 @@ msgid ""
 msgstr ""
 "새로운 :func:`asyncio.current_task` 함수는 현재 실행 중인 :class:`~asyncio.Task` "
 "인스턴스를 반환하고, 새 :func:`asyncio.all_tasks` 함수는 주어진 루프에 있는 모든 기존 ``Task`` "
-"인스턴스 집합을 반환합니다. :meth:`Task.current_task() <asyncio.Task.current_task>` 와"
-" :meth:`Task.all_tasks() <asyncio.Task.all_tasks>` 메서드는 폐지되었습니다. "
-"(Contributed by Andrew Svetlov in :issue:`32250`.)"
+"인스턴스 집합을 반환합니다. :meth:`!Task.current_task` 와 :meth:`!Task.all_tasks` 메서드는"
+" 폐지되었습니다. (Contributed by Andrew Svetlov in :issue:`32250`.)"
 
 #: ../../whatsnew/3.7.rst:676
 msgid ""
@@ -1276,6 +1282,12 @@ msgid ""
 "\n"
 "# At this point, srv is closed and no longer accepts new connections."
 msgstr ""
+"srv = await loop.create_server(...)\n"
+"\n"
+"async with srv:\n"
+"    # some code\n"
+"\n"
+"# At this point, srv is closed and no longer accepts new connections."
 
 #: ../../whatsnew/3.7.rst:723
 msgid "(Contributed by Yury Selivanov in :issue:`32662`.)"
@@ -1529,22 +1541,20 @@ msgid "crypt"
 msgstr "crypt"
 
 #: ../../whatsnew/3.7.rst:851
-#, fuzzy
 msgid ""
 "The :mod:`!crypt` module now supports the Blowfish hashing method. "
 "(Contributed by Serhiy Storchaka in :issue:`31664`.)"
 msgstr ""
-":mod:`crypt` 모듈은 이제 블로피시 해싱 방법을 지원합니다. (Contributed by Serhiy Storchaka "
+":mod:`!crypt` 모듈은 이제 블로피시 해싱 방법을 지원합니다. (Contributed by Serhiy Storchaka "
 "in :issue:`31664`.)"
 
 #: ../../whatsnew/3.7.rst:854
-#, fuzzy
 msgid ""
 "The :func:`!mksalt` function now allows specifying the number of rounds "
 "for hashing.  (Contributed by Serhiy Storchaka in :issue:`31702`.)"
 msgstr ""
-":func:`~crypt.mksalt` 함수는 이제 해싱을 위한 라운드 수를 지정할 수 있습니다. (Contributed by "
-"Serhiy Storchaka in :issue:`31702`.)"
+":func:`!mksalt` 함수는 이제 해싱을 위한 라운드 수를 지정할 수 있습니다. (Contributed by Serhiy "
+"Storchaka in :issue:`31702`.)"
 
 #: ../../whatsnew/3.7.rst:859
 msgid "datetime"
@@ -2058,14 +2068,12 @@ msgid "msilib"
 msgstr "msilib"
 
 #: ../../whatsnew/3.7.rst:1136
-#, fuzzy
 msgid ""
 "The new :meth:`!Database.Close` method can be used to close the "
 ":abbr:`MSI` database. (Contributed by Berker Peksag in :issue:`20486`.)"
 msgstr ""
-"새로운 :meth:`Database.Close() <msilib.Database.Close>` 메서드를 사용하여 "
-":abbr:`MSI` 데이터베이스를 닫을 수 있습니다. (Contributed by Berker Peksag in "
-":issue:`20486`.)"
+"새로운 :meth:`!Database.Close` 메서드를 사용하여 :abbr:`MSI` 데이터베이스를 닫을 수 있습니다. "
+"(Contributed by Berker Peksag in :issue:`20486`.)"
 
 #: ../../whatsnew/3.7.rst:1142
 msgid "multiprocessing"
@@ -2143,7 +2151,6 @@ msgstr ""
 "것)를 추가했습니다. (Contributed by Pablo Galindo in :issue:`31368`.)"
 
 #: ../../whatsnew/3.7.rst:1177
-#, fuzzy
 msgid ""
 "The mode argument of :func:`os.makedirs` no longer affects the file "
 "permission bits of newly created intermediate-level directories. "
@@ -2342,7 +2349,6 @@ msgstr ""
 ":issue:`32454`.)"
 
 #: ../../whatsnew/3.7.rst:1283
-#, fuzzy
 msgid ""
 "The :mod:`socket` module now exposes the :const:`socket.TCP_CONGESTION` "
 "(Linux 2.6.13), :const:`socket.TCP_USER_TIMEOUT` (Linux 2.6.37), and "
@@ -2350,20 +2356,19 @@ msgid ""
 " Omar Sandoval in :issue:`26273` and Nathaniel J. Smith in "
 ":issue:`29728`.)"
 msgstr ""
-":mod:`socket` 모듈은 이제 :data:`socket.TCP_CONGESTION` (리눅스 2.6.13), "
-":data:`socket.TCP_USER_TIMEOUT` (Linux 2.6.37) 그리고 "
-":data:`socket.TCP_NOTSENT_LOWAT` (리눅스 3.12) 상수를 노출합니다. (Contributed by "
+":mod:`socket` 모듈은 이제 :const:`socket.TCP_CONGESTION` (리눅스 2.6.13), "
+":const:`socket.TCP_USER_TIMEOUT` (Linux 2.6.37) 그리고 "
+":const:`socket.TCP_NOTSENT_LOWAT` (리눅스 3.12) 상수를 노출합니다. (Contributed by "
 "Omar Sandoval in :issue:`26273` and Nathaniel J. Smith in "
 ":issue:`29728`.)"
 
 #: ../../whatsnew/3.7.rst:1289
-#, fuzzy
 msgid ""
 "Support for :const:`socket.AF_VSOCK` sockets has been added to allow "
 "communication between virtual machines and their hosts. (Contributed by "
 "Cathy Avery in :issue:`27584`.)"
 msgstr ""
-"가상 기계와 호스트 간의 통신을 허용하기 위해 :data:`socket.AF_VSOCK` 소켓 지원이 추가되었습니다. "
+"가상 기계와 호스트 간의 통신을 허용하기 위해 :const:`socket.AF_VSOCK` 소켓 지원이 추가되었습니다. "
 "(Contributed by Cathy Avery in :issue:`27584`.)"
 
 #: ../../whatsnew/3.7.rst:1293
@@ -2579,7 +2584,6 @@ msgid "subprocess"
 msgstr "subprocess"
 
 #: ../../whatsnew/3.7.rst:1399
-#, fuzzy
 msgid ""
 "The :func:`subprocess.run` function accepts the new *capture_output* "
 "keyword argument.  When true, stdout and stderr will be captured. This is"
@@ -2587,8 +2591,8 @@ msgid ""
 "arguments. (Contributed by Bo Bayles in :issue:`32102`.)"
 msgstr ""
 ":func:`subprocess.run` 함수는 새로운 *capture_output* 키워드 인자를 받습니다. 참일 때, "
-"stdout과 stderr가 캡처됩니다. 이것은 :data:`subprocess.PIPE` 를 *stdout* 및 *stderr* "
-"인자로 전달하는 것과 같습니다. (Contributed by Bo Bayles in :issue:`32102`.)"
+"stdout과 stderr가 캡처됩니다. 이것은 :const:`subprocess.PIPE` 를 *stdout* 및 *stderr*"
+" 인자로 전달하는 것과 같습니다. (Contributed by Bo Bayles in :issue:`32102`.)"
 
 #: ../../whatsnew/3.7.rst:1405
 msgid ""
@@ -2678,30 +2682,27 @@ msgid "New clock identifiers have been added:"
 msgstr "새로운 시계 식별자가 추가되었습니다:"
 
 #: ../../whatsnew/3.7.rst:1460
-#, fuzzy
 msgid ""
 ":const:`time.CLOCK_BOOTTIME` (Linux): Identical to "
 ":const:`time.CLOCK_MONOTONIC`, except it also includes any time that the "
 "system is suspended."
 msgstr ""
-":data:`time.CLOCK_BOOTTIME` (리눅스): 시스템이 일시 중지된 시간을 포함한다는 점만 제외하고는 "
-":data:`time.CLOCK_MONOTONIC` 과 같습니다."
+":const:`time.CLOCK_BOOTTIME` (리눅스): 시스템이 일시 중지된 시간을 포함한다는 점만 제외하고는 "
+":const:`time.CLOCK_MONOTONIC` 과 같습니다."
 
 #: ../../whatsnew/3.7.rst:1463
-#, fuzzy
 msgid ""
 ":const:`time.CLOCK_PROF` (FreeBSD, NetBSD and OpenBSD): High-resolution "
 "per-process CPU timer."
-msgstr ":data:`time.CLOCK_PROF` (FreeBSD, NetBSD, OpenBSD): 고해상도의 프로세스별 CPU 타이머."
+msgstr ":const:`time.CLOCK_PROF` (FreeBSD, NetBSD, OpenBSD): 고해상도의 프로세스별 CPU 타이머."
 
 #: ../../whatsnew/3.7.rst:1465
-#, fuzzy
 msgid ""
 ":const:`time.CLOCK_UPTIME` (FreeBSD, OpenBSD): Time whose absolute value "
 "is the time the system has been running and not suspended, providing "
 "accurate uptime measurement."
 msgstr ""
-":data:`time.CLOCK_UPTIME` (FreeBSD, OpenBSD): 절댓값이 시스템이 실행 중이었고 중단되지 않은 "
+":const:`time.CLOCK_UPTIME` (FreeBSD, OpenBSD): 절댓값이 시스템이 실행 중이었고 중단되지 않은 "
 "시간인 시간. 정확한 업타임 측정을 제공합니다."
 
 #: ../../whatsnew/3.7.rst:1469
@@ -2783,14 +2784,13 @@ msgid "unicodedata"
 msgstr "unicodedata"
 
 #: ../../whatsnew/3.7.rst:1513
-#, fuzzy
 msgid ""
 "The internal :mod:`unicodedata` database has been upgraded to use "
 "`Unicode 11 <https://www.unicode.org/versions/Unicode11.0.0/>`_. "
 "(Contributed by Benjamin Peterson.)"
 msgstr ""
 "내부 :mod:`unicodedata` 데이터베이스가 `유니코드 11 "
-"<http://www.unicode.org/versions/Unicode11.0.0/>`_ 을 사용하도록 업그레이드되었습니다. "
+"<https://www.unicode.org/versions/Unicode11.0.0/>`_ 을 사용하도록 업그레이드되었습니다. "
 "(Contributed by Benjamin Peterson.)"
 
 #: ../../whatsnew/3.7.rst:1519
@@ -2858,14 +2858,13 @@ msgid "uu"
 msgstr "uu"
 
 #: ../../whatsnew/3.7.rst:1554
-#, fuzzy
 msgid ""
 "The :func:`!uu.encode` function now accepts an optional *backtick* "
 "keyword argument.  When it's true, zeros are represented by ``'`'`` "
 "instead of spaces.  (Contributed by Xiang Zhang in :issue:`30103`.)"
 msgstr ""
-":func:`uu.encode` 함수는 이제 선택적 *backtick* 키워드 인자를 받아들입니다. 참일 때, 0은 스페이스 대신에"
-" ``'`'`` 로 표현됩니다. (Contributed by Xiang Zhang in :issue:`30103`.)"
+":func:`!uu.encode` 함수는 이제 선택적 *backtick* 키워드 인자를 받아들입니다. 참일 때, 0은 스페이스 "
+"대신에 ``'`'`` 로 표현됩니다. (Contributed by Xiang Zhang in :issue:`30103`.)"
 
 #: ../../whatsnew/3.7.rst:1560
 msgid "uuid"
@@ -2944,11 +2943,12 @@ msgid "any implicit filters defined directly by the warnings machinery"
 msgstr "경고 절차에 의해 직접 정의된 모든 묵시적 필터"
 
 #: ../../whatsnew/3.7.rst:1595
-#, fuzzy
 msgid ""
 "in :ref:`CPython debug builds <debug-build>`, all warnings are now "
 "displayed by default (the implicit filter list is empty)"
-msgstr "CPython 디버그 빌드에서, 이제 모든 경고가 기본적으로 표시됩니다 (묵시적 필터 목록이 비어 있습니다)"
+msgstr ""
+":ref:`CPython 디버그 빌드 <debug-build>`\\에서, 이제 모든 경고가 기본적으로 표시됩니다 (묵시적 필터 "
+"목록이 비어 있습니다)"
 
 #: ../../whatsnew/3.7.rst:1598
 msgid ""
@@ -2970,7 +2970,7 @@ msgstr ""
 
 #: ../../whatsnew/3.7.rst:1607
 msgid "xml"
-msgstr ""
+msgstr "xml"
 
 #: ../../whatsnew/3.7.rst:1609
 msgid ""
@@ -3125,7 +3125,6 @@ msgstr ""
 "(Contributed by Christian Heimes in :issue:`31574`.)"
 
 #: ../../whatsnew/3.7.rst:1690
-#, fuzzy
 msgid ""
 "The fields :c:member:`!name` and :c:member:`!doc` of structures "
 ":c:type:`PyMemberDef`, :c:type:`PyGetSetDef`, "
@@ -3135,7 +3134,7 @@ msgid ""
 msgstr ""
 "구조체 :c:type:`PyMemberDef`, :c:type:`PyGetSetDef`, "
 ":c:type:`PyStructSequence_Field`, :c:type:`PyStructSequence_Desc` 그리고 "
-":c:type:`wrapperbase` 의 필드 :c:member:`name`\\과 :c:member:`doc` 은 이제 "
+":c:struct:`wrapperbase` 의 필드 :c:member:`!name`\\과 :c:member:`!doc` 은 이제 "
 "``char *`` 이 아니라 ``const char *`` 형입니다. (Contributed by Serhiy Storchaka "
 "in :issue:`28761`.)"
 
@@ -3204,7 +3203,6 @@ msgstr ""
 "Ganssle in :issue:`10381`.)"
 
 #: ../../whatsnew/3.7.rst:1722
-#, fuzzy
 msgid ""
 "The type of results of :c:func:`PyThread_start_new_thread` and "
 ":c:func:`PyThread_get_thread_ident`, and the *id* parameter of "
@@ -3214,11 +3212,10 @@ msgid ""
 msgstr ""
 ":c:func:`PyThread_start_new_thread` 및 :c:func:`PyThread_get_thread_ident`"
 " 의 결과와 :c:func:`PyThreadState_SetAsyncExc` 의 *id* 매개 변수의 형이 "
-":c:type:`long`\\에서 :c:type:`unsigned long`\\로 변경되었습니다. (Contributed by "
+":c:expr:`long`\\에서 :c:expr:`unsigned long`\\로 변경되었습니다. (Contributed by "
 "Serhiy Storchaka in :issue:`6532`.)"
 
 #: ../../whatsnew/3.7.rst:1728
-#, fuzzy
 msgid ""
 ":c:func:`PyUnicode_AsWideCharString` now raises a :exc:`ValueError` if "
 "the second argument is ``NULL`` and the :c:expr:`wchar_t*` string "
@@ -3226,7 +3223,7 @@ msgid ""
 ":issue:`30708`.)"
 msgstr ""
 ":c:func:`PyUnicode_AsWideCharString`\\은 두 번째 인자가 ``NULL`` 이고 "
-":c:type:`wchar_t*` 문자열이 널 문자를 포함하면 :exc:`ValueError` 를 발생시킵니다. "
+":c:expr:`wchar_t*` 문자열이 널 문자를 포함하면 :exc:`ValueError` 를 발생시킵니다. "
 "(Contributed by Serhiy Storchaka in :issue:`30708`.)"
 
 #: ../../whatsnew/3.7.rst:1732
@@ -3599,7 +3596,6 @@ msgid "Other CPython Implementation Changes"
 msgstr "기타 CPython 구현 변경"
 
 #: ../../whatsnew/3.7.rst:1905
-#, fuzzy
 msgid ""
 "Trace hooks may now opt out of receiving the ``line`` and opt into "
 "receiving the ``opcode`` events from the interpreter by setting the "
@@ -3607,9 +3603,10 @@ msgid ""
 ":attr:`~frame.f_trace_opcodes` attributes on the frame being traced. "
 "(Contributed by Nick Coghlan in :issue:`31344`.)"
 msgstr ""
-"트레이스 훅은 이제 추적할 프레임의 새로운 ``f_trace_lines`` 와 ``f_trace_opcodes`` 어트리뷰트를 "
-"설정하여, 인터프리터로부터 ``line`` 대신 ``opcode`` 이벤트를 수신하도록 선택할 수 있습니다. (Contributed"
-" by Nick Coghlan in :issue:`31344`.)"
+"트레이스 훅은 이제 추적할 프레임의 새로운 :attr:`~frame.f_trace_lines` 와 "
+":attr:`~frame.f_trace_opcodes` 어트리뷰트를 설정하여, 인터프리터로부터 ``line`` 대신 "
+"``opcode`` 이벤트를 수신하도록 선택할 수 있습니다. (Contributed by Nick Coghlan in "
+":issue:`31344`.)"
 
 #: ../../whatsnew/3.7.rst:1910
 msgid ""
@@ -3637,15 +3634,14 @@ msgstr ""
 "(Contributed by Raymond Hettinger in :issue:`32690`.)"
 
 #: ../../whatsnew/3.7.rst:1922
-#, fuzzy
 msgid ""
 "The ``distutils`` ``upload`` command no longer tries to change CR end-of-"
 "line characters to CRLF.  This fixes a corruption issue with sdists that "
 "ended with a byte equivalent to CR. (Contributed by Bo Bayles in "
 ":issue:`32304`.)"
 msgstr ""
-":mod:`distutils` ``upload`` 명령은 더는 CR 줄 마침 문자를 CRLF로 바꾸려고 시도하지 않습니다. 이것은 "
-"CR에 해당하는 바이트로 끝나는 sdists의 손상 문제를 수정합니다. (Contributed by Bo Bayles in "
+"``distutils`` ``upload`` 명령은 더는 CR 줄 마침 문자를 CRLF로 바꾸려고 시도하지 않습니다. 이것은 CR에"
+" 해당하는 바이트로 끝나는 sdists의 손상 문제를 수정합니다. (Contributed by Bo Bayles in "
 ":issue:`32304`.)"
 
 #: ../../whatsnew/3.7.rst:1929
@@ -3695,14 +3691,13 @@ msgid "aifc"
 msgstr "aifc"
 
 #: ../../whatsnew/3.7.rst:1956
-#, fuzzy
 msgid ""
 ":func:`!aifc.openfp` has been deprecated and will be removed in Python "
 "3.9. Use :func:`!aifc.open` instead. (Contributed by Brian Curtin in "
 ":issue:`31985`.)"
 msgstr ""
-":func:`aifc.openfp` 는 폐지되었고 파이썬 3.9에서 제거될 것입니다. 대신에 :func:`aifc.open` 을 "
-"사용하십시오. (Contributed by Brian Curtin in :issue:`31985`.)"
+":func:`!aifc.openfp` 는 폐지되었고 파이썬 3.9에서 제거될 것입니다. 대신에 :func:`!aifc.open` 을"
+" 사용하십시오. (Contributed by Brian Curtin in :issue:`31985`.)"
 
 #: ../../whatsnew/3.7.rst:1966
 msgid ""
@@ -3717,14 +3712,13 @@ msgstr ""
 "Andrew Svetlov in :issue:`32253`.)"
 
 #: ../../whatsnew/3.7.rst:1972
-#, fuzzy
 msgid ""
 "The :meth:`!asyncio.Task.current_task` and "
 ":meth:`!asyncio.Task.all_tasks` methods have been deprecated. "
 "(Contributed by Andrew Svetlov in :issue:`32250`.)"
 msgstr ""
-":meth:`asyncio.Task.current_task`\\와 :meth:`asyncio.Task.all_tasks` 메서드는 "
-"폐지되었습니다. (Contributed by Andrew Svetlov in :issue:`32250`.)"
+":meth:`!asyncio.Task.current_task`\\와 :meth:`!asyncio.Task.all_tasks` "
+"메서드는 폐지되었습니다. (Contributed by Andrew Svetlov in :issue:`32250`.)"
 
 #: ../../whatsnew/3.7.rst:1980
 msgid ""
@@ -3779,7 +3773,6 @@ msgstr ""
 "없습니다. (Contributed by Serhiy Storchaka in :issue:`28692`.)"
 
 #: ../../whatsnew/3.7.rst:2019
-#, fuzzy
 msgid ""
 "Methods :meth:`!MetaPathFinder.find_module` (replaced by "
 ":meth:`MetaPathFinder.find_spec() "
@@ -3790,16 +3783,13 @@ msgid ""
 " now emit :exc:`DeprecationWarning`. (Contributed by Matthias Bussonnier "
 "in :issue:`29576`.)"
 msgstr ""
-"메서드 :meth:`MetaPathFinder.find_module() "
-"<importlib.abc.MetaPathFinder.find_module>` "
+"메서드 :meth:`!MetaPathFinder.find_module` "
 "(:meth:`MetaPathFinder.find_spec() "
 "<importlib.abc.MetaPathFinder.find_spec>` 로 대체되었습니다)와 "
-":meth:`PathEntryFinder.find_loader() "
-"<importlib.abc.PathEntryFinder.find_loader>` "
-"(:meth:`PathEntryFinder.find_spec() "
+":meth:`!PathEntryFinder.find_loader` (:meth:`PathEntryFinder.find_spec() "
 "<importlib.abc.PathEntryFinder.find_spec>` 로 대체되었습니다) 는 둘 다 파이썬 3.4에서 "
 "폐지되었고, 이제는 :exc:`DeprecationWarning` 을 일으킵니다. (Contributed by Matthias "
-"Bussonnier in :issue:`29576`)"
+"Bussonnier in :issue:`29576`.)"
 
 #: ../../whatsnew/3.7.rst:2030
 msgid ""
@@ -3835,14 +3825,13 @@ msgid "threading"
 msgstr "threading"
 
 #: ../../whatsnew/3.7.rst:2051
-#, fuzzy
 msgid ""
 ":mod:`!dummy_threading` and :mod:`!_dummy_thread` have been deprecated.  "
 "It is no longer possible to build Python with threading disabled. Use "
 ":mod:`threading` instead. (Contributed by Antoine Pitrou in "
 ":issue:`31370`.)"
 msgstr ""
-":mod:`dummy_threading`\\과 :mod:`_dummy_thread` 는 폐지되었습니다. 스레딩을 비활성화하여 "
+":mod:`!dummy_threading`\\과 :mod:`!_dummy_thread` 는 폐지되었습니다. 스레딩을 비활성화하여 "
 "파이썬을 빌드하는 것이 더는 가능하지 않습니다. 대신 :mod:`threading`\\을 사용하십시오. (Contributed by"
 " Antoine Pitrou in :issue:`31370`.)"
 
@@ -3872,14 +3861,13 @@ msgid "sunau"
 msgstr "sunau"
 
 #: ../../whatsnew/3.7.rst:2077
-#, fuzzy
 msgid ""
 ":func:`!sunau.openfp` has been deprecated and will be removed in Python "
 "3.9. Use :func:`!sunau.open` instead. (Contributed by Brian Curtin in "
 ":issue:`31985`.)"
 msgstr ""
-":func:`sunau.openfp` 는 폐지되었고 파이썬 3.9에서 제거될 것입니다. 대신에 :func:`sunau.open` 을"
-" 사용하십시오. (Contributed by Brian Curtin in :issue:`31985`.)"
+":func:`!sunau.openfp` 는 폐지되었고 파이썬 3.9에서 제거될 것입니다. 대신에 :func:`!sunau.open`"
+" 을 사용하십시오. (Contributed by Brian Curtin in :issue:`31985`.)"
 
 #: ../../whatsnew/3.7.rst:2085
 msgid ""
@@ -3989,7 +3977,6 @@ msgstr ""
 "구성에서 여전히 지원됩니다."
 
 #: ../../whatsnew/3.7.rst:2136
-#, fuzzy
 msgid ""
 "CPython's own `CI configuration file "
 "<https://github.com/python/cpython/blob/v3.7.13/.travis.yml>`_ provides "
@@ -3997,9 +3984,11 @@ msgid ""
 " <Tools/ssl/multissltests.py>` in CPython's test suite to build and link "
 "against OpenSSL 1.1.0 rather than an outdated system provided OpenSSL."
 msgstr ""
-"CPython의 자체 :source:`CI 구성 파일 <.travis.yml>`\\은 CPython의 테스트 스위트에서 SSL "
-":source:`호환성 테스트 기반시설 <Tools/ssl/multissltests.py>`\\을 사용하여 구형 시스템이 제공하는 "
-"OpenSSL대신 OpenSSL 1.1.0을 빌드하고 링크하는 예를 제공합니다."
+"CPython의 자체 `CI 구성 파일 "
+"<https://github.com/python/cpython/blob/v3.7.13/.travis.yml>`_\\은 "
+"CPython의 테스트 스위트에서 SSL :source:`호환성 테스트 기반시설 "
+"<Tools/ssl/multissltests.py>`\\을 사용하여 구형 시스템이 제공하는 OpenSSL대신 OpenSSL "
+"1.1.0을 빌드하고 링크하는 예를 제공합니다."
 
 #: ../../whatsnew/3.7.rst:2145
 msgid "API and Feature Removals"
@@ -4037,13 +4026,12 @@ msgstr ""
 " 폐지되었습니다. 대신 *filter* 인자를 사용하십시오."
 
 #: ../../whatsnew/3.7.rst:2160
-#, fuzzy
 msgid ""
 "The :func:`!ntpath.splitunc` function was deprecated in Python 3.1, and "
 "has now been removed.  Use :func:`~os.path.splitdrive` instead."
 msgstr ""
-":mod:`ntpath` 모듈의 ``splitunc()`` 함수는 파이썬 3.1에서 폐지되었고, 이제 제거되었습니다. 대신에 "
-":func:`~os.path.splitdrive` 함수를 사용하십시오."
+":func:`!ntpath.splitunc` 함수는 파이썬 3.1에서 폐지되었고, 이제 제거되었습니다. 대신에 "
+":func:`~os.path.splitdrive` 를 사용하십시오."
 
 #: ../../whatsnew/3.7.rst:2164
 msgid ""
@@ -4095,14 +4083,13 @@ msgstr ""
 " 의 별칭이었습니다."
 
 #: ../../whatsnew/3.7.rst:2186
-#, fuzzy
 msgid ""
 ":mod:`asyncio` no longer exports the :mod:`selectors` and "
 ":mod:`!_overlapped` modules as ``asyncio.selectors`` and "
 "``asyncio._overlapped``. Replace ``from asyncio import selectors`` with "
 "``import selectors``."
 msgstr ""
-":mod:`asyncio` 는 더는 :mod:`selectors`\\와 :mod:`_overlapped` 모듈을 "
+":mod:`asyncio` 는 더는 :mod:`selectors`\\와 :mod:`!_overlapped` 모듈을 "
 "``asyncio.selectors`` 와 ``asyncio._overlapped`` 로 노출하지 않습니다. ``from "
 "asyncio import selectors`` 를 ``import selectors`` 로 대체하십시오."
 
@@ -4120,13 +4107,12 @@ msgstr ""
 "(Contributed by Christian Heimes in :issue:`32951`.)"
 
 #: ../../whatsnew/3.7.rst:2197
-#, fuzzy
 msgid ""
 "The unused ``distutils`` ``install_misc`` command has been removed. "
 "(Contributed by Eric N. Vander Weele in :issue:`29218`.)"
 msgstr ""
-"사용되지 않는 :mod:`distutils` ``install_misc`` 명령이 제거되었습니다. (Contributed by "
-"Eric N. Vander Weele in :issue:`29218`.)"
+"사용되지 않는 ``distutils`` ``install_misc`` 명령이 제거되었습니다. (Contributed by Eric "
+"N. Vander Weele in :issue:`29218`.)"
 
 #: ../../whatsnew/3.7.rst:2202
 msgid "Module Removals"
@@ -4231,6 +4217,10 @@ msgid ""
 "class C(1 for x in [1]):\n"
 "    pass"
 msgstr ""
+"f(1 for x in [1],)\n"
+"\n"
+"class C(1 for x in [1]):\n"
+"    pass"
 
 #: ../../whatsnew/3.7.rst:2260
 msgid ""
@@ -4338,7 +4328,6 @@ msgstr ""
 "(Contributed by Serhiy Storchaka in :issue:`29192`.)"
 
 #: ../../whatsnew/3.7.rst:2311
-#, fuzzy
 msgid ""
 "The *mode* argument of :func:`os.makedirs` no longer affects the file "
 "permission bits of newly created intermediate-level directories. To set "
@@ -4358,15 +4347,14 @@ msgstr ""
 " (Contributed by Victor Stinner in :issue:`21071`.)"
 
 #: ../../whatsnew/3.7.rst:2320
-#, fuzzy
 msgid ""
 ":func:`!cgi.parse_multipart` now accepts the *encoding* and *errors* "
 "arguments and returns the same results as :class:`!FieldStorage`: for "
 "non-file fields, the value associated to a key is a list of strings, not "
 "bytes. (Contributed by Pierre Quentel in :issue:`29979`.)"
 msgstr ""
-":func:`~cgi.parse_multipart` 는 이제 *encoding* 및 *errors* 인자를 받아들이고 "
-":class:`~FieldStorage` 과 같은 결과를 반환합니다: 파일이 아닌 필드의 경우 키와 연관된 값은 바이트열이 아니라 "
+":func:`!cgi.parse_multipart` 는 이제 *encoding* 및 *errors* 인자를 받아들이고 "
+":class:`!FieldStorage` 과 같은 결과를 반환합니다: 파일이 아닌 필드의 경우 키와 연관된 값은 바이트열이 아니라 "
 "문자열의 리스트입니다. (Contributed by Pierre Quentel in :issue:`29979`.)"
 
 #: ../../whatsnew/3.7.rst:2326
@@ -4455,7 +4443,6 @@ msgstr ""
 "``r'(?m)^[^\\S\\n]*$'`` 으로 다시 써야 합니다."
 
 #: ../../whatsnew/3.7.rst:2369
-#, fuzzy
 msgid ""
 ":func:`re.sub` now replaces empty matches adjacent to a previous non-"
 "empty match.  For example ``re.sub('x*', '-', 'abxd')`` returns now "
@@ -4463,7 +4450,7 @@ msgid ""
 "'d' replaces 'x', and the second minus replaces an empty string between "
 "'x' and 'd')."
 msgstr ""
-":func:`re.sub()`\\는 이제 이전의 비어 있지 않은 일치에 인접한 빈 일치를 치환합니다. 예를 들어 "
+":func:`re.sub`\\는 이제 이전의 비어 있지 않은 일치에 인접한 빈 일치를 치환합니다. 예를 들어 "
 "``re.sub('x*', '-', 'abxd')`` 는 이제 ``'-a-b-d-'`` 대신에 ``'-a-b--d-'`` 를 "
 "돌려줍니다 ('b'와 'd' 사이의 첫 번째 마이너스는 'x'를 치환하고 두 번째 마이너스는 'x'와 'd' 사이의 빈 문자열을 "
 "치환합니다)."
@@ -4584,14 +4571,13 @@ msgstr ""
 "필수로 만들 수 있습니다. (Contributed by Anthony Sottile in :issue:`26510`.)"
 
 #: ../../whatsnew/3.7.rst:2428
-#, fuzzy
 msgid ""
 ":meth:`ast.literal_eval` is now stricter.  Addition and subtraction of "
 "arbitrary numbers are no longer allowed. (Contributed by Serhiy Storchaka"
 " in :issue:`31778`.)"
 msgstr ""
-":meth:`ast.literal_eval()` 이 이제 더 엄격해졌습니다. 임의 숫자를 더하거나 빼는 것이 더는 허용되지 "
-"않습니다. (Contributed by Serhiy Storchaka in :issue:`31778`.)"
+":meth:`ast.literal_eval` 이 이제 더 엄격해졌습니다. 임의 숫자를 더하거나 빼는 것이 더는 허용되지 않습니다. "
+"(Contributed by Serhiy Storchaka in :issue:`31778`.)"
 
 #: ../../whatsnew/3.7.rst:2432
 msgid ""
@@ -4683,26 +4669,23 @@ msgid "CPython bytecode changes"
 msgstr "CPython 바이트 코드 변경"
 
 #: ../../whatsnew/3.7.rst:2479
-#, fuzzy
 msgid ""
 "There are two new opcodes: :opcode:`LOAD_METHOD` and "
 ":opcode:`!CALL_METHOD`. (Contributed by Yury Selivanov and INADA Naoki in"
 " :issue:`26110`.)"
 msgstr ""
-"두 개의 새로운 옵코드가 있습니다: :opcode:`LOAD_METHOD`\\와 :opcode:`CALL_METHOD`. "
+"두 개의 새로운 옵코드가 있습니다: :opcode:`LOAD_METHOD`\\와 :opcode:`!CALL_METHOD`. "
 "(Contributed by Yury Selivanov and INADA Naoki in :issue:`26110`.)"
 
 #: ../../whatsnew/3.7.rst:2482
-#, fuzzy
 msgid ""
 "The :opcode:`!STORE_ANNOTATION` opcode has been removed. (Contributed by "
 "Mark Shannon in :issue:`32550`.)"
 msgstr ""
-":opcode:`STORE_ANNOTATION` 옵코드가 삭제되었습니다. (Contributed by Mark Shannon in "
-":issue:`32550`.)"
+":opcode:`!STORE_ANNOTATION` 옵코드가 삭제되었습니다. (Contributed by Mark Shannon in"
+" :issue:`32550`.)"
 
 #: ../../whatsnew/3.7.rst:2489
-#, fuzzy
 msgid ""
 "The file used to override :data:`sys.path` is now called ``<python-"
 "executable>._pth`` instead of ``'sys.path'``. See "
@@ -4710,8 +4693,8 @@ msgid ""
 "Steve Dower in :issue:`28137`.)"
 msgstr ""
 ":data:`sys.path` 를 재정의하는데 사용되는 파일은 이제 ``'sys.path'`` 대신에 ``<python-"
-"executable>._pth`` 라고 불립니다. 자세한 정보는 :ref:`finding_modules` 를 보십시오. "
-"(Contributed by Steve Dower in :issue:`28137`.)"
+"executable>._pth`` 라고 불립니다. 자세한 정보는 :ref:`windows_finding_modules` 를 "
+"보십시오. (Contributed by Steve Dower in :issue:`28137`.)"
 
 #: ../../whatsnew/3.7.rst:2496
 msgid "Other CPython implementation changes"
@@ -4741,25 +4724,23 @@ msgstr ""
 "이렇습니다:"
 
 #: ../../whatsnew/3.7.rst:2511
-#, fuzzy
 msgid ""
 ":c:func:`!PySys_AddWarnOptionUnicode` is not currently usable by "
 "embedding applications due to the requirement to create a Unicode object "
 "prior to calling ``Py_Initialize``. Use :c:func:`!PySys_AddWarnOption` "
 "instead."
 msgstr ""
-":c:func:`PySys_AddWarnOptionUnicode` 는 `Py_Initialize`\\를 호출하기 전에 유니코드 "
-"객체를 생성해야 하는 요구사항 때문에 현재 내장형 응용 프로그램에서는 사용할 수 없습니다. 대신에 "
-":c:func:`PySys_AddWarnOption` 을 사용하십시오."
+":c:func:`!PySys_AddWarnOptionUnicode` 는 ``Py_Initialize``\\를 호출하기 전에 유니코드"
+" 객체를 생성해야 하는 요구사항 때문에 현재 내장형 응용 프로그램에서는 사용할 수 없습니다. 대신에 "
+":c:func:`!PySys_AddWarnOption` 을 사용하십시오."
 
 #: ../../whatsnew/3.7.rst:2515
-#, fuzzy
 msgid ""
 "warnings filters added by an embedding application with "
 ":c:func:`!PySys_AddWarnOption` should now more consistently take "
 "precedence over the default filters set by the interpreter"
 msgstr ""
-":c:func:`PySys_AddWarnOption`\\으로 내장형 응용 프로그램이 추가한 경고 필터는 이제 인터프리터가 설정한 "
+":c:func:`!PySys_AddWarnOption`\\으로 내장형 응용 프로그램이 추가한 경고 필터는 이제 인터프리터가 설정한 "
 "기본 필터보다 더 일관되게 우선해야 합니다."
 
 #: ../../whatsnew/3.7.rst:2519
@@ -4880,7 +4861,6 @@ msgid "Notable changes in Python 3.7.10"
 msgstr "파이썬 3.7.10의 주목할만한 변경 사항"
 
 #: ../../whatsnew/3.7.rst:2578
-#, fuzzy
 msgid ""
 "Earlier Python versions allowed using both ``;`` and ``&`` as query "
 "parameter separators in :func:`urllib.parse.parse_qs` and "
@@ -4895,15 +4875,14 @@ msgstr ""
 "이전 파이썬 버전에서는 :func:`urllib.parse.parse_qs`\\와 "
 ":func:`urllib.parse.parse_qsl`\\에서 쿼리 매개 변수 구분자로 ``;``\\과 ``&``\\를 모두 사용할"
 " 수 있었습니다. 보안 문제와 최신 W3C 권장 사항을 준수하기 위해, ``&``\\가 기본값인 단일 구분자 키만 허용하도록 "
-"변경되었습니다. 이 변경 사항은 영향을 받는 함수를 내부적으로 사용하므로 :func:`cgi.parse`\\와 "
-":func:`cgi.parse_multipart`\\에도 영향을 줍니다. 자세한 내용은 해당 설명서를 참조하십시오. "
+"변경되었습니다. 이 변경 사항은 영향을 받는 함수를 내부적으로 사용하므로 :func:`!cgi.parse`\\와 "
+":func:`!cgi.parse_multipart`\\에도 영향을 줍니다. 자세한 내용은 해당 설명서를 참조하십시오. "
 "(Contributed by Adam Goldschmidt, Senthil Kumaran and Ken Jin in "
 ":issue:`42967`.)"
 
 #: ../../whatsnew/3.7.rst:2589
-#, fuzzy
 msgid "Notable changes in Python 3.7.11"
-msgstr "파이썬 3.7.1의 주목할만한 변경 사항"
+msgstr "파이썬 3.7.11의 주목할만한 변경 사항"
 
 #: ../../whatsnew/3.7.rst:2591
 msgid ""
@@ -4925,9 +4904,8 @@ msgid ""
 msgstr ""
 
 #: ../../whatsnew/3.7.rst:2606
-#, fuzzy
 msgid "Notable security feature in 3.7.14"
-msgstr "파이썬 3.7.1의 주목할만한 변경 사항"
+msgstr "파이썬 3.7.14의 주목할만한 보안 기능"
 
 #: ../../whatsnew/3.7.rst:2608
 msgid ""
