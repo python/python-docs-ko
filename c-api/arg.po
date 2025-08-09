@@ -21,7 +21,6 @@ msgid "Parsing arguments and building values"
 msgstr "인자 구문 분석과 값 구축"
 
 #: ../../c-api/arg.rst:8
-#, fuzzy
 msgid ""
 "These functions are useful when creating your own extension functions and"
 " methods.  Additional information and examples are available in :ref"
@@ -94,7 +93,6 @@ msgid "There are three ways strings and buffers can be converted to C:"
 msgstr ""
 
 #: ../../c-api/arg.rst:50
-#, fuzzy
 msgid ""
 "Formats such as ``y*`` and ``s*`` fill a :c:type:`Py_buffer` structure. "
 "This locks the underlying buffer so that the caller can subsequently use "
@@ -103,9 +101,9 @@ msgid ""
 "have to call** :c:func:`PyBuffer_Release` after you have finished "
 "processing the data (or in any early abort case)."
 msgstr ""
-"그러나, :c:type:`Py_buffer` 구조체가 채워질 때, 하부 버퍼가 잠겨서, 호출자가 "
-":c:type:`Py_BEGIN_ALLOW_THREADS` 블록 내에서도 가변 데이터의 크기가 조정되거나 파괴될 위험 없이 이후에 "
-"버퍼를 사용할 수 있습니다. 결과적으로, 데이터 처리를 마친 후 (또는 모든 조기 중단의 경우) "
+"``y*`` 와 ``s*`` 같은 포맷은 :c:type:`Py_buffer` 구조체를 채웁니다. 이는 하부 버퍼를 잠가서, 호출자가"
+" :c:type:`Py_BEGIN_ALLOW_THREADS` 블록 내에서도 가변 데이터의 크기가 조정되거나 파괴될 위험 없이 이후에"
+" 버퍼를 사용할 수 있습니다. 결과적으로, 데이터 처리를 마친 후 (또는 모든 조기 중단의 경우) "
 ":c:func:`PyBuffer_Release`\\를 **호출해야 합니다**."
 
 #: ../../c-api/arg.rst:57
@@ -192,16 +190,14 @@ msgstr ""
 "사용하여 C 문자열로 변환됩니다."
 
 #: ../../c-api/arg.rst:106
-#, fuzzy
 msgid ""
 "``s#`` (:class:`str`, read-only :term:`bytes-like object`) [const char "
 "\\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``s#`` (:class:`str`, 읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const "
-"char \\*, int 또는 :c:type:`Py_ssize_t`]"
+"char \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:107
-#, fuzzy
 msgid ""
 "Like ``s*``, except that it provides a :ref:`borrowed buffer <c-arg-"
 "borrowed-buffer>`. The result is stored into two C variables, the first "
@@ -209,9 +205,9 @@ msgid ""
 "contain embedded null bytes. Unicode objects are converted to C strings "
 "using ``'utf-8'`` encoding."
 msgstr ""
-"가변 객체를 받아들이지 않는다는 점을 제외하면, ``s*``\\와 같습니다. 결과는 두 개의 C 변수에 저장됩니다. 첫 번째 변수는"
-" C 문자열에 대한 포인터이고, 두 번째 변수는 길이입니다. 문자열은 내장 널 바이트를 포함할 수  있습니다. 유니코드 객체는 "
-"``'utf-8'`` 인코딩을 사용하여 C 문자열로 변환됩니다."
+":ref:`빌린 버퍼 <c-arg-borrowed-buffer>`\\를 제공한다는 점을 제외하면, ``s*``\\와 같습니다. "
+"결과는 두 개의 C 변수에 저장됩니다. 첫 번째 변수는 C 문자열에 대한 포인터이고, 두 번째 변수는 길이입니다. 문자열은 내장 널"
+" 바이트를 포함할 수  있습니다. 유니코드 객체는 ``'utf-8'`` 인코딩을 사용하여 C 문자열로 변환됩니다."
 
 #: ../../c-api/arg.rst:113 ../../c-api/arg.rst:593
 msgid "``z`` (:class:`str` or ``None``) [const char \\*]"
@@ -239,13 +235,12 @@ msgstr ""
 "구조체의 ``buf`` 멤버가 ``NULL``\\로 설정됩니다."
 
 #: ../../c-api/arg.rst:121
-#, fuzzy
 msgid ""
 "``z#`` (:class:`str`, read-only :term:`bytes-like object` or ``None``) "
 "[const char \\*, :c:type:`Py_ssize_t`]"
 msgstr ""
 "``z#`` (:class:`str`, 읽기 전용 :term:`바이트열류 객체 <bytes-like object>` 또는 "
-"``None``) [const char \\*, int 또는 :c:type:`Py_ssize_t`]"
+"``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:122
 msgid ""
@@ -260,15 +255,15 @@ msgid "``y`` (read-only :term:`bytes-like object`) [const char \\*]"
 msgstr "``y`` (읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const char \\*]"
 
 #: ../../c-api/arg.rst:126
-#, fuzzy
 msgid ""
 "This format converts a bytes-like object to a C pointer to a "
 ":ref:`borrowed <c-arg-borrowed-buffer>` character string; it does not "
 "accept Unicode objects.  The bytes buffer must not contain embedded null "
 "bytes; if it does, a :exc:`ValueError` exception is raised."
 msgstr ""
-"이 포맷은 바이트열류 객체를 문자열에 대한 C 포인터로 변환합니다; 유니코드 객체를 받아들이지 않습니다. 바이트열 버퍼는 내장 널 "
-"바이트를 포함하지 않아야 합니다; 만약 그렇다면, :exc:`ValueError` 예외가 발생합니다."
+"이 포맷은 바이트열류 객체를 :ref:`빌린 <c-arg-borrowed-buffer>` 문자열에 대한 C 포인터로 변환합니다; "
+"유니코드 객체를 받아들이지 않습니다. 바이트열 버퍼는 내장 널 바이트를 포함하지 않아야 합니다; 만약 그렇다면, "
+":exc:`ValueError` 예외가 발생합니다."
 
 #: ../../c-api/arg.rst:132
 msgid ""
@@ -289,13 +284,12 @@ msgstr ""
 "방법입니다.**"
 
 #: ../../c-api/arg.rst:141
-#, fuzzy
 msgid ""
 "``y#`` (read-only :term:`bytes-like object`) [const char \\*, "
 ":c:type:`Py_ssize_t`]"
 msgstr ""
-"``y#`` (읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const char \\*, int "
-"또는 :c:type:`Py_ssize_t`]"
+"``y#`` (읽기 전용 :term:`바이트열류 객체 <bytes-like object>`) [const char \\*, "
+":c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:142
 msgid ""
@@ -308,7 +302,6 @@ msgid "``S`` (:class:`bytes`) [PyBytesObject \\*]"
 msgstr "``S`` (:class:`bytes`) [PyBytesObject \\*]"
 
 #: ../../c-api/arg.rst:146
-#, fuzzy
 msgid ""
 "Requires that the Python object is a :class:`bytes` object, without "
 "attempting any conversion.  Raises :exc:`TypeError` if the object is not "
@@ -316,14 +309,13 @@ msgid ""
 ":c:expr:`PyObject*`."
 msgstr ""
 "변환을 시도하지 않고, 파이썬 객체가 :class:`bytes` 객체일 것을 요구합니다. 객체가 바이트열 객체가 아니면 "
-":exc:`TypeError`\\를 발생시킵니다. C 변수는 :c:type:`PyObject*`\\로 선언될 수도 있습니다."
+":exc:`TypeError`\\를 발생시킵니다. C 변수는 :c:expr:`PyObject*`\\로 선언될 수도 있습니다."
 
 #: ../../c-api/arg.rst:150
 msgid "``Y`` (:class:`bytearray`) [PyByteArrayObject \\*]"
 msgstr "``Y`` (:class:`bytearray`) [PyByteArrayObject \\*]"
 
 #: ../../c-api/arg.rst:151
-#, fuzzy
 msgid ""
 "Requires that the Python object is a :class:`bytearray` object, without "
 "attempting any conversion.  Raises :exc:`TypeError` if the object is not "
@@ -332,21 +324,20 @@ msgid ""
 msgstr ""
 "변환을 시도하지 않고, 파이썬 객체가 :class:`bytearray` 객체일 것을 요구합니다. 객체가 "
 ":class:`bytearray` 객체가 아니면 :exc:`TypeError`\\를 발생시킵니다. C 변수는 "
-":c:type:`PyObject*`\\로 선언될 수도 있습니다."
+":c:expr:`PyObject*`\\로 선언될 수도 있습니다."
 
 #: ../../c-api/arg.rst:155
 msgid "``U`` (:class:`str`) [PyObject \\*]"
 msgstr "``U`` (:class:`str`) [PyObject \\*]"
 
 #: ../../c-api/arg.rst:156
-#, fuzzy
 msgid ""
 "Requires that the Python object is a Unicode object, without attempting "
 "any conversion.  Raises :exc:`TypeError` if the object is not a Unicode "
 "object.  The C variable may also be declared as :c:expr:`PyObject*`."
 msgstr ""
 "변환을 시도하지 않고, 파이썬 객체가 유니코드 객체일 것을 요구합니다. 객체가 유니코드 객체가 아니면 "
-":exc:`TypeError`\\를 발생시킵니다. C 변수는 :c:type:`PyObject*`\\로 선언될 수도 있습니다."
+":exc:`TypeError`\\를 발생시킵니다. C 변수는 :c:expr:`PyObject*`\\로 선언될 수도 있습니다."
 
 #: ../../c-api/arg.rst:160
 msgid "``w*`` (read-write :term:`bytes-like object`) [Py_buffer]"
@@ -376,7 +367,6 @@ msgstr ""
 "대해서만 작동합니다."
 
 #: ../../c-api/arg.rst:170
-#, fuzzy
 msgid ""
 "This format requires two arguments.  The first is only used as input, and"
 " must be a :c:expr:`const char*` which points to the name of an encoding "
@@ -388,8 +378,8 @@ msgid ""
 "specified by the first argument."
 msgstr ""
 "이 포맷에는 두 개의 인자가 필요합니다. 첫 번째는 입력으로만 사용되며, 인코딩 이름을 가리키는 NUL 종료 문자열로 "
-":c:type:`const char*`\\이거나, ``'utf-8'`` 인코딩이 사용되도록 하는 ``NULL``\\이어야 합니다. "
-"명명된 인코딩이 파이썬에 알려지지 않았으면 예외가 발생합니다. 두 번째 인자는 :c:type:`char**`\\여야 합니다; "
+":c:expr:`const char*`\\이거나, ``'utf-8'`` 인코딩이 사용되도록 하는 ``NULL``\\이어야 합니다. "
+"명명된 인코딩이 파이썬에 알려지지 않았으면 예외가 발생합니다. 두 번째 인자는 :c:expr:`char**`\\여야 합니다; "
 "참조하는 포인터의 값은 인자 텍스트의 내용이 있는 버퍼로 설정됩니다. 텍스트는 첫 번째 인자에 지정된 인코딩으로 인코딩됩니다."
 
 #: ../../c-api/arg.rst:178
@@ -421,13 +411,12 @@ msgstr ""
 " 매개 변수로 전달된 인코딩을 사용한다고 가정합니다."
 
 #: ../../c-api/arg.rst:188
-#, fuzzy
 msgid ""
 "``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, "
 ":c:type:`Py_ssize_t` \\*buffer_length]"
 msgstr ""
-"``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, int 또는"
-" :c:type:`Py_ssize_t` \\*buffer_length]"
+"``es#`` (:class:`str`) [const char \\*encoding, char \\*\\*buffer, "
+":c:type:`Py_ssize_t` \\*buffer_length]"
 
 #: ../../c-api/arg.rst:189
 msgid ""
@@ -439,7 +428,6 @@ msgstr ""
 "포함하는 입력 데이터를 허용합니다."
 
 #: ../../c-api/arg.rst:193
-#, fuzzy
 msgid ""
 "It requires three arguments.  The first is only used as input, and must "
 "be a :c:expr:`const char*` which points to the name of an encoding as a "
@@ -452,9 +440,9 @@ msgid ""
 "referenced integer will be set to the number of bytes in the output "
 "buffer."
 msgstr ""
-"세 가지 인자가 필요합니다. 첫 번째는 입력으로만 사용되며, 인코딩 이름을 가리키는 NUL 종료 문자열로 :c:type:`const"
+"세 가지 인자가 필요합니다. 첫 번째는 입력으로만 사용되며, 인코딩 이름을 가리키는 NUL 종료 문자열로 :c:expr:`const"
 " char*`\\이거나, ``'utf-8'`` 인코딩이 사용되도록 하는 ``NULL``\\이어야 합니다. 명명된 인코딩이 파이썬에 "
-"알려지지 않았으면 예외가 발생합니다. 두 번째 인자는 :c:type:`char**`\\여야 합니다; 참조하는 포인터의 값은 인자 "
+"알려지지 않았으면 예외가 발생합니다. 두 번째 인자는 :c:expr:`char**`\\여야 합니다; 참조하는 포인터의 값은 인자 "
 "텍스트의 내용이 있는 버퍼로 설정됩니다. 텍스트는 첫 번째 인자에 지정된 인코딩으로 인코딩됩니다. 세 번째 인자는 정수에 대한 "
 "포인터여야 합니다; 참조된 정수는 출력 버퍼의 바이트 수로 설정됩니다."
 
@@ -494,14 +482,12 @@ msgid ""
 msgstr "두 경우 모두, *\\*buffer_length*\\는 후행 NUL 바이트를 제외한 인코딩된 데이터의 길이로 설정됩니다."
 
 #: ../../c-api/arg.rst:219
-#, fuzzy
 msgid ""
 "``et#`` (:class:`str`, :class:`bytes` or :class:`bytearray`) [const char "
 "\\*encoding, char \\*\\*buffer, :c:type:`Py_ssize_t` \\*buffer_length]"
 msgstr ""
 "``et#`` (:class:`str`, :class:`bytes` 또는 :class:`bytearray`) [const char "
-"\\*encoding, char \\*\\*buffer, int 또는 :c:type:`Py_ssize_t` "
-"\\*buffer_length]"
+"\\*encoding, char \\*\\*buffer, :c:type:`Py_ssize_t` \\*buffer_length]"
 
 #: ../../c-api/arg.rst:220
 msgid ""
@@ -545,107 +531,96 @@ msgid "``b`` (:class:`int`) [unsigned char]"
 msgstr "``b`` (:class:`int`) [unsigned char]"
 
 #: ../../c-api/arg.rst:245
-#, fuzzy
 msgid ""
 "Convert a nonnegative Python integer to an unsigned tiny integer, stored "
 "in a C :c:expr:`unsigned char`."
-msgstr "음이 아닌 파이썬 정수를 부호 없는 작은 정수로 변환하고, C :c:type:`unsigned char`\\에 저장합니다."
+msgstr "음이 아닌 파이썬 정수를 부호 없는 작은 정수로 변환하고, C :c:expr:`unsigned char`\\에 저장합니다."
 
 #: ../../c-api/arg.rst:248 ../../c-api/arg.rst:627
 msgid "``B`` (:class:`int`) [unsigned char]"
 msgstr "``B`` (:class:`int`) [unsigned char]"
 
 #: ../../c-api/arg.rst:249
-#, fuzzy
 msgid ""
 "Convert a Python integer to a tiny integer without overflow checking, "
 "stored in a C :c:expr:`unsigned char`."
-msgstr "오버플로 검사 없이 파이썬 정수를 작은 정수로 변환하고, C :c:type:`unsigned char`\\에 저장합니다."
+msgstr "오버플로 검사 없이 파이썬 정수를 작은 정수로 변환하고, C :c:expr:`unsigned char`\\에 저장합니다."
 
 #: ../../c-api/arg.rst:252 ../../c-api/arg.rst:621
 msgid "``h`` (:class:`int`) [short int]"
 msgstr "``h`` (:class:`int`) [short int]"
 
 #: ../../c-api/arg.rst:253
-#, fuzzy
 msgid "Convert a Python integer to a C :c:expr:`short int`."
-msgstr "파이썬 정수를 C :c:type:`short int`\\로 변환합니다."
+msgstr "파이썬 정수를 C :c:expr:`short int`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:255 ../../c-api/arg.rst:630
 msgid "``H`` (:class:`int`) [unsigned short int]"
 msgstr "``H`` (:class:`int`) [unsigned short int]"
 
 #: ../../c-api/arg.rst:256
-#, fuzzy
 msgid ""
 "Convert a Python integer to a C :c:expr:`unsigned short int`, without "
 "overflow checking."
-msgstr "오버플로 검사 없이, 파이썬 정수를 C :c:type:`unsigned short int`\\로 변환합니다."
+msgstr "오버플로 검사 없이, 파이썬 정수를 C :c:expr:`unsigned short int`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:259 ../../c-api/arg.rst:615
 msgid "``i`` (:class:`int`) [int]"
 msgstr "``i`` (:class:`int`) [int]"
 
 #: ../../c-api/arg.rst:260
-#, fuzzy
 msgid "Convert a Python integer to a plain C :c:expr:`int`."
-msgstr "파이썬 정수를 일반 C :c:type:`int`\\로 변환합니다."
+msgstr "파이썬 정수를 일반 C :c:expr:`int`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:262 ../../c-api/arg.rst:633
 msgid "``I`` (:class:`int`) [unsigned int]"
 msgstr "``I`` (:class:`int`) [unsigned int]"
 
 #: ../../c-api/arg.rst:263
-#, fuzzy
 msgid ""
 "Convert a Python integer to a C :c:expr:`unsigned int`, without overflow "
 "checking."
-msgstr "오버플로 검사 없이, 파이썬 정수를 C :c:type:`unsigned int`\\로 변환합니다."
+msgstr "오버플로 검사 없이, 파이썬 정수를 C :c:expr:`unsigned int`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:266 ../../c-api/arg.rst:624
 msgid "``l`` (:class:`int`) [long int]"
 msgstr "``l`` (:class:`int`) [long int]"
 
 #: ../../c-api/arg.rst:267
-#, fuzzy
 msgid "Convert a Python integer to a C :c:expr:`long int`."
-msgstr "파이썬 정수를 C :c:type:`long int`\\로 변환합니다."
+msgstr "파이썬 정수를 C :c:expr:`long int`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:269 ../../c-api/arg.rst:636
 msgid "``k`` (:class:`int`) [unsigned long]"
 msgstr "``k`` (:class:`int`) [unsigned long]"
 
 #: ../../c-api/arg.rst:270
-#, fuzzy
 msgid ""
 "Convert a Python integer to a C :c:expr:`unsigned long` without overflow "
 "checking."
-msgstr "오버플로 검사 없이 파이썬 정수를 C :c:type:`unsigned long`\\으로 변환합니다."
+msgstr "오버플로 검사 없이 파이썬 정수를 C :c:expr:`unsigned long`\\으로 변환합니다."
 
 #: ../../c-api/arg.rst:273 ../../c-api/arg.rst:639
 msgid "``L`` (:class:`int`) [long long]"
 msgstr "``L`` (:class:`int`) [long long]"
 
 #: ../../c-api/arg.rst:274
-#, fuzzy
 msgid "Convert a Python integer to a C :c:expr:`long long`."
-msgstr "파이썬 정수를 C :c:type:`long long`\\으로 변환합니다."
+msgstr "파이썬 정수를 C :c:expr:`long long`\\으로 변환합니다."
 
 #: ../../c-api/arg.rst:276 ../../c-api/arg.rst:642
 msgid "``K`` (:class:`int`) [unsigned long long]"
 msgstr "``K`` (:class:`int`) [unsigned long long]"
 
 #: ../../c-api/arg.rst:277
-#, fuzzy
 msgid ""
 "Convert a Python integer to a C :c:expr:`unsigned long long` without "
 "overflow checking."
-msgstr "오버플로 검사 없이 파이썬 정수를 C :c:type:`unsigned long long`\\으로 변환합니다."
+msgstr "오버플로 검사 없이 파이썬 정수를 C :c:expr:`unsigned long long`\\으로 변환합니다."
 
 #: ../../c-api/arg.rst:280 ../../c-api/arg.rst:645
-#, fuzzy
 msgid "``n`` (:class:`int`) [:c:type:`Py_ssize_t`]"
-msgstr "``n`` (:class:`int`) [Py_ssize_t]"
+msgstr "``n`` (:class:`int`) [:c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:281
 msgid "Convert a Python integer to a C :c:type:`Py_ssize_t`."
@@ -656,13 +631,12 @@ msgid "``c`` (:class:`bytes` or :class:`bytearray` of length 1) [char]"
 msgstr "``c`` (길이 1의 :class:`bytes` 또는 :class:`bytearray`) [char]"
 
 #: ../../c-api/arg.rst:284
-#, fuzzy
 msgid ""
 "Convert a Python byte, represented as a :class:`bytes` or "
 ":class:`bytearray` object of length 1, to a C :c:expr:`char`."
 msgstr ""
 "길이가 1인 :class:`bytes`\\나 :class:`bytearray` 객체로 표시된, 파이썬 바이트를 C "
-":c:type:`char`\\로 변환합니다."
+":c:expr:`char`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:287
 msgid "Allow :class:`bytearray` objects."
@@ -673,29 +647,26 @@ msgid "``C`` (:class:`str` of length 1) [int]"
 msgstr "``C`` (길이 1의 :class:`str`) [int]"
 
 #: ../../c-api/arg.rst:291
-#, fuzzy
 msgid ""
 "Convert a Python character, represented as a :class:`str` object of "
 "length 1, to a C :c:expr:`int`."
-msgstr "길이가 1인 :class:`str` 객체로 표시된, 파이썬 문자를 C :c:type:`int`\\로 변환합니다."
+msgstr "길이가 1인 :class:`str` 객체로 표시된, 파이썬 문자를 C :c:expr:`int`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:294 ../../c-api/arg.rst:659
 msgid "``f`` (:class:`float`) [float]"
 msgstr "``f`` (:class:`float`) [float]"
 
 #: ../../c-api/arg.rst:295
-#, fuzzy
 msgid "Convert a Python floating-point number to a C :c:expr:`float`."
-msgstr "파이썬 부동 소수점 숫자를 C :c:type:`float`\\로 변환합니다."
+msgstr "파이썬 부동 소수점 숫자를 C :c:expr:`float`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:297 ../../c-api/arg.rst:656
 msgid "``d`` (:class:`float`) [double]"
 msgstr "``d`` (:class:`float`) [double]"
 
 #: ../../c-api/arg.rst:298
-#, fuzzy
 msgid "Convert a Python floating-point number to a C :c:expr:`double`."
-msgstr "파이썬 부동 소수점 숫자를 C :c:type:`double`\\로 변환합니다."
+msgstr "파이썬 부동 소수점 숫자를 C :c:expr:`double`\\로 변환합니다."
 
 #: ../../c-api/arg.rst:300
 msgid "``D`` (:class:`complex`) [Py_complex]"
@@ -714,22 +685,21 @@ msgid "``O`` (object) [PyObject \\*]"
 msgstr "``O`` (object) [PyObject \\*]"
 
 #: ../../c-api/arg.rst:307
-#, fuzzy
 msgid ""
 "Store a Python object (without any conversion) in a C object pointer.  "
 "The C program thus receives the actual object that was passed.  A new "
 ":term:`strong reference` to the object is not created (i.e. its reference"
 " count is not increased). The pointer stored is not ``NULL``."
 msgstr ""
-"C 객체 포인터에 파이썬 객체를 (변환 없이) 저장합니다. 따라서 C 프로그램은 전달된 실제 객체를 받습니다. 객체의 참조 횟수는 "
-"증가하지 않습니다. 저장된 포인터는 ``NULL``\\이 아닙니다."
+"C 객체 포인터에 파이썬 객체를 (변환 없이) 저장합니다. 따라서 C 프로그램은 전달된 실제 객체를 받습니다. 객체에 대한 새로운 "
+":term:`강한 참조 <strong reference>`\\는 생성되지 않습니다 (즉, 객체의 참조 횟수는 증가하지 않습니다). "
+"저장된 포인터는 ``NULL``\\이 아닙니다."
 
 #: ../../c-api/arg.rst:313
 msgid "``O!`` (object) [*typeobject*, PyObject \\*]"
 msgstr "``O!`` (object) [*typeobject*, PyObject \\*]"
 
 #: ../../c-api/arg.rst:314
-#, fuzzy
 msgid ""
 "Store a Python object in a C object pointer.  This is similar to ``O``, "
 "but takes two C arguments: the first is the address of a Python type "
@@ -739,16 +709,14 @@ msgid ""
 "raised."
 msgstr ""
 "C 객체 포인터에 파이썬 객체를 저장합니다. 이것은 ``O``\\와 유사하지만, 두 개의 C 인자를 취합니다: 첫 번째는 파이썬 형"
-" 객체의 주소이고, 두 번째는 객체 포인터가 저장되는 (:c:type:`PyObject*` 형의) C 변수의 주소입니다. 파이썬 "
+" 객체의 주소이고, 두 번째는 객체 포인터가 저장되는 (:c:expr:`PyObject*` 형의) C 변수의 주소입니다. 파이썬 "
 "객체가 필요한 형이 아니면, :exc:`TypeError`\\가 발생합니다."
 
 #: ../../c-api/arg.rst:322
-#, fuzzy
 msgid "``O&`` (object) [*converter*, *address*]"
-msgstr "``O&`` (object) [*converter*, *anything*]"
+msgstr "``O&`` (object) [*converter*, *address*]"
 
 #: ../../c-api/arg.rst:323
-#, fuzzy
 msgid ""
 "Convert a Python object to a C variable through a *converter* function.  "
 "This takes two arguments: the first is a function, the second is the "
@@ -756,15 +724,14 @@ msgid ""
 "*`.  The *converter* function in turn is called as follows::"
 msgstr ""
 "*converter* 함수를 통해 파이썬 객체를 C 변수로 변환합니다. 두 개의 인자를 취합니다: 첫 번째는 함수이고, 두 번째는 "
-":c:type:`void *`\\로 변환된, (임의의 형의) C 변수의 주소입니다. *converter* 함수는 다음과 같이 "
+":c:expr:`void *`\\로 변환된, (임의의 형의) C 변수의 주소입니다. *converter* 함수는 다음과 같이 "
 "호출됩니다::"
 
 #: ../../c-api/arg.rst:328
 msgid "status = converter(object, address);"
-msgstr ""
+msgstr "status = converter(object, address);"
 
 #: ../../c-api/arg.rst:330
-#, fuzzy
 msgid ""
 "where *object* is the Python object to be converted and *address* is the "
 ":c:expr:`void*` argument that was passed to the ``PyArg_Parse*`` "
@@ -773,13 +740,12 @@ msgid ""
 "fails, the *converter* function should raise an exception and leave the "
 "content of *address* unmodified."
 msgstr ""
-"여기서 *object*\\는 변환할 파이썬 객체이고 *address*\\는 :c:func:`PyArg_Parse\\*` 함수에 "
-"전달된 :c:type:`void*` 인자입니다. 반환된 *status*\\는 성공적인 변환의 경우 ``1``\\이고 변환에 실패한 "
-"경우 ``0``\\이어야 합니다. 변환이 실패하면, *converter* 함수는 예외를 발생시키고 *address*\\의 내용을 "
-"수정하지 않은 상태로 두어야 합니다."
+"여기서 *object*\\는 변환할 파이썬 객체이고 *address*\\는 ``PyArg_Parse*`` 함수에 전달된 "
+":c:expr:`void*` 인자입니다. 반환된 *status*\\는 성공적인 변환의 경우 ``1``\\이고 변환에 실패한 경우 "
+"``0``\\이어야 합니다. 변환이 실패하면, *converter* 함수는 예외를 발생시키고 *address*\\의 내용을 수정하지"
+" 않은 상태로 두어야 합니다."
 
 #: ../../c-api/arg.rst:339
-#, fuzzy
 msgid ""
 "If the *converter* returns :c:macro:`!Py_CLEANUP_SUPPORTED`, it may get "
 "called a second time if the argument parsing eventually fails, giving the"
@@ -787,9 +753,9 @@ msgid ""
 "In this second call, the *object* parameter will be ``NULL``; *address* "
 "will have the same value as in the original call."
 msgstr ""
-"*converter*\\가 ``Py_CLEANUP_SUPPORTED``\\를 반환하면, 인자 구문 분석이 결국 실패하면 두 번째로 "
-"호출되어 변환기에 이미 할당된 메모리를 해제할 기회를 제공할 수 있습니다. 이 두 번째 호출에서, *object* 매개 변수는 "
-"``NULL``\\이 됩니다; *address*\\는 원래 호출과 같은 값을 갖습니다."
+"*converter*\\가 :c:macro:`!Py_CLEANUP_SUPPORTED`\\를 반환하면, 인자 구문 분석이 결국 "
+"실패하면 두 번째로 호출되어 변환기에 이미 할당된 메모리를 해제할 기회를 제공할 수 있습니다. 이 두 번째 호출에서, "
+"*object* 매개 변수는 ``NULL``\\이 됩니다; *address*\\는 원래 호출과 같은 값을 갖습니다."
 
 #: ../../c-api/arg.rst:345
 msgid ""
@@ -798,9 +764,8 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/arg.rst:348
-#, fuzzy
 msgid ":c:macro:`!Py_CLEANUP_SUPPORTED` was added."
-msgstr "``Py_CLEANUP_SUPPORTED``\\가 추가되었습니다."
+msgstr ":c:macro:`!Py_CLEANUP_SUPPORTED`\\가 추가되었습니다."
 
 #: ../../c-api/arg.rst:351
 msgid "``p`` (:class:`bool`) [int]"
@@ -895,12 +860,13 @@ msgstr ""
 "``:``\\와 ``;``\\는 서로를 배제합니다."
 
 #: ../../c-api/arg.rst:394
-#, fuzzy
 msgid ""
 "Note that any Python object references which are provided to the caller "
 "are *borrowed* references; do not release them (i.e. do not decrement "
 "their reference count)!"
-msgstr "호출자에게 제공되는 모든 파이썬 객체 참조는 *빌려온(borrowed)* 참조임에 유의하십시오; 참조 횟수를 줄이지 마십시오!"
+msgstr ""
+"호출자에게 제공되는 모든 파이썬 객체 참조는 *빌려온(borrowed)* 참조임에 유의하십시오; 해제하지 마십시오 (즉, 참조 "
+"횟수를 줄이지 마십시오)!"
 
 #: ../../c-api/arg.rst:398
 msgid ""
@@ -916,7 +882,6 @@ msgstr ""
 "해당 포맷 단위에 대해 지정된 것과 일치해야 합니다."
 
 #: ../../c-api/arg.rst:404
-#, fuzzy
 msgid ""
 "For the conversion to succeed, the *arg* object must match the format and"
 " the format must be exhausted.  On success, the ``PyArg_Parse*`` "
@@ -926,10 +891,9 @@ msgid ""
 "addresses corresponding to that and the following format units are left "
 "untouched."
 msgstr ""
-"변환이 성공하려면, *arg* 객체가 포맷과 일치해야 하며 포맷이 소진되어야 합니다. 성공하면, "
-":c:func:`PyArg_Parse\\*` 함수는 참을 반환하고, 그렇지 않으면 거짓을 반환하고 적절한 예외를 발생시킵니다. 포맷"
-" 단위 중 하나의 변환 실패로 인해 :c:func:`PyArg_Parse\\*` 함수가 실패하면, 해당 주소의 변수와 그 뒤에 오는"
-" 포맷 단위는 건드리지 않습니다."
+"변환이 성공하려면, *arg* 객체가 포맷과 일치해야 하며 포맷이 소진되어야 합니다. 성공하면, ``PyArg_Parse*`` "
+"함수는 참을 반환하고, 그렇지 않으면 거짓을 반환하고 적절한 예외를 발생시킵니다. 포맷 단위 중 하나의 변환 실패로 인해 "
+"``PyArg_Parse*`` 함수가 실패하면, 해당 주소의 변수와 그 뒤에 오는 포맷 단위는 건드리지 않습니다."
 
 #: ../../c-api/arg.rst:413
 msgid "API Functions"
@@ -953,7 +917,6 @@ msgstr ""
 "동일합니다."
 
 #: ../../c-api/arg.rst:430
-#, fuzzy
 msgid ""
 "Parse the parameters of a function that takes both positional and keyword"
 " parameters into local variables. The *keywords* argument is a "
@@ -963,9 +926,10 @@ msgid ""
 "on success; on failure, it returns false and raises the appropriate "
 "exception."
 msgstr ""
-"위치와 키워드 매개 변수를 모두 지역 변수로 취하는 함수의 매개 변수를 구문 분석합니다. *keywords* 인자는 키워드 매개 "
-"변수 이름의 ``NULL``-종료 배열입니다. 빈 이름은 :ref:`위치-전용 매개 변수 <positional-"
-"only_parameter>`\\를 나타냅니다. 성공하면 참을 반환합니다; 실패하면, 거짓을 반환하고 적절한 예외를 발생시킵니다."
+"위치와 키워드 매개 변수를 모두 지역 변수로 취하는 함수의 매개 변수를 구문 분석합니다. *keywords* 인자는 널-종료된 "
+"ASCII 나 UTF-8 인코딩된 C 문자열로 지정된 키워드 매개 변수 이름의 ``NULL``-종료 배열입니다. 빈 이름은 "
+":ref:`위치-전용 매개 변수 <positional-only_parameter>`\\를 나타냅니다. 성공하면 참을 반환합니다; "
+"실패하면, 거짓을 반환하고 적절한 예외를 발생시킵니다."
 
 #: ../../c-api/arg.rst:441
 msgid ""
@@ -1005,18 +969,17 @@ msgstr ""
 " 않는 경우에만 필요합니다, 여기서는 이미 이 검사를 수행하기 때문입니다."
 
 #: ../../c-api/arg.rst:473
-#, fuzzy
 msgid ""
 "Parse the parameter of a function that takes a single positional "
 "parameter into a local variable.  Returns true on success; on failure, it"
 " returns false and raises the appropriate exception."
 msgstr ""
-"위치 매개 변수만 지역 변수로 취하는 함수의 매개 변수를 구문 분석합니다. 성공하면 참을 반환합니다; 실패하면, 거짓을 반환하고 "
-"적절한 예외를 발생시킵니다."
+"단일 위치 매개 변수를 취하는 함수의 매개 변수를 지역 변수로 구문 분석합니다. 성공하면 참을 반환합니다; 실패하면, 거짓을 "
+"반환하고 적절한 예외를 발생시킵니다."
 
 #: ../../c-api/arg.rst:477
 msgid "Example::"
-msgstr ""
+msgstr "예제::"
 
 #: ../../c-api/arg.rst:479
 msgid ""
@@ -1031,9 +994,18 @@ msgid ""
 "    // ... use value ...\n"
 "}"
 msgstr ""
+"// METH_O 호출 규칙을 사용하는 함수\n"
+"static PyObject*\n"
+"my_function(PyObject *module, PyObject *arg)\n"
+"{\n"
+"    int value;\n"
+"    if (!PyArg_Parse(arg, \"i:my_function\", &value)) {\n"
+"        return NULL;\n"
+"    }\n"
+"    // ... value 를 사용합니다 ...\n"
+"}"
 
 #: ../../c-api/arg.rst:493
-#, fuzzy
 msgid ""
 "A simpler form of parameter retrieval which does not use a format string "
 "to specify the types of the arguments.  Functions which use this method "
@@ -1052,20 +1024,19 @@ msgid ""
 "set if there was a failure."
 msgstr ""
 "인자 형을 지정하기 위해 포맷 문자열을 사용하지 않는 더 간단한 형식의 매개 변수 조회. 이 방법으로 매개 변수를 꺼내는 함수는 "
-"함수나 메서드 테이블에서 :const:`METH_VARARGS`\\로 선언되어야 합니다. 실제 매개 변수를 포함하는 튜플은 "
+"함수나 메서드 테이블에서 :c:macro:`METH_VARARGS`\\로 선언되어야 합니다. 실제 매개 변수를 포함하는 튜플은 "
 "*args*\\로 전달되어야 합니다; 이것은 실제로 튜플이어야 합니다. 튜플의 길이는 *min* 이상 *max* 이하이어야 합니다;"
 " *min*\\과 *max*\\는 같을 수 있습니다. 추가 인자는 함수에 전달되어야 하며, 각 인자는 "
-":c:type:`PyObject*` 변수에 대한 포인터여야 합니다; 이들은 *args*\\의 값으로 채워집니다; 빌린 참조가 "
-"포함됩니다. *args*\\에서 제공하지 않는 선택적 매개 변수에 해당하는 변수는 채워지지 않습니다; 이것들은 호출자에 의해 "
-"초기화되어야 합니다. 이 함수는 성공하면 참을 반환하고 *args*\\가 튜플이 아니거나, 잘못된 수의 요소를 포함하면 거짓을 "
-"반환합니다; 실패하면 예외가 설정됩니다."
+":c:expr:`PyObject*` 변수에 대한 포인터여야 합니다; 이들은 *args*\\의 값으로 채워집니다; :term:`빌린 "
+"참조 <borrowed reference>`\\가 포함됩니다. *args*\\에서 제공하지 않는 선택적 매개 변수에 해당하는 변수는"
+" 채워지지 않습니다; 이것들은 호출자에 의해 초기화되어야 합니다. 이 함수는 성공하면 참을 반환하고 *args*\\가 튜플이 "
+"아니거나, 잘못된 수의 요소를 포함하면 거짓을 반환합니다; 실패하면 예외가 설정됩니다."
 
 #: ../../c-api/arg.rst:508
-#, fuzzy
 msgid ""
 "This is an example of the use of this function, taken from the sources "
 "for the :mod:`!_weakref` helper module for weak references::"
-msgstr "다음은 이 함수 사용의 예입니다, 약한 참조를 위한 :mod:`_weakref` 도우미 모듈의 소스에서 가져왔습니다::"
+msgstr "다음은 이 함수 사용의 예입니다, 약한 참조를 위한 :mod:`!_weakref` 도우미 모듈의 소스에서 가져왔습니다::"
 
 #: ../../c-api/arg.rst:511
 msgid ""
@@ -1082,6 +1053,18 @@ msgid ""
 "    return result;\n"
 "}"
 msgstr ""
+"static PyObject *\n"
+"weakref_ref(PyObject *self, PyObject *args)\n"
+"{\n"
+"    PyObject *object;\n"
+"    PyObject *callback = NULL;\n"
+"    PyObject *result = NULL;\n"
+"\n"
+"    if (PyArg_UnpackTuple(args, \"ref\", 1, 2, &object, &callback)) {\n"
+"        result = PyWeakref_NewRef(object, callback);\n"
+"    }\n"
+"    return result;\n"
+"}"
 
 #: ../../c-api/arg.rst:524
 msgid ""
@@ -1093,7 +1076,7 @@ msgstr ""
 
 #: ../../c-api/arg.rst:527
 msgid "PyArg_ParseTuple(args, \"O|O:ref\", &object, &callback)"
-msgstr ""
+msgstr "PyArg_ParseTuple(args, \"O|O:ref\", &object, &callback)"
 
 #: ../../c-api/arg.rst:531
 msgid ""
@@ -1109,15 +1092,14 @@ msgid "Building values"
 msgstr "값 구축"
 
 #: ../../c-api/arg.rst:549
-#, fuzzy
 msgid ""
 "Create a new value based on a format string similar to those accepted by "
 "the ``PyArg_Parse*`` family of functions and a sequence of values.  "
 "Returns the value or ``NULL`` in the case of an error; an exception will "
 "be raised if ``NULL`` is returned."
 msgstr ""
-":c:func:`PyArg_Parse\\*` 함수 계열에서 받아들이는 것과 유사한 포맷 문자열과 값 시퀀스를 기반으로 새 값을 "
-"만듭니다. 값을 반환하거나 에러가 발생하면 ``NULL``\\을 반환합니다; ``NULL``\\이 반환되면 예외가 발생합니다."
+"``PyArg_Parse*`` 함수 계열에서 받아들이는 것과 유사한 포맷 문자열과 값 시퀀스를 기반으로 새 값을 만듭니다. 값을 "
+"반환하거나 에러가 발생하면 ``NULL``\\을 반환합니다; ``NULL``\\이 반환되면 예외가 발생합니다."
 
 #: ../../c-api/arg.rst:554
 msgid ""
@@ -1181,11 +1163,8 @@ msgstr ""
 "``NULL``\\이면, ``None``\\이 사용됩니다."
 
 #: ../../c-api/arg.rst:580
-#, fuzzy
 msgid "``s#`` (:class:`str` or ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
-msgstr ""
-"``s#`` (:class:`str` 또는 ``None``) [const char \\*, int or "
-":c:type:`Py_ssize_t`]"
+msgstr "``s#`` (:class:`str` 또는 ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:581
 msgid ""
@@ -1209,9 +1188,8 @@ msgstr ""
 "``None``\\이 반환됩니다."
 
 #: ../../c-api/arg.rst:589
-#, fuzzy
 msgid "``y#`` (:class:`bytes`) [const char \\*, :c:type:`Py_ssize_t`]"
-msgstr "``y#`` (:class:`bytes`) [const char \\*, int 또는 :c:type:`Py_ssize_t`]"
+msgstr "``y#`` (:class:`bytes`) [const char \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:590
 msgid ""
@@ -1226,11 +1204,8 @@ msgid "Same as ``s``."
 msgstr "``s``\\와 같습니다."
 
 #: ../../c-api/arg.rst:596
-#, fuzzy
 msgid "``z#`` (:class:`str` or ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
-msgstr ""
-"``z#`` (:class:`str` 또는 ``None``) [const char \\*, int 또는 "
-":c:type:`Py_ssize_t`]"
+msgstr "``z#`` (:class:`str` 또는 ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:597 ../../c-api/arg.rst:613
 msgid "Same as ``s#``."
@@ -1250,9 +1225,8 @@ msgstr ""
 "변환합니다. 유니코드 버퍼 포인터가 ``NULL``\\이면, ``None``\\이 반환됩니다."
 
 #: ../../c-api/arg.rst:604
-#, fuzzy
 msgid "``u#`` (:class:`str`) [const wchar_t \\*, :c:type:`Py_ssize_t`]"
-msgstr "``u#`` (:class:`str`) [const wchar_t \\*, int 또는 :c:type:`Py_ssize_t`]"
+msgstr "``u#`` (:class:`str`) [const wchar_t \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:605
 msgid ""
@@ -1268,65 +1242,52 @@ msgid "``U`` (:class:`str` or ``None``) [const char \\*]"
 msgstr "``U`` (:class:`str` 또는 ``None``) [const char \\*]"
 
 #: ../../c-api/arg.rst:612
-#, fuzzy
 msgid "``U#`` (:class:`str` or ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
-msgstr ""
-"``U#`` (:class:`str` 또는 ``None``) [const char \\*, int 또는 "
-":c:type:`Py_ssize_t`]"
+msgstr "``U#`` (:class:`str` 또는 ``None``) [const char \\*, :c:type:`Py_ssize_t`]"
 
 #: ../../c-api/arg.rst:616
-#, fuzzy
 msgid "Convert a plain C :c:expr:`int` to a Python integer object."
-msgstr "일반 C :c:type:`int`\\를 파이썬 정수 객체로 변환합니다."
+msgstr "일반 C :c:expr:`int`\\를 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:618
 msgid "``b`` (:class:`int`) [char]"
 msgstr "``b`` (:class:`int`) [char]"
 
 #: ../../c-api/arg.rst:619
-#, fuzzy
 msgid "Convert a plain C :c:expr:`char` to a Python integer object."
-msgstr "일반 C :c:type:`char`\\을 파이썬 정수 객체로 변환합니다."
+msgstr "일반 C :c:expr:`char`\\을 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:622
-#, fuzzy
 msgid "Convert a plain C :c:expr:`short int` to a Python integer object."
-msgstr "일반 C :c:type:`short int`\\를 파이썬 정수 객체로 변환합니다."
+msgstr "일반 C :c:expr:`short int`\\를 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:625
-#, fuzzy
 msgid "Convert a C :c:expr:`long int` to a Python integer object."
-msgstr "C :c:type:`long int`\\를 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`long int`\\를 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:628
-#, fuzzy
 msgid "Convert a C :c:expr:`unsigned char` to a Python integer object."
-msgstr "C :c:type:`unsigned char`\\을 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`unsigned char`\\을 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:631
-#, fuzzy
 msgid "Convert a C :c:expr:`unsigned short int` to a Python integer object."
-msgstr "C :c:type:`unsigned short int`\\를 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`unsigned short int`\\를 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:634
-#, fuzzy
 msgid "Convert a C :c:expr:`unsigned int` to a Python integer object."
-msgstr "C :c:type:`unsigned int`\\를 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`unsigned int`\\를 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:637
-#, fuzzy
 msgid "Convert a C :c:expr:`unsigned long` to a Python integer object."
-msgstr "C :c:type:`unsigned long`\\을 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`unsigned long`\\을 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:640
-#, fuzzy
 msgid "Convert a C :c:expr:`long long` to a Python integer object."
-msgstr "C :c:type:`long long`\\을 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`long long`\\을 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:643
-#, fuzzy
 msgid "Convert a C :c:expr:`unsigned long long` to a Python integer object."
-msgstr "C :c:type:`unsigned long long`\\을 파이썬 정수 객체로 변환합니다."
+msgstr "C :c:expr:`unsigned long long`\\을 파이썬 정수 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:646
 msgid "Convert a C :c:type:`Py_ssize_t` to a Python integer."
@@ -1337,28 +1298,24 @@ msgid "``c`` (:class:`bytes` of length 1) [char]"
 msgstr "``c`` (길이 1의 :class:`bytes`) [char]"
 
 #: ../../c-api/arg.rst:649
-#, fuzzy
 msgid ""
 "Convert a C :c:expr:`int` representing a byte to a Python :class:`bytes` "
 "object of length 1."
-msgstr "바이트를 나타내는 C :c:type:`int`\\를 길이 1의 파이썬 :class:`bytes` 객체로 변환합니다."
+msgstr "바이트를 나타내는 C :c:expr:`int`\\를 길이 1의 파이썬 :class:`bytes` 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:653
-#, fuzzy
 msgid ""
 "Convert a C :c:expr:`int` representing a character to Python :class:`str`"
 " object of length 1."
-msgstr "문자를 나타내는 C :c:type:`int`\\를 길이 1의 파이썬 :class:`str` 객체로 변환합니다."
+msgstr "문자를 나타내는 C :c:expr:`int`\\를 길이 1의 파이썬 :class:`str` 객체로 변환합니다."
 
 #: ../../c-api/arg.rst:657
-#, fuzzy
 msgid "Convert a C :c:expr:`double` to a Python floating-point number."
-msgstr "C :c:type:`double`\\을 파이썬 부동 소수점 숫자로 변환합니다."
+msgstr "C :c:expr:`double`\\을 파이썬 부동 소수점 숫자로 변환합니다."
 
 #: ../../c-api/arg.rst:660
-#, fuzzy
 msgid "Convert a C :c:expr:`float` to a Python floating-point number."
-msgstr "C :c:type:`float`\\를 파이썬 부동 소수점 숫자로 변환합니다."
+msgstr "C :c:expr:`float`\\를 파이썬 부동 소수점 숫자로 변환합니다."
 
 #: ../../c-api/arg.rst:662
 msgid "``D`` (:class:`complex`) [Py_complex \\*]"
@@ -1369,7 +1326,6 @@ msgid "Convert a C :c:type:`Py_complex` structure to a Python complex number."
 msgstr "C :c:type:`Py_complex` 구조체를 파이썬 복소수로 변환합니다."
 
 #: ../../c-api/arg.rst:666
-#, fuzzy
 msgid ""
 "Pass a Python object untouched but create a new :term:`strong reference` "
 "to it (i.e. its reference count is incremented by one). If the object "
@@ -1379,10 +1335,10 @@ msgid ""
 "won't raise an exception.  If no exception has been raised yet, "
 ":exc:`SystemError` is set."
 msgstr ""
-"파이썬 객체를 손대지 않고 전달합니다 (1 증가하는 참조 횟수는 예외입니다). 전달된 객체가 ``NULL`` 포인터면, 인자를 "
-"생성하는 호출이 에러를 발견하고 예외를 설정했기 때문으로 간주합니다. 따라서, :c:func:`Py_BuildValue`\\는 "
-"``NULL``\\을 반환하지만, 예외를 발생시키지 않습니다. 아직 예외가 발생하지 않았으면, "
-":exc:`SystemError`\\가 설정됩니다."
+"파이썬 객체를 그대로 전달하지만, 그 객체에 새로운 :term:`강한 참조 <strong reference>`\\를 만듭니다 (즉,"
+" 참조 횟수가 1 증가합니다). 전달된 객체가 ``NULL`` 포인터면, 인자를 생성하는 호출이 에러를 발견하고 예외를 설정했기 "
+"때문으로 간주합니다. 따라서, :c:func:`Py_BuildValue`\\는 ``NULL``\\을 반환하지만, 예외를 발생시키지 "
+"않습니다. 아직 예외가 발생하지 않았으면, :exc:`SystemError`\\가 설정됩니다."
 
 #: ../../c-api/arg.rst:675
 msgid "``S`` (object) [PyObject \\*]"
@@ -1397,19 +1353,19 @@ msgid "``N`` (object) [PyObject \\*]"
 msgstr "``N`` (object) [PyObject \\*]"
 
 #: ../../c-api/arg.rst:679
-#, fuzzy
 msgid ""
 "Same as ``O``, except it doesn't create a new :term:`strong reference`. "
 "Useful when the object is created by a call to an object constructor in "
 "the argument list."
-msgstr "``O``\\와 같지만, 객체의 참조 횟수를 증가시키지 않습니다. 인자 리스트에서 객체 생성자를 호출하여 객체를 만들 때 유용합니다."
+msgstr ""
+"``O``\\와 같지만, 새로운 :term:`강한 참조 <strong reference>`\\를 만들지 않습니다. 인자 리스트에서 "
+"객체 생성자를 호출하여 객체를 만들 때 유용합니다."
 
 #: ../../c-api/arg.rst:683
 msgid "``O&`` (object) [*converter*, *anything*]"
 msgstr "``O&`` (object) [*converter*, *anything*]"
 
 #: ../../c-api/arg.rst:684
-#, fuzzy
 msgid ""
 "Convert *anything* to a Python object through a *converter* function.  "
 "The function is called with *anything* (which should be compatible with "
@@ -1417,7 +1373,7 @@ msgid ""
 "object, or ``NULL`` if an error occurred."
 msgstr ""
 "*converter* 함수를 통해 *anything*\\을 파이썬 객체로 변환합니다. 함수는 인자로 "
-"*anything*\\(:c:type:`void*`\\와 호환되어야 합니다)을 사용하여 호출되며 \"새\" 파이썬 객체를 "
+"*anything*\\(:c:expr:`void*`\\와 호환되어야 합니다)을 사용하여 호출되며 \"새\" 파이썬 객체를 "
 "반환하거나, 에러가 발생하면 ``NULL``\\을 반환해야 합니다."
 
 #: ../../c-api/arg.rst:690
