@@ -21,7 +21,6 @@ msgid "Exception Handling"
 msgstr "예외 처리"
 
 #: ../../c-api/exceptions.rst:10
-#, fuzzy
 msgid ""
 "The functions described in this chapter will let you handle and raise "
 "Python exceptions.  It is important to understand some of the basics of "
@@ -38,7 +37,7 @@ msgstr ""
 "중요합니다. POSIX :c:data:`errno` 변수와 비슷하게 작동합니다: 발생한 마지막 에러에 대한 전역 표시기(스레드 "
 "당)가 있습니다. 대부분 C API 함수는 성공 시 이를 지우지 않지만, 실패 시 에러의 원인을 나타내도록 설정합니다. 대부분 C "
 "API 함수는 에러 표시기도 반환합니다, 일반적으로 포인터를 반환해야 하면 ``NULL``, 정수를 반환하면 ``-1``\\을 "
-"반환합니다 (예외: :c:func:`PyArg_\\*` 함수는 성공하면 ``1``\\을, 실패하면 ``0``\\을 반환합니다)."
+"반환합니다 (예외: ``PyArg_*`` 함수는 성공하면 ``1``\\을, 실패하면 ``0``\\을 반환합니다)."
 
 #: ../../c-api/exceptions.rst:20
 msgid ""
@@ -72,15 +71,14 @@ msgstr ""
 "작동하지 않을 수 있으며 알 수 없는 방식으로 실패할 수 있습니다."
 
 #: ../../c-api/exceptions.rst:37
-#, fuzzy
 msgid ""
 "The error indicator is **not** the result of :func:`sys.exc_info`. The "
 "former corresponds to an exception that is not yet caught (and is "
 "therefore still propagating), while the latter returns an exception after"
 " it is caught (and has therefore stopped propagating)."
 msgstr ""
-"에러 표시기는 :func:`sys.exc_info()`\\의 결과가 **아닙니다**. 전자는 아직 포착되지 않은 (따라서 여전히 "
-"전파 중인) 예외에 해당하는 반면, 후자는 포착된 후 (따라서 전파가 중단된) 예외를 반환합니다."
+"에러 표시기는 :func:`sys.exc_info`\\의 결과가 **아닙니다**. 전자는 아직 포착되지 않은 (따라서 여전히 전파 "
+"중인) 예외에 해당하는 반면, 후자는 포착된 후 (따라서 전파가 중단된) 예외를 반환합니다."
 
 #: ../../c-api/exceptions.rst:44
 msgid "Printing and clearing"
@@ -110,7 +108,6 @@ msgid ""
 msgstr "에러 표시기가 설정된 경우\\**에만** 이 함수를 호출하십시오. 그렇지 않으면 치명적인 에러가 발생합니다!"
 
 #: ../../c-api/exceptions.rst:63
-#, fuzzy
 msgid ""
 "If *set_sys_last_vars* is nonzero, the variable :data:`sys.last_exc` is "
 "set to the printed exception. For backwards compatibility, the deprecated"
@@ -118,9 +115,9 @@ msgid ""
 ":data:`sys.last_traceback` are also set to the type, value and traceback "
 "of this exception, respectively."
 msgstr ""
-"*set_sys_last_vars*\\가 0이 아니면, 변수 :data:`sys.last_type`, "
-":data:`sys.last_value` 및 :data:`sys.last_traceback` 은 각각 인쇄되는 예외의 형, 값 및 "
-"트레이스백으로 설정됩니다."
+"*set_sys_last_vars*\\가 0이 아니면, 변수 :data:`sys.last_exc` 는 인쇄되는 예외로 설정됩니다. "
+"하위 호환성을 위해, 폐지된 변수 :data:`sys.last_type`, :data:`sys.last_value` 및 "
+":data:`sys.last_traceback` 도 각각 이 예외의 형, 값 및 트레이스백으로 설정됩니다."
 
 #: ../../c-api/exceptions.rst:69
 msgid "The setting of :data:`sys.last_exc` was added."
@@ -137,7 +134,6 @@ msgid ""
 msgstr "현재 예외와 *obj* 인자를 사용하여 :func:`sys.unraisablehook` 을 호출합니다."
 
 #: ../../c-api/exceptions.rst:83
-#, fuzzy
 msgid ""
 "This utility function prints a warning message to ``sys.stderr`` when an "
 "exception has been set but it is impossible for the interpreter to "
@@ -145,10 +141,9 @@ msgid ""
 " occurs in an :meth:`~object.__del__` method."
 msgstr ""
 "이 유틸리티 함수는 예외가 설정되었지만, 인터프리터가 실제로 예외를 발생시킬 수 없을 때 ``sys.stderr``\\에 경고 "
-"메시지를 인쇄합니다. 예를 들어, :meth:`__del__` 메서드에서 예외가 발생할 때 사용됩니다."
+"메시지를 인쇄합니다. 예를 들어, :meth:`~object.__del__` 메서드에서 예외가 발생할 때 사용됩니다."
 
 #: ../../c-api/exceptions.rst:88
-#, fuzzy
 msgid ""
 "The function is called with a single argument *obj* that identifies the "
 "context in which the unraisable exception occurred. If possible, the repr"
@@ -156,7 +151,7 @@ msgid ""
 "only the traceback is printed."
 msgstr ""
 "이 함수는 발생시킬 수 없는 예외가 발생한 문맥을 식별하는 단일 인자 *obj*\\로 호출됩니다. 가능하면, *obj*\\의 "
-"repr이 경고 메시지에 인쇄됩니다."
+"repr이 경고 메시지에 인쇄됩니다. *obj*\\가 ``NULL``\\이면, 트래이스백만 인쇄됩니다."
 
 #: ../../c-api/exceptions.rst:93
 msgid "An exception must be set when calling this function."
@@ -200,7 +195,6 @@ msgstr ""
 " 문에서 사용할 ``NULL`` 포인터를 반환합니다."
 
 #: ../../c-api/exceptions.rst:132
-#, fuzzy
 msgid ""
 "This is the most common way to set the error indicator.  The first "
 "argument specifies the exception type; it is normally one of the standard"
@@ -209,8 +203,9 @@ msgid ""
 "second argument is an error message; it is decoded from ``'utf-8'``."
 msgstr ""
 "이것은 에러 표시기를 설정하는 가장 일반적인 방법입니다. 첫 번째 인자는 예외 형을 지정합니다; 일반적으로 표준 예외 중 "
-"하나입니다, 예를 들어 :c:data:`PyExc_RuntimeError`. 참조 횟수를 증가시킬 필요가 없습니다. 두 번째 인자는"
-" 에러 메시지입니다; ``'utf-8'`` 에서 디코딩됩니다."
+"하나입니다, 예를 들어 :c:data:`PyExc_RuntimeError`. 새로운 :term:`강한 참조 <strong "
+"reference>`\\를 만들 필요가 없습니다 (예를 들어, :c:func:`Py_INCREF`\\로). 두 번째 인자는 에러 "
+"메시지입니다; ``'utf-8'`` 에서 디코딩됩니다."
 
 #: ../../c-api/exceptions.rst:141
 msgid ""
@@ -262,7 +257,6 @@ msgstr ""
 " 할당 함수는 메모리가 부족할 때 ``return PyErr_NoMemory();`` 라고 쓸 수 있습니다."
 
 #: ../../c-api/exceptions.rst:185
-#, fuzzy
 msgid ""
 "This is a convenience function to raise an exception when a C library "
 "function has returned an error and set the C variable :c:data:`errno`.  "
@@ -277,15 +271,14 @@ msgid ""
 "PyErr_SetFromErrno(type);`` when the system call returns an error."
 msgstr ""
 "C 라이브러리 함수가 에러를 반환하고 C 변수 :c:data:`errno`\\를 설정했을 때 예외를 발생시키는 편의 함수입니다. 첫"
-" 번째 항목이 정수 :c:data:`errno` 값이고 두 번째 항목이 (:c:func:`strerror`\\에서 얻은) 해당 에러"
-" 메시지인 튜플 객체를 만든 다음, ``PyErr_SetObject(type, object)``\\를 호출합니다. 유닉스에서, "
-":c:data:`errno` 값이 시스템 호출이 중단되었음을 나타내는 :const:`EINTR`\\이면, "
+" 번째 항목이 정수 :c:data:`errno` 값이고 두 번째 항목이 (:c:func:`!strerror`\\에서 얻은) 해당 "
+"에러 메시지인 튜플 객체를 만든 다음, ``PyErr_SetObject(type, object)``\\를 호출합니다. 유닉스에서, "
+":c:data:`errno` 값이 시스템 호출이 중단되었음을 나타내는 :c:macro:`!EINTR`\\이면, "
 ":c:func:`PyErr_CheckSignals`\\를 호출하고 이것이 에러 표시기를 설정하면, 설정된 그대로 둡니다. 이 함수는"
 " 항상 ``NULL``\\을 반환해서, 시스템 호출에 대한 래퍼 함수는 시스템 호출이 에러를 반환할 때 ``return "
 "PyErr_SetFromErrno(type);`` 이라고 쓸 수 있습니다."
 
 #: ../../c-api/exceptions.rst:199
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyErr_SetFromErrno`, with the additional behavior "
 "that if *filenameObject* is not ``NULL``, it is passed to the constructor"
@@ -295,7 +288,7 @@ msgid ""
 msgstr ""
 ":c:func:`PyErr_SetFromErrno`\\와 유사하지만, *filenameObject*\\가 ``NULL``\\이 "
 "아니면, *type*\\의 생성자에 세 번째 매개 변수로 전달된다는 추가 동작이 있습니다. :exc:`OSError` 예외의 경우,"
-" 예외 인스턴스의 :attr:`filename` 어트리뷰트를 정의하는 데 사용됩니다."
+" 예외 인스턴스의 :attr:`!filename` 어트리뷰트를 정의하는 데 사용됩니다."
 
 #: ../../c-api/exceptions.rst:208
 msgid ""
@@ -307,17 +300,16 @@ msgstr ""
 "함수가 실패할 때 에러를 발생시키기 위해 두 번째 파일명 객체를 취합니다."
 
 #: ../../c-api/exceptions.rst:217
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyErr_SetFromErrnoWithFilenameObject`, but the "
 "filename is given as a C string.  *filename* is decoded from the "
 ":term:`filesystem encoding and error handler`."
 msgstr ""
 ":c:func:`PyErr_SetFromErrnoWithFilenameObject`\\와 유사하지만, 파일명이 C 문자열로 "
-"제공됩니다. *filename*\\은 파일 시스템 인코딩(:func:`os.fsdecode`)으로 디코딩됩니다."
+"제공됩니다. *filename*\\은 :term:`파일시스템 인코딩과 에러 처리기 <filesystem encoding and "
+"error handler>`\\로 디코딩됩니다."
 
 #: ../../c-api/exceptions.rst:224
-#, fuzzy
 msgid ""
 "This is a convenience function to raise :exc:`OSError`. If called with "
 "*ierr* of ``0``, the error code returned by a call to "
@@ -330,13 +322,13 @@ msgid ""
 "then calls ``PyErr_SetObject(PyExc_OSError, object)``. This function "
 "always returns ``NULL``."
 msgstr ""
-":exc:`WindowsError`\\를 발생시키는 편의 함수입니다. :c:data:`0`\\의 *ierr*\\로 호출하면, "
-":c:func:`GetLastError` 호출에서 반환된 에러 코드가 대신 사용됩니다. Win32 함수 "
-":c:func:`FormatMessage`\\를 호출하여 *ierr*\\이나 :c:func:`GetLastError`\\가 제공하는"
-" 에러 코드의 윈도우 설명을 얻은 다음, 첫 번째 항목이 *ierr* 값이고 두 번째 항목이 "
-"(:c:func:`FormatMessage`\\에서 얻은) 해당 에러 메시지인 튜플 객체를 생성한 다음, "
-"``PyErr_SetObject(PyExc_WindowsError, object)``\\를 호출합니다. 이 함수는 항상 "
-"``NULL``\\을 반환합니다."
+":exc:`OSError`\\를 발생시키는 편의 함수입니다. ``0``\\의 *ierr*\\로 호출하면, "
+":c:func:`!GetLastError` 호출에서 반환된 에러 코드가 대신 사용됩니다. Win32 함수 "
+":c:func:`!FormatMessage`\\를 호출하여 *ierr*\\이나 :c:func:`!GetLastError`\\가 "
+"제공하는 에러 코드의 윈도우 설명을 얻은 다음, :attr:`~OSError.winerror` 어트리뷰트가 에러 코드로 설정되고, "
+":attr:`~OSError.strerror` 어트리뷰트가 (:c:func:`!FormatMessage`\\에서 얻은) 해당 에러 "
+"메시지로 설정된 :exc:`OSError` 객체를 생성한 다음, ``PyErr_SetObject(PyExc_OSError, "
+"object)``\\를 호출합니다. 이 함수는 항상 ``NULL``\\을 반환합니다."
 
 #: ../../c-api/exceptions.rst:234 ../../c-api/exceptions.rst:242
 #: ../../c-api/exceptions.rst:253 ../../c-api/exceptions.rst:263
@@ -351,7 +343,6 @@ msgid ""
 msgstr ":c:func:`PyErr_SetFromWindowsErr` 와 유사하며, 발생시킬 예외 형을 지정하는 추가 매개 변수가 있습니다."
 
 #: ../../c-api/exceptions.rst:247
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyErr_SetFromWindowsErr`, with the additional "
 "behavior that if *filename* is not ``NULL``, it is decoded from the "
@@ -359,21 +350,21 @@ msgid ""
 "of :exc:`OSError` as a third parameter to be used to define the "
 ":attr:`!filename` attribute of the exception instance."
 msgstr ""
-":c:func:`PyErr_SetFromErrno`\\와 유사하지만, *filenameObject*\\가 ``NULL``\\이 "
-"아니면, *type*\\의 생성자에 세 번째 매개 변수로 전달된다는 추가 동작이 있습니다. :exc:`OSError` 예외의 경우,"
-" 예외 인스턴스의 :attr:`filename` 어트리뷰트를 정의하는 데 사용됩니다."
+":c:func:`PyErr_SetFromWindowsErr`\\과 유사하지만, *filename*\\이 ``NULL``\\이 "
+"아니면, 파일 시스템 인코딩으로 디코딩되고 (:func:`os.fsdecode`) :exc:`OSError`\\의 생성자에 세 번째"
+" 매개 변수로 전달되어 예외 인스턴스의 :attr:`!filename` 어트리뷰트를 정의하는 데 사용되도록 하는 추가 동작이 "
+"있습니다."
 
 #: ../../c-api/exceptions.rst:258
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyErr_SetExcFromWindowsErr`, with the additional "
 "behavior that if *filename* is not ``NULL``, it is passed to the "
 "constructor of :exc:`OSError` as a third parameter to be used to define "
 "the :attr:`!filename` attribute of the exception instance."
 msgstr ""
-":c:func:`PyErr_SetFromErrno`\\와 유사하지만, *filenameObject*\\가 ``NULL``\\이 "
-"아니면, *type*\\의 생성자에 세 번째 매개 변수로 전달된다는 추가 동작이 있습니다. :exc:`OSError` 예외의 경우,"
-" 예외 인스턴스의 :attr:`filename` 어트리뷰트를 정의하는 데 사용됩니다."
+":c:func:`PyErr_SetExcFromWindowsErr`\\과 유사하지만, *filename*\\이 ``NULL``\\이 "
+"아니면, :exc:`OSError`\\의 생성자에 세 번째 매개 변수로 전달되어 예외 인스턴스의 :attr:`!filename` "
+"어트리뷰트를 정의하는 데 사용되도록 하는 추가 동작이 있습니다."
 
 #: ../../c-api/exceptions.rst:268
 msgid ""
@@ -422,20 +413,18 @@ msgstr ""
 ":exc:`SyntaxError`\\라고 생각하게 합니다."
 
 #: ../../c-api/exceptions.rst:314
-#, fuzzy
 msgid ""
 "Like :c:func:`PyErr_SyntaxLocationObject`, but *filename* is a byte "
 "string decoded from the :term:`filesystem encoding and error handler`."
 msgstr ""
-":c:func:`PyErr_SyntaxLocationObject` 와 비슷하지만, *filename*\\은 파일 시스템 "
-"인코딩(:func:`os.fsdecode`)에서 디코딩되는 바이트 문자열입니다."
+":c:func:`PyErr_SyntaxLocationObject` 와 비슷하지만, *filename*\\은 :term:`파일시스템 "
+"인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 디코딩되는 바이트 문자열입니다."
 
 #: ../../c-api/exceptions.rst:322
-#, fuzzy
 msgid ""
 "Like :c:func:`PyErr_SyntaxLocationEx`, but the *col_offset* parameter is "
 "omitted."
-msgstr ":c:func:`PyErr_SyntaxLocationEx` 와 비슷하지만, col_offset 매개 변수는 생략됩니다."
+msgstr ":c:func:`PyErr_SyntaxLocationEx` 와 비슷하지만, *col_offset* 매개 변수는 생략됩니다."
 
 #: ../../c-api/exceptions.rst:328
 msgid ""
@@ -511,7 +500,6 @@ msgstr ""
 "참조하십시오. 경고 제어를 위한 C API는 없습니다."
 
 #: ../../c-api/exceptions.rst:372
-#, fuzzy
 msgid ""
 "Issue a warning message with explicit control over all warning "
 "attributes.  This is a straightforward wrapper around the Python function"
@@ -520,18 +508,17 @@ msgid ""
 "default effect described there."
 msgstr ""
 "모든 경고 어트리뷰트를 명시적으로 제어하면서 경고 메시지를 발행합니다. 이것은 파이썬 함수 "
-":func:`warnings.warn_explicit`\\에 대한 간단한 래퍼입니다. 자세한 내용은 거기를 참조하십시오. 그곳에 "
+":func:`warnings.warn_explicit`\\에 대한 간단한 래퍼입니다; 자세한 내용은 거기를 참조하십시오. 그곳에 "
 "설명된 기본 효과를 얻으려면 *module*\\과 *registry* 인자를 ``NULL``\\로 설정해야 합니다."
 
 #: ../../c-api/exceptions.rst:383
-#, fuzzy
 msgid ""
 "Similar to :c:func:`PyErr_WarnExplicitObject` except that *message* and "
 "*module* are UTF-8 encoded strings, and *filename* is decoded from the "
 ":term:`filesystem encoding and error handler`."
 msgstr ""
-"*message*\\와 *module*\\이 UTF-8 인코딩된 문자열이고, *filename*\\은 파일 시스템 "
-"인코딩(:func:`os.fsdecode`)으로 디코딩된다는 점을 제외하면 "
+"*message*\\와 *module*\\이 UTF-8 인코딩된 문자열이고, *filename*\\은 :term:`파일시스템 "
+"인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 디코딩된다는 점을 제외하면 "
 ":c:func:`PyErr_WarnExplicitObject` 와 유사합니다."
 
 #: ../../c-api/exceptions.rst:390
@@ -544,22 +531,20 @@ msgstr ""
 "사용하여 경고 메시지를 포맷합니다. *format*\\은 ASCII 인코딩된 문자열입니다."
 
 #: ../../c-api/exceptions.rst:399
-#, fuzzy
 msgid ""
 "Function similar to :c:func:`PyErr_WarnFormat`, but *category* is "
 ":exc:`ResourceWarning` and it passes *source* to "
 ":class:`!warnings.WarningMessage`."
 msgstr ""
 ":c:func:`PyErr_WarnFormat`\\과 유사한 함수지만, *category*\\는 "
-":exc:`ResourceWarning`\\이고 *source*\\를 :func:`warnings.WarningMessage`\\로"
-" 전달합니다."
+":exc:`ResourceWarning`\\이고 *source*\\를 "
+":class:`!warnings.WarningMessage`\\로 전달합니다."
 
 #: ../../c-api/exceptions.rst:406
 msgid "Querying the error indicator"
 msgstr "에러 표시기 조회하기"
 
 #: ../../c-api/exceptions.rst:410
-#, fuzzy
 msgid ""
 "Test whether the error indicator is set.  If set, return the exception "
 "*type* (the first argument to the last call to one of the ``PyErr_Set*`` "
@@ -567,7 +552,7 @@ msgid ""
 "You do not own a reference to the return value, so you do not need to "
 ":c:func:`Py_DECREF` it."
 msgstr ""
-"에러 표시기가 설정되었는지 테스트합니다. 설정되었으면, 예외 *type*\\(:c:func:`PyErr_Set\\*` 함수나 "
+"에러 표시기가 설정되었는지 테스트합니다. 설정되었으면, 예외 *type*\\(``PyErr_Set*`` 함수나 "
 ":c:func:`PyErr_Restore`\\에 대한 마지막 호출의 첫 번째 인자)을 반환합니다. 설정되지 않았으면, "
 "``NULL``\\을 반환합니다. 여러분이 반환 값에 대한 참조를 소유하지 않아서, :c:func:`Py_DECREF` 할 필요가 "
 "없습니다."
@@ -615,17 +600,14 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/exceptions.rst:446
-#, fuzzy
 msgid ""
 "This function is used by code that needs to catch exceptions, or code "
 "that needs to save and restore the error indicator temporarily."
-msgstr ""
-"이 함수는 일반적으로 예외를 포착해야 하는 코드나 에러 표시기를 일시적으로 저장하고 복원해야 하는 코드에서만 사용됩니다. 예를 "
-"들어::"
+msgstr "이 함수는 예외를 포착해야 하는 코드나 에러 표시기를 일시적으로 저장하고 복원해야 하는 코드에서 사용됩니다."
 
 #: ../../c-api/exceptions.rst:449 ../../c-api/exceptions.rst:493
 msgid "For example::"
-msgstr ""
+msgstr "예를 들어::"
 
 #: ../../c-api/exceptions.rst:451
 #, python-brace-format
@@ -638,6 +620,13 @@ msgid ""
 "   PyErr_SetRaisedException(exc);\n"
 "}"
 msgstr ""
+"{\n"
+"   PyObject *exc = PyErr_GetRaisedException();\n"
+"\n"
+"   /* ... 다른 에러를 생성할 수 있는 코드 ... */\n"
+"\n"
+"   PyErr_SetRaisedException(exc);\n"
+"}"
 
 #: ../../c-api/exceptions.rst:459
 msgid ""
@@ -672,13 +661,10 @@ msgstr ""
 " 때도 ``NULL``\\일 수 있습니다."
 
 #: ../../c-api/exceptions.rst:490
-#, fuzzy
 msgid ""
 "This function is normally only used by legacy code that needs to catch "
 "exceptions or save and restore the error indicator temporarily."
-msgstr ""
-"이 함수는 일반적으로 예외를 포착해야 하는 코드나 에러 표시기를 일시적으로 저장하고 복원해야 하는 코드에서만 사용됩니다. 예를 "
-"들어::"
+msgstr "이 함수는 일반적으로 예외를 포착해야 하거나 에러 표시기를 일시적으로 저장하고 복원해야 하는 레거시 코드에서만 사용됩니다."
 
 #: ../../c-api/exceptions.rst:495
 #, python-brace-format
@@ -692,13 +678,20 @@ msgid ""
 "   PyErr_Restore(type, value, traceback);\n"
 "}"
 msgstr ""
+"{\n"
+"   PyObject *type, *value, *traceback;\n"
+"   PyErr_Fetch(&type, &value, &traceback);\n"
+"\n"
+"   /* ... 다른 에러를 생성할 수 있는 코드 ... */\n"
+"\n"
+"   PyErr_Restore(type, value, traceback);\n"
+"}"
 
 #: ../../c-api/exceptions.rst:509
 msgid "Use :c:func:`PyErr_SetRaisedException` instead."
 msgstr ""
 
 #: ../../c-api/exceptions.rst:511
-#, fuzzy
 msgid ""
 "Set the error indicator from the three objects, *type*, *value*, and "
 "*traceback*, clearing the existing exception if one is set. If the "
@@ -711,20 +704,20 @@ msgid ""
 "references.  (If you don't understand this, don't use this function.  I "
 "warned you.)"
 msgstr ""
-"세 객체로 에러 표시기를 설정합니다. 에러 표시기가 이미 설정되어 있으면, 먼저 지워집니다. 객체가 ``NULL``\\이면, 에러 "
-"표시기가 지워집니다. ``NULL`` type과 함께 ``NULL``\\이 아닌 value나 traceback 을 전달하지 "
-"마십시오. 예외 형은 클래스여야 합니다. 잘못된 예외 형이나 값을 전달하지 마십시오. (이러한 규칙을 위반하면 나중에 미묘한 문제가"
-" 발생합니다.) 이 호출은 각 객체에 대한 참조를 제거합니다: 호출 전에 각 객체에 대한 참조를 소유해야 하며 호출 후에는 더는 "
-"이러한 참조를 소유하지 않습니다. (이것을 이해할 수 없다면, 이 함수를 사용하지 마십시오. 경고했습니다.)"
+"세 객체, *type*, *value* 및 *traceback*\\으로 에러 표시기를 설정합니다. 이미 설정되어 있으면, 기존 "
+"예외를 지웁니다. 객체가 ``NULL``\\이면, 에러 표시기가 지워집니다. ``NULL`` type과 함께 ``NULL``\\이 "
+"아닌 value나 traceback 을 전달하지 마십시오. 예외 형은 클래스여야 합니다. 잘못된 예외 형이나 값을 전달하지 "
+"마십시오. (이러한 규칙을 위반하면 나중에 미묘한 문제가 발생합니다.) 이 호출은 각 객체에 대한 참조를 제거합니다: 호출 전에 각"
+" 객체에 대한 참조를 소유해야 하며 호출 후에는 더는 이러한 참조를 소유하지 않습니다. (이것을 이해할 수 없다면, 이 함수를 "
+"사용하지 마십시오. 경고했습니다.)"
 
 #: ../../c-api/exceptions.rst:525
-#, fuzzy
 msgid ""
 "This function is normally only used by legacy code that needs to save and"
 " restore the error indicator temporarily. Use :c:func:`PyErr_Fetch` to "
 "save the current error indicator."
 msgstr ""
-"이 함수는 일반적으로 에러 표시기를 일시적으로 저장하고 복원해야 하는 코드에서만 사용됩니다. 현재 에러 표시기를 저장하려면 "
+"이 함수는 일반적으로 에러 표시기를 일시적으로 저장하고 복원해야 하는 레거시 코드에서만 사용됩니다. 현재 에러 표시기를 저장하려면 "
 ":c:func:`PyErr_Fetch`\\를 사용하십시오."
 
 #: ../../c-api/exceptions.rst:534
@@ -748,15 +741,14 @@ msgstr ""
 "위해 구현됩니다."
 
 #: ../../c-api/exceptions.rst:545
-#, fuzzy
 msgid ""
 "This function *does not* implicitly set the "
 ":attr:`~BaseException.__traceback__` attribute on the exception value. If"
 " setting the traceback appropriately is desired, the following additional"
 " snippet is needed::"
 msgstr ""
-"이 함수 예외 값에 ``__traceback__`` 어트리뷰트를 묵시적으로 설정하지 *않습니다*. 트레이스백을 적절하게 설정해야 "
-"하면, 다음과 같은 추가 스니펫이 필요합니다::"
+"이 함수 예외 값에 :attr:`~BaseException.__traceback__` 어트리뷰트를 묵시적으로 설정하지 *않습니다*."
+" 트레이스백을 적절하게 설정해야 하면, 다음과 같은 추가 스니펫이 필요합니다::"
 
 #: ../../c-api/exceptions.rst:550
 #, python-brace-format
@@ -765,9 +757,11 @@ msgid ""
 "  PyException_SetTraceback(val, tb);\n"
 "}"
 msgstr ""
+"if (tb != NULL) {\n"
+"  PyException_SetTraceback(val, tb);\n"
+"}"
 
 #: ../../c-api/exceptions.rst:557
-#, fuzzy
 msgid ""
 "Retrieve the active exception instance, as would be returned by "
 ":func:`sys.exception`. This refers to an exception that was *already "
@@ -775,12 +769,11 @@ msgid ""
 "reference to the exception or ``NULL``. Does not modify the interpreter's"
 " exception state."
 msgstr ""
-"``sys.exc_info()``\\로 알려진 것과 같은, 예외 정보를 꺼냅니다. 이것은 새로 발생한 예외가 아니라, *이미 "
-"포착된* 예외를 가리킵니다. 세 객체에 대한 새 참조를 반환합니다. 이 중 어느 것이든 ``NULL``\\일 수 있습니다. 예외 "
-"정보 상태를 수정하지 않습니다."
+":func:`sys.exception`\\이 반환하는 것과 같은, 활성 예외 인스턴스를 꺼냅니다. 이것은 새로 발생한 예외가 "
+"아니라, *이미 포착된* 예외를 가리킵니다. 예외에 대한 새 참조나 ``NULL``\\을 반환합니다. 인터프리터의 예외 상태를 "
+"수정하지 않습니다."
 
 #: ../../c-api/exceptions.rst:564
-#, fuzzy
 msgid ""
 "This function is not normally used by code that wants to handle "
 "exceptions. Rather, it can be used when code needs to save and restore "
@@ -788,21 +781,19 @@ msgid ""
 " to restore or clear the exception state."
 msgstr ""
 "이 함수는 일반적으로 예외를 처리하려는 코드에서 사용되지 않습니다. 오히려, 코드가 예외 상태를 임시로 저장하고 복원해야 할 때 "
-"사용할 수 있습니다. 예외 상태를 복원하거나 지우려면 :c:func:`PyErr_SetExcInfo`\\를 사용하십시오."
+"사용할 수 있습니다. 예외 상태를 복원하거나 지우려면 :c:func:`PyErr_SetHandledException`\\를 "
+"사용하십시오."
 
 #: ../../c-api/exceptions.rst:573
-#, fuzzy
 msgid ""
 "Set the active exception, as known from ``sys.exception()``.  This refers"
 " to an exception that was *already caught*, not to an exception that was "
 "freshly raised. To clear the exception state, pass ``NULL``."
 msgstr ""
-"``sys.exc_info()``\\로 알려진 것과 같은, 예외 정보를 꺼냅니다. 이것은 새로 발생한 예외가 아니라, *이미 "
-"포착된* 예외를 가리킵니다. 세 객체에 대한 새 참조를 반환합니다. 이 중 어느 것이든 ``NULL``\\일 수 있습니다. 예외 "
-"정보 상태를 수정하지 않습니다."
+"``sys.exception()``\\으로 알려진 것과 같은, 활성 예외를 설정합니다. 이것은 새로 발생한 예외가 아니라, *이미 "
+"포착된* 예외를 가리킵니다. 예외 상태를 지우려면, ``NULL``\\을 전달하십시오."
 
 #: ../../c-api/exceptions.rst:580
-#, fuzzy
 msgid ""
 "This function is not normally used by code that wants to handle "
 "exceptions. Rather, it can be used when code needs to save and restore "
@@ -810,10 +801,9 @@ msgid ""
 " to get the exception state."
 msgstr ""
 "이 함수는 일반적으로 예외를 처리하려는 코드에서 사용되지 않습니다. 오히려, 코드가 예외 상태를 임시로 저장하고 복원해야 할 때 "
-"사용할 수 있습니다. 예외 상태를 읽으려면 :c:func:`PyErr_GetExcInfo`\\를 사용하십시오."
+"사용할 수 있습니다. 예외 상태를 얻으려면 :c:func:`PyErr_GetHandledException`\\를 사용하십시오."
 
 #: ../../c-api/exceptions.rst:589
-#, fuzzy
 msgid ""
 "Retrieve the old-style representation of the exception info, as known "
 "from :func:`sys.exc_info`.  This refers to an exception that was *already"
@@ -822,9 +812,10 @@ msgid ""
 " modify the exception info state.  This function is kept for backwards "
 "compatibility. Prefer using :c:func:`PyErr_GetHandledException`."
 msgstr ""
-"``sys.exc_info()``\\로 알려진 것과 같은, 예외 정보를 꺼냅니다. 이것은 새로 발생한 예외가 아니라, *이미 "
-"포착된* 예외를 가리킵니다. 세 객체에 대한 새 참조를 반환합니다. 이 중 어느 것이든 ``NULL``\\일 수 있습니다. 예외 "
-"정보 상태를 수정하지 않습니다."
+":func:`sys.exc_info`\\로 알려진 것과 같은, 예외 정보의 구식 표현을 꺼냅니다. 이것은 새로 발생한 예외가 "
+"아니라, *이미 포착된* 예외를 가리킵니다. 세 객체에 대한 새 참조를 반환합니다. 이 중 어느 것이든 ``NULL``\\일 수 "
+"있습니다. 예외 정보 상태를 수정하지 않습니다. 이 함수는 하위 호환성을 위해 유지됩니다. 대신 "
+":c:func:`PyErr_GetHandledException`\\을 사용하세요."
 
 #: ../../c-api/exceptions.rst:598
 msgid ""
@@ -837,7 +828,6 @@ msgstr ""
 "사용할 수 있습니다. 예외 상태를 복원하거나 지우려면 :c:func:`PyErr_SetExcInfo`\\를 사용하십시오."
 
 #: ../../c-api/exceptions.rst:608
-#, fuzzy
 msgid ""
 "Set the exception info, as known from ``sys.exc_info()``.  This refers to"
 " an exception that was *already caught*, not to an exception that was "
@@ -848,7 +838,8 @@ msgid ""
 msgstr ""
 "``sys.exc_info()``\\로 알려진 것과 같은, 예외 정보를 설정합니다. 이것은 새로 발생한 예외가 아니라, *이미 "
 "포착된* 예외를 가리킵니다. 이 함수는 인자의 참조를 훔칩니다. 예외 상태를 지우려면, 세 인자 모두에 ``NULL``\\을 "
-"전달하십시오. 세 인자에 대한 일반적인 규칙은, :c:func:`PyErr_Restore`\\를 참조하십시오."
+"전달하십시오. 이 함수는 하위 호환성을 위해 유지됩니다. 대신 :c:func:`PyErr_SetHandledException`\\을"
+" 사용하십시오."
 
 #: ../../c-api/exceptions.rst:617
 msgid ""
@@ -925,14 +916,13 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/exceptions.rst:687
-#, fuzzy
 msgid ""
 "Simulate the effect of a signal arriving. The next time "
 ":c:func:`PyErr_CheckSignals` is called,  the Python signal handler for "
 "the given signal number will be called."
 msgstr ""
-":const:`SIGINT` 시그널 도착의 효과를 시뮬레이션합니다. 다음에 :c:func:`PyErr_CheckSignals`\\가"
-" 호출되면, :const:`SIGINT`\\에 대한 파이썬 시그널 처리기가 호출됩니다."
+"시그널 도착의 효과를 시뮬레이션합니다. 다음에 :c:func:`PyErr_CheckSignals`\\가 호출되면, 주어진 시그널 "
+"번호에 대한 파이썬 시그널 처리기가 호출됩니다."
 
 #: ../../c-api/exceptions.rst:691
 msgid ""
@@ -943,14 +933,13 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/exceptions.rst:696
-#, fuzzy
 msgid ""
 "If the given signal isn't handled by Python (it was set to "
 ":py:const:`signal.SIG_DFL` or :py:const:`signal.SIG_IGN`), it will be "
 "ignored."
 msgstr ""
-":const:`SIGINT`\\가 파이썬에서 처리되지 않으면 (:data:`signal.SIG_DFL`\\이나 "
-":data:`signal.SIG_IGN`\\으로 설정되어서), 이 함수는 아무 작업도 수행하지 않습니다."
+"주어진 시그널이 파이썬에서 처리되지 않으면 (:py:const:`signal.SIG_DFL`\\이나 "
+":py:const:`signal.SIG_IGN`\\으로 설정되어서), 무시됩니다."
 
 #: ../../c-api/exceptions.rst:699
 msgid ""
@@ -1001,7 +990,6 @@ msgstr ""
 "클래스 객체가 만들어집니다."
 
 #: ../../c-api/exceptions.rst:736
-#, fuzzy
 msgid ""
 "The :attr:`~type.__module__` attribute of the new class is set to the "
 "first part (up to the last dot) of the *name* argument, and the class "
@@ -1010,10 +998,10 @@ msgid ""
 "class or a tuple of classes. The *dict* argument can be used to specify a"
 " dictionary of class variables and methods."
 msgstr ""
-"새 클래스의 :attr:`__module__` 어트리뷰트는 *name* 인자의 첫 번째 부분(마지막 점까지)으로 설정되고, 클래스 "
-"이름은 마지막 부분(마지막 점 뒤)으로 설정됩니다. *base* 인자는 대체 베이스 클래스를 지정하는 데 사용할 수 있습니다; "
-"하나의 클래스나 클래스의 튜플일 수 있습니다. *dict* 인자는 클래스 변수와 메서드의 딕셔너리를 지정하는 데 사용할 수 "
-"있습니다."
+"새 클래스의 :attr:`~type.__module__` 어트리뷰트는 *name* 인자의 첫 번째 부분(마지막 점까지)으로 "
+"설정되고, 클래스 이름은 마지막 부분(마지막 점 뒤)으로 설정됩니다. *base* 인자는 대체 베이스 클래스를 지정하는 데 사용할 "
+"수 있습니다; 하나의 클래스나 클래스의 튜플일 수 있습니다. *dict* 인자는 클래스 변수와 메서드의 딕셔너리를 지정하는 데 "
+"사용할 수 있습니다."
 
 #: ../../c-api/exceptions.rst:745
 msgid ""
@@ -1029,14 +1017,13 @@ msgid "Exception Objects"
 msgstr "예외 객체"
 
 #: ../../c-api/exceptions.rst:757
-#, fuzzy
 msgid ""
 "Return the traceback associated with the exception as a new reference, as"
 " accessible from Python through the :attr:`~BaseException.__traceback__` "
 "attribute. If there is no traceback associated, this returns ``NULL``."
 msgstr ""
-"파이썬에서 :attr:`__traceback__`\\을 통해 액세스 할 수 있는 새로운 참조로 예외와 관련된 트레이스백을 "
-"반환합니다. 관련된 트레이스백이 없으면, ``NULL``\\을 반환합니다."
+"파이썬에서 :attr:`~BaseException.__traceback__` 어트리뷰트를 통해 액세스 할 수 있는 새로운 참조로 "
+"예외와 관련된 트레이스백을 반환합니다. 관련된 트레이스백이 없으면, ``NULL``\\을 반환합니다."
 
 #: ../../c-api/exceptions.rst:765
 msgid ""
@@ -1045,15 +1032,15 @@ msgid ""
 msgstr "예외와 관련된 트레이스백을 *tb*\\로 설정합니다. 지우려면 ``Py_None``\\을 사용하십시오."
 
 #: ../../c-api/exceptions.rst:771
-#, fuzzy
 msgid ""
 "Return the context (another exception instance during whose handling *ex*"
 " was raised) associated with the exception as a new reference, as "
 "accessible from Python through the :attr:`~BaseException.__context__` "
 "attribute. If there is no context associated, this returns ``NULL``."
 msgstr ""
-"파이썬에서 :attr:`__context__`\\를 통해 액세스 할 수 있는 새 참조로 예외와 연관된 컨텍스트(다른 예외 인스턴스,"
-" 이것을 처리하는 도중 *ex*\\가 발생했습니다)를 반환합니다. 연결된 컨텍스트가 없으면 ``NULL``\\을 반환합니다."
+"파이썬에서 :attr:`~BaseException.__context__` 어트리뷰트를 통해 액세스 할 수 있는 새 참조로 예외와 "
+"연관된 컨텍스트(다른 예외 인스턴스, 이것을 처리하는 도중 *ex*\\가 발생했습니다)를 반환합니다. 연결된 컨텍스트가 없으면 "
+"``NULL``\\을 반환합니다."
 
 #: ../../c-api/exceptions.rst:779
 msgid ""
@@ -1065,32 +1052,31 @@ msgstr ""
 " 확인하는 형 검사는 없습니다. 이것은 *ctx*\\에 대한 참조를 훔칩니다."
 
 #: ../../c-api/exceptions.rst:786
-#, fuzzy
 msgid ""
 "Return the cause (either an exception instance, or ``None``, set by "
 "``raise ... from ...``) associated with the exception as a new reference,"
 " as accessible from Python through the :attr:`~BaseException.__cause__` "
 "attribute."
 msgstr ""
-"파이썬에서 :attr:`__cause__`\\를 통해 액세스 할 수 있는 새 참조로 예외와 관련된 원인(예외 인스턴스나 "
-":const:`None`, ``raise ... from ...``\\으로 설정됩니다)을 반환합니다."
+"파이썬에서 :attr:`~BaseException.__cause__` 어트리뷰트를 통해 액세스 할 수 있는 새 참조로 예외와 관련된"
+" 원인(예외 인스턴스나 ``None``, ``raise ... from ...``\\으로 설정됩니다)을 반환합니다."
 
 #: ../../c-api/exceptions.rst:794
-#, fuzzy
 msgid ""
 "Set the cause associated with the exception to *cause*.  Use ``NULL`` to "
 "clear it.  There is no type check to make sure that *cause* is either an "
 "exception instance or ``None``.  This steals a reference to *cause*."
 msgstr ""
 "예외와 관련된 원인을 *cause*\\로 설정합니다. 지우려면 ``NULL``\\을 사용하십시오. *cause*\\가 예외 "
-"인스턴스나 :const:`None`\\인지 확인하는 형 검사는 없습니다. 이것은 *cause*\\에 대한 참조를 훔칩니다."
+"인스턴스나 ``None``\\인지 확인하는 형 검사는 없습니다. 이것은 *cause*\\에 대한 참조를 훔칩니다."
 
 #: ../../c-api/exceptions.rst:798
-#, fuzzy
 msgid ""
 "The :attr:`~BaseException.__suppress_context__` attribute is implicitly "
 "set to ``True`` by this function."
-msgstr ":attr:`__suppress_context__`\\는 이 함수에 의해 묵시적으로 ``True``\\로 설정됩니다."
+msgstr ""
+":attr:`~BaseException.__suppress_context__` 어트리뷰트는 이 함수에 의해 묵시적으로 "
+"``True``\\로 설정됩니다."
 
 #: ../../c-api/exceptions.rst:804
 msgid "Return :attr:`~BaseException.args` of exception *ex*."
@@ -1209,13 +1195,12 @@ msgid "Marks a point where a recursive C-level call is about to be performed."
 msgstr "재귀적 C 수준 호출이 막 수행되려고 하는 지점을 표시합니다."
 
 #: ../../c-api/exceptions.rst:908
-#, fuzzy
 msgid ""
 "If :c:macro:`!USE_STACKCHECK` is defined, this function checks if the OS "
 "stack overflowed using :c:func:`PyOS_CheckStack`.  If this is the case, "
 "it sets a :exc:`MemoryError` and returns a nonzero value."
 msgstr ""
-":const:`USE_STACKCHECK`\\가 정의되었으면, 이 함수는 :c:func:`PyOS_CheckStack`\\을 "
+":c:macro:`!USE_STACKCHECK`\\가 정의되었으면, 이 함수는 :c:func:`PyOS_CheckStack`\\을 "
 "사용하여 OS 스택이 오버플로 되었는지 확인합니다. 이 경우, :exc:`MemoryError`\\를 설정하고 0이 아닌 값을 "
 "반환합니다."
 
@@ -1238,11 +1223,10 @@ msgstr ""
 " check\"``\\와 같은 UTF-8 인코딩된 문자열이어야 합니다."
 
 #: ../../c-api/exceptions.rst:920 ../../c-api/exceptions.rst:928
-#, fuzzy
 msgid ""
 "This function is now also available in the :ref:`limited API "
 "<limited-c-api>`."
-msgstr "이 함수는 이제 제한된 API에서도 사용할 수 있습니다."
+msgstr "이 함수는 이제 :ref:`제한된 API <limited-c-api>`\\에서도 사용할 수 있습니다."
 
 #: ../../c-api/exceptions.rst:925
 msgid ""
@@ -1315,7 +1299,6 @@ msgid "Standard Exceptions"
 msgstr "표준 예외"
 
 #: ../../c-api/exceptions.rst:966
-#, fuzzy
 msgid ""
 "All standard Python exceptions are available as global variables whose "
 "names are ``PyExc_`` followed by the Python exception name.  These have "
@@ -1323,7 +1306,7 @@ msgid ""
 "completeness, here are all the variables:"
 msgstr ""
 "모든 표준 파이썬 예외는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
-":c:type:`PyObject*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
+":c:expr:`PyObject*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
 
 #: ../../c-api/exceptions.rst:1028 ../../c-api/exceptions.rst:1163
 #: ../../c-api/exceptions.rst:1208
@@ -1351,7 +1334,7 @@ msgstr ":exc:`BaseException`"
 #: ../../c-api/exceptions.rst:1034 ../../c-api/exceptions.rst:1080
 #: ../../c-api/exceptions.rst:1092
 msgid "[1]_"
-msgstr ""
+msgstr "[1]_"
 
 #: ../../c-api/exceptions.rst:1032
 msgid ":c:data:`PyExc_Exception`"
@@ -1626,14 +1609,12 @@ msgid ":exc:`ProcessLookupError`"
 msgstr ":exc:`ProcessLookupError`"
 
 #: ../../c-api/exceptions.rst:1100
-#, fuzzy
 msgid ":c:data:`PyExc_PythonFinalizationError`"
-msgstr ":c:data:`PyExc_ConnectionError`"
+msgstr ":c:data:`PyExc_PythonFinalizationError`"
 
 #: ../../c-api/exceptions.rst:1100
-#, fuzzy
 msgid ":exc:`PythonFinalizationError`"
-msgstr ":exc:`ConnectionError`"
+msgstr ":exc:`PythonFinalizationError`"
 
 #: ../../c-api/exceptions.rst:1102
 msgid ":c:data:`PyExc_RecursionError`"
@@ -1814,23 +1795,20 @@ msgid "These are compatibility aliases to :c:data:`PyExc_OSError`:"
 msgstr "다음은 :c:data:`PyExc_OSError`\\에 대한 호환성 별칭입니다:"
 
 #: ../../c-api/exceptions.rst:1165
-#, fuzzy
 msgid ":c:data:`!PyExc_EnvironmentError`"
-msgstr ":c:data:`PyExc_EnvironmentError`"
+msgstr ":c:data:`!PyExc_EnvironmentError`"
 
 #: ../../c-api/exceptions.rst:1167
-#, fuzzy
 msgid ":c:data:`!PyExc_IOError`"
-msgstr ":c:data:`PyExc_IOError`"
+msgstr ":c:data:`!PyExc_IOError`"
 
 #: ../../c-api/exceptions.rst:1169
-#, fuzzy
 msgid ":c:data:`!PyExc_WindowsError`"
-msgstr ":c:data:`PyExc_WindowsError`"
+msgstr ":c:data:`!PyExc_WindowsError`"
 
 #: ../../c-api/exceptions.rst:1169
 msgid "[2]_"
-msgstr ""
+msgstr "[2]_"
 
 #: ../../c-api/exceptions.rst:1172
 msgid "These aliases used to be separate exception types."
@@ -1855,7 +1833,6 @@ msgid "Standard Warning Categories"
 msgstr "표준 경고 범주"
 
 #: ../../c-api/exceptions.rst:1189
-#, fuzzy
 msgid ""
 "All standard Python warning categories are available as global variables "
 "whose names are ``PyExc_`` followed by the Python exception name. These "
@@ -1863,7 +1840,7 @@ msgid ""
 "completeness, here are all the variables:"
 msgstr ""
 "모든 표준 파이썬 경고 범주는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
-":c:type:`PyObject*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
+":c:expr:`PyObject*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
 
 #: ../../c-api/exceptions.rst:1210
 msgid ":c:data:`PyExc_Warning`"
@@ -1875,7 +1852,7 @@ msgstr ":exc:`Warning`"
 
 #: ../../c-api/exceptions.rst:1210
 msgid "[3]_"
-msgstr ""
+msgstr "[3]_"
 
 #: ../../c-api/exceptions.rst:1212
 msgid ":c:data:`PyExc_BytesWarning`"
@@ -1967,362 +1944,298 @@ msgstr "이것은 다른 표준 경고 범주의 베이스 클래스입니다."
 
 #: ../../c-api/exceptions.rst:183
 msgid "strerror (C function)"
-msgstr ""
+msgstr "strerror (C 함수)"
 
 #: ../../c-api/exceptions.rst:637 ../../c-api/exceptions.rst:668
 #: ../../c-api/exceptions.rst:683
 msgid "module"
-msgstr ""
+msgstr "모듈"
 
 #: ../../c-api/exceptions.rst:637 ../../c-api/exceptions.rst:668
 #: ../../c-api/exceptions.rst:683
 msgid "signal"
-msgstr ""
+msgstr "시그널"
 
 #: ../../c-api/exceptions.rst:637 ../../c-api/exceptions.rst:668
 msgid "SIGINT (C macro)"
-msgstr ""
+msgstr "SIGINT (C 매크로)"
 
 #: ../../c-api/exceptions.rst:637 ../../c-api/exceptions.rst:668
 #: ../../c-api/exceptions.rst:683
 msgid "KeyboardInterrupt (built-in exception)"
-msgstr ""
+msgstr "KeyboardInterrupt (내장 예외)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_BaseException (C var)"
-msgstr ":exc:`BaseException`"
+msgstr "PyExc_BaseException (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_Exception (C var)"
-msgstr ":c:data:`PyExc_Exception`"
+msgstr "PyExc_Exception (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ArithmeticError (C var)"
-msgstr ":exc:`ArithmeticError`"
+msgstr "PyExc_ArithmeticError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_AssertionError (C var)"
-msgstr ":exc:`AssertionError`"
+msgstr "PyExc_AssertionError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_AttributeError (C var)"
-msgstr ":exc:`AttributeError`"
+msgstr "PyExc_AttributeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_BlockingIOError (C var)"
-msgstr ":exc:`BlockingIOError`"
+msgstr "PyExc_BlockingIOError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_BrokenPipeError (C var)"
-msgstr ":exc:`BrokenPipeError`"
+msgstr "PyExc_BrokenPipeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_BufferError (C var)"
-msgstr ":c:data:`PyExc_BufferError`"
+msgstr "PyExc_BufferError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ChildProcessError (C var)"
-msgstr ":exc:`ChildProcessError`"
+msgstr "PyExc_ChildProcessError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ConnectionAbortedError (C var)"
-msgstr ":exc:`ConnectionAbortedError`"
+msgstr "PyExc_ConnectionAbortedError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ConnectionError (C var)"
-msgstr ":exc:`ConnectionError`"
+msgstr "PyExc_ConnectionError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ConnectionRefusedError (C var)"
-msgstr ":exc:`ConnectionRefusedError`"
+msgstr "PyExc_ConnectionRefusedError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ConnectionResetError (C var)"
-msgstr ":exc:`ConnectionResetError`"
+msgstr "PyExc_ConnectionResetError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_EOFError (C var)"
-msgstr ":c:data:`PyExc_EOFError`"
+msgstr "PyExc_EOFError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_FileExistsError (C var)"
-msgstr ":exc:`FileExistsError`"
+msgstr "PyExc_FileExistsError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_FileNotFoundError (C var)"
-msgstr ":exc:`FileNotFoundError`"
+msgstr "PyExc_FileNotFoundError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_FloatingPointError (C var)"
-msgstr ":exc:`FloatingPointError`"
+msgstr "PyExc_FloatingPointError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_GeneratorExit (C var)"
-msgstr ":exc:`GeneratorExit`"
+msgstr "PyExc_GeneratorExit (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ImportError (C var)"
-msgstr ":c:data:`PyExc_ImportError`"
+msgstr "PyExc_ImportError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_IndentationError (C var)"
-msgstr ":exc:`IndentationError`"
+msgstr "PyExc_IndentationError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_IndexError (C var)"
-msgstr ":c:data:`PyExc_IndexError`"
+msgstr "PyExc_IndexError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_InterruptedError (C var)"
-msgstr ":exc:`InterruptedError`"
+msgstr "PyExc_InterruptedError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_IsADirectoryError (C var)"
-msgstr ":exc:`IsADirectoryError`"
+msgstr "PyExc_IsADirectoryError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_KeyError (C var)"
-msgstr ":c:data:`PyExc_KeyError`"
+msgstr "PyExc_KeyError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_KeyboardInterrupt (C var)"
-msgstr ":exc:`KeyboardInterrupt`"
+msgstr "PyExc_KeyboardInterrupt (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_LookupError (C var)"
-msgstr ":c:data:`PyExc_LookupError`"
+msgstr "PyExc_LookupError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_MemoryError (C var)"
-msgstr ":c:data:`PyExc_MemoryError`"
+msgstr "PyExc_MemoryError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ModuleNotFoundError (C var)"
-msgstr ":exc:`ModuleNotFoundError`"
+msgstr "PyExc_ModuleNotFoundError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_NameError (C var)"
-msgstr ":c:data:`PyExc_NameError`"
+msgstr "PyExc_NameError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_NotADirectoryError (C var)"
-msgstr ":exc:`NotADirectoryError`"
+msgstr "PyExc_NotADirectoryError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_NotImplementedError (C var)"
-msgstr ":exc:`NotImplementedError`"
+msgstr "PyExc_NotImplementedError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
 msgid "PyExc_OSError (C var)"
-msgstr ""
+msgstr "PyExc_OSError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_OverflowError (C var)"
-msgstr ":exc:`OverflowError`"
+msgstr "PyExc_OverflowError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_PermissionError (C var)"
-msgstr ":exc:`PermissionError`"
+msgstr "PyExc_PermissionError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ProcessLookupError (C var)"
-msgstr ":exc:`ProcessLookupError`"
+msgstr "PyExc_ProcessLookupError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
 msgid "PyExc_PythonFinalizationError (C var)"
-msgstr ""
+msgstr "PyExc_PythonFinalizationError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_RecursionError (C var)"
-msgstr ":exc:`RecursionError`"
+msgstr "PyExc_RecursionError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ReferenceError (C var)"
-msgstr ":exc:`ReferenceError`"
+msgstr "PyExc_ReferenceError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_RuntimeError (C var)"
-msgstr ":exc:`RuntimeError`"
+msgstr "PyExc_RuntimeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_StopAsyncIteration (C var)"
-msgstr ":exc:`StopAsyncIteration`"
+msgstr "PyExc_StopAsyncIteration (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_StopIteration (C var)"
-msgstr ":exc:`StopIteration`"
+msgstr "PyExc_StopIteration (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_SyntaxError (C var)"
-msgstr ":c:data:`PyExc_SyntaxError`"
+msgstr "PyExc_SyntaxError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_SystemError (C var)"
-msgstr ":c:data:`PyExc_SystemError`"
+msgstr "PyExc_SystemError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_SystemExit (C var)"
-msgstr ":c:data:`PyExc_SystemExit`"
+msgstr "PyExc_SystemExit (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_TabError (C var)"
-msgstr ":c:data:`PyExc_TabError`"
+msgstr "PyExc_TabError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_TimeoutError (C var)"
-msgstr ":exc:`TimeoutError`"
+msgstr "PyExc_TimeoutError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_TypeError (C var)"
-msgstr ":c:data:`PyExc_TypeError`"
+msgstr "PyExc_TypeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_UnboundLocalError (C var)"
-msgstr ":exc:`UnboundLocalError`"
+msgstr "PyExc_UnboundLocalError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_UnicodeDecodeError (C var)"
-msgstr ":exc:`UnicodeDecodeError`"
+msgstr "PyExc_UnicodeDecodeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_UnicodeEncodeError (C var)"
-msgstr ":exc:`UnicodeEncodeError`"
+msgstr "PyExc_UnicodeEncodeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_UnicodeError (C var)"
-msgstr ":exc:`UnicodeError`"
+msgstr "PyExc_UnicodeError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_UnicodeTranslateError (C var)"
-msgstr ":exc:`UnicodeTranslateError`"
+msgstr "PyExc_UnicodeTranslateError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ValueError (C var)"
-msgstr ":c:data:`PyExc_ValueError`"
+msgstr "PyExc_ValueError (C 변수)"
 
 #: ../../c-api/exceptions.rst:971
-#, fuzzy
 msgid "PyExc_ZeroDivisionError (C var)"
-msgstr ":exc:`ZeroDivisionError`"
+msgstr "PyExc_ZeroDivisionError (C 변수)"
 
 #: ../../c-api/exceptions.rst:1157
-#, fuzzy
 msgid "PyExc_EnvironmentError (C var)"
-msgstr ":c:data:`PyExc_EnvironmentError`"
+msgstr "PyExc_EnvironmentError (C 변수)"
 
 #: ../../c-api/exceptions.rst:1157
 msgid "PyExc_IOError (C var)"
-msgstr ""
+msgstr "PyExc_IOError (C 변수)"
 
 #: ../../c-api/exceptions.rst:1157
-#, fuzzy
 msgid "PyExc_WindowsError (C var)"
-msgstr ":c:data:`PyExc_WindowsError`"
+msgstr "PyExc_WindowsError (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
 msgid "PyExc_Warning (C var)"
-msgstr ""
+msgstr "PyExc_Warning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_BytesWarning (C var)"
-msgstr ":exc:`BytesWarning`"
+msgstr "PyExc_BytesWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_DeprecationWarning (C var)"
-msgstr ":exc:`DeprecationWarning`"
+msgstr "PyExc_DeprecationWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_FutureWarning (C var)"
-msgstr ":exc:`FutureWarning`"
+msgstr "PyExc_FutureWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_ImportWarning (C var)"
-msgstr ":exc:`ImportWarning`"
+msgstr "PyExc_ImportWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_PendingDeprecationWarning (C var)"
-msgstr ":exc:`PendingDeprecationWarning`"
+msgstr "PyExc_PendingDeprecationWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_ResourceWarning (C var)"
-msgstr ":exc:`ResourceWarning`"
+msgstr "PyExc_ResourceWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_RuntimeWarning (C var)"
-msgstr ":exc:`RuntimeWarning`"
+msgstr "PyExc_RuntimeWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_SyntaxWarning (C var)"
-msgstr ":exc:`SyntaxWarning`"
+msgstr "PyExc_SyntaxWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_UnicodeWarning (C var)"
-msgstr ":exc:`UnicodeWarning`"
+msgstr "PyExc_UnicodeWarning (C 변수)"
 
 #: ../../c-api/exceptions.rst:1194
-#, fuzzy
 msgid "PyExc_UserWarning (C var)"
-msgstr ":c:data:`PyExc_UserWarning`"
+msgstr "PyExc_UserWarning (C 변수)"
 
 #~ msgid ":ref:`Availability <availability>`: Windows."
 #~ msgstr ":ref:`가용성 <availability>`: 윈도우."
