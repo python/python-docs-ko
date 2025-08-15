@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/doctest.rst:2
-#, fuzzy
 msgid ":mod:`!doctest` --- Test interactive Python examples"
-msgstr ":mod:`doctest` --- 대화형 파이썬 예제 테스트"
+msgstr ":mod:`!doctest` --- 대화형 파이썬 예제 테스트"
 
 #: ../../library/doctest.rst:12
 msgid "**Source code:** :source:`Lib/doctest.py`"
@@ -119,6 +118,60 @@ msgid ""
 "    import doctest\n"
 "    doctest.testmod()"
 msgstr ""
+"\"\"\"\n"
+"이것은 \"예제\" 모듈입니다.\n"
+"\n"
+"예제 모듈은 factorial() 함수 하나를 제공합니다. 예를 들어,\n"
+"\n"
+">>> factorial(5)\n"
+"120\n"
+"\"\"\"\n"
+"\n"
+"def factorial(n):\n"
+"    \"\"\"n의 계승을 반환합니다, 정확한 정수 >= 0.\n"
+"\n"
+"    >>> [factorial(n) for n in range(6)]\n"
+"    [1, 1, 2, 6, 24, 120]\n"
+"    >>> factorial(30)\n"
+"    265252859812191058636308480000000\n"
+"    >>> factorial(-1)\n"
+"    Traceback (most recent call last):\n"
+"        ...\n"
+"    ValueError: n must be >= 0\n"
+"\n"
+"    float의 계승도 좋습니다만, float는 정확한 정수여야 합니다:\n"
+"    >>> factorial(30.1)\n"
+"    Traceback (most recent call last):\n"
+"        ...\n"
+"    ValueError: n must be exact integer\n"
+"    >>> factorial(30.0)\n"
+"    265252859812191058636308480000000\n"
+"\n"
+"    또한 터무니없이 크지 않아야 합니다:\n"
+"    >>> factorial(1e100)\n"
+"    Traceback (most recent call last):\n"
+"        ...\n"
+"    OverflowError: n too large\n"
+"    \"\"\"\n"
+"\n"
+"    import math\n"
+"    if not n >= 0:\n"
+"        raise ValueError(\"n must be >= 0\")\n"
+"    if math.floor(n) != n:\n"
+"        raise ValueError(\"n must be exact integer\")\n"
+"    if n+1 == n:  # 1e300과 같은 값을 잡아냅니다\n"
+"        raise OverflowError(\"n too large\")\n"
+"    result = 1\n"
+"    factor = 2\n"
+"    while factor <= n:\n"
+"        result *= factor\n"
+"        factor += 1\n"
+"    return result\n"
+"\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    import doctest\n"
+"    doctest.testmod()"
 
 #: ../../library/doctest.rst:88
 msgid ""
@@ -131,6 +184,8 @@ msgid ""
 "$ python example.py\n"
 "$"
 msgstr ""
+"$ python example.py\n"
+"$"
 
 #: ../../library/doctest.rst:96
 msgid ""
@@ -155,6 +210,17 @@ msgid ""
 "    [1, 1, 2, 6, 24, 120]\n"
 "ok"
 msgstr ""
+"$ python example.py -v\n"
+"Trying:\n"
+"    factorial(5)\n"
+"Expecting:\n"
+"    120\n"
+"ok\n"
+"Trying:\n"
+"    [factorial(n) for n in range(6)]\n"
+"Expecting:\n"
+"    [1, 1, 2, 6, 24, 120]\n"
+"ok"
 
 #: ../../library/doctest.rst:114
 msgid "And so on, eventually ending with:"
@@ -177,9 +243,22 @@ msgid ""
 "Test passed.\n"
 "$"
 msgstr ""
+"Trying:\n"
+"    factorial(1e100)\n"
+"Expecting:\n"
+"    Traceback (most recent call last):\n"
+"        ...\n"
+"    OverflowError: n too large\n"
+"ok\n"
+"2 items passed all tests:\n"
+"   1 test in __main__\n"
+"   6 tests in __main__.factorial\n"
+"7 tests in 2 items.\n"
+"7 passed.\n"
+"Test passed.\n"
+"$"
 
 #: ../../library/doctest.rst:133
-#, fuzzy
 msgid ""
 "That's all you need to know to start making productive use of "
 ":mod:`doctest`! Jump in.  The following sections provide full details.  "
@@ -189,20 +268,19 @@ msgid ""
 msgstr ""
 "이것이 :mod:`doctest`\\를 생산적으로 사용하기 위해서 알아야 할 모든 것입니다! 시도해 보세요. 다음 절에서는 자세한 "
 "내용을 제공합니다. 표준 파이썬 테스트 스위트와 라이브러리에는 doctest 예제가 많습니다. 특히 유용한 예제는 표준 테스트 파일"
-" :file:`Lib/test/test_doctest.py`\\에서 찾을 수 있습니다."
+" :file:`Lib/test/test_doctest/test_doctest.py`\\에서 찾을 수 있습니다."
 
 #: ../../library/doctest.rst:143
 msgid "Simple Usage: Checking Examples in Docstrings"
 msgstr "간단한 사용법: 독스트링에 있는 예제 확인하기"
 
 #: ../../library/doctest.rst:145
-#, fuzzy
 msgid ""
 "The simplest way to start using doctest (but not necessarily the way "
 "you'll continue to do it) is to end each module :mod:`!M` with::"
 msgstr ""
-"doctest를 사용하는 가장 간단한 방법은 (하지만 계속 이렇게 할 필요는 없습니다) 각 모듈 :mod:`M`\\을 다음과 같이 "
-"끝내는 것입니다::"
+"doctest를 사용하는 가장 간단한 방법은 (하지만 계속 이렇게 할 필요는 없습니다) 각 모듈 :mod:`!M`\\을 다음과 같이"
+" 끝내는 것입니다::"
 
 #: ../../library/doctest.rst:148
 msgid ""
@@ -210,11 +288,13 @@ msgid ""
 "    import doctest\n"
 "    doctest.testmod()"
 msgstr ""
+"if __name__ == \"__main__\":\n"
+"    import doctest\n"
+"    doctest.testmod()"
 
 #: ../../library/doctest.rst:152
-#, fuzzy
 msgid ":mod:`!doctest` then examines docstrings in module :mod:`!M`."
-msgstr "그러면 :mod:`doctest`\\는 모듈 :mod:`M`\\의 독스트링을 검사합니다."
+msgstr "그러면 :mod:`!doctest`\\는 모듈 :mod:`!M`\\의 독스트링을 검사합니다."
 
 #: ../../library/doctest.rst:154
 msgid ""
@@ -224,7 +304,7 @@ msgstr "모듈을 스크립트로 실행하면 독스트링의 예제가 실행�
 
 #: ../../library/doctest.rst:157
 msgid "python M.py"
-msgstr ""
+msgstr "python M.py"
 
 #: ../../library/doctest.rst:159
 msgid ""
@@ -242,7 +322,7 @@ msgstr "대신 ``-v`` 스위치로 실행해 보십시오::"
 
 #: ../../library/doctest.rst:166
 msgid "python M.py -v"
-msgstr ""
+msgstr "python M.py -v"
 
 #: ../../library/doctest.rst:168
 msgid ""
@@ -262,11 +342,10 @@ msgstr ""
 ":func:`testmod`\\에 의해 검사되지 않습니다 (따라서 ``-v``\\를 전달하거나 그렇지 않아도 효과가 없습니다)."
 
 #: ../../library/doctest.rst:176
-#, fuzzy
 msgid ""
 "There is also a command line shortcut for running :func:`testmod`, see "
 "section :ref:`doctest-cli`."
-msgstr ":func:`testmod`\\에 대한 자세한 내용은, :ref:`doctest-basic-api` 절을 참조하십시오."
+msgstr ":func:`testmod`\\를 실행하는 명령줄 바로 가기도 있습니다, :ref:`doctest-cli` 절을 참조하십시오."
 
 #: ../../library/doctest.rst:179
 msgid ""
@@ -291,6 +370,8 @@ msgid ""
 "import doctest\n"
 "doctest.testfile(\"example.txt\")"
 msgstr ""
+"import doctest\n"
+"doctest.testfile(\"example.txt\")"
 
 #: ../../library/doctest.rst:193
 msgid ""
@@ -322,6 +403,21 @@ msgid ""
 "    >>> factorial(6)\n"
 "    120"
 msgstr ""
+"The ``example`` module\n"
+"======================\n"
+"\n"
+"Using ``factorial``\n"
+"-------------------\n"
+"\n"
+"This is an example text file in reStructuredText format.  First import\n"
+"``factorial`` from the ``example`` module:\n"
+"\n"
+"    >>> from example import factorial\n"
+"\n"
+"Now use it:\n"
+"\n"
+"    >>> factorial(6)\n"
+"    120"
 
 #: ../../library/doctest.rst:216
 msgid ""
@@ -339,6 +435,13 @@ msgid ""
 "Got:\n"
 "    720"
 msgstr ""
+"File \"./example.txt\", line 14, in example.txt\n"
+"Failed example:\n"
+"    factorial(6)\n"
+"Expected:\n"
+"    120\n"
+"Got:\n"
+"    720"
 
 #: ../../library/doctest.rst:227
 msgid ""
@@ -371,11 +474,10 @@ msgstr ""
 "키워드 인자 *verbose*\\를 사용하여 설정할 수 있습니다."
 
 #: ../../library/doctest.rst:240
-#, fuzzy
 msgid ""
 "There is also a command line shortcut for running :func:`testfile`, see "
 "section :ref:`doctest-cli`."
-msgstr ":func:`testfile`\\에 대한 자세한 내용은, :ref:`doctest-basic-api` 절을 참조하십시오."
+msgstr ":func:`testfile`\\을 실행하는 명령줄 바로 가기도 있습니다, :ref:`doctest-cli` 절을 참조하십시오."
 
 #: ../../library/doctest.rst:243
 msgid ""
@@ -385,7 +487,7 @@ msgstr ":func:`testfile`\\에 대한 자세한 내용은, :ref:`doctest-basic-ap
 
 #: ../../library/doctest.rst:249
 msgid "Command-line Usage"
-msgstr ""
+msgstr "명령줄 사용법"
 
 #: ../../library/doctest.rst:251
 msgid ""
@@ -395,21 +497,19 @@ msgstr ""
 
 #: ../../library/doctest.rst:253
 msgid "python -m doctest [-v] [-o OPTION] [-f] file [file ...]"
-msgstr ""
+msgstr "python -m doctest [-v] [-o OPTION] [-f] file [file ...]"
 
 #: ../../library/doctest.rst:261
-#, fuzzy
 msgid ""
 "Detailed report of all examples tried is printed to standard output, "
 "along with assorted summaries at the end::"
-msgstr "그러면 시도한 모든 예제에 대한 자세한 보고서가 표준 출력으로 출력되고, 끝에 정돈된 요약이 붙습니다."
+msgstr "시도한 모든 예제에 대한 자세한 보고서가 표준 출력으로 출력되고, 끝에 정돈된 요약이 붙습니다::"
 
 #: ../../library/doctest.rst:264
 msgid "python -m doctest -v example.py"
-msgstr ""
+msgstr "python -m doctest -v example.py"
 
 #: ../../library/doctest.rst:266
-#, fuzzy
 msgid ""
 "This will import :file:`example.py` as a standalone module and run "
 ":func:`testmod` on it. Note that this may not work correctly if the file "
@@ -419,17 +519,16 @@ msgstr ""
 "파일이 패키지 일부이고 그 패키지에서 다른 서브 모듈을 임포트하면, 올바르게 작동하지 않을 수 있음에 유의하십시오."
 
 #: ../../library/doctest.rst:270
-#, fuzzy
 msgid ""
 "If the file name does not end with :file:`.py`, :mod:`!doctest` infers "
 "that it must be run with :func:`testfile` instead::"
 msgstr ""
-"파일 이름은 :file:`.py`\\로 끝나지 않으므로, :mod:`doctest`\\는 :func:`testmod`\\가 아니라 "
-":func:`testfile`\\로 실행되어야 한다고 추론합니다."
+"파일 이름이 :file:`.py`\\로 끝나지 않으면, :mod:`!doctest`\\는 대신 :func:`testfile`\\로 "
+"실행되어야 한다고 추론합니다::"
 
 #: ../../library/doctest.rst:273
 msgid "python -m doctest -v example.txt"
-msgstr ""
+msgstr "python -m doctest -v example.txt"
 
 #: ../../library/doctest.rst:277
 msgid ""
@@ -438,9 +537,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/doctest.rst:284
-#, fuzzy
 msgid "This is shorthand for ``-o FAIL_FAST``."
-msgstr "doctest 명령 줄은 옵션 ``-f``\\를 ``-o FAIL_FAST``\\의 축약으로 받아들입니다."
+msgstr "``-o FAIL_FAST``\\의 축약입니다."
 
 #: ../../library/doctest.rst:292
 msgid "How It Works"
@@ -471,7 +569,6 @@ msgid ""
 msgstr "모듈 독스트링과 모든 함수, 클래스 및 메서드 독스트링이 검색됩니다. 모듈로 임포트 된 객체는 검색되지 않습니다."
 
 #: ../../library/doctest.rst:310
-#, fuzzy
 msgid ""
 "In addition, there are cases when you want tests to be part of a module "
 "but not part of the help text, which requires that the tests not be "
@@ -483,9 +580,12 @@ msgid ""
 "treated as if they were docstrings.  In output, a key ``K`` in "
 "``M.__test__`` appears with name ``M.__test__.K``."
 msgstr ""
-"또한, ``M.__test__``\\가 존재하고 \"참이면\", 딕셔너리이어야 하고 각 항목은 (문자열) 이름을 함수 객체, 클래스"
+"또한, 테스트를 모듈의 일부로 포함시키고 싶지만 도움말 텍스트에는 포함시키고 싶지 않은 경우가 있습니다. 이 경우 테스트가 "
+"독스트링에 포함되지 않도록 해야 합니다. Doctest는 모듈 수준 변수인 ``__test__``\\를 보고 이를 통해 다른 "
+"테스트를 찾아냅니다. ``M.__test__``\\가 존재하면, 딕셔너리이어야 하고 각 항목은 (문자열) 이름을 함수 객체, 클래스"
 " 객체 또는 문자열에 매핑합니다. ``M.__test__``\\에서 발견된 함수와 클래스 객체 독스트링이 검색되고, 문자열은 "
-"독스트링인 것처럼 처리됩니다. 출력에서, ``M.__test__``\\의 키 ``K``\\가 이름으로 나타납니다 ::"
+"독스트링인 것처럼 처리됩니다. 출력에서, ``M.__test__``\\의 키 ``K``\\가 이름 "
+"``M.__test__.K``\\로 나타납니다."
 
 #: ../../library/doctest.rst:319
 msgid "For example, place this block of code at the top of :file:`example.py`:"
@@ -504,6 +604,15 @@ msgid ""
 "\"\"\"\n"
 "}"
 msgstr ""
+"__test__ = {\n"
+"    'numbers': \"\"\"\n"
+">>> factorial(6)\n"
+"720\n"
+"\n"
+">>> [factorial(n) for n in range(6)]\n"
+"[1, 1, 2, 6, 24, 120]\n"
+"\"\"\"\n"
+"}"
 
 #: ../../library/doctest.rst:333
 msgid ""
@@ -551,6 +660,21 @@ msgid ""
 "NO!!!\n"
 ">>>"
 msgstr ""
+">>> # 주석은 무시됩니다\n"
+">>> x = 12\n"
+">>> x\n"
+"12\n"
+">>> if x == 13:\n"
+"...     print(\"yes\")\n"
+"... else:\n"
+"...     print(\"no\")\n"
+"...     print(\"NO\")\n"
+"...     print(\"NO!!!\")\n"
+"...\n"
+"no\n"
+"NO\n"
+"NO!!!\n"
+">>>"
 
 #: ../../library/doctest.rst:373
 msgid ""
@@ -619,6 +743,11 @@ msgid ""
 ">>> print(f.__doc__)\n"
 "Backslashes in a raw docstring: m\\n"
 msgstr ""
+">>> def f(x):\n"
+"...     r'''Backslashes in a raw docstring: m\\n'''\n"
+"...\n"
+">>> print(f.__doc__)\n"
+"Backslashes in a raw docstring: m\\n"
 
 #: ../../library/doctest.rst:409
 msgid ""
@@ -638,6 +767,11 @@ msgid ""
 ">>> print(f.__doc__)\n"
 "Backslashes in a raw docstring: m\\n"
 msgstr ""
+">>> def f(x):\n"
+"...     '''Backslashes in a raw docstring: m\\\\n'''\n"
+"...\n"
+">>> print(f.__doc__)\n"
+"Backslashes in a raw docstring: m\\n"
 
 #: ../../library/doctest.rst:419
 msgid "The starting column doesn't matter::"
@@ -650,6 +784,10 @@ msgid ""
 "          >>> math.floor(1.9)\n"
 "          1"
 msgstr ""
+">>> assert \"Easy!\"\n"
+"      >>> import math\n"
+"          >>> math.floor(1.9)\n"
+"          1"
 
 #: ../../library/doctest.rst:426
 msgid ""
@@ -663,7 +801,6 @@ msgid "What's the Execution Context?"
 msgstr "실행 컨텍스트란 무엇입니까?"
 
 #: ../../library/doctest.rst:435
-#, fuzzy
 msgid ""
 "By default, each time :mod:`doctest` finds a docstring to test, it uses a"
 " *shallow copy* of :mod:`!M`'s globals, so that running tests doesn't "
@@ -673,11 +810,11 @@ msgid ""
 ":mod:`!M`, and names defined earlier in the docstring being run. Examples"
 " cannot see names defined in other docstrings."
 msgstr ""
-"기본적으로, :mod:`doctest`\\가 테스트할 독스트링을 찾을 때마다, :mod:`M`\\의 전역 이름 "
-"공간(globals)의 *앝은 복사*\\를 사용하므로, 실행 중인 테스트는 모듈의 실제 전역을 변경하지 않고, :mod:`M`\\의"
-" 한 테스트가 실수로 다른 테스트가 작동하도록 만드는 부스러기를 남기지 않습니다. 이는 예제가 :mod:`M`\\에서 최상위 수준에"
-" 정의된 이름과 실행 중인 독스트링에서 앞서 정의한 이름을 자유롭게 사용할 수 있음을 의미합니다. 예제는 다른 독스트링에 정의된 "
-"이름을 볼 수 없습니다."
+"기본적으로, :mod:`doctest`\\가 테스트할 독스트링을 찾을 때마다, :mod:`!M`\\의 전역 이름 "
+"공간(globals)의 *앝은 복사*\\를 사용하므로, 실행 중인 테스트는 모듈의 실제 전역을 변경하지 않고, "
+":mod:`!M`\\의 한 테스트가 실수로 다른 테스트가 작동하도록 만드는 부스러기를 남기지 않습니다. 이는 예제가 "
+":mod:`!M`\\에서 최상위 수준에 정의된 이름과 실행 중인 독스트링에서 앞서 정의한 이름을 자유롭게 사용할 수 있음을 "
+"의미합니다. 예제는 다른 독스트링에 정의된 이름을 볼 수 없습니다."
 
 #: ../../library/doctest.rst:443
 msgid ""
@@ -714,6 +851,10 @@ msgid ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "ValueError: list.remove(x): x not in list"
 msgstr ""
+">>> [1, 2, 3].remove(42)\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"ValueError: list.remove(x): x not in list"
 
 #: ../../library/doctest.rst:465
 msgid ""
@@ -735,6 +876,8 @@ msgid ""
 "Traceback (most recent call last):\n"
 "Traceback (innermost last):"
 msgstr ""
+"Traceback (most recent call last):\n"
+"Traceback (innermost last):"
 
 #: ../../library/doctest.rst:475
 msgid ""
@@ -764,6 +907,12 @@ msgid ""
 "    line\n"
 "detail"
 msgstr ""
+">>> raise ValueError('multi\\n    line\\ndetail')\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"ValueError: multi\n"
+"    line\n"
+"detail"
 
 #: ../../library/doctest.rst:491
 msgid ""
@@ -789,6 +938,12 @@ msgid ""
 "    line\n"
 "detail"
 msgstr ""
+">>> raise ValueError('multi\\n    line\\ndetail')\n"
+"Traceback (most recent call last):\n"
+"    ...\n"
+"ValueError: multi\n"
+"    line\n"
+"detail"
 
 #: ../../library/doctest.rst:504
 msgid ""
@@ -856,11 +1011,10 @@ msgstr ""
 "하는 드문 경우에는, 트레이스백 헤더 줄을 수동으로 테스트 예제에 추가해야 합니다."
 
 #: ../../library/doctest.rst:537
-#, fuzzy
 msgid ""
 "For some exceptions, Python displays the position of the error using "
 "``^`` markers and tildes::"
-msgstr "일부 :exc:`SyntaxError`\\의 경우, 파이썬은 ``^`` 마커를 사용하여 구문 에러의 문자 위치를 표시합니다::"
+msgstr "일부 예외의 경우, 파이썬은 ``^`` 마커와 물결표를 사용하여 에러의 위치를 표시합니다::"
 
 #: ../../library/doctest.rst:540
 msgid ""
@@ -870,6 +1024,11 @@ msgid ""
 "    ~~^~~~~~\n"
 "TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'"
 msgstr ""
+">>> 1 + None\n"
+"  File \"<stdin>\", line 1\n"
+"    1 + None\n"
+"    ~~^~~~~~\n"
+"TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'"
 
 #: ../../library/doctest.rst:546
 msgid ""
@@ -889,6 +1048,11 @@ msgid ""
 "    ^~~~~~~~\n"
 "TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'"
 msgstr ""
+">>> 1 + None\n"
+"  File \"<stdin>\", line 1\n"
+"    1 + None\n"
+"    ^~~~~~~~\n"
+"TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'"
 
 #: ../../library/doctest.rst:561
 msgid "Option Flags"
@@ -1005,6 +1169,17 @@ msgid ""
 "Traceback (most recent call last):\n"
 "__main__.Exception: message"
 msgstr ""
+">>> raise Exception('message')\n"
+"Traceback (most recent call last):\n"
+"Exception: message\n"
+"\n"
+">>> raise Exception('message')\n"
+"Traceback (most recent call last):\n"
+"builtins.Exception: message\n"
+"\n"
+">>> raise Exception('message')\n"
+"Traceback (most recent call last):\n"
+"__main__.Exception: message"
 
 #: ../../library/doctest.rst:642
 msgid ""
@@ -1125,7 +1300,7 @@ msgstr ""
 
 #: ../../library/doctest.rst:726
 msgid "MY_FLAG = register_optionflag('MY_FLAG')"
-msgstr ""
+msgstr "MY_FLAG = register_optionflag('MY_FLAG')"
 
 #: ../../library/doctest.rst:736
 msgid "Directives"
@@ -1159,9 +1334,8 @@ msgstr ""
 "``+``\\를 사용하고, 비활성화하려면 ``-``\\를 사용하십시오."
 
 #: ../../library/doctest.rst:756
-#, fuzzy
 msgid "For example, this test passes:"
-msgstr "예를 들어, 이 테스트는 통과합니다::"
+msgstr "예를 들어, 이 테스트는 통과합니다:"
 
 #: ../../library/doctest.rst:758
 msgid ""
@@ -1169,9 +1343,11 @@ msgid ""
 "[0,   1,  2,  3,  4,  5,  6,  7,  8,  9,\n"
 "10,  11, 12, 13, 14, 15, 16, 17, 18, 19]"
 msgstr ""
+">>> print(list(range(20)))  # doctest: +NORMALIZE_WHITESPACE\n"
+"[0,   1,  2,  3,  4,  5,  6,  7,  8,  9,\n"
+"10,  11, 12, 13, 14, 15, 16, 17, 18, 19]"
 
 #: ../../library/doctest.rst:765
-#, fuzzy
 msgid ""
 "Without the directive it would fail, both because the actual output "
 "doesn't have two blanks before the single-digit list elements, and "
@@ -1179,33 +1355,35 @@ msgid ""
 "and also requires a directive to do so:"
 msgstr ""
 "지시자가 없으면 실패하는데, 실제 출력에는 한 자리 숫자 리스트 요소 앞에 두 개의 공백이 없기도 하고, 실제 출력은 한 줄이기 "
-"때문입니다. 이 테스트도 통과하는데, 그러기 위해서 역시 지시자가 필요합니다::"
+"때문입니다. 이 테스트도 통과하는데, 그러기 위해서 역시 지시자가 필요합니다:"
 
 #: ../../library/doctest.rst:770
 msgid ""
 ">>> print(list(range(20)))  # doctest: +ELLIPSIS\n"
 "[0, 1, ..., 18, 19]"
 msgstr ""
+">>> print(list(range(20)))  # doctest: +ELLIPSIS\n"
+"[0, 1, ..., 18, 19]"
 
 #: ../../library/doctest.rst:776
-#, fuzzy
 msgid ""
 "Multiple directives can be used on a single physical line, separated by "
 "commas:"
-msgstr "하나의 물리적 줄에 여러 개의 지시자를 쉼표로 구분하여 사용할 수 있습니다::"
+msgstr "하나의 물리적 줄에 여러 개의 지시자를 쉼표로 구분하여 사용할 수 있습니다:"
 
 #: ../../library/doctest.rst:779
 msgid ""
 ">>> print(list(range(20)))  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE\n"
 "[0,    1, ...,   18,    19]"
 msgstr ""
+">>> print(list(range(20)))  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE\n"
+"[0,    1, ...,   18,    19]"
 
 #: ../../library/doctest.rst:785
-#, fuzzy
 msgid ""
 "If multiple directive comments are used for a single example, then they "
 "are combined:"
-msgstr "하나의 예제에 여러 개의 지시자 주석이 사용되면, 모두 결합합니다::"
+msgstr "하나의 예제에 여러 개의 지시자 주석이 사용되면, 모두 결합합니다:"
 
 #: ../../library/doctest.rst:788
 msgid ""
@@ -1213,16 +1391,18 @@ msgid ""
 "...                         # doctest: +NORMALIZE_WHITESPACE\n"
 "[0,    1, ...,   18,    19]"
 msgstr ""
+">>> print(list(range(20)))  # doctest: +ELLIPSIS\n"
+"...                         # doctest: +NORMALIZE_WHITESPACE\n"
+"[0,    1, ...,   18,    19]"
 
 #: ../../library/doctest.rst:795
-#, fuzzy
 msgid ""
 "As the previous example shows, you can add ``...`` lines to your example "
 "containing only directives.  This can be useful when an example is too "
 "long for a directive to comfortably fit on the same line:"
 msgstr ""
 "앞의 예가 보여주듯이, 여러분의 예제에 지시자만 포함된 ``...`` 줄을 추가할 수 있습니다. 예가 너무 길어서 지시자가 같은 "
-"줄에 편안하게 들어갈 수 없을 때 유용할 수 있습니다::"
+"줄에 편안하게 들어갈 수 없을 때 유용할 수 있습니다:"
 
 #: ../../library/doctest.rst:799
 msgid ""
@@ -1230,6 +1410,9 @@ msgid ""
 "... # doctest: +ELLIPSIS\n"
 "[0, ..., 4, 10, ..., 19, 30, ..., 39]"
 msgstr ""
+">>> print(list(range(5)) + list(range(10, 20)) + list(range(30, 40)))\n"
+"... # doctest: +ELLIPSIS\n"
+"[0, ..., 4, 10, ..., 19, 30, ..., 39]"
 
 #: ../../library/doctest.rst:806
 msgid ""
@@ -1268,6 +1451,8 @@ msgid ""
 ">>> foo()\n"
 "{\"spam\", \"eggs\"}"
 msgstr ""
+">>> foo()\n"
+"{\"spam\", \"eggs\"}"
 
 #: ../../library/doctest.rst:827
 msgid "is vulnerable!  One workaround is to do ::"
@@ -1279,6 +1464,8 @@ msgid ""
 ">>> foo() == {\"spam\", \"eggs\"}\n"
 "True"
 msgstr ""
+">>> foo() == {\"spam\", \"eggs\"}\n"
+"True"
 
 #: ../../library/doctest.rst:832
 msgid "instead.  Another is to do ::"
@@ -1290,15 +1477,17 @@ msgid ""
 ">>> d\n"
 "['eggs', 'spam']"
 msgstr ""
+">>> d = sorted(foo())\n"
+">>> d\n"
+"['eggs', 'spam']"
 
 #: ../../library/doctest.rst:838
 msgid "There are others, but you get the idea."
 msgstr "다른 것들도 있지만, 아마 아이디어를 얻었을 겁니다."
 
 #: ../../library/doctest.rst:840
-#, fuzzy
 msgid "Another bad idea is to print things that embed an object address, like"
-msgstr "또 다른 나쁜 생각은 객체 주소를 포함하는 것들을 출력하는 것입니다 ::"
+msgstr "또 다른 나쁜 생각은 객체 주소를 포함하는 것들을 출력하는 것입니다"
 
 #: ../../library/doctest.rst:842
 msgid ""
@@ -1308,19 +1497,25 @@ msgid ""
 ">>> C()  # the default repr() for instances embeds an address\n"
 "<C object at 0x00AC18F0>"
 msgstr ""
+">>> id(1.0)  # 때로 실패할 것이 확실합니다\n"
+"7948648\n"
+">>> class C: pass\n"
+">>> C()  # 인스턴스에 대한 기본 repr()은 주소를 포함합니다\n"
+"<C object at 0x00AC18F0>"
 
 #: ../../library/doctest.rst:850
-#, fuzzy
 msgid ""
 "The :const:`ELLIPSIS` directive gives a nice approach for the last "
 "example:"
-msgstr ":const:`ELLIPSIS` 지시자는 마지막 예제를 다루는 좋은 접근법을 제공합니다 ::"
+msgstr ":const:`ELLIPSIS` 지시자는 마지막 예제를 다루는 좋은 접근법을 제공합니다:"
 
 #: ../../library/doctest.rst:852
 msgid ""
 ">>> C()  # doctest: +ELLIPSIS\n"
 "<C object at 0x...>"
 msgstr ""
+">>> C()  # doctest: +ELLIPSIS\n"
+"<C object at 0x...>"
 
 #: ../../library/doctest.rst:858
 msgid ""
@@ -1340,6 +1535,12 @@ msgid ""
 ">>> print(round(1./7, 6)) # much safer\n"
 "0.142857"
 msgstr ""
+">>> 1./7  # 위험합니다\n"
+"0.14285714285714285\n"
+">>> print(1./7) # 더 안전합니다\n"
+"0.142857142857\n"
+">>> print(round(1./7, 6)) # 훨씬 더 안전합니다\n"
+"0.142857"
 
 #: ../../library/doctest.rst:869
 msgid ""
@@ -1354,6 +1555,8 @@ msgid ""
 ">>> 3./4  # utterly safe\n"
 "0.75"
 msgstr ""
+">>> 3./4  # 완전히 안전합니다\n"
+"0.75"
 
 #: ../../library/doctest.rst:875
 msgid ""
@@ -1538,16 +1741,15 @@ msgstr ""
 "함수와 클래스의 독스트링에 있는 예제를 테스트합니다. ``m.__doc__``\\으로 시작합니다."
 
 #: ../../library/doctest.rst:969
-#, fuzzy
 msgid ""
 "Also test examples reachable from dict ``m.__test__``, if it exists. "
 "``m.__test__`` maps names (strings) to functions, classes and strings; "
 "function and class docstrings are searched for examples; strings are "
 "searched directly, as if they were docstrings."
 msgstr ""
-"딕셔너리 ``m.__test__``\\이 존재하고 ``None``\\이 아니면, 여기에서 도달할 수 있는 예제도 테스트합니다. "
-"``m.__test__``\\는 이름(문자열)을 함수, 클래스 및 문자열에 매핑합니다; 함수와 클래스 독스트링에서 예제를 "
-"검색합니다; 문자열은 그것이 독스트링인 것처럼 직접 검색합니다."
+"딕셔너리 ``m.__test__``\\이 존재하면, 여기에서 도달할 수 있는 예제도 테스트합니다. ``m.__test__``\\는 "
+"이름(문자열)을 함수, 클래스 및 문자열에 매핑합니다; 함수와 클래스 독스트링에서 예제를 검색합니다; 문자열은 그것이 독스트링인 "
+"것처럼 직접 검색합니다."
 
 #: ../../library/doctest.rst:974
 msgid "Only docstrings attached to objects belonging to module *m* are searched."
@@ -1566,7 +1768,6 @@ msgstr ""
 " 사용됩니다."
 
 #: ../../library/doctest.rst:981
-#, fuzzy
 msgid ""
 "Optional argument *exclude_empty* defaults to false.  If true, objects "
 "for which no doctests are found are excluded from consideration. The "
@@ -1578,8 +1779,9 @@ msgid ""
 msgstr ""
 "선택적 인자 *exclude_empty*\\의 기본값은 거짓입니다. 참이면, doctest가 발견되지 않은 객체는 고려 대상에서 "
 "제외됩니다. 기본값은 이전 버전과의 호환성을 위한 해킹입니다, 여전히 :func:`testmod`\\와 함께 "
-":meth:`doctest.master.summarize`\\를 사용하는 코드는 테스트가 없는 객체에 대해 계속 출력합니다. 새로운"
-" :class:`DocTestFinder` 생성자에 대한 *exclude_empty* 인자의 기본값은 참입니다."
+":meth:`doctest.master.summarize <DocTestRunner.summarize>`\\를 사용하는 코드는 "
+"테스트가 없는 객체에 대해 계속 출력합니다. 새로운 :class:`DocTestFinder` 생성자에 대한 "
+"*exclude_empty* 인자의 기본값은 참입니다."
 
 #: ../../library/doctest.rst:989
 msgid ""
@@ -1637,7 +1839,6 @@ msgid "Unittest API"
 msgstr "Unittest API"
 
 #: ../../library/doctest.rst:1019
-#, fuzzy
 msgid ""
 "As your collection of doctest'ed modules grows, you'll want a way to run "
 "all their doctests systematically.  :mod:`doctest` provides two functions"
@@ -1649,7 +1850,7 @@ msgstr ""
 "doctest된 모듈 모음이 늘어남에 따라, 모든 doctest를 체계적으로 실행하는 방법이 필요합니다. "
 ":mod:`doctest`\\는 doctest가 포함된 모듈과 텍스트 파일로부터 :mod:`unittest` 테스트 스위트를 만드는"
 " 데 사용할 수 있는 두 가지 함수를 제공합니다. :mod:`unittest` 테스트 탐색과 통합하려면, 테스트 모듈에 "
-":func:`load_tests` 함수를 포함하십시오::"
+":ref:`load_tests <load_tests-protocol>` 함수를 포함하십시오::"
 
 #: ../../library/doctest.rst:1025
 msgid ""
@@ -1661,6 +1862,13 @@ msgid ""
 "    tests.addTests(doctest.DocTestSuite(my_module_with_doctests))\n"
 "    return tests"
 msgstr ""
+"import unittest\n"
+"import doctest\n"
+"import my_module_with_doctests\n"
+"\n"
+"def load_tests(loader, tests, ignore):\n"
+"    tests.addTests(doctest.DocTestSuite(my_module_with_doctests))\n"
+"    return tests"
 
 #: ../../library/doctest.rst:1033
 msgid ""
@@ -1677,7 +1885,6 @@ msgid ""
 msgstr "하나 이상의 텍스트 파일로부터 doctest 테스트를 :class:`unittest.TestSuite`\\로 변환합니다."
 
 #: ../../library/doctest.rst:1042
-#, fuzzy
 msgid ""
 "The returned :class:`unittest.TestSuite` is to be run by the unittest "
 "framework and runs the interactive examples in each file.  If an example "
@@ -1689,7 +1896,8 @@ msgid ""
 msgstr ""
 "반환된 :class:`unittest.TestSuite`\\는 unittest 프레임워크에 의해 실행되고, 각 파일에 있는 대화식 "
 "예제를 실행합니다. 어떤 파일의 예제가 실패하면, 합성된 단위 테스트가 실패하고, 테스트를 포함하는 파일의 이름과 (때로는 "
-"근사치인) 줄 번호를 보여주는 :exc:`failureException` 예외가 발생합니다."
+"근사치인) 줄 번호를 보여주는 :exc:`failureException` 예외가 발생합니다. 파일 내의 모든 예제를 건너 뛴 경우,"
+" 합성된 단위 테스트도 건너뛴 것으로 표시됩니다."
 
 #: ../../library/doctest.rst:1049
 msgid "Pass one or more paths (as strings) to text files to be examined."
@@ -1800,7 +2008,6 @@ msgid "Convert doctest tests for a module to a :class:`unittest.TestSuite`."
 msgstr "모듈에 대한 doctest 테스트를 :class:`unittest.TestSuite`\\로 변환합니다."
 
 #: ../../library/doctest.rst:1109
-#, fuzzy
 msgid ""
 "The returned :class:`unittest.TestSuite` is to be run by the unittest "
 "framework and runs each doctest in the module.  If any of the doctests "
@@ -1812,7 +2019,8 @@ msgid ""
 msgstr ""
 "반환된 :class:`unittest.TestSuite`\\는 unittest 프레임워크에 의해 실행되고, 모듈에 있는 각 "
 "doctest를 실행합니다. 어떤 doctest가 실패하면, 합성된 단위 테스트가 실패하고, 테스트를 포함하는 파일의 이름과 "
-"(때로는 근사치인) 줄 번호를 보여주는 :exc:`failureException` 예외가 발생합니다."
+"(때로는 근사치인) 줄 번호를 보여주는 :exc:`failureException` 예외가 발생합니다. 독스트링 내의 모든 예제를 "
+"건너 뛴 경우, 합성된 단위 테스트도 건너뛴 것으로 표시됩니다."
 
 #: ../../library/doctest.rst:1116
 msgid ""
@@ -1869,7 +2077,6 @@ msgid ""
 msgstr ""
 
 #: ../../library/doctest.rst:1145
-#, fuzzy
 msgid ""
 "Under the covers, :func:`DocTestSuite` creates a "
 ":class:`unittest.TestSuite` out of :class:`!doctest.DocTestCase` "
@@ -1878,25 +2085,23 @@ msgid ""
 "(it's an internal detail), but studying its code can answer questions "
 "about the exact details of :mod:`unittest` integration."
 msgstr ""
-"수면 아래에서, :func:`DocTestSuite`\\는 :class:`doctest.DocTestCase` 인스턴스에서 "
-":class:`unittest.TestSuite`\\를 만들고, :class:`DocTestCase`\\는 "
-":class:`unittest.TestCase`\\의 서브 클래스입니다. :class:`DocTestCase`\\는 여기에서 "
+"수면 아래에서, :func:`DocTestSuite`\\는 :class:`!doctest.DocTestCase` 인스턴스에서 "
+":class:`unittest.TestSuite`\\를 만들고, :class:`!DocTestCase`\\는 "
+":class:`unittest.TestCase`\\의 서브 클래스입니다. :class:`!DocTestCase`\\는 여기에서 "
 "설명되지는 않지만 (내부 세부 사항입니다), 그것의 코드를 살펴보면 :mod:`unittest` 통합의 정확한 세부 사항에 대한 "
 "질문에 대한 답을 얻을 수 있습니다."
 
 #: ../../library/doctest.rst:1151
-#, fuzzy
 msgid ""
 "Similarly, :func:`DocFileSuite` creates a :class:`unittest.TestSuite` out"
 " of :class:`!doctest.DocFileCase` instances, and :class:`!DocFileCase` is"
 " a subclass of :class:`!DocTestCase`."
 msgstr ""
-"마찬가지로, :func:`DocFileSuite`\\는 :class:`doctest.DocFileCase` 인스턴스에서 "
-":class:`unittest.TestSuite`\\를 만들고, :class:`DocFileCase`\\는 "
-":class:`DocTestCase`\\의 서브 클래스입니다."
+"마찬가지로, :func:`DocFileSuite`\\는 :class:`!doctest.DocFileCase` 인스턴스에서 "
+":class:`unittest.TestSuite`\\를 만들고, :class:`!DocFileCase`\\는 "
+":class:`!DocTestCase`\\의 서브 클래스입니다."
 
 #: ../../library/doctest.rst:1155
-#, fuzzy
 msgid ""
 "So both ways of creating a :class:`unittest.TestSuite` run instances of "
 ":class:`!DocTestCase`.  This is important for a subtle reason: when you "
@@ -1909,13 +2114,13 @@ msgid ""
 "no way to pass options through :mod:`unittest` to :mod:`doctest` test "
 "runners."
 msgstr ""
-"따라서 :class:`unittest.TestSuite`\\를 만드는 두 가지 방법 모두 :class:`DocTestCase`\\의"
-" 인스턴스를 실행합니다. 이것은 미묘한 이유로 중요합니다: 여러분이 :mod:`doctest` 함수를 직접 실행할 때, 옵션 "
-"플래그를 :mod:`doctest` 함수에 전달하여 사용 중인 :mod:`doctest` 옵션을 직접 제어할 수 있습니다. 그러나,"
-" :mod:`unittest` 프레임워크를 작성한다면, :mod:`unittest`\\가 테스트가 언제 어떻게 실행되는지 궁극적으로"
-" 제어합니다. 프레임워크 저자는 일반적으로 :mod:`doctest` (아마도, 예를 들어, 명령 줄 옵션으로 지정하는) "
-"보고(reporting) 옵션을 제어하려고 하지만, :mod:`unittest`\\를 통해 :mod:`doctest` 테스트 "
-"실행기로 옵션을 전달할 방법이 없습니다."
+"따라서 :class:`unittest.TestSuite`\\를 만드는 두 가지 방법 모두 "
+":class:`!DocTestCase`\\의 인스턴스를 실행합니다. 이것은 미묘한 이유로 중요합니다: 여러분이 "
+":mod:`doctest` 함수를 직접 실행할 때, 옵션 플래그를 :mod:`doctest` 함수에 전달하여 사용 중인 "
+":mod:`doctest` 옵션을 직접 제어할 수 있습니다. 그러나, :mod:`unittest` 프레임워크를 작성한다면, "
+":mod:`unittest`\\가 테스트가 언제 어떻게 실행되는지 궁극적으로 제어합니다. 프레임워크 저자는 일반적으로 "
+":mod:`doctest` (아마도, 예를 들어, 명령 줄 옵션으로 지정하는) 보고(reporting) 옵션을 제어하려고 하지만, "
+":mod:`unittest`\\를 통해 :mod:`doctest` 테스트 실행기로 옵션을 전달할 방법이 없습니다."
 
 #: ../../library/doctest.rst:1165
 msgid ""
@@ -1939,7 +2144,6 @@ msgstr ""
 "options` 절을 참조하십시오. \"보고 플래그\"만 사용할 수 있습니다."
 
 #: ../../library/doctest.rst:1176
-#, fuzzy
 msgid ""
 "This is a module-global setting, and affects all future doctests run by "
 "module :mod:`unittest`:  the :meth:`!runTest` method of "
@@ -1954,12 +2158,12 @@ msgid ""
 "flags are ignored."
 msgstr ""
 "이것은 모듈 전역 설정이며, 모듈 :mod:`unittest`\\에 의해 실행되는 모든 미래의 doctest에 영향을 줍니다. "
-":class:`DocTestCase`\\의 :meth:`runTest` 메서드는 :class:`DocTestCase` 인스턴스가 "
-"생성될 때 테스트 케이스에 대해 지정된 옵션 플래그를 봅니다. 보고 플래그가 지정되지 않았으면 (이것이 일반적이고 예상되는 "
-"경우입니다), :mod:`doctest`\\의 :mod:`unittest`\\보고 플래그는 옵션 플래그에 :ref:`비트별 OR "
-"<bitwise>`\\되고, 이렇게 손질된 옵션 플래그가 doctest를 실행하기 위해 만들어진 "
-":class:`DocTestRunner` 인스턴스로 전달됩니다. :class:`DocTestCase` 인스턴스가 생성될 때 보고 "
-"플래그가 지정되었으면, :mod:`doctest`\\의 :mod:`unittest` 보고 플래그는 무시됩니다."
+":class:`!DocTestCase`\\의 :meth:`!runTest` 메서드는 :class:`!DocTestCase` "
+"인스턴스가 생성될 때 테스트 케이스에 대해 지정된 옵션 플래그를 봅니다. 보고 플래그가 지정되지 않았으면 (이것이 일반적이고 "
+"예상되는 경우입니다), :mod:`!doctest`\\의 :mod:`unittest`\\보고 플래그는 옵션 플래그에 "
+":ref:`비트별 OR <bitwise>`\\되고, 이렇게 손질된 옵션 플래그가 doctest를 실행하기 위해 만들어진 "
+":class:`DocTestRunner` 인스턴스로 전달됩니다. :class:`!DocTestCase` 인스턴스가 생성될 때 보고 "
+"플래그가 지정되었으면, :mod:`!doctest`\\의 :mod:`unittest` 보고 플래그는 무시됩니다."
 
 #: ../../library/doctest.rst:1187
 msgid ""
@@ -2051,6 +2255,14 @@ msgid ""
 "           DocTestParser   | Example |   OutputChecker\n"
 "                           +---------+"
 msgstr ""
+"list of:\n"
+"+------+                   +---------+\n"
+"|module| --DocTestFinder-> | DocTest | --DocTestRunner-> results\n"
+"+------+    |        ^     +---------+     |       ^    (printed)\n"
+"            |        |     | Example |     |       |\n"
+"            v        |     |   ...   |     v       |\n"
+"           DocTestParser   | Example |   OutputChecker\n"
+"                           +---------+"
 
 #: ../../library/doctest.rst:1242
 msgid "DocTest Objects"
@@ -2180,7 +2392,6 @@ msgid ""
 msgstr "포함하는 문자열 내에서의 이 예제의 들여쓰기, 즉 예제의 첫 번째 프롬프트 앞에 오는 스페이스 문자의 수."
 
 #: ../../library/doctest.rst:1351
-#, fuzzy
 msgid ""
 "A dictionary mapping from option flags to ``True`` or ``False``, which is"
 " used to override default options for this example.  Any option flags not"
@@ -2189,8 +2400,8 @@ msgid ""
 "options>`). By default, no options are set."
 msgstr ""
 "옵션 플래그에서 ``True``\\나 ``False`` 로 매핑하는 딕셔너리, 이 예제의 기본 옵션을 재정의하는 데 사용됩니다. 이"
-" 딕셔너리에 포함되지 않은 옵션 플래그는 (:class:`DocTestRunner`\\의 :attr:`optionflags`\\에 "
-"지정된 대로) 기본값으로 남습니다. 기본적으로, 아무런 옵션도 설정되지 않습니다."
+" 딕셔너리에 포함되지 않은 옵션 플래그는 (:class:`DocTestRunner`\\의 :ref:`optionflags "
+"<doctest-options>`\\에 지정된 대로) 기본값으로 남습니다. 기본적으로, 아무런 옵션도 설정되지 않습니다."
 
 #: ../../library/doctest.rst:1361
 msgid "DocTestFinder objects"
@@ -2372,9 +2583,8 @@ msgstr ""
 " 이름이며, 에러 메시지에만 사용됩니다."
 
 #: ../../library/doctest.rst:1465
-#, fuzzy
 msgid "TestResults objects"
-msgstr "DocTest 객체"
+msgstr "TestResults 객체"
 
 #: ../../library/doctest.rst:1472
 msgid "Number of failed tests."
@@ -2412,7 +2622,6 @@ msgstr ""
 "않으면, :class:`OutputChecker`\\의 서브 클래스를 생성자에 전달하여 비교를 사용자 정의할 수도 있습니다."
 
 #: ../../library/doctest.rst:1502
-#, fuzzy
 msgid ""
 "The test runner's display output can be controlled in two ways. First, an"
 " output function can be passed to :meth:`run`; this function will be "
@@ -2422,12 +2631,11 @@ msgid ""
 "and overriding the methods :meth:`report_start`, :meth:`report_success`, "
 ":meth:`report_unexpected_exception`, and :meth:`report_failure`."
 msgstr ""
-"테스트 실행기의 디스플레이 출력은 두 가지 방법으로 제어할 수 있습니다. 첫째, 출력 함수를 "
-":meth:`TestRunner.run`\\로 전달할 수 있습니다; 이 함수는 표시되어야 하는 문자열로 호출됩니다. 기본값은 "
-"``sys.stdout.write``\\입니다. 출력을 캡처하는 것으로 충분하지 않으면, DocTestRunner를 서브 클래싱하고"
-" :meth:`report_start`, :meth:`report_success`, "
-":meth:`report_unexpected_exception` 및 :meth:`report_failure` 메서드를 재정의하여 "
-"디스플레이 출력을 사용자 정의할 수 있습니다."
+"테스트 실행기의 디스플레이 출력은 두 가지 방법으로 제어할 수 있습니다. 첫째, 출력 함수를 :meth:`run`\\로 전달할 수 "
+"있습니다; 이 함수는 표시되어야 하는 문자열로 호출됩니다. 기본값은 ``sys.stdout.write``\\입니다. 출력을 캡처하는"
+" 것으로 충분하지 않으면, DocTestRunner를 서브 클래싱하고 :meth:`report_start`, "
+":meth:`report_success`, :meth:`report_unexpected_exception` 및 "
+":meth:`report_failure` 메서드를 재정의하여 디스플레이 출력을 사용자 정의할 수 있습니다."
 
 #: ../../library/doctest.rst:1510
 msgid ""
@@ -2473,9 +2681,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/doctest.rst:1529
-#, fuzzy
 msgid ":class:`DocTestRunner` defines the following methods:"
-msgstr ":class:`DocTestParser`\\는 다음 메서드를 정의합니다:"
+msgstr ":class:`DocTestRunner`\\는 다음 메서드를 정의합니다:"
 
 #: ../../library/doctest.rst:1534
 msgid ""
@@ -2543,12 +2750,13 @@ msgstr ""
 "*out*\\은 :meth:`DocTestRunner.run`\\에 전달된 출력 함수입니다."
 
 #: ../../library/doctest.rst:1579
-#, fuzzy
 msgid ""
 "Run the examples in *test* (a :class:`DocTest` object), and display the "
 "results using the writer function *out*. Return a :class:`TestResults` "
 "instance."
-msgstr "*test*\\(:class:`DocTest` 객체)에 있는 예제를 실행하고, 출력 함수 *out*\\을 사용하여 결과를 표시합니다."
+msgstr ""
+"*test*\\(:class:`DocTest` 객체)에 있는 예제를 실행하고, 출력 함수 *out*\\을 사용하여 결과를 "
+"표시합니다. :class:`TestResults` 인스턴스를 반환합니다."
 
 #: ../../library/doctest.rst:1583
 msgid ""
@@ -2571,23 +2779,21 @@ msgstr ""
 "*globs*\\에 적용되는 퓨처-임포트 플래그 집합이 기본값이 됩니다."
 
 #: ../../library/doctest.rst:1592
-#, fuzzy
 msgid ""
 "The output of each example is checked using the :class:`DocTestRunner`'s "
 "output checker, and the results are formatted by the "
 ":meth:`!DocTestRunner.report_\\*` methods."
 msgstr ""
 "각 예제의 출력은 :class:`DocTestRunner`\\의 출력 검사기를 사용하여 검사되며, 결과는 "
-":meth:`DocTestRunner.report_\\*` 메서드로 포맷됩니다."
+":meth:`!DocTestRunner.report_\\*` 메서드로 포맷됩니다."
 
 #: ../../library/doctest.rst:1599
-#, fuzzy
 msgid ""
 "Print a summary of all the test cases that have been run by this "
 "DocTestRunner, and return a :class:`TestResults` instance."
 msgstr ""
-"이 DocTestRunner가 실행 한 모든 테스트 케이스의 요약을 인쇄하고, :term:`네임드 튜플 <named tuple>` "
-"``TestResults(failed, attempted)``\\를 반환합니다."
+"이 DocTestRunner가 실행 한 모든 테스트 케이스의 요약을 인쇄하고, :class:`TestResults` 인스턴스를 "
+"반환합니다."
 
 #: ../../library/doctest.rst:1602
 msgid ""
@@ -2599,9 +2805,8 @@ msgstr ""
 ":class:`DocTestRunner`\\의 상세도가 사용됩니다."
 
 #: ../../library/doctest.rst:1606
-#, fuzzy
 msgid ":class:`DocTestParser` has the following attributes:"
-msgstr ":exc:`DocTestFailure`\\는 다음 어트리뷰트를 정의합니다:"
+msgstr ":class:`DocTestParser`\\는 다음과 같은 어트리뷰트를 갖습니다:"
 
 #: ../../library/doctest.rst:1610
 msgid "Number of attempted examples."
@@ -2714,6 +2919,15 @@ msgid ""
 "9\n"
 "\"\"\""
 msgstr ""
+"\"\"\"\n"
+">>> def f(x):\n"
+"...     g(x*2)\n"
+">>> def g(x):\n"
+"...     print(x+3)\n"
+"...     import pdb; pdb.set_trace()\n"
+">>> f(3)\n"
+"9\n"
+"\"\"\""
 
 #: ../../library/doctest.rst:1689
 msgid "Then an interactive Python session may look like this::"
@@ -2751,6 +2965,35 @@ msgid ""
 "(0, 3)\n"
 ">>>"
 msgstr ""
+">>> import a, doctest\n"
+">>> doctest.testmod(a)\n"
+"--Return--\n"
+"> <doctest a[1]>(3)g()->None\n"
+"-> import pdb; pdb.set_trace()\n"
+"(Pdb) list\n"
+"  1     def g(x):\n"
+"  2         print(x+3)\n"
+"  3  ->     import pdb; pdb.set_trace()\n"
+"[EOF]\n"
+"(Pdb) p x\n"
+"6\n"
+"(Pdb) step\n"
+"--Return--\n"
+"> <doctest a[0]>(2)f()->None\n"
+"-> g(x*2)\n"
+"(Pdb) list\n"
+"  1     def f(x):\n"
+"  2  ->     g(x*2)\n"
+"[EOF]\n"
+"(Pdb) p x\n"
+"3\n"
+"(Pdb) step\n"
+"--Return--\n"
+"> <doctest a[2]>(1)?()->None\n"
+"-> f(3)\n"
+"(Pdb) cont\n"
+"(0, 3)\n"
+">>>"
 
 #: ../../library/doctest.rst:1722
 msgid ""
@@ -2785,6 +3028,15 @@ msgid ""
 "    3\n"
 "\"\"\"))"
 msgstr ""
+"import doctest\n"
+"print(doctest.script_from_examples(r\"\"\"\n"
+"    Set x and y to 1 and 2.\n"
+"    >>> x, y = 1, 2\n"
+"\n"
+"    Print their sum:\n"
+"    >>> print(x+y)\n"
+"    3\n"
+"\"\"\"))"
 
 #: ../../library/doctest.rst:1745
 msgid "displays::"
@@ -2800,6 +3052,13 @@ msgid ""
 "# Expected:\n"
 "## 3"
 msgstr ""
+"# Set x and y to 1 and 2.\n"
+"x, y = 1, 2\n"
+"#\n"
+"# Print their sum:\n"
+"print(x+y)\n"
+"# Expected:\n"
+"## 3"
 
 #: ../../library/doctest.rst:1755
 msgid ""
@@ -2813,7 +3072,6 @@ msgid "Convert the doctest for an object to a script."
 msgstr "객체에 대한 doctest를 스크립트로 변환합니다."
 
 #: ../../library/doctest.rst:1764
-#, fuzzy
 msgid ""
 "Argument *module* is a module object, or dotted name of a module, "
 "containing the object whose doctests are of interest.  Argument *name* is"
@@ -2826,20 +3084,21 @@ msgstr ""
 "인자 *module*\\은 doctest가 관심 대상인 객체를 포함하는 모듈 객체나 모듈의 점으로 구분된 이름입니다. 인자 "
 "*name*\\은 doctest가 관심 대상인 객체의 (모듈 내에서의) 이름입니다. 결과는 위의 "
 ":func:`script_from_examples`\\에서 설명한 대로 파이썬 스크립트로 변환된 객체의 독스트링을 포함하는 "
-"문자열입니다. 예를 들어, 모듈 :file:`a.py`\\에 최상위 함수 :func:`f`\\가 포함되었다면, ::"
+"문자열입니다. 예를 들어, 모듈 :file:`a.py`\\에 최상위 함수 :func:`!f`\\가 포함되었다면, ::"
 
 #: ../../library/doctest.rst:1771
 msgid ""
 "import a, doctest\n"
 "print(doctest.testsource(a, \"a.f\"))"
 msgstr ""
+"import a, doctest\n"
+"print(doctest.testsource(a, \"a.f\"))"
 
 #: ../../library/doctest.rst:1774
-#, fuzzy
 msgid ""
 "prints a script version of function :func:`!f`'s docstring, with doctests"
 " converted to code, and the rest placed in comments."
-msgstr "는 doctest가 코드로 변환되고 나머지는 주석으로 배치된, 함수 :func:`f`\\의 독스트링의 스크립트 버전을 인쇄합니다."
+msgstr "는 doctest가 코드로 변환되고 나머지는 주석으로 배치된, 함수 :func:`!f`\\의 독스트링의 스크립트 버전을 인쇄합니다."
 
 #: ../../library/doctest.rst:1780
 msgid "Debug the doctests for an object."
@@ -3131,6 +3390,20 @@ msgid ""
 "        fail, total = doctest.testmod(optionflags=flags)\n"
 "        print(f\"{fail} failures out of {total} tests\")"
 msgstr ""
+"if __name__ == '__main__':\n"
+"    import doctest\n"
+"    flags = doctest.REPORT_NDIFF|doctest.FAIL_FAST\n"
+"    if len(sys.argv) > 1:\n"
+"        name = sys.argv[1]\n"
+"        if name in globals():\n"
+"            obj = globals()[name]\n"
+"        else:\n"
+"            obj = __test__[name]\n"
+"        doctest.run_docstring_examples(obj, globals(), name=name,\n"
+"                                       optionflags=flags)\n"
+"    else:\n"
+"        fail, total = doctest.testmod(optionflags=flags)\n"
+"        print(f\"{fail} failures out of {total} tests\")"
 
 #: ../../library/doctest.rst:1964
 msgid "Footnotes"
@@ -3147,44 +3420,43 @@ msgstr ""
 
 #: ../../library/doctest.rst:369
 msgid ">>>"
-msgstr ""
+msgstr ">>>"
 
 #: ../../library/doctest.rst:369
 msgid "interpreter prompt"
-msgstr ""
+msgstr "인터프리터 프롬프트"
 
 #: ../../library/doctest.rst:369 ../../library/doctest.rst:604
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: ../../library/doctest.rst:535
 msgid "^ (caret)"
-msgstr ""
+msgstr "^ (캐럿)"
 
 #: ../../library/doctest.rst:535
 msgid "marker"
-msgstr ""
+msgstr "마커"
 
 #: ../../library/doctest.rst:584
 msgid "<BLANKLINE>"
-msgstr ""
+msgstr "<BLANKLINE>"
 
 #: ../../library/doctest.rst:604 ../../library/doctest.rst:729
-#, fuzzy
 msgid "in doctests"
-msgstr "DocTest 객체"
+msgstr "doctest 에서"
 
 #: ../../library/doctest.rst:729
 msgid "# (hash)"
-msgstr ""
+msgstr "# (해시)"
 
 #: ../../library/doctest.rst:729
 msgid "+ (plus)"
-msgstr ""
+msgstr "+ (플러스)"
 
 #: ../../library/doctest.rst:729
 msgid "- (minus)"
-msgstr ""
+msgstr "- (마이너스)"
 
 #~ msgid ""
 #~ "There is also a command line "
