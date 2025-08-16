@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/unittest.rst:2
-#, fuzzy
 msgid ":mod:`!unittest` --- Unit testing framework"
-msgstr ":mod:`unittest` --- 단위 테스트 프레임워크"
+msgstr ":mod:`!unittest` --- 단위 테스트 프레임워크"
 
 #: ../../library/unittest.rst:12
 msgid "**Source code:** :source:`Lib/unittest/__init__.py`"
@@ -170,7 +169,6 @@ msgid ""
 msgstr "파이썬에서 테스트하기와 테스트 도구에 대해 논의하는 특정-주제-그룹(special-interest-group)"
 
 #: ../../library/unittest.rst:71
-#, fuzzy
 msgid ""
 "The script :file:`Tools/unittestgui/unittestgui.py` in the Python source "
 "distribution is a GUI tool for test discovery and execution.  This is "
@@ -183,8 +181,9 @@ msgid ""
 msgstr ""
 "파이썬 소스 배포판에 있는 :file:`Tools/unittestgui/unittestgui.py` 스크립트는 테스트 탐색 및 "
 "실행을 위한 GUI 도구입니다. 이것은 단위 테스트가 처음인 사람들이 쉽게 사용할 수 있도록 만들어졌습니다. 라이브 환경에서는 "
-"`Buildbot <https://buildbot.net/>`_, `Jenkins <https://jenkins.io/>`_, "
-"`Travis-CI <https://travis-ci.com>`_ 또는  `AppVeyor "
+"`Buildbot <https://buildbot.net/>`_, `Jenkins "
+"<https://www.jenkins.io/>`_, `GitHub Actions "
+"<https://github.com/features/actions>`_ 또는  `AppVeyor "
 "<https://www.appveyor.com/>`_\\와 같은 지속적인 통합 시스템을 이용하여 테스트가 이루어지길 추천합니다."
 
 #: ../../library/unittest.rst:83
@@ -227,6 +226,26 @@ msgid ""
 "if __name__ == '__main__':\n"
 "    unittest.main()"
 msgstr ""
+"import unittest\n"
+"\n"
+"class TestStringMethods(unittest.TestCase):\n"
+"\n"
+"    def test_upper(self):\n"
+"        self.assertEqual('foo'.upper(), 'FOO')\n"
+"\n"
+"    def test_isupper(self):\n"
+"        self.assertTrue('FOO'.isupper())\n"
+"        self.assertFalse('Foo'.isupper())\n"
+"\n"
+"    def test_split(self):\n"
+"        s = 'hello world'\n"
+"        self.assertEqual(s.split(), ['hello', 'world'])\n"
+"        # 구분 기호가 문자열이 아닐 때 s.split이 실패하는지 검사합니다\n"
+"        with self.assertRaises(TypeError):\n"
+"            s.split(2)\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    unittest.main()"
 
 #: ../../library/unittest.rst:113
 msgid ""
@@ -283,6 +302,11 @@ msgid ""
 "\n"
 "OK"
 msgstr ""
+"...\n"
+"----------------------------------------------------------------------\n"
+"Ran 3 tests in 0.000s\n"
+"\n"
+"OK"
 
 #: ../../library/unittest.rst:139
 msgid ""
@@ -304,6 +328,14 @@ msgid ""
 "\n"
 "OK"
 msgstr ""
+"test_isupper (__main__.TestStringMethods.test_isupper) ... ok\n"
+"test_split (__main__.TestStringMethods.test_split) ... ok\n"
+"test_upper (__main__.TestStringMethods.test_upper) ... ok\n"
+"\n"
+"----------------------------------------------------------------------\n"
+"Ran 3 tests in 0.001s\n"
+"\n"
+"OK"
 
 #: ../../library/unittest.rst:151
 msgid ""
@@ -336,6 +368,9 @@ msgid ""
 "python -m unittest test_module.TestClass\n"
 "python -m unittest test_module.TestClass.test_method"
 msgstr ""
+"python -m unittest test_module1 test_module2\n"
+"python -m unittest test_module.TestClass\n"
+"python -m unittest test_module.TestClass.test_method"
 
 #: ../../library/unittest.rst:172
 msgid ""
@@ -349,7 +384,7 @@ msgstr "테스트 모듈은 파일 경로로도 지정할 수 있습니다::"
 
 #: ../../library/unittest.rst:177
 msgid "python -m unittest tests/test_something.py"
-msgstr ""
+msgstr "python -m unittest tests/test_something.py"
 
 #: ../../library/unittest.rst:179
 msgid ""
@@ -371,7 +406,7 @@ msgstr "-v 옵션을 사용하여 더 자세한 정보(높은 상세도)로 테�
 
 #: ../../library/unittest.rst:187
 msgid "python -m unittest -v test_module"
-msgstr ""
+msgstr "python -m unittest -v test_module"
 
 #: ../../library/unittest.rst:189
 msgid ""
@@ -381,7 +416,7 @@ msgstr "아무 인자 없이 실행하면 :ref:`unittest-test-discovery`\\이 �
 
 #: ../../library/unittest.rst:191
 msgid "python -m unittest"
-msgstr ""
+msgstr "python -m unittest"
 
 #: ../../library/unittest.rst:193
 msgid "For a list of all the command-line options::"
@@ -389,7 +424,7 @@ msgstr "모든 명령행 옵션 목록을 보기::"
 
 #: ../../library/unittest.rst:195
 msgid "python -m unittest -h"
-msgstr ""
+msgstr "python -m unittest -h"
 
 #: ../../library/unittest.rst:197
 msgid ""
@@ -433,14 +468,13 @@ msgid "Stop the test run on the first error or failure."
 msgstr "첫 번째 에러나 실패가 발생하면 테스트 실행을 중단합니다."
 
 #: ../../library/unittest.rst:229
-#, fuzzy
 msgid ""
 "Only run test methods and classes that match the pattern or substring. "
 "This option may be used multiple times, in which case all test cases that"
 " match any of the given patterns are included."
 msgstr ""
-"패턴이나 부분 문자열과 일치하는 테스트 메서드나 클래스만 실행합니다. 이 옵션은 여러 번 사용될 수 있습니다. 이 경우 주어진 "
-"패턴과 일치하는 모든 테스트 케이스가 포함됩니다. "
+"패턴이나 부분 문자열과 일치하는 테스트 메서드나 클래스만 실행합니다. 이 옵션은 여러 번 사용될 수 있습니다. 이 경우 주어진 패턴"
+" 중 하나라도 일치하는 모든 테스트 케이스가 포함됩니다."
 
 #: ../../library/unittest.rst:233
 msgid ""
@@ -488,9 +522,8 @@ msgid "The command-line option ``-k``."
 msgstr "명령행 옵션 ``-k``."
 
 #: ../../library/unittest.rst:260
-#, fuzzy
 msgid "The command-line option ``--durations``."
-msgstr "명령행 옵션 ``--locals``."
+msgstr "명령행 옵션 ``--durations``."
 
 #: ../../library/unittest.rst:263
 msgid ""
@@ -503,7 +536,6 @@ msgid "Test Discovery"
 msgstr "테스트 탐색(Discovery)"
 
 #: ../../library/unittest.rst:273
-#, fuzzy
 msgid ""
 "Unittest supports simple test discovery. In order to be compatible with "
 "test discovery, all of the test files must be :ref:`modules <tut-"
@@ -512,9 +544,8 @@ msgid ""
 ":ref:`identifiers <identifiers>`)."
 msgstr ""
 "unittest는 간단한 테스트 탐색을 지원합니다. 테스트 탐색에 호환되기 위해서는 모든 테스트 파일은 반드시 프로젝트의 가장 상위"
-" 디렉터리로부터 :ref:`모듈 <tut-modules>` 또는 :ref:`패키지 <tut-packages>`\\(:term:`이름"
-" 공간 패키지 <namespace package>` 포함)로 임포트 가능해야 합니다(이 말은 파일 이름이 반드시 유효한 "
-":ref:`식별자 <identifiers>`\\이어야 한다는 뜻입니다)."
+" 디렉터리로부터 :ref:`모듈 <tut-modules>` 또는 :ref:`패키지 <tut-packages>`\\로 임포트 가능해야"
+" 합니다(이 말은 파일 이름이 반드시 유효한 :ref:`식별자 <identifiers>`\\이어야 한다는 뜻입니다)."
 
 #: ../../library/unittest.rst:279
 msgid ""
@@ -529,6 +560,8 @@ msgid ""
 "cd project_directory\n"
 "python -m unittest discover"
 msgstr ""
+"cd project_directory\n"
+"python -m unittest discover"
 
 #: ../../library/unittest.rst:287
 msgid ""
@@ -573,6 +606,8 @@ msgid ""
 "python -m unittest discover -s project_directory -p \"*_test.py\"\n"
 "python -m unittest discover project_directory \"*_test.py\""
 msgstr ""
+"python -m unittest discover -s project_directory -p \"*_test.py\"\n"
+"python -m unittest discover project_directory \"*_test.py\""
 
 #: ../../library/unittest.rst:318
 msgid ""
@@ -623,16 +658,15 @@ msgstr ""
 " 사용자 정의할 수 있습니다."
 
 #: ../../library/unittest.rst:342
-#, fuzzy
 msgid ""
 "Test discovery supports :term:`namespace packages <namespace package>` "
 "for the start directory. Note that you need to specify the top level "
 "directory too (e.g. ``python -m unittest discover -s root/namespace -t "
 "root``)."
 msgstr ""
-"테스트 탐색은 시작 디렉터리로 :term:`이름 공간 패키지 <namespace package>`\\를 지원합니다. 최상위 "
-"디렉터리도 필요함에 유의하십시오. (예를 들어 ``python -m unittest discover -s root/namespace"
-" -t root``)."
+"테스트 탐색은 시작 디렉터리로 :term:`이름 공간 패키지 <namespace package>`\\를 지원합니다. 최상위 디렉터도"
+" 지정해야 함에 유의하십시오 (예를 들어 ``python -m unittest discover -s root/namespace -t"
+" root``)."
 
 #: ../../library/unittest.rst:348
 msgid ""
@@ -659,6 +693,13 @@ msgid ""
 "\n"
 "python -m unittest discover -s namespace.mypkg -t ."
 msgstr ""
+"# proj/  <-- 현재 디렉터리\n"
+"#   namespace/\n"
+"#     mypkg/\n"
+"#       __init__.py\n"
+"#       test_mypkg.py\n"
+"\n"
+"python -m unittest discover -s namespace.mypkg -t ."
 
 #: ../../library/unittest.rst:370
 msgid "Organizing test code"
@@ -704,9 +745,14 @@ msgid ""
 "        widget = Widget('The widget')\n"
 "        self.assertEqual(widget.size(), (50, 50))"
 msgstr ""
+"import unittest\n"
+"\n"
+"class DefaultWidgetSizeTestCase(unittest.TestCase):\n"
+"    def test_default_widget_size(self):\n"
+"        widget = Widget('The widget')\n"
+"        self.assertEqual(widget.size(), (50, 50))"
 
 #: ../../library/unittest.rst:393
-#, fuzzy
 msgid ""
 "Note that in order to test something, we use one of the :ref:`assert\\* "
 "methods <assert-methods>` provided by the :class:`TestCase` base class.  "
@@ -714,10 +760,10 @@ msgid ""
 "message, and :mod:`unittest` will identify the test case as a "
 ":dfn:`failure`.  Any other exceptions will be treated as :dfn:`errors`."
 msgstr ""
-"어떤 것을 테스트하기 위해서는 :class:`TestCase` 베이스 클래스에서 제공하는 :meth:`assert\\*` 메서드 중"
-" 한 개를 사용합니다. 테스트가 실패한다면 그 이유를 설명한 메시지가 포함된 예외가 발생합니다, 그리고 "
-":mod:`unittest`\\는 해당 테스트 케이스를 :dfn:`실패(failure)`\\로 취급합니다. 다른 모든 예외는 "
-":dfn:`에러(errors)`\\로 취급합니다."
+"어떤 것을 테스트하기 위해서는 :class:`TestCase` 베이스 클래스에서 제공하는 :ref:`assert\\* 메서드 "
+"<assert-methods>` 중 한 개를 사용합니다. 테스트가 실패한다면 그 이유를 설명한 메시지가 포함된 예외가 발생합니다, "
+"그리고 :mod:`unittest`\\는 해당 테스트 케이스를 :dfn:`실패(failure)`\\로 취급합니다. 다른 모든 예외는"
+" :dfn:`에러(errors)`\\로 취급합니다."
 
 #: ../../library/unittest.rst:399
 msgid ""
@@ -747,6 +793,20 @@ msgid ""
 "        self.assertEqual(self.widget.size(), (100,150),\n"
 "                         'wrong size after resize')"
 msgstr ""
+"import unittest\n"
+"\n"
+"class WidgetTestCase(unittest.TestCase):\n"
+"    def setUp(self):\n"
+"        self.widget = Widget('The widget')\n"
+"\n"
+"    def test_default_widget_size(self):\n"
+"        self.assertEqual(self.widget.size(), (50,50),\n"
+"                         'incorrect default size')\n"
+"\n"
+"    def test_widget_resize(self):\n"
+"        self.widget.resize(100,150)\n"
+"        self.assertEqual(self.widget.size(), (100,150),\n"
+"                         'wrong size after resize')"
 
 #: ../../library/unittest.rst:420
 msgid ""
@@ -780,6 +840,14 @@ msgid ""
 "    def tearDown(self):\n"
 "        self.widget.dispose()"
 msgstr ""
+"import unittest\n"
+"\n"
+"class WidgetTestCase(unittest.TestCase):\n"
+"    def setUp(self):\n"
+"        self.widget = Widget('The widget')\n"
+"\n"
+"    def tearDown(self):\n"
+"        self.widget.dispose()"
 
 #: ../../library/unittest.rst:440
 msgid ""
@@ -835,6 +903,15 @@ msgid ""
 "    runner = unittest.TextTestRunner()\n"
 "    runner.run(suite())"
 msgstr ""
+"def suite():\n"
+"    suite = unittest.TestSuite()\n"
+"    suite.addTest(WidgetTestCase('test_default_widget_size'))\n"
+"    suite.addTest(WidgetTestCase('test_widget_resize'))\n"
+"    return suite\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    runner = unittest.TextTestRunner()\n"
+"    runner.run(suite())"
 
 #: ../../library/unittest.rst:469
 msgid ""
@@ -915,6 +992,10 @@ msgid ""
 "    assert something.name is not None\n"
 "    # ..."
 msgstr ""
+"def testSomething():\n"
+"    something = makeSomething()\n"
+"    assert something.name is not None\n"
+"    # ..."
 
 #: ../../library/unittest.rst:511
 msgid ""
@@ -928,6 +1009,9 @@ msgid ""
 "                                     setUp=makeSomethingDB,\n"
 "                                     tearDown=deleteSomethingDB)"
 msgstr ""
+"testcase = unittest.FunctionTestCase(testSomething,\n"
+"                                     setUp=makeSomethingDB,\n"
+"                                     tearDown=deleteSomethingDB)"
 
 #: ../../library/unittest.rst:520
 msgid ""
@@ -1010,6 +1094,29 @@ msgid ""
 "        # test code that depends on the external resource\n"
 "        pass"
 msgstr ""
+"class MyTestCase(unittest.TestCase):\n"
+"\n"
+"    @unittest.skip(\"demonstrating skipping\")\n"
+"    def test_nothing(self):\n"
+"        self.fail(\"shouldn't happen\")\n"
+"\n"
+"    @unittest.skipIf(mylib.__version__ < (1, 3),\n"
+"                     \"not supported in this library version\")\n"
+"    def test_format(self):\n"
+"        # 특정 버전의 라이브러리에서만 작동하는 테스트.\n"
+"        pass\n"
+"\n"
+"    @unittest.skipUnless(sys.platform.startswith(\"win\"), \"requires "
+"Windows\")\n"
+"    def test_windows_support(self):\n"
+"        # 윈도우 특정 테스트 코드\n"
+"        pass\n"
+"\n"
+"    def test_maybe_skipped(self):\n"
+"        if not external_resource_available():\n"
+"            self.skipTest(\"external resource not available\")\n"
+"        # 외부 리소스에 의존하는 테스트 코드\n"
+"        pass"
 
 #: ../../library/unittest.rst:572
 msgid "This is the output of running the example above in verbose mode::"
@@ -1031,6 +1138,19 @@ msgid ""
 "\n"
 "OK (skipped=4)"
 msgstr ""
+"test_format (__main__.MyTestCase.test_format) ... skipped 'not supported "
+"in this library version'\n"
+"test_nothing (__main__.MyTestCase.test_nothing) ... skipped "
+"'demonstrating skipping'\n"
+"test_maybe_skipped (__main__.MyTestCase.test_maybe_skipped) ... skipped "
+"'external resource not available'\n"
+"test_windows_support (__main__.MyTestCase.test_windows_support) ... "
+"skipped 'requires Windows'\n"
+"\n"
+"----------------------------------------------------------------------\n"
+"Ran 4 tests in 0.005s\n"
+"\n"
+"OK (skipped=4)"
 
 #: ../../library/unittest.rst:584
 msgid "Classes can be skipped just like methods::"
@@ -1043,6 +1163,10 @@ msgid ""
 "    def test_not_run(self):\n"
 "        pass"
 msgstr ""
+"@unittest.skip(\"showing class skipping\")\n"
+"class MySkippedTestCase(unittest.TestCase):\n"
+"    def test_not_run(self):\n"
+"        pass"
 
 #: ../../library/unittest.rst:591
 msgid ""
@@ -1063,6 +1187,10 @@ msgid ""
 "    def test_fail(self):\n"
 "        self.assertEqual(1, 0, \"broken\")"
 msgstr ""
+"class ExpectedFailureTestCase(unittest.TestCase):\n"
+"    @unittest.expectedFailure\n"
+"    def test_fail(self):\n"
+"        self.assertEqual(1, 0, \"broken\")"
 
 #: ../../library/unittest.rst:601
 msgid ""
@@ -1082,6 +1210,10 @@ msgid ""
 "        return lambda func: func\n"
 "    return unittest.skip(\"{!r} doesn't have {!r}\".format(obj, attr))"
 msgstr ""
+"def skipUnlessHasattr(obj, attr):\n"
+"    if hasattr(obj, attr):\n"
+"        return lambda func: func\n"
+"    return unittest.skip(\"{!r} doesn't have {!r}\".format(obj, attr))"
 
 #: ../../library/unittest.rst:610
 msgid ""
@@ -1104,15 +1236,14 @@ msgid "Skip the decorated test unless *condition* is true."
 msgstr "*condition*\\이 참이 아니면 데코레이트된 테스트를 건너뜁니다."
 
 #: ../../library/unittest.rst:627
-#, fuzzy
 msgid ""
 "Mark the test as an expected failure or error.  If the test fails or "
 "errors in the test function itself (rather than in one of the :dfn:`test "
 "fixture` methods) then it will be considered a success.  If the test "
 "passes, it will be considered a failure."
 msgstr ""
-"테스트가 예상된 실패나 에러라는 표시를 합니다. 테스트가 실패하거나 에러이면 성공으로 간주합니다. 테스트에 통과하면 실패로 "
-"간주합니다."
+"테스트가 예상된 실패나 에러라는 표시를 합니다. 테스트가 (:dfn:`테스트 픽스쳐(test fixture)` 메서드 중 하나가 "
+"아니라) 테스트 함수 자체에서 실패하거나 에러이면 성공으로 간주합니다. 테스트에 통과하면 실패로 간주합니다."
 
 #: ../../library/unittest.rst:634
 msgid "This exception is raised to skip a test."
@@ -1167,6 +1298,15 @@ msgid ""
 "            with self.subTest(i=i):\n"
 "                self.assertEqual(i % 2, 0)"
 msgstr ""
+"class NumbersTest(unittest.TestCase):\n"
+"\n"
+"    def test_even(self):\n"
+"        \"\"\"\n"
+"        0과 5 사이의 숫자가 모두 짝수인지 테스트합니다.\n"
+"        \"\"\"\n"
+"        for i in range(0, 6):\n"
+"            with self.subTest(i=i):\n"
+"                self.assertEqual(i % 2, 0)"
 
 #: ../../library/unittest.rst:667
 msgid "will produce the following output::"
@@ -1204,6 +1344,35 @@ msgid ""
 "    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
 "AssertionError: 1 != 0"
 msgstr ""
+"======================================================================\n"
+"FAIL: test_even (__main__.NumbersTest.test_even) (i=1)\n"
+"Test that numbers between 0 and 5 are all even.\n"
+"----------------------------------------------------------------------\n"
+"Traceback (most recent call last):\n"
+"  File \"subtests.py\", line 11, in test_even\n"
+"    self.assertEqual(i % 2, 0)\n"
+"    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+"AssertionError: 1 != 0\n"
+"\n"
+"======================================================================\n"
+"FAIL: test_even (__main__.NumbersTest.test_even) (i=3)\n"
+"Test that numbers between 0 and 5 are all even.\n"
+"----------------------------------------------------------------------\n"
+"Traceback (most recent call last):\n"
+"  File \"subtests.py\", line 11, in test_even\n"
+"    self.assertEqual(i % 2, 0)\n"
+"    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+"AssertionError: 1 != 0\n"
+"\n"
+"======================================================================\n"
+"FAIL: test_even (__main__.NumbersTest.test_even) (i=5)\n"
+"Test that numbers between 0 and 5 are all even.\n"
+"----------------------------------------------------------------------\n"
+"Traceback (most recent call last):\n"
+"  File \"subtests.py\", line 11, in test_even\n"
+"    self.assertEqual(i % 2, 0)\n"
+"    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+"AssertionError: 1 != 0"
 
 #: ../../library/unittest.rst:699
 msgid ""
@@ -1224,6 +1393,13 @@ msgid ""
 "    self.assertEqual(i % 2, 0)\n"
 "AssertionError: 1 != 0"
 msgstr ""
+"======================================================================\n"
+"FAIL: test_even (__main__.NumbersTest.test_even)\n"
+"----------------------------------------------------------------------\n"
+"Traceback (most recent call last):\n"
+"  File \"subtests.py\", line 32, in test_even\n"
+"    self.assertEqual(i % 2, 0)\n"
+"AssertionError: 1 != 0"
 
 #: ../../library/unittest.rst:715
 msgid "Classes and functions"
@@ -1330,6 +1506,9 @@ msgid ""
 "def setUpClass(cls):\n"
 "    ..."
 msgstr ""
+"@classmethod\n"
+"def setUpClass(cls):\n"
+"    ..."
 
 #: ../../library/unittest.rst:782 ../../library/unittest.rst:797
 msgid "See `Class and Module Fixtures`_ for more details."
@@ -1350,6 +1529,9 @@ msgid ""
 "def tearDownClass(cls):\n"
 "    ..."
 msgstr ""
+"@classmethod\n"
+"def tearDownClass(cls):\n"
+"    ..."
 
 #: ../../library/unittest.rst:804
 msgid ""
@@ -1697,23 +1879,20 @@ msgid "3.4"
 msgstr "3.4"
 
 #: ../../library/unittest.rst:991
-#, fuzzy
 msgid ":meth:`assertNoLogs(logger, level) <TestCase.assertNoLogs>`"
-msgstr ":meth:`assertLogs(logger, level) <TestCase.assertLogs>`"
+msgstr ":meth:`assertNoLogs(logger, level) <TestCase.assertNoLogs>`"
 
 #: ../../library/unittest.rst:991
 msgid "The ``with`` block does not log on"
-msgstr ""
+msgstr "``with`` 블록이"
 
 #: ../../library/unittest.rst:992
-#, fuzzy
 msgid "*logger* with minimum *level*"
-msgstr "``with`` 블록이 최소 *level*\\로 *logger*\\에 로그를 남김"
+msgstr "최소 *level*\\로 *logger*\\에 로그를 남기지 않음"
 
 #: ../../library/unittest.rst:991
-#, fuzzy
 msgid "3.10"
-msgstr "3.1"
+msgstr "3.10"
 
 #: ../../library/unittest.rst:998
 msgid ""
@@ -1743,6 +1922,8 @@ msgid ""
 "with self.assertRaises(SomeException):\n"
 "    do_something()"
 msgstr ""
+"with self.assertRaises(SomeException):\n"
+"    do_something()"
 
 #: ../../library/unittest.rst:1012
 msgid ""
@@ -1767,6 +1948,11 @@ msgid ""
 "the_exception = cm.exception\n"
 "self.assertEqual(the_exception.error_code, 3)"
 msgstr ""
+"with self.assertRaises(SomeException) as cm:\n"
+"    do_something()\n"
+"\n"
+"the_exception = cm.exception\n"
+"self.assertEqual(the_exception.error_code, 3)"
 
 #: ../../library/unittest.rst:1025
 msgid "Added the ability to use :meth:`assertRaises` as a context manager."
@@ -1796,6 +1982,8 @@ msgid ""
 "self.assertRaisesRegex(ValueError, \"invalid literal for.*XYZ'$\",\n"
 "                       int, 'XYZ')"
 msgstr ""
+"self.assertRaisesRegex(ValueError, \"invalid literal for.*XYZ'$\",\n"
+"                       int, 'XYZ')"
 
 #: ../../library/unittest.rst:1046 ../../library/unittest.rst:1114
 msgid "or::"
@@ -1806,6 +1994,8 @@ msgid ""
 "with self.assertRaisesRegex(ValueError, 'literal'):\n"
 "   int('XYZ')"
 msgstr ""
+"with self.assertRaisesRegex(ValueError, 'literal'):\n"
+"   int('XYZ')"
 
 #: ../../library/unittest.rst:1051
 msgid "Added under the name ``assertRaisesRegexp``."
@@ -1842,6 +2032,8 @@ msgid ""
 "with self.assertWarns(SomeWarning):\n"
 "    do_something()"
 msgstr ""
+"with self.assertWarns(SomeWarning):\n"
+"    do_something()"
 
 #: ../../library/unittest.rst:1078
 msgid ""
@@ -1869,6 +2061,11 @@ msgid ""
 "self.assertIn('myfile.py', cm.filename)\n"
 "self.assertEqual(320, cm.lineno)"
 msgstr ""
+"with self.assertWarns(SomeWarning) as cm:\n"
+"    do_something()\n"
+"\n"
+"self.assertIn('myfile.py', cm.filename)\n"
+"self.assertEqual(320, cm.lineno)"
 
 #: ../../library/unittest.rst:1093
 msgid ""
@@ -1892,12 +2089,17 @@ msgid ""
 "                      r'legacy_function\\(\\) is deprecated',\n"
 "                      legacy_function, 'XYZ')"
 msgstr ""
+"self.assertWarnsRegex(DeprecationWarning,\n"
+"                      r'legacy_function\\(\\) is deprecated',\n"
+"                      legacy_function, 'XYZ')"
 
 #: ../../library/unittest.rst:1116
 msgid ""
 "with self.assertWarnsRegex(RuntimeWarning, 'unsafe frobnicating'):\n"
 "    frobnicate('/etc/passwd')"
 msgstr ""
+"with self.assertWarnsRegex(RuntimeWarning, 'unsafe frobnicating'):\n"
+"    frobnicate('/etc/passwd')"
 
 #: ../../library/unittest.rst:1126
 msgid ""
@@ -1917,15 +2119,14 @@ msgstr ""
 "로거입니다."
 
 #: ../../library/unittest.rst:1135 ../../library/unittest.rst:1176
-#, fuzzy
 msgid ""
 "If given, *level* should be either a numeric logging level or its string "
 "equivalent (for example either ``\"ERROR\"`` or :const:`logging.ERROR`)."
 "  The default is :const:`logging.INFO`."
 msgstr ""
 "*level*\\이 주어졌다면, 로그 수준의 숫자 값이거나 그에 대응하는 문자열이어야 합니다(예를 들어 "
-"``\"ERROR\"``\\이거나  :attr:`logging.ERROR`). 기본값은 "
-":attr:`logging.INFO`\\입니다."
+"``\"ERROR\"``\\이거나  :const:`logging.ERROR`). 기본값은 "
+":const:`logging.INFO`\\입니다."
 
 #: ../../library/unittest.rst:1139
 msgid ""
@@ -1965,24 +2166,26 @@ msgid ""
 "self.assertEqual(cm.output, ['INFO:foo:first message',\n"
 "                             'ERROR:foo.bar:second message'])"
 msgstr ""
+"with self.assertLogs('foo', level='INFO') as cm:\n"
+"    logging.getLogger('foo').info('first message')\n"
+"    logging.getLogger('foo.bar').error('second message')\n"
+"self.assertEqual(cm.output, ['INFO:foo:first message',\n"
+"                             'ERROR:foo.bar:second message'])"
 
 #: ../../library/unittest.rst:1168
-#, fuzzy
 msgid ""
 "A context manager to test that no messages are logged on the *logger* or "
 "one of its children, with at least the given *level*."
-msgstr "최소한 *level*\\로 *logger*\\나 그 자식들에 최소한 1개의 메시지가 기록되는지 테스트하는 컨텍스트 관리자입니다."
+msgstr "*logger*\\나 그 자식들에 주어진 *level* 이상으로 메시지가 기록되지 않았음을 테스트하는 컨텍스트 관리자입니다."
 
 #: ../../library/unittest.rst:1172
-#, fuzzy
 msgid ""
 "If given, *logger* should be a :class:`logging.Logger` object or a "
 ":class:`str` giving the name of a logger.  The default is the root "
 "logger, which will catch all messages."
 msgstr ""
 "*logger*\\가 주어졌다면, :class:`logging.Logger` 객체이거나 로거의 이름인 "
-":class:`str`\\이어야 합니다. 기본값은 전파하지 않는 하위 로거에 의해 차단되지 않은 모든 메시지를 잡을 루트 "
-"로거입니다."
+":class:`str`\\이어야 합니다. 기본값은 모든 메시지를 잡을 루트 로거입니다."
 
 #: ../../library/unittest.rst:1180
 msgid ""
@@ -2118,6 +2321,8 @@ msgid ""
 ">>> self.assertGreaterEqual(3, 4)\n"
 "AssertionError: \"3\" unexpectedly not greater than or equal to \"4\""
 msgstr ""
+">>> self.assertGreaterEqual(3, 4)\n"
+"AssertionError: \"3\" unexpectedly not greater than or equal to \"4\""
 
 #: ../../library/unittest.rst:1257
 msgid ""
@@ -2666,6 +2871,40 @@ msgid ""
 "if __name__ == \"__main__\":\n"
 "    unittest.main()"
 msgstr ""
+"from unittest import IsolatedAsyncioTestCase\n"
+"\n"
+"events = []\n"
+"\n"
+"\n"
+"class Test(IsolatedAsyncioTestCase):\n"
+"\n"
+"\n"
+"    def setUp(self):\n"
+"        events.append(\"setUp\")\n"
+"\n"
+"    async def asyncSetUp(self):\n"
+"        self._async_connection = await AsyncConnection()\n"
+"        events.append(\"asyncSetUp\")\n"
+"\n"
+"    async def test_response(self):\n"
+"        events.append(\"test_response\")\n"
+"        response = await "
+"self._async_connection.get(\"https://example.com\")\n"
+"        self.assertEqual(response.status_code, 200)\n"
+"        self.addAsyncCleanup(self.on_cleanup)\n"
+"\n"
+"    def tearDown(self):\n"
+"        events.append(\"tearDown\")\n"
+"\n"
+"    async def asyncTearDown(self):\n"
+"        await self._async_connection.close()\n"
+"        events.append(\"asyncTearDown\")\n"
+"\n"
+"    async def on_cleanup(self):\n"
+"        events.append(\"cleanup\")\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    unittest.main()"
 
 #: ../../library/unittest.rst:1665
 msgid ""
@@ -2776,7 +3015,6 @@ msgid ""
 msgstr "이 테스트 객체에 해당하는 테스트 개수를 반환합니다, 모든 개별 테스트와 서브-테스트 묶음을 포함합니다."
 
 #: ../../library/unittest.rst:1738
-#, fuzzy
 msgid ""
 "Tests grouped by a :class:`TestSuite` are always accessed by iteration. "
 "Subclasses can lazily provide tests by overriding :meth:`!__iter__`. Note"
@@ -2789,22 +3027,21 @@ msgid ""
 "test references."
 msgstr ""
 ":class:`TestSuite`\\로 묶인 테스트들은 항상 이터레이션으로 접근합니다. 서브 클래스는 "
-":meth:`__iter__`\\를 재정의하여 테스트를 지연해서 제공할 수 있습니다. 이 메서드는 한 개의 테스트 묶음에서 여러 번"
-" 불릴 수 있다는 것을 기억하십시오(예를 들어 테스트 개수를 세거나 동등성을 위해 비교할 때), 그러므로 "
+":meth:`!__iter__`\\를 재정의하여 테스트를 지연해서 제공할 수 있습니다. 이 메서드는 한 개의 테스트 묶음에서 여러 "
+"번 불릴 수 있다는 것을 기억하십시오(예를 들어 테스트 개수를 세거나 동등성을 위해 비교할 때), 그러므로 "
 ":meth:`TestSuite.run` 전에 수 번의 이터레이션이 반환한 테스트들은 매 이터레이션 호출마다 반드시 같아야 합니다. "
 ":meth:`TestSuite.run` 후에는 호출자가 테스트 참조를 보존하기 위해 "
 ":meth:`TestSuite._removeTestAtIndex`\\를 재정의한 서브 클래스를 사용하는 경우가 아니라면 이 메서드에"
 " 의해 반환된 테스트에 의존하면 안 됩니다."
 
 #: ../../library/unittest.rst:1748
-#, fuzzy
 msgid ""
 "In earlier versions the :class:`TestSuite` accessed tests directly rather"
 " than through iteration, so overriding :meth:`!__iter__` wasn't "
 "sufficient for providing tests."
 msgstr ""
 "이전 버전에서는 :class:`TestSuite`\\가 이터레이션을 사용하기보다는 직접 테스트에 접근했습니다, 따라서 "
-":meth:`__iter__`\\를 재정의하는 것은 테스트를 제공하기에 충분하지 않았습니다."
+":meth:`!__iter__`\\를 재정의하는 것은 테스트를 제공하기에 충분하지 않았습니다."
 
 #: ../../library/unittest.rst:1753
 msgid ""
@@ -2847,7 +3084,6 @@ msgid ":class:`TestLoader` objects have the following attributes:"
 msgstr ":class:`TestLoader` 객체는 다음 어트리뷰트를 가집니다:"
 
 #: ../../library/unittest.rst:1778
-#, fuzzy
 msgid ""
 "A list of the non-fatal errors encountered while loading tests. Not reset"
 " by the loader at any point. Fatal errors are signalled by the relevant "
@@ -3015,14 +3251,13 @@ msgstr ""
 "가능한(즉, 유효한 파이썬 식별자인) 모듈 이름만 로드될 것입니다."
 
 #: ../../library/unittest.rst:1885
-#, fuzzy
 msgid ""
 "All test modules must be importable from the top level of the project. If"
 " the start directory is not the top level directory then *top_level_dir* "
 "must be specified separately."
 msgstr ""
 "모든 테스트 모듈은 반드시 프로젝트의 최상위 수준에서 임포트 가능해야 합니다. 만약 시작 디렉터리가 최상위 디렉터리가 아니라면 "
-"최상위 디렉터리를 따로 지정해야 합니다."
+"*top_level_dir*\\을 따로 지정해야 합니다."
 
 #: ../../library/unittest.rst:1889
 msgid ""
@@ -3058,14 +3293,10 @@ msgstr ""
 "패키지 안의 모든 테스트를 로드할 책임이 있습니다."
 
 #: ../../library/unittest.rst:1906
-#, fuzzy
 msgid ""
 "The pattern is deliberately not stored as a loader attribute so that "
 "packages can continue discovery themselves."
-msgstr ""
-"패턴은 의도적으로 로더 어트리뷰트로 저장되지 않아 패키지가 자신에 대한 탐색을 계속할 수 있습니다. "
-"*top_level_dir*\\는 저장되어 ``load_tests``\\가 ``loader.discover()``\\에게 이 인자를"
-" 건네줄 필요가 없습니다."
+msgstr "패턴은 의도적으로 로더 어트리뷰트로 저장되지 않아 패키지가 자신에 대한 탐색을 계속할 수 있습니다."
 
 #: ../../library/unittest.rst:1909
 msgid ""
@@ -3073,6 +3304,9 @@ msgid ""
 " calls to ``discover()``. That is, if a package's ``load_tests`` calls "
 "``loader.discover()``, it does not need to pass this argument."
 msgstr ""
+"*top_level_dir*\\은 내부적으로 저장되어, ``discover()``\\의 중첩된 호출 시 기본값으로 사용됩니다. 즉,"
+" 패키지의 ``load_tests``\\가 ``loader.discover()``\\를 호출할 경우, 이 인자를 전달할 필요가 "
+"없습니다."
 
 #: ../../library/unittest.rst:1913
 msgid "*start_dir* can be a dotted module name as well as a directory."
@@ -3105,11 +3339,12 @@ msgstr ""
 "왜냐하면 패키지 이름이 기본 패턴과 일치하는 것이 불가능하기 때문입니다."
 
 #: ../../library/unittest.rst:1934
-#, fuzzy
 msgid ""
 "*start_dir* can not be a :term:`namespace packages <namespace package>`. "
 "It has been broken since Python 3.7 and Python 3.11 officially remove it."
-msgstr "*start_dir*\\은 :term:`이름 공간 패키지 <namespace package>`\\일 수 있습니다."
+msgstr ""
+"*start_dir*\\은 :term:`이름 공간 패키지 <namespace package>`\\일 수 없습니다. 파이썬 3.7부터"
+" 깨졌고, 파이썬 3.11에서 공식적으로 제거되었습니다."
 
 #: ../../library/unittest.rst:1938
 msgid "*top_level_dir* is only stored for the duration of *discover* call."
@@ -3128,20 +3363,18 @@ msgid ""
 msgstr "테스트 메서드로 해석할 메서드 이름의 접두사에 해당하는 문자열입니다. 기본값은 ``'test'`` 입니다."
 
 #: ../../library/unittest.rst:1951
-#, fuzzy
 msgid ""
 "This affects :meth:`getTestCaseNames` and all the ``loadTestsFrom*`` "
 "methods."
-msgstr "이것은 :meth:`getTestCaseNames` 과 모든 :meth:`loadTestsFrom\\*` 메서드에 영향을 미칩니다."
+msgstr "이것은 :meth:`getTestCaseNames` 과 모든 ``loadTestsFrom*`` 메서드에 영향을 미칩니다."
 
 #: ../../library/unittest.rst:1957
-#, fuzzy
 msgid ""
 "Function to be used to compare method names when sorting them in "
 ":meth:`getTestCaseNames` and all the ``loadTestsFrom*`` methods."
 msgstr ""
-":meth:`getTestCaseNames`\\와 모든 :meth:`loadTestsFrom\\*` 메서드에서 메서드 이름 정렬 "
-"시에 이름 비교하는 데 사용될 함수입니다."
+":meth:`getTestCaseNames`\\와 모든 ``loadTestsFrom*`` 메서드에서 메서드 이름 정렬 시에 이름 "
+"비교하는 데 사용될 함수입니다."
 
 #: ../../library/unittest.rst:1963
 msgid ""
@@ -3153,21 +3386,18 @@ msgstr ""
 ":class:`TestSuite` 클래스입니다."
 
 #: ../../library/unittest.rst:1967 ../../library/unittest.rst:1980
-#, fuzzy
 msgid "This affects all the ``loadTestsFrom*`` methods."
-msgstr "이것은 모든 :meth:`loadTestsFrom\\*` 메서드에 영향을 미칩니다."
+msgstr "이것은 모든 ``loadTestsFrom*`` 메서드에 영향을 미칩니다."
 
 #: ../../library/unittest.rst:1971
-#, fuzzy
 msgid ""
 "List of Unix shell-style wildcard test name patterns that test methods "
 "have to match to be included in test suites (see ``-k`` option)."
 msgstr ""
-"테스트 묶음에 포함되기 위해서 테스트 메서드가 일치해야 할 유닉스 셸-방식의 와일드카드 테스트 이름 패턴 목록입니다(``-v`` "
+"테스트 묶음에 포함되기 위해서 테스트 메서드가 일치해야 할 유닉스 셸-방식의 와일드카드 테스트 이름 패턴 목록입니다(``-k`` "
 "옵션을 보십시오)."
 
 #: ../../library/unittest.rst:1974
-#, fuzzy
 msgid ""
 "If this attribute is not ``None`` (the default), all test methods to be "
 "included in test suites must match one of the patterns in this list. Note"
@@ -3177,7 +3407,7 @@ msgid ""
 msgstr ""
 "만약 이 어트리뷰트가 ``None``\\(기본값)이 아니라면, 테스트 묶음에 포함될 모든 테스트 메서드는 이 목록의 패턴 중 1개와"
 " 반드시 일치해야 합니다. 이 패턴 일치는 항상 :meth:`fnmatch.fnmatchcase`\\를 사용하여 수행된다는 것을 "
-"기억하십시오, 그래서 ``-v`` 옵션에 패턴을 건네주는 것과 달리, 간단한 부분 문자열 패턴은 ``*`` 와일드카드를 사용하도록 "
+"기억하십시오, 그래서 ``-k`` 옵션에 패턴을 건네주는 것과 달리, 간단한 부분 문자열 패턴은 ``*`` 와일드카드를 사용하도록 "
 "변경되어야 할 것입니다."
 
 #: ../../library/unittest.rst:1987
@@ -3226,7 +3456,6 @@ msgstr ""
 " 튜플은 예기치 못한 예외가 발생한 테스트에 해당합니다."
 
 #: ../../library/unittest.rst:2012
-#, fuzzy
 msgid ""
 "A list containing 2-tuples of :class:`TestCase` instances and strings "
 "holding formatted tracebacks. Each tuple represents a test where a "
@@ -3234,7 +3463,8 @@ msgid ""
 "<assert-methods>`."
 msgstr ""
 ":class:`TestCase` 인스턴스와 포맷된(formatted) 트레이스백 문자열로 구성된 2-튜플을 포함하는 목록입니다. 각"
-" 튜플은 :meth:`TestCase.assert\\*` 메서드를 사용하여 명시적으로 실패가 발생한 테스트에 해당합니다."
+" 튜플은 :ref:`assert\\* 메서드 <assert-methods>`\\를 사용하여 명시적으로 실패가 발생한 테스트에 "
+"해당합니다."
 
 #: ../../library/unittest.rst:2018
 msgid ""
@@ -3258,13 +3488,10 @@ msgid ""
 msgstr "예상된 실패로 표시되었지만 성공한 :class:`TestCase` 인스턴스를 포함하는 목록입니다."
 
 #: ../../library/unittest.rst:2036
-#, fuzzy
 msgid ""
 "A list containing 2-tuples of test case names and floats representing the"
 " elapsed time of each test which was run."
-msgstr ""
-":class:`TestCase` 인스턴스와 포맷된(formatted) 트레이스백 문자열로 구성된 2-튜플을 포함하는 목록입니다. 각"
-" 튜플은 테스트 케이스의 예상된 실패니 에러에 해당합니다."
+msgstr "테스트 케이스 이름과 실행된 각 테스트의 소요 시간을 나타내는 실수로 구성된 2-튜플을 포함하는 목록입니다."
 
 #: ../../library/unittest.rst:2043
 msgid "Set to ``True`` when the execution of tests should stop by :meth:`stop`."
@@ -3475,17 +3702,17 @@ msgid ""
 msgstr ""
 
 #: ../../library/unittest.rst:2201
-#, fuzzy
 msgid ""
 "A concrete implementation of :class:`TestResult` used by the "
 ":class:`TextTestRunner`. Subclasses should accept ``**kwargs`` to ensure "
 "compatibility as the interface changes."
-msgstr ":class:`TextTestRunner`\\에서 사용하는 :class:`TestResult`\\의 구체적인 구현입니다."
+msgstr ""
+":class:`TextTestRunner`\\에서 사용하는 :class:`TestResult`\\의 구체적인 구현입니다. 서브 "
+"클래스는 인터페이스가 변경될 때 호환성을 보장하기 위해 ``**kwargs``\\를 받아야 합니다."
 
 #: ../../library/unittest.rst:2207
-#, fuzzy
 msgid "Added the *durations* keyword parameter."
-msgstr "tb_locals 매개변수 추가."
+msgstr "*durations* 키워드 매개변수 추가."
 
 #: ../../library/unittest.rst:2212
 msgid ""
@@ -3512,7 +3739,6 @@ msgstr ""
 "unittest에 기능이 추가될 때 실행자를 만드는 인터페이스가 변하기 때문에 ``**kwargs``\\를 받아들여야 합니다."
 
 #: ../../library/unittest.rst:2228
-#, fuzzy
 msgid ""
 "By default this runner shows :exc:`DeprecationWarning`, "
 ":exc:`PendingDeprecationWarning`, :exc:`ResourceWarning` and "
@@ -3523,16 +3749,13 @@ msgid ""
 msgstr ""
 "기본적으로 이 실행자는 :exc:`DeprecationWarning`, :exc:`PendingDeprecationWarning`,"
 " :exc:`ResourceWarning`, :exc:`ImportWarning`\\이 :ref:`기본적으로 무시 <warning-"
-"ignored>` 설정이 되어 있더라도 이것들을 보여줍니다. :ref:`폐지된 unittest 메서드 <deprecated-"
-"aliases>` 에 의해 발생한 폐지 경고도 특수한 경우이고, 경고 필터가 ``'default'`` 또는 ``'always'`` "
-"일 때, 너무 많은 경고 메시지를 피하고자 그것들이 모듈당 1번만 보일 것입니다. 파이썬의 :option:`!-Wd`\\이나 "
-":option:`!-Wa` 옵션(:ref:`경고 제어 <using-on-warnings>`\\를 보십시오)을 사용하고 "
-"*warnings*\\를 ``None``\\으로 설정하여 이 동작을 오버라이드 할 수 있습니다."
+"ignored>` 설정이 되어 있더라도 이것들을 보여줍니다. 파이썬의 :option:`!-Wd`\\이나 :option:`!-Wa` "
+"옵션(:ref:`경고 제어 <using-on-warnings>`\\를 보십시오)을 사용하고 *warnings*\\를 "
+"``None``\\으로 설정하여 이 동작을 오버라이드 할 수 있습니다."
 
 #: ../../library/unittest.rst:2236
-#, fuzzy
 msgid "Added the *warnings* parameter."
-msgstr "``warnings`` 인자 추가."
+msgstr "*warnings* 매개변수 추가."
 
 #: ../../library/unittest.rst:2239
 msgid ""
@@ -3541,14 +3764,12 @@ msgid ""
 msgstr "임포트 시간이 아닌 인스턴스화 시간에 기본 스트림이 :data:`sys.stderr`\\으로 설정됩니다."
 
 #: ../../library/unittest.rst:2243
-#, fuzzy
 msgid "Added the *tb_locals* parameter."
-msgstr "tb_locals 매개변수 추가."
+msgstr "*tb_locals* 매개변수 추가."
 
 #: ../../library/unittest.rst:2246
-#, fuzzy
 msgid "Added the *durations* parameter."
-msgstr "tb_locals 매개변수 추가."
+msgstr "*durations* 매개변수 추가."
 
 #: ../../library/unittest.rst:2251
 msgid ""
@@ -3572,7 +3793,7 @@ msgstr ""
 
 #: ../../library/unittest.rst:2260
 msgid "stream, descriptions, verbosity"
-msgstr ""
+msgstr "stream, descriptions, verbosity"
 
 #: ../../library/unittest.rst:2264
 msgid ""
@@ -3600,6 +3821,8 @@ msgid ""
 "if __name__ == '__main__':\n"
 "    unittest.main()"
 msgstr ""
+"if __name__ == '__main__':\n"
+"    unittest.main()"
 
 #: ../../library/unittest.rst:2283
 msgid ""
@@ -3612,6 +3835,8 @@ msgid ""
 "if __name__ == '__main__':\n"
 "    unittest.main(verbosity=2)"
 msgstr ""
+"if __name__ == '__main__':\n"
+"    unittest.main(verbosity=2)"
 
 #: ../../library/unittest.rst:2289
 msgid ""
@@ -3634,7 +3859,6 @@ msgstr ""
 "않거나 ``None``\\이면, :data:`sys.argv` 값이 사용됩니다."
 
 #: ../../library/unittest.rst:2298
-#, fuzzy
 msgid ""
 "The *testRunner* argument can either be a test runner class or an already"
 " created instance of it. By default ``main`` calls :func:`sys.exit` with "
@@ -3642,7 +3866,8 @@ msgid ""
 "exit code of 5 indicates that no tests were run or skipped."
 msgstr ""
 "*testRunner* 인자는 테스트 실행자 클래스나 이미 생성된 테스트 실행자 인스턴스일 수 있습니다. 기본적으로 "
-"``main``\\은 실행한 테스트가 성공인지 실패인지를 나타내는 종료 코드와 함께 :func:`sys.exit`\\을 호출합니다."
+"``main``\\은 실행한 테스트가 성공(0)인지 실패(1)인지를 나타내는 종료 코드와 함께 :func:`sys.exit`\\을 "
+"호출합니다. 종료 코드 5는 테스트가 실행되지 않았거나 건너뛴 경우를 나타냅니다."
 
 #: ../../library/unittest.rst:2303
 msgid ""
@@ -3666,6 +3891,8 @@ msgid ""
 ">>> from unittest import main\n"
 ">>> main(module='test_module', exit=False)"
 msgstr ""
+">>> from unittest import main\n"
+">>> main(module='test_module', exit=False)"
 
 #: ../../library/unittest.rst:2313
 msgid ""
@@ -3689,13 +3916,12 @@ msgstr ""
 " 경우에는 ``'default'``\\로 설정됩니다."
 
 #: ../../library/unittest.rst:2322
-#, fuzzy
 msgid ""
 "Calling ``main`` returns an object with the ``result`` attribute that "
 "contains the result of the tests run as a :class:`unittest.TestResult`."
 msgstr ""
-"사실 ``main`` 호출은 ``TestProgram`` 클래스의 인스턴스를 반환합니다. 이것은 실행된 테스트의 결과를 "
-"``result`` 어트리뷰트에 저장합니다."
+"``main``\\을 호출하면 ``result`` 어트리뷰트를 가진 객체를 반환합니다. 이 어트리뷰트는 테스트 실행 결과를 포함하는"
+" :class:`unittest.TestResult`\\입니다."
 
 #: ../../library/unittest.rst:2325
 msgid "The *exit* parameter was added."
@@ -3736,7 +3962,7 @@ msgstr ""
 
 #: ../../library/unittest.rst:2350 ../../library/unittest.rst:2382
 msgid "load_tests(loader, standard_tests, pattern)"
-msgstr ""
+msgstr "load_tests(loader, standard_tests, pattern)"
 
 #: ../../library/unittest.rst:2352
 msgid ""
@@ -3779,6 +4005,14 @@ msgid ""
 "        suite.addTests(tests)\n"
 "    return suite"
 msgstr ""
+"test_cases = (TestCase1, TestCase2, TestCase3)\n"
+"\n"
+"def load_tests(loader, tests, pattern):\n"
+"    suite = TestSuite()\n"
+"    for test_class in test_cases:\n"
+"        tests = loader.loadTestsFromTestCase(test_class)\n"
+"        suite.addTests(tests)\n"
+"    return suite"
 
 #: ../../library/unittest.rst:2375
 msgid ""
@@ -3822,6 +4056,12 @@ msgid ""
 "    standard_tests.addTests(package_tests)\n"
 "    return standard_tests"
 msgstr ""
+"def load_tests(loader, standard_tests, pattern):\n"
+"    # 로더 인스턴스에 캐시 된 최상위 디렉터리\n"
+"    this_dir = os.path.dirname(__file__)\n"
+"    package_tests = loader.discover(start_dir=this_dir, pattern=pattern)\n"
+"    standard_tests.addTests(package_tests)\n"
+"    return standard_tests"
 
 #: ../../library/unittest.rst:2399
 msgid ""
@@ -3929,6 +4169,16 @@ msgid ""
 "    def tearDownClass(cls):\n"
 "        cls._connection.destroy()"
 msgstr ""
+"import unittest\n"
+"\n"
+"class Test(unittest.TestCase):\n"
+"    @classmethod\n"
+"    def setUpClass(cls):\n"
+"        cls._connection = createExpensiveConnectionObject()\n"
+"\n"
+"    @classmethod\n"
+"    def tearDownClass(cls):\n"
+"        cls._connection.destroy()"
 
 #: ../../library/unittest.rst:2458
 msgid ""
@@ -3967,6 +4217,11 @@ msgid ""
 "def tearDownModule():\n"
 "    closeConnection()"
 msgstr ""
+"def setUpModule():\n"
+"    createConnection()\n"
+"\n"
+"def tearDownModule():\n"
+"    closeConnection()"
 
 #: ../../library/unittest.rst:2480
 msgid ""
@@ -4021,16 +4276,15 @@ msgstr ""
 ":func:`setUpModule`\\이후에 조건 없이 호출됩니다."
 
 #: ../../library/unittest.rst:2518
-#, fuzzy
 msgid ""
 "It is responsible for calling all the cleanup functions added by "
 ":func:`addModuleCleanup`. If you need cleanup functions to be called "
 "*prior* to :func:`tearDownModule` then you can call "
 ":func:`doModuleCleanups` yourself."
 msgstr ""
-":func:`addCleanupModule`\\에서 추가된 모든 정리 함수들을 호출하는 책임이 있습니다. 만약 정리 함수를 "
+":func:`addModuleCleanup`\\에서 추가된 모든 정리 함수들을 호출하는 책임이 있습니다. 만약 정리 함수를 "
 ":func:`tearDownModule` *이전에* 불러야 할 필요가 있다면 :func:`doModuleCleanups`\\를 직접"
-" 부를 수 있습니다. "
+" 부를 수 있습니다."
 
 #: ../../library/unittest.rst:2523
 msgid ""
@@ -4045,7 +4299,6 @@ msgid "Signal Handling"
 msgstr "시그널 처리하기"
 
 #: ../../library/unittest.rst:2534
-#, fuzzy
 msgid ""
 "The :option:`-c/--catch <unittest -c>` command-line option to unittest, "
 "along with the ``catchbreak`` parameter to :func:`unittest.main`, provide"
@@ -4056,9 +4309,9 @@ msgid ""
 "usual way."
 msgstr ""
 "unittest의 :option:`-c/--catch <unittest -c>` 명령행 옵션은, "
-":func:`unittest.main()`\\의 ``catchbreak`` 매개 변수와 함께, 테스트 실행 중에 control-C를"
-" 사용하기 편하게 처리하도록 합니다. 중단 시그널 잡기를 활성화 하면 control-C는 현재 실행 중인 테스트를 완료하고, 그러면"
-" 테스트 실행이 끝나고 이제까지의 모든 결과를 보고할 것입니다. 두 번째 control-c는 평소와 같이 "
+":func:`unittest.main`\\의 ``catchbreak`` 매개 변수와 함께, 테스트 실행 중에 control-C를 "
+"사용하기 편하게 처리하도록 합니다. 중단 시그널 잡기를 활성화 하면 control-C는 현재 실행 중인 테스트를 완료하고, 그러면 "
+"테스트 실행이 끝나고 이제까지의 모든 결과를 보고할 것입니다. 두 번째 control-c는 평소와 같이 "
 ":exc:`KeyboardInterrupt`\\를 발생할 것입니다."
 
 #: ../../library/unittest.rst:2541
@@ -4138,6 +4391,9 @@ msgid ""
 "def test_signal_handling(self):\n"
 "    ..."
 msgstr ""
+"@unittest.removeHandler\n"
+"def test_signal_handling(self):\n"
+"    ..."
 
 #~ msgid ""
 #~ "The name ``assertNotRegexpMatches`` is a "
