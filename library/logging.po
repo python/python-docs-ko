@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/logging.rst:2
-#, fuzzy
 msgid ":mod:`!logging` --- Logging facility for Python"
-msgstr ":mod:`logging` --- 파이썬 로깅 시설"
+msgstr ":mod:`!logging` --- 파이썬 로깅 시설"
 
 #: ../../library/logging.rst:10
 msgid "**Source code:** :source:`Lib/logging/__init__.py`"
@@ -79,6 +78,19 @@ msgid ""
 "if __name__ == '__main__':\n"
 "    main()"
 msgstr ""
+"# myapp.py\n"
+"import logging\n"
+"import mylib\n"
+"logger = logging.getLogger(__name__)\n"
+"\n"
+"def main():\n"
+"    logging.basicConfig(filename='myapp.log', level=logging.INFO)\n"
+"    logger.info('Started')\n"
+"    mylib.do_something()\n"
+"    logger.info('Finished')\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    main()"
 
 #: ../../library/logging.rst:51
 msgid ""
@@ -89,6 +101,12 @@ msgid ""
 "def do_something():\n"
 "    logger.info('Doing something')"
 msgstr ""
+"# mylib.py\n"
+"import logging\n"
+"logger = logging.getLogger(__name__)\n"
+"\n"
+"def do_something():\n"
+"    logger.info('Doing something')"
 
 #: ../../library/logging.rst:58
 msgid "If you run *myapp.py*, you should see this in *myapp.log*:"
@@ -100,6 +118,9 @@ msgid ""
 "INFO:mylib:Doing something\n"
 "INFO:__main__:Finished"
 msgstr ""
+"INFO:__main__:Started\n"
+"INFO:mylib:Doing something\n"
+"INFO:__main__:Finished"
 
 #: ../../library/logging.rst:66
 msgid ""
@@ -125,21 +146,19 @@ msgid ""
 msgstr ""
 
 #: ../../library/logging.rst:82
-#, fuzzy
 msgid ""
 "The module provides a lot of functionality and flexibility.  If you are "
 "unfamiliar with logging, the best way to get to grips with it is to view "
 "the tutorials (**see the links above and on the right**)."
 msgstr ""
-"이 모듈은 많은 기능과 유연성을 제공합니다. 로깅에 익숙하지 않다면, 감을 잡는 가장 좋은 방법은 자습서를 보는 것입니다 (오른쪽 "
-"링크를 참조하세요)."
+"이 모듈은 많은 기능과 유연성을 제공합니다. 로깅에 익숙하지 않다면, 감을 잡는 가장 좋은 방법은 자습서를 보는 것입니다 (**위와"
+" 오른쪽에 있는 링크를 참조하세요**)."
 
 #: ../../library/logging.rst:86
-#, fuzzy
 msgid ""
 "The basic classes defined by the module, together with their attributes "
 "and methods, are listed in the sections below."
-msgstr "모듈에 의해 정의된 기본 클래스와 그 기능은 다음과 같습니다."
+msgstr "모듈에 의해 정의된 기본 클래스는, 그들의 어트리뷰트와 메서드와 함께, 아래 절에서 나열됩니다."
 
 #: ../../library/logging.rst:89
 msgid "Loggers expose the interface that application code directly uses."
@@ -178,7 +197,6 @@ msgstr ""
 ":func:`getLogger` 를 여러 번 호출해도 항상 같은 로거 객체에 대한 참조를 돌려줍니다."
 
 #: ../../library/logging.rst:107
-#, fuzzy
 msgid ""
 "The ``name`` is potentially a period-separated hierarchical value, like "
 "``foo.bar.baz`` (though it could also be just plain ``foo``, for "
@@ -196,9 +214,10 @@ msgstr ""
 "``name`` 은 잠재적으로 ``foo.bar.baz`` 와 같이 마침표로 구분된 계층적 값입니다 (하지만 그냥 간단한 "
 "``foo`` 도 가능합니다). 계층적 목록에서 더 아래쪽에 있는 로거는 목록에서 상위에 있는 로거의 자식입니다. 예를 들어, "
 "이름이 ``foo`` 인 로거가 주어지면, ``foo.bar``, ``foo.bar.baz``, 그리고 ``foo.bam`` 의 "
-"이름을 가진 로거는 모두 ``foo`` 의 자손입니다. 로거 이름 계층 구조는 파이썬 패키지 계층 구조와 비슷하며, "
-"``logging.getLogger(__name__)`` 를 사용하여 모듈 단위로 로거를 구성하는 경우는 패키지 계층 구조와 "
-"같아집니다. 왜냐하면, 모듈에서, ``__name__`` 은 파이썬 패키지 이름 공간의 모듈 이름이기 때문입니다."
+"이름을 가진 로거는 모두 ``foo`` 의 자손입니다. 또한, 모든 로거는 루트 로거의 자손입니다. 로거 이름 계층 구조는 파이썬 "
+"패키지 계층 구조와 비슷하며, ``logging.getLogger(__name__)`` 를 사용하여 모듈 단위로 로거를 구성하는 "
+"경우는 패키지 계층 구조와 같아집니다. 왜냐하면, 모듈에서, ``__name__`` 은 파이썬 패키지 이름 공간의 모듈 이름이기 "
+"때문입니다."
 
 #: ../../library/logging.rst:123
 msgid ""
@@ -238,7 +257,7 @@ msgid ""
 "the ancestor loggers' handlers - neither the level nor filters of the "
 "ancestor loggers in question are considered."
 msgstr ""
-"이 어트리뷰트가 참으로 평가되면, 이 로거에 로그 된 이벤트는 이 로거에 첨부된 처리기뿐 아니라 상위 계층 (조상) 로거의 처리기로"
+"이 어트리뷰트가 참으로 평가되면, 이 로거에 로그 된 이벤트는 이 로거에 연결된 처리기뿐 아니라 상위 계층 (조상) 로거의 처리기로"
 " 전달됩니다. 메시지는 조상 로거의 처리기에 직접 전달됩니다 - 조상 로거의 수준이나 필터는 고려하지 않습니다."
 
 #: ../../library/logging.rst:150
@@ -502,7 +521,6 @@ msgstr ""
 "수 있습니다. 이 매개 변수의 이름은 :mod:`warnings` 모듈에 있는 비슷한 것과 같도록 맞췄습니다."
 
 #: ../../library/logging.rst:306
-#, fuzzy
 msgid ""
 "The fourth keyword argument is *extra* which can be used to pass a "
 "dictionary which is used to populate the :attr:`~object.__dict__` of the "
@@ -510,9 +528,9 @@ msgid ""
 "attributes. These custom attributes can then be used as you like. For "
 "example, they could be incorporated into logged messages. For example::"
 msgstr ""
-"네 번째 키워드 인자는 *extra* 로, 로깅 이벤트용으로 만들어진 :class:`LogRecord`\\의 __dict__ 를 "
-"사용자 정의 어트리뷰트로 채우는 데 사용되는 딕셔너리를 전달할 수 있습니다. 이러한 사용자 정의 어트리뷰트는 원하는 대로 사용할 수"
-" 있습니다. 예를 들어, 로그 메시지에 포함할 수 있습니다. 예를 들면::"
+"네 번째 키워드 인자는 *extra* 로, 로깅 이벤트용으로 만들어진 :class:`LogRecord`\\의 "
+":attr:`~object.__dict__` 를 사용자 정의 어트리뷰트로 채우는 데 사용되는 딕셔너리를 전달할 수 있습니다. 이러한"
+" 사용자 정의 어트리뷰트는 원하는 대로 사용할 수 있습니다. 예를 들어, 로그 메시지에 포함할 수 있습니다. 예를 들면::"
 
 #: ../../library/logging.rst:313
 #, python-brace-format, python-format
@@ -523,6 +541,11 @@ msgid ""
 "logger = logging.getLogger('tcpserver')\n"
 "logger.warning('Protocol problem: %s', 'connection reset', extra=d)"
 msgstr ""
+"FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'\n"
+"logging.basicConfig(format=FORMAT)\n"
+"d = {'clientip': '192.168.0.1', 'user': 'fbloggs'}\n"
+"logger = logging.getLogger('tcpserver')\n"
+"logger.warning('Protocol problem: %s', 'connection reset', extra=d)"
 
 #: ../../library/logging.rst:319
 msgid "would print something like"
@@ -533,9 +556,10 @@ msgid ""
 "2006-02-08 22:20:02,165 192.168.0.1 fbloggs  Protocol problem: connection"
 " reset"
 msgstr ""
+"2006-02-08 22:20:02,165 192.168.0.1 fbloggs  Protocol problem: connection"
+" reset"
 
 #: ../../library/logging.rst:325
-#, fuzzy
 msgid ""
 "The keys in the dictionary passed in *extra* should not clash with the "
 "keys used by the logging system. (See the section on :ref:`logrecord-"
@@ -543,7 +567,7 @@ msgid ""
 "system.)"
 msgstr ""
 "*extra* 에 전달된 딕셔너리의 키가, 로깅 시스템에서 사용하는 키와 충돌해서는 안 됩니다. (어떤 키가 로깅 시스템에 의해 "
-"사용되는지에 대한 더 많은 정보는 :class:`Formatter` 문서를 보십시오.)"
+"사용되는지에 대한 더 많은 정보는 :ref:`logrecord-attributes`\\에 있는 절을 보십시오.)"
 
 #: ../../library/logging.rst:329
 msgid ""
@@ -821,7 +845,6 @@ msgid "Handler Objects"
 msgstr "Handler 객체"
 
 #: ../../library/logging.rst:518
-#, fuzzy
 msgid ""
 "Handlers have the following attributes and methods. Note that "
 ":class:`Handler` is never instantiated directly; this class acts as a "
@@ -829,8 +852,8 @@ msgid ""
 " subclasses needs to call :meth:`Handler.__init__`."
 msgstr ""
 "처리기에는 다음과 같은 어트리뷰트와 메서드가 있습니다. :class:`Handler` 는 절대로 직접 인스턴스로 만들어지지 않음에 "
-"주의하세요; 이 클래스는 더욱 유용한 서브 클래스의 베이스가 됩니다. 그러나, 서브 클래스의 :meth:`__init__` 메서드는"
-" :meth:`Handler.__init__` 을 호출해야 합니다."
+"주의하세요; 이 클래스는 더욱 유용한 서브 클래스의 베이스가 됩니다. 그러나, 서브 클래스의 :meth:`!__init__` "
+"메서드는 :meth:`Handler.__init__` 을 호출해야 합니다."
 
 #: ../../library/logging.rst:527
 msgid ""
@@ -907,20 +930,19 @@ msgid ""
 msgstr "모든 로그 출력이 플러시 되었음을 확실히 합니다. 이 버전은 아무것도 하지 않으며, 서브 클래스에 의해 구현됩니다."
 
 #: ../../library/logging.rst:596
-#, fuzzy
 msgid ""
 "Tidy up any resources used by the handler. This version does no output "
 "but removes the handler from an internal map of handlers, which is used "
 "for handler lookup by name."
 msgstr ""
-"처리기가 사용하는 자원을 정리합니다. 이 버전은 출력하지 않지만, :func:`shutdown` 이 호출 될 때 닫히는 처리기의 "
-"내부 목록에서 처리기를 제거합니다. 서브 클래스는 이것이 재정의된 :meth:`close` 메서드에서 이 메서드를 호출해야 합니다."
+"처리기가 사용하는 자원을 정리합니다. 이 버전은 출력하지 않지만, 이름으로 처리기를 검색하는 데 사용되는 내부 맵에서 처리기를 "
+"제거합니다."
 
 #: ../../library/logging.rst:600
 msgid ""
 "Subclasses should ensure that this gets called from overridden "
 ":meth:`close` methods."
-msgstr ""
+msgstr "서브 클래스는 이것이 재정의된 :meth:`close` 메서드에서 이 메서드를 호출해야 합니다."
 
 #: ../../library/logging.rst:606
 msgid ""
@@ -932,7 +954,6 @@ msgstr ""
 "둘러쌉니다."
 
 #: ../../library/logging.rst:613
-#, fuzzy
 msgid ""
 "This method should be called from handlers when an exception is "
 "encountered during an :meth:`emit` call. If the module-level attribute "
@@ -946,10 +967,10 @@ msgid ""
 "development)."
 msgstr ""
 "이 메서드는 :meth:`emit` 호출 중에 예외가 발생할 때 처리기에서 호출됩니다. 모듈 수준 어트리뷰트 "
-"``raiseExceptions`` 가 ``False`` 인 경우 예외는 조용히 무시됩니다. 이 동작은 대부분 로깅 시스템에서 "
-"원하는 방식입니다 - 대부분 사용자는 로깅 시스템 자체의 에러에 관심이 없고, 응용 프로그램 에러에 더 관심이 있습니다. 그러나 "
-"원하는 경우, 사용자 정의 처리기로 바꿀 수 있습니다. 지정된 레코드는 예외가 발생할 때 처리되고 있던 레코드입니다. "
-"(``raiseExceptions`` 의 기본값은 ``True`` 입니다. 개발 중에 더 유용합니다)."
+":data:`raiseExceptions` 가 ``False`` 인 경우 예외는 조용히 무시됩니다. 이 동작은 대부분 로깅 "
+"시스템에서 원하는 방식입니다 - 대부분 사용자는 로깅 시스템 자체의 에러에 관심이 없고, 응용 프로그램 에러에 더 관심이 있습니다."
+" 그러나 원하는 경우, 사용자 정의 처리기로 바꿀 수 있습니다. 지정된 레코드는 예외가 발생할 때 처리되고 있던 레코드입니다. "
+"(:data:`raiseExceptions` 의 기본값은 ``True`` 입니다. 개발 중에 더 유용합니다)."
 
 #: ../../library/logging.rst:626
 msgid ""
@@ -1027,7 +1048,7 @@ msgid ""
 msgstr ""
 
 #: ../../library/logging.rst:679
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Can be one of ``'%'``, ``'{'`` or ``'$'`` and determines how the format "
 "string will be merged with its data: using one of :ref:`old-string-"
@@ -1038,22 +1059,23 @@ msgid ""
 ":ref:`other ways <formatting-styles>` to use ``{``- and ``$``-formatting "
 "for log messages."
 msgstr ""
-"*style* 매개 변수는 '%', '{' 또는 '$' 중 하나일 수 있으며, 포맷 문자열이 데이터와 병합되는 방식을 결정합니다: "
-"%-포매팅, :meth:`str.format` 또는 :class:`string.Template` 중 하나를 사용합니다. 이는 "
-"``Logger.debug``\\에 전달된 실제 로그 메시지가 아닌, 포맷 문자열 *fmt* (예를 들어 "
-"``'%(message)s'``\\나 ``{message}``)에만 적용됩니다.; 로그 메시지에 {- 와 $-포매팅을 사용하는 "
-"방법에 대한 자세한 내용은 :ref:`formatting-styles`\\을 참조하십시오."
+"``'%'``, ``'{'`` 또는 ``'$'`` 중 하나일 수 있으며, 포맷 문자열이 데이터와 병합되는 방식을 결정합니다: "
+":ref:`old-string-formatting` (``%``), :meth:`str.format` (``{``) 또는 "
+":class:`string.Template` (``$``) 중 하나를 사용합니다. 이는 로깅 메서드에 전달된 실제 로그 메시지가 "
+"아닌, *fmt*\\와 *datefmt*\\에만 적용됩니다 (예를 들어 ``'%(message)s'`` 대 "
+"``'{message}'``). 하지만, 로그 메시지에 `{`- 와 ``$``-포매팅을 사용하는 :ref:`다른 방법 "
+"<formatting-styles>`\\이 있습니다."
 
 #: ../../library/logging.rst:689
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If ``True`` (the default), incorrect or mismatched *fmt* and *style* will"
 " raise a :exc:`ValueError`; for example, ``logging.Formatter('%(asctime)s"
 " - %(message)s', style='{')``."
 msgstr ""
-"*validate* 매개 변수가 추가되었습니다. style과 fmt가 잘못되거나 일치하지 않으면 ``ValueError``\\를 "
-"발생시킵니다. 예를 들어: ``logging.Formatter('%(asctime)s - %(message)s', "
-"style='{')``."
+"``True``\\면 (기본값), *fmt*\\와 *style*\\이 잘못되거나 일치하지 않을 때 "
+":exc:`ValueError`\\를 발생시킵니다; 예를 들어, ``logging.Formatter('%(asctime)s - "
+"%(message)s', style='{')``."
 
 #: ../../library/logging.rst:694
 #, python-brace-format, python-format
@@ -1063,21 +1085,18 @@ msgid ""
 msgstr ""
 
 #: ../../library/logging.rst:699
-#, fuzzy
 msgid "Added the *style* parameter."
 msgstr "*style* 매개 변수가 추가되었습니다."
 
 #: ../../library/logging.rst:702
-#, fuzzy
 msgid "Added the *validate* parameter."
-msgstr "*style* 매개 변수가 추가되었습니다."
+msgstr "*validate* 매개 변수가 추가되었습니다."
 
 #: ../../library/logging.rst:705
 msgid "Added the *defaults* parameter."
-msgstr ""
+msgstr "*defaults* 매개 변수가 추가되었습니다."
 
 #: ../../library/logging.rst:711
-#, fuzzy
 msgid ""
 "The record's attribute dictionary is used as the operand to a string "
 "formatting operation. Returns the resulting string. Before formatting the"
@@ -1101,8 +1120,8 @@ msgstr ""
 "예외 정보가 있는 경우, :meth:`formatException` 을 사용하여 포매팅 되고 메시지에 덧붙입니다. 포맷된 예외 "
 "정보는 *exc_text* 어트리뷰트에 캐시 됩니다. 예외 정보를 피클 해서 네트워크를 통해 전송할 수 있으므로 유용합니다만, 예외"
 " 정보의 포매팅을 사용자 정의하는 :class:`Formatter` 서브 클래스가 두 개 이상 있는 경우 주의해야 합니다. 이 "
-"경우, 한 포매터가 포매팅을 완료한 후 캐시 된 값을 지워서 그 이벤트를 처리하는 다음 포매터가 캐시 된 값을 사용하지 않고 새로 "
-"계산할 수 있도록 해야 합니다."
+"경우, 한 포매터가 포매팅을 완료한 후 (*exc_text* 어트리뷰트를 ``None``\\으로 설정하여) 캐시 된 값을 지워서 그"
+" 이벤트를 처리하는 다음 포매터가 캐시 된 값을 사용하지 않고, 새로 계산할 수 있도록 해야 합니다."
 
 #: ../../library/logging.rst:727
 msgid ""
@@ -1272,7 +1291,7 @@ msgid ""
 "filter setting, unless the filter has also been applied to those "
 "descendant loggers."
 msgstr ""
-"처리기에 첨부된 필터는 이벤트를 처리기가 출력하기 전에 호출되는 반면, 로거에 첨부된 필터는 이벤트가 로깅될 때마다 "
+"처리기에 연결된 필터는 이벤트를 처리기가 출력하기 전에 호출되는 반면, 로거에 연결된 필터는 이벤트가 로깅될 때마다 "
 "(:meth:`debug`, :meth:`info` 등) 처리기로 이벤트를 보내기 전에 호출됩니다. 이는 자손 로거가 만든 "
 "이벤트들은, 같은 필터가 자손들에게도 적용되지 않는 한, 로거의 필터 설정으로 필터링 되지 않는다는 것을 뜻합니다."
 
@@ -1321,7 +1340,7 @@ msgid ""
 " the injection of contextual information into logs (see :ref:`filters-"
 "contextual`)."
 msgstr ""
-"필터는 수준보다 정교한 기준에 따라 레코드를 필터링하는 데 주로 사용되지만, 필터가 첨부되는 처리기나 로거에서 처리되는 모든 "
+"필터는 수준보다 정교한 기준에 따라 레코드를 필터링하는 데 주로 사용되지만, 필터가 연결되는 처리기나 로거에서 처리되는 모든 "
 "레코드를 볼 수 있습니다: 이 특성은, 특정 로거나 처리기가 얼마나 많은 레코드를 처리하는지 센다거나, 처리 중인 "
 ":class:`LogRecord`\\에 어트리뷰트를 추가, 변경, 삭제하려고 할 때 유용합니다. 당연히, LogRecord를 "
 "변경하는 것은 주의를 필요로 하는 일이지만, 로그에 문맥 정보를 주입하는 것을 허용합니다 (:ref:`filters-"
@@ -1347,53 +1366,53 @@ msgid "Contains all the information pertinent to the event being logged."
 msgstr "로그 되는 이벤트와 관련된 모든 정보를 담고 있습니다."
 
 #: ../../library/logging.rst:887
-#, fuzzy
 msgid ""
 "The primary information is passed in *msg* and *args*, which are combined"
 " using ``msg % args`` to create the :attr:`!message` attribute of the "
 "record."
 msgstr ""
-"주요 정보는 :attr:`msg`\\와 :attr:`args` 로 전달되며, ``msg % args`` 를 사용하여 병합되어 "
-"레코드의 :attr:`message` 필드를 만듭니다."
+"주요 정보는 *msg*\\와 *args* 로 전달되며, ``msg % args`` 를 사용하여 병합되어 레코드의 "
+":attr:`!message` 어트리뷰트를 만듭니다."
 
 #: ../../library/logging.rst:891
-#, fuzzy
 msgid ""
 "The name of the logger used to log the event represented by this "
 ":class:`!LogRecord`. Note that the logger name in the :class:`!LogRecord`"
 " will always have this value, even though it may be emitted by a handler "
 "attached to a different (ancestor) logger."
 msgstr ""
-"이 LogRecord가 나타내는 이벤트를 로그 하는데 사용된 로거의 이름. 이 이름은 다른 (조상) 로거에 첨부된 처리기가 "
-"출력하더라도 항상 이 값을 갖습니다."
+"이 :class:`!LogRecord`\\가 나타내는 이벤트를 로그 하는데 사용된 로거의 이름. "
+":class:`!LogRecord`\\의 로거 이름은 다른 (조상) 로거에 연결된 처리기가 출력하더라도 항상 이 값을 갖게됨에 "
+"유의하십시오."
 
 #: ../../library/logging.rst:899
-#, fuzzy
 msgid ""
 "The :ref:`numeric level <levels>` of the logging event (such as ``10`` "
 "for ``DEBUG``, ``20`` for ``INFO``, etc). Note that this is converted to "
 "*two* attributes of the LogRecord: :attr:`!levelno` for the numeric value"
 " and :attr:`!levelname` for the corresponding level name."
 msgstr ""
-"로깅 이벤트의 숫자 수준 (DEBUG, INFO 등). 이 값은 LogRecord의 *두* 어트리뷰트로 변환됩니다: 숫자 값을 위한"
-" ``levelno`` 와 해당 수준 이름을 위한 ``levelname``."
+"로깅 이벤트의 :ref:`숫자 수준 <levels>` (가령 ``10``\\은 ``DEBUG``, ``20``\\은 ``INFO``"
+" 등). 이 값은 LogRecord의 *두* 어트리뷰트로 변환됩니다: 숫자 값을 위한 :attr:`!levelno` 와 해당 수준 "
+"이름을 위한 :attr:`!levelname`."
 
 #: ../../library/logging.rst:906
-#, fuzzy
 msgid "The full string path of the source file where the logging call was made."
-msgstr "로깅 호출이 발생한 소스 파일의 전체 경로명."
+msgstr "로깅 호출이 발생한 소스 파일의 전체 문자열 경로."
 
 #: ../../library/logging.rst:910
 msgid "The line number in the source file where the logging call was made."
 msgstr "로깅 호출이 발생한 소스 파일의 행 번호."
 
 #: ../../library/logging.rst:914
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The event description message, which can be a %-format string with "
 "placeholders for variable data, or an arbitrary object (see :ref"
 ":`arbitrary-object-messages`)."
-msgstr "이벤트 설명 메시지. 변수 데이터를 위한 자리 표시자가 있는 포맷 문자열일 수 있습니다."
+msgstr ""
+"이벤트 설명 메시지. 변수 데이터를 위한 자리 표시자가 있는 %-포맷 문자열이거나, 임의의 객체일 수 있습니다 (:ref"
+":`arbitrary-object-messages`\\를 참조하세요)."
 
 #: ../../library/logging.rst:919
 msgid ""
@@ -1402,12 +1421,13 @@ msgid ""
 msgstr "이벤트 설명을 얻기 위해 *msg* 인자에 병합할 변수 데이터."
 
 #: ../../library/logging.rst:923
-#, fuzzy
 msgid ""
 "An exception tuple with the current exception information, as returned by"
 " :func:`sys.exc_info`, or ``None`` if no exception information is "
 "available."
-msgstr "현재의 예외 정보를 가지는 예외 튜플. 예외 정보가 없는 경우는 ``None`` 입니다."
+msgstr ""
+"현재의 예외 정보를 가지는 예외 튜플로, :func:`sys.exc_info`\\가 반환하는 값. 예외 정보가 없는 경우는 "
+"``None``."
 
 #: ../../library/logging.rst:928
 msgid ""
@@ -1465,6 +1485,14 @@ msgid ""
 "\n"
 "logging.setLogRecordFactory(record_factory)"
 msgstr ""
+"old_factory = logging.getLogRecordFactory()\n"
+"\n"
+"def record_factory(*args, **kwargs):\n"
+"    record = old_factory(*args, **kwargs)\n"
+"    record.custom_attribute = 0xdecafbad\n"
+"    return record\n"
+"\n"
+"logging.setLogRecordFactory(record_factory)"
 
 #: ../../library/logging.rst:964
 msgid ""
@@ -1509,7 +1537,7 @@ msgstr ""
 "사용하십시오. 두 경우 모두, 물론, ``attrname`` 을 사용하려는 실제 어트리뷰트 이름으로 대체하십시오."
 
 #: ../../library/logging.rst:989
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "In the case of {}-formatting, you can specify formatting flags by placing"
 " them after the attribute name, separated from it with a colon. For "
@@ -1518,8 +1546,8 @@ msgid ""
 "for full details on the options available to you."
 msgstr ""
 "{}-포매팅의 경우, 어트리뷰트 이름 다음에 콜론(:)으로 구분하여 포매팅 플래그를 지정할 수 있습니다. 예를 들어, "
-"``{msecs:03d}`` 자리 표시자는 밀리 초 값 ``4`` 를 ``004`` 로 포맷합니다. 사용할 수 있는 옵션에 대한 "
-"자세한 내용은 :meth:`str.format` 설명서를 참조하십시오."
+"``{msecs:03.0f}`` 자리 표시자는 밀리 초 값 ``4`` 를 ``004`` 로 포맷합니다. 사용할 수 있는 옵션에 대한"
+" 자세한 내용은 :meth:`str.format` 설명서를 참조하십시오."
 
 #: ../../library/logging.rst:996
 msgid "Attribute name"
@@ -1579,11 +1607,10 @@ msgid "``%(created)f``"
 msgstr "``%(created)f``"
 
 #: ../../library/logging.rst:1009
-#, fuzzy
 msgid ""
 "Time when the :class:`LogRecord` was created (as returned by "
 ":func:`time.time_ns` / 1e9)."
-msgstr ":class:`LogRecord` 가 생성된 시간 (:func:`time.time` 이 반환하는 시간)."
+msgstr ":class:`LogRecord` 가 생성된 시간 (:func:`time.time_ns` / 1e9 이 반환하는 값)."
 
 #: ../../library/logging.rst ../../library/logging.rst:1012
 msgid "exc_info"
@@ -1829,28 +1856,25 @@ msgid "Thread name (if available)."
 msgstr "스레드 이름 (사용 가능한 경우)."
 
 #: ../../library/logging.rst:1068
-#, fuzzy
 msgid "taskName"
-msgstr "threadName"
+msgstr "taskName"
 
 #: ../../library/logging.rst:1068
-#, fuzzy, python-format
+#, python-format
 msgid "``%(taskName)s``"
-msgstr "``%(name)s``"
+msgstr "``%(taskName)s``"
 
 #: ../../library/logging.rst:1068
-#, fuzzy
 msgid ":class:`asyncio.Task` name (if available)."
-msgstr "프로세스 이름 (사용 가능한 경우)."
+msgstr ":class:`asyncio.Task` 이름 (사용 가능한 경우)."
 
 #: ../../library/logging.rst:1071
 msgid "*processName* was added."
 msgstr "*processName* 이 추가되었습니다."
 
 #: ../../library/logging.rst:1074
-#, fuzzy
 msgid "*taskName* was added."
-msgstr "*processName* 이 추가되었습니다."
+msgstr "*taskName* 이 추가되었습니다."
 
 #: ../../library/logging.rst:1080
 msgid "LoggerAdapter Objects"
@@ -1934,9 +1958,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/logging.rst:1133
-#, fuzzy
 msgid "The *merge_extra* argument was added."
-msgstr "*force* 인자가 추가되었습니다."
+msgstr "*merge_extra* 인자가 추가되었습니다."
 
 #: ../../library/logging.rst:1137
 msgid "Thread Safety"
@@ -1977,7 +2000,6 @@ msgid ""
 msgstr "위에서 설명한 클래스 외에도 많은 모듈 수준 함수가 있습니다."
 
 #: ../../library/logging.rst:1159
-#, fuzzy
 msgid ""
 "Return a logger with the specified name or, if name is ``None``, return "
 "the root logger of the hierarchy. If specified, the name is typically a "
@@ -1986,9 +2008,10 @@ msgid ""
 "logging, though it is recommended that ``__name__`` be used unless you "
 "have a specific reason for not doing that, as mentioned in :ref:`logger`."
 msgstr ""
-"지정된 이름(name)의 로거를 돌려주거나, name이 ``None`` 인 경우, 계층의 루트 로거인 로거를 돌려줍니다. 지정된 "
-"경우, name은 일반적으로 *'a'*, *'a.b'* 또는 *'a.b.c.d'* 와 같이 점으로 구분된 계층적 이름입니다. 이 "
-"이름의 선택은 전적으로 logging을 사용하는 개발자에게 달려 있습니다."
+"지정된 이름(name)의 로거를 돌려주거나, name이 ``None`` 인 경우, 계층의 루트 로거를 돌려줍니다. 지정된 경우, "
+"name은 일반적으로 *'a'*, *'a.b'* 또는 *'a.b.c.d'* 와 같이 점으로 구분된 계층적 이름입니다. 이 이름의 "
+"선택은 전적으로 logging을 사용하는 개발자에게 달려 있지만, :ref:`logger`\\에서 언급한 대로, 특별한 이유가 없는"
+" 한 ``__name__``\\을 사용하는 것을 권장합니다."
 
 #: ../../library/logging.rst:1166
 msgid ""
@@ -2016,6 +2039,8 @@ msgid ""
 "class MyLogger(logging.getLoggerClass()):\n"
 "    # ... override behaviour here"
 msgstr ""
+"class MyLogger(logging.getLoggerClass()):\n"
+"    # ... 여기에서 동작을 재정의 합니다"
 
 #: ../../library/logging.rst:1184
 msgid "Return a callable which is used to create a :class:`LogRecord`."
@@ -2061,18 +2086,18 @@ msgid ""
 msgstr ""
 
 #: ../../library/logging.rst:1213
-#, fuzzy
 msgid ""
 "Logs a message with level :const:`INFO` on the root logger. The arguments"
 " and behavior are otherwise the same as for :func:`debug`."
-msgstr "루트 로거에 수준 :const:`INFO` 메시지를 로그 합니다. 인자는 :func:`debug`\\처럼 해석됩니다."
+msgstr "루트 로거에 수준 :const:`INFO` 메시지를 로그 합니다. 그 밖의 인자와 동작은 :func:`debug`\\와 같습니다."
 
 #: ../../library/logging.rst:1219
-#, fuzzy
 msgid ""
 "Logs a message with level :const:`WARNING` on the root logger. The "
 "arguments and behavior are otherwise the same as for :func:`debug`."
-msgstr "루트 로거에 수준 :const:`WARNING` 메시지를 로그 합니다. 인자는 :func:`debug`\\처럼 해석됩니다."
+msgstr ""
+"루트 로거에 수준 :const:`WARNING` 메시지를 로그 합니다. 그 밖의 인자와 동작은 :func:`debug`\\와 "
+"같습니다."
 
 #: ../../library/logging.rst:1222
 msgid ""
@@ -2084,36 +2109,34 @@ msgstr ""
 "마십시오 - 대신 ``warning`` 을 사용하십시오."
 
 #: ../../library/logging.rst:1229
-#, fuzzy
 msgid ""
 "Logs a message with level :const:`ERROR` on the root logger. The "
 "arguments and behavior are otherwise the same as for :func:`debug`."
-msgstr "루트 로거에 수준 :const:`ERROR` 메시지를 로그 합니다. 인자는 :func:`debug`\\처럼 해석됩니다."
+msgstr "루트 로거에 수준 :const:`ERROR` 메시지를 로그 합니다. 그 밖의 인자와 동작은 :func:`debug`\\와 같습니다."
 
 #: ../../library/logging.rst:1235
-#, fuzzy
 msgid ""
 "Logs a message with level :const:`CRITICAL` on the root logger. The "
 "arguments and behavior are otherwise the same as for :func:`debug`."
-msgstr "루트 로거에 수준 :const:`CRITICAL` 메시지를 로그 합니다. 인자는 :func:`debug`\\처럼 해석됩니다."
+msgstr ""
+"루트 로거에 수준 :const:`CRITICAL` 메시지를 로그 합니다. 그 밖의 인자와 동작은 :func:`debug`\\와 "
+"같습니다."
 
 #: ../../library/logging.rst:1241
-#, fuzzy
 msgid ""
 "Logs a message with level :const:`ERROR` on the root logger. The "
 "arguments and behavior are otherwise the same as for :func:`debug`. "
 "Exception info is added to the logging message. This function should only"
 " be called from an exception handler."
 msgstr ""
-"루트 로거에 수준 :const:`ERROR` 메시지를 로그 합니다. 인자는 :func:`debug`\\처럼 해석됩니다. 예외 정보가"
-" 로깅 메시지에 추가됩니다. 이 메서드는 예외 처리기에서만 호출해야 합니다."
+"루트 로거에 수준 :const:`ERROR` 메시지를 로그 합니다. 그 밖의 인자와 동작은 :func:`debug`\\와 같습니다."
+" 예외 정보가 로깅 메시지에 추가됩니다. 이 메서드는 예외 처리기에서만 호출해야 합니다."
 
 #: ../../library/logging.rst:1247
-#, fuzzy
 msgid ""
 "Logs a message with level *level* on the root logger. The arguments and "
 "behavior are otherwise the same as for :func:`debug`."
-msgstr "루트 로거에 수준 *level* 의 메시지를 로그 합니다. 다른 인자는 :func:`debug`\\처럼 해석됩니다."
+msgstr "루트 로거에 수준 *level* 의 메시지를 로그 합니다. 그 밖의 인자와 동작은 :func:`debug`\\와 같습니다."
 
 #: ../../library/logging.rst:1252
 msgid ""
@@ -2305,11 +2328,10 @@ msgid "*filename*"
 msgstr "*filename*"
 
 #: ../../library/logging.rst:1368
-#, fuzzy
 msgid ""
 "Specifies that a :class:`FileHandler` be created, using the specified "
 "filename, rather than a :class:`StreamHandler`."
-msgstr "StreamHandler 대신 지정된 파일명을 사용해 FileHandler를 만들도록 지정합니다."
+msgstr ":class:`StreamHandler` 대신 지정된 파일명을 사용해 :class:`FileHandler`\\를 만들도록 지정합니다."
 
 #: ../../library/logging.rst:1372
 msgid "*filemode*"
@@ -2369,14 +2391,13 @@ msgid "*stream*"
 msgstr "*stream*"
 
 #: ../../library/logging.rst:1395
-#, fuzzy
 msgid ""
 "Use the specified stream to initialize the :class:`StreamHandler`. Note "
 "that this argument is incompatible with *filename* - if both are present,"
 " a ``ValueError`` is raised."
 msgstr ""
-"StreamHandler의 초기화에 지정된 스트림을 사용합니다. 이 인자는 *filename* 과 호환되지 않습니다 - 둘 다 "
-"있으면 ``ValueError`` 가 발생합니다."
+":class:`StreamHandler`\\의 초기화에 지정된 스트림을 사용합니다. 이 인자는 *filename* 과 호환되지 "
+"않습니다 - 둘 다 있으면 ``ValueError`` 가 발생합니다."
 
 #: ../../library/logging.rst:1401
 msgid "*handlers*"
@@ -2404,7 +2425,7 @@ msgid ""
 "attached to the root logger are removed and closed, before carrying out "
 "the configuration as specified by the other arguments."
 msgstr ""
-"이 키워드 인자가 참으로 지정되면, 루트 로거에 첨부된 기존 처리기는 다른 인자에 지정된 대로 구성을 수행하기 전에 모두 제거되고 "
+"이 키워드 인자가 참으로 지정되면, 루트 로거에 연결된 기존 처리기는 다른 인자에 지정된 대로 구성을 수행하기 전에 모두 제거되고 "
 "닫힙니다."
 
 #: ../../library/logging.rst:1416
@@ -2412,21 +2433,19 @@ msgid "*encoding*"
 msgstr "*encoding*"
 
 #: ../../library/logging.rst:1416
-#, fuzzy
 msgid ""
 "If this keyword argument is specified along with *filename*, its value is"
 " used when the :class:`FileHandler` is created, and thus used when "
 "opening the output file."
 msgstr ""
-"이 키워드 인자가 *filename*\\과 함께 지정되면, 그 값이 FileHandler가 만들어질 때 사용되어, 결국 출력 파일을"
-" 열 때 사용됩니다."
+"이 키워드 인자가 *filename*\\과 함께 지정되면, 그 값이 :class:`FileHandler`\\가 만들어질 때 "
+"사용되어, 결국 출력 파일을 열 때 사용됩니다."
 
 #: ../../library/logging.rst:1421
 msgid "*errors*"
 msgstr "*errors*"
 
 #: ../../library/logging.rst:1421
-#, fuzzy
 msgid ""
 "If this keyword argument is specified along with *filename*, its value is"
 " used when the :class:`FileHandler` is created, and thus used when "
@@ -2435,9 +2454,10 @@ msgid ""
 " :func:`open`, which means that it will be treated the same as passing "
 "'errors'."
 msgstr ""
-"이 키워드 인자가 *filename*\\과 함께 지정되면, 그 값이 FileHandler가 만들어질 때 사용되어, 결국 출력 파일을"
-" 열 때 사용됩니다. 지정하지 않으면, 'backslashreplace' 값이 사용됩니다. ``None``\\이 지정되면, "
-"func:`open`\\에 그대로 전달되는데, 이는 'errors'\\를 전달한 것처럼 처리된다는 것에 유의하십시오."
+"이 키워드 인자가 *filename*\\과 함께 지정되면, 그 값이 :class:`FileHandler`\\가 만들어질 때 "
+"사용되어, 결국 출력 파일을 열 때 사용됩니다. 지정하지 않으면, 'backslashreplace' 값이 사용됩니다. "
+"``None``\\이 지정되면, :func:`open`\\에 그대로 전달되는데, 이는 'errors'\\를 전달한 것처럼 처리된다는"
+" 것에 유의하십시오."
 
 #: ../../library/logging.rst:1432
 msgid "The *style* argument was added."
@@ -2481,7 +2501,6 @@ msgstr ""
 "수동으로 수행할 필요가 없습니다."
 
 #: ../../library/logging.rst:1460
-#, fuzzy
 msgid ""
 "Tells the logging system to use the class *klass* when instantiating a "
 "logger. The class should define :meth:`!__init__` such that only a name "
@@ -2492,11 +2511,11 @@ msgid ""
 "loggers directly using the subclass: continue to use the "
 ":func:`logging.getLogger` API to get your loggers."
 msgstr ""
-"로거의 인스턴스를 만들 때 *klass* 클래스를 사용하도록 로깅 시스템에 지시합니다. 클래스는 :meth:`__init__` 을 "
-"정의해야 하는데, name만 필수 인자로 요구하고, :meth:`__init__` 는 :meth:`Logger.__init__` 을"
-" 호출해야 합니다. 이 함수는 일반적으로 사용자 정의된 로거 동작이 필요한 응용 프로그램에서 로거의 인스턴스가 만들어지기 전에 "
-"호출됩니다. 이 호출 후, 다른 때와 마찬가지로, 서브 클래스를 사용하여 직접 로거의 인스턴스를 만들지 마십시오: 계속 "
-":func:`logging.getLogger` API를 사용하여 로거를 얻으십시오."
+"로거의 인스턴스를 만들 때 *klass* 클래스를 사용하도록 로깅 시스템에 지시합니다. 클래스는 :meth:`!__init__` 을"
+" 정의해야 하는데, name만 필수 인자로 요구하고, :meth:`!__init__` 는 "
+":meth:`!Logger.__init__` 을 호출해야 합니다. 이 함수는 일반적으로 사용자 정의된 로거 동작이 필요한 응용 "
+"프로그램에서 로거의 인스턴스가 만들어지기 전에 호출됩니다. 이 호출 후, 다른 때와 마찬가지로, 서브 클래스를 사용하여 직접 로거의"
+" 인스턴스를 만들지 마십시오: 계속 :func:`logging.getLogger` API를 사용하여 로거를 얻으십시오."
 
 #: ../../library/logging.rst:1471
 msgid "Set a callable which is used to create a :class:`LogRecord`."
@@ -2619,7 +2638,7 @@ msgstr ""
 
 #: ../../library/logging.rst:1517
 msgid "Default: ``True``."
-msgstr ""
+msgstr "기본값: ``True``."
 
 #: ../../library/logging.rst:1519
 msgid ""
@@ -2696,11 +2715,10 @@ msgid ""
 msgstr "파이썬 표준 라이브러리에 포함하기 위해 이 기능을 설명한 제안."
 
 #: ../../library/logging.rst:1558
-#, fuzzy
 msgid ""
 "`Original Python logging package <https://old.red-"
 "dove.com/python_logging.html>`_"
-msgstr "`원본 파이썬 로깅 패키지 <https://www.red-dove.com/python_logging.html>`_"
+msgstr "`원본 파이썬 로깅 패키지 <https://old.red-dove.com/python_logging.html>`_"
 
 #: ../../library/logging.rst:1559
 msgid ""
@@ -2713,14 +2731,12 @@ msgstr ""
 ":mod:`logging` 패키지를 포함하지 않는 파이썬 1.5.2, 2.1.x 및 2.2.x에서 사용하기에 적합합니다."
 
 #: ../../library/logging.rst:12
-#, fuzzy
 msgid "Errors"
-msgstr "*errors*"
+msgstr "에러"
 
 #: ../../library/logging.rst:12
-#, fuzzy
 msgid "logging"
-msgstr "로깅 수준"
+msgstr "logging"
 
 #~ msgid "``CRITICAL``"
 #~ msgstr "``CRITICAL``"
