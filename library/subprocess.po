@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/subprocess.rst:2
-#, fuzzy
 msgid ":mod:`!subprocess` --- Subprocess management"
-msgstr ":mod:`subprocess` --- 서브 프로세스 관리"
+msgstr ":mod:`!subprocess` --- 서브 프로세스 관리"
 
 #: ../../library/subprocess.rst:10
 msgid "**Source code:** :source:`Lib/subprocess.py`"
@@ -39,6 +38,8 @@ msgid ""
 "os.system\n"
 "os.spawn*"
 msgstr ""
+"os.system\n"
+"os.spawn*"
 
 #: ../../library/subprocess.rst:21
 msgid ""
@@ -102,7 +103,6 @@ msgstr ""
 "*capture_output*\\은 아닙니다.)"
 
 #: ../../library/subprocess.rst:53
-#, fuzzy
 msgid ""
 "If *capture_output* is true, stdout and stderr will be captured. When "
 "used, the internal :class:`Popen` object is automatically created with "
@@ -113,13 +113,13 @@ msgid ""
 ":data:`~subprocess.STDOUT`, instead of using *capture_output*."
 msgstr ""
 "*capture_output*\\이 참이면, 표준 출력(stdout)과 표준 에러(stderr)가 캡처됩니다. 사용되면, 내부 "
-":class:`Popen` 객체는 자동으로 ``stdout=PIPE``\\와 ``stderr=PIPE``\\로 만들어집니다. "
-"*stdout*\\과 *stderr* 인자는 *capture_output*\\과 동시에 제공되지 않을 수 있습니다. 두 스트림을 "
-"모두 캡처하여 하나로 결합하려면 *capture_output* 대신 ``stdout=PIPE``\\와 "
-"``stderr=STDOUT``\\을 사용하십시오."
+":class:`Popen` 객체는 자동으로 *stdout*\\과 *stderr*\\이 모두 "
+":data:`~subprocess.PIPE`\\로 설정되어 만들어집니다. *stdout*\\과 *stderr* 인자는 "
+"*capture_output*\\과 동시에 제공되지 않을 수 있습니다. 두 스트림을 모두 캡처하여 하나로 결합하려면, "
+"*capture_output*\\을 사용하는 대신, *stdout*\\을 :data:`~subprocess.PIPE`\\로 "
+"*stderr*\\을 :data:`~subprocess.STDOUT`\\으로 설정하십시오."
 
 #: ../../library/subprocess.rst:62
-#, fuzzy
 msgid ""
 "A *timeout* may be specified in seconds, it is internally passed on to "
 ":meth:`Popen.communicate`. If the timeout expires, the child process will"
@@ -129,11 +129,12 @@ msgid ""
 "not guaranteed to see a timeout exception until at least after however "
 "long process creation takes."
 msgstr ""
-"*timeout* 인자는 :meth:`Popen.communicate`\\로 전달됩니다. 시간제한이 만료되면, 자식 프로세스를 "
-"죽이고 기다립니다. 자식 프로세스가 종료된 후 :exc:`TimeoutExpired` 예외가 다시 발생합니다."
+"*timeout*\\은 초 단위로 지정될 수 있으며, 내부적으로 :meth:`Popen.communicate`\\로 전달됩니다. "
+"시간제한이 만료되면, 자식 프로세스를 죽이고 기다립니다. 자식 프로세스가 종료된 후 :exc:`TimeoutExpired` 예외가 "
+"다시 발생합니다. 많은 플랫폼 API에서 초기 프로세스 생성 자체는 중단될 수 없기 때문에, 프로세스 생성에 소요되는 시간이 지나기"
+" 전에 시간제한 예외를 본다는 보장이 없습니다."
 
 #: ../../library/subprocess.rst:70
-#, fuzzy
 msgid ""
 "The *input* argument is passed to :meth:`Popen.communicate` and thus to "
 "the subprocess's stdin.  If used it must be a byte sequence, or a string "
@@ -144,8 +145,8 @@ msgid ""
 msgstr ""
 "*input* 인자는 :meth:`Popen.communicate`\\로 전달되고, 그래서 서브 프로세스의 표준 입력으로 "
 "전달됩니다. 사용된다면 바이트 시퀀스이거나, *encoding*\\이나 *errors*\\가 지정되었거나 *text*\\가 참이면 "
-"문자열이어야 합니다. 사용하면, 내부 :class:`Popen` 객체가 자동으로 ``stdin=PIPE``\\로 만들어지고 "
-"*stdin* 인자는 사용되지 않을 수 있습니다."
+"문자열이어야 합니다. 사용하면, 내부 :class:`Popen` 객체가 자동으로 *stdin*\\을 "
+":data:`~subprocess.PIPE`\\로 설정하여 만들어지고 *stdin* 인자는 사용되지 않을 수 있습니다."
 
 #: ../../library/subprocess.rst:77
 msgid ""
@@ -172,7 +173,6 @@ msgstr ""
 "제공됩니다. 기본적으로, 파일 객체는 바이너리 모드로 열립니다."
 
 #: ../../library/subprocess.rst:88
-#, fuzzy
 msgid ""
 "If *env* is not ``None``, it must be a mapping that defines the "
 "environment variables for the new process; these are used instead of the "
@@ -182,7 +182,9 @@ msgid ""
 ":data:`os.environ` or :data:`os.environb`."
 msgstr ""
 "*env*\\가 ``None``\\이 아니면, 새 프로세스의 환경 변수를 정의하는 매핑이어야 합니다; 이것은 현재 프로세스의 환경을"
-" 상속하는 기본 동작 대신 사용됩니다. :class:`Popen`\\으로 직접 전달됩니다."
+" 상속하는 기본 동작 대신 사용됩니다. :class:`Popen`\\으로 직접 전달됩니다. 이 매핑은 모든 플랫폼에서 문자열에서 "
+"문자열로, POSIX 플랫폼에서는 바이트열에서 바이트열로 일 수 있으며, 이는 :data:`os.environ`\\이나 "
+":data:`os.environb`\\와 유사합니다."
 
 #: ../../library/subprocess.rst:95
 msgid "Examples::"
@@ -204,6 +206,19 @@ msgid ""
 "stdout=b'crw-rw-rw- 1 root root 1, 3 Jan 23 16:23 /dev/null\\n', "
 "stderr=b'')"
 msgstr ""
+">>> subprocess.run([\"ls\", \"-l\"])  # 출력을 캡처하지 않습니다\n"
+"CompletedProcess(args=['ls', '-l'], returncode=0)\n"
+"\n"
+">>> subprocess.run(\"exit 1\", shell=True, check=True)\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"subprocess.CalledProcessError: Command 'exit 1' returned non-zero exit "
+"status 1\n"
+"\n"
+">>> subprocess.run([\"ls\", \"-l\", \"/dev/null\"], capture_output=True)\n"
+"CompletedProcess(args=['ls', '-l', '/dev/null'], returncode=0,\n"
+"stdout=b'crw-rw-rw- 1 root root 1, 3 Jan 23 16:23 /dev/null\\n', "
+"stderr=b'')"
 
 #: ../../library/subprocess.rst:113
 msgid "Added *encoding* and *errors* parameters"
@@ -351,14 +366,14 @@ msgid "*stdout* and *stderr* attributes added"
 msgstr "*stdout*\\과 *stderr* 어트리뷰트가 추가되었습니다"
 
 #: ../../library/subprocess.rst:235
-#, fuzzy
 msgid ""
 "Subclass of :exc:`SubprocessError`, raised when a process run by "
 ":func:`check_call`, :func:`check_output`, or :func:`run` (with "
 "``check=True``) returns a non-zero exit status."
 msgstr ""
-":func:`check_call`\\이나 :func:`check_output`\\에 의해 실행되는 프로세스가 0이 아닌 종료 상태를"
-" 반환할 때 발생하는 :exc:`SubprocessError` 의 서브 클래스."
+":func:`check_call`, :func:`check_output` 또는 :func:`run` "
+"(``check=True``\\와 함께) 에 의해 실행되는 프로세스가 0이 아닌 종료 상태를 반환할 때 발생하는 "
+":exc:`SubprocessError` 의 서브 클래스."
 
 #: ../../library/subprocess.rst:242
 msgid ""
@@ -412,7 +427,6 @@ msgstr ""
 "인자를 지정하지 않고 실행할 프로그램의 이름이어야 합니다."
 
 #: ../../library/subprocess.rst:285
-#, fuzzy
 msgid ""
 "*stdin*, *stdout* and *stderr* specify the executed program's standard "
 "input, standard output and standard error file handles, respectively.  "
@@ -426,12 +440,12 @@ msgid ""
 "process should be captured into the same file handle as for *stdout*."
 msgstr ""
 "*stdin*, *stdout* 및 *stderr*\\은 각각 실행된 프로그램의 표준 입력, 표준 출력 및 표준 에러 파일 핸들을 "
-"지정합니다. 유효한 값은 :data:`PIPE`, :data:`DEVNULL`, 기존 파일 기술자 (양의 정수), 기존 파일 객체 "
-"및 ``None``\\입니다. :data:`PIPE`\\는 자식에 대한 새 파이프를 만들어야 함을 나타냅니다. "
-":data:`DEVNULL`\\은 특수 파일 :data:`os.devnull`\\이 사용될 것임을 나타냅니다. 기본 설정 "
-"``None``\\으로는, 리디렉션이 발생하지 않습니다; 자식의 파일 핸들은 부모로부터 상속됩니다. 또한, *stderr*\\은 "
-":data:`STDOUT`\\일 수 있으며, 이는 자식 프로세스의 stderr 데이터가 *stdout*\\과 같은 파일 핸들로 "
-"캡처되어야 함을 나타냅니다."
+"지정합니다. 유효한 값은 ``None``, :data:`PIPE`, :data:`DEVNULL`, 기존 파일 기술자 (양의 정수) "
+"및 유효한 파일 기술자를 가진 기존 :term:`파일 객체 <file object>`\\입니다. 기본 설정 "
+"``None``\\으로는, 리디렉션은 발생하지 않습니다. :data:`PIPE`\\는 자식에 대한 새 파이프를 만들어야 함을 "
+"나타냅니다. :data:`DEVNULL`\\은 특수 파일 :data:`os.devnull`\\이 사용될 것임을 나타냅니다. 또한, "
+"*stderr*\\은 :data:`STDOUT`\\일 수 있으며, 이는 자식 프로세스의 stderr 데이터가 *stdout*\\과 "
+"같은 파일 핸들로 캡처되어야 함을 나타냅니다."
 
 #: ../../library/subprocess.rst:299
 msgid ""
@@ -468,7 +482,6 @@ msgstr ""
 
 #: ../../library/subprocess.rst:314 ../../library/subprocess.rst:1569
 #: ../../library/subprocess.rst:1587
-#, fuzzy
 msgid "Added the *encoding* and *errors* parameters."
 msgstr "*encoding*\\과 *errors* 매개 변수를 추가했습니다."
 
@@ -544,7 +557,6 @@ msgstr ""
 " 일반적인 사례를 처리할 수 있도록 큰 유연성을 제공합니다."
 
 #: ../../library/subprocess.rst:368
-#, fuzzy
 msgid ""
 "Execute a child program in a new process.  On POSIX, the class uses "
 ":meth:`os.execvpe`-like behavior to execute the child program.  On "
@@ -552,7 +564,7 @@ msgid ""
 "arguments to :class:`Popen` are as follows."
 msgstr ""
 "새 프로세스에서 자식 프로그램을 실행합니다. POSIX에서, 클래스는 자식 프로그램을 실행하는 데 "
-":meth:`os.execvp`\\와 유사한 동작을 사용합니다. 윈도우에서 클래스는 윈도우 ``CreateProcess()`` "
+":meth:`os.execvpe`\\와 유사한 동작을 사용합니다. 윈도우에서 클래스는 윈도우 ``CreateProcess()`` "
 "함수를 사용합니다. :class:`Popen`\\에 대한 인자는 다음과 같습니다."
 
 #: ../../library/subprocess.rst:373
@@ -602,7 +614,7 @@ msgstr "시퀀스로 외부 프로그램에 어떤 인자를 전달하는 예는
 
 #: ../../library/subprocess.rst:403
 msgid "Popen([\"/usr/bin/git\", \"commit\", \"-m\", \"Fixes a bug.\"])"
-msgstr ""
+msgstr "Popen([\"/usr/bin/git\", \"commit\", \"-m\", \"Fixes a bug.\"])"
 
 #: ../../library/subprocess.rst:405
 msgid ""
@@ -634,6 +646,15 @@ msgid ""
 "'-cmd', \"echo '$MONEY'\"]\n"
 ">>> p = subprocess.Popen(args) # Success!"
 msgstr ""
+">>> import shlex, subprocess\n"
+">>> command_line = input()\n"
+"/bin/vikings -input eggs.txt -output \"spam spam.txt\" -cmd \"echo "
+"'$MONEY'\"\n"
+">>> args = shlex.split(command_line)\n"
+">>> print(args)\n"
+"['/bin/vikings', '-input', 'eggs.txt', '-output', 'spam spam.txt', "
+"'-cmd', \"echo '$MONEY'\"]\n"
+">>> p = subprocess.Popen(args) # 성공!"
 
 #: ../../library/subprocess.rst:423
 msgid ""
@@ -701,7 +722,7 @@ msgstr ""
 
 #: ../../library/subprocess.rst:455
 msgid "Popen(['/bin/sh', '-c', args[0], args[1], ...])"
-msgstr ""
+msgstr "Popen(['/bin/sh', '-c', args[0], args[1], ...])"
 
 #: ../../library/subprocess.rst:457
 msgid ""
@@ -726,20 +747,18 @@ msgstr ""
 "제공됩니다:"
 
 #: ../../library/subprocess.rst:471
-#, fuzzy
 msgid ""
 "``0`` means unbuffered (read and write are one system call and can return"
 " short)"
-msgstr ":const:`0`\\은 버퍼링 되지 않음을 의미합니다 (읽기와 쓰기는 한 번의 시스템 호출이며 짧게 반환할 수 있습니다)"
+msgstr "``0``\\은 버퍼링 되지 않음을 의미합니다 (읽기와 쓰기는 한 번의 시스템 호출이며 짧게 반환할 수 있습니다)"
 
 #: ../../library/subprocess.rst:473
-#, fuzzy
 msgid ""
 "``1`` means line buffered (only usable if ``text=True`` or "
 "``universal_newlines=True``)"
 msgstr ""
-":const:`1`\\은 줄 버퍼링을 의미합니다 (``universal_newlines=True``\\인 경우, 즉 텍스트 "
-"모드에서만 사용할 수 있습니다)"
+"``1``\\은 줄 버퍼링을 의미합니다 (``text=True``\\이거나 ``universal_newlines=True``\\인 "
+"경우만 사용할 수 있습니다)"
 
 #: ../../library/subprocess.rst:475
 msgid "any other positive value means use a buffer of approximately that size"
@@ -752,7 +771,6 @@ msgid ""
 msgstr "음의 bufsize(기본값)는 시스템 기본값 io.DEFAULT_BUFFER_SIZE가 사용됨을 의미합니다."
 
 #: ../../library/subprocess.rst:480
-#, fuzzy
 msgid ""
 "*bufsize* now defaults to -1 to enable buffering by default to match the "
 "behavior that most code expects.  In versions prior to Python 3.2.4 and "
@@ -761,7 +779,7 @@ msgid ""
 "Python 2 as most code expected."
 msgstr ""
 "*bufsize*\\의 기본값은 이제 -1이 되어 대부분의 코드가 기대하는 동작과 일치하도록 기본적으로 버퍼링을 활성화합니다. "
-"파이썬 3.2.4\\와 3.3.1 이전 버전에서는 버퍼링 되지 않고 짧은 읽기를 허용하는 :const:`0`\\으로 기본값이 잘못 "
+"파이썬 3.2.4\\와 3.3.1 이전 버전에서는 버퍼링 되지 않고 짧은 읽기를 허용하는 ``0``\\으로 기본값이 잘못 "
 "설정되었습니다. 이것은 의도하지 않은 것이며 대부분의 코드가 기대하는 파이썬 2의 동작과 일치하지 않았습니다."
 
 #: ../../library/subprocess.rst:487
@@ -796,7 +814,6 @@ msgstr ""
 "받아들입니다."
 
 #: ../../library/subprocess.rst:512
-#, fuzzy
 msgid ""
 "*stdin*, *stdout* and *stderr* specify the executed program's standard "
 "input, standard output and standard error file handles, respectively.  "
@@ -811,11 +828,11 @@ msgid ""
 "*stdout*."
 msgstr ""
 "*stdin*, *stdout* 및 *stderr*\\은 각각 실행된 프로그램의 표준 입력, 표준 출력 및 표준 에러 파일 핸들을 "
-"지정합니다. 유효한 값은 :data:`PIPE`, :data:`DEVNULL`, 기존 파일 기술자 (양의 정수), 기존 "
-":term:`파일 객체 <file object>` 및 ``None``\\입니다. :data:`PIPE`\\는 자식에 대한 새 "
-"파이프를 만들어야 함을 나타냅니다. :data:`DEVNULL`\\은 특수 파일 :data:`os.devnull`\\이 사용될 "
-"것임을 나타냅니다. 기본 설정 ``None``\\으로는, 리디렉션이 발생하지 않습니다; 자식의 파일 핸들은 부모로부터 상속됩니다. "
-"또한, *stderr*\\은 :data:`STDOUT`\\일 수 있으며, 이는 응용 프로그램의 stderr 데이터가 stdout과 "
+"지정합니다. 유효한 값은 ``None``, :data:`PIPE`, :data:`DEVNULL`, 기존 파일 기술자 (양의 정수) "
+"및 유효한 파일 기술자를 가진 기존 :term:`파일 객체 <file object>`\\입니다. 기본 설정 "
+"``None``\\으로는, 리디렉션은 발생하지 않습니다. :data:`PIPE`\\는 자식에 대한 새 파이프를 만들어야 함을 "
+"나타냅니다. :data:`DEVNULL`\\은 특수 파일 :data:`os.devnull`\\이 사용될 것임을 나타냅니다. 또한, "
+"*stderr*\\은 :data:`STDOUT`\\일 수 있으며, 이는 응용 프로그램의 stderr 데이터가 *stdout*\\과 "
 "같은 파일 핸들로 캡처되어야 함을 나타냅니다."
 
 #: ../../library/subprocess.rst:523
@@ -827,17 +844,15 @@ msgstr ""
 "(POSIX 전용)"
 
 #: ../../library/subprocess.rst:529
-#, fuzzy
 msgid ""
 "The *preexec_fn* parameter is NOT SAFE to use in the presence of threads "
 "in your application.  The child process could deadlock before exec is "
 "called."
 msgstr ""
 "*preexec_fn* 매개 변수는 응용 프로그램에 스레드가 있을 때 사용하기에 안전하지 않습니다. exec가 호출되기 전에 자식 "
-"프로세스가 교착 상태에 빠질 수 있습니다. 반드시 사용해야 한다면, 단순하게 유지하십시오! 호출하는 라이브러리 수를 최소화하십시오."
+"프로세스가 교착 상태에 빠질 수 있습니다."
 
 #: ../../library/subprocess.rst:535
-#, fuzzy
 msgid ""
 "If you need to modify the environment for the child use the *env* "
 "parameter rather than doing it in a *preexec_fn*. The *start_new_session*"
@@ -846,8 +861,8 @@ msgid ""
 "child."
 msgstr ""
 "자식의 환경을 수정해야 하면 *preexec_fn*\\에서 하지 말고 *env* 매개 변수를 사용하십시오. "
-"*start_new_session* 매개 변수는 이전에 일반적으로 사용된 *preexec_fn*\\을 대신하여 자식에서 "
-"os.setsid()를 호출할 수 있습니다."
+"*start_new_session*\\과 *process_group* 매개 변수는 자식에서 :func:`os.setsid`\\나 "
+":func:`os.setpgid`\\를 호출하려고 *preexec_fn*\\을 사용하는 코드를 대체해야 합니다."
 
 #: ../../library/subprocess.rst:542
 msgid ""
@@ -861,16 +876,15 @@ msgstr ""
 "내장(embedded) 환경에 배치된 응용 프로그램에 영향을 줄 수 있습니다."
 
 #: ../../library/subprocess.rst:547
-#, fuzzy
 msgid ""
 "If *close_fds* is true, all file descriptors except ``0``, ``1`` and "
 "``2`` will be closed before the child process is executed.  Otherwise "
 "when *close_fds* is false, file descriptors obey their inheritable flag "
 "as described in :ref:`fd_inheritance`."
 msgstr ""
-"*close_fds*\\가 참이면, :const:`0`, :const:`1` 및 :const:`2`\\를 제외한 모든 파일 기술자가"
-" 자식 프로세스가 실행되기 전에 닫힙니다. 그렇지 않고 *close_fds*\\가 거짓이면, 파일 기술자는 "
-":ref:`fd_inheritance`\\에 설명된 대로 상속 가능 플래그를 따릅니다."
+"*close_fds*\\가 참이면, ``0``, ``1`` 및 ``2``\\를 제외한 모든 파일 기술자가 자식 프로세스가 실행되기 "
+"전에 닫힙니다. 그렇지 않고 *close_fds*\\가 거짓이면, 파일 기술자는 :ref:`fd_inheritance`\\에 설명된"
+" 대로 상속 가능 플래그를 따릅니다."
 
 #: ../../library/subprocess.rst:552
 msgid ""
@@ -914,7 +928,6 @@ msgid "The *pass_fds* parameter was added."
 msgstr "*pass_fds* 매개 변수가 추가되었습니다."
 
 #: ../../library/subprocess.rst:572
-#, fuzzy
 msgid ""
 "If *cwd* is not ``None``, the function changes the working directory to "
 "*cwd* before executing the child.  *cwd* can be a string, bytes or :term"
@@ -923,9 +936,9 @@ msgid ""
 "executable path is a relative path."
 msgstr ""
 "*cwd*\\가 ``None``\\이 아니면, 함수는 자식을 실행하기 전에 작업 디렉터리를 *cwd*\\로 변경합니다. "
-"*cwd*\\는 문자열, 바이트열 또는 :term:`경로류 <path-like object>` 객체일 수 있습니다. 특히, 함수는 "
-"실행 파일 경로가 상대 경로이면 *cwd*\\를 기준으로 *executable*\\(또는 *args*\\의 첫 번째 항목)을 "
-"찾습니다."
+"*cwd*\\는 문자열, 바이트열 또는 :term:`경로류 <path-like object>` 객체일 수 있습니다. POSIX "
+"에서, 함수는 실행 파일 경로가 상대 경로이면 *cwd*\\를 기준으로 *executable*\\(또는 *args*\\의 첫 번째 "
+"항목)을 찾습니다."
 
 #: ../../library/subprocess.rst:578
 msgid "*cwd* parameter accepts a :term:`path-like object` on POSIX."
@@ -954,33 +967,31 @@ msgid "*restore_signals* was added."
 msgstr "*restore_signals*\\가 추가되었습니다."
 
 #: ../../library/subprocess.rst:595
-#, fuzzy
 msgid ""
 "If *start_new_session* is true the ``setsid()`` system call will be made "
 "in the child process prior to the execution of the subprocess."
 msgstr ""
-"*start_new_session*\\이 참이면 서브 프로세스를 실행하기 전에 자식 프로세스에서 setsid() 시스템 호출이 "
-"수행됩니다. (POSIX 전용)"
+"*start_new_session*\\이 참이면 서브 프로세스를 실행하기 전에 자식 프로세스에서 ``setsid()`` 시스템 "
+"호출이 수행됩니다."
 
 #: ../../library/subprocess.rst:599
 msgid "*start_new_session* was added."
 msgstr "*start_new_session*\\이 추가되었습니다."
 
 #: ../../library/subprocess.rst:602
-#, fuzzy
 msgid ""
 "If *process_group* is a non-negative integer, the ``setpgid(0, value)`` "
 "system call will be made in the child process prior to the execution of "
 "the subprocess."
-msgstr "*umask*\\가 음이 아니면, 서브 프로세스를 실행하기 전에 자식 프로세스에서 umask() 시스템 호출이 수행됩니다."
+msgstr ""
+"*process_group*\\이 음이 아닌 정수면, 서브 프로세스를 실행하기 전에 자식 프로세스에서 ``setpgid(0, "
+"value)`` 시스템 호출이 수행됩니다."
 
 #: ../../library/subprocess.rst:606
-#, fuzzy
 msgid "*process_group* was added."
-msgstr "*timeout*\\이 추가되었습니다."
+msgstr "*process_group*\\이 추가되었습니다."
 
 #: ../../library/subprocess.rst:609
-#, fuzzy
 msgid ""
 "If *group* is not ``None``, the setregid() system call will be made in "
 "the child process prior to the execution of the subprocess. If the "
@@ -989,11 +1000,10 @@ msgid ""
 " will be passed verbatim. (POSIX only)"
 msgstr ""
 "*group*\\이 ``None``\\이 아니면, 서브 프로세스를 실행하기 전에 자식 프로세스에서 setregid() 시스템 호출이"
-" 수행됩니다. 제공된 값이 문자열이면, :func:`grp.getgrnam()`\\을 통해 조회되고 ``gr_gid``\\의 값이 "
+" 수행됩니다. 제공된 값이 문자열이면, :func:`grp.getgrnam`\\을 통해 조회되고 ``gr_gid``\\의 값이 "
 "사용됩니다. 값이 정수이면, 그대로 전달됩니다. (POSIX 전용)"
 
 #: ../../library/subprocess.rst:618
-#, fuzzy
 msgid ""
 "If *extra_groups* is not ``None``, the setgroups() system call will be "
 "made in the child process prior to the execution of the subprocess. "
@@ -1002,11 +1012,10 @@ msgid ""
 "values will be passed verbatim. (POSIX only)"
 msgstr ""
 "*extra_groups*\\가 ``None``\\이 아니면, 서브 프로세스를 실행하기 전에 자식 프로세스에서 setgroups()"
-" 시스템 호출이 수행됩니다. *extra_groups*\\에 제공된 문자열은 :func:`grp.getgrnam()`\\을 통해 "
+" 시스템 호출이 수행됩니다. *extra_groups*\\에 제공된 문자열은 :func:`grp.getgrnam`\\을 통해 "
 "조회되며 ``gr_gid``\\의 값이 사용됩니다. 정숫값은 그대로 전달됩니다. (POSIX 전용)"
 
 #: ../../library/subprocess.rst:627
-#, fuzzy
 msgid ""
 "If *user* is not ``None``, the setreuid() system call will be made in the"
 " child process prior to the execution of the subprocess. If the provided "
@@ -1015,7 +1024,7 @@ msgid ""
 "passed verbatim. (POSIX only)"
 msgstr ""
 "*user*\\가 ``None``\\이 아니면, 서브 프로세스를 실행하기 전에 자식 프로세스에서 setreuid() 시스템 호출이 "
-"수행됩니다. 제공된 값이 문자열이면, :func:`pwd.getpwnam()`\\을 통해 조회되고 ``pw_uid``\\의 값이 "
+"수행됩니다. 제공된 값이 문자열이면, :func:`pwd.getpwnam`\\을 통해 조회되고 ``pw_uid``\\의 값이 "
 "사용됩니다. 값이 정수이면, 그대로 전달됩니다. (POSIX 전용)"
 
 #: ../../library/subprocess.rst:636
@@ -1025,7 +1034,6 @@ msgid ""
 msgstr "*umask*\\가 음이 아니면, 서브 프로세스를 실행하기 전에 자식 프로세스에서 umask() 시스템 호출이 수행됩니다."
 
 #: ../../library/subprocess.rst:642
-#, fuzzy
 msgid ""
 "If *env* is not ``None``, it must be a mapping that defines the "
 "environment variables for the new process; these are used instead of the "
@@ -1034,7 +1042,8 @@ msgid ""
 "platforms much like :data:`os.environ` or :data:`os.environb`."
 msgstr ""
 "*env*\\가 ``None``\\이 아니면, 새 프로세스의 환경 변수를 정의하는 매핑이어야 합니다; 이것은 현재 프로세스의 환경을"
-" 상속하는 기본 동작 대신 사용됩니다. :class:`Popen`\\으로 직접 전달됩니다."
+" 상속하는 기본 동작 대신 사용됩니다. 이 매핑은 모든 플랫폼에서 문자열에서 문자열로, POSIX 플랫폼에서는 바이트열에서 "
+"바이트열로 일 수 있으며, 이는 :data:`os.environ`\\이나 :data:`os.environb`\\와 유사합니다."
 
 #: ../../library/subprocess.rst:650
 msgid ""
@@ -1047,7 +1056,6 @@ msgstr ""
 "포함되어야 합니다."
 
 #: ../../library/subprocess.rst:656
-#, fuzzy
 msgid ""
 "If *encoding* or *errors* are specified, or *text* is true, the file "
 "objects *stdin*, *stdout* and *stderr* are opened in text mode with the "
@@ -1058,8 +1066,8 @@ msgid ""
 msgstr ""
 "*encoding*\\이나 *errors*\\가 지정되거나, *text*\\가 참이면, 파일 객체 *stdin*, *stdout* "
 "및 *stderr*\\은 위의 :ref:`frequently-used-arguments`\\에서 설명한 대로 지정된 "
-"encoding과 *errors*\\로 텍스트 모드로 열립니다. *universal_newlines* 인자는 *text*\\와 "
-"동등하며 이전 버전과의 호환성을 위해 제공됩니다. 기본적으로, 파일 객체는 바이너리 모드로 열립니다."
+"*encoding*\\과 *errors*\\로 텍스트 모드로 열립니다. *universal_newlines* 인자는 "
+"*text*\\와 동등하며 이전 버전과의 호환성을 위해 제공됩니다. 기본적으로, 파일 객체는 바이너리 모드로 열립니다."
 
 #: ../../library/subprocess.rst:662
 msgid "*encoding* and *errors* were added."
@@ -1070,17 +1078,16 @@ msgid "*text* was added as a more readable alias for *universal_newlines*."
 msgstr "*text*\\가 *universal_newlines*\\의 더 가독성 있는 별칭으로 추가되었습니다."
 
 #: ../../library/subprocess.rst:668
-#, fuzzy
 msgid ""
 "If given, *startupinfo* will be a :class:`STARTUPINFO` object, which is "
 "passed to the underlying ``CreateProcess`` function."
 msgstr ""
 "주어지면, *startupinfo*\\는 :class:`STARTUPINFO` 객체가 되며, 하부 ``CreateProcess`` "
-"함수로 전달됩니다. 주어지면, *creationflags*\\는 다음 플래그 중 하나 이상일 수 있습니다:"
+"함수로 전달됩니다."
 
 #: ../../library/subprocess.rst:671
 msgid "If given, *creationflags*, can be one or more of the following flags:"
-msgstr ""
+msgstr "주어지면, *creationflags*\\는 다음 플래그 중 하나 이상일 수 있습니다:"
 
 #: ../../library/subprocess.rst:673
 msgid ":data:`CREATE_NEW_CONSOLE`"
@@ -1139,9 +1146,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/subprocess.rst:691
-#, fuzzy
 msgid "Added the *pipesize* parameter."
-msgstr "*encoding*\\과 *errors* 매개 변수를 추가했습니다."
+msgstr "*pipesize* 매개 변수를 추가했습니다."
 
 #: ../../library/subprocess.rst:694
 msgid ""
@@ -1157,6 +1163,8 @@ msgid ""
 "with Popen([\"ifconfig\"], stdout=PIPE) as proc:\n"
 "    log.write(proc.stdout.read())"
 msgstr ""
+"with Popen([\"ifconfig\"], stdout=PIPE) as proc:\n"
+"    log.write(proc.stdout.read())"
 
 #: ../../library/subprocess.rst:701 ../../library/subprocess.rst:703
 msgid ""
@@ -1231,14 +1239,13 @@ msgstr ""
 " :exc:`CalledProcessError`\\를 발생시킵니다."
 
 #: ../../library/subprocess.rst:743
-#, fuzzy
 msgid ""
 "All of the functions and methods that accept a *timeout* parameter, such "
 "as :func:`run` and :meth:`Popen.communicate` will raise "
 ":exc:`TimeoutExpired` if the timeout expires before the process exits."
 msgstr ""
-":func:`call`\\과 :meth:`Popen.communicate`\\와 같은 *timeout* 매개 변수를 받아들이는 모든"
-" 함수와 메서드는 프로세스가 종료되기 전에 시간제한이 만료되면 :exc:`TimeoutExpired`\\를 발생시킵니다."
+":func:`run`\\과 :meth:`Popen.communicate`\\와 같은 *timeout* 매개 변수를 받아들이는 모든 "
+"함수와 메서드는 프로세스가 종료되기 전에 시간제한이 만료되면 :exc:`TimeoutExpired`\\를 발생시킵니다."
 
 #: ../../library/subprocess.rst:747
 msgid "Exceptions defined in this module all inherit from :exc:`SubprocessError`."
@@ -1253,7 +1260,6 @@ msgid "Security Considerations"
 msgstr "보안 고려 사항"
 
 #: ../../library/subprocess.rst:757
-#, fuzzy
 msgid ""
 "Unlike some other popen functions, this library will not implicitly "
 "choose to call a system shell.  This means that all characters, including"
@@ -1265,10 +1271,11 @@ msgid ""
 "vulnerabilities. On :ref:`some platforms <shlex-quote-warning>`, it is "
 "possible to use :func:`shlex.quote` for this escaping."
 msgstr ""
-"다른 popen 함수와 달리, 이 구현은 절대로 시스템 셸을 묵시적으로 호출하지 않습니다. 이는 셸 메타 문자를 포함한 모든 문자를"
-" 자식 프로세스로 안전하게 전달할 수 있음을 의미합니다. ``shell=True``\\를 통해 셸을 명시적으로 호출하면, `셸 주입"
-" <https://en.wikipedia.org/wiki/Shell_injection#Shell_injection>`_ 취약점을 "
-"피하고자 모든 공백과 메타 문자를 적절하게 인용하는 것은 응용 프로그램의 책임입니다."
+"다른 popen 함수와 달리, 이 라이브러리는 시스템 셸을 호출하도록 묵시적으로 선택하지 않습니다. 이는 셸 메타 문자를 포함한 "
+"모든 문자를 자식 프로세스로 안전하게 전달할 수 있음을 의미합니다. ``shell=True``\\를 통해 셸을 명시적으로 호출하면,"
+" `셸 주입 <https://en.wikipedia.org/wiki/Shell_injection#Shell_injection>`_ "
+"취약점을 피하고자 모든 공백과 메타 문자를 적절하게 인용하는 것은 응용 프로그램의 책임입니다. :ref:`일부 플랫폼 <shlex-"
+"quote-warning>`\\에서, 이 이스케이핑을 위해 :func:`shlex.quote`\\를 사용할 수 있습니다."
 
 #: ../../library/subprocess.rst:767
 msgid ""
@@ -1324,15 +1331,15 @@ msgstr ""
 " :meth:`Popen.communicate`\\를 사용하십시오."
 
 #: ../../library/subprocess.rst:806
-#, fuzzy
 msgid ""
 "When the ``timeout`` parameter is not ``None``, then (on POSIX) the "
 "function is implemented using a busy loop (non-blocking call and short "
 "sleeps). Use the :mod:`asyncio` module for an asynchronous wait: see "
 ":class:`asyncio.create_subprocess_exec`."
 msgstr ""
-"이 함수는 비지 루프(비 블로킹 호출과 짧은 잠자기)를 사용하여 구현됩니다. 비동기 대기에는 :mod:`asyncio` 모듈을 "
-"사용하십시오: :class:`asyncio.create_subprocess_exec`\\를 참조하십시오."
+"``timeout`` 매개 변수가 ``None``\\이 아닐 때, (POSIX 에서) 이 함수는 비지 루프(비 블로킹 호출과 짧은 "
+"잠자기)를 사용하여 구현됩니다. 비동기 대기에는 :mod:`asyncio` 모듈을 사용하십시오: "
+":class:`asyncio.create_subprocess_exec`\\를 참조하십시오."
 
 #: ../../library/subprocess.rst:811 ../../library/subprocess.rst:852
 #: ../../library/subprocess.rst:1209 ../../library/subprocess.rst:1249
@@ -1401,6 +1408,12 @@ msgid ""
 "    proc.kill()\n"
 "    outs, errs = proc.communicate()"
 msgstr ""
+"proc = subprocess.Popen(...)\n"
+"try:\n"
+"    outs, errs = proc.communicate(timeout=15)\n"
+"except TimeoutExpired:\n"
+"    proc.kill()\n"
+"    outs, errs = proc.communicate()"
 
 #: ../../library/subprocess.rst:849
 msgid ""
@@ -1417,25 +1430,23 @@ msgid "Do nothing if the process completed."
 msgstr "프로세스가 완료되었으면 아무것도 하지 않습니다."
 
 #: ../../library/subprocess.rst:864
-#, fuzzy
 msgid ""
 "On Windows, SIGTERM is an alias for :meth:`terminate`. CTRL_C_EVENT and "
 "CTRL_BREAK_EVENT can be sent to processes started with a *creationflags* "
 "parameter which includes ``CREATE_NEW_PROCESS_GROUP``."
 msgstr ""
 "윈도우에서, SIGTERM은 :meth:`terminate`\\의 별칭입니다. CTRL_C_EVENT와 "
-"CTRL_BREAK_EVENT는 `CREATE_NEW_PROCESS_GROUP`\\을 포함하는 *creationflags* 매개 "
-"변수로 시작된 프로세스로 보낼 수 있습니다."
+"CTRL_BREAK_EVENT는 ``CREATE_NEW_PROCESS_GROUP``\\을 포함하는 *creationflags* 매개"
+" 변수로 시작된 프로세스로 보낼 수 있습니다."
 
 #: ../../library/subprocess.rst:871
-#, fuzzy
 msgid ""
 "Stop the child. On POSIX OSs the method sends :py:const:`~signal.SIGTERM`"
 " to the child. On Windows the Win32 API function "
 ":c:func:`!TerminateProcess` is called to stop the child."
 msgstr ""
-"자식을 멈춥니다. POSIX OS에서 이 메서드는 SIGTERM을 자식에게 보냅니다. 윈도우에서는 자식을 중지하기 위해 Win32 "
-"API 함수 :c:func:`TerminateProcess`\\가 호출됩니다."
+"자식을 멈춥니다. POSIX OS에서 이 메서드는 :py:const:`~signal.SIGTERM`\\을 자식에게 보냅니다. "
+"윈도우에서는 자식을 중지하기 위해 Win32 API 함수 :c:func:`!TerminateProcess`\\가 호출됩니다."
 
 #: ../../library/subprocess.rst:878
 msgid ""
@@ -1458,7 +1469,6 @@ msgid ""
 msgstr ":class:`Popen`\\으로 전달된 *args* 인자 -- 프로그램 인자의 시퀀스거나 단일 문자열."
 
 #: ../../library/subprocess.rst:894
-#, fuzzy
 msgid ""
 "If the *stdin* argument was :data:`PIPE`, this attribute is a writeable "
 "stream object as returned by :func:`open`. If the *encoding* or *errors* "
@@ -1468,12 +1478,11 @@ msgid ""
 "``None``."
 msgstr ""
 "*stdin* 인자가 :data:`PIPE`\\이면, 이 어트리뷰트는 :func:`open`\\이 반환한 쓰기 가능한 스트림 "
-"객체입니다. *encoding*\\이나 *errors* 인자가 지정되었거나 *universal_newlines* 인자가 "
-"``True``\\이면, 스트림은 텍스트 스트림이고, 그렇지 않으면 바이트 스트림입니다. *stdin* 인자가 "
+"객체입니다. *encoding*\\이나 *errors* 인자가 지정되었거나 *text*\\나 *universal_newlines* "
+"인자가 ``True``\\이면, 스트림은 텍스트 스트림이고, 그렇지 않으면 바이트 스트림입니다. *stdin* 인자가 "
 ":data:`PIPE`\\가 아니면, 이 어트리뷰트는 ``None``\\입니다."
 
 #: ../../library/subprocess.rst:903
-#, fuzzy
 msgid ""
 "If the *stdout* argument was :data:`PIPE`, this attribute is a readable "
 "stream object as returned by :func:`open`. Reading from the stream "
@@ -1485,11 +1494,10 @@ msgid ""
 msgstr ""
 "*stdout* 인자가 :data:`PIPE`\\이면, 이 어트리뷰트는 :func:`open`\\이 반환한 읽기 가능한 스트림 "
 "객체입니다. 스트림에서 읽으면 자식 프로세스의 출력을 제공합니다. *encoding*\\이나 *errors* 인자가 지정되었거나 "
-"*universal_newlines* 인자가 ``True``\\이면, 스트림은 텍스트 스트림이고, 그렇지 않으면 바이트 "
-"스트림입니다. *stdout* 인자가 :data:`PIPE`\\가 아니면, 이 어트리뷰트는 ``None``\\입니다."
+"*text*\\나 *universal_newlines* 인자가 ``True``\\이면, 스트림은 텍스트 스트림이고, 그렇지 않으면 "
+"바이트 스트림입니다. *stdout* 인자가 :data:`PIPE`\\가 아니면, 이 어트리뷰트는 ``None``\\입니다."
 
 #: ../../library/subprocess.rst:913
-#, fuzzy
 msgid ""
 "If the *stderr* argument was :data:`PIPE`, this attribute is a readable "
 "stream object as returned by :func:`open`. Reading from the stream "
@@ -1501,8 +1509,9 @@ msgid ""
 msgstr ""
 "*stderr* 인자가 :data:`PIPE`\\이면, 이 어트리뷰트는 :func:`open`\\이 반환한 읽기 가능한 스트림 "
 "객체입니다. 스트림에서 읽으면 자식 프로세스의 에러 출력을 제공합니다. *encoding*\\이나 *errors* 인자가 "
-"지정되었거나 *universal_newlines* 인자가 ``True``\\이면, 스트림은 텍스트 스트림이고, 그렇지 않으면 바이트"
-" 스트림입니다. *stderr* 인자가 :data:`PIPE`\\가 아니면, 어트리뷰트는 ``None``\\입니다."
+"지정되었거나 *text*\\나 *universal_newlines* 인자가 ``True``\\이면, 스트림은 텍스트 스트림이고, "
+"그렇지 않으면 바이트 스트림입니다. *stderr* 인자가 :data:`PIPE`\\가 아니면, 어트리뷰트는 "
+"``None``\\입니다."
 
 #: ../../library/subprocess.rst:922
 msgid ""
@@ -1527,14 +1536,13 @@ msgid ""
 msgstr "*shell* 인자를 ``True``\\로 설정하면, 이것은 생성된 셸의 프로세스 ID입니다."
 
 #: ../../library/subprocess.rst:938
-#, fuzzy
 msgid ""
 "The child return code. Initially ``None``, :attr:`returncode` is set by a"
 " call to the :meth:`poll`, :meth:`wait`, or :meth:`communicate` methods "
 "if they detect that the process has terminated."
 msgstr ""
-":meth:`poll`\\과 :meth:`wait`\\(그리고 :meth:`communicate`\\에 의해 간접적으로)로 설정된 "
-"자식 반환 코드. ``None`` 값은 프로세스가 아직 종료되지 않았음을 나타냅니다."
+"자식 반환 코드. 초기값은 ``None``\\이며, :attr:`returncode`\\는 :meth:`poll`, "
+":meth:`wait` 또는 :meth:`communicate` 메서드가 프로세스가 종료되었음을 감지하면 설정합니다."
 
 #: ../../library/subprocess.rst:942
 msgid ""
@@ -1579,6 +1587,9 @@ msgid ""
 "si.dwFlags = subprocess.STARTF_USESTDHANDLES | "
 "subprocess.STARTF_USESHOWWINDOW"
 msgstr ""
+"si = subprocess.STARTUPINFO()\n"
+"si.dwFlags = subprocess.STARTF_USESTDHANDLES | "
+"subprocess.STARTF_USESHOWWINDOW"
 
 #: ../../library/subprocess.rst:976
 msgid ""
@@ -1782,7 +1793,6 @@ msgid ""
 msgstr "새 프로세스가 유휴 (가장 낮은) 우선순위를 갖도록 지정하는 :class:`Popen` ``creationflags`` 매개 변수."
 
 #: ../../library/subprocess.rst:1128
-#, fuzzy
 msgid ""
 "A :class:`Popen` ``creationflags`` parameter to specify that a new "
 "process will have a normal priority. (default)"
@@ -1863,7 +1873,7 @@ msgstr "stdout이나 stderr을 캡처해야 하는 코드는 대신 :func:`run`\
 
 #: ../../library/subprocess.rst:1193
 msgid "run(...).returncode"
-msgstr ""
+msgstr "run(...).returncode"
 
 #: ../../library/subprocess.rst:1195 ../../library/subprocess.rst:1235
 msgid "To suppress stdout or stderr, supply a value of :data:`DEVNULL`."
@@ -1889,7 +1899,6 @@ msgstr ""
 "프로세스가 OS 파이프 버퍼를 가득 채우기 충분한 출력을 생성하면 자식 프로세스가 블록 됩니다."
 
 #: ../../library/subprocess.rst:1224
-#, fuzzy
 msgid ""
 "Run command with arguments.  Wait for command to complete. If the return "
 "code was zero then return, otherwise raise :exc:`CalledProcessError`. The"
@@ -1900,11 +1909,12 @@ msgid ""
 msgstr ""
 "인자로 명령을 실행합니다. 명령이 완료될 때까지 기다립니다. 반환 코드가 0이면 반환합니다, 그렇지 않으면 "
 ":exc:`CalledProcessError`\\를 발생시킵니다. :exc:`CalledProcessError` 객체는 "
-":attr:`~CalledProcessError.returncode` 어트리뷰트에 반환 코드를 갖습니다."
+":attr:`~CalledProcessError.returncode` 어트리뷰트에 반환 코드를 갖습니다. "
+":func:`check_call`\\이 프로세스를 시작하지 못하면 발생된 예외를 확산합니다."
 
 #: ../../library/subprocess.rst:1233
 msgid "run(..., check=True)"
-msgstr ""
+msgstr "run(..., check=True)"
 
 #: ../../library/subprocess.rst:1266
 msgid "Run command with arguments and return its output."
@@ -1927,7 +1937,7 @@ msgstr "이것은 다음과 동등합니다::"
 
 #: ../../library/subprocess.rst:1275
 msgid "run(..., check=True, stdout=PIPE).stdout"
-msgstr ""
+msgstr "run(..., check=True, stdout=PIPE).stdout"
 
 #: ../../library/subprocess.rst:1277
 msgid ""
@@ -1977,6 +1987,11 @@ msgid ""
 "...     shell=True)\n"
 "'ls: non_existent_file: No such file or directory\\n'"
 msgstr ""
+">>> subprocess.check_output(\n"
+"...     \"ls non_existent_file; exit 0\",\n"
+"...     stderr=subprocess.STDOUT,\n"
+"...     shell=True)\n"
+"'ls: non_existent_file: No such file or directory\\n'"
 
 #: ../../library/subprocess.rst:1306
 msgid "Support for the *input* keyword argument was added."
@@ -2028,7 +2043,7 @@ msgstr ":program:`/bin/sh` 셸 명령 치환 교체하기"
 
 #: ../../library/subprocess.rst:1349
 msgid "output=$(mycmd myarg)"
-msgstr ""
+msgstr "output=$(mycmd myarg)"
 
 #: ../../library/subprocess.rst:1353 ../../library/subprocess.rst:1364
 #: ../../library/subprocess.rst:1381
@@ -2037,7 +2052,7 @@ msgstr "는 다음처럼 됩니다::"
 
 #: ../../library/subprocess.rst:1355
 msgid "output = check_output([\"mycmd\", \"myarg\"])"
-msgstr ""
+msgstr "output = check_output([\"mycmd\", \"myarg\"])"
 
 #: ../../library/subprocess.rst:1358
 msgid "Replacing shell pipeline"
@@ -2045,7 +2060,7 @@ msgstr "셸 파이프라인 교체하기"
 
 #: ../../library/subprocess.rst:1360 ../../library/subprocess.rst:1377
 msgid "output=$(dmesg | grep hda)"
-msgstr ""
+msgstr "output=$(dmesg | grep hda)"
 
 #: ../../library/subprocess.rst:1366
 msgid ""
@@ -2054,6 +2069,10 @@ msgid ""
 "p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.\n"
 "output = p2.communicate()[0]"
 msgstr ""
+"p1 = Popen([\"dmesg\"], stdout=PIPE)\n"
+"p2 = Popen([\"grep\", \"hda\"], stdin=p1.stdout, stdout=PIPE)\n"
+"p1.stdout.close()  # p2가 종료되면 p1이 SIGPIPE를 수신하도록 허용합니다.\n"
+"output = p2.communicate()[0]"
 
 #: ../../library/subprocess.rst:1371
 msgid ""
@@ -2071,7 +2090,7 @@ msgstr "또는, 신뢰할 수 있는 입력의 경우, 셸의 자체 파이프�
 
 #: ../../library/subprocess.rst:1383
 msgid "output = check_output(\"dmesg | grep hda\", shell=True)"
-msgstr ""
+msgstr "output = check_output(\"dmesg | grep hda\", shell=True)"
 
 #: ../../library/subprocess.rst:1387
 msgid "Replacing :func:`os.system`"
@@ -2083,6 +2102,9 @@ msgid ""
 "# becomes\n"
 "retcode = call(\"mycmd\" + \" myarg\", shell=True)"
 msgstr ""
+"sts = os.system(\"mycmd\" + \" myarg\")\n"
+"# 는 다음처럼 됩니다\n"
+"retcode = call(\"mycmd\" + \" myarg\", shell=True)"
 
 #: ../../library/subprocess.rst:1395
 msgid "Notes:"
@@ -2121,6 +2143,15 @@ msgid ""
 "except OSError as e:\n"
 "    print(\"Execution failed:\", e, file=sys.stderr)"
 msgstr ""
+"try:\n"
+"    retcode = call(\"mycmd\" + \" myarg\", shell=True)\n"
+"    if retcode < 0:\n"
+"        print(\"Child was terminated by signal\", -retcode, "
+"file=sys.stderr)\n"
+"    else:\n"
+"        print(\"Child returned\", retcode, file=sys.stderr)\n"
+"except OSError as e:\n"
+"    print(\"Execution failed:\", e, file=sys.stderr)"
 
 #: ../../library/subprocess.rst:1418
 msgid "Replacing the :func:`os.spawn <os.spawnl>` family"
@@ -2136,6 +2167,9 @@ msgid ""
 "==>\n"
 "pid = Popen([\"/bin/mycmd\", \"myarg\"]).pid"
 msgstr ""
+"pid = os.spawnlp(os.P_NOWAIT, \"/bin/mycmd\", \"mycmd\", \"myarg\")\n"
+"==>\n"
+"pid = Popen([\"/bin/mycmd\", \"myarg\"]).pid"
 
 #: ../../library/subprocess.rst:1426
 msgid "P_WAIT example::"
@@ -2147,6 +2181,9 @@ msgid ""
 "==>\n"
 "retcode = call([\"/bin/mycmd\", \"myarg\"])"
 msgstr ""
+"retcode = os.spawnlp(os.P_WAIT, \"/bin/mycmd\", \"mycmd\", \"myarg\")\n"
+"==>\n"
+"retcode = call([\"/bin/mycmd\", \"myarg\"])"
 
 #: ../../library/subprocess.rst:1432
 msgid "Vector example::"
@@ -2158,6 +2195,9 @@ msgid ""
 "==>\n"
 "Popen([path] + args[1:])"
 msgstr ""
+"os.spawnvp(os.P_NOWAIT, path, args)\n"
+"==>\n"
+"Popen([path] + args[1:])"
 
 #: ../../library/subprocess.rst:1438
 msgid "Environment example::"
@@ -2170,6 +2210,9 @@ msgid ""
 "==>\n"
 "Popen([\"/bin/mycmd\", \"myarg\"], env={\"PATH\": \"/usr/bin\"})"
 msgstr ""
+"os.spawnlpe(os.P_NOWAIT, \"/bin/mycmd\", \"mycmd\", \"myarg\", env)\n"
+"==>\n"
+"Popen([\"/bin/mycmd\", \"myarg\"], env={\"PATH\": \"/usr/bin\"})"
 
 #: ../../library/subprocess.rst:1447
 msgid "Replacing :func:`os.popen`, :func:`os.popen2`, :func:`os.popen3`"
@@ -2183,6 +2226,11 @@ msgid ""
 "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
 "(child_stdin, child_stdout) = (p.stdin, p.stdout)"
 msgstr ""
+"(child_stdin, child_stdout) = os.popen2(cmd, mode, bufsize)\n"
+"==>\n"
+"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+"(child_stdin, child_stdout) = (p.stdin, p.stdout)"
 
 #: ../../library/subprocess.rst:1459
 msgid ""
@@ -2196,6 +2244,15 @@ msgid ""
 " child_stdout,\n"
 " child_stderr) = (p.stdin, p.stdout, p.stderr)"
 msgstr ""
+"(child_stdin,\n"
+" child_stdout,\n"
+" child_stderr) = os.popen3(cmd, mode, bufsize)\n"
+"==>\n"
+"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+"          stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)\n"
+"(child_stdin,\n"
+" child_stdout,\n"
+" child_stderr) = (p.stdin, p.stdout, p.stderr)"
 
 #: ../../library/subprocess.rst:1471
 msgid ""
@@ -2205,6 +2262,11 @@ msgid ""
 "          stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)\n"
 "(child_stdin, child_stdout_and_stderr) = (p.stdin, p.stdout)"
 msgstr ""
+"(child_stdin, child_stdout_and_stderr) = os.popen4(cmd, mode, bufsize)\n"
+"==>\n"
+"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+"          stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)\n"
+"(child_stdin, child_stdout_and_stderr) = (p.stdin, p.stdout)"
 
 #: ../../library/subprocess.rst:1477
 msgid "Return code handling translates as follows::"
@@ -2224,11 +2286,21 @@ msgid ""
 "if process.wait() != 0:\n"
 "    print(\"There were some errors\")"
 msgstr ""
+"pipe = os.popen(cmd, 'w')\n"
+"...\n"
+"rc = pipe.close()\n"
+"if rc is not None and rc >> 8:\n"
+"    print(\"There were some errors\")\n"
+"==>\n"
+"process = Popen(cmd, stdin=PIPE)\n"
+"...\n"
+"process.stdin.close()\n"
+"if process.wait() != 0:\n"
+"    print(\"There were some errors\")"
 
 #: ../../library/subprocess.rst:1493
-#, fuzzy
 msgid "Replacing functions from the :mod:`!popen2` module"
-msgstr ":mod:`popen2` 모듈의 함수 교체하기"
+msgstr ":mod:`!popen2` 모듈의 함수 교체하기"
 
 #: ../../library/subprocess.rst:1497
 msgid ""
@@ -2246,6 +2318,12 @@ msgid ""
 "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
 "(child_stdout, child_stdin) = (p.stdout, p.stdin)"
 msgstr ""
+"(child_stdout, child_stdin) = popen2.popen2(\"somestring\", bufsize, "
+"mode)\n"
+"==>\n"
+"p = Popen(\"somestring\", shell=True, bufsize=bufsize,\n"
+"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+"(child_stdout, child_stdin) = (p.stdout, p.stdin)"
 
 #: ../../library/subprocess.rst:1510
 msgid ""
@@ -2256,6 +2334,12 @@ msgid ""
 "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
 "(child_stdout, child_stdin) = (p.stdout, p.stdin)"
 msgstr ""
+"(child_stdout, child_stdin) = popen2.popen2([\"mycmd\", \"myarg\"], "
+"bufsize, mode)\n"
+"==>\n"
+"p = Popen([\"mycmd\", \"myarg\"], bufsize=bufsize,\n"
+"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+"(child_stdout, child_stdin) = (p.stdout, p.stdin)"
 
 #: ../../library/subprocess.rst:1516
 msgid ""
@@ -2305,7 +2389,6 @@ msgid "Return ``(exitcode, output)`` of executing *cmd* in a shell."
 msgstr "셸에서 *cmd*\\를 실행한 후 ``(exitcode, output)``\\을 반환합니다."
 
 #: ../../library/subprocess.rst:1542
-#, fuzzy
 msgid ""
 "Execute the string *cmd* in a shell with :meth:`Popen.check_output` and "
 "return a 2-tuple ``(exitcode, output)``. *encoding* and *errors* are used"
@@ -2313,8 +2396,8 @@ msgid ""
 "more details."
 msgstr ""
 ":meth:`Popen.check_output`\\으로 셸에서 문자열 *cmd*\\를 실행하고 2-튜플 ``(exitcode, "
-"output)``\\을 반환합니다. 로케일 인코딩이 사용됩니다; 자세한 내용은 :ref:`frequently-used-"
-"arguments`\\에 대한 참고 사항을 참조하십시오."
+"output)``\\을 반환합니다. 출력을 디코딩하는 데 *encoding*\\과 *errors*\\가 사용됩니다; 자세한 내용은 "
+":ref:`frequently-used-arguments`\\에 대한 참고 사항을 참조하십시오."
 
 #: ../../library/subprocess.rst:1547
 msgid ""
@@ -2333,6 +2416,14 @@ msgid ""
 ">>> subprocess.getstatusoutput('/bin/kill $$')\n"
 "(-15, '')"
 msgstr ""
+">>> subprocess.getstatusoutput('ls /bin/ls')\n"
+"(0, '/bin/ls')\n"
+">>> subprocess.getstatusoutput('cat /bin/junk')\n"
+"(1, 'cat: /bin/junk: No such file or directory')\n"
+">>> subprocess.getstatusoutput('/bin/junk')\n"
+"(127, 'sh: /bin/junk: not found')\n"
+">>> subprocess.getstatusoutput('/bin/kill $$')\n"
+"(-15, '')"
 
 #: ../../library/subprocess.rst:1562
 msgid "Windows support was added."
@@ -2364,6 +2455,8 @@ msgid ""
 ">>> subprocess.getoutput('ls /bin/ls')\n"
 "'/bin/ls'"
 msgstr ""
+">>> subprocess.getoutput('ls /bin/ls')\n"
+"'/bin/ls'"
 
 #: ../../library/subprocess.rst:1584
 msgid "Windows support added"
@@ -2447,7 +2540,7 @@ msgstr ""
 
 #: ../../library/subprocess.rst:1646
 msgid "subprocess._USE_VFORK = False  # See CPython issue gh-NNNNNN."
-msgstr ""
+msgstr "subprocess._USE_VFORK = False  # See CPython issue gh-NNNNNN."
 
 #: ../../library/subprocess.rst:1648
 msgid ""
@@ -2459,7 +2552,7 @@ msgstr ""
 
 #: ../../library/subprocess.rst:1655
 msgid "subprocess._USE_POSIX_SPAWN = False  # See CPython issue gh-NNNNNN."
-msgstr ""
+msgstr "subprocess._USE_POSIX_SPAWN = False  # See CPython issue gh-NNNNNN."
 
 #: ../../library/subprocess.rst:1657
 msgid ""
@@ -2479,20 +2572,19 @@ msgstr ""
 
 #: ../../library/subprocess.rst:1666
 msgid "``_USE_POSIX_SPAWN``"
-msgstr ""
+msgstr "``_USE_POSIX_SPAWN``"
 
 #: ../../library/subprocess.rst:1667
 msgid "``_USE_VFORK``"
-msgstr ""
+msgstr "``_USE_VFORK``"
 
 #: ../../library/subprocess.rst:296
 msgid "universal newlines"
-msgstr ""
+msgstr "유니버설 줄 넘김"
 
 #: ../../library/subprocess.rst:296
-#, fuzzy
 msgid "subprocess module"
-msgstr ":mod:`subprocess` 모듈 사용하기"
+msgstr ":mod:`subprocess` 모듈"
 
 #~ msgid ""
 #~ "The :func:`run` function was added in"
