@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/unittest.mock.rst:2
-#, fuzzy
 msgid ":mod:`!unittest.mock` --- mock object library"
-msgstr ":mod:`unittest.mock` --- 모의 객체 라이브러리"
+msgstr ":mod:`!unittest.mock` --- 모의 객체 라이브러리"
 
 #: ../../library/unittest.mock.rst:12
 msgid "**Source code:** :source:`Lib/unittest/mock.py`"
@@ -70,13 +69,12 @@ msgstr ""
 "합니다."
 
 #: ../../library/unittest.mock.rst:36
-#, fuzzy
 msgid ""
 "There is a backport of :mod:`unittest.mock` for earlier versions of "
 "Python, available as :pypi:`mock` on PyPI."
 msgstr ""
-"이전 버전의 파이썬을 위한 :mod:`unittest.mock`\\의 역 이식이 있습니다, `PyPI의 mock "
-"<https://pypi.org/project/mock>`_\\에서 제공됩니다."
+"이전 버전의 파이썬을 위한 :mod:`unittest.mock`\\의 역 이식이 있습니다, PyPI의 :pypi:`mock`\\에서"
+" 제공됩니다."
 
 #: ../../library/unittest.mock.rst:41
 msgid "Quick Guide"
@@ -94,13 +92,12 @@ msgstr ""
 "대한 어서션을 만들 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:71
-#, fuzzy
 msgid ""
 ":attr:`~Mock.side_effect` allows you to perform side effects, including "
 "raising an exception when a mock is called:"
 msgstr ""
-":attr:`side_effect`\\를 사용하면 모의 객체(mock)가 호출될 때 예외를 발생시키는 것을 포함하여 부작용(side"
-" effect)을 수행 할 수 있습니다:"
+":attr:`~Mock.side_effect`\\를 사용하면 모의 객체(mock)가 호출될 때 예외를 발생시키는 것을 포함하여 "
+"부작용(side effect)을 수행 할 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:92
 msgid ""
@@ -139,6 +136,18 @@ msgid ""
 "...\n"
 ">>> test()"
 msgstr ""
+">>> from unittest.mock import patch\n"
+">>> @patch('module.ClassName2')\n"
+"... @patch('module.ClassName1')\n"
+"... def test(MockClass1, MockClass2):\n"
+"...     module.ClassName1()\n"
+"...     module.ClassName2()\n"
+"...     assert MockClass1 is module.ClassName1\n"
+"...     assert MockClass2 is module.ClassName2\n"
+"...     assert MockClass1.called\n"
+"...     assert MockClass2.called\n"
+"...\n"
+">>> test()"
 
 #: ../../library/unittest.mock.rst:116
 msgid ""
@@ -294,14 +303,13 @@ msgstr ""
 "어트리뷰트에 액세스하면 :exc:`AttributeError`\\가 발생합니다."
 
 #: ../../library/unittest.mock.rst:241
-#, fuzzy
 msgid ""
 "If *spec* is an object (rather than a list of strings) then "
 ":attr:`~object.__class__` returns the class of the spec object. This "
 "allows mocks to pass :func:`isinstance` tests."
 msgstr ""
-"*spec*\\이 (문자열 리스트 대신에) 객체이면, :attr:`~instance.__class__`\\는 spec 객체의 "
-"클래스를 반환합니다. 이것은 모의 객체가 :func:`isinstance` 검사를 통과할 수 있도록 합니다."
+"*spec*\\이 (문자열 리스트 대신에) 객체이면, :attr:`~object.__class__`\\는 spec 객체의 클래스를 "
+"반환합니다. 이것은 모의 객체가 :func:`isinstance` 검사를 통과할 수 있도록 합니다."
 
 #: ../../library/unittest.mock.rst:245
 msgid ""
@@ -350,16 +358,15 @@ msgstr ""
 "만들어집니다). :attr:`return_value` 어트리뷰트를 참조하십시오."
 
 #: ../../library/unittest.mock.rst:267
-#, fuzzy
 msgid ""
 "*unsafe*: By default, accessing any attribute whose name starts with "
 "*assert*, *assret*, *asert*, *aseert* or *assrt* will raise an "
 ":exc:`AttributeError`. Passing ``unsafe=True`` will allow access to these"
 " attributes."
 msgstr ""
-"*unsafe*: 기본적으로 어트리뷰트가 *assert*\\나 *assret*\\로 시작하면 "
-":exc:`AttributeError`\\가 발생합니다. ``unsafe=True``\\를 전달하면 이러한 어트리뷰트에 액세스 할 "
-"수 있습니다."
+"*unsafe*: 기본적으로, 이름이 *assert*, *assret*, *asert*, *aseert* 또는 *assrt*\\로 "
+"시작하는 어트리뷰트를 액세스하면 :exc:`AttributeError`\\가 발생합니다. ``unsafe=True``\\를 전달하면"
+" 이러한 어트리뷰트에 액세스 할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:274
 msgid ""
@@ -416,7 +423,6 @@ msgid ""
 msgstr "이 메서드는 마지막 호출이 특정 방식으로 이루어졌음을 어서트하는 편리한 방법입니다:"
 
 #: ../../library/unittest.mock.rst:334
-#, fuzzy
 msgid ""
 "Assert that the mock was called exactly once and that call was with the "
 "specified arguments."
@@ -473,6 +479,13 @@ msgid ""
 ">>> mock.called\n"
 "False"
 msgstr ""
+">>> mock = Mock(return_value=None)\n"
+">>> mock('hello')\n"
+">>> mock.called\n"
+"True\n"
+">>> mock.reset_mock()\n"
+">>> mock.called\n"
+"False"
 
 #: ../../library/unittest.mock.rst:414
 msgid ""
@@ -493,6 +506,12 @@ msgid ""
 ">>> mock('hello')\n"
 "<Mock name='mock()' id='...'>"
 msgstr ""
+">>> mock = Mock(return_value=5)\n"
+">>> mock('hello')\n"
+"5\n"
+">>> mock.reset_mock(return_value=True)\n"
+">>> mock('hello')\n"
+"<Mock name='mock()' id='...'>"
 
 #: ../../library/unittest.mock.rst:428
 msgid "*side_effect* parameter when set to ``True`` resets :attr:`side_effect`:"
@@ -509,6 +528,14 @@ msgid ""
 ">>> mock('hello')\n"
 "<Mock name='mock()' id='...'>"
 msgstr ""
+">>> mock = Mock(side_effect=ValueError)\n"
+">>> mock('hello')\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"ValueError\n"
+">>> mock.reset_mock(side_effect=True)\n"
+">>> mock('hello')\n"
+"<Mock name='mock()' id='...'>"
 
 #: ../../library/unittest.mock.rst:441
 msgid ""
@@ -522,7 +549,6 @@ msgid "Child mocks are reset as well."
 msgstr ""
 
 #: ../../library/unittest.mock.rst:447
-#, fuzzy
 msgid "Added two keyword-only arguments to the reset_mock function."
 msgstr "reset_mock 함수에 두 개의 키워드 전용 인자를 추가했습니다."
 
@@ -770,7 +796,6 @@ msgstr ""
 "같다고 비교됨을 뜻합니다.:"
 
 #: ../../library/unittest.mock.rst:763
-#, fuzzy
 msgid ""
 "Normally the :attr:`!__class__` attribute of an object will return its "
 "type. For a mock object with a :attr:`!spec`, :attr:`!__class__` returns "
@@ -778,17 +803,16 @@ msgid ""
 ":func:`isinstance` tests for the object they are replacing / masquerading"
 " as:"
 msgstr ""
-"일반적으로 객체의 :attr:`__class__` 어트리뷰트는 해당 형을 반환합니다. :attr:`spec`\\이 있는 모의 객체의"
-" 경우, ``__class__``\\는 대신 spec 클래스를 반환합니다. 이를 통해 모의 객체는 다음과 같이 대체 / 가장하는 "
-"객체에 대한 :func:`isinstance` 테스트를 통과할 수 있습니다:"
+"일반적으로 객체의 :attr:`!__class__` 어트리뷰트는 해당 형을 반환합니다. :attr:`!spec`\\이 있는 모의 "
+"객체의 경우, :attr:`!__class__`\\는 대신 spec 클래스를 반환합니다. 이를 통해 모의 객체는 다음과 같이 대체 "
+"/ 가장하는 객체에 대한 :func:`isinstance` 테스트를 통과할 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:772
-#, fuzzy
 msgid ""
 ":attr:`!__class__` is assignable to, this allows a mock to pass an "
 ":func:`isinstance` check without forcing you to use a spec:"
 msgstr ""
-":attr:`__class__`\\는 대입할 수 있습니다. 이를 통해 spec을 사용하지 않고도 모의 객체가 "
+":attr:`!__class__`\\는 대입할 수 있습니다. 이를 통해 spec을 사용하지 않고도 모의 객체가 "
 ":func:`isinstance` 검사를 통과할 수 있습니다.:"
 
 #: ../../library/unittest.mock.rst:782
@@ -801,12 +825,11 @@ msgstr ""
 " 모의 객체에서 의미가 없는 *return_value*\\와 *side_effect*\\는 예외입니다."
 
 #: ../../library/unittest.mock.rst:786
-#, fuzzy
 msgid ""
 "Mock objects that use a class or an instance as a :attr:`!spec` or "
 ":attr:`!spec_set` are able to pass :func:`isinstance` tests:"
 msgstr ""
-"클래스 나 인스턴스를 :attr:`spec`\\이나 :attr:`spec_set`\\으로 사용하는 모의 객체는 "
+"클래스 나 인스턴스를 :attr:`!spec`\\이나 :attr:`!spec_set`\\으로 사용하는 모의 객체는 "
 ":func:`isinstance` 테스트를 통과할 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:796
@@ -857,6 +880,13 @@ msgid ""
 ">>> mock.assert_called_with(1, 2, 3)\n"
 ">>> mock.assert_called_with(a=1, b=2, c=3)"
 msgstr ""
+">>> def f(a, b, c): pass\n"
+"...\n"
+">>> mock = Mock(spec=f)\n"
+">>> mock(1, 2, c=3)\n"
+"<Mock name='mock()' id='140161580456576'>\n"
+">>> mock.assert_called_with(1, 2, 3)\n"
+">>> mock.assert_called_with(a=1, b=2, c=3)"
 
 #: ../../library/unittest.mock.rst:838
 msgid ""
@@ -875,15 +905,15 @@ msgid "Added signature introspection on specced and autospecced mock objects."
 msgstr "spec 되거나 자동 사양된 모의 객체에 대한 서명 검사를 추가했습니다."
 
 #: ../../library/unittest.mock.rst:849
-#, fuzzy
 msgid ""
 "A mock intended to be used as a :class:`property`, or other "
 ":term:`descriptor`, on a class. :class:`PropertyMock` provides "
 ":meth:`~object.__get__` and :meth:`~object.__set__` methods so you can "
 "specify a return value when it is fetched."
 msgstr ""
-"클래스에서 프로퍼티나 다른 디스크립터로 사용하기 위한 모의 객체. :class:`PropertyMock`\\은 "
-":meth:`__get__`\\과 :meth:`__set__` 메서드를 제공하므로 꺼낼 때 반환 값을 지정할 수 있습니다."
+"클래스에서 :class:`property`\\나 다른 :term:`디스크립터 <descriptor>`\\로 사용하기 위한 모의 "
+"객체. :class:`PropertyMock`\\은 :meth:`~object.__get__`\\과 "
+":meth:`~object.__set__` 메서드를 제공하므로 꺼낼 때 반환 값을 지정할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:854
 msgid ""
@@ -914,6 +944,24 @@ msgid ""
 ">>> mock_foo.mock_calls\n"
 "[call(), call(6)]"
 msgstr ""
+">>> class Foo:\n"
+"...     @property\n"
+"...     def foo(self):\n"
+"...         return 'something'\n"
+"...     @foo.setter\n"
+"...     def foo(self, value):\n"
+"...         pass\n"
+"...\n"
+">>> with patch('__main__.Foo.foo', new_callable=PropertyMock) as "
+"mock_foo:\n"
+"...     mock_foo.return_value = 'mockity-mock'\n"
+"...     this_foo = Foo()\n"
+"...     print(this_foo.foo)\n"
+"...     this_foo.foo = 6\n"
+"...\n"
+"mockity-mock\n"
+">>> mock_foo.mock_calls\n"
+"[call(), call(6)]"
 
 #: ../../library/unittest.mock.rst:875
 msgid ""
@@ -933,6 +981,12 @@ msgid ""
 "3\n"
 ">>> p.assert_called_once_with()"
 msgstr ""
+">>> m = MagicMock()\n"
+">>> p = PropertyMock(return_value=3)\n"
+">>> type(m).foo = p\n"
+">>> m.foo\n"
+"3\n"
+">>> p.assert_called_once_with()"
 
 #: ../../library/unittest.mock.rst:888
 msgid ""
@@ -949,6 +1003,11 @@ msgid ""
 ">>> m.my_property\n"
 "<MagicMock name='mock.my_property' id='140165240345424'>"
 msgstr ""
+">>> m = MagicMock()\n"
+">>> no_attribute = PropertyMock(side_effect=AttributeError)\n"
+">>> type(m).my_property = no_attribute\n"
+">>> m.my_property\n"
+"<MagicMock name='mock.my_property' id='140165240345424'>"
 
 #: ../../library/unittest.mock.rst:898
 msgid "See :meth:`~object.__getattr__` for details."
@@ -1127,9 +1186,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/unittest.mock.rst:1156
-#, fuzzy
 msgid "Waits until the mock is called."
-msgstr "모의 객체가 호출되지 않았다고 어서트 합니다."
+msgstr "모의 객체가 호출될 때까지 기다립니다."
 
 #: ../../library/unittest.mock.rst:1158
 msgid ""
@@ -1139,9 +1197,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/unittest.mock.rst:1170
-#, fuzzy
 msgid "Waits until the mock is called with the specified arguments."
-msgstr "지정된 인자로 모의 객체가 호출되었다고 어서트 합니다."
+msgstr "지정된 인자로 모의 객체가 호출될 때까지 기다립니다."
 
 #: ../../library/unittest.mock.rst:1172
 msgid ""
@@ -1180,14 +1237,13 @@ msgstr ""
 "어트리뷰트로 기록됩니다."
 
 #: ../../library/unittest.mock.rst:1200
-#, fuzzy
 msgid ""
 "If :attr:`~Mock.side_effect` is set then it will be called after the call"
 " has been recorded, so if :attr:`!side_effect` raises an exception the "
 "call is still recorded."
 msgstr ""
 ":attr:`~Mock.side_effect`\\가 설정되면 호출이 기록된 후에 호출되므로, "
-":attr:`side_effect`\\에서 예외가 발생해도 호출은 여전히 기록됩니다."
+":attr:`!side_effect`\\에서 예외가 발생해도 호출은 여전히 기록됩니다."
 
 #: ../../library/unittest.mock.rst:1204
 msgid ""
@@ -1198,19 +1254,17 @@ msgstr ""
 "인스턴스로 만드는 것입니다:"
 
 #: ../../library/unittest.mock.rst:1222
-#, fuzzy
 msgid ""
 "If :attr:`~Mock.side_effect` is a function then whatever that function "
 "returns is what calls to the mock return. The :attr:`!side_effect` "
 "function is called with the same arguments as the mock. This allows you "
 "to vary the return value of the call dynamically, based on the input:"
 msgstr ""
-":attr:`side_effect`\\가 함수면 해당 함수가 반환하는 것이 모의 객체에 대한 호출이 반환하는 것입니다. "
-":attr:`side_effect` 함수는 모의 객체와 같은 인자로 호출됩니다. 이를 통해 입력에 따라 호출의 반환 값을 동적으로 "
-"변경할 수 있습니다:"
+":attr:`~Mock.side_effect`\\가 함수면 해당 함수가 반환하는 것이 모의 객체에 대한 호출이 반환하는 것입니다. "
+":attr:`!side_effect` 함수는 모의 객체와 같은 인자로 호출됩니다. 이를 통해 입력에 따라 호출의 반환 값을 동적으로"
+" 변경할 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:1238
-#, fuzzy
 msgid ""
 "If you want the mock to still return the default return value (a new "
 "mock), or any set return value, then there are two ways of doing this. "
@@ -1218,27 +1272,25 @@ msgid ""
 ":attr:`~Mock.side_effect`, or return :data:`DEFAULT`:"
 msgstr ""
 "모의 객체가 여전히 기본 반환 값(새로운 모의 객체)을, 또는 설정된 반환 값을, 반환하도록 하려면 두 가지 방법이 있습니다. "
-":attr:`side_effect` 내부에서 :attr:`mock.return_value`\\를 반환하거나 "
+":attr:`~Mock.side_effect` 내부에서 :attr:`~Mock.return_value`\\를 반환하거나 "
 ":data:`DEFAULT`\\를 반환하십시오:"
 
 #: ../../library/unittest.mock.rst:1257
-#, fuzzy
 msgid ""
 "To remove a :attr:`~Mock.side_effect`, and return to the default "
 "behaviour, set the :attr:`!side_effect` to ``None``:"
 msgstr ""
-":attr:`side_effect`\\를 제거하고 기본 동작으로 돌아가려면, :attr:`side_effect`\\를 "
+":attr:`~Mock.side_effect`\\를 제거하고 기본 동작으로 돌아가려면, :attr:`!side_effect`\\를 "
 "``None``\\으로 설정하십시오:"
 
 #: ../../library/unittest.mock.rst:1271
-#, fuzzy
 msgid ""
 "The :attr:`~Mock.side_effect` can also be any iterable object. Repeated "
 "calls to the mock will return values from the iterable (until the "
 "iterable is exhausted and a :exc:`StopIteration` is raised):"
 msgstr ""
-":attr:`side_effect`\\는 이터러블 객체일 수도 있습니다. 모의 객체에 대한 반복 호출은 이터러블에서 값을 반환합니다"
-" (이터러블이 소진되고 :exc:`StopIteration`\\이 발생할 때까지):"
+":attr:`~Mock.side_effect`\\는 이터러블 객체일 수도 있습니다. 모의 객체에 대한 반복 호출은 이터러블에서 값을"
+" 반환합니다 (이터러블이 소진되고 :exc:`StopIteration`\\이 발생할 때까지):"
 
 #: ../../library/unittest.mock.rst:1287
 msgid ""
@@ -1259,6 +1311,16 @@ msgid ""
 ">>> m()\n"
 "66"
 msgstr ""
+">>> iterable = (33, ValueError, 66)\n"
+">>> m = MagicMock(side_effect=iterable)\n"
+">>> m()\n"
+"33\n"
+">>> m()\n"
+"Traceback (most recent call last):\n"
+" ...\n"
+"ValueError\n"
+">>> m()\n"
+"66"
 
 #: ../../library/unittest.mock.rst:1305
 msgid "Deleting Attributes"
@@ -1271,7 +1333,6 @@ msgid ""
 msgstr "모의 객체는 요청 시 어트리뷰트를 만듭니다. 이를 통해 모든 형의 객체인 것처럼 가장할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:1310
-#, fuzzy
 msgid ""
 "You may want a mock object to return ``False`` to a :func:`hasattr` call,"
 " or raise an :exc:`AttributeError` when an attribute is fetched. You can "
@@ -1279,7 +1340,7 @@ msgid ""
 "isn't always convenient."
 msgstr ""
 "모의 객체가 :func:`hasattr` 호출에 대해 ``False``\\를 반환하거나, 어트리뷰트를 가져올 때 "
-":exc:`AttributeError`\\를 발생시키길 원할 수 있습니다. 모의 객체에 :attr:`spec`\\으로 객체를 "
+":exc:`AttributeError`\\를 발생시키길 원할 수 있습니다. 모의 객체에 :attr:`!spec`\\으로 객체를 "
 "제공하여 그렇게 할 수 있지만, 항상 편리하지는 않습니다."
 
 #: ../../library/unittest.mock.rst:1314
@@ -1312,6 +1373,10 @@ msgid ""
 ">>> mock.name\n"
 "'my_name'"
 msgstr ""
+">>> mock = MagicMock()\n"
+">>> mock.configure_mock(name='my_name')\n"
+">>> mock.name\n"
+"'my_name'"
 
 #: ../../library/unittest.mock.rst:1343
 msgid ""
@@ -1324,6 +1389,8 @@ msgid ""
 ">>> mock = MagicMock()\n"
 ">>> mock.name = \"foo\""
 msgstr ""
+">>> mock = MagicMock()\n"
+">>> mock.name = \"foo\""
 
 #: ../../library/unittest.mock.rst:1350
 msgid "Attaching Mocks as Attributes"
@@ -1376,6 +1443,18 @@ msgid ""
 ">>> parent.mock_calls\n"
 "[call.child1('one'), call.child2('two')]"
 msgstr ""
+">>> thing1 = object()\n"
+">>> thing2 = object()\n"
+">>> parent = MagicMock()\n"
+">>> with patch('__main__.thing1', return_value=None) as child1:\n"
+"...     with patch('__main__.thing2', return_value=None) as child2:\n"
+"...         parent.attach_mock(child1, 'child1')\n"
+"...         parent.attach_mock(child2, 'child2')\n"
+"...         child1('one')\n"
+"...         child2('two')\n"
+"...\n"
+">>> parent.mock_calls\n"
+"[call.child1('one'), call.child2('two')]"
 
 #: ../../library/unittest.mock.rst:1399
 msgid ""
@@ -1527,7 +1606,6 @@ msgid ""
 msgstr "모듈에 있는 내장(builtins)을 패치하는 경우 ``create=True``\\를 전달할 필요가 없습니다, 기본적으로 추가됩니다."
 
 #: ../../library/unittest.mock.rst:1481
-#, fuzzy
 msgid ""
 "Patch can be used as a :class:`~unittest.TestCase` class decorator. It "
 "works by decorating each test method in the class. This reduces the "
@@ -1537,8 +1615,8 @@ msgid ""
 "way :mod:`unittest` finds tests. You can specify an alternative prefix by"
 " setting ``patch.TEST_PREFIX``."
 msgstr ""
-"패치는 :class:`TestCase` 클래스 데코레이터로 사용할 수 있습니다. 클래스의 각 테스트 메서드를 데코레이트 하여 "
-"작동합니다. 테스트 메서드가 공통 패치 집합을 공유할 때 관리용 코드가 줄어듭니다. :func:`patch`\\는 "
+"패치는 :class:`~unittest.TestCase` 클래스 데코레이터로 사용할 수 있습니다. 클래스의 각 테스트 메서드를 "
+"데코레이트 하여 작동합니다. 테스트 메서드가 공통 패치 집합을 공유할 때 관리용 코드가 줄어듭니다. :func:`patch`\\는 "
 "``patch.TEST_PREFIX``\\로 시작하는 메서드 이름을 조회하는 것으로 테스트를 찾습니다. 기본적으로 이것은 "
 "``'test'``\\인데, :mod:`unittest`\\가 테스트를 찾는 방식과 일치합니다. "
 "``patch.TEST_PREFIX``\\를 설정하여 대체 접두사를 지정할 수 있습니다."
@@ -1587,6 +1665,12 @@ msgid ""
 ">>> function(None)\n"
 "True"
 msgstr ""
+">>> @patch('__main__.SomeClass')\n"
+"... def function(normal_argument, mock_class):\n"
+"...     print(mock_class is SomeClass)\n"
+"...\n"
+">>> function(None)\n"
+"True"
 
 #: ../../library/unittest.mock.rst:1510
 msgid ""
@@ -1607,13 +1691,12 @@ msgstr ""
 "있습니다. 또는 *return_value*\\를 원하는 것으로 설정할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:1518
-#, fuzzy
 msgid ""
 "To configure return values on methods of *instances* on the patched class"
 " you must do this on the :attr:`~Mock.return_value`. For example::"
 msgstr ""
-"패치된 클래스에서 *인스턴스*\\의 메서드에 대한 반환 값을 구성하려면 :attr:`return_value`\\에서 이를 수행해야 "
-"합니다. 예를 들면::"
+"패치된 클래스에서 *인스턴스*\\의 메서드에 대한 반환 값을 구성하려면 :attr:`~Mock.return_value`\\에서 이를"
+" 수행해야 합니다. 예를 들면::"
 
 #: ../../library/unittest.mock.rst:1521
 msgid ""
@@ -1628,6 +1711,16 @@ msgid ""
 "...     assert Class().method() == 'foo'\n"
 "..."
 msgstr ""
+">>> class Class:\n"
+"...     def method(self):\n"
+"...         pass\n"
+"...\n"
+">>> with patch('__main__.Class') as MockClass:\n"
+"...     instance = MockClass.return_value\n"
+"...     instance.method.return_value = 'foo'\n"
+"...     assert Class() is instance\n"
+"...     assert Class().method() == 'foo'\n"
+"..."
 
 #: ../../library/unittest.mock.rst:1532
 msgid ""
@@ -1646,6 +1739,12 @@ msgid ""
 ">>> assert isinstance(instance, Original)\n"
 ">>> patcher.stop()"
 msgstr ""
+">>> Original = Class\n"
+">>> patcher = patch('__main__.Class', spec=True)\n"
+">>> MockClass = patcher.start()\n"
+">>> instance = MockClass()\n"
+">>> assert isinstance(instance, Original)\n"
+">>> patcher.stop()"
 
 #: ../../library/unittest.mock.rst:1542
 msgid ""
@@ -1668,6 +1767,15 @@ msgid ""
 "  ...\n"
 "TypeError: 'NonCallableMock' object is not callable"
 msgstr ""
+">>> thing = object()\n"
+">>> with patch('__main__.thing', new_callable=NonCallableMock) as "
+"mock_thing:\n"
+"...     assert thing is mock_thing\n"
+"...     thing()\n"
+"...\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"TypeError: 'NonCallableMock' object is not callable"
 
 #: ../../library/unittest.mock.rst:1555
 msgid ""
@@ -1688,6 +1796,16 @@ msgid ""
 "...\n"
 ">>> test()"
 msgstr ""
+">>> from io import StringIO\n"
+">>> def foo():\n"
+"...     print('Something')\n"
+"...\n"
+">>> @patch('sys.stdout', new_callable=StringIO)\n"
+"... def test(mock_stdout):\n"
+"...     foo()\n"
+"...     assert mock_stdout.getvalue() == 'Something\\n'\n"
+"...\n"
+">>> test()"
 
 #: ../../library/unittest.mock.rst:1568
 msgid ""
@@ -1710,6 +1828,12 @@ msgid ""
 ">>> mock_thing.second\n"
 "'two'"
 msgstr ""
+">>> patcher = patch('__main__.thing', first='one', second='two')\n"
+">>> mock_thing = patcher.start()\n"
+">>> mock_thing.first\n"
+"'one'\n"
+">>> mock_thing.second\n"
+"'two'"
 
 #: ../../library/unittest.mock.rst:1580
 msgid ""
@@ -1737,6 +1861,15 @@ msgid ""
 "  ...\n"
 "KeyError"
 msgstr ""
+">>> config = {'method.return_value': 3, 'other.side_effect': KeyError}\n"
+">>> patcher = patch('__main__.thing', **config)\n"
+">>> mock_thing = patcher.start()\n"
+">>> mock_thing.method()\n"
+"3\n"
+">>> mock_thing.other()\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"KeyError"
 
 #: ../../library/unittest.mock.rst:1596
 msgid ""
@@ -1759,6 +1892,15 @@ msgid ""
 "AttributeError: <module 'sys' (built-in)> does not have the attribute "
 "'non_existing_attribute'"
 msgstr ""
+">>> @patch('sys.non_existing_attribute', 42)\n"
+"... def test():\n"
+"...     assert sys.non_existing_attribute == 42\n"
+"...\n"
+">>> test()\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"AttributeError: <module 'sys' (built-in)> does not have the attribute "
+"'non_existing_attribute'"
 
 #: ../../library/unittest.mock.rst:1608
 msgid ""
@@ -1774,6 +1916,11 @@ msgid ""
 "...\n"
 ">>> test()"
 msgstr ""
+">>> @patch('sys.non_existing_attribute', 42, create=True)\n"
+"... def test(mock_stdout):\n"
+"...     assert sys.non_existing_attribute == 42\n"
+"...\n"
+">>> test()"
 
 #: ../../library/unittest.mock.rst:1619
 msgid ""
@@ -1927,7 +2074,6 @@ msgid ""
 msgstr ":func:`patch.dict` 호출에서 키워드를 사용하여 딕셔너리에 값을 설정할 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:1744
-#, fuzzy
 msgid ""
 ":func:`patch.dict` can be used with dictionary like objects that aren't "
 "actually dictionaries. At the very minimum they must support item "
@@ -1937,9 +2083,10 @@ msgid ""
 ":meth:`~container.__iter__` or :meth:`~object.__contains__`."
 msgstr ""
 ":func:`patch.dict`\\는 실제로 딕셔너리가 아닌 딕셔너리류 객체와 함께 사용할 수 있습니다. 최소한 아이템 가져오기,"
-" 설정하기, 삭제하기 및 이터레이션이나 멤버십 검사를 지원해야 합니다. 이것은 매직 메서드 :meth:`__getitem__`, "
-":meth:`__setitem__`, :meth:`__delitem__` 및 :meth:`__iter__`\\나 "
-":meth:`__contains__`\\에 해당합니다."
+" 설정하기, 삭제하기 및 이터레이션이나 멤버십 검사를 지원해야 합니다. 이것은 매직 메서드 "
+":meth:`~object.__getitem__`, :meth:`~object.__setitem__`, "
+":meth:`~object.__delitem__` 및 :meth:`~container.__iter__`\\나 "
+":meth:`~object.__contains__`\\에 해당합니다."
 
 #: ../../library/unittest.mock.rst:1774
 msgid "patch.multiple"
@@ -1959,6 +2106,8 @@ msgid ""
 "with patch.multiple(settings, FIRST_PATCH='one', SECOND_PATCH='two'):\n"
 "    ..."
 msgstr ""
+"with patch.multiple(settings, FIRST_PATCH='one', SECOND_PATCH='two'):\n"
+"    ..."
 
 #: ../../library/unittest.mock.rst:1785
 msgid ""
@@ -2015,6 +2164,15 @@ msgid ""
 "...\n"
 ">>> test_function()"
 msgstr ""
+">>> thing = object()\n"
+">>> other = object()\n"
+"\n"
+">>> @patch.multiple('__main__', thing=DEFAULT, other=DEFAULT)\n"
+"... def test_function(thing, other):\n"
+"...     assert isinstance(thing, MagicMock)\n"
+"...     assert isinstance(other, MagicMock)\n"
+"...\n"
+">>> test_function()"
 
 #: ../../library/unittest.mock.rst:1812
 msgid ""
@@ -2036,6 +2194,14 @@ msgid ""
 "...\n"
 ">>> test_function()"
 msgstr ""
+">>> @patch('sys.exit')\n"
+"... @patch.multiple('__main__', thing=DEFAULT, other=DEFAULT)\n"
+"... def test_function(mock_exit, other, thing):\n"
+"...     assert 'other' in repr(other)\n"
+"...     assert 'thing' in repr(thing)\n"
+"...     assert 'exit' in repr(mock_exit)\n"
+"...\n"
+">>> test_function()"
 
 #: ../../library/unittest.mock.rst:1824
 msgid ""
@@ -2056,23 +2222,28 @@ msgid ""
 "...     assert values['other'] is other\n"
 "..."
 msgstr ""
+">>> with patch.multiple('__main__', thing=DEFAULT, other=DEFAULT) as "
+"values:\n"
+"...     assert 'other' in repr(values['other'])\n"
+"...     assert 'thing' in repr(values['thing'])\n"
+"...     assert values['thing'] is thing\n"
+"...     assert values['other'] is other\n"
+"..."
 
 #: ../../library/unittest.mock.rst:1838
 msgid "patch methods: start and stop"
 msgstr "패처 메서드: start와 stop"
 
 #: ../../library/unittest.mock.rst:1840
-#, fuzzy
 msgid ""
 "All the patchers have :meth:`!start` and :meth:`!stop` methods. These "
 "make it simpler to do patching in ``setUp`` methods or where you want to "
 "do multiple patches without nesting decorators or with statements."
 msgstr ""
-"모든 패처에는 :meth:`start`\\와 :meth:`stop` 메서드가 있습니다. 이를 통해 ``setUp`` 메서드나 "
+"모든 패처에는 :meth:`!start`\\와 :meth:`!stop` 메서드가 있습니다. 이를 통해 ``setUp`` 메서드나 "
 "데코레이터를 중첩하거나 with 문을 사용하지 않고 여러 패치를 수행하려는 곳에서 패치를 수행하는 것이 더 간단해집니다."
 
 #: ../../library/unittest.mock.rst:1844
-#, fuzzy
 msgid ""
 "To use them call :func:`patch`, :func:`patch.object` or "
 ":func:`patch.dict` as normal and keep a reference to the returned "
@@ -2080,8 +2251,8 @@ msgid ""
 "place and :meth:`!stop` to undo it."
 msgstr ""
 "이것들을 사용하려면 :func:`patch`, :func:`patch.object` 또는 :func:`patch.dict`\\를 "
-"정상적으로 호출하고 반환된 ``patcher`` 객체에 대한 참조를 유지하십시오. 그런 다음 :meth:`start`\\를 호출하여"
-" 패치를 제자리에 놓고 :meth:`stop`\\을 사용하여 패치를 취소할 수 있습니다."
+"정상적으로 호출하고 반환된 ``patcher`` 객체에 대한 참조를 유지하십시오. 그런 다음 :meth:`!start`\\를 "
+"호출하여 패치를 제자리에 놓고 :meth:`!stop`\\을 사용하여 패치를 취소할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:1848
 msgid ""
@@ -2101,13 +2272,23 @@ msgid ""
 ">>> assert module.ClassName is original\n"
 ">>> assert module.ClassName is not new_mock"
 msgstr ""
+">>> patcher = patch('package.module.ClassName')\n"
+">>> from package import module\n"
+">>> original = module.ClassName\n"
+">>> new_mock = patcher.start()\n"
+">>> assert module.ClassName is not original\n"
+">>> assert module.ClassName is new_mock\n"
+">>> patcher.stop()\n"
+">>> assert module.ClassName is original\n"
+">>> assert module.ClassName is not new_mock"
 
 #: ../../library/unittest.mock.rst:1862
-#, fuzzy
 msgid ""
 "A typical use case for this might be for doing multiple patches in the "
 "``setUp`` method of a :class:`~unittest.TestCase`::"
-msgstr "일반적인 사용 사례는 :class:`TestCase`\\의 ``setUp`` 메서드에서 여러 패치를 수행하는 것입니다::"
+msgstr ""
+"일반적인 사용 사례는 :class:`~unittest.TestCase`\\의 ``setUp`` 메서드에서 여러 패치를 수행하는 "
+"것입니다::"
 
 #: ../../library/unittest.mock.rst:1865
 msgid ""
@@ -2128,6 +2309,22 @@ msgid ""
 "...\n"
 ">>> MyTest('test_something').run()"
 msgstr ""
+">>> class MyTest(unittest.TestCase):\n"
+"...     def setUp(self):\n"
+"...         self.patcher1 = patch('package.module.Class1')\n"
+"...         self.patcher2 = patch('package.module.Class2')\n"
+"...         self.MockClass1 = self.patcher1.start()\n"
+"...         self.MockClass2 = self.patcher2.start()\n"
+"...\n"
+"...     def tearDown(self):\n"
+"...         self.patcher1.stop()\n"
+"...         self.patcher2.stop()\n"
+"...\n"
+"...     def test_something(self):\n"
+"...         assert package.module.Class1 is self.MockClass1\n"
+"...         assert package.module.Class2 is self.MockClass2\n"
+"...\n"
+">>> MyTest('test_something').run()"
 
 #: ../../library/unittest.mock.rst:1884
 msgid ""
@@ -2152,6 +2349,15 @@ msgid ""
 "...         assert package.module.Class is self.MockClass\n"
 "..."
 msgstr ""
+">>> class MyTest(unittest.TestCase):\n"
+"...     def setUp(self):\n"
+"...         patcher = patch('package.module.Class')\n"
+"...         self.MockClass = patcher.start()\n"
+"...         self.addCleanup(patcher.stop)\n"
+"...\n"
+"...     def test_something(self):\n"
+"...         assert package.module.Class is self.MockClass\n"
+"..."
 
 #: ../../library/unittest.mock.rst:1899
 msgid ""
@@ -2189,6 +2395,13 @@ msgid ""
 ">>> test()\n"
 "101"
 msgstr ""
+">>> @patch('__main__.ord')\n"
+"... def test(mock_ord):\n"
+"...     mock_ord.return_value = 101\n"
+"...     print(ord('c'))\n"
+"...\n"
+">>> test()\n"
+"101"
 
 #: ../../library/unittest.mock.rst:1929
 msgid "TEST_PREFIX"
@@ -2235,6 +2448,23 @@ msgid ""
 ">>> value\n"
 "3"
 msgstr ""
+">>> patch.TEST_PREFIX = 'foo'\n"
+">>> value = 3\n"
+">>>\n"
+">>> @patch('__main__.value', 'not three')\n"
+"... class Thing:\n"
+"...     def foo_one(self):\n"
+"...         print(value)\n"
+"...     def foo_two(self):\n"
+"...         print(value)\n"
+"...\n"
+">>>\n"
+">>> Thing().foo_one()\n"
+"not three\n"
+">>> Thing().foo_two()\n"
+"not three\n"
+">>> value\n"
+"3"
 
 #: ../../library/unittest.mock.rst:1959
 msgid "Nesting Patch Decorators"
@@ -2297,9 +2527,14 @@ msgid ""
 "    -> from a import SomeClass\n"
 "    -> some_function instantiates SomeClass"
 msgstr ""
+"a.py\n"
+"    -> SomeClass를 정의합니다\n"
+"\n"
+"b.py\n"
+"    -> from a import SomeClass\n"
+"    -> some_function이 SomeClass의 인스턴스를 만듭니다"
 
 #: ../../library/unittest.mock.rst:2008
-#, fuzzy
 msgid ""
 "Now we want to test ``some_function`` but we want to mock out "
 "``SomeClass`` using :func:`patch`. The problem is that when we import "
@@ -2309,7 +2544,7 @@ msgid ""
 "*real* ``SomeClass`` and it looks like our patching had no effect."
 msgstr ""
 "이제 ``some_function``\\을 테스트하고 싶지만, :func:`patch`\\를 사용하여 ``SomeClass``\\를"
-" 모킹하고 싶습니다. 문제는 모듈 b를 임포트 할 때 모듈 a에서 ``SomeClass``\\를 임포트해야 한다는 것입니다. "
+" 모킹하고 싶습니다. 문제는 모듈 b를 임포트 할 때, 모듈 a에서 ``SomeClass``\\를 임포트해야 한다는 것입니다. "
 ":func:`patch`\\를 사용하여 ``a.SomeClass``\\를 모킹하면 테스트에 영향을 미치지 않습니다; 모듈 b는 이미"
 " *실제* ``SomeClass``\\에 대한 참조를 가지고 있으며 패치가 효과가 없는 것처럼 보입니다."
 
@@ -2326,7 +2561,7 @@ msgstr ""
 
 #: ../../library/unittest.mock.rst:2019
 msgid "@patch('b.SomeClass')"
-msgstr ""
+msgstr "@patch('b.SomeClass')"
 
 #: ../../library/unittest.mock.rst:2021
 msgid ""
@@ -2343,14 +2578,13 @@ msgstr ""
 
 #: ../../library/unittest.mock.rst:2026
 msgid "@patch('a.SomeClass')"
-msgstr ""
+msgstr "@patch('a.SomeClass')"
 
 #: ../../library/unittest.mock.rst:2030
 msgid "Patching Descriptors and Proxy Objects"
 msgstr "디스크립터와 프락시 객체 패치하기"
 
 #: ../../library/unittest.mock.rst:2032
-#, fuzzy
 msgid ""
 "Both patch_ and patch.object_ correctly patch and restore descriptors: "
 "class methods, static methods and properties. You should patch these on "
@@ -2360,7 +2594,7 @@ msgid ""
 msgstr ""
 "patch_ 와 patch.object_ 모두 디스크립터를 올바르게 패치하고 복원합니다: 클래스 메서드, 정적 메서드 및 프로퍼티."
 " 이것들을 인스턴스가 아닌 *클래스*\\에서 패치해야 합니다. 이들은 또한 `장고 settings 객체 "
-"<http://www.voidspace.org.uk/python/weblog/arch_d7_2010_12_04.shtml#e1198>`_\\와"
+"<https://web.archive.org/web/20200603181648/http://www.voidspace.org.uk/python/weblog/arch_d7_2010_12_04.shtml#e1198>`_\\와"
 " 같이 어트리뷰트 액세스를 프락시 하는 *일부* 객체에서도 작동합니다."
 
 #: ../../library/unittest.mock.rst:2040
@@ -2372,14 +2606,13 @@ msgid "Mocking Magic Methods"
 msgstr "매직 메서드 모킹하기"
 
 #: ../../library/unittest.mock.rst:2047
-#, fuzzy
 msgid ""
 ":class:`Mock` supports mocking the Python protocol methods, also known as"
 " :term:`\"magic methods\" <magic method>`. This allows mock objects to "
 "replace containers or other objects that implement Python protocols."
 msgstr ""
-":class:`Mock`\\은 \"매직 메서드\"라고도 하는 파이썬 프로토콜 메서드 모킹을 지원합니다. 이를 통해 모의 객체가 "
-"컨테이너나 파이썬 프로토콜을 구현하는 다른 객체를 대체할 수 있습니다."
+":class:`Mock`\\은 :term:`\"매직 메서드\" <magic method>`\\라고도 하는 파이썬 프로토콜 메서드 "
+"모킹을 지원합니다. 이를 통해 모의 객체가 컨테이너나 파이썬 프로토콜을 구현하는 다른 객체를 대체할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:2051
 msgid ""
@@ -2469,7 +2702,6 @@ msgid "Unary numeric methods: ``__neg__``, ``__pos__`` and ``__invert__``"
 msgstr "단항 숫자 메서드: ``__neg__``, ``__pos__`` 및 ``__invert__``"
 
 #: ../../library/unittest.mock.rst:2111
-#, fuzzy
 msgid ""
 "The numeric methods (including right hand and in-place variants): "
 "``__add__``, ``__sub__``, ``__mul__``, ``__matmul__``, ``__truediv__``, "
@@ -2477,9 +2709,9 @@ msgid ""
 "``__rshift__``, ``__and__``, ``__xor__``, ``__or__``, and ``__pow__``"
 msgstr ""
 "숫자 메서드 (뒤집히거나 제자리 변형 포함) : ``__add__``, ``__sub__``, ``__mul__``, "
-"``__matmul__``, ``__div__``, ``__truediv__``, ``__floordiv__``, "
-"``__mod__``, ``__divmod__``, ``__lshift__``, ``__rshift__``, ``__and__``,"
-" ``__xor__``, ``__or__`` 및 ``__pow__``"
+"``__matmul__``, ``__truediv__``, ``__floordiv__``, ``__mod__``, "
+"``__divmod__``, ``__lshift__``, ``__rshift__``, ``__and__``, ``__xor__``,"
+" ``__or__`` 및 ``__pow__``"
 
 #: ../../library/unittest.mock.rst:2115
 msgid ""
@@ -2548,14 +2780,14 @@ msgstr ""
 ":class:`NonCallableMagicMock`."
 
 #: ../../library/unittest.mock.rst:2146
-#, fuzzy
 msgid ""
 "``MagicMock`` is a subclass of :class:`Mock` with default implementations"
 " of most of the :term:`magic methods <magic method>`. You can use "
 "``MagicMock`` without having to configure the magic methods yourself."
 msgstr ""
-"``MagicMock``\\은 대부분의 매직 메서드의 기본 구현이 있는 :class:`Mock`\\의 서브 클래스입니다. 매직 "
-"메서드를 직접 구성하지 않고도 ``MagicMock``\\을 사용할 수 있습니다."
+"``MagicMock``\\은 대부분의 :term:`매직 메서드 <magic method>`\\의 기본 구현이 있는 "
+":class:`Mock`\\의 서브 클래스입니다. 매직 메서드를 직접 구성하지 않고도 ``MagicMock``\\을 사용할 수 "
+"있습니다."
 
 #: ../../library/unittest.mock.rst:2150
 msgid "The constructor parameters have the same meaning as for :class:`Mock`."
@@ -2603,24 +2835,20 @@ msgid "Methods and their defaults:"
 msgstr "메서드와 기본값:"
 
 #: ../../library/unittest.mock.rst:2182
-#, fuzzy
 msgid "``__lt__``: :data:`NotImplemented`"
-msgstr "``__lt__``: ``NotImplemented``"
+msgstr "``__lt__``: :data:`NotImplemented`"
 
 #: ../../library/unittest.mock.rst:2183
-#, fuzzy
 msgid "``__gt__``: :data:`!NotImplemented`"
-msgstr "``__gt__``: ``NotImplemented``"
+msgstr "``__gt__``: :data:`!NotImplemented`"
 
 #: ../../library/unittest.mock.rst:2184
-#, fuzzy
 msgid "``__le__``: :data:`!NotImplemented`"
-msgstr "``__le__``: ``NotImplemented``"
+msgstr "``__le__``: :data:`!NotImplemented`"
 
 #: ../../library/unittest.mock.rst:2185
-#, fuzzy
 msgid "``__ge__``: :data:`!NotImplemented`"
-msgstr "``__ge__``: ``NotImplemented``"
+msgstr "``__ge__``: :data:`!NotImplemented`"
 
 #: ../../library/unittest.mock.rst:2186
 msgid "``__int__``: ``1``"
@@ -2679,16 +2907,15 @@ msgid "For example:"
 msgstr "예를 들면:"
 
 #: ../../library/unittest.mock.rst:2212
-#, fuzzy
 msgid ""
 "The two equality methods, :meth:`!__eq__` and :meth:`!__ne__`, are "
 "special. They do the default equality comparison on identity, using the "
 ":attr:`~Mock.side_effect` attribute, unless you change their return value"
 " to return something else::"
 msgstr ""
-"두 동등 비교 메서드 :meth:`__eq__`\\와 :meth:`__ne__`\\는 특별합니다. 이들의 반환 값을 변경하여 다른 "
-"것을 반환하지 않는 한, :attr:`~Mock.side_effect` 어트리뷰트를 사용하여 아이덴티티에 대한 기본 동등 비교를 "
-"수행합니다::"
+"두 동등 비교 메서드 :meth:`!__eq__`\\와 :meth:`!__ne__`\\는 특별합니다. 이들의 반환 값을 변경하여 "
+"다른 것을 반환하지 않는 한, :attr:`~Mock.side_effect` 어트리뷰트를 사용하여 아이덴티티에 대한 기본 동등 "
+"비교를 수행합니다::"
 
 #: ../../library/unittest.mock.rst:2217
 msgid ""
@@ -2701,6 +2928,14 @@ msgid ""
 ">>> mock == 3\n"
 "True"
 msgstr ""
+">>> MagicMock() == 3\n"
+"False\n"
+">>> MagicMock() != 3\n"
+"True\n"
+">>> mock = MagicMock()\n"
+">>> mock.__eq__.return_value = True\n"
+">>> mock == 3\n"
+"True"
 
 #: ../../library/unittest.mock.rst:2226
 msgid ""
@@ -2758,9 +2993,8 @@ msgstr ""
 "``__getnewargs__``, ``__getstate__`` 및 ``__setstate__``"
 
 #: ../../library/unittest.mock.rst:2257
-#, fuzzy
 msgid "``__getformat__``"
-msgstr "``__format__``"
+msgstr "``__getformat__``"
 
 #: ../../library/unittest.mock.rst:2261
 msgid ""
@@ -3021,13 +3255,17 @@ msgid ""
 "        s = 'hello world'\n"
 "        self.assertEqual(s.split(), ['hello', ANY])"
 msgstr ""
+"class TestStringMethods(unittest.TestCase):\n"
+"\n"
+"    def test_split(self):\n"
+"        s = 'hello world'\n"
+"        self.assertEqual(s.split(), ['hello', ANY])"
 
 #: ../../library/unittest.mock.rst:2476
 msgid "FILTER_DIR"
 msgstr "FILTER_DIR"
 
 #: ../../library/unittest.mock.rst:2480
-#, fuzzy
 msgid ""
 ":data:`FILTER_DIR` is a module level variable that controls the way mock "
 "objects respond to :func:`dir`. The default is ``True``, which uses the "
@@ -3035,9 +3273,9 @@ msgid ""
 "this filtering, or need to switch it off for diagnostic purposes, then "
 "set ``mock.FILTER_DIR = False``."
 msgstr ""
-":data:`FILTER_DIR`\\은 모의 객체가 :func:`dir`\\에 응답하는 방식을 제어하는 모듈 수준 변수입니다 "
-"(파이썬 2.6 이상에서만). 기본값은 ``True``\\이며, 아래 설명된 필터링을 사용하여 유용한 멤버만 표시합니다. 이 "
-"필터링이 마음에 들지 않거나 진단 목적으로 필터를 꺼야 하면, ``mock.FILTER_DIR = False``\\를 설정하십시오."
+":data:`FILTER_DIR`\\은 모의 객체가 :func:`dir`\\에 응답하는 방식을 제어하는 모듈 수준 변수입니다. "
+"기본값은 ``True``\\이며, 아래 설명된 필터링을 사용하여 유용한 멤버만 표시합니다. 이 필터링이 마음에 들지 않거나 진단 "
+"목적으로 필터를 꺼야 하면, ``mock.FILTER_DIR = False``\\를 설정하십시오."
 
 #: ../../library/unittest.mock.rst:2486
 msgid ""
@@ -3071,6 +3309,23 @@ msgid ""
 " 'BaseHandler',\n"
 " ..."
 msgstr ""
+">>> dir(Mock())\n"
+"['assert_any_call',\n"
+" 'assert_called',\n"
+" 'assert_called_once',\n"
+" 'assert_called_once_with',\n"
+" 'assert_called_with',\n"
+" 'assert_has_calls',\n"
+" 'assert_not_called',\n"
+" 'attach_mock',\n"
+" ...\n"
+">>> from urllib import request\n"
+">>> dir(Mock(spec=request))\n"
+"['AbstractBasicAuthHandler',\n"
+" 'AbstractDigestAuthHandler',\n"
+" 'AbstractHTTPHandler',\n"
+" 'BaseHandler',\n"
+" ..."
 
 #: ../../library/unittest.mock.rst:2513
 msgid ""
@@ -3098,16 +3353,26 @@ msgid ""
 " '__class__',\n"
 " ..."
 msgstr ""
+">>> from unittest import mock\n"
+">>> mock.FILTER_DIR = False\n"
+">>> dir(mock.Mock())\n"
+"['_NonCallableMock__get_return_value',\n"
+" '_NonCallableMock__get_side_effect',\n"
+" '_NonCallableMock__return_value_doc',\n"
+" '_NonCallableMock__set_return_value',\n"
+" '_NonCallableMock__set_side_effect',\n"
+" '__call__',\n"
+" '__class__',\n"
+" ..."
 
 #: ../../library/unittest.mock.rst:2534
-#, fuzzy
 msgid ""
 "Alternatively you can just use ``vars(my_mock)`` (instance members) and "
 "``dir(type(my_mock))`` (type members) to bypass the filtering "
 "irrespective of :const:`FILTER_DIR`."
 msgstr ""
 "또는 ``vars(my_mock)``\\(인스턴스 멤버)과 ``dir(type(my_mock))``\\(형 멤버)을 사용하여 "
-":data:`mock.FILTER_DIR`\\에 관계없이 필터링을 무시할 수 있습니다."
+":const:`FILTER_DIR`\\에 관계없이 필터링을 무시할 수 있습니다."
 
 #: ../../library/unittest.mock.rst:2540
 msgid "mock_open"
@@ -3131,7 +3396,6 @@ msgstr ""
 "API가 제한된 :class:`MagicMock`\\이 만들어집니다."
 
 #: ../../library/unittest.mock.rst:2551
-#, fuzzy
 msgid ""
 "*read_data* is a string for the :meth:`~io.RawIOBase.read`, "
 ":meth:`~io.IOBase.readline`, and :meth:`~io.IOBase.readlines` methods of "
@@ -3144,7 +3408,7 @@ msgid ""
 "packages on `PyPI <https://pypi.org>`_ can offer a realistic filesystem "
 "for testing."
 msgstr ""
-"*read_data*\\는 파일 핸들의 :meth:`~io.IOBase.read`, "
+"*read_data*\\는 파일 핸들의 :meth:`~io.RawIOBase.read`, "
 ":meth:`~io.IOBase.readline` 및 :meth:`~io.IOBase.readlines` 메서드가 반환할 "
 "문자열입니다. 이러한 메서드를 호출하면 *read_data*\\에서 데이터가 고갈될 때까지 데이터를 가져옵니다. 이러한 메서드의 "
 "모의 객체는 매우 단순합니다: *mock*\\이 호출될 때마다 *read_data*\\는 처음으로 되감깁니다. 테스트 되는 코드에 "
@@ -3153,14 +3417,13 @@ msgstr ""
 "수 있습니다."
 
 #: ../../library/unittest.mock.rst:2561
-#, fuzzy
 msgid ""
 "Added :meth:`~io.IOBase.readline` and :meth:`~io.IOBase.readlines` "
 "support. The mock of :meth:`~io.RawIOBase.read` changed to consume "
 "*read_data* rather than returning it on each call."
 msgstr ""
 ":meth:`~io.IOBase.readline`\\과 :meth:`~io.IOBase.readlines` 지원이 추가되었습니다. "
-":meth:`~io.IOBase.read`\\의 모의 객체는 호출마다 *read_data*\\를 반환하는 대신 소비하도록 "
+":meth:`~io.RawIOBase.read`\\의 모의 객체는 호출마다 *read_data*\\를 반환하는 대신 소비하도록 "
 "변경되었습니다."
 
 #: ../../library/unittest.mock.rst:2566
@@ -3168,13 +3431,12 @@ msgid "*read_data* is now reset on each call to the *mock*."
 msgstr "*read_data*\\는 이제 *mock*\\을 호출할 때마다 재설정됩니다."
 
 #: ../../library/unittest.mock.rst:2569
-#, fuzzy
 msgid ""
 "Added :meth:`~container.__iter__` to implementation so that iteration "
 "(such as in for loops) correctly consumes *read_data*."
 msgstr ""
-"이터레이션(가령 for 루프)에서 *read_data*\\를 올바르게 소비하도록 구현에 :meth:`__iter__`\\를 "
-"추가했습니다."
+"이터레이션(가령 for 루프)에서 *read_data*\\를 올바르게 소비하도록 구현에 "
+":meth:`~container.__iter__`\\를 추가했습니다."
 
 #: ../../library/unittest.mock.rst:2573
 msgid ""
@@ -3189,16 +3451,17 @@ msgid ""
 "with open('/some/path', 'w') as f:\n"
 "    f.write('something')"
 msgstr ""
+"with open('/some/path', 'w') as f:\n"
+"    f.write('something')"
 
 #: ../../library/unittest.mock.rst:2579
-#, fuzzy
 msgid ""
 "The issue is that even if you mock out the call to :func:`open` it is the"
 " *returned object* that is used as a context manager (and has "
 ":meth:`~object.__enter__` and :meth:`~object.__exit__` called)."
 msgstr ""
 "문제는 :func:`open`\\에 대한 호출을 모킹하더라도 컨텍스트 관리자로 사용되는 것은 *반환된 객체*\\라는 것입니다 "
-"(그리고 :meth:`__enter__`\\와 :meth:`__exit__`\\가 호출됩니다)."
+"(그리고 :meth:`~object.__enter__`\\와 :meth:`~object.__exit__`\\가 호출됩니다)."
 
 #: ../../library/unittest.mock.rst:2583
 msgid ""
@@ -3222,6 +3485,19 @@ msgid ""
 ">>> handle = m()\n"
 ">>> handle.write.assert_called_once_with('some stuff')"
 msgstr ""
+">>> m = mock_open()\n"
+">>> with patch('__main__.open', m):\n"
+"...     with open('foo', 'w') as h:\n"
+"...         h.write('some stuff')\n"
+"...\n"
+">>> m.mock_calls\n"
+"[call('foo', 'w'),\n"
+" call().__enter__(),\n"
+" call().write('some stuff'),\n"
+" call().__exit__(None, None, None)]\n"
+">>> m.assert_called_once_with('foo', 'w')\n"
+">>> handle = m()\n"
+">>> handle.write.assert_called_once_with('some stuff')"
 
 #: ../../library/unittest.mock.rst:2600
 msgid "And for reading files::"
@@ -3236,13 +3512,18 @@ msgid ""
 ">>> m.assert_called_once_with('foo')\n"
 ">>> assert result == 'bibble'"
 msgstr ""
+">>> with patch('__main__.open', mock_open(read_data='bibble')) as m:\n"
+"...     with open('foo') as h:\n"
+"...         result = h.read()\n"
+"...\n"
+">>> m.assert_called_once_with('foo')\n"
+">>> assert result == 'bibble'"
 
 #: ../../library/unittest.mock.rst:2613
 msgid "Autospeccing"
 msgstr "자동 사양"
 
 #: ../../library/unittest.mock.rst:2615
-#, fuzzy
 msgid ""
 "Autospeccing is based on the existing :attr:`!spec` feature of mock. It "
 "limits the api of mocks to the api of an original object (the spec), but "
@@ -3251,7 +3532,7 @@ msgid ""
 "functions / methods have the same call signature as the original so they "
 "raise a :exc:`TypeError` if they are called incorrectly."
 msgstr ""
-"자동 사양은 기존의 :attr:`spec` 기능을 기반으로 합니다. 모의 객체 api를 원본 객체(사양)의 api로 제한하지만, "
+"자동 사양은 기존의 :attr:`!spec` 기능을 기반으로 합니다. 모의 객체 api를 원본 객체(사양)의 api로 제한하지만, "
 "재귀적(게으르게(lazily) 구현되었습니다)이라서 모의 객체의 어트리뷰트는 사양의 어트리뷰트와 같은 api만 갖습니다. 또한 "
 "모킹된 함수 / 메서드는 원본과 같은 호출 서명을 가지므로 잘못 호출되면 :exc:`TypeError`\\를 발생시킵니다."
 
@@ -3260,7 +3541,6 @@ msgid "Before I explain how auto-speccing works, here's why it is needed."
 msgstr "자동 사양이 작동하는 방식을 설명하기 전에, 이것이 필요한 이유는 이렇습니다."
 
 #: ../../library/unittest.mock.rst:2624
-#, fuzzy
 msgid ""
 ":class:`Mock` is a very powerful and flexible object, but it suffers from"
 " a flaw which is general to mocking. If you refactor some of your code, "
@@ -3268,9 +3548,9 @@ msgid ""
 " api* but uses mocks instead of the real objects will still pass. This "
 "means your tests can all pass even though your code is broken."
 msgstr ""
-"두 번째 문제는 모킹에 더 일반적입니다. 멤버 이름 등을 변경하는 등 일부 코드를 리팩토링하면, 여전히 *예전 api*\\를 "
-"사용하는 코드에 대한 테스트는 실제 객체 대신 모의 객체를 사용하면 모두 통과합니다. 이것은 코드가 손상되어도 테스트를 모두 통과 "
-"할 수 있다는 뜻입니다."
+":class:`Mock`\\은 매우 강력하고 유연한 객체이지만, 모킹에 일반적으로 존재하는 결함을 지니고 있습니다. 멤버 이름 등을"
+" 변경하는 등 일부 코드를 리팩토링하면, 여전히 *예전 api*\\를 사용하는 코드에 대한 테스트는 실제 객체 대신 모의 객체를 "
+"사용하면 모두 통과합니다. 이것은 코드가 손상되어도 테스트를 모두 통과 할 수 있다는 뜻입니다."
 
 #: ../../library/unittest.mock.rst:2632
 msgid ""
@@ -3290,15 +3570,14 @@ msgstr ""
 "단위들이 어떻게 \"서로 연결되어\" 있는지 테스트하지 않으면 테스트가 발견할 수도 있을 버그에 대한 여지가 여전히 많습니다."
 
 #: ../../library/unittest.mock.rst:2640
-#, fuzzy
 msgid ""
 ":mod:`unittest.mock` already provides a feature to help with this, called"
 " speccing. If you use a class or instance as the :attr:`!spec` for a mock"
 " then you can only access attributes on the mock that exist on the real "
 "class:"
 msgstr ""
-":mod:`mock`\\은 이미 이에 도움이 되는 기능인 사양(speccing)을 제공합니다. 모의 객체에 클래스나 인스턴스를 "
-":attr:`spec`\\으로 사용하면, 실제 클래스에 존재하는 모의 객체 어트리뷰트에만 액세스 할 수 있습니다:"
+":mod:`unittest.mock`\\은 이미 이에 도움이 되는 기능인 사양(speccing)을 제공합니다. 모의 객체에 클래스나"
+" 인스턴스를 :attr:`!spec`\\으로 사용하면, 실제 클래스에 존재하는 모의 객체 어트리뷰트에만 액세스 할 수 있습니다:"
 
 #: ../../library/unittest.mock.rst:2651
 msgid ""
@@ -3312,6 +3591,9 @@ msgid ""
 "<mock.Mock object at 0x...>\n"
 ">>> mock.has_data.assret_called_with()  # Intentional typo!"
 msgstr ""
+">>> mock.has_data()\n"
+"<mock.Mock object at 0x...>\n"
+">>> mock.has_data.assret_called_with()  # 의도적인 오타!"
 
 #: ../../library/unittest.mock.rst:2660
 msgid ""
@@ -3346,16 +3628,22 @@ msgid ""
 ">>> mock_request.Request\n"
 "<MagicMock name='request.Request' spec='Request' id='...'>"
 msgstr ""
+">>> from urllib import request\n"
+">>> patcher = patch('__main__.request', autospec=True)\n"
+">>> mock_request = patcher.start()\n"
+">>> request is mock_request\n"
+"True\n"
+">>> mock_request.Request\n"
+"<MagicMock name='request.Request' spec='Request' id='...'>"
 
 #: ../../library/unittest.mock.rst:2679
-#, fuzzy
 msgid ""
 "You can see that :class:`!request.Request` has a spec. "
 ":class:`!request.Request` takes two arguments in the constructor (one of "
 "which is *self*). Here's what happens if we try to call it incorrectly::"
 msgstr ""
-":class:`request.Request`\\에 spec이 있음을 알 수 있습니다. "
-":class:`request.Request`\\는 생성자에서 두 개의 인자를 취합니다 (하나는 *self*\\입니다). 잘못 "
+":class:`!request.Request`\\에 spec이 있음을 알 수 있습니다. "
+":class:`!request.Request`\\는 생성자에서 두 개의 인자를 취합니다 (하나는 *self*\\입니다). 잘못 "
 "호출하면 이렇게 됩니다::"
 
 #: ../../library/unittest.mock.rst:2683
@@ -3365,6 +3653,10 @@ msgid ""
 " ...\n"
 "TypeError: <lambda>() takes at least 2 arguments (1 given)"
 msgstr ""
+">>> req = request.Request()\n"
+"Traceback (most recent call last):\n"
+" ...\n"
+"TypeError: <lambda>() takes at least 2 arguments (1 given)"
 
 #: ../../library/unittest.mock.rst:2688
 msgid ""
@@ -3378,17 +3670,19 @@ msgid ""
 ">>> req\n"
 "<NonCallableMagicMock name='request.Request()' spec='Request' id='...'>"
 msgstr ""
+">>> req = request.Request('foo')\n"
+">>> req\n"
+"<NonCallableMagicMock name='request.Request()' spec='Request' id='...'>"
 
 #: ../../library/unittest.mock.rst:2695
-#, fuzzy
 msgid ""
 ":class:`!Request` objects are not callable, so the return value of "
 "instantiating our mocked out :class:`!request.Request` is a non-callable "
 "mock. With the spec in place any typos in our asserts will raise the "
 "correct error::"
 msgstr ""
-":class:`Request` 객체는 콜러블이 아니므로, 모킹된 :class:`request.Request`\\의 인스턴스 화의 "
-"반환 값은 콜러블이 아닌 모의 객체입니다. 사양이 적용되면 어서션에 오타가 있을 때 올바른 에러를 발생시킵니다::"
+":class:`!Request` 객체는 콜러블이 아니므로, 모킹된 :class:`!request.Request`\\의 인스턴스 화의"
+" 반환 값은 콜러블이 아닌 모의 객체입니다. 사양이 적용되면 어서션에 오타가 있을 때 올바른 에러를 발생시킵니다::"
 
 #: ../../library/unittest.mock.rst:2699
 msgid ""
@@ -3400,6 +3694,13 @@ msgid ""
 "AttributeError: Mock object has no attribute 'assret_called_with'\n"
 ">>> req.add_header.assert_called_with('spam', 'eggs')"
 msgstr ""
+">>> req.add_header('spam', 'eggs')\n"
+"<MagicMock name='request.Request().add_header()' id='...'>\n"
+">>> req.add_header.assret_called_with  # Intentional typo!\n"
+"Traceback (most recent call last):\n"
+" ...\n"
+"AttributeError: Mock object has no attribute 'assret_called_with'\n"
+">>> req.add_header.assert_called_with('spam', 'eggs')"
 
 #: ../../library/unittest.mock.rst:2707
 msgid ""
@@ -3435,16 +3736,15 @@ msgstr ""
 "사양을 사용하지 못할 수 있습니다. 반면에, 내부 검사가 안전하도록 객체를 설계하는 것이 훨씬 좋습니다 [#]_."
 
 #: ../../library/unittest.mock.rst:2728
-#, fuzzy
 msgid ""
 "A more serious problem is that it is common for instance attributes to be"
 " created in the :meth:`~object.__init__` method and not to exist on the "
 "class at all. *autospec* can't know about any dynamically created "
 "attributes and restricts the api to visible attributes. ::"
 msgstr ""
-"더 심각한 문제는 인스턴스 어트리뷰트가 :meth:`__init__` 메서드에서 만들어지고 클래스에 전혀 존재하지 않는 것이 "
-"일반적이라는 것입니다. *autospec*\\은 동적으로 만들어진 어트리뷰트를 알 수 없으며 api를 가시적 어트리뷰트로 "
-"제한합니다. ::"
+"더 심각한 문제는 인스턴스 어트리뷰트가 :meth:`~object.__init__` 메서드에서 만들어지고 클래스에 전혀 존재하지 "
+"않는 것이 일반적이라는 것입니다. *autospec*\\은 동적으로 만들어진 어트리뷰트를 알 수 없으며 api를 가시적 어트리뷰트로"
+" 제한합니다. ::"
 
 #: ../../library/unittest.mock.rst:2733
 msgid ""
@@ -3460,6 +3760,17 @@ msgid ""
 "  ...\n"
 "AttributeError: Mock object has no attribute 'a'"
 msgstr ""
+">>> class Something:\n"
+"...   def __init__(self):\n"
+"...     self.a = 33\n"
+"...\n"
+">>> with patch('__main__.Something', autospec=True):\n"
+"...   thing = Something()\n"
+"...   thing.a\n"
+"...\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"AttributeError: Mock object has no attribute 'a'"
 
 #: ../../library/unittest.mock.rst:2745
 msgid ""
@@ -3480,6 +3791,10 @@ msgid ""
 "...   thing.a = 33\n"
 "..."
 msgstr ""
+">>> with patch('__main__.Something', autospec=True):\n"
+"...   thing = Something()\n"
+"...   thing.a = 33\n"
+"..."
 
 #: ../../library/unittest.mock.rst:2756
 msgid ""
@@ -3492,7 +3807,6 @@ msgstr ""
 " 코드가 *오직* 유효한 어트리뷰트만 설정하도록 보장하려는 경우 유용하지만, 명백히 이 특정 시나리오를 막습니다:"
 
 #: ../../library/unittest.mock.rst:2769
-#, fuzzy
 msgid ""
 "Probably the best way of solving the problem is to add class attributes "
 "as default values for instance members initialised in "
@@ -3500,15 +3814,17 @@ msgid ""
 "attributes in :meth:`!__init__` then providing them via class attributes "
 "(shared between instances of course) is faster too. e.g."
 msgstr ""
-"아마도 문제를 해결하는 가장 좋은 방법은 :meth:`__init__`\\에서 초기화되는 인스턴스 멤버의 기본값으로 클래스 "
-"어트리뷰트를 추가하는 것입니다. :meth:`__init__`\\에서 기본 어트리뷰트만 설정하고 있다면 클래스 어트리뷰트(물론 "
-"인스턴스 간에 공유됩니다)를 통해 제공하는 것이 더 빠르기도 합니다. 예를 들어"
+"아마도 문제를 해결하는 가장 좋은 방법은 :meth:`~object.__init__`\\에서 초기화되는 인스턴스 멤버의 기본값으로 "
+"클래스 어트리뷰트를 추가하는 것입니다. :meth:`!__init__`\\에서 기본 어트리뷰트만 설정하고 있다면 클래스 "
+"어트리뷰트(물론 인스턴스 간에 공유됩니다)를 통해 제공하는 것이 더 빠르기도 합니다. 예를 들어"
 
 #: ../../library/unittest.mock.rst:2775
 msgid ""
 "class Something:\n"
 "    a = 33"
 msgstr ""
+"class Something:\n"
+"    a = 33"
 
 #: ../../library/unittest.mock.rst:2780
 msgid ""
@@ -3556,6 +3872,17 @@ msgid ""
 ">>> mock.a\n"
 "<NonCallableMagicMock name='Something.a' spec='int' id='...'>"
 msgstr ""
+">>> class Something:\n"
+"...   def __init__(self):\n"
+"...     self.a = 33\n"
+"...\n"
+">>> class SomethingForTest(Something):\n"
+"...   a = 33\n"
+"...\n"
+">>> p = patch('__main__.Something', autospec=SomethingForTest)\n"
+">>> mock = p.start()\n"
+">>> mock.a\n"
+"<NonCallableMagicMock name='Something.a' spec='int' id='...'>"
 
 #: ../../library/unittest.mock.rst:2816
 msgid ""
@@ -3599,6 +3926,13 @@ msgid ""
 ">>> mock.submock.attribute2  # This will raise AttributeError.\n"
 ">>> mock.not_submock.attribute2  # This won't raise."
 msgstr ""
+">>> mock = Mock()\n"
+">>> mock.submock.attribute1 = 2\n"
+">>> mock.not_submock = mock.Mock(name=\"sample_name\")\n"
+">>> seal(mock)\n"
+">>> mock.new_attribute  # AttributeError를 발생시킵니다.\n"
+">>> mock.submock.attribute2  # AttributeError를 발생시킵니다.\n"
+">>> mock.not_submock.attribute2  # 예외를 발생시키지 않습니다."
 
 #: ../../library/unittest.mock.rst:2849
 msgid ""
@@ -3612,15 +3946,15 @@ msgstr ""
 
 #: ../../library/unittest.mock.rst:2853
 msgid ":attr:`~Mock.side_effect`"
-msgstr ""
+msgstr ":attr:`~Mock.side_effect`"
 
 #: ../../library/unittest.mock.rst:2854
 msgid ":attr:`~Mock.return_value`"
-msgstr ""
+msgstr ":attr:`~Mock.return_value`"
 
 #: ../../library/unittest.mock.rst:2855
 msgid "*wraps*"
-msgstr ""
+msgstr "*wraps*"
 
 #: ../../library/unittest.mock.rst:2857
 msgid ""
