@@ -17,9 +17,8 @@ msgstr ""
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../library/optparse.rst:2
-#, fuzzy
 msgid ":mod:`!optparse` --- Parser for command line options"
-msgstr ":mod:`optparse` --- 명령 줄 옵션용 구문 분석기"
+msgstr ":mod:`!optparse` --- 명령 줄 옵션용 구문 분석기"
 
 #: ../../library/optparse.rst:10
 msgid "**Source code:** :source:`Lib/optparse.py`"
@@ -139,6 +138,14 @@ msgid ""
 "    opts, args = parser.parse_args()\n"
 "    process(args, output=opts.output, verbose=opts.verbose)"
 msgstr ""
+"import optparse\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    parser = optparse.OptionParser()\n"
+"    parser.add_option('-o', '--output')\n"
+"    parser.add_option('-v', dest='verbose', action='store_true')\n"
+"    opts, args = parser.parse_args()\n"
+"    process(args, output=opts.output, verbose=opts.verbose)"
 
 #: ../../library/optparse.rst:77
 msgid ""
@@ -152,6 +159,15 @@ msgid ""
 "    args = parser.parse_args()\n"
 "    process(args.rest, output=args.output, verbose=args.verbose)"
 msgstr ""
+"import argparse\n"
+"\n"
+"if __name__ == '__main__':\n"
+"    parser = argparse.ArgumentParser()\n"
+"    parser.add_argument('-o', '--output')\n"
+"    parser.add_argument('-v', dest='verbose', action='store_true')\n"
+"    parser.add_argument('rest', nargs='*')\n"
+"    args = parser.parse_args()\n"
+"    process(args.rest, output=args.output, verbose=args.verbose)"
 
 #: ../../library/optparse.rst:89
 msgid ""
@@ -219,7 +235,6 @@ msgid "Introduction"
 msgstr ""
 
 #: ../../library/optparse.rst:129
-#, fuzzy
 msgid ""
 ":mod:`optparse` is a more convenient, flexible, and powerful library for "
 "parsing command-line options than the minimalist :mod:`getopt` module. "
@@ -229,9 +244,9 @@ msgid ""
 "specify options in the conventional GNU/POSIX syntax, and additionally "
 "generates usage and help messages for you."
 msgstr ""
-":mod:`optparse`\\는 이전 :mod:`getopt` 모듈보다 명령 줄 옵션을 구문 분석하기 위한 더 편리하고 유연하며 "
-"강력한 라이브러리입니다. :mod:`optparse`\\는 더 선언적인 스타일의 명령 줄 구문 분석을 사용합니다: "
-":class:`OptionParser`\\의 인스턴스를 만들고, 옵션으로 채우고, 명령 줄을 구문 분석합니다. "
+":mod:`optparse`\\는 최소한의 기능을 제공하는 :mod:`getopt` 모듈보다 명령 줄 옵션을 구문 분석하기 위한 더"
+" 편리하고 유연하며 강력한 라이브러리입니다. :mod:`optparse`\\는 더 선언적인 스타일의 명령 줄 구문 분석을 "
+"사용합니다: :class:`OptionParser`\\의 인스턴스를 만들고, 옵션으로 채우고, 명령 줄을 구문 분석합니다. "
 ":mod:`optparse`\\를 사용하면 사용자가 전통적인 GNU/POSIX 문법으로 옵션을 지정할 수 있으며, 추가로 사용법과 "
 "도움말 메시지를 생성할 수 있습니다."
 
@@ -253,6 +268,17 @@ msgid ""
 "\n"
 "(options, args) = parser.parse_args()"
 msgstr ""
+"from optparse import OptionParser\n"
+"...\n"
+"parser = OptionParser()\n"
+"parser.add_option(\"-f\", \"--file\", dest=\"filename\",\n"
+"                  help=\"write report to FILE\", metavar=\"FILE\")\n"
+"parser.add_option(\"-q\", \"--quiet\",\n"
+"                  action=\"store_false\", dest=\"verbose\", default=True,"
+"\n"
+"                  help=\"don't print status messages to stdout\")\n"
+"\n"
+"(options, args) = parser.parse_args()"
 
 #: ../../library/optparse.rst:150
 msgid ""
@@ -262,10 +288,9 @@ msgstr "이 몇 줄의 코드로, 스크립트 사용자는 이제 명령 줄에
 
 #: ../../library/optparse.rst:153
 msgid "<yourscript> --file=outfile -q"
-msgstr ""
+msgstr "<yourscript> --file=outfile -q"
 
 #: ../../library/optparse.rst:155
-#, fuzzy
 msgid ""
 "As it parses the command line, :mod:`optparse` sets attributes of the "
 "``options`` object returned by :meth:`~OptionParser.parse_args` based on "
@@ -278,11 +303,11 @@ msgid ""
 "are all equivalent to the above example::"
 msgstr ""
 "명령 줄을 구문 분석할 때, :mod:`optparse`\\는 사용자가 제공한 명령 줄 값을 기반으로 "
-":meth:`parse_args`\\에서 반환한 ``options`` 객체의 어트리뷰트를 설정합니다. 이 명령 줄 구문 분석에서 "
-":meth:`parse_args`\\가 반환되면, ``options.filename``\\은 ``\"outfile\"``\\이 되고"
-" ``options.verbose``\\는 ``False``\\가 됩니다. :mod:`optparse`\\는 긴 옵션과 짧은 옵션을"
-" 모두 지원하고, 짧은 옵션을 함께 병합하도록 하며, 다양한 방법으로 옵션을 인자와 연관시킬 수 있습니다. 따라서 다음 명령 줄은 "
-"모두 위의 예와 동등합니다::"
+":meth:`~OptionParser.parse_args`\\에서 반환한 ``options`` 객체의 어트리뷰트를 설정합니다. 이 "
+"명령 줄 구문 분석에서 :meth:`~OptionParser.parse_args`\\가 반환되면, "
+"``options.filename``\\은 ``\"outfile\"``\\이 되고 ``options.verbose``\\는 "
+"``False``\\가 됩니다. :mod:`optparse`\\는 긴 옵션과 짧은 옵션을 모두 지원하고, 짧은 옵션을 함께 "
+"병합하도록 하며, 다양한 방법으로 옵션을 인자와 연관시킬 수 있습니다. 따라서 다음 명령 줄은 모두 위의 예와 동등합니다::"
 
 #: ../../library/optparse.rst:164
 msgid ""
@@ -291,6 +316,10 @@ msgid ""
 "<yourscript> -q -foutfile\n"
 "<yourscript> -qfoutfile"
 msgstr ""
+"<yourscript> -f outfile --quiet\n"
+"<yourscript> --quiet --file outfile\n"
+"<yourscript> -q -foutfile\n"
+"<yourscript> -qfoutfile"
 
 #: ../../library/optparse.rst:169
 msgid "Additionally, users can run one of the following ::"
@@ -301,6 +330,8 @@ msgid ""
 "<yourscript> -h\n"
 "<yourscript> --help"
 msgstr ""
+"<yourscript> -h\n"
+"<yourscript> --help"
 
 #: ../../library/optparse.rst:174
 msgid ""
@@ -317,6 +348,12 @@ msgid ""
 "  -f FILE, --file=FILE  write report to FILE\n"
 "  -q, --quiet           don't print status messages to stdout"
 msgstr ""
+"Usage: <yourscript> [options]\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -f FILE, --file=FILE  write report to FILE\n"
+"  -q, --quiet           don't print status messages to stdout"
 
 #: ../../library/optparse.rst:185
 msgid ""
@@ -329,7 +366,6 @@ msgid "Background"
 msgstr "배경"
 
 #: ../../library/optparse.rst:194
-#, fuzzy
 msgid ""
 ":mod:`optparse` was explicitly designed to encourage the creation of "
 "programs with straightforward command-line interfaces that follow the "
@@ -339,9 +375,9 @@ msgid ""
 " are unfamiliar with these conventions, reading this section will allow "
 "you to acquaint yourself with them."
 msgstr ""
-":mod:`optparse`\\는 간단하고 전통적인 명령 줄 인터페이스를 갖는 프로그램을 만들 수 있도록 명시적으로 설계되었습니다."
-" 이를 위해, 유닉스에서 전통적으로 사용되는 가장 일반적인 명령 줄 문법과 의미 체계만 지원합니다. 이러한 규칙에 익숙하지 않으면,"
-" 이 섹션을 읽고 숙지하십시오."
+":mod:`optparse`\\는 C 개발자가 사용할 수 있는 :c:func:`!getopt` 함수 계열이 정립한 관례를 따르는 "
+"간결한 명령 줄 인터페이스를 갖는 프로그램을 만들 수 있도록 명시적으로 설계되었습니다. 이를 위해, 유닉스에서 전통적으로 사용되는 "
+"가장 일반적인 명령 줄 문법과 의미 체계만 지원합니다. 이러한 관례에 익숙하지 않으면, 이 섹션을 읽는 것으로 익히게 될 것입니다."
 
 #: ../../library/optparse.rst:205
 msgid "Terminology"
@@ -425,7 +461,6 @@ msgid ""
 msgstr "단일 문자나 몇 개의 문자 또는 단어가 뒤따르는 슬래시, 예를 들어 ``/f``, ``/file``"
 
 #: ../../library/optparse.rst:243
-#, fuzzy
 msgid ""
 "These option syntaxes are not supported by :mod:`optparse`, and they "
 "never will be.  This is deliberate: the first three are non-standard on "
@@ -433,8 +468,8 @@ msgid ""
 "targeting Windows or certain legacy platforms (e.g. VMS, MS-DOS)."
 msgstr ""
 "이러한 옵션 문법들은 :mod:`optparse`\\에서 지원되지 않으며, 앞으로도 지원되지 않을 것입니다. 이것은 의도적입니다: "
-"처음 세 가지는 모든 환경에서 표준이 아니며, 마지막은 VMS, MS-DOS 및/또는 윈도우만 대상으로 하는 경우에만 의미가 "
-"있습니다."
+"처음 세 가지는 모든 환경에서 표준이 아니며, 마지막은 윈도우나 특정 레거시 플랫폼(예를 들어 VMS, MS-DOS)을 대상으로 "
+"하는 경우에만 의미가 있습니다."
 
 #: ../../library/optparse.rst:248
 msgid "option argument"
@@ -455,6 +490,8 @@ msgid ""
 "-f foo\n"
 "--file foo"
 msgstr ""
+"-f foo\n"
+"--file foo"
 
 #: ../../library/optparse.rst:259
 msgid "or included in the same argument:"
@@ -465,6 +502,8 @@ msgid ""
 "-ffoo\n"
 "--file=foo"
 msgstr ""
+"-ffoo\n"
+"--file=foo"
 
 #: ../../library/optparse.rst:266
 msgid ""
@@ -512,7 +551,7 @@ msgstr "예를 들어, 다음 가상 명령 줄을 고려하십시오::"
 
 #: ../../library/optparse.rst:287
 msgid "prog -v --report report.txt foo bar"
-msgstr ""
+msgstr "prog -v --report report.txt foo bar"
 
 #: ../../library/optparse.rst:289
 msgid ""
@@ -570,6 +609,8 @@ msgid ""
 "cp SOURCE DEST\n"
 "cp SOURCE ... DEST-DIR"
 msgstr ""
+"cp SOURCE DEST\n"
+"cp SOURCE ... DEST-DIR"
 
 #: ../../library/optparse.rst:321
 msgid ""
@@ -655,6 +696,9 @@ msgid ""
 "...\n"
 "parser = OptionParser()"
 msgstr ""
+"from optparse import OptionParser\n"
+"...\n"
+"parser = OptionParser()"
 
 #: ../../library/optparse.rst:371
 msgid "Then you can start defining options.  The basic syntax is::"
@@ -665,6 +709,8 @@ msgid ""
 "parser.add_option(opt_str, ...,\n"
 "                  attr=value, ...)"
 msgstr ""
+"parser.add_option(opt_str, ...,\n"
+"                  attr=value, ...)"
 
 #: ../../library/optparse.rst:376
 msgid ""
@@ -683,7 +729,7 @@ msgstr "일반적으로, 각 옵션에는 하나의 짧은 옵션 문자열과 �
 
 #: ../../library/optparse.rst:383
 msgid "parser.add_option(\"-f\", \"--file\", ...)"
-msgstr ""
+msgstr "parser.add_option(\"-f\", \"--file\", ...)"
 
 #: ../../library/optparse.rst:385
 msgid ""
@@ -714,22 +760,20 @@ msgstr "일단 모든 옵션이 정의되면, :mod:`optparse`\\가 프로그램�
 
 #: ../../library/optparse.rst:398
 msgid "(options, args) = parser.parse_args()"
-msgstr ""
+msgstr "(options, args) = parser.parse_args()"
 
 #: ../../library/optparse.rst:400
-#, fuzzy
 msgid ""
 "(If you like, you can pass a custom argument list to "
 ":meth:`~OptionParser.parse_args`, but that's rarely necessary: by default"
 " it uses ``sys.argv[1:]``.)"
 msgstr ""
-"(원한다면, 사용자 정의 인자 리스트를 :meth:`parse_args`\\에 전달할 수 있지만, 거의 필요하지 않습니다: "
-"기본적으로 ``sys.argv[1:]``\\을 사용합니다.)"
+"(원한다면, 사용자 정의 인자 리스트를 :meth:`~OptionParser.parse_args`\\에 전달할 수 있지만, 거의 "
+"필요하지 않습니다: 기본적으로 ``sys.argv[1:]``\\을 사용합니다.)"
 
 #: ../../library/optparse.rst:403
-#, fuzzy
 msgid ":meth:`~OptionParser.parse_args` returns two values:"
-msgstr ":meth:`parse_args`\\는 두 가지 값을 반환합니다:"
+msgstr ":meth:`~OptionParser.parse_args`\\는 두 가지 값을 반환합니다:"
 
 #: ../../library/optparse.rst:405
 msgid ""
@@ -803,6 +847,8 @@ msgid ""
 "parser.add_option(\"-f\", \"--file\",\n"
 "                  action=\"store\", type=\"string\", dest=\"filename\")"
 msgstr ""
+"parser.add_option(\"-f\", \"--file\",\n"
+"                  action=\"store\", type=\"string\", dest=\"filename\")"
 
 #: ../../library/optparse.rst:447
 msgid ""
@@ -815,9 +861,10 @@ msgid ""
 "args = [\"-f\", \"foo.txt\"]\n"
 "(options, args) = parser.parse_args(args)"
 msgstr ""
+"args = [\"-f\", \"foo.txt\"]\n"
+"(options, args) = parser.parse_args(args)"
 
 #: ../../library/optparse.rst:452
-#, fuzzy
 msgid ""
 "When :mod:`optparse` sees the option string ``-f``, it consumes the next "
 "argument, ``foo.txt``, and stores it in ``options.filename``.  So, after "
@@ -825,8 +872,8 @@ msgid ""
 "``\"foo.txt\"``."
 msgstr ""
 ":mod:`optparse`\\가 옵션 문자열 ``-f``\\를 보면, 다음 인자인 ``foo.txt``\\를 소비하고, "
-"``options.filename``\\에 저장합니다. 따라서, 이 :meth:`parse_args` 호출 후, "
-"``options.filename``\\은 ``\"foo.txt\"``\\입니다."
+"``options.filename``\\에 저장합니다. 따라서, 이 :meth:`~OptionParser.parse_args` 호출"
+" 후, ``options.filename``\\은 ``\"foo.txt\"``\\입니다."
 
 #: ../../library/optparse.rst:456
 msgid ""
@@ -838,7 +885,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:459
 msgid "parser.add_option(\"-n\", type=\"int\", dest=\"num\")"
-msgstr ""
+msgstr "parser.add_option(\"-n\", type=\"int\", dest=\"num\")"
 
 #: ../../library/optparse.rst:461
 msgid ""
@@ -863,6 +910,8 @@ msgid ""
 "(options, args) = parser.parse_args([\"-n42\"])\n"
 "print(options.num)"
 msgstr ""
+"(options, args) = parser.parse_args([\"-n42\"])\n"
+"print(options.num)"
 
 #: ../../library/optparse.rst:471
 msgid "will print ``42``."
@@ -879,7 +928,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:477
 msgid "parser.add_option(\"-f\", \"--file\", dest=\"filename\")"
-msgstr ""
+msgstr "parser.add_option(\"-f\", \"--file\", dest=\"filename\")"
 
 #: ../../library/optparse.rst:479
 msgid ""
@@ -922,6 +971,8 @@ msgid ""
 "parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\")\n"
 "parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\")"
 msgstr ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\")\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\")"
 
 #: ../../library/optparse.rst:502
 msgid ""
@@ -1023,6 +1074,9 @@ msgid ""
 "default=True)\n"
 "parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\")"
 msgstr ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\", "
+"default=True)\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\")"
 
 #: ../../library/optparse.rst:552
 msgid ""
@@ -1039,6 +1093,9 @@ msgid ""
 "parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\", "
 "default=True)"
 msgstr ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\")\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\", "
+"default=True)"
 
 #: ../../library/optparse.rst:559
 msgid "Consider this::"
@@ -1051,6 +1108,10 @@ msgid ""
 "parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\", "
 "default=True)"
 msgstr ""
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\", "
+"default=False)\n"
+"parser.add_option(\"-q\", action=\"store_false\", dest=\"verbose\", "
+"default=True)"
 
 #: ../../library/optparse.rst:564
 msgid ""
@@ -1060,14 +1121,13 @@ msgid ""
 msgstr "다시, ``verbose``\\의 기본값은 ``True``\\입니다: 특정 대상에 대해 제공되는 마지막 기본값이 사용되는 값입니다."
 
 #: ../../library/optparse.rst:567
-#, fuzzy
 msgid ""
 "A clearer way to specify default values is the :meth:`set_defaults` "
 "method of OptionParser, which you can call at any time before calling "
 ":meth:`~OptionParser.parse_args`::"
 msgstr ""
 "기본값을 지정하는 더 명확한 방법은 OptionParser의 :meth:`set_defaults` 메서드인데, "
-":meth:`parse_args`\\를 호출하기 전에 언제든지 호출할 수 있습니다::"
+":meth:`~OptionParser.parse_args`\\를 호출하기 전에 언제든지 호출할 수 있습니다::"
 
 #: ../../library/optparse.rst:571
 msgid ""
@@ -1075,6 +1135,9 @@ msgid ""
 "parser.add_option(...)\n"
 "(options, args) = parser.parse_args()"
 msgstr ""
+"parser.set_defaults(verbose=True)\n"
+"parser.add_option(...)\n"
+"(options, args) = parser.parse_args()"
 
 #: ../../library/optparse.rst:575
 msgid ""
@@ -1119,6 +1182,20 @@ msgid ""
 "                  help=\"interaction mode: novice, intermediate, \"\n"
 "                       \"or expert [default: %default]\")"
 msgstr ""
+"usage = \"usage: %prog [options] arg1 arg2\"\n"
+"parser = OptionParser(usage=usage)\n"
+"parser.add_option(\"-v\", \"--verbose\",\n"
+"                  action=\"store_true\", dest=\"verbose\", default=True,\n"
+"                  help=\"make lots of noise [default]\")\n"
+"parser.add_option(\"-q\", \"--quiet\",\n"
+"                  action=\"store_false\", dest=\"verbose\",\n"
+"                  help=\"be vewwy quiet (I'm hunting wabbits)\")\n"
+"parser.add_option(\"-f\", \"--filename\",\n"
+"                  metavar=\"FILE\", help=\"write output to FILE\")\n"
+"parser.add_option(\"-m\", \"--mode\",\n"
+"                  default=\"intermediate\",\n"
+"                  help=\"interaction mode: novice, intermediate, \"\n"
+"                       \"or expert [default: %default]\")"
 
 #: ../../library/optparse.rst:606
 msgid ""
@@ -1142,6 +1219,16 @@ msgid ""
 "  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or\n"
 "                        expert [default: intermediate]"
 msgstr ""
+"Usage: <yourscript> [options] arg1 arg2\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -v, --verbose         make lots of noise [default]\n"
+"  -q, --quiet           be vewwy quiet (I'm hunting wabbits)\n"
+"  -f FILE, --filename=FILE\n"
+"                        write output to FILE\n"
+"  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or\n"
+"                        expert [default: intermediate]"
 
 #: ../../library/optparse.rst:623
 msgid ""
@@ -1161,7 +1248,7 @@ msgstr "스크립트는 자체 사용법 메시지를 정의합니다::"
 
 #: ../../library/optparse.rst:631
 msgid "usage = \"usage: %prog [options] arg1 arg2\""
-msgstr ""
+msgstr "usage = \"usage: %prog [options] arg1 arg2\""
 
 #: ../../library/optparse.rst:633
 msgid ""
@@ -1192,7 +1279,6 @@ msgstr ""
 "처리하고 도움말 출력을 보기 좋게 만듭니다."
 
 #: ../../library/optparse.rst:645
-#, fuzzy
 msgid ""
 "options that take a value indicate this fact in their automatically "
 "generated help message, e.g. for the \"mode\" option::"
@@ -1200,10 +1286,9 @@ msgstr "값을 취하는 옵션은 자동으로 생성된 도움말 메시지에
 
 #: ../../library/optparse.rst:648
 msgid "-m MODE, --mode=MODE"
-msgstr ""
+msgstr "-m MODE, --mode=MODE"
 
 #: ../../library/optparse.rst:650
-#, fuzzy
 msgid ""
 "Here, \"MODE\" is called the meta-variable: it stands for the argument "
 "that the user is expected to supply to ``-m``/``--mode``.  By default, "
@@ -1220,7 +1305,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:657
 msgid "-f FILE, --filename=FILE"
-msgstr ""
+msgstr "-f FILE, --filename=FILE"
 
 #: ../../library/optparse.rst:659
 msgid ""
@@ -1317,6 +1402,11 @@ msgid ""
 "group.add_option(\"-g\", action=\"store_true\", help=\"Group option.\")\n"
 "parser.add_option_group(group)"
 msgstr ""
+"group = OptionGroup(parser, \"Dangerous Options\",\n"
+"                    \"Caution: use these options at your own risk.  \"\n"
+"                    \"It is believed that some of them bite.\")\n"
+"group.add_option(\"-g\", action=\"store_true\", help=\"Group option.\")\n"
+"parser.add_option_group(group)"
 
 #: ../../library/optparse.rst:704
 msgid "This would result in the following help output:"
@@ -1342,6 +1432,23 @@ msgid ""
 "\n"
 "    -g                  Group option."
 msgstr ""
+"Usage: <yourscript> [options] arg1 arg2\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -v, --verbose         make lots of noise [default]\n"
+"  -q, --quiet           be vewwy quiet (I'm hunting wabbits)\n"
+"  -f FILE, --filename=FILE\n"
+"                        write output to FILE\n"
+"  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or\n"
+"                        expert [default: intermediate]\n"
+"\n"
+"  Dangerous Options:\n"
+"    Caution: use these options at your own risk.  It is believed that "
+"some\n"
+"    of them bite.\n"
+"\n"
+"    -g                  Group option."
 
 #: ../../library/optparse.rst:725
 msgid ""
@@ -1366,6 +1473,20 @@ msgid ""
 " done\")\n"
 "parser.add_option_group(group)"
 msgstr ""
+"group = OptionGroup(parser, \"Dangerous Options\",\n"
+"                    \"Caution: use these options at your own risk.  \"\n"
+"                    \"It is believed that some of them bite.\")\n"
+"group.add_option(\"-g\", action=\"store_true\", help=\"Group option.\")\n"
+"parser.add_option_group(group)\n"
+"\n"
+"group = OptionGroup(parser, \"Debug Options\")\n"
+"group.add_option(\"-d\", \"--debug\", action=\"store_true\",\n"
+"                 help=\"Print debug information\")\n"
+"group.add_option(\"-s\", \"--sql\", action=\"store_true\",\n"
+"                 help=\"Print all SQL statements executed\")\n"
+"group.add_option(\"-e\", action=\"store_true\", help=\"Print every action"
+" done\")\n"
+"parser.add_option_group(group)"
 
 #: ../../library/optparse.rst:742
 msgid "that results in the following output:"
@@ -1397,6 +1518,29 @@ msgid ""
 "    -s, --sql           Print all SQL statements executed\n"
 "    -e                  Print every action done"
 msgstr ""
+"Usage: <yourscript> [options] arg1 arg2\n"
+"\n"
+"Options:\n"
+"  -h, --help            show this help message and exit\n"
+"  -v, --verbose         make lots of noise [default]\n"
+"  -q, --quiet           be vewwy quiet (I'm hunting wabbits)\n"
+"  -f FILE, --filename=FILE\n"
+"                        write output to FILE\n"
+"  -m MODE, --mode=MODE  interaction mode: novice, intermediate, or expert"
+"\n"
+"                        [default: intermediate]\n"
+"\n"
+"  Dangerous Options:\n"
+"    Caution: use these options at your own risk.  It is believed that "
+"some\n"
+"    of them bite.\n"
+"\n"
+"    -g                  Group option.\n"
+"\n"
+"  Debug Options:\n"
+"    -d, --debug         Print debug information\n"
+"    -s, --sql           Print all SQL statements executed\n"
+"    -e                  Print every action done"
 
 #: ../../library/optparse.rst:768
 msgid ""
@@ -1429,7 +1573,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:786
 msgid "parser = OptionParser(usage=\"%prog [-f] [-q]\", version=\"%prog 1.0\")"
-msgstr ""
+msgstr "parser = OptionParser(usage=\"%prog [-f] [-q]\", version=\"%prog 1.0\")"
 
 #: ../../library/optparse.rst:788
 msgid ""
@@ -1454,6 +1598,8 @@ msgid ""
 "$ /usr/bin/foo --version\n"
 "foo 1.0"
 msgstr ""
+"$ /usr/bin/foo --version\n"
+"foo 1.0"
 
 #: ../../library/optparse.rst:801
 msgid ""
@@ -1521,6 +1667,10 @@ msgid ""
 "if options.a and options.b:\n"
 "    parser.error(\"options -a and -b are mutually exclusive\")"
 msgstr ""
+"(options, args) = parser.parse_args()\n"
+"...\n"
+"if options.a and options.b:\n"
+"    parser.error(\"options -a and -b are mutually exclusive\")"
 
 #: ../../library/optparse.rst:841
 msgid ""
@@ -1544,6 +1694,10 @@ msgid ""
 "\n"
 "foo: error: option -n: invalid integer value: '4x'"
 msgstr ""
+"$ /usr/bin/foo -n 4x\n"
+"Usage: foo [options]\n"
+"\n"
+"foo: error: option -n: invalid integer value: '4x'"
 
 #: ../../library/optparse.rst:855
 msgid "Or, where the user fails to pass a value at all:"
@@ -1556,6 +1710,10 @@ msgid ""
 "\n"
 "foo: error: -n option requires an argument"
 msgstr ""
+"$ /usr/bin/foo -n\n"
+"Usage: foo [options]\n"
+"\n"
+"foo: error: -n option requires an argument"
 
 #: ../../library/optparse.rst:864
 msgid ""
@@ -1609,6 +1767,27 @@ msgid ""
 "if __name__ == \"__main__\":\n"
 "    main()"
 msgstr ""
+"from optparse import OptionParser\n"
+"...\n"
+"def main():\n"
+"    usage = \"usage: %prog [options] arg\"\n"
+"    parser = OptionParser(usage)\n"
+"    parser.add_option(\"-f\", \"--file\", dest=\"filename\",\n"
+"                      help=\"read data from FILENAME\")\n"
+"    parser.add_option(\"-v\", \"--verbose\",\n"
+"                      action=\"store_true\", dest=\"verbose\")\n"
+"    parser.add_option(\"-q\", \"--quiet\",\n"
+"                      action=\"store_false\", dest=\"verbose\")\n"
+"    ...\n"
+"    (options, args) = parser.parse_args()\n"
+"    if len(args) != 1:\n"
+"        parser.error(\"incorrect number of arguments\")\n"
+"    if options.verbose:\n"
+"        print(\"reading %s...\" % options.filename)\n"
+"    ...\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    main()"
 
 #: ../../library/optparse.rst:906
 msgid "Reference Guide"
@@ -1639,7 +1818,6 @@ msgid "``usage`` (default: ``\"%prog [options]\"``)"
 msgstr "``usage`` (기본값: ``\"%prog [options]\"``)"
 
 #: ../../library/optparse.rst:923
-#, fuzzy
 msgid ""
 "The usage summary to print when your program is run incorrectly or with a"
 " help option.  When :mod:`optparse` prints the usage string, it expands "
@@ -1650,7 +1828,7 @@ msgstr ""
 "프로그램이 잘못 실행되거나 도움말(help) 옵션을 사용할 때 인쇄할 사용법 요약. :mod:`optparse`\\가 사용법 "
 "문자열을 인쇄할 때, ``%prog``\\를 ``os.path.basename(sys.argv[0])``\\(또는 해당 키워드 "
 "인자를 전달한 경우 ``prog``)으로 확장합니다. 사용법 메시지를 표시하지 않으려면, 특수 값 "
-":data:`optparse.SUPPRESS_USAGE`\\를 전달하십시오."
+":const:`optparse.SUPPRESS_USAGE`\\를 전달하십시오."
 
 #: ../../library/optparse.rst:929
 msgid "``option_list`` (default: ``[]``)"
@@ -1808,6 +1986,13 @@ msgid ""
 "    ]\n"
 "parser = OptionParser(option_list=option_list)"
 msgstr ""
+"option_list = [\n"
+"    make_option(\"-f\", \"--filename\",\n"
+"                action=\"store\", type=\"string\", dest=\"filename\"),\n"
+"    make_option(\"-q\", \"--quiet\",\n"
+"                action=\"store_false\", dest=\"verbose\"),\n"
+"    ]\n"
+"parser = OptionParser(option_list=option_list)"
 
 #: ../../library/optparse.rst:998
 msgid ""
@@ -1850,7 +2035,7 @@ msgstr "짧은 옵션 문자열로만 옵션을 정의하려면::"
 
 #: ../../library/optparse.rst:1021
 msgid "parser.add_option(\"-f\", attr=value, ...)"
-msgstr ""
+msgstr "parser.add_option(\"-f\", attr=value, ...)"
 
 #: ../../library/optparse.rst:1023
 msgid "And to define an option with only a long option string::"
@@ -1858,7 +2043,7 @@ msgstr "그리고 긴 옵션 문자열로만 옵션을 정의하려면::"
 
 #: ../../library/optparse.rst:1025
 msgid "parser.add_option(\"--foo\", attr=value, ...)"
-msgstr ""
+msgstr "parser.add_option(\"--foo\", attr=value, ...)"
 
 #: ../../library/optparse.rst:1027
 msgid ""
@@ -1912,9 +2097,8 @@ msgid "``\"append_const\"``"
 msgstr "``\"append_const\"``"
 
 #: ../../library/optparse.rst:1053
-#, fuzzy
 msgid "append a constant value to a list, pre-set via :attr:`Option.const`"
-msgstr "리스트에 상숫값을 추가합니다"
+msgstr "리스트에 상숫값을 추가합니다, :attr:`Option.const`\\로 사전 설정"
 
 #: ../../library/optparse.rst:1061 ../../library/optparse.rst:1356
 msgid "``\"help\"``"
@@ -1935,7 +2119,6 @@ msgstr ""
 "option-actions`\\을 참조하십시오.)"
 
 #: ../../library/optparse.rst:1068
-#, fuzzy
 msgid ""
 "As you can see, most actions involve storing or updating a value "
 "somewhere. :mod:`optparse` always creates a special object for this, "
@@ -1943,9 +2126,7 @@ msgid ""
 ":class:`optparse.Values`."
 msgstr ""
 "보시다시피, 대부분의 액션은 값을 어딘가에 저장하거나 갱신하는 것을 수반합니다. :mod:`optparse`\\는 항상 이를 위해 "
-"일반적으로 ``options``\\(:class:`optparse.Values`\\의 인스턴스)라고 하는 특수 객체를 만듭니다. "
-"옵션 인자(및 기타 다양한 값)는 :attr:`~Option.dest` (destination) 옵션 어트리뷰트에 따라, 이 객체의"
-" 어트리뷰트로 저장됩니다."
+"일반적으로 ``options``\\(:class:`optparse.Values`\\의 인스턴스)라고 하는 특수 객체를 만듭니다."
 
 #: ../../library/optparse.rst:1074
 msgid ""
@@ -1962,15 +2143,16 @@ msgid ""
 "this object, according to the :attr:`~Option.dest` (destination) option "
 "attribute."
 msgstr ""
+"옵션 인자(및 기타 다양한 값)는 :attr:`~Option.dest` (destination) 옵션 어트리뷰트에 따라, 이 객체의"
+" 어트리뷰트로 저장됩니다."
 
 #: ../../library/optparse.rst:1083
 msgid "For example, when you call ::"
 msgstr "예를 들어, 다음과 같이 호출할 때 ::"
 
 #: ../../library/optparse.rst:1085
-#, fuzzy
 msgid "parser.parse_args()"
-msgstr "``parser.rargs``"
+msgstr "parser.parse_args()"
 
 #: ../../library/optparse.rst:1087
 msgid ""
@@ -1979,9 +2161,8 @@ msgid ""
 msgstr ":mod:`optparse`\\가 하는 첫 번째 작업 중 하나는 ``options`` 객체를 만드는 것입니다::"
 
 #: ../../library/optparse.rst:1089
-#, fuzzy
 msgid "options = Values()"
-msgstr "옵션 어트리뷰트"
+msgstr "options = Values()"
 
 #: ../../library/optparse.rst:1091
 msgid "If one of the options in this parser is defined with ::"
@@ -1992,6 +2173,8 @@ msgid ""
 "parser.add_option(\"-f\", \"--file\", action=\"store\", type=\"string\", "
 "dest=\"filename\")"
 msgstr ""
+"parser.add_option(\"-f\", \"--file\", action=\"store\", type=\"string\", "
+"dest=\"filename\")"
 
 #: ../../library/optparse.rst:1095
 msgid "and the command-line being parsed includes any of the following::"
@@ -2004,6 +2187,10 @@ msgid ""
 "--file=foo\n"
 "--file foo"
 msgstr ""
+"-ffoo\n"
+"-f foo\n"
+"--file=foo\n"
+"--file foo"
 
 #: ../../library/optparse.rst:1102
 msgid "then :mod:`optparse`, on seeing this option, will do the equivalent of ::"
@@ -2011,7 +2198,7 @@ msgstr ":mod:`optparse`\\는 이 옵션을 볼 때 다음과 동등한 일을 �
 
 #: ../../library/optparse.rst:1104
 msgid "options.filename = \"foo\""
-msgstr ""
+msgstr "options.filename = \"foo\""
 
 #: ../../library/optparse.rst:1106
 msgid ""
@@ -2135,7 +2322,6 @@ msgid ""
 msgstr "4개의 표준 콜백 인자 다음에 ``callback``\\에 전달할 추가 위치와 키워드 인자."
 
 #: ../../library/optparse.rst:1190
-#, fuzzy
 msgid ""
 "Help text to print for this option when listing all available options "
 "after the user supplies a :attr:`~Option.help` option (such as "
@@ -2145,7 +2331,7 @@ msgid ""
 msgstr ""
 "사용자가 :attr:`~Option.help` 옵션을 제공한 (가령 ``--help``) 후 사용 가능한 모든 옵션을 나열할 때 이"
 " 옵션에 대해 인쇄할 도움말 텍스트. 도움말 텍스트가 제공되지 않으면, 옵션이 도움말 텍스트 없이 나열됩니다. 이 옵션을 숨기려면,"
-" 특수 값 :data:`optparse.SUPPRESS_HELP`\\를 사용하십시오."
+" 특수 값 :const:`optparse.SUPPRESS_HELP`\\를 사용하십시오."
 
 #: ../../library/optparse.rst:1199
 msgid ""
@@ -2228,6 +2414,8 @@ msgid ""
 "parser.add_option(\"-f\")\n"
 "parser.add_option(\"-p\", type=\"float\", nargs=3, dest=\"point\")"
 msgstr ""
+"parser.add_option(\"-f\")\n"
+"parser.add_option(\"-p\", type=\"float\", nargs=3, dest=\"point\")"
 
 #: ../../library/optparse.rst:1238
 msgid "As it parses the command line ::"
@@ -2235,7 +2423,7 @@ msgstr "다음과 같은 명령 줄을 구문 분석할 때 ::"
 
 #: ../../library/optparse.rst:1240
 msgid "-f foo.txt -p 1 -3.5 4 -fbar.txt"
-msgstr ""
+msgstr "-f foo.txt -p 1 -3.5 4 -fbar.txt"
 
 #: ../../library/optparse.rst:1242
 msgid ":mod:`optparse` will set ::"
@@ -2247,6 +2435,9 @@ msgid ""
 "options.point = (1.0, -3.5, 4.0)\n"
 "options.f = \"bar.txt\""
 msgstr ""
+"options.f = \"foo.txt\"\n"
+"options.point = (1.0, -3.5, 4.0)\n"
+"options.f = \"bar.txt\""
 
 #: ../../library/optparse.rst:1248
 msgid ""
@@ -2269,6 +2460,12 @@ msgid ""
 "parser.add_option(\"--noisy\",\n"
 "                  action=\"store_const\", const=2, dest=\"verbose\")"
 msgstr ""
+"parser.add_option(\"-q\", \"--quiet\",\n"
+"                  action=\"store_const\", const=0, dest=\"verbose\")\n"
+"parser.add_option(\"-v\", \"--verbose\",\n"
+"                  action=\"store_const\", const=1, dest=\"verbose\")\n"
+"parser.add_option(\"--noisy\",\n"
+"                  action=\"store_const\", const=2, dest=\"verbose\")"
 
 #: ../../library/optparse.rst:1262
 msgid "If ``--noisy`` is seen, :mod:`optparse` will set  ::"
@@ -2276,7 +2473,7 @@ msgstr "``--noisy``\\가 보이면, :mod:`optparse`\\는 다음과 같이 설정
 
 #: ../../library/optparse.rst:1264
 msgid "options.verbose = 2"
-msgstr ""
+msgstr "options.verbose = 2"
 
 #: ../../library/optparse.rst:1266
 msgid "``\"store_true\"`` [relevant: :attr:`~Option.dest`]"
@@ -2303,6 +2500,10 @@ msgid ""
 "parser.add_option(\"--no-clobber\", action=\"store_false\", "
 "dest=\"clobber\")"
 msgstr ""
+"parser.add_option(\"--clobber\", action=\"store_true\", dest=\"clobber\")"
+"\n"
+"parser.add_option(\"--no-clobber\", action=\"store_false\", "
+"dest=\"clobber\")"
 
 #: ../../library/optparse.rst:1280
 msgid ""
@@ -2336,7 +2537,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1295
 msgid "parser.add_option(\"-t\", \"--tracks\", action=\"append\", type=\"int\")"
-msgstr ""
+msgstr "parser.add_option(\"-t\", \"--tracks\", action=\"append\", type=\"int\")"
 
 #: ../../library/optparse.rst:1297
 msgid ""
@@ -2349,6 +2550,8 @@ msgid ""
 "options.tracks = []\n"
 "options.tracks.append(int(\"3\"))"
 msgstr ""
+"options.tracks = []\n"
+"options.tracks.append(int(\"3\"))"
 
 #: ../../library/optparse.rst:1303
 msgid "If, a little later on, ``--tracks=4`` is seen, it does::"
@@ -2356,7 +2559,7 @@ msgstr "잠시 후, ``--tracks=4``\\가 보이면, 다음을 수행합니다::"
 
 #: ../../library/optparse.rst:1305
 msgid "options.tracks.append(int(\"4\"))"
-msgstr ""
+msgstr "options.tracks.append(int(\"4\"))"
 
 #: ../../library/optparse.rst:1307
 msgid ""
@@ -2379,6 +2582,11 @@ msgid ""
 ">>> opts.files\n"
 "['~/.mypkg/defaults', 'overrides.mypkg']"
 msgstr ""
+">>> parser.add_option(\"--files\", action=\"append\", "
+"default=['~/.mypkg/defaults'])\n"
+">>> opts, args = parser.parse_args(['--files', 'overrides.mypkg'])\n"
+">>> opts.files\n"
+"['~/.mypkg/defaults', 'overrides.mypkg']"
 
 #: ../../library/optparse.rst:1318
 msgid ""
@@ -2415,7 +2623,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1334
 msgid "parser.add_option(\"-v\", action=\"count\", dest=\"verbosity\")"
-msgstr ""
+msgstr "parser.add_option(\"-v\", action=\"count\", dest=\"verbosity\")"
 
 #: ../../library/optparse.rst:1336
 msgid ""
@@ -2428,6 +2636,8 @@ msgid ""
 "options.verbosity = 0\n"
 "options.verbosity += 1"
 msgstr ""
+"options.verbosity = 0\n"
+"options.verbosity += 1"
 
 #: ../../library/optparse.rst:1342
 msgid "Every subsequent occurrence of ``-v`` results in  ::"
@@ -2435,7 +2645,7 @@ msgstr "이후에 ``-v``\\가 나타날 때마다 다음과 같이 합니다 ::"
 
 #: ../../library/optparse.rst:1344
 msgid "options.verbosity += 1"
-msgstr ""
+msgstr "options.verbosity += 1"
 
 #: ../../library/optparse.rst:1346
 msgid ""
@@ -2455,7 +2665,7 @@ msgstr ":attr:`~Option.callback`\\으로 지정된 함수를 호출합니다, �
 
 #: ../../library/optparse.rst:1352 ../../library/optparse.rst:1750
 msgid "func(option, opt_str, value, parser, *args, **kwargs)"
-msgstr ""
+msgstr "func(option, opt_str, value, parser, *args, **kwargs)"
 
 #: ../../library/optparse.rst:1354
 msgid "See section :ref:`optparse-option-callbacks` for more detail."
@@ -2472,14 +2682,13 @@ msgstr ""
 "전달된 ``usage`` 문자열과 모든 옵션에 전달된 :attr:`~Option.help` 문자열로 구성됩니다."
 
 #: ../../library/optparse.rst:1363
-#, fuzzy
 msgid ""
 "If no :attr:`~Option.help` string is supplied for an option, it will "
 "still be listed in the help message.  To omit an option entirely, use the"
 " special value :const:`optparse.SUPPRESS_HELP`."
 msgstr ""
 "옵션에 :attr:`~Option.help` 문자열이 제공되지 않아도, 도움말 메시지에 나열됩니다. 옵션을 완전히 생략하려면, 특수"
-" 값 :data:`optparse.SUPPRESS_HELP`\\를 사용하십시오."
+" 값 :const:`optparse.SUPPRESS_HELP`\\를 사용하십시오."
 
 #: ../../library/optparse.rst:1367
 msgid ""
@@ -2504,6 +2713,18 @@ msgid ""
 "                  help=\"Input file to read data from\")\n"
 "parser.add_option(\"--secret\", help=SUPPRESS_HELP)"
 msgstr ""
+"from optparse import OptionParser, SUPPRESS_HELP\n"
+"\n"
+"# 일반적으로, 도움말 옵션은 자동으로 추가되지만, add_help_option 인자를\n"
+"# 사용하여 억제할 수 있습니다\n"
+"parser = OptionParser(add_help_option=False)\n"
+"\n"
+"parser.add_option(\"-h\", \"--help\", action=\"help\")\n"
+"parser.add_option(\"-v\", action=\"store_true\", dest=\"verbose\",\n"
+"                  help=\"Be moderately verbose\")\n"
+"parser.add_option(\"--file\", dest=\"filename\",\n"
+"                  help=\"Input file to read data from\")\n"
+"parser.add_option(\"--secret\", help=SUPPRESS_HELP)"
 
 #: ../../library/optparse.rst:1385
 msgid ""
@@ -2523,6 +2744,12 @@ msgid ""
 "  -v                Be moderately verbose\n"
 "  --file=FILENAME   Input file to read data from"
 msgstr ""
+"Usage: foo.py [options]\n"
+"\n"
+"Options:\n"
+"  -h, --help        Show this help message and exit\n"
+"  -v                Be moderately verbose\n"
+"  --file=FILENAME   Input file to read data from"
 
 #: ../../library/optparse.rst:1398
 msgid ""
@@ -2627,20 +2854,20 @@ msgid "Parsing arguments"
 msgstr "인자 구문 분석하기"
 
 #: ../../library/optparse.rst:1453
-#, fuzzy
 msgid ""
 "The whole point of creating and populating an OptionParser is to call its"
 " :meth:`~OptionParser.parse_args` method."
-msgstr "OptionParser를 만들고 채우는 것의 요점은 :meth:`parse_args` 메서드를 호출하는 것입니다::"
+msgstr ""
+"OptionParser를 만들고 채우는 것의 요점은 :meth:`~OptionParser.parse_args` 메서드를 호출하는 "
+"것입니다."
 
 #: ../../library/optparse.rst:1458
 msgid "Parse the command-line options found in *args*."
 msgstr ""
 
 #: ../../library/optparse.rst:1460
-#, fuzzy
 msgid "The input parameters are"
-msgstr "여기서 입력 매개 변수는"
+msgstr "입력 매개 변수는"
 
 #: ../../library/optparse.rst:1462 ../../library/optparse.rst:1476
 #: ../../library/optparse.rst:1794
@@ -2656,37 +2883,35 @@ msgid "``values``"
 msgstr "``values``"
 
 #: ../../library/optparse.rst:1466
-#, fuzzy
 msgid ""
 "a :class:`Values` object to store option arguments in (default: a new "
 "instance of :class:`Values`) -- if you give an existing object, the "
 "option defaults will not be initialized on it"
 msgstr ""
-"옵션 인자를 저장할 :class:`optparse.Values` 객체 (기본값: :class:`Values`\\의 새 인스턴스) "
-"-- 기존 객체를 제공하면, 옵션 기본값이 초기화되지 않습니다."
+"옵션 인자를 저장할 :class:`Values` 객체 (기본값: :class:`Values`\\의 새 인스턴스) -- 기존 객체를 "
+"제공하면, 옵션 기본값이 초기화되지 않습니다."
 
 #: ../../library/optparse.rst:1470
-#, fuzzy
 msgid "and the return value is a pair ``(options, args)`` where"
-msgstr "그리고 반환 값은"
+msgstr "그리고 반환 값은 쌍 ``(options, args)``\\이고"
 
 #: ../../library/optparse.rst:1472
 msgid "``options``"
 msgstr "``options``"
 
 #: ../../library/optparse.rst:1473
-#, fuzzy
 msgid ""
 "the same object that was passed in as *values*, or the "
 "``optparse.Values`` instance created by :mod:`optparse`"
-msgstr "``values``\\로 전달된 것과 같은 객체, 또는 :mod:`optparse`\\가 만든 optparse.Values 인스턴스"
+msgstr ""
+"*values*\\로 전달된 것과 같은 객체, 또는 :mod:`optparse`\\가 만든 ``optparse.Values`` "
+"인스턴스"
 
 #: ../../library/optparse.rst:1477
 msgid "the leftover positional arguments after all options have been processed"
 msgstr "모든 옵션이 처리된 후 남은 위치 인자"
 
 #: ../../library/optparse.rst:1479
-#, fuzzy
 msgid ""
 "The most common usage is to supply neither keyword argument.  If you "
 "supply ``values``, it will be modified with repeated :func:`setattr` "
@@ -2695,10 +2920,9 @@ msgid ""
 msgstr ""
 "가장 일반적인 사용법은 두 키워드 인자 중 어느 것도 제공하지 않는 것입니다. ``values``\\를 제공하면, 반복된 "
 ":func:`setattr` 호출(옵션 대상에 저장된 모든 옵션 인자에 대해 대략 하나씩)로 수정되고, "
-":meth:`parse_args`\\에서 반환됩니다."
+":meth:`~OptionParser.parse_args`\\에서 반환됩니다."
 
 #: ../../library/optparse.rst:1484
-#, fuzzy
 msgid ""
 "If :meth:`~OptionParser.parse_args` encounters any errors in the argument"
 " list, it calls the OptionParser's :meth:`error` method with an "
@@ -2706,9 +2930,9 @@ msgid ""
 "process with an exit status of 2 (the traditional Unix exit status for "
 "command-line errors)."
 msgstr ""
-":meth:`parse_args`\\가 인자 리스트에서 에러를 만나면, 적절한 최종 사용자 에러 메시지와 함께 "
-"OptionParser의 :meth:`error` 메서드를 호출합니다. 이는 궁극적으로 종료 상태 2(명령 줄 에러에 대한 전통적인"
-" 유닉스 종료 상태)로 프로세스를 종료합니다."
+":meth:`~OptionParser.parse_args`\\가 인자 리스트에서 에러를 만나면, 적절한 최종 사용자 에러 메시지와 "
+"함께 OptionParser의 :meth:`error` 메서드를 호출합니다. 이는 궁극적으로 종료 상태 2(명령 줄 에러에 대한 "
+"전통적인 유닉스 종료 상태)로 프로세스를 종료합니다."
 
 #: ../../library/optparse.rst:1493
 msgid "Querying and manipulating your option parser"
@@ -2734,7 +2958,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1505
 msgid "prog -a arg1 -b arg2"
-msgstr ""
+msgstr "prog -a arg1 -b arg2"
 
 #: ../../library/optparse.rst:1507
 msgid "and treats it as equivalent to  ::"
@@ -2742,7 +2966,7 @@ msgstr "그리고 다음과 동등하게 취급합니다 ::"
 
 #: ../../library/optparse.rst:1509
 msgid "prog -a -b arg1 arg2"
-msgstr ""
+msgstr "prog -a -b arg1 arg2"
 
 #: ../../library/optparse.rst:1511
 msgid ""
@@ -2815,6 +3039,9 @@ msgid ""
 "...\n"
 "parser.add_option(\"-n\", \"--noisy\", ...)"
 msgstr ""
+"parser.add_option(\"-n\", \"--dry-run\", ...)\n"
+"...\n"
+"parser.add_option(\"-n\", \"--noisy\", ...)"
 
 #: ../../library/optparse.rst:1554
 msgid ""
@@ -2834,7 +3061,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1561
 msgid "parser = OptionParser(..., conflict_handler=handler)"
-msgstr ""
+msgstr "parser = OptionParser(..., conflict_handler=handler)"
 
 #: ../../library/optparse.rst:1563
 msgid "or with a separate call::"
@@ -2842,7 +3069,7 @@ msgstr "또는 별도의 호출로 가능합니다::"
 
 #: ../../library/optparse.rst:1565
 msgid "parser.set_conflict_handler(handler)"
-msgstr ""
+msgstr "parser.set_conflict_handler(handler)"
 
 #: ../../library/optparse.rst:1567
 msgid "The available conflict handlers are:"
@@ -2878,9 +3105,11 @@ msgid ""
 "parser.add_option(\"-n\", \"--dry-run\", ..., help=\"do no harm\")\n"
 "parser.add_option(\"-n\", \"--noisy\", ..., help=\"be noisy\")"
 msgstr ""
+"parser = OptionParser(conflict_handler=\"resolve\")\n"
+"parser.add_option(\"-n\", \"--dry-run\", ..., help=\"do no harm\")\n"
+"parser.add_option(\"-n\", \"--noisy\", ..., help=\"be noisy\")"
 
 #: ../../library/optparse.rst:1584
-#, fuzzy
 msgid ""
 "At this point, :mod:`optparse` detects that a previously added option is "
 "already using the ``-n`` option string.  Since ``conflict_handler`` is "
@@ -2901,9 +3130,12 @@ msgid ""
 "  ...\n"
 "  -n, --noisy   be noisy"
 msgstr ""
+"Options:\n"
+"  --dry-run     do no harm\n"
+"  ...\n"
+"  -n, --noisy   be noisy"
 
 #: ../../library/optparse.rst:1595
-#, fuzzy
 msgid ""
 "It's possible to whittle away the option strings for a previously added "
 "option until there are none left, and the user has no way of invoking "
@@ -2917,7 +3149,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1601
 msgid "parser.add_option(\"--dry-run\", ..., help=\"new dry-run option\")"
-msgstr ""
+msgstr "parser.add_option(\"--dry-run\", ..., help=\"new dry-run option\")"
 
 #: ../../library/optparse.rst:1603
 msgid ""
@@ -2934,6 +3166,10 @@ msgid ""
 "  -n, --noisy   be noisy\n"
 "  --dry-run     new dry-run option"
 msgstr ""
+"Options:\n"
+"  ...\n"
+"  -n, --noisy   be noisy\n"
+"  --dry-run     new dry-run option"
 
 #: ../../library/optparse.rst:1615
 msgid "Cleanup"
@@ -2961,7 +3197,6 @@ msgid "OptionParser supports several other public methods:"
 msgstr "OptionParser는 몇 가지 다른 공용 메서드를 지원합니다:"
 
 #: ../../library/optparse.rst:1634
-#, fuzzy
 msgid ""
 "Set the usage string according to the rules described above for the "
 "``usage`` constructor keyword argument.  Passing ``None`` sets the "
@@ -2969,7 +3204,7 @@ msgid ""
 "usage message."
 msgstr ""
 "``usage`` 생성자 키워드 인자에 대해 위에서 설명한 규칙에 따라 사용법 문자열을 설정합니다. ``None``\\을 전달하면 "
-"기본 사용법 문자열이 설정됩니다; 사용법 메시지를 억제하려면 :data:`optparse.SUPPRESS_USAGE`\\를 "
+"기본 사용법 문자열이 설정됩니다; 사용법 메시지를 억제하려면 :const:`optparse.SUPPRESS_USAGE`\\를 "
 "사용하십시오."
 
 #: ../../library/optparse.rst:1640
@@ -3010,6 +3245,12 @@ msgid ""
 "                  dest=\"mode\", const=\"novice\",\n"
 "                  default=\"advanced\")  # overrides above setting"
 msgstr ""
+"parser.add_option(\"--advanced\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"advanced\",\n"
+"                  default=\"novice\")    # 아래에서 재정의됩니다\n"
+"parser.add_option(\"--novice\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"novice\",\n"
+"                  default=\"advanced\")  # 위의 설정을 재정의합니다"
 
 #: ../../library/optparse.rst:1665
 msgid "To avoid this confusion, use :meth:`set_defaults`::"
@@ -3023,6 +3264,11 @@ msgid ""
 "parser.add_option(\"--novice\", action=\"store_const\",\n"
 "                  dest=\"mode\", const=\"novice\")"
 msgstr ""
+"parser.set_defaults(mode=\"advanced\")\n"
+"parser.add_option(\"--advanced\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"advanced\")\n"
+"parser.add_option(\"--novice\", action=\"store_const\",\n"
+"                  dest=\"mode\", const=\"novice\")"
 
 #: ../../library/optparse.rst:1677
 msgid "Option Callbacks"
@@ -3071,7 +3317,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1701
 msgid "parser.add_option(\"-c\", action=\"callback\", callback=my_callback)"
-msgstr ""
+msgstr "parser.add_option(\"-c\", action=\"callback\", callback=my_callback)"
 
 #: ../../library/optparse.rst:1703
 msgid ""
@@ -3103,7 +3349,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:1717
 msgid "def my_callback(option, opt, value, parser):"
-msgstr ""
+msgstr "def my_callback(option, opt, value, parser):"
 
 #: ../../library/optparse.rst:1719
 msgid "The four arguments to a callback are described below."
@@ -3230,7 +3476,6 @@ msgid "``parser.largs``"
 msgstr "``parser.largs``"
 
 #: ../../library/optparse.rst:1776
-#, fuzzy
 msgid ""
 "the current list of leftover arguments, ie. arguments that have been "
 "consumed but are neither options nor option arguments. Feel free to "
@@ -3239,8 +3484,8 @@ msgid ""
 ":meth:`~OptionParser.parse_args`.)"
 msgstr ""
 "남은 인자의 현재 리스트, 즉, 소비되었지만 옵션이나 옵션 인자가 아닌 인자. 예를 들어 더 많은 인자를 추가하여, "
-"``parser.largs``\\를 자유롭게 수정하십시오. (이 리스트는 :meth:`parse_args`\\의 두 번째 반환 값인"
-" ``args``\\가 됩니다.)"
+"``parser.largs``\\를 자유롭게 수정하십시오. (이 리스트는 "
+":meth:`~OptionParser.parse_args`\\의 두 번째 반환 값인 ``args``\\가 됩니다.)"
 
 #: ../../library/optparse.rst:1781
 msgid "``parser.rargs``"
@@ -3324,6 +3569,11 @@ msgid ""
 "parser.add_option(\"--foo\", action=\"callback\", "
 "callback=record_foo_seen)"
 msgstr ""
+"def record_foo_seen(option, opt_str, value, parser):\n"
+"    parser.values.saw_foo = True\n"
+"\n"
+"parser.add_option(\"--foo\", action=\"callback\", "
+"callback=record_foo_seen)"
 
 #: ../../library/optparse.rst:1828
 msgid "Of course, you could do that with the ``\"store_true\"`` action."
@@ -3351,13 +3601,19 @@ msgid ""
 "parser.add_option(\"-a\", action=\"callback\", callback=check_order)\n"
 "parser.add_option(\"-b\", action=\"store_true\", dest=\"b\")"
 msgstr ""
+"def check_order(option, opt_str, value, parser):\n"
+"    if parser.values.b:\n"
+"        raise OptionValueError(\"can't use -a after -b\")\n"
+"    parser.values.a = 1\n"
+"...\n"
+"parser.add_option(\"-a\", action=\"callback\", callback=check_order)\n"
+"parser.add_option(\"-b\", action=\"store_true\", dest=\"b\")"
 
 #: ../../library/optparse.rst:1851
 msgid "Callback example 3: check option order (generalized)"
 msgstr "콜백 예제 3: 옵션 순서 확인 (일반화)"
 
 #: ../../library/optparse.rst:1853
-#, fuzzy
 msgid ""
 "If you want to reuse this callback for several similar options (set a "
 "flag, but blow up if ``-b`` has already been seen), it needs a bit of "
@@ -3381,6 +3637,16 @@ msgid ""
 "parser.add_option(\"-c\", action=\"callback\", callback=check_order, "
 "dest='c')"
 msgstr ""
+"def check_order(option, opt_str, value, parser):\n"
+"    if parser.values.b:\n"
+"        raise OptionValueError(\"can't use %s after -b\" % opt_str)\n"
+"    setattr(parser.values, option.dest, 1)\n"
+"...\n"
+"parser.add_option(\"-a\", action=\"callback\", callback=check_order, "
+"dest='a')\n"
+"parser.add_option(\"-b\", action=\"store_true\", dest=\"b\")\n"
+"parser.add_option(\"-c\", action=\"callback\", callback=check_order, "
+"dest='c')"
 
 #: ../../library/optparse.rst:1870
 msgid "Callback example 4: check arbitrary condition"
@@ -3408,6 +3674,14 @@ msgid ""
 "parser.add_option(\"--foo\",\n"
 "                  action=\"callback\", callback=check_moon, dest=\"foo\")"
 msgstr ""
+"def check_moon(option, opt_str, value, parser):\n"
+"    if is_moon_full():\n"
+"        raise OptionValueError(\"%s option invalid when moon is full\"\n"
+"                               % opt_str)\n"
+"    setattr(parser.values, option.dest, 1)\n"
+"...\n"
+"parser.add_option(\"--foo\",\n"
+"                  action=\"callback\", callback=check_moon, dest=\"foo\")"
 
 #: ../../library/optparse.rst:1885
 msgid ""
@@ -3447,6 +3721,12 @@ msgid ""
 "                  action=\"callback\", callback=store_value,\n"
 "                  type=\"int\", nargs=3, dest=\"foo\")"
 msgstr ""
+"def store_value(option, opt_str, value, parser):\n"
+"    setattr(parser.values, option.dest, value)\n"
+"...\n"
+"parser.add_option(\"--foo\",\n"
+"                  action=\"callback\", callback=store_value,\n"
+"                  type=\"int\", nargs=3, dest=\"foo\")"
 
 #: ../../library/optparse.rst:1909
 msgid ""
@@ -3541,6 +3821,32 @@ msgid ""
 "parser.add_option(\"-c\", \"--callback\", dest=\"vararg_attr\",\n"
 "                  action=\"callback\", callback=vararg_callback)"
 msgstr ""
+"def vararg_callback(option, opt_str, value, parser):\n"
+"    assert value is None\n"
+"    value = []\n"
+"\n"
+"    def floatable(str):\n"
+"        try:\n"
+"            float(str)\n"
+"            return True\n"
+"        except ValueError:\n"
+"            return False\n"
+"\n"
+"    for arg in parser.rargs:\n"
+"        # --foo 와 같은 옵션에서 멈춥니다\n"
+"        if arg[:2] == \"--\" and len(arg) > 2:\n"
+"            break\n"
+"        # -a 에서 멈추지만, -3 이나 -3.0 에서는 멈추지 않습니다\n"
+"        if arg[:1] == \"-\" and len(arg) > 1 and not floatable(arg):\n"
+"            break\n"
+"        value.append(arg)\n"
+"\n"
+"    del parser.rargs[:len(value)]\n"
+"    setattr(parser.values, option.dest, value)\n"
+"\n"
+"...\n"
+"parser.add_option(\"-c\", \"--callback\", dest=\"vararg_attr\",\n"
+"                  action=\"callback\", callback=vararg_callback)"
 
 #: ../../library/optparse.rst:1974
 msgid "Extending :mod:`optparse`"
@@ -3584,7 +3890,7 @@ msgstr "형 이름을 형 검사 함수에 매핑하는 딕셔너리. 형 검사
 
 #: ../../library/optparse.rst:2000
 msgid "def check_mytype(option, opt, value)"
-msgstr ""
+msgstr "def check_mytype(option, opt, value)"
 
 #: ../../library/optparse.rst:2002
 msgid ""
@@ -3636,6 +3942,8 @@ msgid ""
 "from copy import copy\n"
 "from optparse import Option, OptionValueError"
 msgstr ""
+"from copy import copy\n"
+"from optparse import Option, OptionValueError"
 
 #: ../../library/optparse.rst:2026
 msgid ""
@@ -3656,6 +3964,12 @@ msgid ""
 "        raise OptionValueError(\n"
 "            \"option %s: invalid complex value: %r\" % (opt, value))"
 msgstr ""
+"def check_complex(option, opt, value):\n"
+"    try:\n"
+"        return complex(value)\n"
+"    except ValueError:\n"
+"        raise OptionValueError(\n"
+"            \"option %s: invalid complex value: %r\" % (opt, value))"
 
 #: ../../library/optparse.rst:2036
 msgid "Finally, the Option subclass::"
@@ -3668,6 +3982,10 @@ msgid ""
 "    TYPE_CHECKER = copy(Option.TYPE_CHECKER)\n"
 "    TYPE_CHECKER[\"complex\"] = check_complex"
 msgstr ""
+"class MyOption (Option):\n"
+"    TYPES = Option.TYPES + (\"complex\",)\n"
+"    TYPE_CHECKER = copy(Option.TYPE_CHECKER)\n"
+"    TYPE_CHECKER[\"complex\"] = check_complex"
 
 #: ../../library/optparse.rst:2043
 msgid ""
@@ -3694,6 +4012,8 @@ msgid ""
 "parser = OptionParser(option_class=MyOption)\n"
 "parser.add_option(\"-c\", type=\"complex\")"
 msgstr ""
+"parser = OptionParser(option_class=MyOption)\n"
+"parser.add_option(\"-c\", type=\"complex\")"
 
 #: ../../library/optparse.rst:2055
 msgid ""
@@ -3710,6 +4030,9 @@ msgid ""
 "dest=\"c\")]\n"
 "parser = OptionParser(option_list=option_list)"
 msgstr ""
+"option_list = [MyOption(\"-c\", action=\"store\", type=\"complex\", "
+"dest=\"c\")]\n"
+"parser = OptionParser(option_list=option_list)"
 
 #: ../../library/optparse.rst:2066
 msgid "Adding new actions"
@@ -3814,7 +4137,7 @@ msgstr ""
 
 #: ../../library/optparse.rst:2118
 msgid "--names=foo,bar --names blah --names ding,dong"
-msgstr ""
+msgstr "--names=foo,bar --names blah --names ding,dong"
 
 #: ../../library/optparse.rst:2120
 msgid "would result in a list  ::"
@@ -3822,7 +4145,7 @@ msgstr "다음과 같은 리스트를 만듭니다 ::"
 
 #: ../../library/optparse.rst:2122
 msgid "[\"foo\", \"bar\", \"blah\", \"ding\", \"dong\"]"
-msgstr ""
+msgstr "[\"foo\", \"bar\", \"blah\", \"ding\", \"dong\"]"
 
 #: ../../library/optparse.rst:2124
 msgid "Again we define a subclass of Option::"
@@ -3845,6 +4168,20 @@ msgid ""
 "            Option.take_action(\n"
 "                self, action, dest, opt, value, values, parser)"
 msgstr ""
+"class MyOption(Option):\n"
+"\n"
+"    ACTIONS = Option.ACTIONS + (\"extend\",)\n"
+"    STORE_ACTIONS = Option.STORE_ACTIONS + (\"extend\",)\n"
+"    TYPED_ACTIONS = Option.TYPED_ACTIONS + (\"extend\",)\n"
+"    ALWAYS_TYPED_ACTIONS = Option.ALWAYS_TYPED_ACTIONS + (\"extend\",)\n"
+"\n"
+"    def take_action(self, action, dest, opt, value, values, parser):\n"
+"        if action == \"extend\":\n"
+"            lvalue = value.split(\",\")\n"
+"            values.ensure_value(dest, []).extend(lvalue)\n"
+"        else:\n"
+"            Option.take_action(\n"
+"                self, action, dest, opt, value, values, parser)"
 
 #: ../../library/optparse.rst:2141
 msgid "Features of note:"
@@ -3890,10 +4227,9 @@ msgstr ""
 
 #: ../../library/optparse.rst:2159
 msgid "values.ensure_value(attr, value)"
-msgstr ""
+msgstr "values.ensure_value(attr, value)"
 
 #: ../../library/optparse.rst:2161
-#, fuzzy
 msgid ""
 "If the ``attr`` attribute of ``values`` doesn't exist or is ``None``, "
 "then ensure_value() first sets it to ``value``, and then returns "
@@ -3915,9 +4251,8 @@ msgstr ""
 "필요할 때 올바르게 처리합니다."
 
 #: ../../library/optparse.rst:2172
-#, fuzzy
 msgid "Exceptions"
-msgstr "옵션(option)"
+msgstr "예외"
 
 #: ../../library/optparse.rst:2176
 msgid ""
@@ -3934,9 +4269,8 @@ msgid "Raised if an invalid option value is encountered on the command line."
 msgstr ""
 
 #: ../../library/optparse.rst:2189
-#, fuzzy
 msgid "Raised if an invalid option is passed on the command line."
-msgstr "다음과 같은 명령 줄을 구문 분석할 때 ::"
+msgstr "명령줄에서 잘못된 옵션이 전달되면 발생합니다."
 
 #: ../../library/optparse.rst:2193
 msgid "Raised if an ambiguous option is passed on the command line."
