@@ -115,6 +115,10 @@ class Command:
             print(f"{fuzzy_count} fuzzy messages found")
         if empty_count:
             print(f"{empty_count} untranslated messages found")
+        try:
+            sh("sphinx-lint")
+        except:
+            pass
 
     def find_obsoletes(self, *, delete=False):
         """Find obsolete .po files."""
