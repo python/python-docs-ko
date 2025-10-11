@@ -47,7 +47,7 @@ def remove_nonprintables(text):
     nps = "".join(sorted(set(chr(i) for i in range(128)) - set(string.printable)))
     table = str.maketrans(nps, nps[0] * len(nps))
     text = text.translate(table).replace(nps[0], "")
-    return text.lstrip()
+    return text.strip()
 
 
 class Command:
