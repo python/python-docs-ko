@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -432,31 +432,31 @@ msgid ""
 msgstr "일반 :ref:`assignment` 과의 차이점은 오직 하나의 타깃만 허락된다는 것입니다."
 
 #: ../../reference/simple_stmts.rst:336
+#, fuzzy
 msgid ""
 "The assignment target is considered \"simple\" if it consists of a single"
 " name that is not enclosed in parentheses. For simple assignment targets,"
-" if in class or module scope, the annotations are evaluated and stored in"
-" a special class or module attribute :attr:`__annotations__` that is a "
-"dictionary mapping from variable names (mangled if private) to evaluated "
-"annotations. This attribute is writable and is automatically created at "
-"the start of class or module body execution, if annotations are found "
-"statically."
+" if in class or module scope, the annotations are gathered in a lazily "
+"evaluated :ref:`annotation scope <annotation-scopes>`. The annotations "
+"can be evaluated using the :attr:`~object.__annotations__` attribute of a"
+" class or module, or using the facilities in the :mod:`annotationlib` "
+"module."
 msgstr ""
 "대입 타깃은 괄호로 묶이지 않은 단일한 이름으로 구성되면, \"단순\"하다고 간주됩니다. 단순 대입 타깃의 경우, 클래스나 모듈 "
 "스코프에 있으면, 어노테이션은 값이 구해진 후 특별한 클래스나 모듈의 어트리뷰트 :attr:`__annotations__` 에 "
 "저장되는데, 이 어트리뷰트는 (만약 비공개면 뒤섞인) 변수 이름을 어노테이션의 값으로 대응시키는 딕셔너리 매핑입니다. 이 "
 "어트리뷰트는 쓰기가 허락되고, 클래스나 모듈의 실행을 시작할 때 어노테이션이 정적으로 발견되면 만들어집니다."
 
-#: ../../reference/simple_stmts.rst:346
+#: ../../reference/simple_stmts.rst:345
+#, fuzzy
 msgid ""
 "If the assignment target is not simple (an attribute, subscript node, or "
-"parenthesized name), the annotation is evaluated if in class or module "
-"scope, but not stored."
+"parenthesized name), the annotation is never evaluated."
 msgstr ""
 "대입 타깃이 단순하지 않을 때 (어트리뷰트, 서브 스크립트 노드 또는 괄호안의 이름), 어노테이션은 클래스나 모듈 스코프에 있는 "
 "것처럼 값이 구해지지만 저장되지는 않습니다."
 
-#: ../../reference/simple_stmts.rst:350
+#: ../../reference/simple_stmts.rst:348
 msgid ""
 "If a name is annotated in a function scope, then this name is local for "
 "that scope. Annotations are never evaluated and stored in function "
@@ -465,34 +465,35 @@ msgstr ""
 "이름이 함수 스코프에서 어노테이트되면, 이 이름은 그 스코프에 지역적(local)입니다. 함수 스코프에서 어노테이션은 값이 "
 "구해지거나 저장되지 않습니다."
 
-#: ../../reference/simple_stmts.rst:353
+#: ../../reference/simple_stmts.rst:351
+#, fuzzy
 msgid ""
 "If the right hand side is present, an annotated assignment performs the "
-"actual assignment before evaluating annotations (where applicable). If "
-"the right hand side is not present for an expression target, then the "
-"interpreter evaluates the target except for the last "
-":meth:`~object.__setitem__` or :meth:`~object.__setattr__` call."
+"actual assignment as if there was no annotation present. If the right "
+"hand side is not present for an expression target, then the interpreter "
+"evaluates the target except for the last :meth:`~object.__setitem__` or "
+":meth:`~object.__setattr__` call."
 msgstr ""
 "우변이 존재하면, 어노테이트된 대입은 (적절한 곳에서) 어노테이션의 값을 구하기 전에 실제 대입을 수행합니다. 표현식 타깃의 경우 "
 "우변이 존재하지 않으면, 인터프리터는 티깃의 값을 구하는데, 마지막 :meth:`~object.__setitem__` 이나 "
 ":meth:`~object.__setattr__` 호출은 생략합니다."
 
-#: ../../reference/simple_stmts.rst:361
+#: ../../reference/simple_stmts.rst:359
 msgid ":pep:`526` - Syntax for Variable Annotations"
 msgstr ":pep:`526` - 변수 어노테이션 문법"
 
-#: ../../reference/simple_stmts.rst:362
+#: ../../reference/simple_stmts.rst:360
 msgid ""
 "The proposal that added syntax for annotating the types of variables "
 "(including class variables and instance variables), instead of expressing"
 " them through comments."
 msgstr "주석을 통해 표현하는 대신, 변수(클래스 변수와 인스턴스 변수 포함)의 형을 어노테이트 하는 문법을 추가하는 제안."
 
-#: ../../reference/simple_stmts.rst:366
+#: ../../reference/simple_stmts.rst:364
 msgid ":pep:`484` - Type hints"
 msgstr ":pep:`484` - 형 힌트"
 
-#: ../../reference/simple_stmts.rst:367
+#: ../../reference/simple_stmts.rst:365
 msgid ""
 "The proposal that added the :mod:`typing` module to provide a standard "
 "syntax for type annotations that can be used in static analysis tools and"
@@ -501,7 +502,7 @@ msgstr ""
 "정적 분석 도구와 IDE에서 사용할 수 있는 형 어노테이션에 대한 표준 문법을 제공하기 위해 :mod:`typing` 모듈을 "
 "추가하는 제안."
 
-#: ../../reference/simple_stmts.rst:371
+#: ../../reference/simple_stmts.rst:369
 msgid ""
 "Now annotated assignments allow the same expressions in the right hand "
 "side as regular assignments. Previously, some expressions (like un-"
@@ -510,21 +511,28 @@ msgstr ""
 "이제 어노테이트된 대입문은 일반 대입과 마찬가지로 우변에 같은 표현식을 허용합니다. 이전에는, (괄호 없는 튜플 표현식과 같은) "
 "일부 표현식에서 문법 에러가 발생했습니다."
 
-#: ../../reference/simple_stmts.rst:380
+#: ../../reference/simple_stmts.rst:374
+msgid ""
+"Annotations are now lazily evaluated in a separate :ref:`annotation scope"
+" <annotation-scopes>`. If the assignment target is not simple, "
+"annotations are never evaluated."
+msgstr ""
+
+#: ../../reference/simple_stmts.rst:382
 msgid "The :keyword:`!assert` statement"
 msgstr ":keyword:`!assert` 문"
 
-#: ../../reference/simple_stmts.rst:387
+#: ../../reference/simple_stmts.rst:389
 msgid ""
 "Assert statements are a convenient way to insert debugging assertions "
 "into a program:"
 msgstr "assert 문은 프로그램에 디버깅 어서션(debugging assertion)을 삽입하는 편리한 방법입니다:"
 
-#: ../../reference/simple_stmts.rst:393
+#: ../../reference/simple_stmts.rst:395
 msgid "The simple form, ``assert expression``, is equivalent to ::"
 msgstr "간단한 형태, ``assert expression`` 은 다음과 동등합니다 ::"
 
-#: ../../reference/simple_stmts.rst:395
+#: ../../reference/simple_stmts.rst:397
 msgid ""
 "if __debug__:\n"
 "    if not expression: raise AssertionError"
@@ -532,13 +540,13 @@ msgstr ""
 "if __debug__:\n"
 "    if not expression: raise AssertionError"
 
-#: ../../reference/simple_stmts.rst:398
+#: ../../reference/simple_stmts.rst:400
 msgid ""
 "The extended form, ``assert expression1, expression2``, is equivalent to "
 "::"
 msgstr "확장된 형태, ``assert expression1, expression2`` 는 다음과 동등합니다 ::"
 
-#: ../../reference/simple_stmts.rst:400
+#: ../../reference/simple_stmts.rst:402
 msgid ""
 "if __debug__:\n"
 "    if not expression1: raise AssertionError(expression2)"
@@ -546,7 +554,7 @@ msgstr ""
 "if __debug__:\n"
 "    if not expression1: raise AssertionError(expression2)"
 
-#: ../../reference/simple_stmts.rst:407
+#: ../../reference/simple_stmts.rst:409
 msgid ""
 "These equivalences assume that :const:`__debug__` and "
 ":exc:`AssertionError` refer to the built-in variables with those names.  "
@@ -564,17 +572,17 @@ msgstr ""
 "요청되면 :keyword:`assert` 문을 위한 코드를 만들지 않습니다. 에러 메시지에 실패한 표현식의 소스 코드를 포함할 "
 "필요가 없음에 주의하십시오; 그것은 스택 트레이스의 일부로 출력됩니다."
 
-#: ../../reference/simple_stmts.rst:416
+#: ../../reference/simple_stmts.rst:418
 msgid ""
 "Assignments to :const:`__debug__` are illegal.  The value for the built-"
 "in variable is determined when the interpreter starts."
 msgstr ":const:`__debug__` 에 대한 대입은 허락되지 않습니다. 이 내장 변수의 값은 인터프리터가 시작할 때 결정됩니다."
 
-#: ../../reference/simple_stmts.rst:423
+#: ../../reference/simple_stmts.rst:425
 msgid "The :keyword:`!pass` statement"
 msgstr ":keyword:`!pass` 문"
 
-#: ../../reference/simple_stmts.rst:433
+#: ../../reference/simple_stmts.rst:435
 msgid ""
 ":keyword:`pass` is a null operation --- when it is executed, nothing "
 "happens. It is useful as a placeholder when a statement is required "
@@ -583,7 +591,7 @@ msgstr ""
 ":keyword:`pass` 는 널(null) 연산입니다 --- 실행될 때, 아무런 일도 일어나지 않습니다. 문법적으로 문장이 "
 "필요하기는 하지만 할 일은 없을 때, 자리를 채우는 용도로 쓸모가 있습니다, 예를 들어::"
 
-#: ../../reference/simple_stmts.rst:437
+#: ../../reference/simple_stmts.rst:439
 msgid ""
 "def f(arg): pass    # a function that does nothing (yet)\n"
 "\n"
@@ -593,34 +601,35 @@ msgstr ""
 "\n"
 "class C: pass       # (아직은) 메서드가 없는 클래스"
 
-#: ../../reference/simple_stmts.rst:445
+#: ../../reference/simple_stmts.rst:447
 msgid "The :keyword:`!del` statement"
 msgstr ":keyword:`!del` 문"
 
-#: ../../reference/simple_stmts.rst:455
+#: ../../reference/simple_stmts.rst:457
 msgid ""
 "Deletion is recursively defined very similar to the way assignment is "
 "defined. Rather than spelling it out in full details, here are some "
 "hints."
 msgstr "삭제는 대입이 정의된 방식과 아주 비슷하게 재귀적으로 정의됩니다. 전체 세부 사항들을 나열하는 대신, 여기 몇 가지 힌트가 있습니다."
 
-#: ../../reference/simple_stmts.rst:458
+#: ../../reference/simple_stmts.rst:460
 msgid ""
 "Deletion of a target list recursively deletes each target, from left to "
 "right."
 msgstr "타깃 목록의 삭제는 각 타깃을 왼쪽에서 오른쪽으로 재귀적으로 삭제합니다."
 
-#: ../../reference/simple_stmts.rst:464
+#: ../../reference/simple_stmts.rst:466
+#, fuzzy
 msgid ""
 "Deletion of a name removes the binding of that name from the local or "
 "global namespace, depending on whether the name occurs in a "
-":keyword:`global` statement in the same code block.  If the name is "
-"unbound, a :exc:`NameError` exception will be raised."
+":keyword:`global` statement in the same code block.  Trying to delete an "
+"unbound name raises a :exc:`NameError` exception."
 msgstr ""
 "이름의 삭제는 같은 코드 블록에 있는 :keyword:`global` 문에 그 이름이 등장하는지에 따라 지역이나 전역 이름 공간에서"
 " 이름의 연결을 제거합니다. 이름이 연결되어 있지 않으면, :exc:`NameError` 예외가 일어납니다."
 
-#: ../../reference/simple_stmts.rst:471
+#: ../../reference/simple_stmts.rst:473
 msgid ""
 "Deletion of attribute references, subscriptions and slicings is passed to"
 " the primary object involved; deletion of a slicing is in general "
@@ -630,35 +639,35 @@ msgstr ""
 "어트리뷰트 참조, 서브스크립션, 슬라이싱의 삭제는 관련된 프라이머리 객체로 전달됩니다; 슬라이싱의 삭제는 일반적으로 우변 형의 빈 "
 "슬라이스를 대입하는 것과 동등합니다 (하지만 이것조차 슬라이싱 되는 객체가 판단합니다)."
 
-#: ../../reference/simple_stmts.rst:476
+#: ../../reference/simple_stmts.rst:478
 msgid ""
 "Previously it was illegal to delete a name from the local namespace if it"
 " occurs as a free variable in a nested block."
 msgstr "예전에는 이름이 중첩된 블록에서 자유 변수로 등장하는 경우 지역 이름 공간에서 삭제하는 것이 허락되지 않았습니다."
 
-#: ../../reference/simple_stmts.rst:484
+#: ../../reference/simple_stmts.rst:486
 msgid "The :keyword:`!return` statement"
 msgstr ":keyword:`!return` 문"
 
-#: ../../reference/simple_stmts.rst:494
+#: ../../reference/simple_stmts.rst:496
 msgid ""
 ":keyword:`return` may only occur syntactically nested in a function "
 "definition, not within a nested class definition."
 msgstr ":keyword:`return` 은 문법적으로 클래스 정의에 중첩된 경우가 아니라, 함수 정의에만 중첩되어 나타날 수 있습니다."
 
-#: ../../reference/simple_stmts.rst:497
+#: ../../reference/simple_stmts.rst:499
 msgid ""
 "If an expression list is present, it is evaluated, else ``None`` is "
 "substituted."
 msgstr "표현식 목록이 있으면 값을 구하고, 그렇지 않으면 ``None`` 으로 치환됩니다."
 
-#: ../../reference/simple_stmts.rst:499
+#: ../../reference/simple_stmts.rst:501
 msgid ""
 ":keyword:`return` leaves the current function call with the expression "
 "list (or ``None``) as return value."
 msgstr ":keyword:`return` 은 표현식 목록 (또는 ``None``)을 반환 값으로 해서, 현재의 함수 호출을 떠납니다."
 
-#: ../../reference/simple_stmts.rst:504
+#: ../../reference/simple_stmts.rst:506
 msgid ""
 "When :keyword:`return` passes control out of a :keyword:`try` statement "
 "with a :keyword:`finally` clause, that :keyword:`!finally` clause is "
@@ -667,7 +676,7 @@ msgstr ""
 ":keyword:`return` 이 :keyword:`finally` 절을 가진 :keyword:`try` 문에서 제어가 벗어나도록"
 " 만드는 경우, 함수로부터 진짜로 벗어나기 전에 그 :keyword:`!finally` 절이 실행됩니다."
 
-#: ../../reference/simple_stmts.rst:508
+#: ../../reference/simple_stmts.rst:510
 msgid ""
 "In a generator function, the :keyword:`return` statement indicates that "
 "the generator is done and will cause :exc:`StopIteration` to be raised. "
@@ -679,7 +688,7 @@ msgstr ""
 "예외를 일으킵니다. return 문에 제공되는 값은 (있다면) :exc:`StopIteration` 의 생성자에 인자로 전달되어 "
 ":attr:`StopIteration.value` 어트리뷰트가 됩니다."
 
-#: ../../reference/simple_stmts.rst:513
+#: ../../reference/simple_stmts.rst:515
 msgid ""
 "In an asynchronous generator function, an empty :keyword:`return` "
 "statement indicates that the asynchronous generator is done and will "
@@ -691,11 +700,11 @@ msgstr ""
 ":exc:`StopAsyncIteration` 예외를 일으킵니다. 비동기 제너레이터 함수에서, 비어있지 않은 "
 ":keyword:`!return` 은 문법 에러입니다."
 
-#: ../../reference/simple_stmts.rst:521
+#: ../../reference/simple_stmts.rst:523
 msgid "The :keyword:`!yield` statement"
 msgstr ":keyword:`!yield` 문"
 
-#: ../../reference/simple_stmts.rst:533
+#: ../../reference/simple_stmts.rst:535
 msgid ""
 "A :keyword:`yield` statement is semantically equivalent to a :ref:`yield "
 "expression <yieldexpr>`. The ``yield`` statement can be used to omit the "
@@ -705,7 +714,7 @@ msgstr ""
 ":keyword:`yield` 문은 :ref:`yield 표현식 <yieldexpr>` 과 같은 의미가 있습니다. 동등한 yield"
 " 표현식에서 필요로 하는 괄호를 생략하기 위해 ``yield`` 문을 사용합니다. 예를 들어, yield 문 ::"
 
-#: ../../reference/simple_stmts.rst:538
+#: ../../reference/simple_stmts.rst:540
 msgid ""
 "yield <expr>\n"
 "yield from <expr>"
@@ -713,11 +722,11 @@ msgstr ""
 "yield <expr>\n"
 "yield from <expr>"
 
-#: ../../reference/simple_stmts.rst:541
+#: ../../reference/simple_stmts.rst:543
 msgid "are equivalent to the yield expression statements ::"
 msgstr "은 다음과 같은 yield 표현식 문장들과 동등합니다 ::"
 
-#: ../../reference/simple_stmts.rst:543
+#: ../../reference/simple_stmts.rst:545
 msgid ""
 "(yield <expr>)\n"
 "(yield from <expr>)"
@@ -725,7 +734,7 @@ msgstr ""
 "(yield <expr>)\n"
 "(yield from <expr>)"
 
-#: ../../reference/simple_stmts.rst:546
+#: ../../reference/simple_stmts.rst:548
 msgid ""
 "Yield expressions and statements are only used when defining a "
 ":term:`generator` function, and are only used in the body of the "
@@ -737,17 +746,17 @@ msgstr ""
 " 사용됩니다. 함수 정의가 일반 함수 대신 제너레이터 함수를 만들도록 하는 데는 :keyword:`yield`\\를 사용하는 "
 "것만으로 충분합니다."
 
-#: ../../reference/simple_stmts.rst:551
+#: ../../reference/simple_stmts.rst:553
 msgid ""
 "For full details of :keyword:`yield` semantics, refer to the "
 ":ref:`yieldexpr` section."
 msgstr ":keyword:`yield` 의 뜻에 대한 전체 세부 사항들은 :ref:`yieldexpr` 섹션을 참고하면 됩니다."
 
-#: ../../reference/simple_stmts.rst:557
+#: ../../reference/simple_stmts.rst:559
 msgid "The :keyword:`!raise` statement"
 msgstr ":keyword:`!raise` 문"
 
-#: ../../reference/simple_stmts.rst:568
+#: ../../reference/simple_stmts.rst:570
 msgid ""
 "If no expressions are present, :keyword:`raise` re-raises the exception "
 "that is currently being handled, which is also known as the *active "
@@ -757,7 +766,7 @@ msgstr ""
 "표현식이 주어지지 않으면, :keyword:`raise` 는, *활성 예외*\\라고도 부르는, 현재 처리 중인 예외를 다시 "
 "일으킵니다. 현재 활성 예외가 없다면, 이것이 에러라는 것을 알리기 위해 :exc:`RuntimeError` 예외를 일으킵니다."
 
-#: ../../reference/simple_stmts.rst:573
+#: ../../reference/simple_stmts.rst:575
 msgid ""
 "Otherwise, :keyword:`raise` evaluates the first expression as the "
 "exception object.  It must be either a subclass or an instance of "
@@ -768,13 +777,13 @@ msgstr ""
 ":class:`BaseException` 의 서브 클래스나 인스턴스여야 합니다. 클래스면, 예외 인스턴스는 필요할 때 인자 없이 "
 "클래스의 인스턴스를 만들어서 사용됩니다."
 
-#: ../../reference/simple_stmts.rst:578
+#: ../../reference/simple_stmts.rst:580
 msgid ""
 "The :dfn:`type` of the exception is the exception instance's class, the "
 ":dfn:`value` is the instance itself."
 msgstr "예외의 형(:dfn:`type`)은 예외 인스턴스의 클래스고, 값(:dfn:`value`)은 인스턴스 자신입니다."
 
-#: ../../reference/simple_stmts.rst:583
+#: ../../reference/simple_stmts.rst:585
 msgid ""
 "A traceback object is normally created automatically when an exception is"
 " raised and attached to it as the :attr:`~BaseException.__traceback__` "
@@ -788,11 +797,11 @@ msgstr ""
 " 예외를 만들고 트레이스백을 직접 설정하는 것을 한 번에 할 수 있습니다 (같은 예외 인스턴스를 돌려주는데, 그 인자값으로 "
 "트레이스백을 설정해줍니다)::"
 
-#: ../../reference/simple_stmts.rst:589
+#: ../../reference/simple_stmts.rst:591
 msgid "raise Exception(\"foo occurred\").with_traceback(tracebackobj)"
 msgstr "raise Exception(\"foo occurred\").with_traceback(tracebackobj)"
 
-#: ../../reference/simple_stmts.rst:595
+#: ../../reference/simple_stmts.rst:597
 msgid ""
 "The ``from`` clause is used for exception chaining: if given, the second "
 "*expression* must be another exception class or instance. If the second "
@@ -809,7 +818,7 @@ msgstr ""
 "클래스가 인스턴스화되어 만들어진 예외 인스턴스가 발생한 예외에 :attr:`!__cause__` 어트리뷰트로 첨부됩니다. 발생한 "
 "예외가 처리되지 않으면, 두 예외가 모두 인쇄됩니다:"
 
-#: ../../reference/simple_stmts.rst:604
+#: ../../reference/simple_stmts.rst:606
 msgid ""
 ">>> try:\n"
 "...     print(1 / 0)\n"
@@ -847,7 +856,7 @@ msgstr ""
 "    raise RuntimeError(\"Something bad happened\") from exc\n"
 "RuntimeError: Something bad happened"
 
-#: ../../reference/simple_stmts.rst:624
+#: ../../reference/simple_stmts.rst:626
 msgid ""
 "A similar mechanism works implicitly if a new exception is raised when an"
 " exception is already being handled.  An exception may be handled when an"
@@ -859,7 +868,7 @@ msgstr ""
 ":keyword:`finally` 절 또는 :keyword:`with` 문이 사용될 때 예외가 처리될 수 있습니다. 앞선 예외가 새"
 " 예외의 :attr:`~BaseException.__context__` 어트리뷰트로 첨부됩니다:"
 
-#: ../../reference/simple_stmts.rst:630
+#: ../../reference/simple_stmts.rst:632
 msgid ""
 ">>> try:\n"
 "...     print(1 / 0)\n"
@@ -897,13 +906,13 @@ msgstr ""
 "    raise RuntimeError(\"Something bad happened\")\n"
 "RuntimeError: Something bad happened"
 
-#: ../../reference/simple_stmts.rst:650
+#: ../../reference/simple_stmts.rst:652
 msgid ""
 "Exception chaining can be explicitly suppressed by specifying "
 ":const:`None` in the ``from`` clause:"
 msgstr "예외 연쇄는 ``from`` 절에 :const:`None` 을 지정해서 명시적으로 중지시킬 수 있습니다:"
 
-#: ../../reference/simple_stmts.rst:653
+#: ../../reference/simple_stmts.rst:655
 msgid ""
 ">>> try:\n"
 "...     print(1 / 0)\n"
@@ -923,7 +932,7 @@ msgstr ""
 "  File \"<stdin>\", line 4, in <module>\n"
 "RuntimeError: Something bad happened"
 
-#: ../../reference/simple_stmts.rst:664
+#: ../../reference/simple_stmts.rst:666
 msgid ""
 "Additional information on exceptions can be found in section "
 ":ref:`exceptions`, and information about handling exceptions is in "
@@ -932,11 +941,11 @@ msgstr ""
 "예외에 대한 더 많은 정보를 :ref:`exceptions` 섹션에서 발견할 수 있고, 예외를 처리하는 것에 대한 정보는 "
 ":ref:`try` 섹션에 있습니다."
 
-#: ../../reference/simple_stmts.rst:667
+#: ../../reference/simple_stmts.rst:669
 msgid ":const:`None` is now permitted as ``Y`` in ``raise X from Y``."
 msgstr "이제 ``raise X from Y`` 에서 ``Y`` 로 :const:`None` 이 허락됩니다."
 
-#: ../../reference/simple_stmts.rst:670
+#: ../../reference/simple_stmts.rst:672
 msgid ""
 "Added the :attr:`~BaseException.__suppress_context__` attribute to "
 "suppress automatic display of the exception context."
@@ -944,7 +953,7 @@ msgstr ""
 "예외 문맥(exception context)의 자동 출력을 제한할 수 있는 "
 ":attr:`~BaseException.__suppress_context__` 어트리뷰트를 추가했습니다."
 
-#: ../../reference/simple_stmts.rst:673
+#: ../../reference/simple_stmts.rst:675
 msgid ""
 "If the traceback of the active exception is modified in an "
 ":keyword:`except` clause, a subsequent ``raise`` statement re-raises the "
@@ -952,11 +961,11 @@ msgid ""
 "raised with the traceback it had when it was caught."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:682
+#: ../../reference/simple_stmts.rst:684
 msgid "The :keyword:`!break` statement"
 msgstr ":keyword:`!break` 문"
 
-#: ../../reference/simple_stmts.rst:693
+#: ../../reference/simple_stmts.rst:695
 msgid ""
 ":keyword:`break` may only occur syntactically nested in a :keyword:`for` "
 "or :keyword:`while` loop, but not nested in a function or class "
@@ -965,19 +974,19 @@ msgstr ""
 ":keyword:`break` 는 문법적으로 :keyword:`for` 나 :keyword:`while` 루프에 중첩되어서만 나타날"
 " 수 있습니다. 하지만 그 루프 안의 함수나 클래스 정의에 중첩되지는 않습니다."
 
-#: ../../reference/simple_stmts.rst:700
+#: ../../reference/simple_stmts.rst:702
 msgid ""
 "It terminates the nearest enclosing loop, skipping the optional "
 ":keyword:`!else` clause if the loop has one."
 msgstr "가장 가까이서 둘러싸고 있는 루프를 종료하고, 그 루프가 :keyword:`!else` 절을 갖고 있다면 건너뜁니다(skip)."
 
-#: ../../reference/simple_stmts.rst:703
+#: ../../reference/simple_stmts.rst:705
 msgid ""
 "If a :keyword:`for` loop is terminated by :keyword:`break`, the loop "
 "control target keeps its current value."
 msgstr ":keyword:`for` 루프가 :keyword:`break` 로 종료되면, 루프 제어 타깃은 현재값을 유지합니다."
 
-#: ../../reference/simple_stmts.rst:708
+#: ../../reference/simple_stmts.rst:710
 msgid ""
 "When :keyword:`break` passes control out of a :keyword:`try` statement "
 "with a :keyword:`finally` clause, that :keyword:`!finally` clause is "
@@ -986,11 +995,11 @@ msgstr ""
 ":keyword:`break` 가 :keyword:`finally` 절을 가 :keyword:`try` 문에서 제어가 벗어나도록 "
 "만드는 경우, 루프로부터 진짜로 벗어나기 전에 그 :keyword:`!finally` 절이 실행됩니다."
 
-#: ../../reference/simple_stmts.rst:716
+#: ../../reference/simple_stmts.rst:718
 msgid "The :keyword:`!continue` statement"
 msgstr ":keyword:`!continue` 문"
 
-#: ../../reference/simple_stmts.rst:728
+#: ../../reference/simple_stmts.rst:730
 msgid ""
 ":keyword:`continue` may only occur syntactically nested in a "
 ":keyword:`for` or :keyword:`while` loop, but not nested in a function or "
@@ -1001,7 +1010,7 @@ msgstr ""
 "나타날 수 있습니다. 하지만 그 루프 안의 함수나 클래스 정의에 중첩되지는 않습니다. 가장 가까이서 둘러싸고 있는 루프가 다음 "
 "사이클로 넘어가도록 만듭니다."
 
-#: ../../reference/simple_stmts.rst:732
+#: ../../reference/simple_stmts.rst:734
 msgid ""
 "When :keyword:`continue` passes control out of a :keyword:`try` statement"
 " with a :keyword:`finally` clause, that :keyword:`!finally` clause is "
@@ -1010,27 +1019,27 @@ msgstr ""
 ":keyword:`continue` 가 :keyword:`finally` 절을 가진 :keyword:`try` 문에서 제어가 "
 "벗어나도록 만드는 경우, 다음 루트 사이클을 시작하기 전에 그 :keyword:`!finally` 절이 실행됩니다."
 
-#: ../../reference/simple_stmts.rst:741
+#: ../../reference/simple_stmts.rst:743
 msgid "The :keyword:`!import` statement"
 msgstr "임포트(:keyword:`!import`) 문"
 
-#: ../../reference/simple_stmts.rst:762
+#: ../../reference/simple_stmts.rst:764
 msgid ""
 "The basic import statement (no :keyword:`from` clause) is executed in two"
 " steps:"
 msgstr "(:keyword:`from` 절이 없는) 기본 임포트 문은 두 단계로 실행됩니다:"
 
-#: ../../reference/simple_stmts.rst:765
+#: ../../reference/simple_stmts.rst:767
 msgid "find a module, loading and initializing it if necessary"
 msgstr "모듈을 찾고, 로드하고, 필요하면 초기화합니다"
 
-#: ../../reference/simple_stmts.rst:766
+#: ../../reference/simple_stmts.rst:768
 msgid ""
 "define a name or names in the local namespace for the scope where the "
 ":keyword:`import` statement occurs."
 msgstr "임포트(:keyword:`import`) 문이 등장한 스코프의 지역 이름 공간에 이름이나 이름들을 정의합니다."
 
-#: ../../reference/simple_stmts.rst:769
+#: ../../reference/simple_stmts.rst:771
 msgid ""
 "When the statement contains multiple clauses (separated by commas) the "
 "two steps are carried out separately for each clause, just as though the "
@@ -1039,7 +1048,7 @@ msgstr ""
 "문장이 (쉼표로 분리된) 여러 개의 절을 포함하면, 마치 각 절이 별도의 임포트 문에 의해 분리된 것처럼, 두 단계는 절마다 별도로"
 " 수행됩니다."
 
-#: ../../reference/simple_stmts.rst:774
+#: ../../reference/simple_stmts.rst:776
 msgid ""
 "The details of the first step, finding and loading modules, are described"
 " in greater detail in the section on the :ref:`import system "
@@ -1054,19 +1063,19 @@ msgstr ""
 " 상세하게 설명하는데, 임포트될 수 있는 여러 종류의 패키지와 모듈들과 임포트 시스템을 커스터마이즈하는데 사용될 수 있는 모든 훅에"
 " 관해서도 설명하고 있습니다."
 
-#: ../../reference/simple_stmts.rst:782
+#: ../../reference/simple_stmts.rst:784
 msgid ""
 "If the requested module is retrieved successfully, it will be made "
 "available in the local namespace in one of three ways:"
 msgstr "요청된 모듈이 성공적으로 읽어 들여지면, 세 가지 중 한 방법으로 지역 이름 공간에 소개됩니다:"
 
-#: ../../reference/simple_stmts.rst:787
+#: ../../reference/simple_stmts.rst:789
 msgid ""
 "If the module name is followed by :keyword:`!as`, then the name following"
 " :keyword:`!as` is bound directly to the imported module."
 msgstr "모듈 이름 뒤에 :keyword:`!as` 가 오면, :keyword:`!as` 뒤에 오는 이름이 임포트된 모듈에 직접 연결됩니다."
 
-#: ../../reference/simple_stmts.rst:789
+#: ../../reference/simple_stmts.rst:791
 msgid ""
 "If no other name is specified, and the module being imported is a top "
 "level module, the module's name is bound in the local namespace as a "
@@ -1075,7 +1084,7 @@ msgstr ""
 "다른 이름이 지정되지 않고, 임포트되는 모듈이 최상위 모듈이면, 모듈의 이름이 임포트되는 모듈에 대한 참조로 지역 이름 공간에 "
 "연결됩니다."
 
-#: ../../reference/simple_stmts.rst:792
+#: ../../reference/simple_stmts.rst:794
 msgid ""
 "If the module being imported is *not* a top level module, then the name "
 "of the top level package that contains the module is bound in the local "
@@ -1086,35 +1095,35 @@ msgstr ""
 "공간에 연결됩니다. 임포트된 모듈은 직접적이기보다는 완전히 정규화된 이름(full qualified name)을 통해 액세스 되어야"
 " 합니다."
 
-#: ../../reference/simple_stmts.rst:802
+#: ../../reference/simple_stmts.rst:804
 msgid "The :keyword:`from` form uses a slightly more complex process:"
 msgstr ":keyword:`from` 형은 약간 더 복잡한 절차를 사용합니다:"
 
-#: ../../reference/simple_stmts.rst:804
+#: ../../reference/simple_stmts.rst:806
 msgid ""
 "find the module specified in the :keyword:`from` clause, loading and "
 "initializing it if necessary;"
 msgstr ":keyword:`from` 절에 지정된 모듈을 찾고, 로드하고, 필요하면 초기화합니다"
 
-#: ../../reference/simple_stmts.rst:806
+#: ../../reference/simple_stmts.rst:808
 msgid "for each of the identifiers specified in the :keyword:`import` clauses:"
 msgstr ":keyword:`import` 절에 지정된 식별자들 각각에 대해:"
 
-#: ../../reference/simple_stmts.rst:808
+#: ../../reference/simple_stmts.rst:810
 msgid "check if the imported module has an attribute by that name"
 msgstr "임포트된 모듈이 그 이름의 어트리뷰트를 가졌는지 검사합니다"
 
-#: ../../reference/simple_stmts.rst:809
+#: ../../reference/simple_stmts.rst:811
 msgid ""
 "if not, attempt to import a submodule with that name and then check the "
 "imported module again for that attribute"
 msgstr "없으면, 그 이름의 서브 모듈을 임포트하는 것을 시도한 다음 임포트된 모듈에서 그 어트리뷰트를 다시 검사합니다"
 
-#: ../../reference/simple_stmts.rst:811
+#: ../../reference/simple_stmts.rst:813
 msgid "if the attribute is not found, :exc:`ImportError` is raised."
 msgstr "어트리뷰트가 발견되지 않으면 :exc:`ImportError` 를 일으킵니다."
 
-#: ../../reference/simple_stmts.rst:812
+#: ../../reference/simple_stmts.rst:814
 msgid ""
 "otherwise, a reference to that value is stored in the local namespace, "
 "using the name in the :keyword:`!as` clause if it is present, otherwise "
@@ -1123,11 +1132,11 @@ msgstr ""
 "그렇지 않으면, 그 값에 대한 참조가 지역 이름 공간에 저장되는데, :keyword:`!as` 절이 존재하면 거기에서 지정된 이름을"
 " 사용하고, 그렇지 않으면 어트리뷰트 이름을 사용합니다"
 
-#: ../../reference/simple_stmts.rst:816
+#: ../../reference/simple_stmts.rst:818
 msgid "Examples::"
 msgstr "사용 예::"
 
-#: ../../reference/simple_stmts.rst:818
+#: ../../reference/simple_stmts.rst:820
 msgid ""
 "import foo                 # foo imported and bound locally\n"
 "import foo.bar.baz         # foo, foo.bar, and foo.bar.baz imported, foo "
@@ -1147,7 +1156,7 @@ msgstr ""
 "foo.bar.baz 가 baz 로 연결됩니다\n"
 "from foo import attr       # foo 가 임포트되고 foo.attr 이 attr 로 연결됩니다"
 
-#: ../../reference/simple_stmts.rst:826
+#: ../../reference/simple_stmts.rst:828
 msgid ""
 "If the list of identifiers is replaced by a star (``'*'``), all public "
 "names defined in the module are bound in the local namespace for the "
@@ -1156,7 +1165,7 @@ msgstr ""
 "식별자들의 목록을 스타 (``'*'``) 로 바꾸면, 모듈에 정의된 모든 공개 이름들이 :keyword:`import` 문이 등장한"
 " 스코프의 지역 이름 공간에 연결됩니다."
 
-#: ../../reference/simple_stmts.rst:832
+#: ../../reference/simple_stmts.rst:837
 msgid ""
 "The *public names* defined by a module are determined by checking the "
 "module's namespace for a variable named ``__all__``; if defined, it must "
@@ -1176,7 +1185,7 @@ msgstr ""
 "API 전체를 포함해야 합니다. 이것의 목적은 의도치 않게 API 일부가 아닌 항목들을 노출하는 것을 방지하는 것입니다 (가령 그 "
 "모듈이 임포트하고 사용하는 라이브러리 모듈)."
 
-#: ../../reference/simple_stmts.rst:842
+#: ../../reference/simple_stmts.rst:847
 msgid ""
 "The wild card form of import --- ``from module import *`` --- is only "
 "allowed at the module level.  Attempting to use it in class or function "
@@ -1185,7 +1194,7 @@ msgstr ""
 "임포트의 와일드카드 형태 --- ``from module import *`` --- 는 모듈 수준에서만 허락됩니다. 클래스나 함수 "
 "정의에서 사용하려는 시도는 :exc:`SyntaxError` 를 일으킵니다."
 
-#: ../../reference/simple_stmts.rst:849
+#: ../../reference/simple_stmts.rst:854
 msgid ""
 "When specifying what module to import you do not have to specify the "
 "absolute name of the module. When a module or package is contained within"
@@ -1211,7 +1220,7 @@ msgstr ""
 "``pkg.subpkg2.mod`` 를 임포트하게 됩니다. 상대 임포트에 대한 규격은 :ref:`relativeimports` 절에"
 " 들어있습니다."
 
-#: ../../reference/simple_stmts.rst:863
+#: ../../reference/simple_stmts.rst:868
 msgid ""
 ":func:`importlib.import_module` is provided to support applications that "
 "determine dynamically the modules to be loaded."
@@ -1219,7 +1228,7 @@ msgstr ""
 "로드할 모듈들을 동적으로 결정하는 응용 프로그램들을 지원하기 위해 :func:`importlib.import_module` 이 "
 "제공됩니다."
 
-#: ../../reference/simple_stmts.rst:866
+#: ../../reference/simple_stmts.rst:871
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``import`` with arguments "
 "``module``, ``filename``, ``sys.path``, ``sys.meta_path``, "
@@ -1228,11 +1237,11 @@ msgstr ""
 "인자 ``module``, ``filename``, ``sys.path``, ``sys.meta_path``, "
 "``sys.path_hooks``\\로 :ref:`감사 이벤트 <auditing>` ``import``\\를 발생시킵니다."
 
-#: ../../reference/simple_stmts.rst:871
+#: ../../reference/simple_stmts.rst:876
 msgid "Future statements"
 msgstr "퓨처 문"
 
-#: ../../reference/simple_stmts.rst:877
+#: ../../reference/simple_stmts.rst:882
 msgid ""
 "A :dfn:`future statement` is a directive to the compiler that a "
 "particular module should be compiled using syntax or semantics that will "
@@ -1242,7 +1251,7 @@ msgstr ""
 "퓨처 문(:dfn:`future statement`)은 컴파일러가 특정한 모듈을 특별한 문법이나 개념을 사용해서 컴파일하도록 만드는"
 " 지시어(directive)인데, 그 기능은 미래에 출시되는 파이썬에서 표준이 되는 것입니다."
 
-#: ../../reference/simple_stmts.rst:881
+#: ../../reference/simple_stmts.rst:886
 msgid ""
 "The future statement is intended to ease migration to future versions of "
 "Python that introduce incompatible changes to the language.  It allows "
@@ -1252,35 +1261,35 @@ msgstr ""
 "퓨처 문의 목적은 언어에 호환되지 않는 변경이 도입된 미래 버전의 파이썬으로 옮겨가는 것을 쉽게 만드는 것입니다. 그 기능이 표준이"
 " 되는 배포 이전에 모듈 단위로 새 기능을 사용할 수 있도록 만듭니다."
 
-#: ../../reference/simple_stmts.rst:893
+#: ../../reference/simple_stmts.rst:898
 msgid ""
 "A future statement must appear near the top of the module.  The only "
 "lines that can appear before a future statement are:"
 msgstr "퓨처 문은 모듈의 거의 처음에 나와야 합니다. 퓨처 문 앞에 나올 수 있는 줄들은:"
 
-#: ../../reference/simple_stmts.rst:896
+#: ../../reference/simple_stmts.rst:901
 msgid "the module docstring (if any),"
 msgstr "모듈 독스트링(docstring) (있다면),"
 
-#: ../../reference/simple_stmts.rst:897
+#: ../../reference/simple_stmts.rst:902
 msgid "comments,"
 msgstr "주석"
 
-#: ../../reference/simple_stmts.rst:898
+#: ../../reference/simple_stmts.rst:903
 msgid "blank lines, and"
 msgstr "빈 줄, 그리고"
 
-#: ../../reference/simple_stmts.rst:899
+#: ../../reference/simple_stmts.rst:904
 msgid "other future statements."
 msgstr "다른 퓨처 문들"
 
-#: ../../reference/simple_stmts.rst:901
+#: ../../reference/simple_stmts.rst:906
 msgid ""
 "The only feature that requires using the future statement is "
 "``annotations`` (see :pep:`563`)."
 msgstr "퓨처 문을 사용해야 하는 유일한 기능은 ``annotations`` 입니다 (:pep:`563`\\을 참조하십시오)."
 
-#: ../../reference/simple_stmts.rst:904
+#: ../../reference/simple_stmts.rst:909
 msgid ""
 "All historical features enabled by the future statement are still "
 "recognized by Python 3.  The list includes ``absolute_import``, "
@@ -1294,7 +1303,7 @@ msgstr ""
 "``print_function``, ``nested_scopes`` 및 ``with_statement`` 가 포함됩니다. 이것들은 "
 "잉여물인데 항상 활성화되고, 오직 과거 호환성을 위해 유지되고 있기 때문입니다."
 
-#: ../../reference/simple_stmts.rst:911
+#: ../../reference/simple_stmts.rst:916
 msgid ""
 "A future statement is recognized and treated specially at compile time: "
 "Changes to the semantics of core constructs are often implemented by "
@@ -1307,7 +1316,7 @@ msgstr ""
 "구현됩니다. 새 기능이 호환되지 않는 (새로운 예약어처럼) 새로운 문법을 도입하는 경우조차 가능한데, 이 경우는 컴파일러가 모듈을 "
 "다르게 파싱할 수 있습니다. 그런 결정들은 실행 시점으로 미뤄질 수 없습니다.."
 
-#: ../../reference/simple_stmts.rst:918
+#: ../../reference/simple_stmts.rst:923
 msgid ""
 "For any given release, the compiler knows which feature names have been "
 "defined, and raises a compile-time error if a future statement contains a"
@@ -1316,7 +1325,7 @@ msgstr ""
 "배포마다, 컴파일러는 어떤 기능 이름들이 정의되어 있는지 알고, 만약 퓨처 문이 알지 못하는 기능을 포함하고 있으면 컴파일 시점 "
 "에러를 일으킵니다."
 
-#: ../../reference/simple_stmts.rst:922
+#: ../../reference/simple_stmts.rst:927
 msgid ""
 "The direct runtime semantics are the same as for any import statement: "
 "there is a standard module :mod:`__future__`, described later, and it "
@@ -1326,27 +1335,27 @@ msgstr ""
 "직접적인 실행 시점의 개념은 다른 임포트 문들과 같습니다: 표준 모듈 :mod:`__future__`, 후에 설명합니다, 다 있고,"
 " 퓨처 문이 실행되는 시점에 일반적인 방법으로 임포트됩니다."
 
-#: ../../reference/simple_stmts.rst:926
+#: ../../reference/simple_stmts.rst:931
 msgid ""
 "The interesting runtime semantics depend on the specific feature enabled "
 "by the future statement."
 msgstr "흥미로운 실행 시점의 개념들은 퓨처 문에 의해 활성화되는 구체적인 기능들에 달려있습니다."
 
-#: ../../reference/simple_stmts.rst:929
+#: ../../reference/simple_stmts.rst:934
 msgid "Note that there is nothing special about the statement::"
 msgstr "이런 문장에는 아무것도 특별한 것이 없음에 주의해야 합니다::"
 
-#: ../../reference/simple_stmts.rst:931
+#: ../../reference/simple_stmts.rst:936
 msgid "import __future__ [as name]"
 msgstr "import __future__ [as name]"
 
-#: ../../reference/simple_stmts.rst:933
+#: ../../reference/simple_stmts.rst:938
 msgid ""
 "That is not a future statement; it's an ordinary import statement with no"
 " special semantics or syntax restrictions."
 msgstr "이것은 퓨처 문이 아닙니다; 아무런 특별한 개념이나 문법적인 제약이 없는 평범한 임포트 문일 뿐입니다."
 
-#: ../../reference/simple_stmts.rst:936
+#: ../../reference/simple_stmts.rst:941
 msgid ""
 "Code compiled by calls to the built-in functions :func:`exec` and "
 ":func:`compile` that occur in a module :mod:`!M` containing a future "
@@ -1359,7 +1368,7 @@ msgstr ""
 "호출해서 컴파일되는 코드는, 기본적으로는, 퓨처 문이 지정하는 새 문법과 개념을 사용합니다. 이것은 :func:`compile` 에"
 " 주는 생략 가능한 인자로 제어될 수 있습니다 --- 자세한 내용은 그 함수의 문서를 보십시오."
 
-#: ../../reference/simple_stmts.rst:942
+#: ../../reference/simple_stmts.rst:947
 msgid ""
 "A future statement typed at an interactive interpreter prompt will take "
 "effect for the rest of the interpreter session.  If an interpreter is "
@@ -1371,19 +1380,19 @@ msgstr ""
 ":option:`-i`, 실행할 스크립트 이름이 전달됩니다, 옵션으로 시작하고, 그 스크립트가 퓨처 문을 포함하면, 스크립트가 "
 "실행된 이후에 시작되는 대화형 세션에서도 효과를 유지합니다."
 
-#: ../../reference/simple_stmts.rst:950
+#: ../../reference/simple_stmts.rst:955
 msgid ":pep:`236` - Back to the __future__"
 msgstr ":pep:`236` - 백 투 더 __future__"
 
-#: ../../reference/simple_stmts.rst:951
+#: ../../reference/simple_stmts.rst:956
 msgid "The original proposal for the __future__ mechanism."
 msgstr "__future__ 메커니즘에 대한 최초의 제안."
 
-#: ../../reference/simple_stmts.rst:957
+#: ../../reference/simple_stmts.rst:962
 msgid "The :keyword:`!global` statement"
 msgstr ":keyword:`!global` 문"
 
-#: ../../reference/simple_stmts.rst:967
+#: ../../reference/simple_stmts.rst:972
 msgid ""
 "The :keyword:`global` statement causes the listed identifiers to be "
 "interpreted as globals. It would be impossible to assign to a global "
@@ -1393,14 +1402,23 @@ msgstr ""
 ":keyword:`global` 문은 나열된 식별자들이 전역으로 해석되도록 만듭니다. global 선언 없이 자유 변수들이 전역을 "
 "가리킬 수 있기는 하지만, :keyword:`!global` 없이 전역 변수에 값을 대입하는 것은 불가능합니다."
 
-#: ../../reference/simple_stmts.rst:972
+#: ../../reference/simple_stmts.rst:977
 msgid ""
-"The :keyword:`global` statement applies to the entire scope of a function"
-" or class body. A :exc:`SyntaxError` is raised if a variable is used or "
-"assigned to prior to its global declaration in the scope."
+"The :keyword:`!global` statement applies to the entire current scope "
+"(module, function body or class definition). A :exc:`SyntaxError` is "
+"raised if a variable is used or assigned to prior to its global "
+"declaration in the scope."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:981
+#: ../../reference/simple_stmts.rst:982
+msgid ""
+"At the module level, all variables are global, so a :keyword:`!global` "
+"statement has no effect. However, variables must still not be used or "
+"assigned to prior to their :keyword:`!global` declaration. This "
+"requirement is relaxed in the interactive prompt (:term:`REPL`)."
+msgstr ""
+
+#: ../../reference/simple_stmts.rst:993
 msgid ""
 "**Programmer's note:** :keyword:`global` is a directive to the parser.  "
 "It applies only to code parsed at the same time as the :keyword:`!global`"
@@ -1417,11 +1435,11 @@ msgstr ""
 "주지 않고, 그런 문자열에 포함된 코드 역시 함수 호출을 포함하는 코드에 있는 :keyword:`!global` 문에 영향을 받지 "
 "않습니다. :func:`eval` 과 :func:`compile` 함수들도 마찬가지입니다."
 
-#: ../../reference/simple_stmts.rst:993
+#: ../../reference/simple_stmts.rst:1005
 msgid "The :keyword:`!nonlocal` statement"
 msgstr ":keyword:`!nonlocal` 문"
 
-#: ../../reference/simple_stmts.rst:1001
+#: ../../reference/simple_stmts.rst:1013
 msgid ""
 "When the definition of a function or class is nested (enclosed) within "
 "the definitions of other functions, its nonlocal scopes are the local "
@@ -1433,51 +1451,51 @@ msgid ""
 " if there is no nonlocal scope, a :exc:`SyntaxError` is raised."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1010
+#: ../../reference/simple_stmts.rst:1022
 msgid ""
 "The :keyword:`nonlocal` statement applies to the entire scope of a "
 "function or class body. A :exc:`SyntaxError` is raised if a variable is "
 "used or assigned to prior to its nonlocal declaration in the scope."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1016
+#: ../../reference/simple_stmts.rst:1028
 msgid ":pep:`3104` - Access to Names in Outer Scopes"
 msgstr ":pep:`3104` - 바깥 스코프에 있는 이름들에 대한 액세스"
 
-#: ../../reference/simple_stmts.rst:1017
+#: ../../reference/simple_stmts.rst:1029
 msgid "The specification for the :keyword:`nonlocal` statement."
 msgstr ":keyword:`nonlocal` 문의 규격."
 
-#: ../../reference/simple_stmts.rst:1019
+#: ../../reference/simple_stmts.rst:1031
 msgid ""
 "**Programmer's note:** :keyword:`nonlocal` is a directive to the parser "
 "and applies only to code parsed along with it.  See the note for the "
 ":keyword:`global` statement."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1027
+#: ../../reference/simple_stmts.rst:1039
 msgid "The :keyword:`!type` statement"
 msgstr ":keyword:`!type` 문"
 
-#: ../../reference/simple_stmts.rst:1034
+#: ../../reference/simple_stmts.rst:1046
 msgid ""
 "The :keyword:`!type` statement declares a type alias, which is an "
 "instance of :class:`typing.TypeAliasType`."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1037
+#: ../../reference/simple_stmts.rst:1049
 msgid "For example, the following statement creates a type alias::"
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1039
+#: ../../reference/simple_stmts.rst:1051
 msgid "type Point = tuple[float, float]"
 msgstr "type Point = tuple[float, float]"
 
-#: ../../reference/simple_stmts.rst:1041
+#: ../../reference/simple_stmts.rst:1053
 msgid "This code is roughly equivalent to::"
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1043
+#: ../../reference/simple_stmts.rst:1055
 msgid ""
 "annotation-def VALUE_OF_Point():\n"
 "    return tuple[float, float]\n"
@@ -1487,14 +1505,14 @@ msgstr ""
 "    return tuple[float, float]\n"
 "Point = typing.TypeAliasType(\"Point\", VALUE_OF_Point())"
 
-#: ../../reference/simple_stmts.rst:1047
+#: ../../reference/simple_stmts.rst:1059
 msgid ""
 "``annotation-def`` indicates an :ref:`annotation scope <annotation-"
 "scopes>`, which behaves mostly like a function, but with several small "
 "differences."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1050
+#: ../../reference/simple_stmts.rst:1062
 msgid ""
 "The value of the type alias is evaluated in the annotation scope. It is "
 "not evaluated when the type alias is created, but only when the value is "
@@ -1503,21 +1521,21 @@ msgid ""
 "are not yet defined."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1056
+#: ../../reference/simple_stmts.rst:1068
 msgid ""
 "Type aliases may be made generic by adding a :ref:`type parameter list "
 "<type-params>` after the name. See :ref:`generic-type-aliases` for more."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1059
+#: ../../reference/simple_stmts.rst:1071
 msgid ":keyword:`!type` is a :ref:`soft keyword <soft-keywords>`."
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1065
+#: ../../reference/simple_stmts.rst:1077
 msgid ":pep:`695` - Type Parameter Syntax"
 msgstr ""
 
-#: ../../reference/simple_stmts.rst:1066
+#: ../../reference/simple_stmts.rst:1078
 msgid ""
 "Introduced the :keyword:`!type` statement and syntax for generic classes "
 "and functions."
@@ -1529,14 +1547,14 @@ msgstr "단순"
 
 #: ../../reference/simple_stmts.rst:8 ../../reference/simple_stmts.rst:39
 #: ../../reference/simple_stmts.rst:75 ../../reference/simple_stmts.rst:263
-#: ../../reference/simple_stmts.rst:322 ../../reference/simple_stmts.rst:382
-#: ../../reference/simple_stmts.rst:425 ../../reference/simple_stmts.rst:447
-#: ../../reference/simple_stmts.rst:460 ../../reference/simple_stmts.rst:486
-#: ../../reference/simple_stmts.rst:523 ../../reference/simple_stmts.rst:559
-#: ../../reference/simple_stmts.rst:684 ../../reference/simple_stmts.rst:718
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:873
-#: ../../reference/simple_stmts.rst:959 ../../reference/simple_stmts.rst:995
-#: ../../reference/simple_stmts.rst:1029
+#: ../../reference/simple_stmts.rst:322 ../../reference/simple_stmts.rst:384
+#: ../../reference/simple_stmts.rst:427 ../../reference/simple_stmts.rst:449
+#: ../../reference/simple_stmts.rst:462 ../../reference/simple_stmts.rst:488
+#: ../../reference/simple_stmts.rst:525 ../../reference/simple_stmts.rst:561
+#: ../../reference/simple_stmts.rst:686 ../../reference/simple_stmts.rst:720
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:878
+#: ../../reference/simple_stmts.rst:964 ../../reference/simple_stmts.rst:1007
+#: ../../reference/simple_stmts.rst:1041
 msgid "statement"
 msgstr "문장"
 
@@ -1546,11 +1564,11 @@ msgstr "표현식"
 
 #: ../../reference/simple_stmts.rst:39 ../../reference/simple_stmts.rst:42
 #: ../../reference/simple_stmts.rst:105 ../../reference/simple_stmts.rst:116
-#: ../../reference/simple_stmts.rst:196 ../../reference/simple_stmts.rst:447
+#: ../../reference/simple_stmts.rst:196 ../../reference/simple_stmts.rst:449
 msgid "list"
 msgstr "리스트"
 
-#: ../../reference/simple_stmts.rst:56 ../../reference/simple_stmts.rst:976
+#: ../../reference/simple_stmts.rst:56 ../../reference/simple_stmts.rst:988
 msgid "built-in function"
 msgstr "내장 함수"
 
@@ -1560,7 +1578,7 @@ msgstr "repr"
 
 #: ../../reference/simple_stmts.rst:56 ../../reference/simple_stmts.rst:75
 #: ../../reference/simple_stmts.rst:187 ../../reference/simple_stmts.rst:196
-#: ../../reference/simple_stmts.rst:207 ../../reference/simple_stmts.rst:581
+#: ../../reference/simple_stmts.rst:207 ../../reference/simple_stmts.rst:583
 msgid "object"
 msgstr "객체"
 
@@ -1615,14 +1633,14 @@ msgstr "대입문"
 msgid "assignment"
 msgstr "대입"
 
-#: ../../reference/simple_stmts.rst:75 ../../reference/simple_stmts.rst:743
-#: ../../reference/simple_stmts.rst:798 ../../reference/simple_stmts.rst:959
+#: ../../reference/simple_stmts.rst:75 ../../reference/simple_stmts.rst:745
+#: ../../reference/simple_stmts.rst:800 ../../reference/simple_stmts.rst:964
 msgid "binding"
 msgstr "연결"
 
-#: ../../reference/simple_stmts.rst:75 ../../reference/simple_stmts.rst:460
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:798
-#: ../../reference/simple_stmts.rst:959
+#: ../../reference/simple_stmts.rst:75 ../../reference/simple_stmts.rst:462
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:800
+#: ../../reference/simple_stmts.rst:964
 msgid "name"
 msgstr "이름"
 
@@ -1635,18 +1653,18 @@ msgid "mutable"
 msgstr "가변"
 
 #: ../../reference/simple_stmts.rst:75 ../../reference/simple_stmts.rst:159
-#: ../../reference/simple_stmts.rst:469
+#: ../../reference/simple_stmts.rst:471
 msgid "attribute"
 msgstr "어트리뷰트"
 
 #: ../../reference/simple_stmts.rst:105 ../../reference/simple_stmts.rst:116
-#: ../../reference/simple_stmts.rst:447 ../../reference/simple_stmts.rst:697
+#: ../../reference/simple_stmts.rst:449 ../../reference/simple_stmts.rst:699
 msgid "target"
 msgstr "타깃"
 
-#: ../../reference/simple_stmts.rst:116 ../../reference/simple_stmts.rst:382
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:959
-#: ../../reference/simple_stmts.rst:995
+#: ../../reference/simple_stmts.rst:116 ../../reference/simple_stmts.rst:384
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:964
+#: ../../reference/simple_stmts.rst:1007
 msgid ", (comma)"
 msgstr ", (쉼표)"
 
@@ -1654,7 +1672,7 @@ msgstr ", (쉼표)"
 msgid "in target list"
 msgstr "타깃 목록에서"
 
-#: ../../reference/simple_stmts.rst:116 ../../reference/simple_stmts.rst:824
+#: ../../reference/simple_stmts.rst:116 ../../reference/simple_stmts.rst:826
 msgid "* (asterisk)"
 msgstr "* (애스터리스크)"
 
@@ -1770,233 +1788,233 @@ msgstr ": (콜론)"
 msgid "annotated variable"
 msgstr "어노테이트된 변수"
 
-#: ../../reference/simple_stmts.rst:382
+#: ../../reference/simple_stmts.rst:384
 msgid "assert"
 msgstr "assert"
 
-#: ../../reference/simple_stmts.rst:382
+#: ../../reference/simple_stmts.rst:384
 msgid "debugging"
 msgstr "디버깅"
 
-#: ../../reference/simple_stmts.rst:382
+#: ../../reference/simple_stmts.rst:384
 msgid "assertions"
 msgstr "어서션"
 
-#: ../../reference/simple_stmts.rst:382
+#: ../../reference/simple_stmts.rst:384
 msgid "expression list"
 msgstr "표현식 목록"
 
-#: ../../reference/simple_stmts.rst:403
+#: ../../reference/simple_stmts.rst:405
 msgid "__debug__"
 msgstr "__debug__"
 
-#: ../../reference/simple_stmts.rst:403 ../../reference/simple_stmts.rst:523
-#: ../../reference/simple_stmts.rst:559 ../../reference/simple_stmts.rst:591
-#: ../../reference/simple_stmts.rst:743
+#: ../../reference/simple_stmts.rst:405 ../../reference/simple_stmts.rst:525
+#: ../../reference/simple_stmts.rst:561 ../../reference/simple_stmts.rst:593
+#: ../../reference/simple_stmts.rst:745
 msgid "exception"
 msgstr "예외"
 
-#: ../../reference/simple_stmts.rst:403
+#: ../../reference/simple_stmts.rst:405
 msgid "AssertionError"
 msgstr "AssertionError"
 
-#: ../../reference/simple_stmts.rst:425
+#: ../../reference/simple_stmts.rst:427
 msgid "pass"
 msgstr "pass"
 
-#: ../../reference/simple_stmts.rst:425
+#: ../../reference/simple_stmts.rst:427
 msgid "null"
 msgstr "널"
 
-#: ../../reference/simple_stmts.rst:425
+#: ../../reference/simple_stmts.rst:427
 msgid "operation"
 msgstr "연산"
 
-#: ../../reference/simple_stmts.rst:447
+#: ../../reference/simple_stmts.rst:449
 msgid "del"
 msgstr "del"
 
-#: ../../reference/simple_stmts.rst:447 ../../reference/simple_stmts.rst:469
+#: ../../reference/simple_stmts.rst:449 ../../reference/simple_stmts.rst:471
 msgid "deletion"
 msgstr "삭제"
 
-#: ../../reference/simple_stmts.rst:460 ../../reference/simple_stmts.rst:959
+#: ../../reference/simple_stmts.rst:462 ../../reference/simple_stmts.rst:964
 msgid "global"
 msgstr "전역"
 
-#: ../../reference/simple_stmts.rst:460
+#: ../../reference/simple_stmts.rst:462
 msgid "unbinding"
 msgstr "연결 해제"
 
-#: ../../reference/simple_stmts.rst:486
+#: ../../reference/simple_stmts.rst:488
 msgid "return"
 msgstr "return"
 
-#: ../../reference/simple_stmts.rst:486 ../../reference/simple_stmts.rst:523
+#: ../../reference/simple_stmts.rst:488 ../../reference/simple_stmts.rst:525
 msgid "function"
 msgstr "함수"
 
-#: ../../reference/simple_stmts.rst:486
+#: ../../reference/simple_stmts.rst:488
 msgid "definition"
 msgstr "정의"
 
-#: ../../reference/simple_stmts.rst:486
+#: ../../reference/simple_stmts.rst:488
 msgid "class"
 msgstr "클래스"
 
-#: ../../reference/simple_stmts.rst:502 ../../reference/simple_stmts.rst:697
-#: ../../reference/simple_stmts.rst:706 ../../reference/simple_stmts.rst:718
-#: ../../reference/simple_stmts.rst:743
+#: ../../reference/simple_stmts.rst:504 ../../reference/simple_stmts.rst:699
+#: ../../reference/simple_stmts.rst:708 ../../reference/simple_stmts.rst:720
+#: ../../reference/simple_stmts.rst:745
 msgid "keyword"
 msgstr "키워드"
 
-#: ../../reference/simple_stmts.rst:502 ../../reference/simple_stmts.rst:706
-#: ../../reference/simple_stmts.rst:718
+#: ../../reference/simple_stmts.rst:504 ../../reference/simple_stmts.rst:708
+#: ../../reference/simple_stmts.rst:720
 msgid "finally"
 msgstr "finally"
 
-#: ../../reference/simple_stmts.rst:523
+#: ../../reference/simple_stmts.rst:525
 msgid "yield"
 msgstr "yield"
 
-#: ../../reference/simple_stmts.rst:523
+#: ../../reference/simple_stmts.rst:525
 msgid "generator"
 msgstr "제너레이터"
 
-#: ../../reference/simple_stmts.rst:523
+#: ../../reference/simple_stmts.rst:525
 msgid "iterator"
 msgstr "이터레이터"
 
-#: ../../reference/simple_stmts.rst:523
+#: ../../reference/simple_stmts.rst:525
 msgid "StopIteration"
 msgstr "StopIteration"
 
-#: ../../reference/simple_stmts.rst:559
+#: ../../reference/simple_stmts.rst:561
 msgid "raise"
 msgstr "raise"
 
-#: ../../reference/simple_stmts.rst:559
+#: ../../reference/simple_stmts.rst:561
 msgid "raising"
 msgstr "예외 일으키기"
 
-#: ../../reference/simple_stmts.rst:559
+#: ../../reference/simple_stmts.rst:561
 msgid "__traceback__ (exception attribute)"
 msgstr "__traceback__ (예외 어트리뷰트)"
 
-#: ../../reference/simple_stmts.rst:581
+#: ../../reference/simple_stmts.rst:583
 msgid "traceback"
 msgstr "traceback"
 
-#: ../../reference/simple_stmts.rst:591
+#: ../../reference/simple_stmts.rst:593
 msgid "chaining"
 msgstr "연쇄"
 
-#: ../../reference/simple_stmts.rst:591
+#: ../../reference/simple_stmts.rst:593
 msgid "__cause__ (exception attribute)"
 msgstr "__cause__ (예외 어트리뷰트)"
 
-#: ../../reference/simple_stmts.rst:591
+#: ../../reference/simple_stmts.rst:593
 msgid "__context__ (exception attribute)"
 msgstr "__context__ (예외 어트리뷰트)"
 
-#: ../../reference/simple_stmts.rst:684
+#: ../../reference/simple_stmts.rst:686
 msgid "break"
 msgstr "break"
 
-#: ../../reference/simple_stmts.rst:684 ../../reference/simple_stmts.rst:718
+#: ../../reference/simple_stmts.rst:686 ../../reference/simple_stmts.rst:720
 msgid "for"
 msgstr "for"
 
-#: ../../reference/simple_stmts.rst:684 ../../reference/simple_stmts.rst:718
+#: ../../reference/simple_stmts.rst:686 ../../reference/simple_stmts.rst:720
 msgid "while"
 msgstr "while"
 
-#: ../../reference/simple_stmts.rst:684 ../../reference/simple_stmts.rst:718
+#: ../../reference/simple_stmts.rst:686 ../../reference/simple_stmts.rst:720
 msgid "loop"
 msgstr "루프"
 
-#: ../../reference/simple_stmts.rst:697
+#: ../../reference/simple_stmts.rst:699
 msgid "else"
 msgstr "else"
 
-#: ../../reference/simple_stmts.rst:697
+#: ../../reference/simple_stmts.rst:699
 msgid "loop control"
 msgstr "루프 제어"
 
-#: ../../reference/simple_stmts.rst:718
+#: ../../reference/simple_stmts.rst:720
 msgid "continue"
 msgstr "continue"
 
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:846
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:851
 msgid "import"
 msgstr "import"
 
-#: ../../reference/simple_stmts.rst:743
+#: ../../reference/simple_stmts.rst:745
 msgid "module"
 msgstr "모듈"
 
-#: ../../reference/simple_stmts.rst:743
+#: ../../reference/simple_stmts.rst:745
 msgid "importing"
 msgstr "임포트하기"
 
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:798
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:800
 msgid "from"
 msgstr "from"
 
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:785
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:787
 msgid "as"
 msgstr "as"
 
-#: ../../reference/simple_stmts.rst:743
+#: ../../reference/simple_stmts.rst:745
 msgid "ImportError"
 msgstr "ImportError"
 
-#: ../../reference/simple_stmts.rst:743 ../../reference/simple_stmts.rst:785
-#: ../../reference/simple_stmts.rst:798 ../../reference/simple_stmts.rst:824
+#: ../../reference/simple_stmts.rst:745 ../../reference/simple_stmts.rst:787
+#: ../../reference/simple_stmts.rst:800 ../../reference/simple_stmts.rst:826
 msgid "import statement"
 msgstr "임포트 문"
 
-#: ../../reference/simple_stmts.rst:830
+#: ../../reference/simple_stmts.rst:832
 msgid "__all__ (optional module attribute)"
 msgstr "__all__ (선택적 모듈 어트리뷰트)"
 
-#: ../../reference/simple_stmts.rst:846
+#: ../../reference/simple_stmts.rst:851
 msgid "relative"
 msgstr "상대적"
 
-#: ../../reference/simple_stmts.rst:873
+#: ../../reference/simple_stmts.rst:878
 msgid "future"
 msgstr "퓨처"
 
-#: ../../reference/simple_stmts.rst:873
+#: ../../reference/simple_stmts.rst:878
 msgid "__future__"
 msgstr "__future__"
 
-#: ../../reference/simple_stmts.rst:873
+#: ../../reference/simple_stmts.rst:878
 msgid "future statement"
 msgstr "퓨처 문"
 
-#: ../../reference/simple_stmts.rst:959 ../../reference/simple_stmts.rst:995
+#: ../../reference/simple_stmts.rst:964 ../../reference/simple_stmts.rst:1007
 msgid "identifier list"
 msgstr "식별자 목록"
 
-#: ../../reference/simple_stmts.rst:976
+#: ../../reference/simple_stmts.rst:988
 msgid "exec"
 msgstr "exec"
 
-#: ../../reference/simple_stmts.rst:976
+#: ../../reference/simple_stmts.rst:988
 msgid "eval"
 msgstr "eval"
 
-#: ../../reference/simple_stmts.rst:976
+#: ../../reference/simple_stmts.rst:988
 msgid "compile"
 msgstr "컴파일"
 
-#: ../../reference/simple_stmts.rst:995
+#: ../../reference/simple_stmts.rst:1007
 msgid "nonlocal"
 msgstr "nonlocal"
 
-#: ../../reference/simple_stmts.rst:1029
+#: ../../reference/simple_stmts.rst:1041
 msgid "type"
 msgstr "형"
 
@@ -2078,4 +2096,13 @@ msgstr "형"
 #~ "statement must not collide with pre-"
 #~ "existing bindings in the local scope."
 #~ msgstr ":keyword:`nonlocal` 문에 나열되는 이름들은 지역 스코프에 이미 존재하는 연결들과 겹치지 않아야 합니다."
+
+#~ msgid ""
+#~ "The :keyword:`global` statement applies to "
+#~ "the entire scope of a function or"
+#~ " class body. A :exc:`SyntaxError` is "
+#~ "raised if a variable is used or"
+#~ " assigned to prior to its global "
+#~ "declaration in the scope."
+#~ msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -179,11 +179,17 @@ msgstr ""
 "액세스할 수 있도록 하지만, 별도의 복사본을 만들지는 않습니다. 유닉스에서, 라이브러리와 링크하는 것은 ``from spam "
 "import *``\\와 더 비슷합니다; 별도의 복사본을 만듭니다."
 
-#: ../../extending/windows.rst:103
+#: ../../extending/windows.rst:101
+msgid ""
+"Turn off the implicit, ``#pragma``-based linkage with the Python library,"
+" performed inside CPython header files."
+msgstr ""
+
+#: ../../extending/windows.rst:110
 msgid "Using DLLs in Practice"
 msgstr "DLL을 실제로 사용하기"
 
-#: ../../extending/windows.rst:108
+#: ../../extending/windows.rst:115
 msgid ""
 "Windows Python is built in Microsoft Visual C++; using other compilers "
 "may or may not work.  The rest of this section is MSVC++ specific."
@@ -191,24 +197,80 @@ msgstr ""
 "윈도우 파이썬은 Microsoft Visual C++로 빌드되었습니다; 다른 컴파일러를 사용하는 것은 동작할 수도 있고 그렇지 않을"
 " 수도 있습니다. 이 섹션의 나머지 부분은 MSVC++에만 해당합니다."
 
-#: ../../extending/windows.rst:111
+#: ../../extending/windows.rst:118
 msgid ""
-"When creating DLLs in Windows, you must pass :file:`pythonXY.lib` to the "
-"linker. To build two DLLs, spam and ni (which uses C functions found in "
-"spam), you could use these commands::"
+"When creating DLLs in Windows, you can use the CPython library in two "
+"ways:"
+msgstr ""
+
+#: ../../extending/windows.rst:120
+msgid ""
+"By default, inclusion of :file:`PC/pyconfig.h` directly or via "
+":file:`Python.h` triggers an implicit, configure-aware link with the "
+"library.  The header file chooses :file:`pythonXY_d.lib` for Debug, "
+":file:`pythonXY.lib` for Release, and :file:`pythonX.lib` for Release "
+"with the :ref:`Limited API <stable-application-binary-interface>` "
+"enabled."
+msgstr ""
+
+#: ../../extending/windows.rst:126 ../../extending/windows.rst:144
+#, fuzzy
+msgid ""
+"To build two DLLs, spam and ni (which uses C functions found in spam), "
+"you could use these commands::"
 msgstr ""
 "윈도우에서 DLL을 만들 때, :file:`pythonXY.lib`\\를 링커에 전달해야 합니다. 두 개의 DLL, spam과 "
 "(spam에 있는 C 함수를 사용하는) ni를 빌드하려면, 다음 명령을 사용할 수 있습니다::"
 
-#: ../../extending/windows.rst:115
+#: ../../extending/windows.rst:129
+#, fuzzy
 msgid ""
-"cl /LD /I/python/include spam.c ../libs/pythonXY.lib\n"
-"cl /LD /I/python/include ni.c spam.lib ../libs/pythonXY.lib"
+"cl /LD /I/python/include spam.c\n"
+"cl /LD /I/python/include ni.c spam.lib"
 msgstr ""
 "cl /LD /I/python/include spam.c ../libs/pythonXY.lib\n"
 "cl /LD /I/python/include ni.c spam.lib ../libs/pythonXY.lib"
 
-#: ../../extending/windows.rst:118
+#: ../../extending/windows.rst:132
+#, fuzzy
+msgid ""
+"The first command created three files: :file:`spam.obj`, :file:`spam.dll`"
+" and :file:`spam.lib`.  :file:`Spam.dll` does not contain any Python "
+"functions (such as :c:func:`PyArg_ParseTuple`), but it does know how to "
+"find the Python code thanks to the implicitly linked "
+":file:`pythonXY.lib`."
+msgstr ""
+"첫 번째 명령은 세 개의 파일을 만들었습니다: :file:`spam.obj`, :file:`spam.dll` 및 "
+":file:`spam.lib`. :file:`Spam.dll`\\은 파이썬 함수(가령 "
+":c:func:`PyArg_ParseTuple`)를 포함하지 않지만, :file:`pythonXY.lib` 덕분에 파이썬 코드를 "
+"찾는 방법을 알고 있습니다."
+
+#: ../../extending/windows.rst:137 ../../extending/windows.rst:155
+msgid ""
+"The second command created :file:`ni.dll` (and :file:`.obj` and "
+":file:`.lib`), which knows how to find the necessary functions from spam,"
+" and also from the Python executable."
+msgstr ""
+"두 번째 명령은 :file:`ni.dll`\\(그리고 :file:`.obj`\\와 :file:`.lib`)을 만들었습니다. "
+"spam과 파이썬 실행 파일에서 필요한 함수를 찾는 방법을 알고 있습니다."
+
+#: ../../extending/windows.rst:141
+msgid ""
+"Manually by defining :c:macro:`Py_NO_LINK_LIB` macro before including "
+":file:`Python.h`. You must pass :file:`pythonXY.lib` to the linker."
+msgstr ""
+
+#: ../../extending/windows.rst:147
+#, fuzzy
+msgid ""
+"cl /LD /DPy_NO_LINK_LIB /I/python/include spam.c ../libs/pythonXY.lib\n"
+"cl /LD /DPy_NO_LINK_LIB /I/python/include ni.c spam.lib "
+"../libs/pythonXY.lib"
+msgstr ""
+"cl /LD /I/python/include spam.c ../libs/pythonXY.lib\n"
+"cl /LD /I/python/include ni.c spam.lib ../libs/pythonXY.lib"
+
+#: ../../extending/windows.rst:150
 msgid ""
 "The first command created three files: :file:`spam.obj`, :file:`spam.dll`"
 " and :file:`spam.lib`.  :file:`Spam.dll` does not contain any Python "
@@ -220,16 +282,7 @@ msgstr ""
 ":c:func:`PyArg_ParseTuple`)를 포함하지 않지만, :file:`pythonXY.lib` 덕분에 파이썬 코드를 "
 "찾는 방법을 알고 있습니다."
 
-#: ../../extending/windows.rst:123
-msgid ""
-"The second command created :file:`ni.dll` (and :file:`.obj` and "
-":file:`.lib`), which knows how to find the necessary functions from spam,"
-" and also from the Python executable."
-msgstr ""
-"두 번째 명령은 :file:`ni.dll`\\(그리고 :file:`.obj`\\와 :file:`.lib`)을 만들었습니다. "
-"spam과 파이썬 실행 파일에서 필요한 함수를 찾는 방법을 알고 있습니다."
-
-#: ../../extending/windows.rst:127
+#: ../../extending/windows.rst:159
 msgid ""
 "Not every identifier is exported to the lookup table.  If you want any "
 "other modules (including Python) to be able to see your identifiers, you "
@@ -241,7 +294,7 @@ msgstr ""
 "_declspec(dllexport) initspam(void)``\\나 ``PyObject _declspec(dllexport) "
 "*NiGetSpamData(void)``\\처럼 ``_declspec(dllexport)``\\라고 선언해야 합니다."
 
-#: ../../extending/windows.rst:132
+#: ../../extending/windows.rst:164
 #, python-brace-format
 msgid ""
 "Developer Studio will throw in a lot of import libraries that you do not "

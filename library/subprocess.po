@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -54,8 +54,8 @@ msgstr ":pep:`324` -- subprocess 모듈을 제안하는 PEP"
 #: ../../includes/wasm-mobile-notavail.rst:3 ../../library/subprocess.rst:598
 #: ../../library/subprocess.rst:605 ../../library/subprocess.rst:615
 #: ../../library/subprocess.rst:624 ../../library/subprocess.rst:633
-#: ../../library/subprocess.rst:639 ../../library/subprocess.rst:1560
-#: ../../library/subprocess.rst:1582
+#: ../../library/subprocess.rst:639 ../../library/subprocess.rst:1494
+#: ../../library/subprocess.rst:1516
 msgid "Availability"
 msgstr "가용성"
 
@@ -480,8 +480,8 @@ msgstr ""
 "텍스트 모드를 사용하지 않으면, *stdin*, *stdout* 및 *stderr*\\이 바이너리 스트림으로 열립니다. 인코딩이나 "
 "줄 종료 변환이 수행되지 않습니다."
 
-#: ../../library/subprocess.rst:314 ../../library/subprocess.rst:1569
-#: ../../library/subprocess.rst:1587
+#: ../../library/subprocess.rst:314 ../../library/subprocess.rst:1503
+#: ../../library/subprocess.rst:1521
 msgid "Added the *encoding* and *errors* parameters."
 msgstr "*encoding*\\과 *errors* 매개 변수를 추가했습니다."
 
@@ -1046,10 +1046,11 @@ msgstr ""
 "바이트열로 일 수 있으며, 이는 :data:`os.environ`\\이나 :data:`os.environb`\\와 유사합니다."
 
 #: ../../library/subprocess.rst:650
+#, fuzzy
 msgid ""
 "If specified, *env* must provide any variables required for the program "
 "to execute.  On Windows, in order to run a `side-by-side assembly`_ the "
-"specified *env* **must** include a valid :envvar:`SystemRoot`."
+"specified *env* **must** include a valid ``%SystemRoot%``."
 msgstr ""
 "지정되면, *env*\\는 프로그램 실행에 필요한 모든 변수를 제공해야 합니다. 윈도우에서, `side-by-side "
 "assembly`_\\를 실행하려면 지정된 *env*\\에 유효한 :envvar:`SystemRoot`\\가 **반드시** "
@@ -2215,64 +2216,15 @@ msgstr ""
 "Popen([\"/bin/mycmd\", \"myarg\"], env={\"PATH\": \"/usr/bin\"})"
 
 #: ../../library/subprocess.rst:1447
-msgid "Replacing :func:`os.popen`, :func:`os.popen2`, :func:`os.popen3`"
-msgstr ":func:`os.popen`, :func:`os.popen2`, :func:`os.popen3` 교체하기"
+#, fuzzy
+msgid "Replacing :func:`os.popen`"
+msgstr ":func:`os.system` 교체하기"
 
-#: ../../library/subprocess.rst:1451
-msgid ""
-"(child_stdin, child_stdout) = os.popen2(cmd, mode, bufsize)\n"
-"==>\n"
-"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
-"(child_stdin, child_stdout) = (p.stdin, p.stdout)"
-msgstr ""
-"(child_stdin, child_stdout) = os.popen2(cmd, mode, bufsize)\n"
-"==>\n"
-"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
-"(child_stdin, child_stdout) = (p.stdin, p.stdout)"
-
-#: ../../library/subprocess.rst:1459
-msgid ""
-"(child_stdin,\n"
-" child_stdout,\n"
-" child_stderr) = os.popen3(cmd, mode, bufsize)\n"
-"==>\n"
-"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)\n"
-"(child_stdin,\n"
-" child_stdout,\n"
-" child_stderr) = (p.stdin, p.stdout, p.stderr)"
-msgstr ""
-"(child_stdin,\n"
-" child_stdout,\n"
-" child_stderr) = os.popen3(cmd, mode, bufsize)\n"
-"==>\n"
-"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)\n"
-"(child_stdin,\n"
-" child_stdout,\n"
-" child_stderr) = (p.stdin, p.stdout, p.stderr)"
-
-#: ../../library/subprocess.rst:1471
-msgid ""
-"(child_stdin, child_stdout_and_stderr) = os.popen4(cmd, mode, bufsize)\n"
-"==>\n"
-"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)\n"
-"(child_stdin, child_stdout_and_stderr) = (p.stdin, p.stdout)"
-msgstr ""
-"(child_stdin, child_stdout_and_stderr) = os.popen4(cmd, mode, bufsize)\n"
-"==>\n"
-"p = Popen(cmd, shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)\n"
-"(child_stdin, child_stdout_and_stderr) = (p.stdin, p.stdout)"
-
-#: ../../library/subprocess.rst:1477
+#: ../../library/subprocess.rst:1449
 msgid "Return code handling translates as follows::"
 msgstr "반환 코드 처리는 다음과 같이 번역됩니다::"
 
-#: ../../library/subprocess.rst:1479
+#: ../../library/subprocess.rst:1451
 msgid ""
 "pipe = os.popen(cmd, 'w')\n"
 "...\n"
@@ -2298,83 +2250,11 @@ msgstr ""
 "if process.wait() != 0:\n"
 "    print(\"There were some errors\")"
 
-#: ../../library/subprocess.rst:1493
-msgid "Replacing functions from the :mod:`!popen2` module"
-msgstr ":mod:`!popen2` 모듈의 함수 교체하기"
-
-#: ../../library/subprocess.rst:1497
-msgid ""
-"If the cmd argument to popen2 functions is a string, the command is "
-"executed through /bin/sh.  If it is a list, the command is directly "
-"executed."
-msgstr "popen2 함수에 대한 cmd 인자가 문자열이면, 명령은 /bin/sh 를 통해 실행됩니다. 리스트면, 명령이 직접 실행됩니다."
-
-#: ../../library/subprocess.rst:1502
-msgid ""
-"(child_stdout, child_stdin) = popen2.popen2(\"somestring\", bufsize, "
-"mode)\n"
-"==>\n"
-"p = Popen(\"somestring\", shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
-"(child_stdout, child_stdin) = (p.stdout, p.stdin)"
-msgstr ""
-"(child_stdout, child_stdin) = popen2.popen2(\"somestring\", bufsize, "
-"mode)\n"
-"==>\n"
-"p = Popen(\"somestring\", shell=True, bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
-"(child_stdout, child_stdin) = (p.stdout, p.stdin)"
-
-#: ../../library/subprocess.rst:1510
-msgid ""
-"(child_stdout, child_stdin) = popen2.popen2([\"mycmd\", \"myarg\"], "
-"bufsize, mode)\n"
-"==>\n"
-"p = Popen([\"mycmd\", \"myarg\"], bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
-"(child_stdout, child_stdin) = (p.stdout, p.stdin)"
-msgstr ""
-"(child_stdout, child_stdin) = popen2.popen2([\"mycmd\", \"myarg\"], "
-"bufsize, mode)\n"
-"==>\n"
-"p = Popen([\"mycmd\", \"myarg\"], bufsize=bufsize,\n"
-"          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
-"(child_stdout, child_stdin) = (p.stdout, p.stdin)"
-
-#: ../../library/subprocess.rst:1516
-msgid ""
-":class:`popen2.Popen3` and :class:`popen2.Popen4` basically work as "
-":class:`subprocess.Popen`, except that:"
-msgstr ""
-":class:`popen2.Popen3`\\과 :class:`popen2.Popen4`\\는 다음과 같은 점을 제외하고는 기본적으로"
-" :class:`subprocess.Popen`\\처럼 작동합니다:"
-
-#: ../../library/subprocess.rst:1519
-msgid ":class:`Popen` raises an exception if the execution fails."
-msgstr "실행이 실패하면 :class:`Popen`\\은 예외를 발생시킵니다."
-
-#: ../../library/subprocess.rst:1521
-msgid "The *capturestderr* argument is replaced with the *stderr* argument."
-msgstr "*capturestderr* 인자는 *stderr* 인자로 대체됩니다."
-
-#: ../../library/subprocess.rst:1523
-msgid "``stdin=PIPE`` and ``stdout=PIPE`` must be specified."
-msgstr "``stdin=PIPE``\\와 ``stdout=PIPE``\\를 반드시 지정해야 합니다."
-
-#: ../../library/subprocess.rst:1525
-msgid ""
-"popen2 closes all file descriptors by default, but you have to specify "
-"``close_fds=True`` with :class:`Popen` to guarantee this behavior on all "
-"platforms or past Python versions."
-msgstr ""
-"popen2는 기본적으로 모든 파일 기술자를 닫지만, 모든 플랫폼이나 이전 파이썬 버전에서 이 동작을 보장하려면 "
-":class:`Popen`\\에 ``close_fds=True``\\를 지정해야 합니다."
-
-#: ../../library/subprocess.rst:1531
+#: ../../library/subprocess.rst:1465
 msgid "Legacy Shell Invocation Functions"
 msgstr "레거시 셸 호출 함수"
 
-#: ../../library/subprocess.rst:1533
+#: ../../library/subprocess.rst:1467
 msgid ""
 "This module also provides the following legacy functions from the 2.x "
 "``commands`` module. These operations implicitly invoke the system shell "
@@ -2384,28 +2264,29 @@ msgstr ""
 "이 모듈은 2.x ``commands`` 모듈의 다음과 같은 레거시 함수도 제공합니다. 이러한 연산은 시스템 셸을 묵시적으로 "
 "호출하고 보안과 예외 처리 일관성과 관련하여 위에서 설명한 보증 중 어느 것도 이러한 함수에 유효하지 않습니다."
 
-#: ../../library/subprocess.rst:1540
+#: ../../library/subprocess.rst:1474
 msgid "Return ``(exitcode, output)`` of executing *cmd* in a shell."
 msgstr "셸에서 *cmd*\\를 실행한 후 ``(exitcode, output)``\\을 반환합니다."
 
-#: ../../library/subprocess.rst:1542
+#: ../../library/subprocess.rst:1476
+#, fuzzy
 msgid ""
-"Execute the string *cmd* in a shell with :meth:`Popen.check_output` and "
-"return a 2-tuple ``(exitcode, output)``. *encoding* and *errors* are used"
-" to decode output; see the notes on :ref:`frequently-used-arguments` for "
-"more details."
+"Execute the string *cmd* in a shell with :func:`check_output` and return "
+"a 2-tuple ``(exitcode, output)``. *encoding* and *errors* are used to "
+"decode output; see the notes on :ref:`frequently-used-arguments` for more"
+" details."
 msgstr ""
 ":meth:`Popen.check_output`\\으로 셸에서 문자열 *cmd*\\를 실행하고 2-튜플 ``(exitcode, "
 "output)``\\을 반환합니다. 출력을 디코딩하는 데 *encoding*\\과 *errors*\\가 사용됩니다; 자세한 내용은 "
 ":ref:`frequently-used-arguments`\\에 대한 참고 사항을 참조하십시오."
 
-#: ../../library/subprocess.rst:1547
+#: ../../library/subprocess.rst:1481
 msgid ""
 "A trailing newline is stripped from the output. The exit code for the "
 "command can be interpreted as the return code of subprocess.  Example::"
 msgstr "후행 줄 바꿈이 출력에서 제거됩니다. 명령의 종료 코드는 서브 프로세스의 반환 코드로 해석될 수 있습니다. 예::"
 
-#: ../../library/subprocess.rst:1551
+#: ../../library/subprocess.rst:1485
 msgid ""
 ">>> subprocess.getstatusoutput('ls /bin/ls')\n"
 "(0, '/bin/ls')\n"
@@ -2425,11 +2306,11 @@ msgstr ""
 ">>> subprocess.getstatusoutput('/bin/kill $$')\n"
 "(-15, '')"
 
-#: ../../library/subprocess.rst:1562
+#: ../../library/subprocess.rst:1496
 msgid "Windows support was added."
 msgstr "윈도우 지원이 추가되었습니다."
 
-#: ../../library/subprocess.rst:1565
+#: ../../library/subprocess.rst:1499
 msgid ""
 "The function now returns (exitcode, output) instead of (status, output) "
 "as it did in Python 3.3.3 and earlier.  exitcode has the same value as "
@@ -2438,11 +2319,11 @@ msgstr ""
 "이 함수는 이제 파이썬 3.3.3과 이전 버전에서와같이 (status, output) 대신 (exitcode, output) 을 "
 "반환합니다. exitcode는 :attr:`~Popen.returncode`\\와 같은 값을 갖습니다."
 
-#: ../../library/subprocess.rst:1574
+#: ../../library/subprocess.rst:1508
 msgid "Return output (stdout and stderr) of executing *cmd* in a shell."
 msgstr "셸에서 *cmd*\\를 실행한 출력(stdout과 stderr)을 반환합니다."
 
-#: ../../library/subprocess.rst:1576
+#: ../../library/subprocess.rst:1510
 msgid ""
 "Like :func:`getstatusoutput`, except the exit code is ignored and the "
 "return value is a string containing the command's output.  Example::"
@@ -2450,7 +2331,7 @@ msgstr ""
 "종료 코드를 무시하고 반환 값은 명령의 출력을 포함하는 문자열인 것을 제외하고, :func:`getstatusoutput` 과 "
 "유사합니다. 예::"
 
-#: ../../library/subprocess.rst:1579
+#: ../../library/subprocess.rst:1513
 msgid ""
 ">>> subprocess.getoutput('ls /bin/ls')\n"
 "'/bin/ls'"
@@ -2458,19 +2339,46 @@ msgstr ""
 ">>> subprocess.getoutput('ls /bin/ls')\n"
 "'/bin/ls'"
 
-#: ../../library/subprocess.rst:1584
+#: ../../library/subprocess.rst:1518
 msgid "Windows support added"
 msgstr "윈도우 지원이 추가되었습니다"
 
-#: ../../library/subprocess.rst:1592
+#: ../../library/subprocess.rst:1526
 msgid "Notes"
 msgstr "노트"
 
-#: ../../library/subprocess.rst:1597
+#: ../../library/subprocess.rst:1531
+msgid "Timeout Behavior"
+msgstr ""
+
+#: ../../library/subprocess.rst:1533
+msgid ""
+"When using the ``timeout`` parameter in functions like :func:`run`, "
+":meth:`Popen.wait`, or :meth:`Popen.communicate`, users should be aware "
+"of the following behaviors:"
+msgstr ""
+
+#: ../../library/subprocess.rst:1537
+msgid ""
+"**Process Creation Delay**: The initial process creation itself cannot be"
+" interrupted on many platform APIs. This means that even when specifying "
+"a timeout, you are not guaranteed to see a timeout exception until at "
+"least after however long process creation takes."
+msgstr ""
+
+#: ../../library/subprocess.rst:1542
+msgid ""
+"**Extremely Small Timeout Values**: Setting very small timeout values "
+"(such as a few milliseconds) may result in almost immediate "
+":exc:`TimeoutExpired` exceptions because process creation and system "
+"scheduling inherently require time."
+msgstr ""
+
+#: ../../library/subprocess.rst:1549
 msgid "Converting an argument sequence to a string on Windows"
 msgstr "윈도우에서 인자 시퀀스를 문자열로 변환하기"
 
-#: ../../library/subprocess.rst:1599
+#: ../../library/subprocess.rst:1551
 msgid ""
 "On Windows, an *args* sequence is converted to a string that can be "
 "parsed using the following rules (which correspond to the rules used by "
@@ -2479,30 +2387,30 @@ msgstr ""
 "윈도우에서, *args* 시퀀스는 다음 규칙을 사용하여 구문 분석할 수 있는 문자열로 변환됩니다 (MS C 런타임에서 사용하는 "
 "규칙에 해당합니다):"
 
-#: ../../library/subprocess.rst:1603
+#: ../../library/subprocess.rst:1555
 msgid "Arguments are delimited by white space, which is either a space or a tab."
 msgstr "인자는 스페이스나 탭인 공백으로 구분됩니다."
 
-#: ../../library/subprocess.rst:1606
+#: ../../library/subprocess.rst:1558
 msgid ""
 "A string surrounded by double quotation marks is interpreted as a single "
 "argument, regardless of white space contained within.  A quoted string "
 "can be embedded in an argument."
 msgstr "큰따옴표로 묶인 문자열은 포함된 공백과 관계없이 단일 인자로 해석됩니다. 인용된 문자열을 인자에 포함할 수 있습니다."
 
-#: ../../library/subprocess.rst:1611
+#: ../../library/subprocess.rst:1563
 msgid ""
 "A double quotation mark preceded by a backslash is interpreted as a "
 "literal double quotation mark."
 msgstr "백 슬래시가 앞에 붙는 큰따옴표는 리터럴 큰따옴표로 해석됩니다."
 
-#: ../../library/subprocess.rst:1614
+#: ../../library/subprocess.rst:1566
 msgid ""
 "Backslashes are interpreted literally, unless they immediately precede a "
 "double quotation mark."
 msgstr "역 슬래시는 큰따옴표 바로 앞에 오지 않는 한 문자 그대로 해석됩니다."
 
-#: ../../library/subprocess.rst:1617
+#: ../../library/subprocess.rst:1569
 msgid ""
 "If backslashes immediately precede a double quotation mark, every pair of"
 " backslashes is interpreted as a literal backslash.  If the number of "
@@ -2512,71 +2420,48 @@ msgstr ""
 "역 슬래시가 큰따옴표 바로 앞에 있으면, 모든 역 슬래시 쌍은 리터럴 역 슬래시로 해석됩니다. 역 슬래시 수가 홀수이면, 규칙 3에"
 " 설명된 대로 마지막 역 슬래시는 다음 큰따옴표를 이스케이프 합니다."
 
-#: ../../library/subprocess.rst:1626
+#: ../../library/subprocess.rst:1578
 msgid ":mod:`shlex`"
 msgstr ":mod:`shlex`"
 
-#: ../../library/subprocess.rst:1627
+#: ../../library/subprocess.rst:1579
 msgid "Module which provides function to parse and escape command lines."
 msgstr "명령 줄을 구문 분석하고 이스케이프 하는 함수를 제공하는 모듈."
 
-#: ../../library/subprocess.rst:1634
-msgid "Disabling use of ``vfork()`` or ``posix_spawn()``"
-msgstr ""
+#: ../../library/subprocess.rst:1585
+#, fuzzy
+msgid "Disable use of ``posix_spawn()``"
+msgstr "``_USE_POSIX_SPAWN``"
 
-#: ../../library/subprocess.rst:1636
+#: ../../library/subprocess.rst:1587
 msgid ""
 "On Linux, :mod:`subprocess` defaults to using the ``vfork()`` system call"
 " internally when it is safe to do so rather than ``fork()``. This greatly"
 " improves performance."
 msgstr ""
 
-#: ../../library/subprocess.rst:1640
-msgid ""
-"If you ever encounter a presumed highly unusual situation where you need "
-"to prevent ``vfork()`` from being used by Python, you can set the "
-":const:`subprocess._USE_VFORK` attribute to a false value."
-msgstr ""
-
-#: ../../library/subprocess.rst:1646
-msgid "subprocess._USE_VFORK = False  # See CPython issue gh-NNNNNN."
-msgstr "subprocess._USE_VFORK = False  # See CPython issue gh-NNNNNN."
-
-#: ../../library/subprocess.rst:1648
-msgid ""
-"Setting this has no impact on use of ``posix_spawn()`` which could use "
-"``vfork()`` internally within its libc implementation.  There is a "
-"similar :const:`subprocess._USE_POSIX_SPAWN` attribute if you need to "
-"prevent use of that."
-msgstr ""
-
-#: ../../library/subprocess.rst:1655
+#: ../../library/subprocess.rst:1593
 msgid "subprocess._USE_POSIX_SPAWN = False  # See CPython issue gh-NNNNNN."
 msgstr "subprocess._USE_POSIX_SPAWN = False  # See CPython issue gh-NNNNNN."
 
-#: ../../library/subprocess.rst:1657
+#: ../../library/subprocess.rst:1595
 msgid ""
-"It is safe to set these to false on any Python version. They will have no"
-" effect on older versions when unsupported. Do not assume the attributes "
-"are available to read. Despite their names, a true value does not "
-"indicate that the corresponding function will be used, only that it may "
-"be."
+"It is safe to set this to false on any Python version. It will have no "
+"effect on older or newer versions where unsupported. Do not assume the "
+"attribute is available to read. Despite the name, a true value does not "
+"indicate the corresponding function will be used, only that it may be."
 msgstr ""
 
-#: ../../library/subprocess.rst:1662
+#: ../../library/subprocess.rst:1600
 msgid ""
 "Please file issues any time you have to use these private knobs with a "
 "way to reproduce the issue you were seeing. Link to that issue from a "
 "comment in your code."
 msgstr ""
 
-#: ../../library/subprocess.rst:1666
+#: ../../library/subprocess.rst:1604
 msgid "``_USE_POSIX_SPAWN``"
 msgstr "``_USE_POSIX_SPAWN``"
-
-#: ../../library/subprocess.rst:1667
-msgid "``_USE_VFORK``"
-msgstr "``_USE_VFORK``"
 
 #: ../../library/subprocess.rst:296
 msgid "universal newlines"
@@ -2651,4 +2536,171 @@ msgstr ":mod:`subprocess` 모듈"
 
 #~ msgid ":ref:`Availability <availability>`: POSIX & Windows."
 #~ msgstr ":ref:`가용성 <availability>`: POSIX & 윈도우."
+
+#~ msgid "Replacing :func:`os.popen`, :func:`os.popen2`, :func:`os.popen3`"
+#~ msgstr ":func:`os.popen`, :func:`os.popen2`, :func:`os.popen3` 교체하기"
+
+#~ msgid ""
+#~ "(child_stdin, child_stdout) = os.popen2(cmd, mode, bufsize)\n"
+#~ "==>\n"
+#~ "p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+#~ "(child_stdin, child_stdout) = (p.stdin, p.stdout)"
+#~ msgstr ""
+#~ "(child_stdin, child_stdout) = os.popen2(cmd, mode, bufsize)\n"
+#~ "==>\n"
+#~ "p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+#~ "(child_stdin, child_stdout) = (p.stdin, p.stdout)"
+
+#~ msgid ""
+#~ "(child_stdin,\n"
+#~ " child_stdout,\n"
+#~ " child_stderr) = os.popen3(cmd, mode, bufsize)\n"
+#~ "==>\n"
+#~ "p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)\n"
+#~ "(child_stdin,\n"
+#~ " child_stdout,\n"
+#~ " child_stderr) = (p.stdin, p.stdout, p.stderr)"
+#~ msgstr ""
+#~ "(child_stdin,\n"
+#~ " child_stdout,\n"
+#~ " child_stderr) = os.popen3(cmd, mode, bufsize)\n"
+#~ "==>\n"
+#~ "p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)\n"
+#~ "(child_stdin,\n"
+#~ " child_stdout,\n"
+#~ " child_stderr) = (p.stdin, p.stdout, p.stderr)"
+
+#~ msgid ""
+#~ "(child_stdin, child_stdout_and_stderr) = "
+#~ "os.popen4(cmd, mode, bufsize)\n"
+#~ "==>\n"
+#~ "p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)\n"
+#~ "(child_stdin, child_stdout_and_stderr) = (p.stdin, p.stdout)"
+#~ msgstr ""
+#~ "(child_stdin, child_stdout_and_stderr) = "
+#~ "os.popen4(cmd, mode, bufsize)\n"
+#~ "==>\n"
+#~ "p = Popen(cmd, shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)\n"
+#~ "(child_stdin, child_stdout_and_stderr) = (p.stdin, p.stdout)"
+
+#~ msgid "Replacing functions from the :mod:`!popen2` module"
+#~ msgstr ":mod:`!popen2` 모듈의 함수 교체하기"
+
+#~ msgid ""
+#~ "If the cmd argument to popen2 "
+#~ "functions is a string, the command "
+#~ "is executed through /bin/sh.  If it "
+#~ "is a list, the command is directly"
+#~ " executed."
+#~ msgstr ""
+#~ "popen2 함수에 대한 cmd 인자가 문자열이면, 명령은"
+#~ " /bin/sh 를 통해 실행됩니다. 리스트면, 명령이 "
+#~ "직접 실행됩니다."
+
+#~ msgid ""
+#~ "(child_stdout, child_stdin) = "
+#~ "popen2.popen2(\"somestring\", bufsize, mode)\n"
+#~ "==>\n"
+#~ "p = Popen(\"somestring\", shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+#~ "(child_stdout, child_stdin) = (p.stdout, p.stdin)"
+#~ msgstr ""
+#~ "(child_stdout, child_stdin) = "
+#~ "popen2.popen2(\"somestring\", bufsize, mode)\n"
+#~ "==>\n"
+#~ "p = Popen(\"somestring\", shell=True, bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+#~ "(child_stdout, child_stdin) = (p.stdout, p.stdin)"
+
+#~ msgid ""
+#~ "(child_stdout, child_stdin) = "
+#~ "popen2.popen2([\"mycmd\", \"myarg\"], bufsize, mode)"
+#~ "\n"
+#~ "==>\n"
+#~ "p = Popen([\"mycmd\", \"myarg\"], bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+#~ "(child_stdout, child_stdin) = (p.stdout, p.stdin)"
+#~ msgstr ""
+#~ "(child_stdout, child_stdin) = "
+#~ "popen2.popen2([\"mycmd\", \"myarg\"], bufsize, mode)"
+#~ "\n"
+#~ "==>\n"
+#~ "p = Popen([\"mycmd\", \"myarg\"], bufsize=bufsize,\n"
+#~ "          stdin=PIPE, stdout=PIPE, close_fds=True)\n"
+#~ "(child_stdout, child_stdin) = (p.stdout, p.stdin)"
+
+#~ msgid ""
+#~ ":class:`popen2.Popen3` and :class:`popen2.Popen4` "
+#~ "basically work as :class:`subprocess.Popen`, "
+#~ "except that:"
+#~ msgstr ""
+#~ ":class:`popen2.Popen3`\\과 :class:`popen2.Popen4`\\는 다음과"
+#~ " 같은 점을 제외하고는 기본적으로 "
+#~ ":class:`subprocess.Popen`\\처럼 작동합니다:"
+
+#~ msgid ":class:`Popen` raises an exception if the execution fails."
+#~ msgstr "실행이 실패하면 :class:`Popen`\\은 예외를 발생시킵니다."
+
+#~ msgid "The *capturestderr* argument is replaced with the *stderr* argument."
+#~ msgstr "*capturestderr* 인자는 *stderr* 인자로 대체됩니다."
+
+#~ msgid "``stdin=PIPE`` and ``stdout=PIPE`` must be specified."
+#~ msgstr "``stdin=PIPE``\\와 ``stdout=PIPE``\\를 반드시 지정해야 합니다."
+
+#~ msgid ""
+#~ "popen2 closes all file descriptors by"
+#~ " default, but you have to specify "
+#~ "``close_fds=True`` with :class:`Popen` to "
+#~ "guarantee this behavior on all platforms"
+#~ " or past Python versions."
+#~ msgstr ""
+#~ "popen2는 기본적으로 모든 파일 기술자를 닫지만, 모든"
+#~ " 플랫폼이나 이전 파이썬 버전에서 이 동작을 보장하려면"
+#~ " :class:`Popen`\\에 ``close_fds=True``\\를 지정해야 "
+#~ "합니다."
+
+#~ msgid "Disabling use of ``vfork()`` or ``posix_spawn()``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you ever encounter a presumed "
+#~ "highly unusual situation where you need"
+#~ " to prevent ``vfork()`` from being "
+#~ "used by Python, you can set the"
+#~ " :const:`subprocess._USE_VFORK` attribute to a"
+#~ " false value."
+#~ msgstr ""
+
+#~ msgid "subprocess._USE_VFORK = False  # See CPython issue gh-NNNNNN."
+#~ msgstr "subprocess._USE_VFORK = False  # See CPython issue gh-NNNNNN."
+
+#~ msgid ""
+#~ "Setting this has no impact on use"
+#~ " of ``posix_spawn()`` which could use "
+#~ "``vfork()`` internally within its libc "
+#~ "implementation.  There is a similar "
+#~ ":const:`subprocess._USE_POSIX_SPAWN` attribute if "
+#~ "you need to prevent use of that."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "It is safe to set these to "
+#~ "false on any Python version. They "
+#~ "will have no effect on older "
+#~ "versions when unsupported. Do not assume"
+#~ " the attributes are available to "
+#~ "read. Despite their names, a true "
+#~ "value does not indicate that the "
+#~ "corresponding function will be used, "
+#~ "only that it may be."
+#~ msgstr ""
+
+#~ msgid "``_USE_VFORK``"
+#~ msgstr "``_USE_VFORK``"
 

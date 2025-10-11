@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -120,7 +120,44 @@ msgstr ""
 ":c:macro:`PyObject_New`\\와 유사하지만, :c:macro:`Py_TPFLAGS_HAVE_GC` 플래그가 설정된 "
 "컨테이너 객체를 위한 것."
 
-#: ../../c-api/gcsupport.rst:62
+#: ../../c-api/gcsupport.rst:60 ../../c-api/gcsupport.rst:84
+msgid ""
+"Do not call this directly to allocate memory for an object; call the "
+"type's :c:member:`~PyTypeObject.tp_alloc` slot instead."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:63 ../../c-api/gcsupport.rst:87
+msgid ""
+"When populating a type's :c:member:`~PyTypeObject.tp_alloc` slot, "
+":c:func:`PyType_GenericAlloc` is preferred over a custom function that "
+"simply calls this macro."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:67 ../../c-api/gcsupport.rst:91
+msgid ""
+"Memory allocated by this macro must be freed with "
+":c:func:`PyObject_GC_Del` (usually called via the object's "
+":c:member:`~PyTypeObject.tp_free` slot)."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:73 ../../c-api/gcsupport.rst:97
+msgid ":c:func:`PyObject_GC_Del`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:74
+msgid ":c:macro:`PyObject_New`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:75 ../../c-api/gcsupport.rst:99
+#: ../../c-api/gcsupport.rst:193
+msgid ":c:func:`PyType_GenericAlloc`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:76 ../../c-api/gcsupport.rst:100
+msgid ":c:member:`~PyTypeObject.tp_alloc`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:81
 msgid ""
 "Analogous to :c:macro:`PyObject_NewVar` but for container objects with "
 "the :c:macro:`Py_TPFLAGS_HAVE_GC` flag set."
@@ -128,7 +165,11 @@ msgstr ""
 ":c:macro:`PyObject_NewVar`\\와 유사하지만, :c:macro:`Py_TPFLAGS_HAVE_GC` 플래그가 "
 "설정된 컨테이너 객체를 위한 것."
 
-#: ../../c-api/gcsupport.rst:67
+#: ../../c-api/gcsupport.rst:98
+msgid ":c:macro:`PyObject_NewVar`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:105
 msgid ""
 "Analogous to :c:macro:`PyObject_GC_New` but allocates *extra_size* bytes "
 "at the end of the object (at offset "
@@ -137,13 +178,20 @@ msgid ""
 "<PyObject>`."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:73
+#: ../../c-api/gcsupport.rst:111
 msgid ""
 "The extra data will be deallocated with the object, but otherwise it is "
 "not managed by Python."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:77
+#: ../../c-api/gcsupport.rst:114
+msgid ""
+"Memory allocated by this function must be freed with "
+":c:func:`PyObject_GC_Del` (usually called via the object's "
+":c:member:`~PyTypeObject.tp_free` slot)."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:119
 msgid ""
 "The function is marked as unstable because the final mechanism for "
 "reserving extra data after an instance is not yet decided. For allocating"
@@ -151,7 +199,7 @@ msgid ""
 ":c:member:`~PyTypeObject.tp_itemsize` instead."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:88
+#: ../../c-api/gcsupport.rst:130
 msgid ""
 "Resize an object allocated by :c:macro:`PyObject_NewVar`. Returns the "
 "resized object of type ``TYPE*`` (refers to any C type) or ``NULL`` on "
@@ -160,7 +208,7 @@ msgstr ""
 ":c:macro:`PyObject_NewVar`\\에 의해 할당된 객체의 크기를 변경합니다. 형 ``TYPE*`` (모든 C 형을 "
 "나타냅니다) 의 크기가 조정된 객체나 실패하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/gcsupport.rst:92
+#: ../../c-api/gcsupport.rst:134
 msgid ""
 "*op* must be of type :c:expr:`PyVarObject *` and must not be tracked by "
 "the collector yet. *newsize* must be of type :c:type:`Py_ssize_t`."
@@ -168,7 +216,7 @@ msgstr ""
 "*op*\\는 형 :c:expr:`PyVarObject *`\\이어야 하고 아직 수거기가 추적하지 않아야 합니다. "
 "*newsize*\\는 형 :c:type:`Py_ssize_t`\\이어야 합니다."
 
-#: ../../c-api/gcsupport.rst:99
+#: ../../c-api/gcsupport.rst:141
 msgid ""
 "Adds the object *op* to the set of container objects tracked by the "
 "collector.  The collector can run at unexpected times so objects must be "
@@ -180,19 +228,19 @@ msgstr ""
 "동안 객체가 유효해야 합니다. :c:member:`~PyTypeObject.tp_traverse` 처리기가 탐색하는 모든 필드가 "
 "유효해지면 호출해야 합니다, 보통 생성자의 끝부분 근처입니다."
 
-#: ../../c-api/gcsupport.rst:108
+#: ../../c-api/gcsupport.rst:150
 msgid ""
 "Returns non-zero if the object implements the garbage collector protocol,"
 " otherwise returns 0."
 msgstr "객체가 가비지 수거기 프로토콜을 구현하면 0이 아닌 값을 반환하고, 그렇지 않으면 0을 반환합니다."
 
-#: ../../c-api/gcsupport.rst:111
+#: ../../c-api/gcsupport.rst:153
 msgid ""
 "The object cannot be tracked by the garbage collector if this function "
 "returns 0."
 msgstr "이 함수가 0을 반환하면 가비지 수거기가 객체를 추적할 수 없습니다."
 
-#: ../../c-api/gcsupport.rst:116
+#: ../../c-api/gcsupport.rst:158
 msgid ""
 "Returns 1 if the object type of *op* implements the GC protocol and *op* "
 "is being currently tracked by the garbage collector and 0 otherwise."
@@ -200,11 +248,11 @@ msgstr ""
 "*op*\\의 객체 형이 GC 프로토콜을 구현하고 *op*\\가 현재 가비지 수거기가 추적 중이면 1을 반환하고 그렇지 않으면 0을"
 " 반환합니다."
 
-#: ../../c-api/gcsupport.rst:119
+#: ../../c-api/gcsupport.rst:161
 msgid "This is analogous to the Python function :func:`gc.is_tracked`."
 msgstr "이것은 파이썬 함수 :func:`gc.is_tracked`\\에 해당합니다."
 
-#: ../../c-api/gcsupport.rst:126
+#: ../../c-api/gcsupport.rst:168
 msgid ""
 "Returns 1 if the object type of *op* implements the GC protocol and *op* "
 "has been already finalized by the garbage collector and 0 otherwise."
@@ -212,11 +260,11 @@ msgstr ""
 "*op*\\의 객체 형이 GC 프로토콜을 구현하고 가비지 수거기가 *op*\\를 이미 파이널라이즈 했으면 1을 반환하고 그렇지 "
 "않으면 0을 반환합니다."
 
-#: ../../c-api/gcsupport.rst:129
+#: ../../c-api/gcsupport.rst:171
 msgid "This is analogous to the Python function :func:`gc.is_finalized`."
 msgstr "이것은 파이썬 함수 :func:`gc.is_finalized`\\에 해당합니다."
 
-#: ../../c-api/gcsupport.rst:136
+#: ../../c-api/gcsupport.rst:178
 msgid ""
 "Releases memory allocated to an object using :c:macro:`PyObject_GC_New` "
 "or :c:macro:`PyObject_GC_NewVar`."
@@ -224,7 +272,37 @@ msgstr ""
 ":c:macro:`PyObject_GC_New` 나 :c:macro:`PyObject_GC_NewVar`\\를 사용하여 객체에 "
 "할당된 메모리를 해제합니다."
 
-#: ../../c-api/gcsupport.rst:142
+#: ../../c-api/gcsupport.rst:181
+msgid ""
+"Do not call this directly to free an object's memory; call the type's "
+":c:member:`~PyTypeObject.tp_free` slot instead."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:184
+msgid ""
+"Do not use this for memory allocated by :c:macro:`PyObject_New`, "
+":c:macro:`PyObject_NewVar`, or related allocation functions; use "
+":c:func:`PyObject_Free` instead."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:190
+msgid ":c:func:`PyObject_Free` is the non-GC equivalent of this function."
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:191
+#, fuzzy
+msgid ":c:macro:`PyObject_GC_New`"
+msgstr ":c:macro:`Py_TPFLAGS_HAVE_GC`"
+
+#: ../../c-api/gcsupport.rst:192
+msgid ":c:macro:`PyObject_GC_NewVar`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:194
+msgid ":c:member:`~PyTypeObject.tp_free`"
+msgstr ""
+
+#: ../../c-api/gcsupport.rst:199
 msgid ""
 "Remove the object *op* from the set of container objects tracked by the "
 "collector.  Note that :c:func:`PyObject_GC_Track` can be called again on "
@@ -239,7 +317,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_traverse` 처리기에서 사용하는 필드가 무효화 되기 전에 객체에 대해 이 "
 "함수를 호출해야 합니다."
 
-#: ../../c-api/gcsupport.rst:151
+#: ../../c-api/gcsupport.rst:208
 msgid ""
 "The :c:func:`!_PyObject_GC_TRACK` and :c:func:`!_PyObject_GC_UNTRACK` "
 "macros have been removed from the public C API."
@@ -247,13 +325,13 @@ msgstr ""
 ":c:func:`!_PyObject_GC_TRACK`\\과 :c:func:`!_PyObject_GC_UNTRACK` 매크로는 공용 "
 "C API에서 제거되었습니다."
 
-#: ../../c-api/gcsupport.rst:154
+#: ../../c-api/gcsupport.rst:211
 msgid ""
 "The :c:member:`~PyTypeObject.tp_traverse` handler accepts a function "
 "parameter of this type:"
 msgstr ":c:member:`~PyTypeObject.tp_traverse` 처리기는 다음과 같은 형의 함수 매개 변수를 받아들입니다:"
 
-#: ../../c-api/gcsupport.rst:159
+#: ../../c-api/gcsupport.rst:216
 msgid ""
 "Type of the visitor function passed to the "
 ":c:member:`~PyTypeObject.tp_traverse` handler. The function should be "
@@ -268,13 +346,13 @@ msgstr ""
 "*arg*\\로 호출되어야 합니다. 파이썬 코어는 순환 가비지 탐지를 구현하기 위해 여러 방문자 함수를 사용합니다; 사용자가 자신의"
 " 방문자 함수를 작성해야 할 필요는 없습니다."
 
-#: ../../c-api/gcsupport.rst:166
+#: ../../c-api/gcsupport.rst:223
 msgid ""
 "The :c:member:`~PyTypeObject.tp_traverse` handler must have the following"
 " type:"
 msgstr ":c:member:`~PyTypeObject.tp_traverse` 처리기는 다음 형이어야 합니다:"
 
-#: ../../c-api/gcsupport.rst:171
+#: ../../c-api/gcsupport.rst:228
 msgid ""
 "Traversal function for a container object.  Implementations must call the"
 " *visit* function for each object directly contained by *self*, with the "
@@ -287,7 +365,7 @@ msgstr ""
 "*visit*\\에 대한 매개 변수는 포함된 객체와 처리기로 전달된 *arg* 값입니다. *visit* 함수는 ``NULL`` "
 "object 인자로 호출하면 안 됩니다. *visit*\\가 0이 아닌 값을 반환하면 그 값이 즉시 반환되어야 합니다."
 
-#: ../../c-api/gcsupport.rst:178
+#: ../../c-api/gcsupport.rst:235
 msgid ""
 "To simplify writing :c:member:`~PyTypeObject.tp_traverse` handlers, a "
 ":c:func:`Py_VISIT` macro is provided.  In order to use this macro, the "
@@ -299,17 +377,19 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_traverse` 구현은 인자의 이름을 정확히 *visit* 와 *arg*\\로 "
 "지정해야 합니다:"
 
-#: ../../c-api/gcsupport.rst:185
+#: ../../c-api/gcsupport.rst:242
+#, fuzzy
 msgid ""
-"If *o* is not ``NULL``, call the *visit* callback, with arguments *o* and"
-" *arg*.  If *visit* returns a non-zero value, then return it. Using this "
-"macro, :c:member:`~PyTypeObject.tp_traverse` handlers look like::"
+"If the :c:expr:`PyObject *` *o* is not ``NULL``, call the *visit* "
+"callback, with arguments *o* and *arg*.  If *visit* returns a non-zero "
+"value, then return it. Using this macro, "
+":c:member:`~PyTypeObject.tp_traverse` handlers look like::"
 msgstr ""
 "*o*\\가 ``NULL``\\이 아니면, *o* 와 *arg* 인자로 *visit* 콜백을 호출합니다. *visit*\\가 0이 "
 "아닌 값을 반환하면, 그것을 반환합니다. 이 매크로를 사용하면, :c:member:`~PyTypeObject.tp_traverse`"
 " 처리기가 다음과 같아집니다::"
 
-#: ../../c-api/gcsupport.rst:190
+#: ../../c-api/gcsupport.rst:247
 #, python-brace-format
 msgid ""
 "static int\n"
@@ -328,7 +408,7 @@ msgstr ""
 "    return 0;\n"
 "}"
 
-#: ../../c-api/gcsupport.rst:198
+#: ../../c-api/gcsupport.rst:255
 msgid ""
 "The :c:member:`~PyTypeObject.tp_clear` handler must be of the "
 ":c:type:`inquiry` type, or ``NULL`` if the object is immutable."
@@ -336,7 +416,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_clear` 처리기는 :c:type:`inquiry` 형이거나 객체가 불변이면 "
 "``NULL``\\이어야 합니다."
 
-#: ../../c-api/gcsupport.rst:204
+#: ../../c-api/gcsupport.rst:261
 msgid ""
 "Drop references that may have created reference cycles.  Immutable "
 "objects do not have to define this method since they can never directly "
@@ -349,23 +429,23 @@ msgstr ""
 "없습니다. 이 메서드를 호출한 후에도 객체가 유효해야 합니다 (단지 참조에 대해 :c:func:`Py_DECREF`\\를 호출하지 "
 "마십시오). 이 객체가 참조 순환에 참여하고 있음을 수거기가 감지하면 이 메서드를 호출합니다."
 
-#: ../../c-api/gcsupport.rst:213
+#: ../../c-api/gcsupport.rst:270
 msgid "Controlling the Garbage Collector State"
 msgstr "가비지 수거기 상태 제어하기"
 
-#: ../../c-api/gcsupport.rst:215
+#: ../../c-api/gcsupport.rst:272
 msgid ""
 "The C-API provides the following functions for controlling garbage "
 "collection runs."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:220
+#: ../../c-api/gcsupport.rst:277
 msgid ""
 "Perform a full garbage collection, if the garbage collector is enabled. "
 "(Note that :func:`gc.collect` runs it unconditionally.)"
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:223
+#: ../../c-api/gcsupport.rst:280
 msgid ""
 "Returns the number of collected + unreachable objects which cannot be "
 "collected. If the garbage collector is disabled or already collecting, "
@@ -373,55 +453,55 @@ msgid ""
 " :data:`sys.unraisablehook`. This function does not raise exceptions."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:233
+#: ../../c-api/gcsupport.rst:290
 msgid ""
 "Enable the garbage collector: similar to :func:`gc.enable`. Returns the "
 "previous state, 0 for disabled and 1 for enabled."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:241
+#: ../../c-api/gcsupport.rst:298
 msgid ""
 "Disable the garbage collector: similar to :func:`gc.disable`. Returns the"
 " previous state, 0 for disabled and 1 for enabled."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:249
+#: ../../c-api/gcsupport.rst:306
 msgid ""
 "Query the state of the garbage collector: similar to "
 ":func:`gc.isenabled`. Returns the current state, 0 for disabled and 1 for"
 " enabled."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:256
+#: ../../c-api/gcsupport.rst:313
 msgid "Querying Garbage Collector State"
 msgstr "가비지 수거기 상태 조회하기"
 
-#: ../../c-api/gcsupport.rst:258
+#: ../../c-api/gcsupport.rst:315
 msgid ""
 "The C-API provides the following interface for querying information about"
 " the garbage collector."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:263
+#: ../../c-api/gcsupport.rst:320
 msgid ""
 "Run supplied *callback* on all live GC-capable objects. *arg* is passed "
 "through to all invocations of *callback*."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:267
+#: ../../c-api/gcsupport.rst:324
 msgid ""
 "If new objects are (de)allocated by the callback it is undefined if they "
 "will be visited."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:270
+#: ../../c-api/gcsupport.rst:327
 msgid ""
 "Garbage collection is disabled during operation. Explicitly running a "
 "collection in the callback may lead to undefined behaviour e.g. visiting "
 "the same objects multiple times or not at all."
 msgstr ""
 
-#: ../../c-api/gcsupport.rst:278
+#: ../../c-api/gcsupport.rst:335
 msgid ""
 "Type of the visitor function to be passed to "
 ":c:func:`PyUnstable_GC_VisitObjects`. *arg* is the same as the *arg* "

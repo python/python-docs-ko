@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -314,11 +314,55 @@ msgstr ""
 "이 함수는 이제 윈도우에서 :c:member:`PyPreConfig.legacy_windows_fs_encoding`\\이 0이면 "
 "UTF-8 인코딩을 사용합니다."
 
-#: ../../c-api/sys.rst:223
+#: ../../c-api/sys.rst:221
+msgid ""
+"Similar to :c:func:`!fopen`, but *path* is a Python object and an "
+"exception is set on error."
+msgstr ""
+
+#: ../../c-api/sys.rst:224
+msgid ""
+"*path* must be a :class:`str` object, a :class:`bytes` object, or a :term"
+":`path-like object`."
+msgstr ""
+
+#: ../../c-api/sys.rst:227
+msgid ""
+"On success, return the new file pointer. On error, set an exception and "
+"return ``NULL``."
+msgstr ""
+
+#: ../../c-api/sys.rst:230
+msgid ""
+"The file must be closed by :c:func:`Py_fclose` rather than calling "
+"directly :c:func:`!fclose`."
+msgstr ""
+
+#: ../../c-api/sys.rst:233
+msgid "The file descriptor is created non-inheritable (:pep:`446`)."
+msgstr ""
+
+#: ../../c-api/sys.rst:235
+msgid "The caller must have an :term:`attached thread state`."
+msgstr ""
+
+#: ../../c-api/sys.rst:242
+msgid "Close a file that was opened by :c:func:`Py_fopen`."
+msgstr ""
+
+#: ../../c-api/sys.rst:244
+msgid ""
+"On success, return ``0``. On error, return ``EOF`` and ``errno`` is set "
+"to indicate the error. In either case, any further access (including "
+"another call to :c:func:`Py_fclose`) to the stream results in undefined "
+"behavior."
+msgstr ""
+
+#: ../../c-api/sys.rst:255
 msgid "System Functions"
 msgstr "시스템 함수"
 
-#: ../../c-api/sys.rst:225
+#: ../../c-api/sys.rst:257
 msgid ""
 "These are utility functions that make functionality from the :mod:`sys` "
 "module accessible to C code.  They all work with the current interpreter "
@@ -328,7 +372,7 @@ msgstr ""
 ":mod:`sys` 모듈의 기능을 C 코드에서 액세스 할 수 있게 하는 유틸리티 함수입니다. 모두 내부 스레드 상태 구조체에 포함된"
 " 현재 인터프리터 스레드의 :mod:`sys` 모듈의 딕셔너리에 작동합니다."
 
-#: ../../c-api/sys.rst:231
+#: ../../c-api/sys.rst:263
 msgid ""
 "Return the object *name* from the :mod:`sys` module or ``NULL`` if it "
 "does not exist, without setting an exception."
@@ -336,7 +380,7 @@ msgstr ""
 ":mod:`sys` 모듈에서 객체 *name*\\을 반환하거나, 존재하지 않으면 예외를 설정하지 않고 ``NULL``\\을 "
 "반환합니다."
 
-#: ../../c-api/sys.rst:236
+#: ../../c-api/sys.rst:268
 msgid ""
 "Set *name* in the :mod:`sys` module to *v* unless *v* is ``NULL``, in "
 "which case *name* is deleted from the sys module. Returns ``0`` on "
@@ -345,7 +389,7 @@ msgstr ""
 "*v*\\가 *NULL*\\이 아닌 한 :mod:`sys` 모듈의 *name*\\을 *v*\\로 설정합니다. ``NULL``\\이면"
 " *name*\\은 sys 모듈에서 삭제됩니다. 성공하면 ``0``, 에러 시 ``-1``\\을 반환합니다."
 
-#: ../../c-api/sys.rst:242
+#: ../../c-api/sys.rst:274
 msgid ""
 "Reset :data:`sys.warnoptions` to an empty list. This function may be "
 "called prior to :c:func:`Py_Initialize`."
@@ -353,11 +397,11 @@ msgstr ""
 ":data:`sys.warnoptions`\\를 빈 리스트로 재설정합니다. 이 함수는 :c:func:`Py_Initialize` "
 "이전에 호출할 수 있습니다."
 
-#: ../../c-api/sys.rst:245
+#: ../../c-api/sys.rst:277
 msgid "Clear :data:`sys.warnoptions` and :data:`!warnings.filters` instead."
 msgstr ""
 
-#: ../../c-api/sys.rst:250
+#: ../../c-api/sys.rst:282
 msgid ""
 "Write the output string described by *format* to :data:`sys.stdout`.  No "
 "exceptions are raised, even if truncation occurs (see below)."
@@ -365,7 +409,7 @@ msgstr ""
 "*format*\\으로 기술되는 출력 문자열을 :data:`sys.stdout`\\에 기록합니다. 잘림이 발생하더라도 예외는 "
 "발생하지 않습니다 (아래를 참조하십시오)."
 
-#: ../../c-api/sys.rst:253
+#: ../../c-api/sys.rst:285
 #, python-format
 msgid ""
 "*format* should limit the total size of the formatted output string to "
@@ -381,7 +425,7 @@ msgstr ""
 "합니다, 여기서 <N>은 <N>에 다른 포맷된 텍스트의 최대 크기를 더할 때 1000바이트를 초과하지 않도록 계산된 십진수입니다. "
 "또한 \"%f\"도 주의하십시오, 아주 큰 숫자는 수백 자리를 인쇄할 수 있습니다."
 
-#: ../../c-api/sys.rst:261
+#: ../../c-api/sys.rst:293
 msgid ""
 "If a problem occurs, or :data:`sys.stdout` is unset, the formatted "
 "message is written to the real (C level) *stdout*."
@@ -389,7 +433,7 @@ msgstr ""
 "문제가 발생하거나, :data:`sys.stdout`\\가 설정되어 있지 않으면, 포맷된 메시지는 실제(C 수준) "
 "*stdout*\\에 기록됩니다."
 
-#: ../../c-api/sys.rst:266
+#: ../../c-api/sys.rst:298
 msgid ""
 "As :c:func:`PySys_WriteStdout`, but write to :data:`sys.stderr` or "
 "*stderr* instead."
@@ -397,7 +441,7 @@ msgstr ""
 ":c:func:`PySys_WriteStdout`\\과 같지만, 대신 :data:`sys.stderr`\\이나 *stderr*\\에"
 " 씁니다."
 
-#: ../../c-api/sys.rst:271
+#: ../../c-api/sys.rst:303
 msgid ""
 "Function similar to PySys_WriteStdout() but format the message using "
 ":c:func:`PyUnicode_FromFormatV` and don't truncate the message to an "
@@ -406,7 +450,7 @@ msgstr ""
 "PySys_WriteStdout()과 유사한 함수이지만, 메시지를 :c:func:`PyUnicode_FromFormatV`\\를 "
 "사용하여 포맷하고 메시지를 임의의 길이로 자르지 않습니다."
 
-#: ../../c-api/sys.rst:279
+#: ../../c-api/sys.rst:311
 msgid ""
 "As :c:func:`PySys_FormatStdout`, but write to :data:`sys.stderr` or "
 "*stderr* instead."
@@ -414,7 +458,7 @@ msgstr ""
 ":c:func:`PySys_FormatStdout`\\과 같지만, 대신 :data:`sys.stderr`\\이나 "
 "*stderr*\\에 씁니다."
 
-#: ../../c-api/sys.rst:286
+#: ../../c-api/sys.rst:318
 msgid ""
 "Return the current dictionary of :option:`-X` options, similarly to "
 ":data:`sys._xoptions`.  On error, ``NULL`` is returned and an exception "
@@ -423,17 +467,17 @@ msgstr ""
 ":data:`sys._xoptions`\\와 유사하게, :option:`-X` 옵션의 현재 딕셔너리를 반환합니다. 에러가 발생하면,"
 " ``NULL``\\이 반환되고 예외가 설정됩니다."
 
-#: ../../c-api/sys.rst:295
+#: ../../c-api/sys.rst:327
 msgid ""
 "Raise an auditing event with any active hooks. Return zero for success "
 "and non-zero with an exception set on failure."
 msgstr "모든 활성 훅으로 감사 이벤트를 발생시킵니다. 성공 시 0을 반환하고 실패 시 예외를 설정하여 0이 아닌 값을 반환합니다."
 
-#: ../../c-api/sys.rst:298
+#: ../../c-api/sys.rst:330
 msgid "The *event* string argument must not be *NULL*."
 msgstr ""
 
-#: ../../c-api/sys.rst:300
+#: ../../c-api/sys.rst:332
 msgid ""
 "If any hooks have been added, *format* and other arguments will be used "
 "to construct a tuple to pass. Apart from ``N``, the same format "
@@ -444,7 +488,7 @@ msgstr ""
 ":c:func:`Py_BuildValue`\\에서 사용된 것과 같은 포맷 문자를 사용할 수 있습니다. 빌드된 값이 튜플이 아니면, "
 "단일 요소 튜플에 추가됩니다."
 
-#: ../../c-api/sys.rst:305
+#: ../../c-api/sys.rst:337
 msgid ""
 "The ``N`` format option must not be used. It consumes a reference, but "
 "since there is no way to know whether arguments to this function will be "
@@ -453,7 +497,7 @@ msgstr ""
 "``N`` 포맷 옵션은 사용하지 않아야 합니다. 참조를 소비하지만, 이 함수에 대한 인자가 소비될지를 알 방법이 없기 때문에, "
 "사용하면 참조 누수가 발생할 수 있습니다."
 
-#: ../../c-api/sys.rst:309
+#: ../../c-api/sys.rst:341
 msgid ""
 "Note that ``#`` format characters should always be treated as "
 ":c:type:`Py_ssize_t`, regardless of whether ``PY_SSIZE_T_CLEAN`` was "
@@ -462,15 +506,15 @@ msgstr ""
 "``PY_SSIZE_T_CLEAN``\\이 정의되었는지와 관계없이, ``#`` 포맷 문자는 항상 "
 ":c:type:`Py_ssize_t`\\로 처리되어야 합니다."
 
-#: ../../c-api/sys.rst:312
+#: ../../c-api/sys.rst:344
 msgid ":func:`sys.audit` performs the same function from Python code."
 msgstr ":func:`sys.audit`\\은 파이썬 코드와 동일한 기능을 수행합니다."
 
-#: ../../c-api/sys.rst:314
+#: ../../c-api/sys.rst:346
 msgid "See also :c:func:`PySys_AuditTuple`."
 msgstr ""
 
-#: ../../c-api/sys.rst:320
+#: ../../c-api/sys.rst:352
 msgid ""
 "Require :c:type:`Py_ssize_t` for ``#`` format characters. Previously, an "
 "unavoidable deprecation warning was raised."
@@ -478,14 +522,14 @@ msgstr ""
 "``#`` 포맷 문자에 대해 :c:type:`Py_ssize_t`\\를 요구합니다. 이전에는, 피할 수 없는 폐지 경고가 "
 "발생했습니다."
 
-#: ../../c-api/sys.rst:326
+#: ../../c-api/sys.rst:358
 msgid ""
 "Similar to :c:func:`PySys_Audit`, but pass arguments as a Python object. "
 "*args* must be a :class:`tuple`. To pass no arguments, *args* can be "
 "*NULL*."
 msgstr ""
 
-#: ../../c-api/sys.rst:334
+#: ../../c-api/sys.rst:366
 msgid ""
 "Append the callable *hook* to the list of active auditing hooks. Return "
 "zero on success and non-zero on failure. If the runtime has been "
@@ -495,7 +539,7 @@ msgstr ""
 "활성 감사 훅 리스트에 콜러블 *hook*\\을 추가합니다. 성공하면 0을, 실패하면 0이 아닌 값을 반환합니다. 런타임이 "
 "초기화되었으면, 실패 시 에러도 설정합니다. 이 API를 통해 추가된 훅은 런타임이 만든 모든 인터프리터에 대해 호출됩니다."
 
-#: ../../c-api/sys.rst:340
+#: ../../c-api/sys.rst:372
 msgid ""
 "The *userData* pointer is passed into the hook function. Since hook "
 "functions may be called from different runtimes, this pointer should not "
@@ -504,7 +548,7 @@ msgstr ""
 "*userData* 포인터는 훅 함수로 전달됩니다. 훅 함수는 다른 런타임에서 호출될 수 있어서, 이 포인터는 파이썬 상태를 직접 "
 "참조하면 안 됩니다."
 
-#: ../../c-api/sys.rst:344
+#: ../../c-api/sys.rst:376
 msgid ""
 "This function is safe to call before :c:func:`Py_Initialize`. When called"
 " after runtime initialization, existing audit hooks are notified and may "
@@ -515,13 +559,13 @@ msgstr ""
 "알리고 :class:`Exception`\\에서 서브 클래싱 된 에러를 발생 시켜 조용히 연산을 중단할 수 있습니다 (다른 에러는 "
 "억제되지(silenced) 않습니다)."
 
-#: ../../c-api/sys.rst:349
+#: ../../c-api/sys.rst:381
 msgid ""
-"The hook function is always called with the GIL held by the Python "
-"interpreter that raised the event."
+"The hook function is always called with an :term:`attached thread state` "
+"by the Python interpreter that raised the event."
 msgstr ""
 
-#: ../../c-api/sys.rst:352
+#: ../../c-api/sys.rst:384
 msgid ""
 "See :pep:`578` for a detailed description of auditing.  Functions in the "
 "runtime and standard library that raise events are listed in the "
@@ -531,7 +575,7 @@ msgstr ""
 "감사에 대한 자세한 설명은 :pep:`578`\\을 참조하십시오. 이벤트를 발생시키는 런타임과 표준 라이브러리의 함수는 "
 ":ref:`감사 이벤트 표 <audit-events>`\\에 나열되어 있습니다. 자세한 내용은 각 함수 설명서에 있습니다."
 
-#: ../../c-api/sys.rst:357 ../../c-api/sys.rst:359
+#: ../../c-api/sys.rst:389 ../../c-api/sys.rst:391
 msgid ""
 "If the interpreter is initialized, this function raises an auditing event"
 " ``sys.addaudithook`` with no arguments. If any existing hooks raise an "
@@ -543,7 +587,7 @@ msgstr ""
 ":class:`Exception`\\에서 파생된 예외를 발생시키면, 새 훅이 추가되지 않고 예외가 지워집니다. 결과적으로, 호출자가"
 " 기존의 모든 훅을 제어하지 않는 한 훅이 추가되었다고 가정할 수 없습니다."
 
-#: ../../c-api/sys.rst:368
+#: ../../c-api/sys.rst:400
 msgid ""
 "The type of the hook function. *event* is the C string event argument "
 "passed to :c:func:`PySys_Audit` or :c:func:`PySys_AuditTuple`. *args* is "
@@ -551,11 +595,11 @@ msgid ""
 "passed to PySys_AddAuditHook()."
 msgstr ""
 
-#: ../../c-api/sys.rst:380
+#: ../../c-api/sys.rst:412
 msgid "Process Control"
 msgstr "프로세스 제어"
 
-#: ../../c-api/sys.rst:387
+#: ../../c-api/sys.rst:419
 msgid ""
 "Print a fatal error message and kill the process.  No cleanup is "
 "performed. This function should only be invoked when a condition is "
@@ -568,7 +612,7 @@ msgstr ""
 " 것이 위험한 조건이 감지되었을 때만 호출해야 합니다; 예를 들어, 객체 관리가 손상된 것으로 보일 때. 유닉스에서는, 표준 C "
 "라이브러리 함수 :c:func:`!abort`\\가 호출되어 :file:`core` 파일을 생성하려고 시도합니다."
 
-#: ../../c-api/sys.rst:394
+#: ../../c-api/sys.rst:426
 msgid ""
 "The ``Py_FatalError()`` function is replaced with a macro which logs "
 "automatically the name of the current function, unless the "
@@ -577,11 +621,11 @@ msgstr ""
 "``Py_LIMITED_API`` 매크로가 정의되어 있지 않은 한, ``Py_FatalError()`` 함수는 현재 함수의 이름을 "
 "자동으로 로그 하는 매크로로 대체됩니다."
 
-#: ../../c-api/sys.rst:398
+#: ../../c-api/sys.rst:430
 msgid "Log the function name automatically."
 msgstr "함수 이름을 자동으로 로그 합니다."
 
-#: ../../c-api/sys.rst:408
+#: ../../c-api/sys.rst:440
 msgid ""
 "Exit the current process.  This calls :c:func:`Py_FinalizeEx` and then "
 "calls the standard C library function ``exit(status)``.  If "
@@ -592,11 +636,11 @@ msgstr ""
 "``exit(status)``\\를 호출합니다. :c:func:`Py_FinalizeEx`\\가 에러를 표시하면, 종료 상태는 "
 "120으로 설정됩니다."
 
-#: ../../c-api/sys.rst:412
+#: ../../c-api/sys.rst:444
 msgid "Errors from finalization no longer ignored."
 msgstr "파이널리제이션에서의 에러가 더는 무시되지 않습니다."
 
-#: ../../c-api/sys.rst:422
+#: ../../c-api/sys.rst:454
 msgid ""
 "Register a cleanup function to be called by :c:func:`Py_FinalizeEx`.  The"
 " cleanup function will be called with no arguments and should return no "
@@ -613,7 +657,7 @@ msgstr ""
 "최대 한 번 호출됩니다. 정리 함수 전에 파이썬의 내부 파이널리제이션이 완료되기 때문에, *func*\\에서 파이썬 API를 "
 "호출하면 안 됩니다."
 
-#: ../../c-api/sys.rst:432
+#: ../../c-api/sys.rst:464
 msgid ":c:func:`PyUnstable_AtExit` for passing a ``void *data`` argument."
 msgstr ""
 
@@ -621,19 +665,19 @@ msgstr ""
 msgid "USE_STACKCHECK (C macro)"
 msgstr "USE_STACKCHECK (C 매크로)"
 
-#: ../../c-api/sys.rst:385
+#: ../../c-api/sys.rst:417
 msgid "abort (C function)"
 msgstr "abort (C 함수)"
 
-#: ../../c-api/sys.rst:404 ../../c-api/sys.rst:418
+#: ../../c-api/sys.rst:436 ../../c-api/sys.rst:450
 msgid "Py_FinalizeEx (C function)"
 msgstr "Py_FinalizeEx (C 함수)"
 
-#: ../../c-api/sys.rst:404
+#: ../../c-api/sys.rst:436
 msgid "exit (C function)"
 msgstr "exit (C 함수)"
 
-#: ../../c-api/sys.rst:418
+#: ../../c-api/sys.rst:450
 msgid "cleanup functions"
 msgstr "정리 함수"
 
@@ -746,4 +790,10 @@ msgstr "정리 함수"
 #~ "Raises an :ref:`auditing event <auditing>` "
 #~ "``sys.addaudithook`` with no arguments."
 #~ msgstr "인자 없이 :ref:`감사 이벤트 <auditing>` ``sys.addaudithook``\\을 발생시킵니다."
+
+#~ msgid ""
+#~ "The hook function is always called "
+#~ "with the GIL held by the Python"
+#~ " interpreter that raised the event."
+#~ msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -201,20 +201,38 @@ msgstr ""
 "``__name__``\\에 의해 결정됩니다."
 
 #: ../../library/bdb.rst:135
+msgid ""
+"The *backend* argument specifies the backend to use for :class:`Bdb`. It "
+"can be either ``'settrace'`` or ``'monitoring'``. ``'settrace'`` uses "
+":func:`sys.settrace` which has the best backward compatibility. The "
+"``'monitoring'`` backend uses the new :mod:`sys.monitoring` that was "
+"introduced in Python 3.12, which can be much more efficient because it "
+"can disable unused events. We are trying to keep the exact interfaces for"
+" both backends, but there are some differences. The debugger developers "
+"are encouraged to use the ``'monitoring'`` backend to achieve better "
+"performance."
+msgstr ""
+
+#: ../../library/bdb.rst:145
 msgid "Added the *skip* parameter."
 msgstr "*skip* 매개 변수를 추가했습니다."
 
-#: ../../library/bdb.rst:138
+#: ../../library/bdb.rst:148
+#, fuzzy
+msgid "Added the *backend* parameter."
+msgstr "*skip* 매개 변수를 추가했습니다."
+
+#: ../../library/bdb.rst:151
 msgid ""
 "The following methods of :class:`Bdb` normally don't need to be "
 "overridden."
 msgstr ":class:`Bdb`\\의 다음 메서드는 일반적으로 재정의할 필요가 없습니다."
 
-#: ../../library/bdb.rst:142
+#: ../../library/bdb.rst:155
 msgid "Return canonical form of *filename*."
 msgstr "*filename*\\의 규범적 형식을 반환합니다."
 
-#: ../../library/bdb.rst:144
+#: ../../library/bdb.rst:157
 msgid ""
 "For real file names, the canonical form is an operating-system-dependent,"
 " :func:`case-normalized <os.path.normcase>` :func:`absolute path "
@@ -222,7 +240,19 @@ msgid ""
 "``\"<stdin>\"`` generated in interactive mode, is returned unchanged."
 msgstr ""
 
-#: ../../library/bdb.rst:151
+#: ../../library/bdb.rst:164
+msgid ""
+"Start tracing. For ``'settrace'`` backend, this method is equivalent to "
+"``sys.settrace(self.trace_dispatch)``"
+msgstr ""
+
+#: ../../library/bdb.rst:171
+msgid ""
+"Stop tracing. For ``'settrace'`` backend, this method is equivalent to "
+"``sys.settrace(None)``"
+msgstr ""
+
+#: ../../library/bdb.rst:178
 msgid ""
 "Set the :attr:`!botframe`, :attr:`!stopframe`, :attr:`!returnframe` and "
 ":attr:`quitting <Bdb.set_quit>` attributes with values ready to start "
@@ -231,13 +261,13 @@ msgstr ""
 "디버깅을 시작할 준비가 된 값으로 :attr:`!botframe`, :attr:`!stopframe`, "
 ":attr:`!returnframe` 및 :attr:`quitting <Bdb.set_quit>` 어트리뷰트를 설정합니다."
 
-#: ../../library/bdb.rst:156
+#: ../../library/bdb.rst:183
 msgid ""
 "This function is installed as the trace function of debugged frames.  Its"
 " return value is the new trace function (in most cases, that is, itself)."
 msgstr "이 함수는 디버그되는 프레임의 추적 함수(trace function)로 설치됩니다. 반환 값은 새로운 추적 함수(대부분 자체)입니다."
 
-#: ../../library/bdb.rst:159
+#: ../../library/bdb.rst:186
 msgid ""
 "The default implementation decides how to dispatch a frame, depending on "
 "the type of event (passed as a string) that is about to be executed. "
@@ -246,47 +276,47 @@ msgstr ""
 "기본 구현은 실행되려고 하는 (문자열로 전달된) 이벤트의 유형에 따라 프레임을 디스패치 하는 방법을 결정합니다. *event*\\는"
 " 다음 중 하나일 수 있습니다:"
 
-#: ../../library/bdb.rst:163
+#: ../../library/bdb.rst:190
 msgid "``\"line\"``: A new line of code is going to be executed."
 msgstr "``\"line\"``: 새로운 코드 줄이 실행되려고 합니다."
 
-#: ../../library/bdb.rst:164
+#: ../../library/bdb.rst:191
 msgid ""
 "``\"call\"``: A function is about to be called, or another code block "
 "entered."
 msgstr "``\"call\"``: 함수가 호출되거나, 다른 코드 블록에 진입하려고 합니다."
 
-#: ../../library/bdb.rst:166
+#: ../../library/bdb.rst:193
 msgid "``\"return\"``: A function or other code block is about to return."
 msgstr "``\"return\"``: 함수나 다른 코드 블록이 반환하려고 합니다."
 
-#: ../../library/bdb.rst:167
+#: ../../library/bdb.rst:194
 msgid "``\"exception\"``: An exception has occurred."
 msgstr "``\"exception\"``: 예외가 발생했습니다."
 
-#: ../../library/bdb.rst:168
+#: ../../library/bdb.rst:195
 msgid "``\"c_call\"``: A C function is about to be called."
 msgstr "``\"c_call\"``: C 함수가 호출되려고 합니다."
 
-#: ../../library/bdb.rst:169
+#: ../../library/bdb.rst:196
 msgid "``\"c_return\"``: A C function has returned."
 msgstr "``\"c_return\"``: C 함수가 반환했습니다."
 
-#: ../../library/bdb.rst:170
+#: ../../library/bdb.rst:197
 msgid "``\"c_exception\"``: A C function has raised an exception."
 msgstr "``\"c_exception\"``: C 함수가 예외를 발생시켰습니다."
 
-#: ../../library/bdb.rst:172
+#: ../../library/bdb.rst:199
 msgid ""
 "For the Python events, specialized functions (see below) are called.  For"
 " the C events, no action is taken."
 msgstr "파이썬 이벤트의 경우, 특수 함수(아래를 참조하세요)가 호출됩니다. C 이벤트의 경우, 아무런 액션도 취하지 않습니다."
 
-#: ../../library/bdb.rst:175
+#: ../../library/bdb.rst:202
 msgid "The *arg* parameter depends on the previous event."
 msgstr "*arg* 매개 변수는 앞의 이벤트에 따라 다릅니다."
 
-#: ../../library/bdb.rst:177
+#: ../../library/bdb.rst:204
 msgid ""
 "See the documentation for :func:`sys.settrace` for more information on "
 "the trace function.  For more information on code and frame objects, "
@@ -295,7 +325,7 @@ msgstr ""
 "추적 함수에 대한 자세한 내용은 :func:`sys.settrace` 설명서를 참조하십시오. 코드와 프레임 객체에 대한 자세한 "
 "내용은 :ref:`types`\\을 참조하십시오."
 
-#: ../../library/bdb.rst:183
+#: ../../library/bdb.rst:210
 msgid ""
 "If the debugger should stop on the current line, invoke the "
 ":meth:`user_line` method (which should be overridden in subclasses). "
@@ -309,7 +339,7 @@ msgstr ""
 "있습니다) :exc:`BdbQuit` 예외를 발생시킵니다. 해당 스코프에서 추가 추적을 위해 "
 ":meth:`trace_dispatch` 메서드에 대한 참조를 반환합니다."
 
-#: ../../library/bdb.rst:191
+#: ../../library/bdb.rst:218
 msgid ""
 "If the debugger should stop on this function call, invoke the "
 ":meth:`user_call` method (which should be overridden in subclasses). "
@@ -323,7 +353,7 @@ msgstr ""
 "설정할 수 있습니다) :exc:`BdbQuit` 예외를 발생시킵니다. 해당 스코프에서 추가 추적을 위해 "
 ":meth:`trace_dispatch` 메서드에 대한 참조를 반환합니다."
 
-#: ../../library/bdb.rst:199
+#: ../../library/bdb.rst:226
 msgid ""
 "If the debugger should stop on this function return, invoke the "
 ":meth:`user_return` method (which should be overridden in subclasses). "
@@ -337,7 +367,7 @@ msgstr ""
 " 설정할 수 있습니다) :exc:`BdbQuit` 예외를 발생시킵니다. 해당 스코프에서 추가 추적을 위해 "
 ":meth:`trace_dispatch` 메서드에 대한 참조를 반환합니다."
 
-#: ../../library/bdb.rst:207
+#: ../../library/bdb.rst:234
 msgid ""
 "If the debugger should stop at this exception, invokes the "
 ":meth:`user_exception` method (which should be overridden in subclasses)."
@@ -351,53 +381,53 @@ msgstr ""
 "(:meth:`user_exception`\\에서 설정할 수 있습니다) :exc:`BdbQuit` 예외를 발생시킵니다. 해당 "
 "스코프에서 추가 추적을 위해 :meth:`trace_dispatch` 메서드에 대한 참조를 반환합니다."
 
-#: ../../library/bdb.rst:213
+#: ../../library/bdb.rst:240
 msgid ""
 "Normally derived classes don't override the following methods, but they "
 "may if they want to redefine the definition of stopping and breakpoints."
 msgstr "일반적으로 파생된 클래스는 다음 메서드를 재정의하지 않지만, 중지와 중단점의 정의를 재정의하려고 하면 그럴 수 있습니다."
 
-#: ../../library/bdb.rst:218
+#: ../../library/bdb.rst:245
 msgid "Return ``True`` if *module_name* matches any skip pattern."
 msgstr ""
 
-#: ../../library/bdb.rst:222
+#: ../../library/bdb.rst:249
 msgid "Return ``True`` if *frame* is below the starting frame in the stack."
 msgstr ""
 
-#: ../../library/bdb.rst:226
+#: ../../library/bdb.rst:253
 msgid "Return ``True`` if there is an effective breakpoint for this line."
 msgstr ""
 
-#: ../../library/bdb.rst:228
+#: ../../library/bdb.rst:255
 msgid ""
 "Check whether a line or function breakpoint exists and is in effect.  "
 "Delete temporary breakpoints based on information from :func:`effective`."
 msgstr ""
 
-#: ../../library/bdb.rst:233
+#: ../../library/bdb.rst:260
 msgid "Return ``True`` if any breakpoint exists for *frame*'s filename."
 msgstr ""
 
-#: ../../library/bdb.rst:235
+#: ../../library/bdb.rst:262
 msgid ""
 "Derived classes should override these methods to gain control over "
 "debugger operation."
 msgstr "파생 클래스는 디버거 연산을 제어하기 위해 이 메서드를 재정의해야 합니다."
 
-#: ../../library/bdb.rst:240
+#: ../../library/bdb.rst:267
 msgid ""
 "Called from :meth:`dispatch_call` if a break might stop inside the called"
 " function."
 msgstr "호출된 함수 내부에서 중단이 발생할 수 있으면 :meth:`dispatch_call`\\에서 호출됩니다."
 
-#: ../../library/bdb.rst:243
+#: ../../library/bdb.rst:270
 msgid ""
 "*argument_list* is not used anymore and will always be ``None``. The "
 "argument is kept for backwards compatibility."
 msgstr ""
 
-#: ../../library/bdb.rst:248
+#: ../../library/bdb.rst:275
 msgid ""
 "Called from :meth:`dispatch_line` when either :meth:`stop_here` or "
 ":meth:`break_here` returns ``True``."
@@ -405,13 +435,13 @@ msgstr ""
 ":meth:`stop_here`\\나 :meth:`break_here`\\가 ``True``\\를 반환할 때 "
 ":meth:`dispatch_line`\\에서 호출됩니다."
 
-#: ../../library/bdb.rst:253
+#: ../../library/bdb.rst:280
 msgid ""
 "Called from :meth:`dispatch_return` when :meth:`stop_here` returns "
 "``True``."
 msgstr ":meth:`stop_here`\\가 ``True``\\를 반환할 때 :meth:`dispatch_return`\\에서 호출됩니다."
 
-#: ../../library/bdb.rst:257
+#: ../../library/bdb.rst:284
 msgid ""
 "Called from :meth:`dispatch_exception` when :meth:`stop_here` returns "
 "``True``."
@@ -419,57 +449,57 @@ msgstr ""
 ":meth:`stop_here`\\가 ``True``\\를 반환할 때 :meth:`dispatch_exception`\\에서 "
 "호출됩니다."
 
-#: ../../library/bdb.rst:262
+#: ../../library/bdb.rst:289
 msgid "Handle how a breakpoint must be removed when it is a temporary one."
 msgstr "중단점이 일시적일 때 중단점을 제거하는 방법을 처리합니다."
 
-#: ../../library/bdb.rst:264
+#: ../../library/bdb.rst:291
 msgid "This method must be implemented by derived classes."
 msgstr "이 메서드는 파생 클래스에서 구현해야 합니다."
 
-#: ../../library/bdb.rst:267
+#: ../../library/bdb.rst:294
 msgid ""
 "Derived classes and clients can call the following methods to affect the "
 "stepping state."
 msgstr "파생 클래스와 클라이언트는 다음 메서드를 호출하여 스테핑(stepping) 상태에 영향을 줄 수 있습니다."
 
-#: ../../library/bdb.rst:272
+#: ../../library/bdb.rst:299
 msgid "Stop after one line of code."
 msgstr "한 줄의 코드 후에 멈춥니다."
 
-#: ../../library/bdb.rst:276
+#: ../../library/bdb.rst:303
 msgid "Stop on the next line in or below the given frame."
 msgstr "주어진 프레임 내 또는 아래의 다음 줄에서 멈춥니다."
 
-#: ../../library/bdb.rst:280
+#: ../../library/bdb.rst:307
 msgid "Stop when returning from the given frame."
 msgstr "주어진 프레임에서 반환할 때 멈춥니다."
 
-#: ../../library/bdb.rst:284
+#: ../../library/bdb.rst:311
 msgid ""
 "Stop when the line with the *lineno* greater than the current one is "
 "reached or when returning from current frame."
 msgstr "현재 줄보다 큰 *lineno*\\를 갖는 줄에 도달하거나 현재 프레임에서 반환할 때 멈춥니다."
 
-#: ../../library/bdb.rst:289
+#: ../../library/bdb.rst:316
 msgid ""
 "Start debugging from *frame*.  If *frame* is not specified, debugging "
 "starts from caller's frame."
 msgstr "*frame*\\에서 디버깅을 시작합니다. *frame*\\을 지정하지 않으면 호출자의 프레임에서 디버깅을 시작합니다."
 
-#: ../../library/bdb.rst:292
+#: ../../library/bdb.rst:319
 msgid ""
 ":func:`set_trace` will enter the debugger immediately, rather than on the"
 " next line of code to be executed."
 msgstr ""
 
-#: ../../library/bdb.rst:298
+#: ../../library/bdb.rst:325
 msgid ""
 "Stop only at breakpoints or when finished.  If there are no breakpoints, "
 "set the system trace function to ``None``."
 msgstr "중단점에서나 완료 시에만 멈춥니다. 중단점이 없으면, 시스템 추적 함수를 ``None``\\으로 설정합니다."
 
-#: ../../library/bdb.rst:305
+#: ../../library/bdb.rst:332
 msgid ""
 "Set the :attr:`!quitting` attribute to ``True``.  This raises "
 ":exc:`BdbQuit` in the next call to one of the :meth:`!dispatch_\\*` "
@@ -478,7 +508,7 @@ msgstr ""
 ":attr:`!quitting` 어트리뷰트를 ``True``\\로 설정합니다. 다음에 :meth:`!dispatch_\\*` 메서드"
 " 중 하나를 호출할 때 :exc:`BdbQuit`\\가 발생합니다."
 
-#: ../../library/bdb.rst:309
+#: ../../library/bdb.rst:336
 msgid ""
 "Derived classes and clients can call the following methods to manipulate "
 "breakpoints.  These methods return a string containing an error message "
@@ -487,7 +517,7 @@ msgstr ""
 "파생 클래스와 클라이언트는 다음 메서드를 호출하여 중단점을 조작할 수 있습니다. 이 메서드는 문제가 발생하면 에러 메시지가 포함된 "
 "문자열을 반환하고, 모두 정상이면 ``None``\\을 반환합니다."
 
-#: ../../library/bdb.rst:315
+#: ../../library/bdb.rst:342
 msgid ""
 "Set a new breakpoint.  If the *lineno* line doesn't exist for the "
 "*filename* passed as argument, return an error message.  The *filename* "
@@ -496,13 +526,13 @@ msgstr ""
 "새로운 중단점을 설정합니다. 인자로 전달된 *filename*\\에 *lineno* 줄이 없으면 에러 메시지를 반환합니다. "
 ":meth:`canonic` 메서드에 설명된 대로 *filename*\\은 규범적 형식이어야 합니다."
 
-#: ../../library/bdb.rst:321
+#: ../../library/bdb.rst:348
 msgid ""
 "Delete the breakpoints in *filename* and *lineno*.  If none were set, "
 "return an error message."
 msgstr "*filename*\\과 *lineno*\\에서 중단점을 삭제합니다. 설정되지 않았으면, 에러 메시지를 반환합니다."
 
-#: ../../library/bdb.rst:326
+#: ../../library/bdb.rst:353
 msgid ""
 "Delete the breakpoint which has the index *arg* in the "
 ":attr:`Breakpoint.bpbynumber`.  If *arg* is not numeric or out of range, "
@@ -511,19 +541,19 @@ msgstr ""
 ":attr:`Breakpoint.bpbynumber`\\에서 인덱스 *arg*\\인 중단점을 삭제합니다. *arg*\\가 숫자가 "
 "아니거나 범위를 벗어나면, 에러 메시지를 반환합니다."
 
-#: ../../library/bdb.rst:332
+#: ../../library/bdb.rst:359
 msgid ""
 "Delete all breakpoints in *filename*.  If none were set, return an error "
 "message."
 msgstr "*filename*\\에서 모든 중단점을 삭제합니다. 설정되지 않았으면, 에러 메시지를 반환합니다."
 
-#: ../../library/bdb.rst:337
+#: ../../library/bdb.rst:364
 msgid ""
 "Delete all existing breakpoints.  If none were set, return an error "
 "message."
 msgstr "모든 기존 중단점을 삭제합니다. 설정되지 않았으면, 에러 메시지를 반환합니다."
 
-#: ../../library/bdb.rst:342
+#: ../../library/bdb.rst:369
 msgid ""
 "Return a breakpoint specified by the given number.  If *arg* is a string,"
 " it will be converted to a number.  If *arg* is a non-numeric string, if "
@@ -533,67 +563,89 @@ msgstr ""
 "주어진 숫자로 지정된 중단점을 반환합니다. *arg*\\가 문자열이면, 숫자로 변환됩니다. *arg*\\가 숫자가 아닌 문자열이면,"
 " 지정된 중단점이 존재하지 않거나 삭제되었으면, :exc:`ValueError`\\가 발생합니다."
 
-#: ../../library/bdb.rst:351
+#: ../../library/bdb.rst:378
 msgid "Return ``True`` if there is a breakpoint for *lineno* in *filename*."
 msgstr "*filename*\\의 *lineno*\\에 중단점이 있으면 ``True``\\를 반환합니다."
 
-#: ../../library/bdb.rst:355
+#: ../../library/bdb.rst:382
 msgid ""
 "Return all breakpoints for *lineno* in *filename*, or an empty list if "
 "none are set."
 msgstr "*filename*\\의 *lineno*\\에 있는 모든 중단점을 반환하거나, 없으면 빈 리스트를 반환합니다."
 
-#: ../../library/bdb.rst:360
+#: ../../library/bdb.rst:387
 msgid "Return all breakpoints in *filename*, or an empty list if none are set."
 msgstr "*filename*\\의 모든 중단점을 반환하거나, 없으면 빈 리스트를 반환합니다."
 
-#: ../../library/bdb.rst:364
+#: ../../library/bdb.rst:391
 msgid "Return all breakpoints that are set."
 msgstr "설정된 모든 중단점을 반환합니다."
 
-#: ../../library/bdb.rst:367
+#: ../../library/bdb.rst:394
+msgid ""
+"Derived classes and clients can call the following methods to disable and"
+" restart events to achieve better performance. These methods only work "
+"when using the ``'monitoring'`` backend."
+msgstr ""
+
+#: ../../library/bdb.rst:400
+msgid ""
+"Disable the current event until the next time :func:`restart_events` is "
+"called. This is helpful when the debugger is not interested in the "
+"current line."
+msgstr ""
+
+#: ../../library/bdb.rst:408
+msgid ""
+"Restart all the disabled events. This function is automatically called in"
+" ``dispatch_*`` methods after ``user_*`` methods are called. If the "
+"``dispatch_*`` methods are not overridden, the disabled events will be "
+"restarted after each user interaction."
+msgstr ""
+
+#: ../../library/bdb.rst:416
 msgid ""
 "Derived classes and clients can call the following methods to get a data "
 "structure representing a stack trace."
 msgstr "파생 클래스와 클라이언트는 다음 메서드를 호출하여 스택 추적을 나타내는 데이터 구조를 얻을 수 있습니다."
 
-#: ../../library/bdb.rst:372
+#: ../../library/bdb.rst:421
 msgid "Return a list of (frame, lineno) tuples in a stack trace, and a size."
 msgstr ""
 
-#: ../../library/bdb.rst:374
+#: ../../library/bdb.rst:423
 msgid ""
 "The most recently called frame is last in the list. The size is the "
 "number of frames below the frame where the debugger was invoked."
 msgstr ""
 
-#: ../../library/bdb.rst:379
+#: ../../library/bdb.rst:428
 msgid ""
 "Return a string with information about a stack entry, which is a "
 "``(frame, lineno)`` tuple.  The return string contains:"
 msgstr "``(frame, lineno)`` 튜플인 스택 항목에 대한 정보가 포함된 문자열을 반환합니다. 반환 문자열은 다음을 포함합니다:"
 
-#: ../../library/bdb.rst:382
+#: ../../library/bdb.rst:431
 msgid "The canonical filename which contains the frame."
 msgstr "프레임을 포함하는 규범적 파일명."
 
-#: ../../library/bdb.rst:383
+#: ../../library/bdb.rst:432
 msgid "The function name or ``\"<lambda>\"``."
 msgstr "함수 이름이나 ``\"<lambda>\"``."
 
-#: ../../library/bdb.rst:384
+#: ../../library/bdb.rst:433
 msgid "The input arguments."
 msgstr "입력 인자."
 
-#: ../../library/bdb.rst:385
+#: ../../library/bdb.rst:434
 msgid "The return value."
 msgstr "반환 값."
 
-#: ../../library/bdb.rst:386
+#: ../../library/bdb.rst:435
 msgid "The line of code (if it exists)."
 msgstr "코드 줄 (있으면)."
 
-#: ../../library/bdb.rst:389
+#: ../../library/bdb.rst:438
 msgid ""
 "The following two methods can be called by clients to use a debugger to "
 "debug a :term:`statement`, given as a string."
@@ -601,7 +653,7 @@ msgstr ""
 "클라이언트가 문자열로 지정된 :term:`statement`\\를 디버깅하기 위해 디버거를 사용하려면 다음 두 가지 메서드를 호출할"
 " 수 있습니다."
 
-#: ../../library/bdb.rst:394
+#: ../../library/bdb.rst:443
 msgid ""
 "Debug a statement executed via the :func:`exec` function.  *globals* "
 "defaults to :attr:`!__main__.__dict__`, *locals* defaults to *globals*."
@@ -609,7 +661,7 @@ msgstr ""
 ":func:`exec` 함수를 통해 실행된 문장을 디버그합니다. *globals*\\의 기본값은 "
 ":attr:`!__main__.__dict__`\\이고, *locals*\\의 기본값은 *globals*\\입니다."
 
-#: ../../library/bdb.rst:399
+#: ../../library/bdb.rst:448
 msgid ""
 "Debug an expression executed via the :func:`eval` function.  *globals* "
 "and *locals* have the same meaning as in :meth:`run`."
@@ -617,25 +669,25 @@ msgstr ""
 ":func:`eval` 함수를 통해 실행된 표현식을 디버그합니다. *globals*\\와 *locals*\\는 "
 ":meth:`run`\\과 같은 의미입니다."
 
-#: ../../library/bdb.rst:404
+#: ../../library/bdb.rst:453
 msgid "For backwards compatibility.  Calls the :meth:`run` method."
 msgstr "이전 버전과의 호환성을 위해. :meth:`run` 메서드를 호출합니다."
 
-#: ../../library/bdb.rst:408
+#: ../../library/bdb.rst:457
 msgid "Debug a single function call, and return its result."
 msgstr "단일 함수 호출을 디버그하고, 결과를 반환합니다."
 
-#: ../../library/bdb.rst:411
+#: ../../library/bdb.rst:460
 msgid "Finally, the module defines the following functions:"
 msgstr "마지막으로, 모듈은 다음과 같은 함수를 정의합니다:"
 
-#: ../../library/bdb.rst:415
+#: ../../library/bdb.rst:464
 msgid ""
 "Return ``True`` if we should break here, depending on the way the "
 ":class:`Breakpoint` *b* was set."
 msgstr ":class:`Breakpoint` *b*\\가 설정된 방식에 따라, 여기서 중단해야 하면 ``True``\\를 반환합니다."
 
-#: ../../library/bdb.rst:418
+#: ../../library/bdb.rst:467
 msgid ""
 "If it was set via line number, it checks if :attr:`b.line "
 "<bdb.Breakpoint.line>` is the same as the one in *frame*. If the "
@@ -647,13 +699,13 @@ msgstr ""
 "같은지 확인합니다. :attr:`함수 이름 <bdb.Breakpoint.funcname>`\\을 통해 중단점이 설정되었으면, 우리는"
 " 올바른 *frame*\\(올바른 함수)에 있는지와 그것의 첫 번째 실행 가능한 줄에 있는지 확인해야 합니다."
 
-#: ../../library/bdb.rst:427
+#: ../../library/bdb.rst:476
 msgid ""
 "Return ``(active breakpoint, delete temporary flag)`` or ``(None, None)``"
 " as the breakpoint to act upon."
 msgstr ""
 
-#: ../../library/bdb.rst:430
+#: ../../library/bdb.rst:479
 msgid ""
 "The *active breakpoint* is the first entry in :attr:`bplist "
 "<bdb.Breakpoint.bplist>` for the (:attr:`file <bdb.Breakpoint.file>`, "
@@ -667,15 +719,15 @@ msgid ""
 "<bdb.Breakpoint.ignore>` count is ignored)."
 msgstr ""
 
-#: ../../library/bdb.rst:441
+#: ../../library/bdb.rst:490
 msgid "If no such entry exists, then ``(None, None)`` is returned."
 msgstr ""
 
-#: ../../library/bdb.rst:446
+#: ../../library/bdb.rst:495
 msgid "Start debugging with a :class:`Bdb` instance from caller's frame."
 msgstr "호출자의 프레임에서 :class:`Bdb` 인스턴스로 디버깅을 시작합니다."
 
-#: ../../library/bdb.rst:303
+#: ../../library/bdb.rst:330
 msgid "quitting (bdb.Bdb attribute)"
 msgstr "quitting (bdb.Bdb 어트리뷰트)"
 

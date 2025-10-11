@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -332,32 +332,48 @@ msgid ""
 msgstr "문자 집합을 변환하지 않고 메시지 헤더 값을 디코딩합니다. 헤더 값은 *header*\\에 있습니다."
 
 #: ../../library/email.header.rst:181
-msgid ""
-"This function returns a list of ``(decoded_string, charset)`` pairs "
-"containing each of the decoded parts of the header.  *charset* is "
-"``None`` for non-encoded parts of the header, otherwise a lower case "
-"string containing the name of the character set specified in the encoded "
-"string."
+msgid "For historical reasons, this function may return either:"
 msgstr ""
-"이 함수는 헤더의 디코딩된 각 부분을 포함하는 ``(decoded_string, charset)`` 쌍의 리스트를 반환합니다. "
-"*charset*\\은 헤더의 인코딩되지 않은 부분에 대해 ``None``\\이며, 그렇지 않으면 인코딩된 문자열에 지정된 문자 "
-"집합의 이름을 포함하는 소문자 문자열입니다."
 
-#: ../../library/email.header.rst:186
-msgid "Here's an example::"
+#: ../../library/email.header.rst:183
+msgid ""
+"A list of pairs containing each of the decoded parts of the header, "
+"``(decoded_bytes, charset)``, where *decoded_bytes* is always an instance"
+" of :class:`bytes`, and *charset* is either:"
+msgstr ""
+
+#: ../../library/email.header.rst:187
+msgid "A lower case string containing the name of the character set specified."
+msgstr ""
+
+#: ../../library/email.header.rst:189
+msgid "``None`` for non-encoded parts of the header."
+msgstr ""
+
+#: ../../library/email.header.rst:191
+msgid ""
+"A list of length 1 containing a pair ``(string, None)``, where *string* "
+"is always an instance of :class:`str`."
+msgstr ""
+
+#: ../../library/email.header.rst:194
+msgid ""
+"An :exc:`email.errors.HeaderParseError` may be raised when certain "
+"decoding errors occur (e.g. a base64 decoding exception)."
+msgstr ""
+
+#: ../../library/email.header.rst:197
+#, fuzzy
+msgid "Here are examples:"
 msgstr "예를 들면 다음과 같습니다::"
 
-#: ../../library/email.header.rst:188
+#: ../../library/email.header.rst:209
 msgid ""
-">>> from email.header import decode_header\n"
-">>> decode_header('=?iso-8859-1?q?p=F6stal?=')\n"
-"[(b'p\\xf6stal', 'iso-8859-1')]"
+"This function exists for backwards compatibility only. For new code, we "
+"recommend using :class:`email.headerregistry.HeaderRegistry`."
 msgstr ""
-">>> from email.header import decode_header\n"
-">>> decode_header('=?iso-8859-1?q?p=F6stal?=')\n"
-"[(b'p\\xf6stal', 'iso-8859-1')]"
 
-#: ../../library/email.header.rst:195
+#: ../../library/email.header.rst:215
 msgid ""
 "Create a :class:`Header` instance from a sequence of pairs as returned by"
 " :func:`decode_header`."
@@ -365,7 +381,7 @@ msgstr ""
 ":func:`decode_header`\\에 의해 반환된 것과 같은 쌍의 시퀀스로부터 :class:`Header` 인스턴스를 "
 "만듭니다."
 
-#: ../../library/email.header.rst:198
+#: ../../library/email.header.rst:218
 msgid ""
 ":func:`decode_header` takes a header value string and returns a sequence "
 "of pairs of the format ``(decoded_string, charset)`` where *charset* is "
@@ -374,7 +390,7 @@ msgstr ""
 ":func:`decode_header`\\는 헤더 값 문자열을 취하고 ``(decoded_string, charset)`` 형식의 "
 "쌍의 시퀀스를 반환합니다. 여기서 *charset*\\은 문자 집합의 이름입니다."
 
-#: ../../library/email.header.rst:202
+#: ../../library/email.header.rst:222
 msgid ""
 "This function takes one of those sequence of pairs and returns a "
 ":class:`Header` instance.  Optional *maxlinelen*, *header_name*, and "
@@ -382,4 +398,35 @@ msgid ""
 msgstr ""
 "이 함수는 해당 쌍의 시퀀스 중 하나를 취해서 :class:`Header` 인스턴스를 반환합니다. 선택적 *maxlinelen*, "
 "*header_name* 및 *continuation_ws*\\는 :class:`Header` 생성자에서와 같습니다."
+
+#: ../../library/email.header.rst:228
+msgid ""
+"This function exists for backwards compatibility only, and is not "
+"recommended for use in new code."
+msgstr ""
+
+#~ msgid ""
+#~ "This function returns a list of "
+#~ "``(decoded_string, charset)`` pairs containing "
+#~ "each of the decoded parts of the"
+#~ " header.  *charset* is ``None`` for "
+#~ "non-encoded parts of the header, "
+#~ "otherwise a lower case string containing"
+#~ " the name of the character set "
+#~ "specified in the encoded string."
+#~ msgstr ""
+#~ "이 함수는 헤더의 디코딩된 각 부분을 포함하는 "
+#~ "``(decoded_string, charset)`` 쌍의 리스트를 반환합니다."
+#~ " *charset*\\은 헤더의 인코딩되지 않은 부분에 대해 "
+#~ "``None``\\이며, 그렇지 않으면 인코딩된 문자열에 지정된 "
+#~ "문자 집합의 이름을 포함하는 소문자 문자열입니다."
+
+#~ msgid ""
+#~ ">>> from email.header import decode_header\n"
+#~ ">>> decode_header('=?iso-8859-1?q?p=F6stal?=')\n"
+#~ "[(b'p\\xf6stal', 'iso-8859-1')]"
+#~ msgstr ""
+#~ ">>> from email.header import decode_header\n"
+#~ ">>> decode_header('=?iso-8859-1?q?p=F6stal?=')\n"
+#~ "[(b'p\\xf6stal', 'iso-8859-1')]"
 

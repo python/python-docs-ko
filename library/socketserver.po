@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -243,12 +243,19 @@ msgstr ""
 
 #: ../../library/socketserver.rst:131
 msgid ""
+"Specify how many child processes will exist to handle requests at a time "
+"for :class:`ForkingMixIn`.  If the limit is reached, new requests will "
+"wait until one child process has finished."
+msgstr ""
+
+#: ../../library/socketserver.rst:137
+msgid ""
 "For :class:`ThreadingMixIn` use daemonic threads by setting "
 ":data:`ThreadingMixIn.daemon_threads <daemon_threads>` to ``True`` to not"
 " wait until threads complete."
 msgstr ""
 
-#: ../../library/socketserver.rst:137
+#: ../../library/socketserver.rst:143
 msgid ""
 ":meth:`ForkingMixIn.server_close <BaseServer.server_close>` and "
 ":meth:`ThreadingMixIn.server_close <BaseServer.server_close>` now waits "
@@ -261,17 +268,17 @@ msgstr ""
 " 프로세스와 비 데몬 스레드가 완료될 때까지 대기합니다. 3.7 이전의 동작을 옵트인 하기 위해 새 "
 ":attr:`ForkingMixIn.block_on_close <block_on_close>` 클래스 어트리뷰트를 추가합니다."
 
-#: ../../library/socketserver.rst:153
+#: ../../library/socketserver.rst:159
 msgid "These classes are pre-defined using the mix-in classes."
 msgstr "이 클래스들이 믹스인 클래스를 사용하여 미리 정의됩니다."
 
-#: ../../library/socketserver.rst:155
+#: ../../library/socketserver.rst:161
 msgid ""
 "The ``ForkingUnixStreamServer`` and ``ForkingUnixDatagramServer`` classes"
 " were added."
 msgstr ""
 
-#: ../../library/socketserver.rst:159
+#: ../../library/socketserver.rst:165
 msgid ""
 "To implement a service, you must derive a class from "
 ":class:`BaseRequestHandler` and redefine its "
@@ -288,7 +295,7 @@ msgstr ""
 "서비스에서 달라야 합니다. 처리기 서브 클래스 :class:`StreamRequestHandler` 나 "
 ":class:`DatagramRequestHandler`\\를 사용하여 이 차이를 숨길 수 있습니다."
 
-#: ../../library/socketserver.rst:167
+#: ../../library/socketserver.rst:173
 msgid ""
 "Of course, you still have to use your head!  For instance, it makes no "
 "sense to use a forking server if the service contains state in memory "
@@ -302,7 +309,7 @@ msgstr ""
 " 사용하는 것은 의미가 없습니다. 자식 프로세스에의 수정은 부모 프로세스에 유지된 초기 상태에 도달하여 각 자식에 전달되지 못하기 "
 "때문입니다. 이 경우, 스레딩 서버를 사용할 수 있지만, 아마도 공유 데이터의 무결성을 보호하기 위해 록을 사용해야 합니다."
 
-#: ../../library/socketserver.rst:174
+#: ../../library/socketserver.rst:180
 msgid ""
 "On the other hand, if you are building an HTTP server where all data is "
 "stored externally (for instance, in the file system), a synchronous class"
@@ -315,7 +322,7 @@ msgstr ""
 "동안 실질적으로 서비스가 \"듣지 못하게\" 만듭니다 -- 클라이언트가 요청한 모든 데이터를 받는 속도가 느리다면 매우 오랜 시간이"
 " 걸릴 수 있습니다. 이럴 때는 스레딩이나 포킹 서버가 적합합니다."
 
-#: ../../library/socketserver.rst:180
+#: ../../library/socketserver.rst:186
 msgid ""
 "In some cases, it may be appropriate to process part of a request "
 "synchronously, but to finish processing in a forked child depending on "
@@ -327,7 +334,7 @@ msgstr ""
 "있습니다. 이는 동기 서버를 사용하고 요청 처리기 클래스 :meth:`~BaseRequestHandler.handle` 메서드에서 "
 "명시적 포크를 수행하여 구현할 수 있습니다."
 
-#: ../../library/socketserver.rst:185
+#: ../../library/socketserver.rst:191
 msgid ""
 "Another approach to handling multiple simultaneous requests in an "
 "environment that supports neither threads nor :func:`~os.fork` (or where "
@@ -343,11 +350,11 @@ msgstr ""
 "다음에 작업할 요청을 (또는 새로 들어온 요청을 처리할지를) 결정하는 것입니다. 이는 (스레드나 서브 프로세스를 사용할 수 없다면)"
 " 각 클라이언트가 오랫동안 연결될 수 있는 스트림 서비스에 특히 중요합니다."
 
-#: ../../library/socketserver.rst:198
+#: ../../library/socketserver.rst:204
 msgid "Server Objects"
 msgstr "서버 객체"
 
-#: ../../library/socketserver.rst:202
+#: ../../library/socketserver.rst:208
 msgid ""
 "This is the superclass of all Server objects in the module.  It defines "
 "the interface, given below, but does not implement most of the methods, "
@@ -359,7 +366,7 @@ msgstr ""
 "서브 클래스에서 구현됩니다. 두 개의 매개 변수는 각각 :attr:`server_address`\\와 "
 ":attr:`RequestHandlerClass` 어트리뷰트에 저장됩니다."
 
-#: ../../library/socketserver.rst:210
+#: ../../library/socketserver.rst:216
 msgid ""
 "Return an integer file descriptor for the socket on which the server is "
 "listening.  This function is most commonly passed to :mod:`selectors`, to"
@@ -368,7 +375,7 @@ msgstr ""
 "서버가 리스닝 중인 소켓의 정수 파일 디스크립터를 반환합니다. 이 함수는 가장 일반적으로 같은 프로세스에서 여러 서버를 모니터링할 "
 "수 있도록 :mod:`selectors`\\에 전달됩니다."
 
-#: ../../library/socketserver.rst:217
+#: ../../library/socketserver.rst:223
 msgid ""
 "Process a single request.  This function calls the following methods in "
 "order: :meth:`get_request`, :meth:`verify_request`, and "
@@ -385,7 +392,7 @@ msgstr ""
 ":meth:`handle_error` 메서드가 호출됩니다. :attr:`timeout` 초 내에 요청이 수신되지 않으면, "
 ":meth:`handle_timeout`\\이 호출되고 :meth:`handle_request`\\는 반환합니다."
 
-#: ../../library/socketserver.rst:229
+#: ../../library/socketserver.rst:235
 msgid ""
 "Handle requests until an explicit :meth:`shutdown` request.  Poll for "
 "shutdown every *poll_interval* seconds. Ignores the :attr:`timeout` "
@@ -400,11 +407,11 @@ msgstr ""
 ":class:`ForkingMixIn` 클래스는 :meth:`service_actions`\\를 사용하여 좀비 자식 프로세스를 "
 "정리합니다."
 
-#: ../../library/socketserver.rst:237
+#: ../../library/socketserver.rst:243
 msgid "Added ``service_actions`` call to the ``serve_forever`` method."
 msgstr "``serve_forever`` 메서드에 ``service_actions`` 호출을 추가했습니다."
 
-#: ../../library/socketserver.rst:243
+#: ../../library/socketserver.rst:249
 msgid ""
 "This is called in the :meth:`serve_forever` loop. This method can be "
 "overridden by subclasses or mixin classes to perform actions specific to "
@@ -413,7 +420,7 @@ msgstr ""
 ":meth:`serve_forever` 루프에서 호출됩니다. 이 메서드는 서브 클래스나 믹스인 클래스에서 재정의되어 정리 조치와 "
 "같은 지정된 서비스에 특정한 조치를 수행할 수 있습니다."
 
-#: ../../library/socketserver.rst:251
+#: ../../library/socketserver.rst:257
 msgid ""
 "Tell the :meth:`serve_forever` loop to stop and wait until it does. "
 ":meth:`shutdown` must be called while :meth:`serve_forever` is running in"
@@ -423,11 +430,11 @@ msgstr ""
 ":meth:`serve_forever`\\가 다른 스레드에서 실행되는 동안 :meth:`shutdown`\\을 호출해야 합니다. "
 "그렇지 않으면 교착 상태가 됩니다."
 
-#: ../../library/socketserver.rst:258
+#: ../../library/socketserver.rst:264
 msgid "Clean up the server. May be overridden."
 msgstr "서버를 정리합니다. 재정의될 수 있습니다."
 
-#: ../../library/socketserver.rst:263
+#: ../../library/socketserver.rst:269
 msgid ""
 "The family of protocols to which the server's socket belongs.  Common "
 "examples are :const:`socket.AF_INET`, :const:`socket.AF_INET6`, and "
@@ -440,13 +447,13 @@ msgstr ""
 " 클래스 어트리뷰트 ``address_family = AF_INET6``\\을 설정하여 이 모듈의 TCP 나 UDP 서버 클래스의 "
 "서브클래스를 만드세요."
 
-#: ../../library/socketserver.rst:272
+#: ../../library/socketserver.rst:278
 msgid ""
 "The user-provided request handler class; an instance of this class is "
 "created for each request."
 msgstr "사용자 제공 요청 처리기 클래스; 요청마다 이 클래스의 인스턴스가 만들어집니다."
 
-#: ../../library/socketserver.rst:278
+#: ../../library/socketserver.rst:284
 msgid ""
 "The address on which the server is listening.  The format of addresses "
 "varies depending on the protocol family; see the documentation for the "
@@ -458,15 +465,15 @@ msgstr ""
 "참조하십시오. 인터넷 프로토콜의 경우, 주소를 제공하는 문자열과 정수 포트 번호를 포함하는 튜플입니다: ``('127.0.0.1',"
 " 80)``, 예를 들어."
 
-#: ../../library/socketserver.rst:287
+#: ../../library/socketserver.rst:293
 msgid "The socket object on which the server will listen for incoming requests."
 msgstr "서버가 들어오는 요청을 리스닝 할 소켓 객체."
 
-#: ../../library/socketserver.rst:290
+#: ../../library/socketserver.rst:296
 msgid "The server classes support the following class variables:"
 msgstr "서버 클래스는 다음 클래스 변수를 지원합니다:"
 
-#: ../../library/socketserver.rst:296
+#: ../../library/socketserver.rst:302
 msgid ""
 "Whether the server will allow the reuse of an address.  This defaults to "
 ":const:`False`, and can be set in subclasses to change the policy."
@@ -474,7 +481,7 @@ msgstr ""
 "서버가 주소를 재사용하도록 허락하는지 여부. 기본값은 :const:`False`\\이며, 정책을 변경하기 위해 서브 클래스에서 "
 "설정할 수 있습니다."
 
-#: ../../library/socketserver.rst:302
+#: ../../library/socketserver.rst:308
 msgid ""
 "The size of the request queue.  If it takes a long time to process a "
 "single request, any requests that arrive while the server is busy are "
@@ -487,7 +494,7 @@ msgstr ""
 ":attr:`request_queue_size` 요청까지 큐에 배치됩니다. 큐가 가득 차면, 클라이언트의 추가 요청은 \"연결 "
 "거부(Connection denied)\" 에러를 받게 됩니다. 기본값은 일반적으로 5이지만, 서브 클래스가 재정의할 수 있습니다."
 
-#: ../../library/socketserver.rst:311
+#: ../../library/socketserver.rst:317
 msgid ""
 "The type of socket used by the server; :const:`socket.SOCK_STREAM` and "
 ":const:`socket.SOCK_DGRAM` are two common values."
@@ -495,7 +502,7 @@ msgstr ""
 "서버가 사용하는 소켓의 유형. :const:`socket.SOCK_STREAM`\\과 "
 ":const:`socket.SOCK_DGRAM`\\은 두 가지 흔한 값입니다."
 
-#: ../../library/socketserver.rst:317
+#: ../../library/socketserver.rst:323
 msgid ""
 "Timeout duration, measured in seconds, or :const:`None` if no timeout is "
 "desired.  If :meth:`handle_request` receives no incoming requests within "
@@ -504,7 +511,7 @@ msgstr ""
 "초 단위의 시간제한 기간, 또는 시간제한이 필요하지 않으면 :const:`None`. :meth:`handle_request`\\가"
 " timeout 기간 내에 들어오는 요청을 받지 못하면, :meth:`handle_timeout` 메서드가 호출됩니다."
 
-#: ../../library/socketserver.rst:322
+#: ../../library/socketserver.rst:328
 msgid ""
 "There are various server methods that can be overridden by subclasses of "
 "base server classes like :class:`TCPServer`; these methods aren't useful "
@@ -513,7 +520,7 @@ msgstr ""
 ":class:`TCPServer`\\와 같은 베이스 서버 클래스의 서브 클래스가 재정의할 수 있는 다양한 서버 메서드가 있습니다; "
 "이러한 메서드는 서버 객체의 외부 사용자에게는 유용하지 않습니다."
 
-#: ../../library/socketserver.rst:331
+#: ../../library/socketserver.rst:337
 msgid ""
 "Actually processes the request by instantiating "
 ":attr:`RequestHandlerClass` and calling its "
@@ -522,7 +529,7 @@ msgstr ""
 ":attr:`RequestHandlerClass`\\를 인스턴스화하고 :meth:`~BaseRequestHandler.handle`"
 " 메서드를 호출하여 실제로 요청을 처리합니다."
 
-#: ../../library/socketserver.rst:337
+#: ../../library/socketserver.rst:343
 msgid ""
 "Must accept a request from the socket, and return a 2-tuple containing "
 "the *new* socket object to be used to communicate with the client, and "
@@ -531,7 +538,7 @@ msgstr ""
 "소켓으로부터의 요청을 받아들이고, 클라이언트와 통신하는 데 사용될 *새* 소켓 객체와 클라이언트 주소를 포함하는 2-튜플을 반환해야"
 " 합니다."
 
-#: ../../library/socketserver.rst:344
+#: ../../library/socketserver.rst:350
 msgid ""
 "This function is called if the :meth:`~BaseRequestHandler.handle` method "
 "of a :attr:`RequestHandlerClass` instance raises an exception.  The "
@@ -542,11 +549,11 @@ msgstr ""
 "메서드에서 예외가 발생하면 이 함수가 호출됩니다. 기본 액션은 표준 에러로 트레이스백을 인쇄하고 추가 요청을 계속 처리하는 "
 "것입니다."
 
-#: ../../library/socketserver.rst:349
+#: ../../library/socketserver.rst:355
 msgid "Now only called for exceptions derived from the :exc:`Exception` class."
 msgstr "이제 :exc:`Exception` 클래스에서 파생된 예외에 대해서만 호출됩니다."
 
-#: ../../library/socketserver.rst:356
+#: ../../library/socketserver.rst:362
 msgid ""
 "This function is called when the :attr:`timeout` attribute has been set "
 "to a value other than :const:`None` and the timeout period has passed "
@@ -558,7 +565,7 @@ msgstr ""
 "시간제한 기간이 지나면 호출됩니다. 포킹 서버에서의 기본 액션은 종료한 모든 자식 프로세스의 상태를 수집하는 것이고, 반면에 스레딩"
 " 서버에서는 이 메서드가 아무 작업도 수행하지 않습니다."
 
-#: ../../library/socketserver.rst:365
+#: ../../library/socketserver.rst:371
 msgid ""
 "Calls :meth:`finish_request` to create an instance of the "
 ":attr:`RequestHandlerClass`.  If desired, this function can create a new "
@@ -569,7 +576,7 @@ msgstr ""
 "원한다면, 이 함수는 요청을 처리하기 위해 새 프로세스나 스레드를 만들 수 있습니다; :class:`ForkingMixIn`\\과 "
 ":class:`ThreadingMixIn` 클래스가 그렇게 합니다."
 
-#: ../../library/socketserver.rst:377
+#: ../../library/socketserver.rst:383
 msgid ""
 "Called by the server's constructor to activate the server.  The default "
 "behavior for a TCP server just invokes :meth:`~socket.socket.listen` on "
@@ -578,13 +585,13 @@ msgstr ""
 "서버를 활성화하기 위해 서버의 생성자가 호출합니다. TCP 서버의 기본 동작은 단지 서버의 소켓에 대해 "
 ":meth:`~socket.socket.listen`\\을 호출합니다. 재정의될 수 있습니다."
 
-#: ../../library/socketserver.rst:384
+#: ../../library/socketserver.rst:390
 msgid ""
 "Called by the server's constructor to bind the socket to the desired "
 "address. May be overridden."
 msgstr "소켓을 원하는 주소에 바인딩하기 위해 서버의 생성자가 호출합니다. 재정의될 수 있습니다."
 
-#: ../../library/socketserver.rst:390
+#: ../../library/socketserver.rst:396
 msgid ""
 "Must return a Boolean value; if the value is :const:`True`, the request "
 "will be processed, and if it's :const:`False`, the request will be "
@@ -595,7 +602,7 @@ msgstr ""
 "거부됩니다. 서버에 대한 액세스 제어를 구현하기 위해 이 함수를 재정의할 수 있습니다. 기본 구현은 항상 "
 ":const:`True`\\를 반환합니다."
 
-#: ../../library/socketserver.rst:396
+#: ../../library/socketserver.rst:402
 msgid ""
 "Support for the :term:`context manager` protocol was added.  Exiting the "
 "context manager is equivalent to calling :meth:`server_close`."
@@ -603,11 +610,11 @@ msgstr ""
 ":term:`컨텍스트 관리자 <context manager>` 프로토콜에 대한 지원이 추가되었습니다. 컨텍스트 관리자를 벗어나는 "
 "것은 :meth:`server_close`\\를 호출하는 것과 동등합니다."
 
-#: ../../library/socketserver.rst:402
+#: ../../library/socketserver.rst:408
 msgid "Request Handler Objects"
 msgstr "요청 처리기 객체"
 
-#: ../../library/socketserver.rst:406
+#: ../../library/socketserver.rst:412
 msgid ""
 "This is the superclass of all request handler objects.  It defines the "
 "interface, given below.  A concrete request handler subclass must define "
@@ -618,13 +625,13 @@ msgstr ""
 ":meth:`handle` 메서드를 정의해야 하며, 다른 메서드를 재정의할 수 있습니다. 각 요청에 대해 서브 클래스의 새 "
 "인스턴스가 만들어집니다."
 
-#: ../../library/socketserver.rst:415
+#: ../../library/socketserver.rst:421
 msgid ""
 "Called before the :meth:`handle` method to perform any initialization "
 "actions required.  The default implementation does nothing."
 msgstr "필요한 초기화 액션을 수행하기 위해 :meth:`handle` 메서드 전에 호출됩니다. 기본 구현은 아무것도 수행하지 않습니다."
 
-#: ../../library/socketserver.rst:421
+#: ../../library/socketserver.rst:427
 msgid ""
 "This function must do all the work required to service a request.  The "
 "default implementation does nothing.  Several instance attributes are "
@@ -637,7 +644,7 @@ msgstr ""
 ":attr:`client_address`\\로 제공됩니다; 서버별 정보에 액세스해야 하는 경우를 위해 서버 인스턴스는 "
 ":attr:`server`\\로 제공됩니다."
 
-#: ../../library/socketserver.rst:427
+#: ../../library/socketserver.rst:433
 msgid ""
 "The type of :attr:`request` is different for datagram or stream services."
 "  For stream services, :attr:`request` is a socket object; for datagram "
@@ -647,7 +654,7 @@ msgstr ""
 ":attr:`request`\\는 소켓 객체입니다; 데이터 그램 서비스의 경우, :attr:`request`\\는 문자열과 소켓 "
 "쌍입니다."
 
-#: ../../library/socketserver.rst:434
+#: ../../library/socketserver.rst:440
 msgid ""
 "Called after the :meth:`handle` method to perform any clean-up actions "
 "required.  The default implementation does nothing.  If :meth:`setup` "
@@ -656,21 +663,21 @@ msgstr ""
 "필요한 정리 액션을 수행하기 위해 :meth:`handle` 메서드 이후에 호출됩니다. 기본 구현은 아무것도 수행하지 않습니다. "
 ":meth:`setup`\\에서 예외가 발생하면, 이 함수가 호출되지 않습니다."
 
-#: ../../library/socketserver.rst:441
+#: ../../library/socketserver.rst:447
 msgid ""
 "The *new* :class:`socket.socket` object to be used to communicate with "
 "the client."
 msgstr ""
 
-#: ../../library/socketserver.rst:447
+#: ../../library/socketserver.rst:453
 msgid "Client address returned by :meth:`BaseServer.get_request`."
 msgstr ""
 
-#: ../../library/socketserver.rst:452
+#: ../../library/socketserver.rst:458
 msgid ":class:`BaseServer` object used for handling the request."
 msgstr ""
 
-#: ../../library/socketserver.rst:458
+#: ../../library/socketserver.rst:464
 msgid ""
 "These :class:`BaseRequestHandler` subclasses override the "
 ":meth:`~BaseRequestHandler.setup` and :meth:`~BaseRequestHandler.finish` "
@@ -680,37 +687,37 @@ msgstr ""
 ":meth:`~BaseRequestHandler.setup`\\과 :meth:`~BaseRequestHandler.finish` "
 "메서드를 재정의하고, :attr:`rfile`\\과 :attr:`wfile` 어트리뷰트를 제공합니다."
 
-#: ../../library/socketserver.rst:464
+#: ../../library/socketserver.rst:470
 msgid ""
 "A file object from which receives the request is read. Support the "
 ":class:`io.BufferedIOBase` readable interface."
 msgstr "읽어서 요청을 수신할 파일 객체. :class:`io.BufferedIOBase` 읽기 가능 인터페이스를 지원합니다."
 
-#: ../../library/socketserver.rst:469
+#: ../../library/socketserver.rst:475
 msgid ""
 "A file object to which the reply is written. Support the "
 ":class:`io.BufferedIOBase` writable interface"
 msgstr "응답을 기록할 파일 객체. :class:`io.BufferedIOBase` 쓰기 가능 인터페이스를 지원합니다."
 
-#: ../../library/socketserver.rst:473
+#: ../../library/socketserver.rst:479
 msgid ""
 ":attr:`wfile` also supports the :class:`io.BufferedIOBase` writable "
 "interface."
 msgstr ":attr:`wfile` 도 :class:`io.BufferedIOBase` 쓰기 가능 인터페이스를 지원합니다."
 
-#: ../../library/socketserver.rst:479
+#: ../../library/socketserver.rst:485
 msgid "Examples"
 msgstr "예"
 
-#: ../../library/socketserver.rst:482
+#: ../../library/socketserver.rst:488
 msgid ":class:`socketserver.TCPServer` Example"
 msgstr ":class:`socketserver.TCPServer` 예"
 
-#: ../../library/socketserver.rst:484 ../../library/socketserver.rst:595
+#: ../../library/socketserver.rst:490 ../../library/socketserver.rst:601
 msgid "This is the server side::"
 msgstr "이것은 서버 쪽입니다::"
 
-#: ../../library/socketserver.rst:486
+#: ../../library/socketserver.rst:492
 #, python-brace-format
 msgid ""
 "import socketserver\n"
@@ -781,14 +788,14 @@ msgstr ""
 "        # 실행됩니다.\n"
 "        server.serve_forever()"
 
-#: ../../library/socketserver.rst:520
+#: ../../library/socketserver.rst:526
 msgid ""
 "An alternative request handler class that makes use of streams (file-like"
 " objects that simplify communication by providing the standard file "
 "interface)::"
 msgstr "스트림(표준 파일 인터페이스를 제공하여 통신을 단순화하는 파일류 객체)을 사용하는 대체 요청 처리기 클래스::"
 
-#: ../../library/socketserver.rst:523
+#: ../../library/socketserver.rst:529
 #, python-brace-format
 msgid ""
 "class MyTCPHandler(socketserver.StreamRequestHandler):\n"
@@ -818,24 +825,23 @@ msgstr ""
 "        # 사용되는 파일류 객체입니다\n"
 "        self.wfile.write(self.data.upper())"
 
-#: ../../library/socketserver.rst:536
+#: ../../library/socketserver.rst:542
 msgid ""
 "The difference is that the ``readline()`` call in the second handler will"
 " call ``recv()`` multiple times until it encounters a newline character, "
-"while the the first handler had to use a ``recv()`` loop to accumulate "
-"data until a newline itself.  If it had just used a single ``recv()`` "
-"without the loop it would just have returned what has been received so "
-"far from the client. TCP is stream based: data arrives in the order it "
-"was sent, but there no correlation between client ``send()`` or "
-"``sendall()`` calls and the number of ``recv()`` calls on the server "
-"required to receive it."
+"while the first handler had to use a ``recv()`` loop to accumulate data "
+"until a newline itself.  If it had just used a single ``recv()`` without "
+"the loop it would just have returned what has been received so far from "
+"the client. TCP is stream based: data arrives in the order it was sent, "
+"but there no correlation between client ``send()`` or ``sendall()`` calls"
+" and the number of ``recv()`` calls on the server required to receive it."
 msgstr ""
 
-#: ../../library/socketserver.rst:546 ../../library/socketserver.rst:619
+#: ../../library/socketserver.rst:552 ../../library/socketserver.rst:625
 msgid "This is the client side::"
 msgstr "이것은 클라이언트 쪽입니다::"
 
-#: ../../library/socketserver.rst:548
+#: ../../library/socketserver.rst:554
 msgid ""
 "import socket\n"
 "import sys\n"
@@ -875,15 +881,15 @@ msgstr ""
 "print(\"Sent:    \", data)\n"
 "print(\"Received:\", received)"
 
-#: ../../library/socketserver.rst:568 ../../library/socketserver.rst:694
+#: ../../library/socketserver.rst:574 ../../library/socketserver.rst:700
 msgid "The output of the example should look something like this:"
 msgstr "예제의 결과는 다음과 같아야 합니다:"
 
-#: ../../library/socketserver.rst:570
+#: ../../library/socketserver.rst:576
 msgid "Server:"
 msgstr "서버:"
 
-#: ../../library/socketserver.rst:572
+#: ../../library/socketserver.rst:578
 msgid ""
 "$ python TCPServer.py\n"
 "127.0.0.1 wrote:\n"
@@ -897,11 +903,11 @@ msgstr ""
 "127.0.0.1 wrote:\n"
 "b'python is nice'"
 
-#: ../../library/socketserver.rst:580
+#: ../../library/socketserver.rst:586
 msgid "Client:"
 msgstr "클라이언트:"
 
-#: ../../library/socketserver.rst:582
+#: ../../library/socketserver.rst:588
 msgid ""
 "$ python TCPClient.py hello world with TCP\n"
 "Sent:     hello world with TCP\n"
@@ -917,11 +923,11 @@ msgstr ""
 "Sent:     python is nice\n"
 "Received: PYTHON IS NICE"
 
-#: ../../library/socketserver.rst:593
+#: ../../library/socketserver.rst:599
 msgid ":class:`socketserver.UDPServer` Example"
 msgstr ":class:`socketserver.UDPServer` 예"
 
-#: ../../library/socketserver.rst:597
+#: ../../library/socketserver.rst:603
 #, python-brace-format
 msgid ""
 "import socketserver\n"
@@ -968,7 +974,7 @@ msgstr ""
 "    with socketserver.UDPServer((HOST, PORT), MyUDPHandler) as server:\n"
 "        server.serve_forever()"
 
-#: ../../library/socketserver.rst:621
+#: ../../library/socketserver.rst:627
 msgid ""
 "import socket\n"
 "import sys\n"
@@ -1004,17 +1010,17 @@ msgstr ""
 "print(\"Sent:    \", data)\n"
 "print(\"Received:\", received)"
 
-#: ../../library/socketserver.rst:638
+#: ../../library/socketserver.rst:644
 msgid ""
 "The output of the example should look exactly like for the TCP server "
 "example."
 msgstr "예제의 출력은 TCP 서버 예제와 정확히 같아야 합니다."
 
-#: ../../library/socketserver.rst:642
+#: ../../library/socketserver.rst:648
 msgid "Asynchronous Mixins"
 msgstr "비동기 믹스인"
 
-#: ../../library/socketserver.rst:644
+#: ../../library/socketserver.rst:650
 msgid ""
 "To build asynchronous handlers, use the :class:`ThreadingMixIn` and "
 ":class:`ForkingMixIn` classes."
@@ -1022,11 +1028,11 @@ msgstr ""
 "비동기 처리기를 구축하려면, :class:`ThreadingMixIn` 과 :class:`ForkingMixIn` 클래스를 "
 "사용하십시오."
 
-#: ../../library/socketserver.rst:647
+#: ../../library/socketserver.rst:653
 msgid "An example for the :class:`ThreadingMixIn` class::"
 msgstr ":class:`ThreadingMixIn` 클래스의 예::"
 
-#: ../../library/socketserver.rst:649
+#: ../../library/socketserver.rst:655
 #, python-brace-format
 msgid ""
 "import socket\n"
@@ -1122,7 +1128,7 @@ msgstr ""
 "\n"
 "        server.shutdown()"
 
-#: ../../library/socketserver.rst:696
+#: ../../library/socketserver.rst:702
 msgid ""
 "$ python ThreadedTCPServer.py\n"
 "Server loop running in thread: Thread-1\n"
@@ -1136,7 +1142,7 @@ msgstr ""
 "Received: Thread-3: Hello World 2\n"
 "Received: Thread-4: Hello World 3"
 
-#: ../../library/socketserver.rst:705
+#: ../../library/socketserver.rst:711
 msgid ""
 "The :class:`ForkingMixIn` class is used in the same way, except that the "
 "server will spawn a new process for each request. Available only on POSIX"
@@ -1190,4 +1196,25 @@ msgstr ""
 #~ " 것을 반환하는 반면, 두 번째 처리기의 "
 #~ "``readline()`` 호출은 줄 바꿈 문자를 만날 때까지"
 #~ " ``recv()``\\를 여러 번 호출한다는 것입니다."
+
+#~ msgid ""
+#~ "The difference is that the "
+#~ "``readline()`` call in the second "
+#~ "handler will call ``recv()`` multiple "
+#~ "times until it encounters a newline "
+#~ "character, while the the first handler"
+#~ " had to use a ``recv()`` loop "
+#~ "to accumulate data until a newline "
+#~ "itself.  If it had just used a "
+#~ "single ``recv()`` without the loop it"
+#~ " would just have returned what has"
+#~ " been received so far from the "
+#~ "client. TCP is stream based: data "
+#~ "arrives in the order it was sent,"
+#~ " but there no correlation between "
+#~ "client ``send()`` or ``sendall()`` calls "
+#~ "and the number of ``recv()`` calls "
+#~ "on the server required to receive "
+#~ "it."
+#~ msgstr ""
 

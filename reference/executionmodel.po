@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -329,53 +329,59 @@ msgstr ""
 
 #: ../../reference/executionmodel.rst:193
 msgid ""
-":ref:`Type parameter lists <type-params>` and :keyword:`type` statements "
-"introduce *annotation scopes*, which behave mostly like function scopes, "
-"but with some exceptions discussed below. :term:`Annotations "
-"<annotation>` currently do not use annotation scopes, but they are "
-"expected to use annotation scopes in Python 3.13 when :pep:`649` is "
-"implemented."
+":term:`Annotations <annotation>`, :ref:`type parameter lists <type-"
+"params>` and :keyword:`type` statements introduce *annotation scopes*, "
+"which behave mostly like function scopes, but with some exceptions "
+"discussed below."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:199
+#: ../../reference/executionmodel.rst:198
 msgid "Annotation scopes are used in the following contexts:"
 msgstr ""
 
+#: ../../reference/executionmodel.rst:200
+msgid ":term:`Function annotations <function annotation>`."
+msgstr ""
+
 #: ../../reference/executionmodel.rst:201
+msgid ":term:`Variable annotations <variable annotation>`."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:202
 msgid ""
 "Type parameter lists for :ref:`generic type aliases <generic-type-"
 "aliases>`."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:202
+#: ../../reference/executionmodel.rst:203
 msgid ""
 "Type parameter lists for :ref:`generic functions <generic-functions>`. A "
 "generic function's annotations are executed within the annotation scope, "
 "but its defaults and decorators are not."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:205
+#: ../../reference/executionmodel.rst:206
 msgid ""
 "Type parameter lists for :ref:`generic classes <generic-classes>`. A "
 "generic class's base classes and keyword arguments are executed within "
 "the annotation scope, but its decorators are not."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:208
+#: ../../reference/executionmodel.rst:209
 msgid ""
 "The bounds, constraints, and default values for type parameters "
 "(:ref:`lazily evaluated <lazy-evaluation>`)."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:210
+#: ../../reference/executionmodel.rst:211
 msgid "The value of type aliases (:ref:`lazily evaluated <lazy-evaluation>`)."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:212
+#: ../../reference/executionmodel.rst:213
 msgid "Annotation scopes differ from function scopes in the following ways:"
 msgstr ""
 
-#: ../../reference/executionmodel.rst:214
+#: ../../reference/executionmodel.rst:215
 msgid ""
 "Annotation scopes have access to their enclosing class namespace. If an "
 "annotation scope is immediately within a class scope, or within another "
@@ -386,7 +392,7 @@ msgid ""
 "the class scope."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:220
+#: ../../reference/executionmodel.rst:221
 msgid ""
 "Expressions in annotation scopes cannot contain :keyword:`yield`, ``yield"
 " from``, :keyword:`await`, or :token:`:= <python-"
@@ -394,7 +400,7 @@ msgid ""
 "allowed in other scopes contained within the annotation scope.)"
 msgstr ""
 
-#: ../../reference/executionmodel.rst:224
+#: ../../reference/executionmodel.rst:225
 msgid ""
 "Names defined in annotation scopes cannot be rebound with "
 ":keyword:`nonlocal` statements in inner scopes. This includes only type "
@@ -402,7 +408,7 @@ msgid ""
 "annotation scopes can introduce new names."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:227
+#: ../../reference/executionmodel.rst:228
 msgid ""
 "While annotation scopes have an internal name, that name is not reflected"
 " in the :term:`qualified name` of objects defined within the scope. "
@@ -410,35 +416,43 @@ msgid ""
 "the object were defined in the enclosing scope."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:232
+#: ../../reference/executionmodel.rst:233
 msgid "Annotation scopes were introduced in Python 3.12 as part of :pep:`695`."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:235
+#: ../../reference/executionmodel.rst:236
 msgid ""
 "Annotation scopes are also used for type parameter defaults, as "
 "introduced by :pep:`696`."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:242
+#: ../../reference/executionmodel.rst:240
+msgid ""
+"Annotation scopes are now also used for annotations, as specified in "
+":pep:`649` and :pep:`749`."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:247
 msgid "Lazy evaluation"
 msgstr ""
 
-#: ../../reference/executionmodel.rst:244
+#: ../../reference/executionmodel.rst:249
 msgid ""
-"The values of type aliases created through the :keyword:`type` statement "
-"are *lazily evaluated*. The same applies to the bounds, constraints, and "
-"default values of type variables created through the :ref:`type parameter"
-" syntax <type-params>`. This means that they are not evaluated when the "
-"type alias or type variable is created. Instead, they are only evaluated "
-"when doing so is necessary to resolve an attribute access."
+"Most annotation scopes are *lazily evaluated*. This includes annotations,"
+" the values of type aliases created through the :keyword:`type` "
+"statement, and the bounds, constraints, and default values of type "
+"variables created through the :ref:`type parameter syntax <type-params>`."
+" This means that they are not evaluated when the type alias or type "
+"variable is created, or when the object carrying annotations is created. "
+"Instead, they are only evaluated when necessary, for example when the "
+"``__value__`` attribute on a type alias is accessed."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:251
+#: ../../reference/executionmodel.rst:258
 msgid "Example:"
 msgstr ""
 
-#: ../../reference/executionmodel.rst:253
+#: ../../reference/executionmodel.rst:260
 msgid ""
 ">>> type Alias = 1/0\n"
 ">>> Alias.__value__\n"
@@ -464,14 +478,14 @@ msgstr ""
 "  ...\n"
 "ZeroDivisionError: division by zero"
 
-#: ../../reference/executionmodel.rst:267
+#: ../../reference/executionmodel.rst:274
 msgid ""
 "Here the exception is raised only when the ``__value__`` attribute of the"
 " type alias or the ``__bound__`` attribute of the type variable is "
 "accessed."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:271
+#: ../../reference/executionmodel.rst:278
 msgid ""
 "This behavior is primarily useful for references to types that have not "
 "yet been defined when the type alias or type variable is created. For "
@@ -479,7 +493,7 @@ msgid ""
 "aliases::"
 msgstr ""
 
-#: ../../reference/executionmodel.rst:275
+#: ../../reference/executionmodel.rst:282
 msgid ""
 "from typing import Literal\n"
 "\n"
@@ -493,7 +507,7 @@ msgstr ""
 "type Parenthesized = tuple[Literal[\"(\"], Expr, Literal[\")\"]]\n"
 "type Expr = SimpleExpr | tuple[SimpleExpr, Literal[\"+\", \"-\"], Expr]"
 
-#: ../../reference/executionmodel.rst:281
+#: ../../reference/executionmodel.rst:288
 msgid ""
 "Lazily evaluated values are evaluated in :ref:`annotation scope "
 "<annotation-scopes>`, which means that names that appear inside the "
@@ -501,11 +515,11 @@ msgid ""
 "immediately enclosing scope."
 msgstr ""
 
-#: ../../reference/executionmodel.rst:290
+#: ../../reference/executionmodel.rst:297
 msgid "Builtins and restricted execution"
 msgstr "builtins 와 제한된 실행"
 
-#: ../../reference/executionmodel.rst:296
+#: ../../reference/executionmodel.rst:303
 msgid ""
 "Users should not touch ``__builtins__``; it is strictly an implementation"
 " detail.  Users wanting to override values in the builtins namespace "
@@ -516,7 +530,7 @@ msgstr ""
 "싶은 사용자는 :mod:`builtins` 모듈을 :keyword:`import` 하고 그것의 어트리뷰트를 적절하게 수정해야 "
 "합니다."
 
-#: ../../reference/executionmodel.rst:301
+#: ../../reference/executionmodel.rst:308
 msgid ""
 "The builtins namespace associated with the execution of a code block is "
 "actually found by looking up the name ``__builtins__`` in its global "
@@ -531,11 +545,11 @@ msgstr ""
 ":mod:`__main__` 모듈에 있을 때는 ``__builtins__`` 가 내장 모듈 :mod:`builtins` 이고, 다른"
 " 모듈에 있을 때는 ``__builtins__`` 는 :mod:`builtins` 모듈의 딕셔너리에 대한 별칭입니다."
 
-#: ../../reference/executionmodel.rst:313
+#: ../../reference/executionmodel.rst:320
 msgid "Interaction with dynamic features"
 msgstr "동적 기능과의 상호작용"
 
-#: ../../reference/executionmodel.rst:315
+#: ../../reference/executionmodel.rst:322
 msgid ""
 "Name resolution of free variables occurs at runtime, not at compile time."
 " This means that the following code will print 42::"
@@ -543,7 +557,7 @@ msgstr ""
 "자유 변수에 대해 이름 검색은 컴파일 시점이 아니라 실행 시점에 이루어집니다. 이것은 다음과 같은 코드가 42를 출력한다는 것을 "
 "뜻합니다:"
 
-#: ../../reference/executionmodel.rst:318
+#: ../../reference/executionmodel.rst:325
 msgid ""
 "i = 10\n"
 "def f():\n"
@@ -557,7 +571,7 @@ msgstr ""
 "i = 42\n"
 "f()"
 
-#: ../../reference/executionmodel.rst:326
+#: ../../reference/executionmodel.rst:333
 msgid ""
 "The :func:`eval` and :func:`exec` functions do not have access to the "
 "full environment for resolving names.  Names may be resolved in the local"
@@ -572,11 +586,11 @@ msgstr ""
 " [#]_ :func:`exec` 과 :func:`eval` 함수에는 전역과 지역 이름 공간을 재정의할 수 있는 생략 가능한 인자가"
 " 있습니다. 만약 단지 한 이름 공간만 주어지면, 그것이 두 가지 모두로 사용됩니다."
 
-#: ../../reference/executionmodel.rst:340
+#: ../../reference/executionmodel.rst:347
 msgid "Exceptions"
 msgstr "예외"
 
-#: ../../reference/executionmodel.rst:351
+#: ../../reference/executionmodel.rst:358
 msgid ""
 "Exceptions are a means of breaking out of the normal flow of control of a"
 " code block in order to handle errors or other exceptional conditions.  "
@@ -588,7 +602,7 @@ msgstr ""
 "*일으킵니다(raised)*; 둘러싼 코드 블록이나 직접적 혹은 간접적으로 에러가 발생한 코드 블록을 호출한 어떤 코드 블록에서건 "
 "예외는 처리될 수 있습니다."
 
-#: ../../reference/executionmodel.rst:357
+#: ../../reference/executionmodel.rst:364
 msgid ""
 "The Python interpreter raises an exception when it detects a run-time "
 "error (such as division by zero).  A Python program can also explicitly "
@@ -603,7 +617,7 @@ msgstr ""
 " :keyword:`except` 문으로 지정됩니다. 그런 문장에서 :keyword:`finally` 구는 정리(cleanup) "
 "코드를 지정하는 데 사용되는데, 예외를 처리하는 것이 아니라 앞선 코드에서 예외가 발생하건 그렇지 않건 실행됩니다."
 
-#: ../../reference/executionmodel.rst:367
+#: ../../reference/executionmodel.rst:374
 msgid ""
 "Python uses the \"termination\" model of error handling: an exception "
 "handler can find out what happened and continue execution at an outer "
@@ -615,7 +629,7 @@ msgstr ""
 " 단계에서 실행을 계속할 수는 있지만, 에러의 원인을 제거한 후에 실패한 연산을 재시도할 수는 없습니다(문제의 코드 조각을 처음부터"
 " 다시 시작시키는 것은 예외입니다)."
 
-#: ../../reference/executionmodel.rst:374
+#: ../../reference/executionmodel.rst:381
 msgid ""
 "When an exception is not handled at all, the interpreter terminates "
 "execution of the program, or returns to its interactive main loop.  In "
@@ -625,7 +639,7 @@ msgstr ""
 "예외가 어디서도 처리되지 않을 때, 인터프리터는 프로그램의 실행을 종료하거나, 대화형 메인 루프로 돌아갑니다. 두 경우 모두, "
 "예외가 :exc:`SystemExit` 인 경우를 제외하고, 스택 트레이스백을 인쇄합니다."
 
-#: ../../reference/executionmodel.rst:378
+#: ../../reference/executionmodel.rst:385
 msgid ""
 "Exceptions are identified by class instances.  The :keyword:`except` "
 "clause is selected depending on the class of the instance: it must "
@@ -638,7 +652,7 @@ msgstr ""
 " 그것의 :term:`비가상(non-virtual) 베이스 클래스 <abstract base class>`\\를 가리켜야 합니다. "
 "인스턴스는 핸들러가 수신할 수 있고 예외적인 조건에 대한 추가적인 정보를 포함할 수 있습니다."
 
-#: ../../reference/executionmodel.rst:386
+#: ../../reference/executionmodel.rst:393
 msgid ""
 "Exception messages are not part of the Python API.  Their contents may "
 "change from one version of Python to the next without warning and should "
@@ -648,7 +662,7 @@ msgstr ""
 "예외 메시지는 파이썬 API 일부가 아닙니다. 그 내용은 파이썬의 버전이 바뀔 때 경고 없이 변경될 수 있고, 코드는 여러 버전의 "
 "인터프리터에서 실행될 수 있는 코드는 이것에 의존하지 말아야 합니다."
 
-#: ../../reference/executionmodel.rst:390
+#: ../../reference/executionmodel.rst:397
 msgid ""
 "See also the description of the :keyword:`try` statement in section "
 ":ref:`try` and :keyword:`raise` statement in section :ref:`raise`."
@@ -656,11 +670,284 @@ msgstr ""
 "섹션 :ref:`try` 에서 :keyword:`try` 문, :ref:`raise` 에서 :keyword:`raise` 문에 대한"
 " 설명이 제공됩니다."
 
-#: ../../reference/executionmodel.rst:395
+#: ../../reference/executionmodel.rst:404
+msgid "Runtime Components"
+msgstr ""
+
+#: ../../reference/executionmodel.rst:407
+#, fuzzy
+msgid "General Computing Model"
+msgstr "실행 모델"
+
+#: ../../reference/executionmodel.rst:409
+msgid ""
+"Python's execution model does not operate in a vacuum.  It runs on a host"
+" machine and through that host's runtime environment, including its "
+"operating system (OS), if there is one.  When a program runs, the "
+"conceptual layers of how it runs on the host look something like this:"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "**host machine**"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "**process** (global resources)"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "**thread** (runs machine code)"
+msgstr ""
+
+#: ../../reference/executionmodel.rst:419
+msgid ""
+"Each process represents a program running on the host.  Think of each "
+"process itself as the data part of its program.  Think of the process' "
+"threads as the execution part of the program.  This distinction will be "
+"important to understand the conceptual Python runtime."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:424
+msgid ""
+"The process, as the data part, is the execution context in which the "
+"program runs.  It mostly consists of the set of resources assigned to the"
+" program by the host, including memory, signals, file handles, sockets, "
+"and environment variables."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:429
+msgid ""
+"Processes are isolated and independent from one another.  (The same is "
+"true for hosts.)  The host manages the process' access to its assigned "
+"resources, in addition to coordinating between processes."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:433
+msgid ""
+"Each thread represents the actual execution of the program's machine "
+"code, running relative to the resources assigned to the program's "
+"process.  It's strictly up to the host how and when that execution takes "
+"place."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:438
+msgid ""
+"From the point of view of Python, a program always starts with exactly "
+"one thread.  However, the program may grow to run in multiple "
+"simultaneous threads.  Not all hosts support multiple threads per "
+"process, but most do.  Unlike processes, threads in a process are not "
+"isolated and independent from one another.  Specifically, all threads in "
+"a process share all of the process' resources."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:445
+msgid ""
+"The fundamental point of threads is that each one does *run* "
+"independently, at the same time as the others.  That may be only "
+"conceptually at the same time (\"concurrently\") or physically (\"in "
+"parallel\").  Either way, the threads effectively run at a non-"
+"synchronized rate."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:453
+msgid ""
+"That non-synchronized rate means none of the process' memory is "
+"guaranteed to stay consistent for the code running in any given thread.  "
+"Thus multi-threaded programs must take care to coordinate access to "
+"intentionally shared resources.  Likewise, they must take care to be "
+"absolutely diligent about not accessing any *other* resources in multiple"
+" threads; otherwise two threads running at the same time might "
+"accidentally interfere with each other's use of some shared data.  All "
+"this is true for both Python programs and the Python runtime."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:463
+msgid ""
+"The cost of this broad, unstructured requirement is the tradeoff for the "
+"kind of raw concurrency that threads provide.  The alternative to the "
+"required discipline generally means dealing with non-deterministic bugs "
+"and data corruption."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:469
+msgid "Python Runtime Model"
+msgstr ""
+
+#: ../../reference/executionmodel.rst:471
+msgid ""
+"The same conceptual layers apply to each Python program, with some extra "
+"data layers specific to Python:"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "Python global runtime (*state*)"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "Python interpreter (*state*)"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "**thread** (runs Python bytecode and \"C-API\")"
+msgstr ""
+
+#: ../../reference/executionmodel.rst
+msgid "Python thread *state*"
+msgstr ""
+
+#: ../../reference/executionmodel.rst:481
+msgid ""
+"At the conceptual level: when a Python program starts, it looks exactly "
+"like that diagram, with one of each.  The runtime may grow to include "
+"multiple interpreters, and each interpreter may grow to include multiple "
+"thread states."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:488
+msgid ""
+"A Python implementation won't necessarily implement the runtime layers "
+"distinctly or even concretely.  The only exception is places where "
+"distinct layers are directly specified or exposed to users, like through "
+"the :mod:`threading` module."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:495
+msgid ""
+"The initial interpreter is typically called the \"main\" interpreter. "
+"Some Python implementations, like CPython, assign special roles to the "
+"main interpreter."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:499
+msgid ""
+"Likewise, the host thread where the runtime was initialized is known as "
+"the \"main\" thread.  It may be different from the process' initial "
+"thread, though they are often the same.  In some cases \"main thread\" "
+"may be even more specific and refer to the initial thread state. A Python"
+" runtime might assign specific responsibilities to the main thread, such "
+"as handling signals."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:506
+msgid ""
+"As a whole, the Python runtime consists of the global runtime state, "
+"interpreters, and thread states.  The runtime ensures all that state "
+"stays consistent over its lifetime, particularly when used with multiple "
+"host threads."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:511
+msgid ""
+"The global runtime, at the conceptual level, is just a set of "
+"interpreters.  While those interpreters are otherwise isolated and "
+"independent from one another, they may share some data or other "
+"resources.  The runtime is responsible for managing these global "
+"resources safely.  The actual nature and management of these resources is"
+" implementation-specific.  Ultimately, the external utility of the global"
+" runtime is limited to managing interpreters."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:519
+msgid ""
+"In contrast, an \"interpreter\" is conceptually what we would normally "
+"think of as the (full-featured) \"Python runtime\".  When machine code "
+"executing in a host thread interacts with the Python runtime, it calls "
+"into Python in the context of a specific interpreter."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:526
+msgid ""
+"The term \"interpreter\" here is not the same as the \"bytecode "
+"interpreter\", which is what regularly runs in threads, executing "
+"compiled Python code."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:530
+msgid ""
+"In an ideal world, \"Python runtime\" would refer to what we currently "
+"call \"interpreter\".  However, it's been called \"interpreter\" at least"
+" since introduced in 1997 (`CPython:a027efa5b`_)."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:536
+msgid ""
+"Each interpreter completely encapsulates all of the non-process-global, "
+"non-thread-specific state needed for the Python runtime to work. Notably,"
+" the interpreter's state persists between uses.  It includes fundamental "
+"data like :data:`sys.modules`.  The runtime ensures multiple threads "
+"using the same interpreter will safely share it between them."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:543
+msgid ""
+"A Python implementation may support using multiple interpreters at the "
+"same time in the same process.  They are independent and isolated from "
+"one another.  For example, each interpreter has its own "
+":data:`sys.modules`."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:548
+msgid ""
+"For thread-specific runtime state, each interpreter has a set of thread "
+"states, which it manages, in the same way the global runtime contains a "
+"set of interpreters.  It can have thread states for as many host threads "
+"as it needs.  It may even have multiple thread states for the same host "
+"thread, though that isn't as common."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:554
+msgid ""
+"Each thread state, conceptually, has all the thread-specific runtime data"
+" an interpreter needs to operate in one host thread.  The thread state "
+"includes the current raised exception and the thread's Python call stack."
+"  It may include other thread-specific resources."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:561
+msgid ""
+"The term \"Python thread\" can sometimes refer to a thread state, but "
+"normally it means a thread created using the :mod:`threading` module."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:564
+msgid ""
+"Each thread state, over its lifetime, is always tied to exactly one "
+"interpreter and exactly one host thread.  It will only ever be used in "
+"that thread and with that interpreter."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:568
+msgid ""
+"Multiple thread states may be tied to the same host thread, whether for "
+"different interpreters or even the same interpreter.  However, for any "
+"given host thread, only one of the thread states tied to it can be used "
+"by the thread at a time."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:573
+msgid ""
+"Thread states are isolated and independent from one another and don't "
+"share any data, except for possibly sharing an interpreter and objects or"
+" other resources belonging to that interpreter."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:577
+msgid ""
+"Once a program is running, new Python threads can be created using the "
+":mod:`threading` module (on platforms and Python implementations that "
+"support threads).  Additional processes can be created using the "
+":mod:`os`, :mod:`subprocess`, and :mod:`multiprocessing` modules. "
+"Interpreters can be created and used with the "
+":mod:`~concurrent.interpreters` module.  Coroutines (async) can be run "
+"using :mod:`asyncio` in each interpreter, typically only in a single "
+"thread (often the main thread)."
+msgstr ""
+
+#: ../../reference/executionmodel.rst:588
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../../reference/executionmodel.rst:396
+#: ../../reference/executionmodel.rst:589
 msgid ""
 "This limitation occurs because the code that is executed by these "
 "operations is not available at the time the module is compiled."
@@ -678,7 +965,7 @@ msgstr "코드"
 msgid "block"
 msgstr "블록"
 
-#: ../../reference/executionmodel.rst:31 ../../reference/executionmodel.rst:292
+#: ../../reference/executionmodel.rst:31 ../../reference/executionmodel.rst:299
 msgid "execution"
 msgstr "실행"
 
@@ -738,39 +1025,39 @@ msgstr "모듈"
 msgid "__main__"
 msgstr "__main__"
 
-#: ../../reference/executionmodel.rst:292
+#: ../../reference/executionmodel.rst:299
 msgid "restricted"
 msgstr "제한된"
 
-#: ../../reference/executionmodel.rst:342
+#: ../../reference/executionmodel.rst:349
 msgid "exception"
 msgstr "예외"
 
-#: ../../reference/executionmodel.rst:344
+#: ../../reference/executionmodel.rst:351
 msgid "raise an exception"
 msgstr "예외를 발생시키다"
 
-#: ../../reference/executionmodel.rst:344
+#: ../../reference/executionmodel.rst:351
 msgid "handle an exception"
 msgstr "예외를 처리하다"
 
-#: ../../reference/executionmodel.rst:344
+#: ../../reference/executionmodel.rst:351
 msgid "exception handler"
 msgstr "예외 처리기"
 
-#: ../../reference/executionmodel.rst:344
+#: ../../reference/executionmodel.rst:351
 msgid "errors"
 msgstr "에러"
 
-#: ../../reference/executionmodel.rst:344
+#: ../../reference/executionmodel.rst:351
 msgid "error handling"
 msgstr "에러 처리"
 
-#: ../../reference/executionmodel.rst:365
+#: ../../reference/executionmodel.rst:372
 msgid "termination model"
 msgstr "종료 모델"
 
-#: ../../reference/executionmodel.rst:372
+#: ../../reference/executionmodel.rst:379
 msgid "SystemExit (built-in exception)"
 msgstr "SystemExit (내장 예외)"
 
@@ -803,4 +1090,31 @@ msgstr "SystemExit (내장 예외)"
 #~ "정의된 모든 이름을 연결합니다, 밑줄로 시작하는 이름들은"
 #~ " 예외입니다. 이 형태는 모듈 수준에서만 사용될 수"
 #~ " 있습니다."
+
+#~ msgid ""
+#~ ":ref:`Type parameter lists <type-params>` "
+#~ "and :keyword:`type` statements introduce "
+#~ "*annotation scopes*, which behave mostly "
+#~ "like function scopes, but with some "
+#~ "exceptions discussed below. :term:`Annotations "
+#~ "<annotation>` currently do not use "
+#~ "annotation scopes, but they are expected"
+#~ " to use annotation scopes in Python"
+#~ " 3.13 when :pep:`649` is implemented."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The values of type aliases created "
+#~ "through the :keyword:`type` statement are "
+#~ "*lazily evaluated*. The same applies to"
+#~ " the bounds, constraints, and default "
+#~ "values of type variables created through"
+#~ " the :ref:`type parameter syntax <type-"
+#~ "params>`. This means that they are "
+#~ "not evaluated when the type alias "
+#~ "or type variable is created. Instead,"
+#~ " they are only evaluated when doing"
+#~ " so is necessary to resolve an "
+#~ "attribute access."
+#~ msgstr ""
 

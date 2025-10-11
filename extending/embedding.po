@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -596,6 +596,7 @@ msgstr ""
 "들면::"
 
 #: ../../extending/embedding.rst:237
+#, fuzzy
 msgid ""
 "static int numargs=0;\n"
 "\n"
@@ -608,21 +609,23 @@ msgid ""
 "    return PyLong_FromLong(numargs);\n"
 "}\n"
 "\n"
-"static PyMethodDef EmbMethods[] = {\n"
+"static PyMethodDef emb_module_methods[] = {\n"
 "    {\"numargs\", emb_numargs, METH_VARARGS,\n"
 "     \"Return the number of arguments received by the process.\"},\n"
 "    {NULL, NULL, 0, NULL}\n"
 "};\n"
 "\n"
-"static PyModuleDef EmbModule = {\n"
-"    PyModuleDef_HEAD_INIT, \"emb\", NULL, -1, EmbMethods,\n"
-"    NULL, NULL, NULL, NULL\n"
+"static struct PyModuleDef emb_module = {\n"
+"    .m_base = PyModuleDef_HEAD_INIT,\n"
+"    .m_name = \"emb\",\n"
+"    .m_size = 0,\n"
+"    .m_methods = emb_module_methods,\n"
 "};\n"
 "\n"
 "static PyObject*\n"
 "PyInit_emb(void)\n"
 "{\n"
-"    return PyModule_Create(&EmbModule);\n"
+"    return PyModuleDef_Init(&emb_module);\n"
 "}"
 msgstr ""
 "static int numargs=0;\n"
@@ -653,7 +656,7 @@ msgstr ""
 "    return PyModule_Create(&EmbModule);\n"
 "}"
 
-#: ../../extending/embedding.rst:265
+#: ../../extending/embedding.rst:267
 msgid ""
 "Insert the above code just above the :c:func:`main` function. Also, "
 "insert the following two statements before the call to "
@@ -662,7 +665,7 @@ msgstr ""
 "위의 코드를 :c:func:`main` 함수 바로 위에 삽입하십시오. 또한, :c:func:`Py_Initialize`\\에 대한 "
 "호출 전에 다음 두 문장을 삽입하십시오::"
 
-#: ../../extending/embedding.rst:268
+#: ../../extending/embedding.rst:270
 msgid ""
 "numargs = argc;\n"
 "PyImport_AppendInittab(\"emb\", &PyInit_emb);"
@@ -670,7 +673,7 @@ msgstr ""
 "numargs = argc;\n"
 "PyImport_AppendInittab(\"emb\", &PyInit_emb);"
 
-#: ../../extending/embedding.rst:271
+#: ../../extending/embedding.rst:273
 msgid ""
 "These two lines initialize the ``numargs`` variable, and make the "
 ":func:`!emb.numargs` function accessible to the embedded Python "
@@ -679,7 +682,7 @@ msgstr ""
 "이 두 줄은 ``numargs`` 변수를 초기화하고, :func:`!emb.numargs` 함수를 내장된 파이썬 인터프리터가 "
 "액세스할 수 있도록 만듭니다. 이러한 확장을 통해, 파이썬 스크립트는 다음과 같은 작업을 수행할 수 있습니다"
 
-#: ../../extending/embedding.rst:275
+#: ../../extending/embedding.rst:277
 msgid ""
 "import emb\n"
 "print(\"Number of arguments\", emb.numargs())"
@@ -687,17 +690,17 @@ msgstr ""
 "import emb\n"
 "print(\"Number of arguments\", emb.numargs())"
 
-#: ../../extending/embedding.rst:280
+#: ../../extending/embedding.rst:282
 msgid ""
 "In a real application, the methods will expose an API of the application "
 "to Python."
 msgstr "실제 응용 프로그램에서, 이 방법은 응용 프로그램의 API를 파이썬에 노출합니다."
 
-#: ../../extending/embedding.rst:290
+#: ../../extending/embedding.rst:292
 msgid "Embedding Python in C++"
 msgstr "C++로 파이썬 내장하기"
 
-#: ../../extending/embedding.rst:292
+#: ../../extending/embedding.rst:294
 msgid ""
 "It is also possible to embed Python in a C++ program; precisely how this "
 "is done will depend on the details of the C++ system used; in general you"
@@ -709,11 +712,11 @@ msgstr ""
 " 일반적으로 C++로 메인 프로그램을 작성하고, C++ 컴파일러를 사용하여 프로그램을 컴파일하고 링크해야 합니다. C++을 사용하여"
 " 파이썬 자체를 다시 컴파일할 필요는 없습니다."
 
-#: ../../extending/embedding.rst:301
+#: ../../extending/embedding.rst:303
 msgid "Compiling and Linking under Unix-like systems"
 msgstr "유닉스 계열 시스템에서 컴파일과 링크하기"
 
-#: ../../extending/embedding.rst:303
+#: ../../extending/embedding.rst:305
 msgid ""
 "It is not necessarily trivial to find the right flags to pass to your "
 "compiler (and linker) in order to embed the Python interpreter into your "
@@ -724,7 +727,7 @@ msgstr ""
 "파이썬 인터프리터를 응용 프로그램에 내장하기 위해 컴파일러(와 링커)에 적절한 플래그를 찾는 것이 늘 간단하지는 않습니다. 특히, "
 "특히 파이썬이 자신에게 링크된 C 동적 확장(:file:`.so` 파일)으로 구현된 라이브러리 모듈을 로드해야 하기 때문입니다."
 
-#: ../../extending/embedding.rst:309
+#: ../../extending/embedding.rst:311
 #, python-brace-format
 msgid ""
 "To find out the required compiler and linker flags, you can execute the "
@@ -737,13 +740,13 @@ msgstr ""
 "실행할 수 있습니다 (:file:`python3-config` 스크립트도 사용 가능할 수 있습니다). 이 스크립트에는 여러 옵션이 "
 "있으며, 다음과 같은 것들은 여러분에 직접 유용할 것입니다:"
 
-#: ../../extending/embedding.rst:315
+#: ../../extending/embedding.rst:317
 msgid ""
 "``pythonX.Y-config --cflags`` will give you the recommended flags when "
 "compiling:"
 msgstr "``pythonX.Y-config --cflags``\\는 컴파일 할 때의 권장 플래그를 제공합니다:"
 
-#: ../../extending/embedding.rst:318
+#: ../../extending/embedding.rst:320
 msgid ""
 "$ /opt/bin/python3.11-config --cflags\n"
 "-I/opt/include/python3.11 -I/opt/include/python3.11 -Wsign-compare  "
@@ -753,13 +756,13 @@ msgstr ""
 "-I/opt/include/python3.11 -I/opt/include/python3.11 -Wsign-compare  "
 "-DNDEBUG -g -fwrapv -O3 -Wall"
 
-#: ../../extending/embedding.rst:323
+#: ../../extending/embedding.rst:325
 msgid ""
 "``pythonX.Y-config --ldflags --embed`` will give you the recommended "
 "flags when linking:"
 msgstr "``pythonX.Y-config --ldflags --embed``\\는 링크 할 때의 권장 플래그를 제공합니다:"
 
-#: ../../extending/embedding.rst:326
+#: ../../extending/embedding.rst:328
 msgid ""
 "$ /opt/bin/python3.11-config --ldflags --embed\n"
 "-L/opt/lib/python3.11/config-3.11-x86_64-linux-gnu -L/opt/lib "
@@ -769,7 +772,7 @@ msgstr ""
 "-L/opt/lib/python3.11/config-3.11-x86_64-linux-gnu -L/opt/lib "
 "-lpython3.11 -lpthread -ldl  -lutil -lm"
 
-#: ../../extending/embedding.rst:332
+#: ../../extending/embedding.rst:334
 #, python-brace-format
 msgid ""
 "To avoid confusion between several Python installations (and especially "
@@ -780,7 +783,7 @@ msgstr ""
 "여러 파이썬 설치 간의 (특히 시스템 파이썬과 여러분이 직접 컴파일한 파이썬 간의) 혼란을 피하려면, 위의 예와 같이 "
 ":file:`python{X.Y}-config`\\의 절대 경로를 사용하는 것이 좋습니다."
 
-#: ../../extending/embedding.rst:337
+#: ../../extending/embedding.rst:339
 msgid ""
 "If this procedure doesn't work for you (it is not guaranteed to work for "
 "all Unix-like platforms; however, we welcome :ref:`bug reports "
@@ -797,7 +800,7 @@ msgstr ""
 ":func:`sysconfig.get_makefile_filename`\\를 사용하십시오) 컴파일 옵션을 검사해야 합니다. 이때, "
 ":mod:`sysconfig` 모듈은 여러분이 결합하려는 구성 값을 프로그래밍 방식으로 추출하는 데 유용한 도구입니다. 예를 들어:"
 
-#: ../../extending/embedding.rst:346
+#: ../../extending/embedding.rst:348
 msgid ""
 ">>> import sysconfig\n"
 ">>> sysconfig.get_config_var('LIBS')\n"

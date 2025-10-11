@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -78,9 +78,10 @@ msgid "Remove all items from the list.  Similar to ``del a[:]``."
 msgstr "리스트의 모든 항목을 삭제합니다. ``del a[:]`` 와 비슷합니다."
 
 #: ../../tutorial/datastructures.rst:65
+#, fuzzy
 msgid ""
-"Return zero-based index in the list of the first item whose value is "
-"equal to *x*. Raises a :exc:`ValueError` if there is no such item."
+"Return zero-based index of the first occurrence of *x* in the list. "
+"Raises a :exc:`ValueError` if there is no such item."
 msgstr ""
 "리스트에 있는 항목 중 값이 *x* 와 같은 첫 번째 것의 0부터 시작하는 인덱스를 돌려줍니다. 그런 항목이 없으면 "
 ":exc:`ValueError` 를 일으킵니다."
@@ -198,12 +199,13 @@ msgid "Using Lists as Stacks"
 msgstr "리스트를 스택으로 사용하기"
 
 #: ../../tutorial/datastructures.rst:143
+#, fuzzy
 msgid ""
 "The list methods make it very easy to use a list as a stack, where the "
 "last element added is the first element retrieved (\"last-in, first-"
-"out\").  To add an item to the top of the stack, use :meth:`!append`.  To"
-" retrieve an item from the top of the stack, use :meth:`!pop` without an "
-"explicit index.  For example::"
+"out\").  To add an item to the top of the stack, use "
+":meth:`~list.append`.  To retrieve an item from the top of the stack, use"
+" :meth:`~list.pop` without an explicit index.  For example::"
 msgstr ""
 "리스트 메서드들은 리스트를 스택으로 사용하기 쉽게 만드는데, 마지막에 넣은 요소가 처음으로 꺼내지는 요소입니다 (\"last-in,"
 " first-out\"). 스택의 꼭대기에 항목을 넣으려면 :meth:`!append` 를 사용하세요. 스택의 꼭대기에서 값을 "
@@ -606,13 +608,14 @@ msgid "The :keyword:`!del` statement"
 msgstr ":keyword:`!del` 문"
 
 #: ../../tutorial/datastructures.rst:342
+#, fuzzy
 msgid ""
 "There is a way to remove an item from a list given its index instead of "
 "its value: the :keyword:`del` statement.  This differs from the "
-":meth:`!pop` method which returns a value.  The :keyword:`!del` statement"
-" can also be used to remove slices from a list or clear the entire list "
-"(which we did earlier by assignment of an empty list to the slice).  For "
-"example::"
+":meth:`~list.pop` method which returns a value.  The :keyword:`!del` "
+"statement can also be used to remove slices from a list or clear the "
+"entire list (which we did earlier by assignment of an empty list to the "
+"slice).  For example::"
 msgstr ""
 "리스트에서 값 대신에 인덱스를 사용해서 항목을 삭제하는 방법이 있습니다: :keyword:`del` 문입니다. 이것은 값을 돌려주는"
 " :meth:`!pop` 메서드와 다릅니다. :keyword:`!del` 문은 리스트에서 슬라이스를 삭제하거나 전체 리스트를 비우는"
@@ -907,6 +910,7 @@ msgid "Dictionaries"
 msgstr "딕셔너리"
 
 #: ../../tutorial/datastructures.rst:495
+#, fuzzy
 msgid ""
 "Another useful data type built into Python is the *dictionary* (see "
 ":ref:`typesmapping`). Dictionaries are sometimes found in other languages"
@@ -917,8 +921,8 @@ msgid ""
 "strings, numbers, or tuples; if a tuple contains any mutable object "
 "either directly or indirectly, it cannot be used as a key. You can't use "
 "lists as keys, since lists can be modified in place using index "
-"assignments, slice assignments, or methods like :meth:`!append` and "
-":meth:`!extend`."
+"assignments, slice assignments, or methods like :meth:`~list.append` and "
+":meth:`~list.extend`."
 msgstr ""
 "파이썬에 내장된 또 하나의 쓸모있는 자료 형은 *딕셔너리* 입니다 (:ref:`typesmapping` 를 보세요). 딕셔너리는 "
 "종종 다른 언어들에서 \"연관 메모리(associative memories)\" 나 \"연관 배열(associative "
@@ -942,18 +946,27 @@ msgstr ""
 " 쌍들을 제공합니다; 이것이 딕셔너리가 출력되는 방식이기도 합니다."
 
 #: ../../tutorial/datastructures.rst:512
+#, fuzzy
 msgid ""
 "The main operations on a dictionary are storing a value with some key and"
 " extracting the value given the key.  It is also possible to delete a "
 "key:value pair with ``del``. If you store using a key that is already in "
-"use, the old value associated with that key is forgotten.  It is an error"
-" to extract a value using a non-existent key."
+"use, the old value associated with that key is forgotten."
 msgstr ""
 "딕셔너리의 주 연산은 값을 키와 함께 저장하고 주어진 키로 값을 추출하는 것입니다. ``del`` 로 키:값 쌍을 삭제하는 것도 "
 "가능합니다. 이미 사용하고 있는 키로 저장하면, 그 키로 저장된 예전 값은 잊힙니다. 존재하지 않는 키로 값을 추출하는 것은 "
 "에러입니다."
 
-#: ../../tutorial/datastructures.rst:518
+#: ../../tutorial/datastructures.rst:517
+msgid ""
+"Extracting a value for a non-existent key by subscripting (``d[key]``) "
+"raises a :exc:`KeyError`. To avoid getting this error when trying to "
+"access a possibly non-existent key, use the :meth:`~dict.get` method "
+"instead, which returns ``None`` (or a specified default value) if the key"
+" is not in the dictionary."
+msgstr ""
+
+#: ../../tutorial/datastructures.rst:522
 msgid ""
 "Performing ``list(d)`` on a dictionary returns a list of all the keys "
 "used in the dictionary, in insertion order (if you want it sorted, just "
@@ -964,12 +977,12 @@ msgstr ""
 " 대신 ``sorted(d)`` 를 사용하면 됩니다). 하나의 키가 딕셔너리에 있는지 검사하려면, :keyword:`in` 키워드들"
 " 사용하세요."
 
-#: ../../tutorial/datastructures.rst:523
+#: ../../tutorial/datastructures.rst:527
 msgid "Here is a small example using a dictionary::"
 msgstr "여기에 딕셔너리를 사용하는 조그마한 예가 있습니다::"
 
-#: ../../tutorial/datastructures.rst:525
-#, python-brace-format
+#: ../../tutorial/datastructures.rst:529
+#, fuzzy, python-brace-format
 msgid ""
 ">>> tel = {'jack': 4098, 'sape': 4139}\n"
 ">>> tel['guido'] = 4127\n"
@@ -977,6 +990,12 @@ msgid ""
 "{'jack': 4098, 'sape': 4139, 'guido': 4127}\n"
 ">>> tel['jack']\n"
 "4098\n"
+">>> tel['irv']\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"KeyError: 'irv'\n"
+">>> print(tel.get('irv'))\n"
+"None\n"
 ">>> del tel['sape']\n"
 ">>> tel['irv'] = 4127\n"
 ">>> tel\n"
@@ -1009,13 +1028,13 @@ msgstr ""
 ">>> 'jack' not in tel\n"
 "False"
 
-#: ../../tutorial/datastructures.rst:544
+#: ../../tutorial/datastructures.rst:554
 msgid ""
 "The :func:`dict` constructor builds dictionaries directly from sequences "
 "of key-value pairs::"
 msgstr ":func:`dict` 생성자는 키-값 쌍들의 시퀀스로 부터 직접 딕셔너리를 구성합니다."
 
-#: ../../tutorial/datastructures.rst:547
+#: ../../tutorial/datastructures.rst:557
 #, python-brace-format
 msgid ""
 ">>> dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])\n"
@@ -1024,13 +1043,13 @@ msgstr ""
 ">>> dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])\n"
 "{'sape': 4139, 'guido': 4127, 'jack': 4098}"
 
-#: ../../tutorial/datastructures.rst:550
+#: ../../tutorial/datastructures.rst:560
 msgid ""
 "In addition, dict comprehensions can be used to create dictionaries from "
 "arbitrary key and value expressions::"
 msgstr "이에 더해, 딕셔너리 컴프리헨션은 임의의 키와 값 표현식들로 부터 딕셔너리를 만드는데 사용될 수 있습니다::"
 
-#: ../../tutorial/datastructures.rst:553
+#: ../../tutorial/datastructures.rst:563
 #, python-brace-format
 msgid ""
 ">>> {x: x**2 for x in (2, 4, 6)}\n"
@@ -1039,13 +1058,13 @@ msgstr ""
 ">>> {x: x**2 for x in (2, 4, 6)}\n"
 "{2: 4, 4: 16, 6: 36}"
 
-#: ../../tutorial/datastructures.rst:556
+#: ../../tutorial/datastructures.rst:566
 msgid ""
 "When the keys are simple strings, it is sometimes easier to specify pairs"
 " using keyword arguments::"
 msgstr "키가 간단한 문자열일 때, 때로 키워드 인자들을 사용해서 쌍을 지정하기가 쉽습니다::"
 
-#: ../../tutorial/datastructures.rst:559
+#: ../../tutorial/datastructures.rst:569
 #, python-brace-format
 msgid ""
 ">>> dict(sape=4139, guido=4127, jack=4098)\n"
@@ -1054,11 +1073,11 @@ msgstr ""
 ">>> dict(sape=4139, guido=4127, jack=4098)\n"
 "{'sape': 4139, 'guido': 4127, 'jack': 4098}"
 
-#: ../../tutorial/datastructures.rst:566
+#: ../../tutorial/datastructures.rst:576
 msgid "Looping Techniques"
 msgstr "루프 테크닉"
 
-#: ../../tutorial/datastructures.rst:568
+#: ../../tutorial/datastructures.rst:578
 msgid ""
 "When looping through dictionaries, the key and corresponding value can be"
 " retrieved at the same time using the :meth:`~dict.items` method. ::"
@@ -1066,7 +1085,7 @@ msgstr ""
 "딕셔너리로 루핑할 때, :meth:`~dict.items` 메서드를 사용하면 키와 거기에 대응하는 값을 동시에 얻을 수 있습니다. "
 "::"
 
-#: ../../tutorial/datastructures.rst:571
+#: ../../tutorial/datastructures.rst:581
 #, python-brace-format
 msgid ""
 ">>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}\n"
@@ -1083,14 +1102,14 @@ msgstr ""
 "gallahad the pure\n"
 "robin the brave"
 
-#: ../../tutorial/datastructures.rst:578
+#: ../../tutorial/datastructures.rst:588
 msgid ""
 "When looping through a sequence, the position index and corresponding "
 "value can be retrieved at the same time using the :func:`enumerate` "
 "function. ::"
 msgstr "시퀀스를 루핑할 때, :func:`enumerate` 함수를 사용하면 위치 인덱스와 대응하는 값을 동시에 얻을 수 있습니다. ::"
 
-#: ../../tutorial/datastructures.rst:581
+#: ../../tutorial/datastructures.rst:591
 msgid ""
 ">>> for i, v in enumerate(['tic', 'tac', 'toe']):\n"
 "...     print(i, v)\n"
@@ -1106,13 +1125,13 @@ msgstr ""
 "1 tac\n"
 "2 toe"
 
-#: ../../tutorial/datastructures.rst:588
+#: ../../tutorial/datastructures.rst:598
 msgid ""
 "To loop over two or more sequences at the same time, the entries can be "
 "paired with the :func:`zip` function. ::"
 msgstr "둘이나 그 이상의 시퀀스를 동시에 루핑하려면, :func:`zip` 함수로 엔트리들의 쌍을 만들 수 있습니다. ::"
 
-#: ../../tutorial/datastructures.rst:591
+#: ../../tutorial/datastructures.rst:601
 #, python-brace-format
 msgid ""
 ">>> questions = ['name', 'quest', 'favorite color']\n"
@@ -1133,13 +1152,13 @@ msgstr ""
 "What is your quest?  It is the holy grail.\n"
 "What is your favorite color?  It is blue."
 
-#: ../../tutorial/datastructures.rst:600
+#: ../../tutorial/datastructures.rst:610
 msgid ""
 "To loop over a sequence in reverse, first specify the sequence in a "
 "forward direction and then call the :func:`reversed` function. ::"
 msgstr "시퀀스를 거꾸로 루핑하려면, 먼저 정방향으로 시퀀스를 지정한 다음에 :func:`reversed` 함수를 호출하세요. ::"
 
-#: ../../tutorial/datastructures.rst:603
+#: ../../tutorial/datastructures.rst:613
 msgid ""
 ">>> for i in reversed(range(1, 10, 2)):\n"
 "...     print(i)\n"
@@ -1159,7 +1178,7 @@ msgstr ""
 "3\n"
 "1"
 
-#: ../../tutorial/datastructures.rst:612
+#: ../../tutorial/datastructures.rst:622
 msgid ""
 "To loop over a sequence in sorted order, use the :func:`sorted` function "
 "which returns a new sorted list while leaving the source unaltered. ::"
@@ -1167,7 +1186,7 @@ msgstr ""
 "정렬된 순서로 시퀀스를 루핑하려면, :func:`sorted` 함수를 사용해서 소스를 변경하지 않고도 정렬된 새 리스트를 받을 수 "
 "있습니다. ::"
 
-#: ../../tutorial/datastructures.rst:615
+#: ../../tutorial/datastructures.rst:625
 msgid ""
 ">>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']\n"
 ">>> for i in sorted(basket):\n"
@@ -1191,7 +1210,7 @@ msgstr ""
 "orange\n"
 "pear"
 
-#: ../../tutorial/datastructures.rst:626
+#: ../../tutorial/datastructures.rst:636
 msgid ""
 "Using :func:`set` on a sequence eliminates duplicate elements. The use of"
 " :func:`sorted` in combination with :func:`set` over a sequence is an "
@@ -1201,7 +1220,7 @@ msgstr ""
 "시퀀스에 대해 :func:`set`\\을 사용하면 중복 요소를 제거합니다. 시퀀스에 대해 :func:`set`\\과 "
 ":func:`sorted`\\를 함께 사용하는 것은 시퀀스의 고유 한 요소를 정렬된 순서로 루핑하는 관용적 방법입니다. ::"
 
-#: ../../tutorial/datastructures.rst:630
+#: ../../tutorial/datastructures.rst:640
 msgid ""
 ">>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']\n"
 ">>> for f in sorted(set(basket)):\n"
@@ -1221,7 +1240,7 @@ msgstr ""
 "orange\n"
 "pear"
 
-#: ../../tutorial/datastructures.rst:639
+#: ../../tutorial/datastructures.rst:649
 msgid ""
 "It is sometimes tempting to change a list while you are looping over it; "
 "however, it is often simpler and safer to create a new list instead. ::"
@@ -1229,7 +1248,7 @@ msgstr ""
 "때로 루프를 돌고 있는 리스트를 변경하고픈 유혹을 느낍니다; 하지만, 종종, 대신 새 리스트를 만드는 것이 더 간단하고 더 "
 "안전합니다. ::"
 
-#: ../../tutorial/datastructures.rst:642
+#: ../../tutorial/datastructures.rst:652
 msgid ""
 ">>> import math\n"
 ">>> raw_data = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]"
@@ -1253,17 +1272,17 @@ msgstr ""
 ">>> filtered_data\n"
 "[56.2, 51.7, 55.3, 52.5, 47.8]"
 
-#: ../../tutorial/datastructures.rst:656
+#: ../../tutorial/datastructures.rst:666
 msgid "More on Conditions"
 msgstr "조건 더 보기"
 
-#: ../../tutorial/datastructures.rst:658
+#: ../../tutorial/datastructures.rst:668
 msgid ""
 "The conditions used in ``while`` and ``if`` statements can contain any "
 "operators, not just comparisons."
 msgstr "``while`` 과 ``if`` 문에서 사용되는 조건에는 비교뿐만 아니라 모든 연산자를 사용할 수 있습니다."
 
-#: ../../tutorial/datastructures.rst:662
+#: ../../tutorial/datastructures.rst:672
 msgid ""
 "The comparison operators ``in`` and ``not in`` are membership tests that "
 "determine whether a value is in (or not in) a container.  The operators "
@@ -1275,7 +1294,7 @@ msgstr ""
 "``is`` 와 ``is not`` 은 두 객체가 진짜로 같은 객체인지 비교합니다. 모든 비교 연산자들은 같은 우선순위를 갖는데, "
 "모든 산술 연산자들보다 낮습니다."
 
-#: ../../tutorial/datastructures.rst:668
+#: ../../tutorial/datastructures.rst:678
 msgid ""
 "Comparisons can be chained.  For example, ``a < b == c`` tests whether "
 "``a`` is less than ``b`` and moreover ``b`` equals ``c``."
@@ -1283,7 +1302,7 @@ msgstr ""
 "비교는 연쇄할 수 있습니다. 예를 들어, ``a < b == c`` 는, ``a`` 가 ``b`` 보다 작고, 동시에 ``b`` 가"
 " ``c`` 와 같은지 검사합니다."
 
-#: ../../tutorial/datastructures.rst:671
+#: ../../tutorial/datastructures.rst:681
 msgid ""
 "Comparisons may be combined using the Boolean operators ``and`` and "
 "``or``, and the outcome of a comparison (or of any other Boolean "
@@ -1298,7 +1317,7 @@ msgstr ""
 "높은 우선순위를 갖고, ``or`` 가 가장 낮습니다. 그래서 ``A and not B or C`` 는 ``(A and (not "
 "B)) or C`` 와 동등합니다. 여느 때처럼, 원하는 조합을 표현하기 위해 괄호를 사용할 수 있습니다."
 
-#: ../../tutorial/datastructures.rst:678
+#: ../../tutorial/datastructures.rst:688
 msgid ""
 "The Boolean operators ``and`` and ``or`` are so-called *short-circuit* "
 "operators: their arguments are evaluated from left to right, and "
@@ -1313,13 +1332,13 @@ msgstr ""
 "가 거짓이면, ``A and B and C`` 는 표현식 ``C`` 의 값을 구하지 않습니다. 논리값이 아닌 일반 값으로 사용될 "
 "때, 단락-회로 연산자의 반환 값은 마지막으로 값이 구해진 인자입니다."
 
-#: ../../tutorial/datastructures.rst:685
+#: ../../tutorial/datastructures.rst:695
 msgid ""
 "It is possible to assign the result of a comparison or other Boolean "
 "expression to a variable.  For example, ::"
 msgstr "비교의 결과나 다른 논리 표현식의 결과를 변수에 대입할 수 있습니다. 예를 들어, ::"
 
-#: ../../tutorial/datastructures.rst:688
+#: ../../tutorial/datastructures.rst:698
 msgid ""
 ">>> string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'\n"
 ">>> non_null = string1 or string2 or string3\n"
@@ -1331,7 +1350,7 @@ msgstr ""
 ">>> non_null\n"
 "'Trondheim'"
 
-#: ../../tutorial/datastructures.rst:693
+#: ../../tutorial/datastructures.rst:703
 msgid ""
 "Note that in Python, unlike C, assignment inside expressions must be done"
 " explicitly with the :ref:`walrus operator <why-can-t-i-use-an-"
@@ -1343,11 +1362,11 @@ msgstr ""
 "assignment-in-an-expression>` ``:=``\\를 사용하여 명시적으로 수행해야 합니다. C 프로그램에서 흔히 "
 "마주치는 부류의 문제들을 회피하도록 합니다: ``==`` 를 사용할 표현식에 ``=`` 를 입력하는 실수."
 
-#: ../../tutorial/datastructures.rst:703
+#: ../../tutorial/datastructures.rst:713
 msgid "Comparing Sequences and Other Types"
 msgstr "시퀀스와 다른 형들을 비교하기"
 
-#: ../../tutorial/datastructures.rst:704
+#: ../../tutorial/datastructures.rst:714
 msgid ""
 "Sequence objects typically may be compared to other objects with the same"
 " sequence type. The comparison uses *lexicographical* ordering: first the"
@@ -1369,7 +1388,7 @@ msgstr ""
 "것입니다. 문자열의 사전식 배열은 개별 문자들의 순서를 정하는데 유니코드 코드 포인트 숫자를 사용합니다. 같은 형의 시퀀스들 간의 "
 "비교의 몇 가지 예는 이렇습니다::"
 
-#: ../../tutorial/datastructures.rst:716
+#: ../../tutorial/datastructures.rst:726
 msgid ""
 "(1, 2, 3)              < (1, 2, 4)\n"
 "[1, 2, 3]              < [1, 2, 4]\n"
@@ -1387,7 +1406,7 @@ msgstr ""
 "(1, 2, 3)             == (1.0, 2.0, 3.0)\n"
 "(1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)"
 
-#: ../../tutorial/datastructures.rst:724
+#: ../../tutorial/datastructures.rst:734
 msgid ""
 "Note that comparing objects of different types with ``<`` or ``>`` is "
 "legal provided that the objects have appropriate comparison methods.  For"
@@ -1400,11 +1419,11 @@ msgstr ""
 " 것에 유의하세요. 예를 들어, 서로 다른 숫자 형들은 그들의 숫자 값에 따라 비교됩니다. 그래서 0은 0.0과 같고, 등등. "
 "그렇지 않으면, 임의의 순서를 제공하는 대신, 인터프리터는 :exc:`TypeError` 를 일으킵니다."
 
-#: ../../tutorial/datastructures.rst:732
+#: ../../tutorial/datastructures.rst:742
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../../tutorial/datastructures.rst:733
+#: ../../tutorial/datastructures.rst:743
 msgid ""
 "Other languages may return the mutated object, which allows method "
 "chaining, such as ``d->insert(\"a\")->remove(\"b\")->sort();``."

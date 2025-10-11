@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -144,11 +144,61 @@ msgstr ""
 "*ctx* 컨텍스트를 비활성화하고 이전 컨텍스트를 현재 스레드의 현재 컨텍스트로 복원합니다. 성공 시 ``0``\\을 반환하고, "
 "에러 시 ``-1``\\을 반환합니다."
 
-#: ../../c-api/contextvars.rst:105
+#: ../../c-api/contextvars.rst:106
+msgid ""
+"Register *callback* as a context object watcher for the current "
+"interpreter. Return an ID which may be passed to "
+":c:func:`PyContext_ClearWatcher`. In case of error (e.g. no more watcher "
+"IDs available), return ``-1`` and set an exception."
+msgstr ""
+
+#: ../../c-api/contextvars.rst:115
+msgid ""
+"Clear watcher identified by *watcher_id* previously returned from "
+":c:func:`PyContext_AddWatcher` for the current interpreter. Return ``0`` "
+"on success, or ``-1`` and set an exception on error (e.g. if the given "
+"*watcher_id* was never registered.)"
+msgstr ""
+
+#: ../../c-api/contextvars.rst:124
+msgid "Enumeration of possible context object watcher events:"
+msgstr ""
+
+#: ../../c-api/contextvars.rst:126
+msgid ""
+"``Py_CONTEXT_SWITCHED``: The :term:`current context` has switched to a "
+"different context.  The object passed to the watch callback is the now-"
+"current :class:`contextvars.Context` object, or None if no context is "
+"current."
+msgstr ""
+
+#: ../../c-api/contextvars.rst:135
+msgid ""
+"Context object watcher callback function.  The object passed to the "
+"callback is event-specific; see :c:type:`PyContextEvent` for details."
+msgstr ""
+
+#: ../../c-api/contextvars.rst:138
+msgid ""
+"If the callback returns with an exception set, it must return ``-1``; "
+"this exception will be printed as an unraisable exception using "
+":c:func:`PyErr_FormatUnraisable`. Otherwise it should return ``0``."
+msgstr ""
+
+#: ../../c-api/contextvars.rst:142
+msgid ""
+"There may already be a pending exception set on entry to the callback. In"
+" this case, the callback should return ``0`` with the same exception "
+"still set. This means the callback may not call any other API that can "
+"set an exception unless it saves and clears the exception state first, "
+"and restores it before returning."
+msgstr ""
+
+#: ../../c-api/contextvars.rst:151
 msgid "Context variable functions:"
 msgstr "컨텍스트 변수 함수:"
 
-#: ../../c-api/contextvars.rst:109
+#: ../../c-api/contextvars.rst:155
 msgid ""
 "Create a new ``ContextVar`` object.  The *name* parameter is used for "
 "introspection and debug purposes.  The *def* parameter specifies a "
@@ -159,7 +209,7 @@ msgstr ""
 " 변수는 컨텍스트 변수의 기본값을 지정할 수 있습니다. ``NULL``\\은 기본값 없음입니다. 에러가 발생하면, 이 함수는 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/contextvars.rst:116
+#: ../../c-api/contextvars.rst:162
 msgid ""
 "Get the value of a context variable.  Returns ``-1`` if an error has "
 "occurred during lookup, and ``0`` if no error occurred, whether or not a "
@@ -168,7 +218,7 @@ msgstr ""
 "컨텍스트 변수의 값을 가져옵니다. 조회하는 동안 에러가 발생하면 ``-1``\\을 반환하고, 값이 있는지와 상관없이 에러가 발생하지"
 " 않으면 ``0``\\을 반환합니다."
 
-#: ../../c-api/contextvars.rst:120
+#: ../../c-api/contextvars.rst:166
 msgid ""
 "If the context variable was found, *value* will be a pointer to it. If "
 "the context variable was *not* found, *value* will point to:"
@@ -176,23 +226,23 @@ msgstr ""
 "컨텍스트 변수가 발견되면, *value*\\는 그것을 가리키는 포인터가 됩니다. 컨텍스트 변수가 발견되지 *않으면*, "
 "*value*\\는 다음을 가리 킵니다:"
 
-#: ../../c-api/contextvars.rst:123
+#: ../../c-api/contextvars.rst:169
 msgid "*default_value*, if not ``NULL``;"
 msgstr "*default_value*, ``NULL``\\이 아니면;"
 
-#: ../../c-api/contextvars.rst:124
+#: ../../c-api/contextvars.rst:170
 msgid "the default value of *var*, if not ``NULL``;"
 msgstr "*var*\\의 기본값, ``NULL``\\이 아니면;"
 
-#: ../../c-api/contextvars.rst:125
+#: ../../c-api/contextvars.rst:171
 msgid "``NULL``"
 msgstr "``NULL``"
 
-#: ../../c-api/contextvars.rst:127
+#: ../../c-api/contextvars.rst:173
 msgid "Except for ``NULL``, the function returns a new reference."
 msgstr "``NULL``\\일 때를 제외하고, 이 함수는 새 참조를 반환합니다."
 
-#: ../../c-api/contextvars.rst:131
+#: ../../c-api/contextvars.rst:177
 msgid ""
 "Set the value of *var* to *value* in the current context.  Returns a new "
 "token object for this change, or ``NULL`` if an error has occurred."
@@ -200,7 +250,7 @@ msgstr ""
 "현재 컨텍스트에서 *var*\\의 값을 *value*\\로 설정합니다. 이 변경에 대한 새 토큰 객체를 반환하거나, 에러가 발생하면"
 " ``NULL``\\을 반환합니다."
 
-#: ../../c-api/contextvars.rst:136
+#: ../../c-api/contextvars.rst:182
 msgid ""
 "Reset the state of the *var* context variable to that it was in before "
 ":c:func:`PyContextVar_Set` that returned the *token* was called. This "

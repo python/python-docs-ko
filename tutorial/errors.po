@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -848,10 +848,12 @@ msgstr ""
 msgid ""
 "If the :keyword:`!finally` clause executes a :keyword:`break`, "
 ":keyword:`continue` or :keyword:`return` statement, exceptions are not "
-"re-raised."
+"re-raised. This can be confusing and is therefore discouraged. From "
+"version 3.14 the compiler emits a :exc:`SyntaxWarning` for it (see "
+":pep:`765`)."
 msgstr ""
 
-#: ../../tutorial/errors.rst:423
+#: ../../tutorial/errors.rst:425
 msgid ""
 "If the :keyword:`!try` statement reaches a :keyword:`break`, "
 ":keyword:`continue` or :keyword:`return` statement, the "
@@ -863,22 +865,25 @@ msgstr ""
 ":keyword:`return` 문에 도달하면, :keyword:`!finally` 절은 :keyword:`!break`, "
 ":keyword:`!continue` 또는 :keyword:`!return` 문 실행 직전에 실행됩니다."
 
-#: ../../tutorial/errors.rst:429
+#: ../../tutorial/errors.rst:431
+#, fuzzy
 msgid ""
 "If a :keyword:`!finally` clause includes a :keyword:`!return` statement, "
 "the returned value will be the one from the :keyword:`!finally` clause's "
 ":keyword:`!return` statement, not the value from the :keyword:`!try` "
-"clause's :keyword:`!return` statement."
+"clause's :keyword:`!return` statement. This can be confusing and is "
+"therefore discouraged. From version 3.14 the compiler emits a "
+":exc:`SyntaxWarning` for it (see :pep:`765`)."
 msgstr ""
 ":keyword:`!finally` 절에 :keyword:`!return` 문이 포함되면, 반환 값은 :keyword:`!try` "
 "절의 :keyword:`!return` 문이 주는 값이 아니라, :keyword:`!finally` 절의 "
 ":keyword:`!return` 문이 주는 값이 됩니다."
 
-#: ../../tutorial/errors.rst:435
+#: ../../tutorial/errors.rst:439
 msgid "For example::"
 msgstr "예를 들면::"
 
-#: ../../tutorial/errors.rst:437
+#: ../../tutorial/errors.rst:441
 msgid ""
 ">>> def bool_return():\n"
 "...     try:\n"
@@ -898,11 +903,11 @@ msgstr ""
 ">>> bool_return()\n"
 "False"
 
-#: ../../tutorial/errors.rst:446
+#: ../../tutorial/errors.rst:450
 msgid "A more complicated example::"
 msgstr "더 복잡한 예::"
 
-#: ../../tutorial/errors.rst:448
+#: ../../tutorial/errors.rst:452
 msgid ""
 ">>> def divide(x, y):\n"
 "...     try:\n"
@@ -958,7 +963,7 @@ msgstr ""
 "             ~~^~~\n"
 "TypeError: unsupported operand type(s) for /: 'str' and 'str'"
 
-#: ../../tutorial/errors.rst:475
+#: ../../tutorial/errors.rst:479
 msgid ""
 "As you can see, the :keyword:`finally` clause is executed in any event.  "
 "The :exc:`TypeError` raised by dividing two strings is not handled by the"
@@ -969,7 +974,7 @@ msgstr ""
 ":exc:`TypeError` 는 :keyword:`except` 절에 의해 처리되지 않고 :keyword:`!finally` 절이"
 " 실행된 후에 다시 일어납니다."
 
-#: ../../tutorial/errors.rst:480
+#: ../../tutorial/errors.rst:484
 msgid ""
 "In real world applications, the :keyword:`finally` clause is useful for "
 "releasing external resources (such as files or network connections), "
@@ -978,11 +983,11 @@ msgstr ""
 "실제 세상의 응용 프로그램에서, :keyword:`finally` 절은 외부 자원을 사용할 때, 성공적인지 아닌지와 관계없이, 그 "
 "자원을 반납하는 데 유용합니다 (파일이나 네트워크 연결 같은 것들)."
 
-#: ../../tutorial/errors.rst:488
+#: ../../tutorial/errors.rst:492
 msgid "Predefined Clean-up Actions"
 msgstr "미리 정의된 뒷정리 동작들"
 
-#: ../../tutorial/errors.rst:490
+#: ../../tutorial/errors.rst:494
 msgid ""
 "Some objects define standard clean-up actions to be undertaken when the "
 "object is no longer needed, regardless of whether or not the operation "
@@ -992,7 +997,7 @@ msgstr ""
 "어떤 객체들은 객체가 더 필요 없을 때 개입하는 표준 뒷정리 동작을 정의합니다. 그 객체를 사용하는 연산의 성공 여부와 "
 "관계없습니다. 파일을 열고 그 내용을 화면에 인쇄하려고 하는 다음 예를 보세요. ::"
 
-#: ../../tutorial/errors.rst:495
+#: ../../tutorial/errors.rst:499
 msgid ""
 "for line in open(\"myfile.txt\"):\n"
 "    print(line, end=\"\")"
@@ -1000,7 +1005,7 @@ msgstr ""
 "for line in open(\"myfile.txt\"):\n"
 "    print(line, end=\"\")"
 
-#: ../../tutorial/errors.rst:498
+#: ../../tutorial/errors.rst:502
 msgid ""
 "The problem with this code is that it leaves the file open for an "
 "indeterminate amount of time after this part of the code has finished "
@@ -1013,7 +1018,7 @@ msgstr ""
 "스크립트에서는 문제가 되지 않지만, 큰 응용 프로그램에서는 문제가 될 수 있습니다. :keyword:`with` 문은 파일과 같은 "
 "객체들이 즉시 올바르게 뒷정리 되도록 보장하는 방법을 제공합니다. ::"
 
-#: ../../tutorial/errors.rst:504
+#: ../../tutorial/errors.rst:508
 msgid ""
 "with open(\"myfile.txt\") as f:\n"
 "    for line in f:\n"
@@ -1023,7 +1028,7 @@ msgstr ""
 "    for line in f:\n"
 "        print(line, end=\"\")"
 
-#: ../../tutorial/errors.rst:508
+#: ../../tutorial/errors.rst:512
 msgid ""
 "After the statement is executed, the file *f* is always closed, even if a"
 " problem was encountered while processing the lines. Objects which, like "
@@ -1033,11 +1038,11 @@ msgstr ""
 "문장이 실행된 후에, 줄을 처리하는 데 문제가 발생하더라도, 파일 *f* 는 항상 닫힙니다. 파일과 같이, 미리 정의된 뒷정리 "
 "동작들을 제공하는 객체들은 그들의 설명서에서 이 사실을 설명합니다."
 
-#: ../../tutorial/errors.rst:516
+#: ../../tutorial/errors.rst:520
 msgid "Raising and Handling Multiple Unrelated Exceptions"
 msgstr ""
 
-#: ../../tutorial/errors.rst:518
+#: ../../tutorial/errors.rst:522
 msgid ""
 "There are situations where it is necessary to report several exceptions "
 "that have occurred. This is often the case in concurrency frameworks, "
@@ -1046,14 +1051,14 @@ msgid ""
 "multiple errors rather than raise the first exception."
 msgstr ""
 
-#: ../../tutorial/errors.rst:524
+#: ../../tutorial/errors.rst:528
 msgid ""
 "The builtin :exc:`ExceptionGroup` wraps a list of exception instances so "
 "that they can be raised together. It is an exception itself, so it can be"
 " caught like any other exception. ::"
 msgstr ""
 
-#: ../../tutorial/errors.rst:528
+#: ../../tutorial/errors.rst:532
 #, python-brace-format
 msgid ""
 ">>> def f():\n"
@@ -1106,7 +1111,7 @@ msgstr ""
 "caught <class 'ExceptionGroup'>: e\n"
 ">>>"
 
-#: ../../tutorial/errors.rst:553
+#: ../../tutorial/errors.rst:557
 msgid ""
 "By using ``except*`` instead of ``except``, we can selectively handle "
 "only the exceptions in the group that match a certain type. In the "
@@ -1116,7 +1121,7 @@ msgid ""
 " be reraised. ::"
 msgstr ""
 
-#: ../../tutorial/errors.rst:560
+#: ../../tutorial/errors.rst:564
 msgid ""
 ">>> def f():\n"
 "...     raise ExceptionGroup(\n"
@@ -1200,7 +1205,7 @@ msgstr ""
 "      +------------------------------------\n"
 ">>>"
 
-#: ../../tutorial/errors.rst:601
+#: ../../tutorial/errors.rst:605
 msgid ""
 "Note that the exceptions nested in an exception group must be instances, "
 "not types. This is because in practice the exceptions would typically be "
@@ -1208,7 +1213,7 @@ msgid ""
 "following pattern::"
 msgstr ""
 
-#: ../../tutorial/errors.rst:606
+#: ../../tutorial/errors.rst:610
 msgid ""
 ">>> excs = []\n"
 "... for test in tests:\n"
@@ -1232,11 +1237,11 @@ msgstr ""
 "...    raise ExceptionGroup(\"Test Failures\", excs)\n"
 "..."
 
-#: ../../tutorial/errors.rst:621
+#: ../../tutorial/errors.rst:625
 msgid "Enriching Exceptions with Notes"
 msgstr ""
 
-#: ../../tutorial/errors.rst:623
+#: ../../tutorial/errors.rst:627
 msgid ""
 "When an exception is created in order to be raised, it is usually "
 "initialized with information that describes the error that has occurred. "
@@ -1247,7 +1252,7 @@ msgid ""
 "order they were added, after the exception. ::"
 msgstr ""
 
-#: ../../tutorial/errors.rst:630
+#: ../../tutorial/errors.rst:634
 msgid ""
 ">>> try:\n"
 "...     raise TypeError('bad type')\n"
@@ -1279,7 +1284,7 @@ msgstr ""
 "Add some more information\n"
 ">>>"
 
-#: ../../tutorial/errors.rst:645
+#: ../../tutorial/errors.rst:649
 msgid ""
 "For example, when collecting exceptions into an exception group, we may "
 "want to add context information for the individual errors. In the "
@@ -1287,7 +1292,7 @@ msgid ""
 "error has occurred. ::"
 msgstr ""
 
-#: ../../tutorial/errors.rst:649
+#: ../../tutorial/errors.rst:653
 #, python-brace-format
 msgid ""
 ">>> def f():\n"
@@ -1440,4 +1445,11 @@ msgstr ""
 #~ "예외가 발생하면 예외 연쇄가 자동으로 일어납니다. ``from"
 #~ " None`` 관용구를 사용하여 예외 연쇄를 비활성화 할"
 #~ " 수 있습니다:"
+
+#~ msgid ""
+#~ "If the :keyword:`!finally` clause executes "
+#~ "a :keyword:`break`, :keyword:`continue` or "
+#~ ":keyword:`return` statement, exceptions are "
+#~ "not re-raised."
+#~ msgstr ""
 

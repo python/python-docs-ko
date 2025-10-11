@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -682,10 +682,9 @@ msgid ""
 "Undo all initializations made by :c:func:`Py_Initialize` and subsequent "
 "use of Python/C API functions, and destroy all sub-interpreters (see "
 ":c:func:`Py_NewInterpreter` below) that were created and not yet "
-"destroyed since the last call to :c:func:`Py_Initialize`.  Ideally, this "
-"frees all memory allocated by the Python interpreter.  This is a no-op "
-"when called for a second time (without calling :c:func:`Py_Initialize` "
-"again first)."
+"destroyed since the last call to :c:func:`Py_Initialize`.  This is a no-"
+"op when called for a second time (without calling :c:func:`Py_Initialize`"
+" again first)."
 msgstr ""
 ":c:func:`Py_Initialize`\\와 후속 파이썬/C API 함수 사용에 의해 수행된 모든 초기화를 실행 취소하고, "
 ":c:func:`Py_Initialize`\\에 대한 마지막 호출 이후 만들어졌지만, 아직 삭제되지 않은 모든 서브 인터프리터(아래"
@@ -694,7 +693,7 @@ msgstr ""
 "아무런 일도 하지 않습니다. 일반적으로 반환 값은 ``0``\\입니다. 파이널리제이션 도중 에러가 발생하면 (버퍼링 된 데이터 "
 "플러시) ``-1``\\이 반환됩니다."
 
-#: ../../c-api/init.rst:424
+#: ../../c-api/init.rst:423
 msgid ""
 "Since this is the reverse of :c:func:`Py_Initialize`, it should be called"
 " in the same thread with the same interpreter active.  That means the "
@@ -702,13 +701,22 @@ msgid ""
 ":c:func:`Py_RunMain` is running."
 msgstr ""
 
-#: ../../c-api/init.rst:429
+#: ../../c-api/init.rst:428
 msgid ""
 "Normally the return value is ``0``. If there were errors during "
 "finalization (flushing buffered data), ``-1`` is returned."
 msgstr ""
 
-#: ../../c-api/init.rst:433
+#: ../../c-api/init.rst:432
+msgid ""
+"Note that Python will do a best effort at freeing all memory allocated by"
+" the Python interpreter.  Therefore, any C-Extension should make sure to "
+"correctly clean up all of the preveiously allocated PyObjects before "
+"using them in subsequent calls to :c:func:`Py_Initialize`.  Otherwise it "
+"could introduce vulnerabilities and incorrect behavior."
+msgstr ""
+
+#: ../../c-api/init.rst:438
 msgid ""
 "This function is provided for a number of reasons.  An embedding "
 "application might want to restart Python without having to restart the "
@@ -723,7 +731,7 @@ msgstr ""
 "하기 전에 파이썬이 할당한 모든 메모리를 해제하고 싶을 수 있습니다. 응용 프로그램에서 메모리 누수를 찾는 동안 개발자는 응용 "
 "프로그램을 종료하기 전에 파이썬에서 할당한 모든 메모리를 해제하고 싶을 것입니다."
 
-#: ../../c-api/init.rst:441
+#: ../../c-api/init.rst:446
 #, fuzzy
 msgid ""
 "**Bugs and caveats:** The destruction of modules and objects in modules "
@@ -733,10 +741,16 @@ msgid ""
 "modules loaded by Python are not unloaded.  Small amounts of memory "
 "allocated by the Python interpreter may not be freed (if you find a leak,"
 " please report it).  Memory tied up in circular references between "
-"objects is not freed.  Some memory allocated by extension modules may not"
-" be freed.  Some extensions may not work properly if their initialization"
-" routine is called more than once; this can happen if an application "
-"calls :c:func:`Py_Initialize` and :c:func:`Py_FinalizeEx` more than once."
+"objects is not freed.  Interned strings will all be deallocated "
+"regardless of their reference count. Some memory allocated by extension "
+"modules may not be freed.  Some extensions may not work properly if their"
+" initialization routine is called more than once; this can happen if an "
+"application calls :c:func:`Py_Initialize` and :c:func:`Py_FinalizeEx` "
+"more than once.  :c:func:`Py_FinalizeEx` must not be called recursively "
+"from within itself.  Therefore, it must not be called by any code that "
+"may be run as part of the interpreter shutdown process, such as "
+":py:mod:`atexit` handlers, object finalizers, or any code that may be run"
+" while flushing the stdout and stderr files."
 msgstr ""
 "**버그와 주의 사항:** 모듈의 모듈과 객체 파괴는 임의의 순서로 수행됩니다; 이로 인해 파괴자(:meth:`__del__` "
 "메서드)가 다른 객체(함수조차)나 모듈에 의존할 때 실패할 수 있습니다. 파이썬에서 로드한 동적으로 로드된 확장 모듈은 언로드 되지"
@@ -746,7 +760,7 @@ msgstr ""
 ":c:func:`Py_Initialize`\\와 :c:func:`Py_FinalizeEx`\\를 두 번 이상 호출하면 이 문제가 "
 "발생할 수 있습니다."
 
-#: ../../c-api/init.rst:452
+#: ../../c-api/init.rst:462
 msgid ""
 "Raises an :ref:`auditing event <auditing>` "
 "``cpython._PySys_ClearAuditHooks`` with no arguments."
@@ -754,20 +768,20 @@ msgstr ""
 "인자 없이 :ref:`감사 이벤트 <auditing>` ``cpython._PySys_ClearAuditHooks`` 를 "
 "발생시킵니다."
 
-#: ../../c-api/init.rst:459
+#: ../../c-api/init.rst:469
 msgid ""
 "This is a backwards-compatible version of :c:func:`Py_FinalizeEx` that "
 "disregards the return value."
 msgstr "이것은 :c:func:`Py_FinalizeEx`\\의 이전 버전과 호환되는 반환 값을 무시하는 버전입니다."
 
-#: ../../c-api/init.rst:465
+#: ../../c-api/init.rst:475
 msgid ""
 "Similar to :c:func:`Py_Main` but *argv* is an array of bytes strings, "
 "allowing the calling application to delegate the text decoding step to "
 "the CPython runtime."
 msgstr ""
 
-#: ../../c-api/init.rst:474
+#: ../../c-api/init.rst:484
 msgid ""
 "The main program for the standard interpreter, encapsulating a full "
 "initialization/finalization cycle, as well as additional behaviour to "
@@ -776,14 +790,14 @@ msgid ""
 ":`using-on-cmdline`."
 msgstr ""
 
-#: ../../c-api/init.rst:480
+#: ../../c-api/init.rst:490
 msgid ""
 "This is made available for programs which wish to support the full "
 "CPython command line interface, rather than just embedding a Python "
 "runtime in a larger application."
 msgstr ""
 
-#: ../../c-api/init.rst:484
+#: ../../c-api/init.rst:494
 msgid ""
 "The *argc* and *argv* parameters are similar to those which are passed to"
 " a C program's :c:func:`main` function, except that the *argv* entries "
@@ -793,25 +807,13 @@ msgid ""
 "the strings pointed to by the argument list are not modified)."
 msgstr ""
 
-#: ../../c-api/init.rst:491
+#: ../../c-api/init.rst:501
 msgid ""
-"The return value will be ``0`` if the interpreter exits normally (i.e., "
-"without an exception), ``1`` if the interpreter exits due to an "
-"exception, or ``2`` if the argument list does not represent a valid "
-"Python command line."
+"The return value is ``2`` if the argument list does not represent a valid"
+" Python command line, and otherwise the same as :c:func:`Py_RunMain`."
 msgstr ""
 
-#: ../../c-api/init.rst:496
-msgid ""
-"Note that if an otherwise unhandled :exc:`SystemExit` is raised, this "
-"function will not return ``1``, but exit the process, as long as "
-"``Py_InspectFlag`` is not set. If ``Py_InspectFlag`` is set, execution "
-"will drop into the interactive Python prompt, at which point a second "
-"otherwise unhandled :exc:`SystemExit` will still exit the process, while "
-"any other means of exiting will set the return value as described above."
-msgstr ""
-
-#: ../../c-api/init.rst:503
+#: ../../c-api/init.rst:504
 msgid ""
 "In terms of the CPython runtime configuration APIs documented in the "
 ":ref:`runtime configuration <init-config>` section (and without "
@@ -819,7 +821,7 @@ msgid ""
 "to::"
 msgstr ""
 
-#: ../../c-api/init.rst:507
+#: ../../c-api/init.rst:508
 msgid ""
 "PyConfig config;\n"
 "PyConfig_InitPythonConfig(&config);\n"
@@ -830,7 +832,7 @@ msgid ""
 "Py_RunMain();"
 msgstr ""
 
-#: ../../c-api/init.rst:515
+#: ../../c-api/init.rst:516
 msgid ""
 "In normal usage, an embedding application will call this function "
 "*instead* of calling :c:func:`Py_Initialize`, :c:func:`Py_InitializeEx` "
@@ -843,11 +845,11 @@ msgid ""
 "when the runtime was first initialized)."
 msgstr ""
 
-#: ../../c-api/init.rst:528
+#: ../../c-api/init.rst:529
 msgid "Executes the main module in a fully configured CPython runtime."
 msgstr ""
 
-#: ../../c-api/init.rst:530
+#: ../../c-api/init.rst:531
 msgid ""
 "Executes the command (:c:member:`PyConfig.run_command`), the script "
 "(:c:member:`PyConfig.run_filename`) or the module "
@@ -856,13 +858,12 @@ msgid ""
 "Python prompt (REPL) using the ``__main__`` module's global namespace."
 msgstr ""
 
-#: ../../c-api/init.rst:536
+#: ../../c-api/init.rst:537
 msgid ""
 "If :c:member:`PyConfig.inspect` is not set (the default), the return "
 "value will be ``0`` if the interpreter exits normally (that is, without "
-"raising an exception), or ``1`` if the interpreter exits due to an "
-"exception. If an otherwise unhandled :exc:`SystemExit` is raised, the "
-"function will immediately exit the process instead of returning ``1``."
+"raising an exception), the exit status of an unhandled :exc:`SystemExit`,"
+" or ``1`` for any other unhandled exception."
 msgstr ""
 
 #: ../../c-api/init.rst:542
@@ -873,48 +874,44 @@ msgid ""
 "using the ``__main__`` module's global namespace. If the interpreter "
 "exited with an exception, it is immediately raised in the REPL session. "
 "The function return value is then determined by the way the *REPL "
-"session* terminates: returning ``0`` if the session terminates without "
-"raising an unhandled exception, exiting immediately for an unhandled "
-":exc:`SystemExit`, and returning ``1`` for any other unhandled exception."
+"session* terminates: ``0``, ``1``, or the status of a :exc:`SystemExit`, "
+"as specified above."
+msgstr ""
+
+#: ../../c-api/init.rst:550
+msgid "This function always finalizes the Python interpreter before it returns."
 msgstr ""
 
 #: ../../c-api/init.rst:552
-msgid ""
-"This function always finalizes the Python interpreter regardless of "
-"whether it returns a value or immediately exits the process due to an "
-"unhandled :exc:`SystemExit` exception."
-msgstr ""
-
-#: ../../c-api/init.rst:556
 msgid ""
 "See :ref:`Python Configuration <init-python-config>` for an example of a "
 "customized Python that always runs in isolated mode using "
 ":c:func:`Py_RunMain`."
 msgstr ""
 
-#: ../../c-api/init.rst:562
+#: ../../c-api/init.rst:558
 msgid ""
 "Register an :mod:`atexit` callback for the target interpreter *interp*. "
 "This is similar to :c:func:`Py_AtExit`, but takes an explicit interpreter"
 " and data pointer for the callback."
 msgstr ""
 
-#: ../../c-api/init.rst:566
-msgid "The :term:`GIL` must be held for *interp*."
+#: ../../c-api/init.rst:562
+msgid "There must be an :term:`attached thread state` for *interp*."
 msgstr ""
 
-#: ../../c-api/init.rst:571
+#: ../../c-api/init.rst:567
 msgid "Process-wide parameters"
 msgstr "프로세스 전체 매개 변수"
 
-#: ../../c-api/init.rst:581
+#: ../../c-api/init.rst:577
 msgid ""
 "This API is kept for backward compatibility: setting "
 ":c:member:`PyConfig.program_name` should be used instead, see "
 ":ref:`Python Initialization Configuration <init-config>`."
 msgstr ""
 
-#: ../../c-api/init.rst:585
+#: ../../c-api/init.rst:581
 msgid ""
 "This function should be called before :c:func:`Py_Initialize` is called "
 "for the first time, if it is called at all.  It tells the interpreter the"
@@ -933,8 +930,8 @@ msgstr ""
 " 사용됩니다. 기본값은 ``'python'``\\입니다. 인자는 프로그램을 실행하는 동안 내용이 변경되지 않는 정적 저장소의 0으로"
 " 끝나는 와이드 문자열을 가리켜야 합니다. 파이썬 인터프리터의 코드는 이 저장소의 내용을 변경하지 않습니다."
 
-#: ../../c-api/init.rst:596 ../../c-api/init.rst:838 ../../c-api/init.rst:874
-#: ../../c-api/init.rst:900
+#: ../../c-api/init.rst:592 ../../c-api/init.rst:840 ../../c-api/init.rst:876
+#: ../../c-api/init.rst:902
 #, fuzzy
 msgid ""
 "Use :c:func:`Py_DecodeLocale` to decode a bytes string to get a "
@@ -943,7 +940,7 @@ msgstr ""
 "바이트 문자열을 디코딩하여 :c:type:`wchar_*` 문자열을 얻는데 :c:func:`Py_DecodeLocale`\\을 "
 "사용합니다."
 
-#: ../../c-api/init.rst:604
+#: ../../c-api/init.rst:600
 #, fuzzy
 msgid ""
 "Return the program name set with :c:member:`PyConfig.program_name`, or "
@@ -953,25 +950,27 @@ msgstr ""
 ":c:func:`Py_SetProgramName` 으로 설정된 프로그램 이름이나 기본값을 반환합니다. 반환된 문자열은 정적 저장소를"
 " 가리킵니다; 호출자는 값을 수정해서는 안 됩니다."
 
-#: ../../c-api/init.rst:608 ../../c-api/init.rst:630 ../../c-api/init.rst:676
-#: ../../c-api/init.rst:698 ../../c-api/init.rst:724 ../../c-api/init.rst:912
+#: ../../c-api/init.rst:604 ../../c-api/init.rst:627 ../../c-api/init.rst:675
+#: ../../c-api/init.rst:699 ../../c-api/init.rst:726 ../../c-api/init.rst:914
 #, fuzzy
 msgid ""
 "This function should not be called before :c:func:`Py_Initialize`, "
 "otherwise it returns ``NULL``."
 msgstr "이 함수는 더는 :c:func:`Py_Initialize()` 전에 호출할 수 없습니다."
 
-#: ../../c-api/init.rst:611 ../../c-api/init.rst:633 ../../c-api/init.rst:679
-#: ../../c-api/init.rst:701 ../../c-api/init.rst:729 ../../c-api/init.rst:915
+#: ../../c-api/init.rst:607 ../../c-api/init.rst:630 ../../c-api/init.rst:678
+#: ../../c-api/init.rst:702 ../../c-api/init.rst:731 ../../c-api/init.rst:917
 #, fuzzy
 msgid "It now returns ``NULL`` if called before :c:func:`Py_Initialize`."
 msgstr "다음 함수는 모두 :c:func:`Py_Initialize` 이후에 호출되어야 합니다."
 
-#: ../../c-api/init.rst:614 ../../c-api/init.rst:704
-msgid "Get :data:`sys.executable` instead."
+#: ../../c-api/init.rst:610 ../../c-api/init.rst:705
+msgid ""
+"Use :c:func:`PyConfig_Get(\"executable\") <PyConfig_Get>` "
+"(:data:`sys.executable`) instead."
 msgstr ""
 
-#: ../../c-api/init.rst:620
+#: ../../c-api/init.rst:617
 #, fuzzy
 msgid ""
 "Return the *prefix* for installed platform-independent files. This is "
@@ -993,13 +992,15 @@ msgstr ""
 "해당합니다. 이 값은 파이썬 코드에서 ``sys.prefix``\\로 사용할 수 있습니다. 유닉스에서만 유용합니다. 다음 함수도 "
 "참조하십시오."
 
-#: ../../c-api/init.rst:636
+#: ../../c-api/init.rst:633
 msgid ""
-"Get :data:`sys.base_prefix` instead, or :data:`sys.prefix` if "
-":ref:`virtual environments <venv-def>` need to be handled."
+"Use :c:func:`PyConfig_Get(\"base_prefix\") <PyConfig_Get>` "
+"(:data:`sys.base_prefix`) instead. Use :c:func:`PyConfig_Get(\"prefix\") "
+"<PyConfig_Get>` (:data:`sys.prefix`) if :ref:`virtual environments <venv-"
+"def>` need to be handled."
 msgstr ""
 
-#: ../../c-api/init.rst:643
+#: ../../c-api/init.rst:642
 #, fuzzy
 msgid ""
 "Return the *exec-prefix* for installed platform-*dependent* files.  This "
@@ -1021,7 +1022,7 @@ msgstr ""
 ":program:`configure` 스크립트의 ``--exec-prefix`` 인자에 해당합니다. 이 값은 파이썬 코드에서 "
 "``sys.exec_prefix``\\로 사용할 수 있습니다. 유닉스에서만 유용합니다."
 
-#: ../../c-api/init.rst:654
+#: ../../c-api/init.rst:653
 msgid ""
 "Background: The exec-prefix differs from the prefix when platform "
 "dependent files (such as executables and shared libraries) are installed "
@@ -1033,7 +1034,7 @@ msgstr ""
 "prefix와 다릅니다. 일반 설치에서, 플랫폼 종속적 파일은 :file:`/usr/local/plat` 서브 트리에 설치되고 "
 "플랫폼 독립적 파일은 :file:`/usr/local`\\에 설치될 수 있습니다."
 
-#: ../../c-api/init.rst:660
+#: ../../c-api/init.rst:659
 msgid ""
 "Generally speaking, a platform is a combination of hardware and software "
 "families, e.g.  Sparc machines running the Solaris 2.x operating system "
@@ -1054,7 +1055,7 @@ msgstr ""
 "의미가 없으며, 빈 문자열로 설정됩니다. 컴파일된 파이썬 바이트 코드 파일은 플랫폼 독립적임에 유의하십시오 (그러나 이들을 "
 "컴파일하는데 사용된 파이썬 버전에는 종속적입니다!)."
 
-#: ../../c-api/init.rst:671
+#: ../../c-api/init.rst:670
 msgid ""
 "System administrators will know how to configure the :program:`mount` or "
 ":program:`automount` programs to share :file:`/usr/local` between "
@@ -1065,13 +1066,16 @@ msgstr ""
 ":file:`/usr/local`\\을 공유하도록 :program:`mount`\\나 :program:`automount` "
 "프로그램을 구성하는 방법을 알 것입니다."
 
-#: ../../c-api/init.rst:682
+#: ../../c-api/init.rst:681
 msgid ""
-"Get :data:`sys.base_exec_prefix` instead, or :data:`sys.exec_prefix` if "
-":ref:`virtual environments <venv-def>` need to be handled."
+"Use :c:func:`PyConfig_Get(\"base_exec_prefix\") <PyConfig_Get>` "
+"(:data:`sys.base_exec_prefix`) instead. Use "
+":c:func:`PyConfig_Get(\"exec_prefix\") <PyConfig_Get>` "
+"(:data:`sys.exec_prefix`) if :ref:`virtual environments <venv-def>` need "
+"to be handled."
 msgstr ""
 
-#: ../../c-api/init.rst:692
+#: ../../c-api/init.rst:693
 #, fuzzy
 msgid ""
 "Return the full program name of the Python executable; this is  computed "
@@ -1084,7 +1088,7 @@ msgstr ""
 "으로 설정됩니다)에서 기본 모듈 검색 경로를 파생하는 부작용으로 계산됩니다. 반환된 문자열은 정적 저장소를 가리 킵니다; 호출자는 "
 "값을 수정해서는 안 됩니다. 이 값은 파이썬 코드에서 ``sys.executable``\\로 사용할 수 있습니다."
 
-#: ../../c-api/init.rst:714
+#: ../../c-api/init.rst:716
 #, fuzzy
 msgid ""
 "Return the default module search path; this is computed from the program "
@@ -1103,21 +1107,23 @@ msgstr ""
 "호출자는 값을 수정해서는 안 됩니다. 리스트 :data:`sys.path`\\는 인터프리터 시작 시 이 값으로 초기화됩니다; 모듈을"
 " 로드하기 위한 검색 경로를 변경하기 위해 나중에 수정할 수 있습니다 (그리고 보통 그렇게 합니다)."
 
-#: ../../c-api/init.rst:732
-msgid "Get :data:`sys.path` instead."
+#: ../../c-api/init.rst:734
+msgid ""
+"Use :c:func:`PyConfig_Get(\"module_search_paths\") <PyConfig_Get>` "
+"(:data:`sys.path`) instead."
 msgstr ""
 
-#: ../../c-api/init.rst:738
+#: ../../c-api/init.rst:740
 msgid ""
 "Return the version of this Python interpreter.  This is a string that "
 "looks something like ::"
 msgstr "이 파이썬 인터프리터의 버전을 반환합니다. 이것은 다음과 같은 문자열입니다 ::"
 
-#: ../../c-api/init.rst:741
+#: ../../c-api/init.rst:743
 msgid "\"3.0a5+ (py3k:63103M, May 12 2008, 00:53:55) \\n[GCC 4.2.3]\""
 msgstr ""
 
-#: ../../c-api/init.rst:745
+#: ../../c-api/init.rst:747
 #, fuzzy
 msgid ""
 "The first word (up to the first space character) is the current Python "
@@ -1130,11 +1136,11 @@ msgstr ""
 "반환된 문자열은 정적 저장소를 가리 킵니다; 호출자는 값을 수정해서는 안 됩니다. 이 값은 파이썬 코드에서 "
 ":data:`sys.version`\\으로 사용할 수 있습니다."
 
-#: ../../c-api/init.rst:750
+#: ../../c-api/init.rst:752
 msgid "See also the :c:var:`Py_Version` constant."
 msgstr ""
 
-#: ../../c-api/init.rst:757
+#: ../../c-api/init.rst:759
 #, fuzzy
 msgid ""
 "Return the platform identifier for the current platform.  On Unix, this "
@@ -1151,17 +1157,17 @@ msgstr ""
 "``'win'``\\입니다. 반환된 문자열은 정적 저장소를 가리킵니다; 호출자는 값을 수정해서는 안 됩니다. 이 값은 파이썬 "
 "코드에서 ``sys.platform``\\으로 사용할 수 있습니다."
 
-#: ../../c-api/init.rst:768
+#: ../../c-api/init.rst:770
 msgid ""
 "Return the official copyright string for the current Python version, for "
 "example"
 msgstr "현재 파이썬 버전에 대한 공식 저작권 문자열을 반환합니다, 예를 들어"
 
-#: ../../c-api/init.rst:770
+#: ../../c-api/init.rst:772
 msgid "``'Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam'``"
 msgstr "``'Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam'``"
 
-#: ../../c-api/init.rst:774
+#: ../../c-api/init.rst:776
 msgid ""
 "The returned string points into static storage; the caller should not "
 "modify its value.  The value is available to Python code as "
@@ -1170,17 +1176,17 @@ msgstr ""
 "반환된 문자열은 정적 저장소를 가리킵니다; 호출자는 값을 수정해서는 안 됩니다. 이 값은 파이썬 코드에서 "
 "``sys.copyright``\\로 사용할 수 있습니다."
 
-#: ../../c-api/init.rst:780
+#: ../../c-api/init.rst:782
 msgid ""
 "Return an indication of the compiler used to build the current Python "
 "version, in square brackets, for example::"
 msgstr "현재 파이썬 버전을 빌드하는 데 사용된 컴파일러 표시를 대괄호 감싸서 반환합니다, 예를 들면::"
 
-#: ../../c-api/init.rst:783
+#: ../../c-api/init.rst:785
 msgid "\"[GCC 2.7.2.2]\""
 msgstr ""
 
-#: ../../c-api/init.rst:787 ../../c-api/init.rst:801
+#: ../../c-api/init.rst:789 ../../c-api/init.rst:803
 msgid ""
 "The returned string points into static storage; the caller should not "
 "modify its value.  The value is available to Python code as part of the "
@@ -1189,17 +1195,17 @@ msgstr ""
 "반환된 문자열은 정적 저장소를 가리킵니다; 호출자는 값을 수정해서는 안 됩니다. 이 값은 파이썬 코드에서 변수 "
 "``sys.version``\\의 일부로 제공됩니다."
 
-#: ../../c-api/init.rst:794
+#: ../../c-api/init.rst:796
 msgid ""
 "Return information about the sequence number and build date and time  of "
 "the current Python interpreter instance, for example ::"
 msgstr "현재 파이썬 인터프리터 인스턴스의 시퀀스 번호와 빌드 날짜 및 시간에 대한 정보를 반환합니다, 예를 들어 ::"
 
-#: ../../c-api/init.rst:797
+#: ../../c-api/init.rst:799
 msgid "\"#67, Aug  1 1997, 22:34:28\""
 msgstr ""
 
-#: ../../c-api/init.rst:813
+#: ../../c-api/init.rst:815
 msgid ""
 "This API is kept for backward compatibility: setting "
 ":c:member:`PyConfig.argv`, :c:member:`PyConfig.parse_argv` and "
@@ -1207,7 +1213,7 @@ msgid ""
 "Initialization Configuration <init-config>`."
 msgstr ""
 
-#: ../../c-api/init.rst:818
+#: ../../c-api/init.rst:820
 msgid ""
 "Set :data:`sys.argv` based on *argc* and *argv*.  These parameters are "
 "similar to those passed to the program's :c:func:`main` function with the"
@@ -1223,7 +1229,7 @@ msgstr ""
 "있습니다. 이 함수가 :data:`sys.argv` 초기화에 실패하면, :c:func:`Py_FatalError`\\를 사용하여 "
 "치명적인 조건을 표시합니다."
 
-#: ../../c-api/init.rst:826
+#: ../../c-api/init.rst:828
 msgid ""
 "If *updatepath* is zero, this is all the function does.  If *updatepath* "
 "is non-zero, the function also modifies :data:`sys.path` according to the"
@@ -1232,7 +1238,7 @@ msgstr ""
 "*updatepath*\\가 0이면, 여기까지가 이 함수가 하는 모든 일입니다. *updatepath*\\가 0이 아니면, 함수는 "
 "다음 알고리즘에 따라 :data:`sys.path`\\도 수정합니다:"
 
-#: ../../c-api/init.rst:830
+#: ../../c-api/init.rst:832
 msgid ""
 "If the name of an existing script is passed in ``argv[0]``, the absolute "
 "path of the directory where the script is located is prepended to "
@@ -1241,7 +1247,7 @@ msgstr ""
 "기존 스크립트의 이름이 ``argv[0]``\\으로 전달되면, 스크립트가 있는 디렉터리의 절대 경로가 :data:`sys.path`"
 " 앞에 추가됩니다."
 
-#: ../../c-api/init.rst:833
+#: ../../c-api/init.rst:835
 msgid ""
 "Otherwise (that is, if *argc* is ``0`` or ``argv[0]`` doesn't point to an"
 " existing file name), an empty string is prepended to :data:`sys.path`, "
@@ -1252,14 +1258,14 @@ msgstr ""
 ":data:`sys.path` 앞에 빈 문자열이 추가됩니다, 이는 현재 작업 디렉터리(``\".\"``)를 앞에 추가하는 것과 "
 "같습니다."
 
-#: ../../c-api/init.rst:841 ../../c-api/init.rst:877
+#: ../../c-api/init.rst:843 ../../c-api/init.rst:879
 #, fuzzy
 msgid ""
 "See also :c:member:`PyConfig.orig_argv` and :c:member:`PyConfig.argv` "
 "members of the :ref:`Python Initialization Configuration <init-config>`."
 msgstr ":ref:`파이썬 초기화 구성 <init-config>`\\도 참조하십시오."
 
-#: ../../c-api/init.rst:845
+#: ../../c-api/init.rst:847
 #, fuzzy
 msgid ""
 "It is recommended that applications embedding the Python interpreter for "
@@ -1271,7 +1277,7 @@ msgstr ""
 "<https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-5983>`_\\을 "
 "참조하십시오."
 
-#: ../../c-api/init.rst:850
+#: ../../c-api/init.rst:852
 msgid ""
 "On versions before 3.1.3, you can achieve the same effect by manually "
 "popping the first :data:`sys.path` element after having called "
@@ -1280,11 +1286,11 @@ msgstr ""
 "3.1.3 이전 버전에서는, :c:func:`PySys_SetArgv`\\를 호출한 후 첫 번째 :data:`sys.path` "
 "요소를 수동으로 제거하여 같은 효과를 얻을 수 있습니다, 예를 들어 다음을 사용하여::"
 
-#: ../../c-api/init.rst:854
+#: ../../c-api/init.rst:856
 msgid "PyRun_SimpleString(\"import sys; sys.path.pop(0)\\n\");"
 msgstr ""
 
-#: ../../c-api/init.rst:866
+#: ../../c-api/init.rst:868
 msgid ""
 "This API is kept for backward compatibility: setting "
 ":c:member:`PyConfig.argv` and :c:member:`PyConfig.parse_argv` should be "
@@ -1292,7 +1298,7 @@ msgid ""
 "config>`."
 msgstr ""
 
-#: ../../c-api/init.rst:870
+#: ../../c-api/init.rst:872
 msgid ""
 "This function works like :c:func:`PySys_SetArgvEx` with *updatepath* set "
 "to ``1`` unless the :program:`python` interpreter was started with the "
@@ -1301,18 +1307,18 @@ msgstr ""
 "이 함수는 :program:`python` 인터프리터가 :option:`-I`\\로 시작되지 않는 한 *updatepath*\\가 "
 "``1``\\로 설정된 :c:func:`PySys_SetArgvEx`\\처럼 작동합니다."
 
-#: ../../c-api/init.rst:880
+#: ../../c-api/init.rst:882
 msgid "The *updatepath* value depends on :option:`-I`."
 msgstr "*updatepath* 값은 :option:`-I`\\에 따라 다릅니다."
 
-#: ../../c-api/init.rst:887
+#: ../../c-api/init.rst:889
 msgid ""
 "This API is kept for backward compatibility: setting "
 ":c:member:`PyConfig.home` should be used instead, see :ref:`Python "
 "Initialization Configuration <init-config>`."
 msgstr ""
 
-#: ../../c-api/init.rst:891
+#: ../../c-api/init.rst:893
 msgid ""
 "Set the default \"home\" directory, that is, the location of the standard"
 " Python libraries.  See :envvar:`PYTHONHOME` for the meaning of the "
@@ -1321,7 +1327,7 @@ msgstr ""
 "기본 \"홈\" 디렉터리, 즉 표준 파이썬 라이브러리의 위치를 설정합니다. 인자 문자열의 의미는 "
 ":envvar:`PYTHONHOME` 을 참조하십시오."
 
-#: ../../c-api/init.rst:895
+#: ../../c-api/init.rst:897
 msgid ""
 "The argument should point to a zero-terminated character string in static"
 " storage whose contents will not change for the duration of the program's"
@@ -1331,7 +1337,7 @@ msgstr ""
 "인자는 프로그램을 실행하는 동안 내용이 변경되지 않는 정적 저장소에 있는 0으로 끝나는 문자열을 가리켜야 합니다. 파이썬 "
 "인터프리터의 코드는 이 저장소의 내용을 변경하지 않습니다."
 
-#: ../../c-api/init.rst:908
+#: ../../c-api/init.rst:910
 #, fuzzy
 msgid ""
 "Return the default \"home\", that is, the value set by "
@@ -1341,27 +1347,29 @@ msgstr ""
 "기본 \"홈\", 즉 :c:func:`Py_SetPythonHome` 에 대한 이전 호출에서 설정한 값이나 설정되었다면 "
 ":envvar:`PYTHONHOME` 환경 변수의 값을 반환합니다."
 
-#: ../../c-api/init.rst:918
+#: ../../c-api/init.rst:920
 #, fuzzy
 msgid ""
-"Get :c:member:`PyConfig.home` or :envvar:`PYTHONHOME` environment "
-"variable instead."
+"Use :c:func:`PyConfig_Get(\"home\") <PyConfig_Get>` or the "
+":envvar:`PYTHONHOME` environment variable instead."
 msgstr ":option:`-O` 옵션과 :envvar:`PYTHONOPTIMIZE` 환경 변수로 설정됩니다."
 
-#: ../../c-api/init.rst:926
+#: ../../c-api/init.rst:928
 msgid "Thread State and the Global Interpreter Lock"
 msgstr "스레드 상태와 전역 인터프리터 록"
 
-#: ../../c-api/init.rst:933
+#: ../../c-api/init.rst:935
+#, fuzzy
 msgid ""
-"The Python interpreter is not fully thread-safe.  In order to support "
-"multi-threaded Python programs, there's a global lock, called the "
-":term:`global interpreter lock` or :term:`GIL`, that must be held by the "
-"current thread before it can safely access Python objects. Without the "
-"lock, even the simplest operations could cause problems in a multi-"
-"threaded program: for example, when two threads simultaneously increment "
-"the reference count of the same object, the reference count could end up "
-"being incremented only once instead of twice."
+"Unless on a :term:`free-threaded <free threading>` build of "
+":term:`CPython`, the Python interpreter is not fully thread-safe.  In "
+"order to support multi-threaded Python programs, there's a global lock, "
+"called the :term:`global interpreter lock` or :term:`GIL`, that must be "
+"held by the current thread before it can safely access Python objects. "
+"Without the lock, even the simplest operations could cause problems in a "
+"multi-threaded program: for example, when two threads simultaneously "
+"increment the reference count of the same object, the reference count "
+"could end up being incremented only once instead of twice."
 msgstr ""
 "파이썬 인터프리터는 완전히 스레드 안전하지 않습니다. 다중 스레드 파이썬 프로그램을 지원하기 위해, 파이썬 객체에 안전하게 "
 "액세스하기 전에 현재 스레드가 보유해야 하는 :term:`전역 인터프리터 록 <global interpreter lock>` 혹은 "
@@ -1369,7 +1377,7 @@ msgstr ""
 " 수 있습니다: 예를 들어, 두 스레드가 동시에 같은 객체의 참조 횟수를 증가시키면, 참조 횟수가 두 번이 아닌 한 번만 증가할 수"
 " 있습니다."
 
-#: ../../c-api/init.rst:943
+#: ../../c-api/init.rst:946
 msgid ""
 "Therefore, the rule exists that only the thread that has acquired the "
 ":term:`GIL` may operate on Python objects or call Python/C API functions."
@@ -1383,48 +1391,70 @@ msgstr ""
 "(:func:`sys.setswitchinterval`\\을 참조하십시오). 록은 파일 읽기나 쓰기와 같은 잠재적인 블로킹 I/O "
 "연산에 대해서도 해제되므로, 그동안 다른 파이썬 스레드가 실행될 수 있습니다."
 
-#: ../../c-api/init.rst:953
+#: ../../c-api/init.rst:956
+#, fuzzy
 msgid ""
 "The Python interpreter keeps some thread-specific bookkeeping information"
-" inside a data structure called :c:type:`PyThreadState`.  There's also "
-"one global variable pointing to the current :c:type:`PyThreadState`: it "
-"can be retrieved using :c:func:`PyThreadState_Get`."
+" inside a data structure called :c:type:`PyThreadState`, known as a "
+":term:`thread state`. Each OS thread has a thread-local pointer to a "
+":c:type:`PyThreadState`; a thread state referenced by this pointer is "
+"considered to be :term:`attached <attached thread state>`."
 msgstr ""
 "파이썬 인터프리터는 :c:type:`PyThreadState` 라는 데이터 구조체 내에 스레드 별 부기(bookkeeping) "
 "정보를 보관합니다. 현재 :c:type:`PyThreadState` 를 가리키는 하나의 전역 변수도 있습니다: "
 ":c:func:`PyThreadState_Get`\\을 사용하여 얻을 수 있습니다."
 
-#: ../../c-api/init.rst:959
-msgid "Releasing the GIL from extension code"
-msgstr "확장 코드에서 GIL 해제하기"
-
 #: ../../c-api/init.rst:961
 msgid ""
-"Most extension code manipulating the :term:`GIL` has the following simple"
-" structure::"
+"A thread can only have one :term:`attached thread state` at a time. An "
+"attached thread state is typically analogous with holding the "
+":term:`GIL`, except on :term:`free-threaded <free threading>` builds.  On"
+" builds with the :term:`GIL` enabled, :term:`attaching <attached thread "
+"state>` a thread state will block until the :term:`GIL` can be acquired. "
+"However,  even on builds with the :term:`GIL` disabled, it is still "
+"required to have an attached thread state to call most of the C API."
+msgstr ""
+
+#: ../../c-api/init.rst:968
+msgid ""
+"In general, there will always be an :term:`attached thread state` when "
+"using Python's C API. Only in some specific cases (such as in a "
+":c:macro:`Py_BEGIN_ALLOW_THREADS` block) will the thread not have an "
+"attached thread state. If uncertain, check if "
+":c:func:`PyThreadState_GetUnchecked` returns ``NULL``."
+msgstr ""
+
+#: ../../c-api/init.rst:974
+#, fuzzy
+msgid "Detaching the thread state from extension code"
+msgstr "확장 코드에서 GIL 해제하기"
+
+#: ../../c-api/init.rst:976
+#, fuzzy
+msgid ""
+"Most extension code manipulating the :term:`thread state` has the "
+"following simple structure::"
 msgstr ":term:`GIL`\\을 조작하는 대부분의 확장 코드는 다음과 같은 간단한 구조로 되어 있습니다::"
 
-#: ../../c-api/init.rst:964
+#: ../../c-api/init.rst:979
 msgid ""
 "Save the thread state in a local variable.\n"
-"Release the global interpreter lock.\n"
 "... Do some blocking I/O operation ...\n"
-"Reacquire the global interpreter lock.\n"
 "Restore the thread state from the local variable."
 msgstr ""
 
-#: ../../c-api/init.rst:970
+#: ../../c-api/init.rst:983
 msgid "This is so common that a pair of macros exists to simplify it::"
 msgstr "이것은 매우 일반적이어서 이를 단순화하기 위해 한 쌍의 매크로가 존재합니다::"
 
-#: ../../c-api/init.rst:972
+#: ../../c-api/init.rst:985
 msgid ""
 "Py_BEGIN_ALLOW_THREADS\n"
 "... Do some blocking I/O operation ...\n"
 "Py_END_ALLOW_THREADS"
 msgstr ""
 
-#: ../../c-api/init.rst:980
+#: ../../c-api/init.rst:993
 msgid ""
 "The :c:macro:`Py_BEGIN_ALLOW_THREADS` macro opens a new block and "
 "declares a hidden local variable; the :c:macro:`Py_END_ALLOW_THREADS` "
@@ -1433,11 +1463,11 @@ msgstr ""
 ":c:macro:`Py_BEGIN_ALLOW_THREADS` 매크로는 새 블록을 열고 숨겨진 지역 변수를 선언합니다; "
 ":c:macro:`Py_END_ALLOW_THREADS` 매크로는 블록을 닫습니다."
 
-#: ../../c-api/init.rst:984
+#: ../../c-api/init.rst:997
 msgid "The block above expands to the following code::"
 msgstr "위의 블록은 다음 코드로 확장됩니다::"
 
-#: ../../c-api/init.rst:986
+#: ../../c-api/init.rst:999
 msgid ""
 "PyThreadState *_save;\n"
 "\n"
@@ -1446,68 +1476,85 @@ msgid ""
 "PyEval_RestoreThread(_save);"
 msgstr ""
 
-#: ../../c-api/init.rst:996
-msgid ""
-"Here is how these functions work: the global interpreter lock is used to "
-"protect the pointer to the current thread state.  When releasing the lock"
-" and saving the thread state, the current thread state pointer must be "
-"retrieved before the lock is released (since another thread could "
-"immediately acquire the lock and store its own thread state in the global"
-" variable). Conversely, when acquiring the lock and restoring the thread "
-"state, the lock must be acquired before storing the thread state pointer."
+#: ../../c-api/init.rst:1009
+msgid "Here is how these functions work:"
 msgstr ""
-"이 함수들의 작동 방식은 다음과 같습니다: 전역 인터프리터 록이 현재 스레드 상태에 대한 포인터를 보호하는 데 사용됩니다. 록을 "
-"해제하고 스레드 상태를 저장할 때, 록이 해제되기 전에 현재 스레드 상태 포인터를 가져와야 합니다 (다른 스레드가 즉시 록을 "
-"획득하고 전역 변수에 자신의 스레드 상태를 저장할 수 있기 때문입니다). 반대로, 록을 획득하고 스레드 상태를 복원할 때, 스레드 "
-"상태 포인터를 저장하기 전에 록을 획득해야 합니다."
 
-#: ../../c-api/init.rst:1005
+#: ../../c-api/init.rst:1011
 msgid ""
-"Calling system I/O functions is the most common use case for releasing "
-"the GIL, but it can also be useful before calling long-running "
-"computations which don't need access to Python objects, such as "
-"compression or cryptographic functions operating over memory buffers.  "
-"For example, the standard :mod:`zlib` and :mod:`hashlib` modules release "
-"the GIL when compressing or hashing data."
+"The :term:`attached thread state` holds the :term:`GIL` for the entire "
+"interpreter. When detaching the :term:`attached thread state`, the "
+":term:`GIL` is released, allowing other threads to attach a thread state "
+"to their own thread, thus getting the :term:`GIL` and can start "
+"executing. The pointer to the prior :term:`attached thread state` is "
+"stored as a local variable. Upon reaching "
+":c:macro:`Py_END_ALLOW_THREADS`, the thread state that was previously "
+":term:`attached <attached thread state>` is passed to "
+":c:func:`PyEval_RestoreThread`. This function will block until another "
+"releases its :term:`thread state <attached thread state>`, thus allowing "
+"the old :term:`thread state <attached thread state>` to get re-attached "
+"and the C API can be called again."
+msgstr ""
+
+#: ../../c-api/init.rst:1021
+msgid ""
+"For :term:`free-threaded <free threading>` builds, the :term:`GIL` is "
+"normally out of the question, but detaching the :term:`thread state "
+"<attached thread state>` is still required for blocking I/O and long "
+"operations. The difference is that threads don't have to wait for the "
+":term:`GIL` to be released to attach their thread state, allowing true "
+"multi-core parallelism."
+msgstr ""
+
+#: ../../c-api/init.rst:1027
+#, fuzzy
+msgid ""
+"Calling system I/O functions is the most common use case for detaching "
+"the :term:`thread state <attached thread state>`, but it can also be "
+"useful before calling long-running computations which don't need access "
+"to Python objects, such as compression or cryptographic functions "
+"operating over memory buffers. For example, the standard :mod:`zlib` and "
+":mod:`hashlib` modules detach the :term:`thread state <attached thread "
+"state>` when compressing or hashing data."
 msgstr ""
 "시스템 I/O 함수 호출은 GIL을 릴리스하는 가장 일반적인 사용 사례이지만, 메모리 버퍼를 통해 작동하는 압축이나 암호화 함수와 "
 "같이, 파이썬 객체에 액세스할 필요가 없는 장기 실행 계산을 호출하기 전에도 유용할 수 있습니다. 예를 들어, 표준 "
 ":mod:`zlib`\\와 :mod:`hashlib` 모듈은 데이터를 압축하거나 해싱할 때 GIL을 해제합니다."
 
-#: ../../c-api/init.rst:1016
+#: ../../c-api/init.rst:1038
 msgid "Non-Python created threads"
 msgstr "파이썬이 만들지 않은 스레드"
 
-#: ../../c-api/init.rst:1018
+#: ../../c-api/init.rst:1040
+#, fuzzy
 msgid ""
 "When threads are created using the dedicated Python APIs (such as the "
 ":mod:`threading` module), a thread state is automatically associated to "
 "them and the code showed above is therefore correct.  However, when "
 "threads are created from C (for example by a third-party library with its"
-" own thread management), they don't hold the GIL, nor is there a thread "
-"state structure for them."
+" own thread management), they don't hold the :term:`GIL`, because they "
+"don't have an :term:`attached thread state`."
 msgstr ""
 "전용 파이썬 API(가령 :mod:`threading` 모듈)를 사용하여 스레드를 만들면, 스레드 상태가 자동으로 연결되므로 위에 "
 "표시된 코드가 올바릅니다. 그러나, 스레드가 C에서 만들어질 때 (예를 들어 자체 스레드 관리 기능이 있는 제삼자 라이브러리에 "
 "의해), GIL을 보유하지 않고, 그들을 위한 스레드 상태 구조도 없습니다."
 
-#: ../../c-api/init.rst:1025
+#: ../../c-api/init.rst:1047
+#, fuzzy
 msgid ""
 "If you need to call Python code from these threads (often this will be "
 "part of a callback API provided by the aforementioned third-party "
 "library), you must first register these threads with the interpreter by "
-"creating a thread state data structure, then acquiring the GIL, and "
-"finally storing their thread state pointer, before you can start using "
-"the Python/C API.  When you are done, you should reset the thread state "
-"pointer, release the GIL, and finally free the thread state data "
-"structure."
+"creating an :term:`attached thread state` before you can start using the "
+"Python/C API.  When you are done, you should detach the :term:`thread "
+"state <attached thread state>`, and finally free it."
 msgstr ""
 "이러한 스레드에서 파이썬 코드를 호출해야 하면 (종종 앞서 언급한 제삼자 라이브러리에서 제공하는 콜백 API의 일부가 됩니다), "
 "먼저 스레드 상태 자료 구조를 만들어서 인터프리터에 이러한 스레드를 등록한 다음, GIL을 획득하고, 마지막으로 파이썬/C API "
 "사용을 시작하기 전에 스레드 상태 포인터를 저장합니다. 완료되면, 스레드 상태 포인터를 재설정하고, GIL을 해제한 다음, "
 "마지막으로 스레드 상태 자료 구조를 해제해야 합니다."
 
-#: ../../c-api/init.rst:1033
+#: ../../c-api/init.rst:1054
 msgid ""
 "The :c:func:`PyGILState_Ensure` and :c:func:`PyGILState_Release` "
 "functions do all of the above automatically.  The typical idiom for "
@@ -1516,7 +1563,7 @@ msgstr ""
 ":c:func:`PyGILState_Ensure`\\와 :c:func:`PyGILState_Release` 함수는 위의 모든 작업을"
 " 자동으로 수행합니다. C 스레드에서 파이썬을 호출하는 일반적인 관용구는 다음과 같습니다::"
 
-#: ../../c-api/init.rst:1037
+#: ../../c-api/init.rst:1058
 msgid ""
 "PyGILState_STATE gstate;\n"
 "gstate = PyGILState_Ensure();\n"
@@ -1529,25 +1576,65 @@ msgid ""
 "PyGILState_Release(gstate);"
 msgstr ""
 
-#: ../../c-api/init.rst:1047
+#: ../../c-api/init.rst:1068
 #, fuzzy
 msgid ""
 "Note that the ``PyGILState_*`` functions assume there is only one global "
 "interpreter (created automatically by :c:func:`Py_Initialize`).  Python "
 "supports the creation of additional interpreters (using "
 ":c:func:`Py_NewInterpreter`), but mixing multiple interpreters and the "
-"``PyGILState_*`` API is unsupported."
+"``PyGILState_*`` API is unsupported. This is because "
+":c:func:`PyGILState_Ensure` and similar functions default to "
+":term:`attaching <attached thread state>` a :term:`thread state` for the "
+"main interpreter, meaning that the thread can't safely interact with the "
+"calling subinterpreter."
 msgstr ""
 ":c:func:`PyGILState_\\*` 함수는 (:c:func:`Py_Initialize`\\에 의해 자동으로 만들어진) 전역"
 " 인터프리터 하나만 있다고 가정함에 유의하십시오. 파이썬은 추가 인터프리터를 만드는 것을 지원하지만 "
 "(:c:func:`Py_NewInterpreter`\\를 사용해서), 다중 인터프리터와 :c:func:`PyGILState_\\*`"
 " API를 혼합하는 것은 지원되지 않습니다."
 
-#: ../../c-api/init.rst:1057
+#: ../../c-api/init.rst:1078
+msgid "Supporting subinterpreters in non-Python threads"
+msgstr ""
+
+#: ../../c-api/init.rst:1080
+msgid ""
+"If you would like to support subinterpreters with non-Python created "
+"threads, you must use the ``PyThreadState_*`` API instead of the "
+"traditional ``PyGILState_*`` API."
+msgstr ""
+
+#: ../../c-api/init.rst:1084
+msgid ""
+"In particular, you must store the interpreter state from the calling "
+"function and pass it to :c:func:`PyThreadState_New`, which will ensure "
+"that the :term:`thread state` is targeting the correct interpreter::"
+msgstr ""
+
+#: ../../c-api/init.rst:1088
+msgid ""
+"/* The return value of PyInterpreterState_Get() from the\n"
+"   function that created this thread. */\n"
+"PyInterpreterState *interp = ThreadData->interp;\n"
+"PyThreadState *tstate = PyThreadState_New(interp);\n"
+"PyThreadState_Swap(tstate);\n"
+"\n"
+"/* GIL of the subinterpreter is now held.\n"
+"   Perform Python actions here. */\n"
+"result = CallSomeFunction();\n"
+"/* evaluate result or handle exception */\n"
+"\n"
+"/* Destroy the thread state. No Python API allowed beyond this point. */\n"
+"PyThreadState_Clear(tstate);\n"
+"PyThreadState_DeleteCurrent();"
+msgstr ""
+
+#: ../../c-api/init.rst:1106
 msgid "Cautions about fork()"
 msgstr "fork()에 대한 주의 사항"
 
-#: ../../c-api/init.rst:1059
+#: ../../c-api/init.rst:1108
 msgid ""
 "Another important thing to note about threads is their behaviour in the "
 "face of the C :c:func:`fork` call. On most systems with :c:func:`fork`, "
@@ -1559,7 +1646,7 @@ msgstr ""
 ":c:func:`fork`\\를 사용하는 대부분의 시스템에서는, 프로세스가 포크한 후에 포크를 발행한 스레드만 존재합니다. 이는 "
 "록을 처리해야 하는 방법과 CPython 런타임에 저장된 모든 상태 모두에 구체적인 영향을 미칩니다."
 
-#: ../../c-api/init.rst:1065
+#: ../../c-api/init.rst:1114
 #, fuzzy
 msgid ""
 "The fact that only the \"current\" thread remains means any locks held by"
@@ -1586,7 +1673,7 @@ msgstr ""
 " 파이썬의 내부 록 중 하나에 의해 교착 상태가 발생할 수 있습니다. :c:func:`PyOS_AfterFork_Child`\\는 "
 "필요한 록을 재설정하려고 하지만, 항상 할 수 있는 것은 아닙니다."
 
-#: ../../c-api/init.rst:1080
+#: ../../c-api/init.rst:1129
 msgid ""
 "The fact that all other threads go away also means that CPython's runtime"
 " state there must be cleaned up properly, which :func:`os.fork` does.  "
@@ -1605,17 +1692,55 @@ msgstr ""
 "CPython 전역 런타임이 원래 초기화된 인터프리터의 \"메인\" 스레드에서만 호출되어야 합니다. 유일한 예외는 "
 ":c:func:`exec`\\가 그 후에 즉시 호출되는 경우입니다."
 
-#: ../../c-api/init.rst:1093
+#: ../../c-api/init.rst:1143
+msgid "Cautions regarding runtime finalization"
+msgstr ""
+
+#: ../../c-api/init.rst:1145
+msgid ""
+"In the late stage of :term:`interpreter shutdown`, after attempting to "
+"wait for non-daemon threads to exit (though this can be interrupted by "
+":class:`KeyboardInterrupt`) and running the :mod:`atexit` functions, the "
+"runtime is marked as *finalizing*: :c:func:`Py_IsFinalizing` and "
+":func:`sys.is_finalizing` return true.  At this point, only the "
+"*finalization thread* that initiated finalization (typically the main "
+"thread) is allowed to acquire the :term:`GIL`."
+msgstr ""
+
+#: ../../c-api/init.rst:1153
+msgid ""
+"If any thread, other than the finalization thread, attempts to attach a "
+":term:`thread state` during finalization, either explicitly or "
+"implicitly, the thread enters **a permanently blocked state** where it "
+"remains until the program exits.  In most cases this is harmless, but "
+"this can result in deadlock if a later stage of finalization attempts to "
+"acquire a lock owned by the blocked thread, or otherwise waits on the "
+"blocked thread."
+msgstr ""
+
+#: ../../c-api/init.rst:1160
+msgid ""
+"Gross? Yes. This prevents random crashes and/or unexpectedly skipped C++ "
+"finalizations further up the call stack when such threads were forcibly "
+"exited here in CPython 3.13 and earlier. The CPython runtime "
+":term:`thread state` C APIs have never had any error reporting or "
+"handling expectations at :term:`thread state` attachment time that "
+"would've allowed for graceful exit from this situation. Changing that "
+"would require new stable C APIs and rewriting the majority of C code in "
+"the CPython ecosystem to use those with error handling."
+msgstr ""
+
+#: ../../c-api/init.rst:1170
 msgid "High-level API"
 msgstr "고수준 API"
 
-#: ../../c-api/init.rst:1095
+#: ../../c-api/init.rst:1172
 msgid ""
 "These are the most commonly used types and functions when writing C "
 "extension code, or when embedding the Python interpreter:"
 msgstr "다음은 C 확장 코드를 작성하거나 파이썬 인터프리터를 내장할 때 가장 일반적으로 사용되는 형과 함수입니다:"
 
-#: ../../c-api/init.rst:1100
+#: ../../c-api/init.rst:1177
 msgid ""
 "This data structure represents the state shared by a number of "
 "cooperating threads.  Threads belonging to the same interpreter share "
@@ -1625,7 +1750,7 @@ msgstr ""
 "이 자료 구조는 여러 협력 스레드가 공유하는 상태를 나타냅니다. 같은 인터프리터에 속하는 스레드는 모듈 관리와 몇 가지 다른 내부 "
 "항목을 공유합니다. 이 구조체에는 공개 멤버가 없습니다."
 
-#: ../../c-api/init.rst:1105
+#: ../../c-api/init.rst:1182
 msgid ""
 "Threads belonging to different interpreters initially share nothing, "
 "except process state like available memory, open file descriptors and "
@@ -1635,7 +1760,13 @@ msgstr ""
 "다른 인터프리터에 속한 스레드는 사용 가능한 메모리, 열린 파일 기술자 등과 같은 프로세스 상태를 제외하고는, 처음에는 아무것도 "
 "공유하지 않습니다. 전역 인터프리터 록은 어떤 인터프리터에 속해 있는지에 관계없이 모든 스레드에서 공유됩니다."
 
-#: ../../c-api/init.rst:1113
+#: ../../c-api/init.rst:1189
+msgid ""
+":pep:`684` introduced the possibility of a :ref:`per-interpreter GIL "
+"<per-interpreter-gil>`. See :c:func:`Py_NewInterpreterFromConfig`."
+msgstr ""
+
+#: ../../c-api/init.rst:1196
 #, fuzzy
 msgid ""
 "This data structure represents the state of a single thread.  The only "
@@ -1644,122 +1775,151 @@ msgstr ""
 "이 자료 구조는 단일 스레드의 상태를 나타냅니다. 유일한 공용 데이터 멤버는 이 스레드의 인터프리터 상태를 가리키는 "
 ":attr:`interp`\\(:c:type:`PyInterpreterState *`)입니다."
 
-#: ../../c-api/init.rst:1118
+#: ../../c-api/init.rst:1201
 #, fuzzy
 msgid "This thread's interpreter state."
 msgstr "메인 인터프리터 상태 객체를 반환합니다."
 
-#: ../../c-api/init.rst:1129
+#: ../../c-api/init.rst:1212
 msgid "Deprecated function which does nothing."
 msgstr "아무것도 하지 않는 폐지된 함수."
 
-#: ../../c-api/init.rst:1131
+#: ../../c-api/init.rst:1214
 msgid "In Python 3.6 and older, this function created the GIL if it didn't exist."
 msgstr "파이썬 3.6과 이전 버전에서는, 이 함수가 존재하지 않으면 GIL을 만들었습니다."
 
-#: ../../c-api/init.rst:1133
+#: ../../c-api/init.rst:1216
 msgid "The function now does nothing."
 msgstr "이제 이 함수는 아무 작업도 수행하지 않습니다."
 
-#: ../../c-api/init.rst:1136
+#: ../../c-api/init.rst:1219
 msgid ""
 "This function is now called by :c:func:`Py_Initialize()`, so you don't "
 "have to call it yourself anymore."
 msgstr "이 함수는 이제 :c:func:`Py_Initialize()`\\에 의해 호출되어서, 여러분은 더는 직접 호출할 필요가 없습니다."
 
-#: ../../c-api/init.rst:1140
+#: ../../c-api/init.rst:1223
 msgid "This function cannot be called before :c:func:`Py_Initialize()` anymore."
 msgstr "이 함수는 더는 :c:func:`Py_Initialize()` 전에 호출할 수 없습니다."
 
-#: ../../c-api/init.rst:1150
+#: ../../c-api/init.rst:1233
 msgid ""
-"Release the global interpreter lock (if it has been created) and reset "
-"the thread state to ``NULL``, returning the previous thread state (which "
-"is not ``NULL``).  If the lock has been created, the current thread must "
-"have acquired it."
+"Detach the :term:`attached thread state` and return it. The thread will "
+"have no :term:`thread state` upon returning."
 msgstr ""
-"(만들었다면) 전역 인터프리터 록을 해제하고 스레드 상태를 ``NULL``\\로 재설정하고, 이전 스레드 상태(``NULL``\\이"
-" 아닙니다)를 반환합니다. 록이 만들어졌다면, 현재 스레드가 록을 획득했어야 합니다."
 
-#: ../../c-api/init.rst:1158
+#: ../../c-api/init.rst:1239
 msgid ""
-"Acquire the global interpreter lock (if it has been created) and set the "
-"thread state to *tstate*, which must not be ``NULL``.  If the lock has "
-"been created, the current thread must not have acquired it, otherwise "
-"deadlock ensues."
+"Set the :term:`attached thread state` to *tstate*. The passed "
+":term:`thread state` **should not** be :term:`attached <attached thread "
+"state>`, otherwise deadlock ensues. *tstate* will be attached upon "
+"returning."
 msgstr ""
-"(만들었다면) 전역 인터프리터 록을 획득하고 스레드 상태를 ``NULL``\\이 아니어야 하는 *tstate*\\로 설정합니다. "
-"록이 만들어졌다면, 현재 스레드가 이를 획득하지 않았어야 합니다, 그렇지 않으면 교착 상태가 발생합니다."
 
-#: ../../c-api/init.rst:1164 ../../c-api/init.rst:1223
-#: ../../c-api/init.rst:1519
-#, fuzzy
+#: ../../c-api/init.rst:1244 ../../c-api/init.rst:1631
 msgid ""
 "Calling this function from a thread when the runtime is finalizing will "
-"terminate the thread, even if the thread was not created by Python. You "
-"can use :c:func:`Py_IsFinalizing` or :func:`sys.is_finalizing` to check "
-"if the interpreter is in process of being finalized before calling this "
-"function to avoid unwanted termination."
+"hang the thread until the program exits, even if the thread was not "
+"created by Python.  Refer to :ref:`cautions-regarding-runtime-"
+"finalization` for more details."
 msgstr ""
-"런타임이 파이널리제이션 될 때 스레드에서 이 함수를 호출하면, 스레드가 파이썬에 의해 만들어지지 않았더라도 스레드가 종료됩니다. "
-"원치 않는 종료를 방지하려면 :c:func:`_Py_IsFinalizing`\\이나 "
-":func:`sys.is_finalizing`\\을 사용하여 이 함수를 호출하기 전에 인터프리터가 파이널리제이션 되고 있는지 확인할"
-" 수 있습니다."
 
-#: ../../c-api/init.rst:1172
+#: ../../c-api/init.rst:1249 ../../c-api/init.rst:1333
+#: ../../c-api/init.rst:1641
 msgid ""
-"Return the current thread state.  The global interpreter lock must be "
-"held. When the current thread state is ``NULL``, this issues a fatal "
-"error (so that the caller needn't check for ``NULL``)."
+"Hangs the current thread, rather than terminating it, if called while the"
+" interpreter is finalizing."
+msgstr ""
+
+#: ../../c-api/init.rst:1255
+#, fuzzy
+msgid ""
+"Return the :term:`attached thread state`. If the thread has no attached "
+"thread state, (such as when inside of :c:macro:`Py_BEGIN_ALLOW_THREADS` "
+"block), then this issues a fatal error (so that the caller needn't check "
+"for ``NULL``)."
 msgstr ""
 "현재 스레드 상태를 반환합니다. 전역 인터프리터 록을 보유해야 합니다. 현재 스레드 상태가 ``NULL``\\이면 치명적인 에러가 "
 "발생합니다 (그래서 호출자가 ``NULL``\\을 확인할 필요가 없습니다)."
 
-#: ../../c-api/init.rst:1176
+#: ../../c-api/init.rst:1260
 #, fuzzy
 msgid "See also :c:func:`PyThreadState_GetUnchecked`."
 msgstr ":c:func:`PyEval_GetFrame`\\도 참조하십시오."
 
-#: ../../c-api/init.rst:1181
+#: ../../c-api/init.rst:1264
 msgid ""
 "Similar to :c:func:`PyThreadState_Get`, but don't kill the process with a"
 " fatal error if it is NULL. The caller is responsible to check if the "
 "result is NULL."
 msgstr ""
 
-#: ../../c-api/init.rst:1185
+#: ../../c-api/init.rst:1268
 msgid ""
 "In Python 3.5 to 3.12, the function was private and known as "
 "``_PyThreadState_UncheckedGet()``."
 msgstr ""
 
-#: ../../c-api/init.rst:1192
+#: ../../c-api/init.rst:1275
 msgid ""
-"Swap the current thread state with the thread state given by the argument"
-" *tstate*, which may be ``NULL``.  The global interpreter lock must be "
-"held and is not released."
+"Set the :term:`attached thread state` to *tstate*, and return the "
+":term:`thread state` that was attached prior to calling."
 msgstr ""
-"현재 스레드 상태를 인자 *tstate*\\(``NULL``\\일 수 있습니다)가 제공하는 스레드 상태와 스와프합니다. 전역 "
-"인터프리터 록을 보유해야 하며 해제되지 않습니다."
 
-#: ../../c-api/init.rst:1197
+#: ../../c-api/init.rst:1278
+msgid ""
+"This function is safe to call without an :term:`attached thread state`; "
+"it will simply return ``NULL`` indicating that there was no prior thread "
+"state."
+msgstr ""
+
+#: ../../c-api/init.rst:1282
+#, fuzzy
+msgid ":c:func:`PyEval_ReleaseThread`"
+msgstr ":c:func:`PyMem_RawFree`"
+
+#: ../../c-api/init.rst:1285
+msgid ""
+"Similar to :c:func:`PyGILState_Ensure`, this function will hang the "
+"thread if the runtime is finalizing."
+msgstr ""
+
+#: ../../c-api/init.rst:1289
 msgid ""
 "The following functions use thread-local storage, and are not compatible "
 "with sub-interpreters:"
 msgstr "다음 함수는 스레드 로컬 저장소를 사용하며, 서브 인터프리터와 호환되지 않습니다:"
 
-#: ../../c-api/init.rst:1202
+#: ../../c-api/init.rst:1294
+#, fuzzy
+msgid ""
+"The type of the value returned by :c:func:`PyGILState_Ensure` and passed "
+"to :c:func:`PyGILState_Release`."
+msgstr ""
+":c:func:`PyGILState_Ensure`\\에 대한 모든 호출은 같은 스레드에서 "
+":c:func:`PyGILState_Release`\\에 대한 호출과 쌍을 이뤄야 합니다."
+
+#: ../../c-api/init.rst:1299
+msgid "The GIL was already held when :c:func:`PyGILState_Ensure` was called."
+msgstr ""
+
+#: ../../c-api/init.rst:1303
+msgid "The GIL was not held when :c:func:`PyGILState_Ensure` was called."
+msgstr ""
+
+#: ../../c-api/init.rst:1307
+#, fuzzy
 msgid ""
 "Ensure that the current thread is ready to call the Python C API "
-"regardless of the current state of Python, or of the global interpreter "
-"lock. This may be called as many times as desired by a thread as long as "
-"each call is matched with a call to :c:func:`PyGILState_Release`. In "
-"general, other thread-related APIs may be used between "
-":c:func:`PyGILState_Ensure` and :c:func:`PyGILState_Release` calls as "
-"long as the thread state is restored to its previous state before the "
-"Release().  For example, normal usage of the "
-":c:macro:`Py_BEGIN_ALLOW_THREADS` and :c:macro:`Py_END_ALLOW_THREADS` "
-"macros is acceptable."
+"regardless of the current state of Python, or of the :term:`attached "
+"thread state`. This may be called as many times as desired by a thread as"
+" long as each call is matched with a call to "
+":c:func:`PyGILState_Release`. In general, other thread-related APIs may "
+"be used between :c:func:`PyGILState_Ensure` and "
+":c:func:`PyGILState_Release` calls as long as the thread state is "
+"restored to its previous state before the Release().  For example, normal"
+" usage of the :c:macro:`Py_BEGIN_ALLOW_THREADS` and "
+":c:macro:`Py_END_ALLOW_THREADS` macros is acceptable."
 msgstr ""
 "현재 스레드가 파이썬의 현재 상태나 전역 인터프리터 록과 관계없이 파이썬 C API를 호출할 준비가 되었는지 확인합니다. 이것은 각"
 " 호출이 :c:func:`PyGILState_Release`\\에 대한 호출과 쌍을 이루는 한 스레드에서 원하는 만큼 여러 번 "
@@ -1768,27 +1928,38 @@ msgstr ""
 "관련 API를 사용할 수 있습니다. 예를 들어, :c:macro:`Py_BEGIN_ALLOW_THREADS`\\와 "
 ":c:macro:`Py_END_ALLOW_THREADS` 매크로의 정상적인 사용은 허용됩니다."
 
-#: ../../c-api/init.rst:1212
+#: ../../c-api/init.rst:1317
+#, fuzzy
 msgid ""
-"The return value is an opaque \"handle\" to the thread state when "
-":c:func:`PyGILState_Ensure` was called, and must be passed to "
-":c:func:`PyGILState_Release` to ensure Python is left in the same state. "
-"Even though recursive calls are allowed, these handles *cannot* be shared"
-" - each unique call to :c:func:`PyGILState_Ensure` must save the handle "
-"for its call to :c:func:`PyGILState_Release`."
+"The return value is an opaque \"handle\" to the :term:`attached thread "
+"state` when :c:func:`PyGILState_Ensure` was called, and must be passed to"
+" :c:func:`PyGILState_Release` to ensure Python is left in the same state."
+" Even though recursive calls are allowed, these handles *cannot* be "
+"shared - each unique call to :c:func:`PyGILState_Ensure` must save the "
+"handle for its call to :c:func:`PyGILState_Release`."
 msgstr ""
 "반환 값은 :c:func:`PyGILState_Ensure`\\가 호출되었을 때의 스레드 상태에 대한 불투명한 \"핸들\"이며, "
 "파이썬이 같은 상태에 있도록 하려면 :c:func:`PyGILState_Release`\\로 전달되어야 합니다. 재귀 호출이 "
 "허용되더라도, 이 핸들들은 공유할 수 *없습니다* - :c:func:`PyGILState_Ensure`\\에 대한 각 고유 호출은 "
 "자신의 :c:func:`PyGILState_Release`\\에 대한 호출을 위해 핸들을 저장해야 합니다."
 
-#: ../../c-api/init.rst:1219
+#: ../../c-api/init.rst:1324
+#, fuzzy
 msgid ""
-"When the function returns, the current thread will hold the GIL and be "
-"able to call arbitrary Python code.  Failure is a fatal error."
+"When the function returns, there will be an :term:`attached thread state`"
+" and the thread will be able to call arbitrary Python code.  Failure is a"
+" fatal error."
 msgstr "함수가 반환할 때, 현재 스레드는 GIL을 보유하고 임의의 파이썬 코드를 호출할 수 있습니다. 실패는 치명적인 에러입니다."
 
-#: ../../c-api/init.rst:1231
+#: ../../c-api/init.rst:1328
+msgid ""
+"Calling this function when the runtime is finalizing is unsafe. Doing so "
+"will either hang the thread until the program ends, or fully crash the "
+"interpreter in rare cases. Refer to :ref:`cautions-regarding-runtime-"
+"finalization` for more details."
+msgstr ""
+
+#: ../../c-api/init.rst:1339
 msgid ""
 "Release any resources previously acquired.  After this call, Python's "
 "state will be the same as it was prior to the corresponding "
@@ -1798,7 +1969,7 @@ msgstr ""
 "이전에 획득 한 모든 자원을 해제합니다. 이 호출 후에, 파이썬의 상태는 해당 :c:func:`PyGILState_Ensure` "
 "호출 이전과 같습니다 (그러나 일반적으로 이 상태는 호출자에게 알려지지 않아서, GILState API를 사용합니다)."
 
-#: ../../c-api/init.rst:1236
+#: ../../c-api/init.rst:1344
 msgid ""
 "Every call to :c:func:`PyGILState_Ensure` must be matched by a call to "
 ":c:func:`PyGILState_Release` on the same thread."
@@ -1806,40 +1977,62 @@ msgstr ""
 ":c:func:`PyGILState_Ensure`\\에 대한 모든 호출은 같은 스레드에서 "
 ":c:func:`PyGILState_Release`\\에 대한 호출과 쌍을 이뤄야 합니다."
 
-#: ../../c-api/init.rst:1242
+#: ../../c-api/init.rst:1349
+#, fuzzy
 msgid ""
-"Get the current thread state for this thread.  May return ``NULL`` if no "
-"GILState API has been used on the current thread.  Note that the main "
-"thread always has such a thread-state, even if no auto-thread-state call "
-"has been made on the main thread.  This is mainly a helper/diagnostic "
-"function."
+"Get the :term:`attached thread state` for this thread.  May return "
+"``NULL`` if no GILState API has been used on the current thread.  Note "
+"that the main thread always has such a thread-state, even if no auto-"
+"thread-state call has been made on the main thread.  This is mainly a "
+"helper/diagnostic function."
 msgstr ""
 "이 스레드의 현재 스레드 상태를 가져옵니다. 현재 스레드에서 GILState API가 사용되지 않았으면 ``NULL``\\을 반환할"
 " 수 있습니다. 메인 스레드에서 자동 스레드 상태 호출(auto-thread-state call)이 수행되지 않은 경우에도, 메인 "
 "스레드에는 항상 이러한 스레드 상태가 있음에 유의하십시오. 이것은 주로 도우미/진단 함수입니다."
 
-#: ../../c-api/init.rst:1250
+#: ../../c-api/init.rst:1355
 msgid ""
-"Return ``1`` if the current thread is holding the GIL and ``0`` "
+"This function may return non-``NULL`` even when the :term:`thread state` "
+"is detached. Prefer :c:func:`PyThreadState_Get` or "
+":c:func:`PyThreadState_GetUnchecked` for most cases."
+msgstr ""
+
+#: ../../c-api/init.rst:1360
+#, fuzzy
+msgid ":c:func:`PyThreadState_Get`"
+msgstr ":c:func:`PyEval_GetFrame`\\도 참조하십시오."
+
+#: ../../c-api/init.rst:1364
+#, fuzzy
+msgid ""
+"Return ``1`` if the current thread is holding the :term:`GIL` and ``0`` "
 "otherwise. This function can be called from any thread at any time. Only "
-"if it has had its Python thread state initialized and currently is "
-"holding the GIL will it return ``1``. This is mainly a helper/diagnostic "
-"function.  It can be useful for example in callback contexts or memory "
-"allocation functions when knowing that the GIL is locked can allow the "
-"caller to perform sensitive actions or otherwise behave differently."
+"if it has had its :term:`thread state <attached thread state>` "
+"initialized via :c:func:`PyGILState_Ensure` will it return ``1``. This is"
+" mainly a helper/diagnostic function.  It can be useful for example in "
+"callback contexts or memory allocation functions when knowing that the "
+":term:`GIL` is locked can allow the caller to perform sensitive actions "
+"or otherwise behave differently."
 msgstr ""
 "현재 스레드가 GIL을 보유하고 있으면 ``1``\\을 반환하고 그렇지 않으면 ``0``\\을 반환합니다. 이 함수는 아무 때나 "
 "모든 스레드에서 호출할 수 있습니다. 파이썬 스레드 상태가 초기화되었고 현재 GIL을 보유하고 있을 때만 ``1``\\을 "
 "반환합니다. 이것은 주로 도우미/진단 함수입니다. 예를 들어 콜백 컨텍스트나 메모리 할당 함수에서 유용할 수 있는데, GIL이 잠겨"
 " 있다는 것을 알면 호출자가 민감한 작업을 수행하거나 그렇지 않으면 다르게 동작하도록 할 수 있습니다."
 
-#: ../../c-api/init.rst:1262
+#: ../../c-api/init.rst:1374
+msgid ""
+"If the current Python process has ever created a subinterpreter, this "
+"function will *always* return ``1``. Prefer "
+":c:func:`PyThreadState_GetUnchecked` for most cases."
+msgstr ""
+
+#: ../../c-api/init.rst:1381
 msgid ""
 "The following macros are normally used without a trailing semicolon; look"
 " for example usage in the Python source distribution."
 msgstr "다음 매크로는 일반적으로 후행 세미콜론 없이 사용됩니다; 파이썬 소스 배포에서 사용 예를 찾으십시오."
 
-#: ../../c-api/init.rst:1268
+#: ../../c-api/init.rst:1387
 msgid ""
 "This macro expands to ``{ PyThreadState *_save; _save = "
 "PyEval_SaveThread();``. Note that it contains an opening brace; it must "
@@ -1850,7 +2043,7 @@ msgstr ""
 "여는 중괄호가 포함되어 있음에 유의하십시오; 뒤따르는 :c:macro:`Py_END_ALLOW_THREADS` 매크로와 일치해야 "
 "합니다. 이 매크로에 대한 자세한 내용은 위를 참조하십시오."
 
-#: ../../c-api/init.rst:1276
+#: ../../c-api/init.rst:1395
 msgid ""
 "This macro expands to ``PyEval_RestoreThread(_save); }``. Note that it "
 "contains a closing brace; it must be matched with an earlier "
@@ -1861,7 +2054,7 @@ msgstr ""
 "유의하십시오; 이전 :c:macro:`Py_BEGIN_ALLOW_THREADS` 매크로와 일치해야 합니다. 이 매크로에 대한 자세한"
 " 내용은 위를 참조하십시오."
 
-#: ../../c-api/init.rst:1284
+#: ../../c-api/init.rst:1403
 msgid ""
 "This macro expands to ``PyEval_RestoreThread(_save);``: it is equivalent "
 "to :c:macro:`Py_END_ALLOW_THREADS` without the closing brace."
@@ -1869,7 +2062,7 @@ msgstr ""
 "이 매크로는 ``PyEval_RestoreThread(_save);`` 로 확장됩니다: 닫는 중괄호가 없는 "
 ":c:macro:`Py_END_ALLOW_THREADS`\\와 동등합니다."
 
-#: ../../c-api/init.rst:1290
+#: ../../c-api/init.rst:1409
 msgid ""
 "This macro expands to ``_save = PyEval_SaveThread();``: it is equivalent "
 "to :c:macro:`Py_BEGIN_ALLOW_THREADS` without the opening brace and "
@@ -1878,30 +2071,34 @@ msgstr ""
 "이 매크로는 ``_save = PyEval_SaveThread();`` 로 확장됩니다: 여는 중괄호와 변수 선언이 없는 "
 ":c:macro:`Py_BEGIN_ALLOW_THREADS`\\와 동등합니다."
 
-#: ../../c-api/init.rst:1296
+#: ../../c-api/init.rst:1415
 msgid "Low-level API"
 msgstr "저수준 API"
 
-#: ../../c-api/init.rst:1298
+#: ../../c-api/init.rst:1417
 msgid ""
 "All of the following functions must be called after "
 ":c:func:`Py_Initialize`."
 msgstr "다음 함수는 모두 :c:func:`Py_Initialize` 이후에 호출되어야 합니다."
 
-#: ../../c-api/init.rst:1300
-msgid ":c:func:`Py_Initialize()` now initializes the :term:`GIL`."
+#: ../../c-api/init.rst:1419
+#, fuzzy
+msgid ""
+":c:func:`Py_Initialize()` now initializes the :term:`GIL` and sets an "
+":term:`attached thread state`."
 msgstr ":c:func:`Py_Initialize()`\\는 이제 :term:`GIL`\\을 초기화합니다."
 
-#: ../../c-api/init.rst:1306
+#: ../../c-api/init.rst:1426
+#, fuzzy
 msgid ""
-"Create a new interpreter state object.  The global interpreter lock need "
-"not be held, but may be held if it is necessary to serialize calls to "
-"this function."
+"Create a new interpreter state object.  An :term:`attached thread state` "
+"is not needed, but may optionally exist if it is necessary to serialize "
+"calls to this function."
 msgstr ""
 "새 인터프리터 상태 객체를 만듭니다. 전역 인터프리터 록을 보유할 필요는 없지만, 이 함수에 대한 호출을 직렬화해야 하면 보유할 수"
 " 있습니다."
 
-#: ../../c-api/init.rst:1310
+#: ../../c-api/init.rst:1430
 msgid ""
 "Raises an :ref:`auditing event <auditing>` "
 "``cpython.PyInterpreterState_New`` with no arguments."
@@ -1909,13 +2106,14 @@ msgstr ""
 "인자 없이 :ref:`감사 이벤트 <auditing>` ``cpython.PyInterpreterState_New``\\를 "
 "발생시킵니다."
 
-#: ../../c-api/init.rst:1315
+#: ../../c-api/init.rst:1435
+#, fuzzy
 msgid ""
-"Reset all information in an interpreter state object.  The global "
-"interpreter lock must be held."
+"Reset all information in an interpreter state object.  There must be an "
+":term:`attached thread state` for the interpreter."
 msgstr "인터프리터 상태 객체의 모든 정보를 재설정합니다. 전역 인터프리터 록을 보유해야 합니다."
 
-#: ../../c-api/init.rst:1318
+#: ../../c-api/init.rst:1438
 msgid ""
 "Raises an :ref:`auditing event <auditing>` "
 "``cpython.PyInterpreterState_Clear`` with no arguments."
@@ -1923,136 +2121,147 @@ msgstr ""
 "인자 없이 :ref:`감사 이벤트 <auditing>` ``cpython.PyInterpreterState_Clear``\\를 "
 "발생시킵니다."
 
-#: ../../c-api/init.rst:1323
+#: ../../c-api/init.rst:1443
+#, fuzzy
 msgid ""
-"Destroy an interpreter state object.  The global interpreter lock need "
-"not be held.  The interpreter state must have been reset with a previous "
-"call to :c:func:`PyInterpreterState_Clear`."
+"Destroy an interpreter state object.  There **should not** be an "
+":term:`attached thread state` for the target interpreter. The interpreter"
+" state must have been reset with a previous call to "
+":c:func:`PyInterpreterState_Clear`."
 msgstr ""
 "인터프리터 상태 객체를 파괴합니다. 전역 인터프리터 록은 보유할 필요 없습니다. 인터프리터 상태는 "
 ":c:func:`PyInterpreterState_Clear`\\에 대한 이전 호출로 재설정되었어야 합니다."
 
-#: ../../c-api/init.rst:1330
+#: ../../c-api/init.rst:1450
 msgid ""
 "Create a new thread state object belonging to the given interpreter "
-"object. The global interpreter lock need not be held, but may be held if "
-"it is necessary to serialize calls to this function."
+"object. An :term:`attached thread state` is not needed."
 msgstr ""
-"주어진 인터프리터 객체에 속하는 새 스레드 상태 객체를 만듭니다. 전역 인터프리터 록을 보유할 필요는 없지만, 이 함수에 대한 "
-"호출을 직렬화해야 하면 보유할 수 있습니다."
 
-#: ../../c-api/init.rst:1337
+#: ../../c-api/init.rst:1455
+#, fuzzy
 msgid ""
-"Reset all information in a thread state object.  The global interpreter "
-"lock must be held."
+"Reset all information in a :term:`thread state` object.  *tstate* must be"
+" :term:`attached <attached thread state>`"
 msgstr "스레드 상태 객체의 모든 정보를 재설정합니다. 전역 인터프리터 록을 보유해야 합니다."
 
-#: ../../c-api/init.rst:1340
+#: ../../c-api/init.rst:1458
+#, fuzzy
 msgid ""
-"This function now calls the :c:member:`PyThreadState.on_delete` callback."
-" Previously, that happened in :c:func:`PyThreadState_Delete`."
+"This function now calls the :c:member:`!PyThreadState.on_delete` "
+"callback. Previously, that happened in :c:func:`PyThreadState_Delete`."
 msgstr ""
 "이 함수는 이제 :c:member:`PyThreadState.on_delete` 콜백을 호출합니다. 이전에는, "
 ":c:func:`PyThreadState_Delete`\\에서 호출했습니다."
 
-#: ../../c-api/init.rst:1344
-msgid "The :c:member:`PyThreadState.on_delete` callback was removed."
+#: ../../c-api/init.rst:1462
+msgid "The :c:member:`!PyThreadState.on_delete` callback was removed."
 msgstr ""
 
-#: ../../c-api/init.rst:1350
+#: ../../c-api/init.rst:1468
+#, fuzzy
 msgid ""
-"Destroy a thread state object.  The global interpreter lock need not be "
-"held. The thread state must have been reset with a previous call to "
-":c:func:`PyThreadState_Clear`."
+"Destroy a :term:`thread state` object.  *tstate* should not be "
+":term:`attached <attached thread state>` to any thread. *tstate* must "
+"have been reset with a previous call to :c:func:`PyThreadState_Clear`."
+msgstr ""
+"인터프리터 상태 객체를 파괴합니다. 전역 인터프리터 록은 보유할 필요 없습니다. 인터프리터 상태는 "
+":c:func:`PyInterpreterState_Clear`\\에 대한 이전 호출로 재설정되었어야 합니다."
+
+#: ../../c-api/init.rst:1476
+#, fuzzy
+msgid ""
+"Detach the :term:`attached thread state` (which must have been reset with"
+" a previous call to :c:func:`PyThreadState_Clear`) and then destroy it."
 msgstr ""
 "스레드 상태 객체를 파괴합니다. 전역 인터프리터 록은 보유할 필요 없습니다. 스레드 상태는 "
 ":c:func:`PyThreadState_Clear`\\에 대한 이전 호출로 재설정되었어야 합니다."
 
-#: ../../c-api/init.rst:1357
-#, fuzzy
+#: ../../c-api/init.rst:1479
 msgid ""
-"Destroy the current thread state and release the global interpreter lock."
-" Like :c:func:`PyThreadState_Delete`, the global interpreter lock must be"
-" held. The thread state must have been reset with a previous call to "
-":c:func:`PyThreadState_Clear`."
+"No :term:`thread state` will be :term:`attached <attached thread state>` "
+"upon returning."
 msgstr ""
-"현재 스레드 상태를 파괴하고 전역 인터프리터 록을 해제합니다. :c:func:`PyThreadState_Delete`\\와 "
-"마찬가지로, 전역 인터프리터 록은 유지할 필요 없습니다. 스레드 상태는 :c:func:`PyThreadState_Clear`\\에 "
-"대한 이전 호출로 재설정되었어야 합니다."
 
-#: ../../c-api/init.rst:1365
+#: ../../c-api/init.rst:1484
 msgid "Get the current frame of the Python thread state *tstate*."
 msgstr "파이썬 스레드 상태 *tstate*\\의 현재 프레임을 가져옵니다."
 
-#: ../../c-api/init.rst:1367
+#: ../../c-api/init.rst:1486
 #, fuzzy
 msgid ""
 "Return a :term:`strong reference`. Return ``NULL`` if no frame is "
 "currently executing."
 msgstr "강한 참조를 반환합니다. 현재 실행 중인 프레임이 없으면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/init.rst:1370
+#: ../../c-api/init.rst:1489
 msgid "See also :c:func:`PyEval_GetFrame`."
 msgstr ":c:func:`PyEval_GetFrame`\\도 참조하십시오."
 
-#: ../../c-api/init.rst:1372 ../../c-api/init.rst:1381
-#: ../../c-api/init.rst:1390
-msgid "*tstate* must not be ``NULL``."
-msgstr "*tstate*\\는 ``NULL``\\이 아니어야 합니다."
-
-#: ../../c-api/init.rst:1379
+#: ../../c-api/init.rst:1491 ../../c-api/init.rst:1500
+#: ../../c-api/init.rst:1509
 msgid ""
-"Get the unique thread state identifier of the Python thread state "
-"*tstate*."
+"*tstate* must not be ``NULL``, and must be :term:`attached <attached "
+"thread state>`."
+msgstr ""
+
+#: ../../c-api/init.rst:1498
+#, fuzzy
+msgid ""
+"Get the unique :term:`thread state` identifier of the Python thread state"
+" *tstate*."
 msgstr "파이썬 스레드 상태 *tstate*\\의 고유한 스레드 상태 식별자를 가져옵니다."
 
-#: ../../c-api/init.rst:1388
+#: ../../c-api/init.rst:1507
 msgid "Get the interpreter of the Python thread state *tstate*."
 msgstr "파이썬 스레드 상태 *tstate*\\의 인터프리터를 가져옵니다."
 
-#: ../../c-api/init.rst:1397
+#: ../../c-api/init.rst:1516
 #, fuzzy
 msgid "Suspend tracing and profiling in the Python thread state *tstate*."
 msgstr "파이썬 스레드 상태 *tstate*\\의 현재 프레임을 가져옵니다."
 
-#: ../../c-api/init.rst:1399
+#: ../../c-api/init.rst:1518
 msgid "Resume them using the :c:func:`PyThreadState_LeaveTracing` function."
 msgstr ""
 
-#: ../../c-api/init.rst:1406
+#: ../../c-api/init.rst:1525
 msgid ""
 "Resume tracing and profiling in the Python thread state *tstate* "
 "suspended by the :c:func:`PyThreadState_EnterTracing` function."
 msgstr ""
 
-#: ../../c-api/init.rst:1409
+#: ../../c-api/init.rst:1528
 msgid ""
 "See also :c:func:`PyEval_SetTrace` and :c:func:`PyEval_SetProfile` "
 "functions."
 msgstr ""
 
-#: ../../c-api/init.rst:1417
+#: ../../c-api/init.rst:1536
 msgid "Get the current interpreter."
 msgstr "현재 인터프리터를 가져옵니다."
 
-#: ../../c-api/init.rst:1419
+#: ../../c-api/init.rst:1538
+#, fuzzy
 msgid ""
-"Issue a fatal error if there no current Python thread state or no current"
-" interpreter. It cannot return NULL."
+"Issue a fatal error if there no :term:`attached thread state`. It cannot "
+"return NULL."
 msgstr "현재 파이썬 스레드 상태가 없거나 현재 인터프리터가 없으면 치명적인 에러를 발행합니다. NULL을 반환할 수 없습니다."
 
-#: ../../c-api/init.rst:1422 ../../c-api/init.rst:1432
-#: ../../c-api/init.rst:1454
-msgid "The caller must hold the GIL."
-msgstr "호출자는 GIL을 보유해야 합니다."
-
-#: ../../c-api/init.rst:1429
+#: ../../c-api/init.rst:1546
 msgid ""
 "Return the interpreter's unique ID.  If there was any error in doing so "
 "then ``-1`` is returned and an error is set."
 msgstr "인터프리터의 고유 ID를 반환합니다. 그렇게 하는데 에러가 발생하면 ``-1``\\이 반환되고 에러가 설정됩니다."
 
-#: ../../c-api/init.rst:1439
+#: ../../c-api/init.rst:1549 ../../c-api/init.rst:2145
+#: ../../c-api/init.rst:2152 ../../c-api/init.rst:2171
+#: ../../c-api/init.rst:2178
+#, fuzzy
+msgid "The caller must have an :term:`attached thread state`."
+msgstr "호출자는 :term:`GIL`\\을 보유하고 있어야 합니다."
+
+#: ../../c-api/init.rst:1556
 msgid ""
 "Return a dictionary in which interpreter-specific data may be stored. If "
 "this function returns ``NULL`` then no exception has been raised and the "
@@ -2061,7 +2270,7 @@ msgstr ""
 "인터프리터별 데이터가 저장될 수 있는 딕셔너리를 반환합니다. 이 함수가 ``NULL``\\을 반환하면 예외는 발생하지 않았고 "
 "호출자는 인터프리터별 딕셔너리를 사용할 수 없다고 가정해야 합니다."
 
-#: ../../c-api/init.rst:1443
+#: ../../c-api/init.rst:1560
 msgid ""
 "This is not a replacement for :c:func:`PyModule_GetState()`, which "
 "extensions should use to store interpreter-specific state information."
@@ -2069,68 +2278,69 @@ msgstr ""
 "이것은 확장이 인터프리터별 상태 정보를 저장하는 데 사용해야 하는 :c:func:`PyModule_GetState()`\\를 "
 "대체하는 것이 아닙니다."
 
-#: ../../c-api/init.rst:1451
+#: ../../c-api/init.rst:1563
 msgid ""
-"Return a :term:`strong reference` to the ``__main__`` :ref:`module object"
-" <moduleobjects>` for the given interpreter."
+"The returned dictionary is borrowed from the interpreter and is valid "
+"until interpreter shutdown."
 msgstr ""
 
-#: ../../c-api/init.rst:1461
+#: ../../c-api/init.rst:1571
 msgid "Type of a frame evaluation function."
 msgstr "프레임 평가 함수의 형."
 
-#: ../../c-api/init.rst:1463
+#: ../../c-api/init.rst:1573
 msgid ""
 "The *throwflag* parameter is used by the ``throw()`` method of "
 "generators: if non-zero, handle the current exception."
 msgstr "*throwflag* 매개 변수는 제너레이터의 ``throw()`` 메서드에서 사용됩니다: 0이 아니면, 현재 예외를 처리합니다."
 
-#: ../../c-api/init.rst:1466
+#: ../../c-api/init.rst:1576
 msgid "The function now takes a *tstate* parameter."
 msgstr "이제 함수는 *tstate* 매개 변수를 취합니다."
 
-#: ../../c-api/init.rst:1469
+#: ../../c-api/init.rst:1579
 msgid ""
 "The *frame* parameter changed from ``PyFrameObject*`` to "
 "``_PyInterpreterFrame*``."
 msgstr ""
 
-#: ../../c-api/init.rst:1474
+#: ../../c-api/init.rst:1584
 msgid "Get the frame evaluation function."
 msgstr "프레임 평가 함수를 가져옵니다."
 
-#: ../../c-api/init.rst:1476 ../../c-api/init.rst:1484
+#: ../../c-api/init.rst:1586 ../../c-api/init.rst:1594
 msgid "See the :pep:`523` \"Adding a frame evaluation API to CPython\"."
 msgstr ":pep:`523` \"CPython에 프레임 평가 API 추가\"를 참조하십시오."
 
-#: ../../c-api/init.rst:1482
+#: ../../c-api/init.rst:1592
 msgid "Set the frame evaluation function."
 msgstr "프레임 평가 함수를 설정합니다."
 
-#: ../../c-api/init.rst:1491
+#: ../../c-api/init.rst:1601
+#, fuzzy
 msgid ""
 "Return a dictionary in which extensions can store thread-specific state "
 "information.  Each extension should use a unique key to use to store "
 "state in the dictionary.  It is okay to call this function when no "
-"current thread state is available. If this function returns ``NULL``, no "
-"exception has been raised and the caller should assume no current thread "
-"state is available."
+":term:`thread state` is :term:`attached <attached thread state>`. If this"
+" function returns ``NULL``, no exception has been raised and the caller "
+"should assume no thread state is attached."
 msgstr ""
 "확장이 스레드별 상태 정보를 저장할 수 있는 딕셔너리를 반환합니다. 각 확장은 딕셔너리에 상태를 저장하는 데 사용할 고유 키를 "
 "사용해야 합니다. 현재 스레드 상태를 사용할 수 없을 때 이 함수를 호출해도 됩니다. 이 함수가 ``NULL``\\을 반환하면, "
 "예외는 발생하지 않았고 호출자는 현재 스레드 상태를 사용할 수 없다고 가정해야 합니다."
 
-#: ../../c-api/init.rst:1500
+#: ../../c-api/init.rst:1611
 #, fuzzy
 msgid ""
 "Asynchronously raise an exception in a thread. The *id* argument is the "
 "thread id of the target thread; *exc* is the exception object to be "
 "raised. This function does not steal any references to *exc*. To prevent "
 "naive misuse, you must write your own C extension to call this.  Must be "
-"called with the GIL held. Returns the number of thread states modified; "
-"this is normally one, but will be zero if the thread id isn't found.  If "
-"*exc* is ``NULL``, the pending exception (if any) for the thread is "
-"cleared. This raises no exceptions."
+"called with an :term:`attached thread state`. Returns the number of "
+"thread states modified; this is normally one, but will be zero if the "
+"thread id isn't found.  If *exc* is ``NULL``, the pending exception (if "
+"any) for the thread is cleared. This raises no exceptions."
 msgstr ""
 "스레드에서 비동기적으로 예외를 발생시킵니다. *id* 인자는 대상 스레드의 스레드 id입니다; *exc*\\는 발생시킬 예외 "
 "객체입니다. 이 함수는 *exc*\\에 대한 어떤 참조도 훔치지 않습니다. 순진한 오용을 방지하려면, 이를 호출하는 자체 C 확장을"
@@ -2138,23 +2348,25 @@ msgstr ""
 " 찾지 못하면 0이 됩니다. *exc*\\가 :const:`NULL`\\이면, 스레드에 대해 계류 중인 예외가 (있다면) "
 "지워집니다. 이것은 예외를 일으키지 않습니다."
 
-#: ../../c-api/init.rst:1508
+#: ../../c-api/init.rst:1619
 #, fuzzy
 msgid ""
 "The type of the *id* parameter changed from :c:expr:`long` to "
 ":c:expr:`unsigned long`."
 msgstr "*id* 매개 변수의 형이 :c:type:`long`\\에서 :c:type:`unsigned long`\\으로 변경되었습니다."
 
-#: ../../c-api/init.rst:1514
+#: ../../c-api/init.rst:1625
 msgid ""
-"Acquire the global interpreter lock and set the current thread state to "
-"*tstate*, which must not be ``NULL``.  The lock must have been created "
-"earlier. If this thread already has the lock, deadlock ensues."
+":term:`Attach <attached thread state>` *tstate* to the current thread, "
+"which must not be ``NULL`` or already :term:`attached <attached thread "
+"state>`."
 msgstr ""
-"전역 인터프리터 록을 획득하고 현재 스레드 상태를 *tstate*\\로 설정합니다. *tstate*\\는 ``NULL``\\이 "
-"아니어야 합니다. 록은 이전에 만들어진 것이어야 합니다. 이 스레드에 이미 록이 있으면, 교착 상태가 발생합니다."
 
-#: ../../c-api/init.rst:1525
+#: ../../c-api/init.rst:1628
+msgid "The calling thread must not already have an :term:`attached thread state`."
+msgstr ""
+
+#: ../../c-api/init.rst:1636
 msgid ""
 "Updated to be consistent with :c:func:`PyEval_RestoreThread`, "
 ":c:func:`Py_END_ALLOW_THREADS`, and :c:func:`PyGILState_Ensure`, and "
@@ -2165,7 +2377,7 @@ msgstr ""
 ":c:func:`PyGILState_Ensure`\\와 일관되도록 갱신되었으며, 인터프리터가 파이널리제이션 하는 동안 호출되면 현재"
 " 스레드를 종료합니다."
 
-#: ../../c-api/init.rst:1530
+#: ../../c-api/init.rst:1645
 msgid ""
 ":c:func:`PyEval_RestoreThread` is a higher-level function which is always"
 " available (even when threads have not been initialized)."
@@ -2173,19 +2385,18 @@ msgstr ""
 ":c:func:`PyEval_RestoreThread`\\는 (스레드가 초기화되지 않았을 때조차) 항상 사용할 수 있는 고수준 "
 "함수입니다."
 
-#: ../../c-api/init.rst:1536
+#: ../../c-api/init.rst:1651
+#, fuzzy
 msgid ""
-"Reset the current thread state to ``NULL`` and release the global "
-"interpreter lock.  The lock must have been created earlier and must be "
-"held by the current thread.  The *tstate* argument, which must not be "
-"``NULL``, is only used to check that it represents the current thread "
-"state --- if it isn't, a fatal error is reported."
+"Detach the :term:`attached thread state`. The *tstate* argument, which "
+"must not be ``NULL``, is only used to check that it represents the "
+":term:`attached thread state` --- if it isn't, a fatal error is reported."
 msgstr ""
 "현재 스레드 상태를 ``NULL``\\로 재설정하고 전역 인터프리터 록을 해제합니다. 록은 이전에 만들어졌어야 하고 현재 스레드가 "
 "보유해야 합니다. ``NULL``\\이 아니어야 하는 *tstate* 인자는 현재 스레드 상태를 나타내는지 확인하는 데만 사용됩니다"
 " --- 그렇지 않으면, 치명적인 에러가 보고됩니다."
 
-#: ../../c-api/init.rst:1542
+#: ../../c-api/init.rst:1656
 msgid ""
 ":c:func:`PyEval_SaveThread` is a higher-level function which is always "
 "available (even when threads have not been initialized)."
@@ -2193,11 +2404,11 @@ msgstr ""
 ":c:func:`PyEval_SaveThread`\\는 (스레드가 초기화되지 않은 경우에조차) 항상 사용할 수 있는 고수준 "
 "함수입니다."
 
-#: ../../c-api/init.rst:1549
+#: ../../c-api/init.rst:1663
 msgid "Sub-interpreter support"
 msgstr "서브 인터프리터 지원"
 
-#: ../../c-api/init.rst:1551
+#: ../../c-api/init.rst:1665
 msgid ""
 "While in most uses, you will only embed a single Python interpreter, "
 "there are cases where you need to create several independent interpreters"
@@ -2207,7 +2418,7 @@ msgstr ""
 "대부분의 경우, 단일 파이썬 인터프리터만 내장할 것입니다만, 같은 프로세스, 어쩌면 같은 스레드에서 여러 독립 인터프리터를 만들어야"
 " 하는 경우가 있습니다. 서브 인터프리터는 그렇게 할 수 있도록 합니다."
 
-#: ../../c-api/init.rst:1556
+#: ../../c-api/init.rst:1670
 msgid ""
 "The \"main\" interpreter is the first one created when the runtime "
 "initializes. It is usually the only Python interpreter in a process.  "
@@ -2223,7 +2434,7 @@ msgstr ""
 " 초기화 동안 실행을 담당하며 일반적으로 런타임 파이널리제이션 동안 활성 인터프리터입니다. "
 ":c:func:`PyInterpreterState_Main` 함수는 그것의 상태에 대한 포인터를 반환합니다."
 
-#: ../../c-api/init.rst:1563
+#: ../../c-api/init.rst:1677
 msgid ""
 "You can switch between sub-interpreters using the "
 ":c:func:`PyThreadState_Swap` function. You can create and destroy them "
@@ -2232,24 +2443,24 @@ msgstr ""
 ":c:func:`PyThreadState_Swap` 함수를 사용하여 서브 인터프리터 간에 전환할 수 있습니다. 다음 함수를 사용하여"
 " 만들고 파괴할 수 있습니다:"
 
-#: ../../c-api/init.rst:1569
+#: ../../c-api/init.rst:1683
 msgid ""
 "Structure containing most parameters to configure a sub-interpreter. Its "
 "values are used only in :c:func:`Py_NewInterpreterFromConfig` and never "
 "modified by the runtime."
 msgstr ""
 
-#: ../../c-api/init.rst:1575
+#: ../../c-api/init.rst:1689
 msgid "Structure fields:"
 msgstr ""
 
-#: ../../c-api/init.rst:1579
+#: ../../c-api/init.rst:1693
 msgid ""
 "If this is ``0`` then the sub-interpreter will use its own \"object\" "
 "allocator state. Otherwise it will use (share) the main interpreter's."
 msgstr ""
 
-#: ../../c-api/init.rst:1583
+#: ../../c-api/init.rst:1697
 msgid ""
 "If this is ``0`` then "
 ":c:member:`~PyInterpreterConfig.check_multi_interp_extensions` must be "
@@ -2258,46 +2469,46 @@ msgid ""
 ":c:macro:`PyInterpreterConfig_OWN_GIL`."
 msgstr ""
 
-#: ../../c-api/init.rst:1591
+#: ../../c-api/init.rst:1705
 msgid ""
 "If this is ``0`` then the runtime will not support forking the process in"
 " any thread where the sub-interpreter is currently active. Otherwise fork"
 " is unrestricted."
 msgstr ""
 
-#: ../../c-api/init.rst:1595
+#: ../../c-api/init.rst:1709
 msgid ""
 "Note that the :mod:`subprocess` module still works when fork is "
 "disallowed."
 msgstr ""
 
-#: ../../c-api/init.rst:1600
+#: ../../c-api/init.rst:1714
 msgid ""
 "If this is ``0`` then the runtime will not support replacing the current "
 "process via exec (e.g. :func:`os.execv`) in any thread where the sub-"
 "interpreter is currently active. Otherwise exec is unrestricted."
 msgstr ""
 
-#: ../../c-api/init.rst:1605
+#: ../../c-api/init.rst:1719
 msgid ""
 "Note that the :mod:`subprocess` module still works when exec is "
 "disallowed."
 msgstr ""
 
-#: ../../c-api/init.rst:1610
+#: ../../c-api/init.rst:1724
 msgid ""
 "If this is ``0`` then the sub-interpreter's :mod:`threading` module won't"
 " create threads. Otherwise threads are allowed."
 msgstr ""
 
-#: ../../c-api/init.rst:1616
+#: ../../c-api/init.rst:1730
 msgid ""
 "If this is ``0`` then the sub-interpreter's :mod:`threading` module won't"
 " create daemon threads. Otherwise daemon threads are allowed (as long as "
 ":c:member:`~PyInterpreterConfig.allow_threads` is non-zero)."
 msgstr ""
 
-#: ../../c-api/init.rst:1623
+#: ../../c-api/init.rst:1737
 msgid ""
 "If this is ``0`` then all extension modules may be imported, including "
 "legacy (single-phase init) modules, in any thread where the sub-"
@@ -2306,39 +2517,39 @@ msgid ""
 ":c:macro:`Py_mod_multiple_interpreters`.)"
 msgstr ""
 
-#: ../../c-api/init.rst:1630
+#: ../../c-api/init.rst:1744
 msgid ""
 "This must be ``1`` (non-zero) if "
 ":c:member:`~PyInterpreterConfig.use_main_obmalloc` is ``0``."
 msgstr ""
 
-#: ../../c-api/init.rst:1635
+#: ../../c-api/init.rst:1749
 msgid ""
 "This determines the operation of the GIL for the sub-interpreter. It may "
 "be one of the following:"
 msgstr ""
 
-#: ../../c-api/init.rst:1642
+#: ../../c-api/init.rst:1756
 msgid "Use the default selection (:c:macro:`PyInterpreterConfig_SHARED_GIL`)."
 msgstr ""
 
-#: ../../c-api/init.rst:1646
+#: ../../c-api/init.rst:1760
 #, fuzzy
 msgid "Use (share) the main interpreter's GIL."
 msgstr "메인 인터프리터 상태 객체를 반환합니다."
 
-#: ../../c-api/init.rst:1650
+#: ../../c-api/init.rst:1764
 #, fuzzy
 msgid "Use the sub-interpreter's own GIL."
 msgstr "현재 인터프리터를 가져옵니다."
 
-#: ../../c-api/init.rst:1652
+#: ../../c-api/init.rst:1766
 msgid ""
 "If this is :c:macro:`PyInterpreterConfig_OWN_GIL` then "
 ":c:member:`PyInterpreterConfig.use_main_obmalloc` must be ``0``."
 msgstr ""
 
-#: ../../c-api/init.rst:1666
+#: ../../c-api/init.rst:1780
 msgid ""
 "Create a new sub-interpreter.  This is an (almost) totally separate "
 "environment for the execution of Python code.  In particular, the new "
@@ -2356,22 +2567,22 @@ msgstr ""
 "별개입니다. 새 환경에는 ``sys.argv`` 변수가 없습니다. 새로운 표준 I/O 스트림 파일 객체 ``sys.stdin``, "
 "``sys.stdout`` 및 ``sys.stderr``\\을 갖습니다 (단, 같은 하부 파일 기술자를 참조합니다)."
 
-#: ../../c-api/init.rst:1676
+#: ../../c-api/init.rst:1790
 msgid ""
 "The given *config* controls the options with which the interpreter is "
 "initialized."
 msgstr ""
 
-#: ../../c-api/init.rst:1679
+#: ../../c-api/init.rst:1793
 #, fuzzy
 msgid ""
-"Upon success, *tstate_p* will be set to the first thread state created in"
-" the new sub-interpreter.  This thread state is made in the current "
-"thread state. Note that no actual thread is created; see the discussion "
-"of thread states below.  If creation of the new interpreter is "
-"unsuccessful, *tstate_p* is set to ``NULL``; no exception is set since "
-"the exception state is stored in the current thread state and there may "
-"not be a current thread state."
+"Upon success, *tstate_p* will be set to the first :term:`thread state` "
+"created in the new sub-interpreter.  This thread state is :term:`attached"
+" <attached thread state>`. Note that no actual thread is created; see the"
+" discussion of thread states below.  If creation of the new interpreter "
+"is unsuccessful, *tstate_p* is set to ``NULL``; no exception is set since"
+" the exception state is stored in the :term:`attached thread state`, "
+"which might not exist."
 msgstr ""
 "반환 값은 새 서브 인터프리터에서 만들어진 첫 번째 스레드 상태를 가리킵니다. 이 스레드 상태는 현재 스레드 상태에서 만들어집니다."
 " 실제 스레드가 만들어지지 않음에 유의하십시오; 아래 스레드 상태에 대한 설명을 참조하십시오. 새 인터프리터를 만드는 데 실패하면,"
@@ -2379,25 +2590,26 @@ msgstr ""
 "않습니다. (다른 모든 파이썬/C API 함수와 마찬가지로, 전역 인터프리터 록을 이 함수를 호출하기 전에 보유해야 하며 반환될 때"
 " 계속 유지됩니다; 그러나, 대부분의 다른 파이썬/C API 함수와 달리, 진입할 때 현재 스레드 상태가 있을 필요는 없습니다.)"
 
-#: ../../c-api/init.rst:1688
+#: ../../c-api/init.rst:1802
 msgid ""
-"Like all other Python/C API functions, the global interpreter lock must "
-"be held before calling this function and is still held when it returns.  "
-"Likewise a current thread state must be set on entry.  On success, the "
-"returned thread state will be set as current.  If the sub-interpreter is "
-"created with its own GIL then the GIL of the calling interpreter will be "
-"released.  When the function returns, the new interpreter's GIL will be "
-"held by the current thread and the previously interpreter's GIL will "
-"remain released here."
+"Like all other Python/C API functions, an :term:`attached thread state` "
+"must be present before calling this function, but it might be detached "
+"upon returning. On success, the returned thread state will be "
+":term:`attached <attached thread state>`. If the sub-interpreter is "
+"created with its own :term:`GIL` then the :term:`attached thread state` "
+"of the calling interpreter will be detached. When the function returns, "
+"the new interpreter's :term:`thread state` will be :term:`attached "
+"<attached thread state>` to the current thread and the previous "
+"interpreter's :term:`attached thread state` will remain detached."
 msgstr ""
 
-#: ../../c-api/init.rst:1699
+#: ../../c-api/init.rst:1813
 msgid ""
 "Sub-interpreters are most effective when isolated from each other, with "
 "certain functionality restricted::"
 msgstr ""
 
-#: ../../c-api/init.rst:1702
+#: ../../c-api/init.rst:1816
 #, python-brace-format
 msgid ""
 "PyInterpreterConfig config = {\n"
@@ -2416,7 +2628,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../c-api/init.rst:1717
+#: ../../c-api/init.rst:1831
 msgid ""
 "Note that the config is used only briefly and does not get modified. "
 "During initialization the config's values are converted into various "
@@ -2424,11 +2636,11 @@ msgid ""
 "be stored internally on the :c:type:`PyInterpreterState`."
 msgstr ""
 
-#: ../../c-api/init.rst:1726
+#: ../../c-api/init.rst:1840
 msgid "Extension modules are shared between (sub-)interpreters as follows:"
 msgstr "확장 모듈은 다음과 같이 (서브) 인터프리터 간에 공유됩니다:"
 
-#: ../../c-api/init.rst:1728
+#: ../../c-api/init.rst:1842
 msgid ""
 "For modules using multi-phase initialization, e.g. "
 ":c:func:`PyModule_FromDefAndSpec`, a separate module object is created "
@@ -2438,7 +2650,7 @@ msgstr ""
 "다단계 초기화를 사용하는 모듈의 경우, 예를 들어 :c:func:`PyModule_FromDefAndSpec`, 각 인터프리터에 "
 "대해 별도의 모듈 객체가 만들어지고 초기화됩니다. C 수준 정적과 전역 변수만 이러한 모듈 객체 간에 공유됩니다."
 
-#: ../../c-api/init.rst:1734
+#: ../../c-api/init.rst:1848
 msgid ""
 "For modules using single-phase initialization, e.g. "
 ":c:func:`PyModule_Create`, the first time a particular extension is "
@@ -2456,7 +2668,7 @@ msgstr ""
 " (서브) 인터프리터 간에 공유되어, 원치 않는 동작을 일으킬 수 있습니다 (아래 `버그와 주의 사항 <Bugs and "
 "caveats_>`_\\을 참조하십시오)."
 
-#: ../../c-api/init.rst:1745
+#: ../../c-api/init.rst:1859
 msgid ""
 "Note that this is different from what happens when an extension is "
 "imported after the interpreter has been completely re-initialized by "
@@ -2469,7 +2681,7 @@ msgstr ""
 " 다시 초기화된 후 확장을 임포트 할 때 일어나는 것과 다름에 유의하십시오; 이 경우, 확장의 ``initmodule`` 함수가 "
 "다시 *호출됩니다*. 다단계 초기화와 마찬가지로, 이는 C 수준의 정적과 전역 변수만 이러한 모듈 간에 공유됨을 의미합니다."
 
-#: ../../c-api/init.rst:1765
+#: ../../c-api/init.rst:1879
 msgid ""
 "Create a new sub-interpreter.  This is essentially just a wrapper around "
 ":c:func:`Py_NewInterpreterFromConfig` with a config that preserves the "
@@ -2478,33 +2690,30 @@ msgid ""
 "threads, and allows single-phase init modules."
 msgstr ""
 
-#: ../../c-api/init.rst:1777
+#: ../../c-api/init.rst:1891
 #, fuzzy
 msgid ""
-"Destroy the (sub-)interpreter represented by the given thread state. The "
-"given thread state must be the current thread state.  See the discussion "
-"of thread states below.  When the call returns, the current thread state "
-"is ``NULL``.  All thread states associated with this interpreter are "
-"destroyed.  The global interpreter lock used by the target interpreter "
-"must be held before calling this function.  No GIL is held when it "
-"returns."
+"Destroy the (sub-)interpreter represented by the given :term:`thread "
+"state`. The given thread state must be :term:`attached <attached thread "
+"state>`. When the call returns, there will be no :term:`attached thread "
+"state`. All thread states associated with this interpreter are destroyed."
 msgstr ""
 "주어진 스레드 상태로 표현되는 (서브) 인터프리터를 파괴합니다. 주어진 스레드 상태는 현재 스레드 상태여야 합니다. 아래의 스레드 "
 "상태에 대한 설명을 참조하십시오. 호출이 반환되면, 현재 스레드 상태는 ``NULL``\\입니다. 이 인터프리터와 관련된 모든 "
 "스레드 상태가 파괴됩니다. (전역 인터프리터 록을 이 함수를 호출하기 전에 보유해야 하며 반환될 때 여전히 유지됩니다.) "
 ":c:func:`Py_FinalizeEx`\\는 그 시점에서 명시적으로 파괴되지 않은 모든 서브 인터프리터를 파괴합니다."
 
-#: ../../c-api/init.rst:1785
+#: ../../c-api/init.rst:1896
 msgid ""
 ":c:func:`Py_FinalizeEx` will destroy all sub-interpreters that haven't "
 "been explicitly destroyed at that point."
 msgstr ""
 
-#: ../../c-api/init.rst:1790
+#: ../../c-api/init.rst:1903
 msgid "A Per-Interpreter GIL"
 msgstr ""
 
-#: ../../c-api/init.rst:1792
+#: ../../c-api/init.rst:1905
 msgid ""
 "Using :c:func:`Py_NewInterpreterFromConfig` you can create a sub-"
 "interpreter that is completely isolated from other interpreters, "
@@ -2513,10 +2722,11 @@ msgid ""
 "being blocked by other interpreters or blocking any others.  Thus a "
 "single Python process can truly take advantage of multiple CPU cores when"
 " running Python code.  The isolation also encourages a different approach"
-" to concurrency than that of just using threads. (See :pep:`554`.)"
+" to concurrency than that of just using threads. (See :pep:`554` and "
+":pep:`684`.)"
 msgstr ""
 
-#: ../../c-api/init.rst:1802
+#: ../../c-api/init.rst:1915
 msgid ""
 "Using an isolated interpreter requires vigilance in preserving that "
 "isolation.  That especially means not sharing any objects or mutable "
@@ -2530,7 +2740,7 @@ msgid ""
 " small integers, and a number of other builtin objects."
 msgstr ""
 
-#: ../../c-api/init.rst:1813
+#: ../../c-api/init.rst:1926
 msgid ""
 "If you preserve isolation then you will have access to proper multi-core "
 "computing without the complications that come with free-threading. "
@@ -2538,7 +2748,7 @@ msgid ""
 " free-threading, including races and hard-to-debug crashes."
 msgstr ""
 
-#: ../../c-api/init.rst:1818
+#: ../../c-api/init.rst:1931
 msgid ""
 "Aside from that, one of the main challenges of using multiple isolated "
 "interpreters is how to communicate between them safely (not break "
@@ -2548,11 +2758,11 @@ msgid ""
 "for communicating (and sharing) data between interpreters."
 msgstr ""
 
-#: ../../c-api/init.rst:1829
+#: ../../c-api/init.rst:1942
 msgid "Bugs and caveats"
 msgstr "버그와 주의 사항"
 
-#: ../../c-api/init.rst:1831
+#: ../../c-api/init.rst:1944
 msgid ""
 "Because sub-interpreters (and the main interpreter) are part of the same "
 "process, the insulation between them isn't perfect --- for example, using"
@@ -2570,7 +2780,7 @@ msgstr ""
 "단단계 초기화나 (정적) 전역 변수를 사용할 때 특히 그렇습니다. 한 서브 인터프리터에서 만든 객체를 다른 (서브) 인터프리터의 "
 "이름 공간에 삽입할 수 있습니다; 가능하면 피해야 합니다."
 
-#: ../../c-api/init.rst:1841
+#: ../../c-api/init.rst:1954
 msgid ""
 "Special care should be taken to avoid sharing user-defined functions, "
 "methods, instances or classes between sub-interpreters, since import "
@@ -2582,7 +2792,7 @@ msgstr ""
 "객체에 의해 실행되는 임포트 연산은 잘못된 (서브) 인터프리터의 로드된 모듈 딕셔너리에 영향을 미칠 수 있기 때문입니다. 위의 "
 "것들에서 접근할 수 있는 객체를 공유하지 않는 것도 마찬가지로 중요합니다."
 
-#: ../../c-api/init.rst:1847
+#: ../../c-api/init.rst:1960
 #, fuzzy
 msgid ""
 "Also note that combining this functionality with ``PyGILState_*`` APIs is"
@@ -2601,11 +2811,11 @@ msgstr ""
 "사이에 서브 인터프리터를 전환하지 않는 것이 좋습니다. 또한, 이러한 API를 사용하여 파이썬이 아닌 스레드에서 생성된 스레드에서 "
 "파이썬 코드를 호출할 수 있도록 하는 확장(가령 :mod:`ctypes`)은 서브 인터프리터를 사용할 때 망가질 수 있습니다."
 
-#: ../../c-api/init.rst:1858
+#: ../../c-api/init.rst:1971
 msgid "Asynchronous Notifications"
 msgstr "비동기 알림"
 
-#: ../../c-api/init.rst:1860
+#: ../../c-api/init.rst:1973
 msgid ""
 "A mechanism is provided to make asynchronous notifications to the main "
 "interpreter thread.  These notifications take the form of a function "
@@ -2614,7 +2824,7 @@ msgstr ""
 "메인 인터프리터 스레드에 비동기 알림을 보내는 메커니즘이 제공됩니다. 이러한 알림은 함수 포인터와 void 포인터 인자의 형태를 "
 "취합니다."
 
-#: ../../c-api/init.rst:1867
+#: ../../c-api/init.rst:1980
 msgid ""
 "Schedule a function to be called from the main interpreter thread.  On "
 "success, ``0`` is returned and *func* is queued for being called in the "
@@ -2624,7 +2834,7 @@ msgstr ""
 "메인 인터프리터 스레드에서 호출할 함수를 예약합니다. 성공하면 ``0``\\이 반환되고 *func*\\는 메인 스레드에서 호출되기 "
 "위해 큐에 추가됩니다. 실패 시, 예외 설정 없이 ``-1``\\이 반환됩니다."
 
-#: ../../c-api/init.rst:1871
+#: ../../c-api/init.rst:1984
 msgid ""
 "When successfully queued, *func* will be *eventually* called from the "
 "main interpreter thread with the argument *arg*.  It will be called "
@@ -2634,45 +2844,44 @@ msgstr ""
 "성공적으로 큐에 넣으면, *func*\\는 *arg* 인자를 사용하여 *결국* 메인 인터프리터 스레드에서 호출됩니다. 정상적으로 "
 "실행되는 파이썬 코드와 비교할 때 비동기적으로 호출되지만, 다음 두 조건이 모두 충족됩니다:"
 
-#: ../../c-api/init.rst:1876
+#: ../../c-api/init.rst:1989
 msgid "on a :term:`bytecode` boundary;"
 msgstr ":term:`바이트 코드 <bytecode>` 경계에서;"
 
-#: ../../c-api/init.rst:1877
+#: ../../c-api/init.rst:1990
+#, fuzzy
 msgid ""
-"with the main thread holding the :term:`global interpreter lock` (*func* "
-"can therefore use the full C API)."
+"with the main thread holding an :term:`attached thread state` (*func* can"
+" therefore use the full C API)."
 msgstr ""
 "메인 스레드가 :term:`전역 인터프리터 록 <global interpreter lock>`\\을 보유하면서 (따라서 "
 "*func*\\는 전체 C API를 사용할 수 있습니다)."
 
-#: ../../c-api/init.rst:1880
+#: ../../c-api/init.rst:1993
+#, fuzzy
 msgid ""
 "*func* must return ``0`` on success, or ``-1`` on failure with an "
 "exception set.  *func* won't be interrupted to perform another "
 "asynchronous notification recursively, but it can still be interrupted to"
-" switch threads if the global interpreter lock is released."
+" switch threads if the :term:`thread state <attached thread state>` is "
+"detached."
 msgstr ""
 "*func*\\는 성공하면 ``0``\\을, 실패하면 예외 설정과 함께 ``-1``\\을 반환해야 합니다. *func*\\는 다른 "
 "비동기 알림을 재귀적으로 수행하기 위해 중단되지 않지만, 전역 인터프리터 록이 해제되면 스레드를 전환하기 위해 여전히 중단될 수 "
 "있습니다."
 
-#: ../../c-api/init.rst:1885
+#: ../../c-api/init.rst:1998
+#, fuzzy
 msgid ""
-"This function doesn't need a current thread state to run, and it doesn't "
-"need the global interpreter lock."
-msgstr "이 함수는 실행하는 데 현재 스레드 상태가 필요하지 않으며, 전역 인터프리터 록이 필요하지 않습니다."
-
-#: ../../c-api/init.rst:1888
-msgid ""
-"To call this function in a subinterpreter, the caller must hold the GIL. "
-"Otherwise, the function *func* can be scheduled to be called from the "
-"wrong interpreter."
+"This function doesn't need an :term:`attached thread state`. However, to "
+"call this function in a subinterpreter, the caller must have an "
+":term:`attached thread state`. Otherwise, the function *func* can be "
+"scheduled to be called from the wrong interpreter."
 msgstr ""
 "서브 인터프리터에서 이 함수를 호출하려면 호출자가 GIL을 보유해야 합니다. 그렇지 않으면, 함수 *func*\\가 잘못된 "
 "인터프리터에서 호출되도록 예약될 수 있습니다."
 
-#: ../../c-api/init.rst:1893
+#: ../../c-api/init.rst:2003
 msgid ""
 "This is a low-level function, only useful for very special cases. There "
 "is no guarantee that *func* will be called as quick as possible.  If the "
@@ -2686,7 +2895,7 @@ msgstr ""
 " 임의의 C 스레드에서 파이썬 코드를 호출하는 데 적합하지 **않습니다**. 대신, :ref:`PyGILState "
 "API<gilstate>`\\를 사용하십시오."
 
-#: ../../c-api/init.rst:1902
+#: ../../c-api/init.rst:2012
 msgid ""
 "If this function is called in a subinterpreter, the function *func* is "
 "now scheduled to be called from the subinterpreter, rather than being "
@@ -2696,11 +2905,17 @@ msgstr ""
 "이 함수가 서브 인터프리터에서 호출되면, *func* 함수는 이제 메인 인터프리터에서 호출되지 않고 서브 인터프리터에서 호출되도록 "
 "예약됩니다. 이제 각 서브 인터프리터는 자체 예약된 호출 목록을 갖습니다."
 
-#: ../../c-api/init.rst:1911
+#: ../../c-api/init.rst:2018
+msgid ""
+"This function now always schedules *func* to be run in the main "
+"interpreter."
+msgstr ""
+
+#: ../../c-api/init.rst:2025
 msgid "Profiling and Tracing"
 msgstr "프로파일링과 추적"
 
-#: ../../c-api/init.rst:1916
+#: ../../c-api/init.rst:2030
 msgid ""
 "The Python interpreter provides some low-level support for attaching "
 "profiling and execution tracing facilities.  These are used for "
@@ -2709,7 +2924,7 @@ msgstr ""
 "파이썬 인터프리터는 프로파일링과 실행 추적 기능을 연결하기 위한 몇 가지 저수준 지원을 제공합니다. 프로파일링, 디버깅 및 커버리지"
 " 분석 도구에 사용됩니다."
 
-#: ../../c-api/init.rst:1920
+#: ../../c-api/init.rst:2034
 msgid ""
 "This C interface allows the profiling or tracing code to avoid the "
 "overhead of calling through Python-level callable objects, making a "
@@ -2723,7 +2938,7 @@ msgstr ""
 " 함수를 호출할 수 있습니다. 시설의 필수 어트리뷰트는 변경되지 않았습니다; 인터페이스는 추적 함수를 스레드별로 설치할 수 있도록 "
 "하며, 추적 함수에 보고되는 기본 이벤트는 이전 버전의 파이썬 수준 추적 함수에 보고된 것과 같습니다."
 
-#: ../../c-api/init.rst:1930
+#: ../../c-api/init.rst:2044
 #, fuzzy
 msgid ""
 "The type of the trace function registered using "
@@ -2743,73 +2958,73 @@ msgstr ""
 ":const:`PyTrace_C_EXCEPTION`, :const:`PyTrace_C_RETURN` 또는 "
 ":const:`PyTrace_OPCODE` 중 하나이고, *arg*\\는 *what*\\의 값에 따라 다릅니다:"
 
-#: ../../c-api/init.rst:1939
+#: ../../c-api/init.rst:2053
 msgid "Value of *what*"
 msgstr "*what*\\의 값"
 
-#: ../../c-api/init.rst:1939
+#: ../../c-api/init.rst:2053
 msgid "Meaning of *arg*"
 msgstr "*arg*\\의 의미"
 
-#: ../../c-api/init.rst:1941
+#: ../../c-api/init.rst:2055
 #, fuzzy
 msgid ":c:data:`PyTrace_CALL`"
 msgstr ":const:`PyTrace_CALL`"
 
-#: ../../c-api/init.rst:1941 ../../c-api/init.rst:1946
-#: ../../c-api/init.rst:1957
+#: ../../c-api/init.rst:2055 ../../c-api/init.rst:2060
+#: ../../c-api/init.rst:2071
 msgid "Always :c:data:`Py_None`."
 msgstr "항상 :c:data:`Py_None`."
 
-#: ../../c-api/init.rst:1943
+#: ../../c-api/init.rst:2057
 #, fuzzy
 msgid ":c:data:`PyTrace_EXCEPTION`"
 msgstr ":const:`PyTrace_EXCEPTION`"
 
-#: ../../c-api/init.rst:1943
+#: ../../c-api/init.rst:2057
 msgid "Exception information as returned by :func:`sys.exc_info`."
 msgstr ":func:`sys.exc_info`\\에서 반환된 예외 정보."
 
-#: ../../c-api/init.rst:1946
+#: ../../c-api/init.rst:2060
 #, fuzzy
 msgid ":c:data:`PyTrace_LINE`"
 msgstr ":const:`PyTrace_LINE`"
 
-#: ../../c-api/init.rst:1948
+#: ../../c-api/init.rst:2062
 #, fuzzy
 msgid ":c:data:`PyTrace_RETURN`"
 msgstr ":const:`PyTrace_RETURN`"
 
-#: ../../c-api/init.rst:1948
+#: ../../c-api/init.rst:2062
 msgid "Value being returned to the caller, or ``NULL`` if caused by an exception."
 msgstr "호출자에게 반환되는 값, 또는 예외로 인한 것이면 ``NULL``."
 
-#: ../../c-api/init.rst:1951
+#: ../../c-api/init.rst:2065
 #, fuzzy
 msgid ":c:data:`PyTrace_C_CALL`"
 msgstr ":const:`PyTrace_C_CALL`"
 
-#: ../../c-api/init.rst:1951 ../../c-api/init.rst:1953
-#: ../../c-api/init.rst:1955
+#: ../../c-api/init.rst:2065 ../../c-api/init.rst:2067
+#: ../../c-api/init.rst:2069
 msgid "Function object being called."
 msgstr "호출되는 함수 객체."
 
-#: ../../c-api/init.rst:1953
+#: ../../c-api/init.rst:2067
 #, fuzzy
 msgid ":c:data:`PyTrace_C_EXCEPTION`"
 msgstr ":const:`PyTrace_C_EXCEPTION`"
 
-#: ../../c-api/init.rst:1955
+#: ../../c-api/init.rst:2069
 #, fuzzy
 msgid ":c:data:`PyTrace_C_RETURN`"
 msgstr ":const:`PyTrace_C_RETURN`"
 
-#: ../../c-api/init.rst:1957
+#: ../../c-api/init.rst:2071
 #, fuzzy
 msgid ":c:data:`PyTrace_OPCODE`"
 msgstr ":const:`PyTrace_OPCODE`"
 
-#: ../../c-api/init.rst:1962
+#: ../../c-api/init.rst:2076
 msgid ""
 "The value of the *what* parameter to a :c:type:`Py_tracefunc` function "
 "when a new call to a function or method is being reported, or a new entry"
@@ -2821,7 +3036,7 @@ msgstr ""
 " 대한 *what* 매개 변수의 값. 제너레이터 함수에 대한 이터레이터의 생성은 해당 프레임의 파이썬 바이트 코드로의 제어 전송이 "
 "없기 때문에 보고되지 않음에 유의하십시오."
 
-#: ../../c-api/init.rst:1971
+#: ../../c-api/init.rst:2085
 msgid ""
 "The value of the *what* parameter to a :c:type:`Py_tracefunc` function "
 "when an exception has been raised.  The callback function is called with "
@@ -2837,7 +3052,7 @@ msgstr ""
 "파이썬 스택이 되감기는 것입니다, 예외가 전파되어 각 프레임으로 반환할 때 콜백이 호출됩니다. 추적 함수만 이러한 이벤트를 "
 "수신합니다; 프로파일러에는 필요하지 않습니다."
 
-#: ../../c-api/init.rst:1982
+#: ../../c-api/init.rst:2096
 #, fuzzy
 msgid ""
 "The value passed as the *what* parameter to a :c:type:`Py_tracefunc` "
@@ -2849,31 +3064,31 @@ msgstr ""
 "아닙니다)에 전달되는 값. 해당 프레임의 :attr:`f_trace_lines`\\를 *0*\\으로 설정하여 해당 프레임에 대해 "
 "비활성화 할 수 있습니다."
 
-#: ../../c-api/init.rst:1990
+#: ../../c-api/init.rst:2104
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a call is about to return."
 msgstr "호출이 반환되려고 할 때 :c:type:`Py_tracefunc` 함수에 대한 *what* 매개 변수의 값."
 
-#: ../../c-api/init.rst:1996
+#: ../../c-api/init.rst:2110
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a C function is about to be called."
 msgstr "C 함수가 호출되려고 할 때 :c:type:`Py_tracefunc` 함수에 대한 *what* 매개 변수의 값."
 
-#: ../../c-api/init.rst:2002
+#: ../../c-api/init.rst:2116
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a C function has raised an exception."
 msgstr "C 함수에서 예외가 발생했을 때 :c:type:`Py_tracefunc` 함수에 대한 *what* 매개 변수의 값."
 
-#: ../../c-api/init.rst:2008
+#: ../../c-api/init.rst:2122
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
 "when a C function has returned."
 msgstr "C 함수가 반환했을 때 :c:type:`Py_tracefunc` 함수에 대한 *what* 매개 변수의 값."
 
-#: ../../c-api/init.rst:2014
+#: ../../c-api/init.rst:2128
 #, fuzzy
 msgid ""
 "The value for the *what* parameter to :c:type:`Py_tracefunc` functions "
@@ -2885,7 +3100,7 @@ msgstr ""
 " 매개 변수의 값. 이 이벤트는 기본적으로 방출되지 않습니다: 프레임의 :attr:`f_trace_opcodes`\\를 *1*\\로"
 " 설정하여 명시적으로 요청해야 합니다."
 
-#: ../../c-api/init.rst:2022
+#: ../../c-api/init.rst:2136
 #, fuzzy
 msgid ""
 "Set the profiler function to *func*.  The *obj* parameter is passed to "
@@ -2902,29 +3117,24 @@ msgstr ""
 ":const:`PyTrace_OPCODE` 및 :const:`PyTrace_EXCEPTION`\\을 제외한 모든 관찰되는 이벤트에 "
 "대해 호출됩니다."
 
-#: ../../c-api/init.rst:2029
+#: ../../c-api/init.rst:2143
 msgid "See also the :func:`sys.setprofile` function."
 msgstr ""
 
-#: ../../c-api/init.rst:2031 ../../c-api/init.rst:2038
-#: ../../c-api/init.rst:2057 ../../c-api/init.rst:2064
-msgid "The caller must hold the :term:`GIL`."
-msgstr "호출자는 :term:`GIL`\\을 보유하고 있어야 합니다."
-
-#: ../../c-api/init.rst:2035
+#: ../../c-api/init.rst:2149
 msgid ""
 "Like :c:func:`PyEval_SetProfile` but sets the profile function in all "
 "running threads belonging to the current interpreter instead of the "
 "setting it only on the current thread."
 msgstr ""
 
-#: ../../c-api/init.rst:2040
+#: ../../c-api/init.rst:2154
 msgid ""
 "As :c:func:`PyEval_SetProfile`, this function ignores any exceptions "
 "raised while setting the profile functions in all threads."
 msgstr ""
 
-#: ../../c-api/init.rst:2048
+#: ../../c-api/init.rst:2162
 #, fuzzy
 msgid ""
 "Set the tracing function to *func*.  This is similar to "
@@ -2941,29 +3151,29 @@ msgstr ""
 ":const:`PyTrace_C_CALL`, :const:`PyTrace_C_EXCEPTION` 또는 "
 ":const:`PyTrace_C_RETURN`\\을 수신하지 않습니다."
 
-#: ../../c-api/init.rst:2055
+#: ../../c-api/init.rst:2169
 #, fuzzy
 msgid "See also the :func:`sys.settrace` function."
 msgstr ":c:func:`PyEval_GetFrame`\\도 참조하십시오."
 
-#: ../../c-api/init.rst:2061
+#: ../../c-api/init.rst:2175
 msgid ""
 "Like :c:func:`PyEval_SetTrace` but sets the tracing function in all "
 "running threads belonging to the current interpreter instead of the "
 "setting it only on the current thread."
 msgstr ""
 
-#: ../../c-api/init.rst:2066
+#: ../../c-api/init.rst:2180
 msgid ""
 "As :c:func:`PyEval_SetTrace`, this function ignores any exceptions raised"
 " while setting the trace functions in all threads."
 msgstr ""
 
-#: ../../c-api/init.rst:2072
+#: ../../c-api/init.rst:2186
 msgid "Reference tracing"
 msgstr ""
 
-#: ../../c-api/init.rst:2078
+#: ../../c-api/init.rst:2192
 msgid ""
 "The type of the trace function registered using "
 ":c:func:`PyRefTracer_SetTracer`. The first parameter is a Python object "
@@ -2974,21 +3184,21 @@ msgid ""
 " called."
 msgstr ""
 
-#: ../../c-api/init.rst:2088
+#: ../../c-api/init.rst:2202
 #, fuzzy
 msgid ""
 "The value for the *event* parameter to :c:type:`PyRefTracer` functions "
 "when a Python object has been created."
 msgstr "C 함수가 반환했을 때 :c:type:`Py_tracefunc` 함수에 대한 *what* 매개 변수의 값."
 
-#: ../../c-api/init.rst:2093
+#: ../../c-api/init.rst:2207
 #, fuzzy
 msgid ""
 "The value for the *event* parameter to :c:type:`PyRefTracer` functions "
 "when a Python object has been destroyed."
 msgstr "C 함수가 반환했을 때 :c:type:`Py_tracefunc` 함수에 대한 *what* 매개 변수의 값."
 
-#: ../../c-api/init.rst:2098
+#: ../../c-api/init.rst:2212
 msgid ""
 "Register a reference tracer function. The function will be called when a "
 "new Python has been created or when an object is going to be destroyed. "
@@ -2997,20 +3207,20 @@ msgid ""
 " an exception and return ``-1`` on error."
 msgstr ""
 
-#: ../../c-api/init.rst:2104
+#: ../../c-api/init.rst:2218
 msgid ""
 "Not that tracer functions **must not** create Python objects inside or "
 "otherwise the call will be re-entrant. The tracer also **must not** clear"
-" any existing exception or set an exception.  The GIL will be held every "
-"time the tracer function is called."
+" any existing exception or set an exception.  A :term:`thread state` will"
+" be active every time the tracer function is called."
 msgstr ""
 
-#: ../../c-api/init.rst:2109 ../../c-api/init.rst:2120
+#: ../../c-api/init.rst:2223 ../../c-api/init.rst:2234
 #, fuzzy
-msgid "The GIL must be held when calling this function."
+msgid "There must be an :term:`attached thread state` when calling this function."
 msgstr "이러한 함수를 호출할 때 GIL을 보유할 필요는 *없습니다*; 그들은 자체 록을 제공합니다."
 
-#: ../../c-api/init.rst:2115
+#: ../../c-api/init.rst:2229
 msgid ""
 "Get the registered reference tracer function and the value of the opaque "
 "data pointer that was registered when :c:func:`PyRefTracer_SetTracer` was"
@@ -3018,31 +3228,31 @@ msgid ""
 "will set the **data** pointer to NULL."
 msgstr ""
 
-#: ../../c-api/init.rst:2127
+#: ../../c-api/init.rst:2241
 msgid "Advanced Debugger Support"
 msgstr "고급 디버거 지원"
 
-#: ../../c-api/init.rst:2132
+#: ../../c-api/init.rst:2246
 msgid "These functions are only intended to be used by advanced debugging tools."
 msgstr "이 함수들은 고급 디버깅 도구에서만 사용하기 위한 것입니다."
 
-#: ../../c-api/init.rst:2137
+#: ../../c-api/init.rst:2251
 msgid ""
 "Return the interpreter state object at the head of the list of all such "
 "objects."
 msgstr "인터프리터 상태 객체들의 리스트의 머리에 있는 객체를 반환합니다."
 
-#: ../../c-api/init.rst:2142
+#: ../../c-api/init.rst:2256
 msgid "Return the main interpreter state object."
 msgstr "메인 인터프리터 상태 객체를 반환합니다."
 
-#: ../../c-api/init.rst:2147
+#: ../../c-api/init.rst:2261
 msgid ""
 "Return the next interpreter state object after *interp* from the list of "
 "all such objects."
 msgstr "인터프리터 상태 객체들의 리스트에서 *interp* 이후의 다음 인터프리터 상태 객체를 반환합니다."
 
-#: ../../c-api/init.rst:2153
+#: ../../c-api/init.rst:2267
 msgid ""
 "Return the pointer to the first :c:type:`PyThreadState` object in the "
 "list of threads associated with the interpreter *interp*."
@@ -3050,7 +3260,7 @@ msgstr ""
 "인터프리터 *interp*\\와 관련된 스레드 리스트에서 첫 번째 :c:type:`PyThreadState` 객체에 대한 포인터를 "
 "반환합니다."
 
-#: ../../c-api/init.rst:2159
+#: ../../c-api/init.rst:2273
 msgid ""
 "Return the next thread state object after *tstate* from the list of all "
 "such objects belonging to the same :c:type:`PyInterpreterState` object."
@@ -3058,11 +3268,11 @@ msgstr ""
 "같은 :c:type:`PyInterpreterState` 객체에 속하는 모든 스레드 객체 리스트에서 *tstate* 이후의 다음 "
 "스레드 상태 객체를 반환합니다."
 
-#: ../../c-api/init.rst:2166
+#: ../../c-api/init.rst:2280
 msgid "Thread Local Storage Support"
 msgstr "스레드 로컬 저장소 지원"
 
-#: ../../c-api/init.rst:2170
+#: ../../c-api/init.rst:2284
 #, fuzzy
 msgid ""
 "The Python interpreter provides low-level support for thread-local "
@@ -3077,13 +3287,15 @@ msgstr ""
 "pthread와 윈도우에서 제공하는 API와 유사합니다: 스레드 키와 함수를 사용하여 스레드 당 :c:type:`void*` 값을 "
 "연결합니다."
 
-#: ../../c-api/init.rst:2177
+#: ../../c-api/init.rst:2291
+#, fuzzy
 msgid ""
-"The GIL does *not* need to be held when calling these functions; they "
-"supply their own locking."
+"A :term:`thread state` does *not* need to be :term:`attached <attached "
+"thread state>` when calling these functions; they suppl their own "
+"locking."
 msgstr "이러한 함수를 호출할 때 GIL을 보유할 필요는 *없습니다*; 그들은 자체 록을 제공합니다."
 
-#: ../../c-api/init.rst:2180
+#: ../../c-api/init.rst:2294
 msgid ""
 "Note that :file:`Python.h` does not include the declaration of the TLS "
 "APIs, you need to include :file:`pythread.h` to use thread-local storage."
@@ -3091,7 +3303,7 @@ msgstr ""
 ":file:`Python.h`\\에는 TLS API 선언이 포함되어 있지 않음에 유의하십시오, 스레드 로컬 저장소를 사용하려면 "
 ":file:`pythread.h`\\를 포함해야 합니다."
 
-#: ../../c-api/init.rst:2184
+#: ../../c-api/init.rst:2298
 #, fuzzy
 msgid ""
 "None of these API functions handle memory management on behalf of the "
@@ -3103,11 +3315,11 @@ msgstr ""
 "해제해야 합니다. :c:type:`void*` 값이 :c:type:`PyObject*` 이라면, 이 함수들은 참조 횟수 연산도 "
 "수행하지 않습니다."
 
-#: ../../c-api/init.rst:2192
+#: ../../c-api/init.rst:2306
 msgid "Thread Specific Storage (TSS) API"
 msgstr "스레드별 저장소 (TSS - Thread Specific Storage) API"
 
-#: ../../c-api/init.rst:2194
+#: ../../c-api/init.rst:2308
 #, fuzzy
 msgid ""
 "TSS API is introduced to supersede the use of the existing TLS API within"
@@ -3117,11 +3329,11 @@ msgstr ""
 "CPython 인터프리터 내에서 기존 TLS API의 사용을 대체하기 위해 TSS API가 도입되었습니다. 이 API는 스레드 키를"
 " 나타내기 위해 :c:type:`int` 대신 새로운 형 :c:type:`Py_tss_t`\\를 사용합니다."
 
-#: ../../c-api/init.rst:2200
+#: ../../c-api/init.rst:2314
 msgid "\"A New C-API for Thread-Local Storage in CPython\" (:pep:`539`)"
 msgstr "\"CPython의 스레드-로컬 저장소를 위한 새로운 C-API\" (:pep:`539`)"
 
-#: ../../c-api/init.rst:2205
+#: ../../c-api/init.rst:2319
 msgid ""
 "This data structure represents the state of a thread key, the definition "
 "of which may depend on the underlying TLS implementation, and it has an "
@@ -3131,7 +3343,7 @@ msgstr ""
 "이 자료 구조는 스레드 키의 상태를 나타내며, 정의는 하부 TLS 구현에 따라 달라질 수 있으며, 키의 초기화 상태를 나타내는 내부"
 " 필드가 있습니다. 이 구조체에는 공개 멤버가 없습니다."
 
-#: ../../c-api/init.rst:2210
+#: ../../c-api/init.rst:2324
 msgid ""
 "When :ref:`Py_LIMITED_API <stable>` is not defined, static allocation of "
 "this type by :c:macro:`Py_tss_NEEDS_INIT` is allowed."
@@ -3139,7 +3351,7 @@ msgstr ""
 ":ref:`Py_LIMITED_API <stable>`\\가 정의되지 않을 때, "
 ":c:macro:`Py_tss_NEEDS_INIT`\\로 이 형의 정적 할당이 허용됩니다."
 
-#: ../../c-api/init.rst:2216
+#: ../../c-api/init.rst:2330
 msgid ""
 "This macro expands to the initializer for :c:type:`Py_tss_t` variables. "
 "Note that this macro won't be defined with :ref:`Py_LIMITED_API "
@@ -3148,11 +3360,11 @@ msgstr ""
 "이 매크로는 :c:type:`Py_tss_t` 변수의 초기화자(initializer)로 확장됩니다. 이 매크로는 "
 ":ref:`Py_LIMITED_API <stable>`\\에서 정의되지 않음에 유의하십시오."
 
-#: ../../c-api/init.rst:2221
+#: ../../c-api/init.rst:2335
 msgid "Dynamic Allocation"
 msgstr "동적 할당"
 
-#: ../../c-api/init.rst:2223
+#: ../../c-api/init.rst:2337
 msgid ""
 "Dynamic allocation of the :c:type:`Py_tss_t`, required in extension "
 "modules built with :ref:`Py_LIMITED_API <stable>`, where static "
@@ -3162,7 +3374,7 @@ msgstr ""
 ":ref:`Py_LIMITED_API <stable>`\\로 빌드된 확장 모듈에 필요한, 빌드 시점에 구현이 불투명해서 형의 정적 "
 "할당이 불가능한 :c:type:`Py_tss_t`\\의 동적 할당."
 
-#: ../../c-api/init.rst:2230
+#: ../../c-api/init.rst:2344
 msgid ""
 "Return a value which is the same state as a value initialized with "
 ":c:macro:`Py_tss_NEEDS_INIT`, or ``NULL`` in the case of dynamic "
@@ -3171,7 +3383,7 @@ msgstr ""
 ":c:macro:`Py_tss_NEEDS_INIT`\\로 초기화된 값과 같은 상태의 값을 반환하거나, 동적 할당 실패 시 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/init.rst:2237
+#: ../../c-api/init.rst:2351
 #, fuzzy
 msgid ""
 "Free the given *key* allocated by :c:func:`PyThread_tss_alloc`, after "
@@ -3183,18 +3395,18 @@ msgstr ""
 ":c:func:`PyThread_tss_alloc`\\에 의해 할당된 주어진 *key*\\를 할당 해제합니다. *key* 인자가 "
 "`NULL`\\이면 아무런 일도 하지 않습니다."
 
-#: ../../c-api/init.rst:2243
+#: ../../c-api/init.rst:2357
 #, fuzzy
 msgid ""
 "A freed key becomes a dangling pointer. You should reset the key to "
 "``NULL``."
 msgstr "해제된 키는 매달린(dangling) 포인터가 됩니다, 키를 `NULL`\\로 재설정해야 합니다."
 
-#: ../../c-api/init.rst:2248
+#: ../../c-api/init.rst:2362
 msgid "Methods"
 msgstr "메서드"
 
-#: ../../c-api/init.rst:2250
+#: ../../c-api/init.rst:2364
 msgid ""
 "The parameter *key* of these functions must not be ``NULL``.  Moreover, "
 "the behaviors of :c:func:`PyThread_tss_set` and "
@@ -3206,7 +3418,7 @@ msgstr ""
 ":c:func:`PyThread_tss_set`\\과 :c:func:`PyThread_tss_get`\\의 동작은 정의되지 "
 "않습니다."
 
-#: ../../c-api/init.rst:2258
+#: ../../c-api/init.rst:2372
 msgid ""
 "Return a non-zero value if the given :c:type:`Py_tss_t` has been "
 "initialized by :c:func:`PyThread_tss_create`."
@@ -3214,7 +3426,7 @@ msgstr ""
 "주어진 :c:type:`Py_tss_t`\\가 :c:func:`PyThread_tss_create`\\로 초기화되었으면 0이 아닌 "
 "값을 반환합니다."
 
-#: ../../c-api/init.rst:2264
+#: ../../c-api/init.rst:2378
 msgid ""
 "Return a zero value on successful initialization of a TSS key.  The "
 "behavior is undefined if the value pointed to by the *key* argument is "
@@ -3226,7 +3438,7 @@ msgstr ""
 ":c:macro:`Py_tss_NEEDS_INIT`\\로 초기화되지 않으면 동작이 정의되지 않습니다. 이 함수는 같은 키에서 "
 "반복적으로 호출될 수 있습니다 -- 이미 초기화된 키에 대해 호출하면 아무런 일도 하지 않으며 즉시 성공을 반환합니다."
 
-#: ../../c-api/init.rst:2273
+#: ../../c-api/init.rst:2387
 msgid ""
 "Destroy a TSS key to forget the values associated with the key across all"
 " threads, and change the key's initialization state to uninitialized.  A "
@@ -3238,7 +3450,7 @@ msgstr ""
 " :c:func:`PyThread_tss_create`\\로 다시 초기화할 수 있습니다. 이 함수는 같은 키에서 반복적으로 호출될 "
 "수 있습니다 -- 이미 파괴된 키에 대해 호출하면 아무런 일도 하지 않습니다."
 
-#: ../../c-api/init.rst:2282
+#: ../../c-api/init.rst:2396
 #, fuzzy
 msgid ""
 "Return a zero value to indicate successfully associating a "
@@ -3248,7 +3460,7 @@ msgstr ""
 "현재 스레드에서 :c:type:`void*` 값을 TSS 키와 성공적으로 연결했음을 나타내는 0 값을 반환합니다. 각 스레드에는 "
 "키에서 :c:type:`void*` 값으로의 고유한 매핑이 있습니다."
 
-#: ../../c-api/init.rst:2289
+#: ../../c-api/init.rst:2403
 #, fuzzy
 msgid ""
 "Return the :c:expr:`void*` value associated with a TSS key in the current"
@@ -3258,17 +3470,17 @@ msgstr ""
 "현재 스레드의 TSS 키와 관련된 :c:type:`void*` 값을 반환합니다. 현재 스레드에 키와 연결된 값이 없으면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/init.rst:2297
+#: ../../c-api/init.rst:2411
 msgid "Thread Local Storage (TLS) API"
 msgstr "스레드 로컬 저장소 (TLS) API"
 
-#: ../../c-api/init.rst:2299
+#: ../../c-api/init.rst:2413
 msgid ""
 "This API is superseded by :ref:`Thread Specific Storage (TSS) API "
 "<thread-specific-storage-api>`."
 msgstr "이 API는 :ref:`스레드별 저장소 (TSS) API <thread-specific-storage-api>`\\로 대체됩니다."
 
-#: ../../c-api/init.rst:2304
+#: ../../c-api/init.rst:2418
 msgid ""
 "This version of the API does not support platforms where the native TLS "
 "key is defined in a way that cannot be safely cast to ``int``.  On such "
@@ -3280,63 +3492,75 @@ msgstr ""
 "않습니다. 이러한 플랫폼에서, :c:func:`PyThread_create_key`\\는 실패 상태로 즉시 반환되며, 다른 TLS "
 "함수는 이러한 플랫폼에서 모두 아무런 일도 하지 않습니다."
 
-#: ../../c-api/init.rst:2309
+#: ../../c-api/init.rst:2423
 msgid ""
 "Due to the compatibility problem noted above, this version of the API "
 "should not be used in new code."
 msgstr "위에서 언급한 호환성 문제로 인해, 이 버전의 API를 새 코드에서 사용해서는 안 됩니다."
 
-#: ../../c-api/init.rst:2320
+#: ../../c-api/init.rst:2434
 msgid "Synchronization Primitives"
 msgstr ""
 
-#: ../../c-api/init.rst:2322
+#: ../../c-api/init.rst:2436
 msgid "The C-API provides a basic mutual exclusion lock."
 msgstr ""
 
-#: ../../c-api/init.rst:2326
+#: ../../c-api/init.rst:2440
 msgid ""
 "A mutual exclusion lock.  The :c:type:`!PyMutex` should be initialized to"
 " zero to represent the unlocked state.  For example::"
 msgstr ""
 
-#: ../../c-api/init.rst:2329
+#: ../../c-api/init.rst:2443
 #, python-brace-format
 msgid "PyMutex mutex = {0};"
 msgstr ""
 
-#: ../../c-api/init.rst:2331
+#: ../../c-api/init.rst:2445
 msgid ""
 "Instances of :c:type:`!PyMutex` should not be copied or moved.  Both the "
 "contents and address of a :c:type:`!PyMutex` are meaningful, and it must "
 "remain at a fixed, writable location in memory."
 msgstr ""
 
-#: ../../c-api/init.rst:2337
+#: ../../c-api/init.rst:2451
 msgid ""
 "A :c:type:`!PyMutex` currently occupies one byte, but the size should be "
 "considered unstable.  The size may change in future Python releases "
 "without a deprecation period."
 msgstr ""
 
-#: ../../c-api/init.rst:2345
+#: ../../c-api/init.rst:2459
 msgid ""
 "Lock mutex *m*.  If another thread has already locked it, the calling "
 "thread will block until the mutex is unlocked.  While blocked, the thread"
-" will temporarily release the :term:`GIL` if it is held."
+" will temporarily detach the :term:`thread state <attached thread state>`"
+" if one exists."
 msgstr ""
 
-#: ../../c-api/init.rst:2353
+#: ../../c-api/init.rst:2467
 msgid ""
 "Unlock mutex *m*. The mutex must be locked --- otherwise, the function "
 "will issue a fatal error."
 msgstr ""
 
-#: ../../c-api/init.rst:2361
+#: ../../c-api/init.rst:2474
+msgid "Returns non-zero if the mutex *m* is currently locked, zero otherwise."
+msgstr ""
+
+#: ../../c-api/init.rst:2478
+msgid ""
+"This function is intended for use in assertions and debugging only and "
+"should not be used to make concurrency control decisions, as the lock "
+"state may change immediately after the check."
+msgstr ""
+
+#: ../../c-api/init.rst:2487
 msgid "Python Critical Section API"
 msgstr ""
 
-#: ../../c-api/init.rst:2363
+#: ../../c-api/init.rst:2489
 msgid ""
 "The critical section API provides a deadlock avoidance layer on top of "
 "per-object locks for :term:`free-threaded <free threading>` CPython.  "
@@ -3345,18 +3569,39 @@ msgid ""
 "lock."
 msgstr ""
 
-#: ../../c-api/init.rst:2368
+#: ../../c-api/init.rst:2494
 msgid ""
-"Critical sections avoid deadlocks by implicitly suspending active "
-"critical sections and releasing the locks during calls to "
-":c:func:`PyEval_SaveThread`. When :c:func:`PyEval_RestoreThread` is "
-"called, the most recent critical section is resumed, and its locks "
-"reacquired.  This means the critical section API provides weaker "
-"guarantees than traditional locks -- they are useful because their "
-"behavior is similar to the :term:`GIL`."
+"Critical sections are intended to be used for custom types implemented in"
+" C-API extensions. They should generally not be used with built-in types "
+"like :class:`list` and :class:`dict` because their public C-APIs already "
+"use critical sections internally, with the notable exception of "
+":c:func:`PyDict_Next`, which requires critical section to be acquired "
+"externally."
 msgstr ""
 
-#: ../../c-api/init.rst:2375
+#: ../../c-api/init.rst:2501
+msgid ""
+"Critical sections avoid deadlocks by implicitly suspending active "
+"critical sections, hence, they do not provide exclusive access such as "
+"provided by traditional locks like :c:type:`PyMutex`.  When a critical "
+"section is started, the per-object lock for the object is acquired. If "
+"the code executed inside the critical section calls C-API functions then "
+"it can suspend the critical section thereby releasing the per-object "
+"lock, so other threads can acquire the per-object lock for the same "
+"object."
+msgstr ""
+
+#: ../../c-api/init.rst:2509
+msgid ""
+"Variants that accept :c:type:`PyMutex` pointers rather than Python "
+"objects are also available. Use these variants to start a critical "
+"section in a situation where there is no :c:type:`PyObject` -- for "
+"example, when working with a C type that does not extend or wrap "
+":c:type:`PyObject` but still needs to call into the C API in a manner "
+"that might lead to deadlocks."
+msgstr ""
+
+#: ../../c-api/init.rst:2515
 msgid ""
 "The functions and structs used by the macros are exposed for cases where "
 "C macros are not available. They should only be used as in the given "
@@ -3364,7 +3609,7 @@ msgid ""
 "change in future Python versions."
 msgstr ""
 
-#: ../../c-api/init.rst:2382
+#: ../../c-api/init.rst:2522
 msgid ""
 "Operations that need to lock two objects at once must use "
 ":c:macro:`Py_BEGIN_CRITICAL_SECTION2`.  You *cannot* use nested critical "
@@ -3373,11 +3618,11 @@ msgid ""
 "provide a way to lock more than two objects at once."
 msgstr ""
 
-#: ../../c-api/init.rst:2388
+#: ../../c-api/init.rst:2528
 msgid "Example usage::"
 msgstr ""
 
-#: ../../c-api/init.rst:2390
+#: ../../c-api/init.rst:2530
 #, python-brace-format
 msgid ""
 "static PyObject *\n"
@@ -3390,7 +3635,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../c-api/init.rst:2399
+#: ../../c-api/init.rst:2539
 msgid ""
 "In the above example, :c:macro:`Py_SETREF` calls :c:macro:`Py_DECREF`, "
 "which can call arbitrary code through an object's deallocation function."
@@ -3400,61 +3645,100 @@ msgid ""
 ":c:func:`PyEval_SaveThread`."
 msgstr ""
 
-#: ../../c-api/init.rst:2407
+#: ../../c-api/init.rst:2547
 msgid ""
 "Acquires the per-object lock for the object *op* and begins a critical "
 "section."
 msgstr ""
 
-#: ../../c-api/init.rst:2410 ../../c-api/init.rst:2424
-#: ../../c-api/init.rst:2439 ../../c-api/init.rst:2453
+#: ../../c-api/init.rst:2550 ../../c-api/init.rst:2564
+#: ../../c-api/init.rst:2581 ../../c-api/init.rst:2596
+#: ../../c-api/init.rst:2610 ../../c-api/init.rst:2627
 msgid "In the free-threaded build, this macro expands to::"
 msgstr ""
 
-#: ../../c-api/init.rst:2412
+#: ../../c-api/init.rst:2552
 msgid ""
 "{\n"
 "    PyCriticalSection _py_cs;\n"
 "    PyCriticalSection_Begin(&_py_cs, (PyObject*)(op))"
 msgstr ""
 
-#: ../../c-api/init.rst:2416 ../../c-api/init.rst:2445
+#: ../../c-api/init.rst:2556 ../../c-api/init.rst:2602
 msgid "In the default build, this macro expands to ``{``."
 msgstr ""
 
-#: ../../c-api/init.rst:2422
+#: ../../c-api/init.rst:2562
+msgid "Locks the mutex *m* and begins a critical section."
+msgstr ""
+
+#: ../../c-api/init.rst:2566
+msgid ""
+"{\n"
+"     PyCriticalSection _py_cs;\n"
+"     PyCriticalSection_BeginMutex(&_py_cs, m)"
+msgstr ""
+
+#: ../../c-api/init.rst:2570
+msgid ""
+"Note that unlike :c:macro:`Py_BEGIN_CRITICAL_SECTION`, there is no cast "
+"for the argument of the macro - it must be a :c:type:`PyMutex` pointer."
+msgstr ""
+
+#: ../../c-api/init.rst:2573 ../../c-api/init.rst:2619
+msgid "On the default build, this macro expands to ``{``."
+msgstr ""
+
+#: ../../c-api/init.rst:2579
 msgid "Ends the critical section and releases the per-object lock."
 msgstr ""
 
-#: ../../c-api/init.rst:2426
+#: ../../c-api/init.rst:2583
 msgid ""
 "    PyCriticalSection_End(&_py_cs);\n"
 "}"
 msgstr ""
 
-#: ../../c-api/init.rst:2429 ../../c-api/init.rst:2458
+#: ../../c-api/init.rst:2586 ../../c-api/init.rst:2632
 msgid "In the default build, this macro expands to ``}``."
 msgstr ""
 
-#: ../../c-api/init.rst:2435
+#: ../../c-api/init.rst:2592
 msgid ""
 "Acquires the per-objects locks for the objects *a* and *b* and begins a "
 "critical section.  The locks are acquired in a consistent order (lowest "
 "address first) to avoid lock ordering deadlocks."
 msgstr ""
 
-#: ../../c-api/init.rst:2441
+#: ../../c-api/init.rst:2598
 msgid ""
 "{\n"
 "    PyCriticalSection2 _py_cs2;\n"
 "    PyCriticalSection2_Begin(&_py_cs2, (PyObject*)(a), (PyObject*)(b))"
 msgstr ""
 
-#: ../../c-api/init.rst:2451
+#: ../../c-api/init.rst:2608
+msgid "Locks the mutexes *m1* and *m2* and begins a critical section."
+msgstr ""
+
+#: ../../c-api/init.rst:2612
+msgid ""
+"{\n"
+"     PyCriticalSection2 _py_cs2;\n"
+"     PyCriticalSection2_BeginMutex(&_py_cs2, m1, m2)"
+msgstr ""
+
+#: ../../c-api/init.rst:2616
+msgid ""
+"Note that unlike :c:macro:`Py_BEGIN_CRITICAL_SECTION2`, there is no cast "
+"for the arguments of the macro - they must be :c:type:`PyMutex` pointers."
+msgstr ""
+
+#: ../../c-api/init.rst:2625
 msgid "Ends the critical section and releases the per-object locks."
 msgstr ""
 
-#: ../../c-api/init.rst:2455
+#: ../../c-api/init.rst:2629
 msgid ""
 "    PyCriticalSection2_End(&_py_cs2);\n"
 "}"
@@ -3468,151 +3752,151 @@ msgstr ""
 msgid "modules (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:710
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:712
 msgid "path (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:710 ../../c-api/init.rst:1145
-#: ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:712 ../../c-api/init.rst:1228
+#: ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "module"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "builtins"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "__main__"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "sys"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:710
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:712
 msgid "search"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:710
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:712
 msgid "path"
 msgstr ""
 
-#: ../../c-api/init.rst:350 ../../c-api/init.rst:1722 ../../c-api/init.rst:1775
+#: ../../c-api/init.rst:350 ../../c-api/init.rst:1836 ../../c-api/init.rst:1889
 msgid "Py_FinalizeEx (C function)"
 msgstr ""
 
-#: ../../c-api/init.rst:576
+#: ../../c-api/init.rst:572
 #, fuzzy
 msgid "Py_Initialize()"
 msgstr ":c:func:`Py_IsInitialized`"
 
-#: ../../c-api/init.rst:576 ../../c-api/init.rst:808
+#: ../../c-api/init.rst:572 ../../c-api/init.rst:810
 msgid "main()"
 msgstr ""
 
-#: ../../c-api/init.rst:576
+#: ../../c-api/init.rst:572
 msgid "Py_GetPath()"
 msgstr ""
 
-#: ../../c-api/init.rst:689
+#: ../../c-api/init.rst:690
 msgid "executable (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:743 ../../c-api/init.rst:785 ../../c-api/init.rst:799
+#: ../../c-api/init.rst:745 ../../c-api/init.rst:787 ../../c-api/init.rst:801
 msgid "version (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:755
+#: ../../c-api/init.rst:757
 msgid "platform (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:772
+#: ../../c-api/init.rst:774
 msgid "copyright (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:808
+#: ../../c-api/init.rst:810
 msgid "Py_FatalError()"
 msgstr ""
 
-#: ../../c-api/init.rst:808
+#: ../../c-api/init.rst:810
 msgid "argv (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:928
+#: ../../c-api/init.rst:930
 #, fuzzy
 msgid "global interpreter lock"
 msgstr "스레드 상태와 전역 인터프리터 록"
 
-#: ../../c-api/init.rst:928
+#: ../../c-api/init.rst:930
 #, fuzzy
 msgid "interpreter lock"
 msgstr "서브 인터프리터 지원"
 
-#: ../../c-api/init.rst:928
+#: ../../c-api/init.rst:930
 msgid "lock, interpreter"
 msgstr ""
 
-#: ../../c-api/init.rst:941
+#: ../../c-api/init.rst:944
 msgid "setswitchinterval (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:950
+#: ../../c-api/init.rst:953
 msgid "PyThreadState (C type)"
 msgstr ""
 
-#: ../../c-api/init.rst:976
+#: ../../c-api/init.rst:989
 msgid "Py_BEGIN_ALLOW_THREADS (C macro)"
 msgstr ""
 
-#: ../../c-api/init.rst:976
+#: ../../c-api/init.rst:989
 msgid "Py_END_ALLOW_THREADS (C macro)"
 msgstr ""
 
-#: ../../c-api/init.rst:992
+#: ../../c-api/init.rst:1005
 msgid "PyEval_RestoreThread (C function)"
 msgstr ""
 
-#: ../../c-api/init.rst:992
+#: ../../c-api/init.rst:1005
 msgid "PyEval_SaveThread (C function)"
 msgstr ""
 
-#: ../../c-api/init.rst:1123
+#: ../../c-api/init.rst:1206
 msgid "PyEval_AcquireThread()"
 msgstr ""
 
-#: ../../c-api/init.rst:1123
+#: ../../c-api/init.rst:1206
 msgid "PyEval_ReleaseThread()"
 msgstr ""
 
-#: ../../c-api/init.rst:1123
+#: ../../c-api/init.rst:1206
 msgid "PyEval_SaveThread()"
 msgstr ""
 
-#: ../../c-api/init.rst:1123
+#: ../../c-api/init.rst:1206
 msgid "PyEval_RestoreThread()"
 msgstr ""
 
-#: ../../c-api/init.rst:1145
+#: ../../c-api/init.rst:1228
 msgid "_thread"
 msgstr ""
 
-#: ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "stdout (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "stderr (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:1658 ../../c-api/init.rst:1757
+#: ../../c-api/init.rst:1772 ../../c-api/init.rst:1871
 msgid "stdin (in module sys)"
 msgstr ""
 
-#: ../../c-api/init.rst:1722
+#: ../../c-api/init.rst:1836
 msgid "Py_Initialize (C function)"
 msgstr ""
 
-#: ../../c-api/init.rst:1752
+#: ../../c-api/init.rst:1866
 msgid "close (in module os)"
 msgstr ""
 
@@ -3787,4 +4071,319 @@ msgstr ""
 #~ "이 함수는 현재 스레드 상태를 갱신하지 않습니다. "
 #~ "대신 :c:func:`PyEval_SaveThread`\\나 "
 #~ ":c:func:`PyEval_ReleaseThread`\\를 사용하십시오."
+
+#~ msgid ""
+#~ "The return value will be ``0`` if"
+#~ " the interpreter exits normally (i.e., "
+#~ "without an exception), ``1`` if the "
+#~ "interpreter exits due to an exception,"
+#~ " or ``2`` if the argument list "
+#~ "does not represent a valid Python "
+#~ "command line."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Note that if an otherwise unhandled "
+#~ ":exc:`SystemExit` is raised, this function "
+#~ "will not return ``1``, but exit "
+#~ "the process, as long as "
+#~ "``Py_InspectFlag`` is not set. If "
+#~ "``Py_InspectFlag`` is set, execution will "
+#~ "drop into the interactive Python prompt,"
+#~ " at which point a second otherwise"
+#~ " unhandled :exc:`SystemExit` will still "
+#~ "exit the process, while any other "
+#~ "means of exiting will set the "
+#~ "return value as described above."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :c:member:`PyConfig.inspect` is not set "
+#~ "(the default), the return value will "
+#~ "be ``0`` if the interpreter exits "
+#~ "normally (that is, without raising an"
+#~ " exception), or ``1`` if the "
+#~ "interpreter exits due to an exception."
+#~ " If an otherwise unhandled "
+#~ ":exc:`SystemExit` is raised, the function "
+#~ "will immediately exit the process "
+#~ "instead of returning ``1``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :c:member:`PyConfig.inspect` is set (such"
+#~ " as when the :option:`-i` option is"
+#~ " used), rather than returning when "
+#~ "the interpreter exits, execution will "
+#~ "instead resume in an interactive Python"
+#~ " prompt (REPL) using the ``__main__`` "
+#~ "module's global namespace. If the "
+#~ "interpreter exited with an exception, it"
+#~ " is immediately raised in the REPL"
+#~ " session. The function return value "
+#~ "is then determined by the way the"
+#~ " *REPL session* terminates: returning ``0``"
+#~ " if the session terminates without "
+#~ "raising an unhandled exception, exiting "
+#~ "immediately for an unhandled "
+#~ ":exc:`SystemExit`, and returning ``1`` for "
+#~ "any other unhandled exception."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This function always finalizes the "
+#~ "Python interpreter regardless of whether "
+#~ "it returns a value or immediately "
+#~ "exits the process due to an "
+#~ "unhandled :exc:`SystemExit` exception."
+#~ msgstr ""
+
+#~ msgid "The :term:`GIL` must be held for *interp*."
+#~ msgstr ""
+
+#~ msgid "Get :data:`sys.executable` instead."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Get :data:`sys.base_prefix` instead, or "
+#~ ":data:`sys.prefix` if :ref:`virtual environments "
+#~ "<venv-def>` need to be handled."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Get :data:`sys.base_exec_prefix` instead, or "
+#~ ":data:`sys.exec_prefix` if :ref:`virtual "
+#~ "environments <venv-def>` need to be "
+#~ "handled."
+#~ msgstr ""
+
+#~ msgid "Get :data:`sys.path` instead."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Save the thread state in a local variable.\n"
+#~ "Release the global interpreter lock.\n"
+#~ "... Do some blocking I/O operation ...\n"
+#~ "Reacquire the global interpreter lock.\n"
+#~ "Restore the thread state from the local variable."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Here is how these functions work: "
+#~ "the global interpreter lock is used "
+#~ "to protect the pointer to the "
+#~ "current thread state.  When releasing "
+#~ "the lock and saving the thread "
+#~ "state, the current thread state pointer"
+#~ " must be retrieved before the lock"
+#~ " is released (since another thread "
+#~ "could immediately acquire the lock and"
+#~ " store its own thread state in "
+#~ "the global variable). Conversely, when "
+#~ "acquiring the lock and restoring the "
+#~ "thread state, the lock must be "
+#~ "acquired before storing the thread state"
+#~ " pointer."
+#~ msgstr ""
+#~ "이 함수들의 작동 방식은 다음과 같습니다: 전역 "
+#~ "인터프리터 록이 현재 스레드 상태에 대한 포인터를 "
+#~ "보호하는 데 사용됩니다. 록을 해제하고 스레드 상태를 "
+#~ "저장할 때, 록이 해제되기 전에 현재 스레드 상태"
+#~ " 포인터를 가져와야 합니다 (다른 스레드가 즉시 록을"
+#~ " 획득하고 전역 변수에 자신의 스레드 상태를 저장할"
+#~ " 수 있기 때문입니다). 반대로, 록을 획득하고 스레드"
+#~ " 상태를 복원할 때, 스레드 상태 포인터를 저장하기"
+#~ " 전에 록을 획득해야 합니다."
+
+#~ msgid ""
+#~ "Release the global interpreter lock (if"
+#~ " it has been created) and reset "
+#~ "the thread state to ``NULL``, returning"
+#~ " the previous thread state (which is"
+#~ " not ``NULL``).  If the lock has "
+#~ "been created, the current thread must"
+#~ " have acquired it."
+#~ msgstr ""
+#~ "(만들었다면) 전역 인터프리터 록을 해제하고 스레드 상태를"
+#~ " ``NULL``\\로 재설정하고, 이전 스레드 상태(``NULL``\\이"
+#~ " 아닙니다)를 반환합니다. 록이 만들어졌다면, 현재 스레드가 "
+#~ "록을 획득했어야 합니다."
+
+#~ msgid ""
+#~ "Acquire the global interpreter lock (if"
+#~ " it has been created) and set "
+#~ "the thread state to *tstate*, which "
+#~ "must not be ``NULL``.  If the lock"
+#~ " has been created, the current thread"
+#~ " must not have acquired it, otherwise"
+#~ " deadlock ensues."
+#~ msgstr ""
+#~ "(만들었다면) 전역 인터프리터 록을 획득하고 스레드 상태를"
+#~ " ``NULL``\\이 아니어야 하는 *tstate*\\로 설정합니다. "
+#~ "록이 만들어졌다면, 현재 스레드가 이를 획득하지 않았어야"
+#~ " 합니다, 그렇지 않으면 교착 상태가 발생합니다."
+
+#~ msgid ""
+#~ "Calling this function from a thread "
+#~ "when the runtime is finalizing will "
+#~ "terminate the thread, even if the "
+#~ "thread was not created by Python. "
+#~ "You can use :c:func:`Py_IsFinalizing` or "
+#~ ":func:`sys.is_finalizing` to check if the "
+#~ "interpreter is in process of being "
+#~ "finalized before calling this function "
+#~ "to avoid unwanted termination."
+#~ msgstr ""
+#~ "런타임이 파이널리제이션 될 때 스레드에서 이 함수를 "
+#~ "호출하면, 스레드가 파이썬에 의해 만들어지지 않았더라도 "
+#~ "스레드가 종료됩니다. 원치 않는 종료를 방지하려면 "
+#~ ":c:func:`_Py_IsFinalizing`\\이나 :func:`sys.is_finalizing`\\을 "
+#~ "사용하여 이 함수를 호출하기 전에 인터프리터가 파이널리제이션"
+#~ " 되고 있는지 확인할 수 있습니다."
+
+#~ msgid ""
+#~ "Swap the current thread state with "
+#~ "the thread state given by the "
+#~ "argument *tstate*, which may be "
+#~ "``NULL``.  The global interpreter lock "
+#~ "must be held and is not released."
+#~ msgstr ""
+#~ "현재 스레드 상태를 인자 *tstate*\\(``NULL``\\일 수"
+#~ " 있습니다)가 제공하는 스레드 상태와 스와프합니다. 전역 "
+#~ "인터프리터 록을 보유해야 하며 해제되지 않습니다."
+
+#~ msgid ""
+#~ "Create a new thread state object "
+#~ "belonging to the given interpreter "
+#~ "object. The global interpreter lock need"
+#~ " not be held, but may be held"
+#~ " if it is necessary to serialize "
+#~ "calls to this function."
+#~ msgstr ""
+#~ "주어진 인터프리터 객체에 속하는 새 스레드 상태 "
+#~ "객체를 만듭니다. 전역 인터프리터 록을 보유할 필요는 "
+#~ "없지만, 이 함수에 대한 호출을 직렬화해야 하면 "
+#~ "보유할 수 있습니다."
+
+#~ msgid "The :c:member:`PyThreadState.on_delete` callback was removed."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Destroy the current thread state and "
+#~ "release the global interpreter lock. "
+#~ "Like :c:func:`PyThreadState_Delete`, the global "
+#~ "interpreter lock must be held. The "
+#~ "thread state must have been reset "
+#~ "with a previous call to "
+#~ ":c:func:`PyThreadState_Clear`."
+#~ msgstr ""
+#~ "현재 스레드 상태를 파괴하고 전역 인터프리터 록을 "
+#~ "해제합니다. :c:func:`PyThreadState_Delete`\\와 마찬가지로, 전역"
+#~ " 인터프리터 록은 유지할 필요 없습니다. 스레드 상태는"
+#~ " :c:func:`PyThreadState_Clear`\\에 대한 이전 호출로 "
+#~ "재설정되었어야 합니다."
+
+#~ msgid "*tstate* must not be ``NULL``."
+#~ msgstr "*tstate*\\는 ``NULL``\\이 아니어야 합니다."
+
+#~ msgid "The caller must hold the GIL."
+#~ msgstr "호출자는 GIL을 보유해야 합니다."
+
+#~ msgid ""
+#~ "Return a :term:`strong reference` to the"
+#~ " ``__main__`` :ref:`module object "
+#~ "<moduleobjects>` for the given interpreter."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Acquire the global interpreter lock and"
+#~ " set the current thread state to "
+#~ "*tstate*, which must not be ``NULL``."
+#~ "  The lock must have been created "
+#~ "earlier. If this thread already has "
+#~ "the lock, deadlock ensues."
+#~ msgstr ""
+#~ "전역 인터프리터 록을 획득하고 현재 스레드 상태를 "
+#~ "*tstate*\\로 설정합니다. *tstate*\\는 ``NULL``\\이 "
+#~ "아니어야 합니다. 록은 이전에 만들어진 것이어야 합니다."
+#~ " 이 스레드에 이미 록이 있으면, 교착 상태가 "
+#~ "발생합니다."
+
+#~ msgid ""
+#~ "Like all other Python/C API functions,"
+#~ " the global interpreter lock must be"
+#~ " held before calling this function "
+#~ "and is still held when it returns."
+#~ "  Likewise a current thread state "
+#~ "must be set on entry.  On success,"
+#~ " the returned thread state will be"
+#~ " set as current.  If the sub-"
+#~ "interpreter is created with its own "
+#~ "GIL then the GIL of the calling"
+#~ " interpreter will be released.  When "
+#~ "the function returns, the new "
+#~ "interpreter's GIL will be held by "
+#~ "the current thread and the previously"
+#~ " interpreter's GIL will remain released "
+#~ "here."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Using :c:func:`Py_NewInterpreterFromConfig` you can"
+#~ " create a sub-interpreter that is "
+#~ "completely isolated from other interpreters,"
+#~ " including having its own GIL.  The"
+#~ " most important benefit of this "
+#~ "isolation is that such an interpreter"
+#~ " can execute Python code without "
+#~ "being blocked by other interpreters or"
+#~ " blocking any others.  Thus a single"
+#~ " Python process can truly take "
+#~ "advantage of multiple CPU cores when "
+#~ "running Python code.  The isolation also"
+#~ " encourages a different approach to "
+#~ "concurrency than that of just using "
+#~ "threads. (See :pep:`554`.)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This function doesn't need a current "
+#~ "thread state to run, and it "
+#~ "doesn't need the global interpreter "
+#~ "lock."
+#~ msgstr "이 함수는 실행하는 데 현재 스레드 상태가 필요하지 않으며, 전역 인터프리터 록이 필요하지 않습니다."
+
+#~ msgid ""
+#~ "Not that tracer functions **must not**"
+#~ " create Python objects inside or "
+#~ "otherwise the call will be re-"
+#~ "entrant. The tracer also **must not**"
+#~ " clear any existing exception or set"
+#~ " an exception.  The GIL will be "
+#~ "held every time the tracer function "
+#~ "is called."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Lock mutex *m*.  If another thread "
+#~ "has already locked it, the calling "
+#~ "thread will block until the mutex "
+#~ "is unlocked.  While blocked, the thread"
+#~ " will temporarily release the :term:`GIL`"
+#~ " if it is held."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Critical sections avoid deadlocks by "
+#~ "implicitly suspending active critical sections"
+#~ " and releasing the locks during calls"
+#~ " to :c:func:`PyEval_SaveThread`. When "
+#~ ":c:func:`PyEval_RestoreThread` is called, the "
+#~ "most recent critical section is resumed,"
+#~ " and its locks reacquired.  This "
+#~ "means the critical section API provides"
+#~ " weaker guarantees than traditional locks"
+#~ " -- they are useful because their "
+#~ "behavior is similar to the :term:`GIL`."
+#~ msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -106,19 +106,25 @@ msgid "Key Functions"
 msgstr "키 함수"
 
 #: ../../howto/sorting.rst:50
+#, fuzzy
 msgid ""
-"Both :meth:`list.sort` and :func:`sorted` have a *key* parameter to "
-"specify a function (or other callable) to be called on each list element "
-"prior to making comparisons."
+"The :meth:`list.sort` method and the functions :func:`sorted`, "
+":func:`min`, :func:`max`, :func:`heapq.nsmallest`, and "
+":func:`heapq.nlargest` have a *key* parameter to specify a function (or "
+"other callable) to be called on each list element prior to making "
+"comparisons."
 msgstr ""
 ":meth:`list.sort`\\와 :func:`sorted`\\는 모두 비교하기 전에 각 리스트 요소에 대해 호출할 함수(또는 "
 "다른 콜러블)를 지정하는 *key* 매개 변수를 가지고 있습니다."
 
-#: ../../howto/sorting.rst:54
-msgid "For example, here's a case-insensitive string comparison:"
+#: ../../howto/sorting.rst:56
+#, fuzzy
+msgid ""
+"For example, here's a case-insensitive string comparison using "
+":meth:`str.casefold`:"
 msgstr "예를 들어, 다음은 대소 문자를 구분하지 않는 문자열 비교입니다:"
 
-#: ../../howto/sorting.rst:56
+#: ../../howto/sorting.rst:59
 msgid ""
 ">>> sorted(\"This is a test string from Andrew\".split(), "
 "key=str.casefold)\n"
@@ -128,7 +134,7 @@ msgstr ""
 "key=str.casefold)\n"
 "['a', 'Andrew', 'from', 'is', 'string', 'test', 'This']"
 
-#: ../../howto/sorting.rst:61
+#: ../../howto/sorting.rst:64
 msgid ""
 "The value of the *key* parameter should be a function (or other callable)"
 " that takes a single argument and returns a key to use for sorting "
@@ -138,13 +144,13 @@ msgstr ""
 "*key* 매개 변수의 값은 단일 인자를 취하고 정렬 목적으로 사용할 키를 반환하는 함수(또는 다른 콜러블)여야 합니다. 키 함수가"
 " 각 입력 레코드에 대해 정확히 한 번 호출되기 때문에 이 기법은 빠릅니다."
 
-#: ../../howto/sorting.rst:66
+#: ../../howto/sorting.rst:69
 msgid ""
 "A common pattern is to sort complex objects using some of the object's "
 "indices as keys. For example:"
 msgstr "일반적인 패턴은 객체의 인덱스 중 일부를 키로 사용하여 복잡한 객체를 정렬하는 것입니다. 예를 들어:"
 
-#: ../../howto/sorting.rst:69
+#: ../../howto/sorting.rst:72
 msgid ""
 ">>> student_tuples = [\n"
 "...     ('john', 'A', 15),\n"
@@ -163,11 +169,11 @@ msgstr ""
 ">>> sorted(student_tuples, key=lambda student: student[2])   # 나이로 정렬합니다\n"
 "[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]"
 
-#: ../../howto/sorting.rst:79
+#: ../../howto/sorting.rst:82
 msgid "The same technique works for objects with named attributes. For example:"
 msgstr "같은 기법이 이름있는 어트리뷰트를 갖는 객체에서도 작동합니다. 예를 들어:"
 
-#: ../../howto/sorting.rst:81
+#: ../../howto/sorting.rst:84
 msgid ""
 ">>> class Student:\n"
 "...     def __init__(self, name, grade, age):\n"
@@ -203,18 +209,18 @@ msgstr ""
 "정렬합니다\n"
 "[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]"
 
-#: ../../howto/sorting.rst:99
+#: ../../howto/sorting.rst:102
 msgid ""
 "Objects with named attributes can be made by a regular class as shown "
 "above, or they can be instances of :class:`~dataclasses.dataclass` or a "
 ":term:`named tuple`."
 msgstr ""
 
-#: ../../howto/sorting.rst:104
+#: ../../howto/sorting.rst:107
 msgid "Operator Module Functions and Partial Function Evaluation"
 msgstr "operator 모듈 함수와 부분 함수 평가"
 
-#: ../../howto/sorting.rst:106
+#: ../../howto/sorting.rst:109
 msgid ""
 "The :term:`key function` patterns shown above are very common, so Python "
 "provides convenience functions to make accessor functions easier and "
@@ -226,11 +232,11 @@ msgstr ""
 "만드는 편리 함수를 제공합니다. :mod:`operator` 모듈에는 :func:`~operator.itemgetter`, "
 ":func:`~operator.attrgetter` 및 :func:`~operator.methodcaller` 함수가 있습니다."
 
-#: ../../howto/sorting.rst:111
+#: ../../howto/sorting.rst:114
 msgid "Using those functions, the above examples become simpler and faster:"
 msgstr "이러한 함수를 사용하면, 위의 예제가 더 간단 해지고 빨라집니다:"
 
-#: ../../howto/sorting.rst:113
+#: ../../howto/sorting.rst:116
 msgid ""
 ">>> from operator import itemgetter, attrgetter\n"
 "\n"
@@ -248,7 +254,7 @@ msgstr ""
 ">>> sorted(student_objects, key=attrgetter('age'))\n"
 "[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]"
 
-#: ../../howto/sorting.rst:123
+#: ../../howto/sorting.rst:126
 msgid ""
 "The operator module functions allow multiple levels of sorting. For "
 "example, to sort by *grade* then by *age*:"
@@ -256,7 +262,7 @@ msgstr ""
 "operator 모듈 함수는 다중 수준의 정렬을 허용합니다. 예를 들어, 먼저 *grade*\\로 정렬한 다음 *age*\\로 "
 "정렬하려면, 이렇게 합니다:"
 
-#: ../../howto/sorting.rst:126
+#: ../../howto/sorting.rst:129
 msgid ""
 ">>> sorted(student_tuples, key=itemgetter(1,2))\n"
 "[('john', 'A', 15), ('dave', 'B', 10), ('jane', 'B', 12)]\n"
@@ -270,7 +276,7 @@ msgstr ""
 ">>> sorted(student_objects, key=attrgetter('grade', 'age'))\n"
 "[('john', 'A', 15), ('dave', 'B', 10), ('jane', 'B', 12)]"
 
-#: ../../howto/sorting.rst:134
+#: ../../howto/sorting.rst:137
 msgid ""
 "The :mod:`functools` module provides another helpful tool for making key-"
 "functions.  The :func:`~functools.partial` function can reduce the `arity"
@@ -278,7 +284,7 @@ msgid ""
 "making it suitable for use as a key-function."
 msgstr ""
 
-#: ../../howto/sorting.rst:139
+#: ../../howto/sorting.rst:142
 msgid ""
 ">>> from functools import partial\n"
 ">>> from unicodedata import normalize\n"
@@ -302,11 +308,11 @@ msgstr ""
 ">>> sorted(names, key=partial(normalize, 'NFC'))\n"
 "['Abe', 'Eloise', 'Nubia', 'Núñez', 'Zeke', 'Zoë', 'Åbjørn', 'Élana']"
 
-#: ../../howto/sorting.rst:153
+#: ../../howto/sorting.rst:156
 msgid "Ascending and Descending"
 msgstr "오름차순과 내림차순"
 
-#: ../../howto/sorting.rst:155
+#: ../../howto/sorting.rst:158
 msgid ""
 "Both :meth:`list.sort` and :func:`sorted` accept a *reverse* parameter "
 "with a boolean value. This is used to flag descending sorts. For example,"
@@ -315,7 +321,7 @@ msgstr ""
 ":meth:`list.sort`\\와 :func:`sorted`\\는 모두 불리언 값을 갖는 *reverse* 매개 변수를 "
 "받아들입니다. 내림차순 정렬을 지정하는 데 사용됩니다. 예를 들어, 학생 데이터를 역 *age* 순서로 얻으려면, 이렇게 합니다:"
 
-#: ../../howto/sorting.rst:159
+#: ../../howto/sorting.rst:162
 msgid ""
 ">>> sorted(student_tuples, key=itemgetter(2), reverse=True)\n"
 "[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]\n"
@@ -329,11 +335,11 @@ msgstr ""
 ">>> sorted(student_objects, key=attrgetter('age'), reverse=True)\n"
 "[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]"
 
-#: ../../howto/sorting.rst:168
+#: ../../howto/sorting.rst:171
 msgid "Sort Stability and Complex Sorts"
 msgstr "정렬 안정성과 복잡한 정렬"
 
-#: ../../howto/sorting.rst:170
+#: ../../howto/sorting.rst:173
 msgid ""
 "Sorts are guaranteed to be `stable "
 "<https://en.wikipedia.org/wiki/Sorting_algorithm#Stability>`_\\. That "
@@ -344,7 +350,7 @@ msgstr ""
 "<https://en.wikipedia.org/wiki/Sorting_algorithm#Stability>`_\\임이 보장됩니다. "
 "즉, 여러 레코드가 같은 키를 가질 때, 원래의 순서가 유지됩니다."
 
-#: ../../howto/sorting.rst:174
+#: ../../howto/sorting.rst:177
 msgid ""
 ">>> data = [('red', 1), ('blue', 1), ('red', 2), ('blue', 2)]\n"
 ">>> sorted(data, key=itemgetter(0))\n"
@@ -354,7 +360,7 @@ msgstr ""
 ">>> sorted(data, key=itemgetter(0))\n"
 "[('blue', 1), ('blue', 2), ('red', 1), ('red', 2)]"
 
-#: ../../howto/sorting.rst:180
+#: ../../howto/sorting.rst:183
 msgid ""
 "Notice how the two records for *blue* retain their original order so that"
 " ``('blue', 1)`` is guaranteed to precede ``('blue', 2)``."
@@ -362,7 +368,7 @@ msgstr ""
 "*blue*\\에 대한 두 레코드가 원래 순서를 유지해서 ``('blue', 1)``\\이 ``('blue', 2)``\\보다 앞에"
 " 나옴이 보장됨에 유의하십시오."
 
-#: ../../howto/sorting.rst:183
+#: ../../howto/sorting.rst:186
 msgid ""
 "This wonderful property lets you build complex sorts in a series of "
 "sorting steps. For example, to sort the student data by descending "
@@ -373,7 +379,7 @@ msgstr ""
 "내림차순으로 정렬한 다음, *age*\\의 오름차순으로 정렬하려면, 먼저 *age* 정렬을 수행한 다음 *grade*\\를 사용하여"
 " 다시 정렬합니다:"
 
-#: ../../howto/sorting.rst:187
+#: ../../howto/sorting.rst:190
 msgid ""
 ">>> s = sorted(student_objects, key=attrgetter('age'))     # sort on "
 "secondary key\n"
@@ -387,13 +393,13 @@ msgstr ""
 "내림차순 정렬합니다\n"
 "[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]"
 
-#: ../../howto/sorting.rst:193
+#: ../../howto/sorting.rst:196
 msgid ""
 "This can be abstracted out into a wrapper function that can take a list "
 "and tuples of field and order to sort them on multiple passes."
 msgstr "이것은 다중 패스로 정렬하기 위해 필드와 순서의 튜플 리스트를 받을 수 있는 래퍼 함수로 추상화할 수 있습니다."
 
-#: ../../howto/sorting.rst:196
+#: ../../howto/sorting.rst:199
 msgid ""
 ">>> def multisort(xs, specs):\n"
 "...     for key, reverse in reversed(specs):\n"
@@ -411,7 +417,7 @@ msgstr ""
 ">>> multisort(list(student_objects), (('grade', True), ('age', False)))\n"
 "[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]"
 
-#: ../../howto/sorting.rst:206
+#: ../../howto/sorting.rst:209
 msgid ""
 "The `Timsort <https://en.wikipedia.org/wiki/Timsort>`_ algorithm used in "
 "Python does multiple sorts efficiently because it can take advantage of "
@@ -420,35 +426,35 @@ msgstr ""
 "파이썬에서 사용된 `Timsort <https://en.wikipedia.org/wiki/Timsort>`_ 알고리즘은 데이터 "
 "집합에 이미 존재하는 순서를 활용할 수 있으므로 효율적으로 여러 번의 정렬을 수행합니다."
 
-#: ../../howto/sorting.rst:211
+#: ../../howto/sorting.rst:214
 msgid "Decorate-Sort-Undecorate"
 msgstr "장식-정렬-복원"
 
-#: ../../howto/sorting.rst:213
+#: ../../howto/sorting.rst:216
 msgid "This idiom is called Decorate-Sort-Undecorate after its three steps:"
 msgstr "이 관용구는 그것의 세 단계를 따라 장식-정렬-복원(Decorate-Sort-Undecorate)이라고 합니다:"
 
-#: ../../howto/sorting.rst:215
+#: ../../howto/sorting.rst:218
 msgid ""
 "First, the initial list is decorated with new values that control the "
 "sort order."
 msgstr "첫째, 초기 리스트가 정렬 순서를 제어하는 새로운 값으로 장식됩니다."
 
-#: ../../howto/sorting.rst:217
+#: ../../howto/sorting.rst:220
 msgid "Second, the decorated list is sorted."
 msgstr "둘째, 장식된 리스트를 정렬합니다."
 
-#: ../../howto/sorting.rst:219
+#: ../../howto/sorting.rst:222
 msgid ""
 "Finally, the decorations are removed, creating a list that contains only "
 "the initial values in the new order."
 msgstr "마지막으로, 장식을 제거하여, 새 순서로 초깃값만 포함하는 리스트를 만듭니다."
 
-#: ../../howto/sorting.rst:222
+#: ../../howto/sorting.rst:225
 msgid "For example, to sort the student data by *grade* using the DSU approach:"
 msgstr "예를 들어, DSU 방식을 사용하여 *grade*\\로 학생 데이터를 정렬하려면 다음과 같이 합니다:"
 
-#: ../../howto/sorting.rst:224
+#: ../../howto/sorting.rst:227
 msgid ""
 ">>> decorated = [(student.grade, i, student) for i, student in "
 "enumerate(student_objects)]\n"
@@ -463,7 +469,7 @@ msgstr ""
 ">>> [student for grade, i, student in decorated]               # 복원\n"
 "[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]"
 
-#: ../../howto/sorting.rst:231
+#: ../../howto/sorting.rst:234
 msgid ""
 "This idiom works because tuples are compared lexicographically; the first"
 " items are compared; if they are the same then the second items are "
@@ -472,19 +478,19 @@ msgstr ""
 "이 관용구는 튜플이 사전식으로 비교되기 때문에 작동합니다; 첫 번째 항목이 비교됩니다; 그들이 같으면 두 번째 항목이 비교되고, "
 "이런 식으로 계속됩니다."
 
-#: ../../howto/sorting.rst:235
+#: ../../howto/sorting.rst:238
 msgid ""
 "It is not strictly necessary in all cases to include the index *i* in the"
 " decorated list, but including it gives two benefits:"
 msgstr "모든 경우에 장식된 리스트에 인덱스 *i*\\를 포함할 필요는 없지만, 두 가지 이점이 있습니다:"
 
-#: ../../howto/sorting.rst:238
+#: ../../howto/sorting.rst:241
 msgid ""
 "The sort is stable -- if two items have the same key, their order will be"
 " preserved in the sorted list."
 msgstr "정렬이 안정적입니다 -- 두 항목이 같은 키를 가지면, 그 들의 순서가 정렬된 리스트에 유지됩니다."
 
-#: ../../howto/sorting.rst:241
+#: ../../howto/sorting.rst:244
 msgid ""
 "The original items do not have to be comparable because the ordering of "
 "the decorated tuples will be determined by at most the first two items. "
@@ -494,7 +500,7 @@ msgstr ""
 "장식된 튜플의 순서는 최대 처음 두 항목에 의해 결정되므로 원래 항목은 비교 가능할 필요가 없습니다. 그래서 예를 들어, 원래 "
 "리스트에는 직접 정렬될 수 없는 복소수가 포함될 수 있습니다."
 
-#: ../../howto/sorting.rst:246
+#: ../../howto/sorting.rst:249
 msgid ""
 "Another name for this idiom is `Schwartzian transform "
 "<https://en.wikipedia.org/wiki/Schwartzian_transform>`_\\, after Randal "
@@ -504,23 +510,23 @@ msgstr ""
 "`Schwartzian 변환 "
 "<https://en.wikipedia.org/wiki/Schwartzian_transform>`_\\입니다."
 
-#: ../../howto/sorting.rst:250
+#: ../../howto/sorting.rst:253
 msgid ""
 "Now that Python sorting provides key-functions, this technique is not "
 "often needed."
 msgstr "이제 파이썬 정렬이 키 함수를 제공하기 때문에, 이 기법은 자주 필요하지 않습니다."
 
-#: ../../howto/sorting.rst:253
+#: ../../howto/sorting.rst:256
 msgid "Comparison Functions"
 msgstr "비교 함수"
 
-#: ../../howto/sorting.rst:255
+#: ../../howto/sorting.rst:258
 msgid ""
 "Unlike key functions that return an absolute value for sorting, a "
 "comparison function computes the relative ordering for two inputs."
 msgstr ""
 
-#: ../../howto/sorting.rst:258
+#: ../../howto/sorting.rst:261
 msgid ""
 "For example, a `balance scale "
 "<https://upload.wikimedia.org/wikipedia/commons/1/17/Balance_à_tabac_1850.JPG>`_"
@@ -530,7 +536,7 @@ msgid ""
 " positive value for greater-than."
 msgstr ""
 
-#: ../../howto/sorting.rst:265
+#: ../../howto/sorting.rst:268
 msgid ""
 "It is common to encounter comparison functions when translating "
 "algorithms from other languages.  Also, some libraries provide comparison"
@@ -538,22 +544,120 @@ msgid ""
 "a comparison function."
 msgstr ""
 
-#: ../../howto/sorting.rst:269
+#: ../../howto/sorting.rst:272
 msgid ""
 "To accommodate those situations, Python provides "
 ":class:`functools.cmp_to_key` to wrap the comparison function to make it "
 "usable as a key function::"
 msgstr ""
 
-#: ../../howto/sorting.rst:273
+#: ../../howto/sorting.rst:276
 msgid "sorted(words, key=cmp_to_key(strcoll))  # locale-aware sort order"
 msgstr "sorted(words, key=cmp_to_key(strcoll))  # 로케일 인식 정렬 순서"
 
-#: ../../howto/sorting.rst:276
+#: ../../howto/sorting.rst:279
+msgid "Strategies For Unorderable Types and Values"
+msgstr ""
+
+#: ../../howto/sorting.rst:281
+msgid ""
+"A number of type and value issues can arise when sorting. Here are some "
+"strategies that can help:"
+msgstr ""
+
+#: ../../howto/sorting.rst:284
+msgid "Convert non-comparable input types to strings prior to sorting:"
+msgstr ""
+
+#: ../../howto/sorting.rst:286
+msgid ""
+">>> data = ['twelve', '11', 10]\n"
+">>> sorted(map(str, data))\n"
+"['10', '11', 'twelve']"
+msgstr ""
+
+#: ../../howto/sorting.rst:292
+msgid ""
+"This is needed because most cross-type comparisons raise a "
+":exc:`TypeError`."
+msgstr ""
+
+#: ../../howto/sorting.rst:295
+msgid "Remove special values prior to sorting:"
+msgstr ""
+
+#: ../../howto/sorting.rst:297
+msgid ""
+">>> from math import isnan\n"
+">>> from itertools import filterfalse\n"
+">>> data = [3.3, float('nan'), 1.1, 2.2]\n"
+">>> sorted(filterfalse(isnan, data))\n"
+"[1.1, 2.2, 3.3]"
+msgstr ""
+
+#: ../../howto/sorting.rst:305
+msgid ""
+"This is needed because the `IEEE-754 standard "
+"<https://en.wikipedia.org/wiki/IEEE_754>`_ specifies that, \"Every NaN "
+"shall compare unordered with everything, including itself.\""
+msgstr ""
+
+#: ../../howto/sorting.rst:309
+msgid "Likewise, ``None`` can be stripped from datasets as well:"
+msgstr ""
+
+#: ../../howto/sorting.rst:311
+msgid ""
+">>> data = [3.3, None, 1.1, 2.2]\n"
+">>> sorted(x for x in data if x is not None)\n"
+"[1.1, 2.2, 3.3]"
+msgstr ""
+
+#: ../../howto/sorting.rst:317
+msgid "This is needed because ``None`` is not comparable to other types."
+msgstr ""
+
+#: ../../howto/sorting.rst:319
+msgid "Convert mapping types into sorted item lists before sorting:"
+msgstr ""
+
+#: ../../howto/sorting.rst:321
+#, python-brace-format
+msgid ""
+">>> data = [{'a': 1}, {'b': 2}]\n"
+">>> sorted(data, key=lambda d: sorted(d.items()))\n"
+"[{'a': 1}, {'b': 2}]"
+msgstr ""
+
+#: ../../howto/sorting.rst:327
+msgid "This is needed because dict-to-dict comparisons raise a :exc:`TypeError`."
+msgstr ""
+
+#: ../../howto/sorting.rst:330
+msgid "Convert set types into sorted lists before sorting:"
+msgstr ""
+
+#: ../../howto/sorting.rst:332
+#, python-brace-format
+msgid ""
+">>> data = [{'a', 'b', 'c'}, {'b', 'c', 'd'}]\n"
+">>> sorted(map(sorted, data))\n"
+"[['a', 'b', 'c'], ['b', 'c', 'd']]"
+msgstr ""
+
+#: ../../howto/sorting.rst:338
+#, python-brace-format
+msgid ""
+"This is needed because the elements contained in set types do not have a "
+"deterministic order.  For example, ``list({'a', 'b'})`` may produce "
+"either ``['a', 'b']`` or ``['b', 'a']``."
+msgstr ""
+
+#: ../../howto/sorting.rst:343
 msgid "Odds and Ends"
 msgstr "잡동사니"
 
-#: ../../howto/sorting.rst:278
+#: ../../howto/sorting.rst:345
 msgid ""
 "For locale aware sorting, use :func:`locale.strxfrm` for a key function "
 "or :func:`locale.strcoll` for a comparison function.  This is necessary "
@@ -564,7 +668,7 @@ msgstr ""
 ":func:`locale.strcoll`\\을 사용하십시오. 이는 하부 알파벳이 같더라도 문화권마다 \"알파벳순\" 정렬 순서가 "
 "다를 수 있기 때문에 필요합니다."
 
-#: ../../howto/sorting.rst:283
+#: ../../howto/sorting.rst:350
 msgid ""
 "The *reverse* parameter still maintains sort stability (so that records "
 "with equal keys retain the original order). Interestingly, that effect "
@@ -574,7 +678,7 @@ msgstr ""
 "*reverse* 매개 변수는 여전히 정렬 안정성을 유지합니다 (그래서 같은 키를 갖는 레코드는 원래 순서를 유지합니다). "
 "흥미롭게도, 그 효과는 내장 :func:`reversed` 함수를 두 번 사용하여 매개 변수 없이 흉내 낼 수 있습니다:"
 
-#: ../../howto/sorting.rst:288
+#: ../../howto/sorting.rst:355
 msgid ""
 ">>> data = [('red', 1), ('blue', 1), ('red', 2), ('blue', 2)]\n"
 ">>> standard_way = sorted(data, key=itemgetter(0), reverse=True)\n"
@@ -592,7 +696,7 @@ msgstr ""
 ">>> standard_way\n"
 "[('red', 1), ('red', 2), ('blue', 1), ('blue', 2)]"
 
-#: ../../howto/sorting.rst:297
+#: ../../howto/sorting.rst:364
 msgid ""
 "The sort routines use ``<`` when making comparisons between two objects. "
 "So, it is easy to add a standard sort order to a class by defining an "
@@ -601,7 +705,7 @@ msgstr ""
 "정렬 루틴은 두 객체를 비교할 때 ``<``\\를 사용합니다. 따라서 :meth:`~object.__lt__` 메서드를 정의하여, "
 "표준 정렬 순서를 클래스에 추가하기는 쉽습니다:"
 
-#: ../../howto/sorting.rst:301
+#: ../../howto/sorting.rst:368
 msgid ""
 ">>> Student.__lt__ = lambda self, other: self.age < other.age\n"
 ">>> sorted(student_objects)\n"
@@ -611,7 +715,7 @@ msgstr ""
 ">>> sorted(student_objects)\n"
 "[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]"
 
-#: ../../howto/sorting.rst:307
+#: ../../howto/sorting.rst:374
 msgid ""
 "However, note that ``<`` can fall back to using :meth:`~object.__gt__` if"
 " :meth:`~object.__lt__` is not implemented (see :func:`object.__lt__` for"
@@ -621,7 +725,7 @@ msgid ""
 " easier."
 msgstr ""
 
-#: ../../howto/sorting.rst:314
+#: ../../howto/sorting.rst:381
 msgid ""
 "Key functions need not depend directly on the objects being sorted. A key"
 " function can also access external resources. For instance, if the "
@@ -631,7 +735,7 @@ msgstr ""
 "키 함수는 정렬되는 객체에 직접 의존할 필요가 없습니다. 키 함수는 외부 자원에 액세스할 수도 있습니다. 예를 들어, 학생 성적이 "
 "딕셔너리에 저장되어 있다면, 학생 이름의 별도 리스트를 정렬하는 데 사용할 수 있습니다:"
 
-#: ../../howto/sorting.rst:319
+#: ../../howto/sorting.rst:386
 #, python-brace-format
 msgid ""
 ">>> students = ['dave', 'john', 'jane']\n"
@@ -644,25 +748,25 @@ msgstr ""
 ">>> sorted(students, key=newgrades.__getitem__)\n"
 "['jane', 'dave', 'john']"
 
-#: ../../howto/sorting.rst:327
+#: ../../howto/sorting.rst:394
 msgid "Partial Sorts"
 msgstr ""
 
-#: ../../howto/sorting.rst:329
+#: ../../howto/sorting.rst:396
 msgid ""
 "Some applications require only some of the data to be ordered.  The "
 "standard library provides several tools that do less work than a full "
 "sort:"
 msgstr ""
 
-#: ../../howto/sorting.rst:332
+#: ../../howto/sorting.rst:399
 msgid ""
 ":func:`min` and :func:`max` return the smallest and largest values, "
 "respectively.  These functions make a single pass over the input data and"
 " require almost no auxiliary memory."
 msgstr ""
 
-#: ../../howto/sorting.rst:336
+#: ../../howto/sorting.rst:403
 msgid ""
 ":func:`heapq.nsmallest` and :func:`heapq.nlargest` return the *n* "
 "smallest and largest values, respectively.  These functions make a single"
@@ -671,7 +775,7 @@ msgid ""
 "functions make far fewer comparisons than a full sort."
 msgstr ""
 
-#: ../../howto/sorting.rst:342
+#: ../../howto/sorting.rst:409
 msgid ""
 ":func:`heapq.heappush` and :func:`heapq.heappop` create and maintain a "
 "partially sorted arrangement of data that keeps the smallest element at "

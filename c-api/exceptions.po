@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -558,8 +558,8 @@ msgstr ""
 "없습니다."
 
 #: ../../c-api/exceptions.rst:416
-msgid "The caller must hold the GIL."
-msgstr "호출자는 GIL을 보유해야 합니다."
+msgid "The caller must have an :term:`attached thread state`."
+msgstr ""
 
 #: ../../c-api/exceptions.rst:420
 msgid ""
@@ -911,8 +911,8 @@ msgstr ""
 
 #: ../../c-api/exceptions.rst:677 ../../c-api/exceptions.rst:704
 msgid ""
-"This function is async-signal-safe.  It can be called without the "
-":term:`GIL` and from a C signal handler."
+"This function is async-signal-safe.  It can be called without an "
+":term:`attached thread state` and from a C signal handler."
 msgstr ""
 
 #: ../../c-api/exceptions.rst:687
@@ -1012,11 +1012,21 @@ msgstr ""
 "새로운 예외 클래스에 독스트링을 쉽게 부여할 수 있다는 점을 제외하면 :c:func:`PyErr_NewException`\\과 "
 "같습니다: *doc*\\이 ``NULL``\\이 아니면, 예외 클래스에 대한 독스트링으로 사용됩니다."
 
-#: ../../c-api/exceptions.rst:753
+#: ../../c-api/exceptions.rst:754
+msgid ""
+"Return non-zero if *ob* is an exception class, zero otherwise. This "
+"function always succeeds."
+msgstr ""
+
+#: ../../c-api/exceptions.rst:759
+msgid "Return :c:member:`~PyTypeObject.tp_name` of the exception class *ob*."
+msgstr ""
+
+#: ../../c-api/exceptions.rst:763
 msgid "Exception Objects"
 msgstr "예외 객체"
 
-#: ../../c-api/exceptions.rst:757
+#: ../../c-api/exceptions.rst:767
 msgid ""
 "Return the traceback associated with the exception as a new reference, as"
 " accessible from Python through the :attr:`~BaseException.__traceback__` "
@@ -1025,13 +1035,13 @@ msgstr ""
 "파이썬에서 :attr:`~BaseException.__traceback__` 어트리뷰트를 통해 액세스 할 수 있는 새로운 참조로 "
 "예외와 관련된 트레이스백을 반환합니다. 관련된 트레이스백이 없으면, ``NULL``\\을 반환합니다."
 
-#: ../../c-api/exceptions.rst:765
+#: ../../c-api/exceptions.rst:775
 msgid ""
 "Set the traceback associated with the exception to *tb*.  Use ``Py_None``"
 " to clear it."
 msgstr "예외와 관련된 트레이스백을 *tb*\\로 설정합니다. 지우려면 ``Py_None``\\을 사용하십시오."
 
-#: ../../c-api/exceptions.rst:771
+#: ../../c-api/exceptions.rst:781
 msgid ""
 "Return the context (another exception instance during whose handling *ex*"
 " was raised) associated with the exception as a new reference, as "
@@ -1042,7 +1052,7 @@ msgstr ""
 "연관된 컨텍스트(다른 예외 인스턴스, 이것을 처리하는 도중 *ex*\\가 발생했습니다)를 반환합니다. 연결된 컨텍스트가 없으면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/exceptions.rst:779
+#: ../../c-api/exceptions.rst:789
 msgid ""
 "Set the context associated with the exception to *ctx*.  Use ``NULL`` to "
 "clear it.  There is no type check to make sure that *ctx* is an exception"
@@ -1051,7 +1061,7 @@ msgstr ""
 "예외와 연관된 컨텍스트를 *ctx*\\로 설정합니다. 지우려면 ``NULL``\\을 사용하십시오. *ctx*\\가 예외 인스턴스인지"
 " 확인하는 형 검사는 없습니다. 이것은 *ctx*\\에 대한 참조를 훔칩니다."
 
-#: ../../c-api/exceptions.rst:786
+#: ../../c-api/exceptions.rst:796
 msgid ""
 "Return the cause (either an exception instance, or ``None``, set by "
 "``raise ... from ...``) associated with the exception as a new reference,"
@@ -1061,7 +1071,7 @@ msgstr ""
 "파이썬에서 :attr:`~BaseException.__cause__` 어트리뷰트를 통해 액세스 할 수 있는 새 참조로 예외와 관련된"
 " 원인(예외 인스턴스나 ``None``, ``raise ... from ...``\\으로 설정됩니다)을 반환합니다."
 
-#: ../../c-api/exceptions.rst:794
+#: ../../c-api/exceptions.rst:804
 msgid ""
 "Set the cause associated with the exception to *cause*.  Use ``NULL`` to "
 "clear it.  There is no type check to make sure that *cause* is either an "
@@ -1070,7 +1080,7 @@ msgstr ""
 "예외와 관련된 원인을 *cause*\\로 설정합니다. 지우려면 ``NULL``\\을 사용하십시오. *cause*\\가 예외 "
 "인스턴스나 ``None``\\인지 확인하는 형 검사는 없습니다. 이것은 *cause*\\에 대한 참조를 훔칩니다."
 
-#: ../../c-api/exceptions.rst:798
+#: ../../c-api/exceptions.rst:808
 msgid ""
 "The :attr:`~BaseException.__suppress_context__` attribute is implicitly "
 "set to ``True`` by this function."
@@ -1078,15 +1088,15 @@ msgstr ""
 ":attr:`~BaseException.__suppress_context__` 어트리뷰트는 이 함수에 의해 묵시적으로 "
 "``True``\\로 설정됩니다."
 
-#: ../../c-api/exceptions.rst:804
+#: ../../c-api/exceptions.rst:814
 msgid "Return :attr:`~BaseException.args` of exception *ex*."
 msgstr ""
 
-#: ../../c-api/exceptions.rst:809
+#: ../../c-api/exceptions.rst:819
 msgid "Set :attr:`~BaseException.args` of exception *ex* to *args*."
 msgstr ""
 
-#: ../../c-api/exceptions.rst:813
+#: ../../c-api/exceptions.rst:823
 msgid ""
 "Implement part of the interpreter's implementation of "
 ":keyword:`!except*`. *orig* is the original exception that was caught, "
@@ -1099,17 +1109,17 @@ msgid ""
 " reraise."
 msgstr ""
 
-#: ../../c-api/exceptions.rst:827
+#: ../../c-api/exceptions.rst:837
 msgid "Unicode Exception Objects"
 msgstr "유니코드 예외 객체"
 
-#: ../../c-api/exceptions.rst:829
+#: ../../c-api/exceptions.rst:839
 msgid ""
 "The following functions are used to create and modify Unicode exceptions "
 "from C."
 msgstr "다음 함수는 C에서 유니코드 예외를 만들고 수정하는 데 사용됩니다."
 
-#: ../../c-api/exceptions.rst:833
+#: ../../c-api/exceptions.rst:843
 msgid ""
 "Create a :class:`UnicodeDecodeError` object with the attributes "
 "*encoding*, *object*, *length*, *start*, *end* and *reason*. *encoding* "
@@ -1119,15 +1129,15 @@ msgstr ""
 ":class:`UnicodeDecodeError` 객체를 만듭니다. *encoding*\\과 *reason*\\은 UTF-8로 "
 "인코딩된 문자열입니다."
 
-#: ../../c-api/exceptions.rst:840
+#: ../../c-api/exceptions.rst:850
 msgid "Return the *encoding* attribute of the given exception object."
 msgstr "주어진 예외 객체의 *encoding* 어트리뷰트를 반환합니다."
 
-#: ../../c-api/exceptions.rst:846
+#: ../../c-api/exceptions.rst:856
 msgid "Return the *object* attribute of the given exception object."
 msgstr "주어진 예외 객체의 *object* 어트리뷰트를 반환합니다."
 
-#: ../../c-api/exceptions.rst:852
+#: ../../c-api/exceptions.rst:862
 msgid ""
 "Get the *start* attribute of the given exception object and place it into"
 " *\\*start*.  *start* must not be ``NULL``.  Return ``0`` on success, "
@@ -1136,15 +1146,33 @@ msgstr ""
 "주어진 예외 객체의 *start* 어트리뷰트를 가져와서 *\\*start*\\에 배치합니다. *start*\\는 "
 "``NULL``\\이 아니어야 합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다."
 
-#: ../../c-api/exceptions.rst:860
+#: ../../c-api/exceptions.rst:866
 msgid ""
-"Set the *start* attribute of the given exception object to *start*.  "
+"If the :attr:`UnicodeError.object` is an empty sequence, the resulting "
+"*start* is ``0``. Otherwise, it is clipped to ``[0, len(object) - 1]``."
+msgstr ""
+
+#: ../../c-api/exceptions.rst:869
+#, fuzzy
+msgid ":attr:`UnicodeError.start`"
+msgstr ":exc:`UnicodeError`"
+
+#: ../../c-api/exceptions.rst:875
+#, fuzzy
+msgid ""
+"Set the *start* attribute of the given exception object to *start*. "
 "Return ``0`` on success, ``-1`` on failure."
 msgstr ""
 "주어진 예외 객체의 *start* 어트리뷰트를 *start*\\로 설정합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을"
 " 반환합니다."
 
-#: ../../c-api/exceptions.rst:867
+#: ../../c-api/exceptions.rst:880
+msgid ""
+"While passing a negative *start* does not raise an exception, the "
+"corresponding getters will not consider it as a relative offset."
+msgstr ""
+
+#: ../../c-api/exceptions.rst:888
 msgid ""
 "Get the *end* attribute of the given exception object and place it into "
 "*\\*end*.  *end* must not be ``NULL``.  Return ``0`` on success, ``-1`` "
@@ -1153,7 +1181,13 @@ msgstr ""
 "주어진 예외 객체의 *end* 어트리뷰트를 가져와서 *\\*end*\\에 배치합니다. *end*\\는 ``NULL``\\이 아니어야"
 " 합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다."
 
-#: ../../c-api/exceptions.rst:875
+#: ../../c-api/exceptions.rst:892
+msgid ""
+"If the :attr:`UnicodeError.object` is an empty sequence, the resulting "
+"*end* is ``0``. Otherwise, it is clipped to ``[1, len(object)]``."
+msgstr ""
+
+#: ../../c-api/exceptions.rst:899
 msgid ""
 "Set the *end* attribute of the given exception object to *end*.  Return "
 "``0`` on success, ``-1`` on failure."
@@ -1161,11 +1195,16 @@ msgstr ""
 "주어진 예외 객체의 *end* 어트리뷰트를 *end*\\로 설정합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 "
 "반환합니다."
 
-#: ../../c-api/exceptions.rst:882
+#: ../../c-api/exceptions.rst:902
+#, fuzzy
+msgid ":attr:`UnicodeError.end`"
+msgstr ":exc:`UnicodeError`"
+
+#: ../../c-api/exceptions.rst:908
 msgid "Return the *reason* attribute of the given exception object."
 msgstr "주어진 예외 객체의 *reason* 어트리뷰트를 반환합니다."
 
-#: ../../c-api/exceptions.rst:888
+#: ../../c-api/exceptions.rst:914
 msgid ""
 "Set the *reason* attribute of the given exception object to *reason*.  "
 "Return ``0`` on success, ``-1`` on failure."
@@ -1173,11 +1212,11 @@ msgstr ""
 "주어진 예외 객체의 *reason* 어트리뷰트를 *reason*\\으로 설정합니다. 성공하면 ``0``\\을, 실패하면 "
 "``-1``\\을 반환합니다."
 
-#: ../../c-api/exceptions.rst:895
+#: ../../c-api/exceptions.rst:921
 msgid "Recursion Control"
 msgstr "재귀 제어"
 
-#: ../../c-api/exceptions.rst:897
+#: ../../c-api/exceptions.rst:923
 msgid ""
 "These two functions provide a way to perform safe recursive calls at the "
 "C level, both in the core and in extension modules.  They are needed if "
@@ -1190,30 +1229,21 @@ msgstr ""
 "코드를 호출하지 않는 경우 필요합니다 (파이썬 코드는 재귀 깊이를 자동으로 추적합니다). :ref:`호출 프로토콜 "
 "<call>`\\이 재귀 처리를 처리하기 때문에 *tp_call* 구현에도 필요하지 않습니다."
 
-#: ../../c-api/exceptions.rst:906
+#: ../../c-api/exceptions.rst:932
 msgid "Marks a point where a recursive C-level call is about to be performed."
 msgstr "재귀적 C 수준 호출이 막 수행되려고 하는 지점을 표시합니다."
 
-#: ../../c-api/exceptions.rst:908
+#: ../../c-api/exceptions.rst:934
+#, fuzzy
 msgid ""
-"If :c:macro:`!USE_STACKCHECK` is defined, this function checks if the OS "
-"stack overflowed using :c:func:`PyOS_CheckStack`.  If this is the case, "
-"it sets a :exc:`MemoryError` and returns a nonzero value."
-msgstr ""
-":c:macro:`!USE_STACKCHECK`\\가 정의되었으면, 이 함수는 :c:func:`PyOS_CheckStack`\\을 "
-"사용하여 OS 스택이 오버플로 되었는지 확인합니다. 이 경우, :exc:`MemoryError`\\를 설정하고 0이 아닌 값을 "
-"반환합니다."
-
-#: ../../c-api/exceptions.rst:912
-msgid ""
-"The function then checks if the recursion limit is reached.  If this is "
-"the case, a :exc:`RecursionError` is set and a nonzero value is returned."
-" Otherwise, zero is returned."
+"The function then checks if the stack limit is reached.  If this is the "
+"case, a :exc:`RecursionError` is set and a nonzero value is returned. "
+"Otherwise, zero is returned."
 msgstr ""
 "그런 다음 함수는 재귀 제한에 도달했는지 확인합니다. 이 경우, :exc:`RecursionError`\\가 설정되고 0이 아닌 "
 "값이 반환됩니다. 그렇지 않으면, 0이 반환됩니다."
 
-#: ../../c-api/exceptions.rst:916
+#: ../../c-api/exceptions.rst:938
 msgid ""
 "*where* should be a UTF-8 encoded string such as ``\" in instance "
 "check\"`` to be concatenated to the :exc:`RecursionError` message caused "
@@ -1222,13 +1252,13 @@ msgstr ""
 "*where*\\는 재귀 깊이 제한으로 인한 :exc:`RecursionError` 메시지에 이어붙일 ``\" in instance"
 " check\"``\\와 같은 UTF-8 인코딩된 문자열이어야 합니다."
 
-#: ../../c-api/exceptions.rst:920 ../../c-api/exceptions.rst:928
+#: ../../c-api/exceptions.rst:942 ../../c-api/exceptions.rst:950
 msgid ""
 "This function is now also available in the :ref:`limited API "
 "<limited-c-api>`."
 msgstr "이 함수는 이제 :ref:`제한된 API <limited-c-api>`\\에서도 사용할 수 있습니다."
 
-#: ../../c-api/exceptions.rst:925
+#: ../../c-api/exceptions.rst:947
 msgid ""
 "Ends a :c:func:`Py_EnterRecursiveCall`.  Must be called once for each "
 "*successful* invocation of :c:func:`Py_EnterRecursiveCall`."
@@ -1236,7 +1266,7 @@ msgstr ""
 ":c:func:`Py_EnterRecursiveCall` 을 종료합니다. :c:func:`Py_EnterRecursiveCall` "
 "의 각 *성공적인* 호출마다 한 번씩 호출되어야 합니다."
 
-#: ../../c-api/exceptions.rst:931
+#: ../../c-api/exceptions.rst:953
 msgid ""
 "Properly implementing :c:member:`~PyTypeObject.tp_repr` for container "
 "types requires special recursion handling.  In addition to protecting the"
@@ -1250,13 +1280,13 @@ msgstr ""
 "객체를 추적해야 합니다. 다음 두 함수는 이 기능을 쉽게 만듭니다. 사실상, 이들은 "
 ":func:`reprlib.recursive_repr`\\에 대한 C 동등물입니다."
 
-#: ../../c-api/exceptions.rst:939
+#: ../../c-api/exceptions.rst:961
 msgid ""
 "Called at the beginning of the :c:member:`~PyTypeObject.tp_repr` "
 "implementation to detect cycles."
 msgstr "순환을 감지하기 위해 :c:member:`~PyTypeObject.tp_repr` 구현 시작 시 호출됩니다."
 
-#: ../../c-api/exceptions.rst:942
+#: ../../c-api/exceptions.rst:964
 #, python-brace-format
 msgid ""
 "If the object has already been processed, the function returns a positive"
@@ -1269,7 +1299,7 @@ msgstr ""
 "구현은 순환을 나타내는 문자열 객체를 반환해야 합니다. 예를 들어, :class:`dict` 객체는 ``{...}``\\를 반환하고"
 " :class:`list` 객체는 ``[...]``\\를 반환합니다."
 
-#: ../../c-api/exceptions.rst:948
+#: ../../c-api/exceptions.rst:970
 msgid ""
 "The function will return a negative integer if the recursion limit is "
 "reached.  In that case the :c:member:`~PyTypeObject.tp_repr` "
@@ -1278,7 +1308,7 @@ msgstr ""
 "재귀 제한에 도달하면 함수는 음의 정수를 반환합니다. 이 경우 :c:member:`~PyTypeObject.tp_repr` 구현은 "
 "일반적으로 ``NULL``\\을 반환해야 합니다."
 
-#: ../../c-api/exceptions.rst:952
+#: ../../c-api/exceptions.rst:974
 msgid ""
 "Otherwise, the function returns zero and the "
 ":c:member:`~PyTypeObject.tp_repr` implementation can continue normally."
@@ -1286,7 +1316,7 @@ msgstr ""
 "그렇지 않으면, 함수는 0을 반환하고 :c:member:`~PyTypeObject.tp_repr` 구현은 정상적으로 계속될 수 "
 "있습니다."
 
-#: ../../c-api/exceptions.rst:957
+#: ../../c-api/exceptions.rst:979
 msgid ""
 "Ends a :c:func:`Py_ReprEnter`.  Must be called once for each invocation "
 "of :c:func:`Py_ReprEnter` that returns zero."
@@ -1294,473 +1324,266 @@ msgstr ""
 ":c:func:`Py_ReprEnter`\\를 종료합니다. 0을 반환하는 :c:func:`Py_ReprEnter` 호출마다 한 번씩"
 " 호출해야 합니다."
 
-#: ../../c-api/exceptions.rst:964
-msgid "Standard Exceptions"
-msgstr "표준 예외"
+#: ../../c-api/exceptions.rst:986
+#, fuzzy
+msgid "Exception and warning types"
+msgstr "예외 처리"
 
-#: ../../c-api/exceptions.rst:966
+#: ../../c-api/exceptions.rst:988
+#, fuzzy
 msgid ""
-"All standard Python exceptions are available as global variables whose "
-"names are ``PyExc_`` followed by the Python exception name.  These have "
-"the type :c:expr:`PyObject*`; they are all class objects.  For "
-"completeness, here are all the variables:"
+"All standard Python exceptions and warning categories are available as "
+"global variables whose names are ``PyExc_`` followed by the Python "
+"exception name. These have the type :c:expr:`PyObject*`; they are all "
+"class objects."
 msgstr ""
-"모든 표준 파이썬 예외는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
+"모든 표준 파이썬 경고 범주는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
 ":c:expr:`PyObject*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
 
-#: ../../c-api/exceptions.rst:1028 ../../c-api/exceptions.rst:1163
-#: ../../c-api/exceptions.rst:1208
-msgid "C Name"
+#: ../../c-api/exceptions.rst:992
+msgid "For completeness, here are all the variables:"
+msgstr ""
+
+#: ../../c-api/exceptions.rst:995
+#, fuzzy
+msgid "Exception types"
+msgstr "예외 객체"
+
+#: ../../c-api/exceptions.rst:1002 ../../c-api/exceptions.rst:1148
+#: ../../c-api/exceptions.rst:1178
+#, fuzzy
+msgid "C name"
 msgstr "C 이름"
 
-#: ../../c-api/exceptions.rst:1028 ../../c-api/exceptions.rst:1208
-msgid "Python Name"
+#: ../../c-api/exceptions.rst:1003 ../../c-api/exceptions.rst:1149
+#: ../../c-api/exceptions.rst:1179
+#, fuzzy
+msgid "Python name"
 msgstr "파이썬 이름"
 
-#: ../../c-api/exceptions.rst:1028 ../../c-api/exceptions.rst:1163
-#: ../../c-api/exceptions.rst:1208
-msgid "Notes"
-msgstr "노트"
-
-#: ../../c-api/exceptions.rst:1030
-msgid ":c:data:`PyExc_BaseException`"
-msgstr ":c:data:`PyExc_BaseException`"
-
-#: ../../c-api/exceptions.rst:1030
+#: ../../c-api/exceptions.rst:1005
 msgid ":exc:`BaseException`"
 msgstr ":exc:`BaseException`"
 
-#: ../../c-api/exceptions.rst:1030 ../../c-api/exceptions.rst:1032
-#: ../../c-api/exceptions.rst:1034 ../../c-api/exceptions.rst:1080
-#: ../../c-api/exceptions.rst:1092
-msgid "[1]_"
-msgstr "[1]_"
+#: ../../c-api/exceptions.rst:1007
+#, fuzzy
+msgid ":exc:`BaseExceptionGroup`"
+msgstr ":exc:`BaseException`"
 
-#: ../../c-api/exceptions.rst:1032
-msgid ":c:data:`PyExc_Exception`"
-msgstr ":c:data:`PyExc_Exception`"
-
-#: ../../c-api/exceptions.rst:1032
+#: ../../c-api/exceptions.rst:1009
 msgid ":exc:`Exception`"
 msgstr ":exc:`Exception`"
 
-#: ../../c-api/exceptions.rst:1034
-msgid ":c:data:`PyExc_ArithmeticError`"
-msgstr ":c:data:`PyExc_ArithmeticError`"
-
-#: ../../c-api/exceptions.rst:1034
+#: ../../c-api/exceptions.rst:1011
 msgid ":exc:`ArithmeticError`"
 msgstr ":exc:`ArithmeticError`"
 
-#: ../../c-api/exceptions.rst:1036
-msgid ":c:data:`PyExc_AssertionError`"
-msgstr ":c:data:`PyExc_AssertionError`"
-
-#: ../../c-api/exceptions.rst:1036
+#: ../../c-api/exceptions.rst:1013
 msgid ":exc:`AssertionError`"
 msgstr ":exc:`AssertionError`"
 
-#: ../../c-api/exceptions.rst:1038
-msgid ":c:data:`PyExc_AttributeError`"
-msgstr ":c:data:`PyExc_AttributeError`"
-
-#: ../../c-api/exceptions.rst:1038
+#: ../../c-api/exceptions.rst:1015
 msgid ":exc:`AttributeError`"
 msgstr ":exc:`AttributeError`"
 
-#: ../../c-api/exceptions.rst:1040
-msgid ":c:data:`PyExc_BlockingIOError`"
-msgstr ":c:data:`PyExc_BlockingIOError`"
-
-#: ../../c-api/exceptions.rst:1040
+#: ../../c-api/exceptions.rst:1017
 msgid ":exc:`BlockingIOError`"
 msgstr ":exc:`BlockingIOError`"
 
-#: ../../c-api/exceptions.rst:1042
-msgid ":c:data:`PyExc_BrokenPipeError`"
-msgstr ":c:data:`PyExc_BrokenPipeError`"
-
-#: ../../c-api/exceptions.rst:1042
+#: ../../c-api/exceptions.rst:1019
 msgid ":exc:`BrokenPipeError`"
 msgstr ":exc:`BrokenPipeError`"
 
-#: ../../c-api/exceptions.rst:1044
-msgid ":c:data:`PyExc_BufferError`"
-msgstr ":c:data:`PyExc_BufferError`"
-
-#: ../../c-api/exceptions.rst:1044
+#: ../../c-api/exceptions.rst:1021
 msgid ":exc:`BufferError`"
 msgstr ":exc:`BufferError`"
 
-#: ../../c-api/exceptions.rst:1046
-msgid ":c:data:`PyExc_ChildProcessError`"
-msgstr ":c:data:`PyExc_ChildProcessError`"
-
-#: ../../c-api/exceptions.rst:1046
+#: ../../c-api/exceptions.rst:1023
 msgid ":exc:`ChildProcessError`"
 msgstr ":exc:`ChildProcessError`"
 
-#: ../../c-api/exceptions.rst:1048
-msgid ":c:data:`PyExc_ConnectionAbortedError`"
-msgstr ":c:data:`PyExc_ConnectionAbortedError`"
-
-#: ../../c-api/exceptions.rst:1048
+#: ../../c-api/exceptions.rst:1025
 msgid ":exc:`ConnectionAbortedError`"
 msgstr ":exc:`ConnectionAbortedError`"
 
-#: ../../c-api/exceptions.rst:1050
-msgid ":c:data:`PyExc_ConnectionError`"
-msgstr ":c:data:`PyExc_ConnectionError`"
-
-#: ../../c-api/exceptions.rst:1050
+#: ../../c-api/exceptions.rst:1027
 msgid ":exc:`ConnectionError`"
 msgstr ":exc:`ConnectionError`"
 
-#: ../../c-api/exceptions.rst:1052
-msgid ":c:data:`PyExc_ConnectionRefusedError`"
-msgstr ":c:data:`PyExc_ConnectionRefusedError`"
-
-#: ../../c-api/exceptions.rst:1052
+#: ../../c-api/exceptions.rst:1029
 msgid ":exc:`ConnectionRefusedError`"
 msgstr ":exc:`ConnectionRefusedError`"
 
-#: ../../c-api/exceptions.rst:1054
-msgid ":c:data:`PyExc_ConnectionResetError`"
-msgstr ":c:data:`PyExc_ConnectionResetError`"
-
-#: ../../c-api/exceptions.rst:1054
+#: ../../c-api/exceptions.rst:1031
 msgid ":exc:`ConnectionResetError`"
 msgstr ":exc:`ConnectionResetError`"
 
-#: ../../c-api/exceptions.rst:1056
-msgid ":c:data:`PyExc_EOFError`"
-msgstr ":c:data:`PyExc_EOFError`"
-
-#: ../../c-api/exceptions.rst:1056
+#: ../../c-api/exceptions.rst:1033
 msgid ":exc:`EOFError`"
 msgstr ":exc:`EOFError`"
 
-#: ../../c-api/exceptions.rst:1058
-msgid ":c:data:`PyExc_FileExistsError`"
-msgstr ":c:data:`PyExc_FileExistsError`"
-
-#: ../../c-api/exceptions.rst:1058
+#: ../../c-api/exceptions.rst:1035
 msgid ":exc:`FileExistsError`"
 msgstr ":exc:`FileExistsError`"
 
-#: ../../c-api/exceptions.rst:1060
-msgid ":c:data:`PyExc_FileNotFoundError`"
-msgstr ":c:data:`PyExc_FileNotFoundError`"
-
-#: ../../c-api/exceptions.rst:1060
+#: ../../c-api/exceptions.rst:1037
 msgid ":exc:`FileNotFoundError`"
 msgstr ":exc:`FileNotFoundError`"
 
-#: ../../c-api/exceptions.rst:1062
-msgid ":c:data:`PyExc_FloatingPointError`"
-msgstr ":c:data:`PyExc_FloatingPointError`"
-
-#: ../../c-api/exceptions.rst:1062
+#: ../../c-api/exceptions.rst:1039
 msgid ":exc:`FloatingPointError`"
 msgstr ":exc:`FloatingPointError`"
 
-#: ../../c-api/exceptions.rst:1064
-msgid ":c:data:`PyExc_GeneratorExit`"
-msgstr ":c:data:`PyExc_GeneratorExit`"
-
-#: ../../c-api/exceptions.rst:1064
+#: ../../c-api/exceptions.rst:1041
 msgid ":exc:`GeneratorExit`"
 msgstr ":exc:`GeneratorExit`"
 
-#: ../../c-api/exceptions.rst:1066
-msgid ":c:data:`PyExc_ImportError`"
-msgstr ":c:data:`PyExc_ImportError`"
-
-#: ../../c-api/exceptions.rst:1066
+#: ../../c-api/exceptions.rst:1043
 msgid ":exc:`ImportError`"
 msgstr ":exc:`ImportError`"
 
-#: ../../c-api/exceptions.rst:1068
-msgid ":c:data:`PyExc_IndentationError`"
-msgstr ":c:data:`PyExc_IndentationError`"
-
-#: ../../c-api/exceptions.rst:1068
+#: ../../c-api/exceptions.rst:1045
 msgid ":exc:`IndentationError`"
 msgstr ":exc:`IndentationError`"
 
-#: ../../c-api/exceptions.rst:1070
-msgid ":c:data:`PyExc_IndexError`"
-msgstr ":c:data:`PyExc_IndexError`"
-
-#: ../../c-api/exceptions.rst:1070
+#: ../../c-api/exceptions.rst:1047
 msgid ":exc:`IndexError`"
 msgstr ":exc:`IndexError`"
 
-#: ../../c-api/exceptions.rst:1072
-msgid ":c:data:`PyExc_InterruptedError`"
-msgstr ":c:data:`PyExc_InterruptedError`"
-
-#: ../../c-api/exceptions.rst:1072
+#: ../../c-api/exceptions.rst:1049
 msgid ":exc:`InterruptedError`"
 msgstr ":exc:`InterruptedError`"
 
-#: ../../c-api/exceptions.rst:1074
-msgid ":c:data:`PyExc_IsADirectoryError`"
-msgstr ":c:data:`PyExc_IsADirectoryError`"
-
-#: ../../c-api/exceptions.rst:1074
+#: ../../c-api/exceptions.rst:1051
 msgid ":exc:`IsADirectoryError`"
 msgstr ":exc:`IsADirectoryError`"
 
-#: ../../c-api/exceptions.rst:1076
-msgid ":c:data:`PyExc_KeyError`"
-msgstr ":c:data:`PyExc_KeyError`"
-
-#: ../../c-api/exceptions.rst:1076
+#: ../../c-api/exceptions.rst:1053
 msgid ":exc:`KeyError`"
 msgstr ":exc:`KeyError`"
 
-#: ../../c-api/exceptions.rst:1078
-msgid ":c:data:`PyExc_KeyboardInterrupt`"
-msgstr ":c:data:`PyExc_KeyboardInterrupt`"
-
-#: ../../c-api/exceptions.rst:1078
+#: ../../c-api/exceptions.rst:1055
 msgid ":exc:`KeyboardInterrupt`"
 msgstr ":exc:`KeyboardInterrupt`"
 
-#: ../../c-api/exceptions.rst:1080
-msgid ":c:data:`PyExc_LookupError`"
-msgstr ":c:data:`PyExc_LookupError`"
-
-#: ../../c-api/exceptions.rst:1080
+#: ../../c-api/exceptions.rst:1057
 msgid ":exc:`LookupError`"
 msgstr ":exc:`LookupError`"
 
-#: ../../c-api/exceptions.rst:1082
-msgid ":c:data:`PyExc_MemoryError`"
-msgstr ":c:data:`PyExc_MemoryError`"
-
-#: ../../c-api/exceptions.rst:1082
+#: ../../c-api/exceptions.rst:1059
 msgid ":exc:`MemoryError`"
 msgstr ":exc:`MemoryError`"
 
-#: ../../c-api/exceptions.rst:1084
-msgid ":c:data:`PyExc_ModuleNotFoundError`"
-msgstr ":c:data:`PyExc_ModuleNotFoundError`"
-
-#: ../../c-api/exceptions.rst:1084
+#: ../../c-api/exceptions.rst:1061
 msgid ":exc:`ModuleNotFoundError`"
 msgstr ":exc:`ModuleNotFoundError`"
 
-#: ../../c-api/exceptions.rst:1086
-msgid ":c:data:`PyExc_NameError`"
-msgstr ":c:data:`PyExc_NameError`"
-
-#: ../../c-api/exceptions.rst:1086
+#: ../../c-api/exceptions.rst:1063
 msgid ":exc:`NameError`"
 msgstr ":exc:`NameError`"
 
-#: ../../c-api/exceptions.rst:1088
-msgid ":c:data:`PyExc_NotADirectoryError`"
-msgstr ":c:data:`PyExc_NotADirectoryError`"
-
-#: ../../c-api/exceptions.rst:1088
+#: ../../c-api/exceptions.rst:1065
 msgid ":exc:`NotADirectoryError`"
 msgstr ":exc:`NotADirectoryError`"
 
-#: ../../c-api/exceptions.rst:1090
-msgid ":c:data:`PyExc_NotImplementedError`"
-msgstr ":c:data:`PyExc_NotImplementedError`"
-
-#: ../../c-api/exceptions.rst:1090
+#: ../../c-api/exceptions.rst:1067
 msgid ":exc:`NotImplementedError`"
 msgstr ":exc:`NotImplementedError`"
 
-#: ../../c-api/exceptions.rst:1092
-msgid ":c:data:`PyExc_OSError`"
-msgstr ":c:data:`PyExc_OSError`"
-
-#: ../../c-api/exceptions.rst:1092
+#: ../../c-api/exceptions.rst:1069 ../../c-api/exceptions.rst:1152
+#: ../../c-api/exceptions.rst:1155 ../../c-api/exceptions.rst:1158
 msgid ":exc:`OSError`"
 msgstr ":exc:`OSError`"
 
-#: ../../c-api/exceptions.rst:1094
-msgid ":c:data:`PyExc_OverflowError`"
-msgstr ":c:data:`PyExc_OverflowError`"
-
-#: ../../c-api/exceptions.rst:1094
+#: ../../c-api/exceptions.rst:1071
 msgid ":exc:`OverflowError`"
 msgstr ":exc:`OverflowError`"
 
-#: ../../c-api/exceptions.rst:1096
-msgid ":c:data:`PyExc_PermissionError`"
-msgstr ":c:data:`PyExc_PermissionError`"
-
-#: ../../c-api/exceptions.rst:1096
+#: ../../c-api/exceptions.rst:1073
 msgid ":exc:`PermissionError`"
 msgstr ":exc:`PermissionError`"
 
-#: ../../c-api/exceptions.rst:1098
-msgid ":c:data:`PyExc_ProcessLookupError`"
-msgstr ":c:data:`PyExc_ProcessLookupError`"
-
-#: ../../c-api/exceptions.rst:1098
+#: ../../c-api/exceptions.rst:1075
 msgid ":exc:`ProcessLookupError`"
 msgstr ":exc:`ProcessLookupError`"
 
-#: ../../c-api/exceptions.rst:1100
-msgid ":c:data:`PyExc_PythonFinalizationError`"
-msgstr ":c:data:`PyExc_PythonFinalizationError`"
-
-#: ../../c-api/exceptions.rst:1100
+#: ../../c-api/exceptions.rst:1077
 msgid ":exc:`PythonFinalizationError`"
 msgstr ":exc:`PythonFinalizationError`"
 
-#: ../../c-api/exceptions.rst:1102
-msgid ":c:data:`PyExc_RecursionError`"
-msgstr ":c:data:`PyExc_RecursionError`"
-
-#: ../../c-api/exceptions.rst:1102
+#: ../../c-api/exceptions.rst:1079
 msgid ":exc:`RecursionError`"
 msgstr ":exc:`RecursionError`"
 
-#: ../../c-api/exceptions.rst:1104
-msgid ":c:data:`PyExc_ReferenceError`"
-msgstr ":c:data:`PyExc_ReferenceError`"
-
-#: ../../c-api/exceptions.rst:1104
+#: ../../c-api/exceptions.rst:1081
 msgid ":exc:`ReferenceError`"
 msgstr ":exc:`ReferenceError`"
 
-#: ../../c-api/exceptions.rst:1106
-msgid ":c:data:`PyExc_RuntimeError`"
-msgstr ":c:data:`PyExc_RuntimeError`"
-
-#: ../../c-api/exceptions.rst:1106
+#: ../../c-api/exceptions.rst:1083
 msgid ":exc:`RuntimeError`"
 msgstr ":exc:`RuntimeError`"
 
-#: ../../c-api/exceptions.rst:1108
-msgid ":c:data:`PyExc_StopAsyncIteration`"
-msgstr ":c:data:`PyExc_StopAsyncIteration`"
-
-#: ../../c-api/exceptions.rst:1108
+#: ../../c-api/exceptions.rst:1085
 msgid ":exc:`StopAsyncIteration`"
 msgstr ":exc:`StopAsyncIteration`"
 
-#: ../../c-api/exceptions.rst:1110
-msgid ":c:data:`PyExc_StopIteration`"
-msgstr ":c:data:`PyExc_StopIteration`"
-
-#: ../../c-api/exceptions.rst:1110
+#: ../../c-api/exceptions.rst:1087
 msgid ":exc:`StopIteration`"
 msgstr ":exc:`StopIteration`"
 
-#: ../../c-api/exceptions.rst:1112
-msgid ":c:data:`PyExc_SyntaxError`"
-msgstr ":c:data:`PyExc_SyntaxError`"
-
-#: ../../c-api/exceptions.rst:1112
+#: ../../c-api/exceptions.rst:1089
 msgid ":exc:`SyntaxError`"
 msgstr ":exc:`SyntaxError`"
 
-#: ../../c-api/exceptions.rst:1114
-msgid ":c:data:`PyExc_SystemError`"
-msgstr ":c:data:`PyExc_SystemError`"
-
-#: ../../c-api/exceptions.rst:1114
+#: ../../c-api/exceptions.rst:1091
 msgid ":exc:`SystemError`"
 msgstr ":exc:`SystemError`"
 
-#: ../../c-api/exceptions.rst:1116
-msgid ":c:data:`PyExc_SystemExit`"
-msgstr ":c:data:`PyExc_SystemExit`"
-
-#: ../../c-api/exceptions.rst:1116
+#: ../../c-api/exceptions.rst:1093
 msgid ":exc:`SystemExit`"
 msgstr ":exc:`SystemExit`"
 
-#: ../../c-api/exceptions.rst:1118
-msgid ":c:data:`PyExc_TabError`"
-msgstr ":c:data:`PyExc_TabError`"
-
-#: ../../c-api/exceptions.rst:1118
+#: ../../c-api/exceptions.rst:1095
 msgid ":exc:`TabError`"
 msgstr ":exc:`TabError`"
 
-#: ../../c-api/exceptions.rst:1120
-msgid ":c:data:`PyExc_TimeoutError`"
-msgstr ":c:data:`PyExc_TimeoutError`"
-
-#: ../../c-api/exceptions.rst:1120
+#: ../../c-api/exceptions.rst:1097
 msgid ":exc:`TimeoutError`"
 msgstr ":exc:`TimeoutError`"
 
-#: ../../c-api/exceptions.rst:1122
-msgid ":c:data:`PyExc_TypeError`"
-msgstr ":c:data:`PyExc_TypeError`"
-
-#: ../../c-api/exceptions.rst:1122
+#: ../../c-api/exceptions.rst:1099
 msgid ":exc:`TypeError`"
 msgstr ":exc:`TypeError`"
 
-#: ../../c-api/exceptions.rst:1124
-msgid ":c:data:`PyExc_UnboundLocalError`"
-msgstr ":c:data:`PyExc_UnboundLocalError`"
-
-#: ../../c-api/exceptions.rst:1124
+#: ../../c-api/exceptions.rst:1101
 msgid ":exc:`UnboundLocalError`"
 msgstr ":exc:`UnboundLocalError`"
 
-#: ../../c-api/exceptions.rst:1126
-msgid ":c:data:`PyExc_UnicodeDecodeError`"
-msgstr ":c:data:`PyExc_UnicodeDecodeError`"
-
-#: ../../c-api/exceptions.rst:1126
+#: ../../c-api/exceptions.rst:1103
 msgid ":exc:`UnicodeDecodeError`"
 msgstr ":exc:`UnicodeDecodeError`"
 
-#: ../../c-api/exceptions.rst:1128
-msgid ":c:data:`PyExc_UnicodeEncodeError`"
-msgstr ":c:data:`PyExc_UnicodeEncodeError`"
-
-#: ../../c-api/exceptions.rst:1128
+#: ../../c-api/exceptions.rst:1105
 msgid ":exc:`UnicodeEncodeError`"
 msgstr ":exc:`UnicodeEncodeError`"
 
-#: ../../c-api/exceptions.rst:1130
-msgid ":c:data:`PyExc_UnicodeError`"
-msgstr ":c:data:`PyExc_UnicodeError`"
-
-#: ../../c-api/exceptions.rst:1130
+#: ../../c-api/exceptions.rst:1107
 msgid ":exc:`UnicodeError`"
 msgstr ":exc:`UnicodeError`"
 
-#: ../../c-api/exceptions.rst:1132
-msgid ":c:data:`PyExc_UnicodeTranslateError`"
-msgstr ":c:data:`PyExc_UnicodeTranslateError`"
-
-#: ../../c-api/exceptions.rst:1132
+#: ../../c-api/exceptions.rst:1109
 msgid ":exc:`UnicodeTranslateError`"
 msgstr ":exc:`UnicodeTranslateError`"
 
-#: ../../c-api/exceptions.rst:1134
-msgid ":c:data:`PyExc_ValueError`"
-msgstr ":c:data:`PyExc_ValueError`"
-
-#: ../../c-api/exceptions.rst:1134
+#: ../../c-api/exceptions.rst:1111
 msgid ":exc:`ValueError`"
 msgstr ":exc:`ValueError`"
 
-#: ../../c-api/exceptions.rst:1136
-msgid ":c:data:`PyExc_ZeroDivisionError`"
-msgstr ":c:data:`PyExc_ZeroDivisionError`"
-
-#: ../../c-api/exceptions.rst:1136
+#: ../../c-api/exceptions.rst:1113
 msgid ":exc:`ZeroDivisionError`"
 msgstr ":exc:`ZeroDivisionError`"
 
-#: ../../c-api/exceptions.rst:1139
+#: ../../c-api/exceptions.rst:1115
 msgid ""
 ":c:data:`PyExc_BlockingIOError`, :c:data:`PyExc_BrokenPipeError`, "
 ":c:data:`PyExc_ChildProcessError`, :c:data:`PyExc_ConnectionError`, "
@@ -1782,165 +1605,114 @@ msgstr ""
 ":c:data:`PyExc_PermissionError`, :c:data:`PyExc_ProcessLookupError` 및 "
 ":c:data:`PyExc_TimeoutError`\\는 :pep:`3151`\\을 따라 도입되었습니다."
 
-#: ../../c-api/exceptions.rst:1149
+#: ../../c-api/exceptions.rst:1125
 msgid ":c:data:`PyExc_StopAsyncIteration` and :c:data:`PyExc_RecursionError`."
 msgstr ":c:data:`PyExc_StopAsyncIteration` 과 :c:data:`PyExc_RecursionError`."
 
-#: ../../c-api/exceptions.rst:1152
+#: ../../c-api/exceptions.rst:1128
 msgid ":c:data:`PyExc_ModuleNotFoundError`."
 msgstr ":c:data:`PyExc_ModuleNotFoundError`."
 
-#: ../../c-api/exceptions.rst:1155
-msgid "These are compatibility aliases to :c:data:`PyExc_OSError`:"
+#: ../../c-api/exceptions.rst:1131
+#, fuzzy
+msgid ":c:data:`PyExc_BaseExceptionGroup`."
+msgstr ":c:data:`PyExc_BaseException`"
+
+#: ../../c-api/exceptions.rst:1136
+msgid "OSError aliases"
+msgstr ""
+
+#: ../../c-api/exceptions.rst:1138
+#, fuzzy
+msgid "The following are a compatibility aliases to :c:data:`PyExc_OSError`."
 msgstr "다음은 :c:data:`PyExc_OSError`\\에 대한 호환성 별칭입니다:"
 
-#: ../../c-api/exceptions.rst:1165
-msgid ":c:data:`!PyExc_EnvironmentError`"
-msgstr ":c:data:`!PyExc_EnvironmentError`"
-
-#: ../../c-api/exceptions.rst:1167
-msgid ":c:data:`!PyExc_IOError`"
-msgstr ":c:data:`!PyExc_IOError`"
-
-#: ../../c-api/exceptions.rst:1169
-msgid ":c:data:`!PyExc_WindowsError`"
-msgstr ":c:data:`!PyExc_WindowsError`"
-
-#: ../../c-api/exceptions.rst:1169
-msgid "[2]_"
-msgstr "[2]_"
-
-#: ../../c-api/exceptions.rst:1172
+#: ../../c-api/exceptions.rst:1140
 msgid "These aliases used to be separate exception types."
 msgstr "이러한 별칭은 별도의 예외 형이었습니다."
 
-#: ../../c-api/exceptions.rst:1175 ../../c-api/exceptions.rst:1236
+#: ../../c-api/exceptions.rst:1150
+msgid "Notes"
+msgstr "노트"
+
+#: ../../c-api/exceptions.rst:1159
+#, fuzzy
+msgid "[win]_"
+msgstr "[3]_"
+
+#: ../../c-api/exceptions.rst:1161
 msgid "Notes:"
 msgstr "노트:"
 
-#: ../../c-api/exceptions.rst:1178
-msgid "This is a base class for other standard exceptions."
-msgstr "이것은 다른 표준 예외에 대한 베이스 클래스입니다."
-
-#: ../../c-api/exceptions.rst:1181
+#: ../../c-api/exceptions.rst:1164
+#, fuzzy
 msgid ""
-"Only defined on Windows; protect code that uses this by testing that the "
-"preprocessor macro ``MS_WINDOWS`` is defined."
+":c:var:`!PyExc_WindowsError` is only defined on Windows; protect code "
+"that uses this by testing that the preprocessor macro ``MS_WINDOWS`` is "
+"defined."
 msgstr "윈도우에서만 정의됩니다; 전 처리기 매크로 ``MS_WINDOWS``\\가 정의되었는지 테스트하여 이를 사용하는 코드를 보호하십시오."
 
-#: ../../c-api/exceptions.rst:1187
-msgid "Standard Warning Categories"
-msgstr "표준 경고 범주"
-
-#: ../../c-api/exceptions.rst:1189
-msgid ""
-"All standard Python warning categories are available as global variables "
-"whose names are ``PyExc_`` followed by the Python exception name. These "
-"have the type :c:expr:`PyObject*`; they are all class objects. For "
-"completeness, here are all the variables:"
+#: ../../c-api/exceptions.rst:1171
+msgid "Warning types"
 msgstr ""
-"모든 표준 파이썬 경고 범주는 ``PyExc_`` 뒤에 파이썬 예외 이름이 오는 이름의 전역 변수로 제공됩니다. "
-":c:expr:`PyObject*` 형입니다; 모두 클래스 객체입니다. 완전성을 위해, 다음은 모든 변수입니다:"
 
-#: ../../c-api/exceptions.rst:1210
-msgid ":c:data:`PyExc_Warning`"
-msgstr ":c:data:`PyExc_Warning`"
-
-#: ../../c-api/exceptions.rst:1210
+#: ../../c-api/exceptions.rst:1181
 msgid ":exc:`Warning`"
 msgstr ":exc:`Warning`"
 
-#: ../../c-api/exceptions.rst:1210
-msgid "[3]_"
-msgstr "[3]_"
-
-#: ../../c-api/exceptions.rst:1212
-msgid ":c:data:`PyExc_BytesWarning`"
-msgstr ":c:data:`PyExc_BytesWarning`"
-
-#: ../../c-api/exceptions.rst:1212
+#: ../../c-api/exceptions.rst:1183
 msgid ":exc:`BytesWarning`"
 msgstr ":exc:`BytesWarning`"
 
-#: ../../c-api/exceptions.rst:1214
-msgid ":c:data:`PyExc_DeprecationWarning`"
-msgstr ":c:data:`PyExc_DeprecationWarning`"
-
-#: ../../c-api/exceptions.rst:1214
+#: ../../c-api/exceptions.rst:1185
 msgid ":exc:`DeprecationWarning`"
 msgstr ":exc:`DeprecationWarning`"
 
-#: ../../c-api/exceptions.rst:1216
-msgid ":c:data:`PyExc_FutureWarning`"
-msgstr ":c:data:`PyExc_FutureWarning`"
+#: ../../c-api/exceptions.rst:1187
+#, fuzzy
+msgid ":exc:`EncodingWarning`"
+msgstr ":exc:`UnicodeWarning`"
 
-#: ../../c-api/exceptions.rst:1216
+#: ../../c-api/exceptions.rst:1189
 msgid ":exc:`FutureWarning`"
 msgstr ":exc:`FutureWarning`"
 
-#: ../../c-api/exceptions.rst:1218
-msgid ":c:data:`PyExc_ImportWarning`"
-msgstr ":c:data:`PyExc_ImportWarning`"
-
-#: ../../c-api/exceptions.rst:1218
+#: ../../c-api/exceptions.rst:1191
 msgid ":exc:`ImportWarning`"
 msgstr ":exc:`ImportWarning`"
 
-#: ../../c-api/exceptions.rst:1220
-msgid ":c:data:`PyExc_PendingDeprecationWarning`"
-msgstr ":c:data:`PyExc_PendingDeprecationWarning`"
-
-#: ../../c-api/exceptions.rst:1220
+#: ../../c-api/exceptions.rst:1193
 msgid ":exc:`PendingDeprecationWarning`"
 msgstr ":exc:`PendingDeprecationWarning`"
 
-#: ../../c-api/exceptions.rst:1222
-msgid ":c:data:`PyExc_ResourceWarning`"
-msgstr ":c:data:`PyExc_ResourceWarning`"
-
-#: ../../c-api/exceptions.rst:1222
+#: ../../c-api/exceptions.rst:1195
 msgid ":exc:`ResourceWarning`"
 msgstr ":exc:`ResourceWarning`"
 
-#: ../../c-api/exceptions.rst:1224
-msgid ":c:data:`PyExc_RuntimeWarning`"
-msgstr ":c:data:`PyExc_RuntimeWarning`"
-
-#: ../../c-api/exceptions.rst:1224
+#: ../../c-api/exceptions.rst:1197
 msgid ":exc:`RuntimeWarning`"
 msgstr ":exc:`RuntimeWarning`"
 
-#: ../../c-api/exceptions.rst:1226
-msgid ":c:data:`PyExc_SyntaxWarning`"
-msgstr ":c:data:`PyExc_SyntaxWarning`"
-
-#: ../../c-api/exceptions.rst:1226
+#: ../../c-api/exceptions.rst:1199
 msgid ":exc:`SyntaxWarning`"
 msgstr ":exc:`SyntaxWarning`"
 
-#: ../../c-api/exceptions.rst:1228
-msgid ":c:data:`PyExc_UnicodeWarning`"
-msgstr ":c:data:`PyExc_UnicodeWarning`"
-
-#: ../../c-api/exceptions.rst:1228
+#: ../../c-api/exceptions.rst:1201
 msgid ":exc:`UnicodeWarning`"
 msgstr ":exc:`UnicodeWarning`"
 
-#: ../../c-api/exceptions.rst:1230
-msgid ":c:data:`PyExc_UserWarning`"
-msgstr ":c:data:`PyExc_UserWarning`"
-
-#: ../../c-api/exceptions.rst:1230
+#: ../../c-api/exceptions.rst:1203
 msgid ":exc:`UserWarning`"
 msgstr ":exc:`UserWarning`"
 
-#: ../../c-api/exceptions.rst:1233
+#: ../../c-api/exceptions.rst:1205
 msgid ":c:data:`PyExc_ResourceWarning`."
 msgstr ":c:data:`PyExc_ResourceWarning`."
 
-#: ../../c-api/exceptions.rst:1239
-msgid "This is a base class for other standard warning categories."
-msgstr "이것은 다른 표준 경고 범주의 베이스 클래스입니다."
+#: ../../c-api/exceptions.rst:1208
+#, fuzzy
+msgid ":c:data:`PyExc_EncodingWarning`."
+msgstr ":c:data:`PyExc_UnicodeWarning`"
 
 #: ../../c-api/exceptions.rst:183
 msgid "strerror (C function)"
@@ -1964,278 +1736,6 @@ msgstr "SIGINT (C 매크로)"
 #: ../../c-api/exceptions.rst:683
 msgid "KeyboardInterrupt (built-in exception)"
 msgstr "KeyboardInterrupt (내장 예외)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_BaseException (C var)"
-msgstr "PyExc_BaseException (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_Exception (C var)"
-msgstr "PyExc_Exception (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ArithmeticError (C var)"
-msgstr "PyExc_ArithmeticError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_AssertionError (C var)"
-msgstr "PyExc_AssertionError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_AttributeError (C var)"
-msgstr "PyExc_AttributeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_BlockingIOError (C var)"
-msgstr "PyExc_BlockingIOError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_BrokenPipeError (C var)"
-msgstr "PyExc_BrokenPipeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_BufferError (C var)"
-msgstr "PyExc_BufferError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ChildProcessError (C var)"
-msgstr "PyExc_ChildProcessError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ConnectionAbortedError (C var)"
-msgstr "PyExc_ConnectionAbortedError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ConnectionError (C var)"
-msgstr "PyExc_ConnectionError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ConnectionRefusedError (C var)"
-msgstr "PyExc_ConnectionRefusedError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ConnectionResetError (C var)"
-msgstr "PyExc_ConnectionResetError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_EOFError (C var)"
-msgstr "PyExc_EOFError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_FileExistsError (C var)"
-msgstr "PyExc_FileExistsError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_FileNotFoundError (C var)"
-msgstr "PyExc_FileNotFoundError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_FloatingPointError (C var)"
-msgstr "PyExc_FloatingPointError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_GeneratorExit (C var)"
-msgstr "PyExc_GeneratorExit (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ImportError (C var)"
-msgstr "PyExc_ImportError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_IndentationError (C var)"
-msgstr "PyExc_IndentationError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_IndexError (C var)"
-msgstr "PyExc_IndexError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_InterruptedError (C var)"
-msgstr "PyExc_InterruptedError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_IsADirectoryError (C var)"
-msgstr "PyExc_IsADirectoryError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_KeyError (C var)"
-msgstr "PyExc_KeyError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_KeyboardInterrupt (C var)"
-msgstr "PyExc_KeyboardInterrupt (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_LookupError (C var)"
-msgstr "PyExc_LookupError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_MemoryError (C var)"
-msgstr "PyExc_MemoryError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ModuleNotFoundError (C var)"
-msgstr "PyExc_ModuleNotFoundError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_NameError (C var)"
-msgstr "PyExc_NameError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_NotADirectoryError (C var)"
-msgstr "PyExc_NotADirectoryError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_NotImplementedError (C var)"
-msgstr "PyExc_NotImplementedError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_OSError (C var)"
-msgstr "PyExc_OSError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_OverflowError (C var)"
-msgstr "PyExc_OverflowError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_PermissionError (C var)"
-msgstr "PyExc_PermissionError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ProcessLookupError (C var)"
-msgstr "PyExc_ProcessLookupError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_PythonFinalizationError (C var)"
-msgstr "PyExc_PythonFinalizationError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_RecursionError (C var)"
-msgstr "PyExc_RecursionError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ReferenceError (C var)"
-msgstr "PyExc_ReferenceError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_RuntimeError (C var)"
-msgstr "PyExc_RuntimeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_StopAsyncIteration (C var)"
-msgstr "PyExc_StopAsyncIteration (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_StopIteration (C var)"
-msgstr "PyExc_StopIteration (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_SyntaxError (C var)"
-msgstr "PyExc_SyntaxError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_SystemError (C var)"
-msgstr "PyExc_SystemError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_SystemExit (C var)"
-msgstr "PyExc_SystemExit (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_TabError (C var)"
-msgstr "PyExc_TabError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_TimeoutError (C var)"
-msgstr "PyExc_TimeoutError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_TypeError (C var)"
-msgstr "PyExc_TypeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_UnboundLocalError (C var)"
-msgstr "PyExc_UnboundLocalError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_UnicodeDecodeError (C var)"
-msgstr "PyExc_UnicodeDecodeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_UnicodeEncodeError (C var)"
-msgstr "PyExc_UnicodeEncodeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_UnicodeError (C var)"
-msgstr "PyExc_UnicodeError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_UnicodeTranslateError (C var)"
-msgstr "PyExc_UnicodeTranslateError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ValueError (C var)"
-msgstr "PyExc_ValueError (C 변수)"
-
-#: ../../c-api/exceptions.rst:971
-msgid "PyExc_ZeroDivisionError (C var)"
-msgstr "PyExc_ZeroDivisionError (C 변수)"
-
-#: ../../c-api/exceptions.rst:1157
-msgid "PyExc_EnvironmentError (C var)"
-msgstr "PyExc_EnvironmentError (C 변수)"
-
-#: ../../c-api/exceptions.rst:1157
-msgid "PyExc_IOError (C var)"
-msgstr "PyExc_IOError (C 변수)"
-
-#: ../../c-api/exceptions.rst:1157
-msgid "PyExc_WindowsError (C var)"
-msgstr "PyExc_WindowsError (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_Warning (C var)"
-msgstr "PyExc_Warning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_BytesWarning (C var)"
-msgstr "PyExc_BytesWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_DeprecationWarning (C var)"
-msgstr "PyExc_DeprecationWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_FutureWarning (C var)"
-msgstr "PyExc_FutureWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_ImportWarning (C var)"
-msgstr "PyExc_ImportWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_PendingDeprecationWarning (C var)"
-msgstr "PyExc_PendingDeprecationWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_ResourceWarning (C var)"
-msgstr "PyExc_ResourceWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_RuntimeWarning (C var)"
-msgstr "PyExc_RuntimeWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_SyntaxWarning (C var)"
-msgstr "PyExc_SyntaxWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_UnicodeWarning (C var)"
-msgstr "PyExc_UnicodeWarning (C 변수)"
-
-#: ../../c-api/exceptions.rst:1194
-msgid "PyExc_UserWarning (C var)"
-msgstr "PyExc_UserWarning (C 변수)"
 
 #~ msgid ":ref:`Availability <availability>`: Windows."
 #~ msgstr ":ref:`가용성 <availability>`: 윈도우."
@@ -2344,4 +1844,461 @@ msgstr "PyExc_UserWarning (C 변수)"
 
 #~ msgid "\\(3)"
 #~ msgstr "\\(3)"
+
+#~ msgid "The caller must hold the GIL."
+#~ msgstr "호출자는 GIL을 보유해야 합니다."
+
+#~ msgid ""
+#~ "This function is async-signal-safe.  "
+#~ "It can be called without the "
+#~ ":term:`GIL` and from a C signal "
+#~ "handler."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :c:macro:`!USE_STACKCHECK` is defined, this"
+#~ " function checks if the OS stack "
+#~ "overflowed using :c:func:`PyOS_CheckStack`.  If "
+#~ "this is the case, it sets a "
+#~ ":exc:`MemoryError` and returns a nonzero "
+#~ "value."
+#~ msgstr ""
+#~ ":c:macro:`!USE_STACKCHECK`\\가 정의되었으면, 이 함수는 "
+#~ ":c:func:`PyOS_CheckStack`\\을 사용하여 OS 스택이 오버플로"
+#~ " 되었는지 확인합니다. 이 경우, :exc:`MemoryError`\\를"
+#~ " 설정하고 0이 아닌 값을 반환합니다."
+
+#~ msgid "Standard Exceptions"
+#~ msgstr "표준 예외"
+
+#~ msgid ""
+#~ "All standard Python exceptions are "
+#~ "available as global variables whose "
+#~ "names are ``PyExc_`` followed by the "
+#~ "Python exception name.  These have the"
+#~ " type :c:expr:`PyObject*`; they are all "
+#~ "class objects.  For completeness, here "
+#~ "are all the variables:"
+#~ msgstr ""
+#~ "모든 표준 파이썬 예외는 ``PyExc_`` 뒤에 파이썬"
+#~ " 예외 이름이 오는 이름의 전역 변수로 제공됩니다."
+#~ " :c:expr:`PyObject*` 형입니다; 모두 클래스 객체입니다."
+#~ " 완전성을 위해, 다음은 모든 변수입니다:"
+
+#~ msgid "[1]_"
+#~ msgstr "[1]_"
+
+#~ msgid ":c:data:`PyExc_Exception`"
+#~ msgstr ":c:data:`PyExc_Exception`"
+
+#~ msgid ":c:data:`PyExc_ArithmeticError`"
+#~ msgstr ":c:data:`PyExc_ArithmeticError`"
+
+#~ msgid ":c:data:`PyExc_AssertionError`"
+#~ msgstr ":c:data:`PyExc_AssertionError`"
+
+#~ msgid ":c:data:`PyExc_AttributeError`"
+#~ msgstr ":c:data:`PyExc_AttributeError`"
+
+#~ msgid ":c:data:`PyExc_BlockingIOError`"
+#~ msgstr ":c:data:`PyExc_BlockingIOError`"
+
+#~ msgid ":c:data:`PyExc_BrokenPipeError`"
+#~ msgstr ":c:data:`PyExc_BrokenPipeError`"
+
+#~ msgid ":c:data:`PyExc_BufferError`"
+#~ msgstr ":c:data:`PyExc_BufferError`"
+
+#~ msgid ":c:data:`PyExc_ChildProcessError`"
+#~ msgstr ":c:data:`PyExc_ChildProcessError`"
+
+#~ msgid ":c:data:`PyExc_ConnectionAbortedError`"
+#~ msgstr ":c:data:`PyExc_ConnectionAbortedError`"
+
+#~ msgid ":c:data:`PyExc_ConnectionError`"
+#~ msgstr ":c:data:`PyExc_ConnectionError`"
+
+#~ msgid ":c:data:`PyExc_ConnectionRefusedError`"
+#~ msgstr ":c:data:`PyExc_ConnectionRefusedError`"
+
+#~ msgid ":c:data:`PyExc_ConnectionResetError`"
+#~ msgstr ":c:data:`PyExc_ConnectionResetError`"
+
+#~ msgid ":c:data:`PyExc_EOFError`"
+#~ msgstr ":c:data:`PyExc_EOFError`"
+
+#~ msgid ":c:data:`PyExc_FileExistsError`"
+#~ msgstr ":c:data:`PyExc_FileExistsError`"
+
+#~ msgid ":c:data:`PyExc_FileNotFoundError`"
+#~ msgstr ":c:data:`PyExc_FileNotFoundError`"
+
+#~ msgid ":c:data:`PyExc_FloatingPointError`"
+#~ msgstr ":c:data:`PyExc_FloatingPointError`"
+
+#~ msgid ":c:data:`PyExc_GeneratorExit`"
+#~ msgstr ":c:data:`PyExc_GeneratorExit`"
+
+#~ msgid ":c:data:`PyExc_ImportError`"
+#~ msgstr ":c:data:`PyExc_ImportError`"
+
+#~ msgid ":c:data:`PyExc_IndentationError`"
+#~ msgstr ":c:data:`PyExc_IndentationError`"
+
+#~ msgid ":c:data:`PyExc_IndexError`"
+#~ msgstr ":c:data:`PyExc_IndexError`"
+
+#~ msgid ":c:data:`PyExc_InterruptedError`"
+#~ msgstr ":c:data:`PyExc_InterruptedError`"
+
+#~ msgid ":c:data:`PyExc_IsADirectoryError`"
+#~ msgstr ":c:data:`PyExc_IsADirectoryError`"
+
+#~ msgid ":c:data:`PyExc_KeyError`"
+#~ msgstr ":c:data:`PyExc_KeyError`"
+
+#~ msgid ":c:data:`PyExc_KeyboardInterrupt`"
+#~ msgstr ":c:data:`PyExc_KeyboardInterrupt`"
+
+#~ msgid ":c:data:`PyExc_LookupError`"
+#~ msgstr ":c:data:`PyExc_LookupError`"
+
+#~ msgid ":c:data:`PyExc_MemoryError`"
+#~ msgstr ":c:data:`PyExc_MemoryError`"
+
+#~ msgid ":c:data:`PyExc_ModuleNotFoundError`"
+#~ msgstr ":c:data:`PyExc_ModuleNotFoundError`"
+
+#~ msgid ":c:data:`PyExc_NameError`"
+#~ msgstr ":c:data:`PyExc_NameError`"
+
+#~ msgid ":c:data:`PyExc_NotADirectoryError`"
+#~ msgstr ":c:data:`PyExc_NotADirectoryError`"
+
+#~ msgid ":c:data:`PyExc_NotImplementedError`"
+#~ msgstr ":c:data:`PyExc_NotImplementedError`"
+
+#~ msgid ":c:data:`PyExc_OSError`"
+#~ msgstr ":c:data:`PyExc_OSError`"
+
+#~ msgid ":c:data:`PyExc_OverflowError`"
+#~ msgstr ":c:data:`PyExc_OverflowError`"
+
+#~ msgid ":c:data:`PyExc_PermissionError`"
+#~ msgstr ":c:data:`PyExc_PermissionError`"
+
+#~ msgid ":c:data:`PyExc_ProcessLookupError`"
+#~ msgstr ":c:data:`PyExc_ProcessLookupError`"
+
+#~ msgid ":c:data:`PyExc_PythonFinalizationError`"
+#~ msgstr ":c:data:`PyExc_PythonFinalizationError`"
+
+#~ msgid ":c:data:`PyExc_RecursionError`"
+#~ msgstr ":c:data:`PyExc_RecursionError`"
+
+#~ msgid ":c:data:`PyExc_ReferenceError`"
+#~ msgstr ":c:data:`PyExc_ReferenceError`"
+
+#~ msgid ":c:data:`PyExc_RuntimeError`"
+#~ msgstr ":c:data:`PyExc_RuntimeError`"
+
+#~ msgid ":c:data:`PyExc_StopAsyncIteration`"
+#~ msgstr ":c:data:`PyExc_StopAsyncIteration`"
+
+#~ msgid ":c:data:`PyExc_StopIteration`"
+#~ msgstr ":c:data:`PyExc_StopIteration`"
+
+#~ msgid ":c:data:`PyExc_SyntaxError`"
+#~ msgstr ":c:data:`PyExc_SyntaxError`"
+
+#~ msgid ":c:data:`PyExc_SystemError`"
+#~ msgstr ":c:data:`PyExc_SystemError`"
+
+#~ msgid ":c:data:`PyExc_SystemExit`"
+#~ msgstr ":c:data:`PyExc_SystemExit`"
+
+#~ msgid ":c:data:`PyExc_TabError`"
+#~ msgstr ":c:data:`PyExc_TabError`"
+
+#~ msgid ":c:data:`PyExc_TimeoutError`"
+#~ msgstr ":c:data:`PyExc_TimeoutError`"
+
+#~ msgid ":c:data:`PyExc_TypeError`"
+#~ msgstr ":c:data:`PyExc_TypeError`"
+
+#~ msgid ":c:data:`PyExc_UnboundLocalError`"
+#~ msgstr ":c:data:`PyExc_UnboundLocalError`"
+
+#~ msgid ":c:data:`PyExc_UnicodeDecodeError`"
+#~ msgstr ":c:data:`PyExc_UnicodeDecodeError`"
+
+#~ msgid ":c:data:`PyExc_UnicodeEncodeError`"
+#~ msgstr ":c:data:`PyExc_UnicodeEncodeError`"
+
+#~ msgid ":c:data:`PyExc_UnicodeError`"
+#~ msgstr ":c:data:`PyExc_UnicodeError`"
+
+#~ msgid ":c:data:`PyExc_UnicodeTranslateError`"
+#~ msgstr ":c:data:`PyExc_UnicodeTranslateError`"
+
+#~ msgid ":c:data:`PyExc_ValueError`"
+#~ msgstr ":c:data:`PyExc_ValueError`"
+
+#~ msgid ":c:data:`PyExc_ZeroDivisionError`"
+#~ msgstr ":c:data:`PyExc_ZeroDivisionError`"
+
+#~ msgid ":c:data:`!PyExc_EnvironmentError`"
+#~ msgstr ":c:data:`!PyExc_EnvironmentError`"
+
+#~ msgid ":c:data:`!PyExc_IOError`"
+#~ msgstr ":c:data:`!PyExc_IOError`"
+
+#~ msgid ":c:data:`!PyExc_WindowsError`"
+#~ msgstr ":c:data:`!PyExc_WindowsError`"
+
+#~ msgid "[2]_"
+#~ msgstr "[2]_"
+
+#~ msgid "This is a base class for other standard exceptions."
+#~ msgstr "이것은 다른 표준 예외에 대한 베이스 클래스입니다."
+
+#~ msgid "Standard Warning Categories"
+#~ msgstr "표준 경고 범주"
+
+#~ msgid ":c:data:`PyExc_Warning`"
+#~ msgstr ":c:data:`PyExc_Warning`"
+
+#~ msgid ":c:data:`PyExc_BytesWarning`"
+#~ msgstr ":c:data:`PyExc_BytesWarning`"
+
+#~ msgid ":c:data:`PyExc_DeprecationWarning`"
+#~ msgstr ":c:data:`PyExc_DeprecationWarning`"
+
+#~ msgid ":c:data:`PyExc_FutureWarning`"
+#~ msgstr ":c:data:`PyExc_FutureWarning`"
+
+#~ msgid ":c:data:`PyExc_ImportWarning`"
+#~ msgstr ":c:data:`PyExc_ImportWarning`"
+
+#~ msgid ":c:data:`PyExc_PendingDeprecationWarning`"
+#~ msgstr ":c:data:`PyExc_PendingDeprecationWarning`"
+
+#~ msgid ":c:data:`PyExc_ResourceWarning`"
+#~ msgstr ":c:data:`PyExc_ResourceWarning`"
+
+#~ msgid ":c:data:`PyExc_RuntimeWarning`"
+#~ msgstr ":c:data:`PyExc_RuntimeWarning`"
+
+#~ msgid ":c:data:`PyExc_SyntaxWarning`"
+#~ msgstr ":c:data:`PyExc_SyntaxWarning`"
+
+#~ msgid ":c:data:`PyExc_UserWarning`"
+#~ msgstr ":c:data:`PyExc_UserWarning`"
+
+#~ msgid "This is a base class for other standard warning categories."
+#~ msgstr "이것은 다른 표준 경고 범주의 베이스 클래스입니다."
+
+#~ msgid "PyExc_BaseException (C var)"
+#~ msgstr "PyExc_BaseException (C 변수)"
+
+#~ msgid "PyExc_Exception (C var)"
+#~ msgstr "PyExc_Exception (C 변수)"
+
+#~ msgid "PyExc_ArithmeticError (C var)"
+#~ msgstr "PyExc_ArithmeticError (C 변수)"
+
+#~ msgid "PyExc_AssertionError (C var)"
+#~ msgstr "PyExc_AssertionError (C 변수)"
+
+#~ msgid "PyExc_AttributeError (C var)"
+#~ msgstr "PyExc_AttributeError (C 변수)"
+
+#~ msgid "PyExc_BlockingIOError (C var)"
+#~ msgstr "PyExc_BlockingIOError (C 변수)"
+
+#~ msgid "PyExc_BrokenPipeError (C var)"
+#~ msgstr "PyExc_BrokenPipeError (C 변수)"
+
+#~ msgid "PyExc_BufferError (C var)"
+#~ msgstr "PyExc_BufferError (C 변수)"
+
+#~ msgid "PyExc_ChildProcessError (C var)"
+#~ msgstr "PyExc_ChildProcessError (C 변수)"
+
+#~ msgid "PyExc_ConnectionAbortedError (C var)"
+#~ msgstr "PyExc_ConnectionAbortedError (C 변수)"
+
+#~ msgid "PyExc_ConnectionError (C var)"
+#~ msgstr "PyExc_ConnectionError (C 변수)"
+
+#~ msgid "PyExc_ConnectionRefusedError (C var)"
+#~ msgstr "PyExc_ConnectionRefusedError (C 변수)"
+
+#~ msgid "PyExc_ConnectionResetError (C var)"
+#~ msgstr "PyExc_ConnectionResetError (C 변수)"
+
+#~ msgid "PyExc_EOFError (C var)"
+#~ msgstr "PyExc_EOFError (C 변수)"
+
+#~ msgid "PyExc_FileExistsError (C var)"
+#~ msgstr "PyExc_FileExistsError (C 변수)"
+
+#~ msgid "PyExc_FileNotFoundError (C var)"
+#~ msgstr "PyExc_FileNotFoundError (C 변수)"
+
+#~ msgid "PyExc_FloatingPointError (C var)"
+#~ msgstr "PyExc_FloatingPointError (C 변수)"
+
+#~ msgid "PyExc_GeneratorExit (C var)"
+#~ msgstr "PyExc_GeneratorExit (C 변수)"
+
+#~ msgid "PyExc_ImportError (C var)"
+#~ msgstr "PyExc_ImportError (C 변수)"
+
+#~ msgid "PyExc_IndentationError (C var)"
+#~ msgstr "PyExc_IndentationError (C 변수)"
+
+#~ msgid "PyExc_IndexError (C var)"
+#~ msgstr "PyExc_IndexError (C 변수)"
+
+#~ msgid "PyExc_InterruptedError (C var)"
+#~ msgstr "PyExc_InterruptedError (C 변수)"
+
+#~ msgid "PyExc_IsADirectoryError (C var)"
+#~ msgstr "PyExc_IsADirectoryError (C 변수)"
+
+#~ msgid "PyExc_KeyError (C var)"
+#~ msgstr "PyExc_KeyError (C 변수)"
+
+#~ msgid "PyExc_KeyboardInterrupt (C var)"
+#~ msgstr "PyExc_KeyboardInterrupt (C 변수)"
+
+#~ msgid "PyExc_LookupError (C var)"
+#~ msgstr "PyExc_LookupError (C 변수)"
+
+#~ msgid "PyExc_MemoryError (C var)"
+#~ msgstr "PyExc_MemoryError (C 변수)"
+
+#~ msgid "PyExc_ModuleNotFoundError (C var)"
+#~ msgstr "PyExc_ModuleNotFoundError (C 변수)"
+
+#~ msgid "PyExc_NameError (C var)"
+#~ msgstr "PyExc_NameError (C 변수)"
+
+#~ msgid "PyExc_NotADirectoryError (C var)"
+#~ msgstr "PyExc_NotADirectoryError (C 변수)"
+
+#~ msgid "PyExc_NotImplementedError (C var)"
+#~ msgstr "PyExc_NotImplementedError (C 변수)"
+
+#~ msgid "PyExc_OSError (C var)"
+#~ msgstr "PyExc_OSError (C 변수)"
+
+#~ msgid "PyExc_OverflowError (C var)"
+#~ msgstr "PyExc_OverflowError (C 변수)"
+
+#~ msgid "PyExc_PermissionError (C var)"
+#~ msgstr "PyExc_PermissionError (C 변수)"
+
+#~ msgid "PyExc_ProcessLookupError (C var)"
+#~ msgstr "PyExc_ProcessLookupError (C 변수)"
+
+#~ msgid "PyExc_PythonFinalizationError (C var)"
+#~ msgstr "PyExc_PythonFinalizationError (C 변수)"
+
+#~ msgid "PyExc_RecursionError (C var)"
+#~ msgstr "PyExc_RecursionError (C 변수)"
+
+#~ msgid "PyExc_ReferenceError (C var)"
+#~ msgstr "PyExc_ReferenceError (C 변수)"
+
+#~ msgid "PyExc_RuntimeError (C var)"
+#~ msgstr "PyExc_RuntimeError (C 변수)"
+
+#~ msgid "PyExc_StopAsyncIteration (C var)"
+#~ msgstr "PyExc_StopAsyncIteration (C 변수)"
+
+#~ msgid "PyExc_StopIteration (C var)"
+#~ msgstr "PyExc_StopIteration (C 변수)"
+
+#~ msgid "PyExc_SyntaxError (C var)"
+#~ msgstr "PyExc_SyntaxError (C 변수)"
+
+#~ msgid "PyExc_SystemError (C var)"
+#~ msgstr "PyExc_SystemError (C 변수)"
+
+#~ msgid "PyExc_SystemExit (C var)"
+#~ msgstr "PyExc_SystemExit (C 변수)"
+
+#~ msgid "PyExc_TabError (C var)"
+#~ msgstr "PyExc_TabError (C 변수)"
+
+#~ msgid "PyExc_TimeoutError (C var)"
+#~ msgstr "PyExc_TimeoutError (C 변수)"
+
+#~ msgid "PyExc_TypeError (C var)"
+#~ msgstr "PyExc_TypeError (C 변수)"
+
+#~ msgid "PyExc_UnboundLocalError (C var)"
+#~ msgstr "PyExc_UnboundLocalError (C 변수)"
+
+#~ msgid "PyExc_UnicodeDecodeError (C var)"
+#~ msgstr "PyExc_UnicodeDecodeError (C 변수)"
+
+#~ msgid "PyExc_UnicodeEncodeError (C var)"
+#~ msgstr "PyExc_UnicodeEncodeError (C 변수)"
+
+#~ msgid "PyExc_UnicodeError (C var)"
+#~ msgstr "PyExc_UnicodeError (C 변수)"
+
+#~ msgid "PyExc_UnicodeTranslateError (C var)"
+#~ msgstr "PyExc_UnicodeTranslateError (C 변수)"
+
+#~ msgid "PyExc_ValueError (C var)"
+#~ msgstr "PyExc_ValueError (C 변수)"
+
+#~ msgid "PyExc_ZeroDivisionError (C var)"
+#~ msgstr "PyExc_ZeroDivisionError (C 변수)"
+
+#~ msgid "PyExc_EnvironmentError (C var)"
+#~ msgstr "PyExc_EnvironmentError (C 변수)"
+
+#~ msgid "PyExc_IOError (C var)"
+#~ msgstr "PyExc_IOError (C 변수)"
+
+#~ msgid "PyExc_WindowsError (C var)"
+#~ msgstr "PyExc_WindowsError (C 변수)"
+
+#~ msgid "PyExc_Warning (C var)"
+#~ msgstr "PyExc_Warning (C 변수)"
+
+#~ msgid "PyExc_BytesWarning (C var)"
+#~ msgstr "PyExc_BytesWarning (C 변수)"
+
+#~ msgid "PyExc_DeprecationWarning (C var)"
+#~ msgstr "PyExc_DeprecationWarning (C 변수)"
+
+#~ msgid "PyExc_FutureWarning (C var)"
+#~ msgstr "PyExc_FutureWarning (C 변수)"
+
+#~ msgid "PyExc_ImportWarning (C var)"
+#~ msgstr "PyExc_ImportWarning (C 변수)"
+
+#~ msgid "PyExc_PendingDeprecationWarning (C var)"
+#~ msgstr "PyExc_PendingDeprecationWarning (C 변수)"
+
+#~ msgid "PyExc_ResourceWarning (C var)"
+#~ msgstr "PyExc_ResourceWarning (C 변수)"
+
+#~ msgid "PyExc_RuntimeWarning (C var)"
+#~ msgstr "PyExc_RuntimeWarning (C 변수)"
+
+#~ msgid "PyExc_SyntaxWarning (C var)"
+#~ msgstr "PyExc_SyntaxWarning (C 변수)"
+
+#~ msgid "PyExc_UnicodeWarning (C var)"
+#~ msgstr "PyExc_UnicodeWarning (C 변수)"
+
+#~ msgid "PyExc_UserWarning (C var)"
+#~ msgstr "PyExc_UserWarning (C 변수)"
 

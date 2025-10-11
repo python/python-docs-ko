@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -128,29 +128,37 @@ msgstr ""
 " 호출합니다."
 
 #: ../../library/readline.rst:73
+#, fuzzy
 msgid ""
 "Execute a readline initialization file. The default filename is the last "
 "filename used. This calls :c:func:`!rl_read_init_file` in the underlying "
-"library."
+"library. It raises an :ref:`auditing event <auditing>` ``open`` with the "
+"file name if given, and :code:`\"<readline_init_file>\"` otherwise, "
+"regardless of which file the library resolves."
 msgstr ""
 "readline 초기화 파일을 실행합니다. 기본 파일 이름은 마지막으로 사용한 파일 이름입니다. 하부 라이브러리에서 "
 ":c:func:`!rl_read_init_file`\\을 호출합니다."
 
-#: ../../library/readline.rst:78
+#: ../../library/readline.rst:79 ../../library/readline.rst:122
+#: ../../library/readline.rst:134 ../../library/readline.rst:149
+msgid "The auditing event was added."
+msgstr ""
+
+#: ../../library/readline.rst:84
 msgid "Line buffer"
 msgstr "줄 버퍼"
 
-#: ../../library/readline.rst:80
+#: ../../library/readline.rst:86
 msgid "The following functions operate on the line buffer:"
 msgstr "다음 함수는 라인 버퍼에 대해 작용합니다:"
 
-#: ../../library/readline.rst:85
+#: ../../library/readline.rst:91
 msgid ""
 "Return the current contents of the line buffer (:c:data:`!rl_line_buffer`"
 " in the underlying library)."
 msgstr "줄 버퍼의 현재 내용(하부 라이브러리의 :c:data:`!rl_line_buffer`)을 반환합니다."
 
-#: ../../library/readline.rst:91
+#: ../../library/readline.rst:97
 msgid ""
 "Insert text into the line buffer at the cursor position.  This calls "
 ":c:func:`!rl_insert_text` in the underlying library, but ignores the "
@@ -159,7 +167,7 @@ msgstr ""
 "줄 버퍼의 커서 위치에 텍스트를 삽입합니다. 하부 라이브러리에서 :c:func:`!rl_insert_text`\\를 호출하지만, "
 "반환 값은 무시합니다."
 
-#: ../../library/readline.rst:98
+#: ../../library/readline.rst:104
 msgid ""
 "Change what's displayed on the screen to reflect the current contents of "
 "the line buffer.  This calls :c:func:`!rl_redisplay` in the underlying "
@@ -168,45 +176,53 @@ msgstr ""
 "줄 버퍼의 현재 내용을 반영하도록 화면에 표시되는 내용을 변경합니다. 하부 라이브러리에서 "
 ":c:func:`!rl_redisplay`\\를 호출합니다."
 
-#: ../../library/readline.rst:103
+#: ../../library/readline.rst:109
 msgid "History file"
 msgstr "히스토리 파일"
 
-#: ../../library/readline.rst:105
+#: ../../library/readline.rst:111
 msgid "The following functions operate on a history file:"
 msgstr "다음 함수는 히스토리 파일에 대해 작용합니다:"
 
-#: ../../library/readline.rst:110
+#: ../../library/readline.rst:116
+#, fuzzy
 msgid ""
 "Load a readline history file, and append it to the history list. The "
 "default filename is :file:`~/.history`.  This calls "
-":c:func:`!read_history` in the underlying library."
+":c:func:`!read_history` in the underlying library and raises an "
+":ref:`auditing event <auditing>` ``open`` with the file name if given and"
+" :code:`\"~/.history\"` otherwise."
 msgstr ""
 "readline 히스토리 파일을 로드하고, 히스토리 목록에 추가합니다. 기본 파일명은 :file:`~/.history`\\입니다. "
 "하부 라이브러리에서 :c:func:`!read_history`\\를 호출합니다."
 
-#: ../../library/readline.rst:117
+#: ../../library/readline.rst:128
+#, fuzzy
 msgid ""
 "Save the history list to a readline history file, overwriting any "
 "existing file.  The default filename is :file:`~/.history`.  This calls "
-":c:func:`!write_history` in the underlying library."
+":c:func:`!write_history` in the underlying library and raises an "
+":ref:`auditing event <auditing>` ``open`` with the file name if given and"
+" :code:`\"~/.history\"` otherwise."
 msgstr ""
 "히스토리 목록을 readline 히스토리 파일에 저장하여, 기존 파일을 덮어씁니다. 기본 파일명은 "
 ":file:`~/.history`\\입니다. 하부 라이브러리에서 :c:func:`!write_history`\\를 호출합니다."
 
-#: ../../library/readline.rst:124
+#: ../../library/readline.rst:140
+#, fuzzy
 msgid ""
 "Append the last *nelements* items of history to a file.  The default "
 "filename is :file:`~/.history`.  The file must already exist.  This calls"
 " :c:func:`!append_history` in the underlying library.  This function only"
 " exists if Python was compiled for a version of the library that supports"
-" it."
+" it. It raises an :ref:`auditing event <auditing>` ``open`` with the file"
+" name if given and :code:`\"~/.history\"` otherwise."
 msgstr ""
 "히스토리의 마지막 *nelements* 항목을 파일에 추가합니다. 기본 파일명은 :file:`~/.history`\\입니다. 파일이"
 " 이미 존재해야 합니다. 하부 라이브러리에서 :c:func:`!append_history`\\를 호출합니다. 이 함수는 파이썬이 "
 "이를 지원하는 라이브러리 버전으로 컴파일된 경우에만 존재합니다."
 
-#: ../../library/readline.rst:136
+#: ../../library/readline.rst:156
 msgid ""
 "Set or return the desired number of lines to save in the history file. "
 "The :func:`write_history_file` function uses this value to truncate the "
@@ -217,15 +233,15 @@ msgstr ""
 "사용하여, 하부 라이브러리에서 :c:func:`!history_truncate_file`\\을 호출하여 히스토리 파일을 자릅니다. "
 "음수 값은 제한 없는 히스토리 파일 크기를 의미합니다."
 
-#: ../../library/readline.rst:144
+#: ../../library/readline.rst:164
 msgid "History list"
 msgstr "히스토리 목록"
 
-#: ../../library/readline.rst:146
+#: ../../library/readline.rst:166
 msgid "The following functions operate on a global history list:"
 msgstr "다음 함수는 전역 히스토리 목록에 대해 작용합니다:"
 
-#: ../../library/readline.rst:151
+#: ../../library/readline.rst:171
 msgid ""
 "Clear the current history.  This calls :c:func:`!clear_history` in the "
 "underlying library.  The Python function only exists if Python was "
@@ -234,7 +250,7 @@ msgstr ""
 "현재 히스토리를 지웁니다. 하부 라이브러리에서 :c:func:`!clear_history`\\를 호출합니다. 파이썬 함수는 파이썬이"
 " 이를 지원하는 라이브러리 버전으로 컴파일된 경우에만 존재합니다."
 
-#: ../../library/readline.rst:158
+#: ../../library/readline.rst:178
 msgid ""
 "Return the number of items currently in the history.  (This is different "
 "from :func:`get_history_length`, which returns the maximum number of "
@@ -243,7 +259,7 @@ msgstr ""
 "현재 히스토리에 있는 항목 수를 반환합니다. (이것은 히스토리 파일에 기록될 최대 줄 수를 반환하는 "
 ":func:`get_history_length`\\와 다릅니다.)"
 
-#: ../../library/readline.rst:165
+#: ../../library/readline.rst:185
 msgid ""
 "Return the current contents of history item at *index*.  The item index "
 "is one-based.  This calls :c:func:`!history_get` in the underlying "
@@ -252,7 +268,7 @@ msgstr ""
 "*index*\\에 있는 히스토리 항목의 현재 내용을 반환합니다. 항목 인덱스는 1부터 시작합니다. 하부 라이브러리에서 "
 ":c:func:`!history_get`\\을 호출합니다."
 
-#: ../../library/readline.rst:171
+#: ../../library/readline.rst:191
 msgid ""
 "Remove history item specified by its position from the history. The "
 "position is zero-based.  This calls :c:func:`!remove_history` in the "
@@ -261,7 +277,7 @@ msgstr ""
 "히스토리에서 위치(pos)로 지정된 히스토리 항목을 제거합니다. 위치는 0부터 시작합니다. 하부 라이브러리에서 "
 ":c:func:`!remove_history`\\를 호출합니다."
 
-#: ../../library/readline.rst:178
+#: ../../library/readline.rst:198
 msgid ""
 "Replace history item specified by its position with *line*. The position "
 "is zero-based.  This calls :c:func:`!replace_history_entry` in the "
@@ -270,7 +286,7 @@ msgstr ""
 "위치(pos)로 지정된 히스토리 항목을 *line*\\으로 교체합니다. 위치는 0부터 시작합니다. 하부 라이브러리에서 "
 ":c:func:`!replace_history_entry`\\를 호출합니다."
 
-#: ../../library/readline.rst:185
+#: ../../library/readline.rst:205
 msgid ""
 "Append *line* to the history buffer, as if it was the last line typed. "
 "This calls :c:func:`!add_history` in the underlying library."
@@ -278,7 +294,7 @@ msgstr ""
 "마지막 줄이 입력된 것처럼 히스토리 버퍼에 *line*\\을 추가합니다. 하부 라이브러리에서 "
 ":c:func:`!add_history`\\를 호출합니다."
 
-#: ../../library/readline.rst:191
+#: ../../library/readline.rst:211
 msgid ""
 "Enable or disable automatic calls to :c:func:`!add_history` when reading "
 "input via readline.  The *enabled* argument should be a Boolean value "
@@ -288,17 +304,17 @@ msgstr ""
 "readline을 통해 입력을 읽을 때 :c:func:`!add_history`\\에 대한 자동 호출을 활성화 또는 비활성화합니다."
 " *enabled* 인자는 참일 때 자동 히스토리를 활성화하고, 거짓일 때 자동 기록을 비활성화하는 불리언 값이어야 합니다."
 
-#: ../../library/readline.rst:199
+#: ../../library/readline.rst:219
 msgid ""
 "Auto history is enabled by default, and changes to this do not persist "
 "across multiple sessions."
 msgstr ""
 
-#: ../../library/readline.rst:204
+#: ../../library/readline.rst:224
 msgid "Startup hooks"
 msgstr "시동 훅"
 
-#: ../../library/readline.rst:209
+#: ../../library/readline.rst:229
 msgid ""
 "Set or remove the function invoked by the :c:data:`!rl_startup_hook` "
 "callback of the underlying library.  If *function* is specified, it will "
@@ -310,7 +326,7 @@ msgstr ""
 "*function*\\이 지정되면 새 훅(hook) 함수로 사용됩니다; 생략되거나 ``None``\\이면, 이미 설치된 함수가 "
 "제거됩니다. 이 훅은 readline이 첫 번째 프롬프트를 인쇄하기 직전에 인자 없이 호출됩니다."
 
-#: ../../library/readline.rst:218
+#: ../../library/readline.rst:238
 msgid ""
 "Set or remove the function invoked by the :c:data:`!rl_pre_input_hook` "
 "callback of the underlying library.  If *function* is specified, it will "
@@ -325,11 +341,11 @@ msgstr ""
 "이 훅은 첫 번째 프롬프트가 인쇄된 후 readline이 입력 문자를 읽기 시작하기 직전에 인자 없이 호출됩니다. 이 함수는 "
 "파이썬이 이를 지원하는 라이브러리 버전으로 컴파일된 경우에만 존재합니다."
 
-#: ../../library/readline.rst:230
+#: ../../library/readline.rst:250
 msgid "Completion"
 msgstr "완성"
 
-#: ../../library/readline.rst:232
+#: ../../library/readline.rst:252
 msgid ""
 "The following functions relate to implementing a custom word completion "
 "function.  This is typically operated by the Tab key, and can suggest and"
@@ -344,7 +360,7 @@ msgstr ""
 ":mod:`rlcompleter`\\에서 사용하도록 설정되어 있습니다. :mod:`readline` 모듈을 사용자 정의 완성기와 "
 "함께 사용하려면, 다른 단어 구분자 집합을 설정해야 합니다."
 
-#: ../../library/readline.rst:242
+#: ../../library/readline.rst:262
 msgid ""
 "Set or remove the completer function.  If *function* is specified, it "
 "will be used as the new completer function; if omitted or ``None``, any "
@@ -358,7 +374,7 @@ msgstr ""
 "``1``, ``2`` 등의 *state*\\에 대해 ``function(text, state)``\\로 호출됩니다. "
 "*text*\\로 시작하는 다음으로 가능한 완성을 반환해야 합니다."
 
-#: ../../library/readline.rst:249
+#: ../../library/readline.rst:269
 msgid ""
 "The installed completer function is invoked by the *entry_func* callback "
 "passed to :c:func:`!rl_completion_matches` in the underlying library. The"
@@ -370,20 +386,20 @@ msgstr ""
 " 콜백에 의해 호출됩니다. *text* 문자열은 하부 라이브러리의 "
 ":c:data:`!rl_attempted_completion_function` 콜백의 첫 번째 매개 변수로부터 옵니다."
 
-#: ../../library/readline.rst:258
+#: ../../library/readline.rst:278
 msgid ""
 "Get the completer function, or ``None`` if no completer function has been"
 " set."
 msgstr "완성 함수나, 완성 함수가 설정되지 않았으면 ``None``\\을 얻습니다."
 
-#: ../../library/readline.rst:263
+#: ../../library/readline.rst:283
 msgid ""
 "Get the type of completion being attempted.  This returns the "
 ":c:data:`!rl_completion_type` variable in the underlying library as an "
 "integer."
 msgstr "시도 중인 완성 유형을 가져옵니다. 하부 라이브러리의 :c:data:`!rl_completion_type` 변수를 정수로 반환합니다."
 
-#: ../../library/readline.rst:271
+#: ../../library/readline.rst:291
 msgid ""
 "Get the beginning or ending index of the completion scope. These indexes "
 "are the *start* and *end* arguments passed to the "
@@ -397,7 +413,7 @@ msgstr ""
 "인자입니다. 같은 입력 편집 시나리오에서 하부 C readline 구현에 따라 값이 다를 수 있습니다. 예: libedit는 "
 "libreadline과 다르게 동작하는 것으로 알려져 있습니다."
 
-#: ../../library/readline.rst:282
+#: ../../library/readline.rst:302
 msgid ""
 "Set or get the word delimiters for completion.  These determine the start"
 " of the word to be considered for completion (the completion scope). "
@@ -407,7 +423,7 @@ msgstr ""
 "완성을 위한 단어 구분자를 설정하거나 가져옵니다. 이것들은 완성을 위해 고려할 단어의 시작(완성 범위)을 결정합니다. 이 함수는 "
 "하부 라이브러리의 :c:data:`!rl_completer_word_break_characters` 변수를 액세스합니다."
 
-#: ../../library/readline.rst:290
+#: ../../library/readline.rst:310
 msgid ""
 "Set or remove the completion display function.  If *function* is "
 "specified, it will be used as the new completion display function; if "
@@ -424,11 +440,11 @@ msgstr ""
 "일치를 표시해야 할 때마다 한 번 ``function(substitution, [matches], "
 "longest_match_length)``\\로 호출됩니다."
 
-#: ../../library/readline.rst:303
+#: ../../library/readline.rst:323
 msgid "Example"
 msgstr "예제"
 
-#: ../../library/readline.rst:305
+#: ../../library/readline.rst:325
 msgid ""
 "The following example demonstrates how to use the :mod:`readline` "
 "module's history reading and writing functions to automatically load and "
@@ -441,7 +457,7 @@ msgstr ""
 ":file:`.python_history`\\라는 이름의 히스토리 파일을 자동으로 로드하고 저장하는 방법을 보여줍니다. 아래 코드는"
 " 일반적으로 사용자의 :envvar:`PYTHONSTARTUP` 파일에서 대화식 세션 중에 자동으로 실행됩니다. ::"
 
-#: ../../library/readline.rst:311
+#: ../../library/readline.rst:331
 msgid ""
 "import atexit\n"
 "import os\n"
@@ -471,7 +487,7 @@ msgstr ""
 "\n"
 "atexit.register(readline.write_history_file, histfile)"
 
-#: ../../library/readline.rst:325
+#: ../../library/readline.rst:345
 msgid ""
 "This code is actually automatically run when Python is run in "
 ":ref:`interactive mode <tut-interactive>` (see :ref:`rlcompleter-"
@@ -480,13 +496,13 @@ msgstr ""
 "이 코드는 실제로 파이썬이 :ref:`대화형 모드 <tut-interactive>`\\로 실행될 때 자동으로 실행됩니다 (:ref"
 ":`rlcompleter-config`\\을 참조하십시오)."
 
-#: ../../library/readline.rst:328
+#: ../../library/readline.rst:348
 msgid ""
 "The following example achieves the same goal but supports concurrent "
 "interactive sessions, by only appending the new history. ::"
 msgstr "다음 예는 같은 목표를 달성하지만 새 히스토리를 덧붙이기만 해서 동시적인(concurrent) 대화형 세션을 지원합니다. ::"
 
-#: ../../library/readline.rst:331
+#: ../../library/readline.rst:351
 msgid ""
 "import atexit\n"
 "import os\n"
@@ -524,13 +540,13 @@ msgstr ""
 "    readline.append_history_file(new_h_len - prev_h_len, histfile)\n"
 "atexit.register(save, h_len, histfile)"
 
-#: ../../library/readline.rst:349
+#: ../../library/readline.rst:369
 msgid ""
 "The following example extends the :class:`code.InteractiveConsole` class "
 "to support history save/restore. ::"
 msgstr "다음 예는 히스토리 저장/복원을 지원하도록 :class:`code.InteractiveConsole` 클래스를 확장합니다. ::"
 
-#: ../../library/readline.rst:352
+#: ../../library/readline.rst:372
 msgid ""
 "import atexit\n"
 "import code\n"

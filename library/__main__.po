@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Tae-won Jung <jtw7913@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -554,6 +554,7 @@ msgid "Here is an example module that consumes the ``__main__`` namespace::"
 msgstr "다음은 ``__main__`` 네임스페이스를 사용하는 모듈의 예시입니다::"
 
 #: ../../library/__main__.rst:284
+#, fuzzy
 msgid ""
 "# namely.py\n"
 "\n"
@@ -566,10 +567,7 @@ msgid ""
 "    if not did_user_define_their_name():\n"
 "        raise ValueError('Define the variable `my_name`!')\n"
 "\n"
-"    if '__file__' in dir(__main__):\n"
-"        print(__main__.my_name, \"found in file\", __main__.__file__)\n"
-"    else:\n"
-"        print(__main__.my_name)"
+"    print(__main__.my_name)"
 msgstr ""
 "# namely.py\n"
 "\n"
@@ -587,11 +585,11 @@ msgstr ""
 "    else:\n"
 "        print(__main__.my_name)"
 
-#: ../../library/__main__.rst:300
+#: ../../library/__main__.rst:297
 msgid "Example usage of this module could be as follows::"
 msgstr "이 모듈의 사용 예시는 다음과 같습니다::"
 
-#: ../../library/__main__.rst:302
+#: ../../library/__main__.rst:299
 msgid ""
 "# start.py\n"
 "\n"
@@ -627,11 +625,11 @@ msgstr ""
 "if __name__ == \"__main__\":\n"
 "    sys.exit(main())"
 
-#: ../../library/__main__.rst:319
+#: ../../library/__main__.rst:316
 msgid "Now, if we started our program, the result would look like this:"
 msgstr "이제 프로그램을 실행하면 결과는 다음과 같을 것입니다:"
 
-#: ../../library/__main__.rst:321
+#: ../../library/__main__.rst:318
 msgid ""
 "$ python start.py\n"
 "Define the variable `my_name`!"
@@ -639,7 +637,7 @@ msgstr ""
 "$ python start.py\n"
 "Define the variable `my_name`!"
 
-#: ../../library/__main__.rst:326
+#: ../../library/__main__.rst:323
 msgid ""
 "The exit code of the program would be 1, indicating an error. "
 "Uncommenting the line with ``my_name = \"Dinsdale\"`` fixes the program "
@@ -648,15 +646,16 @@ msgstr ""
 "프로그램의 종료 코드는 오류를 나타내는 1이 됩니다. ``my_name = \"Dinsdale\"`` 줄의 주석을 해제하면 "
 "프로그램이 정상 동작하며, 이제 상태 코드 0으로 종료되어 성공을 의미하게 됩니다:"
 
-#: ../../library/__main__.rst:330
+#: ../../library/__main__.rst:327
+#, fuzzy
 msgid ""
 "$ python start.py\n"
-"Dinsdale found in file /path/to/start.py"
+"Dinsdale"
 msgstr ""
 "$ python start.py\n"
-"Dinsdale found in file /path/to/start.py"
+"Define the variable `my_name`!"
 
-#: ../../library/__main__.rst:335
+#: ../../library/__main__.rst:332
 msgid ""
 "Note that importing ``__main__`` doesn't cause any issues with "
 "unintentionally running top-level code meant for script use which is put "
@@ -666,7 +665,7 @@ msgstr ""
 "``__main__`` 을 임포트하더라도, ``start`` 모듈의 ``if __name__ == '__main__'`` 블록에 "
 "있는 스크립트 전용 코드가 의도치 않게 실행되는 문제는 발생하지 않습니다. 왜 그럴까요?"
 
-#: ../../library/__main__.rst:339
+#: ../../library/__main__.rst:336
 msgid ""
 "Python inserts an empty ``__main__`` module in :data:`sys.modules` at "
 "interpreter startup, and populates it by running top-level code. In our "
@@ -685,7 +684,7 @@ msgstr ""
 "존재하므로, 파이썬은 그것을 ``namely`` 에 전달합니다. 이 동작 방식에 대한 자세한 내용은 import 시스템 레퍼런스의 "
 ":ref:`__main__ 에 대한 특수 고려 사항 <import-dunder-main>` 을 참고하십시오."
 
-#: ../../library/__main__.rst:348
+#: ../../library/__main__.rst:345
 msgid ""
 "The Python REPL is another example of a \"top-level environment\", so "
 "anything defined in the REPL becomes part of the ``__main__`` scope::"
@@ -693,7 +692,7 @@ msgstr ""
 "파이썬 REPL은 또 다른 형태의 '최상위 환경' 예시이므로, REPL에서 정의된 모든 것은 ``__main__`` 스코프의 일부가"
 " 됩니다::"
 
-#: ../../library/__main__.rst:351
+#: ../../library/__main__.rst:348
 msgid ""
 ">>> import namely\n"
 ">>> namely.did_user_define_their_name()\n"
@@ -721,13 +720,7 @@ msgstr ""
 ">>> namely.print_user_name()\n"
 "Jabberwocky"
 
-#: ../../library/__main__.rst:364
-msgid ""
-"Note that in this case the ``__main__`` scope doesn't contain a "
-"``__file__`` attribute as it's interactive."
-msgstr "이 경우 REPL은 대화형 환경이므로, ``__main__`` 스코프에는 ``__file__`` 속성이 존재하지 않습니다."
-
-#: ../../library/__main__.rst:367
+#: ../../library/__main__.rst:361
 msgid ""
 "The ``__main__`` scope is used in the implementation of :mod:`pdb` and "
 ":mod:`rlcompleter`."
@@ -756,4 +749,17 @@ msgstr "``__main__`` 스코프는 :mod:`pdb` 와 :mod:`rlcompleter` 의 구현�
 #~ "패키지의 경우, ``__main__.py`` 모듈을 포함 시키면 "
 #~ "같은 효과를 얻을 수 있습니다. 모듈의 내용은 "
 #~ "모듈이 ``-m`` 으로 실행될 때 실행됩니다."
+
+#~ msgid ""
+#~ "$ python start.py\n"
+#~ "Dinsdale found in file /path/to/start.py"
+#~ msgstr ""
+#~ "$ python start.py\n"
+#~ "Dinsdale found in file /path/to/start.py"
+
+#~ msgid ""
+#~ "Note that in this case the "
+#~ "``__main__`` scope doesn't contain a "
+#~ "``__file__`` attribute as it's interactive."
+#~ msgstr "이 경우 REPL은 대화형 환경이므로, ``__main__`` 스코프에는 ``__file__`` 속성이 존재하지 않습니다."
 

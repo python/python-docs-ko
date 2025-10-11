@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -824,11 +824,12 @@ msgstr ""
 "요구하지 않습니다. 이는 *yield*\\와 *return* 문법이 일반 대입 문법과 더 잘 일치하도록 만듭니다::"
 
 #: ../../whatsnew/3.8.rst:430
+#, fuzzy
 msgid ""
 ">>> def parse(family):\n"
-"        lastname, *members = family.split()\n"
-"        return lastname.upper(), *members\n"
-"\n"
+"...     lastname, *members = family.split()\n"
+"...     return lastname.upper(), *members\n"
+"...\n"
 ">>> parse('simpsons homer marge bart lisa maggie')\n"
 "('SIMPSONS', 'homer', 'marge', 'bart', 'lisa', 'maggie')"
 msgstr ""
@@ -1037,14 +1038,15 @@ msgid "(Contributed by Jörn Heissler in :issue:`35224`.)"
 msgstr "(Contributed by Jörn Heissler in :issue:`35224`.)"
 
 #: ../../whatsnew/3.8.rst:534
+#, fuzzy
 msgid ""
 "The :meth:`object.__reduce__` method can now return a tuple from two to "
 "six elements long. Formerly, five was the limit.  The new, optional sixth"
 " element is a callable with a ``(obj, state)`` signature.  This allows "
 "the direct control over the state-updating behavior of a specific object."
 "  If not *None*, this callable will have priority over the object's "
-":meth:`~__setstate__` method. (Contributed by Pierre Glaser and Olivier "
-"Grisel in :issue:`35900`.)"
+":meth:`~object.__setstate__` method. (Contributed by Pierre Glaser and "
+"Olivier Grisel in :issue:`35900`.)"
 msgstr ""
 ":meth:`object.__reduce__` 메서드는 이제 2개에서 6개 요소 길이의 튜플을 반환할 수 있습니다. 이전에는 5가 "
 "한계였습니다. 새로운 선택적 여섯 번째 요소는 ``(obj, state)`` 서명을 갖는 콜러블입니다. 이를 통해 특정 객체의 상태"
@@ -1276,7 +1278,7 @@ msgstr ""
 msgid "(Contributed by Yury Selivanov in :issue:`37028`.)"
 msgstr "(Contributed by Yury Selivanov in :issue:`37028`.)"
 
-#: ../../whatsnew/3.8.rst:651 ../../whatsnew/3.8.rst:1970
+#: ../../whatsnew/3.8.rst:651 ../../whatsnew/3.8.rst:1973
 msgid ""
 "The exception :class:`asyncio.CancelledError` now inherits from "
 ":class:`BaseException` rather than :class:`Exception` and no longer "
@@ -2057,6 +2059,7 @@ msgstr ""
 "(Contributed by Zackery Spytz and Christian Heimes in :issue:`26836`.)"
 
 #: ../../whatsnew/3.8.rst:1033
+#, fuzzy
 msgid ""
 "On Windows, much of the manual logic for handling reparse points "
 "(including symlinks and directory junctions) has been delegated to the "
@@ -2064,10 +2067,10 @@ msgid ""
 "anything supported by the operating system, while :func:`os.lstat` will "
 "only open reparse points that identify as \"name surrogates\" while "
 "others are opened as for :func:`os.stat`. In all cases, "
-":attr:`stat_result.st_mode` will only have ``S_IFLNK`` set for symbolic "
-"links and not other kinds of reparse points. To identify other kinds of "
-"reparse point, check the new :attr:`stat_result.st_reparse_tag` "
-"attribute."
+":attr:`os.stat_result.st_mode` will only have ``S_IFLNK`` set for "
+"symbolic links and not other kinds of reparse points. To identify other "
+"kinds of reparse point, check the new "
+":attr:`os.stat_result.st_reparse_tag` attribute."
 msgstr ""
 "윈도우에서 재해석 지점(reparse points - 심볼릭 링크와 디렉터리 정션(directory junction)을 "
 "포함합니다)을 처리하기 위한 많은 수동 논리가 운영 체제로 위임되었습니다. 특히, :func:`os.stat`\\은 이제 운영 "
@@ -2116,7 +2119,7 @@ msgstr ""
 ":exc:`UnicodeEncodeError` 와 :exc:`UnicodeDecodeError` 를 발생시키는 대신 "
 "``False``\\를 반환합니다. (Contributed by Serhiy Storchaka in :issue:`33721`.)."
 
-#: ../../whatsnew/3.8.rst:1062 ../../whatsnew/3.8.rst:1965
+#: ../../whatsnew/3.8.rst:1062 ../../whatsnew/3.8.rst:1968
 msgid ""
 ":func:`~os.path.expanduser` on Windows now prefers the "
 ":envvar:`USERPROFILE` environment variable and does not use "
@@ -2474,7 +2477,7 @@ msgstr ""
 "호출됩니다. 예를 들어, 파괴자(destructor)가 예외를 발생시키거나 가비지 수집(:func:`gc.collect`) 중에. "
 "(Contributed by Victor Stinner in :issue:`36829`.)"
 
-#: ../../whatsnew/3.8.rst:1250 ../../whatsnew/3.8.rst:2350
+#: ../../whatsnew/3.8.rst:1250 ../../whatsnew/3.8.rst:2353
 msgid "tarfile"
 msgstr "tarfile"
 
@@ -2543,12 +2546,12 @@ msgid "tkinter"
 msgstr "tkinter"
 
 #: ../../whatsnew/3.8.rst:1288
+#, fuzzy
 msgid ""
-"Added methods :meth:`~tkinter.Spinbox.selection_from`, "
-":meth:`~tkinter.Spinbox.selection_present`, "
-":meth:`~tkinter.Spinbox.selection_range` and "
-":meth:`~tkinter.Spinbox.selection_to` in the :class:`tkinter.Spinbox` "
-"class. (Contributed by Juliette Monsel in :issue:`34829`.)"
+"Added methods :meth:`!selection_from`, :meth:`!selection_present`, "
+":meth:`!selection_range` and :meth:`!selection_to` in the "
+":class:`!tkinter.Spinbox` class. (Contributed by Juliette Monsel in "
+":issue:`34829`.)"
 msgstr ""
 ":class:`tkinter.Spinbox` 클래스에 :meth:`~tkinter.Spinbox.selection_from`, "
 ":meth:`~tkinter.Spinbox.selection_present`, "
@@ -2557,20 +2560,20 @@ msgstr ""
 "Juliette Monsel in :issue:`34829`.)"
 
 #: ../../whatsnew/3.8.rst:1295
+#, fuzzy
 msgid ""
-"Added method :meth:`~tkinter.Canvas.moveto` in the "
-":class:`tkinter.Canvas` class. (Contributed by Juliette Monsel in "
-":issue:`23831`.)"
+"Added method :meth:`!moveto` in the :class:`!tkinter.Canvas` class. "
+"(Contributed by Juliette Monsel in :issue:`23831`.)"
 msgstr ""
 ":class:`tkinter.Canvas` 클래스에 :meth:`~tkinter.Canvas.moveto` 메서드를 추가했습니다. "
 "(Contributed by Juliette Monsel in :issue:`23831`.)"
 
 #: ../../whatsnew/3.8.rst:1299
+#, fuzzy
 msgid ""
-"The :class:`tkinter.PhotoImage` class now has "
-":meth:`~tkinter.PhotoImage.transparency_get` and "
-":meth:`~tkinter.PhotoImage.transparency_set` methods.  (Contributed by "
-"Zackery Spytz in :issue:`25451`.)"
+"The :class:`!tkinter.PhotoImage` class now has :meth:`!transparency_get` "
+"and :meth:`!transparency_set` methods.  (Contributed by Zackery Spytz in "
+":issue:`25451`.)"
 msgstr ""
 ":class:`tkinter.PhotoImage` 클래스는 이제 "
 ":meth:`~tkinter.PhotoImage.transparency_get`\\과 "
@@ -2840,9 +2843,10 @@ msgstr ""
 "지원합니다. (Contributed by Stefan Behnel in :issue:`28238`.)"
 
 #: ../../whatsnew/3.8.rst:1434
+#, fuzzy
 msgid ""
 "The :mod:`xml.etree.ElementTree` module provides a new function "
-":func:`–xml.etree.ElementTree.canonicalize` that implements C14N 2.0. "
+":func:`~xml.etree.ElementTree.canonicalize` that implements C14N 2.0. "
 "(Contributed by Stefan Behnel in :issue:`13611`.)"
 msgstr ""
 ":mod:`xml.etree.ElementTree` 모듈은 C14N 2.0을 구현하는 새로운 함수 "
@@ -3154,7 +3158,8 @@ msgid ":c:func:`Py_XINCREF`, :c:func:`Py_XDECREF`"
 msgstr ":c:func:`Py_XINCREF`, :c:func:`Py_XDECREF`"
 
 #: ../../whatsnew/3.8.rst:1576
-msgid ":c:func:`PyObject_INIT`, :c:func:`PyObject_INIT_VAR`"
+#, fuzzy
+msgid ":c:macro:`!PyObject_INIT`, :c:macro:`!PyObject_INIT_VAR`"
 msgstr ":c:func:`PyObject_INIT`, :c:func:`PyObject_INIT_VAR`"
 
 #: ../../whatsnew/3.8.rst:1577
@@ -3374,9 +3379,10 @@ msgstr ""
 "Serhiy Storchaka in :issue:`36917`.)"
 
 #: ../../whatsnew/3.8.rst:1680
+#, fuzzy
 msgid ""
-"The :func:`asyncio.coroutine` :term:`decorator` is deprecated and will be"
-" removed in version 3.10.  Instead of ``@asyncio.coroutine``, use "
+"The :deco:`!asyncio.coroutine` :term:`decorator` is deprecated and will "
+"be removed in version 3.10.  Instead of ``@asyncio.coroutine``, use "
 ":keyword:`async def` instead. (Contributed by Andrew Svetlov in "
 ":issue:`36921`.)"
 msgstr ""
@@ -3417,14 +3423,15 @@ msgstr ""
 "(Contributed by Yury Selivanov in :issue:`34790`.)"
 
 #: ../../whatsnew/3.8.rst:1699
+#, fuzzy
 msgid ""
 "The following functions and methods are deprecated in the :mod:`gettext` "
-"module: :func:`~gettext.lgettext`, :func:`~gettext.ldgettext`, "
-":func:`~gettext.lngettext` and :func:`~gettext.ldngettext`. They return "
-"encoded bytes, and it's possible that you will get unexpected Unicode-"
-"related exceptions if there are encoding problems with the translated "
-"strings. It's much better to use alternatives which return Unicode "
-"strings in Python 3. These functions have been broken for a long time."
+"module: :func:`!lgettext`, :func:`!ldgettext`, :func:`!lngettext` and "
+":func:`!ldngettext`. They return encoded bytes, and it's possible that "
+"you will get unexpected Unicode-related exceptions if there are encoding "
+"problems with the translated strings. It's much better to use "
+"alternatives which return Unicode strings in Python 3. These functions "
+"have been broken for a long time."
 msgstr ""
 ":mod:`gettext` 모듈에서는 다음 함수와 메서드가 폐지되었습니다: :func:`~gettext.lgettext`, "
 ":func:`~gettext.ldgettext`, :func:`~gettext.lngettext` 및 "
@@ -3433,14 +3440,14 @@ msgstr ""
 "낫습니다. 이 함수들은 오랫동안 망가져 있었습니다."
 
 #: ../../whatsnew/3.8.rst:1707
+#, fuzzy
 msgid ""
-"Function :func:`~gettext.bind_textdomain_codeset`, methods "
-":meth:`~gettext.NullTranslations.output_charset` and "
-":meth:`~gettext.NullTranslations.set_output_charset`, and the *codeset* "
-"parameter of functions :func:`~gettext.translation` and "
-":func:`~gettext.install` are also deprecated, since they are only used "
-"for the ``l*gettext()`` functions. (Contributed by Serhiy Storchaka in "
-":issue:`33710`.)"
+"Function :func:`!bind_textdomain_codeset`, methods "
+":meth:`!NullTranslations.output_charset` and "
+":meth:`!NullTranslations.set_output_charset`, and the *codeset* parameter"
+" of functions :func:`~gettext.translation` and :func:`~gettext.install` "
+"are also deprecated, since they are only used for the ``l*gettext()`` "
+"functions. (Contributed by Serhiy Storchaka in :issue:`33710`.)"
 msgstr ""
 "함수 :func:`~gettext.bind_textdomain_codeset`, 메서드 "
 ":meth:`~gettext.NullTranslations.output_charset`\\과 "
@@ -3450,9 +3457,10 @@ msgstr ""
 "Storchaka in :issue:`33710`.)"
 
 #: ../../whatsnew/3.8.rst:1715
+#, fuzzy
 msgid ""
-"The :meth:`~threading.Thread.isAlive` method of :class:`threading.Thread`"
-" has been deprecated. (Contributed by Donghee Na in :issue:`35283`.)"
+"The :meth:`!isAlive` method of :class:`threading.Thread` has been "
+"deprecated. (Contributed by Donghee Na in :issue:`35283`.)"
 msgstr ""
 ":class:`threading.Thread`\\의 :meth:`~threading.Thread.isAlive` 메서드가 "
 "폐지되었습니다. (Contributed by Donghee Na in :issue:`35283`.)"
@@ -3478,9 +3486,10 @@ msgid "Deprecated passing the following arguments as keyword arguments:"
 msgstr "다음 인자들을 키워드 인자로 전달하는 것이 폐지되었습니다:"
 
 #: ../../whatsnew/3.8.rst:1729
+#, fuzzy
 msgid ""
 "*func* in :func:`functools.partialmethod`, :func:`weakref.finalize`, "
-":meth:`profile.Profile.runcall`, :meth:`cProfile.Profile.runcall`, "
+":meth:`profile.Profile.runcall`, :meth:`!cProfile.Profile.runcall`, "
 ":meth:`bdb.Bdb.runcall`, :meth:`trace.Trace.runfunc` and "
 ":func:`curses.wrapper`."
 msgstr ""
@@ -3504,9 +3513,10 @@ msgstr ""
 ":meth:`~concurrent.futures.Executor.submit` 메서드의 *fn*."
 
 #: ../../whatsnew/3.8.rst:1737
+#, fuzzy
 msgid ""
 "*callback* in :meth:`contextlib.ExitStack.callback`, "
-":meth:`contextlib.AsyncExitStack.callback` and "
+":meth:`!contextlib.AsyncExitStack.callback` and "
 ":meth:`contextlib.AsyncExitStack.push_async_callback`."
 msgstr ""
 ":meth:`contextlib.ExitStack.callback`, "
@@ -3514,10 +3524,11 @@ msgstr ""
 ":meth:`contextlib.AsyncExitStack.push_async_callback`\\의 *callback*"
 
 #: ../../whatsnew/3.8.rst:1740
+#, fuzzy
 msgid ""
-"*c* and *typeid* in the :meth:`~multiprocessing.managers.Server.create` "
-"method of :class:`multiprocessing.managers.Server` and "
-":class:`multiprocessing.managers.SharedMemoryServer`."
+"*c* and *typeid* in the :meth:`!create` method of "
+":class:`!multiprocessing.managers.Server` and "
+":class:`!multiprocessing.managers.SharedMemoryServer`."
 msgstr ""
 ":class:`multiprocessing.managers.Server`\\와 "
 ":class:`multiprocessing.managers.SharedMemoryServer`\\의 "
@@ -3556,16 +3567,18 @@ msgstr ""
 "3.8에서 제거될 것으로 표시되었지만 3.9로 지연되었습니다. (:gh:`81134` 참조)"
 
 #: ../../whatsnew/3.8.rst:1760
+#, fuzzy
 msgid ""
-"The :mod:`macpath` module, deprecated in Python 3.7, has been removed. "
+"The :mod:`!macpath` module, deprecated in Python 3.7, has been removed. "
 "(Contributed by Victor Stinner in :issue:`35471`.)"
 msgstr ""
 "파이썬 3.7에서 폐지된, :mod:`macpath` 모듈이 제거되었습니다. (Contributed by Victor Stinner"
 " in :issue:`35471`.)"
 
-#: ../../whatsnew/3.8.rst:1763 ../../whatsnew/3.8.rst:1882
+#: ../../whatsnew/3.8.rst:1763 ../../whatsnew/3.8.rst:1883
+#, fuzzy
 msgid ""
-"The function :func:`platform.popen` has been removed, after having been "
+"The function :func:`!platform.popen` has been removed, after having been "
 "deprecated since Python 3.3: use :func:`os.popen` instead. (Contributed "
 "by Victor Stinner in :issue:`35345`.)"
 msgstr ""
@@ -3574,8 +3587,9 @@ msgstr ""
 ":issue:`35345`.)"
 
 #: ../../whatsnew/3.8.rst:1767
+#, fuzzy
 msgid ""
-"The function :func:`time.clock` has been removed, after having been "
+"The function :func:`!time.clock` has been removed, after having been "
 "deprecated since Python 3.3: use :func:`time.perf_counter` or "
 ":func:`time.process_time` instead, depending on your requirements, to "
 "have well-defined behavior. (Contributed by Matthias Bussonnier in "
@@ -3663,9 +3677,10 @@ msgstr ""
 "Matthias Bussonnier.)"
 
 #: ../../whatsnew/3.8.rst:1803
+#, fuzzy
 msgid ""
-"The functions :func:`sys.set_coroutine_wrapper` and "
-":func:`sys.get_coroutine_wrapper` deprecated in Python 3.7 have been "
+"The functions :func:`!sys.set_coroutine_wrapper` and "
+":func:`!sys.get_coroutine_wrapper` deprecated in Python 3.7 have been "
 "removed; :issue:`36933` (Contributed by Matthias Bussonnier.)"
 msgstr ""
 "파이썬 3.7에서 폐지된 :func:`sys.set_coroutine_wrapper`\\와 "
@@ -3766,7 +3781,7 @@ msgstr ""
 ":func:`sys.is_finalizing`\\을 확인하여 호출을 보호하십시오. (Contributed by Joannah "
 "Nanjekye in :issue:`36475`.)"
 
-#: ../../whatsnew/3.8.rst:1858 ../../whatsnew/3.8.rst:2321
+#: ../../whatsnew/3.8.rst:1858 ../../whatsnew/3.8.rst:2324
 msgid "Changes in the Python API"
 msgstr "파이썬 API의 변경"
 
@@ -3782,14 +3797,15 @@ msgstr ""
 "Stinner in :issue:`37412`.)"
 
 #: ../../whatsnew/3.8.rst:1865
+#, fuzzy
 msgid ""
 ":class:`subprocess.Popen` can now use :func:`os.posix_spawn` in some "
 "cases for better performance. On Windows Subsystem for Linux and QEMU "
-"User Emulation, the :class:`Popen` constructor using "
+"User Emulation, the :class:`~subprocess.Popen` constructor using "
 ":func:`os.posix_spawn` no longer raises an exception on errors like "
 "\"missing program\".  Instead the child process fails with a non-zero "
-":attr:`~Popen.returncode`. (Contributed by Joannah Nanjekye and Victor "
-"Stinner in :issue:`35537`.)"
+":attr:`~subprocess.Popen.returncode`. (Contributed by Joannah Nanjekye "
+"and Victor Stinner in :issue:`35537`.)"
 msgstr ""
 ":class:`subprocess.Popen`\\은 이제 어떤 경우에 더 나은 성능을 위해 "
 ":func:`os.posix_spawn`\\을 사용할 수 있습니다. 리눅스용 윈도우 하위 시스템과 QEMU 사용자 에뮬레이션에서, "
@@ -3797,7 +3813,7 @@ msgstr ""
 " 예외를 발생시키지 않습니다. 대신 자식 프로세스는 0이 아닌 :attr:`~Popen.returncode`\\로 실패합니다. "
 "(Contributed by Joannah Nanjekye and Victor Stinner in :issue:`35537`.)"
 
-#: ../../whatsnew/3.8.rst:1872
+#: ../../whatsnew/3.8.rst:1873
 msgid ""
 "The *preexec_fn* argument of * :class:`subprocess.Popen` is no longer "
 "compatible with subinterpreters. The use of the parameter in a "
@@ -3808,15 +3824,16 @@ msgstr ""
 "인터프리터에서 매개 변수를 사용하면 :exc:`RuntimeError`\\가 발생합니다. (Contributed by Eric "
 "Snow in :issue:`34651`, modified by Christian Heimes in :issue:`37951`.)"
 
-#: ../../whatsnew/3.8.rst:1878
+#: ../../whatsnew/3.8.rst:1879
+#, fuzzy
 msgid ""
-"The :meth:`imap.IMAP4.logout` method no longer silently ignores arbitrary"
-" exceptions. (Contributed by Victor Stinner in :issue:`36348`.)"
+"The :meth:`imaplib.IMAP4.logout` method no longer silently ignores "
+"arbitrary exceptions. (Contributed by Victor Stinner in :issue:`36348`.)"
 msgstr ""
 ":meth:`imap.IMAP4.logout` 메서드는 더는 조용히 임의의 예외를 무시하지 않습니다. (Contributed by "
 "Victor Stinner in :issue:`36348`.)"
 
-#: ../../whatsnew/3.8.rst:1886
+#: ../../whatsnew/3.8.rst:1887
 msgid ""
 "The :func:`statistics.mode` function no longer raises an exception when "
 "given multimodal data.  Instead, it returns the first mode encountered in"
@@ -3826,7 +3843,7 @@ msgstr ""
 "않습니다. 대신, 입력 데이터에서 만나는 첫 번째 모드를 반환합니다. (Contributed by Raymond Hettinger "
 "in :issue:`35892`.)"
 
-#: ../../whatsnew/3.8.rst:1891
+#: ../../whatsnew/3.8.rst:1892
 msgid ""
 "The :meth:`~tkinter.ttk.Treeview.selection` method of the "
 ":class:`tkinter.ttk.Treeview` class no longer takes arguments.  Using it "
@@ -3841,19 +3858,24 @@ msgstr ""
 ":meth:`~tkinter.ttk.Treeview.selection_set`\\과 같은 특화된 메서드를 사용하십시오. "
 "(Contributed by Serhiy Storchaka in :issue:`31508`.)"
 
-#: ../../whatsnew/3.8.rst:1897
+#: ../../whatsnew/3.8.rst:1898
+#, fuzzy
 msgid ""
-"The :meth:`writexml`, :meth:`toxml` and :meth:`toprettyxml` methods of "
-":mod:`xml.dom.minidom`, and the :meth:`write` method of :mod:`xml.etree`,"
-" now preserve the attribute order specified by the user. (Contributed by "
-"Diego Rojas and Raymond Hettinger in :issue:`34160`.)"
+"The :meth:`~xml.dom.minidom.Node.writexml`, "
+":meth:`~xml.dom.minidom.Node.toxml` and "
+":meth:`~xml.dom.minidom.Node.toprettyxml` methods of "
+":mod:`xml.dom.minidom` and the "
+":meth:`~xml.etree.ElementTree.ElementTree.write` method of "
+":mod:`xml.etree.ElementTree` now preserve the attribute order specified "
+"by the user. (Contributed by Diego Rojas and Raymond Hettinger in "
+":issue:`34160`.)"
 msgstr ""
 ":mod:`xml.dom.minidom` 모듈의 :meth:`writexml`, :meth:`toxml` 및 "
 ":meth:`toprettyxml` 메서드와 :mod:`xml.etree`\\의 :meth:`write` 메서드는 이제 사용자가 "
 "지정한 어트리뷰트 순서를 보존합니다. (Contributed by Diego Rojas and Raymond Hettinger in"
 " :issue:`34160`.)"
 
-#: ../../whatsnew/3.8.rst:1902
+#: ../../whatsnew/3.8.rst:1905
 msgid ""
 "A :mod:`dbm.dumb` database opened with flags ``'r'`` is now read-only. "
 ":func:`dbm.dumb.open` with flags ``'r'`` and ``'w'`` no longer creates a "
@@ -3864,7 +3886,7 @@ msgstr ""
 " 플래그로 :func:`dbm.dumb.open`\\하면 더는 데이터베이스가 없을 때 만들지 않습니다. (Contributed by"
 " Serhiy Storchaka in :issue:`32749`.)"
 
-#: ../../whatsnew/3.8.rst:1907
+#: ../../whatsnew/3.8.rst:1910
 msgid ""
 "The ``doctype()`` method defined in a subclass of "
 ":class:`~xml.etree.ElementTree.XMLParser` will no longer be called and "
@@ -3879,7 +3901,7 @@ msgstr ""
 "<xml.etree.ElementTree.TreeBuilder.doctype>` 메서드를 정의하십시오. (Contributed by"
 " Serhiy Storchaka in :issue:`29209`.)"
 
-#: ../../whatsnew/3.8.rst:1914
+#: ../../whatsnew/3.8.rst:1917
 msgid ""
 "A :exc:`RuntimeError` is now raised when the custom metaclass doesn't "
 "provide the ``__classcell__`` entry in the namespace passed to "
@@ -3891,15 +3913,16 @@ msgstr ""
 ":exc:`DeprecationWarning`\\이 방출되었습니다. (Contributed by Serhiy Storchaka in"
 " :issue:`23722`.)"
 
-#: ../../whatsnew/3.8.rst:1919
+#: ../../whatsnew/3.8.rst:1922
+#, fuzzy
 msgid ""
-"The :class:`cProfile.Profile` class can now be used as a context manager."
-" (Contributed by Scott Sanderson in :issue:`29235`.)"
+"The :class:`cProfile.Profile <profile.Profile>` class can now be used as "
+"a context manager. (Contributed by Scott Sanderson in :issue:`29235`.)"
 msgstr ""
 ":class:`cProfile.Profile` 클래스는 이제 컨텍스트 관리자로 사용할 수 있습니다. (Contributed by "
 "Scott Sanderson in :issue:`29235`.)"
 
-#: ../../whatsnew/3.8.rst:1922
+#: ../../whatsnew/3.8.rst:1925
 msgid ""
 ":func:`shutil.copyfile`, :func:`shutil.copy`, :func:`shutil.copy2`, "
 ":func:`shutil.copytree` and :func:`shutil.move` use platform-specific "
@@ -3911,13 +3934,13 @@ msgstr ""
 "copy)\" 시스템 호출을 사용합니다 (:ref:`shutil-platform-dependent-efficient-copy-"
 "operations` 절을 참조하십시오)."
 
-#: ../../whatsnew/3.8.rst:1927
+#: ../../whatsnew/3.8.rst:1930
 msgid ""
 ":func:`shutil.copyfile` default buffer size on Windows was changed from "
 "16 KiB to 1 MiB."
 msgstr "윈도우에서 :func:`shutil.copyfile` 기본 버퍼 크기가 16 KiB에서 1 MiB로 변경되었습니다."
 
-#: ../../whatsnew/3.8.rst:1930
+#: ../../whatsnew/3.8.rst:1933
 msgid ""
 "The ``PyGC_Head`` struct has changed completely.  All code that touched "
 "the struct member should be rewritten.  (See :issue:`33597`.)"
@@ -3925,7 +3948,7 @@ msgstr ""
 "``PyGC_Head`` 구조체가 완전히 변경되었습니다. 구조체 멤버를 건드리는 모든 코드는 다시 작성해야 합니다. "
 "(:issue:`33597` 참조.)"
 
-#: ../../whatsnew/3.8.rst:1933
+#: ../../whatsnew/3.8.rst:1936
 msgid ""
 "The :c:type:`PyInterpreterState` struct has been moved into the "
 "\"internal\" header files (specifically "
@@ -3944,7 +3967,7 @@ msgstr ""
 "대안이 없으면 BPO 이슈를 여십시오. 조정을 돕기 위해 노력할 것입니다 (공용 API에 접근 함수를 추가하는 것도 가능합니다). "
 "(:issue:`35886`\\을 참조하십시오.)"
 
-#: ../../whatsnew/3.8.rst:1943
+#: ../../whatsnew/3.8.rst:1946
 msgid ""
 "The :meth:`mmap.flush() <mmap.mmap.flush>` method now returns ``None`` on"
 " success and raises an exception on error under all platforms.  "
@@ -3958,7 +3981,7 @@ msgstr ""
 "반환되었습니다; 에러 시 0이 반환되었습니다. 유닉스에서 성공 시 0 값이 반환되었습니다; 에러 시 예외가 발생했습니다. "
 "(Contributed by Berker Peksag in :issue:`2122`.)"
 
-#: ../../whatsnew/3.8.rst:1950
+#: ../../whatsnew/3.8.rst:1953
 msgid ""
 ":mod:`xml.dom.minidom` and :mod:`xml.sax` modules no longer process "
 "external entities by default. (Contributed by Christian Heimes in "
@@ -3967,10 +3990,11 @@ msgstr ""
 ":mod:`xml.dom.minidom`\\과 :mod:`xml.sax` 모듈은 기본적으로 더는 외부 엔티티를 처리하지 않습니다. "
 "(Contributed by Christian Heimes in :issue:`17239`.)"
 
-#: ../../whatsnew/3.8.rst:1954
+#: ../../whatsnew/3.8.rst:1957
+#, fuzzy
 msgid ""
 "Deleting a key from a read-only :mod:`dbm` database (:mod:`dbm.dumb`, "
-":mod:`dbm.gnu` or :mod:`dbm.ndbm`) raises :attr:`error` "
+":mod:`dbm.gnu` or :mod:`dbm.ndbm`) raises :attr:`!error` "
 "(:exc:`dbm.dumb.error`, :exc:`dbm.gnu.error` or :exc:`dbm.ndbm.error`) "
 "instead of :exc:`KeyError`. (Contributed by Xiang Zhang in "
 ":issue:`33106`.)"
@@ -3981,7 +4005,7 @@ msgstr ""
 ":exc:`dbm.ndbm.error`)를 발생시킵니다. (Contributed by Xiang Zhang in "
 ":issue:`33106`.)"
 
-#: ../../whatsnew/3.8.rst:1959
+#: ../../whatsnew/3.8.rst:1962
 msgid ""
 "Simplified AST for literals.  All constants will be represented as "
 ":class:`ast.Constant` instances.  Instantiating old classes ``Num``, "
@@ -3994,7 +4018,7 @@ msgstr ""
 "``Constant`` 인스턴스가 반환됩니다. (Contributed by Serhiy Storchaka in "
 ":issue:`32892`.)"
 
-#: ../../whatsnew/3.8.rst:1975
+#: ../../whatsnew/3.8.rst:1978
 msgid ""
 "The function :func:`asyncio.wait_for` now correctly waits for "
 "cancellation when using an instance of :class:`asyncio.Task`. Previously,"
@@ -4005,7 +4029,7 @@ msgstr ""
 "올바르게 기다립니다. 이전에는, *timeout*\\에 도달하면 취소되어 즉시 반환되었습니다. (Contributed by "
 "Elvis Pranskevichus in :issue:`32751`.)"
 
-#: ../../whatsnew/3.8.rst:1980
+#: ../../whatsnew/3.8.rst:1983
 msgid ""
 "The function :func:`asyncio.BaseTransport.get_extra_info` now returns a "
 "safe to use socket object when 'socket' is passed to the *name* "
@@ -4015,11 +4039,11 @@ msgstr ""
 "변수로 전달될 때 안전하게 사용할 수 있는 소켓 객체를 반환합니다. (Contributed by Yury Selivanov in "
 ":issue:`37027`.)"
 
-#: ../../whatsnew/3.8.rst:1984
+#: ../../whatsnew/3.8.rst:1987
 msgid ":class:`asyncio.BufferedProtocol` has graduated to the stable API."
 msgstr ":class:`asyncio.BufferedProtocol`\\는 졸업해서 안정 API가 되었습니다."
 
-#: ../../whatsnew/3.8.rst:1988
+#: ../../whatsnew/3.8.rst:1991
 msgid ""
 "DLL dependencies for extension modules and DLLs loaded with :mod:`ctypes`"
 " on Windows are now resolved more securely. Only the system paths, the "
@@ -4042,7 +4066,7 @@ msgstr ""
 "로드하는 동안 DLL 디렉터리를 추가하십시오. 윈도우 7 사용자는 윈도우 업데이트 KB2533623이 설치되었는지 확인해야 합니다 "
 "(이는 설치 프로그램에서도 확인합니다). (Contributed by Steve Dower in :issue:`36085`.)"
 
-#: ../../whatsnew/3.8.rst:2001
+#: ../../whatsnew/3.8.rst:2004
 msgid ""
 "The header files and functions related to pgen have been removed after "
 "its replacement by a pure Python implementation. (Contributed by Pablo "
@@ -4051,7 +4075,7 @@ msgstr ""
 "pgen과 관련된 헤더 파일과 함수는 순수 파이썬 구현으로 대체 된 후에 제거되었습니다. (Contributed by Pablo "
 "Galindo in :issue:`36623`.)"
 
-#: ../../whatsnew/3.8.rst:2005
+#: ../../whatsnew/3.8.rst:2008
 msgid ""
 ":class:`types.CodeType` has a new parameter in the second position of the"
 " constructor (*posonlyargcount*) to support positional-only arguments "
@@ -4065,17 +4089,17 @@ msgstr ""
 "총수(위치 전용 인자 포함)를 나타냅니다. :class:`types.CodeType`\\의 새로운 ``replace()`` 메서드를"
 " 사용하면 코드가 미래에도 안전하게 만들 수 있습니다."
 
-#: ../../whatsnew/3.8.rst:2012
+#: ../../whatsnew/3.8.rst:2015
 msgid ""
 "The parameter ``digestmod`` for :func:`hmac.new` no longer uses the MD5 "
 "digest by default."
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2016
+#: ../../whatsnew/3.8.rst:2019
 msgid "Changes in the C API"
 msgstr "C API의 변경"
 
-#: ../../whatsnew/3.8.rst:2018
+#: ../../whatsnew/3.8.rst:2021
 msgid ""
 "The :c:struct:`PyCompilerFlags` structure got a new *cf_feature_version* "
 "field. It should be initialized to ``PY_MINOR_VERSION``. The field is "
@@ -4087,7 +4111,7 @@ msgstr ""
 "플래그가 *cf_flags*\\에 설정되었을 때, 또 그때만 사용됩니다. (Contributed by Guido van Rossum"
 " in :issue:`35766`.)"
 
-#: ../../whatsnew/3.8.rst:2024
+#: ../../whatsnew/3.8.rst:2027
 msgid ""
 "The :c:func:`!PyEval_ReInitThreads` function has been removed from the C "
 "API. It should not be called explicitly: use "
@@ -4098,7 +4122,7 @@ msgstr ""
 " :c:func:`PyOS_AfterFork_Child`\\를 사용하십시오. (Contributed by Victor Stinner"
 " in :issue:`36728`.)"
 
-#: ../../whatsnew/3.8.rst:2029
+#: ../../whatsnew/3.8.rst:2032
 msgid ""
 "On Unix, C extensions are no longer linked to libpython except on Android"
 " and Cygwin. When Python is embedded, ``libpython`` must not be loaded "
@@ -4114,7 +4138,7 @@ msgstr ""
 "빌드된 표준 라이브러리의 C 확장과 같이 ``libpython``\\에 링크되지 않은 C 확장을 로드할 수 없었습니다. "
 "(Contributed by Victor Stinner in :issue:`21536`.)"
 
-#: ../../whatsnew/3.8.rst:2037
+#: ../../whatsnew/3.8.rst:2040
 msgid ""
 "Use of ``#`` variants of formats in parsing or building value (e.g. "
 ":c:func:`PyArg_ParseTuple`, :c:func:`Py_BuildValue`, "
@@ -4129,13 +4153,14 @@ msgstr ""
 "``DeprecationWarning``\\이 발생합니다. 3.10이나 4.0에서 제거됩니다. 자세한 내용은 :ref:`arg-"
 "parsing`\\를 참조하십시오. (Contributed by Inada Naoki in :issue:`36381`.)"
 
-#: ../../whatsnew/3.8.rst:2043
+#: ../../whatsnew/3.8.rst:2046
+#, fuzzy
 msgid ""
 "Instances of heap-allocated types (such as those created with "
 ":c:func:`PyType_FromSpec`) hold a reference to their type object. "
 "Increasing the reference count of these type objects has been moved from "
 ":c:func:`PyType_GenericAlloc` to the more low-level functions, "
-":c:func:`PyObject_Init` and :c:func:`PyObject_INIT`. This makes types "
+":c:func:`PyObject_Init` and :c:macro:`!PyObject_INIT`. This makes types "
 "created through :c:func:`PyType_FromSpec` behave like other classes in "
 "managed code."
 msgstr ""
@@ -4144,11 +4169,11 @@ msgstr ""
 "함수 :c:func:`PyObject_Init`\\와 :c:func:`PyObject_INIT`\\로 옮겨졌습니다. 이렇게 하면 "
 ":c:func:`PyType_FromSpec`\\을 통해 만들어진 형이, 관리되는 코드의 다른 클래스처럼 작동합니다."
 
-#: ../../whatsnew/3.8.rst:2051
+#: ../../whatsnew/3.8.rst:2054
 msgid ":ref:`Statically allocated types <static-types>` are not affected."
 msgstr ":ref:`정적으로 할당된 형 <static-types>`\\은 영향을 받지 않습니다."
 
-#: ../../whatsnew/3.8.rst:2053
+#: ../../whatsnew/3.8.rst:2056
 msgid ""
 "For the vast majority of cases, there should be no side effect. However, "
 "types that manually increase the reference count after allocating an "
@@ -4160,19 +4185,20 @@ msgstr ""
 "위해)이 이제 불멸이 될 수 있습니다. 이를 피하고자, 이런 클래스는 인스턴스 할당 해제 중에 형 객체에 Py_DECREF를 호출할"
 " 필요가 있습니다."
 
-#: ../../whatsnew/3.8.rst:2059
+#: ../../whatsnew/3.8.rst:2062
 msgid ""
 "To correctly port these types into 3.8, please apply the following "
 "changes:"
 msgstr "이러한 형들을 3.8로 올바르게 이식하려면, 다음 변경 사항을 적용하십시오:"
 
-#: ../../whatsnew/3.8.rst:2062
+#: ../../whatsnew/3.8.rst:2065
+#, fuzzy
 msgid ""
 "Remove :c:macro:`Py_INCREF` on the type object after allocating an "
 "instance - if any. This may happen after calling :c:macro:`PyObject_New`,"
 " :c:macro:`PyObject_NewVar`, :c:func:`PyObject_GC_New`, "
 ":c:func:`PyObject_GC_NewVar`, or any other custom allocator that uses "
-":c:func:`PyObject_Init` or :c:func:`PyObject_INIT`."
+":c:func:`PyObject_Init` or :c:macro:`!PyObject_INIT`."
 msgstr ""
 "인스턴스를 할당한 후 형 객체에 대한 :c:macro:`Py_INCREF`\\를 제거하십시오 - 있다면. 이것은 "
 ":c:macro:`PyObject_New`, :c:macro:`PyObject_NewVar`, "
@@ -4180,12 +4206,12 @@ msgstr ""
 ":c:func:`PyObject_Init`\\나 :c:func:`PyObject_INIT`\\를 사용하는 다른 사용자 정의 할당자를"
 " 호출한 후에 발생할 수 있습니다."
 
-#: ../../whatsnew/3.8.rst:2069 ../../whatsnew/3.8.rst:2088
-#: ../../whatsnew/3.8.rst:2107
+#: ../../whatsnew/3.8.rst:2072 ../../whatsnew/3.8.rst:2091
+#: ../../whatsnew/3.8.rst:2110
 msgid "Example:"
 msgstr "예::"
 
-#: ../../whatsnew/3.8.rst:2071
+#: ../../whatsnew/3.8.rst:2074
 #, python-brace-format
 msgid ""
 "static foo_struct *\n"
@@ -4215,13 +4241,13 @@ msgstr ""
 "    return foo;\n"
 "}"
 
-#: ../../whatsnew/3.8.rst:2085
+#: ../../whatsnew/3.8.rst:2088
 msgid ""
 "Ensure that all custom ``tp_dealloc`` functions of heap-allocated types "
 "decrease the type's reference count."
 msgstr "힙에 할당되는 형의 모든 사용자 정의 ``tp_dealloc`` 함수가 형의 참조 횟수를 감소시키도록 하십시오."
 
-#: ../../whatsnew/3.8.rst:2090
+#: ../../whatsnew/3.8.rst:2093
 #, python-brace-format
 msgid ""
 "static void\n"
@@ -4244,11 +4270,11 @@ msgstr ""
 "#endif\n"
 "}"
 
-#: ../../whatsnew/3.8.rst:2102
+#: ../../whatsnew/3.8.rst:2105
 msgid "(Contributed by Eddie Elizondo in :issue:`35810`.)"
 msgstr "(Contributed by Eddie Elizondo in :issue:`35810`.)"
 
-#: ../../whatsnew/3.8.rst:2104
+#: ../../whatsnew/3.8.rst:2107
 msgid ""
 "The :c:macro:`Py_DEPRECATED()` macro has been implemented for MSVC. The "
 "macro now must be placed before the symbol name."
@@ -4256,15 +4282,15 @@ msgstr ""
 ":c:macro:`Py_DEPRECATED()` 매크로는 MSVC 용으로 구현되었습니다. 매크로는 이제 기호 이름 앞에 놓여야 "
 "합니다."
 
-#: ../../whatsnew/3.8.rst:2109
+#: ../../whatsnew/3.8.rst:2112
 msgid "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
 msgstr "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
 
-#: ../../whatsnew/3.8.rst:2113
+#: ../../whatsnew/3.8.rst:2116
 msgid "(Contributed by Zackery Spytz in :issue:`33407`.)"
 msgstr "(Contributed by Zackery Spytz in :issue:`33407`.)"
 
-#: ../../whatsnew/3.8.rst:2115
+#: ../../whatsnew/3.8.rst:2118
 msgid ""
 "The interpreter does not pretend to support binary compatibility of "
 "extension types across feature releases, anymore.  A "
@@ -4280,11 +4306,11 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_finalize`\\를 읽기 전에 더는 확인되지 않습니다)를 포함하여 현재 파이썬"
 " 버전이 기대하는 모든 슬롯을 가지고 있다고 가정합니다."
 
-#: ../../whatsnew/3.8.rst:2122
+#: ../../whatsnew/3.8.rst:2125
 msgid "(Contributed by Antoine Pitrou in :issue:`32388`.)"
 msgstr "(Contributed by Antoine Pitrou in :issue:`32388`.)"
 
-#: ../../whatsnew/3.8.rst:2124
+#: ../../whatsnew/3.8.rst:2127
 msgid ""
 "The functions :c:func:`!PyNode_AddChild` and :c:func:`!PyParser_AddToken`"
 " now accept two additional ``int`` arguments *end_lineno* and "
@@ -4293,7 +4319,7 @@ msgstr ""
 "함수 :c:func:`!PyNode_AddChild`\\와 :c:func:`!PyParser_AddToken`\\는 이제 두 개의 "
 "추가 ``int`` 인자 *end_lineno*\\와 *end_col_offset*\\을 받아들입니다."
 
-#: ../../whatsnew/3.8.rst:2127
+#: ../../whatsnew/3.8.rst:2130
 msgid ""
 "The :file:`libpython38.a` file to allow MinGW tools to link directly "
 "against :file:`python38.dll` is no longer included in the regular Windows"
@@ -4305,7 +4331,7 @@ msgstr ""
 ":file:`libpython38.a` 파일은 더는 일반 윈도우 배포에 포함되지 않습니다. 이 파일이 필요하면, MinGW "
 "binutils 패키지의 일부인 ``gendef``\\와 ``dlltool`` 도구로 생성할 수 있습니다:"
 
-#: ../../whatsnew/3.8.rst:2132
+#: ../../whatsnew/3.8.rst:2135
 msgid ""
 "gendef - python38.dll > tmp.def\n"
 "dlltool --dllname python38.dll --def tmp.def --output-lib libpython38.a"
@@ -4313,7 +4339,7 @@ msgstr ""
 "gendef - python38.dll > tmp.def\n"
 "dlltool --dllname python38.dll --def tmp.def --output-lib libpython38.a"
 
-#: ../../whatsnew/3.8.rst:2137
+#: ../../whatsnew/3.8.rst:2140
 msgid ""
 "The location of an installed :file:`pythonXY.dll` will depend on the "
 "installation options and the version and language of Windows. See :ref"
@@ -4325,15 +4351,15 @@ msgstr ""
 ":ref:`using-on-windows`\\를 참조하십시오. 결과 라이브러리는 :file:`pythonXY.lib`\\(일반적으로"
 " 파이썬 설치 환경의 :file:`libs` 디렉터리입니다)와 같은 디렉터리에 위치해야 합니다."
 
-#: ../../whatsnew/3.8.rst:2143
+#: ../../whatsnew/3.8.rst:2146
 msgid "(Contributed by Steve Dower in :issue:`37351`.)"
 msgstr "(Contributed by Steve Dower in :issue:`37351`.)"
 
-#: ../../whatsnew/3.8.rst:2147
+#: ../../whatsnew/3.8.rst:2150
 msgid "CPython bytecode changes"
 msgstr "CPython 바이트 코드 변경"
 
-#: ../../whatsnew/3.8.rst:2149
+#: ../../whatsnew/3.8.rst:2152
 msgid ""
 "The interpreter loop  has been simplified by moving the logic of "
 "unrolling the stack of blocks into the compiler.  The compiler emits now "
@@ -4345,7 +4371,7 @@ msgstr ""
 ":keyword:`break`, :keyword:`continue` 및 :keyword:`return`\\에 대한 정리 코드를 "
 "호출하는 명시적인 명령을 출력합니다."
 
-#: ../../whatsnew/3.8.rst:2155
+#: ../../whatsnew/3.8.rst:2158
 msgid ""
 "Removed opcodes :opcode:`!BREAK_LOOP`, :opcode:`!CONTINUE_LOOP`, "
 ":opcode:`!SETUP_LOOP` and :opcode:`!SETUP_EXCEPT`.  Added new opcodes "
@@ -4359,7 +4385,7 @@ msgstr ""
 ":opcode:`!POP_FINALLY`\\가 추가되었습니다. :opcode:`!END_FINALLY`\\와 "
 ":opcode:`!WITH_CLEANUP_START`\\의 동작이 변경되었습니다."
 
-#: ../../whatsnew/3.8.rst:2161
+#: ../../whatsnew/3.8.rst:2164
 msgid ""
 "(Contributed by Mark Shannon, Antoine Pitrou and Serhiy Storchaka in "
 ":issue:`17611`.)"
@@ -4367,7 +4393,7 @@ msgstr ""
 "(Contributed by Mark Shannon, Antoine Pitrou and Serhiy Storchaka in "
 ":issue:`17611`.)"
 
-#: ../../whatsnew/3.8.rst:2164
+#: ../../whatsnew/3.8.rst:2167
 msgid ""
 "Added new opcode :opcode:`END_ASYNC_FOR` for handling exceptions raised "
 "when awaiting a next item in an :keyword:`async for` loop. (Contributed "
@@ -4377,7 +4403,7 @@ msgstr ""
 ":opcode:`END_ASYNC_FOR`\\가 추가되었습니다. (Contributed by Serhiy Storchaka in "
 ":issue:`33041`.)"
 
-#: ../../whatsnew/3.8.rst:2168
+#: ../../whatsnew/3.8.rst:2171
 msgid ""
 "The :opcode:`MAP_ADD` now expects the value as the first element in the "
 "stack and the key as the second element. This change was made so the key "
@@ -4388,11 +4414,11 @@ msgstr ""
 ":pep:`572`\\의 제안에 따라, 딕셔너리 컴프리헨션에서 키가 값보다 항상 먼저 평가되도록 하기 위해 만들어졌습니다. "
 "(Contributed by Jörn Heissler in :issue:`35224`.)"
 
-#: ../../whatsnew/3.8.rst:2175
+#: ../../whatsnew/3.8.rst:2178
 msgid "Demos and Tools"
 msgstr "데모와 도구"
 
-#: ../../whatsnew/3.8.rst:2177
+#: ../../whatsnew/3.8.rst:2180
 msgid ""
 "Added a benchmark script for timing various ways to access variables: "
 "``Tools/scripts/var_access_benchmark.py``. (Contributed by Raymond "
@@ -4402,11 +4428,11 @@ msgstr ""
 "``Tools/scripts/var_access_benchmark.py``. (Contributed by Raymond "
 "Hettinger in :issue:`35884`.)"
 
-#: ../../whatsnew/3.8.rst:2181
+#: ../../whatsnew/3.8.rst:2184
 msgid "Here's a summary of performance improvements since Python 3.3:"
 msgstr "다음은 파이썬 3.3 이후의 성능 향상에 대한 요약입니다:"
 
-#: ../../whatsnew/3.8.rst:2183
+#: ../../whatsnew/3.8.rst:2186
 msgid ""
 "Python version                       3.3     3.4     3.5     3.6     3.7"
 "     3.8\n"
@@ -4554,7 +4580,7 @@ msgstr ""
 "    loop_overhead                    0.3     0.5     0.6     0.4     0.3"
 "     0.3"
 
-#: ../../whatsnew/3.8.rst:2228
+#: ../../whatsnew/3.8.rst:2231
 msgid ""
 "The benchmarks were measured on an `Intel® Core™ i7-4960HQ processor "
 "<https://ark.intel.com/content/www/us/en/ark/products/76088/intel-core-i7"
@@ -4569,11 +4595,11 @@ msgstr ""
 "-4960hq-processor-6m-cache-up-to-3-80-ghz.html>`_\\에서 측정되었습니다. 벤치마크 스크립트는"
 " 타이밍을 나노초로 표시합니다."
 
-#: ../../whatsnew/3.8.rst:2237
+#: ../../whatsnew/3.8.rst:2240
 msgid "Notable changes in Python 3.8.1"
 msgstr "파이썬 3.8.1의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2239
+#: ../../whatsnew/3.8.rst:2242
 msgid ""
 "Due to significant security concerns, the *reuse_address* parameter of "
 ":meth:`asyncio.loop.create_datagram_endpoint` is no longer supported. "
@@ -4588,11 +4614,11 @@ msgstr ""
 "(Contributed by Kyle Stanley, Antoine Pitrou, and Yury Selivanov in "
 ":issue:`37228`.)"
 
-#: ../../whatsnew/3.8.rst:2247
+#: ../../whatsnew/3.8.rst:2250
 msgid "Notable changes in Python 3.8.2"
 msgstr "파이썬 3.8.2의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2249
+#: ../../whatsnew/3.8.rst:2252
 msgid ""
 "Fixed a regression with the ``ignore`` callback of "
 ":func:`shutil.copytree`. The argument types are now str and List[str] "
@@ -4600,11 +4626,11 @@ msgid ""
 ":gh:`83571`.)"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2254
+#: ../../whatsnew/3.8.rst:2257
 msgid "Notable changes in Python 3.8.3"
 msgstr "파이썬 3.8.3의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2256
+#: ../../whatsnew/3.8.rst:2259
 msgid ""
 "The constant values of future flags in the :mod:`__future__` module are "
 "updated in order to prevent collision with compiler flags. Previously "
@@ -4612,11 +4638,11 @@ msgid ""
 "(Contributed by Batuhan Taskaya in :gh:`83743`)"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2262
+#: ../../whatsnew/3.8.rst:2265
 msgid "Notable changes in Python 3.8.8"
 msgstr "파이썬 3.8.8의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2264
+#: ../../whatsnew/3.8.rst:2267
 msgid ""
 "Earlier Python versions allowed using both ``;`` and ``&`` as query "
 "parameter separators in :func:`urllib.parse.parse_qs` and "
@@ -4636,11 +4662,11 @@ msgstr ""
 "(Contributed by Adam Goldschmidt, Senthil Kumaran and Ken Jin in "
 ":issue:`42967`.)"
 
-#: ../../whatsnew/3.8.rst:2275
+#: ../../whatsnew/3.8.rst:2278
 msgid "Notable changes in Python 3.8.9"
 msgstr "파이썬 3.8.9의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2277
+#: ../../whatsnew/3.8.rst:2280
 msgid ""
 "A security fix alters the :class:`ftplib.FTP` behavior to not trust the "
 "IPv4 address sent from the remote server when setting up a passive data "
@@ -4649,15 +4675,15 @@ msgid ""
 "attribute on your FTP instance to ``True``.  (See :gh:`87451`)"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2284 ../../whatsnew/3.8.rst:2304
+#: ../../whatsnew/3.8.rst:2287 ../../whatsnew/3.8.rst:2307
 msgid "Notable changes in Python 3.8.10"
 msgstr "파이썬 3.8.10의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2287
+#: ../../whatsnew/3.8.rst:2290
 msgid "macOS 11.0 (Big Sur) and Apple Silicon Mac support"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2289
+#: ../../whatsnew/3.8.rst:2292
 msgid ""
 "As of 3.8.10, Python now supports building and running on macOS 11 (Big "
 "Sur) and on Apple Silicon Macs (based on the ``ARM64`` architecture). A "
@@ -4670,18 +4696,18 @@ msgid ""
 "target for and build on the oldest version in the range."
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2299
+#: ../../whatsnew/3.8.rst:2302
 msgid ""
 "(Originally contributed by Ronald Oussoren and Lawrence D'Anna in "
 ":gh:`85272`, with fixes by FX Coudert and Eli Rykoff, and backported to "
 "3.8 by Maxime Bélanger and Ned Deily)"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2307
+#: ../../whatsnew/3.8.rst:2310
 msgid "urllib.parse"
 msgstr "urllib.parse"
 
-#: ../../whatsnew/3.8.rst:2309
+#: ../../whatsnew/3.8.rst:2312
 msgid ""
 "The presence of newline or tab characters in parts of a URL allows for "
 "some forms of attacks. Following the WHATWG specification that updates "
@@ -4692,11 +4718,11 @@ msgid ""
 ":issue:`43882`)"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2318
+#: ../../whatsnew/3.8.rst:2321
 msgid "Notable changes in Python 3.8.12"
 msgstr "파이썬 3.8.12의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2323
+#: ../../whatsnew/3.8.rst:2326
 msgid ""
 "Starting with Python 3.8.12 the :mod:`ipaddress` module no longer accepts"
 " any leading zeros in IPv4 address strings. Leading zeros are ambiguous "
@@ -4706,17 +4732,17 @@ msgid ""
 "not accept any leading zeros."
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2330
+#: ../../whatsnew/3.8.rst:2333
 msgid ""
 "(Originally contributed by Christian Heimes in :issue:`36384`, and "
 "backported to 3.8 by Achraf Merzouki.)"
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2334
+#: ../../whatsnew/3.8.rst:2337
 msgid "Notable security feature in 3.8.14"
 msgstr "3.8.14의 주목할만한 보안 기능"
 
-#: ../../whatsnew/3.8.rst:2336
+#: ../../whatsnew/3.8.rst:2339
 msgid ""
 "Converting between :class:`int` and :class:`str` in bases other than 2 "
 "(binary), 4, 8 (octal), 16 (hexadecimal), or 32 such as base 10 (decimal)"
@@ -4729,11 +4755,11 @@ msgid ""
 "4300 digits in string form."
 msgstr ""
 
-#: ../../whatsnew/3.8.rst:2347
+#: ../../whatsnew/3.8.rst:2350
 msgid "Notable changes in 3.8.17"
 msgstr "3.8.17의 주목할만한 변경 사항"
 
-#: ../../whatsnew/3.8.rst:2352
+#: ../../whatsnew/3.8.rst:2355
 msgid ""
 "The extraction methods in :mod:`tarfile`, and "
 ":func:`shutil.unpack_archive`, have a new a *filter* argument that allows"

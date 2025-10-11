@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -242,7 +242,7 @@ msgstr ""
 msgid "Equivalent to ``put(item, block=False)``."
 msgstr "``put(item, block=False)``\\와 동등합니다."
 
-#: ../../library/queue.rst:156 ../../library/queue.rst:297
+#: ../../library/queue.rst:156 ../../library/queue.rst:313
 msgid ""
 "Remove and return an item from the queue.  If optional args *block* is "
 "true and *timeout* is ``None`` (the default), block if necessary until an"
@@ -276,7 +276,7 @@ msgid ""
 "if the queue has been shut down immediately."
 msgstr ""
 
-#: ../../library/queue.rst:174 ../../library/queue.rst:307
+#: ../../library/queue.rst:174 ../../library/queue.rst:323
 msgid "Equivalent to ``get(False)``."
 msgstr "``get(False)``\\와 동등합니다."
 
@@ -307,21 +307,15 @@ msgstr ""
 
 #: ../../library/queue.rst:190
 msgid ""
-"``shutdown(immediate=True)`` calls :meth:`task_done` for each remaining "
-"item in the queue."
-msgstr ""
-
-#: ../../library/queue.rst:193
-msgid ""
 "Raises a :exc:`ValueError` if called more times than there were items "
 "placed in the queue."
 msgstr "큐에 있는 항목보다 더 많이 호출되면 :exc:`ValueError`\\를 발생시킵니다."
 
-#: ../../library/queue.rst:199
+#: ../../library/queue.rst:196
 msgid "Blocks until all items in the queue have been gotten and processed."
 msgstr "큐의 모든 항목을 꺼내서 처리할 때까지 블록합니다."
 
-#: ../../library/queue.rst:201
+#: ../../library/queue.rst:198
 msgid ""
 "The count of unfinished tasks goes up whenever an item is added to the "
 "queue. The count goes down whenever a consumer thread calls "
@@ -332,6 +326,10 @@ msgstr ""
 "완료되지 않은 작업 카운트는 항목이 큐에 추가될 때마다 올라갑니다. 소비자 스레드가 :meth:`task_done`\\을 호출해서 "
 "항목을 꺼내고 작업이 모두 완료되었음을 나타낼 때마다 카운트가 내려갑니다. 완료되지 않은 작업 카운트가 0으로 떨어지면, "
 ":meth:`join`\\이 블록 해제됩니다."
+
+#: ../../library/queue.rst:205
+msgid "Waiting for task completion"
+msgstr ""
 
 #: ../../library/queue.rst:207
 msgid "Example of how to wait for enqueued tasks to be completed::"
@@ -392,40 +390,65 @@ msgstr ""
 
 #: ../../library/queue.rst:236
 msgid ""
-":class:`Queue` objects can be made to prevent further interaction by "
-"shutting them down."
+"When no longer needed, :class:`Queue` objects can be wound down until "
+"empty or terminated immediately with a hard shutdown."
 msgstr ""
 
 #: ../../library/queue.rst:241
-msgid ""
-"Shut down the queue, making :meth:`~Queue.get` and :meth:`~Queue.put` "
-"raise :exc:`ShutDown`."
+msgid "Put a :class:`Queue` instance into a shutdown mode."
 msgstr ""
 
-#: ../../library/queue.rst:244
+#: ../../library/queue.rst:243
 msgid ""
-"By default, :meth:`~Queue.get` on a shut down queue will only raise once "
-"the queue is empty. Set *immediate* to true to make :meth:`~Queue.get` "
-"raise immediately instead."
+"The queue can no longer grow. Future calls to :meth:`~Queue.put` raise "
+":exc:`ShutDown`. Currently blocked callers of :meth:`~Queue.put` will be "
+"unblocked and will raise :exc:`ShutDown` in the formerly blocked thread."
 msgstr ""
 
 #: ../../library/queue.rst:248
 msgid ""
-"All blocked callers of :meth:`~Queue.put` and :meth:`~Queue.get` will be "
-"unblocked. If *immediate* is true, a task will be marked as done for each"
-" remaining item in the queue, which may unblock callers of "
-":meth:`~Queue.join`."
+"If *immediate* is false (the default), the queue can be wound down "
+"normally with :meth:`~Queue.get` calls to extract tasks that have already"
+" been loaded."
 msgstr ""
 
-#: ../../library/queue.rst:257
+#: ../../library/queue.rst:252
+msgid ""
+"And if :meth:`~Queue.task_done` is called for each remaining task, a "
+"pending :meth:`~Queue.join` will be unblocked normally."
+msgstr ""
+
+#: ../../library/queue.rst:255
+msgid ""
+"Once the queue is empty, future calls to :meth:`~Queue.get` will raise "
+":exc:`ShutDown`."
+msgstr ""
+
+#: ../../library/queue.rst:258
+msgid ""
+"If *immediate* is true, the queue is terminated immediately. The queue is"
+" drained to be completely empty.  All callers of :meth:`~Queue.join` are "
+"unblocked regardless of the number of unfinished tasks.  Blocked callers "
+"of :meth:`~Queue.get` are unblocked and will raise :exc:`ShutDown` "
+"because the queue is empty."
+msgstr ""
+
+#: ../../library/queue.rst:265
+msgid ""
+"Use caution when using :meth:`~Queue.join` with *immediate* set to true. "
+"This unblocks the join even when no work has been done on the tasks, "
+"violating the usual invariant for joining a queue."
+msgstr ""
+
+#: ../../library/queue.rst:273
 msgid "SimpleQueue Objects"
 msgstr "SimpleQueue 객체"
 
-#: ../../library/queue.rst:259
+#: ../../library/queue.rst:275
 msgid ":class:`SimpleQueue` objects provide the public methods described below."
 msgstr ":class:`SimpleQueue` 객체는 아래에서 설명하는 공용 메서드를 제공합니다."
 
-#: ../../library/queue.rst:263
+#: ../../library/queue.rst:279
 msgid ""
 "Return the approximate size of the queue.  Note, qsize() > 0 doesn't "
 "guarantee that a subsequent get() will not block."
@@ -433,7 +456,7 @@ msgstr ""
 "큐의 대략의 크기를 돌려줍니다.  주의하십시오, qsize() > 0 은 후속 get()이 블록 되지 않는다는 것을 보장하지 "
 "않습니다."
 
-#: ../../library/queue.rst:269
+#: ../../library/queue.rst:285
 msgid ""
 "Return ``True`` if the queue is empty, ``False`` otherwise.  If empty() "
 "returns ``False`` it doesn't guarantee that a subsequent call to get() "
@@ -442,7 +465,7 @@ msgstr ""
 "큐가 비어 있으면 ``True``\\를, 그렇지 않으면 ``False``\\를 반환합니다. empty()가 ``False``\\를 "
 "반환하면, get()에 대한 후속 호출이 블록 되지 않는다는 것을 보장하지는 않습니다."
 
-#: ../../library/queue.rst:276
+#: ../../library/queue.rst:292
 msgid ""
 "Put *item* into the queue.  The method never blocks and always succeeds "
 "(except for potential low-level errors such as failure to allocate "
@@ -453,7 +476,7 @@ msgstr ""
 "제외). 선택적 인자 *block*\\과 *timeout*\\은 무시되고 :meth:`Queue.put`\\과의 호환성을 위해서만 "
 "제공됩니다."
 
-#: ../../library/queue.rst:282
+#: ../../library/queue.rst:298
 msgid ""
 "This method has a C implementation which is reentrant.  That is, a "
 "``put()`` or ``get()`` call can be interrupted by another ``put()`` call "
@@ -462,7 +485,7 @@ msgid ""
 "as ``__del__`` methods or :mod:`weakref` callbacks."
 msgstr ""
 
-#: ../../library/queue.rst:291
+#: ../../library/queue.rst:307
 msgid ""
 "Equivalent to ``put(item, block=False)``, provided for compatibility with"
 " :meth:`Queue.put_nowait`."
@@ -470,17 +493,17 @@ msgstr ""
 "``put(item, block=False)``\\과 동등합니다, :meth:`Queue.put_nowait`\\와의 호환성을 위해"
 " 제공됩니다."
 
-#: ../../library/queue.rst:312
+#: ../../library/queue.rst:328
 msgid "Class :class:`multiprocessing.Queue`"
 msgstr ":class:`multiprocessing.Queue` 클래스"
 
-#: ../../library/queue.rst:313
+#: ../../library/queue.rst:329
 msgid ""
 "A queue class for use in a multi-processing (rather than multi-threading)"
 " context."
 msgstr "(다중 스레드 대신) 다중 프로세스 문맥에서 사용하기 위한 큐 클래스."
 
-#: ../../library/queue.rst:316
+#: ../../library/queue.rst:332
 msgid ""
 ":class:`collections.deque` is an alternative implementation of unbounded "
 "queues with fast atomic :meth:`~collections.deque.append` and "
@@ -490,4 +513,40 @@ msgstr ""
 ":class:`collections.deque`\\는 록을 필요로하지 않고 인덱싱을 지원하는 빠른 원자적 "
 ":meth:`~collections.deque.append`\\와 :meth:`~collections.deque.popleft` "
 "연산을 제공하는 크기 제한 없는 큐의 대체 구현입니다."
+
+#~ msgid ""
+#~ "``shutdown(immediate=True)`` calls :meth:`task_done` "
+#~ "for each remaining item in the "
+#~ "queue."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":class:`Queue` objects can be made to"
+#~ " prevent further interaction by shutting"
+#~ " them down."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Shut down the queue, making "
+#~ ":meth:`~Queue.get` and :meth:`~Queue.put` raise "
+#~ ":exc:`ShutDown`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "By default, :meth:`~Queue.get` on a shut"
+#~ " down queue will only raise once "
+#~ "the queue is empty. Set *immediate* "
+#~ "to true to make :meth:`~Queue.get` raise"
+#~ " immediately instead."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "All blocked callers of :meth:`~Queue.put` "
+#~ "and :meth:`~Queue.get` will be unblocked. "
+#~ "If *immediate* is true, a task "
+#~ "will be marked as done for each"
+#~ " remaining item in the queue, which"
+#~ " may unblock callers of "
+#~ ":meth:`~Queue.join`."
+#~ msgstr ""
 

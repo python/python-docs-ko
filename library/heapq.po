@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -31,75 +31,107 @@ msgid ""
 msgstr "이 모듈은 우선순위 큐 알고리즘이라고도 하는 힙(heap) 큐 알고리즘의 구현을 제공합니다."
 
 #: ../../library/heapq.rst:19
+#, fuzzy
 msgid ""
-"Heaps are binary trees for which every parent node has a value less than "
-"or equal to any of its children.  We refer to this condition as the heap "
-"invariant."
+"Min-heaps are binary trees for which every parent node has a value less "
+"than or equal to any of its children. We refer to this condition as the "
+"heap invariant."
 msgstr "힙은 모든 부모 노드가 자식보다 작거나 같은 값을 갖는 이진 트리입니다. 이 조건을 힙 불변성이라고 합니다."
 
-#: ../../library/heapq.rst:22
+#: ../../library/heapq.rst:23
+#, fuzzy
 msgid ""
-"This implementation uses arrays for which ``heap[k] <= heap[2*k+1]`` and "
-"``heap[k] <= heap[2*k+2]`` for all *k*, counting elements from zero.  For"
-" the sake of comparison, non-existing elements are considered to be "
-"infinite.  The interesting property of a heap is that its smallest "
-"element is always the root, ``heap[0]``."
+"For min-heaps, this implementation uses lists for which ``heap[k] <= "
+"heap[2*k+1]`` and ``heap[k] <= heap[2*k+2]`` for all *k* for which the "
+"compared elements exist.  Elements are counted from zero.  The "
+"interesting property of a min-heap is that its smallest element is always"
+" the root, ``heap[0]``."
 msgstr ""
 "이 구현에서는 모든 *k*\\에 대해 ``heap[k] <= heap[2*k+1]``\\과 ``heap[k] <= "
 "heap[2*k+2]``\\인 배열을 사용합니다, 요소는 0부터 셉니다. 비교를 위해, 존재하지 않는 요소는 무한으로 간주합니다. "
 "힙의 흥미로운 특성은 가장 작은 요소가 항상 루트인 ``heap[0]``\\이라는 것입니다."
 
-#: ../../library/heapq.rst:28
+#: ../../library/heapq.rst:29
 msgid ""
-"The API below differs from textbook heap algorithms in two aspects: (a) "
-"We use zero-based indexing.  This makes the relationship between the "
-"index for a node and the indexes for its children slightly less obvious, "
-"but is more suitable since Python uses zero-based indexing. (b) Our pop "
-"method returns the smallest item, not the largest (called a \"min heap\" "
-"in textbooks; a \"max heap\" is more common in texts because of its "
-"suitability for in-place sorting)."
+"Max-heaps satisfy the reverse invariant: every parent node has a value "
+"*greater* than any of its children.  These are implemented as lists for "
+"which ``maxheap[2*k+1] <= maxheap[k]`` and ``maxheap[2*k+2] <= "
+"maxheap[k]`` for all *k* for which the compared elements exist. The root,"
+" ``maxheap[0]``, contains the *largest* element; "
+"``heap.sort(reverse=True)`` maintains the max-heap invariant."
+msgstr ""
+
+#: ../../library/heapq.rst:36
+#, fuzzy
+msgid ""
+"The :mod:`!heapq` API differs from textbook heap algorithms in two "
+"aspects: (a) We use zero-based indexing.  This makes the relationship "
+"between the index for a node and the indexes for its children slightly "
+"less obvious, but is more suitable since Python uses zero-based indexing."
+" (b) Textbooks often focus on max-heaps, due to their suitability for in-"
+"place sorting. Our implementation favors min-heaps as they better "
+"correspond to Python :class:`lists <list>`."
 msgstr ""
 "아래의 API는 두 가지 측면에서 교과서 힙 알고리즘과 다릅니다: (a) 우리는 0부터 시작하는 인덱싱을 사용합니다. 이것은 노드의"
 " 인덱스와 자식의 인덱스 사이의 관계를 약간 덜 분명하게 만들지만, 파이썬이 0부터 시작하는 인덱스를 사용하기 때문에 더 "
 "적합합니다. (b) pop 메서드는 가장 큰 항목이 아닌 가장 작은 항목을 반환합니다 (교과서에서는 \"최소 힙(min "
 "heap)\"이라고 합니다; \"최대 힙(max heap)\"은 제자리 정렬에 적합하기 때문에 텍스트에서 더 흔합니다)."
 
-#: ../../library/heapq.rst:35
+#: ../../library/heapq.rst:43
+#, fuzzy
 msgid ""
-"These two make it possible to view the heap as a regular Python list "
-"without surprises: ``heap[0]`` is the smallest item, and ``heap.sort()`` "
-"maintains the heap invariant!"
+"These two aspects make it possible to view the heap as a regular Python "
+"list without surprises: ``heap[0]`` is the smallest item, and "
+"``heap.sort()`` maintains the heap invariant!"
 msgstr ""
 "이 두 가지가 힙을 놀라지 않고도 일반 파이썬 목록으로 볼 수 있도록 만듭니다: ``heap[0]``\\은 가장 작은 항목이고, "
 "``heap.sort()``\\는 힙의 불변성(invariant)을 유지합니다!"
 
-#: ../../library/heapq.rst:39
+#: ../../library/heapq.rst:47
 msgid ""
-"To create a heap, use a list initialized to ``[]``, or you can transform "
-"a populated list into a heap via function :func:`heapify`."
+"Like :meth:`list.sort`, this implementation uses only the ``<`` operator "
+"for comparisons, for both min-heaps and max-heaps."
+msgstr ""
+
+#: ../../library/heapq.rst:50
+msgid ""
+"In the API below, and in this documentation, the unqualified term *heap* "
+"generally refers to a min-heap. The API for max-heaps is named using a "
+"``_max``  suffix."
+msgstr ""
+
+#: ../../library/heapq.rst:54
+#, fuzzy
+msgid ""
+"To create a heap, use a list initialized as ``[]``, or transform an "
+"existing list into a min-heap or max-heap using the :func:`heapify` or "
+":func:`heapify_max` functions, respectively."
 msgstr ""
 "힙을 만들려면, ``[]``\\로 초기화된 리스트를 사용하거나, 함수 :func:`heapify`\\를 통해 값이 들어 있는 "
 "리스트를 힙으로 변환 할 수 있습니다."
 
-#: ../../library/heapq.rst:42
-msgid "The following functions are provided:"
+#: ../../library/heapq.rst:58
+#, fuzzy
+msgid "The following functions are provided for min-heaps:"
 msgstr "다음과 같은 함수가 제공됩니다:"
 
-#: ../../library/heapq.rst:47
-msgid "Push the value *item* onto the *heap*, maintaining the heap invariant."
+#: ../../library/heapq.rst:63
+#, fuzzy
+msgid "Push the value *item* onto the *heap*, maintaining the min-heap invariant."
 msgstr "힙 불변성을 유지하면서, *item* 값을 *heap*\\으로 푸시합니다."
 
-#: ../../library/heapq.rst:52
+#: ../../library/heapq.rst:68
+#, fuzzy
 msgid ""
-"Pop and return the smallest item from the *heap*, maintaining the heap "
-"invariant.  If the heap is empty, :exc:`IndexError` is raised.  To access"
-" the smallest item without popping it, use ``heap[0]``."
+"Pop and return the smallest item from the *heap*, maintaining the min-"
+"heap invariant.  If the heap is empty, :exc:`IndexError` is raised.  To "
+"access the smallest item without popping it, use ``heap[0]``."
 msgstr ""
 "힙 불변성을 유지하면서, *heap*\\에서 가장 작은 항목을 팝하고 반환합니다. 힙이 비어 있으면, "
 ":exc:`IndexError`\\가 발생합니다. 팝 하지 않고 가장 작은 항목에 액세스하려면, ``heap[0]``\\을 "
 "사용하십시오."
 
-#: ../../library/heapq.rst:59
+#: ../../library/heapq.rst:75
 msgid ""
 "Push *item* on the heap, then pop and return the smallest item from the "
 "*heap*.  The combined action runs more efficiently than :func:`heappush` "
@@ -108,11 +140,12 @@ msgstr ""
 "힙에 *item*\\을 푸시한 다음, *heap*\\에서 가장 작은 항목을 팝하고 반환합니다. 결합한 액션은 "
 ":func:`heappush`\\한 다음 :func:`heappop`\\을 별도로 호출하는 것보다 더 효율적으로 실행합니다."
 
-#: ../../library/heapq.rst:66
-msgid "Transform list *x* into a heap, in-place, in linear time."
+#: ../../library/heapq.rst:82
+#, fuzzy
+msgid "Transform list *x* into a min-heap, in-place, in linear time."
 msgstr "리스트 *x*\\를 선형 시간으로 제자리에서 힙으로 변환합니다."
 
-#: ../../library/heapq.rst:71
+#: ../../library/heapq.rst:87
 msgid ""
 "Pop and return the smallest item from the *heap*, and also push the new "
 "*item*. The heap size doesn't change. If the heap is empty, "
@@ -121,7 +154,7 @@ msgstr ""
 "*heap*\\에서 가장 작은 항목을 팝하고 반환하며, 새로운 *item*\\도 푸시합니다. 힙 크기는 변경되지 않습니다. 힙이 "
 "비어 있으면, :exc:`IndexError`\\가 발생합니다."
 
-#: ../../library/heapq.rst:74
+#: ../../library/heapq.rst:90
 msgid ""
 "This one step operation is more efficient than a :func:`heappop` followed"
 " by :func:`heappush` and can be more appropriate when using a fixed-size "
@@ -131,7 +164,7 @@ msgstr ""
 "이 한 단계 연산은 :func:`heappop`\\한 다음 :func:`heappush`\\하는 것보다 더 효율적이며 고정 크기 "
 "힙을 사용할 때 더 적합 할 수 있습니다. 팝/푸시 조합은 항상 힙에서 요소를 반환하고 그것을 *item*\\으로 대체합니다."
 
-#: ../../library/heapq.rst:79
+#: ../../library/heapq.rst:95
 msgid ""
 "The value returned may be larger than the *item* added.  If that isn't "
 "desired, consider using :func:`heappushpop` instead.  Its push/pop "
@@ -141,11 +174,66 @@ msgstr ""
 "반환된 값은 추가된 *item*\\보다 클 수 있습니다. 그것이 바람직하지 않다면, 대신 :func:`heappushpop` 사용을"
 " 고려하십시오. 푸시/팝 조합은 두 값 중 작은 값을 반환하여, 힙에 큰 값을 남겨 둡니다."
 
-#: ../../library/heapq.rst:85
+#: ../../library/heapq.rst:101
+#, fuzzy
+msgid "For max-heaps, the following functions are provided:"
+msgstr "다음과 같은 함수가 제공됩니다:"
+
+#: ../../library/heapq.rst:106
+#, fuzzy
+msgid "Transform list *x* into a max-heap, in-place, in linear time."
+msgstr "리스트 *x*\\를 선형 시간으로 제자리에서 힙으로 변환합니다."
+
+#: ../../library/heapq.rst:113
+#, fuzzy
+msgid ""
+"Push the value *item* onto the max-heap *heap*, maintaining the max-heap "
+"invariant."
+msgstr "힙 불변성을 유지하면서, *item* 값을 *heap*\\으로 푸시합니다."
+
+#: ../../library/heapq.rst:121
+#, fuzzy
+msgid ""
+"Pop and return the largest item from the max-heap *heap*, maintaining the"
+" max-heap invariant.  If the max-heap is empty, :exc:`IndexError` is "
+"raised. To access the largest item without popping it, use "
+"``maxheap[0]``."
+msgstr ""
+"힙 불변성을 유지하면서, *heap*\\에서 가장 작은 항목을 팝하고 반환합니다. 힙이 비어 있으면, "
+":exc:`IndexError`\\가 발생합니다. 팝 하지 않고 가장 작은 항목에 액세스하려면, ``heap[0]``\\을 "
+"사용하십시오."
+
+#: ../../library/heapq.rst:130
+#, fuzzy
+msgid ""
+"Push *item* on the max-heap *heap*, then pop and return the largest item "
+"from *heap*. The combined action runs more efficiently than "
+":func:`heappush_max` followed by a separate call to :func:`heappop_max`."
+msgstr ""
+"힙에 *item*\\을 푸시한 다음, *heap*\\에서 가장 작은 항목을 팝하고 반환합니다. 결합한 액션은 "
+":func:`heappush`\\한 다음 :func:`heappop`\\을 별도로 호출하는 것보다 더 효율적으로 실행합니다."
+
+#: ../../library/heapq.rst:140
+#, fuzzy
+msgid ""
+"Pop and return the largest item from the max-heap *heap* and also push "
+"the new *item*. The max-heap size doesn't change. If the max-heap is "
+"empty, :exc:`IndexError` is raised."
+msgstr ""
+"*heap*\\에서 가장 작은 항목을 팝하고 반환하며, 새로운 *item*\\도 푸시합니다. 힙 크기는 변경되지 않습니다. 힙이 "
+"비어 있으면, :exc:`IndexError`\\가 발생합니다."
+
+#: ../../library/heapq.rst:145
+msgid ""
+"The value returned may be smaller than the *item* added.  Refer to the "
+"analogous function :func:`heapreplace` for detailed usage notes."
+msgstr ""
+
+#: ../../library/heapq.rst:151
 msgid "The module also offers three general purpose functions based on heaps."
 msgstr "이 모듈은 또한 힙 기반의 세 가지 범용 함수를 제공합니다."
 
-#: ../../library/heapq.rst:90
+#: ../../library/heapq.rst:156
 msgid ""
 "Merge multiple sorted inputs into a single sorted output (for example, "
 "merge timestamped entries from multiple log files).  Returns an "
@@ -154,7 +242,7 @@ msgstr ""
 "여러 정렬된 입력을 단일 정렬된 출력으로 병합합니다 (예를 들어, 여러 로그 파일에서 타임 스탬프 된 항목을 병합합니다). 정렬된 "
 "값에 대한 :term:`이터레이터 <iterator>`\\를 반환합니다."
 
-#: ../../library/heapq.rst:94
+#: ../../library/heapq.rst:160
 msgid ""
 "Similar to ``sorted(itertools.chain(*iterables))`` but returns an "
 "iterable, does not pull the data into memory all at once, and assumes "
@@ -163,11 +251,11 @@ msgstr ""
 "``sorted(itertools.chain(*iterables))``\\와 비슷하지만 이터러블을 반환하고, 데이터를 한 번에 "
 "메모리로 가져오지 않으며, 각 입력 스트림이 이미 (최소에서 최대로) 정렬된 것으로 가정합니다."
 
-#: ../../library/heapq.rst:98
+#: ../../library/heapq.rst:164
 msgid "Has two optional arguments which must be specified as keyword arguments."
 msgstr "키워드 인자로 지정해야 하는 두 개의 선택적 인자가 있습니다."
 
-#: ../../library/heapq.rst:100
+#: ../../library/heapq.rst:166
 msgid ""
 "*key* specifies a :term:`key function` of one argument that is used to "
 "extract a comparison key from each input element.  The default value is "
@@ -176,7 +264,7 @@ msgstr ""
 "*key*\\는 각 입력 요소에서 비교 키를 추출하는 데 사용되는 단일 인자의 :term:`키 함수 <key "
 "function>`\\를 지정합니다. 기본값은 ``None``\\입니다 (요소를 직접 비교합니다)."
 
-#: ../../library/heapq.rst:104
+#: ../../library/heapq.rst:170
 msgid ""
 "*reverse* is a boolean value.  If set to ``True``, then the input "
 "elements are merged as if each comparison were reversed. To achieve "
@@ -187,11 +275,11 @@ msgstr ""
 "``sorted(itertools.chain(*iterables), reverse=True)``\\와 유사한 동작을 달성하려면 모든"
 " 이터러블이 최대에서 최소로 정렬되어 있어야 합니다."
 
-#: ../../library/heapq.rst:109
+#: ../../library/heapq.rst:175
 msgid "Added the optional *key* and *reverse* parameters."
 msgstr "선택적 *key*\\와 *reverse* 매개 변수를 추가했습니다."
 
-#: ../../library/heapq.rst:115
+#: ../../library/heapq.rst:181
 msgid ""
 "Return a list with the *n* largest elements from the dataset defined by "
 "*iterable*.  *key*, if provided, specifies a function of one argument "
@@ -204,7 +292,7 @@ msgstr ""
 "``key=str.lower``). 다음과 동등합니다: ``sorted(iterable, key=key, "
 "reverse=True)[:n]``."
 
-#: ../../library/heapq.rst:124
+#: ../../library/heapq.rst:190
 msgid ""
 "Return a list with the *n* smallest elements from the dataset defined by "
 "*iterable*.  *key*, if provided, specifies a function of one argument "
@@ -216,7 +304,7 @@ msgstr ""
 "제공되면 *iterable*\\의 각 요소에서 비교 키를 추출하는 데 사용되는 단일 인자 함수를 지정합니다 (예를 들어, "
 "``key=str.lower``). 다음과 동등합니다: ``sorted(iterable, key=key)[:n]``."
 
-#: ../../library/heapq.rst:130
+#: ../../library/heapq.rst:196
 msgid ""
 "The latter two functions perform best for smaller values of *n*.  For "
 "larger values, it is more efficient to use the :func:`sorted` function.  "
@@ -228,11 +316,11 @@ msgstr ""
 "효율적입니다. 또한, ``n==1``\\일 때는, 내장 :func:`min`\\과 :func:`max` 함수를 사용하는 것이 더 "
 "효율적입니다. 이 함수를 반복해서 사용해야 하면, iterable을 실제 힙으로 바꾸는 것이 좋습니다."
 
-#: ../../library/heapq.rst:138
+#: ../../library/heapq.rst:204
 msgid "Basic Examples"
 msgstr "기본 예"
 
-#: ../../library/heapq.rst:140
+#: ../../library/heapq.rst:206
 msgid ""
 "A `heapsort <https://en.wikipedia.org/wiki/Heapsort>`_ can be implemented"
 " by pushing all values onto a heap and then popping off the smallest "
@@ -241,7 +329,7 @@ msgstr ""
 "`힙 정렬 <https://en.wikipedia.org/wiki/Heapsort>`_\\은 모든 값을 힙으로 푸시한 다음 한 번에"
 " 하나씩 가장 작은 값을 팝 하여 구현할 수 있습니다::"
 
-#: ../../library/heapq.rst:144
+#: ../../library/heapq.rst:210
 msgid ""
 ">>> def heapsort(iterable):\n"
 "...     h = []\n"
@@ -261,7 +349,7 @@ msgstr ""
 ">>> heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])\n"
 "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
 
-#: ../../library/heapq.rst:153
+#: ../../library/heapq.rst:219
 msgid ""
 "This is similar to ``sorted(iterable)``, but unlike :func:`sorted`, this "
 "implementation is not stable."
@@ -269,14 +357,14 @@ msgstr ""
 "이것은 ``sorted(iterable)``\\과 비슷하지만, :func:`sorted`\\와 달리, 이 구현은 "
 "안정적(stable)이지 않습니다."
 
-#: ../../library/heapq.rst:156
+#: ../../library/heapq.rst:222
 msgid ""
 "Heap elements can be tuples.  This is useful for assigning comparison "
 "values (such as task priorities) alongside the main record being "
 "tracked::"
 msgstr "힙 요소는 튜플일 수 있습니다. 추적하는 기본 레코드와 함께 비교 값(가령 작업 우선순위)을 지정하는 데 유용합니다::"
 
-#: ../../library/heapq.rst:159
+#: ../../library/heapq.rst:225
 msgid ""
 ">>> h = []\n"
 ">>> heappush(h, (5, 'write code'))\n"
@@ -294,11 +382,11 @@ msgstr ""
 ">>> heappop(h)\n"
 "(1, 'write spec')"
 
-#: ../../library/heapq.rst:169
+#: ../../library/heapq.rst:235
 msgid "Priority Queue Implementation Notes"
 msgstr "우선순위 큐 구현 참고 사항"
 
-#: ../../library/heapq.rst:171
+#: ../../library/heapq.rst:237
 msgid ""
 "A `priority queue <https://en.wikipedia.org/wiki/Priority_queue>`_ is "
 "common use for a heap, and it presents several implementation challenges:"
@@ -306,31 +394,31 @@ msgstr ""
 "`우선순위 큐 <https://en.wikipedia.org/wiki/Priority_queue>`_\\는 힙의 일반적인 사용이며,"
 " 몇 가지 구현 과제가 있습니다:"
 
-#: ../../library/heapq.rst:174
+#: ../../library/heapq.rst:240
 msgid ""
 "Sort stability:  how do you get two tasks with equal priorities to be "
 "returned in the order they were originally added?"
 msgstr "정렬 안정성: 우선순위가 같은 두 개의 작업을 어떻게 원래 추가된 순서대로 반환합니까?"
 
-#: ../../library/heapq.rst:177
+#: ../../library/heapq.rst:243
 msgid ""
 "Tuple comparison breaks for (priority, task) pairs if the priorities are "
 "equal and the tasks do not have a default comparison order."
 msgstr "우선순위가 같고 작업에 기본 비교 순서가 없으면 (우선순위, 작업) 쌍에 대한 튜플 비교가 성립하지 않습니다."
 
-#: ../../library/heapq.rst:180
+#: ../../library/heapq.rst:246
 msgid ""
 "If the priority of a task changes, how do you move it to a new position "
 "in the heap?"
 msgstr "작업의 우선순위가 변경되면, 어떻게 힙의 새로운 위치로 옮깁니까?"
 
-#: ../../library/heapq.rst:183
+#: ../../library/heapq.rst:249
 msgid ""
 "Or if a pending task needs to be deleted, how do you find it and remove "
 "it from the queue?"
 msgstr "또는 계류 중인 작업을 삭제해야 하면, 작업을 어떻게 찾고 큐에서 제거합니까?"
 
-#: ../../library/heapq.rst:186
+#: ../../library/heapq.rst:252
 msgid ""
 "A solution to the first two challenges is to store entries as 3-element "
 "list including the priority, an entry count, and the task.  The entry "
@@ -343,14 +431,14 @@ msgstr ""
 "순위 결정자 역할을 하므로 우선순위가 같은 두 작업이 추가된 순서대로 반환됩니다. 두 항목 수가 같은 경우는 없어서, 튜플 비교는 "
 "두 작업을 직접 비교하려고 하지 않습니다."
 
-#: ../../library/heapq.rst:192
+#: ../../library/heapq.rst:258
 msgid ""
 "Another solution to the problem of non-comparable tasks is to create a "
 "wrapper class that ignores the task item and only compares the priority "
 "field::"
 msgstr "비교할 수 없는 작업의 문제에 대한 또 다른 해결책은 작업 항목을 무시하고 우선순위 필드만 비교하는 래퍼 클래스를 만드는 것입니다::"
 
-#: ../../library/heapq.rst:195
+#: ../../library/heapq.rst:261
 msgid ""
 "from dataclasses import dataclass, field\n"
 "from typing import Any\n"
@@ -368,7 +456,7 @@ msgstr ""
 "    priority: int\n"
 "    item: Any=field(compare=False)"
 
-#: ../../library/heapq.rst:203
+#: ../../library/heapq.rst:269
 msgid ""
 "The remaining challenges revolve around finding a pending task and making"
 " changes to its priority or removing it entirely.  Finding a task can be "
@@ -377,7 +465,7 @@ msgstr ""
 "나머지 과제는 계류 중인 작업을 찾고 우선순위를 변경하거나 완전히 제거하는 것과 관련이 있습니다. 작업을 찾는 것은 큐에 있는 "
 "항목을 가리키는 딕셔너리를 사용해서 해결할 수 있습니다."
 
-#: ../../library/heapq.rst:207
+#: ../../library/heapq.rst:273
 msgid ""
 "Removing the entry or changing its priority is more difficult because it "
 "would break the heap structure invariants.  So, a possible solution is to"
@@ -387,7 +475,7 @@ msgstr ""
 "힙 구조 불변성을 깨뜨리기 때문에 항목을 제거하거나 우선순위를 변경하는 것은 더 어렵습니다. 따라서, 가능한 해결책은 항목을 제거된"
 " 것으로 표시하고 우선순위가 수정된 새 항목을 추가하는 것입니다::"
 
-#: ../../library/heapq.rst:211
+#: ../../library/heapq.rst:277
 #, python-brace-format
 msgid ""
 "pq = []                         # list of entries arranged in a heap\n"
@@ -447,11 +535,11 @@ msgstr ""
 "            return task\n"
 "    raise KeyError('pop from an empty priority queue')"
 
-#: ../../library/heapq.rst:241
+#: ../../library/heapq.rst:307
 msgid "Theory"
 msgstr "이론"
 
-#: ../../library/heapq.rst:243
+#: ../../library/heapq.rst:309
 msgid ""
 "Heaps are arrays for which ``a[k] <= a[2*k+1]`` and ``a[k] <= a[2*k+2]`` "
 "for all *k*, counting elements from 0.  For the sake of comparison, non-"
@@ -462,7 +550,7 @@ msgstr ""
 "a[2*k+2]``\\가 유지되는 배열입니다. 비교를 위해, 존재하지 않는 요소는 무한인 것으로 간주합니다. 힙의 흥미로운 특성은 "
 "``a[0]``\\이 항상 가장 작은 요소라는 것입니다."
 
-#: ../../library/heapq.rst:248
+#: ../../library/heapq.rst:314
 msgid ""
 "The strange invariant above is meant to be an efficient memory "
 "representation for a tournament.  The numbers below are *k*, not "
@@ -471,7 +559,7 @@ msgstr ""
 "위의 특이한 불변성은 토너먼트를 위한 효율적인 메모리 표현을 위한 것입니다. 아래 숫자는 ``a[k]``\\가 아니라 "
 "*k*\\입니다::"
 
-#: ../../library/heapq.rst:251
+#: ../../library/heapq.rst:317
 msgid ""
 "                               0\n"
 "\n"
@@ -493,7 +581,7 @@ msgstr ""
 "\n"
 "15 16   17 18   19 20   21 22   23 24   25 26   27 28   29 30"
 
-#: ../../library/heapq.rst:261
+#: ../../library/heapq.rst:327
 msgid ""
 "In the tree above, each cell *k* is topping ``2*k+1`` and ``2*k+2``. In a"
 " usual binary tournament we see in sports, each cell is the winner over "
@@ -511,7 +599,7 @@ msgstr ""
 "승자가 승격될 때, 하위 수준에서 다른 것으로 대체하려고 시도합니다. 규칙은 셀과 셀 아래의 두 셀이 세 개의 다른 항목을 "
 "포함하지만, 위의 셀은 아래의 두 셀에 \"이기는\" 것입니다."
 
-#: ../../library/heapq.rst:270
+#: ../../library/heapq.rst:336
 msgid ""
 "If this heap invariant is protected at all time, index 0 is clearly the "
 "overall winner.  The simplest algorithmic way to remove it and find the "
@@ -526,7 +614,7 @@ msgstr ""
 "교환하면서 이 새로운 0을 트리 아래로 침투시키는 것입니다. 이것은 트리의 총 항목 수에 대해 분명히 로그 "
 "함수적(logarithmic)입니다. 모든 항목에 대해 반복하면, *O*\\ (*n* log *n*) 정렬을 얻게 됩니다."
 
-#: ../../library/heapq.rst:277
+#: ../../library/heapq.rst:343
 msgid ""
 "A nice feature of this sort is that you can efficiently insert new items "
 "while the sort is going on, provided that the inserted items are not "
@@ -544,7 +632,7 @@ msgstr ""
 " 힙에 들어갈 수 있습니다. 따라서, 힙은 스케줄러를 구현하기에 좋은 구조입니다 (이것이 제가 MIDI 시퀀서에 사용한 것입니다 "
 ":-)."
 
-#: ../../library/heapq.rst:286
+#: ../../library/heapq.rst:352
 msgid ""
 "Various structures for implementing schedulers have been extensively "
 "studied, and heaps are good for this, as they are reasonably speedy, the "
@@ -556,7 +644,7 @@ msgstr ""
 "평균 경우와 크게 다르지 않기 때문에 스케줄러에 좋습니다. 하지만, 최악의 경우는 끔찍할 수 있습니다만, 전반적으로 더 효율적인 "
 "다른 표현이 있기는 합니다."
 
-#: ../../library/heapq.rst:292
+#: ../../library/heapq.rst:358
 msgid ""
 "Heaps are also very useful in big disk sorts.  You most probably all know"
 " that a big sort implies producing \"runs\" (which are pre-sorted "
@@ -575,7 +663,7 @@ msgstr ""
 " 위한 좋은 방법입니다. 토너먼트를 개최하는 데 사용할 수 있는 모든 메모리를 사용하여 현재 런에 맞는 항목들을 교체하고 "
 "침투시키면, 무작위 입력을 위한 메모리 크기의 두 배인 런을 생성하게 되고, 적당히 정렬된 입력에 대해서는 더 좋습니다."
 
-#: ../../library/heapq.rst:302
+#: ../../library/heapq.rst:368
 msgid ""
 "Moreover, if you output the 0'th item on disk and get an input which may "
 "not fit in the current tournament (because the value \"wins\" over the "
@@ -590,7 +678,7 @@ msgstr ""
 "재사용될 수 있고, 두 번째 힙이 자라는 속도는 첫 번째 힙이 줄어드는 것과 같습니다. 첫 번째 힙이 완전히 사라지면, 힙을 "
 "전환하고 새 런을 시작합니다. 영리하고 매우 효과적입니다!"
 
-#: ../../library/heapq.rst:310
+#: ../../library/heapq.rst:376
 msgid ""
 "In a word, heaps are useful memory structures to know.  I use them in a "
 "few applications, and I think it is good to keep a 'heap' module around. "
@@ -599,11 +687,11 @@ msgstr ""
 "한마디로, 힙은 알아두어야 할 유용한 메모리 구조입니다. 저는 몇 가지 응용 프로그램에서 사용하며, '힙' 모듈을 근처에 두는 것이"
 " 좋다고 생각합니다. :-)"
 
-#: ../../library/heapq.rst:314
+#: ../../library/heapq.rst:380
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../../library/heapq.rst:315
+#: ../../library/heapq.rst:381
 msgid ""
 "The disk balancing algorithms which are current, nowadays, are more "
 "annoying than clever, and this is a consequence of the seeking "

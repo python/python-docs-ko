@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -670,7 +670,7 @@ msgid ""
 "\n"
 "    def validate(self, value):\n"
 "        if not isinstance(value, str):\n"
-"            raise TypeError(f'Expected {value!r} to be an str')\n"
+"            raise TypeError(f'Expected {value!r} to be a str')\n"
 "        if self.minsize is not None and len(value) < self.minsize:\n"
 "            raise ValueError(\n"
 "                f'Expected {value!r} to be no smaller than "
@@ -1747,24 +1747,27 @@ msgid ""
 "        return self.f\n"
 "\n"
 "    def __call__(self, *args, **kwds):\n"
-"        return self.f(*args, **kwds)"
+"        return self.f(*args, **kwds)\n"
+"\n"
+"    @property\n"
+"    def __annotations__(self):\n"
+"        return self.f.__annotations__"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1348
+#: ../../howto/descriptor.rst:1352
 msgid ""
 "The :func:`functools.update_wrapper` call adds a ``__wrapped__`` "
 "attribute that refers to the underlying function.  Also it carries "
 "forward the attributes necessary to make the wrapper look like the "
-"wrapped function: :attr:`~function.__name__`, "
-":attr:`~function.__qualname__`, :attr:`~function.__doc__`, and "
-":attr:`~function.__annotations__`."
+"wrapped function, including :attr:`~function.__name__`, "
+":attr:`~function.__qualname__`, and :attr:`~function.__doc__`."
 msgstr ""
 
-#: ../../howto/descriptor.rst:1417
+#: ../../howto/descriptor.rst:1421
 msgid "Class methods"
 msgstr "클래스 메서드"
 
-#: ../../howto/descriptor.rst:1419
+#: ../../howto/descriptor.rst:1423
 msgid ""
 "Unlike static methods, class methods prepend the class reference to the "
 "argument list before calling the function.  This format is the same for "
@@ -1773,7 +1776,7 @@ msgstr ""
 "정적 메서드와 달리, 클래스 메서드는 함수를 호출하기 전에 클래스 참조를 인자 목록 앞에 추가합니다. 이 형식은 호출자가 객체나 "
 "클래스일 때 같습니다:"
 
-#: ../../howto/descriptor.rst:1423
+#: ../../howto/descriptor.rst:1427
 msgid ""
 "class F:\n"
 "    @classmethod\n"
@@ -1781,7 +1784,7 @@ msgid ""
 "        return cls.__name__, x"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1430
+#: ../../howto/descriptor.rst:1434
 msgid ""
 ">>> F.f(3)\n"
 "('F', 3)\n"
@@ -1789,7 +1792,7 @@ msgid ""
 "('F', 3)"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1437
+#: ../../howto/descriptor.rst:1441
 msgid ""
 "This behavior is useful whenever the method only needs to have a class "
 "reference and does not rely on data stored in a specific instance.  One "
@@ -1801,7 +1804,7 @@ msgstr ""
 "용도는 대체 클래스 생성자를 만드는 것입니다. 예를 들어, 클래스 메서드 :func:`dict.fromkeys`\\는 키 리스트에서"
 " 새 딕셔너리를 만듭니다. 순수한 파이썬 동등 물은 다음과 같습니다:"
 
-#: ../../howto/descriptor.rst:1443
+#: ../../howto/descriptor.rst:1447
 msgid ""
 "class Dict(dict):\n"
 "    @classmethod\n"
@@ -1813,11 +1816,11 @@ msgid ""
 "        return d"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1454
+#: ../../howto/descriptor.rst:1458
 msgid "Now a new dictionary of unique keys can be constructed like this:"
 msgstr "이제 고유 키의 새로운 딕셔너리를 다음과 같이 구성 할 수 있습니다:"
 
-#: ../../howto/descriptor.rst:1456
+#: ../../howto/descriptor.rst:1460
 #, python-brace-format
 msgid ""
 ">>> d = Dict.fromkeys('abracadabra')\n"
@@ -1827,13 +1830,13 @@ msgid ""
 "{'a': None, 'b': None, 'r': None, 'c': None, 'd': None}"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1464
+#: ../../howto/descriptor.rst:1468
 msgid ""
 "Using the non-data descriptor protocol, a pure Python version of "
 ":func:`classmethod` would look like this:"
 msgstr "비 데이터 디스크립터 프로토콜을 사용하면, 순수 파이썬 버전의 :func:`classmethod`\\는 다음과 같습니다:"
 
-#: ../../howto/descriptor.rst:1467
+#: ../../howto/descriptor.rst:1471
 msgid ""
 "import functools\n"
 "\n"
@@ -1850,7 +1853,7 @@ msgid ""
 "        return MethodType(self.f, cls)"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1529
+#: ../../howto/descriptor.rst:1533
 msgid ""
 "The :func:`functools.update_wrapper` call in ``ClassMethod`` adds a "
 "``__wrapped__`` attribute that refers to the underlying function.  Also "
@@ -1860,11 +1863,11 @@ msgid ""
 ":attr:`~function.__annotations__`."
 msgstr ""
 
-#: ../../howto/descriptor.rst:1538
+#: ../../howto/descriptor.rst:1542
 msgid "Member objects and __slots__"
 msgstr "멤버 객체와 __slots__"
 
-#: ../../howto/descriptor.rst:1540
+#: ../../howto/descriptor.rst:1544
 msgid ""
 "When a class defines ``__slots__``, it replaces instance dictionaries "
 "with a fixed-length array of slot values.  From a user point of view that"
@@ -1873,7 +1876,7 @@ msgstr ""
 "클래스가 ``__slots__``\\를 정의하면, 인스턴스 딕셔너리를 슬롯값의 고정 길이 배열로 바꿉니다. 사용자 관점에서 여러 "
 "가지 효과가 있습니다:"
 
-#: ../../howto/descriptor.rst:1544
+#: ../../howto/descriptor.rst:1548
 msgid ""
 "1. Provides immediate detection of bugs due to misspelled attribute "
 "assignments.  Only attribute names specified in ``__slots__`` are "
@@ -1882,13 +1885,13 @@ msgstr ""
 "1 - 철자가 잘못된 어트리뷰트 대입으로 인한 버그를 즉시 감지합니다. ``__slots__``\\에 지정된 어트리뷰트 이름 만 "
 "허용됩니다:"
 
-#: ../../howto/descriptor.rst:1547
+#: ../../howto/descriptor.rst:1551
 msgid ""
 "class Vehicle:\n"
 "    __slots__ = ('id_number', 'make', 'model')"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1552
+#: ../../howto/descriptor.rst:1556
 msgid ""
 ">>> auto = Vehicle()\n"
 ">>> auto.id_nubmer = 'VYE483814LQEX'\n"
@@ -1897,7 +1900,7 @@ msgid ""
 "AttributeError: 'Vehicle' object has no attribute 'id_nubmer'"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1560
+#: ../../howto/descriptor.rst:1564
 msgid ""
 "2. Helps create immutable objects where descriptors manage access to "
 "private attributes stored in ``__slots__``:"
@@ -1905,7 +1908,7 @@ msgstr ""
 "2 - 디스크립터가 ``__slots__``\\에 저장된 개인 어트리뷰트에 대한 액세스를 관리하는 불변 객체를 만드는 데 도움이 "
 "됩니다:"
 
-#: ../../howto/descriptor.rst:1563
+#: ../../howto/descriptor.rst:1567
 msgid ""
 "class Immutable:\n"
 "\n"
@@ -1925,7 +1928,7 @@ msgid ""
 "        return self._name"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1581
+#: ../../howto/descriptor.rst:1585
 msgid ""
 ">>> mark = Immutable('Botany', 'Mark Watney')\n"
 ">>> mark.dept\n"
@@ -1940,7 +1943,7 @@ msgid ""
 "AttributeError: 'Immutable' object has no attribute 'location'"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1595
+#: ../../howto/descriptor.rst:1599
 msgid ""
 "3. Saves memory.  On a 64-bit Linux build, an instance with two "
 "attributes takes 48 bytes with ``__slots__`` and 152 bytes without.  This"
@@ -1953,14 +1956,14 @@ msgstr ""
 "<https://en.wikipedia.org/wiki/Flyweight_pattern>`_\\은 많은 수의 인스턴스가 만들어질 "
 "때만 중요합니다."
 
-#: ../../howto/descriptor.rst:1600
+#: ../../howto/descriptor.rst:1604
 #, python-format
 msgid ""
 "4. Improves speed.  Reading instance variables is 35% faster with "
 "``__slots__`` (as measured with Python 3.10 on an Apple M1 processor)."
 msgstr ""
 
-#: ../../howto/descriptor.rst:1603
+#: ../../howto/descriptor.rst:1607
 #, fuzzy
 msgid ""
 "5. Blocks tools like :func:`functools.cached_property` which require an "
@@ -1969,7 +1972,7 @@ msgstr ""
 "4 - 인스턴스 딕셔너리가 올바르게 작동해야 하는 :func:`functools.cached_property`\\와 같은 도구를 "
 "차단합니다:"
 
-#: ../../howto/descriptor.rst:1606
+#: ../../howto/descriptor.rst:1610
 msgid ""
 "from functools import cached_property\n"
 "\n"
@@ -1983,7 +1986,7 @@ msgid ""
 "                       for n in reversed(range(100_000)))"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1618
+#: ../../howto/descriptor.rst:1622
 msgid ""
 ">>> CP().pi\n"
 "Traceback (most recent call last):\n"
@@ -1992,7 +1995,7 @@ msgid ""
 "property."
 msgstr ""
 
-#: ../../howto/descriptor.rst:1625
+#: ../../howto/descriptor.rst:1629
 msgid ""
 "It is not possible to create an exact drop-in pure Python version of "
 "``__slots__`` because it requires direct access to C structures and "
@@ -2005,7 +2008,7 @@ msgstr ""
 " 할당을 제어해야 하기 때문입니다. 그러나, 슬롯에 대한 실제 C 구조체가 개인 ``_slotvalues`` 리스트에 의해 모사되는"
 " 가장 충실한 시뮬레이션을 구축 할 수 있습니다. 해당 개인 구조체에 대한 읽기와 쓰기는 멤버 디스크립터에 의해 관리됩니다:"
 
-#: ../../howto/descriptor.rst:1632
+#: ../../howto/descriptor.rst:1636
 #, python-brace-format
 msgid ""
 "null = object()\n"
@@ -2045,14 +2048,14 @@ msgid ""
 "        return f'<Member {self.name!r} of {self.clsname!r}>'"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1670
+#: ../../howto/descriptor.rst:1674
 #, fuzzy
 msgid ""
 "The :meth:`!type.__new__` method takes care of adding member objects to "
 "class variables:"
 msgstr ":meth:`type.__new__` 메서드는 클래스 변수에 멤버 객체를 추가하는 것을 관리합니다:"
 
-#: ../../howto/descriptor.rst:1673
+#: ../../howto/descriptor.rst:1677
 msgid ""
 "class Type(type):\n"
 "    'Simulate how the type metaclass adds member objects for slots'\n"
@@ -2066,7 +2069,7 @@ msgid ""
 "        return type.__new__(mcls, clsname, bases, mapping, **kwargs)"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1686
+#: ../../howto/descriptor.rst:1690
 msgid ""
 "The :meth:`object.__new__` method takes care of creating instances that "
 "have slots instead of an instance dictionary.  Here is a rough simulation"
@@ -2075,7 +2078,7 @@ msgstr ""
 ":meth:`object.__new__` 메서드는 인스턴스 딕셔너리 대신 슬롯이 있는 인스턴스를 만드는 것을 관장합니다. 다음은 "
 "순수 파이썬의 대략적인 시뮬레이션입니다:"
 
-#: ../../howto/descriptor.rst:1690
+#: ../../howto/descriptor.rst:1694
 #, python-brace-format
 msgid ""
 "class Object:\n"
@@ -2108,7 +2111,7 @@ msgid ""
 "        super().__delattr__(name)"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1721
+#: ../../howto/descriptor.rst:1725
 #, fuzzy
 msgid ""
 "To use the simulation in a real class, just inherit from :class:`!Object`"
@@ -2117,7 +2120,7 @@ msgstr ""
 "실제 클래스에서 시뮬레이션을 사용하려면, :class:`Object`\\에서 상속하고 :term:`메타 클래스 "
 "<metaclass>`\\를 :class:`Type`\\으로 설정하면 됩니다:"
 
-#: ../../howto/descriptor.rst:1724
+#: ../../howto/descriptor.rst:1728
 msgid ""
 "class H(Object, metaclass=Type):\n"
 "    'Instance variables stored in slots'\n"
@@ -2129,11 +2132,11 @@ msgid ""
 "        self.y = y"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1735
+#: ../../howto/descriptor.rst:1739
 msgid "At this point, the metaclass has loaded member objects for *x* and *y*::"
 msgstr "이 시점에서, 메타 클래스는 *x* 와 *y*\\에 대한 멤버 객체를 로드했습니다::"
 
-#: ../../howto/descriptor.rst:1737
+#: ../../howto/descriptor.rst:1741
 #, python-brace-format
 msgid ""
 ">>> from pprint import pp\n"
@@ -2146,13 +2149,13 @@ msgid ""
 " 'y': <Member 'y' of 'H'>}"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1756
+#: ../../howto/descriptor.rst:1760
 msgid ""
 "When instances are created, they have a ``slot_values`` list where the "
 "attributes are stored:"
 msgstr "인스턴스가 만들어질 때, 어트리뷰트가 저장되는 ``slot_values`` 리스트를 갖습니다:"
 
-#: ../../howto/descriptor.rst:1759
+#: ../../howto/descriptor.rst:1763
 #, python-brace-format
 msgid ""
 ">>> h = H(10, 20)\n"
@@ -2163,11 +2166,11 @@ msgid ""
 "{'_slotvalues': [55, 20]}"
 msgstr ""
 
-#: ../../howto/descriptor.rst:1768
+#: ../../howto/descriptor.rst:1772
 msgid "Misspelled or unassigned attributes will raise an exception:"
 msgstr "철자가 틀리거나 지정되지 않은 어트리뷰트는 예외를 발생시킵니다:"
 
-#: ../../howto/descriptor.rst:1770
+#: ../../howto/descriptor.rst:1774
 msgid ""
 ">>> h.xz\n"
 "Traceback (most recent call last):\n"
@@ -2220,4 +2223,91 @@ msgstr ""
 #~ "연쇄(chained decorators)를 지원할 수 있도록 합니다."
 #~ " 예를 들어, classmethod와 property를 함께 연결할"
 #~ " 수 있습니다:"
+
+#~ msgid ""
+#~ "class OneOf(Validator):\n"
+#~ "\n"
+#~ "    def __init__(self, *options):\n"
+#~ "        self.options = set(options)\n"
+#~ "\n"
+#~ "    def validate(self, value):\n"
+#~ "        if value not in self.options:\n"
+#~ "            raise ValueError(\n"
+#~ "                f'Expected {value!r} to be one of {self.options!r}'\n"
+#~ "            )\n"
+#~ "\n"
+#~ "class Number(Validator):\n"
+#~ "\n"
+#~ "    def __init__(self, minvalue=None, maxvalue=None):\n"
+#~ "        self.minvalue = minvalue\n"
+#~ "        self.maxvalue = maxvalue\n"
+#~ "\n"
+#~ "    def validate(self, value):\n"
+#~ "        if not isinstance(value, (int, float)):\n"
+#~ "            raise TypeError(f'Expected {value!r} "
+#~ "to be an int or float')\n"
+#~ "        if self.minvalue is not None and value < self.minvalue:\n"
+#~ "            raise ValueError(\n"
+#~ "                f'Expected {value!r} to be "
+#~ "at least {self.minvalue!r}'\n"
+#~ "            )\n"
+#~ "        if self.maxvalue is not None and value > self.maxvalue:\n"
+#~ "            raise ValueError(\n"
+#~ "                f'Expected {value!r} to be "
+#~ "no more than {self.maxvalue!r}'\n"
+#~ "            )\n"
+#~ "\n"
+#~ "class String(Validator):\n"
+#~ "\n"
+#~ "    def __init__(self, minsize=None, maxsize=None, predicate=None):\n"
+#~ "        self.minsize = minsize\n"
+#~ "        self.maxsize = maxsize\n"
+#~ "        self.predicate = predicate\n"
+#~ "\n"
+#~ "    def validate(self, value):\n"
+#~ "        if not isinstance(value, str):\n"
+#~ "            raise TypeError(f'Expected {value!r} to be an str')\n"
+#~ "        if self.minsize is not None and len(value) < self.minsize:\n"
+#~ "            raise ValueError(\n"
+#~ "                f'Expected {value!r} to be "
+#~ "no smaller than {self.minsize!r}'\n"
+#~ "            )\n"
+#~ "        if self.maxsize is not None and len(value) > self.maxsize:\n"
+#~ "            raise ValueError(\n"
+#~ "                f'Expected {value!r} to be "
+#~ "no bigger than {self.maxsize!r}'\n"
+#~ "            )\n"
+#~ "        if self.predicate is not None and not self.predicate(value):\n"
+#~ "            raise ValueError(\n"
+#~ "                f'Expected {self.predicate} to be true for {value!r}'\n"
+#~ "            )"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "import functools\n"
+#~ "\n"
+#~ "class StaticMethod:\n"
+#~ "    \"Emulate PyStaticMethod_Type() in Objects/funcobject.c\"\n"
+#~ "\n"
+#~ "    def __init__(self, f):\n"
+#~ "        self.f = f\n"
+#~ "        functools.update_wrapper(self, f)\n"
+#~ "\n"
+#~ "    def __get__(self, obj, objtype=None):\n"
+#~ "        return self.f\n"
+#~ "\n"
+#~ "    def __call__(self, *args, **kwds):\n"
+#~ "        return self.f(*args, **kwds)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The :func:`functools.update_wrapper` call adds "
+#~ "a ``__wrapped__`` attribute that refers "
+#~ "to the underlying function.  Also it "
+#~ "carries forward the attributes necessary "
+#~ "to make the wrapper look like the"
+#~ " wrapped function: :attr:`~function.__name__`, "
+#~ ":attr:`~function.__qualname__`, :attr:`~function.__doc__`, "
+#~ "and :attr:`~function.__annotations__`."
+#~ msgstr ""
 

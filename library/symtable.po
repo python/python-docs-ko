@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -232,79 +232,144 @@ msgstr ""
 msgid "For example:"
 msgstr "예를 들면:"
 
-#: ../../library/symtable.rst:215
+#: ../../library/symtable.rst:206
+msgid ""
+">>> import symtable\n"
+">>> st = symtable.symtable('''\n"
+"... def outer(): pass\n"
+"...\n"
+"... class A:\n"
+"...    def f():\n"
+"...        def w(): pass\n"
+"...\n"
+"...    def g(self): pass\n"
+"...\n"
+"...    @classmethod\n"
+"...    async def h(cls): pass\n"
+"...\n"
+"...    global outer\n"
+"...    def outer(self): pass\n"
+"... ''', 'test', 'exec')\n"
+">>> class_A = st.get_children()[2]\n"
+">>> class_A.get_methods()\n"
+"('f', 'g', 'h')"
+msgstr ""
+
+#: ../../library/symtable.rst:228
 msgid ""
 "Although ``A().f()`` raises :exc:`TypeError` at runtime, ``A.f`` is still"
 " considered as a method-like function."
 msgstr ""
 
-#: ../../library/symtable.rst:220
+#: ../../library/symtable.rst:236
 msgid ""
 "An entry in a :class:`SymbolTable` corresponding to an identifier in the "
 "source.  The constructor is not public."
 msgstr "소스의 식별자에 해당하는 :class:`SymbolTable`\\의 항목. 생성자는 공개되지 않습니다."
 
-#: ../../library/symtable.rst:225
+#: ../../library/symtable.rst:241
 msgid "Return the symbol's name."
 msgstr "심볼의 이름을 돌려줍니다."
 
-#: ../../library/symtable.rst:229
+#: ../../library/symtable.rst:245
 msgid "Return ``True`` if the symbol is used in its block."
 msgstr "심볼이 블록에서 사용되면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:233
+#: ../../library/symtable.rst:249
 msgid "Return ``True`` if the symbol is created from an import statement."
 msgstr "심볼이 import 문에서 만들어지면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:237
+#: ../../library/symtable.rst:253
 msgid "Return ``True`` if the symbol is a parameter."
 msgstr "심볼이 매개 변수면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:241
+#: ../../library/symtable.rst:257
+#, fuzzy
+msgid "Return ``True`` if the symbol is a type parameter."
+msgstr "심볼이 매개 변수면 ``True``\\를 반환합니다."
+
+#: ../../library/symtable.rst:263
 msgid "Return ``True`` if the symbol is global."
 msgstr "심볼이 전역이면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:245
+#: ../../library/symtable.rst:267
 msgid "Return ``True`` if the symbol is nonlocal."
 msgstr "심볼이 nonlocal이면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:249
+#: ../../library/symtable.rst:271
 msgid "Return ``True`` if the symbol is declared global with a global statement."
 msgstr "심볼이 global 문으로 전역으로 선언되면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:253
+#: ../../library/symtable.rst:275
 msgid "Return ``True`` if the symbol is local to its block."
 msgstr "심볼이 블록의 지역이면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:257
+#: ../../library/symtable.rst:279
 msgid "Return ``True`` if the symbol is annotated."
 msgstr "심볼이 어노테이트 되었으면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:263
+#: ../../library/symtable.rst:285
 msgid ""
 "Return ``True`` if the symbol is referenced in its block, but not "
 "assigned to."
 msgstr "심볼이 블록에서 참조되지만 대입되지 않으면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:268
+#: ../../library/symtable.rst:290
+msgid ""
+"Return *True* if a class-scoped symbol is free from the perspective of a "
+"method."
+msgstr ""
+
+#: ../../library/symtable.rst:293
+msgid "Consider the following example::"
+msgstr ""
+
+#: ../../library/symtable.rst:295
+msgid ""
+"def f():\n"
+"    x = 1  # function-scoped\n"
+"    class C:\n"
+"        x = 2  # class-scoped\n"
+"        def method(self):\n"
+"            return x"
+msgstr ""
+
+#: ../../library/symtable.rst:302
+msgid ""
+"In this example, the class-scoped symbol ``x`` is considered to be free "
+"from the perspective of ``C.method``, thereby allowing the latter to "
+"return *1* at runtime and not *2*."
+msgstr ""
+
+#: ../../library/symtable.rst:310
 msgid "Return ``True`` if the symbol is assigned to in its block."
 msgstr "심볼이 블록에 대입되면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:272
+#: ../../library/symtable.rst:314
+#, fuzzy
+msgid "Return ``True`` if the symbol is a comprehension iteration variable."
+msgstr "심볼이 매개 변수면 ``True``\\를 반환합니다."
+
+#: ../../library/symtable.rst:320
+#, fuzzy
+msgid "Return ``True`` if the symbol is a cell in an inlined comprehension."
+msgstr "심볼이 import 문에서 만들어지면 ``True``\\를 반환합니다."
+
+#: ../../library/symtable.rst:326
 msgid "Return ``True`` if name binding introduces new namespace."
 msgstr "이름 연결(name binding)이 새로운 이름 공간을 도입하면 ``True``\\를 반환합니다."
 
-#: ../../library/symtable.rst:274
+#: ../../library/symtable.rst:328
 msgid ""
 "If the name is used as the target of a function or class statement, this "
 "will be true."
 msgstr "이름이 함수나 클래스 문의 대상으로 사용되면 참입니다."
 
-#: ../../library/symtable.rst:277
+#: ../../library/symtable.rst:331
 msgid "For example::"
 msgstr "예를 들면::"
 
-#: ../../library/symtable.rst:279
+#: ../../library/symtable.rst:333
 msgid ""
 ">>> table = symtable.symtable(\"def some_func(): pass\", \"string\", "
 "\"exec\")\n"
@@ -316,7 +381,7 @@ msgstr ""
 ">>> table.lookup(\"some_func\").is_namespace()\n"
 "True"
 
-#: ../../library/symtable.rst:283
+#: ../../library/symtable.rst:337
 msgid ""
 "Note that a single name can be bound to multiple objects.  If the result "
 "is ``True``, the name may also be bound to other objects, like an int or "
@@ -325,11 +390,11 @@ msgstr ""
 "하나의 이름을 여러 객체에 연결할 수 있음에 유의하십시오. 결과가 ``True`` 이면, 이름은 새 이름 공간을 도입하지 않는 "
 "int 나 list와 같은 다른 객체에도 연결되어있을 수 있습니다."
 
-#: ../../library/symtable.rst:289
+#: ../../library/symtable.rst:343
 msgid "Return a list of namespaces bound to this name."
 msgstr "이 이름에 연결된 이름 공간의 리스트를 돌려줍니다."
 
-#: ../../library/symtable.rst:293
+#: ../../library/symtable.rst:347
 msgid ""
 "Return the namespace bound to this name. If more than one or no namespace"
 " is bound to this name, a :exc:`ValueError` is raised."
@@ -337,21 +402,21 @@ msgstr ""
 "이 이름에 연결된 이름 공간을 돌려줍니다. 이 이름에 연결된 이름 공간이 둘 이상이거나 없으면, "
 ":exc:`ValueError`\\가 발생합니다."
 
-#: ../../library/symtable.rst:300
+#: ../../library/symtable.rst:354
 msgid "Command-Line Usage"
 msgstr ""
 
-#: ../../library/symtable.rst:304
+#: ../../library/symtable.rst:358
 msgid ""
 "The :mod:`symtable` module can be executed as a script from the command "
 "line."
 msgstr ""
 
-#: ../../library/symtable.rst:306
+#: ../../library/symtable.rst:360
 msgid "python -m symtable [infile...]"
 msgstr "python -m symtable [infile...]"
 
-#: ../../library/symtable.rst:310
+#: ../../library/symtable.rst:364
 msgid ""
 "Symbol tables are generated for the specified Python source files and "
 "dumped to stdout. If no input file is specified, the content is read from"

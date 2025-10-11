@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -38,17 +38,15 @@ msgstr "숫자 값은 최하위 바이트가 먼저 저장됩니다."
 
 #: ../../c-api/marshal.rst:16
 msgid ""
-"The module supports two versions of the data format: version 0 is the "
-"historical version, version 1 shares interned strings in the file, and "
-"upon unmarshalling.  Version 2 uses a binary format for floating-point "
-"numbers. ``Py_MARSHAL_VERSION`` indicates the current file format "
-"(currently 2)."
+"The module supports several versions of the data format; see the "
+":py:mod:`Python module documentation <marshal>` for details."
 msgstr ""
-"이 모듈은 두 가지 버전의 데이터 형식을 지원합니다: 버전 0은 역사적인 버전이고, 버전 1은 파일에서와 역 마샬링할 때 "
-"인턴(intern) 된 문자열을 공유합니다. 버전 2는 부동 소수점 숫자에 대해 바이너리 형식을 사용합니다. "
-"``Py_MARSHAL_VERSION``\\은 현재 파일 형식을 나타냅니다 (현재 2)."
 
-#: ../../c-api/marshal.rst:24
+#: ../../c-api/marshal.rst:21
+msgid "The current format version. See :py:data:`marshal.version`."
+msgstr ""
+
+#: ../../c-api/marshal.rst:25
 msgid ""
 "Marshal a :c:expr:`long` integer, *value*, to *file*.  This will only "
 "write the least-significant 32 bits of *value*; regardless of the size of"
@@ -57,29 +55,29 @@ msgstr ""
 ":c:expr:`long` 정수 *value*\\를 *file*\\로 마샬합니다. *value*\\의 최하위 32비트 만 "
 "기록합니다; 기본 :c:expr:`long` 형의 크기와 관계없이. *version*\\은 파일 형식을 나타냅니다."
 
-#: ../../c-api/marshal.rst:28 ../../c-api/marshal.rst:36
+#: ../../c-api/marshal.rst:29 ../../c-api/marshal.rst:37
 msgid ""
 "This function can fail, in which case it sets the error indicator. Use "
 ":c:func:`PyErr_Occurred` to check for that."
 msgstr ""
 
-#: ../../c-api/marshal.rst:33
+#: ../../c-api/marshal.rst:34
 msgid ""
 "Marshal a Python object, *value*, to *file*. *version* indicates the file"
 " format."
 msgstr "파이썬 객체 *value*\\를 *file*\\로 마샬합니다. *version*\\은 파일 형식을 나타냅니다."
 
-#: ../../c-api/marshal.rst:41
+#: ../../c-api/marshal.rst:42
 msgid ""
 "Return a bytes object containing the marshalled representation of "
 "*value*. *version* indicates the file format."
 msgstr "마샬된 *value* 표현을 포함한 바이트열 객체를 반환합니다. *version*\\은 파일 형식을 나타냅니다."
 
-#: ../../c-api/marshal.rst:45
+#: ../../c-api/marshal.rst:46
 msgid "The following functions allow marshalled values to be read back in."
 msgstr "다음 함수를 사용하면 마샬된 값을 다시 읽을 수 있습니다."
 
-#: ../../c-api/marshal.rst:50
+#: ../../c-api/marshal.rst:51
 msgid ""
 "Return a C :c:expr:`long` from the data stream in a :c:expr:`FILE*` "
 "opened for reading.  Only a 32-bit value can be read in using this "
@@ -88,13 +86,13 @@ msgstr ""
 "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 C :c:expr:`long`\\을 반환합니다. 이 함수를 "
 "사용하면 :c:expr:`long`\\의 기본 크기와 관계없이 32비트 값만 읽을 수 있습니다."
 
-#: ../../c-api/marshal.rst:54 ../../c-api/marshal.rst:64
+#: ../../c-api/marshal.rst:55 ../../c-api/marshal.rst:65
 msgid ""
 "On error, sets the appropriate exception (:exc:`EOFError`) and returns "
 "``-1``."
 msgstr "에러 시, 적절한 예외(:exc:`EOFError`)를 설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/marshal.rst:60
+#: ../../c-api/marshal.rst:61
 msgid ""
 "Return a C :c:expr:`short` from the data stream in a :c:expr:`FILE*` "
 "opened for reading.  Only a 16-bit value can be read in using this "
@@ -103,14 +101,14 @@ msgstr ""
 "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 C :c:expr:`short`\\를 반환합니다. 이 함수를 "
 "사용하면 :c:expr:`short`\\의 기본 크기와 관계없이 16비트 값만 읽을 수 있습니다."
 
-#: ../../c-api/marshal.rst:70
+#: ../../c-api/marshal.rst:71
 msgid ""
 "Return a Python object from the data stream in a :c:expr:`FILE*` opened "
 "for reading."
 msgstr "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 파이썬 객체를 반환합니다."
 
-#: ../../c-api/marshal.rst:73 ../../c-api/marshal.rst:87
-#: ../../c-api/marshal.rst:96
+#: ../../c-api/marshal.rst:74 ../../c-api/marshal.rst:88
+#: ../../c-api/marshal.rst:97
 msgid ""
 "On error, sets the appropriate exception (:exc:`EOFError`, "
 ":exc:`ValueError` or :exc:`TypeError`) and returns ``NULL``."
@@ -118,7 +116,7 @@ msgstr ""
 "에러 시, 적절한 예외(:exc:`EOFError`, :exc:`ValueError` 또는 :exc:`TypeError`)를 "
 "설정하고 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/marshal.rst:79
+#: ../../c-api/marshal.rst:80
 msgid ""
 "Return a Python object from the data stream in a :c:expr:`FILE*` opened "
 "for reading.  Unlike :c:func:`PyMarshal_ReadObjectFromFile`, this "
@@ -133,9 +131,26 @@ msgstr ""
 "것이라고 가정함으로써, 파일 데이터를 메모리에 적극적으로 로드 할 수 있고, 파일에서 한 바이트씩 읽는 대신 메모리에 있는 "
 "데이터에서 역 직렬화가 작동할 수 있습니다. 파일에서 어떤 것도 읽지 않을 것이라는 확신이 들 경우에만 이 변형을 사용하십시오."
 
-#: ../../c-api/marshal.rst:93
+#: ../../c-api/marshal.rst:94
 msgid ""
 "Return a Python object from the data stream in a byte buffer containing "
 "*len* bytes pointed to by *data*."
 msgstr "*data*\\가 가리키는 *len* 바이트를 포함하는 바이트 버퍼의 데이터 스트림에서 파이썬 객체를 반환합니다."
+
+#~ msgid ""
+#~ "The module supports two versions of "
+#~ "the data format: version 0 is the"
+#~ " historical version, version 1 shares "
+#~ "interned strings in the file, and "
+#~ "upon unmarshalling.  Version 2 uses a"
+#~ " binary format for floating-point "
+#~ "numbers. ``Py_MARSHAL_VERSION`` indicates the "
+#~ "current file format (currently 2)."
+#~ msgstr ""
+#~ "이 모듈은 두 가지 버전의 데이터 형식을 "
+#~ "지원합니다: 버전 0은 역사적인 버전이고, 버전 1은 "
+#~ "파일에서와 역 마샬링할 때 인턴(intern) 된 문자열을"
+#~ " 공유합니다. 버전 2는 부동 소수점 숫자에 대해 "
+#~ "바이너리 형식을 사용합니다. ``Py_MARSHAL_VERSION``\\은 현재"
+#~ " 파일 형식을 나타냅니다 (현재 2)."
 

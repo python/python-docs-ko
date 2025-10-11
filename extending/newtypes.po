@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -35,7 +35,7 @@ msgstr ""
 ":c:type:`PyTypeObject`\\의 정의입니다:"
 
 #: ../../extending/newtypes.rst:17
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "typedef struct _typeobject {\n"
 "    PyObject_VAR_HEAD\n"
@@ -95,12 +95,12 @@ msgid ""
 "    iternextfunc tp_iternext;\n"
 "\n"
 "    /* Attribute descriptor and subclassing stuff */\n"
-"    struct PyMethodDef *tp_methods;\n"
-"    struct PyMemberDef *tp_members;\n"
-"    struct PyGetSetDef *tp_getset;\n"
+"    PyMethodDef *tp_methods;\n"
+"    PyMemberDef *tp_members;\n"
+"    PyGetSetDef *tp_getset;\n"
 "    // Strong reference on a heap type, borrowed reference on a static "
 "type\n"
-"    struct _typeobject *tp_base;\n"
+"    PyTypeObject *tp_base;\n"
 "    PyObject *tp_dict;\n"
 "    descrgetfunc tp_descr_get;\n"
 "    descrsetfunc tp_descr_set;\n"
@@ -112,12 +112,15 @@ msgid ""
 "    inquiry tp_is_gc; /* For PyObject_IS_GC */\n"
 "    PyObject *tp_bases;\n"
 "    PyObject *tp_mro; /* method resolution order */\n"
-"    PyObject *tp_cache;\n"
-"    PyObject *tp_subclasses;\n"
-"    PyObject *tp_weaklist;\n"
+"    PyObject *tp_cache; /* no longer used */\n"
+"    void *tp_subclasses;  /* for static builtin types this is an index */"
+"\n"
+"    PyObject *tp_weaklist; /* not used for static builtin types */\n"
 "    destructor tp_del;\n"
 "\n"
-"    /* Type attribute cache version tag. Added in version 2.6 */\n"
+"    /* Type attribute cache version tag. Added in version 2.6.\n"
+"     * If zero, the cache is invalid and must be initialized.\n"
+"     */\n"
 "    unsigned int tp_version_tag;\n"
 "\n"
 "    destructor tp_finalize;\n"
@@ -125,6 +128,13 @@ msgid ""
 "\n"
 "    /* bitset of which type-watchers care about this type */\n"
 "    unsigned char tp_watched;\n"
+"\n"
+"    /* Number of tp_version_tag values used.\n"
+"     * Set to _Py_ATTR_CACHE_UNUSED if the attribute cache is\n"
+"     * disabled for this type (e.g. due to custom MRO entries).\n"
+"     * Otherwise, limited to MAX_VERSIONS_PER_CLASS (defined elsewhere).\n"
+"     */\n"
+"    uint16_t tp_versions_used;\n"
 "} PyTypeObject;\n"
 msgstr ""
 "typedef struct _typeobject {\n"
@@ -302,13 +312,14 @@ msgstr ""
 " 예는 다음과 같습니다::"
 
 #: ../../extending/newtypes.rst:72
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "static void\n"
-"newdatatype_dealloc(newdatatypeobject *obj)\n"
+"newdatatype_dealloc(PyObject *op)\n"
 "{\n"
-"    free(obj->obj_UnderlyingDatatypePtr);\n"
-"    Py_TYPE(obj)->tp_free((PyObject *)obj);\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
+"    free(self->obj_UnderlyingDatatypePtr);\n"
+"    Py_TYPE(self)->tp_free(self);\n"
 "}"
 msgstr ""
 "static void\n"
@@ -318,7 +329,7 @@ msgstr ""
 "    Py_TYPE(obj)->tp_free((PyObject *)obj);\n"
 "}"
 
-#: ../../extending/newtypes.rst:79
+#: ../../extending/newtypes.rst:80
 msgid ""
 "If your type supports garbage collection, the destructor should call "
 ":c:func:`PyObject_GC_UnTrack` before clearing any member fields::"
@@ -326,16 +337,17 @@ msgstr ""
 "형이 가비지 수거를 지원하면, 파괴자는 멤버 필드를 지우기 전에 :c:func:`PyObject_GC_UnTrack`\\을 호출해야"
 " 합니다::"
 
-#: ../../extending/newtypes.rst:82
-#, python-brace-format
+#: ../../extending/newtypes.rst:83
+#, fuzzy, python-brace-format
 msgid ""
 "static void\n"
-"newdatatype_dealloc(newdatatypeobject *obj)\n"
+"newdatatype_dealloc(PyObject *op)\n"
 "{\n"
-"    PyObject_GC_UnTrack(obj);\n"
-"    Py_CLEAR(obj->other_obj);\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
+"    PyObject_GC_UnTrack(op);\n"
+"    Py_CLEAR(self->other_obj);\n"
 "    ...\n"
-"    Py_TYPE(obj)->tp_free((PyObject *)obj);\n"
+"    Py_TYPE(self)->tp_free(self);\n"
 "}"
 msgstr ""
 "static void\n"
@@ -347,7 +359,7 @@ msgstr ""
 "    Py_TYPE(obj)->tp_free((PyObject *)obj);\n"
 "}"
 
-#: ../../extending/newtypes.rst:95
+#: ../../extending/newtypes.rst:97
 msgid ""
 "One important requirement of the deallocator function is that it leaves "
 "any pending exceptions alone.  This is important since deallocators are "
@@ -369,7 +381,8 @@ msgstr ""
 " 올바른 방법은 안전하지 않은 조치를 수행하기 전에 계류 중인 예외를 저장하고 완료되면 복원하는 것입니다. "
 ":c:func:`PyErr_Fetch`\\와 :c:func:`PyErr_Restore` 함수를 사용하여 수행할 수 있습니다::"
 
-#: ../../extending/newtypes.rst:107
+#: ../../extending/newtypes.rst:109
+#, fuzzy
 msgid ""
 "static void\n"
 "my_dealloc(PyObject *obj)\n"
@@ -384,17 +397,19 @@ msgid ""
 "        PyErr_Fetch(&err_type, &err_value, &err_traceback);\n"
 "\n"
 "        cbresult = PyObject_CallNoArgs(self->my_callback);\n"
-"        if (cbresult == NULL)\n"
-"            PyErr_WriteUnraisable(self->my_callback);\n"
-"        else\n"
+"        if (cbresult == NULL) {\n"
+"           PyErr_WriteUnraisable(self->my_callback);\n"
+"        }\n"
+"        else {\n"
 "            Py_DECREF(cbresult);\n"
+"        }\n"
 "\n"
 "        /* This restores the saved exception state */\n"
 "        PyErr_Restore(err_type, err_value, err_traceback);\n"
 "\n"
 "        Py_DECREF(self->my_callback);\n"
 "    }\n"
-"    Py_TYPE(obj)->tp_free((PyObject*)self);\n"
+"    Py_TYPE(self)->tp_free(self);\n"
 "}"
 msgstr ""
 "static void\n"
@@ -423,7 +438,7 @@ msgstr ""
 "    Py_TYPE(obj)->tp_free((PyObject*)self);\n"
 "}"
 
-#: ../../extending/newtypes.rst:134
+#: ../../extending/newtypes.rst:138
 msgid ""
 "There are limitations to what you can safely do in a deallocator "
 "function. First, if your type supports garbage collection (using "
@@ -446,7 +461,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_dealloc`\\을 다시 호출하게 되어, 이중 해제와 충돌이 발생할 수 "
 "있습니다."
 
-#: ../../extending/newtypes.rst:143
+#: ../../extending/newtypes.rst:147
 msgid ""
 "Starting with Python 3.4, it is recommended not to put any complex "
 "finalization code in :c:member:`~PyTypeObject.tp_dealloc`, and instead "
@@ -455,15 +470,15 @@ msgstr ""
 "파이썬 3.4부터는, :c:member:`~PyTypeObject.tp_dealloc`\\에 복잡한 파이널리제이션 코드를 넣지 "
 "말고, 대신 새로운 :c:member:`~PyTypeObject.tp_finalize` 형 메서드를 사용하는 것이 좋습니다."
 
-#: ../../extending/newtypes.rst:148
+#: ../../extending/newtypes.rst:152
 msgid ":pep:`442` explains the new finalization scheme."
 msgstr ":pep:`442`\\는 새로운 파이널리제이션 체계를 설명합니다."
 
-#: ../../extending/newtypes.rst:155
+#: ../../extending/newtypes.rst:159
 msgid "Object Presentation"
 msgstr "객체 표현"
 
-#: ../../extending/newtypes.rst:157
+#: ../../extending/newtypes.rst:161
 msgid ""
 "In Python, there are two ways to generate a textual representation of an "
 "object: the :func:`repr` function, and the :func:`str` function.  (The "
@@ -473,7 +488,7 @@ msgstr ""
 "파이썬에서, 객체의 텍스트 표현을 생성하는 두 가지 방법이 있습니다: :func:`repr` 함수와 :func:`str` 함수. "
 "(:func:`print` 함수는 단지 :func:`str`\\을 호출합니다.) 이 처리기들은 모두 선택적입니다."
 
-#: ../../extending/newtypes.rst:163
+#: ../../extending/newtypes.rst:167
 msgid ""
 "reprfunc tp_repr;\n"
 "reprfunc tp_str;"
@@ -481,7 +496,7 @@ msgstr ""
 "reprfunc tp_repr;\n"
 "reprfunc tp_str;"
 
-#: ../../extending/newtypes.rst:166
+#: ../../extending/newtypes.rst:170
 msgid ""
 "The :c:member:`~PyTypeObject.tp_repr` handler should return a string "
 "object containing a representation of the instance for which it is "
@@ -490,14 +505,15 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_repr` 처리기는 호출된 인스턴스의 표현을 포함하는 문자열 객체를 반환해야 "
 "합니다. 다음은 간단한 예입니다::"
 
-#: ../../extending/newtypes.rst:170
-#, python-format
+#: ../../extending/newtypes.rst:174
+#, fuzzy, python-format
 msgid ""
 "static PyObject *\n"
-"newdatatype_repr(newdatatypeobject *obj)\n"
+"newdatatype_repr(PyObject *op)\n"
 "{\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
 "    return PyUnicode_FromFormat(\"Repr-ified_newdatatype{{size:%d}}\",\n"
-"                                obj->obj_UnderlyingDatatypePtr->size);\n"
+"                                self->obj_UnderlyingDatatypePtr->size);\n"
 "}"
 msgstr ""
 "static PyObject *\n"
@@ -507,7 +523,7 @@ msgstr ""
 "                                obj->obj_UnderlyingDatatypePtr->size);\n"
 "}"
 
-#: ../../extending/newtypes.rst:177
+#: ../../extending/newtypes.rst:182
 msgid ""
 "If no :c:member:`~PyTypeObject.tp_repr` handler is specified, the "
 "interpreter will supply a representation that uses the type's "
@@ -517,7 +533,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_repr` 처리기가 지정되지 않으면, 인터프리터는 형의 "
 ":c:member:`~PyTypeObject.tp_name`\\과 객체의 고유 식별 값을 사용하는 표현을 제공합니다."
 
-#: ../../extending/newtypes.rst:181
+#: ../../extending/newtypes.rst:186
 msgid ""
 "The :c:member:`~PyTypeObject.tp_str` handler is to :func:`str` what the "
 ":c:member:`~PyTypeObject.tp_repr` handler described above is to "
@@ -535,18 +551,19 @@ msgstr ""
 " :c:member:`~PyTypeObject.tp_str`\\을 지정하지 않으면, "
 ":c:member:`~PyTypeObject.tp_repr` 처리기가 대신 사용됩니다."
 
-#: ../../extending/newtypes.rst:188
+#: ../../extending/newtypes.rst:193
 msgid "Here is a simple example::"
 msgstr "다음은 간단한 예입니다::"
 
-#: ../../extending/newtypes.rst:190
-#, python-format
+#: ../../extending/newtypes.rst:195
+#, fuzzy, python-format
 msgid ""
 "static PyObject *\n"
-"newdatatype_str(newdatatypeobject *obj)\n"
+"newdatatype_str(PyObject *op)\n"
 "{\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
 "    return PyUnicode_FromFormat(\"Stringified_newdatatype{{size:%d}}\",\n"
-"                                obj->obj_UnderlyingDatatypePtr->size);\n"
+"                                self->obj_UnderlyingDatatypePtr->size);\n"
 "}"
 msgstr ""
 "static PyObject *\n"
@@ -556,11 +573,11 @@ msgstr ""
 "                                obj->obj_UnderlyingDatatypePtr->size);\n"
 "}"
 
-#: ../../extending/newtypes.rst:200
+#: ../../extending/newtypes.rst:206
 msgid "Attribute Management"
 msgstr "어트리뷰트 관리"
 
-#: ../../extending/newtypes.rst:202
+#: ../../extending/newtypes.rst:208
 msgid ""
 "For every object which can support attributes, the corresponding type "
 "must provide the functions that control how the attributes are resolved."
@@ -573,7 +590,7 @@ msgstr ""
 "합니다. 어트리뷰트를 꺼낼 수 있는 함수와 (뭔가 정의되어 있다면), 어트리뷰트를 설정하는 다른 함수(어트리뷰트 설정이 "
 "허용된다면)가 있어야 합니다. 어트리뷰트 제거는 특별한 경우이며, 처리기에 전달된 새 값이 ``NULL``\\입니다."
 
-#: ../../extending/newtypes.rst:208
+#: ../../extending/newtypes.rst:214
 msgid ""
 "Python supports two pairs of attribute handlers; a type that supports "
 "attributes only needs to implement the functions for one pair.  The "
@@ -586,7 +603,7 @@ msgstr ""
 "어트리뷰트 이름을 :c:expr:`char\\*`\\로 취하고, 다른 쌍은 :c:expr:`PyObject*`\\를 받아들인다는 "
 "것입니다. 각 형은 구현의 편의에 더 적합한 쌍을 사용할 수 있습니다. ::"
 
-#: ../../extending/newtypes.rst:214
+#: ../../extending/newtypes.rst:220
 msgid ""
 "getattrfunc  tp_getattr;        /* char * version */\n"
 "setattrfunc  tp_setattr;\n"
@@ -600,7 +617,7 @@ msgstr ""
 "getattrofunc tp_getattro;       /* PyObject * 버전 */\n"
 "setattrofunc tp_setattro;"
 
-#: ../../extending/newtypes.rst:220
+#: ../../extending/newtypes.rst:226
 msgid ""
 "If accessing attributes of an object is always a simple operation (this "
 "will be explained shortly), there are generic implementations which can "
@@ -615,11 +632,11 @@ msgstr ""
 " 처리기에 대한 실제 필요성은 거의 완전히 사라졌지만, 사용 가능한 새로운 일반 메커니즘을 사용하도록 갱신되지 않은 예제가 많이 "
 "있습니다."
 
-#: ../../extending/newtypes.rst:231
+#: ../../extending/newtypes.rst:237
 msgid "Generic Attribute Management"
 msgstr "범용 어트리뷰트 관리"
 
-#: ../../extending/newtypes.rst:233
+#: ../../extending/newtypes.rst:239
 msgid ""
 "Most extension types only use *simple* attributes.  So, what makes the "
 "attributes simple?  There are only a couple of conditions that must be "
@@ -628,25 +645,25 @@ msgstr ""
 "대부분의 확장형은 *간단한* 어트리뷰트만 사용합니다. 그렇다면, 어트리뷰트를 간단하게 만드는 것은 무엇입니까? 충족해야 하는 몇 "
 "가지 조건만 있습니다:"
 
-#: ../../extending/newtypes.rst:236
+#: ../../extending/newtypes.rst:242
 msgid ""
 "The name of the attributes must be known when :c:func:`PyType_Ready` is "
 "called."
 msgstr ":c:func:`PyType_Ready`\\가 호출될 때 어트리뷰트의 이름을 알아야 합니다."
 
-#: ../../extending/newtypes.rst:239
+#: ../../extending/newtypes.rst:245
 msgid ""
 "No special processing is needed to record that an attribute was looked up"
 " or set, nor do actions need to be taken based on the value."
 msgstr "어트리뷰트를 찾거나 설정했음을 기록하는 데 특별한 처리가 필요하지 않으며 값을 기반으로 조처를 하지 않아도 됩니다."
 
-#: ../../extending/newtypes.rst:242
+#: ../../extending/newtypes.rst:248
 msgid ""
 "Note that this list does not place any restrictions on the values of the "
 "attributes, when the values are computed, or how relevant data is stored."
 msgstr "이 목록은 어트리뷰트 값, 값을 계산하는 시점 또는 관련 데이터가 저장되는 방법에 제한을 두지 않음에 유의하십시오."
 
-#: ../../extending/newtypes.rst:245
+#: ../../extending/newtypes.rst:251
 msgid ""
 "When :c:func:`PyType_Ready` is called, it uses three tables referenced by"
 " the type object to create :term:`descriptor`\\s which are placed in the "
@@ -665,11 +682,11 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_setattro` 필드도 ``NULL``\\로 남겨두어야 베이스형이 어트리뷰트를 "
 "처리할 수 있습니다."
 
-#: ../../extending/newtypes.rst:253
+#: ../../extending/newtypes.rst:259
 msgid "The tables are declared as three fields of the type object::"
 msgstr "테이블은 형 객체의 세 필드로 선언됩니다::"
 
-#: ../../extending/newtypes.rst:255
+#: ../../extending/newtypes.rst:261
 msgid ""
 "struct PyMethodDef *tp_methods;\n"
 "struct PyMemberDef *tp_members;\n"
@@ -679,7 +696,7 @@ msgstr ""
 "struct PyMemberDef *tp_members;\n"
 "struct PyGetSetDef *tp_getset;"
 
-#: ../../extending/newtypes.rst:259
+#: ../../extending/newtypes.rst:265
 msgid ""
 "If :c:member:`~PyTypeObject.tp_methods` is not ``NULL``, it must refer to"
 " an array of :c:type:`PyMethodDef` structures.  Each entry in the table "
@@ -688,7 +705,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_methods`\\가 ``NULL``\\이 아니면, "
 ":c:type:`PyMethodDef` 구조체의 배열을 참조해야 합니다. 테이블의 각 항목은 다음 구조체의 인스턴스입니다::"
 
-#: ../../extending/newtypes.rst:263
+#: ../../extending/newtypes.rst:269
 #, python-brace-format
 msgid ""
 "typedef struct PyMethodDef {\n"
@@ -705,7 +722,7 @@ msgstr ""
 "    const char  *ml_doc;        /* 독스트링 */\n"
 "} PyMethodDef;"
 
-#: ../../extending/newtypes.rst:270
+#: ../../extending/newtypes.rst:276
 msgid ""
 "One entry should be defined for each method provided by the type; no "
 "entries are needed for methods inherited from a base type.  One "
@@ -717,7 +734,7 @@ msgstr ""
 " 하나의 추가 항목이 필요합니다; 배열의 끝을 나타내는 센티넬(sentinel)입니다. 센티넬의 "
 ":c:member:`~PyMethodDef.ml_name` 필드는 ``NULL``\\이어야 합니다."
 
-#: ../../extending/newtypes.rst:275
+#: ../../extending/newtypes.rst:281
 msgid ""
 "The second table is used to define attributes which map directly to data "
 "stored in the instance.  A variety of primitive C types are supported, "
@@ -727,7 +744,7 @@ msgstr ""
 "두 번째 테이블은 인스턴스에 저장된 데이터에 직접 매핑되는 어트리뷰트를 정의하는 데 사용됩니다. 다양한 기본 C형이 지원되며, "
 "액세스는 읽기 전용이거나 읽고 쓰기일 수 있습니다. 테이블의 구조체는 다음과 같이 정의됩니다::"
 
-#: ../../extending/newtypes.rst:279
+#: ../../extending/newtypes.rst:285
 #, python-brace-format
 msgid ""
 "typedef struct PyMemberDef {\n"
@@ -746,7 +763,7 @@ msgstr ""
 "    const char *doc;\n"
 "} PyMemberDef;"
 
-#: ../../extending/newtypes.rst:287
+#: ../../extending/newtypes.rst:293
 msgid ""
 "For each entry in the table, a :term:`descriptor` will be constructed and"
 " added to the type which will be able to extract a value from the "
@@ -764,7 +781,7 @@ msgstr ""
 "플래그를 저장하는 데 사용됩니다: 이를 :c:macro:`Py_READONLY`\\로 설정하면 파이썬 코드가 이를 설정하지 못하도록"
 " 방지할 수 있습니다."
 
-#: ../../extending/newtypes.rst:295
+#: ../../extending/newtypes.rst:301
 msgid ""
 "An interesting advantage of using the "
 ":c:member:`~PyTypeObject.tp_members` table to build descriptors that are "
@@ -779,7 +796,7 @@ msgstr ""
 "것입니다. 응용 프로그램은 내부 검사(introspection) API를 사용하여 클래스 객체에서 디스크립터를 꺼내고, 그것의 "
 ":attr:`~type.__doc__` 어트리뷰트를 사용하여 독스트링을 얻을 수 있습니다."
 
-#: ../../extending/newtypes.rst:301
+#: ../../extending/newtypes.rst:307
 msgid ""
 "As with the :c:member:`~PyTypeObject.tp_methods` table, a sentinel entry "
 "with a :c:member:`~PyMethodDef.ml_name` value of ``NULL`` is required."
@@ -787,11 +804,11 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_methods` 테이블과 마찬가지로, "
 ":c:member:`~PyMethodDef.ml_name` 값이 ``NULL``\\인 센티넬 항목이 필요합니다."
 
-#: ../../extending/newtypes.rst:315
+#: ../../extending/newtypes.rst:321
 msgid "Type-specific Attribute Management"
 msgstr "형별 어트리뷰트 관리"
 
-#: ../../extending/newtypes.rst:317
+#: ../../extending/newtypes.rst:323
 msgid ""
 "For simplicity, only the :c:expr:`char\\*` version will be demonstrated "
 "here; the type of the name parameter is the only difference between the "
@@ -806,7 +823,7 @@ msgstr ""
 "예제와 효과적으로 같은 것을 수행하지만, 파이썬 2.2에 추가된 범용 지원은 사용하지 않습니다. 처리기 함수가 호출되는 방식을 "
 "설명하므로, 기능을 확장해야 한다면, 무엇을 해야 할지 이해할 수 있을 겁니다."
 
-#: ../../extending/newtypes.rst:325
+#: ../../extending/newtypes.rst:331
 msgid ""
 "The :c:member:`~PyTypeObject.tp_getattr` handler is called when the "
 "object requires an attribute look-up.  It is called in the same "
@@ -816,24 +833,24 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_getattr` 처리기는 객체에 어트리뷰트 조회가 필요할 때 호출됩니다. 클래스의"
 " :meth:`~object.__getattr__` 메서드가 호출되는 것과 같은 상황에서 호출됩니다."
 
-#: ../../extending/newtypes.rst:329
+#: ../../extending/newtypes.rst:335
 msgid "Here is an example::"
 msgstr "예는 다음과 같습니다::"
 
-#: ../../extending/newtypes.rst:331
-#, python-format
+#: ../../extending/newtypes.rst:337
+#, fuzzy, python-format
 msgid ""
 "static PyObject *\n"
-"newdatatype_getattr(newdatatypeobject *obj, char *name)\n"
+"newdatatype_getattr(PyObject *op, char *name)\n"
 "{\n"
-"    if (strcmp(name, \"data\") == 0)\n"
-"    {\n"
-"        return PyLong_FromLong(obj->data);\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
+"    if (strcmp(name, \"data\") == 0) {\n"
+"        return PyLong_FromLong(self->data);\n"
 "    }\n"
 "\n"
 "    PyErr_Format(PyExc_AttributeError,\n"
 "                 \"'%.100s' object has no attribute '%.400s'\",\n"
-"                 Py_TYPE(obj)->tp_name, name);\n"
+"                 Py_TYPE(self)->tp_name, name);\n"
 "    return NULL;\n"
 "}"
 msgstr ""
@@ -851,7 +868,7 @@ msgstr ""
 "    return NULL;\n"
 "}"
 
-#: ../../extending/newtypes.rst:345
+#: ../../extending/newtypes.rst:351
 msgid ""
 "The :c:member:`~PyTypeObject.tp_setattr` handler is called when the "
 ":meth:`~object.__setattr__` or :meth:`~object.__delattr__` method of a "
@@ -867,11 +884,11 @@ msgstr ""
 "예입니다; 이것이 정말로 여러분이 원하는 전부라면, :c:member:`~PyTypeObject.tp_setattr` 처리기는 "
 "``NULL``\\로 설정되어야 합니다. ::"
 
-#: ../../extending/newtypes.rst:351
-#, python-brace-format, python-format
+#: ../../extending/newtypes.rst:357
+#, fuzzy, python-brace-format, python-format
 msgid ""
 "static int\n"
-"newdatatype_setattr(newdatatypeobject *obj, char *name, PyObject *v)\n"
+"newdatatype_setattr(PyObject *op, char *name, PyObject *v)\n"
 "{\n"
 "    PyErr_Format(PyExc_RuntimeError, \"Read-only attribute: %s\", name);\n"
 "    return -1;\n"
@@ -884,15 +901,15 @@ msgstr ""
 "    return -1;\n"
 "}"
 
-#: ../../extending/newtypes.rst:359
+#: ../../extending/newtypes.rst:365
 msgid "Object Comparison"
 msgstr "객체 비교"
 
-#: ../../extending/newtypes.rst:363
+#: ../../extending/newtypes.rst:369
 msgid "richcmpfunc tp_richcompare;"
 msgstr "richcmpfunc tp_richcompare;"
 
-#: ../../extending/newtypes.rst:365
+#: ../../extending/newtypes.rst:371
 msgid ""
 "The :c:member:`~PyTypeObject.tp_richcompare` handler is called when "
 "comparisons are needed.  It is analogous to the :ref:`rich comparison "
@@ -904,7 +921,7 @@ msgstr ""
 ":c:func:`PyObject_RichCompare`\\와 :c:func:`PyObject_RichCompareBool`\\에 "
 "의해서도 호출됩니다."
 
-#: ../../extending/newtypes.rst:370
+#: ../../extending/newtypes.rst:376
 msgid ""
 "This function is called with two Python objects and the operator as "
 "arguments, where the operator is one of ``Py_EQ``, ``Py_NE``, ``Py_LE``, "
@@ -920,18 +937,20 @@ msgstr ""
 "시도해야 한다는 것을 나타내려면 ``Py_NotImplemented``\\를, 예외가 설정되면 ``NULL``\\을 반환해야 "
 "합니다."
 
-#: ../../extending/newtypes.rst:378
+#: ../../extending/newtypes.rst:384
 msgid ""
 "Here is a sample implementation, for a datatype that is considered equal "
 "if the size of an internal pointer is equal::"
 msgstr "내부 포인터의 크기가 같으면 같다고 간주하는 데이터형에 대한 샘플 구현은 다음과 같습니다::"
 
-#: ../../extending/newtypes.rst:381
+#: ../../extending/newtypes.rst:387
+#, fuzzy
 msgid ""
 "static PyObject *\n"
-"newdatatype_richcmp(newdatatypeobject *obj1, newdatatypeobject *obj2, int"
-" op)\n"
+"newdatatype_richcmp(PyObject *lhs, PyObject *rhs, int op)\n"
 "{\n"
+"    newdatatypeobject *obj1 = (newdatatypeobject *) lhs;\n"
+"    newdatatypeobject *obj2 = (newdatatypeobject *) rhs;\n"
 "    PyObject *result;\n"
 "    int c, size1, size2;\n"
 "\n"
@@ -950,8 +969,7 @@ msgid ""
 "    case Py_GE: c = size1 >= size2; break;\n"
 "    }\n"
 "    result = c ? Py_True : Py_False;\n"
-"    Py_INCREF(result);\n"
-"    return result;\n"
+"    return Py_NewRef(result);\n"
 " }"
 msgstr ""
 "static PyObject *\n"
@@ -980,11 +998,11 @@ msgstr ""
 "    return result;\n"
 " }"
 
-#: ../../extending/newtypes.rst:408
+#: ../../extending/newtypes.rst:415
 msgid "Abstract Protocol Support"
 msgstr "추상 프로토콜 지원"
 
-#: ../../extending/newtypes.rst:410
+#: ../../extending/newtypes.rst:417
 msgid ""
 "Python supports a variety of *abstract* 'protocols;' the specific "
 "interfaces provided to use these interfaces are documented in "
@@ -993,7 +1011,7 @@ msgstr ""
 "파이썬은 다양한 *추상* '프로토콜'을 지원합니다; 이러한 인터페이스를 사용하기 위해 제공되는 구체적인 인터페이스는 "
 ":ref:`abstract`\\에 설명되어 있습니다."
 
-#: ../../extending/newtypes.rst:414
+#: ../../extending/newtypes.rst:421
 msgid ""
 "A number of these abstract interfaces were defined early in the "
 "development of the Python implementation.  In particular, the number, "
@@ -1015,7 +1033,7 @@ msgstr ""
 "``NULL``\\이 아님을 나타내지 않습니다. 플래그는 슬롯의 존재를 나타내도록 설정될 수 있지만, 슬롯은 여전히 채워지지 않을 "
 "수 있습니다.) ::"
 
-#: ../../extending/newtypes.rst:425
+#: ../../extending/newtypes.rst:432
 msgid ""
 "PyNumberMethods   *tp_as_number;\n"
 "PySequenceMethods *tp_as_sequence;\n"
@@ -1025,7 +1043,7 @@ msgstr ""
 "PySequenceMethods *tp_as_sequence;\n"
 "PyMappingMethods  *tp_as_mapping;"
 
-#: ../../extending/newtypes.rst:429
+#: ../../extending/newtypes.rst:436
 msgid ""
 "If you wish your object to be able to act like a number, a sequence, or a"
 " mapping object, then you place the address of a structure that "
@@ -1040,26 +1058,28 @@ msgstr ""
 " 주소를 배치합니다. 이 구조체를 적절한 값으로 채우는 것은 여러분의 책임입니다. 파이썬 소스 배포의 :file:`Objects` "
 "디렉터리에서 이들 각각의 사용 예를 찾을 수 있습니다. ::"
 
-#: ../../extending/newtypes.rst:436
+#: ../../extending/newtypes.rst:443
 msgid "hashfunc tp_hash;"
 msgstr "hashfunc tp_hash;"
 
-#: ../../extending/newtypes.rst:438
+#: ../../extending/newtypes.rst:445
 msgid ""
 "This function, if you choose to provide it, should return a hash number "
 "for an instance of your data type. Here is a simple example::"
 msgstr "여러분이 제공하기로 선택했다면, 이 함수는 데이터형의 인스턴스에 대한 해시 숫자를 반환해야 합니다. 다음은 간단한 예입니다::"
 
-#: ../../extending/newtypes.rst:441
-#, python-brace-format
+#: ../../extending/newtypes.rst:448
+#, fuzzy, python-brace-format
 msgid ""
 "static Py_hash_t\n"
-"newdatatype_hash(newdatatypeobject *obj)\n"
+"newdatatype_hash(PyObject *op)\n"
 "{\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
 "    Py_hash_t result;\n"
-"    result = obj->some_size + 32767 * obj->some_number;\n"
-"    if (result == -1)\n"
-"       result = -2;\n"
+"    result = self->some_size + 32767 * self->some_number;\n"
+"    if (result == -1) {\n"
+"        result = -2;\n"
+"    }\n"
 "    return result;\n"
 "}"
 msgstr ""
@@ -1073,7 +1093,7 @@ msgstr ""
 "    return result;\n"
 "}"
 
-#: ../../extending/newtypes.rst:451
+#: ../../extending/newtypes.rst:460
 msgid ""
 ":c:type:`Py_hash_t` is a signed integer type with a platform-varying "
 "width. Returning ``-1`` from :c:member:`~PyTypeObject.tp_hash` indicates "
@@ -1084,11 +1104,11 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_hash`\\에서 ``-1``\\을 반환하면 에러를 표시해서, 위와 같이 해시 "
 "계산에 성공했을 때 반환하지 않도록 주의해야 합니다."
 
-#: ../../extending/newtypes.rst:458
+#: ../../extending/newtypes.rst:467
 msgid "ternaryfunc tp_call;"
 msgstr "ternaryfunc tp_call;"
 
-#: ../../extending/newtypes.rst:460
+#: ../../extending/newtypes.rst:469
 msgid ""
 "This function is called when an instance of your data type is \"called\","
 " for example, if ``obj1`` is an instance of your data type and the Python"
@@ -1099,11 +1119,11 @@ msgstr ""
 "스크립트에 ``obj1('hello')``\\가 포함되어 있으면 :c:member:`~PyTypeObject.tp_call` "
 "처리기가 호출됩니다."
 
-#: ../../extending/newtypes.rst:464
+#: ../../extending/newtypes.rst:473
 msgid "This function takes three arguments:"
 msgstr "이 함수는 세 개의 인자를 취합니다:"
 
-#: ../../extending/newtypes.rst:466
+#: ../../extending/newtypes.rst:475
 msgid ""
 "*self* is the instance of the data type which is the subject of the call."
 " If the call is ``obj1('hello')``, then *self* is ``obj1``."
@@ -1111,7 +1131,7 @@ msgstr ""
 "*self*\\는 호출의 대상인 데이터형의 인스턴스입니다. 호출이 ``obj1('hello')``\\이면, *self*\\는 "
 "``obj1``\\입니다."
 
-#: ../../extending/newtypes.rst:469
+#: ../../extending/newtypes.rst:478
 msgid ""
 "*args* is a tuple containing the arguments to the call.  You can use "
 ":c:func:`PyArg_ParseTuple` to extract the arguments."
@@ -1119,7 +1139,7 @@ msgstr ""
 "*args*\\는 호출에 대한 인자를 포함하는 튜플입니다. :c:func:`PyArg_ParseTuple`\\을 사용하여 인자를 "
 "추출할 수 있습니다."
 
-#: ../../extending/newtypes.rst:472
+#: ../../extending/newtypes.rst:481
 msgid ""
 "*kwds* is a dictionary of keyword arguments that were passed. If this is "
 "non-``NULL`` and you support keyword arguments, use "
@@ -1133,16 +1153,17 @@ msgstr ""
 " 이것이 ``NULL``\\이 아니면, 키워드 인자가 지원되지 않는다는 메시지와 함께 :exc:`TypeError`\\를 "
 "발생시키십시오."
 
-#: ../../extending/newtypes.rst:478
+#: ../../extending/newtypes.rst:487
 msgid "Here is a toy ``tp_call`` implementation::"
 msgstr "장난감 ``tp_call`` 구현은 다음과 같습니다::"
 
-#: ../../extending/newtypes.rst:480
-#, python-format
+#: ../../extending/newtypes.rst:489
+#, fuzzy, python-format
 msgid ""
 "static PyObject *\n"
-"newdatatype_call(newdatatypeobject *obj, PyObject *args, PyObject *kwds)\n"
+"newdatatype_call(PyObject *op, PyObject *args, PyObject *kwds)\n"
 "{\n"
+"    newdatatypeobject *self = (newdatatypeobject *) op;\n"
 "    PyObject *result;\n"
 "    const char *arg1;\n"
 "    const char *arg2;\n"
@@ -1154,7 +1175,7 @@ msgid ""
 "    result = PyUnicode_FromFormat(\n"
 "        \"Returning -- value: [%d] arg1: [%s] arg2: [%s] arg3: [%s]\\n\","
 "\n"
-"        obj->obj_UnderlyingDatatypePtr->size,\n"
+"        self->obj_UnderlyingDatatypePtr->size,\n"
 "        arg1, arg2, arg3);\n"
 "    return result;\n"
 "}"
@@ -1178,7 +1199,7 @@ msgstr ""
 "    return result;\n"
 "}"
 
-#: ../../extending/newtypes.rst:500
+#: ../../extending/newtypes.rst:510
 msgid ""
 "/* Iterators */\n"
 "getiterfunc tp_iter;\n"
@@ -1188,7 +1209,7 @@ msgstr ""
 "getiterfunc tp_iter;\n"
 "iternextfunc tp_iternext;"
 
-#: ../../extending/newtypes.rst:504
+#: ../../extending/newtypes.rst:514
 msgid ""
 "These functions provide support for the iterator protocol.  Both handlers"
 " take exactly one parameter, the instance for which they are being "
@@ -1204,7 +1225,7 @@ msgstr ""
 "해당하고, :c:member:`~PyTypeObject.tp_iternext`\\는 파이썬 "
 ":meth:`~iterator.__next__` 메서드에 해당합니다."
 
-#: ../../extending/newtypes.rst:511
+#: ../../extending/newtypes.rst:521
 msgid ""
 "Any :term:`iterable` object must implement the "
 ":c:member:`~PyTypeObject.tp_iter` handler, which must return an "
@@ -1215,7 +1236,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_iter` 처리기를 구현해야 합니다. 다음은 파이썬 클래스에도 적용되는 공통 "
 "지침입니다:"
 
-#: ../../extending/newtypes.rst:515
+#: ../../extending/newtypes.rst:525
 msgid ""
 "For collections (such as lists and tuples) which can support multiple "
 "independent iterators, a new iterator should be created and returned by "
@@ -1224,7 +1245,7 @@ msgstr ""
 "여러 개의 독립 이터레이터를 지원할 수 있는 컬렉션(가령 리스트와 튜플)의 경우, "
 ":c:member:`~PyTypeObject.tp_iter`\\를 호출할 때마다 새 이터레이터가 만들어지고 반환되어야 합니다."
 
-#: ../../extending/newtypes.rst:518
+#: ../../extending/newtypes.rst:528
 msgid ""
 "Objects which can only be iterated over once (usually due to side effects"
 " of iteration, such as file objects) can implement "
@@ -1236,7 +1257,7 @@ msgstr ""
 ":c:member:`~PyTypeObject.tp_iter`\\를 구현할 수 있습니다 -- 따라서 "
 ":c:member:`~PyTypeObject.tp_iternext` 처리기도 구현해야 합니다."
 
-#: ../../extending/newtypes.rst:523
+#: ../../extending/newtypes.rst:533
 msgid ""
 "Any :term:`iterator` object should implement both "
 ":c:member:`~PyTypeObject.tp_iter` and "
@@ -1262,11 +1283,11 @@ msgstr ""
 "발생하면, :c:member:`~PyTypeObject.tp_iternext`\\는 항상 예외를 설정하고, ``NULL``\\을 "
 "반환해야 합니다."
 
-#: ../../extending/newtypes.rst:539
+#: ../../extending/newtypes.rst:549
 msgid "Weak Reference Support"
 msgstr "약한 참조 지원"
 
-#: ../../extending/newtypes.rst:541
+#: ../../extending/newtypes.rst:551
 msgid ""
 "One of the goals of Python's weak reference implementation is to allow "
 "any type to participate in the weak reference mechanism without incurring"
@@ -1275,11 +1296,11 @@ msgstr ""
 "파이썬의 약한 참조 구현의 목표 중 하나는 성능에 중요한 객체(가령 숫자)에 대한 부하를 발생시키지 않고 모든 형이 약한 참조 "
 "메커니즘에 참여할 수 있도록 하는 것입니다."
 
-#: ../../extending/newtypes.rst:546
+#: ../../extending/newtypes.rst:556
 msgid "Documentation for the :mod:`weakref` module."
 msgstr ":mod:`weakref` 모듈에 대한 설명서."
 
-#: ../../extending/newtypes.rst:548
+#: ../../extending/newtypes.rst:558
 msgid ""
 "For an object to be weakly referenceable, the extension type must set the"
 " ``Py_TPFLAGS_MANAGED_WEAKREF`` bit of the "
@@ -1290,11 +1311,11 @@ msgstr ""
 "``Py_TPFLAGS_MANAGED_WEAKREF`` 비트를 설정해야 합니다. 레거시 "
 ":c:member:`~PyTypeObject.tp_weaklistoffset` 필드는 0으로 유지되어야 합니다."
 
-#: ../../extending/newtypes.rst:553
+#: ../../extending/newtypes.rst:563
 msgid "Concretely, here is how the statically declared type object would look::"
 msgstr "구체적으로, 정적으로 선언된 형 객체는 이런 식입니다::"
 
-#: ../../extending/newtypes.rst:555
+#: ../../extending/newtypes.rst:565
 #, python-brace-format
 msgid ""
 "static PyTypeObject TrivialType = {\n"
@@ -1309,7 +1330,7 @@ msgstr ""
 "    .tp_flags = Py_TPFLAGS_MANAGED_WEAKREF | ...,\n"
 "};"
 
-#: ../../extending/newtypes.rst:562
+#: ../../extending/newtypes.rst:572
 msgid ""
 "The only further addition is that ``tp_dealloc`` needs to clear any weak "
 "references (by calling :c:func:`PyObject_ClearWeakRefs`)::"
@@ -1317,16 +1338,16 @@ msgstr ""
 "유일한 추가 사항은 ``tp_dealloc``\\이 (:c:func:`PyObject_ClearWeakRefs`\\를 호출하여) "
 "모든 약한 참조를 지울 필요가 있다는 것입니다::"
 
-#: ../../extending/newtypes.rst:565
-#, python-brace-format
+#: ../../extending/newtypes.rst:575
+#, fuzzy, python-brace-format
 msgid ""
 "static void\n"
-"Trivial_dealloc(TrivialObject *self)\n"
+"Trivial_dealloc(PyObject *op)\n"
 "{\n"
 "    /* Clear weakrefs first before calling any destructors */\n"
-"    PyObject_ClearWeakRefs((PyObject *) self);\n"
+"    PyObject_ClearWeakRefs(op);\n"
 "    /* ... remainder of destruction code omitted for brevity ... */\n"
-"    Py_TYPE(self)->tp_free((PyObject *) self);\n"
+"    Py_TYPE(op)->tp_free(op);\n"
 "}"
 msgstr ""
 "static void\n"
@@ -1338,11 +1359,11 @@ msgstr ""
 "    Py_TYPE(self)->tp_free((PyObject *) self);\n"
 "}"
 
-#: ../../extending/newtypes.rst:576
+#: ../../extending/newtypes.rst:586
 msgid "More Suggestions"
 msgstr "추가 제안"
 
-#: ../../extending/newtypes.rst:578
+#: ../../extending/newtypes.rst:588
 msgid ""
 "In order to learn how to implement any specific method for your new data "
 "type, get the :term:`CPython` source code.  Go to the :file:`Objects` "
@@ -1354,7 +1375,7 @@ msgstr ""
 ":file:`Objects` 디렉터리로 이동한 다음, C 소스 파일에서 ``tp_``\\에 원하는 기능을 더한 것(예를 들어, "
 "``tp_richcompare``)을 검색하십시오. 구현하려는 함수의 예를 찾을 수 있을 겁니다."
 
-#: ../../extending/newtypes.rst:584
+#: ../../extending/newtypes.rst:594
 msgid ""
 "When you need to verify that an object is a concrete instance of the type"
 " you are implementing, use the :c:func:`PyObject_TypeCheck` function.  A "
@@ -1363,7 +1384,7 @@ msgstr ""
 "객체가 구현 중인 형의 구상 인스턴스인지 확인해야 하면, :c:func:`PyObject_TypeCheck` 함수를 사용하십시오. "
 "사용 예는 다음과 같습니다::"
 
-#: ../../extending/newtypes.rst:588
+#: ../../extending/newtypes.rst:598
 #, python-brace-format
 msgid ""
 "if (!PyObject_TypeCheck(some_object, &MyType)) {\n"
@@ -1376,19 +1397,19 @@ msgstr ""
 "    return NULL;\n"
 "}"
 
-#: ../../extending/newtypes.rst:594
+#: ../../extending/newtypes.rst:604
 msgid "Download CPython source releases."
 msgstr "CPython 소스 릴리스를 다운로드하십시오."
 
-#: ../../extending/newtypes.rst:595
+#: ../../extending/newtypes.rst:605
 msgid "https://www.python.org/downloads/source/"
 msgstr "https://www.python.org/downloads/source/"
 
-#: ../../extending/newtypes.rst:597
+#: ../../extending/newtypes.rst:607
 msgid "The CPython project on GitHub, where the CPython source code is developed."
 msgstr "GitHub의 CPython 프로젝트, CPython 소스 코드가 개발되는 곳."
 
-#: ../../extending/newtypes.rst:598
+#: ../../extending/newtypes.rst:608
 msgid "https://github.com/python/cpython"
 msgstr "https://github.com/python/cpython"
 
@@ -1412,27 +1433,27 @@ msgstr "파이널리제이션"
 msgid "finalization, of objects"
 msgstr "파이널리제이션, 객체의"
 
-#: ../../extending/newtypes.rst:91
+#: ../../extending/newtypes.rst:93
 msgid "PyErr_Fetch (C function)"
 msgstr "PyErr_Fetch (C 함수)"
 
-#: ../../extending/newtypes.rst:91
+#: ../../extending/newtypes.rst:93
 msgid "PyErr_Restore (C function)"
 msgstr "PyErr_Restore (C 함수)"
 
-#: ../../extending/newtypes.rst:150
+#: ../../extending/newtypes.rst:154
 msgid "string"
 msgstr "문자열"
 
-#: ../../extending/newtypes.rst:150
+#: ../../extending/newtypes.rst:154
 msgid "object representation"
 msgstr "객체 표현"
 
-#: ../../extending/newtypes.rst:150
+#: ../../extending/newtypes.rst:154
 msgid "built-in function"
 msgstr "내장 함수"
 
-#: ../../extending/newtypes.rst:150
+#: ../../extending/newtypes.rst:154
 msgid "repr"
 msgstr "repr"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -168,13 +168,34 @@ msgstr ""
 "*Token* 객체는 :meth:`ContextVar.set` 메서드에 의해 반환됩니다. "
 ":meth:`ContextVar.reset` 메서드에 전달해서 변수의 값을 해당 *set* 이전의 값으로 되돌릴 수 있습니다."
 
-#: ../../library/contextvars.rst:106
+#: ../../library/contextvars.rst:104
+msgid ""
+"The token supports :ref:`context manager protocol <context-managers>` to "
+"restore the corresponding context variable value at the exit from "
+":keyword:`with` block::"
+msgstr ""
+
+#: ../../library/contextvars.rst:108
+msgid ""
+"var = ContextVar('var', default='default value')\n"
+"\n"
+"with var.set('new value'):\n"
+"    assert var.get() == 'new value'\n"
+"\n"
+"assert var.get() == 'default value'"
+msgstr ""
+
+#: ../../library/contextvars.rst:117
+msgid "Added support for usage as a context manager."
+msgstr ""
+
+#: ../../library/contextvars.rst:121
 msgid ""
 "A read-only property.  Points to the :class:`ContextVar` object that "
 "created the token."
 msgstr "읽기 전용 프로퍼티. 토큰을 생성 한 :class:`ContextVar` 객체를 가리 킵니다."
 
-#: ../../library/contextvars.rst:111
+#: ../../library/contextvars.rst:126
 msgid ""
 "A read-only property.  Set to the value the variable had before the "
 ":meth:`ContextVar.set` method call that created the token. It points to "
@@ -183,25 +204,25 @@ msgstr ""
 "읽기 전용 프로퍼티. 토큰을 생성 한 :meth:`ContextVar.set` 메서드 호출 전 변수의 값으로 설정됩니다. 호출 전에"
 " 변수가 설정되지 않았으면 :attr:`Token.MISSING`\\을 가리킵니다."
 
-#: ../../library/contextvars.rst:118
+#: ../../library/contextvars.rst:133
 msgid "A marker object used by :attr:`Token.old_value`."
 msgstr ":attr:`Token.old_value` 에 의해 사용되는 표지 객체."
 
-#: ../../library/contextvars.rst:122
+#: ../../library/contextvars.rst:137
 msgid "Manual Context Management"
 msgstr "수동 컨텍스트 관리"
 
-#: ../../library/contextvars.rst:126
+#: ../../library/contextvars.rst:141
 msgid "Returns a copy of the current :class:`~contextvars.Context` object."
 msgstr "현재 :class:`~contextvars.Context` 객체의 복사본을 반환합니다."
 
-#: ../../library/contextvars.rst:128
+#: ../../library/contextvars.rst:143
 msgid ""
 "The following snippet gets a copy of the current context and prints all "
 "variables and their values that are set in it::"
 msgstr "다음 코드 조각은 현재 컨텍스트의 복사본을 가져와서 모든 변수와 그 변수에 설정된 값을 출력합니다::"
 
-#: ../../library/contextvars.rst:131
+#: ../../library/contextvars.rst:146
 msgid ""
 "ctx: Context = copy_context()\n"
 "print(list(ctx.items()))"
@@ -209,7 +230,7 @@ msgstr ""
 "ctx: Context = copy_context()\n"
 "print(list(ctx.items()))"
 
-#: ../../library/contextvars.rst:134
+#: ../../library/contextvars.rst:149
 msgid ""
 "The function has an *O*\\ (1) complexity, i.e. works equally fast for "
 "contexts with a few context variables and for contexts that have a lot of"
@@ -218,11 +239,11 @@ msgstr ""
 "이 함수는 *O*\\ (1) 복잡도를 갖고 있습니다. 즉, 몇 가지 컨텍스트 변수가 있는 컨텍스트와 컨텍스트 변수가 잔뜩 있는 "
 "컨텍스트에 대해 똑같이 빠르게 작동합니다."
 
-#: ../../library/contextvars.rst:141
+#: ../../library/contextvars.rst:156
 msgid "A mapping of :class:`ContextVars <ContextVar>` to their values."
 msgstr ":class:`ContextVars <ContextVar>` 에서 그 값으로의 매핑."
 
-#: ../../library/contextvars.rst:143
+#: ../../library/contextvars.rst:158
 msgid ""
 "``Context()`` creates an empty context with no values in it. To get a "
 "copy of the current context use the :func:`~contextvars.copy_context` "
@@ -231,7 +252,7 @@ msgstr ""
 "``Context()`` 는 값이 없는 빈 컨텍스트를 만듭니다. 현재 컨텍스트의 복사본을 얻으려면 "
 ":func:`~contextvars.copy_context` 함수를 사용하십시오."
 
-#: ../../library/contextvars.rst:147
+#: ../../library/contextvars.rst:162
 msgid ""
 "Each thread has its own effective stack of :class:`!Context` objects.  "
 "The :term:`current context` is the :class:`!Context` object at the top of"
@@ -239,14 +260,14 @@ msgid ""
 " are considered to be *entered*."
 msgstr ""
 
-#: ../../library/contextvars.rst:152
+#: ../../library/contextvars.rst:167
 msgid ""
 "*Entering* a context, which can be done by calling its "
 ":meth:`~Context.run` method, makes the context the current context by "
 "pushing it onto the top of the current thread's context stack."
 msgstr ""
 
-#: ../../library/contextvars.rst:156
+#: ../../library/contextvars.rst:171
 msgid ""
 "*Exiting* from the current context, which can be done by returning from "
 "the callback passed to the :meth:`~Context.run` method, restores the "
@@ -254,24 +275,24 @@ msgid ""
 "the context off the top of the context stack."
 msgstr ""
 
-#: ../../library/contextvars.rst:161
+#: ../../library/contextvars.rst:176
 msgid ""
 "Since each thread has its own context stack, :class:`ContextVar` objects "
 "behave in a similar fashion to :func:`threading.local` when values are "
 "assigned in different threads."
 msgstr ""
 
-#: ../../library/contextvars.rst:165
+#: ../../library/contextvars.rst:180
 msgid ""
 "Attempting to enter an already entered context, including contexts "
 "entered in other threads, raises a :exc:`RuntimeError`."
 msgstr ""
 
-#: ../../library/contextvars.rst:168
+#: ../../library/contextvars.rst:183
 msgid "After exiting a context, it can later be re-entered (from any thread)."
 msgstr ""
 
-#: ../../library/contextvars.rst:170
+#: ../../library/contextvars.rst:185
 msgid ""
 "Any changes to :class:`ContextVar` values via the :meth:`ContextVar.set` "
 "method are recorded in the current context.  The :meth:`ContextVar.get` "
@@ -281,11 +302,11 @@ msgid ""
 "entering the context)."
 msgstr ""
 
-#: ../../library/contextvars.rst:177
+#: ../../library/contextvars.rst:192
 msgid "Context implements the :class:`collections.abc.Mapping` interface."
 msgstr "Context는 :class:`collections.abc.Mapping` 인터페이스를 구현합니다."
 
-#: ../../library/contextvars.rst:181
+#: ../../library/contextvars.rst:196
 msgid ""
 "Enters the Context, executes ``callable(*args, **kwargs)``, then exits "
 "the Context.  Returns *callable*'s return value, or propagates an "
@@ -294,11 +315,11 @@ msgstr ""
 "컨텍스트에 진입하고, ``callable(*args, **kwargs)``\\를 실행한 다음, 컨텍스트에서 빠져나옵니다. "
 "*callable*\\의 반환값을 반환하거나, 예외가 발생하면 예외를 전파합니다."
 
-#: ../../library/contextvars.rst:185
+#: ../../library/contextvars.rst:200
 msgid "Example:"
 msgstr "예제:"
 
-#: ../../library/contextvars.rst:187
+#: ../../library/contextvars.rst:202
 msgid ""
 "import contextvars\n"
 "\n"
@@ -361,17 +382,17 @@ msgstr ""
 "# 그러나, 'ctx' 외부에서, 'var' 는 여전히 'spam' 으로 설정되어있습니다:\n"
 "print(var.get())  # 'spam'"
 
-#: ../../library/contextvars.rst:233
+#: ../../library/contextvars.rst:248
 msgid "Return a shallow copy of the context object."
 msgstr "컨텍스트 객체의 얕은 복사본을 반환합니다."
 
-#: ../../library/contextvars.rst:237
+#: ../../library/contextvars.rst:252
 msgid ""
 "Return ``True`` if the *context* has a value for *var* set; return "
 "``False`` otherwise."
 msgstr "*context* 에 *var* 의 값이 설정되었으면 ``True`` 를, 그렇지 않으면 `False`\\를 반환합니다."
 
-#: ../../library/contextvars.rst:242
+#: ../../library/contextvars.rst:257
 msgid ""
 "Return the value of the *var* :class:`ContextVar` variable. If the "
 "variable is not set in the context object, a :exc:`KeyError` is raised."
@@ -379,7 +400,7 @@ msgstr ""
 "*var* :class:`ContextVar` 변수의 값을 돌려줍니다. 컨텍스트 객체에 변수가 설정되어 있지 않으면 "
 ":exc:`KeyError` 가 발생합니다."
 
-#: ../../library/contextvars.rst:248
+#: ../../library/contextvars.rst:263
 msgid ""
 "Return the value for *var* if *var* has the value in the context object."
 "  Return *default* otherwise.  If *default* is not given, return "
@@ -388,33 +409,33 @@ msgstr ""
 "컨텍스트 객체에 *var* 의 값이 있으면, *var* 의 값을 돌려줍니다. 그렇지 않으면 *default* 를 반환합니다. "
 "*default* 가 주어지지 않으면 ``None`` 을 반환합니다."
 
-#: ../../library/contextvars.rst:254
+#: ../../library/contextvars.rst:269
 msgid "Return an iterator over the variables stored in the context object."
 msgstr "컨텍스트 객체에 저장된 변수에 대한 이터레이터를 반환합니다."
 
-#: ../../library/contextvars.rst:259
+#: ../../library/contextvars.rst:274
 msgid "Return the number of variables set in the context object."
 msgstr "컨텍스트 객체에 설정된 변수의 개수를 반환합니다."
 
-#: ../../library/contextvars.rst:263
+#: ../../library/contextvars.rst:278
 msgid "Return a list of all variables in the context object."
 msgstr "컨텍스트 객체의 모든 변수 목록을 반환합니다."
 
-#: ../../library/contextvars.rst:267
+#: ../../library/contextvars.rst:282
 msgid "Return a list of all variables' values in the context object."
 msgstr "컨텍스트 객체의 모든 변수의 값 목록을 반환합니다."
 
-#: ../../library/contextvars.rst:272
+#: ../../library/contextvars.rst:287
 msgid ""
 "Return a list of 2-tuples containing all variables and their values in "
 "the context object."
 msgstr "컨텍스트 객체에서 모든 변수와 해당 값을 포함하는 2-튜플의 목록을 반환합니다."
 
-#: ../../library/contextvars.rst:277
+#: ../../library/contextvars.rst:292
 msgid "asyncio support"
 msgstr "asyncio 지원"
 
-#: ../../library/contextvars.rst:279
+#: ../../library/contextvars.rst:294
 msgid ""
 "Context variables are natively supported in :mod:`asyncio` and are ready "
 "to be used without any extra configuration.  For example, here is a "
@@ -425,7 +446,7 @@ msgstr ""
 " 변수를 사용하여, 원격 클라이언트의 주소를 해당 클라이언트를 처리하는 Task에서 사용할 수 있도록 하는 간단한 메아리 "
 "서버입니다::"
 
-#: ../../library/contextvars.rst:285
+#: ../../library/contextvars.rst:300
 #, python-brace-format
 msgid ""
 "import asyncio\n"

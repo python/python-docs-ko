@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
@@ -24,76 +24,172 @@ msgstr "힙에 객체 할당하기"
 msgid ""
 "Initialize a newly allocated object *op* with its type and initial "
 "reference.  Returns the initialized object.  Other fields of the object "
-"are not affected."
+"are not initialized.  Despite its name, this function is unrelated to the"
+" object's :meth:`~object.__init__` method "
+"(:c:member:`~PyTypeObject.tp_init` slot).  Specifically, this function "
+"does **not** call the object's :meth:`!__init__` method."
 msgstr ""
-"새로 할당된 객체 *op*\\를 형과 초기 참조로 초기화합니다. 초기화된 객체를 반환합니다. 객체의 다른 필드는 영향을 받지 "
-"않습니다."
 
 #: ../../c-api/allocation.rst:24
+msgid ""
+"In general, consider this function to be a low-level routine. Use "
+":c:member:`~PyTypeObject.tp_alloc` where possible. For implementing "
+":c:member:`!tp_alloc` for your type, prefer :c:func:`PyType_GenericAlloc`"
+" or :c:func:`PyObject_New`."
+msgstr ""
+
+#: ../../c-api/allocation.rst:31
+msgid ""
+"This function only initializes the object's memory corresponding to the "
+"initial :c:type:`PyObject` structure.  It does not zero the rest."
+msgstr ""
+
+#: ../../c-api/allocation.rst:37
 msgid ""
 "This does everything :c:func:`PyObject_Init` does, and also initializes "
 "the length information for a variable-size object."
 msgstr "이것은 :c:func:`PyObject_Init`\\가 수행하는 모든 작업을 수행하고, 가변 크기 객체의 길이 정보도 초기화합니다."
 
-#: ../../c-api/allocation.rst:30
+#: ../../c-api/allocation.rst:42
 msgid ""
-"Allocate a new Python object using the C structure type *TYPE* and the "
-"Python type object *typeobj* (``PyTypeObject*``). Fields not defined by "
-"the Python object header are not initialized. The caller will own the "
-"only reference to the object (i.e. its reference count will be one). The "
-"size of the memory allocation is determined from the "
-":c:member:`~PyTypeObject.tp_basicsize` field of the type object."
+"This function only initializes some of the object's memory.  It does not "
+"zero the rest."
+msgstr ""
+
+#: ../../c-api/allocation.rst:48
+#, fuzzy
+msgid ""
+"Allocates a new Python object using the C structure type *TYPE* and the "
+"Python type object *typeobj* (``PyTypeObject*``) by calling "
+":c:func:`PyObject_Malloc` to allocate memory and initializing it like "
+":c:func:`PyObject_Init`.  The caller will own the only reference to the "
+"object (i.e. its reference count will be one)."
 msgstr ""
 "C 구조체 형 *TYPE*\\과 파이썬 형 객체 *typeobj* (``PyTypeObject*``) 를 사용하여 새로운 파이썬 "
 "객체를 할당합니다. 파이썬 객체 헤더로 정의되지 않은 필드는 초기화되지 않습니다. 호출자는 객체에 대한 유일한 참조를 소유하게 "
 "됩니다 (즉, 객체의 참조 횟수는 1이 됩니다). 메모리 할당의 크기는 형 객체의 "
 ":c:member:`~PyTypeObject.tp_basicsize` 필드에서 결정됩니다."
 
-#: ../../c-api/allocation.rst:38
+#: ../../c-api/allocation.rst:54 ../../c-api/allocation.rst:107
 msgid ""
-"Note that this function is unsuitable if *typeobj* has "
-":c:macro:`Py_TPFLAGS_HAVE_GC` set. For such objects, use "
-":c:func:`PyObject_GC_New` instead."
+"Avoid calling this directly to allocate memory for an object; call the "
+"type's :c:member:`~PyTypeObject.tp_alloc` slot instead."
 msgstr ""
 
-#: ../../c-api/allocation.rst:45
+#: ../../c-api/allocation.rst:57 ../../c-api/allocation.rst:110
 msgid ""
-"Allocate a new Python object using the C structure type *TYPE* and the "
-"Python type object *typeobj* (``PyTypeObject*``). Fields not defined by "
-"the Python object header are not initialized.  The allocated memory "
-"allows for the *TYPE* structure plus *size* (``Py_ssize_t``) fields of "
-"the size given by the :c:member:`~PyTypeObject.tp_itemsize` field of "
-"*typeobj*.  This is useful for implementing objects like tuples, which "
-"are able to determine their size at construction time.  Embedding the "
-"array of fields into the same allocation decreases the number of "
-"allocations, improving the memory management efficiency."
-msgstr ""
-"C 구조체 형 *TYPE*\\과 파이썬 타입 형 *typeobj* (``PyTypeObject*``) 를 사용하여 새로운 파이썬 "
-"객체를 할당합니다. 파이썬 객체 헤더로 정의되지 않은 필드는 초기화되지 않습니다. 할당된 메모리는 *TYPE* 구조체에 더해 "
-"*typeobj*\\의 :c:member:`~PyTypeObject.tp_itemsize` 필드에 의해 주어진 크기의 *size* "
-"(``Py_ssize_t``) 필드를 허용합니다. 이는 튜플과 같은 객체를 구현할 때 유용합니다. 튜플은 만들 때 크기를 결정할 수"
-" 있습니다. 같은 할당에 필드 배열을 포함 시키면, 할당 횟수가 줄어들어, 메모리 관리 효율성이 향상됩니다."
-
-#: ../../c-api/allocation.rst:56
-msgid ""
-"Note that this function is unsuitable if *typeobj* has "
-":c:macro:`Py_TPFLAGS_HAVE_GC` set. For such objects, use "
-":c:func:`PyObject_GC_NewVar` instead."
+"When populating a type's :c:member:`~PyTypeObject.tp_alloc` slot, "
+":c:func:`PyType_GenericAlloc` is preferred over a custom function that "
+"simply calls this macro."
 msgstr ""
 
-#: ../../c-api/allocation.rst:63
+#: ../../c-api/allocation.rst:61
 msgid ""
-"Releases memory allocated to an object using :c:macro:`PyObject_New` or "
-":c:macro:`PyObject_NewVar`.  This is normally called from the "
-":c:member:`~PyTypeObject.tp_dealloc` handler specified in the object's "
-"type.  The fields of the object should not be accessed after this call as"
-" the memory is no longer a valid Python object."
+"This macro does not call :c:member:`~PyTypeObject.tp_alloc`, "
+":c:member:`~PyTypeObject.tp_new` (:meth:`~object.__new__`), or "
+":c:member:`~PyTypeObject.tp_init` (:meth:`~object.__init__`)."
 msgstr ""
-":c:macro:`PyObject_New` 나 :c:macro:`PyObject_NewVar`\\를 사용한 객체에 할당된 메모리를 "
-"해제합니다. 이것은 일반적으로 객체의 형에 지정된 :c:member:`~PyTypeObject.tp_dealloc` 처리기에서 "
-"호출됩니다. 메모리가 더는 유효한 파이썬 객체가 아니므로, 이 호출 후에는 객체의 필드에 액세스해서는 안 됩니다."
 
-#: ../../c-api/allocation.rst:72
+#: ../../c-api/allocation.rst:65
+msgid ""
+"This cannot be used for objects with :c:macro:`Py_TPFLAGS_HAVE_GC` set in"
+" :c:member:`~PyTypeObject.tp_flags`; use :c:macro:`PyObject_GC_New` "
+"instead."
+msgstr ""
+
+#: ../../c-api/allocation.rst:68
+msgid ""
+"Memory allocated by this macro must be freed with :c:func:`PyObject_Free`"
+" (usually called via the object's :c:member:`~PyTypeObject.tp_free` "
+"slot)."
+msgstr ""
+
+#: ../../c-api/allocation.rst:73 ../../c-api/allocation.rst:123
+msgid ""
+"The returned memory is not guaranteed to have been completely zeroed "
+"before it was initialized."
+msgstr ""
+
+#: ../../c-api/allocation.rst:78 ../../c-api/allocation.rst:128
+msgid ""
+"This macro does not construct a fully initialized object of the given "
+"type; it merely allocates memory and prepares it for further "
+"initialization by :c:member:`~PyTypeObject.tp_init`.  To construct a "
+"fully initialized object, call *typeobj* instead.  For example::"
+msgstr ""
+
+#: ../../c-api/allocation.rst:83
+msgid "PyObject *foo = PyObject_CallNoArgs((PyObject *)&PyFoo_Type);"
+msgstr ""
+
+#: ../../c-api/allocation.rst:87 ../../c-api/allocation.rst:137
+#, fuzzy
+msgid ":c:func:`PyObject_Free`"
+msgstr ":c:func:`PyModule_Create`"
+
+#: ../../c-api/allocation.rst:88
+msgid ":c:macro:`PyObject_GC_New`"
+msgstr ""
+
+#: ../../c-api/allocation.rst:89 ../../c-api/allocation.rst:139
+msgid ":c:func:`PyType_GenericAlloc`"
+msgstr ""
+
+#: ../../c-api/allocation.rst:90 ../../c-api/allocation.rst:140
+msgid ":c:member:`~PyTypeObject.tp_alloc`"
+msgstr ""
+
+#: ../../c-api/allocation.rst:95
+msgid "Like :c:macro:`PyObject_New` except:"
+msgstr ""
+
+#: ../../c-api/allocation.rst:97
+msgid ""
+"It allocates enough memory for the *TYPE* structure plus *size* "
+"(``Py_ssize_t``) fields of the size given by the "
+":c:member:`~PyTypeObject.tp_itemsize` field of *typeobj*."
+msgstr ""
+
+#: ../../c-api/allocation.rst:100
+msgid "The memory is initialized like :c:func:`PyObject_InitVar`."
+msgstr ""
+
+#: ../../c-api/allocation.rst:102
+msgid ""
+"This is useful for implementing objects like tuples, which are able to "
+"determine their size at construction time.  Embedding the array of fields"
+" into the same allocation decreases the number of allocations, improving "
+"the memory management efficiency."
+msgstr ""
+
+#: ../../c-api/allocation.rst:114
+msgid ""
+"This cannot be used for objects with :c:macro:`Py_TPFLAGS_HAVE_GC` set in"
+" :c:member:`~PyTypeObject.tp_flags`; use :c:macro:`PyObject_GC_NewVar` "
+"instead."
+msgstr ""
+
+#: ../../c-api/allocation.rst:118
+msgid ""
+"Memory allocated by this function must be freed with "
+":c:func:`PyObject_Free` (usually called via the object's "
+":c:member:`~PyTypeObject.tp_free` slot)."
+msgstr ""
+
+#: ../../c-api/allocation.rst:133
+msgid "PyObject *list_instance = PyObject_CallNoArgs((PyObject *)&PyList_Type);"
+msgstr ""
+
+#: ../../c-api/allocation.rst:138
+msgid ":c:macro:`PyObject_GC_NewVar`"
+msgstr ""
+
+#: ../../c-api/allocation.rst:145
+#, fuzzy
+msgid "Same as :c:func:`PyObject_Free`."
+msgstr ":c:func:`PyModule_Create`"
+
+#: ../../c-api/allocation.rst:149
 msgid ""
 "Object which is visible in Python as ``None``.  This should only be "
 "accessed using the :c:macro:`Py_None` macro, which evaluates to a pointer"
@@ -102,11 +198,85 @@ msgstr ""
 "파이썬에서 ``None``\\으로 노출되는 객체. 이 객체에 대한 포인터로 평가되는 :c:macro:`Py_None` 매크로를 "
 "사용해서 액세스해야 합니다."
 
-#: ../../c-api/allocation.rst:79
-msgid ":c:func:`PyModule_Create`"
-msgstr ":c:func:`PyModule_Create`"
+#: ../../c-api/allocation.rst:156
+msgid ":ref:`moduleobjects`"
+msgstr ""
 
-#: ../../c-api/allocation.rst:80
+#: ../../c-api/allocation.rst:157
 msgid "To allocate and create extension modules."
 msgstr "확장 모듈을 할당하고 만듭니다."
+
+#~ msgid ""
+#~ "Initialize a newly allocated object *op*"
+#~ " with its type and initial reference."
+#~ "  Returns the initialized object.  Other"
+#~ " fields of the object are not "
+#~ "affected."
+#~ msgstr ""
+#~ "새로 할당된 객체 *op*\\를 형과 초기 참조로 "
+#~ "초기화합니다. 초기화된 객체를 반환합니다. 객체의 다른 필드는"
+#~ " 영향을 받지 않습니다."
+
+#~ msgid ""
+#~ "Note that this function is unsuitable"
+#~ " if *typeobj* has :c:macro:`Py_TPFLAGS_HAVE_GC`"
+#~ " set. For such objects, use "
+#~ ":c:func:`PyObject_GC_New` instead."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Allocate a new Python object using "
+#~ "the C structure type *TYPE* and "
+#~ "the Python type object *typeobj* "
+#~ "(``PyTypeObject*``). Fields not defined by "
+#~ "the Python object header are not "
+#~ "initialized.  The allocated memory allows "
+#~ "for the *TYPE* structure plus *size* "
+#~ "(``Py_ssize_t``) fields of the size "
+#~ "given by the :c:member:`~PyTypeObject.tp_itemsize`"
+#~ " field of *typeobj*.  This is useful"
+#~ " for implementing objects like tuples, "
+#~ "which are able to determine their "
+#~ "size at construction time.  Embedding "
+#~ "the array of fields into the same"
+#~ " allocation decreases the number of "
+#~ "allocations, improving the memory management"
+#~ " efficiency."
+#~ msgstr ""
+#~ "C 구조체 형 *TYPE*\\과 파이썬 타입 형 "
+#~ "*typeobj* (``PyTypeObject*``) 를 사용하여 새로운 "
+#~ "파이썬 객체를 할당합니다. 파이썬 객체 헤더로 정의되지 "
+#~ "않은 필드는 초기화되지 않습니다. 할당된 메모리는 *TYPE*"
+#~ " 구조체에 더해 *typeobj*\\의 "
+#~ ":c:member:`~PyTypeObject.tp_itemsize` 필드에 의해 주어진 "
+#~ "크기의 *size* (``Py_ssize_t``) 필드를 허용합니다. "
+#~ "이는 튜플과 같은 객체를 구현할 때 유용합니다. "
+#~ "튜플은 만들 때 크기를 결정할 수 있습니다. 같은"
+#~ " 할당에 필드 배열을 포함 시키면, 할당 횟수가 "
+#~ "줄어들어, 메모리 관리 효율성이 향상됩니다."
+
+#~ msgid ""
+#~ "Note that this function is unsuitable"
+#~ " if *typeobj* has :c:macro:`Py_TPFLAGS_HAVE_GC`"
+#~ " set. For such objects, use "
+#~ ":c:func:`PyObject_GC_NewVar` instead."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Releases memory allocated to an object"
+#~ " using :c:macro:`PyObject_New` or "
+#~ ":c:macro:`PyObject_NewVar`.  This is normally "
+#~ "called from the :c:member:`~PyTypeObject.tp_dealloc`"
+#~ " handler specified in the object's "
+#~ "type.  The fields of the object "
+#~ "should not be accessed after this "
+#~ "call as the memory is no longer"
+#~ " a valid Python object."
+#~ msgstr ""
+#~ ":c:macro:`PyObject_New` 나 :c:macro:`PyObject_NewVar`\\를"
+#~ " 사용한 객체에 할당된 메모리를 해제합니다. 이것은 "
+#~ "일반적으로 객체의 형에 지정된 "
+#~ ":c:member:`~PyTypeObject.tp_dealloc` 처리기에서 호출됩니다. "
+#~ "메모리가 더는 유효한 파이썬 객체가 아니므로, 이 "
+#~ "호출 후에는 객체의 필드에 액세스해서는 안 됩니다."
 
