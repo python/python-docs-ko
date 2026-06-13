@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-17 23:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -107,6 +106,10 @@ msgid ""
 "else:\n"
 "    x = false_value"
 msgstr ""
+"if condition:\n"
+"    x = true_value\n"
+"else:\n"
+"    x = false_value"
 
 #: ../../whatsnew/2.5.rst:66
 msgid ""
@@ -250,6 +253,15 @@ msgid ""
 "server_log = functools.partial(log, subsystem='server')\n"
 "server_log('Unable to open socket')"
 msgstr ""
+"import functools\n"
+"\n"
+"def log (message, subsystem):\n"
+"    \"Write the contents of 'message' to the specified subsystem.\"\n"
+"    print '%s: %s' % (subsystem, message)\n"
+"    ...\n"
+"\n"
+"server_log = functools.partial(log, subsystem='server')\n"
+"server_log('Unable to open socket')"
 
 #: ../../whatsnew/2.5.rst:160
 msgid ""
@@ -269,6 +281,13 @@ msgid ""
 "        open_func = functools.partial(self.open_item, item_path)\n"
 "        popup_menu.append( (\"Open\", open_func, 1) )"
 msgstr ""
+"...\n"
+"class Application:\n"
+"    def open_item(self, path):\n"
+"       ...\n"
+"    def init (self):\n"
+"        open_func = functools.partial(self.open_item, item_path)\n"
+"        popup_menu.append( (\"Open\", open_func, 1) )"
 
 #: ../../whatsnew/2.5.rst:173
 msgid ""
@@ -289,6 +308,12 @@ msgid ""
 "    functools.update_wrapper(wrapper, f)\n"
 "    return wrapper"
 msgstr ""
+"def my_decorator(f):\n"
+"    def wrapper(*args, **kwds):\n"
+"        print 'Calling decorated function'\n"
+"        return f(*args, **kwds)\n"
+"    functools.update_wrapper(wrapper, f)\n"
+"    return wrapper"
 
 #: ../../whatsnew/2.5.rst:186
 msgid ""
@@ -306,6 +331,12 @@ msgid ""
 "        return f(*args, **kwds)\n"
 "    return wrapper"
 msgstr ""
+"def my_decorator(f):\n"
+"    @functools.wraps(f)\n"
+"    def wrapper(*args, **kwds):\n"
+"        print 'Calling decorated function'\n"
+"        return f(*args, **kwds)\n"
+"    return wrapper"
 
 #: ../../whatsnew/2.5.rst:200
 msgid ":pep:`309` - Partial Function Application"
@@ -351,6 +382,15 @@ msgid ""
 "                    % VERSION),\n"
 "     )"
 msgstr ""
+"VERSION = '1.0'\n"
+"setup(name='PyPackage',\n"
+"      version=VERSION,\n"
+"      requires=['numarray', 'zlib (>=1.1.4)'],\n"
+"      obsoletes=['OldPackage']\n"
+"      download_url=('http://www.example.com/pypackage/dist/pkg-%s.tar.gz'"
+"\n"
+"                    % VERSION),\n"
+"     )"
 
 #: ../../whatsnew/2.5.rst:231
 msgid ""
@@ -414,6 +454,10 @@ msgid ""
 "pkg/main.py\n"
 "pkg/string.py"
 msgstr ""
+"pkg/\n"
+"pkg/__init__.py\n"
+"pkg/main.py\n"
+"pkg/string.py"
 
 #: ../../whatsnew/2.5.rst:274
 msgid ""
@@ -584,6 +628,16 @@ msgid ""
 "finally:\n"
 "    final-block"
 msgstr ""
+"try:\n"
+"    block-1 ...\n"
+"except Exception1:\n"
+"    handler-1 ...\n"
+"except Exception2:\n"
+"    handler-2 ...\n"
+"else:\n"
+"    else-block\n"
+"finally:\n"
+"    final-block"
 
 #: ../../whatsnew/2.5.rst:393
 msgid ""
@@ -638,6 +692,11 @@ msgid ""
 "        yield i\n"
 "        i += 1"
 msgstr ""
+"def counter (maximum):\n"
+"    i = 0\n"
+"    while i < maximum:\n"
+"        yield i\n"
+"        i += 1"
 
 #: ../../whatsnew/2.5.rst:434
 msgid ""
@@ -725,6 +784,20 @@ msgid ""
 "    print it.next()\n"
 "StopIteration"
 msgstr ""
+">>> it = counter(10)\n"
+">>> print it.next()\n"
+"0\n"
+">>> print it.next()\n"
+"1\n"
+">>> print it.send(8)\n"
+"8\n"
+">>> print it.next()\n"
+"9\n"
+">>> print it.next()\n"
+"Traceback (most recent call last):\n"
+"  File \"t.py\", line 15, in ?\n"
+"    print it.next()\n"
+"StopIteration"
 
 #: ../../whatsnew/2.5.rst:493
 msgid ""
@@ -865,6 +938,8 @@ msgid ""
 "with expression [as variable]:\n"
 "    with-block"
 msgstr ""
+"with expression [as variable]:\n"
+"    with-block"
 
 #: ../../whatsnew/2.5.rst:577
 msgid ""
@@ -916,6 +991,10 @@ msgid ""
 "        print line\n"
 "        ... more processing code ..."
 msgstr ""
+"with open('/etc/passwd', 'r') as f:\n"
+"    for line in f:\n"
+"        print line\n"
+"        ... more processing code ..."
 
 #: ../../whatsnew/2.5.rst:605
 msgid ""
@@ -1176,6 +1255,22 @@ msgid ""
 "with db_transaction(db) as cursor:\n"
 "    ..."
 msgstr ""
+"from contextlib import contextmanager\n"
+"\n"
+"@contextmanager\n"
+"def db_transaction (connection):\n"
+"    cursor = connection.cursor()\n"
+"    try:\n"
+"        yield cursor\n"
+"    except:\n"
+"        connection.rollback()\n"
+"        raise\n"
+"    else:\n"
+"        connection.commit()\n"
+"\n"
+"db = DatabaseConnection()\n"
+"with db_transaction(db) as cursor:\n"
+"    ..."
 
 #: ../../whatsnew/2.5.rst:777
 msgid ""
@@ -1192,6 +1287,9 @@ msgid ""
 "with nested (db_transaction(db), lock) as (cursor, locked):\n"
 "    ..."
 msgstr ""
+"lock = threading.Lock()\n"
+"with nested (db_transaction(db), lock) as (cursor, locked):\n"
+"    ..."
 
 #: ../../whatsnew/2.5.rst:786
 msgid ""
@@ -1209,6 +1307,12 @@ msgid ""
 "    for line in f:\n"
 "        sys.stdout.write(line)"
 msgstr ""
+"import urllib, sys\n"
+"from contextlib import closing\n"
+"\n"
+"with closing(urllib.urlopen('http://www.yahoo.com')) as f:\n"
+"    for line in f:\n"
+"        sys.stdout.write(line)"
 
 #: ../../whatsnew/2.5.rst:799
 msgid ":pep:`343` - The \"with\" statement"
@@ -1430,6 +1534,9 @@ msgid ""
 "    def __index__ (self):\n"
 "        return self.value"
 msgstr ""
+"class C:\n"
+"    def __index__ (self):\n"
+"        return self.value"
 
 #: ../../whatsnew/2.5.rst:953
 msgid ""
@@ -1522,6 +1629,16 @@ msgid ""
 ">>> 'www.python.org'.rpartition(':')\n"
 "('', '', 'www.python.org')"
 msgstr ""
+">>> ('http://www.python.org').partition('://')\n"
+"('http', '://', 'www.python.org')\n"
+">>> ('file:/usr/share/doc/index.html').partition('://')\n"
+"('file:/usr/share/doc/index.html', '', '')\n"
+">>> (u'Subject: a quick question').partition(':')\n"
+"(u'Subject', u':', u' a quick question')\n"
+">>> 'www.python.org'.rpartition('.')\n"
+"('www.python', '.', 'org')\n"
+">>> 'www.python.org'.rpartition(':')\n"
+"('', '', 'www.python.org')"
 
 #: ../../whatsnew/2.5.rst:1018
 msgid ""
@@ -1540,6 +1657,8 @@ msgid ""
 "def is_image_file (filename):\n"
 "    return filename.endswith(('.gif', '.jpg', '.tiff'))"
 msgstr ""
+"def is_image_file (filename):\n"
+"    return filename.endswith(('.gif', '.jpg', '.tiff'))"
 
 #: ../../whatsnew/2.5.rst:1026
 msgid "(Implemented by Georg Brandl following a suggestion by Tom Lynn.)"
@@ -1668,6 +1787,8 @@ msgid ""
 "class C():\n"
 "    pass"
 msgstr ""
+"class C():\n"
+"    pass"
 
 #: ../../whatsnew/2.5.rst:1108
 msgid "(Implemented by Brett Cannon.)"
@@ -1689,6 +1810,8 @@ msgid ""
 ">>> quit\n"
 "'Use Ctrl-D (i.e. EOF) to exit.'"
 msgstr ""
+">>> quit\n"
+"'Use Ctrl-D (i.e. EOF) to exit.'"
 
 #: ../../whatsnew/2.5.rst:1124
 msgid ""
@@ -1873,6 +1996,15 @@ msgid ""
 "    init_letter = w[0]\n"
 "    index[init_letter].append(w)"
 msgstr ""
+"words = \"\"\"Nel mezzo del cammin di nostra vita\n"
+"mi ritrovai per una selva oscura\n"
+"che la diritta via era smarrita\"\"\".lower().split()\n"
+"\n"
+"index = defaultdict(list)\n"
+"\n"
+"for w in words:\n"
+"    init_letter = w[0]\n"
+"    index[init_letter].append(w)"
 
 #: ../../whatsnew/2.5.rst:1261
 msgid "Printing ``index`` results in the following output::"
@@ -1887,6 +2019,11 @@ msgid ""
 "        'p': ['per'], 's': ['selva', 'smarrita'],\n"
 "        'r': ['ritrovai'], 'u': ['una'], 'v': ['vita', 'via']}"
 msgstr ""
+"defaultdict(<type 'list'>, {'c': ['cammin', 'che'], 'e': ['era'],\n"
+"        'd': ['del', 'di', 'diritta'], 'm': ['mezzo', 'mi'],\n"
+"        'l': ['la'], 'o': ['oscura'], 'n': ['nel', 'nostra'],\n"
+"        'p': ['per'], 's': ['selva', 'smarrita'],\n"
+"        'r': ['ritrovai'], 'u': ['una'], 'v': ['vita', 'via']}"
 
 #: ../../whatsnew/2.5.rst:1269
 msgid "(Contributed by Guido van Rossum.)"
@@ -1971,6 +2108,10 @@ msgid ""
 "ts = datetime.strptime('10:13:15 2006-03-07',\n"
 "                       '%H:%M:%S %Y-%m-%d')"
 msgstr ""
+"from datetime import datetime\n"
+"\n"
+"ts = datetime.strptime('10:13:15 2006-03-07',\n"
+"                       '%H:%M:%S %Y-%m-%d')"
 
 #: ../../whatsnew/2.5.rst:1321
 msgid ""
@@ -2339,6 +2480,10 @@ msgid ""
 "data = s.pack(1972, 187, 'abc')\n"
 "year, number, name = s.unpack(data)"
 msgstr ""
+"s = struct.Struct('ih3s')\n"
+"\n"
+"data = s.pack(1972, 187, 'abc')\n"
+"year, number, name = s.unpack(data)"
 
 #: ../../whatsnew/2.5.rst:1560
 msgid ""
@@ -2526,6 +2671,10 @@ msgid ""
 "libc = ctypes.CDLL('libc.so.6')\n"
 "result = libc.printf(\"Line of output\\n\")"
 msgstr ""
+"import ctypes\n"
+"\n"
+"libc = ctypes.CDLL('libc.so.6')\n"
+"result = libc.printf(\"Line of output\\n\")"
 
 #: ../../whatsnew/2.5.rst:1697
 msgid ""
@@ -2555,6 +2704,9 @@ msgid ""
 "buf = ctypes.create_string_buffer(s)\n"
 "libc.strfry(buf)"
 msgstr ""
+"s = \"this is a string\"\n"
+"buf = ctypes.create_string_buffer(s)\n"
+"libc.strfry(buf)"
 
 #: ../../whatsnew/2.5.rst:1715
 msgid ""
@@ -2570,6 +2722,11 @@ msgid ""
 ">>> libc.atof('2.71828')\n"
 "2.71828"
 msgstr ""
+">>> libc.atof('2.71828')\n"
+"-1783957616\n"
+">>> libc.atof.restype = ctypes.c_double\n"
+">>> libc.atof('2.71828')\n"
+"2.71828"
 
 #: ../../whatsnew/2.5.rst:1724
 msgid ""
@@ -2666,6 +2823,13 @@ msgid ""
 "          'http://planet.python.org/rss10.xml')\n"
 "tree = ET.parse(feed)"
 msgstr ""
+"from xml.etree import ElementTree as ET\n"
+"\n"
+"tree = ET.parse('ex-1.xml')\n"
+"\n"
+"feed = urllib.urlopen(\n"
+"          'http://planet.python.org/rss10.xml')\n"
+"tree = ET.parse(feed)"
 
 #: ../../whatsnew/2.5.rst:1790
 msgid ""
@@ -2688,6 +2852,10 @@ msgid ""
 "svg.set('height', '320px')\n"
 "svg.append(elem1)"
 msgstr ""
+"svg = ET.XML(\"\"\"<svg width=\"10px\" version=\"1.0\">\n"
+"             </svg>\"\"\")\n"
+"svg.set('height', '320px')\n"
+"svg.append(elem1)"
 
 #: ../../whatsnew/2.5.rst:1803
 msgid ""
@@ -2706,7 +2874,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1810
 msgid "``elem[n]``"
-msgstr ""
+msgstr "``elem[n]``"
 
 #: ../../whatsnew/2.5.rst:1810
 msgid "Returns n'th child element."
@@ -2714,7 +2882,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1812
 msgid "``elem[m:n]``"
-msgstr ""
+msgstr "``elem[m:n]``"
 
 #: ../../whatsnew/2.5.rst:1812
 msgid "Returns list of m'th through n'th child elements."
@@ -2722,7 +2890,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1815
 msgid "``len(elem)``"
-msgstr ""
+msgstr "``len(elem)``"
 
 #: ../../whatsnew/2.5.rst:1815
 msgid "Returns number of child elements."
@@ -2730,7 +2898,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1817
 msgid "``list(elem)``"
-msgstr ""
+msgstr "``list(elem)``"
 
 #: ../../whatsnew/2.5.rst:1817
 msgid "Returns list of child elements."
@@ -2738,7 +2906,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1819
 msgid "``elem.append(elem2)``"
-msgstr ""
+msgstr "``elem.append(elem2)``"
 
 #: ../../whatsnew/2.5.rst:1819
 msgid "Adds *elem2* as a child."
@@ -2746,7 +2914,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1821
 msgid "``elem.insert(index, elem2)``"
-msgstr ""
+msgstr "``elem.insert(index, elem2)``"
 
 #: ../../whatsnew/2.5.rst:1821
 msgid "Inserts *elem2* at the specified location."
@@ -2754,7 +2922,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1823
 msgid "``del elem[n]``"
-msgstr ""
+msgstr "``del elem[n]``"
 
 #: ../../whatsnew/2.5.rst:1823
 msgid "Deletes n'th child element."
@@ -2762,7 +2930,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1825
 msgid "``elem.keys()``"
-msgstr ""
+msgstr "``elem.keys()``"
 
 #: ../../whatsnew/2.5.rst:1825
 msgid "Returns list of attribute names."
@@ -2770,7 +2938,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1827
 msgid "``elem.get(name)``"
-msgstr ""
+msgstr "``elem.get(name)``"
 
 #: ../../whatsnew/2.5.rst:1827
 msgid "Returns value of attribute *name*."
@@ -2778,7 +2946,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1829
 msgid "``elem.set(name, value)``"
-msgstr ""
+msgstr "``elem.set(name, value)``"
 
 #: ../../whatsnew/2.5.rst:1829
 msgid "Sets new value for attribute *name*."
@@ -2786,7 +2954,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1831
 msgid "``elem.attrib``"
-msgstr ""
+msgstr "``elem.attrib``"
 
 #: ../../whatsnew/2.5.rst:1831
 msgid "Retrieves the dictionary containing attributes."
@@ -2794,7 +2962,7 @@ msgstr ""
 
 #: ../../whatsnew/2.5.rst:1834
 msgid "``del elem.attrib[name]``"
-msgstr ""
+msgstr "``del elem.attrib[name]``"
 
 #: ../../whatsnew/2.5.rst:1834
 msgid "Deletes attribute *name*."
@@ -2814,6 +2982,10 @@ msgid ""
 "elif elem.tag is ET.ProcessingInstruction:\n"
 "    ..."
 msgstr ""
+"if elem.tag is ET.Comment:\n"
+"    ...\n"
+"elif elem.tag is ET.ProcessingInstruction:\n"
+"    ..."
 
 #: ../../whatsnew/2.5.rst:1845
 msgid ""
@@ -3054,6 +3226,16 @@ msgid ""
 "(u'2006-04-05', u'BUY', u'MSOFT', 1000, 72.0)\n"
 ">>>"
 msgstr ""
+">>> c = conn.cursor()\n"
+">>> c.execute('select * from stocks order by price')\n"
+">>> for row in c:\n"
+"...    print row\n"
+"...\n"
+"(u'2006-01-05', u'BUY', u'RHAT', 100, 35.140000000000001)\n"
+"(u'2006-03-28', u'BUY', u'IBM', 1000, 45.0)\n"
+"(u'2006-04-06', u'SELL', u'IBM', 500, 53.0)\n"
+"(u'2006-04-05', u'BUY', u'MSOFT', 1000, 72.0)\n"
+">>>"
 
 #: ../../whatsnew/2.5.rst:2016
 msgid ""
@@ -3121,6 +3303,14 @@ msgid ""
 "httpd = simple_server.make_server(host, port, wsgi_app)\n"
 "httpd.serve_forever()"
 msgstr ""
+"from wsgiref import simple_server\n"
+"\n"
+"wsgi_app = ...\n"
+"\n"
+"host = ''\n"
+"port = 8000\n"
+"httpd = simple_server.make_server(host, port, wsgi_app)\n"
+"httpd.serve_forever()"
 
 #: ../../whatsnew/2.5.rst:2068
 msgid "https://web.archive.org/web/20160331090247/http://wsgi.readthedocs.org/en/latest/"
@@ -3196,6 +3386,14 @@ msgid ""
 "assignment = ast.body[0]\n"
 "for_loop = ast.body[1]"
 msgstr ""
+"from _ast import PyCF_ONLY_AST\n"
+"ast = compile(\"\"\"a=0\n"
+"for i in range(10):\n"
+"    a += i\n"
+"\"\"\", \"<string>\", 'exec', PyCF_ONLY_AST)\n"
+"\n"
+"assignment = ast.body[0]\n"
+"for_loop = ast.body[1]"
 
 #: ../../whatsnew/2.5.rst:2117
 msgid ""
@@ -3321,6 +3519,8 @@ msgid ""
 "range = PyObject_CallFunction((PyObject*) &PyRange_Type, \"lll\",\n"
 "                              start, stop, step);"
 msgstr ""
+"range = PyObject_CallFunction((PyObject*) &PyRange_Type, \"lll\",\n"
+"                              start, stop, step);"
 
 #: ../../whatsnew/2.5.rst:2208
 msgid "Port-Specific Changes"

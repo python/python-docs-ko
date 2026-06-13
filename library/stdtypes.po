@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -423,6 +423,8 @@ msgid ""
 "x + complex(u, v) = complex(x + u, v)\n"
 "x * complex(u, v) = complex(x * u, x * v)"
 msgstr ""
+"x + complex(u, v) = complex(x + u, v)\n"
+"x * complex(u, v) = complex(x * u, x * v)"
 
 #: ../../library/stdtypes.rst:275
 msgid ""
@@ -483,9 +485,8 @@ msgid "floored quotient of *x* and *y*"
 msgstr "*x* 와 *y* 의 정수로 내림한 몫"
 
 #: ../../library/stdtypes.rst:292
-#, fuzzy
 msgid "\\(1)\\(2)"
-msgstr "(1)(2)"
+msgstr "\\(1)\\(2)"
 
 #: ../../library/stdtypes.rst:295
 msgid "``x % y``"
@@ -875,6 +876,11 @@ msgid ""
 ">>> n.bit_length()\n"
 "6"
 msgstr ""
+">>> n = -37\n"
+">>> bin(n)\n"
+"'-0b100101'\n"
+">>> n.bit_length()\n"
+"6"
 
 #: ../../library/stdtypes.rst:475
 msgid ""
@@ -920,12 +926,21 @@ msgid ""
 ">>> (-n).bit_count()\n"
 "3"
 msgstr ""
+">>> n = 19\n"
+">>> bin(n)\n"
+"'0b10011'\n"
+">>> n.bit_count()\n"
+"3\n"
+">>> (-n).bit_count()\n"
+"3"
 
 #: ../../library/stdtypes.rst:506
 msgid ""
 "def bit_count(self):\n"
 "    return bin(self).count(\"1\")"
 msgstr ""
+"def bit_count(self):\n"
+"    return bin(self).count(\"1\")"
 
 #: ../../library/stdtypes.rst:513
 msgid "Return an array of bytes representing an integer."
@@ -976,6 +991,8 @@ msgid ""
 ">>> (65).to_bytes()\n"
 "b'A'"
 msgstr ""
+">>> (65).to_bytes()\n"
+"b'A'"
 
 #: ../../library/stdtypes.rst:546
 msgid ""
@@ -995,6 +1012,15 @@ msgid ""
 "\n"
 "    return bytes((n >> i*8) & 0xff for i in order)"
 msgstr ""
+"def to_bytes(n, length=1, byteorder='big', signed=False):\n"
+"    if byteorder == 'little':\n"
+"        order = range(length)\n"
+"    elif byteorder == 'big':\n"
+"        order = reversed(range(length))\n"
+"    else:\n"
+"        raise ValueError(\"byteorder must be either 'little' or 'big'\")\n"
+"\n"
+"    return bytes((n >> i*8) & 0xff for i in order)"
 
 #: ../../library/stdtypes.rst:562
 msgid "Added default argument values for ``length`` and ``byteorder``."
@@ -1049,6 +1075,19 @@ msgid ""
 "\n"
 "    return n"
 msgstr ""
+"def from_bytes(bytes, byteorder='big', signed=False):\n"
+"    if byteorder == 'little':\n"
+"        little_ordered = list(bytes)\n"
+"    elif byteorder == 'big':\n"
+"        little_ordered = list(reversed(bytes))\n"
+"    else:\n"
+"        raise ValueError(\"byteorder must be either 'little' or 'big'\")\n"
+"\n"
+"    n = sum(b << i*8 for i, b in enumerate(little_ordered))\n"
+"    if signed and little_ordered and (little_ordered[-1] & 0x80):\n"
+"        n -= 1 << 8*len(little_ordered)\n"
+"\n"
+"    return n"
 
 #: ../../library/stdtypes.rst:610
 msgid "Added default argument value for ``byteorder``."
@@ -1128,6 +1167,10 @@ msgid ""
 ">>> (3.2).is_integer()\n"
 "False"
 msgstr ""
+">>> (-2.0).is_integer()\n"
+"True\n"
+">>> (3.2).is_integer()\n"
+"False"
 
 #: ../../library/stdtypes.rst:668
 msgid ""
@@ -1207,6 +1250,8 @@ msgid ""
 ">>> float.fromhex('0x3.a7p10')\n"
 "3740.0"
 msgstr ""
+">>> float.fromhex('0x3.a7p10')\n"
+"3740.0"
 
 #: ../../library/stdtypes.rst:722
 msgid ""
@@ -1219,6 +1264,8 @@ msgid ""
 ">>> float.hex(3740.0)\n"
 "'0x1.d380000000000p+11'"
 msgstr ""
+">>> float.hex(3740.0)\n"
+"'0x1.d380000000000p+11'"
 
 #: ../../library/stdtypes.rst:730
 #, fuzzy
@@ -1654,9 +1701,8 @@ msgid "*i*\\ th item of *s*, origin 0"
 msgstr "*s* 의 *i* 번째 항목, 0에서 시작합니다"
 
 #: ../../library/stdtypes.rst:1019
-#, fuzzy
 msgid "(3)(8)"
-msgstr "(3)(5)"
+msgstr "(3)(8)"
 
 #: ../../library/stdtypes.rst:1021
 msgid "``s[i:j]``"
@@ -1744,6 +1790,8 @@ msgid ""
 ">>> \"gg\" in \"eggs\"\n"
 "True"
 msgstr ""
+">>> \"gg\" in \"eggs\"\n"
+"True"
 
 #: ../../library/stdtypes.rst:1061
 msgid ""
@@ -1765,6 +1813,12 @@ msgid ""
 ">>> lists\n"
 "[[3], [3], [3]]"
 msgstr ""
+">>> lists = [[]] * 3\n"
+">>> lists\n"
+"[[], [], []]\n"
+">>> lists[0].append(3)\n"
+">>> lists\n"
+"[[3], [3], [3]]"
 
 #: ../../library/stdtypes.rst:1073
 msgid ""
@@ -1786,6 +1840,12 @@ msgid ""
 ">>> lists\n"
 "[[3], [5], [7]]"
 msgstr ""
+">>> lists = [[] for i in range(3)]\n"
+">>> lists[0].append(3)\n"
+">>> lists[1].append(5)\n"
+">>> lists[2].append(7)\n"
+">>> lists\n"
+"[[3], [5], [7]]"
 
 #: ../../library/stdtypes.rst:1085
 msgid ""
@@ -1980,9 +2040,8 @@ msgid "item *i* of *s* is replaced by *x*"
 msgstr "*s* 의 항목 *i* 를 *x* 로 대체합니다"
 
 #: ../../library/stdtypes.rst:1229
-#, fuzzy
 msgid "``del s[i]``"
-msgstr "``del s[i:j]``"
+msgstr "``del s[i]``"
 
 #: ../../library/stdtypes.rst:1229
 #, fuzzy
@@ -2025,9 +2084,8 @@ msgid "removes the elements of ``s[i:j:k]`` from the list"
 msgstr "리스트에서 ``s[i:j:k]`` 의 항목들을 제거합니다"
 
 #: ../../library/stdtypes.rst:1245
-#, fuzzy
 msgid "``s += t``"
-msgstr "``s + t``"
+msgstr "``s += t``"
 
 #: ../../library/stdtypes.rst:1245
 msgid ""
@@ -2444,6 +2502,20 @@ msgid ""
 ">>> list(range(1, 0))\n"
 "[]"
 msgstr ""
+">>> list(range(10))\n"
+"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+">>> list(range(1, 11))\n"
+"[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n"
+">>> list(range(0, 30, 5))\n"
+"[0, 5, 10, 15, 20, 25]\n"
+">>> list(range(0, 10, 3))\n"
+"[0, 3, 6, 9]\n"
+">>> list(range(0, -10, -1))\n"
+"[0, -1, -2, -3, -4, -5, -6, -7, -8, -9]\n"
+">>> list(range(0))\n"
+"[]\n"
+">>> list(range(1, 0))\n"
+"[]"
 
 #: ../../library/stdtypes.rst:1538
 msgid ""
@@ -2570,11 +2642,11 @@ msgstr "연산"
 
 #: ../../library/stdtypes.rst:1626
 msgid ":meth:`str.format`"
-msgstr ""
+msgstr ":meth:`str.format`"
 
 #: ../../library/stdtypes.rst:1628
 msgid ":meth:`str.format_map`"
-msgstr ""
+msgstr ":meth:`str.format_map`"
 
 #: ../../library/stdtypes.rst:1630
 msgid ":ref:`f-strings`"
@@ -2585,9 +2657,8 @@ msgid ":ref:`old-string-formatting`"
 msgstr ""
 
 #: ../../library/stdtypes.rst:1632
-#, fuzzy
 msgid ":ref:`bytes-formatting`"
-msgstr "연산"
+msgstr ":ref:`bytes-formatting`"
 
 #: ../../library/stdtypes.rst:1634
 msgid "Searching and Replacing"
@@ -2595,67 +2666,67 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:1634
 msgid ":meth:`str.find`"
-msgstr ""
+msgstr ":meth:`str.find`"
 
 #: ../../library/stdtypes.rst:1634
 msgid ":meth:`str.rfind`"
-msgstr ""
+msgstr ":meth:`str.rfind`"
 
 #: ../../library/stdtypes.rst:1634
 msgid ":meth:`bytes.find`"
-msgstr ""
+msgstr ":meth:`bytes.find`"
 
 #: ../../library/stdtypes.rst:1634
 msgid ":meth:`bytes.rfind`"
-msgstr ""
+msgstr ":meth:`bytes.rfind`"
 
 #: ../../library/stdtypes.rst:1636
 msgid ":meth:`str.index`"
-msgstr ""
+msgstr ":meth:`str.index`"
 
 #: ../../library/stdtypes.rst:1636
 msgid ":meth:`str.rindex`"
-msgstr ""
+msgstr ":meth:`str.rindex`"
 
 #: ../../library/stdtypes.rst:1636
 msgid ":meth:`bytes.index`"
-msgstr ""
+msgstr ":meth:`bytes.index`"
 
 #: ../../library/stdtypes.rst:1636
 msgid ":meth:`bytes.rindex`"
-msgstr ""
+msgstr ":meth:`bytes.rindex`"
 
 #: ../../library/stdtypes.rst:1638
 msgid ":meth:`str.startswith`"
-msgstr ""
+msgstr ":meth:`str.startswith`"
 
 #: ../../library/stdtypes.rst:1638
 msgid ":meth:`bytes.startswith`"
-msgstr ""
+msgstr ":meth:`bytes.startswith`"
 
 #: ../../library/stdtypes.rst:1640
 msgid ":meth:`str.endswith`"
-msgstr ""
+msgstr ":meth:`str.endswith`"
 
 #: ../../library/stdtypes.rst:1640
 msgid ":meth:`bytes.endswith`"
-msgstr ""
+msgstr ":meth:`bytes.endswith`"
 
 #: ../../library/stdtypes.rst:1642
 msgid ":meth:`str.count`"
-msgstr ""
+msgstr ":meth:`str.count`"
 
 #: ../../library/stdtypes.rst:1642
 msgid ":meth:`bytes.count`"
-msgstr ""
+msgstr ":meth:`bytes.count`"
 
 #: ../../library/stdtypes.rst:1644
 msgid ":meth:`str.replace`"
-msgstr ""
+msgstr ":meth:`str.replace`"
 
 #: ../../library/stdtypes.rst:1644
 msgid ":meth:`bytes.replace`"
-msgstr ""
+msgstr ":meth:`bytes.replace`"
 
 #: ../../library/stdtypes.rst:1646
 msgid "Splitting and Joining"
@@ -2663,52 +2734,51 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:1646
 msgid ":meth:`str.split`"
-msgstr ""
+msgstr ":meth:`str.split`"
 
 #: ../../library/stdtypes.rst:1646
 msgid ":meth:`str.rsplit`"
-msgstr ""
+msgstr ":meth:`str.rsplit`"
 
 #: ../../library/stdtypes.rst:1646
 msgid ":meth:`bytes.split`"
-msgstr ""
+msgstr ":meth:`bytes.split`"
 
 #: ../../library/stdtypes.rst:1646
 msgid ":meth:`bytes.rsplit`"
-msgstr ""
+msgstr ":meth:`bytes.rsplit`"
 
 #: ../../library/stdtypes.rst:1648
-#, fuzzy
 msgid ":meth:`str.splitlines`"
-msgstr "문자열 메서드"
+msgstr ":meth:`str.splitlines`"
 
 #: ../../library/stdtypes.rst:1648
 msgid ":meth:`bytes.splitlines`"
-msgstr ""
+msgstr ":meth:`bytes.splitlines`"
 
 #: ../../library/stdtypes.rst:1650
 msgid ":meth:`str.partition`"
-msgstr ""
+msgstr ":meth:`str.partition`"
 
 #: ../../library/stdtypes.rst:1650
 msgid ":meth:`bytes.partition`"
-msgstr ""
+msgstr ":meth:`bytes.partition`"
 
 #: ../../library/stdtypes.rst:1652
 msgid ":meth:`str.rpartition`"
-msgstr ""
+msgstr ":meth:`str.rpartition`"
 
 #: ../../library/stdtypes.rst:1652
 msgid ":meth:`bytes.rpartition`"
-msgstr ""
+msgstr ":meth:`bytes.rpartition`"
 
 #: ../../library/stdtypes.rst:1654
 msgid ":meth:`str.join`"
-msgstr ""
+msgstr ":meth:`str.join`"
 
 #: ../../library/stdtypes.rst:1654
 msgid ":meth:`bytes.join`"
-msgstr ""
+msgstr ":meth:`bytes.join`"
 
 #: ../../library/stdtypes.rst:1656
 msgid "String Classification"
@@ -2716,75 +2786,75 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:1656
 msgid ":meth:`str.isalpha`"
-msgstr ""
+msgstr ":meth:`str.isalpha`"
 
 #: ../../library/stdtypes.rst:1656
 msgid ":meth:`bytes.isalpha`"
-msgstr ""
+msgstr ":meth:`bytes.isalpha`"
 
 #: ../../library/stdtypes.rst:1658
 msgid ":meth:`str.isdecimal`"
-msgstr ""
+msgstr ":meth:`str.isdecimal`"
 
 #: ../../library/stdtypes.rst:1660
 msgid ":meth:`str.isdigit`"
-msgstr ""
+msgstr ":meth:`str.isdigit`"
 
 #: ../../library/stdtypes.rst:1660
 msgid ":meth:`bytes.isdigit`"
-msgstr ""
+msgstr ":meth:`bytes.isdigit`"
 
 #: ../../library/stdtypes.rst:1662
 msgid ":meth:`str.isnumeric`"
-msgstr ""
+msgstr ":meth:`str.isnumeric`"
 
 #: ../../library/stdtypes.rst:1664
 msgid ":meth:`str.isalnum`"
-msgstr ""
+msgstr ":meth:`str.isalnum`"
 
 #: ../../library/stdtypes.rst:1664
 msgid ":meth:`bytes.isalnum`"
-msgstr ""
+msgstr ":meth:`bytes.isalnum`"
 
 #: ../../library/stdtypes.rst:1666
 msgid ":meth:`str.isidentifier`"
-msgstr ""
+msgstr ":meth:`str.isidentifier`"
 
 #: ../../library/stdtypes.rst:1668
 msgid ":meth:`str.islower`"
-msgstr ""
+msgstr ":meth:`str.islower`"
 
 #: ../../library/stdtypes.rst:1668
 msgid ":meth:`bytes.islower`"
-msgstr ""
+msgstr ":meth:`bytes.islower`"
 
 #: ../../library/stdtypes.rst:1670
 msgid ":meth:`str.isupper`"
-msgstr ""
+msgstr ":meth:`str.isupper`"
 
 #: ../../library/stdtypes.rst:1670
 msgid ":meth:`bytes.isupper`"
-msgstr ""
+msgstr ":meth:`bytes.isupper`"
 
 #: ../../library/stdtypes.rst:1672
 msgid ":meth:`str.istitle`"
-msgstr ""
+msgstr ":meth:`str.istitle`"
 
 #: ../../library/stdtypes.rst:1672
 msgid ":meth:`bytes.istitle`"
-msgstr ""
+msgstr ":meth:`bytes.istitle`"
 
 #: ../../library/stdtypes.rst:1674
 msgid ":meth:`str.isspace`"
-msgstr ""
+msgstr ":meth:`str.isspace`"
 
 #: ../../library/stdtypes.rst:1674
 msgid ":meth:`bytes.isspace`"
-msgstr ""
+msgstr ":meth:`bytes.isspace`"
 
 #: ../../library/stdtypes.rst:1676
 msgid ":meth:`str.isprintable`"
-msgstr ""
+msgstr ":meth:`str.isprintable`"
 
 #: ../../library/stdtypes.rst:1678
 #, fuzzy
@@ -2793,47 +2863,47 @@ msgstr "수직 탭"
 
 #: ../../library/stdtypes.rst:1678
 msgid ":meth:`str.lower`"
-msgstr ""
+msgstr ":meth:`str.lower`"
 
 #: ../../library/stdtypes.rst:1678
 msgid ":meth:`bytes.lower`"
-msgstr ""
+msgstr ":meth:`bytes.lower`"
 
 #: ../../library/stdtypes.rst:1680
 msgid ":meth:`str.upper`"
-msgstr ""
+msgstr ":meth:`str.upper`"
 
 #: ../../library/stdtypes.rst:1680
 msgid ":meth:`bytes.upper`"
-msgstr ""
+msgstr ":meth:`bytes.upper`"
 
 #: ../../library/stdtypes.rst:1682
 msgid ":meth:`str.casefold`"
-msgstr ""
+msgstr ":meth:`str.casefold`"
 
 #: ../../library/stdtypes.rst:1684
 msgid ":meth:`str.capitalize`"
-msgstr ""
+msgstr ":meth:`str.capitalize`"
 
 #: ../../library/stdtypes.rst:1684
 msgid ":meth:`bytes.capitalize`"
-msgstr ""
+msgstr ":meth:`bytes.capitalize`"
 
 #: ../../library/stdtypes.rst:1686
 msgid ":meth:`str.title`"
-msgstr ""
+msgstr ":meth:`str.title`"
 
 #: ../../library/stdtypes.rst:1686
 msgid ":meth:`bytes.title`"
-msgstr ""
+msgstr ":meth:`bytes.title`"
 
 #: ../../library/stdtypes.rst:1688
 msgid ":meth:`str.swapcase`"
-msgstr ""
+msgstr ":meth:`str.swapcase`"
 
 #: ../../library/stdtypes.rst:1688
 msgid ":meth:`bytes.swapcase`"
-msgstr ""
+msgstr ":meth:`bytes.swapcase`"
 
 #: ../../library/stdtypes.rst:1690
 msgid "Padding and Stripping"
@@ -2841,59 +2911,59 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:1690
 msgid ":meth:`str.ljust`"
-msgstr ""
+msgstr ":meth:`str.ljust`"
 
 #: ../../library/stdtypes.rst:1690
 msgid ":meth:`str.rjust`"
-msgstr ""
+msgstr ":meth:`str.rjust`"
 
 #: ../../library/stdtypes.rst:1690
 msgid ":meth:`bytes.ljust`"
-msgstr ""
+msgstr ":meth:`bytes.ljust`"
 
 #: ../../library/stdtypes.rst:1690
 msgid ":meth:`bytes.rjust`"
-msgstr ""
+msgstr ":meth:`bytes.rjust`"
 
 #: ../../library/stdtypes.rst:1692
 msgid ":meth:`str.center`"
-msgstr ""
+msgstr ":meth:`str.center`"
 
 #: ../../library/stdtypes.rst:1692
 msgid ":meth:`bytes.center`"
-msgstr ""
+msgstr ":meth:`bytes.center`"
 
 #: ../../library/stdtypes.rst:1694
 msgid ":meth:`str.expandtabs`"
-msgstr ""
+msgstr ":meth:`str.expandtabs`"
 
 #: ../../library/stdtypes.rst:1694
 msgid ":meth:`bytes.expandtabs`"
-msgstr ""
+msgstr ":meth:`bytes.expandtabs`"
 
 #: ../../library/stdtypes.rst:1696
 msgid ":meth:`str.strip`"
-msgstr ""
+msgstr ":meth:`str.strip`"
 
 #: ../../library/stdtypes.rst:1696
 msgid ":meth:`bytes.strip`"
-msgstr ""
+msgstr ":meth:`bytes.strip`"
 
 #: ../../library/stdtypes.rst:1698
 msgid ":meth:`str.lstrip`"
-msgstr ""
+msgstr ":meth:`str.lstrip`"
 
 #: ../../library/stdtypes.rst:1698
 msgid ":meth:`str.rstrip`"
-msgstr ""
+msgstr ":meth:`str.rstrip`"
 
 #: ../../library/stdtypes.rst:1698
 msgid ":meth:`bytes.lstrip`"
-msgstr ""
+msgstr ":meth:`bytes.lstrip`"
 
 #: ../../library/stdtypes.rst:1698
 msgid ":meth:`bytes.rstrip`"
-msgstr ""
+msgstr ":meth:`bytes.rstrip`"
 
 #: ../../library/stdtypes.rst:1700
 msgid "Translation and Encoding"
@@ -2901,27 +2971,27 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:1700
 msgid ":meth:`str.translate`"
-msgstr ""
+msgstr ":meth:`str.translate`"
 
 #: ../../library/stdtypes.rst:1700
 msgid ":meth:`bytes.translate`"
-msgstr ""
+msgstr ":meth:`bytes.translate`"
 
 #: ../../library/stdtypes.rst:1702
 msgid ":meth:`str.maketrans`"
-msgstr ""
+msgstr ":meth:`str.maketrans`"
 
 #: ../../library/stdtypes.rst:1702
 msgid ":meth:`bytes.maketrans`"
-msgstr ""
+msgstr ":meth:`bytes.maketrans`"
 
 #: ../../library/stdtypes.rst:1704
 msgid ":meth:`str.encode`"
-msgstr ""
+msgstr ":meth:`str.encode`"
 
 #: ../../library/stdtypes.rst:1706
 msgid ":meth:`bytes.decode`"
-msgstr ""
+msgstr ":meth:`bytes.decode`"
 
 #: ../../library/stdtypes.rst:1712
 msgid "Text Sequence Type --- :class:`str`"
@@ -3069,6 +3139,8 @@ msgid ""
 ">>> str(b'Zoot!')\n"
 "\"b'Zoot!'\""
 msgstr ""
+">>> str(b'Zoot!')\n"
+"\"b'Zoot!'\""
 
 #: ../../library/stdtypes.rst:1794
 msgid ""
@@ -3177,6 +3249,12 @@ msgid ""
 ">>> 'Python'.center(4)\n"
 "'Python'"
 msgstr ""
+">>> 'Python'.center(10)\n"
+"'  Python  '\n"
+">>> 'Python'.center(10, '-')\n"
+"'--Python--'\n"
+">>> 'Python'.center(4)\n"
+"'Python'"
 
 #: ../../library/stdtypes.rst:1869
 msgid ""
@@ -3206,6 +3284,16 @@ msgid ""
 ">>> 'spam, spam, spam'.count('')\n"
 "17"
 msgstr ""
+">>> 'spam, spam, spam'.count('spam')\n"
+"3\n"
+">>> 'spam, spam, spam'.count('spam', 5)\n"
+"2\n"
+">>> 'spam, spam, spam'.count('spam', 5, 10)\n"
+"1\n"
+">>> 'spam, spam, spam'.count('eggs')\n"
+"0\n"
+">>> 'spam, spam, spam'.count('')\n"
+"17"
 
 #: ../../library/stdtypes.rst:1889
 msgid "Return the string encoded to :class:`bytes`."
@@ -3248,6 +3336,11 @@ msgid ""
 ">>> encoded_str_to_bytes\n"
 "b'Python'"
 msgstr ""
+">>> encoded_str_to_bytes = 'Python'.encode()\n"
+">>> type(encoded_str_to_bytes)\n"
+"<class 'bytes'>\n"
+">>> encoded_str_to_bytes\n"
+"b'Python'"
 
 #: ../../library/stdtypes.rst:1914 ../../library/stdtypes.rst:3296
 msgid "Added support for keyword arguments."
@@ -3284,6 +3377,14 @@ msgid ""
 ">>> 'Python is amazing'.endswith('is', 0, 9)\n"
 "True"
 msgstr ""
+">>> 'Python'.endswith('on')\n"
+"True\n"
+">>> 'a tuple of suffixes'.endswith(('at', 'in'))\n"
+"False\n"
+">>> 'a tuple of suffixes'.endswith(('at', 'es'))\n"
+"True\n"
+">>> 'Python is amazing'.endswith('is', 0, 9)\n"
+"True"
 
 #: ../../library/stdtypes.rst:1939
 msgid "See also :meth:`startswith` and :meth:`removesuffix`."
@@ -3322,6 +3423,13 @@ msgid ""
 "01  012\n"
 "0123    01234"
 msgstr ""
+">>> '01\\t012\\t0123\\t01234'.expandtabs()\n"
+"'01      012     0123    01234'\n"
+">>> '01\\t012\\t0123\\t01234'.expandtabs(4)\n"
+"'01  012 0123    01234'\n"
+">>> print('01\\t012\\n0123\\t01234'.expandtabs(4))\n"
+"01  012\n"
+"0123    01234"
 
 #: ../../library/stdtypes.rst:1968
 #, fuzzy
@@ -3341,6 +3449,10 @@ msgid ""
 ">>> 'spam, spam, spam'.find('sp', 5)\n"
 "6"
 msgstr ""
+">>> 'spam, spam, spam'.find('sp')\n"
+"0\n"
+">>> 'spam, spam, spam'.find('sp', 5)\n"
+"6"
 
 #: ../../library/stdtypes.rst:1978
 msgid "See also :meth:`rfind` and :meth:`index`."
@@ -3360,6 +3472,8 @@ msgid ""
 ">>> 'Py' in 'Python'\n"
 "True"
 msgstr ""
+">>> 'Py' in 'Python'\n"
+"True"
 
 #: ../../library/stdtypes.rst:1992
 #, python-brace-format
@@ -3518,6 +3632,12 @@ msgid ""
 ">>> 'def'.isidentifier(), iskeyword('def')\n"
 "(True, True)"
 msgstr ""
+">>> from keyword import iskeyword\n"
+"\n"
+">>> 'hello'.isidentifier(), iskeyword('hello')\n"
+"(True, False)\n"
+">>> 'def'.isidentifier(), iskeyword('def')\n"
+"(True, True)"
 
 #: ../../library/stdtypes.rst:2112
 msgid ""
@@ -3657,6 +3777,10 @@ msgid ""
 ">>> 'www.example.com'.lstrip('cmowz.')\n"
 "'example.com'"
 msgstr ""
+">>> '   spacious   '.lstrip()\n"
+"'spacious   '\n"
+">>> 'www.example.com'.lstrip('cmowz.')\n"
+"'example.com'"
 
 #: ../../library/stdtypes.rst:2216
 msgid ""
@@ -3673,6 +3797,10 @@ msgid ""
 ">>> 'Arthur: three!'.removeprefix('Arthur: ')\n"
 "'three!'"
 msgstr ""
+">>> 'Arthur: three!'.lstrip('Arthur: ')\n"
+"'ee!'\n"
+">>> 'Arthur: three!'.removeprefix('Arthur: ')\n"
+"'three!'"
 
 #: ../../library/stdtypes.rst:2228
 msgid ""
@@ -3728,6 +3856,10 @@ msgid ""
 ">>> 'BaseTestCase'.removeprefix('Test')\n"
 "'BaseTestCase'"
 msgstr ""
+">>> 'TestHook'.removeprefix('Test')\n"
+"'Hook'\n"
+">>> 'BaseTestCase'.removeprefix('Test')\n"
+"'BaseTestCase'"
 
 #: ../../library/stdtypes.rst:2265
 msgid ""
@@ -3745,6 +3877,10 @@ msgid ""
 ">>> 'TmpDirMixin'.removesuffix('Tests')\n"
 "'TmpDirMixin'"
 msgstr ""
+">>> 'MiscTests'.removesuffix('Tests')\n"
+"'Misc'\n"
+">>> 'TmpDirMixin'.removesuffix('Tests')\n"
+"'TmpDirMixin'"
 
 #: ../../library/stdtypes.rst:2279
 #, fuzzy
@@ -3834,6 +3970,10 @@ msgid ""
 ">>> 'mississippi'.rstrip('ipz')\n"
 "'mississ'"
 msgstr ""
+">>> '   spacious   '.rstrip()\n"
+"'   spacious'\n"
+">>> 'mississippi'.rstrip('ipz')\n"
+"'mississ'"
 
 #: ../../library/stdtypes.rst:2336
 msgid ""
@@ -3850,6 +3990,10 @@ msgid ""
 ">>> 'Monty Python'.removesuffix(' Python')\n"
 "'Monty'"
 msgstr ""
+">>> 'Monty Python'.rstrip(' Python')\n"
+"'M'\n"
+">>> 'Monty Python'.removesuffix(' Python')\n"
+"'Monty'"
 
 #: ../../library/stdtypes.rst:2346
 msgid ""
@@ -3902,6 +4046,14 @@ msgid ""
 ">>> '1<>2<>3<4'.split('<>')\n"
 "['1', '2', '3<4']"
 msgstr ""
+">>> '1,2,3'.split(',')\n"
+"['1', '2', '3']\n"
+">>> '1,2,3'.split(',', maxsplit=1)\n"
+"['1', '2,3']\n"
+">>> '1,2,,3,'.split(',')\n"
+"['1', '2', '', '3', '']\n"
+">>> '1<>2<>3<4'.split('<>')\n"
+"['1', '2', '3<4']"
 
 #: ../../library/stdtypes.rst:2370
 msgid ""
@@ -3925,6 +4077,12 @@ msgid ""
 ">>> '   1   2   3   '.split()\n"
 "['1', '2', '3']"
 msgstr ""
+">>> '1 2 3'.split()\n"
+"['1', '2', '3']\n"
+">>> '1 2 3'.split(maxsplit=1)\n"
+"['1', '2 3']\n"
+">>> '   1   2   3   '.split()\n"
+"['1', '2', '3']"
 
 #: ../../library/stdtypes.rst:2386
 msgid ""
@@ -3941,6 +4099,12 @@ msgid ""
 ">>> \"   foo   \".split(maxsplit=0)\n"
 "['foo   ']"
 msgstr ""
+">>> \"\".split(None, 0)\n"
+"[]\n"
+">>> \"   \".split(None, 0)\n"
+"[]\n"
+">>> \"   foo   \".split(maxsplit=0)\n"
+"['foo   ']"
 
 #: ../../library/stdtypes.rst:2404
 msgid ""
@@ -4066,6 +4230,10 @@ msgid ""
 ">>> 'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines(keepends=True)\n"
 "['ab c\\n', '\\n', 'de fg\\r', 'kl\\r\\n']"
 msgstr ""
+">>> 'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines()\n"
+"['ab c', '', 'de fg', 'kl']\n"
+">>> 'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines(keepends=True)\n"
+"['ab c\\n', '\\n', 'de fg\\r', 'kl\\r\\n']"
 
 #: ../../library/stdtypes.rst:2448
 msgid ""
@@ -4083,6 +4251,10 @@ msgid ""
 ">>> \"One line\\n\".splitlines()\n"
 "['One line']"
 msgstr ""
+">>> \"\".splitlines()\n"
+"[]\n"
+">>> \"One line\\n\".splitlines()\n"
+"['One line']"
 
 #: ../../library/stdtypes.rst:2457
 msgid "For comparison, ``split('\\n')`` gives::"
@@ -4095,6 +4267,10 @@ msgid ""
 ">>> 'Two lines\\n'.split('\\n')\n"
 "['Two lines', '']"
 msgstr ""
+">>> ''.split('\\n')\n"
+"['']\n"
+">>> 'Two lines\\n'.split('\\n')\n"
+"['Two lines', '']"
 
 #: ../../library/stdtypes.rst:2467
 msgid ""
@@ -4126,6 +4302,10 @@ msgid ""
 ">>> 'www.example.com'.strip('cmowz.')\n"
 "'example'"
 msgstr ""
+">>> '   spacious   '.strip()\n"
+"'spacious'\n"
+">>> 'www.example.com'.strip('cmowz.')\n"
+"'example'"
 
 #: ../../library/stdtypes.rst:2486
 msgid ""
@@ -4144,6 +4324,9 @@ msgid ""
 ">>> comment_string.strip('.#! ')\n"
 "'Section 3.2.1 Issue #32'"
 msgstr ""
+">>> comment_string = '#....... Section 3.2.1 Issue #32 .......'\n"
+">>> comment_string.strip('.#! ')\n"
+"'Section 3.2.1 Issue #32'"
 
 #: ../../library/stdtypes.rst:2499
 msgid ""
@@ -4165,6 +4348,8 @@ msgid ""
 ">>> 'Hello world'.title()\n"
 "'Hello World'"
 msgstr ""
+">>> 'Hello world'.title()\n"
+"'Hello World'"
 
 #: ../../library/stdtypes.rst:2514 ../../library/stdtypes.rst:3922
 msgid ""
@@ -4181,6 +4366,8 @@ msgid ""
 ">>> \"they're bill's friends from the UK\".title()\n"
 "\"They'Re Bill'S Friends From The Uk\""
 msgstr ""
+">>> \"they're bill's friends from the UK\".title()\n"
+"\"They'Re Bill'S Friends From The Uk\""
 
 #: ../../library/stdtypes.rst:2522
 msgid ""
@@ -4206,6 +4393,14 @@ msgid ""
 ">>> titlecase(\"they're bill's friends.\")\n"
 "\"They're Bill's Friends.\""
 msgstr ""
+">>> import re\n"
+">>> def titlecase(s):\n"
+"...     return re.sub(r\"[A-Za-z]+('[A-Za-z]+)?\",\n"
+"...                   lambda mo: mo.group(0).capitalize(),\n"
+"...                   s)\n"
+"...\n"
+">>> titlecase(\"they're bill's friends.\")\n"
+"\"They're Bill's Friends.\""
 
 #: ../../library/stdtypes.rst:2540
 #, fuzzy
@@ -4278,6 +4473,10 @@ msgid ""
 ">>> \"-42\".zfill(5)\n"
 "'-0042'"
 msgstr ""
+">>> \"42\".zfill(5)\n"
+"'00042'\n"
+">>> \"-42\".zfill(5)\n"
+"'-0042'"
 
 #: ../../library/stdtypes.rst:2600
 msgid "Formatted String Literals (f-strings)"
@@ -4318,6 +4517,10 @@ msgid ""
 ">>> f'{who.title()} expects the {nationality} Inquisition!'\n"
 "'Nobody expects the Spanish Inquisition!'"
 msgstr ""
+">>> who = 'nobody'\n"
+">>> nationality = 'Spanish'\n"
+">>> f'{who.title()} expects the {nationality} Inquisition!'\n"
+"'Nobody expects the Spanish Inquisition!'"
 
 #: ../../library/stdtypes.rst:2627
 msgid "It is also possible to use a multi line f-string:"
@@ -4329,6 +4532,9 @@ msgid ""
 "... on two lines'''\n"
 "'This is a string\\non two lines'"
 msgstr ""
+">>> f'''This is a string\n"
+"... on two lines'''\n"
+"'This is a string\\non two lines'"
 
 #: ../../library/stdtypes.rst:2635
 msgid ""
@@ -4343,6 +4549,9 @@ msgid ""
 ">>> f'The {nationality} Inquisition!'\n"
 "'The Spanish Inquisition!'"
 msgstr ""
+">>> nationality = 'Spanish'\n"
+">>> f'The {nationality} Inquisition!'\n"
+"'The Spanish Inquisition!'"
 
 #: ../../library/stdtypes.rst:2644
 #, python-brace-format
@@ -4356,6 +4565,9 @@ msgid ""
 ">>> f'{{x}} is {x}'\n"
 "'{x} is 42'"
 msgstr ""
+">>> x = 42\n"
+">>> f'{{x}} is {x}'\n"
+"'{x} is 42'"
 
 #: ../../library/stdtypes.rst:2652
 msgid "Functions can also be used, and :ref:`format specifiers <formatstrings>`:"
@@ -4368,6 +4580,9 @@ msgid ""
 ">>> f'√2 \\N{ALMOST EQUAL TO} {sqrt(2):.5f}'\n"
 "'√2 ≈ 1.41421'"
 msgstr ""
+">>> from math import sqrt\n"
+">>> f'√2 \\N{ALMOST EQUAL TO} {sqrt(2):.5f}'\n"
+"'√2 ≈ 1.41421'"
 
 #: ../../library/stdtypes.rst:2660
 msgid "Any non-string expression is converted using :func:`str`, by default:"
@@ -4380,6 +4595,9 @@ msgid ""
 ">>> f'{Fraction(1, 3)}'\n"
 "'1/3'"
 msgstr ""
+">>> from fractions import Fraction\n"
+">>> f'{Fraction(1, 3)}'\n"
+"'1/3'"
 
 #: ../../library/stdtypes.rst:2668
 msgid ""
@@ -4393,9 +4611,8 @@ msgid "Conversion"
 msgstr "변환"
 
 #: ../../library/stdtypes.rst:2674
-#, fuzzy
 msgid "``!a``"
-msgstr "``!=``"
+msgstr "``!a``"
 
 #: ../../library/stdtypes.rst:2674
 #, fuzzy
@@ -4403,9 +4620,8 @@ msgid ":func:`ascii`"
 msgstr ":func:`abs`"
 
 #: ../../library/stdtypes.rst:2675
-#, fuzzy
 msgid "``!r``"
-msgstr "``\\r``"
+msgstr "``!r``"
 
 #: ../../library/stdtypes.rst:2675
 #, fuzzy
@@ -4413,14 +4629,12 @@ msgid ":func:`repr`"
 msgstr ":func:`pow`"
 
 #: ../../library/stdtypes.rst:2676
-#, fuzzy
 msgid "``!s``"
-msgstr "``is``"
+msgstr "``!s``"
 
 #: ../../library/stdtypes.rst:2676
-#, fuzzy
 msgid ":func:`str`"
-msgstr ":func:`int`"
+msgstr ":func:`str`"
 
 #: ../../library/stdtypes.rst:2679
 #, fuzzy
@@ -4439,6 +4653,14 @@ msgid ""
 ">>> print(f'{question!a}')\n"
 "'\\xbfD\\xf3nde est\\xe1 el Presidente?'"
 msgstr ""
+">>> from fractions import Fraction\n"
+">>> f'{Fraction(1, 3)!s}'\n"
+"'1/3'\n"
+">>> f'{Fraction(1, 3)!r}'\n"
+"'Fraction(1, 3)'\n"
+">>> question = '¿Dónde está el Presidente?'\n"
+">>> print(f'{question!a}')\n"
+"'\\xbfD\\xf3nde est\\xe1 el Presidente?'"
 
 #: ../../library/stdtypes.rst:2692
 msgid ""
@@ -4461,6 +4683,14 @@ msgid ""
 ">>> f'{calculation = !s}'\n"
 "'calculation = 1/3'"
 msgstr ""
+">>> from fractions import Fraction\n"
+">>> calculation = Fraction(1, 3)\n"
+">>> f'{calculation=}'\n"
+"'calculation=Fraction(1, 3)'\n"
+">>> f'{calculation = }'\n"
+"'calculation = Fraction(1, 3)'\n"
+">>> f'{calculation = !s}'\n"
+"'calculation = 1/3'"
 
 #: ../../library/stdtypes.rst:2709
 msgid ""
@@ -4482,6 +4712,11 @@ msgid ""
 ">>> f'{Fraction(1, 7):_^+10}'\n"
 "'___+1/7___'"
 msgstr ""
+">>> from fractions import Fraction\n"
+">>> f'{Fraction(1, 7):.6f}'\n"
+"'0.142857'\n"
+">>> f'{Fraction(1, 7):_^+10}'\n"
+"'___+1/7___'"
 
 #: ../../library/stdtypes.rst:2729
 msgid "``printf``-style String Formatting"
@@ -4531,6 +4766,8 @@ msgid ""
 ">>> print('%s has %d quote types.' % ('Python', 2))\n"
 "Python has 2 quote types."
 msgstr ""
+">>> print('%s has %d quote types.' % ('Python', 2))\n"
+"Python has 2 quote types."
 
 #: ../../library/stdtypes.rst:2763
 msgid ""
@@ -5263,6 +5500,8 @@ msgid ""
 "a = \"abc\"\n"
 "b = a.replace(\"a\", \"f\")"
 msgstr ""
+"a = \"abc\"\n"
+"b = a.replace(\"a\", \"f\")"
 
 #: ../../library/stdtypes.rst:3195
 msgid "and::"
@@ -5273,6 +5512,8 @@ msgid ""
 "a = b\"abc\"\n"
 "b = a.replace(b\"a\", b\"f\")"
 msgstr ""
+"a = b\"abc\"\n"
+"b = a.replace(b\"a\", b\"f\")"
 
 #: ../../library/stdtypes.rst:3200
 msgid ""
@@ -5342,6 +5583,10 @@ msgid ""
 ">>> b'BaseTestCase'.removeprefix(b'Test')\n"
 "b'BaseTestCase'"
 msgstr ""
+">>> b'TestHook'.removeprefix(b'Test')\n"
+"b'Hook'\n"
+">>> b'BaseTestCase'.removeprefix(b'Test')\n"
+"b'BaseTestCase'"
 
 #: ../../library/stdtypes.rst:3240
 msgid "The *prefix* may be any :term:`bytes-like object`."
@@ -5377,6 +5622,10 @@ msgid ""
 ">>> b'TmpDirMixin'.removesuffix(b'Tests')\n"
 "b'TmpDirMixin'"
 msgstr ""
+">>> b'MiscTests'.removesuffix(b'Tests')\n"
+"b'Misc'\n"
+">>> b'TmpDirMixin'.removesuffix(b'Tests')\n"
+"b'TmpDirMixin'"
 
 #: ../../library/stdtypes.rst:3262
 msgid "The *suffix* may be any :term:`bytes-like object`."
@@ -5450,6 +5699,8 @@ msgid ""
 ">>> b'Py' in b'Python'\n"
 "True"
 msgstr ""
+">>> b'Py' in b'Python'\n"
+"True"
 
 #: ../../library/stdtypes.rst:3342
 msgid ""
@@ -5584,6 +5835,8 @@ msgid ""
 ">>> b'read this short text'.translate(None, b'aeiou')\n"
 "b'rd ths shrt txt'"
 msgstr ""
+">>> b'read this short text'.translate(None, b'aeiou')\n"
+"b'rd ths shrt txt'"
 
 #: ../../library/stdtypes.rst:3472
 msgid "*delete* is now supported as a keyword argument."
@@ -5643,6 +5896,10 @@ msgid ""
 ">>> b'www.example.com'.lstrip(b'cmowz.')\n"
 "b'example.com'"
 msgstr ""
+">>> b'   spacious   '.lstrip()\n"
+"b'spacious   '\n"
+">>> b'www.example.com'.lstrip(b'cmowz.')\n"
+"b'example.com'"
 
 #: ../../library/stdtypes.rst:3524
 msgid ""
@@ -5662,6 +5919,10 @@ msgid ""
 ">>> b'Arthur: three!'.removeprefix(b'Arthur: ')\n"
 "b'three!'"
 msgstr ""
+">>> b'Arthur: three!'.lstrip(b'Arthur: ')\n"
+"b'ee!'\n"
+">>> b'Arthur: three!'.removeprefix(b'Arthur: ')\n"
+"b'three!'"
 
 #: ../../library/stdtypes.rst:3543
 msgid ""
@@ -5708,6 +5969,10 @@ msgid ""
 ">>> b'mississippi'.rstrip(b'ipz')\n"
 "b'mississ'"
 msgstr ""
+">>> b'   spacious   '.rstrip()\n"
+"b'   spacious'\n"
+">>> b'mississippi'.rstrip(b'ipz')\n"
+"b'mississ'"
 
 #: ../../library/stdtypes.rst:3579
 msgid ""
@@ -5727,6 +5992,10 @@ msgid ""
 ">>> b'Monty Python'.removesuffix(b' Python')\n"
 "b'Monty'"
 msgstr ""
+">>> b'Monty Python'.rstrip(b' Python')\n"
+"b'M'\n"
+">>> b'Monty Python'.removesuffix(b' Python')\n"
+"b'Monty'"
 
 #: ../../library/stdtypes.rst:3598
 msgid ""
@@ -5771,6 +6040,14 @@ msgid ""
 ">>> b'1<>2<>3<4'.split(b'<>')\n"
 "[b'1', b'2', b'3<4']"
 msgstr ""
+">>> b'1,2,3'.split(b',')\n"
+"[b'1', b'2', b'3']\n"
+">>> b'1,2,3'.split(b',', maxsplit=1)\n"
+"[b'1', b'2,3']\n"
+">>> b'1,2,,3,'.split(b',')\n"
+"[b'1', b'2', b'', b'3', b'']\n"
+">>> b'1<>2<>3<4'.split(b'<>')\n"
+"[b'1', b'2', b'3<4']"
 
 #: ../../library/stdtypes.rst:3623
 msgid ""
@@ -5794,6 +6071,12 @@ msgid ""
 ">>> b'   1   2   3   '.split()\n"
 "[b'1', b'2', b'3']"
 msgstr ""
+">>> b'1 2 3'.split()\n"
+"[b'1', b'2', b'3']\n"
+">>> b'1 2 3'.split(maxsplit=1)\n"
+"[b'1', b'2 3']\n"
+">>> b'   1   2   3   '.split()\n"
+"[b'1', b'2', b'3']"
 
 #: ../../library/stdtypes.rst:3644
 #, fuzzy
@@ -5816,6 +6099,10 @@ msgid ""
 ">>> b'www.example.com'.strip(b'cmowz.')\n"
 "b'example'"
 msgstr ""
+">>> b'   spacious   '.strip()\n"
+"b'spacious'\n"
+">>> b'www.example.com'.strip(b'cmowz.')\n"
+"b'example'"
 
 #: ../../library/stdtypes.rst:3656
 msgid ""
@@ -5873,6 +6160,10 @@ msgid ""
 ">>> b'01\\t012\\t0123\\t01234'.expandtabs(4)\n"
 "b'01  012 0123    01234'"
 msgstr ""
+">>> b'01\\t012\\t0123\\t01234'.expandtabs()\n"
+"b'01      012     0123    01234'\n"
+">>> b'01\\t012\\t0123\\t01234'.expandtabs(4)\n"
+"b'01  012 0123    01234'"
 
 #: ../../library/stdtypes.rst:3714
 msgid ""
@@ -5895,6 +6186,10 @@ msgid ""
 ">>> b'ABC abc1'.isalnum()\n"
 "False"
 msgstr ""
+">>> b'ABCabc1'.isalnum()\n"
+"True\n"
+">>> b'ABC abc1'.isalnum()\n"
+"False"
 
 #: ../../library/stdtypes.rst:3731
 msgid ""
@@ -5915,6 +6210,10 @@ msgid ""
 ">>> b'ABCabc1'.isalpha()\n"
 "False"
 msgstr ""
+">>> b'ABCabc'.isalpha()\n"
+"True\n"
+">>> b'ABCabc1'.isalpha()\n"
+"False"
 
 #: ../../library/stdtypes.rst:3747
 msgid ""
@@ -5940,6 +6239,10 @@ msgid ""
 ">>> b'1.23'.isdigit()\n"
 "False"
 msgstr ""
+">>> b'1234'.isdigit()\n"
+"True\n"
+">>> b'1.23'.isdigit()\n"
+"False"
 
 #: ../../library/stdtypes.rst:3772
 msgid ""
@@ -5956,6 +6259,10 @@ msgid ""
 ">>> b'Hello world'.islower()\n"
 "False"
 msgstr ""
+">>> b'hello world'.islower()\n"
+"True\n"
+">>> b'Hello world'.islower()\n"
+"False"
 
 #: ../../library/stdtypes.rst:3782 ../../library/stdtypes.rst:3824
 #: ../../library/stdtypes.rst:3840 ../../library/stdtypes.rst:3890
@@ -5995,6 +6302,10 @@ msgid ""
 ">>> b'Hello world'.istitle()\n"
 "False"
 msgstr ""
+">>> b'Hello World'.istitle()\n"
+"True\n"
+">>> b'Hello world'.istitle()\n"
+"False"
 
 #: ../../library/stdtypes.rst:3814
 msgid ""
@@ -6012,6 +6323,10 @@ msgid ""
 ">>> b'Hello world'.isupper()\n"
 "False"
 msgstr ""
+">>> b'HELLO WORLD'.isupper()\n"
+"True\n"
+">>> b'Hello world'.isupper()\n"
+"False"
 
 #: ../../library/stdtypes.rst:3832
 msgid ""
@@ -6024,6 +6339,8 @@ msgid ""
 ">>> b'Hello World'.lower()\n"
 "b'hello world'"
 msgstr ""
+">>> b'Hello World'.lower()\n"
+"b'hello world'"
 
 #: ../../library/stdtypes.rst:3857
 msgid ""
@@ -6042,6 +6359,10 @@ msgid ""
 ">>> b'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines(keepends=True)\n"
 "[b'ab c\\n', b'\\n', b'de fg\\r', b'kl\\r\\n']"
 msgstr ""
+">>> b'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines()\n"
+"[b'ab c', b'', b'de fg', b'kl']\n"
+">>> b'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines(keepends=True)\n"
+"[b'ab c\\n', b'\\n', b'de fg\\r', b'kl\\r\\n']"
 
 #: ../../library/stdtypes.rst:3869
 msgid ""
@@ -6059,6 +6380,10 @@ msgid ""
 ">>> b\"\".splitlines(), b\"One line\\n\".splitlines()\n"
 "([], [b'One line'])"
 msgstr ""
+">>> b\"\".split(b'\\n'), b\"Two lines\\n\".split(b'\\n')\n"
+"([b''], [b'Two lines', b''])\n"
+">>> b\"\".splitlines(), b\"One line\\n\".splitlines()\n"
+"([], [b'One line'])"
 
 #: ../../library/stdtypes.rst:3882
 msgid ""
@@ -6071,6 +6396,8 @@ msgid ""
 ">>> b'Hello World'.swapcase()\n"
 "b'hELLO wORLD'"
 msgstr ""
+">>> b'Hello World'.swapcase()\n"
+"b'hELLO wORLD'"
 
 #: ../../library/stdtypes.rst:3894
 #, fuzzy
@@ -6097,6 +6424,8 @@ msgid ""
 ">>> b'Hello world'.title()\n"
 "b'Hello World'"
 msgstr ""
+">>> b'Hello world'.title()\n"
+"b'Hello World'"
 
 #: ../../library/stdtypes.rst:3917
 msgid ""
@@ -6114,6 +6443,8 @@ msgid ""
 ">>> b\"they're bill's friends from the UK\".title()\n"
 "b\"They'Re Bill'S Friends From The Uk\""
 msgstr ""
+">>> b\"they're bill's friends from the UK\".title()\n"
+"b\"They'Re Bill'S Friends From The Uk\""
 
 #: ../../library/stdtypes.rst:3930
 msgid ""
@@ -6133,6 +6464,15 @@ msgid ""
 ">>> titlecase(b\"they're bill's friends.\")\n"
 "b\"They're Bill's Friends.\""
 msgstr ""
+">>> import re\n"
+">>> def titlecase(s):\n"
+"...     return re.sub(rb\"[A-Za-z]+('[A-Za-z]+)?\",\n"
+"...                   lambda mo: mo.group(0)[0:1].upper() +\n"
+"...                              mo.group(0)[1:].lower(),\n"
+"...                   s)\n"
+"...\n"
+">>> titlecase(b\"they're bill's friends.\")\n"
+"b\"They're Bill's Friends.\""
 
 #: ../../library/stdtypes.rst:3951
 msgid ""
@@ -6145,6 +6485,8 @@ msgid ""
 ">>> b'Hello World'.upper()\n"
 "b'HELLO WORLD'"
 msgstr ""
+">>> b'Hello World'.upper()\n"
+"b'HELLO WORLD'"
 
 #: ../../library/stdtypes.rst:3972
 msgid ""
@@ -6165,6 +6507,10 @@ msgid ""
 ">>> b\"-42\".zfill(5)\n"
 "b'-0042'"
 msgstr ""
+">>> b\"42\".zfill(5)\n"
+"b'00042'\n"
+">>> b\"-42\".zfill(5)\n"
+"b'-0042'"
 
 #: ../../library/stdtypes.rst:3994
 msgid "``printf``-style Bytes Formatting"
@@ -6351,6 +6697,15 @@ msgid ""
 ">>> bytes(v[1:4])\n"
 "b'bce'"
 msgstr ""
+">>> v = memoryview(b'abcefg')\n"
+">>> v[1]\n"
+"98\n"
+">>> v[-1]\n"
+"103\n"
+">>> v[1:4]\n"
+"<memory at 0x7f3ddc9f4350>\n"
+">>> bytes(v[1:4])\n"
+"b'bce'"
 
 #: ../../library/stdtypes.rst:4241
 msgid ""
@@ -6384,6 +6739,15 @@ msgid ""
 ">>> m[::2].tolist()\n"
 "[-11111111, -33333333]"
 msgstr ""
+">>> import array\n"
+">>> a = array.array('l', [-11111111, 22222222, -33333333, 44444444])\n"
+">>> m = memoryview(a)\n"
+">>> m[0]\n"
+"-11111111\n"
+">>> m[-1]\n"
+"44444444\n"
+">>> m[::2].tolist()\n"
+"[-11111111, -33333333]"
 
 #: ../../library/stdtypes.rst:4262
 msgid ""
@@ -6412,6 +6776,24 @@ msgid ""
 ">>> data\n"
 "bytearray(b'z1spam')"
 msgstr ""
+">>> data = bytearray(b'abcefg')\n"
+">>> v = memoryview(data)\n"
+">>> v.readonly\n"
+"False\n"
+">>> v[0] = ord(b'z')\n"
+">>> data\n"
+"bytearray(b'zbcefg')\n"
+">>> v[1:4] = b'123'\n"
+">>> data\n"
+"bytearray(b'z123fg')\n"
+">>> v[2:3] = b'spam'\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"ValueError: memoryview assignment: lvalue and rvalue have different "
+"structures\n"
+">>> v[2:6] = b'spam'\n"
+">>> data\n"
+"bytearray(b'z1spam')"
 
 #: ../../library/stdtypes.rst:4283
 #, fuzzy
@@ -6433,6 +6815,13 @@ msgid ""
 ">>> hash(v[::-2]) == hash(b'abcefg'[::-2])\n"
 "True"
 msgstr ""
+">>> v = memoryview(b'abcefg')\n"
+">>> hash(v) == hash(b'abcefg')\n"
+"True\n"
+">>> hash(v[2:4]) == hash(b'ce')\n"
+"True\n"
+">>> hash(v[::-2]) == hash(b'abcefg'[::-2])\n"
+"True"
 
 #: ../../library/stdtypes.rst:4295
 #, fuzzy
@@ -6495,6 +6884,21 @@ msgid ""
 ">>> z.tolist() == c.tolist()\n"
 "True"
 msgstr ""
+">>> import array\n"
+">>> a = array.array('I', [1, 2, 3, 4, 5])\n"
+">>> b = array.array('d', [1.0, 2.0, 3.0, 4.0, 5.0])\n"
+">>> c = array.array('b', [5, 3, 1])\n"
+">>> x = memoryview(a)\n"
+">>> y = memoryview(b)\n"
+">>> x == a == y == b\n"
+"True\n"
+">>> x.tolist() == a.tolist() == y.tolist() == b.tolist()\n"
+"True\n"
+">>> z = y[::-2]\n"
+">>> z == c\n"
+"True\n"
+">>> z.tolist() == c.tolist()\n"
+"True"
 
 #: ../../library/stdtypes.rst:4336
 msgid ""
@@ -6519,6 +6923,17 @@ msgid ""
 ">>> a == b\n"
 "False"
 msgstr ""
+">>> from ctypes import BigEndianStructure, c_long\n"
+">>> class BEPoint(BigEndianStructure):\n"
+"...     _fields_ = [(\"x\", c_long), (\"y\", c_long)]\n"
+"...\n"
+">>> point = BEPoint(100, 200)\n"
+">>> a = memoryview(point)\n"
+">>> b = memoryview(point)\n"
+">>> a == point\n"
+"False\n"
+">>> a == b\n"
+"False"
 
 #: ../../library/stdtypes.rst:4352
 #, fuzzy
@@ -6549,6 +6964,11 @@ msgid ""
 ">>> bytes(m)\n"
 "b'abc'"
 msgstr ""
+">>> m = memoryview(b\"abc\")\n"
+">>> m.tobytes()\n"
+"b'abc'\n"
+">>> bytes(m)\n"
+"b'abc'"
 
 #: ../../library/stdtypes.rst:4370
 msgid ""
@@ -6586,6 +7006,9 @@ msgid ""
 ">>> m.hex()\n"
 "'616263'"
 msgstr ""
+">>> m = memoryview(b\"abc\")\n"
+">>> m.hex()\n"
+"'616263'"
 
 #: ../../library/stdtypes.rst:4394
 msgid ""
@@ -6610,6 +7033,13 @@ msgid ""
 ">>> m.tolist()\n"
 "[1.1, 2.2, 3.3]"
 msgstr ""
+">>> memoryview(b'abc').tolist()\n"
+"[97, 98, 99]\n"
+">>> import array\n"
+">>> a = array.array('d', [1.1, 2.2, 3.3])\n"
+">>> m = memoryview(a)\n"
+">>> m.tolist()\n"
+"[1.1, 2.2, 3.3]"
 
 #: ../../library/stdtypes.rst:4411
 msgid ""
@@ -6637,6 +7067,17 @@ msgid ""
 ">>> mm.tolist()\n"
 "[43, 98, 99]"
 msgstr ""
+">>> m = memoryview(bytearray(b'abc'))\n"
+">>> mm = m.toreadonly()\n"
+">>> mm.tolist()\n"
+"[97, 98, 99]\n"
+">>> mm[0] = 42\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: cannot modify read-only memory\n"
+">>> m[0] = 43\n"
+">>> mm.tolist()\n"
+"[43, 98, 99]"
 
 #: ../../library/stdtypes.rst:4437
 msgid ""
@@ -6669,6 +7110,12 @@ msgid ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "ValueError: operation forbidden on released memoryview object"
 msgstr ""
+">>> m = memoryview(b'abc')\n"
+">>> m.release()\n"
+">>> m[0]\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"ValueError: operation forbidden on released memoryview object"
 
 #: ../../library/stdtypes.rst:4454
 msgid ""
@@ -6687,6 +7134,14 @@ msgid ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "ValueError: operation forbidden on released memoryview object"
 msgstr ""
+">>> with memoryview(b'abc') as m:\n"
+"...     m[0]\n"
+"...\n"
+"97\n"
+">>> m[0]\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"ValueError: operation forbidden on released memoryview object"
 
 #: ../../library/stdtypes.rst:4471
 msgid ""
@@ -6739,6 +7194,26 @@ msgid ""
 ">>> y.nbytes\n"
 "24"
 msgstr ""
+">>> import array\n"
+">>> a = array.array('l', [1,2,3])\n"
+">>> x = memoryview(a)\n"
+">>> x.format\n"
+"'l'\n"
+">>> x.itemsize\n"
+"8\n"
+">>> len(x)\n"
+"3\n"
+">>> x.nbytes\n"
+"24\n"
+">>> y = x.cast('B')\n"
+">>> y.format\n"
+"'B'\n"
+">>> y.itemsize\n"
+"1\n"
+">>> len(y)\n"
+"24\n"
+">>> y.nbytes\n"
+"24"
 
 #: ../../library/stdtypes.rst:4506
 msgid "Cast 1D/unsigned bytes to 1D/char::"
@@ -6757,6 +7232,16 @@ msgid ""
 ">>> b\n"
 "bytearray(b'ayz')"
 msgstr ""
+">>> b = bytearray(b'zyz')\n"
+">>> x = memoryview(b)\n"
+">>> x[0] = b'a'\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"TypeError: memoryview: invalid type for format 'B'\n"
+">>> y = x.cast('c')\n"
+">>> y[0] = b'a'\n"
+">>> b\n"
+"bytearray(b'ayz')"
 
 #: ../../library/stdtypes.rst:4519
 msgid "Cast 1D/bytes to 3D/ints to 1D/signed char::"
@@ -6788,6 +7273,29 @@ msgid ""
 ">>> z.nbytes\n"
 "48"
 msgstr ""
+">>> import struct\n"
+">>> buf = struct.pack(\"i\"*12, *list(range(12)))\n"
+">>> x = memoryview(buf)\n"
+">>> y = x.cast('i', shape=[2,2,3])\n"
+">>> y.tolist()\n"
+"[[[0, 1, 2], [3, 4, 5]], [[6, 7, 8], [9, 10, 11]]]\n"
+">>> y.format\n"
+"'i'\n"
+">>> y.itemsize\n"
+"4\n"
+">>> len(y)\n"
+"2\n"
+">>> y.nbytes\n"
+"48\n"
+">>> z = y.cast('b')\n"
+">>> z.format\n"
+"'b'\n"
+">>> z.itemsize\n"
+"1\n"
+">>> len(z)\n"
+"48\n"
+">>> z.nbytes\n"
+"48"
 
 #: ../../library/stdtypes.rst:4545
 msgid "Cast 1D/unsigned long to 2D/unsigned long::"
@@ -6805,6 +7313,15 @@ msgid ""
 ">>> y.tolist()\n"
 "[[0, 1, 2], [3, 4, 5]]"
 msgstr ""
+">>> buf = struct.pack(\"L\"*6, *list(range(6)))\n"
+">>> x = memoryview(buf)\n"
+">>> y = x.cast('L', shape=[2,3])\n"
+">>> len(y)\n"
+"2\n"
+">>> y.nbytes\n"
+"48\n"
+">>> y.tolist()\n"
+"[[0, 1, 2], [3, 4, 5]]"
 
 #: ../../library/stdtypes.rst:4559
 msgid "The source format is no longer restricted when casting to a byte view."
@@ -6842,6 +7359,10 @@ msgid ""
 ">>> m.obj is b\n"
 "True"
 msgstr ""
+">>> b  = bytearray(b'xyz')\n"
+">>> m = memoryview(b)\n"
+">>> m.obj is b\n"
+"True"
 
 #: ../../library/stdtypes.rst:4592
 msgid ""
@@ -6869,6 +7390,20 @@ msgid ""
 ">>> len(y.tobytes())\n"
 "12"
 msgstr ""
+">>> import array\n"
+">>> a = array.array('i', [1,2,3,4,5])\n"
+">>> m = memoryview(a)\n"
+">>> len(m)\n"
+"5\n"
+">>> m.nbytes\n"
+"20\n"
+">>> y = m[::2]\n"
+">>> len(y)\n"
+"3\n"
+">>> y.nbytes\n"
+"12\n"
+">>> len(y.tobytes())\n"
+"12"
 
 #: ../../library/stdtypes.rst:4611
 msgid "Multi-dimensional arrays::"
@@ -6887,6 +7422,16 @@ msgid ""
 ">>> y.nbytes\n"
 "96"
 msgstr ""
+">>> import struct\n"
+">>> buf = struct.pack(\"d\"*12, *[1.5*x for x in range(12)])\n"
+">>> x = memoryview(buf)\n"
+">>> y = x.cast('d', shape=[3,4])\n"
+">>> y.tolist()\n"
+"[[0.0, 1.5, 3.0, 4.5], [6.0, 7.5, 9.0, 10.5], [12.0, 13.5, 15.0, 16.5]]\n"
+">>> len(y)\n"
+"3\n"
+">>> y.nbytes\n"
+"96"
 
 #: ../../library/stdtypes.rst:4628
 msgid "A bool indicating whether the memory is read only."
@@ -6925,6 +7470,14 @@ msgid ""
 ">>> struct.calcsize('H') == m.itemsize\n"
 "True"
 msgstr ""
+">>> import array, struct\n"
+">>> m = memoryview(array.array('H', [32000, 32001, 32002]))\n"
+">>> m.itemsize\n"
+"2\n"
+">>> m[0]\n"
+"32000\n"
+">>> struct.calcsize('H') == m.itemsize\n"
+"True"
 
 #: ../../library/stdtypes.rst:4656
 msgid ""
@@ -7398,6 +7951,14 @@ msgid ""
 ">>> a == b == c == d == e == f\n"
 "True"
 msgstr ""
+">>> a = dict(one=1, two=2, three=3)\n"
+">>> b = {'one': 1, 'two': 2, 'three': 3}\n"
+">>> c = dict(zip(['one', 'two', 'three'], [1, 2, 3]))\n"
+">>> d = dict([('two', 2), ('one', 1), ('three', 3)])\n"
+">>> e = dict({'three': 3, 'one': 1, 'two': 2})\n"
+">>> f = dict({'one': 1, 'three': 3}, two=2)\n"
+">>> a == b == c == d == e == f\n"
+"True"
 
 #: ../../library/stdtypes.rst:4977
 msgid ""
@@ -7423,6 +7984,20 @@ msgid ""
 ">>> d\n"
 "{'one': 42, 'three': 3, 'four': 4, 'two': None}"
 msgstr ""
+">>> d = {\"one\": 1, \"two\": 2, \"three\": 3, \"four\": 4}\n"
+">>> d\n"
+"{'one': 1, 'two': 2, 'three': 3, 'four': 4}\n"
+">>> list(d)\n"
+"['one', 'two', 'three', 'four']\n"
+">>> list(d.values())\n"
+"[1, 2, 3, 4]\n"
+">>> d[\"one\"] = 42\n"
+">>> d\n"
+"{'one': 42, 'two': 2, 'three': 3, 'four': 4}\n"
+">>> del d[\"two\"]\n"
+">>> d[\"two\"] = None\n"
+">>> d\n"
+"{'one': 42, 'three': 3, 'four': 4, 'two': None}"
 
 #: ../../library/stdtypes.rst:4995
 msgid ""
@@ -7482,6 +8057,16 @@ msgid ""
 ">>> c['red']\n"
 "1"
 msgstr ""
+">>> class Counter(dict):\n"
+"...     def __missing__(self, key):\n"
+"...         return 0\n"
+"...\n"
+">>> c = Counter()\n"
+">>> c['red']\n"
+"0\n"
+">>> c['red'] += 1\n"
+">>> c['red']\n"
+"1"
 
 #: ../../library/stdtypes.rst:5036
 #, fuzzy
@@ -7656,6 +8241,9 @@ msgid ""
 ">>> d.values() == d.values()\n"
 "False"
 msgstr ""
+">>> d = {'a': 1}\n"
+">>> d.values() == d.values()\n"
+"False"
 
 #: ../../library/stdtypes.rst:5158
 msgid ""
@@ -7693,6 +8281,15 @@ msgid ""
 ">>> list(reversed(d.items()))\n"
 "[('four', 4), ('three', 3), ('two', 2), ('one', 1)]"
 msgstr ""
+">>> d = {\"one\": 1, \"two\": 2, \"three\": 3, \"four\": 4}\n"
+">>> d\n"
+"{'one': 1, 'two': 2, 'three': 3, 'four': 4}\n"
+">>> list(reversed(d))\n"
+"['four', 'three', 'two', 'one']\n"
+">>> list(reversed(d.values()))\n"
+"[4, 3, 2, 1]\n"
+">>> list(reversed(d.items()))\n"
+"[('four', 4), ('three', 3), ('two', 2), ('one', 1)]"
 
 #: ../../library/stdtypes.rst:5184
 msgid "Dictionaries are now reversible."
@@ -8084,6 +8681,8 @@ msgid ""
 "def average(values: list[float]) -> float:\n"
 "    return sum(values) / len(values)"
 msgstr ""
+"def average(values: list[float]) -> float:\n"
+"    return sum(values) / len(values)"
 
 #: ../../library/stdtypes.rst:5447
 msgid ""
@@ -8101,6 +8700,8 @@ msgid ""
 "def send_post_request(url: str, body: dict[str, int]) -> None:\n"
 "    ..."
 msgstr ""
+"def send_post_request(url: str, body: dict[str, int]) -> None:\n"
+"    ..."
 
 #: ../../library/stdtypes.rst:5455
 msgid ""
@@ -8117,6 +8718,10 @@ msgid ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "TypeError: isinstance() argument 2 cannot be a parameterized generic"
 msgstr ""
+">>> isinstance([1, 2], list[str])\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: isinstance() argument 2 cannot be a parameterized generic"
 
 #: ../../library/stdtypes.rst:5463
 #, fuzzy
@@ -8137,6 +8742,9 @@ msgid ""
 ">>> t([1, 2, 3])\n"
 "[1, 2, 3]"
 msgstr ""
+">>> t = list[str]\n"
+">>> t([1, 2, 3])\n"
+"[1, 2, 3]"
 
 #: ../../library/stdtypes.rst:5473
 msgid ""
@@ -8154,6 +8762,13 @@ msgid ""
 ">>> type(l)\n"
 "<class 'list'>"
 msgstr ""
+">>> t = list[str]\n"
+">>> type(t)\n"
+"<class 'types.GenericAlias'>\n"
+"\n"
+">>> l = t()\n"
+">>> type(l)\n"
+"<class 'list'>"
 
 #: ../../library/stdtypes.rst:5484
 msgid ""
@@ -8169,6 +8784,11 @@ msgid ""
 ">>> str(list[int])\n"
 "'list[int]'"
 msgstr ""
+">>> repr(list[int])\n"
+"'list[int]'\n"
+"\n"
+">>> str(list[int])\n"
+"'list[int]'"
 
 #: ../../library/stdtypes.rst:5492
 #, fuzzy
@@ -8186,6 +8806,10 @@ msgid ""
 "  ...\n"
 "TypeError: dict[str] is not a generic class"
 msgstr ""
+">>> dict[str][str]\n"
+"Traceback (most recent call last):\n"
+"  ...\n"
+"TypeError: dict[str] is not a generic class"
 
 #: ../../library/stdtypes.rst:5500
 #, fuzzy
@@ -8206,6 +8830,10 @@ msgid ""
 ">>> dict[str, Y][int]\n"
 "dict[str, int]"
 msgstr ""
+">>> from typing import TypeVar\n"
+">>> Y = TypeVar('Y')\n"
+">>> dict[str, Y][int]\n"
+"dict[str, int]"
 
 #: ../../library/stdtypes.rst:5511
 #, fuzzy
@@ -8244,14 +8872,12 @@ msgid ":class:`type`"
 msgstr ":class:`type`"
 
 #: ../../library/stdtypes.rst:5522
-#, fuzzy
 msgid ":class:`asyncio.Future`"
-msgstr ":class:`tuple`"
+msgstr ":class:`asyncio.Future`"
 
 #: ../../library/stdtypes.rst:5523
-#, fuzzy
 msgid ":class:`asyncio.Task`"
-msgstr ":class:`set`"
+msgstr ":class:`asyncio.Task`"
 
 #: ../../library/stdtypes.rst:5524
 msgid ":class:`collections.deque`"
@@ -8374,41 +9000,36 @@ msgid ":class:`contextlib.AbstractAsyncContextManager`"
 msgstr ":class:`contextlib.AbstractAsyncContextManager`"
 
 #: ../../library/stdtypes.rst:5554
-#, fuzzy
 msgid ":class:`dataclasses.Field`"
-msgstr ":class:`tuple`"
+msgstr ":class:`dataclasses.Field`"
 
 #: ../../library/stdtypes.rst:5555
 msgid ":class:`functools.cached_property`"
-msgstr ""
+msgstr ":class:`functools.cached_property`"
 
 #: ../../library/stdtypes.rst:5556
 msgid ":class:`functools.partialmethod`"
-msgstr ""
+msgstr ":class:`functools.partialmethod`"
 
 #: ../../library/stdtypes.rst:5557
-#, fuzzy
 msgid ":class:`os.PathLike`"
-msgstr ":class:`tuple`"
+msgstr ":class:`os.PathLike`"
 
 #: ../../library/stdtypes.rst:5558
-#, fuzzy
 msgid ":class:`queue.LifoQueue`"
-msgstr ":class:`tuple`"
+msgstr ":class:`queue.LifoQueue`"
 
 #: ../../library/stdtypes.rst:5559
-#, fuzzy
 msgid ":class:`queue.Queue`"
-msgstr ":class:`tuple`"
+msgstr ":class:`queue.Queue`"
 
 #: ../../library/stdtypes.rst:5560
 msgid ":class:`queue.PriorityQueue`"
-msgstr ""
+msgstr ":class:`queue.PriorityQueue`"
 
 #: ../../library/stdtypes.rst:5561
-#, fuzzy
 msgid ":class:`queue.SimpleQueue`"
-msgstr ":class:`tuple`"
+msgstr ":class:`queue.SimpleQueue`"
 
 #: ../../library/stdtypes.rst:5562
 msgid ":ref:`re.Pattern <re-objects>`"
@@ -8420,38 +9041,35 @@ msgstr ":ref:`re.Match <match-objects>`"
 
 #: ../../library/stdtypes.rst:5564
 msgid ":class:`shelve.BsdDbShelf`"
-msgstr ""
+msgstr ":class:`shelve.BsdDbShelf`"
 
 #: ../../library/stdtypes.rst:5565
 msgid ":class:`shelve.DbfilenameShelf`"
-msgstr ""
+msgstr ":class:`shelve.DbfilenameShelf`"
 
 #: ../../library/stdtypes.rst:5566
-#, fuzzy
 msgid ":class:`shelve.Shelf`"
-msgstr ":class:`set`"
+msgstr ":class:`shelve.Shelf`"
 
 #: ../../library/stdtypes.rst:5567
-#, fuzzy
 msgid ":class:`types.MappingProxyType`"
-msgstr ":class:`collections.abc.Mapping`"
+msgstr ":class:`types.MappingProxyType`"
 
 #: ../../library/stdtypes.rst:5568
 msgid ":class:`weakref.WeakKeyDictionary`"
-msgstr ""
+msgstr ":class:`weakref.WeakKeyDictionary`"
 
 #: ../../library/stdtypes.rst:5569
 msgid ":class:`weakref.WeakMethod`"
-msgstr ""
+msgstr ":class:`weakref.WeakMethod`"
 
 #: ../../library/stdtypes.rst:5570
-#, fuzzy
 msgid ":class:`weakref.WeakSet`"
-msgstr ":class:`set`"
+msgstr ":class:`weakref.WeakSet`"
 
 #: ../../library/stdtypes.rst:5571
 msgid ":class:`weakref.WeakValueDictionary`"
-msgstr ""
+msgstr ":class:`weakref.WeakValueDictionary`"
 
 #: ../../library/stdtypes.rst:5576
 #, fuzzy
@@ -8471,6 +9089,8 @@ msgid ""
 ">>> list[int].__origin__\n"
 "<class 'list'>"
 msgstr ""
+">>> list[int].__origin__\n"
+"<class 'list'>"
 
 #: ../../library/stdtypes.rst:5590
 #, fuzzy
@@ -8487,6 +9107,8 @@ msgid ""
 ">>> dict[str, list[int]].__args__\n"
 "(<class 'str'>, list[int])"
 msgstr ""
+">>> dict[str, list[int]].__args__\n"
+"(<class 'str'>, list[int])"
 
 #: ../../library/stdtypes.rst:5600
 msgid ""
@@ -8504,6 +9126,11 @@ msgid ""
 ">>> list[T].__parameters__\n"
 "(~T,)"
 msgstr ""
+">>> from typing import TypeVar\n"
+"\n"
+">>> T = TypeVar('T')\n"
+">>> list[T].__parameters__\n"
+"(~T,)"
 
 #: ../../library/stdtypes.rst:5611
 msgid ""
@@ -8577,6 +9204,8 @@ msgid ""
 "def square(number: int | float) -> int | float:\n"
 "    return number ** 2"
 msgstr ""
+"def square(number: int | float) -> int | float:\n"
+"    return number ** 2"
 
 #: ../../library/stdtypes.rst:5667
 msgid ""
@@ -8626,6 +9255,8 @@ msgid ""
 "int | str == typing.Union[int, str]\n"
 "type(int | str) is typing.Union"
 msgstr ""
+"int | str == typing.Union[int, str]\n"
+"type(int | str) is typing.Union"
 
 #: ../../library/stdtypes.rst:5694
 msgid "Optional types can be spelled as a union with ``None``::"
@@ -8646,6 +9277,8 @@ msgid ""
 ">>> isinstance(\"\", int | str)\n"
 "True"
 msgstr ""
+">>> isinstance(\"\", int | str)\n"
+"True"
 
 #: ../../library/stdtypes.rst:5707
 msgid ""
@@ -8683,6 +9316,13 @@ msgid ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "TypeError: cannot create 'typing.Union' instances"
 msgstr ""
+">>> import typing\n"
+">>> isinstance(int | str, typing.Union)\n"
+"True\n"
+">>> typing.Union()\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"TypeError: cannot create 'typing.Union' instances"
 
 #: ../../library/stdtypes.rst:5729
 msgid ""
@@ -8705,6 +9345,17 @@ msgid ""
 ">>> int | C\n"
 "int | C"
 msgstr ""
+">>> class M(type):\n"
+"...     def __or__(self, other):\n"
+"...         return \"Hello\"\n"
+"...\n"
+">>> class C(metaclass=M):\n"
+"...     pass\n"
+"...\n"
+">>> C | int\n"
+"'Hello'\n"
+">>> int | C\n"
+"int | C"
 
 #: ../../library/stdtypes.rst:5749
 msgid ":pep:`604` -- PEP proposing the ``X | Y`` syntax and the Union type."
@@ -9187,6 +9838,15 @@ msgid ""
 "...           '571186405732').to_bytes(53, 'big')\n"
 "..."
 msgstr ""
+">>> import sys\n"
+">>> assert sys.int_info.default_max_str_digits == 4300, sys.int_info\n"
+">>> assert sys.int_info.str_digits_check_threshold == 640, sys.int_info\n"
+">>> msg = int('578966293710682886880994035146873798396722250538762761564'"
+"\n"
+"...           "
+"'9252925514383915483333812743580549779436104706260696366600'\n"
+"...           '571186405732').to_bytes(53, 'big')\n"
+"..."
 
 #: ../../library/stdtypes.rst:6092
 msgid "Affected APIs"
@@ -9207,13 +9867,12 @@ msgid "``int(string, base)`` for all bases that are not a power of 2."
 msgstr ""
 
 #: ../../library/stdtypes.rst:6099
-#, fuzzy
 msgid "``str(integer)``."
-msgstr "``s.reverse()``"
+msgstr "``str(integer)``."
 
 #: ../../library/stdtypes.rst:6100
 msgid "``repr(integer)``."
-msgstr ""
+msgstr "``repr(integer)``."
 
 #: ../../library/stdtypes.rst:6101
 #, python-brace-format, python-format
@@ -9236,7 +9895,7 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:6108
 msgid ":func:`hex`, :func:`oct`, :func:`bin`."
-msgstr ""
+msgstr ":func:`hex`, :func:`oct`, :func:`bin`."
 
 #: ../../library/stdtypes.rst:6109
 msgid ":ref:`formatspec` for hex, octal, and binary numbers."
@@ -9366,6 +10025,15 @@ msgid ""
 "...     elif current_limit < lower_bound:\n"
 "...         sys.set_int_max_str_digits(lower_bound)"
 msgstr ""
+">>> import sys\n"
+">>> if hasattr(sys, \"set_int_max_str_digits\"):\n"
+"...     upper_bound = 68000\n"
+"...     lower_bound = 4004\n"
+"...     current_limit = sys.get_int_max_str_digits()\n"
+"...     if current_limit == 0 or current_limit > upper_bound:\n"
+"...         sys.set_int_max_str_digits(upper_bound)\n"
+"...     elif current_limit < lower_bound:\n"
+"...         sys.set_int_max_str_digits(lower_bound)"
 
 #: ../../library/stdtypes.rst:6182
 msgid "If you need to disable it entirely, set it to ``0``."
@@ -9519,7 +10187,7 @@ msgstr "비교"
 
 #: ../../library/stdtypes.rst:123
 msgid "=="
-msgstr ""
+msgstr "=="
 
 #: ../../library/stdtypes.rst:123
 msgid "< (less)"
@@ -9527,7 +10195,7 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:123
 msgid "<="
-msgstr ""
+msgstr "<="
 
 #: ../../library/stdtypes.rst:123
 msgid "> (greater)"
@@ -9535,11 +10203,11 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:123
 msgid ">="
-msgstr ""
+msgstr ">="
 
 #: ../../library/stdtypes.rst:123
 msgid "!="
-msgstr ""
+msgstr "!="
 
 #: ../../library/stdtypes.rst:123
 msgid "is"
@@ -9707,7 +10375,7 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:249
 msgid "//"
-msgstr ""
+msgstr "//"
 
 #: ../../library/stdtypes.rst:249 ../../library/stdtypes.rst:2731
 #: ../../library/stdtypes.rst:3996
@@ -9784,11 +10452,11 @@ msgstr ""
 
 #: ../../library/stdtypes.rst:399
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 #: ../../library/stdtypes.rst:399
 msgid ">>"
-msgstr ""
+msgstr ">>"
 
 #: ../../library/stdtypes.rst:399
 msgid "~ (tilde)"

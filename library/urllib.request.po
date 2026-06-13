@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -292,7 +292,7 @@ msgid "This example shows the function being used on Windows::"
 msgstr ""
 
 #: ../../library/urllib.request.rst:159
-#, fuzzy, python-format
+#, python-format
 msgid ""
 ">>> from urllib.request import pathname2url\n"
 ">>> path = 'C:\\\\Program Files'\n"
@@ -301,7 +301,7 @@ msgid ""
 msgstr ""
 ">>> from urllib.request import pathname2url\n"
 ">>> path = 'C:\\\\Program Files'\n"
-">>> 'file:' + pathname2url(path)\n"
+">>> pathname2url(path, add_scheme=True)\n"
 "'file:///C:/Program%20Files'"
 
 #: ../../library/urllib.request.rst:164 ../../library/urllib.request.rst:202
@@ -348,7 +348,7 @@ msgid ""
 msgstr ""
 
 #: ../../library/urllib.request.rst:197
-#, fuzzy, python-format
+#, python-format
 msgid ""
 ">>> from urllib.request import url2pathname\n"
 ">>> url = 'file:///C:/Program%20Files'\n"
@@ -357,7 +357,7 @@ msgid ""
 msgstr ""
 ">>> from urllib.request import url2pathname\n"
 ">>> url = 'file:///C:/Program%20Files'\n"
-">>> url2pathname(url.removeprefix('file:'))\n"
+">>> url2pathname(url, require_scheme=True)\n"
 "'C:\\\\Program Files'"
 
 #: ../../library/urllib.request.rst:207
@@ -2119,7 +2119,7 @@ msgid ""
 msgstr "다음 예제는 명시적으로 지정된 HTTP 프락시를 사용하여 환경 설정을 대체합니다::"
 
 #: ../../library/urllib.request.rst:1412
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 ">>> import urllib.request\n"
 ">>> proxies = {'http': 'http://proxy.example.com:8080/'}\n"
@@ -2131,7 +2131,8 @@ msgid ""
 msgstr ""
 ">>> import urllib.request\n"
 ">>> proxies = {'http': 'http://proxy.example.com:8080/'}\n"
-">>> opener = urllib.request.FancyURLopener(proxies)\n"
+">>> opener = "
+"urllib.request.build_opener(urllib.request.ProxyHandler(proxies))\n"
 ">>> with opener.open(\"http://www.python.org\") as f:\n"
 "...     f.read().decode('utf-8')\n"
 "..."
@@ -2143,7 +2144,6 @@ msgid ""
 msgstr "다음 예제는 프락시를 전혀 사용하지 않도록 환경 설정을 대체합니다::"
 
 #: ../../library/urllib.request.rst:1421
-#, fuzzy, python-brace-format
 msgid ""
 ">>> import urllib.request\n"
 ">>> opener = "
@@ -2153,7 +2153,8 @@ msgid ""
 "..."
 msgstr ""
 ">>> import urllib.request\n"
-">>> opener = urllib.request.FancyURLopener({})\n"
+">>> opener = "
+"urllib.request.build_opener(urllib.request.ProxyHandler({}}))\n"
 ">>> with opener.open(\"http://www.python.org/\") as f:\n"
 "...     f.read().decode('utf-8')\n"
 "..."

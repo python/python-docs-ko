@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -56,7 +55,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:68
 msgid ":ref:`whatsnew311-pep654`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep654`"
 
 #: ../../whatsnew/3.11.rst:70
 msgid "New built-in features:"
@@ -64,7 +63,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:72
 msgid ":ref:`whatsnew311-pep678`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep678`"
 
 #: ../../whatsnew/3.11.rst:74
 msgid "New standard library modules:"
@@ -82,7 +81,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:81
 msgid ":ref:`whatsnew311-pep657`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep657`"
 
 #: ../../whatsnew/3.11.rst:82
 msgid ""
@@ -98,23 +97,23 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:88
 msgid ":ref:`whatsnew311-pep646`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep646`"
 
 #: ../../whatsnew/3.11.rst:89
 msgid ":ref:`whatsnew311-pep655`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep655`"
 
 #: ../../whatsnew/3.11.rst:90
 msgid ":ref:`whatsnew311-pep673`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep673`"
 
 #: ../../whatsnew/3.11.rst:91
 msgid ":ref:`whatsnew311-pep675`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep675`"
 
 #: ../../whatsnew/3.11.rst:92
 msgid ":ref:`whatsnew311-pep681`"
-msgstr ""
+msgstr ":ref:`whatsnew311-pep681`"
 
 #: ../../whatsnew/3.11.rst:94
 msgid "Important deprecations, removals and restrictions:"
@@ -163,6 +162,14 @@ msgid ""
 "                           ^^^^^^^^^\n"
 "AttributeError: 'NoneType' object has no attribute 'x'"
 msgstr ""
+"Traceback (most recent call last):\n"
+"  File \"distance.py\", line 11, in <module>\n"
+"    print(manhattan_distance(p1, p2))\n"
+"          ^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+"  File \"distance.py\", line 6, in manhattan_distance\n"
+"    return abs(point_1.x - point_2.x) + abs(point_1.y - point_2.y)\n"
+"                           ^^^^^^^^^\n"
+"AttributeError: 'NoneType' object has no attribute 'x'"
 
 #: ../../whatsnew/3.11.rst:129
 msgid ""
@@ -189,6 +196,20 @@ msgid ""
 "                               ~~~~~~~~~~~~~~~~~~^^^^^\n"
 "TypeError: 'NoneType' object is not subscriptable"
 msgstr ""
+"Traceback (most recent call last):\n"
+"  File \"query.py\", line 37, in <module>\n"
+"    magic_arithmetic('foo')\n"
+"  File \"query.py\", line 18, in magic_arithmetic\n"
+"    return add_counts(x) / 25\n"
+"           ^^^^^^^^^^^^^\n"
+"  File \"query.py\", line 24, in add_counts\n"
+"    return 25 + query_user(user1) + query_user(user2)\n"
+"                ^^^^^^^^^^^^^^^^^\n"
+"  File \"query.py\", line 32, in query_user\n"
+"    return 1 + query_count(db, response['a']['b']['c']['user'], "
+"retry=True)\n"
+"                               ~~~~~~~~~~~~~~~~~~^^^^^\n"
+"TypeError: 'NoneType' object is not subscriptable"
 
 #: ../../whatsnew/3.11.rst:149
 msgid "As well as complex arithmetic expressions:"
@@ -202,6 +223,11 @@ msgid ""
 "              ~~~~~~^~~\n"
 "ZeroDivisionError: division by zero"
 msgstr ""
+"Traceback (most recent call last):\n"
+"  File \"calculation.py\", line 54, in <module>\n"
+"    result = (x / y / z) * (a / b / c)\n"
+"              ~~~~~~^~~\n"
+"ZeroDivisionError: division by zero"
 
 #: ../../whatsnew/3.11.rst:159
 msgid ""
@@ -406,6 +432,9 @@ msgid ""
 "   title: Required[str]\n"
 "   year: int"
 msgstr ""
+"class Movie(TypedDict, total=False):\n"
+"   title: Required[str]\n"
+"   year: int"
 
 #: ../../whatsnew/3.11.rst:305
 msgid "See :pep:`655` for more details."
@@ -453,6 +482,19 @@ msgid ""
 "\n"
 "    ..."
 msgstr ""
+"class MyLock:\n"
+"    def __enter__(self) -> Self:\n"
+"        self.lock()\n"
+"        return self\n"
+"\n"
+"    ...\n"
+"\n"
+"class MyInt:\n"
+"    @classmethod\n"
+"    def fromhex(cls, s: str) -> Self:\n"
+"        return cls(int(s, 16))\n"
+"\n"
+"    ..."
 
 #: ../../whatsnew/3.11.rst:340
 msgid ""
@@ -1023,6 +1065,27 @@ msgid ""
 "...         print(i, elem)\n"
 "..."
 msgstr ""
+">>> from functools import singledispatch\n"
+">>> @singledispatch\n"
+"... def fun(arg, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Let me just say,\", end=\" \")\n"
+"...     print(arg)\n"
+"...\n"
+">>> @fun.register\n"
+"... def _(arg: int | float, verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Strength in numbers, eh?\", end=\" \")\n"
+"...     print(arg)\n"
+"...\n"
+">>> from typing import Union\n"
+">>> @fun.register\n"
+"... def _(arg: Union[list, set], verbose=False):\n"
+"...     if verbose:\n"
+"...         print(\"Enumerate this:\")\n"
+"...     for i, elem in enumerate(arg):\n"
+"...         print(i, elem)\n"
+"..."
 
 #: ../../whatsnew/3.11.rst:768
 msgid "(Contributed by Yurii Karabas in :issue:`46014`.)"
@@ -1119,23 +1182,23 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:838
 msgid ":func:`inspect.getframeinfo`"
-msgstr ""
+msgstr ":func:`inspect.getframeinfo`"
 
 #: ../../whatsnew/3.11.rst:839
 msgid ":func:`inspect.getouterframes`"
-msgstr ""
+msgstr ":func:`inspect.getouterframes`"
 
 #: ../../whatsnew/3.11.rst:840
 msgid ":func:`inspect.getinnerframes`,"
-msgstr ""
+msgstr ":func:`inspect.getinnerframes`,"
 
 #: ../../whatsnew/3.11.rst:841
 msgid ":func:`inspect.stack`"
-msgstr ""
+msgstr ":func:`inspect.stack`"
 
 #: ../../whatsnew/3.11.rst:842
 msgid ":func:`inspect.trace`"
-msgstr ""
+msgstr ":func:`inspect.trace`"
 
 #: ../../whatsnew/3.11.rst:844
 msgid "(Contributed by Pablo Galindo in :gh:`88116`.)"
@@ -1996,15 +2059,15 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1468
 msgid "``x + x``"
-msgstr ""
+msgstr "``x + x``"
 
 #: ../../whatsnew/3.11.rst:1470
 msgid "``x - x``"
-msgstr ""
+msgstr "``x - x``"
 
 #: ../../whatsnew/3.11.rst:1472
 msgid "``x * x``"
-msgstr ""
+msgstr "``x * x``"
 
 #: ../../whatsnew/3.11.rst:1468
 msgid ""
@@ -2015,7 +2078,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1468
 msgid "10%"
-msgstr ""
+msgstr "10%"
 
 #: ../../whatsnew/3.11.rst:1468
 msgid "Mark Shannon, Donghee Na, Brandt Bucher, Dennis Sweeney"
@@ -2027,7 +2090,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1474
 msgid "``a[i]``"
-msgstr ""
+msgstr "``a[i]``"
 
 #: ../../whatsnew/3.11.rst:1474
 msgid ""
@@ -2043,7 +2106,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1474 ../../whatsnew/3.11.rst:1481
 msgid "10-25%"
-msgstr ""
+msgstr "10-25%"
 
 #: ../../whatsnew/3.11.rst:1474
 msgid "Irit Katriel, Mark Shannon"
@@ -2055,7 +2118,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1481
 msgid "``a[i] = z``"
-msgstr ""
+msgstr "``a[i] = z``"
 
 #: ../../whatsnew/3.11.rst:1481
 msgid "Similar to subscripting specialization above."
@@ -2071,11 +2134,11 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1484
 msgid "``f(arg)``"
-msgstr ""
+msgstr "``f(arg)``"
 
 #: ../../whatsnew/3.11.rst:1486
 msgid "``C(arg)``"
-msgstr ""
+msgstr "``C(arg)``"
 
 #: ../../whatsnew/3.11.rst:1484
 msgid ""
@@ -2086,7 +2149,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1484
 msgid "20%"
-msgstr ""
+msgstr "20%"
 
 #: ../../whatsnew/3.11.rst:1484
 msgid "Mark Shannon, Ken Jin"
@@ -2098,11 +2161,11 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1489
 msgid "``print``"
-msgstr ""
+msgstr "``print``"
 
 #: ../../whatsnew/3.11.rst:1491
 msgid "``len``"
-msgstr ""
+msgstr "``len``"
 
 #: ../../whatsnew/3.11.rst:1489
 msgid ""
@@ -2112,7 +2175,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1489
 msgid "[#load-global]_"
-msgstr ""
+msgstr "[#load-global]_"
 
 #: ../../whatsnew/3.11.rst:1489 ../../whatsnew/3.11.rst:1493
 #: ../../whatsnew/3.11.rst:1502
@@ -2125,7 +2188,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1493
 msgid "``o.attr``"
-msgstr ""
+msgstr "``o.attr``"
 
 #: ../../whatsnew/3.11.rst:1493
 msgid ""
@@ -2136,7 +2199,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1493
 msgid "[#load-attr]_"
-msgstr ""
+msgstr "[#load-attr]_"
 
 #: ../../whatsnew/3.11.rst:1498
 msgid "Load methods for call"
@@ -2144,7 +2207,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1498
 msgid "``o.meth()``"
-msgstr ""
+msgstr "``o.meth()``"
 
 #: ../../whatsnew/3.11.rst:1498
 msgid ""
@@ -2154,7 +2217,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1498
 msgid "10-20%"
-msgstr ""
+msgstr "10-20%"
 
 #: ../../whatsnew/3.11.rst:1498
 msgid "Ken Jin, Mark Shannon"
@@ -2166,7 +2229,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1502
 msgid "``o.attr = z``"
-msgstr ""
+msgstr "``o.attr = z``"
 
 #: ../../whatsnew/3.11.rst:1502
 msgid "Similar to load attribute optimization."
@@ -2183,7 +2246,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1505
 msgid "``*seq``"
-msgstr ""
+msgstr "``*seq``"
 
 #: ../../whatsnew/3.11.rst:1505
 msgid ""
@@ -2193,7 +2256,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1505
 msgid "8%"
-msgstr ""
+msgstr "8%"
 
 #: ../../whatsnew/3.11.rst:1505
 msgid "Brandt Bucher"
@@ -2390,15 +2453,15 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!BINARY_*`"
-msgstr ""
+msgstr ":opcode:`!BINARY_*`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!INPLACE_*`"
-msgstr ""
+msgstr ":opcode:`!INPLACE_*`"
 
 #: ../../whatsnew/3.11.rst:1650
 msgid ":opcode:`BINARY_OP`"
-msgstr ""
+msgstr ":opcode:`BINARY_OP`"
 
 #: ../../whatsnew/3.11.rst:1650
 msgid "Replaced all numeric binary/in-place opcodes with a single opcode"
@@ -2406,31 +2469,31 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!CALL_FUNCTION`"
-msgstr ""
+msgstr ":opcode:`!CALL_FUNCTION`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!CALL_FUNCTION_KW`"
-msgstr ""
+msgstr ":opcode:`!CALL_FUNCTION_KW`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!CALL_METHOD`"
-msgstr ""
+msgstr ":opcode:`!CALL_METHOD`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`CALL`"
-msgstr ""
+msgstr ":opcode:`CALL`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!KW_NAMES`"
-msgstr ""
+msgstr ":opcode:`!KW_NAMES`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!PRECALL`"
-msgstr ""
+msgstr ":opcode:`!PRECALL`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`PUSH_NULL`"
-msgstr ""
+msgstr ":opcode:`PUSH_NULL`"
 
 #: ../../whatsnew/3.11.rst:1653
 msgid ""
@@ -2440,35 +2503,35 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!DUP_TOP`"
-msgstr ""
+msgstr ":opcode:`!DUP_TOP`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!DUP_TOP_TWO`"
-msgstr ""
+msgstr ":opcode:`!DUP_TOP_TWO`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!ROT_TWO`"
-msgstr ""
+msgstr ":opcode:`!ROT_TWO`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!ROT_THREE`"
-msgstr ""
+msgstr ":opcode:`!ROT_THREE`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!ROT_FOUR`"
-msgstr ""
+msgstr ":opcode:`!ROT_FOUR`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!ROT_N`"
-msgstr ""
+msgstr ":opcode:`!ROT_N`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`COPY`"
-msgstr ""
+msgstr ":opcode:`COPY`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`SWAP`"
-msgstr ""
+msgstr ":opcode:`SWAP`"
 
 #: ../../whatsnew/3.11.rst:1658
 msgid "Stack manipulation instructions"
@@ -2476,11 +2539,11 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!JUMP_IF_NOT_EXC_MATCH`"
-msgstr ""
+msgstr ":opcode:`!JUMP_IF_NOT_EXC_MATCH`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`CHECK_EXC_MATCH`"
-msgstr ""
+msgstr ":opcode:`CHECK_EXC_MATCH`"
 
 #: ../../whatsnew/3.11.rst:1665
 msgid "Now performs check but doesn't jump"
@@ -2488,27 +2551,27 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!JUMP_ABSOLUTE`"
-msgstr ""
+msgstr ":opcode:`!JUMP_ABSOLUTE`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!POP_JUMP_IF_FALSE`"
-msgstr ""
+msgstr ":opcode:`!POP_JUMP_IF_FALSE`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!POP_JUMP_IF_TRUE`"
-msgstr ""
+msgstr ":opcode:`!POP_JUMP_IF_TRUE`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`JUMP_BACKWARD`"
-msgstr ""
+msgstr ":opcode:`JUMP_BACKWARD`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!POP_JUMP_BACKWARD_IF_*`"
-msgstr ""
+msgstr ":opcode:`!POP_JUMP_BACKWARD_IF_*`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!POP_JUMP_FORWARD_IF_*`"
-msgstr ""
+msgstr ":opcode:`!POP_JUMP_FORWARD_IF_*`"
 
 #: ../../whatsnew/3.11.rst:1667
 msgid ""
@@ -2518,15 +2581,15 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!SETUP_WITH`"
-msgstr ""
+msgstr ":opcode:`!SETUP_WITH`"
 
 #: ../../whatsnew/3.11.rst
 msgid ":opcode:`!SETUP_ASYNC_WITH`"
-msgstr ""
+msgstr ":opcode:`!SETUP_ASYNC_WITH`"
 
 #: ../../whatsnew/3.11.rst:1673
 msgid ":opcode:`!BEFORE_WITH`"
-msgstr ""
+msgstr ":opcode:`!BEFORE_WITH`"
 
 #: ../../whatsnew/3.11.rst:1673
 msgid ":keyword:`with` block setup"
@@ -2634,11 +2697,11 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1752
 msgid ":mod:`!pipes`"
-msgstr ""
+msgstr ":mod:`!pipes`"
 
 #: ../../whatsnew/3.11.rst:1752
 msgid ":mod:`!telnetlib`"
-msgstr ""
+msgstr ":mod:`!telnetlib`"
 
 #: ../../whatsnew/3.11.rst:1754
 msgid ":mod:`!audioop`"
@@ -2646,7 +2709,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1754
 msgid ":mod:`!crypt`"
-msgstr ""
+msgstr ":mod:`!crypt`"
 
 #: ../../whatsnew/3.11.rst:1754
 msgid ":mod:`!nis`"
@@ -2654,27 +2717,27 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1754
 msgid ":mod:`!sndhdr`"
-msgstr ""
+msgstr ":mod:`!sndhdr`"
 
 #: ../../whatsnew/3.11.rst:1754
 msgid ":mod:`!uu`"
-msgstr ""
+msgstr ":mod:`!uu`"
 
 #: ../../whatsnew/3.11.rst:1756
 msgid ":mod:`!cgi`"
-msgstr ""
+msgstr ":mod:`!cgi`"
 
 #: ../../whatsnew/3.11.rst:1756
 msgid ":mod:`!imghdr`"
-msgstr ""
+msgstr ":mod:`!imghdr`"
 
 #: ../../whatsnew/3.11.rst:1756
 msgid ":mod:`!nntplib`"
-msgstr ""
+msgstr ":mod:`!nntplib`"
 
 #: ../../whatsnew/3.11.rst:1756
 msgid ":mod:`!spwd`"
-msgstr ""
+msgstr ":mod:`!spwd`"
 
 #: ../../whatsnew/3.11.rst:1756
 msgid ":mod:`!xdrlib`"
@@ -2682,15 +2745,15 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1758
 msgid ":mod:`!cgitb`"
-msgstr ""
+msgstr ":mod:`!cgitb`"
 
 #: ../../whatsnew/3.11.rst:1758
 msgid ":mod:`!mailcap`"
-msgstr ""
+msgstr ":mod:`!mailcap`"
 
 #: ../../whatsnew/3.11.rst:1758
 msgid ":mod:`!ossaudiodev`"
-msgstr ""
+msgstr ":mod:`!ossaudiodev`"
 
 #: ../../whatsnew/3.11.rst:1758
 msgid ":mod:`!sunau`"
@@ -2772,31 +2835,31 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1806
 msgid ":func:`!importlib.resources.contents`"
-msgstr ""
+msgstr ":func:`!importlib.resources.contents`"
 
 #: ../../whatsnew/3.11.rst:1807
 msgid ":func:`!importlib.resources.is_resource`"
-msgstr ""
+msgstr ":func:`!importlib.resources.is_resource`"
 
 #: ../../whatsnew/3.11.rst:1808
 msgid ":func:`!importlib.resources.open_binary`"
-msgstr ""
+msgstr ":func:`!importlib.resources.open_binary`"
 
 #: ../../whatsnew/3.11.rst:1809
 msgid ":func:`!importlib.resources.open_text`"
-msgstr ""
+msgstr ":func:`!importlib.resources.open_text`"
 
 #: ../../whatsnew/3.11.rst:1810
 msgid ":func:`!importlib.resources.read_binary`"
-msgstr ""
+msgstr ":func:`!importlib.resources.read_binary`"
 
 #: ../../whatsnew/3.11.rst:1811
 msgid ":func:`!importlib.resources.read_text`"
-msgstr ""
+msgstr ":func:`!importlib.resources.read_text`"
 
 #: ../../whatsnew/3.11.rst:1812
 msgid ":func:`!importlib.resources.path`"
-msgstr ""
+msgstr ":func:`!importlib.resources.path`"
 
 #: ../../whatsnew/3.11.rst:1814
 msgid ""
@@ -2897,15 +2960,15 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1871
 msgid ":meth:`unittest.TestLoader.loadTestsFromModule`"
-msgstr ""
+msgstr ":meth:`unittest.TestLoader.loadTestsFromModule`"
 
 #: ../../whatsnew/3.11.rst:1872
 msgid ":meth:`unittest.TestLoader.loadTestsFromTestCase`"
-msgstr ""
+msgstr ":meth:`unittest.TestLoader.loadTestsFromTestCase`"
 
 #: ../../whatsnew/3.11.rst:1873
 msgid ":meth:`unittest.TestLoader.getTestCaseNames`"
-msgstr ""
+msgstr ":meth:`unittest.TestLoader.getTestCaseNames`"
 
 #: ../../whatsnew/3.11.rst:1875
 msgid "(Contributed by Erlend E. Aasland in :issue:`5846`.)"
@@ -2959,91 +3022,91 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1900
 msgid ":func:`!cgi.log`"
-msgstr ""
+msgstr ":func:`!cgi.log`"
 
 #: ../../whatsnew/3.11.rst:1901
 msgid ":func:`!importlib.find_loader`"
-msgstr ""
+msgstr ":func:`!importlib.find_loader`"
 
 #: ../../whatsnew/3.11.rst:1902
 msgid ":meth:`!importlib.abc.Loader.module_repr`"
-msgstr ""
+msgstr ":meth:`!importlib.abc.Loader.module_repr`"
 
 #: ../../whatsnew/3.11.rst:1903
 msgid ":meth:`!importlib.abc.MetaPathFinder.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.abc.MetaPathFinder.find_module`"
 
 #: ../../whatsnew/3.11.rst:1904
 msgid ":meth:`!importlib.abc.PathEntryFinder.find_loader`"
-msgstr ""
+msgstr ":meth:`!importlib.abc.PathEntryFinder.find_loader`"
 
 #: ../../whatsnew/3.11.rst:1905
 msgid ":meth:`!importlib.abc.PathEntryFinder.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.abc.PathEntryFinder.find_module`"
 
 #: ../../whatsnew/3.11.rst:1906
 msgid ":meth:`!importlib.machinery.BuiltinImporter.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.BuiltinImporter.find_module`"
 
 #: ../../whatsnew/3.11.rst:1907
 msgid ":meth:`!importlib.machinery.BuiltinLoader.module_repr`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.BuiltinLoader.module_repr`"
 
 #: ../../whatsnew/3.11.rst:1908
 msgid ":meth:`!importlib.machinery.FileFinder.find_loader`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.FileFinder.find_loader`"
 
 #: ../../whatsnew/3.11.rst:1909
 msgid ":meth:`!importlib.machinery.FileFinder.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.FileFinder.find_module`"
 
 #: ../../whatsnew/3.11.rst:1910
 msgid ":meth:`!importlib.machinery.FrozenImporter.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.FrozenImporter.find_module`"
 
 #: ../../whatsnew/3.11.rst:1911
 msgid ":meth:`!importlib.machinery.FrozenLoader.module_repr`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.FrozenLoader.module_repr`"
 
 #: ../../whatsnew/3.11.rst:1912
 msgid ":meth:`!importlib.machinery.PathFinder.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.PathFinder.find_module`"
 
 #: ../../whatsnew/3.11.rst:1913
 msgid ":meth:`!importlib.machinery.WindowsRegistryFinder.find_module`"
-msgstr ""
+msgstr ":meth:`!importlib.machinery.WindowsRegistryFinder.find_module`"
 
 #: ../../whatsnew/3.11.rst:1914
 msgid ":func:`!importlib.util.module_for_loader`"
-msgstr ""
+msgstr ":func:`!importlib.util.module_for_loader`"
 
 #: ../../whatsnew/3.11.rst:1915
 msgid ":func:`!importlib.util.set_loader_wrapper`"
-msgstr ""
+msgstr ":func:`!importlib.util.set_loader_wrapper`"
 
 #: ../../whatsnew/3.11.rst:1916
 msgid ":func:`!importlib.util.set_package_wrapper`"
-msgstr ""
+msgstr ":func:`!importlib.util.set_package_wrapper`"
 
 #: ../../whatsnew/3.11.rst:1917
 msgid ":class:`!pkgutil.ImpImporter`"
-msgstr ""
+msgstr ":class:`!pkgutil.ImpImporter`"
 
 #: ../../whatsnew/3.11.rst:1918
 msgid ":class:`!pkgutil.ImpLoader`"
-msgstr ""
+msgstr ":class:`!pkgutil.ImpLoader`"
 
 #: ../../whatsnew/3.11.rst:1919
 msgid ":meth:`!pathlib.Path.link_to`"
-msgstr ""
+msgstr ":meth:`!pathlib.Path.link_to`"
 
 #: ../../whatsnew/3.11.rst:1920
 msgid ":func:`!sqlite3.enable_shared_cache`"
-msgstr ""
+msgstr ":func:`!sqlite3.enable_shared_cache`"
 
 #: ../../whatsnew/3.11.rst:1921
 msgid ":func:`!sqlite3.OptimizedUnicode`"
-msgstr ""
+msgstr ":func:`!sqlite3.OptimizedUnicode`"
 
 #: ../../whatsnew/3.11.rst:1922
 msgid ":envvar:`!PYTHONTHREADDEBUG` environment variable"
@@ -3067,7 +3130,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1928
 msgid "``failUnless``"
-msgstr ""
+msgstr "``failUnless``"
 
 #: ../../whatsnew/3.11.rst:1928 ../../whatsnew/3.11.rst:1935
 msgid ":meth:`.assertTrue`"
@@ -3082,7 +3145,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1929
 msgid "``failIf``"
-msgstr ""
+msgstr "``failIf``"
 
 #: ../../whatsnew/3.11.rst:1929
 msgid ":meth:`.assertFalse`"
@@ -3090,7 +3153,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1930
 msgid "``failUnlessEqual``"
-msgstr ""
+msgstr "``failUnlessEqual``"
 
 #: ../../whatsnew/3.11.rst:1930 ../../whatsnew/3.11.rst:1936
 msgid ":meth:`.assertEqual`"
@@ -3098,7 +3161,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1931
 msgid "``failIfEqual``"
-msgstr ""
+msgstr "``failIfEqual``"
 
 #: ../../whatsnew/3.11.rst:1931 ../../whatsnew/3.11.rst:1937
 msgid ":meth:`.assertNotEqual`"
@@ -3106,7 +3169,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1932
 msgid "``failUnlessAlmostEqual``"
-msgstr ""
+msgstr "``failUnlessAlmostEqual``"
 
 #: ../../whatsnew/3.11.rst:1932 ../../whatsnew/3.11.rst:1938
 msgid ":meth:`.assertAlmostEqual`"
@@ -3114,7 +3177,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1933
 msgid "``failIfAlmostEqual``"
-msgstr ""
+msgstr "``failIfAlmostEqual``"
 
 #: ../../whatsnew/3.11.rst:1933 ../../whatsnew/3.11.rst:1939
 msgid ":meth:`.assertNotAlmostEqual`"
@@ -3122,7 +3185,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1934
 msgid "``failUnlessRaises``"
-msgstr ""
+msgstr "``failUnlessRaises``"
 
 #: ../../whatsnew/3.11.rst:1934
 msgid ":meth:`.assertRaises`"
@@ -3130,7 +3193,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1935
 msgid "``assert_``"
-msgstr ""
+msgstr "``assert_``"
 
 #: ../../whatsnew/3.11.rst:1935 ../../whatsnew/3.11.rst:1936
 #: ../../whatsnew/3.11.rst:1937 ../../whatsnew/3.11.rst:1938
@@ -3141,23 +3204,23 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1936
 msgid "``assertEquals``"
-msgstr ""
+msgstr "``assertEquals``"
 
 #: ../../whatsnew/3.11.rst:1937
 msgid "``assertNotEquals``"
-msgstr ""
+msgstr "``assertNotEquals``"
 
 #: ../../whatsnew/3.11.rst:1938
 msgid "``assertAlmostEquals``"
-msgstr ""
+msgstr "``assertAlmostEquals``"
 
 #: ../../whatsnew/3.11.rst:1939
 msgid "``assertNotAlmostEquals``"
-msgstr ""
+msgstr "``assertNotAlmostEquals``"
 
 #: ../../whatsnew/3.11.rst:1940
 msgid "``assertRegexpMatches``"
-msgstr ""
+msgstr "``assertRegexpMatches``"
 
 #: ../../whatsnew/3.11.rst:1940
 msgid ":meth:`.assertRegex`"
@@ -3165,7 +3228,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1941
 msgid "``assertRaisesRegexp``"
-msgstr ""
+msgstr "``assertRaisesRegexp``"
 
 #: ../../whatsnew/3.11.rst:1941
 msgid ":meth:`.assertRaisesRegex`"
@@ -3173,7 +3236,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1942
 msgid "``assertNotRegexpMatches``"
-msgstr ""
+msgstr "``assertNotRegexpMatches``"
 
 #: ../../whatsnew/3.11.rst:1942
 msgid ":meth:`.assertNotRegex`"
@@ -3181,7 +3244,7 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1942
 msgid "3.5"
-msgstr ""
+msgstr "3.5"
 
 #: ../../whatsnew/3.11.rst:1949 ../../whatsnew/3.11.rst:2634
 msgid "Removed"
@@ -3229,19 +3292,19 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:1975
 msgid ":func:`!binascii.a2b_hqx`"
-msgstr ""
+msgstr ":func:`!binascii.a2b_hqx`"
 
 #: ../../whatsnew/3.11.rst:1976
 msgid ":func:`!binascii.b2a_hqx`"
-msgstr ""
+msgstr ":func:`!binascii.b2a_hqx`"
 
 #: ../../whatsnew/3.11.rst:1977
 msgid ":func:`!binascii.rlecode_hqx`"
-msgstr ""
+msgstr ":func:`!binascii.rlecode_hqx`"
 
 #: ../../whatsnew/3.11.rst:1978
 msgid ":func:`!binascii.rldecode_hqx`"
-msgstr ""
+msgstr ":func:`!binascii.rldecode_hqx`"
 
 #: ../../whatsnew/3.11.rst:1980
 msgid "The :func:`binascii.crc_hqx` function remains available."
@@ -3616,51 +3679,51 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2231
 msgid ":c:func:`PyObject_CheckBuffer`"
-msgstr ""
+msgstr ":c:func:`PyObject_CheckBuffer`"
 
 #: ../../whatsnew/3.11.rst:2232
 msgid ":c:func:`PyObject_GetBuffer`"
-msgstr ""
+msgstr ":c:func:`PyObject_GetBuffer`"
 
 #: ../../whatsnew/3.11.rst:2233
 msgid ":c:func:`PyBuffer_GetPointer`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_GetPointer`"
 
 #: ../../whatsnew/3.11.rst:2234
 msgid ":c:func:`PyBuffer_SizeFromFormat`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_SizeFromFormat`"
 
 #: ../../whatsnew/3.11.rst:2235
 msgid ":c:func:`PyBuffer_ToContiguous`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_ToContiguous`"
 
 #: ../../whatsnew/3.11.rst:2236
 msgid ":c:func:`PyBuffer_FromContiguous`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_FromContiguous`"
 
 #: ../../whatsnew/3.11.rst:2237
 msgid ":c:func:`PyObject_CopyData`"
-msgstr ""
+msgstr ":c:func:`PyObject_CopyData`"
 
 #: ../../whatsnew/3.11.rst:2238
 msgid ":c:func:`PyBuffer_IsContiguous`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_IsContiguous`"
 
 #: ../../whatsnew/3.11.rst:2239
 msgid ":c:func:`PyBuffer_FillContiguousStrides`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_FillContiguousStrides`"
 
 #: ../../whatsnew/3.11.rst:2240
 msgid ":c:func:`PyBuffer_FillInfo`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_FillInfo`"
 
 #: ../../whatsnew/3.11.rst:2241
 msgid ":c:func:`PyBuffer_Release`"
-msgstr ""
+msgstr ":c:func:`PyBuffer_Release`"
 
 #: ../../whatsnew/3.11.rst:2242
 msgid ":c:func:`PyMemoryView_FromBuffer`"
-msgstr ""
+msgstr ":c:func:`PyMemoryView_FromBuffer`"
 
 #: ../../whatsnew/3.11.rst:2243
 msgid ""
@@ -3840,6 +3903,13 @@ msgid ""
 "#  define CPy_TRASHCAN_END(op) Py_TRASHCAN_SAFE_END(op)\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX >= 0x03080000\n"
+"#  define CPy_TRASHCAN_BEGIN(op, dealloc) Py_TRASHCAN_BEGIN(op, dealloc)\n"
+"#  define CPy_TRASHCAN_END(op) Py_TRASHCAN_END\n"
+"#else\n"
+"#  define CPy_TRASHCAN_BEGIN(op, dealloc) Py_TRASHCAN_SAFE_BEGIN(op)\n"
+"#  define CPy_TRASHCAN_END(op) Py_TRASHCAN_SAFE_END(op)\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2367
 msgid ""
@@ -3874,6 +3944,11 @@ msgid ""
 "#define Py_SET_TYPE(ob, type) _Py_SET_TYPE((PyObject*)(ob), type)\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030900A4 && !defined(Py_SET_TYPE)\n"
+"static inline void _Py_SET_TYPE(PyObject *ob, PyTypeObject *type)\n"
+"{ ob->ob_type = type; }\n"
+"#define Py_SET_TYPE(ob, type) _Py_SET_TYPE((PyObject*)(ob), type)\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2389 ../../whatsnew/3.11.rst:2403
 msgid "(Contributed by Victor Stinner in :issue:`39573`.)"
@@ -3896,6 +3971,11 @@ msgid ""
 "#define Py_SET_SIZE(ob, size) _Py_SET_SIZE((PyVarObject*)(ob), size)\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030900A4 && !defined(Py_SET_SIZE)\n"
+"static inline void _Py_SET_SIZE(PyVarObject *ob, Py_ssize_t size)\n"
+"{ ob->ob_size = size; }\n"
+"#define Py_SET_SIZE(ob, size) _Py_SET_SIZE((PyVarObject*)(ob), size)\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2405
 msgid ""
@@ -3936,35 +4016,35 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2428
 msgid ":c:func:`PyFrame_Check`"
-msgstr ""
+msgstr ":c:func:`PyFrame_Check`"
 
 #: ../../whatsnew/3.11.rst:2429
 msgid ":c:func:`PyFrame_GetBack`"
-msgstr ""
+msgstr ":c:func:`PyFrame_GetBack`"
 
 #: ../../whatsnew/3.11.rst:2430
 msgid ":c:func:`PyFrame_GetBuiltins`"
-msgstr ""
+msgstr ":c:func:`PyFrame_GetBuiltins`"
 
 #: ../../whatsnew/3.11.rst:2431
 msgid ":c:func:`PyFrame_GetGenerator`"
-msgstr ""
+msgstr ":c:func:`PyFrame_GetGenerator`"
 
 #: ../../whatsnew/3.11.rst:2432
 msgid ":c:func:`PyFrame_GetGlobals`"
-msgstr ""
+msgstr ":c:func:`PyFrame_GetGlobals`"
 
 #: ../../whatsnew/3.11.rst:2433
 msgid ":c:func:`PyFrame_GetLasti`"
-msgstr ""
+msgstr ":c:func:`PyFrame_GetLasti`"
 
 #: ../../whatsnew/3.11.rst:2434
 msgid ":c:func:`PyFrame_GetLocals`"
-msgstr ""
+msgstr ":c:func:`PyFrame_GetLocals`"
 
 #: ../../whatsnew/3.11.rst:2435
 msgid ":c:type:`PyFrame_Type`"
-msgstr ""
+msgstr ":c:type:`PyFrame_Type`"
 
 #: ../../whatsnew/3.11.rst:2437
 msgid "(Contributed by Victor Stinner in :gh:`93937`.)"
@@ -4102,6 +4182,13 @@ msgid ""
 "}\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030900B1\n"
+"static inline PyCodeObject* PyFrame_GetCode(PyFrameObject *frame)\n"
+"{\n"
+"    Py_INCREF(frame->f_code);\n"
+"    return frame->f_code;\n"
+"}\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2496
 msgid "Code defining ``PyFrame_GetBack()`` on Python 3.8 and older::"
@@ -4118,6 +4205,13 @@ msgid ""
 "}\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030900B1\n"
+"static inline PyFrameObject* PyFrame_GetBack(PyFrameObject *frame)\n"
+"{\n"
+"    Py_XINCREF(frame->f_back);\n"
+"    return frame->f_back;\n"
+"}\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2506
 msgid ""
@@ -4170,6 +4264,14 @@ msgid ""
 "}\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030900B1\n"
+"static inline PyFrameObject* PyThreadState_GetFrame(PyThreadState "
+"*tstate)\n"
+"{\n"
+"    Py_XINCREF(tstate->frame);\n"
+"    return tstate->frame;\n"
+"}\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2533
 msgid ""
@@ -4203,6 +4305,29 @@ msgid ""
 "}\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030B00A2\n"
+"static inline void PyThreadState_EnterTracing(PyThreadState *tstate)\n"
+"{\n"
+"    tstate->tracing++;\n"
+"#if PY_VERSION_HEX >= 0x030A00A1\n"
+"    tstate->cframe->use_tracing = 0;\n"
+"#else\n"
+"    tstate->use_tracing = 0;\n"
+"#endif\n"
+"}\n"
+"\n"
+"static inline void PyThreadState_LeaveTracing(PyThreadState *tstate)\n"
+"{\n"
+"    int use_tracing = (tstate->c_tracefunc != NULL || "
+"tstate->c_profilefunc != NULL);\n"
+"    tstate->tracing--;\n"
+"#if PY_VERSION_HEX >= 0x030A00A1\n"
+"    tstate->cframe->use_tracing = use_tracing;\n"
+"#else\n"
+"    tstate->use_tracing = use_tracing;\n"
+"#endif\n"
+"}\n"
+"#endif"
 
 #: ../../whatsnew/3.11.rst:2559
 msgid ""
@@ -4239,51 +4364,51 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2584
 msgid ":c:func:`!PySys_AddWarnOptionUnicode`"
-msgstr ""
+msgstr ":c:func:`!PySys_AddWarnOptionUnicode`"
 
 #: ../../whatsnew/3.11.rst:2585
 msgid ":c:func:`!PySys_AddWarnOption`"
-msgstr ""
+msgstr ":c:func:`!PySys_AddWarnOption`"
 
 #: ../../whatsnew/3.11.rst:2586
 msgid ":c:func:`!PySys_AddXOption`"
-msgstr ""
+msgstr ":c:func:`!PySys_AddXOption`"
 
 #: ../../whatsnew/3.11.rst:2587
 msgid ":c:func:`!PySys_HasWarnOptions`"
-msgstr ""
+msgstr ":c:func:`!PySys_HasWarnOptions`"
 
 #: ../../whatsnew/3.11.rst:2588
 msgid ":c:func:`!PySys_SetArgvEx`"
-msgstr ""
+msgstr ":c:func:`!PySys_SetArgvEx`"
 
 #: ../../whatsnew/3.11.rst:2589
 msgid ":c:func:`!PySys_SetArgv`"
-msgstr ""
+msgstr ":c:func:`!PySys_SetArgv`"
 
 #: ../../whatsnew/3.11.rst:2590
 msgid ":c:func:`!PySys_SetPath`"
-msgstr ""
+msgstr ":c:func:`!PySys_SetPath`"
 
 #: ../../whatsnew/3.11.rst:2591
 msgid ":c:func:`!Py_SetPath`"
-msgstr ""
+msgstr ":c:func:`!Py_SetPath`"
 
 #: ../../whatsnew/3.11.rst:2592
 msgid ":c:func:`!Py_SetProgramName`"
-msgstr ""
+msgstr ":c:func:`!Py_SetProgramName`"
 
 #: ../../whatsnew/3.11.rst:2593
 msgid ":c:func:`!Py_SetPythonHome`"
-msgstr ""
+msgstr ":c:func:`!Py_SetPythonHome`"
 
 #: ../../whatsnew/3.11.rst:2594
 msgid ":c:func:`!Py_SetStandardStreamEncoding`"
-msgstr ""
+msgstr ":c:func:`!Py_SetStandardStreamEncoding`"
 
 #: ../../whatsnew/3.11.rst:2595
 msgid ":c:func:`!_Py_SetProgramFullPath`"
-msgstr ""
+msgstr ":c:func:`!_Py_SetProgramFullPath`"
 
 #: ../../whatsnew/3.11.rst:2597
 msgid ""
@@ -4307,67 +4432,67 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2613
 msgid ":c:func:`!PyUnicode_AS_DATA`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_AS_DATA`"
 
 #: ../../whatsnew/3.11.rst:2614
 msgid ":c:func:`!PyUnicode_AS_UNICODE`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_AS_UNICODE`"
 
 #: ../../whatsnew/3.11.rst:2615
 msgid ":c:func:`!PyUnicode_AsUnicodeAndSize`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_AsUnicodeAndSize`"
 
 #: ../../whatsnew/3.11.rst:2616
 msgid ":c:func:`!PyUnicode_AsUnicode`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_AsUnicode`"
 
 #: ../../whatsnew/3.11.rst:2617
 msgid ":c:func:`!PyUnicode_FromUnicode`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_FromUnicode`"
 
 #: ../../whatsnew/3.11.rst:2618
 msgid ":c:func:`!PyUnicode_GET_DATA_SIZE`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_GET_DATA_SIZE`"
 
 #: ../../whatsnew/3.11.rst:2619
 msgid ":c:func:`!PyUnicode_GET_SIZE`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_GET_SIZE`"
 
 #: ../../whatsnew/3.11.rst:2620
 msgid ":c:func:`!PyUnicode_GetSize`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_GetSize`"
 
 #: ../../whatsnew/3.11.rst:2621
 msgid ":c:func:`!PyUnicode_IS_COMPACT`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_IS_COMPACT`"
 
 #: ../../whatsnew/3.11.rst:2622
 msgid ":c:func:`!PyUnicode_IS_READY`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_IS_READY`"
 
 #: ../../whatsnew/3.11.rst:2623
 msgid ":c:func:`PyUnicode_READY`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_READY`"
 
 #: ../../whatsnew/3.11.rst:2624
 msgid ":c:func:`!PyUnicode_WSTR_LENGTH`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_WSTR_LENGTH`"
 
 #: ../../whatsnew/3.11.rst:2625
 msgid ":c:func:`!_PyUnicode_AsUnicode`"
-msgstr ""
+msgstr ":c:func:`!_PyUnicode_AsUnicode`"
 
 #: ../../whatsnew/3.11.rst:2626
 msgid ":c:macro:`!PyUnicode_WCHAR_KIND`"
-msgstr ""
+msgstr ":c:macro:`!PyUnicode_WCHAR_KIND`"
 
 #: ../../whatsnew/3.11.rst:2627
 msgid ":c:type:`PyUnicodeObject`"
-msgstr ""
+msgstr ":c:type:`PyUnicodeObject`"
 
 #: ../../whatsnew/3.11.rst:2628
 msgid ":c:func:`!PyUnicode_InternImmortal`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_InternImmortal`"
 
 #: ../../whatsnew/3.11.rst:2636
 msgid ""
@@ -4381,23 +4506,23 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2642
 msgid "``Py_ADJUST_ERANGE1()``"
-msgstr ""
+msgstr "``Py_ADJUST_ERANGE1()``"
 
 #: ../../whatsnew/3.11.rst:2643
 msgid "``Py_ADJUST_ERANGE2()``"
-msgstr ""
+msgstr "``Py_ADJUST_ERANGE2()``"
 
 #: ../../whatsnew/3.11.rst:2644
 msgid "``Py_OVERFLOWED()``"
-msgstr ""
+msgstr "``Py_OVERFLOWED()``"
 
 #: ../../whatsnew/3.11.rst:2645
 msgid "``Py_SET_ERANGE_IF_OVERFLOW()``"
-msgstr ""
+msgstr "``Py_SET_ERANGE_IF_OVERFLOW()``"
 
 #: ../../whatsnew/3.11.rst:2646
 msgid "``Py_SET_ERRNO_ON_MATH_ERROR()``"
-msgstr ""
+msgstr "``Py_SET_ERRNO_ON_MATH_ERROR()``"
 
 #: ../../whatsnew/3.11.rst:2648
 msgid "(Contributed by Victor Stinner in :issue:`45412`.)"
@@ -4433,19 +4558,19 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2666
 msgid ":c:func:`PyMarshal_WriteLongToFile`"
-msgstr ""
+msgstr ":c:func:`PyMarshal_WriteLongToFile`"
 
 #: ../../whatsnew/3.11.rst:2667
 msgid ":c:func:`PyMarshal_WriteObjectToFile`"
-msgstr ""
+msgstr ":c:func:`PyMarshal_WriteObjectToFile`"
 
 #: ../../whatsnew/3.11.rst:2668
 msgid ":c:func:`PyMarshal_ReadObjectFromString`"
-msgstr ""
+msgstr ":c:func:`PyMarshal_ReadObjectFromString`"
 
 #: ../../whatsnew/3.11.rst:2669
 msgid ":c:func:`PyMarshal_WriteObjectToString`"
-msgstr ""
+msgstr ":c:func:`PyMarshal_WriteObjectToString`"
 
 #: ../../whatsnew/3.11.rst:2670
 msgid "the ``Py_MARSHAL_VERSION`` macro"
@@ -4493,55 +4618,55 @@ msgstr ""
 
 #: ../../whatsnew/3.11.rst:2699
 msgid ":func:`!PyUnicode_Encode`"
-msgstr ""
+msgstr ":func:`!PyUnicode_Encode`"
 
 #: ../../whatsnew/3.11.rst:2700
 msgid ":func:`!PyUnicode_EncodeASCII`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeASCII`"
 
 #: ../../whatsnew/3.11.rst:2701
 msgid ":func:`!PyUnicode_EncodeLatin1`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeLatin1`"
 
 #: ../../whatsnew/3.11.rst:2702
 msgid ":func:`!PyUnicode_EncodeUTF7`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeUTF7`"
 
 #: ../../whatsnew/3.11.rst:2703
 msgid ":func:`!PyUnicode_EncodeUTF8`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeUTF8`"
 
 #: ../../whatsnew/3.11.rst:2704
 msgid ":func:`!PyUnicode_EncodeUTF16`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeUTF16`"
 
 #: ../../whatsnew/3.11.rst:2705
 msgid ":func:`!PyUnicode_EncodeUTF32`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeUTF32`"
 
 #: ../../whatsnew/3.11.rst:2706
 msgid ":func:`!PyUnicode_EncodeUnicodeEscape`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeUnicodeEscape`"
 
 #: ../../whatsnew/3.11.rst:2707
 msgid ":func:`!PyUnicode_EncodeRawUnicodeEscape`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeRawUnicodeEscape`"
 
 #: ../../whatsnew/3.11.rst:2708
 msgid ":func:`!PyUnicode_EncodeCharmap`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeCharmap`"
 
 #: ../../whatsnew/3.11.rst:2709
 msgid ":func:`!PyUnicode_TranslateCharmap`"
-msgstr ""
+msgstr ":func:`!PyUnicode_TranslateCharmap`"
 
 #: ../../whatsnew/3.11.rst:2710
 msgid ":func:`!PyUnicode_EncodeDecimal`"
-msgstr ""
+msgstr ":func:`!PyUnicode_EncodeDecimal`"
 
 #: ../../whatsnew/3.11.rst:2711
 msgid ":func:`!PyUnicode_TransformDecimalToASCII`"
-msgstr ""
+msgstr ":func:`!PyUnicode_TransformDecimalToASCII`"
 
 #: ../../whatsnew/3.11.rst:2713
 msgid ""

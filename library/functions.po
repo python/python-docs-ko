@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -35,18 +35,16 @@ msgid ":func:`abs`"
 msgstr ":func:`abs`"
 
 #: ../../library/functions.rst
-#, fuzzy
 msgid ":func:`aiter`"
-msgstr ":func:`iter`"
+msgstr ":func:`aiter`"
 
 #: ../../library/functions.rst
 msgid ":func:`all`"
 msgstr ":func:`all`"
 
 #: ../../library/functions.rst
-#, fuzzy
 msgid ":func:`anext`"
-msgstr ":func:`next`"
+msgstr ":func:`anext`"
 
 #: ../../library/functions.rst
 msgid ":func:`any`"
@@ -386,7 +384,7 @@ msgstr ":func:`zip`"
 
 #: ../../library/functions.rst
 msgid "**_**"
-msgstr ""
+msgstr "**_**"
 
 #: ../../library/functions.rst
 msgid ":func:`__import__`"
@@ -429,6 +427,11 @@ msgid ""
 "            return False\n"
 "    return True"
 msgstr ""
+"def all(iterable):\n"
+"    for element in iterable:\n"
+"        if not element:\n"
+"            return False\n"
+"    return True"
 
 #: ../../library/functions.rst:89
 msgid ""
@@ -469,6 +472,11 @@ msgid ""
 "            return True\n"
 "    return False"
 msgstr ""
+"def any(iterable):\n"
+"    for element in iterable:\n"
+"        if element:\n"
+"            return True\n"
+"    return False"
 
 #: ../../library/functions.rst:116
 #, fuzzy
@@ -715,6 +723,9 @@ msgid ""
 "    @classmethod\n"
 "    def f(cls, arg1, arg2): ..."
 msgstr ""
+"class C:\n"
+"    @classmethod\n"
+"    def f(cls, arg1, arg2): ..."
 
 #: ../../library/functions.rst:267
 msgid ""
@@ -948,6 +959,22 @@ msgid ""
 ">>> complex(-1.23, 4.5)\n"
 "(-1.23+4.5j)"
 msgstr ""
+">>> complex('+1.23')\n"
+"(1.23+0j)\n"
+">>> complex('-4.5j')\n"
+"-4.5j\n"
+">>> complex('-1.23+4.5j')\n"
+"(-1.23+4.5j)\n"
+">>> complex('\\t( -1.23+4.5J )\\n')\n"
+"(-1.23+4.5j)\n"
+">>> complex('-Infinity+NaNj')\n"
+"(-inf+nanj)\n"
+">>> complex(1.23)\n"
+"(1.23+0j)\n"
+">>> complex(imag=-4.5)\n"
+"-4.5j\n"
+">>> complex(-1.23, 4.5)\n"
+"(-1.23+4.5j)"
 
 #: ../../library/functions.rst:403
 msgid ""
@@ -1180,6 +1207,11 @@ msgid ""
 "        yield n, elem\n"
 "        n += 1"
 msgstr ""
+"def enumerate(iterable, start=0):\n"
+"    n = start\n"
+"    for elem in iterable:\n"
+"        yield n, elem\n"
+"        n += 1"
 
 #: ../../library/functions.rst
 #, fuzzy
@@ -1455,6 +1487,16 @@ msgid ""
 ">>> float('-Infinity')\n"
 "-inf"
 msgstr ""
+">>> float('+1.23')\n"
+"1.23\n"
+">>> float('   -12345\\n')\n"
+"-12345.0\n"
+">>> float('1e-003')\n"
+"0.001\n"
+">>> float('+1E6')\n"
+"1000000.0\n"
+">>> float('-Infinity')\n"
+"-inf"
 
 #: ../../library/functions.rst:771
 #, fuzzy
@@ -1760,6 +1802,10 @@ msgid ""
 ">>> s\n"
 "\"Monty Python's Flying Circus\""
 msgstr ""
+">>> s = input('--> ')\n"
+"--> Monty Python's Flying Circus\n"
+">>> s\n"
+"\"Monty Python's Flying Circus\""
 
 #: ../../library/functions.rst:984
 msgid ""
@@ -1805,6 +1851,18 @@ msgid ""
 ">>> int('01110011', base=2)\n"
 "115"
 msgstr ""
+">>> int(123.45)\n"
+"123\n"
+">>> int('123')\n"
+"123\n"
+">>> int('   -12_345\\n')\n"
+"-12345\n"
+">>> int('FACE', 16)\n"
+"64206\n"
+">>> int('0xface', 0)\n"
+"64206\n"
+">>> int('01110011', base=2)\n"
+"115"
 
 #: ../../library/functions.rst:1021
 #, fuzzy
@@ -1970,6 +2028,10 @@ msgid ""
 "    for block in iter(partial(f.read, 64), b''):\n"
 "        process_block(block)"
 msgstr ""
+"from functools import partial\n"
+"with open('mydata.db', 'rb') as f:\n"
+"    for block in iter(partial(f.read, 64), b''):\n"
+"        process_block(block)"
 
 #: ../../library/functions.rst:1134
 msgid ""
@@ -2761,6 +2823,10 @@ msgid ""
 ">>> 23 * 38 % 97 == 1\n"
 "True"
 msgstr ""
+">>> pow(38, -1, mod=97)\n"
+"23\n"
+">>> 23 * 38 % 97 == 1\n"
+"True"
 
 #: ../../library/functions.rst:1608
 msgid ""
@@ -2857,6 +2923,20 @@ msgid ""
 "\n"
 "    x = property(getx, setx, delx, \"I'm the 'x' property.\")"
 msgstr ""
+"class C:\n"
+"    def __init__(self):\n"
+"        self._x = None\n"
+"\n"
+"    def getx(self):\n"
+"        return self._x\n"
+"\n"
+"    def setx(self, value):\n"
+"        self._x = value\n"
+"\n"
+"    def delx(self):\n"
+"        del self._x\n"
+"\n"
+"    x = property(getx, setx, delx, \"I'm the 'x' property.\")"
 
 #: ../../library/functions.rst:1668
 #, fuzzy
@@ -2997,6 +3077,13 @@ msgid ""
 "   def __repr__(self):\n"
 "      return f\"Person('{self.name}', {self.age})\""
 msgstr ""
+"class Person:\n"
+"   def __init__(self, name, age):\n"
+"      self.name = name\n"
+"      self.age = age\n"
+"\n"
+"   def __repr__(self):\n"
+"      return f\"Person('{self.name}', {self.age})\""
 
 #: ../../library/functions.rst:1769
 #, fuzzy
@@ -3207,6 +3294,9 @@ msgid ""
 "    @staticmethod\n"
 "    def f(arg1, arg2, argN): ..."
 msgstr ""
+"class C:\n"
+"    @staticmethod\n"
+"    def f(arg1, arg2, argN): ..."
 
 #: ../../library/functions.rst:1905
 msgid ""
@@ -3255,6 +3345,11 @@ msgid ""
 "class C:\n"
 "    method = staticmethod(regular_function)"
 msgstr ""
+"def regular_function():\n"
+"    ...\n"
+"\n"
+"class C:\n"
+"    method = staticmethod(regular_function)"
 
 #: ../../library/functions.rst:1929
 msgid "For more information on static methods, see :ref:`types`."
@@ -3538,9 +3633,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/functions.rst:2098
-#, fuzzy
 msgid ":ref:`bltin-type-objects`"
-msgstr ":ref:`bltin-type-objects`\\를 보세요."
+msgstr ":ref:`bltin-type-objects`"
 
 #: ../../library/functions.rst:2100
 msgid ""
@@ -3626,6 +3720,12 @@ msgid ""
 "(2, 'spice')\n"
 "(3, 'everything nice')"
 msgstr ""
+">>> for item in zip([1, 2, 3], ['sugar', 'spice', 'everything nice']):\n"
+"...     print(item)\n"
+"...\n"
+"(1, 'sugar')\n"
+"(2, 'spice')\n"
+"(3, 'everything nice')"
 
 #: ../../library/functions.rst:2148
 msgid ""
@@ -3668,6 +3768,8 @@ msgid ""
 ">>> list(zip(range(3), ['fee', 'fi', 'fo', 'fum']))\n"
 "[(0, 'fee'), (1, 'fi'), (2, 'fo')]"
 msgstr ""
+">>> list(zip(range(3), ['fee', 'fi', 'fo', 'fum']))\n"
+"[(0, 'fee'), (1, 'fi'), (2, 'fo')]"
 
 #: ../../library/functions.rst:2171
 msgid ""
@@ -3681,6 +3783,8 @@ msgid ""
 ">>> list(zip(('a', 'b', 'c'), (1, 2, 3), strict=True))\n"
 "[('a', 1), ('b', 2), ('c', 3)]"
 msgstr ""
+">>> list(zip(('a', 'b', 'c'), (1, 2, 3), strict=True))\n"
+"[('a', 1), ('b', 2), ('c', 3)]"
 
 #: ../../library/functions.rst:2178
 msgid ""
@@ -3742,6 +3846,13 @@ msgid ""
 ">>> x == list(x2) and y == list(y2)\n"
 "True"
 msgstr ""
+">>> x = [1, 2, 3]\n"
+">>> y = [4, 5, 6]\n"
+">>> list(zip(x, y))\n"
+"[(1, 4), (2, 5), (3, 6)]\n"
+">>> x2, y2 = zip(*zip(x, y))\n"
+">>> x == list(x2) and y == list(y2)\n"
+"True"
 
 #: ../../library/functions.rst:2226
 #, fuzzy
@@ -3853,6 +3964,10 @@ msgid ""
 "eggs = _temp.eggs\n"
 "saus = _temp.sausage"
 msgstr ""
+"_temp = __import__('spam.ham', globals(), locals(), ['eggs', 'sausage'], "
+"0)\n"
+"eggs = _temp.eggs\n"
+"saus = _temp.sausage"
 
 #: ../../library/functions.rst:2287
 msgid ""

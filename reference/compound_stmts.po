@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -345,6 +345,8 @@ msgid ""
 "except E as N:\n"
 "    foo"
 msgstr ""
+"except E as N:\n"
+"    foo"
 
 #: ../../reference/compound_stmts.rst:287
 msgid "was translated to ::"
@@ -358,6 +360,11 @@ msgid ""
 "    finally:\n"
 "        del N"
 msgstr ""
+"except E as N:\n"
+"    try:\n"
+"        foo\n"
+"    finally:\n"
+"        del N"
 
 #: ../../reference/compound_stmts.rst:295
 #, fuzzy
@@ -401,6 +408,23 @@ msgid ""
 ">>> print(sys.exception())\n"
 "None"
 msgstr ""
+">>> print(sys.exception())\n"
+"None\n"
+">>> try:\n"
+"...     raise TypeError\n"
+"... except:\n"
+"...     print(repr(sys.exception()))\n"
+"...     try:\n"
+"...          raise ValueError\n"
+"...     except:\n"
+"...         print(repr(sys.exception()))\n"
+"...     print(repr(sys.exception()))\n"
+"...\n"
+"TypeError()\n"
+"ValueError()\n"
+"TypeError()\n"
+">>> print(sys.exception())\n"
+"None"
 
 #: ../../reference/compound_stmts.rst:336
 msgid ":keyword:`!except*` clause"
@@ -464,6 +488,24 @@ msgid ""
 "    | ValueError: 1\n"
 "    +------------------------------------"
 msgstr ""
+">>> try:\n"
+"...     raise ExceptionGroup(\"eg\",\n"
+"...         [ValueError(1), TypeError(2), OSError(3), OSError(4)])\n"
+"... except* TypeError as e:\n"
+"...     print(f'caught {type(e)} with nested {e.exceptions}')\n"
+"... except* OSError as e:\n"
+"...     print(f'caught {type(e)} with nested {e.exceptions}')\n"
+"...\n"
+"caught <class 'ExceptionGroup'> with nested (TypeError(2),)\n"
+"caught <class 'ExceptionGroup'> with nested (OSError(3), OSError(4))\n"
+"  + Exception Group Traceback (most recent call last):\n"
+"  |   File \"<doctest default[0]>\", line 2, in <module>\n"
+"  |     raise ExceptionGroup(\"eg\",\n"
+"  |         [ValueError(1), TypeError(2), OSError(3), OSError(4)])\n"
+"  | ExceptionGroup: eg (1 sub-exception)\n"
+"  +-+---------------- 1 ----------------\n"
+"    | ValueError: 1\n"
+"    +------------------------------------"
 
 #: ../../reference/compound_stmts.rst:381
 msgid ""
@@ -483,6 +525,12 @@ msgid ""
 "...\n"
 "ExceptionGroup('', (BlockingIOError()))"
 msgstr ""
+">>> try:\n"
+"...     raise BlockingIOError\n"
+"... except* BlockingIOError as e:\n"
+"...     print(repr(e))\n"
+"...\n"
+"ExceptionGroup('', (BlockingIOError()))"
 
 #: ../../reference/compound_stmts.rst:393
 msgid ""
@@ -543,6 +591,11 @@ msgid ""
 "    finally:\n"
 "        return 42"
 msgstr ""
+"def f():\n"
+"    try:\n"
+"        1/0\n"
+"    finally:\n"
+"        return 42"
 
 #: ../../reference/compound_stmts.rst:443
 #, fuzzy
@@ -584,6 +637,11 @@ msgid ""
 "    finally:\n"
 "        return 'finally'"
 msgstr ""
+"def foo():\n"
+"    try:\n"
+"        return 'try'\n"
+"    finally:\n"
+"        return 'finally'"
 
 #: ../../reference/compound_stmts.rst:468
 #, fuzzy
@@ -714,6 +772,8 @@ msgid ""
 "with EXPRESSION as TARGET:\n"
 "    SUITE"
 msgstr ""
+"with EXPRESSION as TARGET:\n"
+"    SUITE"
 
 #: ../../reference/compound_stmts.rst:544
 #: ../../reference/compound_stmts.rst:569
@@ -740,6 +800,22 @@ msgid ""
 "    if not hit_except:\n"
 "        exit(manager, None, None, None)"
 msgstr ""
+"manager = (EXPRESSION)\n"
+"enter = type(manager).__enter__\n"
+"exit = type(manager).__exit__\n"
+"value = enter(manager)\n"
+"hit_except = False\n"
+"\n"
+"try:\n"
+"    TARGET = value\n"
+"    SUITE\n"
+"except:\n"
+"    hit_except = True\n"
+"    if not exit(manager, *sys.exc_info()):\n"
+"        raise\n"
+"finally:\n"
+"    if not hit_except:\n"
+"        exit(manager, None, None, None)"
 
 #: ../../reference/compound_stmts.rst:563
 msgid ""
@@ -752,6 +828,8 @@ msgid ""
 "with A() as a, B() as b:\n"
 "    SUITE"
 msgstr ""
+"with A() as a, B() as b:\n"
+"    SUITE"
 
 #: ../../reference/compound_stmts.rst:571
 msgid ""
@@ -759,6 +837,9 @@ msgid ""
 "    with B() as b:\n"
 "        SUITE"
 msgstr ""
+"with A() as a:\n"
+"    with B() as b:\n"
+"        SUITE"
 
 #: ../../reference/compound_stmts.rst:575
 msgid ""
@@ -774,6 +855,11 @@ msgid ""
 "):\n"
 "    SUITE"
 msgstr ""
+"with (\n"
+"    A() as a,\n"
+"    B() as b,\n"
+"):\n"
+"    SUITE"
 
 #: ../../reference/compound_stmts.rst:584
 msgid "Support for multiple context expressions."
@@ -1012,11 +1098,11 @@ msgstr ""
 
 #: ../../reference/compound_stmts.rst:759
 msgid ":ref:`capture-patterns`"
-msgstr ""
+msgstr ":ref:`capture-patterns`"
 
 #: ../../reference/compound_stmts.rst:761
 msgid ":ref:`wildcard-patterns`"
-msgstr ""
+msgstr ":ref:`wildcard-patterns`"
 
 #: ../../reference/compound_stmts.rst:763
 msgid "parenthesized irrefutable patterns"
@@ -1571,7 +1657,7 @@ msgstr ""
 
 #: ../../reference/compound_stmts.rst:1159
 msgid ":ref:`class-pattern-matching`"
-msgstr ""
+msgstr ":ref:`class-pattern-matching`"
 
 #: ../../reference/compound_stmts.rst:1161
 msgid "II. Once all positional patterns have been converted to keyword patterns,"
@@ -1593,7 +1679,7 @@ msgstr ""
 
 #: ../../reference/compound_stmts.rst:1168
 msgid ":class:`bytearray`"
-msgstr ""
+msgstr ":class:`bytearray`"
 
 #: ../../reference/compound_stmts.rst:1169
 msgid ":class:`bytes`"
@@ -1719,6 +1805,9 @@ msgid ""
 "@f2\n"
 "def func(): pass"
 msgstr ""
+"@f1(arg)\n"
+"@f2\n"
+"def func(): pass"
 
 #: ../../reference/compound_stmts.rst:1267
 #: ../../reference/compound_stmts.rst:1456
@@ -1730,6 +1819,8 @@ msgid ""
 "def func(): pass\n"
 "func = f1(arg)(f2(func))"
 msgstr ""
+"def func(): pass\n"
+"func = f1(arg)(f2(func))"
 
 #: ../../reference/compound_stmts.rst:1272
 msgid ""
@@ -1807,6 +1898,11 @@ msgid ""
 "    penguin.append(\"property of the zoo\")\n"
 "    return penguin"
 msgstr ""
+"def whats_on_the_telly(penguin=None):\n"
+"    if penguin is None:\n"
+"        penguin = []\n"
+"    penguin.append(\"property of the zoo\")\n"
+"    return penguin"
 
 #: ../../reference/compound_stmts.rst:1323
 #, fuzzy
@@ -1969,6 +2065,8 @@ msgid ""
 "class Foo:\n"
 "    pass"
 msgstr ""
+"class Foo:\n"
+"    pass"
 
 #: ../../reference/compound_stmts.rst:1426
 msgid "is equivalent to ::"
@@ -1979,6 +2077,8 @@ msgid ""
 "class Foo(object):\n"
 "    pass"
 msgstr ""
+"class Foo(object):\n"
+"    pass"
 
 #: ../../reference/compound_stmts.rst:1431
 msgid ""
@@ -2023,12 +2123,17 @@ msgid ""
 "@f2\n"
 "class Foo: pass"
 msgstr ""
+"@f1(arg)\n"
+"@f2\n"
+"class Foo: pass"
 
 #: ../../reference/compound_stmts.rst:1458
 msgid ""
 "class Foo: pass\n"
 "Foo = f1(arg)(f2(Foo))"
 msgstr ""
+"class Foo: pass\n"
+"Foo = f1(arg)(f2(Foo))"
 
 #: ../../reference/compound_stmts.rst:1461
 msgid ""
@@ -2140,6 +2245,9 @@ msgid ""
 "    do_stuff()\n"
 "    await some_coroutine()"
 msgstr ""
+"async def func(param1, param2):\n"
+"    do_stuff()\n"
+"    await some_coroutine()"
 
 #: ../../reference/compound_stmts.rst:1537
 msgid ""
@@ -2174,6 +2282,10 @@ msgid ""
 "else:\n"
 "    SUITE2"
 msgstr ""
+"async for TARGET in ITER:\n"
+"    SUITE\n"
+"else:\n"
+"    SUITE2"
 
 #: ../../reference/compound_stmts.rst:1564
 msgid "Is semantically equivalent to::"
@@ -2195,6 +2307,19 @@ msgid ""
 "else:\n"
 "    SUITE2"
 msgstr ""
+"iter = (ITER)\n"
+"iter = type(iter).__aiter__(iter)\n"
+"running = True\n"
+"\n"
+"while running:\n"
+"    try:\n"
+"        TARGET = await type(iter).__anext__(iter)\n"
+"    except StopAsyncIteration:\n"
+"        running = False\n"
+"    else:\n"
+"        SUITE\n"
+"else:\n"
+"    SUITE2"
 
 #: ../../reference/compound_stmts.rst:1580
 #, fuzzy
@@ -2226,6 +2351,8 @@ msgid ""
 "async with EXPRESSION as TARGET:\n"
 "    SUITE"
 msgstr ""
+"async with EXPRESSION as TARGET:\n"
+"    SUITE"
 
 #: ../../reference/compound_stmts.rst:1605
 msgid ""
@@ -2246,6 +2373,22 @@ msgid ""
 "    if not hit_except:\n"
 "        await aexit(manager, None, None, None)"
 msgstr ""
+"manager = (EXPRESSION)\n"
+"aenter = type(manager).__aenter__\n"
+"aexit = type(manager).__aexit__\n"
+"value = await aenter(manager)\n"
+"hit_except = False\n"
+"\n"
+"try:\n"
+"    TARGET = value\n"
+"    SUITE\n"
+"except:\n"
+"    hit_except = True\n"
+"    if not await aexit(manager, *sys.exc_info()):\n"
+"        raise\n"
+"finally:\n"
+"    if not hit_except:\n"
+"        await aexit(manager, None, None, None)"
 
 #: ../../reference/compound_stmts.rst:1622
 #, fuzzy
@@ -2302,6 +2445,20 @@ msgid ""
 "\n"
 "type ListOrSet[T] = list[T] | set[T]"
 msgstr ""
+"def max[T](args: list[T]) -> T:\n"
+"    ...\n"
+"\n"
+"async def amax[T](args: list[T]) -> T:\n"
+"    ...\n"
+"\n"
+"class Bag[T]:\n"
+"    def __iter__(self) -> Iterator[T]:\n"
+"        ...\n"
+"\n"
+"    def add(self, arg: T) -> None:\n"
+"        ...\n"
+"\n"
+"type ListOrSet[T] = list[T] | set[T]"
 
 #: ../../reference/compound_stmts.rst:1672
 msgid ""
@@ -2421,6 +2578,20 @@ msgid ""
 "   *e: SimpleTypeVarTuple,\n"
 "): ..."
 msgstr ""
+"def overly_generic[\n"
+"   SimpleTypeVar,\n"
+"   TypeVarWithDefault = int,\n"
+"   TypeVarWithBound: int,\n"
+"   TypeVarWithConstraints: (str, bytes),\n"
+"   *SimpleTypeVarTuple = (int, float),\n"
+"   **SimpleParamSpec = (str, bytearray),\n"
+"](\n"
+"   a: SimpleTypeVar,\n"
+"   b: TypeVarWithDefault,\n"
+"   c: TypeVarWithBound,\n"
+"   d: Callable[SimpleParamSpec, TypeVarWithConstraints],\n"
+"   *e: SimpleTypeVarTuple,\n"
+"): ..."
 
 #: ../../reference/compound_stmts.rst:1747
 msgid "Generic functions"
@@ -2449,6 +2620,12 @@ msgid ""
 "    return func\n"
 "func = TYPE_PARAMS_OF_func()"
 msgstr ""
+"annotation-def TYPE_PARAMS_OF_func():\n"
+"    T = typing.TypeVar(\"T\")\n"
+"    def func(arg: T): ...\n"
+"    func.__type_params__ = (T,)\n"
+"    return func\n"
+"func = TYPE_PARAMS_OF_func()"
 
 #: ../../reference/compound_stmts.rst:1762
 msgid ""
@@ -2479,6 +2656,10 @@ msgid ""
 "some_default):\n"
 "    ..."
 msgstr ""
+"@decorator\n"
+"def func[T: int, *Ts, **P](*args: *Ts, arg: Callable[P, T] = "
+"some_default):\n"
+"    ..."
 
 #: ../../reference/compound_stmts.rst:1779
 msgid ""
@@ -2536,6 +2717,13 @@ msgid ""
 "    return Bag\n"
 "Bag = TYPE_PARAMS_OF_Bag()"
 msgstr ""
+"annotation-def TYPE_PARAMS_OF_Bag():\n"
+"    T = typing.TypeVar(\"T\")\n"
+"    class Bag(typing.Generic[T]):\n"
+"        __type_params__ = (T,)\n"
+"        ...\n"
+"    return Bag\n"
+"Bag = TYPE_PARAMS_OF_Bag()"
 
 #: ../../reference/compound_stmts.rst:1823
 msgid ""
@@ -2557,6 +2745,8 @@ msgid ""
 "@decorator\n"
 "class Bag(Base[T], arg=T): ..."
 msgstr ""
+"@decorator\n"
+"class Bag(Base[T], arg=T): ..."
 
 #: ../../reference/compound_stmts.rst:1836
 #, fuzzy
@@ -2573,6 +2763,13 @@ msgid ""
 "    return Bag\n"
 "Bag = decorator(TYPE_PARAMS_OF_Bag())"
 msgstr ""
+"annotation-def TYPE_PARAMS_OF_Bag():\n"
+"    T = typing.TypeVar(\"T\")\n"
+"    class Bag(Base[T], typing.Generic[T], arg=T):\n"
+"        __type_params__ = (T,)\n"
+"        ...\n"
+"    return Bag\n"
+"Bag = decorator(TYPE_PARAMS_OF_Bag())"
 
 #: ../../reference/compound_stmts.rst:1849
 msgid "Generic type aliases"
@@ -2636,6 +2833,8 @@ msgid ""
 "x: annotation = 1\n"
 "def f(param: annotation): ..."
 msgstr ""
+"x: annotation = 1\n"
+"def f(param: annotation): ..."
 
 #: ../../reference/compound_stmts.rst:1885
 msgid "Functions may also carry a return annotation following an arrow::"
@@ -2679,6 +2878,10 @@ msgid ""
 ">>> f.__annotations__\n"
 "{'param': 'annotation'}"
 msgstr ""
+">>> from __future__ import annotations\n"
+">>> def f(param: annotation): ...\n"
+">>> f.__annotations__\n"
+"{'param': 'annotation'}"
 
 #: ../../reference/compound_stmts.rst:1908
 msgid ""
@@ -2733,7 +2936,7 @@ msgstr ""
 
 #: ../../reference/compound_stmts.rst:1930
 msgid ":class:`array.array`"
-msgstr ""
+msgstr ":class:`array.array`"
 
 #: ../../reference/compound_stmts.rst:1931
 msgid ":class:`collections.deque`"
@@ -2741,11 +2944,11 @@ msgstr ""
 
 #: ../../reference/compound_stmts.rst:1933
 msgid ":class:`memoryview`"
-msgstr ""
+msgstr ":class:`memoryview`"
 
 #: ../../reference/compound_stmts.rst:1934
 msgid ":class:`range`"
-msgstr ""
+msgstr ":class:`range`"
 
 #: ../../reference/compound_stmts.rst:1937
 msgid ""

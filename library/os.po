@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -945,6 +945,9 @@ msgid ""
 "os.setns(fd, os.CLONE_NEWNET)\n"
 "os.close(fd)"
 msgstr ""
+"fd = os.open(\"/proc/1/ns/net\", os.O_RDONLY)\n"
+"os.setns(fd, os.CLONE_NEWNET)\n"
+"os.close(fd)"
 
 #: ../../library/os.rst:670
 #, fuzzy
@@ -1246,6 +1249,11 @@ msgid ""
 "    except OSError:\n"
 "        pass"
 msgstr ""
+"for fd in range(fd_low, fd_high):\n"
+"    try:\n"
+"        os.close(fd)\n"
+"    except OSError:\n"
+"        pass"
 
 #: ../../library/os.rst:951
 #, fuzzy
@@ -1630,7 +1638,7 @@ msgstr ""
 
 #: ../../library/os.rst:1241
 msgid ":const:`SEEK_SET`"
-msgstr ""
+msgstr ":const:`SEEK_SET`"
 
 #: ../../library/os.rst:1242
 msgid "Adjust the file position relative to the beginning of the file."
@@ -1638,7 +1646,7 @@ msgstr ""
 
 #: ../../library/os.rst:1243
 msgid ":const:`SEEK_CUR`"
-msgstr ""
+msgstr ":const:`SEEK_CUR`"
 
 #: ../../library/os.rst:1244
 msgid "Adjust the file position relative to the current file position."
@@ -1646,7 +1654,7 @@ msgstr ""
 
 #: ../../library/os.rst:1245
 msgid ":const:`SEEK_END`"
-msgstr ""
+msgstr ":const:`SEEK_END`"
 
 #: ../../library/os.rst:1246
 msgid "Adjust the file position relative to the end of the file."
@@ -1665,9 +1673,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/os.rst:1258
-#, fuzzy
 msgid ":data:`!SEEK_DATA`"
-msgstr ":data:`RWF_NOWAIT`"
+msgstr ":data:`!SEEK_DATA`"
 
 #: ../../library/os.rst:1259
 msgid ""
@@ -1676,9 +1683,8 @@ msgid ""
 msgstr ""
 
 #: ../../library/os.rst:1262
-#, fuzzy
 msgid ":data:`!SEEK_HOLE`"
-msgstr ":data:`stat.UF_OPAQUE`"
+msgstr ":data:`!SEEK_HOLE`"
 
 #: ../../library/os.rst:1263
 msgid ""
@@ -2052,9 +2058,8 @@ msgid ":data:`RWF_SYNC`"
 msgstr ":data:`RWF_SYNC`"
 
 #: ../../library/os.rst:1592
-#, fuzzy
 msgid ":data:`RWF_APPEND`"
-msgstr ":data:`stat.UF_APPEND`"
+msgstr ":data:`RWF_APPEND`"
 
 #: ../../library/os.rst:1594
 msgid "Return the total number of bytes actually written."
@@ -2655,6 +2660,10 @@ msgid ""
 "        return fp.read()\n"
 "return \"some default data\""
 msgstr ""
+"if os.access(\"myfile\", os.R_OK):\n"
+"    with open(\"myfile\") as fp:\n"
+"        return fp.read()\n"
+"return \"some default data\""
 
 #: ../../library/os.rst:2083
 msgid "is better written as::"
@@ -2670,6 +2679,13 @@ msgid ""
 "    with fp:\n"
 "        return fp.read()"
 msgstr ""
+"try:\n"
+"    fp = open(\"myfile\")\n"
+"except PermissionError:\n"
+"    return \"some default data\"\n"
+"else:\n"
+"    with fp:\n"
+"        return fp.read()"
 
 #: ../../library/os.rst:2095
 msgid ""
@@ -2739,64 +2755,52 @@ msgstr ""
 "대로)의 조합(비트별 OR)을 취할 수 있습니다:"
 
 #: ../../library/os.rst:2143
-#, fuzzy
 msgid ":const:`stat.UF_NODUMP`"
-msgstr ":data:`stat.UF_NODUMP`"
+msgstr ":const:`stat.UF_NODUMP`"
 
 #: ../../library/os.rst:2144
-#, fuzzy
 msgid ":const:`stat.UF_IMMUTABLE`"
-msgstr ":data:`stat.UF_IMMUTABLE`"
+msgstr ":const:`stat.UF_IMMUTABLE`"
 
 #: ../../library/os.rst:2145
-#, fuzzy
 msgid ":const:`stat.UF_APPEND`"
-msgstr ":data:`stat.UF_APPEND`"
+msgstr ":const:`stat.UF_APPEND`"
 
 #: ../../library/os.rst:2146
-#, fuzzy
 msgid ":const:`stat.UF_OPAQUE`"
-msgstr ":data:`stat.UF_OPAQUE`"
+msgstr ":const:`stat.UF_OPAQUE`"
 
 #: ../../library/os.rst:2147
-#, fuzzy
 msgid ":const:`stat.UF_NOUNLINK`"
-msgstr ":data:`stat.UF_NOUNLINK`"
+msgstr ":const:`stat.UF_NOUNLINK`"
 
 #: ../../library/os.rst:2148
-#, fuzzy
 msgid ":const:`stat.UF_COMPRESSED`"
-msgstr ":data:`stat.UF_COMPRESSED`"
+msgstr ":const:`stat.UF_COMPRESSED`"
 
 #: ../../library/os.rst:2149
-#, fuzzy
 msgid ":const:`stat.UF_HIDDEN`"
-msgstr ":data:`stat.UF_HIDDEN`"
+msgstr ":const:`stat.UF_HIDDEN`"
 
 #: ../../library/os.rst:2150
-#, fuzzy
 msgid ":const:`stat.SF_ARCHIVED`"
-msgstr ":data:`stat.SF_ARCHIVED`"
+msgstr ":const:`stat.SF_ARCHIVED`"
 
 #: ../../library/os.rst:2151
-#, fuzzy
 msgid ":const:`stat.SF_IMMUTABLE`"
-msgstr ":data:`stat.SF_IMMUTABLE`"
+msgstr ":const:`stat.SF_IMMUTABLE`"
 
 #: ../../library/os.rst:2152
-#, fuzzy
 msgid ":const:`stat.SF_APPEND`"
-msgstr ":data:`stat.SF_APPEND`"
+msgstr ":const:`stat.SF_APPEND`"
 
 #: ../../library/os.rst:2153
-#, fuzzy
 msgid ":const:`stat.SF_NOUNLINK`"
-msgstr ":data:`stat.SF_NOUNLINK`"
+msgstr ":const:`stat.SF_NOUNLINK`"
 
 #: ../../library/os.rst:2154
-#, fuzzy
 msgid ":const:`stat.SF_SNAPSHOT`"
-msgstr ":data:`stat.SF_SNAPSHOT`"
+msgstr ":const:`stat.SF_SNAPSHOT`"
 
 #: ../../library/os.rst:2156
 msgid "This function can support :ref:`not following symlinks <follow_symlinks>`."
@@ -2825,99 +2829,80 @@ msgstr ""
 "대로)이나 이들의 비트별 OR 조합을 취할 수 있습니다:"
 
 #: ../../library/os.rst:2175
-#, fuzzy
 msgid ":const:`stat.S_ISUID`"
-msgstr ":data:`stat.S_ISUID`"
+msgstr ":const:`stat.S_ISUID`"
 
 #: ../../library/os.rst:2176
-#, fuzzy
 msgid ":const:`stat.S_ISGID`"
-msgstr ":data:`stat.S_ISGID`"
+msgstr ":const:`stat.S_ISGID`"
 
 #: ../../library/os.rst:2177
-#, fuzzy
 msgid ":const:`stat.S_ENFMT`"
-msgstr ":data:`stat.S_ENFMT`"
+msgstr ":const:`stat.S_ENFMT`"
 
 #: ../../library/os.rst:2178
-#, fuzzy
 msgid ":const:`stat.S_ISVTX`"
-msgstr ":data:`stat.S_ISVTX`"
+msgstr ":const:`stat.S_ISVTX`"
 
 #: ../../library/os.rst:2179
-#, fuzzy
 msgid ":const:`stat.S_IREAD`"
-msgstr ":data:`stat.S_IREAD`"
+msgstr ":const:`stat.S_IREAD`"
 
 #: ../../library/os.rst:2180
-#, fuzzy
 msgid ":const:`stat.S_IWRITE`"
-msgstr ":data:`stat.S_IWRITE`"
+msgstr ":const:`stat.S_IWRITE`"
 
 #: ../../library/os.rst:2181
-#, fuzzy
 msgid ":const:`stat.S_IEXEC`"
-msgstr ":data:`stat.S_IEXEC`"
+msgstr ":const:`stat.S_IEXEC`"
 
 #: ../../library/os.rst:2182
-#, fuzzy
 msgid ":const:`stat.S_IRWXU`"
-msgstr ":data:`stat.S_IRWXU`"
+msgstr ":const:`stat.S_IRWXU`"
 
 #: ../../library/os.rst:2183
-#, fuzzy
 msgid ":const:`stat.S_IRUSR`"
-msgstr ":data:`stat.S_IRUSR`"
+msgstr ":const:`stat.S_IRUSR`"
 
 #: ../../library/os.rst:2184
-#, fuzzy
 msgid ":const:`stat.S_IWUSR`"
-msgstr ":data:`stat.S_IWUSR`"
+msgstr ":const:`stat.S_IWUSR`"
 
 #: ../../library/os.rst:2185
-#, fuzzy
 msgid ":const:`stat.S_IXUSR`"
-msgstr ":data:`stat.S_IXUSR`"
+msgstr ":const:`stat.S_IXUSR`"
 
 #: ../../library/os.rst:2186
-#, fuzzy
 msgid ":const:`stat.S_IRWXG`"
-msgstr ":data:`stat.S_IRWXG`"
+msgstr ":const:`stat.S_IRWXG`"
 
 #: ../../library/os.rst:2187
-#, fuzzy
 msgid ":const:`stat.S_IRGRP`"
-msgstr ":data:`stat.S_IRGRP`"
+msgstr ":const:`stat.S_IRGRP`"
 
 #: ../../library/os.rst:2188
-#, fuzzy
 msgid ":const:`stat.S_IWGRP`"
-msgstr ":data:`stat.S_IWGRP`"
+msgstr ":const:`stat.S_IWGRP`"
 
 #: ../../library/os.rst:2189
-#, fuzzy
 msgid ":const:`stat.S_IXGRP`"
-msgstr ":data:`stat.S_IXGRP`"
+msgstr ":const:`stat.S_IXGRP`"
 
 #: ../../library/os.rst:2190
-#, fuzzy
 msgid ":const:`stat.S_IRWXO`"
-msgstr ":data:`stat.S_IRWXO`"
+msgstr ":const:`stat.S_IRWXO`"
 
 #: ../../library/os.rst:2191
-#, fuzzy
 msgid ":const:`stat.S_IROTH`"
-msgstr ":data:`stat.S_IROTH`"
+msgstr ":const:`stat.S_IROTH`"
 
 #: ../../library/os.rst:2192
-#, fuzzy
 msgid ":const:`stat.S_IWOTH`"
-msgstr ":data:`stat.S_IWOTH`"
+msgstr ":const:`stat.S_IWOTH`"
 
 #: ../../library/os.rst:2193
-#, fuzzy
 msgid ":const:`stat.S_IXOTH`"
-msgstr ":data:`stat.S_IXOTH`"
+msgstr ":const:`stat.S_IXOTH`"
 
 #: ../../library/os.rst:2195 ../../library/os.rst:2228
 #: ../../library/os.rst:3620
@@ -3793,6 +3778,10 @@ msgid ""
 "        if not entry.name.startswith('.') and entry.is_file():\n"
 "            print(entry.name)"
 msgstr ""
+"with os.scandir(path) as it:\n"
+"    for entry in it:\n"
+"        if not entry.name.startswith('.') and entry.is_file():\n"
+"            print(entry.name)"
 
 #: ../../library/os.rst:2893
 #, fuzzy
@@ -4200,6 +4189,14 @@ msgid ""
 ">>> statinfo.st_size\n"
 "264"
 msgstr ""
+">>> import os\n"
+">>> statinfo = os.stat('somefile.txt')\n"
+">>> statinfo\n"
+"os.stat_result(st_mode=33188, st_ino=7876932, st_dev=234881026,\n"
+"st_nlink=1, st_uid=501, st_gid=501, st_size=264, st_atime=1297230295,\n"
+"st_mtime=1297230027, st_ctime=1297230027)\n"
+">>> statinfo.st_size\n"
+"264"
 
 #: ../../library/os.rst:3117
 msgid ":func:`fstat` and :func:`lstat` functions."
@@ -5318,15 +5315,15 @@ msgstr ""
 
 #: ../../library/os.rst:3956
 msgid ":func:`read`"
-msgstr ""
+msgstr ":func:`read`"
 
 #: ../../library/os.rst:3957
 msgid ":func:`~select.select`"
-msgstr ""
+msgstr ":func:`~select.select`"
 
 #: ../../library/os.rst:3958
 msgid ":func:`~select.poll`"
-msgstr ""
+msgstr ":func:`~select.poll`"
 
 #: ../../library/os.rst:3960
 msgid ""
@@ -5351,11 +5348,11 @@ msgstr ""
 
 #: ../../library/os.rst:3971
 msgid ":const:`time.CLOCK_REALTIME`"
-msgstr ""
+msgstr ":const:`time.CLOCK_REALTIME`"
 
 #: ../../library/os.rst:3972
 msgid ":const:`time.CLOCK_MONOTONIC`"
-msgstr ""
+msgstr ":const:`time.CLOCK_MONOTONIC`"
 
 #: ../../library/os.rst:3973
 msgid ":const:`time.CLOCK_BOOTTIME` (Since Linux 3.15 for timerfd_create)"
@@ -5392,11 +5389,11 @@ msgstr ""
 
 #: ../../library/os.rst:3991
 msgid ":const:`TFD_NONBLOCK`"
-msgstr ""
+msgstr ":const:`TFD_NONBLOCK`"
 
 #: ../../library/os.rst:3992
 msgid ":const:`TFD_CLOEXEC`"
-msgstr ""
+msgstr ":const:`TFD_CLOEXEC`"
 
 #: ../../library/os.rst:3994
 msgid ""
@@ -5441,11 +5438,11 @@ msgstr ""
 
 #: ../../library/os.rst:4023
 msgid ":const:`TFD_TIMER_ABSTIME`"
-msgstr ""
+msgstr ":const:`TFD_TIMER_ABSTIME`"
 
 #: ../../library/os.rst:4024
 msgid ":const:`TFD_TIMER_CANCEL_ON_SET`"
-msgstr ""
+msgstr ":const:`TFD_TIMER_CANCEL_ON_SET`"
 
 #: ../../library/os.rst:4026
 msgid ""
@@ -5500,11 +5497,11 @@ msgstr ""
 
 #: ../../library/os.rst:4057
 msgid "``settimeofday``"
-msgstr ""
+msgstr "``settimeofday``"
 
 #: ../../library/os.rst:4058
 msgid "``clock_settime``"
-msgstr ""
+msgstr "``clock_settime``"
 
 #: ../../library/os.rst:4059
 msgid "set the system date and time by ``date`` command"
@@ -5547,7 +5544,7 @@ msgstr ""
 
 #: ../../library/os.rst:4096
 msgid ":manpage:`timerfd_gettime(2)`"
-msgstr ""
+msgstr ":manpage:`timerfd_gettime(2)`"
 
 #: ../../library/os.rst:4105
 msgid "Similar to :func:`timerfd_gettime`, but return time as nanoseconds."
@@ -6652,6 +6649,11 @@ msgid ""
 "L = ['cp', 'index.html', '/dev/null']\n"
 "os.spawnvpe(os.P_WAIT, 'cp', L, os.environ)"
 msgstr ""
+"import os\n"
+"os.spawnlp(os.P_WAIT, 'cp', 'cp', 'index.html', '/dev/null')\n"
+"\n"
+"L = ['cp', 'index.html', '/dev/null']\n"
+"os.spawnvpe(os.P_WAIT, 'cp', L, os.environ)"
 
 #: ../../library/os.rst:4928
 msgid ""
@@ -8022,7 +8024,7 @@ msgstr ""
 
 #: ../../library/os.rst:5680
 msgid ".."
-msgstr ""
+msgstr ".."
 
 #: ../../library/os.rst:5688 ../../library/os.rst:5699
 msgid "/ (slash)"

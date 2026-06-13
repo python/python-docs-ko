@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -98,6 +97,16 @@ msgid ""
 "\n"
 "asyncio.run(main())"
 msgstr ""
+"import asyncio\n"
+"\n"
+"async def test():\n"
+"    asyncio.print_call_graph()\n"
+"\n"
+"async def main():\n"
+"    async with asyncio.TaskGroup() as g:\n"
+"        g.create_task(test(), name='test')\n"
+"\n"
+"asyncio.run(main())"
 
 #: ../../library/asyncio-graph.rst:66
 msgid "will print::"
@@ -114,6 +123,14 @@ msgid ""
 "      |   File 'taskgroups.py', line 107, in async TaskGroup.__aexit__()\n"
 "      |   File 't2.py', line 7, in async main()"
 msgstr ""
+"* Task(name='test', id=0x1039f0fe0)\n"
+"+ Call stack:\n"
+"|   File 't2.py', line 4, in async test()\n"
+"+ Awaited by:\n"
+"   * Task(name='Task-1', id=0x103a5e060)\n"
+"      + Call stack:\n"
+"      |   File 'taskgroups.py', line 107, in async TaskGroup.__aexit__()\n"
+"      |   File 't2.py', line 7, in async main()"
 
 #: ../../library/asyncio-graph.rst:79
 msgid ""
@@ -141,7 +158,7 @@ msgstr ""
 
 #: ../../library/asyncio-graph.rst:99
 msgid "``FutureCallGraph(future, call_stack, awaited_by)``"
-msgstr ""
+msgstr "``FutureCallGraph(future, call_stack, awaited_by)``"
 
 #: ../../library/asyncio-graph.rst:101
 msgid ""
@@ -159,7 +176,7 @@ msgstr ""
 
 #: ../../library/asyncio-graph.rst:108
 msgid "``FrameCallGraphEntry(frame)``"
-msgstr ""
+msgstr "``FrameCallGraphEntry(frame)``"
 
 #: ../../library/asyncio-graph.rst:110
 msgid ""

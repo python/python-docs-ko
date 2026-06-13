@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -50,6 +50,8 @@ msgid ""
 "def surface_area_of_cube(edge_length: float) -> str:\n"
 "    return f\"The surface area of the cube is {6 * edge_length ** 2}.\""
 msgstr ""
+"def surface_area_of_cube(edge_length: float) -> str:\n"
+"    return f\"The surface area of the cube is {6 * edge_length ** 2}.\""
 
 #: ../../library/typing.rst:33
 msgid ""
@@ -193,6 +195,9 @@ msgid ""
 "\n"
 "Vector: TypeAlias = list[float]"
 msgstr ""
+"from typing import TypeAlias\n"
+"\n"
+"Vector: TypeAlias = list[float]"
 
 #: ../../library/typing.rst:121
 msgid "NewType"
@@ -296,6 +301,11 @@ msgid ""
 "\n"
 "ProUserId = NewType('ProUserId', UserId)"
 msgstr ""
+"from typing import NewType\n"
+"\n"
+"UserId = NewType('UserId', int)\n"
+"\n"
+"ProUserId = NewType('ProUserId', UserId)"
 
 #: ../../library/typing.rst:176
 msgid "and typechecking for ``ProUserId`` will work as expected."
@@ -719,6 +729,11 @@ msgid ""
 "        sent = yield round(sent)\n"
 "    return 'Done'"
 msgstr ""
+"def echo_round() -> Generator[int, float, str]:\n"
+"    sent = yield 0\n"
+"    while sent >= 0:\n"
+"        sent = yield round(sent)\n"
+"    return 'Done'"
 
 #: ../../library/typing.rst:465
 #, fuzzy
@@ -741,6 +756,10 @@ msgid ""
 "        yield start\n"
 "        start += 1"
 msgstr ""
+"def infinite_stream(start: int) -> Generator[int]:\n"
+"    while True:\n"
+"        yield start\n"
+"        start += 1"
 
 #: ../../library/typing.rst:476
 msgid "It is also possible to set these types explicitly::"
@@ -753,6 +772,10 @@ msgid ""
 "        yield start\n"
 "        start += 1"
 msgstr ""
+"def infinite_stream(start: int) -> Generator[int, None, None]:\n"
+"    while True:\n"
+"        yield start\n"
+"        start += 1"
 
 #: ../../library/typing.rst:483
 msgid ""
@@ -769,6 +792,10 @@ msgid ""
 "        yield start\n"
 "        start += 1"
 msgstr ""
+"def infinite_stream(start: int) -> Iterator[int]:\n"
+"    while True:\n"
+"        yield start\n"
+"        start += 1"
 
 #: ../../library/typing.rst:493
 msgid ""
@@ -790,6 +817,15 @@ msgid ""
 "        yield start\n"
 "        start = await increment(start)"
 msgstr ""
+"async def infinite_stream(start: int) -> AsyncGenerator[int]:\n"
+"    while True:\n"
+"        yield start\n"
+"        start = await increment(start)\n"
+"\n"
+"async def infinite_stream(start: int) -> AsyncGenerator[int, None]:\n"
+"    while True:\n"
+"        yield start\n"
+"        start = await increment(start)"
 
 #: ../../library/typing.rst:509
 msgid ""
@@ -805,6 +841,10 @@ msgid ""
 "        yield start\n"
 "        start = await increment(start)"
 msgstr ""
+"async def infinite_stream(start: int) -> AsyncIterator[int]:\n"
+"    while True:\n"
+"        yield start\n"
+"        start = await increment(start)"
 
 #: ../../library/typing.rst:519
 #, fuzzy
@@ -855,6 +895,24 @@ msgid ""
 "    def log(self, message: str) -> None:\n"
 "        self.logger.info('%s: %s', self.name, message)"
 msgstr ""
+"from logging import Logger\n"
+"\n"
+"class LoggedVar[T]:\n"
+"    def __init__(self, value: T, name: str, logger: Logger) -> None:\n"
+"        self.name = name\n"
+"        self.logger = logger\n"
+"        self.value = value\n"
+"\n"
+"    def set(self, new: T) -> None:\n"
+"        self.log('Set ' + repr(self.value))\n"
+"        self.value = new\n"
+"\n"
+"    def get(self) -> T:\n"
+"        self.log('Get ' + repr(self.value))\n"
+"        return self.value\n"
+"\n"
+"    def log(self, message: str) -> None:\n"
+"        self.logger.info('%s: %s', self.name, message)"
 
 #: ../../library/typing.rst:558
 #, fuzzy
@@ -882,6 +940,12 @@ msgid ""
 "class LoggedVar(Generic[T]):\n"
 "    ..."
 msgstr ""
+"from typing import TypeVar, Generic\n"
+"\n"
+"T = TypeVar('T')\n"
+"\n"
+"class LoggedVar(Generic[T]):\n"
+"    ..."
 
 #: ../../library/typing.rst:573
 msgid ""
@@ -897,6 +961,11 @@ msgid ""
 "    for var in vars:\n"
 "        var.set(0)"
 msgstr ""
+"from collections.abc import Iterable\n"
+"\n"
+"def zero_all_vars(vars: Iterable[LoggedVar[int]]) -> None:\n"
+"    for var in vars:\n"
+"        var.set(0)"
 
 #: ../../library/typing.rst:582
 msgid ""
@@ -918,6 +987,17 @@ msgid ""
 "class OldWeirdTrio(Generic[OldT, OldB, OldS]):\n"
 "    ..."
 msgstr ""
+"from typing import TypeVar, Generic, Sequence\n"
+"\n"
+"class WeirdTrio[T, B: Sequence[bytes], S: (int, str)]:\n"
+"    ...\n"
+"\n"
+"OldT = TypeVar('OldT', contravariant=True)\n"
+"OldB = TypeVar('OldB', bound=Sequence[bytes], covariant=True)\n"
+"OldS = TypeVar('OldS', int, str)\n"
+"\n"
+"class OldWeirdTrio(Generic[OldT, OldB, OldS]):\n"
+"    ..."
 
 #: ../../library/typing.rst:597
 msgid ""
@@ -950,6 +1030,10 @@ msgid ""
 "class LinkedList[T](Sized):\n"
 "    ..."
 msgstr ""
+"from collections.abc import Sized\n"
+"\n"
+"class LinkedList[T](Sized):\n"
+"    ..."
 
 #: ../../library/typing.rst:618
 #, fuzzy
@@ -965,6 +1049,10 @@ msgid ""
 "class MyDict[T](Mapping[str, T]):\n"
 "    ..."
 msgstr ""
+"from collections.abc import Mapping\n"
+"\n"
+"class MyDict[T](Mapping[str, T]):\n"
+"    ..."
 
 #: ../../library/typing.rst:625
 msgid "In this case ``MyDict`` has a single parameter, ``T``."
@@ -1024,6 +1112,11 @@ msgid ""
 "S = TypeVar(\"S\")\n"
 "Response = Iterable[S] | int"
 msgstr ""
+"from collections.abc import Iterable\n"
+"from typing import TypeVar\n"
+"\n"
+"S = TypeVar(\"S\")\n"
+"Response = Iterable[S] | int"
 
 #: ../../library/typing.rst:662
 msgid ":class:`Generic` no longer has a custom metaclass."
@@ -1070,6 +1163,12 @@ msgid ""
 "class Z(Generic[P]):\n"
 "    ..."
 msgstr ""
+"from typing import ParamSpec, Generic\n"
+"\n"
+"P = ParamSpec('P')\n"
+"\n"
+"class Z(Generic[P]):\n"
+"    ..."
 
 #: ../../library/typing.rst:691
 msgid ""
@@ -1089,6 +1188,12 @@ msgid ""
 ">>> X[[int, str]]\n"
 "__main__.X[[int, str]]"
 msgstr ""
+">>> class X[**P]: ...\n"
+"...\n"
+">>> X[int, str]\n"
+"__main__.X[[int, str]]\n"
+">>> X[[int, str]]\n"
+"__main__.X[[int, str]]"
 
 #: ../../library/typing.rst:704
 msgid ""
@@ -1281,6 +1386,12 @@ msgid ""
 "    def __len__(self) -> int: ...\n"
 "    def __iter__(self) -> Iterator[int]: ..."
 msgstr ""
+"from collections.abc import Sized, Iterable, Iterator\n"
+"\n"
+"class Bucket(Sized, Iterable[int]):\n"
+"    ...\n"
+"    def __len__(self) -> int: ...\n"
+"    def __iter__(self) -> Iterator[int]: ..."
 
 #: ../../library/typing.rst:816
 msgid ""
@@ -1579,6 +1690,14 @@ msgid ""
 "        ...\n"
 "        return self"
 msgstr ""
+"from typing import TypeVar\n"
+"\n"
+"Self = TypeVar(\"Self\", bound=\"Foo\")\n"
+"\n"
+"class Foo:\n"
+"    def return_self(self: Self) -> Self:\n"
+"        ...\n"
+"        return self"
 
 #: ../../library/typing.rst:1017
 msgid ""
@@ -1637,6 +1756,9 @@ msgid ""
 "\n"
 "Factors: TypeAlias = list[int]"
 msgstr ""
+"from typing import TypeAlias\n"
+"\n"
+"Factors: TypeAlias = list[int]"
 
 #: ../../library/typing.rst:1054
 msgid ""
@@ -1727,6 +1849,8 @@ msgid ""
 "type A = Union[int, str]\n"
 "Union[A, float] != Union[int, str, float]"
 msgstr ""
+"type A = Union[int, str]\n"
+"Union[A, float] != Union[int, str, float]"
 
 #: ../../library/typing.rst:1112
 msgid "Unions of a single argument vanish, e.g.::"
@@ -1801,6 +1925,8 @@ msgid ""
 "def foo(arg: int = 0) -> None:\n"
 "    ..."
 msgstr ""
+"def foo(arg: int = 0) -> None:\n"
+"    ..."
 
 #: ../../library/typing.rst:1155
 msgid ""
@@ -1816,6 +1942,8 @@ msgid ""
 "def foo(arg: Optional[int] = None) -> None:\n"
 "    ..."
 msgstr ""
+"def foo(arg: Optional[int] = None) -> None:\n"
+"    ..."
 
 #: ../../library/typing.rst:1162
 msgid ""
@@ -1886,11 +2014,11 @@ msgstr ""
 
 #: ../../library/typing.rst:1219
 msgid ":class:`ParamSpec`"
-msgstr ""
+msgstr ":class:`ParamSpec`"
 
 #: ../../library/typing.rst:1220 ../../library/typing.rst:2221
 msgid ":ref:`annotating-callables`"
-msgstr ""
+msgstr ":ref:`annotating-callables`"
 
 #: ../../library/typing.rst:1224
 msgid "Special typing form to define \"literal types\"."
@@ -1958,6 +2086,8 @@ msgid ""
 "type A = Literal[1, 2]\n"
 "assert Literal[A, 3] != Literal[1, 2, 3]"
 msgstr ""
+"type A = Literal[1, 2]\n"
+"assert Literal[A, 3] != Literal[1, 2, 3]"
 
 #: ../../library/typing.rst:1262
 msgid "assert Literal[1, 2, 1] == Literal[1, 2]"
@@ -2185,6 +2315,13 @@ msgid ""
 "T1 = Annotated[int, ValueRange(-10, 5)]\n"
 "T2 = Annotated[T1, ValueRange(-20, 3)]"
 msgstr ""
+"@dataclass\n"
+"class ValueRange:\n"
+"    lo: int\n"
+"    hi: int\n"
+"\n"
+"T1 = Annotated[int, ValueRange(-10, 5)]\n"
+"T2 = Annotated[T1, ValueRange(-20, 3)]"
 
 #: ../../library/typing.rst:1418
 msgid ""
@@ -2230,6 +2367,10 @@ msgid ""
 "    int, ValueRange(3, 10), ctype(\"char\")\n"
 "]"
 msgstr ""
+"assert Annotated[Annotated[int, ValueRange(3, 10)], ctype(\"char\")] == "
+"Annotated[\n"
+"    int, ValueRange(3, 10), ctype(\"char\")\n"
+"]"
 
 #: ../../library/typing.rst:1442
 msgid ""
@@ -2245,6 +2386,10 @@ msgid ""
 "   int, ValueRange(3, 10), ctype(\"char\")\n"
 "]"
 msgstr ""
+"type From3To10[T] = Annotated[T, ValueRange(3, 10)]\n"
+"assert Annotated[From3To10[int], ctype(\"char\")] != Annotated[\n"
+"   int, ValueRange(3, 10), ctype(\"char\")\n"
+"]"
 
 #: ../../library/typing.rst:1450
 #, fuzzy
@@ -2257,6 +2402,9 @@ msgid ""
 "    int, ValueRange(3, 10), ValueRange(3, 10)\n"
 "]"
 msgstr ""
+"assert Annotated[int, ValueRange(3, 10)] != Annotated[\n"
+"    int, ValueRange(3, 10), ValueRange(3, 10)\n"
+"]"
 
 #: ../../library/typing.rst:1456
 #, fuzzy
@@ -2311,6 +2459,13 @@ msgid ""
 ">>> get_type_hints(func, include_extras=True)\n"
 "{'x': typing.Annotated[int, 'metadata'], 'return': <class 'NoneType'>}"
 msgstr ""
+">>> from typing import Annotated, get_type_hints\n"
+">>> def func(x: Annotated[int, \"metadata\"]) -> None: pass\n"
+"...\n"
+">>> get_type_hints(func)\n"
+"{'x': <class 'int'>, 'return': <class 'NoneType'>}\n"
+">>> get_type_hints(func, include_extras=True)\n"
+"{'x': typing.Annotated[int, 'metadata'], 'return': <class 'NoneType'>}"
 
 #: ../../library/typing.rst:1490
 msgid ""
@@ -2327,6 +2482,12 @@ msgid ""
 ">>> X.__metadata__\n"
 "('very', 'important', 'metadata')"
 msgstr ""
+">>> from typing import Annotated\n"
+">>> X = Annotated[int, \"very\", \"important\", \"metadata\"]\n"
+">>> X\n"
+"typing.Annotated[int, 'very', 'important', 'metadata']\n"
+">>> X.__metadata__\n"
+"('very', 'important', 'metadata')"
 
 #: ../../library/typing.rst:1502
 msgid ""
@@ -2341,6 +2502,10 @@ msgid ""
 ">>> Password.__origin__\n"
 "<class 'str'>"
 msgstr ""
+">>> from typing import Annotated, get_origin\n"
+">>> Password = Annotated[str, \"secret\"]\n"
+">>> Password.__origin__\n"
+"<class 'str'>"
 
 #: ../../library/typing.rst:1512
 msgid "Note that using :func:`get_origin` will return ``Annotated`` itself:"
@@ -2351,6 +2516,8 @@ msgid ""
 ">>> get_origin(Password)\n"
 "typing.Annotated"
 msgstr ""
+">>> get_origin(Password)\n"
+"typing.Annotated"
 
 #: ../../library/typing.rst:1521
 msgid ":pep:`593` - Flexible function and variable annotations"
@@ -2676,6 +2843,11 @@ msgid ""
 "    except KeyError:\n"
 "        return default"
 msgstr ""
+"def lookup_name[X, Y](mapping: Mapping[X, Y], key: X, default: Y) -> Y:\n"
+"    try:\n"
+"        return mapping[key]\n"
+"    except KeyError:\n"
+"        return default"
 
 #: ../../library/typing.rst:1740
 msgid ""
@@ -2977,6 +3149,9 @@ msgid ""
 "T]:\n"
 "    return (*tup[1:], tup[0])"
 msgstr ""
+"def move_first_element_to_last[T, *Ts](tup: tuple[T, *Ts]) -> tuple[*Ts, "
+"T]:\n"
+"    return (*tup[1:], tup[0])"
 
 #: ../../library/typing.rst:1965
 msgid "Or by explicitly invoking the ``TypeVarTuple`` constructor::"
@@ -2990,6 +3165,11 @@ msgid ""
 "def move_first_element_to_last(tup: tuple[T, *Ts]) -> tuple[*Ts, T]:\n"
 "    return (*tup[1:], tup[0])"
 msgstr ""
+"T = TypeVar(\"T\")\n"
+"Ts = TypeVarTuple(\"Ts\")\n"
+"\n"
+"def move_first_element_to_last(tup: tuple[T, *Ts]) -> tuple[*Ts, T]:\n"
+"    return (*tup[1:], tup[0])"
 
 #: ../../library/typing.rst:1973
 msgid ""
@@ -3057,6 +3237,10 @@ msgid ""
 "    def __abs__(self) -> \"Array[*Shape]\": ...\n"
 "    def get_shape(self) -> tuple[*Shape]: ..."
 msgstr ""
+"class Array[*Shape]:\n"
+"    def __getitem__(self, key: tuple[*Shape]) -> float: ...\n"
+"    def __abs__(self) -> \"Array[*Shape]\": ...\n"
+"    def get_shape(self) -> tuple[*Shape]: ..."
 
 #: ../../library/typing.rst:2018
 msgid "Type variable tuples can be happily combined with normal type variables:"
@@ -3105,6 +3289,12 @@ msgid ""
 "    ...\n"
 "    callback(*args)"
 msgstr ""
+"def call_soon[*Ts](\n"
+"    callback: Callable[[*Ts], None],\n"
+"    *args: *Ts\n"
+") -> None:\n"
+"    ...\n"
+"    callback(*args)"
 
 #: ../../library/typing.rst:2051
 msgid ""
@@ -3308,7 +3498,7 @@ msgstr ""
 
 #: ../../library/typing.rst:2220
 msgid ":data:`Concatenate`"
-msgstr ""
+msgstr ":data:`Concatenate`"
 
 #: ../../library/typing.rst:2226
 msgid ""
@@ -3334,6 +3524,12 @@ msgid ""
 ">>> get_origin(P.kwargs) is P\n"
 "True"
 msgstr ""
+">>> from typing import ParamSpec, get_origin\n"
+">>> P = ParamSpec(\"P\")\n"
+">>> get_origin(P.args) is P\n"
+"True\n"
+">>> get_origin(P.kwargs) is P\n"
+"True"
 
 #: ../../library/typing.rst:2248
 msgid "The type of type aliases created through the :keyword:`type` statement."
@@ -3345,6 +3541,9 @@ msgid ""
 ">>> type(Alias)\n"
 "<class 'typing.TypeAliasType'>"
 msgstr ""
+">>> type Alias = int\n"
+">>> type(Alias)\n"
+"<class 'typing.TypeAliasType'>"
 
 #: ../../library/typing.rst:2262
 msgid "The name of the type alias:"
@@ -3356,6 +3555,9 @@ msgid ""
 ">>> Alias.__name__\n"
 "'Alias'"
 msgstr ""
+">>> type Alias = int\n"
+">>> Alias.__name__\n"
+"'Alias'"
 
 #: ../../library/typing.rst:2272
 msgid "The name of the module in which the type alias was defined::"
@@ -3367,6 +3569,9 @@ msgid ""
 ">>> Alias.__module__\n"
 "'__main__'"
 msgstr ""
+">>> type Alias = int\n"
+">>> Alias.__module__\n"
+"'__main__'"
 
 #: ../../library/typing.rst:2280
 msgid ""
@@ -3383,6 +3588,12 @@ msgid ""
 ">>> NotGeneric.__type_params__\n"
 "()"
 msgstr ""
+">>> type ListOrSet[T] = list[T] | set[T]\n"
+">>> ListOrSet.__type_params__\n"
+"(T,)\n"
+">>> type NotGeneric = int\n"
+">>> NotGeneric.__type_params__\n"
+"()"
 
 #: ../../library/typing.rst:2294
 msgid ""
@@ -3404,6 +3615,16 @@ msgid ""
 ">>> Recursive.__value__\n"
 "Mutually"
 msgstr ""
+">>> type Mutually = Recursive\n"
+">>> type Recursive = Mutually\n"
+">>> Mutually\n"
+"Mutually\n"
+">>> Recursive\n"
+"Recursive\n"
+">>> Mutually.__value__\n"
+"Recursive\n"
+">>> Recursive.__value__\n"
+"Mutually"
 
 #: ../../library/typing.rst:2313
 msgid ""
@@ -3430,6 +3651,18 @@ msgid ""
 ">>> call_evaluate_function(Alias.evaluate_value, Format.FORWARDREF)\n"
 "ForwardRef('undefined')"
 msgstr ""
+">>> type Alias = undefined\n"
+">>> Alias.__value__\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"NameError: name 'undefined' is not defined\n"
+">>> from annotationlib import Format, call_evaluate_function\n"
+">>> Alias.evaluate_value(Format.VALUE)\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"NameError: name 'undefined' is not defined\n"
+">>> call_evaluate_function(Alias.evaluate_value, Format.FORWARDREF)\n"
+"ForwardRef('undefined')"
 
 #: ../../library/typing.rst:2337
 msgid "Unpacking"
@@ -3448,6 +3681,10 @@ msgid ""
 ">>> Unpacked.__value__\n"
 "tuple[bool, typing.Unpack[Alias]]"
 msgstr ""
+">>> type Alias = tuple[int, str]\n"
+">>> type Unpacked = tuple[bool, *Alias]\n"
+">>> Unpacked.__value__\n"
+"tuple[bool, typing.Unpack[Alias]]"
 
 #: ../../library/typing.rst:2352
 msgid "Other special directives"
@@ -3476,6 +3713,9 @@ msgid ""
 "    name: str\n"
 "    id: int"
 msgstr ""
+"class Employee(NamedTuple):\n"
+"    name: str\n"
+"    id: int"
 
 #: ../../library/typing.rst:2368
 msgid "This is equivalent to::"
@@ -3498,6 +3738,12 @@ msgid ""
 "employee = Employee('Guido')\n"
 "assert employee.id == 3"
 msgstr ""
+"class Employee(NamedTuple):\n"
+"    name: str\n"
+"    id: int = 3\n"
+"\n"
+"employee = Employee('Guido')\n"
+"assert employee.id == 3"
 
 #: ../../library/typing.rst:2381
 msgid "Fields with a default value must come after any fields without a default."
@@ -3543,6 +3789,9 @@ msgid ""
 "    key: T\n"
 "    group: list[T]"
 msgstr ""
+"class Group[T](NamedTuple):\n"
+"    key: T\n"
+"    group: list[T]"
 
 #: ../../library/typing.rst:2405
 msgid "Backward-compatible usage::"
@@ -3666,6 +3915,9 @@ msgid ""
 "    def meth(self) -> int:\n"
 "        ..."
 msgstr ""
+"class Proto(Protocol):\n"
+"    def meth(self) -> int:\n"
+"        ..."
 
 #: ../../library/typing.rst:2490
 msgid ""
@@ -3708,6 +3960,9 @@ msgid ""
 "    def meth(self) -> T:\n"
 "        ..."
 msgstr ""
+"class GenProto[T](Protocol):\n"
+"    def meth(self) -> T:\n"
+"        ..."
 
 #: ../../library/typing.rst:2514
 msgid ""
@@ -3723,6 +3978,11 @@ msgid ""
 "    def meth(self) -> T:\n"
 "        ..."
 msgstr ""
+"T = TypeVar(\"T\")\n"
+"\n"
+"class GenProto(Protocol[T]):\n"
+"    def meth(self) -> T:\n"
+"        ..."
 
 #: ../../library/typing.rst:2527
 msgid "Mark a protocol class as a runtime protocol."
@@ -3756,6 +4016,18 @@ msgid ""
 "import threading\n"
 "assert isinstance(threading.Thread(name='Bob'), Named)"
 msgstr ""
+"@runtime_checkable\n"
+"class Closable(Protocol):\n"
+"    def close(self): ...\n"
+"\n"
+"assert isinstance(open('/some/file'), Closable)\n"
+"\n"
+"@runtime_checkable\n"
+"class Named(Protocol):\n"
+"    name: str\n"
+"\n"
+"import threading\n"
+"assert isinstance(threading.Thread(name='Bob'), Named)"
 
 #: ../../library/typing.rst:2546
 msgid ""
@@ -3961,6 +4233,8 @@ msgid ""
 "class Point3D(Point2D):\n"
 "    z: int"
 msgstr ""
+"class Point3D(Point2D):\n"
+"    z: int"
 
 #: ../../library/typing.rst:2681
 msgid ""
@@ -3975,6 +4249,10 @@ msgid ""
 "    y: int\n"
 "    z: int"
 msgstr ""
+"class Point3D(TypedDict):\n"
+"    x: int\n"
+"    y: int\n"
+"    z: int"
 
 #: ../../library/typing.rst:2689
 msgid ""
@@ -4007,6 +4285,9 @@ msgid ""
 "    key: T\n"
 "    group: list[T]"
 msgstr ""
+"class Group[T](TypedDict):\n"
+"    key: T\n"
+"    group: list[T]"
 
 #: ../../library/typing.rst:2710
 msgid ""
@@ -4022,6 +4303,11 @@ msgid ""
 "    key: T\n"
 "    group: list[T]"
 msgstr ""
+"T = TypeVar(\"T\")\n"
+"\n"
+"class Group(TypedDict, Generic[T]):\n"
+"    key: T\n"
+"    group: list[T]"
 
 #: ../../library/typing.rst:2721
 msgid ""
@@ -4048,6 +4334,16 @@ msgid ""
 ">>> Point3D.__total__\n"
 "True"
 msgstr ""
+">>> from typing import TypedDict\n"
+">>> class Point2D(TypedDict): pass\n"
+">>> Point2D.__total__\n"
+"True\n"
+">>> class Point2D(TypedDict, total=False): pass\n"
+">>> Point2D.__total__\n"
+"False\n"
+">>> class Point3D(Point2D): pass\n"
+">>> Point3D.__total__\n"
+"True"
 
 #: ../../library/typing.rst:2743
 msgid ""
@@ -4099,6 +4395,17 @@ msgid ""
 ">>> Point3D.__optional_keys__ == frozenset({'x', 'y'})\n"
 "True"
 msgstr ""
+">>> class Point2D(TypedDict, total=False):\n"
+"...     x: int\n"
+"...     y: int\n"
+"...\n"
+">>> class Point3D(Point2D):\n"
+"...     z: int\n"
+"...\n"
+">>> Point3D.__required_keys__ == frozenset({'z'})\n"
+"True\n"
+">>> Point3D.__optional_keys__ == frozenset({'x', 'y'})\n"
+"True"
 
 #: ../../library/typing.rst:2787
 msgid ""
@@ -4235,6 +4542,9 @@ msgid ""
 "    data = reader.read()\n"
 "    writer.write(data.encode())"
 msgstr ""
+"def read_and_write(reader: Reader[str], writer: Writer[bytes]):\n"
+"    data = reader.read()\n"
+"    writer.write(data.encode())"
 
 #: ../../library/typing.rst:2895
 msgid ""
@@ -4248,6 +4558,9 @@ msgid ""
 "    for line in stream:\n"
 "        ..."
 msgstr ""
+"def read_config(stream: Iterable[str]):\n"
+"    for line in stream:\n"
+"        ..."
 
 #: ../../library/typing.rst:2903
 msgid "Functions and decorators"
@@ -4328,6 +4641,14 @@ msgid ""
 "        case _ as unreachable:\n"
 "            assert_never(unreachable)"
 msgstr ""
+"def int_or_str(arg: int | str) -> None:\n"
+"    match arg:\n"
+"        case int():\n"
+"            print(\"It's an int\")\n"
+"        case str():\n"
+"            print(\"It's a str\")\n"
+"        case _ as unreachable:\n"
+"            assert_never(unreachable)"
 
 #: ../../library/typing.rst:2955
 msgid ""
@@ -4438,6 +4759,15 @@ msgid ""
 "    id: int\n"
 "    name: str"
 msgstr ""
+"@dataclass_transform()\n"
+"def create_model[T](cls: type[T]) -> type[T]:\n"
+"    ...\n"
+"    return cls\n"
+"\n"
+"@create_model\n"
+"class CustomerModel:\n"
+"    id: int\n"
+"    name: str"
 
 #: ../../library/typing.rst:3035
 #, fuzzy
@@ -4453,6 +4783,12 @@ msgid ""
 "    id: int\n"
 "    name: str"
 msgstr ""
+"@dataclass_transform()\n"
+"class ModelBase: ...\n"
+"\n"
+"class CustomerModel(ModelBase):\n"
+"    id: int\n"
+"    name: str"
 
 #: ../../library/typing.rst:3044
 msgid "On a metaclass::"
@@ -4469,6 +4805,14 @@ msgid ""
 "    id: int\n"
 "    name: str"
 msgstr ""
+"@dataclass_transform()\n"
+"class ModelMeta(type): ...\n"
+"\n"
+"class ModelBase(metaclass=ModelMeta): ...\n"
+"\n"
+"class CustomerModel(ModelBase):\n"
+"    id: int\n"
+"    name: str"
 
 #: ../../library/typing.rst:3055
 msgid ""
@@ -4562,7 +4906,7 @@ msgstr ""
 
 #: ../../library/typing.rst:3114
 msgid "``init``"
-msgstr ""
+msgstr "``init``"
 
 #: ../../library/typing.rst:3115
 msgid ""
@@ -4580,7 +4924,7 @@ msgstr ""
 
 #: ../../library/typing.rst:3120
 msgid "``default_factory``"
-msgstr ""
+msgstr "``default_factory``"
 
 #: ../../library/typing.rst:3121
 msgid ""
@@ -4592,7 +4936,7 @@ msgstr ""
 
 #: ../../library/typing.rst:3126
 msgid "``factory``"
-msgstr ""
+msgstr "``factory``"
 
 #: ../../library/typing.rst:3127
 msgid "An alias for the ``default_factory`` parameter on field specifiers."
@@ -4600,7 +4944,7 @@ msgstr ""
 
 #: ../../library/typing.rst:3128
 msgid "``kw_only``"
-msgstr ""
+msgstr "``kw_only``"
 
 #: ../../library/typing.rst:3129
 msgid ""
@@ -4614,7 +4958,7 @@ msgstr ""
 
 #: ../../library/typing.rst:3135
 msgid "``alias``"
-msgstr ""
+msgstr "``alias``"
 
 #: ../../library/typing.rst:3136
 msgid ""
@@ -4996,6 +5340,13 @@ msgid ""
 "assert get_origin(P.args) is P\n"
 "assert get_origin(P.kwargs) is P"
 msgstr ""
+"assert get_origin(str) is None\n"
+"assert get_origin(Dict[str, int]) is dict\n"
+"assert get_origin(Union[int, str]) is Union\n"
+"assert get_origin(Annotated[str, \"metadata\"]) is Annotated\n"
+"P = ParamSpec('P')\n"
+"assert get_origin(P.args) is P\n"
+"assert get_origin(P.kwargs) is P"
 
 #: ../../library/typing.rst:3419
 msgid ""
@@ -5023,6 +5374,9 @@ msgid ""
 "assert get_args(Dict[int, str]) == (int, str)\n"
 "assert get_args(Union[int, str]) == (int, str)"
 msgstr ""
+"assert get_args(int) == ()\n"
+"assert get_args(Dict[int, str]) == (int, str)\n"
+"assert get_args(Union[int, str]) == (int, str)"
 
 #: ../../library/typing.rst:3439
 msgid "Return the set of members defined in a :class:`Protocol`."
@@ -5038,6 +5392,12 @@ msgid ""
 ">>> get_protocol_members(P) == frozenset({'a', 'b'})\n"
 "True"
 msgstr ""
+">>> from typing import Protocol, get_protocol_members\n"
+">>> class P(Protocol):\n"
+"...     def a(self) -> str: ...\n"
+"...     b: int\n"
+">>> get_protocol_members(P) == frozenset({'a', 'b'})\n"
+"True"
 
 #: ../../library/typing.rst:3450
 msgid "Raise :exc:`TypeError` for arguments that are not Protocols."
@@ -5056,6 +5416,12 @@ msgid ""
 "is_protocol(P)    # => True\n"
 "is_protocol(int)  # => False"
 msgstr ""
+"class P(Protocol):\n"
+"    def a(self) -> str: ...\n"
+"    b: int\n"
+"\n"
+"is_protocol(P)    # => True\n"
+"is_protocol(int)  # => False"
 
 #: ../../library/typing.rst:3471
 msgid "Check if a type is a :class:`TypedDict`."
@@ -5140,6 +5506,12 @@ msgid ""
 ">>> S.__default__ is None\n"
 "True"
 msgstr ""
+">>> T = TypeVar(\"T\")\n"
+">>> T.__default__ is typing.NoDefault\n"
+"True\n"
+">>> S = TypeVar(\"S\", default=None)\n"
+">>> S.__default__ is None\n"
+"True"
 
 #: ../../library/typing.rst:3545
 msgid "Constant"
@@ -5175,6 +5547,11 @@ msgid ""
 "def fun(arg: expensive_mod.SomeType) -> None:\n"
 "    local_var: expensive_mod.AnotherType = other_fun()"
 msgstr ""
+"if TYPE_CHECKING:\n"
+"    import expensive_mod\n"
+"\n"
+"def fun(arg: expensive_mod.SomeType) -> None:\n"
+"    local_var: expensive_mod.AnotherType = other_fun()"
 
 #: ../../library/typing.rst:3570
 msgid ""
@@ -5482,6 +5859,8 @@ msgid ""
 "def add_unicode_checkmark(text: Text) -> Text:\n"
 "    return text + u' \\u2713'"
 msgstr ""
+"def add_unicode_checkmark(text: Text) -> Text:\n"
+"    return text + u' \\u2713'"
 
 #: ../../library/typing.rst:3771
 msgid ""
@@ -5990,7 +6369,7 @@ msgstr ""
 
 #: ../../library/typing.rst:4103 ../../library/typing.rst:4107
 msgid "3.9"
-msgstr ""
+msgstr "3.9"
 
 #: ../../library/typing.rst:4104
 msgid "Undecided (see :ref:`deprecated-aliases` for more information)"
@@ -5998,23 +6377,23 @@ msgstr ""
 
 #: ../../library/typing.rst:4105
 msgid ":pep:`585`"
-msgstr ""
+msgstr ":pep:`585`"
 
 #: ../../library/typing.rst:4106
 msgid ":class:`typing.ByteString`"
-msgstr ""
+msgstr ":class:`typing.ByteString`"
 
 #: ../../library/typing.rst:4108
 msgid "3.17"
-msgstr ""
+msgstr "3.17"
 
 #: ../../library/typing.rst:4109
 msgid ":gh:`91896`"
-msgstr ""
+msgstr ":gh:`91896`"
 
 #: ../../library/typing.rst:4110
 msgid ":data:`typing.Text`"
-msgstr ""
+msgstr ":data:`typing.Text`"
 
 #: ../../library/typing.rst:4111
 msgid "3.11"
@@ -6027,7 +6406,7 @@ msgstr ""
 
 #: ../../library/typing.rst:4113
 msgid ":gh:`92332`"
-msgstr ""
+msgstr ":gh:`92332`"
 
 #: ../../library/typing.rst:4114
 msgid ":class:`typing.Hashable` and :class:`typing.Sized`"
@@ -6035,19 +6414,19 @@ msgstr ""
 
 #: ../../library/typing.rst:4115 ../../library/typing.rst:4119
 msgid "3.12"
-msgstr ""
+msgstr "3.12"
 
 #: ../../library/typing.rst:4117
 msgid ":gh:`94309`"
-msgstr ""
+msgstr ":gh:`94309`"
 
 #: ../../library/typing.rst:4118
 msgid ":data:`typing.TypeAlias`"
-msgstr ""
+msgstr ":data:`typing.TypeAlias`"
 
 #: ../../library/typing.rst:4121
 msgid ":pep:`695`"
-msgstr ""
+msgstr ":pep:`695`"
 
 #: ../../library/typing.rst:4122
 msgid ":func:`@typing.no_type_check_decorator <no_type_check_decorator>`"
@@ -6055,27 +6434,27 @@ msgstr ""
 
 #: ../../library/typing.rst:4123 ../../library/typing.rst:4127
 msgid "3.13"
-msgstr ""
+msgstr "3.13"
 
 #: ../../library/typing.rst:4124
 msgid "3.15"
-msgstr ""
+msgstr "3.15"
 
 #: ../../library/typing.rst:4125
 msgid ":gh:`106309`"
-msgstr ""
+msgstr ":gh:`106309`"
 
 #: ../../library/typing.rst:4126
 msgid ":data:`typing.AnyStr`"
-msgstr ""
+msgstr ":data:`typing.AnyStr`"
 
 #: ../../library/typing.rst:4128
 msgid "3.18"
-msgstr ""
+msgstr "3.18"
 
 #: ../../library/typing.rst:4129
 msgid ":gh:`105578`"
-msgstr ""
+msgstr ":gh:`105578`"
 
 #: ../../library/typing.rst:233 ../../library/typing.rst:380
 #: ../../library/typing.rst:1170

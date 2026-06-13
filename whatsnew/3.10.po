@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -166,6 +165,28 @@ msgid ""
 "):\n"
 "    ..."
 msgstr ""
+"with (CtxManager() as example):\n"
+"    ...\n"
+"\n"
+"with (\n"
+"    CtxManager1(),\n"
+"    CtxManager2()\n"
+"):\n"
+"    ...\n"
+"\n"
+"with (CtxManager1() as example,\n"
+"      CtxManager2()):\n"
+"    ...\n"
+"\n"
+"with (CtxManager1(),\n"
+"      CtxManager2() as example):\n"
+"    ...\n"
+"\n"
+"with (\n"
+"    CtxManager1() as example1,\n"
+"    CtxManager2() as example2\n"
+"):\n"
+"    ..."
 
 #: ../../whatsnew/3.10.rst:130
 msgid ""
@@ -182,6 +203,12 @@ msgid ""
 "):\n"
 "    ..."
 msgstr ""
+"with (\n"
+"    CtxManager1() as example1,\n"
+"    CtxManager2() as example2,\n"
+"    CtxManager3() as example3,\n"
+"):\n"
+"    ..."
 
 #: ../../whatsnew/3.10.rst:142
 msgid ""
@@ -218,6 +245,9 @@ msgid ""
 "            38: 4, 39: 4, 45: 5, 46: 5, 47: 5, 48: 5, 49: 5, 54: 6,\n"
 "some_other_code = foo()"
 msgstr ""
+"expected = {9: 1, 18: 2, 19: 2, 27: 3, 28: 3, 29: 3, 36: 4, 37: 4,\n"
+"            38: 4, 39: 4, 45: 5, 46: 5, 47: 5, 48: 5, 49: 5, 54: 6,\n"
+"some_other_code = foo()"
 
 #: ../../whatsnew/3.10.rst:166
 msgid ""
@@ -232,6 +262,10 @@ msgid ""
 "                    ^\n"
 "SyntaxError: invalid syntax"
 msgstr ""
+"File \"example.py\", line 3\n"
+"    some_other_code = foo()\n"
+"                    ^\n"
+"SyntaxError: invalid syntax"
 
 #: ../../whatsnew/3.10.rst:176
 msgid "but in Python 3.10 a more informative error is emitted:"
@@ -244,6 +278,10 @@ msgid ""
 "               ^\n"
 "SyntaxError: '{' was never closed"
 msgstr ""
+"File \"example.py\", line 1\n"
+"    expected = {9: 1, 18: 2, 19: 2, 27: 3, 28: 3, 29: 3, 36: 4, 37: 4,\n"
+"               ^\n"
+"SyntaxError: '{' was never closed"
 
 #: ../../whatsnew/3.10.rst:186
 msgid ""
@@ -278,6 +316,11 @@ msgid ""
 "           ^\n"
 "SyntaxError: Generator expression must be parenthesized"
 msgstr ""
+">>> foo(x, z for z in range(10), t, w)\n"
+"  File \"<stdin>\", line 1\n"
+"    foo(x, z for z in range(10), t, w)\n"
+"           ^\n"
+"SyntaxError: Generator expression must be parenthesized"
 
 #: ../../whatsnew/3.10.rst:207
 msgid "now Python 3.10 will display the exception as:"
@@ -291,6 +334,11 @@ msgid ""
 "           ^^^^^^^^^^^^^^^^^^^^\n"
 "SyntaxError: Generator expression must be parenthesized"
 msgstr ""
+">>> foo(x, z for z in range(10), t, w)\n"
+"  File \"<stdin>\", line 1\n"
+"    foo(x, z for z in range(10), t, w)\n"
+"           ^^^^^^^^^^^^^^^^^^^^\n"
+"SyntaxError: Generator expression must be parenthesized"
 
 #: ../../whatsnew/3.10.rst:217
 msgid "This improvement was contributed by Pablo Galindo in :issue:`43914`."
@@ -315,6 +363,11 @@ msgid ""
 "                                      ^\n"
 "SyntaxError: expected ':'"
 msgstr ""
+">>> if rocket.position > event_horizon\n"
+"  File \"<stdin>\", line 1\n"
+"    if rocket.position > event_horizon\n"
+"                                      ^\n"
+"SyntaxError: expected ':'"
 
 #: ../../whatsnew/3.10.rst:232
 msgid "(Contributed by Pablo Galindo in :issue:`42997`.)"
@@ -333,6 +386,11 @@ msgid ""
 "     ^\n"
 "SyntaxError: did you forget parentheses around the comprehension target?"
 msgstr ""
+">>> {x,y for x,y in zip('abcd', '1234')}\n"
+"  File \"<stdin>\", line 1\n"
+"    {x,y for x,y in zip('abcd', '1234')}\n"
+"     ^\n"
+"SyntaxError: did you forget parentheses around the comprehension target?"
 
 #: ../../whatsnew/3.10.rst:244
 msgid "(Contributed by Pablo Galindo in :issue:`43017`.)"
@@ -353,6 +411,14 @@ msgid ""
 "       ^\n"
 "SyntaxError: invalid syntax. Perhaps you forgot a comma?"
 msgstr ""
+">>> items = {\n"
+"... x: 1,\n"
+"... y: 2\n"
+"... z: 3,\n"
+"  File \"<stdin>\", line 3\n"
+"    y: 2\n"
+"       ^\n"
+"SyntaxError: invalid syntax. Perhaps you forgot a comma?"
 
 #: ../../whatsnew/3.10.rst:259
 msgid "(Contributed by Pablo Galindo in :issue:`43822`.)"
@@ -372,6 +438,13 @@ msgid ""
 "           ^\n"
 "SyntaxError: multiple exception types must be parenthesized"
 msgstr ""
+">>> try:\n"
+"...     build_dyson_sphere()\n"
+"... except NotEnoughScienceError, NotEnoughResourcesError:\n"
+"  File \"<stdin>\", line 3\n"
+"    except NotEnoughScienceError, NotEnoughResourcesError:\n"
+"           ^\n"
+"SyntaxError: multiple exception types must be parenthesized"
 
 #: ../../whatsnew/3.10.rst:273
 msgid "(Contributed by Pablo Galindo in :issue:`43149`.)"
@@ -400,6 +473,21 @@ msgid ""
 "                        ^\n"
 "SyntaxError: ':' expected after dictionary key"
 msgstr ""
+">>> values = {\n"
+"... x: 1,\n"
+"... y: 2,\n"
+"... z:\n"
+"... }\n"
+"  File \"<stdin>\", line 4\n"
+"    z:\n"
+"     ^\n"
+"SyntaxError: expression expected after dictionary key and ':'\n"
+"\n"
+">>> values = {x:1, y:2, z w:3}\n"
+"  File \"<stdin>\", line 1\n"
+"    values = {x:1, y:2, z w:3}\n"
+"                        ^\n"
+"SyntaxError: ':' expected after dictionary key"
 
 #: ../../whatsnew/3.10.rst:295
 msgid "(Contributed by Pablo Galindo in :issue:`43823`.)"
@@ -419,6 +507,13 @@ msgid ""
 "    ^^^^^^^^^\n"
 "SyntaxError: expected 'except' or 'finally' block"
 msgstr ""
+">>> try:\n"
+"...     x = 2\n"
+"... something = 3\n"
+"  File \"<stdin>\", line 3\n"
+"    something  = 3\n"
+"    ^^^^^^^^^\n"
+"SyntaxError: expected 'except' or 'finally' block"
 
 #: ../../whatsnew/3.10.rst:309
 msgid "(Contributed by Pablo Galindo in :issue:`44305`.)"
@@ -437,6 +532,12 @@ msgid ""
 "SyntaxError: cannot assign to attribute here. Maybe you meant '==' "
 "instead of '='?"
 msgstr ""
+">>> if rocket.position = event_horizon:\n"
+"  File \"<stdin>\", line 1\n"
+"    if rocket.position = event_horizon:\n"
+"                       ^\n"
+"SyntaxError: cannot assign to attribute here. Maybe you meant '==' "
+"instead of '='?"
 
 #: ../../whatsnew/3.10.rst:321
 msgid "(Contributed by Pablo Galindo in :issue:`43797`.)"
@@ -455,6 +556,11 @@ msgid ""
 "     ^\n"
 "SyntaxError: f-string: cannot use starred expression here"
 msgstr ""
+">>> f\"Black holes {*all_black_holes} and revelations\"\n"
+"  File \"<stdin>\", line 1\n"
+"    (*all_black_holes)\n"
+"     ^\n"
+"SyntaxError: f-string: cannot use starred expression here"
 
 #: ../../whatsnew/3.10.rst:333
 msgid "(Contributed by Pablo Galindo in :issue:`41064`.)"
@@ -482,6 +588,14 @@ msgid ""
 "IndentationError: expected an indented block after 'if' statement in line"
 " 2"
 msgstr ""
+">>> def foo():\n"
+"...    if lel:\n"
+"...    x = 2\n"
+"  File \"<stdin>\", line 3\n"
+"    x = 2\n"
+"    ^\n"
+"IndentationError: expected an indented block after 'if' statement in line"
+" 2"
 
 #: ../../whatsnew/3.10.rst:353
 msgid "AttributeErrors"
@@ -502,6 +616,11 @@ msgid ""
 "AttributeError: module 'collections' has no attribute 'namedtoplo'. Did "
 "you mean: namedtuple?"
 msgstr ""
+">>> collections.namedtoplo\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"AttributeError: module 'collections' has no attribute 'namedtoplo'. Did "
+"you mean: namedtuple?"
 
 #: ../../whatsnew/3.10.rst:366 ../../whatsnew/3.10.rst:388
 msgid "(Contributed by Pablo Galindo in :issue:`38530`.)"
@@ -534,6 +653,12 @@ msgid ""
 "NameError: name 'schwarschild_black_hole' is not defined. Did you mean: "
 "schwarzschild_black_hole?"
 msgstr ""
+">>> schwarzschild_black_hole = None\n"
+">>> schwarschild_black_hole\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"NameError: name 'schwarschild_black_hole' is not defined. Did you mean: "
+"schwarzschild_black_hole?"
 
 #: ../../whatsnew/3.10.rst:391
 msgid ""
@@ -602,6 +727,15 @@ msgid ""
 "    case _:\n"
 "        <action_wildcard>"
 msgstr ""
+"match subject:\n"
+"    case <pattern_1>:\n"
+"        <action_1>\n"
+"    case <pattern_2>:\n"
+"        <action_2>\n"
+"    case <pattern_3>:\n"
+"        <action_3>\n"
+"    case _:\n"
+"        <action_wildcard>"
 
 #: ../../whatsnew/3.10.rst:436
 msgid ""
@@ -740,6 +874,14 @@ msgid ""
 "        case 418:\n"
 "            return \"I'm a teapot\""
 msgstr ""
+"def http_error(status):\n"
+"    match status:\n"
+"        case 400:\n"
+"            return \"Bad request\"\n"
+"        case 404:\n"
+"            return \"Not found\"\n"
+"        case 418:\n"
+"            return \"I'm a teapot\""
 
 #: ../../whatsnew/3.10.rst:519
 msgid ""
@@ -819,6 +961,23 @@ msgid ""
 "        case _:\n"
 "            print(\"Not a point\")"
 msgstr ""
+"class Point:\n"
+"    def __init__(self, x, y):\n"
+"        self.x = x\n"
+"        self.y = y\n"
+"\n"
+"def location(point):\n"
+"    match point:\n"
+"        case Point(x=0, y=0):\n"
+"            print(\"Origin is the point's location.\")\n"
+"        case Point(x=0, y=y):\n"
+"            print(f\"Y={y} and the point is on the y-axis.\")\n"
+"        case Point(x=x, y=0):\n"
+"            print(f\"X={x} and the point is on the x-axis.\")\n"
+"        case Point():\n"
+"            print(\"The point is located somewhere else on the plane.\")\n"
+"        case _:\n"
+"            print(\"Not a point\")"
 
 #: ../../whatsnew/3.10.rst:575
 msgid "Patterns with positional parameters"
@@ -868,6 +1027,18 @@ msgid ""
 "    case _:\n"
 "        print(\"Something else is found in the list.\")"
 msgstr ""
+"match points:\n"
+"    case []:\n"
+"        print(\"No points in the list.\")\n"
+"    case [Point(0, 0)]:\n"
+"        print(\"The origin is the only point in the list.\")\n"
+"    case [Point(x, y)]:\n"
+"        print(f\"A single point {x}, {y} is in the list.\")\n"
+"    case [Point(0, y1), Point(0, y2)]:\n"
+"        print(f\"Two points on the Y axis at {y1}, {y2} are in the "
+"list.\")\n"
+"    case _:\n"
+"        print(\"Something else is found in the list.\")"
 
 #: ../../whatsnew/3.10.rst:607
 msgid "Complex patterns and the wildcard"
@@ -889,6 +1060,11 @@ msgid ""
 "    case ('error', code, _):\n"
 "        print(f\"An error {code} occurred.\")"
 msgstr ""
+"match test_variable:\n"
+"    case ('warning', code, 40):\n"
+"        print(\"A warning has been received.\")\n"
+"    case ('error', code, _):\n"
+"        print(f\"An error {code} occurred.\")"
 
 #: ../../whatsnew/3.10.rst:619
 msgid ""
@@ -916,6 +1092,11 @@ msgid ""
 "    case Point(x, y):\n"
 "        print(f\"Point is not on the diagonal.\")"
 msgstr ""
+"match point:\n"
+"    case Point(x, y) if x == y:\n"
+"        print(f\"The point is located on the diagonal Y=X at {x}.\")\n"
+"    case Point(x, y):\n"
+"        print(f\"Point is not on the diagonal.\")"
 
 #: ../../whatsnew/3.10.rst:636
 msgid "Other Key Features"
@@ -995,6 +1176,20 @@ msgid ""
 "    case Color.BLUE:\n"
 "        print(\"I'm feeling the blues :(\")"
 msgstr ""
+"from enum import Enum\n"
+"class Color(Enum):\n"
+"    RED = 0\n"
+"    GREEN = 1\n"
+"    BLUE = 2\n"
+"\n"
+"color = Color.GREEN\n"
+"match color:\n"
+"    case Color.RED:\n"
+"        print(\"I see red!\")\n"
+"    case Color.GREEN:\n"
+"        print(\"Grass is green\")\n"
+"    case Color.BLUE:\n"
+"        print(\"I'm feeling the blues :(\")"
 
 #: ../../whatsnew/3.10.rst:685
 msgid ""
@@ -1070,6 +1265,8 @@ msgid ""
 "def square(number: Union[int, float]) -> Union[int, float]:\n"
 "    return number ** 2"
 msgstr ""
+"def square(number: Union[int, float]) -> Union[int, float]:\n"
+"    return number ** 2"
 
 #: ../../whatsnew/3.10.rst:735
 msgid "Type hints can now be written in a more succinct manner::"
@@ -1080,6 +1277,8 @@ msgid ""
 "def square(number: int | float) -> int | float:\n"
 "    return number ** 2"
 msgstr ""
+"def square(number: int | float) -> int | float:\n"
+"    return number ** 2"
 
 #: ../../whatsnew/3.10.rst:741
 msgid ""
@@ -1092,6 +1291,8 @@ msgid ""
 ">>> isinstance(1, int | str)\n"
 "True"
 msgstr ""
+">>> isinstance(1, int | str)\n"
+"True"
 
 #: ../../whatsnew/3.10.rst:747
 msgid "See :ref:`types-union` and :pep:`604` for more details."
@@ -1539,6 +1740,12 @@ msgid ""
 "    name: str\n"
 "    birthday: datetime.date"
 msgstr ""
+"from dataclasses import dataclass\n"
+"\n"
+"@dataclass(kw_only=True)\n"
+"class Birthday:\n"
+"    name: str\n"
+"    birthday: datetime.date"
 
 #: ../../whatsnew/3.10.rst:1020
 msgid ""
@@ -1559,6 +1766,12 @@ msgid ""
 "    name: str\n"
 "    birthday: datetime.date = field(kw_only=True)"
 msgstr ""
+"from dataclasses import dataclass, field\n"
+"\n"
+"@dataclass\n"
+"class Birthday:\n"
+"    name: str\n"
+"    birthday: datetime.date = field(kw_only=True)"
 
 #: ../../whatsnew/3.10.rst:1034
 msgid ""
@@ -1586,6 +1799,15 @@ msgid ""
 "    z: float = 0.0\n"
 "    t: float = 0.0"
 msgstr ""
+"from dataclasses import dataclass, KW_ONLY\n"
+"\n"
+"@dataclass\n"
+"class Point:\n"
+"    x: float\n"
+"    y: float\n"
+"    _: KW_ONLY\n"
+"    z: float = 0.0\n"
+"    t: float = 0.0"
 
 #: ../../whatsnew/3.10.rst:1054
 msgid ""
@@ -2621,37 +2843,39 @@ msgstr ""
 
 #: ../../whatsnew/3.10.rst:1734
 msgid "``threading.currentThread`` => :func:`threading.current_thread`"
-msgstr ""
+msgstr "``threading.currentThread`` => :func:`threading.current_thread`"
 
 #: ../../whatsnew/3.10.rst:1736
 msgid "``threading.activeCount`` => :func:`threading.active_count`"
-msgstr ""
+msgstr "``threading.activeCount`` => :func:`threading.active_count`"
 
 #: ../../whatsnew/3.10.rst:1738
 msgid ""
 "``threading.Condition.notifyAll`` => "
 ":meth:`threading.Condition.notify_all`"
 msgstr ""
+"``threading.Condition.notifyAll`` => "
+":meth:`threading.Condition.notify_all`"
 
 #: ../../whatsnew/3.10.rst:1741
 msgid "``threading.Event.isSet`` => :meth:`threading.Event.is_set`"
-msgstr ""
+msgstr "``threading.Event.isSet`` => :meth:`threading.Event.is_set`"
 
 #: ../../whatsnew/3.10.rst:1743
 msgid "``threading.Thread.setName`` => :attr:`threading.Thread.name`"
-msgstr ""
+msgstr "``threading.Thread.setName`` => :attr:`threading.Thread.name`"
 
 #: ../../whatsnew/3.10.rst:1745
 msgid "``threading.thread.getName`` => :attr:`threading.Thread.name`"
-msgstr ""
+msgstr "``threading.thread.getName`` => :attr:`threading.Thread.name`"
 
 #: ../../whatsnew/3.10.rst:1747
 msgid "``threading.Thread.isDaemon`` => :attr:`threading.Thread.daemon`"
-msgstr ""
+msgstr "``threading.Thread.isDaemon`` => :attr:`threading.Thread.daemon`"
 
 #: ../../whatsnew/3.10.rst:1749
 msgid "``threading.Thread.setDaemon`` => :attr:`threading.Thread.daemon`"
-msgstr ""
+msgstr "``threading.Thread.setDaemon`` => :attr:`threading.Thread.daemon`"
 
 #: ../../whatsnew/3.10.rst:1751
 msgid "(Contributed by Jelle Zijlstra in :gh:`87889`.)"
@@ -2700,11 +2924,11 @@ msgstr ""
 
 #: ../../whatsnew/3.10.rst:1777
 msgid ":func:`!match_hostname`"
-msgstr ""
+msgstr ":func:`!match_hostname`"
 
 #: ../../whatsnew/3.10.rst:1779
 msgid ":func:`!RAND_pseudo_bytes`, :func:`!RAND_egd`"
-msgstr ""
+msgstr ":func:`!RAND_pseudo_bytes`, :func:`!RAND_egd`"
 
 #: ../../whatsnew/3.10.rst:1781
 msgid ""
@@ -2918,6 +3142,8 @@ msgid ""
 "async def foo(loop):\n"
 "    await asyncio.sleep(1, loop=loop)"
 msgstr ""
+"async def foo(loop):\n"
+"    await asyncio.sleep(1, loop=loop)"
 
 #: ../../whatsnew/3.10.rst:1919
 msgid "Should be replaced with this::"
@@ -2928,6 +3154,8 @@ msgid ""
 "async def foo():\n"
 "    await asyncio.sleep(1)"
 msgstr ""
+"async def foo():\n"
+"    await asyncio.sleep(1)"
 
 #: ../../whatsnew/3.10.rst:1924
 msgid ""
@@ -3005,6 +3233,13 @@ msgid ""
 "source_buf = PyBytes_AsString(source_bytes_object);\n"
 "code = Py_CompileString(source_buf, filename, Py_file_input);"
 msgstr ""
+"io_module = Import_ImportModule(\"io\");\n"
+"fileobject = PyObject_CallMethod(io_module, \"open\", \"ss\", filename, "
+"\"rb\");\n"
+"source_bytes_object = PyObject_CallMethod(fileobject, \"read\", \"\");\n"
+"result = PyObject_CallMethod(fileobject, \"close\", \"\");\n"
+"source_buf = PyBytes_AsString(source_bytes_object);\n"
+"code = Py_CompileString(source_buf, filename, Py_file_input);"
 
 #: ../../whatsnew/3.10.rst:1974
 msgid ""
@@ -3302,6 +3537,10 @@ msgid ""
 "(void)0)\n"
 "#endif"
 msgstr ""
+"#if PY_VERSION_HEX < 0x030900A4\n"
+"#  define Py_SET_REFCNT(obj, refcnt) ((Py_REFCNT(obj) = (refcnt)), "
+"(void)0)\n"
+"#endif"
 
 #: ../../whatsnew/3.10.rst:2165
 msgid "(Contributed by Victor Stinner in :issue:`39573`.)"
@@ -3478,27 +3717,27 @@ msgstr ""
 
 #: ../../whatsnew/3.10.rst:2268
 msgid "``PyST_GetScope()``"
-msgstr ""
+msgstr "``PyST_GetScope()``"
 
 #: ../../whatsnew/3.10.rst:2269
 msgid "``PySymtable_Build()``"
-msgstr ""
+msgstr "``PySymtable_Build()``"
 
 #: ../../whatsnew/3.10.rst:2270
 msgid "``PySymtable_BuildObject()``"
-msgstr ""
+msgstr "``PySymtable_BuildObject()``"
 
 #: ../../whatsnew/3.10.rst:2271
 msgid "``PySymtable_Free()``"
-msgstr ""
+msgstr "``PySymtable_Free()``"
 
 #: ../../whatsnew/3.10.rst:2272
 msgid "``Py_SymtableString()``"
-msgstr ""
+msgstr "``Py_SymtableString()``"
 
 #: ../../whatsnew/3.10.rst:2273
 msgid "``Py_SymtableStringObject()``"
-msgstr ""
+msgstr "``Py_SymtableStringObject()``"
 
 #: ../../whatsnew/3.10.rst:2275
 msgid ""
@@ -3541,43 +3780,43 @@ msgstr ""
 
 #: ../../whatsnew/3.10.rst:2299
 msgid "``PyAST_Compile()``"
-msgstr ""
+msgstr "``PyAST_Compile()``"
 
 #: ../../whatsnew/3.10.rst:2300
 msgid "``PyAST_CompileEx()``"
-msgstr ""
+msgstr "``PyAST_CompileEx()``"
 
 #: ../../whatsnew/3.10.rst:2301
 msgid "``PyAST_CompileObject()``"
-msgstr ""
+msgstr "``PyAST_CompileObject()``"
 
 #: ../../whatsnew/3.10.rst:2302
 msgid "``PyFuture_FromAST()``"
-msgstr ""
+msgstr "``PyFuture_FromAST()``"
 
 #: ../../whatsnew/3.10.rst:2303
 msgid "``PyFuture_FromASTObject()``"
-msgstr ""
+msgstr "``PyFuture_FromASTObject()``"
 
 #: ../../whatsnew/3.10.rst:2304
 msgid "``PyParser_ASTFromFile()``"
-msgstr ""
+msgstr "``PyParser_ASTFromFile()``"
 
 #: ../../whatsnew/3.10.rst:2305
 msgid "``PyParser_ASTFromFileObject()``"
-msgstr ""
+msgstr "``PyParser_ASTFromFileObject()``"
 
 #: ../../whatsnew/3.10.rst:2306
 msgid "``PyParser_ASTFromFilename()``"
-msgstr ""
+msgstr "``PyParser_ASTFromFilename()``"
 
 #: ../../whatsnew/3.10.rst:2307
 msgid "``PyParser_ASTFromString()``"
-msgstr ""
+msgstr "``PyParser_ASTFromString()``"
 
 #: ../../whatsnew/3.10.rst:2308
 msgid "``PyParser_ASTFromStringObject()``"
-msgstr ""
+msgstr "``PyParser_ASTFromStringObject()``"
 
 #: ../../whatsnew/3.10.rst:2310
 msgid ""
@@ -3591,19 +3830,19 @@ msgstr ""
 
 #: ../../whatsnew/3.10.rst:2315
 msgid "``PyArena_New()``"
-msgstr ""
+msgstr "``PyArena_New()``"
 
 #: ../../whatsnew/3.10.rst:2316
 msgid "``PyArena_Free()``"
-msgstr ""
+msgstr "``PyArena_Free()``"
 
 #: ../../whatsnew/3.10.rst:2317
 msgid "``PyArena_Malloc()``"
-msgstr ""
+msgstr "``PyArena_Malloc()``"
 
 #: ../../whatsnew/3.10.rst:2318
 msgid "``PyArena_AddPyObject()``"
-msgstr ""
+msgstr "``PyArena_AddPyObject()``"
 
 #: ../../whatsnew/3.10.rst:2320
 msgid ""

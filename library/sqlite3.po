@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -124,6 +124,8 @@ msgid ""
 "import sqlite3\n"
 "con = sqlite3.connect(\"tutorial.db\")"
 msgstr ""
+"import sqlite3\n"
+"con = sqlite3.connect(\"tutorial.db\")"
 
 #: ../../library/sqlite3.rst:86
 msgid ""
@@ -172,6 +174,9 @@ msgid ""
 ">>> res.fetchone()\n"
 "('movie',)"
 msgstr ""
+">>> res = cur.execute(\"SELECT name FROM sqlite_master\")\n"
+">>> res.fetchone()\n"
+"('movie',)"
 
 #: ../../library/sqlite3.rst:127
 msgid ""
@@ -188,6 +193,10 @@ msgid ""
 ">>> res.fetchone() is None\n"
 "True"
 msgstr ""
+">>> res = cur.execute(\"SELECT name FROM sqlite_master WHERE "
+"name='spam'\")\n"
+">>> res.fetchone() is None\n"
+"True"
 
 #: ../../library/sqlite3.rst:138
 msgid ""
@@ -204,6 +213,11 @@ msgid ""
 "        ('And Now for Something Completely Different', 1971, 7.5)\n"
 "\"\"\")"
 msgstr ""
+"cur.execute(\"\"\"\n"
+"    INSERT INTO movie VALUES\n"
+"        ('Monty Python and the Holy Grail', 1975, 8.2),\n"
+"        ('And Now for Something Completely Different', 1971, 7.5)\n"
+"\"\"\")"
 
 #: ../../library/sqlite3.rst:150
 msgid ""
@@ -231,6 +245,9 @@ msgid ""
 ">>> res.fetchall()\n"
 "[(8.2,), (7.5,)]"
 msgstr ""
+">>> res = cur.execute(\"SELECT score FROM movie\")\n"
+">>> res.fetchall()\n"
+"[(8.2,), (7.5,)]"
 
 #: ../../library/sqlite3.rst:172
 msgid ""
@@ -280,6 +297,14 @@ msgid ""
 "(1982, 'Monty Python Live at the Hollywood Bowl')\n"
 "(1983, \"Monty Python's The Meaning of Life\")"
 msgstr ""
+">>> for row in cur.execute(\"SELECT year, title FROM movie ORDER BY "
+"year\"):\n"
+"...     print(row)\n"
+"(1971, 'And Now for Something Completely Different')\n"
+"(1975, 'Monty Python and the Holy Grail')\n"
+"(1979, \"Monty Python's Life of Brian\")\n"
+"(1982, 'Monty Python Live at the Hollywood Bowl')\n"
+"(1983, \"Monty Python's The Meaning of Life\")"
 
 #: ../../library/sqlite3.rst:208
 msgid ""
@@ -309,6 +334,17 @@ msgid ""
 "Grail', released in 1975\n"
 ">>> new_con.close()"
 msgstr ""
+">>> con.close()\n"
+">>> new_con = sqlite3.connect(\"tutorial.db\")\n"
+">>> new_cur = new_con.cursor()\n"
+">>> res = new_cur.execute(\"SELECT title, year FROM movie ORDER BY score "
+"DESC\")\n"
+">>> title, year = res.fetchone()\n"
+">>> print(f'The highest scoring Monty Python movie is {title!r}, released"
+" in {year}')\n"
+"The highest scoring Monty Python movie is 'Monty Python and the Holy "
+"Grail', released in 1975\n"
+">>> new_con.close()"
 
 #: ../../library/sqlite3.rst:227
 msgid ""
@@ -322,25 +358,23 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:241
 msgid ":ref:`sqlite3-placeholders`"
-msgstr ""
+msgstr ":ref:`sqlite3-placeholders`"
 
 #: ../../library/sqlite3.rst:242
 msgid ":ref:`sqlite3-adapters`"
-msgstr ""
+msgstr ":ref:`sqlite3-adapters`"
 
 #: ../../library/sqlite3.rst:243
-#, fuzzy
 msgid ":ref:`sqlite3-converters`"
-msgstr "변환기를 사용하십시오."
+msgstr ":ref:`sqlite3-converters`"
 
 #: ../../library/sqlite3.rst:244 ../../library/sqlite3.rst:600
-#, fuzzy
 msgid ":ref:`sqlite3-connection-context-manager`"
-msgstr "컨텍스트 관리자로 연결 사용하기"
+msgstr ":ref:`sqlite3-connection-context-manager`"
 
 #: ../../library/sqlite3.rst:245
 msgid ":ref:`sqlite3-howto-row-factory`"
-msgstr ""
+msgstr ":ref:`sqlite3-howto-row-factory`"
 
 #: ../../library/sqlite3.rst:247
 msgid ":ref:`sqlite3-explanation` for in-depth background on transaction control."
@@ -510,6 +544,10 @@ msgid ""
 ">>> sqlite3.complete_statement(\"SELECT foo\")\n"
 "False"
 msgstr ""
+">>> sqlite3.complete_statement(\"SELECT foo FROM bar;\")\n"
+"True\n"
+">>> sqlite3.complete_statement(\"SELECT foo\")\n"
+"False"
 
 #: ../../library/sqlite3.rst:381
 msgid ""
@@ -599,6 +637,11 @@ msgid ""
 "   n number(10)            ! will look up a converter named \"number\"\n"
 " )"
 msgstr ""
+"CREATE TABLE test(\n"
+"   i integer primary key,  ! will look up a converter named \"integer\"\n"
+"   p point,                ! will look up a converter named \"point\"\n"
+"   n number(10)            ! will look up a converter named \"number\"\n"
+" )"
 
 #: ../../library/sqlite3.rst:454
 msgid ""
@@ -725,7 +768,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:532
 msgid "`SQLITE_THREADSAFE`_"
-msgstr ""
+msgstr "`SQLITE_THREADSAFE`_"
 
 #: ../../library/sqlite3.rst:532
 msgid "DB-API 2.0 meaning"
@@ -814,7 +857,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:599
 msgid ":ref:`sqlite3-connection-shortcuts`"
-msgstr ""
+msgstr ":ref:`sqlite3-connection-shortcuts`"
 
 #: ../../library/sqlite3.rst:605
 msgid ""
@@ -979,6 +1022,15 @@ msgid ""
 "('acbd18db4cc2f85cedef654fccc4a4d8',)\n"
 ">>> con.close()"
 msgstr ""
+">>> import hashlib\n"
+">>> def md5sum(t):\n"
+"...     return hashlib.md5(t).hexdigest()\n"
+">>> con = sqlite3.connect(\":memory:\")\n"
+">>> con.create_function(\"md5\", 1, md5sum)\n"
+">>> for row in con.execute(\"SELECT md5(?)\", (b\"foo\",)):\n"
+"...     print(row)\n"
+"('acbd18db4cc2f85cedef654fccc4a4d8',)\n"
+">>> con.close()"
 
 #: ../../library/sqlite3.rst:738
 msgid ""
@@ -1059,6 +1111,25 @@ msgid ""
 "\n"
 "con.close()"
 msgstr ""
+"class MySum:\n"
+"    def __init__(self):\n"
+"        self.count = 0\n"
+"\n"
+"    def step(self, value):\n"
+"        self.count += value\n"
+"\n"
+"    def finalize(self):\n"
+"        return self.count\n"
+"\n"
+"con = sqlite3.connect(\":memory:\")\n"
+"con.create_aggregate(\"mysum\", 1, MySum)\n"
+"cur = con.execute(\"CREATE TABLE test(i)\")\n"
+"cur.execute(\"INSERT INTO test(i) VALUES(1)\")\n"
+"cur.execute(\"INSERT INTO test(i) VALUES(2)\")\n"
+"cur.execute(\"SELECT mysum(i) FROM test\")\n"
+"print(cur.fetchone()[0])\n"
+"\n"
+"con.close()"
 
 #: ../../library/sqlite3.rst:797
 msgid ""
@@ -1218,6 +1289,23 @@ msgid ""
 "    print(row)\n"
 "con.close()"
 msgstr ""
+"def collate_reverse(string1, string2):\n"
+"    if string1 == string2:\n"
+"        return 0\n"
+"    elif string1 < string2:\n"
+"        return 1\n"
+"    else:\n"
+"        return -1\n"
+"\n"
+"con = sqlite3.connect(\":memory:\")\n"
+"con.create_collation(\"reverse\", collate_reverse)\n"
+"\n"
+"cur = con.execute(\"CREATE TABLE test(x)\")\n"
+"cur.executemany(\"INSERT INTO test(x) VALUES(?)\", [(\"a\",), (\"b\",)])\n"
+"cur.execute(\"SELECT x FROM test ORDER BY x COLLATE reverse\")\n"
+"for row in cur:\n"
+"    print(row)\n"
+"con.close()"
 
 #: ../../library/sqlite3.rst:926
 msgid "Remove a collation function by setting *callable* to ``None``."
@@ -1509,7 +1597,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:1126 ../../library/sqlite3.rst:1200
 msgid ":ref:`sqlite3-howto-encoding`"
-msgstr ""
+msgstr ":ref:`sqlite3-howto-encoding`"
 
 #: ../../library/sqlite3.rst:1128
 #, fuzzy
@@ -1587,6 +1675,15 @@ msgid ""
 "dst.close()\n"
 "src.close()"
 msgstr ""
+"def progress(status, remaining, total):\n"
+"    print(f'Copied {total-remaining} of {total} pages...')\n"
+"\n"
+"src = sqlite3.connect('example.db')\n"
+"dst = sqlite3.connect('backup.db')\n"
+"with dst:\n"
+"    src.backup(dst, pages=1, progress=progress)\n"
+"dst.close()\n"
+"src.close()"
 
 #: ../../library/sqlite3.rst:1186
 #, fuzzy
@@ -1601,6 +1698,11 @@ msgid ""
 "dst.close()\n"
 "src.close()"
 msgstr ""
+"src = sqlite3.connect('example.db')\n"
+"dst = sqlite3.connect(':memory:')\n"
+"src.backup(dst)\n"
+"dst.close()\n"
+"src.close()"
 
 #: ../../library/sqlite3.rst:1204
 msgid "Get a connection runtime limit."
@@ -1625,6 +1727,8 @@ msgid ""
 ">>> con.getlimit(sqlite3.SQLITE_LIMIT_SQL_LENGTH)\n"
 "1000000000"
 msgstr ""
+">>> con.getlimit(sqlite3.SQLITE_LIMIT_SQL_LENGTH)\n"
+"1000000000"
 
 #: ../../library/sqlite3.rst:1234
 msgid ""
@@ -1655,6 +1759,10 @@ msgid ""
 ">>> con.getlimit(sqlite3.SQLITE_LIMIT_ATTACHED)\n"
 "1"
 msgstr ""
+">>> con.setlimit(sqlite3.SQLITE_LIMIT_ATTACHED, 1)\n"
+"10\n"
+">>> con.getlimit(sqlite3.SQLITE_LIMIT_ATTACHED)\n"
+"1"
 
 #: ../../library/sqlite3.rst:1272
 msgid "Query a boolean connection configuration option."
@@ -1877,6 +1985,8 @@ msgid ""
 "for row in cur.execute(\"SELECT t FROM data\"):\n"
 "    print(row)"
 msgstr ""
+"for row in cur.execute(\"SELECT t FROM data\"):\n"
+"    print(row)"
 
 #: ../../library/sqlite3.rst:1473
 msgid "A :class:`Cursor` instance has the following attributes and methods."
@@ -2105,6 +2215,11 @@ msgid ""
 "True\n"
 ">>> con.close()"
 msgstr ""
+">>> con = sqlite3.connect(\":memory:\")\n"
+">>> cur = con.cursor()\n"
+">>> cur.connection == con\n"
+"True\n"
+">>> con.close()"
 
 #: ../../library/sqlite3.rst:1665
 #, fuzzy
@@ -2711,6 +2826,20 @@ msgid ""
 "print(cur.fetchone()[0])\n"
 "con.close()"
 msgstr ""
+"class Point:\n"
+"    def __init__(self, x, y):\n"
+"        self.x, self.y = x, y\n"
+"\n"
+"    def __conform__(self, protocol):\n"
+"        if protocol is sqlite3.PrepareProtocol:\n"
+"            return f\"{self.x};{self.y}\"\n"
+"\n"
+"con = sqlite3.connect(\":memory:\")\n"
+"cur = con.cursor()\n"
+"\n"
+"cur.execute(\"SELECT ?\", (Point(4.0, -3.2),))\n"
+"print(cur.fetchone()[0])\n"
+"con.close()"
 
 #: ../../library/sqlite3.rst:2163
 #, fuzzy
@@ -2746,6 +2875,21 @@ msgid ""
 "print(cur.fetchone()[0])\n"
 "con.close()"
 msgstr ""
+"class Point:\n"
+"    def __init__(self, x, y):\n"
+"        self.x, self.y = x, y\n"
+"\n"
+"def adapt_point(point):\n"
+"    return f\"{point.x};{point.y}\"\n"
+"\n"
+"sqlite3.register_adapter(Point, adapt_point)\n"
+"\n"
+"con = sqlite3.connect(\":memory:\")\n"
+"cur = con.cursor()\n"
+"\n"
+"cur.execute(\"SELECT ?\", (Point(1.0, 2.5),))\n"
+"print(cur.fetchone()[0])\n"
+"con.close()"
 
 #: ../../library/sqlite3.rst:2196
 #, fuzzy
@@ -2786,6 +2930,9 @@ msgid ""
 "    x, y = map(float, s.split(b\";\"))\n"
 "    return Point(x, y)"
 msgstr ""
+"def convert_point(s):\n"
+"    x, y = map(float, s.split(b\";\"))\n"
+"    return Point(x, y)"
 
 #: ../../library/sqlite3.rst:2220
 msgid ""
@@ -3029,6 +3176,11 @@ msgid ""
 "OperationalError: attempt to write a readonly database\n"
 ">>> con.close()"
 msgstr ""
+">>> con = sqlite3.connect(\"file:tutorial.db?mode=ro\", uri=True)\n"
+">>> con.execute(\"CREATE TABLE readonly(data)\")\n"
+"Traceback (most recent call last):\n"
+"OperationalError: attempt to write a readonly database\n"
+">>> con.close()"
 
 #: ../../library/sqlite3.rst:2456
 msgid ""
@@ -3043,6 +3195,9 @@ msgid ""
 "Traceback (most recent call last):\n"
 "OperationalError: unable to open database file"
 msgstr ""
+">>> con = sqlite3.connect(\"file:nosuchdb.db?mode=rw\", uri=True)\n"
+"Traceback (most recent call last):\n"
+"OperationalError: unable to open database file"
 
 #: ../../library/sqlite3.rst:2466
 msgid "Create a shared named in-memory database:"
@@ -3062,6 +3217,17 @@ msgid ""
 "con1.close()\n"
 "con2.close()"
 msgstr ""
+"db = \"file:mem1?mode=memory&cache=shared\"\n"
+"con1 = sqlite3.connect(db, uri=True)\n"
+"con2 = sqlite3.connect(db, uri=True)\n"
+"with con1:\n"
+"    con1.execute(\"CREATE TABLE shared(data)\")\n"
+"    con1.execute(\"INSERT INTO shared VALUES(28)\")\n"
+"res = con2.execute(\"SELECT data FROM shared\")\n"
+"assert res.fetchone() == (28,)\n"
+"\n"
+"con1.close()\n"
+"con2.close()"
 
 #: ../../library/sqlite3.rst:2482
 #, fuzzy
@@ -3104,6 +3270,8 @@ msgid ""
 ">>> con = sqlite3.connect(\":memory:\")\n"
 ">>> con.row_factory = sqlite3.Row"
 msgstr ""
+">>> con = sqlite3.connect(\":memory:\")\n"
+">>> con.row_factory = sqlite3.Row"
 
 #: ../../library/sqlite3.rst:2513
 #, fuzzy
@@ -3146,6 +3314,9 @@ msgid ""
 "    fields = [column[0] for column in cursor.description]\n"
 "    return {key: value for key, value in zip(fields, row)}"
 msgstr ""
+"def dict_factory(cursor, row):\n"
+"    fields = [column[0] for column in cursor.description]\n"
+"    return {key: value for key, value in zip(fields, row)}"
 
 #: ../../library/sqlite3.rst:2545
 msgid ""
@@ -3163,6 +3334,12 @@ msgid ""
 "{'a': 1, 'b': 2}\n"
 ">>> con.close()"
 msgstr ""
+">>> con = sqlite3.connect(\":memory:\")\n"
+">>> con.row_factory = dict_factory\n"
+">>> for row in con.execute(\"SELECT 1 AS a, 2 AS b\"):\n"
+"...     print(row)\n"
+"{'a': 1, 'b': 2}\n"
+">>> con.close()"
 
 #: ../../library/sqlite3.rst:2556
 msgid "The following row factory returns a :term:`named tuple`:"
@@ -3177,6 +3354,12 @@ msgid ""
 "    cls = namedtuple(\"Row\", fields)\n"
 "    return cls._make(row)"
 msgstr ""
+"from collections import namedtuple\n"
+"\n"
+"def namedtuple_factory(cursor, row):\n"
+"    fields = [column[0] for column in cursor.description]\n"
+"    cls = namedtuple(\"Row\", fields)\n"
+"    return cls._make(row)"
 
 #: ../../library/sqlite3.rst:2567
 msgid ":func:`!namedtuple_factory` can be used as follows:"

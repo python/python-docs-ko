@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -109,6 +109,8 @@ msgid ""
 "def myfunc(alist):\n"
 "    return len(alist)"
 msgstr ""
+"def myfunc(alist):\n"
+"    return len(alist)"
 
 #: ../../library/dis.rst:70
 #, fuzzy
@@ -127,6 +129,13 @@ msgid ""
 "              CALL                     1\n"
 "              RETURN_VALUE"
 msgstr ""
+">>> dis.dis(myfunc)\n"
+"  2           RESUME                   0\n"
+"\n"
+"  3           LOAD_GLOBAL              1 (len + NULL)\n"
+"              LOAD_FAST_BORROW         0 (alist)\n"
+"              CALL                     1\n"
+"              RETURN_VALUE"
 
 #: ../../library/dis.rst:83
 msgid "(The \"2\" is a line number)."
@@ -322,6 +331,15 @@ msgid ""
 "CALL\n"
 "RETURN_VALUE"
 msgstr ""
+">>> bytecode = dis.Bytecode(myfunc)\n"
+">>> for instr in bytecode:\n"
+"...     print(instr.opname)\n"
+"...\n"
+"RESUME\n"
+"LOAD_GLOBAL\n"
+"LOAD_FAST_BORROW\n"
+"CALL\n"
+"RETURN_VALUE"
 
 #: ../../library/dis.rst:224
 msgid "Analysis functions"
@@ -770,6 +788,8 @@ msgid ""
 "assert i > 0\n"
 "STACK.append(STACK[-i])"
 msgstr ""
+"assert i > 0\n"
+"STACK.append(STACK[-i])"
 
 #: ../../library/dis.rst:641
 msgid "Swap the top of the stack with the i-th element::"
@@ -889,6 +909,9 @@ msgid ""
 "lhs = STACK.pop()\n"
 "STACK.append(lhs op rhs)"
 msgstr ""
+"rhs = STACK.pop()\n"
+"lhs = STACK.pop()\n"
+"STACK.append(lhs op rhs)"
 
 #: ../../library/dis.rst:730
 msgid ""
@@ -912,6 +935,10 @@ msgid ""
 "value = STACK.pop()\n"
 "container[key] = value"
 msgstr ""
+"key = STACK.pop()\n"
+"container = STACK.pop()\n"
+"value = STACK.pop()\n"
+"container[key] = value"
 
 #: ../../library/dis.rst:748
 msgid ""
@@ -919,6 +946,9 @@ msgid ""
 "container = STACK.pop()\n"
 "del container[key]"
 msgstr ""
+"key = STACK.pop()\n"
+"container = STACK.pop()\n"
+"del container[key]"
 
 #: ../../library/dis.rst:756
 msgid ""
@@ -927,6 +957,10 @@ msgid ""
 "container = STACK.pop()\n"
 "STACK.append(container[start:end])"
 msgstr ""
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"container = STACK.pop()\n"
+"STACK.append(container[start:end])"
 
 #: ../../library/dis.rst:768
 msgid ""
@@ -936,6 +970,11 @@ msgid ""
 "values = STACK.pop()\n"
 "container[start:end] = value"
 msgstr ""
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"container = STACK.pop()\n"
+"values = STACK.pop()\n"
+"container[start:end] = value"
 
 #: ../../library/dis.rst:777
 msgid "**Coroutine opcodes**"
@@ -1022,6 +1061,8 @@ msgid ""
 "item = STACK.pop()\n"
 "set.add(STACK[-i], item)"
 msgstr ""
+"item = STACK.pop()\n"
+"set.add(STACK[-i], item)"
 
 #: ../../library/dis.rst:849
 #, fuzzy
@@ -1033,6 +1074,8 @@ msgid ""
 "item = STACK.pop()\n"
 "list.append(STACK[-i], item)"
 msgstr ""
+"item = STACK.pop()\n"
+"list.append(STACK[-i], item)"
 
 #: ../../library/dis.rst:859
 #, fuzzy
@@ -1045,6 +1088,9 @@ msgid ""
 "key = STACK.pop()\n"
 "dict.__setitem__(STACK[-i], key, value)"
 msgstr ""
+"value = STACK.pop()\n"
+"key = STACK.pop()\n"
+"dict.__setitem__(STACK[-i], key, value)"
 
 #: ../../library/dis.rst:870
 #, fuzzy
@@ -1249,6 +1295,8 @@ msgid ""
 "assert(len(STACK[-1]) == count)\n"
 "STACK.extend(STACK.pop()[:-count-1:-1])"
 msgstr ""
+"assert(len(STACK[-1]) == count)\n"
+"STACK.extend(STACK.pop()[:-count-1:-1])"
 
 #: ../../library/dis.rst:1051
 #, fuzzy
@@ -1287,6 +1335,9 @@ msgid ""
 "value = STACK.pop()\n"
 "obj.name = value"
 msgstr ""
+"obj = STACK.pop()\n"
+"value = STACK.pop()\n"
+"obj.name = value"
 
 #: ../../library/dis.rst:1076
 #, fuzzy
@@ -1302,6 +1353,8 @@ msgid ""
 "obj = STACK.pop()\n"
 "del obj.name"
 msgstr ""
+"obj = STACK.pop()\n"
+"del obj.name"
 
 #: ../../library/dis.rst:1086
 #, fuzzy
@@ -1364,6 +1417,9 @@ msgid ""
 "strings = STACK.pop()\n"
 "STACK.append(_build_template(strings, interpolations))"
 msgstr ""
+"interpolations = STACK.pop()\n"
+"strings = STACK.pop()\n"
+"STACK.append(_build_template(strings, interpolations))"
 
 #: ../../library/dis.rst:1154
 msgid ""
@@ -1404,6 +1460,15 @@ msgid ""
 "STACK.append(_build_interpolation(value, expression, conversion, "
 "format_spec))"
 msgstr ""
+"conversion = format >> 2\n"
+"if format & 1:\n"
+"    format_spec = STACK.pop()\n"
+"else:\n"
+"    format_spec = None\n"
+"expression = STACK.pop()\n"
+"value = STACK.pop()\n"
+"STACK.append(_build_interpolation(value, expression, conversion, "
+"format_spec))"
 
 #: ../../library/dis.rst:1183
 #, fuzzy
@@ -1422,6 +1487,13 @@ msgid ""
 "\n"
 "STACK.append(value)"
 msgstr ""
+"if count == 0:\n"
+"    value = ()\n"
+"else:\n"
+"    value = tuple(STACK[-count:])\n"
+"    STACK = STACK[:-count]\n"
+"\n"
+"STACK.append(value)"
 
 #: ../../library/dis.rst:1197
 msgid "Works as :opcode:`BUILD_TUPLE`, but creates a list."
@@ -1458,6 +1530,8 @@ msgid ""
 "seq = STACK.pop()\n"
 "list.extend(STACK[-i], seq)"
 msgstr ""
+"seq = STACK.pop()\n"
+"list.extend(STACK[-i], seq)"
 
 #: ../../library/dis.rst:1231
 msgid "Used to build lists."
@@ -1468,6 +1542,8 @@ msgid ""
 "seq = STACK.pop()\n"
 "set.update(STACK[-i], seq)"
 msgstr ""
+"seq = STACK.pop()\n"
+"set.update(STACK[-i], seq)"
 
 #: ../../library/dis.rst:1243
 msgid "Used to build sets."
@@ -1478,6 +1554,8 @@ msgid ""
 "map = STACK.pop()\n"
 "dict.update(STACK[-i], map)"
 msgstr ""
+"map = STACK.pop()\n"
+"dict.update(STACK[-i], map)"
 
 #: ../../library/dis.rst:1255
 msgid "Used to build dicts."
@@ -1975,6 +2053,9 @@ msgid ""
 "start = STACK.pop()\n"
 "STACK.append(slice(start, end))"
 msgstr ""
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"STACK.append(slice(start, end))"
 
 #: ../../library/dis.rst:1690
 msgid "if it is 3, implements::"
@@ -1987,6 +2068,10 @@ msgid ""
 "start = STACK.pop()\n"
 "STACK.append(slice(start, end, step))"
 msgstr ""
+"step = STACK.pop()\n"
+"end = STACK.pop()\n"
+"start = STACK.pop()\n"
+"STACK.append(slice(start, end, step))"
 
 #: ../../library/dis.rst:1697
 msgid "See the :func:`slice` built-in function for more information."
@@ -2013,6 +2098,9 @@ msgid ""
 "result = func(value)\n"
 "STACK.append(result)"
 msgstr ""
+"value = STACK.pop()\n"
+"result = func(value)\n"
+"STACK.append(result)"
 
 #: ../../library/dis.rst:1716
 #, fuzzy
@@ -2045,6 +2133,9 @@ msgid ""
 "result = value.__format__(\"\")\n"
 "STACK.append(result)"
 msgstr ""
+"value = STACK.pop()\n"
+"result = value.__format__(\"\")\n"
+"STACK.append(result)"
 
 #: ../../library/dis.rst:1739
 msgid "Formats the given value with the given format spec::"
@@ -2057,6 +2148,10 @@ msgid ""
 "result = value.__format__(spec)\n"
 "STACK.append(result)"
 msgstr ""
+"spec = STACK.pop()\n"
+"value = STACK.pop()\n"
+"result = value.__format__(spec)\n"
+"STACK.append(result)"
 
 #: ../../library/dis.rst:1753
 msgid ""
@@ -2188,7 +2283,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1844
 msgid "``INTRINSIC_1_INVALID``"
-msgstr ""
+msgstr "``INTRINSIC_1_INVALID``"
 
 #: ../../library/dis.rst:1844 ../../library/dis.rst:1898
 msgid "Not valid"
@@ -2196,7 +2291,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1846
 msgid "``INTRINSIC_PRINT``"
-msgstr ""
+msgstr "``INTRINSIC_PRINT``"
 
 #: ../../library/dis.rst:1846
 msgid "Prints the argument to standard out. Used in the REPL."
@@ -2204,7 +2299,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1849
 msgid "``INTRINSIC_IMPORT_STAR``"
-msgstr ""
+msgstr "``INTRINSIC_IMPORT_STAR``"
 
 #: ../../library/dis.rst:1849
 msgid "Performs ``import *`` for the named module."
@@ -2212,7 +2307,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1852
 msgid "``INTRINSIC_STOPITERATION_ERROR``"
-msgstr ""
+msgstr "``INTRINSIC_STOPITERATION_ERROR``"
 
 #: ../../library/dis.rst:1852
 msgid "Extracts the return value from a ``StopIteration`` exception."
@@ -2220,7 +2315,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1855
 msgid "``INTRINSIC_ASYNC_GEN_WRAP``"
-msgstr ""
+msgstr "``INTRINSIC_ASYNC_GEN_WRAP``"
 
 #: ../../library/dis.rst:1855
 msgid "Wraps an async generator value"
@@ -2228,7 +2323,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1857
 msgid "``INTRINSIC_UNARY_POSITIVE``"
-msgstr ""
+msgstr "``INTRINSIC_UNARY_POSITIVE``"
 
 #: ../../library/dis.rst:1857
 msgid "Performs the unary ``+`` operation"
@@ -2236,7 +2331,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1860
 msgid "``INTRINSIC_LIST_TO_TUPLE``"
-msgstr ""
+msgstr "``INTRINSIC_LIST_TO_TUPLE``"
 
 #: ../../library/dis.rst:1860
 msgid "Converts a list to a tuple"
@@ -2244,7 +2339,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1862
 msgid "``INTRINSIC_TYPEVAR``"
-msgstr ""
+msgstr "``INTRINSIC_TYPEVAR``"
 
 #: ../../library/dis.rst:1862
 msgid "Creates a :class:`typing.TypeVar`"
@@ -2252,7 +2347,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1864
 msgid "``INTRINSIC_PARAMSPEC``"
-msgstr ""
+msgstr "``INTRINSIC_PARAMSPEC``"
 
 #: ../../library/dis.rst:1864
 msgid "Creates a :class:`typing.ParamSpec`"
@@ -2260,7 +2355,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1867
 msgid "``INTRINSIC_TYPEVARTUPLE``"
-msgstr ""
+msgstr "``INTRINSIC_TYPEVARTUPLE``"
 
 #: ../../library/dis.rst:1867
 msgid "Creates a :class:`typing.TypeVarTuple`"
@@ -2268,7 +2363,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1870
 msgid "``INTRINSIC_SUBSCRIPT_GENERIC``"
-msgstr ""
+msgstr "``INTRINSIC_SUBSCRIPT_GENERIC``"
 
 #: ../../library/dis.rst:1870
 msgid "Returns :class:`typing.Generic` subscripted with the argument"
@@ -2276,7 +2371,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1873
 msgid "``INTRINSIC_TYPEALIAS``"
-msgstr ""
+msgstr "``INTRINSIC_TYPEALIAS``"
 
 #: ../../library/dis.rst:1873
 msgid ""
@@ -2298,14 +2393,18 @@ msgid ""
 "result = intrinsic2(arg1, arg2)\n"
 "STACK.append(result)"
 msgstr ""
+"arg2 = STACK.pop()\n"
+"arg1 = STACK.pop()\n"
+"result = intrinsic2(arg1, arg2)\n"
+"STACK.append(result)"
 
 #: ../../library/dis.rst:1898
 msgid "``INTRINSIC_2_INVALID``"
-msgstr ""
+msgstr "``INTRINSIC_2_INVALID``"
 
 #: ../../library/dis.rst:1900
 msgid "``INTRINSIC_PREP_RERAISE_STAR``"
-msgstr ""
+msgstr "``INTRINSIC_PREP_RERAISE_STAR``"
 
 #: ../../library/dis.rst:1900
 msgid "Calculates the :exc:`ExceptionGroup` to raise from a ``try-except*``."
@@ -2313,7 +2412,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1904
 msgid "``INTRINSIC_TYPEVAR_WITH_BOUND``"
-msgstr ""
+msgstr "``INTRINSIC_TYPEVAR_WITH_BOUND``"
 
 #: ../../library/dis.rst:1904
 msgid "Creates a :class:`typing.TypeVar` with a bound."
@@ -2321,7 +2420,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1907
 msgid "``INTRINSIC_TYPEVAR_WITH_CONSTRAINTS``"
-msgstr ""
+msgstr "``INTRINSIC_TYPEVAR_WITH_CONSTRAINTS``"
 
 #: ../../library/dis.rst:1907
 msgid "Creates a :class:`typing.TypeVar` with constraints."
@@ -2329,7 +2428,7 @@ msgstr ""
 
 #: ../../library/dis.rst:1911
 msgid "``INTRINSIC_SET_FUNCTION_TYPE_PARAMS``"
-msgstr ""
+msgstr "``INTRINSIC_SET_FUNCTION_TYPE_PARAMS``"
 
 #: ../../library/dis.rst:1911
 msgid "Sets the ``__type_params__`` attribute of a function."

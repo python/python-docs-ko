@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -104,6 +103,19 @@ msgid ""
 "    ...\n"
 "};"
 msgstr ""
+"static struct PyModuleDef_Slot module_slots[] = {\n"
+"    ...\n"
+"#if PY_VERSION_HEX >= 0x030D0000\n"
+"    {Py_mod_gil, Py_MOD_GIL_NOT_USED},\n"
+"#endif\n"
+"    {0, NULL}\n"
+"};\n"
+"\n"
+"static struct PyModuleDef moduledef = {\n"
+"    PyModuleDef_HEAD_INIT,\n"
+"    .m_slots = module_slots,\n"
+"    ...\n"
+"};"
 
 #: ../../howto/free-threading-extensions.rst:71
 msgid "Single-Phase Initialization"
@@ -139,6 +151,23 @@ msgid ""
 "    return m;\n"
 "}"
 msgstr ""
+"static struct PyModuleDef moduledef = {\n"
+"    PyModuleDef_HEAD_INIT,\n"
+"    ...\n"
+"};\n"
+"\n"
+"PyMODINIT_FUNC\n"
+"PyInit_mymodule(void)\n"
+"{\n"
+"    PyObject *m = PyModule_Create(&moduledef);\n"
+"    if (m == NULL) {\n"
+"        return NULL;\n"
+"    }\n"
+"#ifdef Py_GIL_DISABLED\n"
+"    PyUnstable_Module_SetGIL(m, Py_MOD_GIL_NOT_USED);\n"
+"#endif\n"
+"    return m;\n"
+"}"
 
 #: ../../howto/free-threading-extensions.rst:101
 msgid "General API Guidelines"
@@ -186,7 +215,7 @@ msgstr ""
 
 #: ../../howto/free-threading-extensions.rst:130
 msgid "``PyDict_Next``"
-msgstr ""
+msgstr "``PyDict_Next``"
 
 #: ../../howto/free-threading-extensions.rst:132
 msgid ""
@@ -207,6 +236,13 @@ msgid ""
 "}\n"
 "Py_END_CRITICAL_SECTION();"
 msgstr ""
+"Py_BEGIN_CRITICAL_SECTION(dict);\n"
+"PyObject *key, *value;\n"
+"Py_ssize_t pos = 0;\n"
+"while (PyDict_Next(dict, &pos, &key, &value)) {\n"
+"    ...\n"
+"}\n"
+"Py_END_CRITICAL_SECTION();"
 
 #: ../../howto/free-threading-extensions.rst:147
 msgid "Borrowed References"
@@ -236,49 +272,49 @@ msgstr ""
 
 #: ../../howto/free-threading-extensions.rst:162
 msgid ":c:func:`PyList_GetItem`"
-msgstr ""
+msgstr ":c:func:`PyList_GetItem`"
 
 #: ../../howto/free-threading-extensions.rst:162
 #: ../../howto/free-threading-extensions.rst:164
 msgid ":c:func:`PyList_GetItemRef`"
-msgstr ""
+msgstr ":c:func:`PyList_GetItemRef`"
 
 #: ../../howto/free-threading-extensions.rst:164
 msgid ":c:func:`PyList_GET_ITEM`"
-msgstr ""
+msgstr ":c:func:`PyList_GET_ITEM`"
 
 #: ../../howto/free-threading-extensions.rst:166
 msgid ":c:func:`PyDict_GetItem`"
-msgstr ""
+msgstr ":c:func:`PyDict_GetItem`"
 
 #: ../../howto/free-threading-extensions.rst:166
 #: ../../howto/free-threading-extensions.rst:168
 msgid ":c:func:`PyDict_GetItemRef`"
-msgstr ""
+msgstr ":c:func:`PyDict_GetItemRef`"
 
 #: ../../howto/free-threading-extensions.rst:168
 msgid ":c:func:`PyDict_GetItemWithError`"
-msgstr ""
+msgstr ":c:func:`PyDict_GetItemWithError`"
 
 #: ../../howto/free-threading-extensions.rst:170
 msgid ":c:func:`PyDict_GetItemString`"
-msgstr ""
+msgstr ":c:func:`PyDict_GetItemString`"
 
 #: ../../howto/free-threading-extensions.rst:170
 msgid ":c:func:`PyDict_GetItemStringRef`"
-msgstr ""
+msgstr ":c:func:`PyDict_GetItemStringRef`"
 
 #: ../../howto/free-threading-extensions.rst:172
 msgid ":c:func:`PyDict_SetDefault`"
-msgstr ""
+msgstr ":c:func:`PyDict_SetDefault`"
 
 #: ../../howto/free-threading-extensions.rst:172
 msgid ":c:func:`PyDict_SetDefaultRef`"
-msgstr ""
+msgstr ":c:func:`PyDict_SetDefaultRef`"
 
 #: ../../howto/free-threading-extensions.rst:174
 msgid ":c:func:`PyDict_Next`"
-msgstr ""
+msgstr ":c:func:`PyDict_Next`"
 
 #: ../../howto/free-threading-extensions.rst:174
 msgid "none (see :ref:`PyDict_Next`)"
@@ -286,32 +322,32 @@ msgstr ""
 
 #: ../../howto/free-threading-extensions.rst:176
 msgid ":c:func:`PyWeakref_GetObject`"
-msgstr ""
+msgstr ":c:func:`PyWeakref_GetObject`"
 
 #: ../../howto/free-threading-extensions.rst:176
 #: ../../howto/free-threading-extensions.rst:178
 msgid ":c:func:`PyWeakref_GetRef`"
-msgstr ""
+msgstr ":c:func:`PyWeakref_GetRef`"
 
 #: ../../howto/free-threading-extensions.rst:178
 msgid ":c:func:`PyWeakref_GET_OBJECT`"
-msgstr ""
+msgstr ":c:func:`PyWeakref_GET_OBJECT`"
 
 #: ../../howto/free-threading-extensions.rst:180
 msgid ":c:func:`PyImport_AddModule`"
-msgstr ""
+msgstr ":c:func:`PyImport_AddModule`"
 
 #: ../../howto/free-threading-extensions.rst:180
 msgid ":c:func:`PyImport_AddModuleRef`"
-msgstr ""
+msgstr ":c:func:`PyImport_AddModuleRef`"
 
 #: ../../howto/free-threading-extensions.rst:182
 msgid ":c:func:`PyCell_GET`"
-msgstr ""
+msgstr ":c:func:`PyCell_GET`"
 
 #: ../../howto/free-threading-extensions.rst:182
 msgid ":c:func:`PyCell_Get`"
-msgstr ""
+msgstr ":c:func:`PyCell_Get`"
 
 #: ../../howto/free-threading-extensions.rst:185
 msgid ""

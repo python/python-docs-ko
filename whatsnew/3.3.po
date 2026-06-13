@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -596,6 +595,18 @@ msgid ""
 "    else:\n"
 "        raise"
 msgstr ""
+"from errno import ENOENT, EACCES, EPERM\n"
+"\n"
+"try:\n"
+"    with open(\"document.txt\") as f:\n"
+"        content = f.read()\n"
+"except IOError as err:\n"
+"    if err.errno == ENOENT:\n"
+"        print(\"document.txt file is missing\")\n"
+"    elif err.errno in (EACCES, EPERM):\n"
+"        print(\"You are not allowed to read document.txt\")\n"
+"    else:\n"
+"        raise"
 
 #: ../../whatsnew/3.3.rst:379
 msgid ""
@@ -613,6 +624,13 @@ msgid ""
 "except PermissionError:\n"
 "    print(\"You are not allowed to read document.txt\")"
 msgstr ""
+"try:\n"
+"    with open(\"document.txt\") as f:\n"
+"        content = f.read()\n"
+"except FileNotFoundError:\n"
+"    print(\"document.txt file is missing\")\n"
+"except PermissionError:\n"
+"    print(\"You are not allowed to read document.txt\")"
 
 #: ../../whatsnew/3.3.rst:392
 msgid ":pep:`3151` - Reworking the OS and IO Exception Hierarchy"
@@ -658,6 +676,12 @@ msgid ""
 ">>> list(g(5))\n"
 "[5, 4, 3, 2, 1, 0, 1, 2, 3, 4]"
 msgstr ""
+">>> def g(x):\n"
+"...     yield from range(x, 0, -1)\n"
+"...     yield from range(x)\n"
+"...\n"
+">>> list(g(5))\n"
+"[5, 4, 3, 2, 1, 0, 1, 2, 3, 4]"
 
 #: ../../whatsnew/3.3.rst:424
 msgid ""
@@ -744,6 +768,20 @@ msgid ""
 "  File \"<stdin>\", line 8, in __getattr__\n"
 "AttributeError: x"
 msgstr ""
+">>> class D:\n"
+"...     def __init__(self, extra):\n"
+"...         self._extra_attributes = extra\n"
+"...     def __getattr__(self, attr):\n"
+"...         try:\n"
+"...             return self._extra_attributes[attr]\n"
+"...         except KeyError:\n"
+"...             raise AttributeError(attr) from None\n"
+"...\n"
+">>> D({}).x\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"  File \"<stdin>\", line 8, in __getattr__\n"
+"AttributeError: x"
 
 #: ../../whatsnew/3.3.rst:490
 msgid ""
@@ -775,6 +813,26 @@ msgid ""
 "  File \"<stdin>\", line 8, in __getattr__\n"
 "AttributeError: x"
 msgstr ""
+">>> class C:\n"
+"...     def __init__(self, extra):\n"
+"...         self._extra_attributes = extra\n"
+"...     def __getattr__(self, attr):\n"
+"...         try:\n"
+"...             return self._extra_attributes[attr]\n"
+"...         except KeyError:\n"
+"...             raise AttributeError(attr)\n"
+"...\n"
+">>> C({}).x\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 6, in __getattr__\n"
+"KeyError: 'x'\n"
+"\n"
+"During handling of the above exception, another exception occurred:\n"
+"\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 1, in <module>\n"
+"  File \"<stdin>\", line 8, in __getattr__\n"
+"AttributeError: x"
 
 #: ../../whatsnew/3.3.rst:514
 msgid ""
@@ -793,6 +851,12 @@ msgid ""
 "...\n"
 "KeyError('x',)"
 msgstr ""
+">>> try:\n"
+"...     D({}).x\n"
+"... except AttributeError as exc:\n"
+"...     print(repr(exc.__context__))\n"
+"...\n"
+"KeyError('x',)"
 
 #: ../../whatsnew/3.3.rst:527
 msgid ":pep:`409` - Suppressing exception context"
@@ -854,6 +918,14 @@ msgid ""
 ">>> C.meth.__qualname__\n"
 "'C.meth'"
 msgstr ""
+">>> class C:\n"
+"...     def meth(self):\n"
+"...         pass\n"
+"...\n"
+">>> C.meth.__name__\n"
+"'meth'\n"
+">>> C.meth.__qualname__\n"
+"'C.meth'"
 
 #: ../../whatsnew/3.3.rst:571
 msgid "Example with nested classes::"
@@ -875,6 +947,19 @@ msgid ""
 ">>> C.D.meth.__qualname__\n"
 "'C.D.meth'"
 msgstr ""
+">>> class C:\n"
+"...     class D:\n"
+"...         def meth(self):\n"
+"...             pass\n"
+"...\n"
+">>> C.D.__name__\n"
+"'D'\n"
+">>> C.D.__qualname__\n"
+"'C.D'\n"
+">>> C.D.meth.__name__\n"
+"'meth'\n"
+">>> C.D.meth.__qualname__\n"
+"'C.D.meth'"
 
 #: ../../whatsnew/3.3.rst:587
 msgid "Example with nested functions::"
@@ -892,6 +977,15 @@ msgid ""
 ">>> outer().__qualname__\n"
 "'outer.<locals>.inner'"
 msgstr ""
+">>> def outer():\n"
+"...     def inner():\n"
+"...         pass\n"
+"...     return inner\n"
+"...\n"
+">>> outer().__name__\n"
+"'inner'\n"
+">>> outer().__qualname__\n"
+"'outer.<locals>.inner'"
 
 #: ../../whatsnew/3.3.rst:599
 msgid ""
@@ -906,6 +1000,10 @@ msgid ""
 ">>> str(C.D.meth)\n"
 "'<function C.D.meth at 0x7f46b9fe31e0>'"
 msgstr ""
+">>> str(C.D)\n"
+"\"<class '__main__.C.D'>\"\n"
+">>> str(C.D.meth)\n"
+"'<function C.D.meth at 0x7f46b9fe31e0>'"
 
 #: ../../whatsnew/3.3.rst:609
 msgid ":pep:`3155` - Qualified name for classes and functions"
@@ -1356,6 +1454,16 @@ msgid ""
 "  File \"<stdin>\", line 1 in <module>\n"
 "Segmentation fault"
 msgstr ""
+"$ python -q -X faulthandler\n"
+">>> import ctypes\n"
+">>> ctypes.string_at(0)\n"
+"Fatal Python error: Segmentation fault\n"
+"\n"
+"Current thread 0x00007fb899f39700:\n"
+"  File \"/home/python/cpython/Lib/ctypes/__init__.py\", line 486 in "
+"string_at\n"
+"  File \"<stdin>\", line 1 in <module>\n"
+"Segmentation fault"
 
 #: ../../whatsnew/3.3.rst:893
 msgid "ipaddress"
@@ -1543,7 +1651,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:1002
 msgid "(:issue:`12016`)"
-msgstr ""
+msgstr "(:issue:`12016`)"
 
 #: ../../whatsnew/3.3.rst:1004
 msgid ""
@@ -1559,6 +1667,11 @@ msgid ""
 "'\\u52ff\\u65bd\\u65bc\\u4eba\\u3002 Bye.')\n"
 "b'~{NpJ)l6HK!#~} Bye.'"
 msgstr ""
+">>> import codecs\n"
+">>> encoder = codecs.getincrementalencoder('hz')('strict')\n"
+">>> b''.join(encoder.encode(x) for x in "
+"'\\u52ff\\u65bd\\u65bc\\u4eba\\u3002 Bye.')\n"
+"b'~{NpJ)l6HK!#~} Bye.'"
 
 #: ../../whatsnew/3.3.rst:1012
 msgid ""
@@ -1568,7 +1681,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:1015
 msgid "(:issue:`12100`)"
-msgstr ""
+msgstr "(:issue:`12100`)"
 
 #: ../../whatsnew/3.3.rst:1017
 msgid "The ``unicode_internal`` codec has been deprecated."
@@ -1619,7 +1732,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:1051
 msgid "(:issue:`13585`)"
-msgstr ""
+msgstr "(:issue:`13585`)"
 
 #: ../../whatsnew/3.3.rst:1055
 msgid "crypt"
@@ -1633,7 +1746,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:1060
 msgid "(:issue:`10924`)"
-msgstr ""
+msgstr "(:issue:`10924`)"
 
 #: ../../whatsnew/3.3.rst:1063
 msgid "curses"
@@ -1825,31 +1938,31 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:1143
 msgid ":const:`~decimal.MAX_PREC`"
-msgstr ""
+msgstr ":const:`~decimal.MAX_PREC`"
 
 #: ../../whatsnew/3.3.rst:1143 ../../whatsnew/3.3.rst:1145
 msgid "``425000000``"
-msgstr ""
+msgstr "``425000000``"
 
 #: ../../whatsnew/3.3.rst:1143 ../../whatsnew/3.3.rst:1145
 msgid "``999999999999999999``"
-msgstr ""
+msgstr "``999999999999999999``"
 
 #: ../../whatsnew/3.3.rst:1145
 msgid ":const:`~decimal.MAX_EMAX`"
-msgstr ""
+msgstr ":const:`~decimal.MAX_EMAX`"
 
 #: ../../whatsnew/3.3.rst:1147
 msgid ":const:`~decimal.MIN_EMIN`"
-msgstr ""
+msgstr ":const:`~decimal.MIN_EMIN`"
 
 #: ../../whatsnew/3.3.rst:1147
 msgid "``-425000000``"
-msgstr ""
+msgstr "``-425000000``"
 
 #: ../../whatsnew/3.3.rst:1147
 msgid "``-999999999999999999``"
-msgstr ""
+msgstr "``-999999999999999999``"
 
 #: ../../whatsnew/3.3.rst:1150
 msgid ""
@@ -2083,6 +2196,25 @@ msgid ""
 "To: =?utf-8?q?=C3=89ric?= <foo@example.com>\n"
 "Date: Fri, 25 May 2012 21:44:27 -0400"
 msgstr ""
+">>> m = Message(policy=SMTP)\n"
+">>> m['To'] = 'Éric <foo@example.com>'\n"
+">>> m['to']\n"
+"'Éric <foo@example.com>'\n"
+">>> m['to'].addresses\n"
+"(Address(display_name='Éric', username='foo', domain='example.com'),)\n"
+">>> m['to'].addresses[0].username\n"
+"'foo'\n"
+">>> m['to'].addresses[0].display_name\n"
+"'Éric'\n"
+">>> m['Date'] = email.utils.localtime()\n"
+">>> m['Date'].datetime\n"
+"datetime.datetime(2012, 5, 25, 21, 39, 24, 465484, "
+"tzinfo=datetime.timezone(datetime.timedelta(-1, 72000), 'EDT'))\n"
+">>> m['Date']\n"
+"'Fri, 25 May 2012 21:44:27 -0400'\n"
+">>> print(m)\n"
+"To: =?utf-8?q?=C3=89ric?= <foo@example.com>\n"
+"Date: Fri, 25 May 2012 21:44:27 -0400"
 
 #: ../../whatsnew/3.3.rst:1312
 msgid ""
@@ -2109,6 +2241,15 @@ msgid ""
 "cc: pals: Bob <bob@example.com>, Sally <sally@example.com>;, Bonzo "
 "<bonz@laugh.com>"
 msgstr ""
+">>> m['cc'] = [Group('pals', [Address('Bob', 'bob', 'example.com'),\n"
+"...                           Address('Sally', 'sally', 'example.com')]),"
+"\n"
+"...            Address('Bonzo', addr_spec='bonz@laugh.com')]\n"
+">>> print(m)\n"
+"To: =?utf-8?q?=C3=89ric?= <foo@example.com>\n"
+"Date: Fri, 25 May 2012 21:44:27 -0400\n"
+"cc: pals: Bob <bob@example.com>, Sally <sally@example.com>;, Bonzo "
+"<bonz@laugh.com>"
 
 #: ../../whatsnew/3.3.rst:1328
 msgid "Decoding to unicode is done automatically::"
@@ -2120,6 +2261,9 @@ msgid ""
 ">>> m2['to']\n"
 "'Éric <foo@example.com>'"
 msgstr ""
+">>> m2 = message_from_string(str(m))\n"
+">>> m2['to']\n"
+"'Éric <foo@example.com>'"
 
 #: ../../whatsnew/3.3.rst:1334
 msgid ""
@@ -2141,6 +2285,16 @@ msgid ""
 "addresses=(Address(display_name='Bonzo', username='bonz', "
 "domain='laugh.com'),))"
 msgstr ""
+">>> m2['cc'].addresses\n"
+"(Address(display_name='Bob', username='bob', domain='example.com'), "
+"Address(display_name='Sally', username='sally', domain='example.com'), "
+"Address(display_name='Bonzo', username='bonz', domain='laugh.com'))\n"
+">>> m2['cc'].groups\n"
+"(Group(display_name='pals', addresses=(Address(display_name='Bob', "
+"username='bob', domain='example.com'), Address(display_name='Sally', "
+"username='sally', domain='example.com')), Group(display_name=None, "
+"addresses=(Address(display_name='Bonzo', username='bonz', "
+"domain='laugh.com'),))"
 
 #: ../../whatsnew/3.3.rst:1343
 msgid ""
@@ -2493,6 +2647,13 @@ msgid ""
 "'gmane.comp.python.committers')\n"
 ">>>"
 msgstr ""
+">>> from nntplib import NNTP\n"
+">>> with NNTP('news.gmane.org') as n:\n"
+"...     n.group('gmane.comp.python.committers')\n"
+"...\n"
+"('211 1755 1 1755 gmane.comp.python.committers', 1755, 1, 1755, "
+"'gmane.comp.python.committers')\n"
+">>>"
 
 #: ../../whatsnew/3.3.rst:1574
 msgid "(Contributed by Giampaolo Rodolà in :issue:`9795`.)"
@@ -3023,15 +3184,15 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:1883
 msgid ":func:`~socket.socket.sendmsg`"
-msgstr ""
+msgstr ":func:`~socket.socket.sendmsg`"
 
 #: ../../whatsnew/3.3.rst:1884
 msgid ":func:`~socket.socket.recvmsg`"
-msgstr ""
+msgstr ":func:`~socket.socket.recvmsg`"
 
 #: ../../whatsnew/3.3.rst:1885
 msgid ":func:`~socket.socket.recvmsg_into`"
-msgstr ""
+msgstr ":func:`~socket.socket.recvmsg_into`"
 
 #: ../../whatsnew/3.3.rst:1887
 msgid ""
@@ -3402,7 +3563,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2111
 msgid "(:issue:`1673007`)"
-msgstr ""
+msgstr "(:issue:`1673007`)"
 
 #: ../../whatsnew/3.3.rst:2115
 msgid "webbrowser"
@@ -3510,7 +3671,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2177
 msgid ":c:func:`PyMemoryView_FromMemory`"
-msgstr ""
+msgstr ":c:func:`PyMemoryView_FromMemory`"
 
 #: ../../whatsnew/3.3.rst:2179
 msgid ":pep:`393` added new Unicode types, macros and functions:"
@@ -3522,27 +3683,27 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2183
 msgid ":c:func:`PyUnicode_CopyCharacters`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_CopyCharacters`"
 
 #: ../../whatsnew/3.3.rst:2184
 msgid ":c:func:`PyUnicode_FindChar`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_FindChar`"
 
 #: ../../whatsnew/3.3.rst:2185
 msgid ":c:func:`PyUnicode_GetLength`, :c:macro:`PyUnicode_GET_LENGTH`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_GetLength`, :c:macro:`PyUnicode_GET_LENGTH`"
 
 #: ../../whatsnew/3.3.rst:2186
 msgid ":c:func:`PyUnicode_New`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_New`"
 
 #: ../../whatsnew/3.3.rst:2187
 msgid ":c:func:`PyUnicode_Substring`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_Substring`"
 
 #: ../../whatsnew/3.3.rst:2188
 msgid ":c:func:`PyUnicode_ReadChar`, :c:func:`PyUnicode_WriteChar`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_ReadChar`, :c:func:`PyUnicode_WriteChar`"
 
 #: ../../whatsnew/3.3.rst:2190
 msgid "Low-level API:"
@@ -3558,21 +3719,23 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2194
 msgid ":c:macro:`PyUnicode_READY`"
-msgstr ""
+msgstr ":c:macro:`PyUnicode_READY`"
 
 #: ../../whatsnew/3.3.rst:2195
 msgid ":c:func:`PyUnicode_FromKindAndData`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_FromKindAndData`"
 
 #: ../../whatsnew/3.3.rst:2196
 msgid ":c:func:`PyUnicode_AsUCS4`, :c:func:`PyUnicode_AsUCS4Copy`"
-msgstr ""
+msgstr ":c:func:`PyUnicode_AsUCS4`, :c:func:`PyUnicode_AsUCS4Copy`"
 
 #: ../../whatsnew/3.3.rst:2197
 msgid ""
 ":c:macro:`PyUnicode_DATA`, :c:macro:`PyUnicode_1BYTE_DATA`, "
 ":c:macro:`PyUnicode_2BYTE_DATA`, :c:macro:`PyUnicode_4BYTE_DATA`"
 msgstr ""
+":c:macro:`PyUnicode_DATA`, :c:macro:`PyUnicode_1BYTE_DATA`, "
+":c:macro:`PyUnicode_2BYTE_DATA`, :c:macro:`PyUnicode_4BYTE_DATA`"
 
 #: ../../whatsnew/3.3.rst:2199
 msgid ""
@@ -3586,10 +3749,12 @@ msgid ""
 ":c:macro:`PyUnicode_READ`, :c:macro:`PyUnicode_READ_CHAR`, "
 ":c:macro:`PyUnicode_WRITE`"
 msgstr ""
+":c:macro:`PyUnicode_READ`, :c:macro:`PyUnicode_READ_CHAR`, "
+":c:macro:`PyUnicode_WRITE`"
 
 #: ../../whatsnew/3.3.rst:2203
 msgid ":c:macro:`PyUnicode_MAX_CHAR_VALUE`"
-msgstr ""
+msgstr ":c:macro:`PyUnicode_MAX_CHAR_VALUE`"
 
 #: ../../whatsnew/3.3.rst:2205
 msgid ""
@@ -3743,7 +3908,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2287
 msgid ":c:func:`!PyUnicode_GetMax`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_GetMax`"
 
 #: ../../whatsnew/3.3.rst:2290
 msgid "Functions and macros manipulating Py_UNICODE* strings:"
@@ -3788,7 +3953,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2304
 msgid ":c:macro:`!Py_UNICODE_MATCH`"
-msgstr ""
+msgstr ":c:macro:`!Py_UNICODE_MATCH`"
 
 #: ../../whatsnew/3.3.rst:2306
 msgid "Encoders:"
@@ -3800,7 +3965,7 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2309
 msgid ":c:func:`!PyUnicode_EncodeUTF7`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_EncodeUTF7`"
 
 #: ../../whatsnew/3.3.rst:2310
 msgid ""
@@ -3810,11 +3975,11 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2312
 msgid ":c:func:`!PyUnicode_EncodeUTF32`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_EncodeUTF32`"
 
 #: ../../whatsnew/3.3.rst:2313
 msgid ":c:func:`!PyUnicode_EncodeUTF16`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_EncodeUTF16`"
 
 #: ../../whatsnew/3.3.rst:2314
 msgid ""
@@ -3838,11 +4003,11 @@ msgstr ""
 
 #: ../../whatsnew/3.3.rst:2320
 msgid ":c:func:`!PyUnicode_EncodeCharmap`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_EncodeCharmap`"
 
 #: ../../whatsnew/3.3.rst:2321
 msgid ":c:func:`!PyUnicode_TranslateCharmap`"
-msgstr ""
+msgstr ":c:func:`!PyUnicode_TranslateCharmap`"
 
 #: ../../whatsnew/3.3.rst:2322
 msgid ""
@@ -3855,6 +4020,8 @@ msgid ""
 ":c:func:`!PyUnicode_EncodeDecimal`, "
 ":c:func:`!PyUnicode_TransformDecimalToASCII`"
 msgstr ""
+":c:func:`!PyUnicode_EncodeDecimal`, "
+":c:func:`!PyUnicode_TransformDecimalToASCII`"
 
 #: ../../whatsnew/3.3.rst:2329
 msgid "Deprecated features"

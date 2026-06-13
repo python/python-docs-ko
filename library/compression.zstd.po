@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the Python package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language: ko\n"
 "Language-Team: ko <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -711,6 +710,9 @@ msgid ""
 "options = {CompressionParameter.window_log: upper}\n"
 "compress(b'venezuelan beaver cheese', options=options)"
 msgstr ""
+"_lower, upper = CompressionParameter.window_log.bounds()\n"
+"options = {CompressionParameter.window_log: upper}\n"
+"compress(b'venezuelan beaver cheese', options=options)"
 
 #: ../../library/compression.zstd.rst:515
 msgid ""
@@ -830,7 +832,7 @@ msgstr ""
 
 #: ../../library/compression.zstd.rst:604
 msgid ":class:`Strategy`"
-msgstr ""
+msgstr ":class:`Strategy`"
 
 #: ../../library/compression.zstd.rst:608
 msgid ""
@@ -1017,6 +1019,12 @@ msgid ""
 "options = {DecompressionParameter.window_log_max: upper}\n"
 "decompress(data, options=options)"
 msgstr ""
+"data = compress(b'Some very long buffer of bytes...')\n"
+"\n"
+"_lower, upper = DecompressionParameter.window_log_max.bounds()\n"
+"\n"
+"options = {DecompressionParameter.window_log_max: upper}\n"
+"decompress(data, options=options)"
 
 #: ../../library/compression.zstd.rst:745
 msgid ""
@@ -1102,6 +1110,10 @@ msgid ""
 "with zstd.open(\"file.zst\") as f:\n"
 "    file_content = f.read()"
 msgstr ""
+"from compression import zstd\n"
+"\n"
+"with zstd.open(\"file.zst\") as f:\n"
+"    file_content = f.read()"
 
 #: ../../library/compression.zstd.rst:842
 msgid "Creating a compressed file:"
@@ -1115,6 +1127,11 @@ msgid ""
 "with zstd.open(\"file.zst\", \"w\") as f:\n"
 "    f.write(data)"
 msgstr ""
+"from compression import zstd\n"
+"\n"
+"data = b\"Insert Data Here\"\n"
+"with zstd.open(\"file.zst\", \"w\") as f:\n"
+"    f.write(data)"
 
 #: ../../library/compression.zstd.rst:852
 msgid "Compressing data in memory:"
@@ -1127,6 +1144,10 @@ msgid ""
 "data_in = b\"Insert Data Here\"\n"
 "data_out = zstd.compress(data_in)"
 msgstr ""
+"from compression import zstd\n"
+"\n"
+"data_in = b\"Insert Data Here\"\n"
+"data_out = zstd.compress(data_in)"
 
 #: ../../library/compression.zstd.rst:861
 msgid "Incremental compression:"
@@ -1159,6 +1180,13 @@ msgid ""
 "        zstf.write(b\"This *will* be compressed\\n\")\n"
 "    f.write(b\"Not compressed\\n\")"
 msgstr ""
+"from compression import zstd\n"
+"\n"
+"with open(\"myfile\", \"wb\") as f:\n"
+"    f.write(b\"This data will not be compressed\\n\")\n"
+"    with zstd.open(f, \"w\") as zstf:\n"
+"        zstf.write(b\"This *will* be compressed\\n\")\n"
+"    f.write(b\"Not compressed\\n\")"
 
 #: ../../library/compression.zstd.rst:887
 msgid "Creating a compressed file using compression parameters:"
@@ -1175,4 +1203,11 @@ msgid ""
 "with zstd.open(\"file.zst\", \"w\", options=options) as f:\n"
 "    f.write(b\"Mind if I squeeze in?\")"
 msgstr ""
+"from compression import zstd\n"
+"\n"
+"options = {\n"
+"   zstd.CompressionParameter.checksum_flag: 1\n"
+"}\n"
+"with zstd.open(\"file.zst\", \"w\", options=options) as f:\n"
+"    f.write(b\"Mind if I squeeze in?\")"
 

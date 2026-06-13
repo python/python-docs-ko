@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-11 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
+"Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -50,14 +50,12 @@ msgid "Functions that initialize the interpreter:"
 msgstr ""
 
 #: ../../c-api/init.rst:27
-#, fuzzy
 msgid ":c:func:`Py_Initialize`"
-msgstr ":c:func:`Py_IsInitialized`"
+msgstr ":c:func:`Py_Initialize`"
 
 #: ../../c-api/init.rst:28
-#, fuzzy
 msgid ":c:func:`Py_InitializeEx`"
-msgstr ":c:func:`Py_IsInitialized`"
+msgstr ":c:func:`Py_InitializeEx`"
 
 #: ../../c-api/init.rst:29
 #, fuzzy
@@ -70,9 +68,8 @@ msgid ":c:func:`Py_BytesMain`"
 msgstr ":c:func:`Py_GetVersion`"
 
 #: ../../c-api/init.rst:31
-#, fuzzy
 msgid ":c:func:`Py_Main`"
-msgstr ":c:func:`Py_SetPath`"
+msgstr ":c:func:`Py_Main`"
 
 #: ../../c-api/init.rst:32
 msgid "the runtime pre-initialization functions covered in :ref:`init-config`"
@@ -91,9 +88,8 @@ msgid ":c:func:`PyImport_ExtendInittab`"
 msgstr ":c:func:`PyImport_ExtendInittab`"
 
 #: ../../c-api/init.rst:38
-#, fuzzy
 msgid ":c:func:`!PyInitFrozenExtensions`"
-msgstr ":c:func:`PyInitFrozenExtensions`"
+msgstr ":c:func:`!PyInitFrozenExtensions`"
 
 #: ../../c-api/init.rst:39
 msgid ":c:func:`PyMem_SetAllocator`"
@@ -197,14 +193,12 @@ msgid "Synchronization:"
 msgstr "비동기 알림"
 
 #: ../../c-api/init.rst:73
-#, fuzzy
 msgid ":c:func:`PyMutex_Lock`"
-msgstr ":c:func:`PyMem_RawMalloc`"
+msgstr ":c:func:`PyMutex_Lock`"
 
 #: ../../c-api/init.rst:74
-#, fuzzy
 msgid ":c:func:`PyMutex_Unlock`"
-msgstr ":c:func:`PyMem_RawMalloc`"
+msgstr ":c:func:`PyMutex_Unlock`"
 
 #: ../../c-api/init.rst:78
 #, fuzzy
@@ -831,6 +825,13 @@ msgid ""
 "\n"
 "Py_RunMain();"
 msgstr ""
+"PyConfig config;\n"
+"PyConfig_InitPythonConfig(&config);\n"
+"PyConfig_SetArgv(&config, argc, argv);\n"
+"Py_InitializeFromConfig(&config);\n"
+"PyConfig_Clear(&config);\n"
+"\n"
+"Py_RunMain();"
 
 #: ../../c-api/init.rst:516
 msgid ""
@@ -1442,6 +1443,9 @@ msgid ""
 "... Do some blocking I/O operation ...\n"
 "Restore the thread state from the local variable."
 msgstr ""
+"Save the thread state in a local variable.\n"
+"... Do some blocking I/O operation ...\n"
+"Restore the thread state from the local variable."
 
 #: ../../c-api/init.rst:983
 msgid "This is so common that a pair of macros exists to simplify it::"
@@ -1453,6 +1457,9 @@ msgid ""
 "... Do some blocking I/O operation ...\n"
 "Py_END_ALLOW_THREADS"
 msgstr ""
+"Py_BEGIN_ALLOW_THREADS\n"
+"... Do some blocking I/O operation ...\n"
+"Py_END_ALLOW_THREADS"
 
 #: ../../c-api/init.rst:993
 msgid ""
@@ -1475,6 +1482,11 @@ msgid ""
 "... Do some blocking I/O operation ...\n"
 "PyEval_RestoreThread(_save);"
 msgstr ""
+"PyThreadState *_save;\n"
+"\n"
+"_save = PyEval_SaveThread();\n"
+"... Do some blocking I/O operation ...\n"
+"PyEval_RestoreThread(_save);"
 
 #: ../../c-api/init.rst:1009
 msgid "Here is how these functions work:"
@@ -1575,6 +1587,15 @@ msgid ""
 "/* Release the thread. No Python API allowed beyond this point. */\n"
 "PyGILState_Release(gstate);"
 msgstr ""
+"PyGILState_STATE gstate;\n"
+"gstate = PyGILState_Ensure();\n"
+"\n"
+"/* Perform Python actions here. */\n"
+"result = CallSomeFunction();\n"
+"/* evaluate result or handle exception */\n"
+"\n"
+"/* Release the thread. No Python API allowed beyond this point. */\n"
+"PyGILState_Release(gstate);"
 
 #: ../../c-api/init.rst:1068
 #, fuzzy
@@ -1629,6 +1650,20 @@ msgid ""
 "PyThreadState_Clear(tstate);\n"
 "PyThreadState_DeleteCurrent();"
 msgstr ""
+"/* The return value of PyInterpreterState_Get() from the\n"
+"   function that created this thread. */\n"
+"PyInterpreterState *interp = ThreadData->interp;\n"
+"PyThreadState *tstate = PyThreadState_New(interp);\n"
+"PyThreadState_Swap(tstate);\n"
+"\n"
+"/* GIL of the subinterpreter is now held.\n"
+"   Perform Python actions here. */\n"
+"result = CallSomeFunction();\n"
+"/* evaluate result or handle exception */\n"
+"\n"
+"/* Destroy the thread state. No Python API allowed beyond this point. */\n"
+"PyThreadState_Clear(tstate);\n"
+"PyThreadState_DeleteCurrent();"
 
 #: ../../c-api/init.rst:1106
 msgid "Cautions about fork()"
@@ -1874,9 +1909,8 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/init.rst:1282
-#, fuzzy
 msgid ":c:func:`PyEval_ReleaseThread`"
-msgstr ":c:func:`PyMem_RawFree`"
+msgstr ":c:func:`PyEval_ReleaseThread`"
 
 #: ../../c-api/init.rst:1285
 msgid ""
@@ -1998,9 +2032,8 @@ msgid ""
 msgstr ""
 
 #: ../../c-api/init.rst:1360
-#, fuzzy
 msgid ":c:func:`PyThreadState_Get`"
-msgstr ":c:func:`PyEval_GetFrame`\\도 참조하십시오."
+msgstr ":c:func:`PyThreadState_Get`"
 
 #: ../../c-api/init.rst:1364
 #, fuzzy
@@ -2627,6 +2660,20 @@ msgid ""
 "    Py_ExitStatusException(status);\n"
 "}"
 msgstr ""
+"PyInterpreterConfig config = {\n"
+"    .use_main_obmalloc = 0,\n"
+"    .allow_fork = 0,\n"
+"    .allow_exec = 0,\n"
+"    .allow_threads = 1,\n"
+"    .allow_daemon_threads = 0,\n"
+"    .check_multi_interp_extensions = 1,\n"
+"    .gil = PyInterpreterConfig_OWN_GIL,\n"
+"};\n"
+"PyThreadState *tstate = NULL;\n"
+"PyStatus status = Py_NewInterpreterFromConfig(&tstate, &config);\n"
+"if (PyStatus_Exception(status)) {\n"
+"    Py_ExitStatusException(status);\n"
+"}"
 
 #: ../../c-api/init.rst:1831
 msgid ""
@@ -2967,9 +3014,8 @@ msgid "Meaning of *arg*"
 msgstr "*arg*\\의 의미"
 
 #: ../../c-api/init.rst:2055
-#, fuzzy
 msgid ":c:data:`PyTrace_CALL`"
-msgstr ":const:`PyTrace_CALL`"
+msgstr ":c:data:`PyTrace_CALL`"
 
 #: ../../c-api/init.rst:2055 ../../c-api/init.rst:2060
 #: ../../c-api/init.rst:2071
@@ -2977,32 +3023,28 @@ msgid "Always :c:data:`Py_None`."
 msgstr "항상 :c:data:`Py_None`."
 
 #: ../../c-api/init.rst:2057
-#, fuzzy
 msgid ":c:data:`PyTrace_EXCEPTION`"
-msgstr ":const:`PyTrace_EXCEPTION`"
+msgstr ":c:data:`PyTrace_EXCEPTION`"
 
 #: ../../c-api/init.rst:2057
 msgid "Exception information as returned by :func:`sys.exc_info`."
 msgstr ":func:`sys.exc_info`\\에서 반환된 예외 정보."
 
 #: ../../c-api/init.rst:2060
-#, fuzzy
 msgid ":c:data:`PyTrace_LINE`"
-msgstr ":const:`PyTrace_LINE`"
+msgstr ":c:data:`PyTrace_LINE`"
 
 #: ../../c-api/init.rst:2062
-#, fuzzy
 msgid ":c:data:`PyTrace_RETURN`"
-msgstr ":const:`PyTrace_RETURN`"
+msgstr ":c:data:`PyTrace_RETURN`"
 
 #: ../../c-api/init.rst:2062
 msgid "Value being returned to the caller, or ``NULL`` if caused by an exception."
 msgstr "호출자에게 반환되는 값, 또는 예외로 인한 것이면 ``NULL``."
 
 #: ../../c-api/init.rst:2065
-#, fuzzy
 msgid ":c:data:`PyTrace_C_CALL`"
-msgstr ":const:`PyTrace_C_CALL`"
+msgstr ":c:data:`PyTrace_C_CALL`"
 
 #: ../../c-api/init.rst:2065 ../../c-api/init.rst:2067
 #: ../../c-api/init.rst:2069
@@ -3010,19 +3052,16 @@ msgid "Function object being called."
 msgstr "호출되는 함수 객체."
 
 #: ../../c-api/init.rst:2067
-#, fuzzy
 msgid ":c:data:`PyTrace_C_EXCEPTION`"
-msgstr ":const:`PyTrace_C_EXCEPTION`"
+msgstr ":c:data:`PyTrace_C_EXCEPTION`"
 
 #: ../../c-api/init.rst:2069
-#, fuzzy
 msgid ":c:data:`PyTrace_C_RETURN`"
-msgstr ":const:`PyTrace_C_RETURN`"
+msgstr ":c:data:`PyTrace_C_RETURN`"
 
 #: ../../c-api/init.rst:2071
-#, fuzzy
 msgid ":c:data:`PyTrace_OPCODE`"
-msgstr ":const:`PyTrace_OPCODE`"
+msgstr ":c:data:`PyTrace_OPCODE`"
 
 #: ../../c-api/init.rst:2076
 msgid ""
@@ -3634,6 +3673,14 @@ msgid ""
 "   Py_RETURN_NONE;\n"
 "}"
 msgstr ""
+"static PyObject *\n"
+"set_field(MyObject *self, PyObject *value)\n"
+"{\n"
+"   Py_BEGIN_CRITICAL_SECTION(self);\n"
+"   Py_SETREF(self->field, Py_XNewRef(value));\n"
+"   Py_END_CRITICAL_SECTION();\n"
+"   Py_RETURN_NONE;\n"
+"}"
 
 #: ../../c-api/init.rst:2539
 msgid ""
@@ -3663,6 +3710,9 @@ msgid ""
 "    PyCriticalSection _py_cs;\n"
 "    PyCriticalSection_Begin(&_py_cs, (PyObject*)(op))"
 msgstr ""
+"{\n"
+"    PyCriticalSection _py_cs;\n"
+"    PyCriticalSection_Begin(&_py_cs, (PyObject*)(op))"
 
 #: ../../c-api/init.rst:2556 ../../c-api/init.rst:2602
 msgid "In the default build, this macro expands to ``{``."
@@ -3678,6 +3728,9 @@ msgid ""
 "     PyCriticalSection _py_cs;\n"
 "     PyCriticalSection_BeginMutex(&_py_cs, m)"
 msgstr ""
+"{\n"
+"     PyCriticalSection _py_cs;\n"
+"     PyCriticalSection_BeginMutex(&_py_cs, m)"
 
 #: ../../c-api/init.rst:2570
 msgid ""
@@ -3698,6 +3751,8 @@ msgid ""
 "    PyCriticalSection_End(&_py_cs);\n"
 "}"
 msgstr ""
+"PyCriticalSection_End(&_py_cs);\n"
+"}"
 
 #: ../../c-api/init.rst:2586 ../../c-api/init.rst:2632
 msgid "In the default build, this macro expands to ``}``."
@@ -3716,6 +3771,9 @@ msgid ""
 "    PyCriticalSection2 _py_cs2;\n"
 "    PyCriticalSection2_Begin(&_py_cs2, (PyObject*)(a), (PyObject*)(b))"
 msgstr ""
+"{\n"
+"    PyCriticalSection2 _py_cs2;\n"
+"    PyCriticalSection2_Begin(&_py_cs2, (PyObject*)(a), (PyObject*)(b))"
 
 #: ../../c-api/init.rst:2608
 msgid "Locks the mutexes *m1* and *m2* and begins a critical section."
@@ -3727,6 +3785,9 @@ msgid ""
 "     PyCriticalSection2 _py_cs2;\n"
 "     PyCriticalSection2_BeginMutex(&_py_cs2, m1, m2)"
 msgstr ""
+"{\n"
+"     PyCriticalSection2 _py_cs2;\n"
+"     PyCriticalSection2_BeginMutex(&_py_cs2, m1, m2)"
 
 #: ../../c-api/init.rst:2616
 msgid ""
@@ -3743,6 +3804,8 @@ msgid ""
 "    PyCriticalSection2_End(&_py_cs2);\n"
 "}"
 msgstr ""
+"PyCriticalSection2_End(&_py_cs2);\n"
+"}"
 
 #: ../../c-api/init.rst:350
 msgid "PyEval_InitThreads()"
