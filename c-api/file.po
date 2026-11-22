@@ -7,17 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/file.rst:6
-msgid "File Objects"
+#, fuzzy
+msgid "File objects"
 msgstr "파일 객체"
 
 #: ../../c-api/file.rst:10
@@ -96,15 +97,44 @@ msgstr ""
 
 #: ../../c-api/file.rst:65
 msgid ""
+"Read a line from the C stream *stream* into the buffer *buf*, like the C "
+"standard library function :c:func:`!fgets`, but treating all of ``\\n``, "
+"``\\r`` and ``\\r\\n`` as line endings (see :term:`universal newlines`). "
+"Any ``\\r`` or ``\\r\\n`` read from the stream is stored in *buf* as a "
+"single ``\\n``."
+msgstr ""
+
+#: ../../c-api/file.rst:71
+msgid ""
+"At most ``n - 1`` characters are stored in *buf*; reading stops after a "
+"newline has been stored or when the end of the file is reached. The "
+"result is always null-terminated. *stream* should be opened in binary "
+"mode, so that the C library does not perform its own newline translation."
+msgstr ""
+
+#: ../../c-api/file.rst:77
+msgid ""
+"Return *buf* on success. Return ``NULL`` if no characters could be read, "
+"because *stream* is at end of file, a read error occurred, or *n* is less"
+" than 2. Like :c:func:`!fgets`, this function does not distinguish "
+"between end of file and a read error, and it does not set an exception."
+msgstr ""
+
+#: ../../c-api/file.rst:83
+msgid "*fobj* exists only for backward compatibility and must be ``NULL``."
+msgstr ""
+
+#: ../../c-api/file.rst:88
+msgid ""
 "Overrides the normal behavior of :func:`io.open_code` to pass its "
 "parameter through the provided handler."
 msgstr "제공된 handler를 통해 매개 변수를 전달하도록 :func:`io.open_code`\\의 일반적인 동작을 재정의합니다."
 
-#: ../../c-api/file.rst:68
+#: ../../c-api/file.rst:91
 msgid "The *handler* is a function of type:"
 msgstr "*handler*\\는 다음과 같은 형의 함수입니다:"
 
-#: ../../c-api/file.rst:73
+#: ../../c-api/file.rst:96
 msgid ""
 "Equivalent of :c:expr:`PyObject *(\\*)(PyObject *path, void *userData)`, "
 "where *path* is guaranteed to be :c:type:`PyUnicodeObject`."
@@ -112,7 +142,7 @@ msgstr ""
 ":c:expr:`PyObject *(\\*)(PyObject *path, void *userData)`\\와 동등합니다. 여기서 "
 "*path*\\는 :c:type:`PyUnicodeObject` 임이 보장됩니다."
 
-#: ../../c-api/file.rst:77
+#: ../../c-api/file.rst:100
 msgid ""
 "The *userData* pointer is passed into the hook function. Since hook "
 "functions may be called from different runtimes, this pointer should not "
@@ -121,7 +151,7 @@ msgstr ""
 "*userData* 포인터는 훅 함수로 전달됩니다. 훅 함수는 다른 런타임에서 호출될 수 있으므로, 이 포인터는 파이썬 상태를 직접"
 " 참조하면 안 됩니다."
 
-#: ../../c-api/file.rst:81
+#: ../../c-api/file.rst:104
 msgid ""
 "As this hook is intentionally used during import, avoid importing new "
 "modules during its execution unless they are known to be frozen or "
@@ -130,7 +160,7 @@ msgstr ""
 "이 훅은 의도적으로 임포트 중에 사용되므로, 고정되었거나(frozen) ``sys.modules``\\에 있다고 알려진 경우가 "
 "아니라면 훅 실행 중에 새로운 모듈을 임포트하는 것을 피하십시오."
 
-#: ../../c-api/file.rst:85
+#: ../../c-api/file.rst:108
 msgid ""
 "Once a hook has been set, it cannot be removed or replaced, and later "
 "calls to :c:func:`PyFile_SetOpenCodeHook` will fail. On failure, the "
@@ -140,34 +170,101 @@ msgstr ""
 "일단 훅이 설정되면, 제거하거나 교체할 수 없으며, 이후의 :c:func:`PyFile_SetOpenCodeHook`\\에 대한 "
 "호출은 실패합니다. 실패 시, 함수는 -1을 반환하고 인터프리터가 초기화되었으면 예외를 설정합니다."
 
-#: ../../c-api/file.rst:89
+#: ../../c-api/file.rst:112
 msgid "This function is safe to call before :c:func:`Py_Initialize`."
 msgstr "이 함수는 :c:func:`Py_Initialize` 전에 호출해도 안전합니다."
 
-#: ../../c-api/file.rst:91
+#: ../../c-api/file.rst:114
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``setopencodehook`` with no "
 "arguments."
 msgstr "인자 없이 :ref:`감사 이벤트 <auditing>` ``setopencodehook``\\을 발생시킵니다."
 
-#: ../../c-api/file.rst:101
+#: ../../c-api/file.rst:121
+msgid ""
+"Open *path* with the mode ``'rb'``. *path* must be a Python :class:`str` "
+"object. The behavior of this function may be overridden by "
+":c:func:`PyFile_SetOpenCodeHook` to allow for some preprocessing of the "
+"text."
+msgstr ""
+
+#: ../../c-api/file.rst:126
+msgid "This is analogous to :func:`io.open_code` in Python."
+msgstr ""
+
+#: ../../c-api/file.rst:128
+msgid ""
+"On success, this function returns a :term:`strong reference` to a Python "
+"file object. On failure, this function returns ``NULL`` with an exception"
+" set."
+msgstr ""
+
+#: ../../c-api/file.rst:137
+msgid ""
+"Similar to :c:func:`PyFile_OpenCodeObject`, but *path* is a UTF-8 encoded"
+" :c:expr:`const char*`."
+msgstr ""
+
+#: ../../c-api/file.rst:147
+#, fuzzy
 msgid ""
 "Write object *obj* to file object *p*.  The only supported flag for "
 "*flags* is :c:macro:`Py_PRINT_RAW`; if given, the :func:`str` of the "
-"object is written instead of the :func:`repr`.  Return ``0`` on success "
-"or ``-1`` on failure; the appropriate exception will be set."
+"object is written instead of the :func:`repr`."
 msgstr ""
 "객체 *obj*\\를 파일 객체 *p*\\에 씁니다. *flags*\\에서 지원되는 유일한 플래그는 "
 ":c:macro:`Py_PRINT_RAW`\\입니다; 주어지면, :func:`repr` 대신 객체의 :func:`str`\\이 "
 "기록됩니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다; 적절한 예외가 설정됩니다."
 
-#: ../../c-api/file.rst:109
+#: ../../c-api/file.rst:151
+msgid "If *obj* is ``NULL``, write the string ``\"<NULL>\"``."
+msgstr ""
+
+#: ../../c-api/file.rst:153
+#, fuzzy
+msgid ""
+"Return ``0`` on success or ``-1`` on failure; the appropriate exception "
+"will be set."
+msgstr ""
+"문자열 *s*\\를 파일 객체 *p*\\에 씁니다. 성공하면 ``0``\\을 반환하고, 실패하면 ``-1``\\을 반환합니다; "
+"적절한 예외가 설정됩니다."
+
+#: ../../c-api/file.rst:158
 msgid ""
 "Write string *s* to file object *p*.  Return ``0`` on success or ``-1`` "
 "on failure; the appropriate exception will be set."
 msgstr ""
 "문자열 *s*\\를 파일 객체 *p*\\에 씁니다. 성공하면 ``0``\\을 반환하고, 실패하면 ``-1``\\을 반환합니다; "
 "적절한 예외가 설정됩니다."
+
+#: ../../c-api/file.rst:163
+msgid "Soft-deprecated API"
+msgstr ""
+
+#: ../../c-api/file.rst:165
+msgid ""
+"These are APIs that were included in Python's C API by mistake. They are "
+"documented solely for completeness; use other ``PyFile*`` APIs instead."
+msgstr ""
+
+#: ../../c-api/file.rst:172
+msgid ""
+"Use :c:func:`PyFile_FromFd` with defaults (``fd, NULL, \"w\", -1, NULL, "
+"NULL, NULL, 0``) instead."
+msgstr ""
+
+#: ../../c-api/file.rst:179
+msgid ""
+"Type of file-like objects used internally at Python startup when "
+":py:mod:`io` is not yet available. Use Python :py:func:`open` or "
+":c:func:`PyFile_FromFd` to create file objects instead."
+msgstr ""
+
+#: ../../c-api/file.rst:188
+msgid ""
+"The string literal ``\"b\"``, used to open files in binary mode. Exposed "
+"for backwards compatibility only."
+msgstr ""
 
 #: ../../c-api/file.rst:8
 msgid "object"
@@ -181,7 +278,7 @@ msgstr "파일"
 msgid "EOFError (built-in exception)"
 msgstr "EOFError (내장 예외)"
 
-#: ../../c-api/file.rst:99
+#: ../../c-api/file.rst:145
 msgid "Py_PRINT_RAW (C macro)"
 msgstr "Py_PRINT_RAW (C 매크로)"
 

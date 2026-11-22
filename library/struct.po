@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/struct.rst:2
 msgid ":mod:`!struct` --- Interpret bytes as packed binary data"
@@ -48,8 +48,9 @@ msgid ""
 msgstr ""
 
 #: ../../library/struct.rst:39
+#, fuzzy
 msgid ""
-"Several :mod:`struct` functions (and methods of :class:`Struct`) take a "
+"Several :mod:`!struct` functions (and methods of :class:`Struct`) take a "
 "*buffer* argument.  This refers to objects that implement the "
 ":ref:`bufferobjects` and provide either a readable or read-writable "
 "buffer.  The most common types used for that purpose are :class:`bytes` "
@@ -87,15 +88,17 @@ msgstr ""
 "포맷이 요구하는 값과 정확히 일치해야 합니다."
 
 #: ../../library/struct.rst:68
+#, fuzzy
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *format* "
 "and write the packed bytes into the writable buffer *buffer* starting at "
-"position *offset*.  Note that *offset* is a required argument."
+"position *offset*.  Note that *offset* is a required argument. A negative"
+" *offset* counts from the end of *buffer*."
 msgstr ""
 "포맷 문자열 *format*\\에 따라 값 *v1*, *v2*, ... 를 패킹하고 패킹 된 바이트열을 쓰기 가능한 버퍼 "
 "*buffer*\\에 *offset* 위치에서부터 씁니다. *offset*\\은 필수 인자임에 유의하십시오."
 
-#: ../../library/struct.rst:75
+#: ../../library/struct.rst:76
 msgid ""
 "Unpack from the buffer *buffer* (presumably packed by ``pack(format, "
 "...)``) according to the format string *format*.  The result is a tuple "
@@ -106,19 +109,20 @@ msgstr ""
 " 언 패킹 합니다. 정확히 하나의 항목을 포함하더라도 결과는 튜플입니다. 바이트 단위의 버퍼 크기는 "
 "(:func:`calcsize`\\에 의해 반영되는) 포맷이 요구하는 크기와 일치해야 합니다."
 
-#: ../../library/struct.rst:83
+#: ../../library/struct.rst:84
+#, fuzzy
 msgid ""
 "Unpack from *buffer* starting at position *offset*, according to the "
 "format string *format*.  The result is a tuple even if it contains "
 "exactly one item.  The buffer's size in bytes, starting at position "
 "*offset*, must be at least the size required by the format, as reflected "
-"by :func:`calcsize`."
+"by :func:`calcsize`. A negative *offset* counts from the end of *buffer*."
 msgstr ""
 "포맷 문자열 *format*\\에 따라, *offset* 위치에서 시작하여 *buffer*\\에서 언 패킹 합니다. 정확히 하나의 "
 "항목을 포함하더라도 결과는 튜플입니다. *offset* 위치에서 시작하여 바이트 단위로 측정한 버퍼 크기는 "
 "(:func:`calcsize`\\에 의해 반영되는) 포맷이 요구하는 크기 이상이어야 합니다."
 
-#: ../../library/struct.rst:91
+#: ../../library/struct.rst:93
 msgid ""
 "Iteratively unpack from the buffer *buffer* according to the format "
 "string *format*.  This function returns an iterator which will read "
@@ -130,11 +134,11 @@ msgstr ""
 "소비될 때까지 버퍼에서 같은 크기의 청크를 읽는 이터레이터를 반환합니다. 바이트 단위의 버퍼 크기는 "
 "(:func:`calcsize`\\에 의해 반영되는) 포맷이 요구하는 크기의 배수여야 합니다."
 
-#: ../../library/struct.rst:97
+#: ../../library/struct.rst:99
 msgid "Each iteration yields a tuple as specified by the format string."
 msgstr "각 이터레이션은 포맷 문자열에 지정된 대로 튜플을 산출합니다."
 
-#: ../../library/struct.rst:104
+#: ../../library/struct.rst:106
 msgid ""
 "Return the size of the struct (and hence of the bytes object produced by "
 "``pack(format, ...)``) corresponding to the format string *format*."
@@ -142,30 +146,31 @@ msgstr ""
 "포맷 문자열 *format*\\에 해당하는 구조체(``pack(format, ...)``\\에 의해 생성되는 바이트열 객체)의 "
 "크기를 반환합니다."
 
-#: ../../library/struct.rst:111
+#: ../../library/struct.rst:113
 msgid "Format Strings"
 msgstr "포맷 문자열"
 
-#: ../../library/struct.rst:113
+#: ../../library/struct.rst:115
+#, fuzzy
 msgid ""
 "Format strings describe the data layout when packing and unpacking data."
-"  They are built up from :ref:`format characters<format-characters>`, "
-"which specify the type of data being packed/unpacked.  In addition, "
-"special characters control the :ref:`byte order, size and alignment"
-"<struct-alignment>`. Each format string consists of an optional prefix "
-"character which describes the overall properties of the data and one or "
-"more format characters which describe the actual data values and padding."
+"  They are built up from :ref:`type codes <type-codes>`, which specify "
+"the type of data being packed/unpacked.  In addition, special characters "
+"control the :ref:`byte order, size and alignment<struct-alignment>`. Each"
+" format string consists of an optional prefix character which describes "
+"the overall properties of the data and one or more format characters "
+"which describe the actual data values and padding."
 msgstr ""
 "포맷 문자열은 데이터를 패킹과 언 패킹할 때 데이터 배치를 설명합니다. 이들은 패킹/언 패킹 될 데이터형을 지정하는 :ref:`포맷"
 " 문자 <format-characters>`\\로 구축됩니다. 또한, 특수 문자가 :ref:`바이트 순서, 크기 및 정렬 "
 "<struct-alignment>`\\을 제어합니다. 각 포맷 문자열은 데이터의 전체 속성을 설명하는 선택적 접두사 문자와 실제 "
 "데이터 값과 패딩을 설명하는 하나 이상의 포맷 문자로 구성됩니다."
 
-#: ../../library/struct.rst:125
+#: ../../library/struct.rst:127
 msgid "Byte Order, Size, and Alignment"
 msgstr "바이트 순서, 크기 및 정렬"
 
-#: ../../library/struct.rst:127
+#: ../../library/struct.rst:129
 msgid ""
 "By default, C types are represented in the machine's native format and "
 "byte order, and properly aligned by skipping pad bytes if necessary "
@@ -178,98 +183,98 @@ msgstr ""
 " 건너뛰어 적절하게 정렬됩니다. 이 동작은 패킹된 구조체의 바이트가 해당 C 구조체의 메모리 배치와 정확히 일치하도록 "
 "선택되었습니다. 네이티브 바이트 순서와 패딩을 사용할지 아니면 표준 포맷을 사용할지는 응용 프로그램에 달려 있습니다."
 
-#: ../../library/struct.rst:143
+#: ../../library/struct.rst:145
 msgid ""
 "Alternatively, the first character of the format string can be used to "
 "indicate the byte order, size and alignment of the packed data, according"
 " to the following table:"
 msgstr "또는, 다음 표에 따라, 포맷 문자열의 첫 번째 문자를 사용하여 패킹 된 데이터의 바이트 순서, 크기 및 정렬을 표시할 수 있습니다:"
 
-#: ../../library/struct.rst:148
+#: ../../library/struct.rst:150
 msgid "Character"
 msgstr "문자"
 
-#: ../../library/struct.rst:148
+#: ../../library/struct.rst:150
 msgid "Byte order"
 msgstr "바이트 순서"
 
-#: ../../library/struct.rst:148
+#: ../../library/struct.rst:150
 msgid "Size"
 msgstr "크기"
 
-#: ../../library/struct.rst:148
+#: ../../library/struct.rst:150
 msgid "Alignment"
 msgstr "정렬"
 
-#: ../../library/struct.rst:150
+#: ../../library/struct.rst:152
 msgid "``@``"
 msgstr "``@``"
 
-#: ../../library/struct.rst:150 ../../library/struct.rst:152
+#: ../../library/struct.rst:152 ../../library/struct.rst:154
 msgid "native"
 msgstr "네이티브"
 
-#: ../../library/struct.rst:152
+#: ../../library/struct.rst:154
 msgid "``=``"
 msgstr "``=``"
 
-#: ../../library/struct.rst:152 ../../library/struct.rst:154
-#: ../../library/struct.rst:156 ../../library/struct.rst:158
+#: ../../library/struct.rst:154 ../../library/struct.rst:156
+#: ../../library/struct.rst:158 ../../library/struct.rst:160
 msgid "standard"
 msgstr "표준"
 
-#: ../../library/struct.rst:152 ../../library/struct.rst:154
-#: ../../library/struct.rst:156 ../../library/struct.rst:158
+#: ../../library/struct.rst:154 ../../library/struct.rst:156
+#: ../../library/struct.rst:158 ../../library/struct.rst:160
 msgid "none"
 msgstr "none"
 
-#: ../../library/struct.rst:154
+#: ../../library/struct.rst:156
 msgid "``<``"
 msgstr "``<``"
 
-#: ../../library/struct.rst:154
+#: ../../library/struct.rst:156
 msgid "little-endian"
 msgstr "리틀 엔디안"
 
-#: ../../library/struct.rst:156
+#: ../../library/struct.rst:158
 msgid "``>``"
 msgstr "``>``"
 
-#: ../../library/struct.rst:156
+#: ../../library/struct.rst:158
 msgid "big-endian"
 msgstr "빅 엔디안"
 
-#: ../../library/struct.rst:158
+#: ../../library/struct.rst:160
 msgid "``!``"
 msgstr "``!``"
 
-#: ../../library/struct.rst:158
+#: ../../library/struct.rst:160
 msgid "network (= big-endian)"
 msgstr "네트워크 (= 빅 엔디안)"
 
-#: ../../library/struct.rst:161
+#: ../../library/struct.rst:163
 msgid "If the first character is not one of these, ``'@'`` is assumed."
 msgstr "첫 번째 문자가 이들 중 하나가 아니면, ``'@'``\\로 가정합니다."
 
-#: ../../library/struct.rst:165
+#: ../../library/struct.rst:167
 msgid ""
 "The number 1023 (``0x3ff`` in hexadecimal) has the following byte "
 "representations:"
 msgstr ""
 
-#: ../../library/struct.rst:167
+#: ../../library/struct.rst:169
 msgid "``03 ff`` in big-endian (``>``)"
 msgstr ""
 
-#: ../../library/struct.rst:168
+#: ../../library/struct.rst:170
 msgid "``ff 03`` in little-endian (``<``)"
 msgstr ""
 
-#: ../../library/struct.rst:170
+#: ../../library/struct.rst:172
 msgid "Python example:"
 msgstr "파이썬 예제:"
 
-#: ../../library/struct.rst:178
+#: ../../library/struct.rst:180
 msgid ""
 "Native byte order is big-endian or little-endian, depending on the host "
 "system. For example, Intel x86, AMD64 (x86-64), and Apple M1 are little-"
@@ -280,7 +285,7 @@ msgstr ""
 " 및 애플 M1은 리틀 엔디안입니다; IBM z 와 많은 레거시 아키텍처는 빅 엔디안입니다. 시스템의 엔디안을 확인하려면 "
 ":data:`sys.byteorder`\\를 사용하십시오."
 
-#: ../../library/struct.rst:183
+#: ../../library/struct.rst:185
 msgid ""
 "Native size and alignment are determined using the C compiler's "
 "``sizeof`` expression.  This is always combined with native byte order."
@@ -288,13 +293,14 @@ msgstr ""
 "네이티브 크기와 정렬은 C 컴파일러의 ``sizeof`` 표현식을 사용하여 결정됩니다. 이것은 항상 네이티브 바이트 순서와 "
 "결합합니다."
 
-#: ../../library/struct.rst:186
+#: ../../library/struct.rst:188
+#, fuzzy
 msgid ""
-"Standard size depends only on the format character;  see the table in the"
-" :ref:`format-characters` section."
+"Standard size depends only on the type code;  see the table in the :ref"
+":`type-codes` section."
 msgstr "표준 크기는 포맷 문자에만 의존합니다; :ref:`format-characters` 섹션의 표를 참조하십시오."
 
-#: ../../library/struct.rst:189
+#: ../../library/struct.rst:191
 msgid ""
 "Note the difference between ``'@'`` and ``'='``: both use native byte "
 "order, but the size and alignment of the latter is standardized."
@@ -302,7 +308,7 @@ msgstr ""
 "``'@'``\\과 ``'='``\\의 차이점에 유의하십시오; 둘 다 네이티브 바이트 순서를 사용하지만, 후자는 크기와 정렬이 "
 "표준화됩니다."
 
-#: ../../library/struct.rst:192
+#: ../../library/struct.rst:194
 msgid ""
 "The form ``'!'`` represents the network byte order which is always big-"
 "endian as defined in `IETF RFC 1700 <IETF RFC 1700_>`_."
@@ -310,7 +316,7 @@ msgstr ""
 "``'!'`` 형식은 `IETF RFC 1700 <IETF RFC 1700_>`_\\에 정의된 대로 항상 빅 엔디안인 네트워크 "
 "바이트 순서를 나타냅니다."
 
-#: ../../library/struct.rst:195
+#: ../../library/struct.rst:197
 msgid ""
 "There is no way to indicate non-native byte order (force byte-swapping); "
 "use the appropriate choice of ``'<'`` or ``'>'``."
@@ -318,23 +324,23 @@ msgstr ""
 "네이티브가 아닌 바이트 순서(강제 바이트 스와핑)를 표시하는 방법은 없습니다; ``'<'``\\나 ``'>'``\\를 적절히 "
 "선택하십시오."
 
-#: ../../library/struct.rst:198 ../../library/struct.rst:284
+#: ../../library/struct.rst:200 ../../library/struct.rst:297
 msgid "Notes:"
 msgstr "노트:"
 
-#: ../../library/struct.rst:200
+#: ../../library/struct.rst:202
 msgid ""
 "Padding is only automatically added between successive structure members."
 " No padding is added at the beginning or the end of the encoded struct."
 msgstr "패딩은 연속되는 구조체 멤버 간에만 자동으로 추가됩니다. 인코딩된 구조체의 시작이나 끝에는 패딩이 추가되지 않습니다."
 
-#: ../../library/struct.rst:203
+#: ../../library/struct.rst:205
 msgid ""
 "No padding is added when using non-native size and alignment, e.g. with "
 "'<', '>', '=', and '!'."
 msgstr "네이티브가 아닌 크기와 정렬을 사용할 때는 패딩이 추가되지 않습니다, 예를 들어 '<', '>', '=' 및 '!' 에서."
 
-#: ../../library/struct.rst:206
+#: ../../library/struct.rst:208
 msgid ""
 "To align the end of a structure to the alignment requirement of a "
 "particular type, end the format with the code for that type with a repeat"
@@ -343,343 +349,366 @@ msgstr ""
 "구조체의 끝을 특정 형의 정렬 요구 사항에 맞추려면, 반복 횟수가 0인 해당 형의 코드로 포맷을 끝내십시오. :ref"
 ":`struct-examples`\\를 참조하십시오."
 
-#: ../../library/struct.rst:214
-msgid "Format Characters"
-msgstr "포맷 문자"
+#: ../../library/struct.rst:217
+#, fuzzy
+msgid "Type Codes"
+msgstr "바이트 순서"
 
-#: ../../library/struct.rst:216
+#: ../../library/struct.rst:219
+#, fuzzy
 msgid ""
-"Format characters have the following meaning; the conversion between C "
-"and Python values should be obvious given their types.  The 'Standard "
-"size' column refers to the size of the packed value in bytes when using "
-"standard size; that is, when the format string starts with one of "
-"``'<'``, ``'>'``, ``'!'`` or ``'='``.  When using native size, the size "
-"of the packed value is platform-dependent."
+"Type codes (or format codes) have the following meaning; the conversion "
+"between C and Python values should be obvious given their types.  The "
+"'Standard size' column refers to the size of the packed value in bytes "
+"when using standard size; that is, when the format string starts with one"
+" of ``'<'``, ``'>'``, ``'!'`` or ``'='``.  When using native size, the "
+"size of the packed value is platform-dependent."
 msgstr ""
 "포맷 문자는 다음과 같은 의미가 있습니다; C와 파이썬 값 사이의 변환은 형을 주면 분명해야 합니다. '표준 크기' 열은 표준 "
 "크기를 사용할 때 패킹 된 값의 크기를 바이트 단위로 나타냅니다; 즉, 포맷 문자열이 ``'<'``, ``'>'``, ``'!'``"
 " 또는 ``'='`` 중 하나로 시작하는 경우입니다. 네이티브 크기를 사용할 때, 패킹 된 값의 크기는 플랫폼에 따라 다릅니다."
 
-#: ../../library/struct.rst:224
+#: ../../library/struct.rst:227
 msgid "Format"
 msgstr "포맷"
 
-#: ../../library/struct.rst:224
+#: ../../library/struct.rst:227
 msgid "C Type"
 msgstr "C형"
 
-#: ../../library/struct.rst:224
+#: ../../library/struct.rst:227
 msgid "Python type"
 msgstr "파이썬 형"
 
-#: ../../library/struct.rst:224
+#: ../../library/struct.rst:227
 msgid "Standard size"
 msgstr "표준 크기"
 
-#: ../../library/struct.rst:224
+#: ../../library/struct.rst:227
 msgid "Notes"
 msgstr "노트"
 
-#: ../../library/struct.rst:226
+#: ../../library/struct.rst:229
 msgid "``x``"
 msgstr "``x``"
 
-#: ../../library/struct.rst:226
+#: ../../library/struct.rst:229
 msgid "pad byte"
 msgstr "패드 바이트"
 
-#: ../../library/struct.rst:226
+#: ../../library/struct.rst:229
 msgid "no value"
 msgstr "값이 없습니다"
 
-#: ../../library/struct.rst:226
+#: ../../library/struct.rst:229
 msgid "\\(7)"
 msgstr "\\(7)"
 
-#: ../../library/struct.rst:228
+#: ../../library/struct.rst:231
 msgid "``c``"
 msgstr "``c``"
 
-#: ../../library/struct.rst:228
+#: ../../library/struct.rst:231
 msgid ":c:expr:`char`"
 msgstr ":c:expr:`char`"
 
-#: ../../library/struct.rst:228
+#: ../../library/struct.rst:231
 msgid "bytes of length 1"
 msgstr "길이가 1인 bytes"
 
-#: ../../library/struct.rst:228 ../../library/struct.rst:230
-#: ../../library/struct.rst:232 ../../library/struct.rst:234
+#: ../../library/struct.rst:231 ../../library/struct.rst:233
+#: ../../library/struct.rst:235 ../../library/struct.rst:237
 msgid "1"
 msgstr "1"
 
-#: ../../library/struct.rst:230
+#: ../../library/struct.rst:233
 msgid "``b``"
 msgstr "``b``"
 
-#: ../../library/struct.rst:230
+#: ../../library/struct.rst:233
 msgid ":c:expr:`signed char`"
 msgstr ":c:expr:`signed char`"
 
-#: ../../library/struct.rst:230 ../../library/struct.rst:232
-#: ../../library/struct.rst:236 ../../library/struct.rst:238
-#: ../../library/struct.rst:240 ../../library/struct.rst:242
-#: ../../library/struct.rst:244 ../../library/struct.rst:246
-#: ../../library/struct.rst:248 ../../library/struct.rst:250
-#: ../../library/struct.rst:253 ../../library/struct.rst:255
-#: ../../library/struct.rst:271
-msgid "integer"
+#: ../../library/struct.rst:233 ../../library/struct.rst:235
+#: ../../library/struct.rst:239 ../../library/struct.rst:241
+#: ../../library/struct.rst:243 ../../library/struct.rst:245
+#: ../../library/struct.rst:247 ../../library/struct.rst:249
+#: ../../library/struct.rst:251 ../../library/struct.rst:253
+#: ../../library/struct.rst:256 ../../library/struct.rst:258
+#: ../../library/struct.rst:274
+#, fuzzy
+msgid "int"
 msgstr "정수"
 
-#: ../../library/struct.rst:230
-msgid "\\(1), \\(2)"
-msgstr "\\(1), \\(2)"
-
-#: ../../library/struct.rst:232
-msgid "``B``"
-msgstr "``B``"
-
-#: ../../library/struct.rst:232
-msgid ":c:expr:`unsigned char`"
-msgstr ":c:expr:`unsigned char`"
-
-#: ../../library/struct.rst:232 ../../library/struct.rst:236
-#: ../../library/struct.rst:238 ../../library/struct.rst:240
-#: ../../library/struct.rst:242 ../../library/struct.rst:244
-#: ../../library/struct.rst:246 ../../library/struct.rst:248
-#: ../../library/struct.rst:250
+#: ../../library/struct.rst:233 ../../library/struct.rst:235
+#: ../../library/struct.rst:239 ../../library/struct.rst:241
+#: ../../library/struct.rst:243 ../../library/struct.rst:245
+#: ../../library/struct.rst:247 ../../library/struct.rst:249
+#: ../../library/struct.rst:251 ../../library/struct.rst:253
 msgid "\\(2)"
 msgstr "\\(2)"
 
-#: ../../library/struct.rst:234
+#: ../../library/struct.rst:235
+msgid "``B``"
+msgstr "``B``"
+
+#: ../../library/struct.rst:235
+msgid ":c:expr:`unsigned char`"
+msgstr ":c:expr:`unsigned char`"
+
+#: ../../library/struct.rst:237
 msgid "``?``"
 msgstr "``?``"
 
-#: ../../library/struct.rst:234
+#: ../../library/struct.rst:237
 msgid ":c:expr:`_Bool`"
 msgstr ":c:expr:`_Bool`"
 
-#: ../../library/struct.rst:234
+#: ../../library/struct.rst:237
 msgid "bool"
 msgstr "bool"
 
-#: ../../library/struct.rst:234
+#: ../../library/struct.rst:237
 msgid "\\(1)"
 msgstr "\\(1)"
 
-#: ../../library/struct.rst:236
+#: ../../library/struct.rst:239
 msgid "``h``"
 msgstr "``h``"
 
-#: ../../library/struct.rst:236
+#: ../../library/struct.rst:239
 msgid ":c:expr:`short`"
 msgstr ":c:expr:`short`"
 
-#: ../../library/struct.rst:236 ../../library/struct.rst:238
-#: ../../library/struct.rst:257
+#: ../../library/struct.rst:239 ../../library/struct.rst:241
+#: ../../library/struct.rst:260
 msgid "2"
 msgstr "2"
 
-#: ../../library/struct.rst:238
+#: ../../library/struct.rst:241
 msgid "``H``"
 msgstr "``H``"
 
-#: ../../library/struct.rst:238
+#: ../../library/struct.rst:241
 msgid ":c:expr:`unsigned short`"
 msgstr ":c:expr:`unsigned short`"
 
-#: ../../library/struct.rst:240
+#: ../../library/struct.rst:243
 msgid "``i``"
 msgstr "``i``"
 
-#: ../../library/struct.rst:240
+#: ../../library/struct.rst:243
 msgid ":c:expr:`int`"
 msgstr ":c:expr:`int`"
 
-#: ../../library/struct.rst:240 ../../library/struct.rst:242
-#: ../../library/struct.rst:244 ../../library/struct.rst:246
-#: ../../library/struct.rst:259
+#: ../../library/struct.rst:243 ../../library/struct.rst:245
+#: ../../library/struct.rst:247 ../../library/struct.rst:249
+#: ../../library/struct.rst:262
 msgid "4"
 msgstr "4"
 
-#: ../../library/struct.rst:242
+#: ../../library/struct.rst:245
 msgid "``I``"
 msgstr "``I``"
 
-#: ../../library/struct.rst:242
+#: ../../library/struct.rst:245
 msgid ":c:expr:`unsigned int`"
 msgstr ":c:expr:`unsigned int`"
 
-#: ../../library/struct.rst:244
+#: ../../library/struct.rst:247
 msgid "``l``"
 msgstr "``l``"
 
-#: ../../library/struct.rst:244
+#: ../../library/struct.rst:247
 msgid ":c:expr:`long`"
 msgstr ":c:expr:`long`"
 
-#: ../../library/struct.rst:246
+#: ../../library/struct.rst:249
 msgid "``L``"
 msgstr "``L``"
 
-#: ../../library/struct.rst:246
+#: ../../library/struct.rst:249
 msgid ":c:expr:`unsigned long`"
 msgstr ":c:expr:`unsigned long`"
 
-#: ../../library/struct.rst:248
+#: ../../library/struct.rst:251
 msgid "``q``"
 msgstr "``q``"
 
-#: ../../library/struct.rst:248
+#: ../../library/struct.rst:251
 msgid ":c:expr:`long long`"
 msgstr ":c:expr:`long long`"
 
-#: ../../library/struct.rst:248 ../../library/struct.rst:250
-#: ../../library/struct.rst:261 ../../library/struct.rst:263
+#: ../../library/struct.rst:251 ../../library/struct.rst:253
+#: ../../library/struct.rst:264 ../../library/struct.rst:266
 msgid "8"
 msgstr "8"
 
-#: ../../library/struct.rst:250
+#: ../../library/struct.rst:253
 msgid "``Q``"
 msgstr "``Q``"
 
-#: ../../library/struct.rst:250
+#: ../../library/struct.rst:253
 msgid ":c:expr:`unsigned long long`"
 msgstr ":c:expr:`unsigned long long`"
 
-#: ../../library/struct.rst:253
+#: ../../library/struct.rst:256
 msgid "``n``"
 msgstr "``n``"
 
-#: ../../library/struct.rst:253
+#: ../../library/struct.rst:256
 msgid ":c:type:`ssize_t`"
 msgstr ":c:type:`ssize_t`"
 
-#: ../../library/struct.rst:253 ../../library/struct.rst:255
-msgid "\\(3)"
-msgstr "\\(3)"
+#: ../../library/struct.rst:256 ../../library/struct.rst:258
+#, fuzzy
+msgid "\\(2), \\(3)"
+msgstr "\\(1), \\(2)"
 
-#: ../../library/struct.rst:255
+#: ../../library/struct.rst:258
 msgid "``N``"
 msgstr "``N``"
 
-#: ../../library/struct.rst:255
+#: ../../library/struct.rst:258
 msgid ":c:type:`size_t`"
 msgstr ":c:type:`size_t`"
 
-#: ../../library/struct.rst:257
+#: ../../library/struct.rst:260
 msgid "``e``"
 msgstr "``e``"
 
-#: ../../library/struct.rst:257
-msgid "\\(6)"
-msgstr "\\(6)"
+#: ../../library/struct.rst:260
+#, fuzzy
+msgid ":c:expr:`_Float16`"
+msgstr ":c:expr:`float`"
 
-#: ../../library/struct.rst:257 ../../library/struct.rst:259
-#: ../../library/struct.rst:261
+#: ../../library/struct.rst:260 ../../library/struct.rst:262
+#: ../../library/struct.rst:264
 msgid "float"
 msgstr "float"
 
-#: ../../library/struct.rst:257 ../../library/struct.rst:259
-#: ../../library/struct.rst:261
-msgid "\\(4)"
-msgstr "\\(4)"
+#: ../../library/struct.rst:260
+#, fuzzy
+msgid "\\(4), \\(6)"
+msgstr "\\(1), \\(2)"
 
-#: ../../library/struct.rst:259
+#: ../../library/struct.rst:262
 msgid "``f``"
 msgstr "``f``"
 
-#: ../../library/struct.rst:259
+#: ../../library/struct.rst:262
 msgid ":c:expr:`float`"
 msgstr ":c:expr:`float`"
 
-#: ../../library/struct.rst:261
+#: ../../library/struct.rst:262 ../../library/struct.rst:264
+msgid "\\(4)"
+msgstr "\\(4)"
+
+#: ../../library/struct.rst:264
 msgid "``d``"
 msgstr "``d``"
 
-#: ../../library/struct.rst:261
+#: ../../library/struct.rst:264
 msgid ":c:expr:`double`"
 msgstr ":c:expr:`double`"
 
-#: ../../library/struct.rst:263
-msgid "``F``"
+#: ../../library/struct.rst:266
+#, fuzzy
+msgid "``Zf``"
 msgstr "``F``"
 
-#: ../../library/struct.rst:263
+#: ../../library/struct.rst:266
 msgid ":c:expr:`float complex`"
 msgstr ":c:expr:`float complex`"
 
-#: ../../library/struct.rst:263 ../../library/struct.rst:265
+#: ../../library/struct.rst:266 ../../library/struct.rst:268
 msgid "complex"
 msgstr ""
 
-#: ../../library/struct.rst:263 ../../library/struct.rst:265
+#: ../../library/struct.rst:266 ../../library/struct.rst:268
 msgid "\\(10)"
 msgstr "\\(10)"
 
-#: ../../library/struct.rst:265
-msgid "``D``"
+#: ../../library/struct.rst:268
+#, fuzzy
+msgid "``Zd``"
 msgstr "``D``"
 
-#: ../../library/struct.rst:265
+#: ../../library/struct.rst:268
 msgid ":c:expr:`double complex`"
 msgstr ":c:expr:`double complex`"
 
-#: ../../library/struct.rst:265
+#: ../../library/struct.rst:268
 #, fuzzy
 msgid "16"
 msgstr "1"
 
-#: ../../library/struct.rst:267
+#: ../../library/struct.rst:270
 msgid "``s``"
 msgstr "``s``"
 
-#: ../../library/struct.rst:267 ../../library/struct.rst:269
+#: ../../library/struct.rst:270 ../../library/struct.rst:272
 msgid ":c:expr:`char[]`"
 msgstr ":c:expr:`char[]`"
 
-#: ../../library/struct.rst:267 ../../library/struct.rst:269
+#: ../../library/struct.rst:270 ../../library/struct.rst:272
 msgid "bytes"
 msgstr "bytes"
 
-#: ../../library/struct.rst:267
+#: ../../library/struct.rst:270
 msgid "\\(9)"
 msgstr "\\(9)"
 
-#: ../../library/struct.rst:269
+#: ../../library/struct.rst:272
 msgid "``p``"
 msgstr "``p``"
 
-#: ../../library/struct.rst:269
+#: ../../library/struct.rst:272
 msgid "\\(8)"
 msgstr "\\(8)"
 
-#: ../../library/struct.rst:271
+#: ../../library/struct.rst:274
 msgid "``P``"
 msgstr "``P``"
 
-#: ../../library/struct.rst:271
+#: ../../library/struct.rst:274
 msgid ":c:expr:`void \\*`"
 msgstr ":c:expr:`void \\*`"
 
-#: ../../library/struct.rst:271
-msgid "\\(5)"
-msgstr "\\(5)"
-
 #: ../../library/struct.rst:274
+#, fuzzy
+msgid "\\(2), \\(5)"
+msgstr "\\(1), \\(2)"
+
+#: ../../library/struct.rst:277
 msgid "Added support for the ``'n'`` and ``'N'`` formats."
 msgstr "``'n'``\\과 ``'N'`` 포맷에 대한 지원이 추가되었습니다."
 
-#: ../../library/struct.rst:277
+#: ../../library/struct.rst:280
 msgid "Added support for the ``'e'`` format."
 msgstr "``'e'`` 포맷에 대한 지원이 추가되었습니다."
 
-#: ../../library/struct.rst:280
+#: ../../library/struct.rst:283
 #, fuzzy
 msgid "Added support for the ``'F'`` and ``'D'`` formats."
 msgstr "``'n'``\\과 ``'N'`` 포맷에 대한 지원이 추가되었습니다."
 
-#: ../../library/struct.rst:289
+#: ../../library/struct.rst:286
+#, fuzzy
+msgid ""
+"Added support for the ``'Zf'`` and ``'Zd'`` formats. ``'F'`` and ``'D'`` "
+"formats are :term:`soft deprecated`."
+msgstr "``'n'``\\과 ``'N'`` 포맷에 대한 지원이 추가되었습니다."
+
+#: ../../library/struct.rst:292
+msgid ""
+"The :mod:`array` and :ref:`ctypes <ctypes-fundamental-data-types>` "
+"modules, as well as third-party modules like `numpy "
+"<https://numpy.org/doc/stable/reference/arrays.interface.html#object.__array_interface__>`__,"
+" use similar -- but slightly different -- type codes."
+msgstr ""
+
+#: ../../library/struct.rst:302
 msgid ""
 "The ``'?'`` conversion code corresponds to the :c:expr:`_Bool` type "
 "defined by C standards since C99.  In standard mode, it is represented by"
@@ -688,7 +717,7 @@ msgstr ""
 "``'?'`` 변환 코드는 C99 이후의 C 표준이 정의한 :c:expr:`_Bool` 형에 해당합니다. 표준 모드에서는, "
 "1바이트로 표현됩니다."
 
-#: ../../library/struct.rst:294
+#: ../../library/struct.rst:307
 msgid ""
 "When attempting to pack a non-integer using any of the integer conversion"
 " codes, if the non-integer has a :meth:`~object.__index__` method then "
@@ -698,11 +727,11 @@ msgstr ""
 "정수 변환 코드 중 하나를 사용하여 정수가 아닌 값을 패킹하려고 할 때, 정수가 아닌 값에 "
 ":meth:`~object.__index__` 메서드가 있으면 패킹 전에 해당 메서드가 호출되어 인자를 정수로 변환합니다."
 
-#: ../../library/struct.rst:298
+#: ../../library/struct.rst:311
 msgid "Added use of the :meth:`~object.__index__` method for non-integers."
 msgstr "정수가 아닌 값에서 :meth:`~object.__index__` 메서드를 사용하는 것을 추가했습니다."
 
-#: ../../library/struct.rst:302
+#: ../../library/struct.rst:315
 msgid ""
 "The ``'n'`` and ``'N'`` conversion codes are only available for the "
 "native size (selected as the default or with the ``'@'`` byte order "
@@ -712,7 +741,7 @@ msgstr ""
 "``'n'``\\과 ``'N'`` 변환 코드는 (기본값이나 ``'@'`` 바이트 순서 문자로 선택된) 네이티브 크기에만 사용할 수 "
 "있습니다. 표준 크기의 경우, 응용 프로그램에 맞는 다른 정수 포맷을 사용할 수 있습니다."
 
-#: ../../library/struct.rst:308
+#: ../../library/struct.rst:321
 msgid ""
 "For the ``'f'``, ``'d'`` and ``'e'`` conversion codes, the packed "
 "representation uses the IEEE 754 binary32, binary64 or binary16 format "
@@ -723,30 +752,32 @@ msgstr ""
 " IEEE 754 binary32, binary64 또는 binary16 형식을 사용합니다 (각각 ``'f'``, ``'d'`` "
 "또는 ``'e'``)."
 
-#: ../../library/struct.rst:314
+#: ../../library/struct.rst:327
+#, fuzzy
 msgid ""
-"The ``'P'`` format character is only available for the native byte "
-"ordering (selected as the default or with the ``'@'`` byte order "
-"character). The byte order character ``'='`` chooses to use little- or "
-"big-endian ordering based on the host system. The struct module does not "
-"interpret this as native ordering, so the ``'P'`` format is not "
-"available."
+"The ``'P'`` type code is only available for the native byte ordering "
+"(selected as the default or with the ``'@'`` byte order character). The "
+"byte order character ``'='`` chooses to use little- or big-endian "
+"ordering based on the host system. The struct module does not interpret "
+"this as native ordering, so the ``'P'`` format is not available."
 msgstr ""
 "``'P'`` 포맷 문자는 (기본값이나 ``'@'`` 바이트 순서 문자로 선택된) 네이티브 바이트 순서에만 사용할 수 있습니다. "
 "바이트 순서 문자 ``'='``\\는 호스트 시스템에 따라 리틀이나 빅 엔디안 순서를 사용하도록 선택합니다. struct 모듈은 "
 "이를 네이티브 순서로 해석하지 않아서, ``'P'`` 형식을 사용할 수 없습니다."
 
-#: ../../library/struct.rst:321
+#: ../../library/struct.rst:334
+#, fuzzy
 msgid ""
 "The IEEE 754 binary16 \"half precision\" type was introduced in the 2008 "
 "revision of the `IEEE 754 standard <ieee 754 standard_>`_. It has a sign "
 "bit, a 5-bit exponent and 11-bit precision (with 10 bits explicitly "
 "stored), and can represent numbers between approximately ``6.1e-05`` and "
 "``6.5e+04`` at full precision. This type is not widely supported by C "
-"compilers: on a typical machine, an unsigned short can be used for "
-"storage, but not for math operations. See the Wikipedia page on the "
-"`half-precision floating-point format <half precision format_>`_ for more"
-" information."
+"compilers: it's available as :c:expr:`_Float16` type, if the compiler "
+"supports the Annex H of the C23 standard.  On a typical machine, an "
+"unsigned short can be used for storage, but not for math operations. See "
+"the Wikipedia page on the `half-precision floating-point format <half "
+"precision format_>`_ for more information."
 msgstr ""
 "IEEE 754 binary16 \"반 정밀도\" 형은 2008년 `IEEE 754 표준 <ieee 754 standard_>`_ "
 "개정판에서 도입되었습니다. 부호 비트, 5비트 지수 및 11비트 정밀도(10비트가 명시적으로 저장됩니다)를 가지며, 전체 정밀도에서"
@@ -755,22 +786,25 @@ msgstr ""
 "내용은 `half-precision floating-point format <half precision format_>`_\\의 "
 "Wikipedia 페이지를 참조하십시오."
 
-#: ../../library/struct.rst:331
+#: ../../library/struct.rst:346
 msgid "When packing, ``'x'`` inserts one NUL byte."
 msgstr ""
 
-#: ../../library/struct.rst:334
+#: ../../library/struct.rst:349
+#, fuzzy
 msgid ""
-"The ``'p'`` format character encodes a \"Pascal string\", meaning a short"
-" variable-length string stored in a *fixed number of bytes*, given by the"
-" count. The first byte stored is the length of the string, or 255, "
-"whichever is smaller.  The bytes of the string follow.  If the string "
-"passed in to :func:`pack` is too long (longer than the count minus 1), "
-"only the leading ``count-1`` bytes of the string are stored.  If the "
-"string is shorter than ``count-1``, it is padded with null bytes so that "
-"exactly count bytes in all are used.  Note that for :func:`unpack`, the "
-"``'p'`` format character consumes ``count`` bytes, but that the string "
-"returned can never contain more than 255 bytes."
+"The ``'p'`` type code encodes a \"Pascal string\", meaning a short "
+"variable-length string stored in a *fixed number of bytes*, given by the "
+"count. The first byte stored is the length of the string, or 255, "
+"whichever is smaller.  The bytes of the string follow.  If the byte "
+"string passed in to :func:`pack` is too long (longer than the count minus"
+" 1), only the leading ``count-1`` bytes of the string are stored.  If the"
+" byte string is shorter than ``count-1``, it is padded with null bytes so"
+" that exactly count bytes in all are used.  Note that for :func:`unpack`,"
+" the ``'p'`` type code consumes ``count`` bytes, but that the "
+":class:`!bytes` object returned can never contain more than 255 bytes. "
+"When packing, arguments of types :class:`bytes` and :class:`bytearray` "
+"are accepted."
 msgstr ""
 "``'p'`` 포맷 문자는 \"파스칼 문자열\"을 인코딩하는데, 이는 카운트에 의해 주어진 *고정된 바이트 수*\\에 저장된 짧은 "
 "가변 길이 문자열을 의미합니다. 저장된 첫 번째 바이트는 문자열의 길이나 255중 작은 값입니다. 문자열의 바이트가 그 뒤에 "
@@ -779,20 +813,22 @@ msgstr ""
 ":func:`unpack`\\의 경우, ``'p'`` 포맷 문자는 ``count`` 바이트를 소비하지만, 반환된 문자열은 "
 "255바이트를 초과할 수 없음에 유의하십시오."
 
-#: ../../library/struct.rst:346
+#: ../../library/struct.rst:363
+#, fuzzy
 msgid ""
-"For the ``'s'`` format character, the count is interpreted as the length "
-"of the bytes, not a repeat count like for the other format characters; "
-"for example, ``'10s'`` means a single 10-byte string mapping to or from a"
-" single Python byte string, while ``'10c'`` means 10 separate one byte "
+"For the ``'s'`` type code, the count is interpreted as the length of the "
+"byte string, not a repeat count like for the other type codes; for "
+"example, ``'10s'`` means a single 10-byte string mapping to or from a "
+"single Python byte string, while ``'10c'`` means 10 separate one byte "
 "character elements (e.g., ``cccccccccc``) mapping to or from ten "
 "different Python byte objects. (See :ref:`struct-examples` for a concrete"
 " demonstration of the difference.) If a count is not given, it defaults "
-"to 1.  For packing, the string is truncated or padded with null bytes as "
-"appropriate to make it fit. For unpacking, the resulting bytes object "
-"always has exactly the specified number of bytes.  As a special case, "
-"``'0s'`` means a single, empty string (while ``'0c'`` means 0 "
-"characters)."
+"to 1.  For packing, the byte string is truncated or padded with null "
+"bytes as appropriate to make it fit. For unpacking, the resulting "
+":class:`!bytes` object always has exactly the specified number of bytes."
+"  As a special case, ``'0s'`` means a single, empty byte string (while "
+"``'0c'`` means 0 characters). When packing, arguments of types "
+":class:`bytes` and :class:`bytearray` are accepted."
 msgstr ""
 "``'s'`` 포맷 문자의 경우, 횟수는 다른 포맷 문자와 같은 반복 횟수가 아닌 바이트열의 길이로 해석됩니다; 예를 들어, "
 "``'10s'``\\는 단일 파이썬 바이트 문자열과 양 방향 매핑되는 단일 10바이트 문자열을 의미하는 반면에, "
@@ -802,33 +838,35 @@ msgstr ""
 "패킹의 경우, 결과 바이트열 객체는 항상 지정된 바이트 수를 갖습니다. 특별한 경우로, ``'0s'``\\는 하나의 빈 문자열을 "
 "의미합니다(반면에 ``'0c'``\\는 0문자를 의미합니다)."
 
-#: ../../library/struct.rst:360
+#: ../../library/struct.rst:379
 msgid ""
-"For the ``'F'`` and ``'D'`` format characters, the packed representation "
-"uses the IEEE 754 binary32 and binary64 format for components of the "
-"complex number, regardless of the floating-point format used by the "
-"platform. Note that complex types (``F`` and ``D``) are available "
-"unconditionally, despite complex types being an optional feature in C. As"
-" specified in the C11 standard, each complex type is represented by a "
-"two-element C array containing, respectively, the real and imaginary "
-"parts."
+"For the ``'Zf'`` and ``'Zd'`` type codes, the packed representation uses "
+"the IEEE 754 binary32 and binary64 format for components of the complex "
+"number, regardless of the floating-point format used by the platform. "
+"Note that complex types are available unconditionally, despite complex "
+"types being an optional feature in C. As specified in the C11 standard, "
+"each complex type is represented by a two-element C array containing, "
+"respectively, the real and imaginary parts. The ``'F'`` and ``'D'`` (for "
+"``'Zf'`` and ``'Zd'``, respectively) format characters are supported for "
+"compatibility."
 msgstr ""
 
-#: ../../library/struct.rst:369
+#: ../../library/struct.rst:390
+#, fuzzy
 msgid ""
-"A format character may be preceded by an integral repeat count.  For "
-"example, the format string ``'4h'`` means exactly the same as ``'hhhh'``."
+"A type code may be preceded by an integral repeat count.  For example, "
+"the format string ``'4h'`` means exactly the same as ``'hhhh'``."
 msgstr ""
 "포맷 문자 앞에는 정수 반복 횟수가 올 수 있습니다. 예를 들어, 포맷 문자열 ``'4h'``\\는 ``'hhhh'``\\와 정확히"
 " 같습니다."
 
-#: ../../library/struct.rst:372
+#: ../../library/struct.rst:393
 msgid ""
 "Whitespace characters between formats are ignored; a count and its format"
 " must not contain whitespace though."
 msgstr "포맷 사이의 공백 문자는 무시됩니다; 횟수와 형식 사이에는 공백이 없어야 합니다."
 
-#: ../../library/struct.rst:375
+#: ../../library/struct.rst:396
 msgid ""
 "When packing a value ``x`` using one of the integer formats (``'b'``, "
 "``'B'``, ``'h'``, ``'H'``, ``'i'``, ``'I'``, ``'l'``, ``'L'``, ``'q'``, "
@@ -839,7 +877,7 @@ msgstr ""
 "``'L'``, ``'q'``, ``'Q'``) 중 하나를 사용하여 값 ``x``\\를 패킹할 때, ``x``\\가 해당 포맷의 "
 "유효한 범위를 벗어나면 :exc:`struct.error`\\가 발생합니다."
 
-#: ../../library/struct.rst:380
+#: ../../library/struct.rst:401
 msgid ""
 "Previously, some of the integer formats wrapped out-of-range values and "
 "raised :exc:`DeprecationWarning` instead of :exc:`struct.error`."
@@ -847,36 +885,36 @@ msgstr ""
 "이전에는, 일부 정수 포맷은 범위를 벗어난 값을 래핑하고 :exc:`struct.error` 대신 "
 ":exc:`DeprecationWarning`\\을 발생시켰습니다."
 
-#: ../../library/struct.rst:386
+#: ../../library/struct.rst:407
+#, fuzzy
 msgid ""
-"For the ``'?'`` format character, the return value is either "
-":const:`True` or :const:`False`. When packing, the truth value of the "
-"argument object is used. Either 0 or 1 in the native or standard bool "
-"representation will be packed, and any non-zero value will be ``True`` "
-"when unpacking."
+"For the ``'?'`` type code, the return value is either :const:`True` or "
+":const:`False`. When packing, the truth value of the argument object is "
+"used. Either 0 or 1 in the native or standard bool representation will be"
+" packed, and any non-zero value will be ``True`` when unpacking."
 msgstr ""
 "``'?'`` 포맷 문자의 경우, 반환 값은 :const:`True`\\나 :const:`False`\\입니다. 패킹할 때, 인자 "
 "객체의 논리값이 사용됩니다. 네이티브나 표준 bool 표현에서 0이나 1이 패킹 되고, 언 패킹할 때 모든 0이 아닌 값은 "
 "``True``\\가 됩니다."
 
-#: ../../library/struct.rst:396
+#: ../../library/struct.rst:417
 msgid "Examples"
 msgstr "예"
 
-#: ../../library/struct.rst:399
+#: ../../library/struct.rst:420
 msgid ""
 "Native byte order examples (designated by the ``'@'`` format prefix or "
 "lack of any prefix character) may not match what the reader's machine "
 "produces as that depends on the platform and compiler."
 msgstr ""
 
-#: ../../library/struct.rst:404
+#: ../../library/struct.rst:425
 msgid ""
 "Pack and unpack integers of three different sizes, using big endian "
 "ordering::"
 msgstr ""
 
-#: ../../library/struct.rst:407
+#: ../../library/struct.rst:428
 msgid ""
 ">>> from struct import *\n"
 ">>> pack(\">bhl\", 1, 2, 3)\n"
@@ -894,11 +932,11 @@ msgstr ""
 ">>> calcsize('>bhl')\n"
 "7"
 
-#: ../../library/struct.rst:415
+#: ../../library/struct.rst:436
 msgid "Attempt to pack an integer which is too large for the defined field::"
 msgstr ""
 
-#: ../../library/struct.rst:417
+#: ../../library/struct.rst:438
 msgid ""
 ">>> pack(\">h\", 99999)\n"
 "Traceback (most recent call last):\n"
@@ -910,11 +948,11 @@ msgstr ""
 "  File \"<stdin>\", line 1, in <module>\n"
 "struct.error: 'h' format requires -32768 <= number <= 32767"
 
-#: ../../library/struct.rst:422
+#: ../../library/struct.rst:443
 msgid "Demonstrate the difference between ``'s'`` and ``'c'`` format characters::"
 msgstr ""
 
-#: ../../library/struct.rst:425
+#: ../../library/struct.rst:446
 msgid ""
 ">>> pack(\"@ccc\", b'1', b'2', b'3')\n"
 "b'123'\n"
@@ -926,13 +964,13 @@ msgstr ""
 ">>> pack(\"@3s\", b'123')\n"
 "b'123'"
 
-#: ../../library/struct.rst:430
+#: ../../library/struct.rst:451
 msgid ""
 "Unpacked fields can be named by assigning them to variables or by "
 "wrapping the result in a named tuple::"
 msgstr "언 패킹 된 필드는 변수에 대입하거나 결과를 네임드 튜플로 감싸서 이름을 붙일 수 있습니다::"
 
-#: ../../library/struct.rst:433
+#: ../../library/struct.rst:454
 msgid ""
 ">>> record = b'raymond   \\x32\\x12\\x08\\x01\\x08'\n"
 ">>> name, serialnum, school, gradelevel = unpack('<10sHHb', record)\n"
@@ -950,17 +988,17 @@ msgstr ""
 ">>> Student._make(unpack('<10sHHb', record))\n"
 "Student(name=b'raymond   ', serialnum=4658, school=264, gradelevel=8)"
 
-#: ../../library/struct.rst:441
+#: ../../library/struct.rst:462
 msgid ""
-"The ordering of format characters may have an impact on size in native "
-"mode since padding is implicit. In standard mode, the user is responsible"
-" for inserting any desired padding. Note in the first ``pack`` call below"
-" that three NUL bytes were added after the packed ``'#'`` to align the "
+"The ordering of type codes may have an impact on size in native mode "
+"since padding is implicit. In standard mode, the user is responsible for "
+"inserting any desired padding. Note in the first ``pack`` call below that"
+" three NUL bytes were added after the packed ``'#'`` to align the "
 "following integer on a four-byte boundary. In this example, the output "
 "was produced on a little endian machine::"
 msgstr ""
 
-#: ../../library/struct.rst:449
+#: ../../library/struct.rst:470
 msgid ""
 ">>> pack('@ci', b'#', 0x12131415)\n"
 "b'#\\x00\\x00\\x00\\x15\\x14\\x13\\x12'\n"
@@ -980,7 +1018,7 @@ msgstr ""
 ">>> calcsize('@ic')\n"
 "5"
 
-#: ../../library/struct.rst:458
+#: ../../library/struct.rst:479
 msgid ""
 "The following format ``'llh0l'`` results in two pad bytes being added at "
 "the end, assuming the platform's longs are aligned on 4-byte boundaries::"
@@ -988,7 +1026,7 @@ msgstr ""
 "다음 포맷 ``'llh0l'``\\는 플랫폼의 long이 4바이트 경계에 정렬된다고 가정할 때 끝에 2개의 패드 바이트를 "
 "추가합니다::"
 
-#: ../../library/struct.rst:461
+#: ../../library/struct.rst:482
 msgid ""
 ">>> pack('@llh0l', 1, 2, 3)\n"
 "b'\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x02\\x00\\x03\\x00\\x00'"
@@ -996,37 +1034,37 @@ msgstr ""
 ">>> pack('@llh0l', 1, 2, 3)\n"
 "b'\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x02\\x00\\x03\\x00\\x00'"
 
-#: ../../library/struct.rst:467
+#: ../../library/struct.rst:488
 msgid "Module :mod:`array`"
 msgstr "모듈 :mod:`array`"
 
-#: ../../library/struct.rst:468
+#: ../../library/struct.rst:489
 msgid "Packed binary storage of homogeneous data."
 msgstr "동종 데이터의 패킹 된 바이너리 저장소."
 
-#: ../../library/struct.rst:470
+#: ../../library/struct.rst:491
 msgid "Module :mod:`json`"
 msgstr "모듈 :mod:`json`"
 
-#: ../../library/struct.rst:471
+#: ../../library/struct.rst:492
 msgid "JSON encoder and decoder."
 msgstr "JSON 인코더와 디코더."
 
-#: ../../library/struct.rst:473
+#: ../../library/struct.rst:494
 msgid "Module :mod:`pickle`"
 msgstr "모듈 :mod:`pickle`"
 
-#: ../../library/struct.rst:474
+#: ../../library/struct.rst:495
 msgid "Python object serialization."
 msgstr "파이썬 객체 직렬화."
 
-#: ../../library/struct.rst:480
+#: ../../library/struct.rst:501
 msgid "Applications"
 msgstr "응용"
 
-#: ../../library/struct.rst:482
+#: ../../library/struct.rst:503
 msgid ""
-"Two main applications for the :mod:`struct` module exist, data "
+"Two main applications for the :mod:`!struct` module exist, data "
 "interchange between Python and C code within an application or another "
 "application compiled using the same compiler (:ref:`native formats"
 "<struct-native-formats>`), and data interchange between applications "
@@ -1035,26 +1073,26 @@ msgid ""
 " two domains are distinct."
 msgstr ""
 
-#: ../../library/struct.rst:493
+#: ../../library/struct.rst:514
 msgid "Native Formats"
 msgstr "네이티브 포맷"
 
-#: ../../library/struct.rst:495
+#: ../../library/struct.rst:516
 msgid ""
 "When constructing format strings which mimic native layouts, the compiler"
 " and machine architecture determine byte ordering and padding. In such "
 "cases, the ``@`` format character should be used to specify native byte "
 "ordering and data sizes.  Internal pad bytes are normally inserted "
-"automatically.  It is possible that a zero-repeat format code will be "
+"automatically.  It is possible that a zero-repeat type code will be "
 "needed at the end of a format string to round up to the correct byte "
 "boundary for proper alignment of consecutive chunks of data."
 msgstr ""
 
-#: ../../library/struct.rst:503
+#: ../../library/struct.rst:524
 msgid "Consider these two simple examples (on a 64-bit, little-endian machine)::"
 msgstr ""
 
-#: ../../library/struct.rst:506
+#: ../../library/struct.rst:527
 msgid ""
 ">>> calcsize('@lhl')\n"
 "24\n"
@@ -1066,14 +1104,14 @@ msgstr ""
 ">>> calcsize('@llh')\n"
 "18"
 
-#: ../../library/struct.rst:511
+#: ../../library/struct.rst:532
 msgid ""
 "Data is not padded to an 8-byte boundary at the end of the second format "
 "string without the use of extra padding.  A zero-repeat format code "
 "solves that problem::"
 msgstr ""
 
-#: ../../library/struct.rst:515
+#: ../../library/struct.rst:536
 msgid ""
 ">>> calcsize('@llh0l')\n"
 "24"
@@ -1081,23 +1119,23 @@ msgstr ""
 ">>> calcsize('@llh0l')\n"
 "24"
 
-#: ../../library/struct.rst:518
+#: ../../library/struct.rst:539
 msgid ""
-"The ``'x'`` format code can be used to specify the repeat, but for native"
-" formats it is better to use a zero-repeat format like ``'0l'``."
+"The ``'x'`` type code can be used to specify the repeat, but for native "
+"formats it is better to use a zero-repeat format like ``'0l'``."
 msgstr ""
 
-#: ../../library/struct.rst:521
+#: ../../library/struct.rst:542
 msgid ""
 "By default, native byte ordering and alignment is used, but it is better "
 "to be explicit and use the ``'@'`` prefix character."
 msgstr ""
 
-#: ../../library/struct.rst:528
+#: ../../library/struct.rst:549
 msgid "Standard Formats"
 msgstr "표준 포맷"
 
-#: ../../library/struct.rst:530
+#: ../../library/struct.rst:551
 msgid ""
 "When exchanging data beyond your process such as networking or storage, "
 "be precise.  Specify the exact byte order, size, and alignment.  Do not "
@@ -1111,7 +1149,7 @@ msgid ""
 "needed.  Revisiting the examples from the previous section, we have::"
 msgstr ""
 
-#: ../../library/struct.rst:542
+#: ../../library/struct.rst:563
 msgid ""
 ">>> calcsize('<qh6xq')\n"
 "24\n"
@@ -1143,14 +1181,14 @@ msgstr ""
 ">>> pack('@llh0l', 1, 2, 3) == pack('<qqh6x', 1, 2, 3)\n"
 "True"
 
-#: ../../library/struct.rst:557
+#: ../../library/struct.rst:578
 msgid ""
 "The above results (executed on a 64-bit machine) aren't guaranteed to "
 "match when executed on different machines.  For example, the examples "
 "below were executed on a 32-bit machine::"
 msgstr ""
 
-#: ../../library/struct.rst:561
+#: ../../library/struct.rst:582
 msgid ""
 ">>> calcsize('<qqh6x')\n"
 "24\n"
@@ -1166,15 +1204,16 @@ msgstr ""
 ">>> pack('@llh0l', 1, 2, 3) == pack('<qqh6x', 1, 2, 3)\n"
 "False"
 
-#: ../../library/struct.rst:572
+#: ../../library/struct.rst:593
 msgid "Classes"
 msgstr "클래스"
 
-#: ../../library/struct.rst:574
-msgid "The :mod:`struct` module also defines the following type:"
+#: ../../library/struct.rst:595
+#, fuzzy
+msgid "The :mod:`!struct` module also defines the following type:"
 msgstr ":mod:`struct` 모듈은 또한 다음 형을 정의합니다:"
 
-#: ../../library/struct.rst:579
+#: ../../library/struct.rst:600
 msgid ""
 "Return a new Struct object which writes and reads binary data according "
 "to the format string *format*.  Creating a ``Struct`` object once and "
@@ -1185,7 +1224,7 @@ msgstr ""
 "한 번 만들고 메서드를 호출하는 것은 포맷 문자열이 한 번만 컴파일 되기 때문에 같은 포맷으로 모듈 수준 함수를 호출하는 것보다 "
 "효율적입니다."
 
-#: ../../library/struct.rst:586
+#: ../../library/struct.rst:607
 msgid ""
 "The compiled versions of the most recent format strings passed to the "
 "module-level functions are cached, so programs that use only a few format"
@@ -1194,11 +1233,11 @@ msgstr ""
 "모듈 수준 함수에 전달된 최신 포맷 문자열의 컴파일된 버전이 캐시 되므로, 몇 가지 포맷 문자열만 사용하는 프로그램은 단일 "
 ":class:`Struct` 인스턴스 재사용에 대해 신경 쓸 필요가 없습니다."
 
-#: ../../library/struct.rst:591
+#: ../../library/struct.rst:612
 msgid "Compiled Struct objects support the following methods and attributes:"
 msgstr "컴파일된 Struct 객체는 다음 메서드와 어트리뷰트를 지원합니다:"
 
-#: ../../library/struct.rst:595
+#: ../../library/struct.rst:616
 msgid ""
 "Identical to the :func:`pack` function, using the compiled format. "
 "(``len(result)`` will equal :attr:`size`.)"
@@ -1206,11 +1245,11 @@ msgstr ""
 ":func:`pack` 함수와 동일하고, 컴파일된 포맷을 사용합니다. (``len(result)``\\는 "
 ":attr:`size`\\와 같게 됩니다.)"
 
-#: ../../library/struct.rst:601
+#: ../../library/struct.rst:622
 msgid "Identical to the :func:`pack_into` function, using the compiled format."
 msgstr ":func:`pack_into` 함수와 동일하고, 컴파일된 포맷을 사용합니다."
 
-#: ../../library/struct.rst:606
+#: ../../library/struct.rst:627
 msgid ""
 "Identical to the :func:`unpack` function, using the compiled format. The "
 "buffer's size in bytes must equal :attr:`size`."
@@ -1218,7 +1257,7 @@ msgstr ""
 ":func:`unpack` 함수와 동일하고, 컴파일된 포맷을 사용합니다. 바이트 단위의 버퍼 크기는 :attr:`size`\\와 "
 "같아야 합니다."
 
-#: ../../library/struct.rst:612
+#: ../../library/struct.rst:633
 msgid ""
 "Identical to the :func:`unpack_from` function, using the compiled format."
 " The buffer's size in bytes, starting at position *offset*, must be at "
@@ -1227,7 +1266,7 @@ msgstr ""
 ":func:`unpack_from` 함수와 동일하고, 컴파일된 포맷을 사용합니다. *offset* 위치에서 시작하는 바이트 단위의 "
 "버퍼 크기는 :attr:`size` 이상이어야 합니다."
 
-#: ../../library/struct.rst:619
+#: ../../library/struct.rst:640
 msgid ""
 "Identical to the :func:`iter_unpack` function, using the compiled format."
 " The buffer's size in bytes must be a multiple of :attr:`size`."
@@ -1235,21 +1274,21 @@ msgstr ""
 ":func:`iter_unpack` 함수와 동일하고, 컴파일된 포맷을 사용합니다. 바이트 단위의 버퍼 크기는 "
 ":attr:`size`\\의 배수이어야 합니다."
 
-#: ../../library/struct.rst:626
+#: ../../library/struct.rst:647
 msgid "The format string used to construct this Struct object."
 msgstr "이 Struct 객체를 구성하는 데 사용된 포맷 문자열."
 
-#: ../../library/struct.rst:628
+#: ../../library/struct.rst:649
 msgid "The format string type is now :class:`str` instead of :class:`bytes`."
 msgstr "포맷 문자열형은 이제 :class:`bytes` 대신 :class:`str`\\입니다."
 
-#: ../../library/struct.rst:633
+#: ../../library/struct.rst:654
 msgid ""
 "The calculated size of the struct (and hence of the bytes object produced"
 " by the :meth:`pack` method) corresponding to :attr:`format`."
 msgstr ":attr:`format`\\에 해당하는 구조체(:meth:`pack` 메서드에 의해 생성된 바이트열 객체)의 계산된 크기."
 
-#: ../../library/struct.rst:636
+#: ../../library/struct.rst:657
 msgid "The *repr()* of structs has changed.  It is now:"
 msgstr ""
 
@@ -1273,32 +1312,32 @@ msgstr "바이너리"
 msgid "data"
 msgstr "데이터"
 
-#: ../../library/struct.rst:136
+#: ../../library/struct.rst:138
 msgid "@ (at)"
 msgstr "@ (at)"
 
-#: ../../library/struct.rst:136 ../../library/struct.rst:287
-#: ../../library/struct.rst:384
+#: ../../library/struct.rst:138 ../../library/struct.rst:300
+#: ../../library/struct.rst:405
 msgid "in struct format strings"
 msgstr "struct 포맷 문자열"
 
-#: ../../library/struct.rst:136
+#: ../../library/struct.rst:138
 msgid "= (equals)"
 msgstr "= (등호)"
 
-#: ../../library/struct.rst:136
+#: ../../library/struct.rst:138
 msgid "< (less)"
 msgstr "< (작다)"
 
-#: ../../library/struct.rst:136
+#: ../../library/struct.rst:138
 msgid "> (greater)"
 msgstr "> (크다)"
 
-#: ../../library/struct.rst:136
+#: ../../library/struct.rst:138
 msgid "! (exclamation)"
 msgstr "! (느낌표)"
 
-#: ../../library/struct.rst:287 ../../library/struct.rst:384
+#: ../../library/struct.rst:300 ../../library/struct.rst:405
 msgid "? (question mark)"
 msgstr "? (물음표)"
 
@@ -1375,4 +1414,88 @@ msgstr "? (물음표)"
 
 #~ msgid "Packing and unpacking of XDR data."
 #~ msgstr "XDR 데이터의 패킹과 언 패킹."
+
+#~ msgid "Format Characters"
+#~ msgstr "포맷 문자"
+
+#~ msgid "\\(3)"
+#~ msgstr "\\(3)"
+
+#~ msgid "\\(6)"
+#~ msgstr "\\(6)"
+
+#~ msgid "\\(5)"
+#~ msgstr "\\(5)"
+
+#~ msgid ""
+#~ "For the ``'F'`` and ``'D'`` format "
+#~ "characters, the packed representation uses "
+#~ "the IEEE 754 binary32 and binary64 "
+#~ "format for components of the complex "
+#~ "number, regardless of the floating-point"
+#~ " format used by the platform. Note"
+#~ " that complex types (``F`` and ``D``)"
+#~ " are available unconditionally, despite "
+#~ "complex types being an optional feature"
+#~ " in C. As specified in the C11"
+#~ " standard, each complex type is "
+#~ "represented by a two-element C "
+#~ "array containing, respectively, the real "
+#~ "and imaginary parts."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The ordering of format characters may"
+#~ " have an impact on size in "
+#~ "native mode since padding is implicit."
+#~ " In standard mode, the user is "
+#~ "responsible for inserting any desired "
+#~ "padding. Note in the first ``pack`` "
+#~ "call below that three NUL bytes "
+#~ "were added after the packed ``'#'`` "
+#~ "to align the following integer on "
+#~ "a four-byte boundary. In this "
+#~ "example, the output was produced on "
+#~ "a little endian machine::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Two main applications for the "
+#~ ":mod:`struct` module exist, data interchange"
+#~ " between Python and C code within "
+#~ "an application or another application "
+#~ "compiled using the same compiler "
+#~ "(:ref:`native formats<struct-native-formats>`), "
+#~ "and data interchange between applications "
+#~ "using agreed upon data layout "
+#~ "(:ref:`standard formats<struct-standard-formats>`)."
+#~ "  Generally speaking, the format strings"
+#~ " constructed for these two domains "
+#~ "are distinct."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When constructing format strings which "
+#~ "mimic native layouts, the compiler and"
+#~ " machine architecture determine byte "
+#~ "ordering and padding. In such cases, "
+#~ "the ``@`` format character should be "
+#~ "used to specify native byte ordering "
+#~ "and data sizes.  Internal pad bytes "
+#~ "are normally inserted automatically.  It "
+#~ "is possible that a zero-repeat "
+#~ "format code will be needed at the"
+#~ " end of a format string to "
+#~ "round up to the correct byte "
+#~ "boundary for proper alignment of "
+#~ "consecutive chunks of data."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The ``'x'`` format code can be "
+#~ "used to specify the repeat, but "
+#~ "for native formats it is better to"
+#~ " use a zero-repeat format like "
+#~ "``'0l'``."
+#~ msgstr ""
 

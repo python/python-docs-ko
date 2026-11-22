@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/hash.rst:4
 msgid "PyHash API"
@@ -33,71 +33,168 @@ msgstr ""
 msgid "Hash value type: signed integer."
 msgstr ""
 
-#: ../../c-api/hash.rst:16
+#: ../../c-api/hash.rst:17
 msgid "Hash value type: unsigned integer."
 msgstr ""
 
-#: ../../c-api/hash.rst:22
+#: ../../c-api/hash.rst:24
+msgid ""
+"A numerical value indicating the algorithm for hashing of :class:`str`, "
+":class:`bytes`, and :class:`memoryview`."
+msgstr ""
+
+#: ../../c-api/hash.rst:27
+msgid "The algorithm name is exposed by :data:`sys.hash_info.algorithm`."
+msgstr ""
+
+#: ../../c-api/hash.rst:37
+msgid ""
+"Numerical values to compare to :c:macro:`Py_HASH_ALGORITHM` to determine "
+"which algorithm is used for hashing. The built-in hash algorithm can be "
+"configured via the configure :option:`--with-hash-algorithm` option."
+msgstr ""
+
+#: ../../c-api/hash.rst:41
+msgid ""
+":c:macro:`!Py_HASH_EXTERNAL` has value ``0`` and indicates a hash "
+"implementation supplied by the application embedding Python; see "
+":c:var:`PyHash_Func`."
+msgstr ""
+
+#: ../../c-api/hash.rst:45
+msgid ""
+"Add :c:macro:`!Py_HASH_FNV`, :c:macro:`!Py_HASH_SIPHASH24`, and "
+":c:macro:`!Py_HASH_EXTERNAL`."
+msgstr ""
+
+#: ../../c-api/hash.rst:49
+msgid "Add :c:macro:`!Py_HASH_SIPHASH13`."
+msgstr ""
+
+#: ../../c-api/hash.rst:55
+msgid ""
+"Buffers of length in range ``[1, Py_HASH_CUTOFF)`` are hashed using "
+"DJBX33A instead of the algorithm described by "
+":c:macro:`Py_HASH_ALGORITHM`."
+msgstr ""
+
+#: ../../c-api/hash.rst:58
+msgid "A :c:macro:`!Py_HASH_CUTOFF` of 0 disables the optimization."
+msgstr ""
+
+#: ../../c-api/hash.rst:59
+msgid ":c:macro:`!Py_HASH_CUTOFF` must be non-negative and less or equal than 7."
+msgstr ""
+
+#: ../../c-api/hash.rst:61
+msgid ""
+"32-bit platforms should use a cutoff smaller than 64-bit platforms "
+"because it is easier to create colliding strings. A cutoff of 7 on 64-bit"
+" platforms and 5 on 32-bit platforms should provide a decent safety "
+"margin."
+msgstr ""
+
+#: ../../c-api/hash.rst:65
+msgid "This corresponds to the :data:`sys.hash_info.cutoff` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:72
 msgid ""
 "The `Mersenne prime <https://en.wikipedia.org/wiki/Mersenne_prime>`_ ``P "
 "= 2**n -1``, used for numeric hash scheme."
 msgstr ""
 
-#: ../../c-api/hash.rst:28
+#: ../../c-api/hash.rst:75
+msgid "This corresponds to the :data:`sys.hash_info.modulus` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:82
 msgid "The exponent ``n`` of ``P`` in :c:macro:`PyHASH_MODULUS`."
 msgstr ""
 
-#: ../../c-api/hash.rst:34
+#: ../../c-api/hash.rst:89
 msgid "Prime multiplier used in string and various other hashes."
 msgstr ""
 
-#: ../../c-api/hash.rst:40
+#: ../../c-api/hash.rst:96
 msgid "The hash value returned for a positive infinity."
 msgstr ""
 
-#: ../../c-api/hash.rst:46
+#: ../../c-api/hash.rst:98
+msgid "This corresponds to the :data:`sys.hash_info.inf` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:105
 msgid "The multiplier used for the imaginary part of a complex number."
 msgstr ""
 
-#: ../../c-api/hash.rst:52
+#: ../../c-api/hash.rst:107
+msgid "This corresponds to the :data:`sys.hash_info.imag` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:114
 msgid "Hash function definition used by :c:func:`PyHash_GetFuncDef`."
 msgstr ""
 
-#: ../../c-api/hash.rst:56
+#: ../../c-api/hash.rst:118
 msgid "Hash function."
 msgstr ""
 
-#: ../../c-api/hash.rst:60
+#: ../../c-api/hash.rst:122
 msgid "Hash function name (UTF-8 encoded string)."
 msgstr ""
 
-#: ../../c-api/hash.rst:64
+#: ../../c-api/hash.rst:124
+msgid "This corresponds to the :data:`sys.hash_info.algorithm` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:128
 msgid "Internal size of the hash value in bits."
 msgstr ""
 
-#: ../../c-api/hash.rst:68
+#: ../../c-api/hash.rst:130
+msgid "This corresponds to the :data:`sys.hash_info.hash_bits` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:134
 msgid "Size of seed input in bits."
 msgstr ""
 
-#: ../../c-api/hash.rst:75
+#: ../../c-api/hash.rst:136
+msgid "This corresponds to the :data:`sys.hash_info.seed_bits` constant."
+msgstr ""
+
+#: ../../c-api/hash.rst:143
+msgid ""
+"When Python is built with :c:macro:`Py_HASH_ALGORITHM` set to "
+":c:macro:`Py_HASH_EXTERNAL`, the application embedding Python must define"
+" this variable to supply a hash implementation instead of using one of "
+"Python's built-in hash algorithms."
+msgstr ""
+
+#: ../../c-api/hash.rst:150
+msgid "Use one of the built-in hash algorithms instead."
+msgstr ""
+
+#: ../../c-api/hash.rst:156
 msgid "Get the hash function definition."
 msgstr ""
 
-#: ../../c-api/hash.rst:78
+#: ../../c-api/hash.rst:159
 msgid ":pep:`456` \"Secure and interchangeable hash algorithm\"."
 msgstr ""
 
-#: ../../c-api/hash.rst:85
+#: ../../c-api/hash.rst:166
 msgid ""
 "Hash a pointer value: process the pointer value as an integer (cast it to"
 " ``uintptr_t`` internally). The pointer is not dereferenced."
 msgstr ""
 
-#: ../../c-api/hash.rst:88
+#: ../../c-api/hash.rst:169
 msgid "The function cannot fail: it cannot return ``-1``."
 msgstr ""
 
-#: ../../c-api/hash.rst:95
+#: ../../c-api/hash.rst:176
 msgid ""
 "Compute and return the hash value of a buffer of *len* bytes starting at "
 "address *ptr*. The hash is guaranteed to match that of :class:`bytes`, "
@@ -105,28 +202,28 @@ msgid ""
 ":ref:`buffer protocol <bufferobjects>`."
 msgstr ""
 
-#: ../../c-api/hash.rst:100
+#: ../../c-api/hash.rst:181
 msgid ""
 "Use this function to implement hashing for immutable objects whose "
 ":c:member:`~PyTypeObject.tp_richcompare` function compares to another "
 "object's buffer."
 msgstr ""
 
-#: ../../c-api/hash.rst:104
+#: ../../c-api/hash.rst:185
 msgid "*len* must be greater than or equal to ``0``."
 msgstr ""
 
-#: ../../c-api/hash.rst:106
+#: ../../c-api/hash.rst:187
 msgid "This function always succeeds."
 msgstr ""
 
-#: ../../c-api/hash.rst:113
+#: ../../c-api/hash.rst:194
 msgid ""
 "Generic hashing function that is meant to be put into a type object's "
 "``tp_hash`` slot. Its result only depends on the object's identity."
 msgstr ""
 
-#: ../../c-api/hash.rst:118
+#: ../../c-api/hash.rst:199
 msgid "In CPython, it is equivalent to :c:func:`Py_HashPointer`."
 msgstr ""
 

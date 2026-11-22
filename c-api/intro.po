@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: SeongHyeon Kim <self@seonghyeon.dev>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/intro.rst:8
 msgid "Introduction"
@@ -121,7 +121,7 @@ msgstr ""
 "``<errno.h>``, ``<limits.h>``, ``<assert.h>`` 그리고 ``<stdlib.h>`` (사용 가능한 "
 "경우)."
 
-#: ../../c-api/intro.rst:70
+#: ../../c-api/intro.rst:70 ../../c-api/intro.rst:145
 msgid ""
 "Since Python may define some pre-processor definitions which affect the "
 "standard headers on some systems, you *must* include :file:`Python.h` "
@@ -205,11 +205,90 @@ msgstr ""
 "C++ 사용자들은 파이썬/C API 가 C 만을 사용하여 정의되었어도 헤더 파일들이 ``extern \"C\"`` 로 진입점을 "
 "제대로 선언한다는 점에 유의해야 합니다. C++ 에서 파이썬/C API 를 사용하기 위해 특별한 조치를 취할 필요는 없습니다."
 
-#: ../../c-api/intro.rst:111
+#: ../../c-api/intro.rst:113
+msgid "System includes"
+msgstr ""
+
+#: ../../c-api/intro.rst:115
+msgid ""
+":file:`Python.h` includes several standard header files. C extensions "
+"should include the standard headers that they use, and should not rely on"
+" these implicit includes. The implicit includes are:"
+msgstr ""
+
+#: ../../c-api/intro.rst:120
+msgid "``<assert.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:121
+msgid "``<intrin.h>`` (on Windows)"
+msgstr ""
+
+#: ../../c-api/intro.rst:122
+msgid "``<inttypes.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:123
+msgid "``<limits.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:124
+msgid "``<math.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:125
+msgid "``<stdarg.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:126
+msgid "``<string.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:127
+msgid "``<wchar.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:128
+msgid "``<sys/types.h>`` (if present)"
+msgstr ""
+
+#: ../../c-api/intro.rst:130
+msgid ""
+"The following are included for backwards compatibility, unless using "
+":ref:`Limited API <limited-c-api>` 3.13 or newer:"
+msgstr ""
+
+#: ../../c-api/intro.rst:133
+msgid "``<ctype.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:134
+msgid "``<unistd.h>`` (on POSIX)"
+msgstr ""
+
+#: ../../c-api/intro.rst:136
+msgid ""
+"The following are included for backwards compatibility, unless using "
+":ref:`Limited API <limited-c-api>` 3.11 or newer:"
+msgstr ""
+
+#: ../../c-api/intro.rst:139
+msgid "``<errno.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:140
+msgid "``<stdio.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:141
+msgid "``<stdlib.h>``"
+msgstr ""
+
+#: ../../c-api/intro.rst:151
 msgid "Useful macros"
 msgstr "유용한 매크로들"
 
-#: ../../c-api/intro.rst:113
+#: ../../c-api/intro.rst:153
 #, fuzzy
 msgid ""
 "Several useful macros are defined in the Python header files.  Many are "
@@ -222,48 +301,219 @@ msgstr ""
 ":c:macro:`Py_RETURN_NONE`)  나머지 더 일반적인 유틸리티들은 여기에 정의되어 있습니다.  아래 목록이 전체 "
 "목록은 아닙니다."
 
-#: ../../c-api/intro.rst:122
+#: ../../c-api/intro.rst:161
+msgid ""
+"If this macro is defined, then the current system is able to start "
+"threads."
+msgstr ""
+
+#: ../../c-api/intro.rst:163
+msgid ""
+"Currently, all systems supported by CPython (per :pep:`11`), with the "
+"exception of some WebAssembly platforms, support starting threads."
+msgstr ""
+
+#: ../../c-api/intro.rst:170
+#, fuzzy, python-brace-format
+msgid ""
+"Like :samp:`getenv({s})`, but returns ``NULL`` if :option:`-E` was passed"
+" on the command line (see :c:member:`PyConfig.use_environment`)."
+msgstr ""
+"``getenv(s)`` 와 유사하지만 :option:`-E` 가 커맨드라인으로 전달된 경우 ``NULL`` 을 반환합니다 "
+"(:c:member:`PyConfig.use_environment`\\를 참조하세요)"
+
+#: ../../c-api/intro.rst:175
+msgid "Docstring macros"
+msgstr ""
+
+#: ../../c-api/intro.rst:179
+#, fuzzy
+msgid ""
+"Creates a variable with name *name* that can be used in docstrings. If "
+"Python is built without docstrings (:option:`--without-doc-strings`), the"
+" value will be an empty string."
+msgstr ""
+"독스트링에서 사용 가능한 ``name`` 이란 이름의 변수를 생성합니다. 파이썬이 독스트링 없이 빌드되었다면 변수의 값은 비어있을 "
+"것입니다."
+
+#: ../../c-api/intro.rst:183 ../../c-api/intro.rst:200
+#: ../../c-api/intro.rst:474
+msgid "Example::"
+msgstr "예제::"
+
+#: ../../c-api/intro.rst:185
+msgid ""
+"PyDoc_STRVAR(pop_doc, \"Remove and return the rightmost element.\");\n"
+"\n"
+"static PyMethodDef deque_methods[] = {\n"
+"    // ...\n"
+"    {\"pop\", (PyCFunction)deque_pop, METH_NOARGS, pop_doc},\n"
+"    // ...\n"
+"}"
+msgstr ""
+"PyDoc_STRVAR(pop_doc, \"Remove and return the rightmost element.\");\n"
+"\n"
+"static PyMethodDef deque_methods[] = {\n"
+"    // ...\n"
+"    {\"pop\", (PyCFunction)deque_pop, METH_NOARGS, pop_doc},\n"
+"    // ...\n"
+"}"
+
+#: ../../c-api/intro.rst:193
+#, python-brace-format
+msgid "Expands to :samp:`PyDoc_VAR({name}) = PyDoc_STR({str})`."
+msgstr ""
+
+#: ../../c-api/intro.rst:197
+#, fuzzy
+msgid ""
+"Expands to the given input string, or an empty string if docstrings are "
+"disabled (:option:`--without-doc-strings`)."
+msgstr "주어진 문자열에 대한 독스트링을 생성합니다. 독스트링이 비활성화 되어있을 경우엔 빈 문자열을 생성합니다."
+
+#: ../../c-api/intro.rst:202
+msgid ""
+"static PyMethodDef pysqlite_row_methods[] = {\n"
+"    {\"keys\", (PyCFunction)pysqlite_row_keys, METH_NOARGS,\n"
+"        PyDoc_STR(\"Returns the keys of the row.\")},\n"
+"    {NULL, NULL}\n"
+"};"
+msgstr ""
+"static PyMethodDef pysqlite_row_methods[] = {\n"
+"    {\"keys\", (PyCFunction)pysqlite_row_keys, METH_NOARGS,\n"
+"        PyDoc_STR(\"Returns the keys of the row.\")},\n"
+"    {NULL, NULL}\n"
+"};"
+
+#: ../../c-api/intro.rst:210
+#, python-brace-format
+msgid ""
+"Declares a static character array variable with the given *name*. Expands"
+" to :samp:`static const char {name}[]`"
+msgstr ""
+
+#: ../../c-api/intro.rst:213 ../../c-api/intro.rst:360
+#: ../../c-api/intro.rst:371
+#, fuzzy
+msgid "For example::"
+msgstr "예제::"
+
+#: ../../c-api/intro.rst:215
+msgid ""
+"PyDoc_VAR(python_doc) = PyDoc_STR(\n"
+"   \"A genus of constricting snakes in the Pythonidae family native \"\n"
+"   \"to the tropics and subtropics of the Eastern Hemisphere.\");"
+msgstr ""
+
+#: ../../c-api/intro.rst:221
+msgid "General utility macros"
+msgstr ""
+
+#: ../../c-api/intro.rst:223
+msgid "The following macros are for common tasks not specific to Python."
+msgstr ""
+
+#: ../../c-api/intro.rst:227
+#, python-brace-format
+msgid ""
+"Use this for unused arguments in a function definition to silence "
+"compiler warnings. Example: ``int func(int a, int Py_UNUSED(b)) { return "
+"a; }``."
+msgstr ""
+"함수의 미사용 인자에 사용하여 컴파일러 경고를 무시합니다. 예시: ``int func(int a, int Py_UNUSED(b)) "
+"{ return a; }``."
+
+#: ../../c-api/intro.rst:234
+msgid ""
+"Use a GCC attribute *name*, hiding it from compilers that don't support "
+"GCC attributes (such as MSVC)."
+msgstr ""
+
+#: ../../c-api/intro.rst:237
+#, python-brace-format
+msgid ""
+"This expands to :samp:`__attribute__(({name)})` on a GCC compiler, and "
+"expands to nothing on compilers that don't support GCC attributes."
+msgstr ""
+
+#: ../../c-api/intro.rst:242
+msgid "Numeric utilities"
+msgstr ""
+
+#: ../../c-api/intro.rst:246
 msgid "Return the absolute value of ``x``."
 msgstr "``x`` 의 절댓값을 반환합니다."
 
-#: ../../c-api/intro.rst:128
+#: ../../c-api/intro.rst:248
 msgid ""
-"Ask the compiler to always inline a static inline function. The compiler "
-"can ignore it and decide to not inline the function."
+"The argument may be evaluated more than once. Consequently, do not pass "
+"an expression with side-effects directly to this macro."
 msgstr ""
 
-#: ../../c-api/intro.rst:131
+#: ../../c-api/intro.rst:252
 msgid ""
-"It can be used to inline performance critical static inline functions "
-"when building Python in debug mode with function inlining disabled. For "
-"example, MSC disables function inlining when building in debug mode."
+"If the result cannot be represented (for example, if ``x`` has "
+":c:macro:`!INT_MIN` value for :c:expr:`int` type), the behavior is "
+"undefined."
 msgstr ""
 
-#: ../../c-api/intro.rst:135
-msgid ""
-"Marking blindly a static inline function with Py_ALWAYS_INLINE can result"
-" in worse performances (due to increased code size for example). The "
-"compiler is usually smarter than the developer for the cost/benefit "
-"analysis."
-msgstr ""
-
-#: ../../c-api/intro.rst:139
-msgid ""
-"If Python is :ref:`built in debug mode <debug-build>` (if the "
-":c:macro:`Py_DEBUG` macro is defined), the :c:macro:`Py_ALWAYS_INLINE` "
-"macro does nothing."
-msgstr ""
-
-#: ../../c-api/intro.rst:142
-msgid "It must be specified before the function return type. Usage::"
-msgstr ""
-
-#: ../../c-api/intro.rst:144
+#: ../../c-api/intro.rst:256
 #, python-brace-format
-msgid "static inline Py_ALWAYS_INLINE int random(void) { return 4; }"
-msgstr "static inline Py_ALWAYS_INLINE int random(void) { return 4; }"
+msgid "Corresponds roughly to :samp:`(({x}) < 0 ? -({x}) : ({x}))`"
+msgstr ""
 
-#: ../../c-api/intro.rst:150
+#: ../../c-api/intro.rst:263
+msgid "Return the larger or smaller of the arguments, respectively."
+msgstr ""
+
+#: ../../c-api/intro.rst:265
+msgid ""
+"Any arguments may be evaluated more than once. Consequently, do not pass "
+"an expression with side-effects directly to this macro."
+msgstr ""
+
+#: ../../c-api/intro.rst:269
+#, python-brace-format
+msgid ""
+":c:macro:`!Py_MAX` corresponds roughly to :samp:`((({x}) > ({y})) ? ({x})"
+" : ({y}))`."
+msgstr ""
+
+#: ../../c-api/intro.rst:276
+#, python-brace-format
+msgid ""
+"Similar to :samp:`{integer} >> {positions}`, but forces sign extension, "
+"as the C standard does not define whether a right-shift of a signed "
+"integer will perform sign extension or a zero-fill."
+msgstr ""
+
+#: ../../c-api/intro.rst:280
+msgid ""
+"*integer* should be any signed integer type. *positions* is the number of"
+" positions to shift to the right."
+msgstr ""
+
+#: ../../c-api/intro.rst:283
+msgid ""
+"Both *integer* and *positions* can be evaluated more than once; "
+"consequently, avoid directly passing a function call or some other "
+"operation with side-effects to this macro. Instead, store the result as a"
+" variable and then pass it."
+msgstr ""
+
+#: ../../c-api/intro.rst:288
+msgid ""
+"*type* is unused and only kept for backwards compatibility. Historically,"
+" *type* was used to cast *integer*."
+msgstr ""
+
+#: ../../c-api/intro.rst:293
+msgid ""
+"This macro is now valid for all signed integer types, not just those for "
+"which ``unsigned type`` is legal. As a result, *type* is no longer used."
+msgstr ""
+
+#: ../../c-api/intro.rst:299
 msgid ""
 "Argument must be a character or an integer in the range [-128, 127] or "
 "[0, 255].  This macro returns ``c`` cast to an ``unsigned char``."
@@ -271,68 +521,17 @@ msgstr ""
 "인자는 문자 또는 [-128, 127] 나 [0, 255] 사이의 정수여야 합니다. 이 매크로는 ``unsigned char`` 로"
 " 캐스팅된 ``c`` 를 반환합니다"
 
-#: ../../c-api/intro.rst:155
+#: ../../c-api/intro.rst:305
 msgid ""
-"Use this for deprecated declarations.  The macro must be placed before "
-"the symbol name."
-msgstr "폐지(deprecated) 선언에 사용하십시오. 이 매크로는 심볼 이름 앞에 위치해야 합니다"
-
-#: ../../c-api/intro.rst:158 ../../c-api/intro.rst:244
-#: ../../c-api/intro.rst:262
-msgid "Example::"
-msgstr "예제::"
-
-#: ../../c-api/intro.rst:160
-msgid "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
-msgstr "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
-
-#: ../../c-api/intro.rst:162
-msgid "MSVC support was added."
-msgstr "MSVC 지원을 추가했습니다."
-
-#: ../../c-api/intro.rst:167
-msgid ""
-"Like ``getenv(s)``, but returns ``NULL`` if :option:`-E` was passed on "
-"the command line (see :c:member:`PyConfig.use_environment`)."
-msgstr ""
-"``getenv(s)`` 와 유사하지만 :option:`-E` 가 커맨드라인으로 전달된 경우 ``NULL`` 을 반환합니다 "
-"(:c:member:`PyConfig.use_environment`\\를 참조하세요)"
-
-#: ../../c-api/intro.rst:172
-msgid "Return the maximum value between ``x`` and ``y``."
-msgstr "``x`` 와 ``y`` 사이의 최댓값을 반환합니다."
-
-#: ../../c-api/intro.rst:178
-msgid "Return the size of a structure (``type``) ``member`` in bytes."
-msgstr "(``type``) 구조체의 ``member`` 의 크기를 바이트로 반환합니다."
-
-#: ../../c-api/intro.rst:184
-msgid "Return the minimum value between ``x`` and ``y``."
-msgstr "``x`` 와 ``y`` 사이의 최솟값을 반환합니다."
-
-#: ../../c-api/intro.rst:190
-msgid ""
-"Disable inlining on a function. For example, it reduces the C stack "
-"consumption: useful on LTO+PGO builds which heavily inline code (see "
-":issue:`33720`)."
+"Constants describing the byte order of the platform that Python was built"
+" for. Exactly one of them is ``1`` and the other is ``0``."
 msgstr ""
 
-#: ../../c-api/intro.rst:194
-msgid "Usage::"
-msgstr "사용법::"
+#: ../../c-api/intro.rst:310
+msgid "Assertion utilities"
+msgstr ""
 
-#: ../../c-api/intro.rst:196
-#, python-brace-format
-msgid "Py_NO_INLINE static int random(void) { return 4; }"
-msgstr "Py_NO_INLINE static int random(void) { return 4; }"
-
-#: ../../c-api/intro.rst:202
-msgid ""
-"Convert ``x`` to a C string.  E.g. ``Py_STRINGIFY(123)`` returns "
-"``\"123\"``."
-msgstr "``x`` 를 C 문자열로 변환합니다.  예를 들어 ``Py_STRINGIFY(123)`` 은 ``\"123\"`` 을 반환합니다."
-
-#: ../../c-api/intro.rst:209
+#: ../../c-api/intro.rst:314
 msgid ""
 "Use this when you have a code path that cannot be reached by design. For "
 "example, in the ``default:`` clause in a ``switch`` statement for which "
@@ -344,7 +543,7 @@ msgstr ""
 "값이 ``case`` 절에서 다뤄지는 경우에 ``default:`` 절에서 사용할 수 있습니다. ``assert(0)`` 또는 "
 "``abort()`` 대신 사용하십시오."
 
-#: ../../c-api/intro.rst:214
+#: ../../c-api/intro.rst:319
 msgid ""
 "In release mode, the macro helps the compiler to optimize the code, and "
 "avoids a warning about unreachable code.  For example, the macro is "
@@ -353,15 +552,22 @@ msgstr ""
 "릴리즈 모드에서 이 매크로는 컴파일러가 코드를 최적화하는데 도움이 되며 도달할 수 없는 코드에 대한 경고를 방지합니다. 예를 들어,"
 " 이 매크로는 릴리즈 모드에서 GCC의 ``__builtin_unreachable()`` 로 구현됩니다."
 
-#: ../../c-api/intro.rst:218
+#: ../../c-api/intro.rst:323
 msgid ""
-"A use for ``Py_UNREACHABLE()`` is following a call a function that never "
-"returns but that is not declared :c:macro:`_Py_NO_RETURN`."
+"In debug mode, and on unsupported compilers, the macro expands to a call "
+"to :c:func:`Py_FatalError`."
+msgstr ""
+
+#: ../../c-api/intro.rst:326
+#, fuzzy
+msgid ""
+"A use for ``Py_UNREACHABLE()`` is following a call to a function that "
+"never returns but that is not declared ``_Noreturn``."
 msgstr ""
 "``Py_UNREACHABLE()`` 의 용도는 반환하지 않지만 :c:macro:`_Py_NO_RETURN` 을 선언하지 않은 "
 "함수를 호출하는 것입니다"
 
-#: ../../c-api/intro.rst:221
+#: ../../c-api/intro.rst:329
 msgid ""
 "If a code path is very unlikely code but can be reached under exceptional"
 " case, this macro must not be used.  For example, under low memory "
@@ -373,83 +579,373 @@ msgstr ""
 "부족하거나 시스템 콜이 예상 범위를 벗어나는 값을 반환했을 경우에는 호출자에게 에러를 보고하는 것이 좋습니다. 호출자에게 에러를 "
 "보고할 수 없는 경우 :c:func:`Py_FatalError` 를 사용할 수 있습니다."
 
-#: ../../c-api/intro.rst:231
+#: ../../c-api/intro.rst:339
+msgid ""
+"Cast *value* to type *smaller* from type *larger*, validating that no "
+"information was lost."
+msgstr ""
+
+#: ../../c-api/intro.rst:342
 #, python-brace-format
 msgid ""
-"Use this for unused arguments in a function definition to silence "
-"compiler warnings. Example: ``int func(int a, int Py_UNUSED(b)) { return "
-"a; }``."
+"On release builds of Python, this is roughly equivalent to "
+":samp:`(({smaller}) {value})` (in C++, "
+":samp:`static_cast<{smaller}>({value})` will be used instead)."
 msgstr ""
-"함수의 미사용 인자에 사용하여 컴파일러 경고를 무시합니다. 예시: ``int func(int a, int Py_UNUSED(b)) "
-"{ return a; }``."
 
-#: ../../c-api/intro.rst:238
+#: ../../c-api/intro.rst:346
 msgid ""
-"Creates a variable with name ``name`` that can be used in docstrings. If "
-"Python is built without docstrings, the value will be empty."
+"On debug builds (implying that :c:macro:`Py_DEBUG` is defined), this "
+"asserts that no information was lost with the cast from *larger* to "
+"*smaller*."
 msgstr ""
-"독스트링에서 사용 가능한 ``name`` 이란 이름의 변수를 생성합니다. 파이썬이 독스트링 없이 빌드되었다면 변수의 값은 비어있을 "
-"것입니다."
 
-#: ../../c-api/intro.rst:241
+#: ../../c-api/intro.rst:349
 msgid ""
-"Use :c:macro:`PyDoc_STRVAR` for docstrings to support building Python "
-"without docstrings, as specified in :pep:`7`."
+"*value*, *larger*, and *smaller* may all be evaluated more than once in "
+"the expression; consequently, do not pass an expression with side-effects"
+" directly to this macro."
 msgstr ""
-":pep:`7` 에 명시된 것처럼 파이썬을 독스트링 없이 빌드하기 위해 :c:macro:`PyDoc_STRVAR` 를 독스트링에 "
-"사용하십시오"
 
-#: ../../c-api/intro.rst:246
+#: ../../c-api/intro.rst:355
 msgid ""
-"PyDoc_STRVAR(pop_doc, \"Remove and return the rightmost element.\");\n"
-"\n"
-"static PyMethodDef deque_methods[] = {\n"
-"    // ...\n"
-"    {\"pop\", (PyCFunction)deque_pop, METH_NOARGS, pop_doc},\n"
-"    // ...\n"
-"}"
+"Asserts a compile-time condition *cond*, as a statement. The build will "
+"fail if the condition is false or cannot be evaluated at compile time."
 msgstr ""
-"PyDoc_STRVAR(pop_doc, \"Remove and return the rightmost element.\");\n"
-"\n"
-"static PyMethodDef deque_methods[] = {\n"
-"    // ...\n"
-"    {\"pop\", (PyCFunction)deque_pop, METH_NOARGS, pop_doc},\n"
-"    // ...\n"
-"}"
 
-#: ../../c-api/intro.rst:256
-msgid ""
-"Creates a docstring for the given input string or an empty string if "
-"docstrings are disabled."
-msgstr "주어진 문자열에 대한 독스트링을 생성합니다. 독스트링이 비활성화 되어있을 경우엔 빈 문자열을 생성합니다."
-
-#: ../../c-api/intro.rst:259
-msgid ""
-"Use :c:macro:`PyDoc_STR` in specifying docstrings to support building "
-"Python without docstrings, as specified in :pep:`7`."
+#: ../../c-api/intro.rst:358
+#, python-brace-format
+msgid "Corresponds roughly to :samp:`static_assert({cond})` on C23 and above."
 msgstr ""
-":pep:`7` 에 명시된 것처럼 독스트링 없이 파이썬을 빌드할 수 있도록 독스트링을 명시할 때 "
-":c:macro:`PyDoc_STR` 을 사용하십시오."
 
-#: ../../c-api/intro.rst:264
-msgid ""
-"static PyMethodDef pysqlite_row_methods[] = {\n"
-"    {\"keys\", (PyCFunction)pysqlite_row_keys, METH_NOARGS,\n"
-"        PyDoc_STR(\"Returns the keys of the row.\")},\n"
-"    {NULL, NULL}\n"
-"};"
+#: ../../c-api/intro.rst:362
+msgid "Py_BUILD_ASSERT(sizeof(PyTime_t) == sizeof(int64_t));"
 msgstr ""
-"static PyMethodDef pysqlite_row_methods[] = {\n"
-"    {\"keys\", (PyCFunction)pysqlite_row_keys, METH_NOARGS,\n"
-"        PyDoc_STR(\"Returns the keys of the row.\")},\n"
-"    {NULL, NULL}\n"
-"};"
 
-#: ../../c-api/intro.rst:274
+#: ../../c-api/intro.rst:368
+msgid ""
+"Asserts a compile-time condition *cond*, as an expression that evaluates "
+"to ``0``. The build will fail if the condition is false or cannot be "
+"evaluated at compile time."
+msgstr ""
+
+#: ../../c-api/intro.rst:373
+msgid ""
+"#define foo_to_char(foo) \\\n"
+"    ((char *)(foo) + Py_BUILD_ASSERT_EXPR(offsetof(struct foo, string) =="
+" 0))"
+msgstr ""
+
+#: ../../c-api/intro.rst:380
+msgid "Type size utilities"
+msgstr ""
+
+#: ../../c-api/intro.rst:384
+msgid "Compute the length of a statically allocated C array at compile time."
+msgstr ""
+
+#: ../../c-api/intro.rst:386
+msgid ""
+"The *array* argument must be a C array with a size known at compile time."
+" Passing an array with an unknown size, such as a heap-allocated array, "
+"will result in a compilation error on some compilers, or otherwise "
+"produce incorrect results."
+msgstr ""
+
+#: ../../c-api/intro.rst:391
+msgid "This is roughly equivalent to::"
+msgstr ""
+
+#: ../../c-api/intro.rst:393
+msgid "sizeof(array) / sizeof((array)[0])"
+msgstr ""
+
+#: ../../c-api/intro.rst:397
+#, fuzzy
+msgid "Return the size of a structure (*type*) *member* in bytes."
+msgstr "(``type``) 구조체의 ``member`` 의 크기를 바이트로 반환합니다."
+
+#: ../../c-api/intro.rst:399
+#, python-brace-format
+msgid "Corresponds roughly to :samp:`sizeof((({type} *)NULL)->{member})`."
+msgstr ""
+
+#: ../../c-api/intro.rst:405
+msgid "Macro definition utilities"
+msgstr ""
+
+#: ../../c-api/intro.rst:409
+#, python-brace-format
+msgid ""
+"This is equivalent to :samp:`{X}`, which is useful for token-pasting in "
+"macros, as macro expansions in *X* are forcefully evaluated by the "
+"preprocessor."
+msgstr ""
+
+#: ../../c-api/intro.rst:415
+#, fuzzy
+msgid ""
+"Convert ``x`` to a C string.  For example, ``Py_STRINGIFY(123)`` returns "
+"``\"123\"``."
+msgstr "``x`` 를 C 문자열로 변환합니다.  예를 들어 ``Py_STRINGIFY(123)`` 은 ``\"123\"`` 을 반환합니다."
+
+#: ../../c-api/intro.rst:422
+msgid "Declaration utilities"
+msgstr ""
+
+#: ../../c-api/intro.rst:424
+msgid ""
+"The following macros can be used in declarations. They are most useful "
+"for defining the C API itself, and have limited use for extension "
+"authors. Most of them expand to compiler-specific spellings of common "
+"extensions to the C language."
+msgstr ""
+
+#: ../../c-api/intro.rst:432
+msgid ""
+"Ask the compiler to always inline a static inline function. The compiler "
+"can ignore it and decide to not inline the function."
+msgstr ""
+
+#: ../../c-api/intro.rst:435
+msgid ""
+"Corresponds to ``always_inline`` attribute in GCC and ``__forceinline`` "
+"in MSVC."
+msgstr ""
+
+#: ../../c-api/intro.rst:438
+msgid ""
+"It can be used to inline performance critical static inline functions "
+"when building Python in debug mode with function inlining disabled. For "
+"example, MSC disables function inlining when building in debug mode."
+msgstr ""
+
+#: ../../c-api/intro.rst:442
+msgid ""
+"Marking blindly a static inline function with Py_ALWAYS_INLINE can result"
+" in worse performances (due to increased code size for example). The "
+"compiler is usually smarter than the developer for the cost/benefit "
+"analysis."
+msgstr ""
+
+#: ../../c-api/intro.rst:446
+msgid ""
+"If Python is :ref:`built in debug mode <debug-build>` (if the "
+":c:macro:`Py_DEBUG` macro is defined), the :c:macro:`Py_ALWAYS_INLINE` "
+"macro does nothing."
+msgstr ""
+
+#: ../../c-api/intro.rst:449
+msgid "It must be specified before the function return type. Usage::"
+msgstr ""
+
+#: ../../c-api/intro.rst:451
+#, python-brace-format
+msgid "static inline Py_ALWAYS_INLINE int random(void) { return 4; }"
+msgstr "static inline Py_ALWAYS_INLINE int random(void) { return 4; }"
+
+#: ../../c-api/intro.rst:457
+msgid ""
+"Disable inlining on a function. For example, it reduces the C stack "
+"consumption: useful on LTO+PGO builds which heavily inline code (see "
+":issue:`33720`)."
+msgstr ""
+
+#: ../../c-api/intro.rst:461
+msgid "Corresponds to the ``noinline`` attribute/specification on GCC and MSVC."
+msgstr ""
+
+#: ../../c-api/intro.rst:463
+msgid "Usage::"
+msgstr "사용법::"
+
+#: ../../c-api/intro.rst:465
+#, python-brace-format
+msgid "Py_NO_INLINE static int random(void) { return 4; }"
+msgstr "Py_NO_INLINE static int random(void) { return 4; }"
+
+#: ../../c-api/intro.rst:471
+#, fuzzy
+msgid ""
+"Use this to declare APIs that were deprecated in a specific CPython "
+"version. The macro must be placed before the symbol name."
+msgstr "폐지(deprecated) 선언에 사용하십시오. 이 매크로는 심볼 이름 앞에 위치해야 합니다"
+
+#: ../../c-api/intro.rst:476
+msgid "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
+msgstr "Py_DEPRECATED(3.8) PyAPI_FUNC(int) Py_OldFunction(void);"
+
+#: ../../c-api/intro.rst:478
+msgid "MSVC support was added."
+msgstr "MSVC 지원을 추가했습니다."
+
+#: ../../c-api/intro.rst:483
+#, python-brace-format
+msgid ""
+"Declare a function returning the specified *type* using a fast-calling "
+"qualifier for functions that are local to the current file. Semantically,"
+" this is equivalent to :samp:`static {type}`."
+msgstr ""
+
+#: ../../c-api/intro.rst:489
+msgid ""
+"Equivalent to :c:macro:`Py_LOCAL` but additionally requests the function "
+"be inlined."
+msgstr ""
+
+#: ../../c-api/intro.rst:494
+msgid ""
+"Macro used to declare a symbol as local to the shared library (hidden). "
+"On supported platforms, it ensures the symbol is not exported."
+msgstr ""
+
+#: ../../c-api/intro.rst:497
+msgid ""
+"On compatible versions of GCC/Clang, it expands to "
+"``__attribute__((visibility(\"hidden\")))``."
+msgstr ""
+
+#: ../../c-api/intro.rst:502
+msgid ""
+"Macro used to declare a symbol (function or data) as exported. On "
+"Windows, this expands to ``__declspec(dllexport)``. On compatible "
+"versions of GCC/Clang, it expands to "
+"``__attribute__((visibility(\"default\")))``. This macro is for defining "
+"the C API itself; extension modules should not use it."
+msgstr ""
+
+#: ../../c-api/intro.rst:511
+msgid ""
+"Macro used to declare a symbol as imported. On Windows, this expands to "
+"``__declspec(dllimport)``. This macro is for defining the C API itself; "
+"extension modules should not use it."
+msgstr ""
+
+#: ../../c-api/intro.rst:518
+msgid ""
+"Macro used by CPython to declare a function as part of the C API. Its "
+"expansion depends on the platform and build configuration. This macro is "
+"intended for defining CPython's C API itself; extension modules should "
+"not use it for their own symbols."
+msgstr ""
+
+#: ../../c-api/intro.rst:526
+msgid ""
+"Macro used by CPython to declare a public global variable as part of the "
+"C API. Its expansion depends on the platform and build configuration. "
+"This macro is intended for defining CPython's C API itself; extension "
+"modules should not use it for their own symbols."
+msgstr ""
+
+#: ../../c-api/intro.rst:533
+#, fuzzy
+msgid "Outdated macros"
+msgstr "유용한 매크로들"
+
+#: ../../c-api/intro.rst:535
+msgid ""
+"The following :term:`soft deprecated` macros have been used to features "
+"that have been standardized in C11 (or previous standards)."
+msgstr ""
+
+#: ../../c-api/intro.rst:540
+msgid ""
+"On some GCC-like compilers, specify alignment to *num* bytes. This does "
+"nothing on other compilers."
+msgstr ""
+
+#: ../../c-api/intro.rst:543
+msgid "Use the standard ``alignas`` specifier rather than this macro."
+msgstr ""
+
+#: ../../c-api/intro.rst:549
+msgid ""
+"The :c:func:`printf` formatting modifier for :c:type:`size_t`. Use "
+"``\"z\"`` directly instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:557
+msgid ""
+"Use *number* as a ``long long`` or ``unsigned long long`` integer "
+"literal, respectively."
+msgstr ""
+
+#: ../../c-api/intro.rst:560
+msgid ""
+"Expands to *number* followed by ``LL`` or ``LLU``, respectively, but will"
+" expand to some compiler-specific suffixes on some older compilers."
+msgstr ""
+
+#: ../../c-api/intro.rst:563
+msgid "Consider using the C99 standard suffixes ``LL`` and ``LLU`` directly."
+msgstr ""
+
+#: ../../c-api/intro.rst:573
+msgid ""
+"Aliases for the types :c:type:`!long long`, :c:type:`!int32_t`, "
+":c:type:`!uint32_t`. :c:type:`!int64_t` and :c:type:`!uint64_t`, "
+"respectively. Historically, these types needed compiler-specific "
+"extensions."
+msgstr ""
+
+#: ../../c-api/intro.rst:585
+msgid ""
+"Aliases for the values :c:macro:`!LLONG_MIN`, :c:macro:`!LLONG_MAX`, "
+":c:macro:`!ULLONG_MAX`, and :c:macro:`!SIZE_MAX`, respectively. Use these"
+" standard names instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:589
+msgid ""
+"The required header, ``<limits.h>``, :ref:`is included <capi-system-"
+"includes>` in ``Python.h``."
+msgstr ""
+
+#: ../../c-api/intro.rst:596
+msgid "This is an alias to :c:func:`!memcpy`."
+msgstr ""
+
+#: ../../c-api/intro.rst:598
+msgid "Use :c:func:`!memcpy` directly instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:603
+msgid ""
+"Size of the :c:type:`!wchar_t` type. Use ``sizeof(wchar_t)`` or "
+"``WCHAR_WIDTH/8`` instead."
+msgstr ""
+
+#: ../../c-api/intro.rst:606
+msgid ""
+"The required header for the latter, ``<limits.h>``, :ref:`is included "
+"<capi-system-includes>` in ``Python.h``."
+msgstr ""
+
+#: ../../c-api/intro.rst:613
+msgid ""
+"Defined if ``wchar_t`` can hold a Unicode character (UCS-4). Use "
+"``sizeof(wchar_t) >= 4`` instead"
+msgstr ""
+
+#: ../../c-api/intro.rst:620
+msgid "This is an alias to the C99-standard ``va_copy`` function."
+msgstr ""
+
+#: ../../c-api/intro.rst:622
+msgid ""
+"Historically, this would use a compiler-specific method to copy a "
+"``va_list``."
+msgstr ""
+
+#: ../../c-api/intro.rst:624
+msgid "This is now an alias to ``va_copy``."
+msgstr ""
+
+#: ../../c-api/intro.rst:633
 msgid "Objects, Types and Reference Counts"
 msgstr "객체, 형 그리고 참조 횟수"
 
-#: ../../c-api/intro.rst:278
+#: ../../c-api/intro.rst:637
 msgid ""
 "Most Python/C API functions have one or more arguments as well as a "
 "return value of type :c:expr:`PyObject*`.  This type is a pointer to an "
@@ -470,7 +966,7 @@ msgstr ""
 ":c:expr:`PyObject*` 형의 포인터 변수만을 선언할 수 있습니다. 유일한 예외는 형 객체입니다. 형 객체들은 절대 "
 "할당이 해제돼서는 안되기 때문에 형 객체들은 보통 정적 :c:type:`PyTypeObject` 객체들입니다."
 
-#: ../../c-api/intro.rst:289
+#: ../../c-api/intro.rst:648
 msgid ""
 "All Python objects (even Python integers) have a :dfn:`type` and a "
 ":dfn:`reference count`.  An object's type determines what kind of object "
@@ -485,11 +981,11 @@ msgstr ""
 ":ref:`types` 에 추가적인 형들에 대해 설명되어 있습니다.) 잘 알려진 형에는 객체가 해당 형인지를 확인하는 매크로가 "
 "있습니다. 예를 들어 ``PyList_Check(a)`` 는 *a* 가 가리키는 객체가 파이썬 리스트일 경우에만 참입니다."
 
-#: ../../c-api/intro.rst:300
+#: ../../c-api/intro.rst:659
 msgid "Reference Counts"
 msgstr "참조 횟수"
 
-#: ../../c-api/intro.rst:302
+#: ../../c-api/intro.rst:661
 msgid ""
 "The reference count is important because today's computers have a  finite"
 " (and often severely limited) memory size; it counts how many different "
@@ -510,7 +1006,7 @@ msgstr ""
 " 객체에 대한 참조를 가지고 있을 경우, 그 참조들도 해제됩니다. 이들에 대한 참조가 더는 없으면, 다른 객체들이 차례로 할당이 "
 "해제될 수 있습니다. (서로를 참조하는 객체에 대해 분명한 문제점이 있으나 현재 해결책은 \"그러지 마세요\" 입니다.)"
 
-#: ../../c-api/intro.rst:319
+#: ../../c-api/intro.rst:678
 msgid ""
 "Reference counts are always manipulated explicitly.  The normal way is to"
 " use the macro :c:func:`Py_INCREF` to take a new reference to an object "
@@ -538,7 +1034,7 @@ msgstr ""
 "저장하기 위해서 가상 메모리 안에서 구별되는 메모리 위치 만큼 (``sizeof(Py_ssize_t) >= "
 "sizeof(void*)`` 라고 가정할 경우) 많은 비트가 사용됩니다. 따라서 참조 횟수 증가는 간단한 연산입니다"
 
-#: ../../c-api/intro.rst:335
+#: ../../c-api/intro.rst:694
 msgid ""
 "It is not necessary to hold a :term:`strong reference` (i.e. increment "
 "the reference count) for every local variable that contains a pointer to "
@@ -565,7 +1061,7 @@ msgstr ""
 " 확장 모듈의 C 함수에 인자로 넘겨지는 객체에서 발생합니다. 호출 메커니즘은 호출하는동안 모든 인자에 대한 참조를 보유하도록 "
 "보장합니다."
 
-#: ../../c-api/intro.rst:351
+#: ../../c-api/intro.rst:710
 msgid ""
 "However, a common pitfall is to extract an object from a list and hold on"
 " to it for a while without taking a new reference.  Some other operation "
@@ -581,7 +1077,7 @@ msgstr ""
 " 코드를 실행할수도 있다는 것입니다. :c:func:`Py_DECREF` 에서 사용자로 컨트롤을 돌아가게 하는 코드 경로가 있기 "
 "때문에 사실 거의 모든 연산이 잠재적으로 위험합니다."
 
-#: ../../c-api/intro.rst:359
+#: ../../c-api/intro.rst:718
 msgid ""
 "A safe approach is to always use the generic operations (functions  whose"
 " name begins with ``PyObject_``, ``PyNumber_``, ``PySequence_`` or "
@@ -597,11 +1093,11 @@ msgstr ""
 "호출자에게 연산이 반환된 객체와의 작업이 끝났을 경우 :c:func:`Py_DECREF` 를 호출할 책임을 지웁니다. 이건 곧 "
 "습관화 될 것입니다."
 
-#: ../../c-api/intro.rst:370
+#: ../../c-api/intro.rst:729
 msgid "Reference Count Details"
 msgstr "참조 횟수 상세"
 
-#: ../../c-api/intro.rst:372
+#: ../../c-api/intro.rst:731
 msgid ""
 "The reference count behavior of functions in the Python/C API is best  "
 "explained in terms of *ownership of references*.  Ownership pertains to "
@@ -625,19 +1121,26 @@ msgstr ""
 " 넘길때 호출자는 *새로운* 참조를 받는다고 합니다. 소유권이 옮겨지지 않을 때 호출자는 참조를 *빌린다* 라고 합니다. "
 ":term:`빌린 참조 <borrowed reference>`\\를 위해서는 아무것도 할 필요가 없습니다."
 
-#: ../../c-api/intro.rst:385
+#: ../../c-api/intro.rst:744
+#, fuzzy
 msgid ""
 "Conversely, when a calling function passes in a reference to an  object, "
 "there are two possibilities: the function *steals* a  reference to the "
-"object, or it does not.  *Stealing a reference* means that when you pass "
-"a reference to a function, that function assumes that it now owns that "
-"reference, and you are not responsible for it any longer."
+"object, or it does not."
 msgstr ""
 "반대로 호출 함수에게 객체에 대한 참조를 넘길 때는 두가지 가능성이 있습니다: 함수는 객체에 대한 참조를 *훔칠* 수도, 그러지 "
 "않을 수도 있습니다. 참조를 훔치는 것은 함수에 참조를 전달할 때 해당 함수가 전달된 참조를 소유한다고 가정하고 더 이상 책임을 "
 "지지 않는다는 것을 의미합니다."
 
-#: ../../c-api/intro.rst:395
+#: ../../c-api/intro.rst:748
+msgid ""
+"*Stealing a reference* means that when you pass a reference to a "
+"function, that function assumes that it now owns that reference. Since "
+"the new owner can use :c:func:`!Py_DECREF` at its discretion, you (the "
+"caller) must not use that reference after the call."
+msgstr ""
+
+#: ../../c-api/intro.rst:757
 msgid ""
 "Few functions steal references; the two notable exceptions are "
 ":c:func:`PyList_SetItem` and :c:func:`PyTuple_SetItem`, which  steal a "
@@ -654,7 +1157,7 @@ msgstr ""
 " 훔치도록 설계되었습니다. 예를 들어, 튜플을 만드는 코드 ``(1, 2, \"three\")`` 는 다음과 같을 수 있습니다. "
 "(잠시 에러 처리는 잊어버리십시오. 더 좋은 방법으로 코딩하는 방법은 아래에 나와 있습니다.)::"
 
-#: ../../c-api/intro.rst:403
+#: ../../c-api/intro.rst:765
 msgid ""
 "PyObject *t;\n"
 "\n"
@@ -670,7 +1173,7 @@ msgstr ""
 "PyTuple_SetItem(t, 1, PyLong_FromLong(2L));\n"
 "PyTuple_SetItem(t, 2, PyUnicode_FromString(\"three\"));"
 
-#: ../../c-api/intro.rst:410
+#: ../../c-api/intro.rst:772
 msgid ""
 "Here, :c:func:`PyLong_FromLong` returns a new reference which is "
 "immediately stolen by :c:func:`PyTuple_SetItem`.  When you want to keep "
@@ -682,7 +1185,7 @@ msgstr ""
 "훔칩니다. 객체에 대한 참조가 훔쳐져도 계속 객체를 사용하려면 참조를 훔치는 함수를 호출하기 전에 "
 ":c:func:`Py_INCREF` 를 다른 참조를 가져오는데 사용하십시오."
 
-#: ../../c-api/intro.rst:415
+#: ../../c-api/intro.rst:777
 msgid ""
 "Incidentally, :c:func:`PyTuple_SetItem` is the *only* way to set tuple "
 "items; :c:func:`PySequence_SetItem` and :c:func:`PyObject_SetItem` refuse"
@@ -693,7 +1196,7 @@ msgstr ""
 "때문에 :c:func:`PySequence_SetItem` 과 :c:func:`PyObject_SetItem` 는 튜플에 요소를 "
 "넣는 것을 거부합니다. :c:func:`PyTuple_SetItem` 은 직접 만들고 있는 튜플에만 사용되어야 합니다."
 
-#: ../../c-api/intro.rst:420
+#: ../../c-api/intro.rst:782
 msgid ""
 "Equivalent code for populating a list can be written using "
 ":c:func:`PyList_New` and :c:func:`PyList_SetItem`."
@@ -701,7 +1204,7 @@ msgstr ""
 "리스트를 채우는 동일한 의미의 코드는 :c:func:`PyList_New` 와 :c:func:`PyList_SetItem` 을 "
 "사용해 만들 수 있습니다."
 
-#: ../../c-api/intro.rst:423
+#: ../../c-api/intro.rst:785
 msgid ""
 "However, in practice, you will rarely use these ways of creating and "
 "populating a tuple or list.  There's a generic function, "
@@ -714,7 +1217,7 @@ msgstr ""
 "string)`\\로 지시되는 C 값으로부터 만들어낼 수 있는 제네릭 함수 :c:func:`Py_BuildValue` 가 있습니다."
 " 예룰 들어, 위의 두 블록의 코드를 다음 코드로 대체할 수 있습니다. (에러 검사도 처리합니다.)::"
 
-#: ../../c-api/intro.rst:429
+#: ../../c-api/intro.rst:791
 msgid ""
 "PyObject *tuple, *list;\n"
 "\n"
@@ -726,7 +1229,7 @@ msgstr ""
 "tuple = Py_BuildValue(\"(iis)\", 1, 2, \"three\");\n"
 "list = Py_BuildValue(\"[iis]\", 1, 2, \"three\");"
 
-#: ../../c-api/intro.rst:434
+#: ../../c-api/intro.rst:796
 msgid ""
 "It is much more common to use :c:func:`PyObject_SetItem` and friends with"
 " items whose references you are only borrowing, like arguments that were "
@@ -739,7 +1242,7 @@ msgstr ""
 ":c:func:`PyObject_SetItem` 과 그 친구들은 함수에 전달되는 인자처럼 참조만 빌리고 있는 요소와 함께 사용하는 "
 "것이 일반적입니다. 이 경우 새로운 참조를 취하지 않고 참조를 제공할 수 있으므로 참조에 대한 함수들의 동작이 훨씬 멀쩡합니다::"
 
-#: ../../c-api/intro.rst:441
+#: ../../c-api/intro.rst:803
 msgid ""
 "int\n"
 "set_all(PyObject *target, PyObject *item)\n"
@@ -783,7 +1286,7 @@ msgstr ""
 "    return 0;\n"
 "}"
 
-#: ../../c-api/intro.rst:464
+#: ../../c-api/intro.rst:826
 msgid ""
 "The situation is slightly different for function return values.   While "
 "passing a reference to most functions does not change your  ownership "
@@ -801,7 +1304,7 @@ msgstr ""
 ":c:func:`PySequence_GetItem` 처럼 객체에 대한 참조를 반환하는 제네릭 함수들은 언제나 새로운 참조를 "
 "반환합니다 (호출자가 객체의 소유자가 됩니다)."
 
-#: ../../c-api/intro.rst:473
+#: ../../c-api/intro.rst:835
 msgid ""
 "It is important to realize that whether you own a reference returned  by "
 "a function depends on which function you call only --- *the plumage* (the"
@@ -818,7 +1321,7 @@ msgstr ""
 ":c:func:`PySequence_GetItem` 를 사용하여 리스트에서 항목을 가져온다면 반환된 객체에 대한 참조를 소유하게 "
 "됩니다."
 
-#: ../../c-api/intro.rst:485
+#: ../../c-api/intro.rst:847
 msgid ""
 "Here is an example of how you could write a function that computes the "
 "sum of the items in a list of integers; once using  "
@@ -828,7 +1331,7 @@ msgstr ""
 ":c:func:`PyList_GetItem` 를 사용하고, 한 번은 :c:func:`PySequence_GetItem` 을 "
 "사용합니다. ::"
 
-#: ../../c-api/intro.rst:489
+#: ../../c-api/intro.rst:851
 msgid ""
 "long\n"
 "sum_list(PyObject *list)\n"
@@ -853,7 +1356,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../c-api/intro.rst:515
+#: ../../c-api/intro.rst:877
 msgid ""
 "long\n"
 "sum_sequence(PyObject *sequence)\n"
@@ -884,11 +1387,11 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../c-api/intro.rst:549
+#: ../../c-api/intro.rst:911
 msgid "Types"
 msgstr "형"
 
-#: ../../c-api/intro.rst:551
+#: ../../c-api/intro.rst:913
 msgid ""
 "There are few other data types that play a significant role in  the "
 "Python/C API; most are simple C types such as :c:expr:`int`,  "
@@ -903,19 +1406,36 @@ msgstr ""
 "내보내는 함수나 새 객체 형의 데이터 속성들을 나열하는데 사용되는 정적 테이블을 표현하는데 사용되는 구조체 형이 몇가지 있으며, "
 "복소수를 표현하기 위해 사용되는 구조체 형도 있습니다. 이러한 형들은 해당 형들을 사용하는 함수와 함께 다뤄질 것입니다."
 
-#: ../../c-api/intro.rst:561
+#: ../../c-api/intro.rst:923
 msgid ""
 "A signed integral type such that ``sizeof(Py_ssize_t) == "
 "sizeof(size_t)``. C99 doesn't define such a thing directly (size_t is an "
-"unsigned integral type). See :pep:`353` for details. ``PY_SSIZE_T_MAX`` "
-"is the largest positive value of type :c:type:`Py_ssize_t`."
+"unsigned integral type). See :pep:`353` for details."
 msgstr ""
 
-#: ../../c-api/intro.rst:570
+#: ../../c-api/intro.rst:930
+msgid ""
+"A constant of type :c:type:`Py_ssize_t` with value ``-1``, representing "
+"an invalid size."
+msgstr ""
+
+#: ../../c-api/intro.rst:937
+msgid ""
+"The limit values (largest positive one and smallest negative one, "
+"respectively) of type :c:type:`Py_ssize_t`."
+msgstr ""
+
+#: ../../c-api/intro.rst:943
+msgid ""
+"The maximum value of the Windows ``DWORD`` type. Expands to "
+"``0xffffffff`` on all platforms."
+msgstr ""
+
+#: ../../c-api/intro.rst:950
 msgid "Exceptions"
 msgstr "예외"
 
-#: ../../c-api/intro.rst:572
+#: ../../c-api/intro.rst:952
 msgid ""
 "The Python programmer only needs to deal with exceptions if specific  "
 "error handling is required; unhandled exceptions are automatically  "
@@ -926,7 +1446,7 @@ msgstr ""
 "파이썬 프로그래머는 특정한 에러 처리가 필요할 경우에만 에러를 처리하면 됩니다. 처리되지 않은 예외는 사용자에게 전달되는 최상위 "
 "인터프리터까지 스택 트레이스백과 함께 자동으로 호출자, 호출자의 호출자 등으로 전파됩니다."
 
-#: ../../c-api/intro.rst:580
+#: ../../c-api/intro.rst:960
 msgid ""
 "For C programmers, however, error checking always has to be explicit.  "
 "All functions in the Python/C API can raise exceptions, unless an "
@@ -948,7 +1468,7 @@ msgstr ""
 "에러 표시기가 없거나 모호한 반환값을 가지며 :c:func:`PyErr_Occurred` 를 사용하여 명시적인 점검을 요구합니다. "
 "이런 예외는 항상 명시적으로 문서화됩니다."
 
-#: ../../c-api/intro.rst:595
+#: ../../c-api/intro.rst:975
 msgid ""
 "Exception state is maintained in per-thread storage (this is  equivalent "
 "to using global storage in an unthreaded application).  A  thread can be "
@@ -967,7 +1487,7 @@ msgstr ""
 "위한 여러가지 함수들이 있습니다: :c:func:`PyErr_SetString` 는 예외 상태를 설정하기 위해 가장 보편적인 (가장"
 " 일반적인 것은 아니지만) 함수입니다. :c:func:`PyErr_Clear` 는 예외 상태를 지웁니다."
 
-#: ../../c-api/intro.rst:605
+#: ../../c-api/intro.rst:985
 msgid ""
 "The full exception state consists of three objects (all of which can  be "
 "``NULL``): the exception type, the corresponding exception  value, and "
@@ -985,7 +1505,7 @@ msgstr ""
 "수준 예외는 ``sys.exc_info()`` 와 그 친구들로 예외를 전송하는 파이썬 바이트코드 인터프리터의 메인 루프에 도달할 "
 "때까지 C 함수들 간에 전달되는 동안에만 존재합니다."
 
-#: ../../c-api/intro.rst:617
+#: ../../c-api/intro.rst:997
 msgid ""
 "Note that starting with Python 1.5, the preferred, thread-safe way to "
 "access the exception state from Python code is to call the function "
@@ -1005,7 +1525,7 @@ msgstr ""
 " 예외를 덮어씌우는 것으로 인한 예외 처리 코드의 흔한 버그를 방지합니다. 또한 트레이스백의 스택 프레임에 의하여 참조되는 객체들에"
 " 대해 종종 원하지 않은 수명 증가가 일어나는 것을 방지합니다"
 
-#: ../../c-api/intro.rst:628
+#: ../../c-api/intro.rst:1008
 msgid ""
 "As a general principle, a function that calls another function to  "
 "perform some task should check whether the called function raised an  "
@@ -1020,7 +1540,7 @@ msgstr ""
 "다른 예외를 설정해서는 *안됩니다.* --- 방금 일어난 예외를 덮어씌우고 정확한 에러 원인에 대한 중요한 정보를 잃어버리게 "
 "됩니다."
 
-#: ../../c-api/intro.rst:637
+#: ../../c-api/intro.rst:1017
 msgid ""
 "A simple example of detecting exceptions and passing them on is shown in "
 "the :c:func:`!sum_sequence` example above.  It so happens that this "
@@ -1032,7 +1552,7 @@ msgstr ""
 "에러를 감지했을 때 소유하고 있는 참조를 정리할 필요가 없습니다. 그 다음 예시 함수에서는 몇가지 에러 정리작업을 보여줍니다. 먼저"
 " 파이썬을 좋아하는 이유를 상기시키기 위해 같은 의미의 파이썬 코드를 제공합니다::"
 
-#: ../../c-api/intro.rst:643
+#: ../../c-api/intro.rst:1023
 msgid ""
 "def incr_item(dict, key):\n"
 "    try:\n"
@@ -1048,11 +1568,11 @@ msgstr ""
 "        item = 0\n"
 "    dict[key] = item + 1"
 
-#: ../../c-api/intro.rst:652
+#: ../../c-api/intro.rst:1032
 msgid "Here is the corresponding C code, in all its glory::"
 msgstr "다음은 같은 의미의 웅장한 C 코드입니다::"
 
-#: ../../c-api/intro.rst:654
+#: ../../c-api/intro.rst:1034
 msgid ""
 "int\n"
 "incr_item(PyObject *dict, PyObject *key)\n"
@@ -1098,7 +1618,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../c-api/intro.rst:704
+#: ../../c-api/intro.rst:1084
 msgid ""
 "This example represents an endorsed use of the ``goto`` statement  in C! "
 "It illustrates the use of :c:func:`PyErr_ExceptionMatches` and "
@@ -1118,11 +1638,11 @@ msgstr ""
 "일으킵니다.) 이 예시를 수행하려면 소유하고 있는 참조를 보유하는데 사용하는 변수를 ``NULL`` 로 초기화하는 것이 중요합니다."
 " 마찬가지로 반환 값은 ``-1`` (실패) 로 설정되고 마지만 호출이 성공한 뒤에야 성공으로 설정됩니다."
 
-#: ../../c-api/intro.rst:718
+#: ../../c-api/intro.rst:1098
 msgid "Embedding Python"
 msgstr "파이썬 임베딩하기"
 
-#: ../../c-api/intro.rst:720
+#: ../../c-api/intro.rst:1100
 msgid ""
 "The one important task that only embedders (as opposed to extension "
 "writers) of the Python interpreter have to worry about is the "
@@ -1133,7 +1653,7 @@ msgstr ""
 "확장 작성자들과는 달리 파이썬 인터프리터를 임베딩 하는 사람들만이 걱정해야 하는 한가지 중요한 문제는 파이썬 인터프리터의 초기화, "
 "그리고 아마도 마무리일 것입니다. 인터프리터의 대부분의 기능은 인터프리터가 초기화 된 이후에 사용할 수 있습니다."
 
-#: ../../c-api/intro.rst:733
+#: ../../c-api/intro.rst:1113
 msgid ""
 "The basic initialization function is :c:func:`Py_Initialize`. This "
 "initializes the table of loaded modules, and creates the fundamental "
@@ -1144,7 +1664,7 @@ msgstr ""
 " :mod:`builtins`, :mod:`__main__`, 그리고 :mod:`sys` 를 생성합니다. 또한 모듈 검색 경로 "
 "(``sys.path``) 를 초기화합니다"
 
-#: ../../c-api/intro.rst:738
+#: ../../c-api/intro.rst:1118
 msgid ""
 ":c:func:`Py_Initialize` does not set the \"script argument list\"  "
 "(``sys.argv``). If this variable is needed by Python code that will be "
@@ -1157,7 +1677,7 @@ msgstr ""
 ":c:member:`PyConfig.parse_argv`\\는 반드시 설정되어야 합니다: :ref:`파이썬 초기화 구성 <init-"
 "config>`\\을 참조하세요."
 
-#: ../../c-api/intro.rst:743
+#: ../../c-api/intro.rst:1123
 #, python-brace-format
 msgid ""
 "On most systems (in particular, on Unix and Windows, although the details"
@@ -1176,7 +1696,7 @@ msgstr ""
 ":file:`python` 이라는 이름의 실행 파일이 발견되는 부모 디렉터리를 기준으로 :file:`lib/python{X.Y}` "
 "같은 이름을 가진 디렉터리를 찾습니다."
 
-#: ../../c-api/intro.rst:752
+#: ../../c-api/intro.rst:1132
 #, python-brace-format
 msgid ""
 "For instance, if the Python executable is found in "
@@ -1194,17 +1714,14 @@ msgstr ""
 "\"fallback\" 경로이기도 합니다.) 유저는 환경 변수 :envvar:`PYTHONHOME` 를 설정하여 이 동작을 "
 "재정의하거나 :envvar:`PYTHONPATH` 를 설정하여 표준 경로 앞에 추가적인 디렉터리를 추가할 수 있습니다."
 
-#: ../../c-api/intro.rst:766
+#: ../../c-api/intro.rst:1140
+#, fuzzy
 msgid ""
 "The embedding application can steer the search by setting "
 ":c:member:`PyConfig.program_name` *before* calling "
 ":c:func:`Py_InitializeFromConfig`. Note that :envvar:`PYTHONHOME` still "
 "overrides this and :envvar:`PYTHONPATH` is still inserted in front of the"
-" standard path.  An application that requires total control has to "
-"provide its own implementation of :c:func:`Py_GetPath`, "
-":c:func:`Py_GetPrefix`, :c:func:`Py_GetExecPrefix`, and "
-":c:func:`Py_GetProgramFullPath` (all defined in "
-":file:`Modules/getpath.c`)."
+" standard path."
 msgstr ""
 "파이썬을 임베딩하는 애플리케이션은 :c:func:`Py_InitializeFromConfig` 를 호출하기 *전에* "
 ":c:member:`PyConfig.program_name` 을 설정하여 검색을 제어할 수 있습니다. "
@@ -1214,7 +1731,7 @@ msgstr ""
 ":c:func:`Py_GetProgramFullPath` 의 자체적인 구현을 제공할 필요가 있습니다. (모두 "
 ":file:`Modules/getpath.c` 에 정의되어 있습니다.)"
 
-#: ../../c-api/intro.rst:777
+#: ../../c-api/intro.rst:1148
 msgid ""
 "Sometimes, it is desirable to \"uninitialize\" Python.  For instance,  "
 "the application may want to start over (make another call to "
@@ -1234,11 +1751,11 @@ msgstr ""
 "자세한 내용은 다른 장에서 제공됩니다. :c:func:`Py_FinalizeEx` 가 파이썬 인터프리터가 할당한 모든 메모리를 "
 "해제하지는 않는다는 점에 유의해야 합니다. 예를 들어, 현재 확장 모듈에서 할당한 메모리는 해제할 수 없습니다."
 
-#: ../../c-api/intro.rst:791
+#: ../../c-api/intro.rst:1162
 msgid "Debugging Builds"
 msgstr "디버깅 빌드"
 
-#: ../../c-api/intro.rst:793
+#: ../../c-api/intro.rst:1164
 msgid ""
 "Python can be built with several macros to enable extra checks of the "
 "interpreter and extension modules.  These checks tend to add a large "
@@ -1247,7 +1764,7 @@ msgstr ""
 "파이썬은 인터프리터와 확장 모듈들에 대한 추가적인 검사를 가능하게 하는 여러 매크로를 사용하여 빌드될 수 있습니다. 이러한 검사는 "
 "런타임에 많은 오버헤드를 추가하는 경향이 있으므로 기본적으로 실행되지 않습니다."
 
-#: ../../c-api/intro.rst:797
+#: ../../c-api/intro.rst:1168
 msgid ""
 "A full list of the various types of debugging builds is in the file "
 ":file:`Misc/SpecialBuilds.txt` in the Python source distribution. Builds "
@@ -1260,33 +1777,43 @@ msgstr ""
 "있습니다. 참조 횟수 추적, 메모리 할당자 디버깅, 메인 인터프리터 루프의 저수준 프로파일링을 지원하는 빌드들을 사용할 수 "
 "있습니다. 이 섹션에서는 가장 자주 사용되는 빌드만 설명합니다."
 
-#: ../../c-api/intro.rst:805
+#: ../../c-api/intro.rst:1176
 msgid ""
 "Compiling the interpreter with the :c:macro:`!Py_DEBUG` macro defined "
 "produces what is generally meant by :ref:`a debug build of Python <debug-"
-"build>`. :c:macro:`!Py_DEBUG` is enabled in the Unix build by adding "
-":option:`--with-pydebug` to the :file:`./configure` command. It is also "
-"implied by the presence of the not-Python-specific :c:macro:`!_DEBUG` "
-"macro.  When :c:macro:`!Py_DEBUG` is enabled in the Unix build, compiler "
-"optimization is disabled."
+"build>`."
 msgstr ""
-":c:macro:`!Py_DEBUG` 매크로가 정의된 인터프리터를 컴파일하면 일반적으로 :ref:`파이썬의 디버그 빌드 "
-"<debug-build>`\\가 일반적으로 의미하는 빌드가 생성됩니다. :c:macro:`!Py_DEBUG` 는 "
-":file:`./configure` 명령에 :option:`--with-pydebug` 를 추가하여 유닉스 빌드에서 활성화됩니다. "
-"또한 파이썬 전용이 아닌 :c:macro:`!_DEBUG` 매크로의 존재를 암시합니다. 유닉스 빌드에서 "
-":c:macro:`!Py_DEBUG` 가 활성화 되어있으면 컴파일러 최적화가 비활성화됩니다."
 
-#: ../../c-api/intro.rst:813
+#: ../../c-api/intro.rst:1179
+msgid ""
+"On Unix, :c:macro:`!Py_DEBUG` can be enabled by adding :option:`--with-"
+"pydebug` to the :file:`./configure` command. This will also disable "
+"compiler optimization."
+msgstr ""
+
+#: ../../c-api/intro.rst:1182
+msgid ""
+"On Windows, selecting a debug build (e.g., by passing the :option:`-d` "
+"option to :file:`PCbuild/build.bat`) automatically enables "
+":c:macro:`!Py_DEBUG`. Additionally, the presence of the not-Python-"
+"specific :c:macro:`!_DEBUG` macro, when defined by the compiler, will "
+"also implicitly enable :c:macro:`!Py_DEBUG`."
+msgstr ""
+
+#: ../../c-api/intro.rst:1187
+#, fuzzy
 msgid ""
 "In addition to the reference count debugging described below, extra "
-"checks are performed, see :ref:`Python Debug Build <debug-build>`."
+"checks are performed. See :ref:`Python Debug Build <debug-build>` for "
+"more details."
 msgstr ""
 "아래에 설명된 참조 횟수 디버깅 외에도 추가적인 검사가 수행됩니다, :ref:`파이썬 디버그 빌드 <debug-build>`\\를 "
 "찹조하세요."
 
-#: ../../c-api/intro.rst:816
+#: ../../c-api/intro.rst:1190
+#, fuzzy
 msgid ""
-"Defining :c:macro:`Py_TRACE_REFS` enables reference tracing (see the "
+"Defining ``Py_TRACE_REFS`` enables reference tracing (see the "
 ":option:`configure --with-trace-refs option <--with-trace-refs>`). When "
 "defined, a circular doubly linked list of active objects is maintained by"
 " adding two extra fields to every :c:type:`PyObject`.  Total allocations "
@@ -1300,55 +1827,55 @@ msgstr ""
 " 모든 할당이 추적됩니다. 인터프리터 종료시에는 현재 사용되고 있는 모든 참조가 출력됩니다. (대화식 모드에서는 인터프리터가 "
 "명령문을 실행할 때마다 이후에 출력됩니다.)"
 
-#: ../../c-api/intro.rst:823
+#: ../../c-api/intro.rst:1197
 msgid ""
 "Please refer to :file:`Misc/SpecialBuilds.txt` in the Python source "
 "distribution for more detailed information."
 msgstr "자세한 내용은 파이썬 소스 배포판 안의 :file:`Misc/SpecialBuilds.txt` 를 참조하십시오."
 
-#: ../../c-api/intro.rst:830
+#: ../../c-api/intro.rst:1204
 msgid "Recommended third party tools"
 msgstr ""
 
-#: ../../c-api/intro.rst:832
+#: ../../c-api/intro.rst:1206
 msgid ""
 "The following third party tools offer both simpler and more sophisticated"
 " approaches to creating C, C++ and Rust extensions for Python:"
 msgstr ""
 
-#: ../../c-api/intro.rst:835
+#: ../../c-api/intro.rst:1209
 msgid "`Cython <https://cython.org/>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:836
+#: ../../c-api/intro.rst:1210
 msgid "`cffi <https://cffi.readthedocs.io>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:837
+#: ../../c-api/intro.rst:1211
 msgid "`HPy <https://hpyproject.org/>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:838
+#: ../../c-api/intro.rst:1212
 msgid "`nanobind <https://github.com/wjakob/nanobind>`_ (C++)"
 msgstr ""
 
-#: ../../c-api/intro.rst:839
+#: ../../c-api/intro.rst:1213
 msgid "`Numba <https://numba.pydata.org/>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:840
+#: ../../c-api/intro.rst:1214
 msgid "`pybind11 <https://pybind11.readthedocs.io/>`_ (C++)"
 msgstr ""
 
-#: ../../c-api/intro.rst:841
+#: ../../c-api/intro.rst:1215
 msgid "`PyO3 <https://pyo3.rs/>`_ (Rust)"
 msgstr ""
 
-#: ../../c-api/intro.rst:842
+#: ../../c-api/intro.rst:1216
 msgid "`SWIG <https://www.swig.org>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:844
+#: ../../c-api/intro.rst:1218
 msgid ""
 "Using tools such as these can help avoid writing code that is tightly "
 "bound to a particular version of CPython, avoid reference counting "
@@ -1359,7 +1886,7 @@ msgid ""
 "from a single set of sources."
 msgstr ""
 
-#: ../../c-api/intro.rst:851
+#: ../../c-api/intro.rst:1225
 msgid ""
 "These projects are not supported by the same people who maintain Python, "
 "and issues need to be raised with the projects directly. Remember to "
@@ -1367,13 +1894,13 @@ msgid ""
 "above may become outdated."
 msgstr ""
 
-#: ../../c-api/intro.rst:858
+#: ../../c-api/intro.rst:1232
 msgid ""
 "`Python Packaging User Guide: Binary Extensions "
 "<https://packaging.python.org/guides/packaging-binary-extensions/>`_"
 msgstr ""
 
-#: ../../c-api/intro.rst:859
+#: ../../c-api/intro.rst:1233
 msgid ""
 "The Python Packaging User Guide not only covers several available tools "
 "that simplify the creation of binary extensions, but also discusses the "
@@ -1381,127 +1908,111 @@ msgid ""
 "first place."
 msgstr ""
 
-#: ../../c-api/intro.rst:276
+#: ../../c-api/intro.rst:635
 msgid "object"
 msgstr "객체"
 
-#: ../../c-api/intro.rst:276
+#: ../../c-api/intro.rst:635
 msgid "type"
 msgstr "형"
 
-#: ../../c-api/intro.rst:315
+#: ../../c-api/intro.rst:674
 msgid "Py_INCREF (C function)"
 msgstr "Py_INCREF (C 함수)"
 
-#: ../../c-api/intro.rst:315
+#: ../../c-api/intro.rst:674
 msgid "Py_DECREF (C function)"
 msgstr "Py_DECREF (C 함수)"
 
-#: ../../c-api/intro.rst:391
+#: ../../c-api/intro.rst:753
 msgid "PyList_SetItem (C function)"
 msgstr "PyList_SetItem (C 함수)"
 
-#: ../../c-api/intro.rst:391
+#: ../../c-api/intro.rst:753
 msgid "PyTuple_SetItem (C function)"
 msgstr "PyTuple_SetItem (C 함수)"
 
-#: ../../c-api/intro.rst:462
+#: ../../c-api/intro.rst:824
 msgid "set_all()"
 msgstr "set_all()"
 
-#: ../../c-api/intro.rst:481
+#: ../../c-api/intro.rst:843
 msgid "PyList_GetItem (C function)"
 msgstr "PyList_GetItem (C 함수)"
 
-#: ../../c-api/intro.rst:481
+#: ../../c-api/intro.rst:843
 msgid "PySequence_GetItem (C function)"
 msgstr "PySequence_GetItem (C 함수)"
 
-#: ../../c-api/intro.rst:511
+#: ../../c-api/intro.rst:873
 msgid "sum_list()"
 msgstr "sum_list()"
 
-#: ../../c-api/intro.rst:543 ../../c-api/intro.rst:635
+#: ../../c-api/intro.rst:905 ../../c-api/intro.rst:1015
 msgid "sum_sequence()"
 msgstr "sum_sequence()"
 
-#: ../../c-api/intro.rst:578
+#: ../../c-api/intro.rst:958
 msgid "PyErr_Occurred (C function)"
 msgstr "PyErr_Occurred (C 함수)"
 
-#: ../../c-api/intro.rst:591
+#: ../../c-api/intro.rst:971
 msgid "PyErr_SetString (C function)"
 msgstr "PyErr_SetString (C 함수)"
 
-#: ../../c-api/intro.rst:591 ../../c-api/intro.rst:699
+#: ../../c-api/intro.rst:971 ../../c-api/intro.rst:1079
 msgid "PyErr_Clear (C function)"
 msgstr "PyErr_Clear (C 함수)"
 
-#: ../../c-api/intro.rst:615
+#: ../../c-api/intro.rst:995
 msgid "exc_info (in module sys)"
 msgstr "exc_info (모듈 sys 에서)"
 
-#: ../../c-api/intro.rst:650 ../../c-api/intro.rst:697
+#: ../../c-api/intro.rst:1030 ../../c-api/intro.rst:1077
 msgid "incr_item()"
 msgstr "incr_item()"
 
-#: ../../c-api/intro.rst:699
+#: ../../c-api/intro.rst:1079
 msgid "PyErr_ExceptionMatches (C function)"
 msgstr "PyErr_ExceptionMatches (C 함수)"
 
-#: ../../c-api/intro.rst:699
+#: ../../c-api/intro.rst:1079
 msgid "Py_XDECREF (C function)"
 msgstr "Py_XDECREF (C 함수)"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "Py_Initialize (C function)"
 msgstr "Py_Initialize (C 함수)"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "module"
 msgstr "모듈"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "builtins"
 msgstr "builtins"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "__main__"
 msgstr "__main__"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "sys"
 msgstr "sys"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "search"
 msgstr "검색"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "path"
 msgstr "경로"
 
-#: ../../c-api/intro.rst:725
+#: ../../c-api/intro.rst:1105
 msgid "path (in module sys)"
 msgstr "path (모듈 sys 에서)"
 
-#: ../../c-api/intro.rst:760
-msgid "Py_GetPath (C function)"
-msgstr "Py_GetPath (C 함수)"
-
-#: ../../c-api/intro.rst:760
-msgid "Py_GetPrefix (C function)"
-msgstr "Py_GetPrefix (C 함수)"
-
-#: ../../c-api/intro.rst:760
-msgid "Py_GetExecPrefix (C function)"
-msgstr "Py_GetExecPrefix (C 함수)"
-
-#: ../../c-api/intro.rst:760
-msgid "Py_GetProgramFullPath (C function)"
-msgstr "Py_GetProgramFullPath (C 함수)"
-
-#: ../../c-api/intro.rst:775
+#: ../../c-api/intro.rst:1146
 msgid "Py_IsInitialized (C function)"
 msgstr "Py_IsInitialized (C 함수)"
 
@@ -1801,4 +2312,75 @@ msgstr "Py_IsInitialized (C 함수)"
 #~ " can ignore it and decides to "
 #~ "not inline the function."
 #~ msgstr ""
+
+#~ msgid "Return the maximum value between ``x`` and ``y``."
+#~ msgstr "``x`` 와 ``y`` 사이의 최댓값을 반환합니다."
+
+#~ msgid "Return the minimum value between ``x`` and ``y``."
+#~ msgstr "``x`` 와 ``y`` 사이의 최솟값을 반환합니다."
+
+#~ msgid ""
+#~ "Use :c:macro:`PyDoc_STRVAR` for docstrings to"
+#~ " support building Python without "
+#~ "docstrings, as specified in :pep:`7`."
+#~ msgstr ""
+#~ ":pep:`7` 에 명시된 것처럼 파이썬을 독스트링 없이"
+#~ " 빌드하기 위해 :c:macro:`PyDoc_STRVAR` 를 독스트링에"
+#~ " 사용하십시오"
+
+#~ msgid ""
+#~ "Use :c:macro:`PyDoc_STR` in specifying "
+#~ "docstrings to support building Python "
+#~ "without docstrings, as specified in "
+#~ ":pep:`7`."
+#~ msgstr ""
+#~ ":pep:`7` 에 명시된 것처럼 독스트링 없이 파이썬을"
+#~ " 빌드할 수 있도록 독스트링을 명시할 때 "
+#~ ":c:macro:`PyDoc_STR` 을 사용하십시오."
+
+#~ msgid ""
+#~ "A signed integral type such that "
+#~ "``sizeof(Py_ssize_t) == sizeof(size_t)``. C99 "
+#~ "doesn't define such a thing directly "
+#~ "(size_t is an unsigned integral type)."
+#~ " See :pep:`353` for details. "
+#~ "``PY_SSIZE_T_MAX`` is the largest positive "
+#~ "value of type :c:type:`Py_ssize_t`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Compiling the interpreter with the "
+#~ ":c:macro:`!Py_DEBUG` macro defined produces "
+#~ "what is generally meant by :ref:`a "
+#~ "debug build of Python <debug-build>`."
+#~ " :c:macro:`!Py_DEBUG` is enabled in the "
+#~ "Unix build by adding :option:`--with-"
+#~ "pydebug` to the :file:`./configure` command."
+#~ " It is also implied by the "
+#~ "presence of the not-Python-specific "
+#~ ":c:macro:`!_DEBUG` macro.  When :c:macro:`!Py_DEBUG`"
+#~ " is enabled in the Unix build, "
+#~ "compiler optimization is disabled."
+#~ msgstr ""
+#~ ":c:macro:`!Py_DEBUG` 매크로가 정의된 인터프리터를 컴파일하면 "
+#~ "일반적으로 :ref:`파이썬의 디버그 빌드 <debug-"
+#~ "build>`\\가 일반적으로 의미하는 빌드가 생성됩니다. "
+#~ ":c:macro:`!Py_DEBUG` 는 :file:`./configure` 명령에 "
+#~ ":option:`--with-pydebug` 를 추가하여 유닉스 빌드에서"
+#~ " 활성화됩니다. 또한 파이썬 전용이 아닌 "
+#~ ":c:macro:`!_DEBUG` 매크로의 존재를 암시합니다. 유닉스 "
+#~ "빌드에서 :c:macro:`!Py_DEBUG` 가 활성화 되어있으면 "
+#~ "컴파일러 최적화가 비활성화됩니다."
+
+#~ msgid "Py_GetPath (C function)"
+#~ msgstr "Py_GetPath (C 함수)"
+
+#~ msgid "Py_GetPrefix (C function)"
+#~ msgstr "Py_GetPrefix (C 함수)"
+
+#~ msgid "Py_GetExecPrefix (C function)"
+#~ msgstr "Py_GetExecPrefix (C 함수)"
+
+#~ msgid "Py_GetProgramFullPath (C function)"
+#~ msgstr "Py_GetProgramFullPath (C 함수)"
 

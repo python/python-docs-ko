@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/conversion.rst:6
 msgid "String conversion and formatting"
@@ -92,10 +92,11 @@ msgstr ""
 "``str[size-1]``\\은 이때 ``'\\0'``\\입니다."
 
 #: ../../c-api/conversion.rst:44
+#, fuzzy
 msgid ""
-"When ``rv < 0``, \"something bad happened.\" ``str[size-1]`` is ``'\\0'``"
-" in this case too, but the rest of *str* is undefined. The exact cause of"
-" the error depends on the underlying platform."
+"When ``rv < 0``, the output conversion failed and ``str[size-1]`` is "
+"``'\\0'`` in this case too, but the rest of *str* is undefined. The exact"
+" cause of the error depends on the underlying platform."
 msgstr ""
 "``rv < 0`` 일 때, \"뭔가 나쁜 일이 일어났습니다.\" 이때도 ``str[size-1]``\\은 "
 "``'\\0'``\\이지만, *str*\\의 나머지는 정의되지 않습니다. 에러의 정확한 원인은 하부 플랫폼에 따라 다릅니다."
@@ -189,7 +190,7 @@ msgstr ""
 msgid ""
 "If ``s`` represents a value that is too large to store in a float (for "
 "example, ``\"1e500\"`` is such a string on many platforms) then if "
-"``overflow_exception`` is ``NULL`` return ``Py_INFINITY`` (with an "
+"``overflow_exception`` is ``NULL`` return :c:macro:`!INFINITY` (with an "
 "appropriate sign) and don't set any exception.  Otherwise, "
 "``overflow_exception`` must point to a Python exception object; raise "
 "that exception and return ``-1.0``.  In both cases, set ``*endptr`` to "
@@ -227,46 +228,64 @@ msgstr ""
 "``'r'`` 포맷 코드는 표준 :func:`repr` 형식을 지정합니다."
 
 #: ../../c-api/conversion.rst:131
-msgid ""
-"*flags* can be zero or more of the values ``Py_DTSF_SIGN``, "
-"``Py_DTSF_ADD_DOT_0``, or ``Py_DTSF_ALT``, or-ed together:"
+#, fuzzy
+msgid "*flags* can be zero or more of the following values or-ed together:"
 msgstr ""
 "*flags*\\는 ``Py_DTSF_SIGN``, ``Py_DTSF_ADD_DOT_0`` 또는 ``Py_DTSF_ALT`` 값을 "
 "0개 이상 함께 or 할 수 있습니다:"
 
-#: ../../c-api/conversion.rst:134
+#: ../../c-api/conversion.rst:137
+#, fuzzy
 msgid ""
-"``Py_DTSF_SIGN`` means to always precede the returned string with a sign "
-"character, even if *val* is non-negative."
+"Always precede the returned string with a sign character, even if *val* "
+"is non-negative."
 msgstr "``Py_DTSF_SIGN``\\은 *val*\\가 음수가 아닐 때도 항상 반환된 문자열 앞에 부호 문자가 오는 것을 뜻합니다."
 
-#: ../../c-api/conversion.rst:137
-msgid ""
-"``Py_DTSF_ADD_DOT_0`` means to ensure that the returned string will not "
-"look like an integer."
+#: ../../c-api/conversion.rst:142
+#, fuzzy
+msgid "Ensure that the returned string will not look like an integer."
 msgstr "``Py_DTSF_ADD_DOT_0``\\은 반환된 문자열이 정수처럼 보이지 않도록 하는 것을 뜻합니다."
 
-#: ../../c-api/conversion.rst:140
+#: ../../c-api/conversion.rst:146
+#, fuzzy
 msgid ""
-"``Py_DTSF_ALT`` means to apply \"alternate\" formatting rules.  See the "
-"documentation for the :c:func:`PyOS_snprintf` ``'#'`` specifier for "
-"details."
+"Apply \"alternate\" formatting rules. See the documentation for the "
+":c:func:`PyOS_snprintf` ``'#'`` specifier for details."
 msgstr ""
 "``Py_DTSF_ALT``\\는 \"대체\" 포매팅 규칙을 적용하는 것을 뜻합니다. 자세한 내용은 "
 ":c:func:`PyOS_snprintf` ``'#'`` 지정자에 대한 설명서를 참조하십시오."
 
-#: ../../c-api/conversion.rst:144
+#: ../../c-api/conversion.rst:152
+msgid "Negative zero is converted to positive zero."
+msgstr ""
+
+#: ../../c-api/conversion.rst:156
 msgid ""
 "If *ptype* is non-``NULL``, then the value it points to will be set to "
-"one of ``Py_DTST_FINITE``, ``Py_DTST_INFINITE``, or ``Py_DTST_NAN``, "
-"signifying that *val* is a finite number, an infinite number, or not a "
-"number, respectively."
+"one of the following constants depending on the type of *val*:"
 msgstr ""
-"*ptype*\\이 ``NULL``\\이 아니면, 포인터가 가리키는 값은 ``Py_DTST_FINITE``, "
-"``Py_DTST_INFINITE`` 또는 ``Py_DTST_NAN`` 중 하나로 설정되어, *val*\\가 각각 유한 수, 무한 "
-"수 또는 NaN임을 나타냅니다."
 
-#: ../../c-api/conversion.rst:148
+#: ../../c-api/conversion.rst:163
+msgid "*\\*ptype*"
+msgstr ""
+
+#: ../../c-api/conversion.rst:164
+msgid "type of *val*"
+msgstr ""
+
+#: ../../c-api/conversion.rst:166
+msgid "finite number"
+msgstr ""
+
+#: ../../c-api/conversion.rst:168
+msgid "infinite number"
+msgstr ""
+
+#: ../../c-api/conversion.rst:170
+msgid "not a number"
+msgstr ""
+
+#: ../../c-api/conversion.rst:172
 msgid ""
 "The return value is a pointer to *buffer* with the converted string or "
 "``NULL`` if the conversion failed. The caller is responsible for freeing "
@@ -275,21 +294,118 @@ msgstr ""
 "반환 값은 변환된 문자열이 있는 *buffer*\\에 대한 포인터이거나, 변환에 실패하면 ``NULL``\\입니다. 호출자는 "
 ":c:func:`PyMem_Free`\\를 호출하여 반환된 문자열을 해제해야 합니다."
 
-#: ../../c-api/conversion.rst:157
+#: ../../c-api/conversion.rst:182
+#, fuzzy
 msgid ""
-"Case insensitive comparison of strings. The function works almost "
-"identically to :c:func:`!strcmp` except that it ignores the case."
-msgstr ""
-"대소 문자 구분 없는 문자열 비교. 이 함수는 대소 문자를 무시한다는 점만 제외하면 :c:func:`!strcmp`\\와 거의 같게"
-" 작동합니다."
-
-#: ../../c-api/conversion.rst:163
-msgid ""
-"Case insensitive comparison of strings. The function works almost "
-"identically to :c:func:`!strncmp` except that it ignores the case."
+"Case insensitive comparison of strings. These functions work almost "
+"identically to :c:func:`!strcmp` and :c:func:`!strncmp` (respectively), "
+"except that they ignore the case of ASCII characters."
 msgstr ""
 "대소 문자 구분 없는 문자열 비교. 이 함수는 대소 문자를 무시한다는 점만 제외하면 :c:func:`!strncmp`\\와 거의 "
 "같게 작동합니다."
+
+#: ../../c-api/conversion.rst:186
+msgid ""
+"Return ``0`` if the strings are equal, a negative value if *str1* sorts "
+"lexicographically before *str2*, or a positive value if it sorts after."
+msgstr ""
+
+#: ../../c-api/conversion.rst:189
+msgid ""
+"In the *str1* or *str2* arguments, a NUL byte marks the end of the "
+"string. For :c:func:`!PyOS_mystrnicmp`, the *size* argument gives the "
+"maximum size of the string, as if NUL was present at the index given by "
+"*size*."
+msgstr ""
+
+#: ../../c-api/conversion.rst:193
+msgid "These functions do not use the locale."
+msgstr ""
+
+#: ../../c-api/conversion.rst:199
+msgid "Case insensitive comparison of strings."
+msgstr ""
+
+#: ../../c-api/conversion.rst:201
+msgid ""
+"On Windows, these are aliases of :c:func:`!stricmp` and "
+":c:func:`!strnicmp`, respectively."
+msgstr ""
+
+#: ../../c-api/conversion.rst:204
+msgid ""
+"On other platforms, they are aliases of :c:func:`PyOS_mystricmp` and "
+":c:func:`PyOS_mystrnicmp`, respectively."
+msgstr ""
+
+#: ../../c-api/conversion.rst:209
+msgid "Character classification and conversion"
+msgstr ""
+
+#: ../../c-api/conversion.rst:211
+msgid ""
+"The following macros provide locale-independent (unlike the C standard "
+"library ``ctype.h``) character classification and conversion. The "
+"argument must be a signed or unsigned :c:expr:`char`."
+msgstr ""
+
+#: ../../c-api/conversion.rst:218
+msgid "Return true if the character *c* is an alphanumeric character."
+msgstr ""
+
+#: ../../c-api/conversion.rst:223
+msgid ""
+"Return true if the character *c* is an alphabetic character (``a-z`` and "
+"``A-Z``)."
+msgstr ""
+
+#: ../../c-api/conversion.rst:228
+msgid "Return true if the character *c* is a decimal digit (``0-9``)."
+msgstr ""
+
+#: ../../c-api/conversion.rst:233
+msgid "Return true if the character *c* is a lowercase ASCII letter (``a-z``)."
+msgstr ""
+
+#: ../../c-api/conversion.rst:238
+msgid "Return true if the character *c* is an uppercase ASCII letter (``A-Z``)."
+msgstr ""
+
+#: ../../c-api/conversion.rst:243
+msgid ""
+"Return true if the character *c* is a whitespace character (space, tab, "
+"carriage return, newline, vertical tab, or form feed)."
+msgstr ""
+
+#: ../../c-api/conversion.rst:249
+msgid ""
+"Return true if the character *c* is a hexadecimal digit (``0-9``, "
+"``a-f``, and ``A-F``)."
+msgstr ""
+
+#: ../../c-api/conversion.rst:255
+msgid "Return the lowercase equivalent of the character *c*."
+msgstr ""
+
+#: ../../c-api/conversion.rst:260
+msgid "Return the uppercase equivalent of the character *c*."
+msgstr ""
+
+#: ../../c-api/conversion.rst:264
+msgid "Bit masks"
+msgstr ""
+
+#: ../../c-api/conversion.rst:266
+msgid ""
+"The following constants are bit masks used by the character "
+"classification macros above:"
+msgstr ""
+
+#: ../../c-api/conversion.rst:277
+msgid ""
+"Values used internally by the ``Py_IS*`` classification macros above. "
+"Exposed for backwards compatibility only."
+msgstr ""
 
 #~ msgid ""
 #~ "If the platform doesn't have "
@@ -301,4 +417,28 @@ msgstr ""
 #~ "플랫폼에 :c:func:`vsnprintf`\\가 없고 잘림을 방지하는 "
 #~ "데 필요한 버퍼 크기가 *size*\\를 512바이트보다 더"
 #~ " 초과하면, 파이썬은 :c:func:`Py_FatalError`\\로 중단됩니다."
+
+#~ msgid ""
+#~ "If *ptype* is non-``NULL``, then the "
+#~ "value it points to will be set "
+#~ "to one of ``Py_DTST_FINITE``, "
+#~ "``Py_DTST_INFINITE``, or ``Py_DTST_NAN``, signifying"
+#~ " that *val* is a finite number, "
+#~ "an infinite number, or not a "
+#~ "number, respectively."
+#~ msgstr ""
+#~ "*ptype*\\이 ``NULL``\\이 아니면, 포인터가 가리키는 값은"
+#~ " ``Py_DTST_FINITE``, ``Py_DTST_INFINITE`` 또는 "
+#~ "``Py_DTST_NAN`` 중 하나로 설정되어, *val*\\가 각각"
+#~ " 유한 수, 무한 수 또는 NaN임을 나타냅니다."
+
+#~ msgid ""
+#~ "Case insensitive comparison of strings. "
+#~ "The function works almost identically to"
+#~ " :c:func:`!strcmp` except that it ignores"
+#~ " the case."
+#~ msgstr ""
+#~ "대소 문자 구분 없는 문자열 비교. 이 함수는"
+#~ " 대소 문자를 무시한다는 점만 제외하면 "
+#~ ":c:func:`!strcmp`\\와 거의 같게 작동합니다."
 

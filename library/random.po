@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/random.rst:2
 msgid ":mod:`!random` --- Generate pseudo-random numbers"
@@ -88,8 +88,9 @@ msgid ""
 msgstr ""
 
 #: ../../library/random.rst:40
+#, fuzzy
 msgid ""
-"The :mod:`random` module also provides the :class:`SystemRandom` class "
+"The :mod:`!random` module also provides the :class:`SystemRandom` class "
 "which uses the system function :func:`os.urandom` to generate random "
 "numbers from sources provided by the operating system."
 msgstr ""
@@ -157,7 +158,8 @@ msgstr ""
 "참조하십시오)."
 
 #: ../../library/random.rst:81
-msgid "If *a* is an int, it is used directly."
+#, fuzzy
+msgid "If *a* is an int, its absolute value is used directly."
 msgstr "*a*\\가 int이면, 직접 사용됩니다."
 
 #: ../../library/random.rst:83
@@ -333,12 +335,13 @@ msgstr ""
 ":exc:`TypeError`\\입니다."
 
 #: ../../library/random.rst:195
+#, fuzzy
 msgid ""
 "The *weights* or *cum_weights* can use any numeric type that "
-"interoperates with the :class:`float` values returned by :func:`random` "
-"(that includes integers, floats, and fractions but excludes decimals).  "
-"Weights are assumed to be non-negative and finite.  A :exc:`ValueError` "
-"is raised if all weights are zero."
+"interoperates with the :class:`float` values returned by "
+":func:`~random.random` (that includes integers, floats, and fractions but"
+" excludes decimals).  Weights are assumed to be non-negative and finite."
+"  A :exc:`ValueError` is raised if all weights are zero."
 msgstr ""
 "*weights*\\나 *cum_weights*\\는 :func:`random`\\이 반환하는 :class:`float` 값과 상호"
 " 운용되는 모든 숫자 형을 사용할 수 있습니다 (정수, 부동 소수점(float) 및 유리수(fractions)는 포함하지만, "
@@ -645,9 +648,10 @@ msgid "Alternative Generator"
 msgstr "대체 생성기"
 
 #: ../../library/random.rst:412
+#, fuzzy
 msgid ""
 "Class that implements the default pseudo-random number generator used by "
-"the :mod:`random` module."
+"the :mod:`!random` module."
 msgstr ":mod:`random` 모듈에서 사용하는 기본 의사 난수 생성기를 구현하는 클래스."
 
 #: ../../library/random.rst:415
@@ -1086,14 +1090,19 @@ msgstr "조리법"
 #: ../../library/random.rst:632
 msgid ""
 "These recipes show how to efficiently make random selections from the "
-"combinatoric iterators in the :mod:`itertools` module:"
+"combinatoric iterators in the :mod:`itertools` module or the :pypi:`more-"
+"itertools` project:"
 msgstr ""
 
-#: ../../library/random.rst:635
+#: ../../library/random.rst:636
+#, fuzzy
 msgid ""
-"def random_product(*args, repeat=1):\n"
-"    \"Random selection from itertools.product(*args, **kwds)\"\n"
-"    pools = [tuple(pool) for pool in args] * repeat\n"
+"import random\n"
+"\n"
+"def random_product(*iterables, repeat=1):\n"
+"    \"Random selection from itertools.product(*iterables, "
+"repeat=repeat)\"\n"
+"    pools = tuple(map(tuple, iterables)) * repeat\n"
 "    return tuple(map(random.choice, pools))\n"
 "\n"
 "def random_permutation(iterable, r=None):\n"
@@ -1117,7 +1126,22 @@ msgid ""
 "    pool = tuple(iterable)\n"
 "    n = len(pool)\n"
 "    indices = sorted(random.choices(range(n), k=r))\n"
-"    return tuple(pool[i] for i in indices)"
+"    return tuple(pool[i] for i in indices)\n"
+"\n"
+"def random_derangement(iterable):\n"
+"    \"Choose a permutation where no element stays in its original "
+"position.\"\n"
+"    seq = tuple(iterable)\n"
+"    if len(seq) < 2:\n"
+"        if not seq:\n"
+"            return ()\n"
+"        raise IndexError('No derangments to choose from')\n"
+"    perm = list(range(len(seq)))\n"
+"    start = tuple(perm)\n"
+"    while True:\n"
+"        random.shuffle(perm)\n"
+"        if all(p != q for p, q in zip(start, perm)):\n"
+"            return tuple([seq[i] for i in perm])"
 msgstr ""
 "def random_product(*args, repeat=1):\n"
 "    \"itertools.product(*args, **kwds) 에서 무작위 선택\"\n"
@@ -1146,7 +1170,7 @@ msgstr ""
 "    indices = sorted(random.choices(range(n), k=r))\n"
 "    return tuple(pool[i] for i in indices)"
 
-#: ../../library/random.rst:664
+#: ../../library/random.rst:751
 msgid ""
 "The default :func:`.random` returns multiples of 2⁻⁵³ in the range *0.0 ≤"
 " x < 1.0*.  All such numbers are evenly spaced and are exactly "
@@ -1158,7 +1182,7 @@ msgstr ""
 " 간격으로 분포되어있고 파이썬 float로 정확하게 표현할 수 있습니다. 그러나, 해당 범위의 다른 많은 표현 가능한 부동 소수점은"
 " 가능한 선택이 아닙니다. 예를 들어, ``0.05954861408025609``\\는 2⁻⁵³의 정수배가 아닙니다."
 
-#: ../../library/random.rst:670
+#: ../../library/random.rst:757
 msgid ""
 "The following recipe takes a different approach.  All floats in the "
 "interval are possible selections.  The mantissa comes from a uniform "
@@ -1171,7 +1195,7 @@ msgstr ""
 "지수(exponent)는 *-53*\\보다 작은 지수가 다음으로 큰 지수의 절반만큼 자주 발생하는 기하 분포(geometric "
 "distribution)에서 옵니다."
 
-#: ../../library/random.rst:678
+#: ../../library/random.rst:765
 msgid ""
 "from random import Random\n"
 "from math import ldexp\n"
@@ -1201,13 +1225,13 @@ msgstr ""
 "            exponent += x.bit_length() - 32\n"
 "        return ldexp(mantissa, exponent)"
 
-#: ../../library/random.rst:692
+#: ../../library/random.rst:779
 msgid ""
 "All :ref:`real valued distributions <real-valued-distributions>` in the "
 "class will use the new method::"
 msgstr "클래스의 모든 :ref:`실숫값 분포 <real-valued-distributions>`\\는 새 메서드를 사용합니다::"
 
-#: ../../library/random.rst:695
+#: ../../library/random.rst:782
 msgid ""
 ">>> fr = FullRandom()\n"
 ">>> fr.random()\n"
@@ -1221,7 +1245,7 @@ msgstr ""
 ">>> fr.expovariate(0.25)\n"
 "8.87925541791544"
 
-#: ../../library/random.rst:701
+#: ../../library/random.rst:788
 msgid ""
 "The recipe is conceptually equivalent to an algorithm that chooses from "
 "all the multiples of 2⁻¹⁰⁷⁴ in the range *0.0 ≤ x < 1.0*.  All such "
@@ -1233,7 +1257,7 @@ msgstr ""
 "숫자는 균등한 간격이지만, 대부분은 가장 가까운 표현 가능한 파이썬 부동 소수점으로 자리 내림해야 합니다. (값 2⁻¹⁰⁷⁴은 가장"
 " 작은 양의 정규화되지 않은 부동 소수점이며 ``math.ulp(0.0)``\\과 같습니다.)"
 
-#: ../../library/random.rst:710
+#: ../../library/random.rst:797
 msgid ""
 "`Generating Pseudo-random Floating-Point Values "
 "<https://allendowney.com/research/rand/downey07randfloat.pdf>`_ a paper "
@@ -1245,65 +1269,65 @@ msgstr ""
 "Downey의 논문은 :func:`.random`\\이 일반적으로 생성하는 것보다 더 세밀한 부동 소수점을 생성하는 방법을 "
 "설명합니다."
 
-#: ../../library/random.rst:718
+#: ../../library/random.rst:805
 msgid "Command-line usage"
 msgstr ""
 
-#: ../../library/random.rst:722
+#: ../../library/random.rst:809
 msgid "The :mod:`!random` module can be executed from the command line."
 msgstr ""
 
-#: ../../library/random.rst:724
+#: ../../library/random.rst:811
 msgid "python -m random [-h] [-c CHOICE [CHOICE ...] | -i N | -f N] [input ...]"
 msgstr "python -m random [-h] [-c CHOICE [CHOICE ...] | -i N | -f N] [input ...]"
 
-#: ../../library/random.rst:728
+#: ../../library/random.rst:815
 msgid "The following options are accepted:"
 msgstr ""
 
-#: ../../library/random.rst:734
+#: ../../library/random.rst:821
 msgid "Show the help message and exit."
 msgstr ""
 
-#: ../../library/random.rst:739
+#: ../../library/random.rst:826
 msgid "Print a random choice, using :meth:`choice`."
 msgstr ""
 
-#: ../../library/random.rst:744
+#: ../../library/random.rst:831
 msgid "Print a random integer between 1 and N inclusive, using :meth:`randint`."
 msgstr ""
 
-#: ../../library/random.rst:749
+#: ../../library/random.rst:836
 msgid ""
 "Print a random floating-point number between 0 and N inclusive, using "
 ":meth:`uniform`."
 msgstr ""
 
-#: ../../library/random.rst:752
+#: ../../library/random.rst:839
 msgid "If no options are given, the output depends on the input:"
 msgstr ""
 
-#: ../../library/random.rst:754
+#: ../../library/random.rst:841
 msgid "String or multiple: same as :option:`--choice`."
 msgstr ""
 
-#: ../../library/random.rst:755
+#: ../../library/random.rst:842
 msgid "Integer: same as :option:`--integer`."
 msgstr ""
 
-#: ../../library/random.rst:756
+#: ../../library/random.rst:843
 msgid "Float: same as :option:`--float`."
 msgstr ""
 
-#: ../../library/random.rst:761
+#: ../../library/random.rst:848
 msgid "Command-line example"
 msgstr ""
 
-#: ../../library/random.rst:763
+#: ../../library/random.rst:850
 msgid "Here are some examples of the :mod:`!random` command-line interface:"
 msgstr ""
 
-#: ../../library/random.rst:765
+#: ../../library/random.rst:852
 msgid ""
 "$ # Choose one at random\n"
 "$ python -m random egg bacon sausage spam \"Lobster Thermidor aux "
@@ -1454,4 +1478,11 @@ msgstr ""
 #~ "향후에, *seed*\\는 다음 형 중 하나여야 합니다:"
 #~ " :class:`NoneType`, :class:`int`, :class:`float`, "
 #~ ":class:`str`, :class:`bytes` 또는 :class:`bytearray`."
+
+#~ msgid ""
+#~ "These recipes show how to efficiently"
+#~ " make random selections from the "
+#~ "combinatoric iterators in the :mod:`itertools`"
+#~ " module:"
+#~ msgstr ""
 

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/pkgutil.rst:2
 msgid ":mod:`!pkgutil` --- Package extension utility"
@@ -234,13 +234,13 @@ msgid "Get a resource from a package."
 msgstr "패키지에서 리소스를 가져옵니다."
 
 #: ../../library/pkgutil.rst:150
+#, fuzzy
 msgid ""
 "This is a wrapper for the :term:`loader` :meth:`get_data "
 "<importlib.abc.ResourceLoader.get_data>` API.  The *package* argument "
 "should be the name of a package, in standard module format (``foo.bar``)."
 "  The *resource* argument should be in the form of a relative filename, "
-"using ``/`` as the path separator.  The parent directory name ``..`` is "
-"not allowed, and nor is a rooted name (starting with a ``/``)."
+"using ``/`` as the path separator."
 msgstr ""
 "이것은 :term:`로더 <loader>` :meth:`get_data "
 "<importlib.abc.ResourceLoader.get_data>` API에 대한 래퍼입니다. *package* 인자는 표준 "
@@ -248,19 +248,26 @@ msgstr ""
 "상대 파일명의 형식이어야 합니다. 상위 디렉터리 이름 ``..``\\는 허용되지 않으며, 루트에서 시작하는(``/``\\로 "
 "시작하는) 이름도 허용되지 않습니다."
 
-#: ../../library/pkgutil.rst:157
+#: ../../library/pkgutil.rst:156
 msgid ""
 "The function returns a binary string that is the contents of the "
 "specified resource."
 msgstr "이 함수는 지정된 리소스의 내용인 바이트열을 반환합니다."
 
-#: ../../library/pkgutil.rst:160
+#: ../../library/pkgutil.rst:159
+msgid ""
+"This function uses the :term:`loader` method "
+":func:`~importlib.abc.FileLoader.get_data` to support modules installed "
+"in the filesystem, but also in zip files, databases, or elsewhere."
+msgstr ""
+
+#: ../../library/pkgutil.rst:164
 msgid ""
 "For packages located in the filesystem, which have already been imported,"
 " this is the rough equivalent of::"
 msgstr "파일시스템에 있는 패키지(이미 임포트 되었습니다)의 경우, 이것은 대략 다음과 동등합니다::"
 
-#: ../../library/pkgutil.rst:163
+#: ../../library/pkgutil.rst:167
 msgid ""
 "d = os.path.dirname(sys.modules[package].__file__)\n"
 "data = open(os.path.join(d, resource), 'rb').read()"
@@ -268,7 +275,30 @@ msgstr ""
 "d = os.path.dirname(sys.modules[package].__file__)\n"
 "data = open(os.path.join(d, resource), 'rb').read()"
 
-#: ../../library/pkgutil.rst:166
+#: ../../library/pkgutil.rst:170
+msgid ""
+"Like the :func:`open` function, :func:`!get_data` can follow parent "
+"directories (``../``) and absolute paths (starting with ``/`` or ``C:/``,"
+" for example). It can open compilation/installation artifacts like "
+"``.py`` and ``.pyc`` files or files with :func:`reserved filenames "
+"<os.path.isreserved>`. To be compatible with non-filesystem loaders, "
+"avoid using these features."
+msgstr ""
+
+#: ../../library/pkgutil.rst:179
+msgid ""
+"This function is intended for trusted input. It does not verify that "
+"*resource* \"belongs\" to *package*."
+msgstr ""
+
+#: ../../library/pkgutil.rst:182
+msgid ""
+"If you use a user-provided *resource* path, consider verifying it. For "
+"example, require an alphanumeric filename with a known extension, or "
+"install and check a list of known resources."
+msgstr ""
+
+#: ../../library/pkgutil.rst:186
 msgid ""
 "If the package cannot be located or loaded, or it uses a :term:`loader` "
 "which does not support :meth:`get_data "
@@ -283,11 +313,17 @@ msgstr ""
 "package>`\\를 위한 :term:`로더 <loader>`\\는 :meth:`get_data "
 "<importlib.abc.ResourceLoader.get_data>`\\를 지원하지 않습니다."
 
-#: ../../library/pkgutil.rst:175
+#: ../../library/pkgutil.rst:194
+msgid ""
+"The :mod:`importlib.resources` module provides structured access to "
+"module resources."
+msgstr ""
+
+#: ../../library/pkgutil.rst:199
 msgid "Resolve a name to an object."
 msgstr "이름을 객체로 해석합니다."
 
-#: ../../library/pkgutil.rst:177
+#: ../../library/pkgutil.rst:201
 msgid ""
 "This functionality is used in numerous places in the standard library "
 "(see :issue:`12915`) - and equivalent functionality is also in widely "
@@ -296,7 +332,7 @@ msgstr ""
 "이 기능은 표준 라이브러리의 여러 곳에서 사용됩니다 (:issue:`12915`\\를 참조하십시오) - 그리고 동등한 기능이 "
 "setuptools, Django 및 Pyramid와 같은 널리 사용되는 제삼자 패키지에도 있습니다."
 
-#: ../../library/pkgutil.rst:181
+#: ../../library/pkgutil.rst:205
 msgid ""
 "It is expected that *name* will be a string in one of the following "
 "formats, where W is shorthand for a valid Python identifier and dot "
@@ -305,15 +341,20 @@ msgstr ""
 "*name*\\은 다음 형식 중 하나의 문자열 일 것으로 기대됩니다, 여기서 W는 유효한 파이썬 식별자를 나타내는 줄임 표현이며 "
 "점은 이러한 의사 정규식에서 리터럴 마침표를 나타냅니다:"
 
-#: ../../library/pkgutil.rst:185
+#: ../../library/pkgutil.rst:209
 msgid "``W(.W)*``"
 msgstr "``W(.W)*``"
 
-#: ../../library/pkgutil.rst:186
+#: ../../library/pkgutil.rst:210
 msgid "``W(.W)*:(W(.W)*)?``"
 msgstr "``W(.W)*:(W(.W)*)?``"
 
-#: ../../library/pkgutil.rst:188
+#: ../../library/pkgutil.rst:211
+#, fuzzy
+msgid "``W(.W)*:(W(.W)*)``"
+msgstr "``W(.W)*:(W(.W)*)?``"
+
+#: ../../library/pkgutil.rst:213
 msgid ""
 "The first form is intended for backward compatibility only. It assumes "
 "that some part of the dotted name is a package, and the rest is an object"
@@ -326,7 +367,7 @@ msgstr ""
 " 있는 객체이며, 다른 객체 안에 중첩되었을 수 있습니다. 패키지가 멈추고 객체 계층 구조가 시작되는 위치는 보는 것 만으로는 "
 "유추할 수 없습니다, 이 형식으로는 임포트 시도를 반복해서 수행해야합니다."
 
-#: ../../library/pkgutil.rst:195
+#: ../../library/pkgutil.rst:220
 msgid ""
 "In the second form, the caller makes the division point clear through the"
 " provision of a single colon: the dotted name to the left of the colon is"
@@ -338,27 +379,41 @@ msgstr ""
 "패키지이고, 오른쪽의 점으로 구분된 이름은 해당 패키지 내의 객체 계층 구조입니다. 이 형식에서는 한 번의 임포트만 필요합니다. "
 "콜론으로 끝나면, 모듈 객체가 반환됩니다."
 
-#: ../../library/pkgutil.rst:201
+#: ../../library/pkgutil.rst:226
+msgid "The first two forms are accepted when ``strict=False`` (the default)."
+msgstr ""
+
+#: ../../library/pkgutil.rst:228
+msgid ""
+"The third form requires both the module name and callable, separated by a"
+" colon. Only this form is accepted when ``strict=True``."
+msgstr ""
+
+#: ../../library/pkgutil.rst:231
 msgid ""
 "The function will return an object (which might be a module), or raise "
 "one of the following exceptions:"
 msgstr "이 함수는 객체(모듈일 수 있습니다)를 반환하거나, 다음 예외 중 하나를 발생시킵니다:"
 
-#: ../../library/pkgutil.rst:204
+#: ../../library/pkgutil.rst:234
 msgid ":exc:`ValueError` -- if *name* isn't in a recognised format."
 msgstr ":exc:`ValueError` -- *name*\\이 인식되는 형식이 아니면."
 
-#: ../../library/pkgutil.rst:206
+#: ../../library/pkgutil.rst:236
 msgid ":exc:`ImportError` -- if an import failed when it shouldn't have."
 msgstr ":exc:`ImportError` -- 그러지 말아야할 때 임포트가 실패하면."
 
-#: ../../library/pkgutil.rst:208
+#: ../../library/pkgutil.rst:238
 msgid ""
 ":exc:`AttributeError` -- If a failure occurred when traversing the object"
 " hierarchy within the imported package to get to the desired object."
 msgstr ""
 ":exc:`AttributeError` -- 임포트한 패키지 내에서 객체 계층 구조를 탐색하여 원하는 객체에 도달하는 도중 실패가 "
 "발생할 때."
+
+#: ../../library/pkgutil.rst:245
+msgid "The optional keyword-only ``strict`` flag was added."
+msgstr ""
 
 #~ msgid "Retrieve a module :term:`loader` for the given *fullname*."
 #~ msgstr "주어진 *fullname*\\에 대한 모듈 :term:`로더 <loader>`\\를 가져옵니다."

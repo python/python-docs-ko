@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/marshal.rst:6
 msgid "Data marshalling support"
@@ -55,7 +55,7 @@ msgstr ""
 ":c:expr:`long` 정수 *value*\\를 *file*\\로 마샬합니다. *value*\\의 최하위 32비트 만 "
 "기록합니다; 기본 :c:expr:`long` 형의 크기와 관계없이. *version*\\은 파일 형식을 나타냅니다."
 
-#: ../../c-api/marshal.rst:29 ../../c-api/marshal.rst:37
+#: ../../c-api/marshal.rst:29 ../../c-api/marshal.rst:43
 msgid ""
 "This function can fail, in which case it sets the error indicator. Use "
 ":c:func:`PyErr_Occurred` to check for that."
@@ -63,21 +63,39 @@ msgstr ""
 
 #: ../../c-api/marshal.rst:34
 msgid ""
+"In Python 3.15 and earlier, this function does not set the error "
+"indicator if writing to *file* fails. The same caveat applies as for "
+":c:func:`PyMarshal_WriteObjectToFile`."
+msgstr ""
+
+#: ../../c-api/marshal.rst:40
+msgid ""
 "Marshal a Python object, *value*, to *file*. *version* indicates the file"
 " format."
 msgstr "파이썬 객체 *value*\\를 *file*\\로 마샬합니다. *version*\\은 파일 형식을 나타냅니다."
 
-#: ../../c-api/marshal.rst:42
+#: ../../c-api/marshal.rst:48
+msgid ""
+"In Python 3.15 and earlier, this function can write only part of the data"
+" to *file* and return without setting the error indicator, for example if"
+" *value* contains an object which cannot be marshalled or if writing to "
+"*file* fails (see :gh:`155907`). Code which has to support these versions"
+" cannot rely on :c:func:`PyErr_Occurred` alone to know that all the data "
+"was written. It can use :c:func:`PyMarshal_WriteObjectToString` and write"
+" the result itself, or validate what was written."
+msgstr ""
+
+#: ../../c-api/marshal.rst:59
 msgid ""
 "Return a bytes object containing the marshalled representation of "
 "*value*. *version* indicates the file format."
 msgstr "마샬된 *value* 표현을 포함한 바이트열 객체를 반환합니다. *version*\\은 파일 형식을 나타냅니다."
 
-#: ../../c-api/marshal.rst:46
+#: ../../c-api/marshal.rst:63
 msgid "The following functions allow marshalled values to be read back in."
 msgstr "다음 함수를 사용하면 마샬된 값을 다시 읽을 수 있습니다."
 
-#: ../../c-api/marshal.rst:51
+#: ../../c-api/marshal.rst:68
 msgid ""
 "Return a C :c:expr:`long` from the data stream in a :c:expr:`FILE*` "
 "opened for reading.  Only a 32-bit value can be read in using this "
@@ -86,13 +104,13 @@ msgstr ""
 "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 C :c:expr:`long`\\을 반환합니다. 이 함수를 "
 "사용하면 :c:expr:`long`\\의 기본 크기와 관계없이 32비트 값만 읽을 수 있습니다."
 
-#: ../../c-api/marshal.rst:55 ../../c-api/marshal.rst:65
+#: ../../c-api/marshal.rst:72 ../../c-api/marshal.rst:82
 msgid ""
 "On error, sets the appropriate exception (:exc:`EOFError`) and returns "
 "``-1``."
 msgstr "에러 시, 적절한 예외(:exc:`EOFError`)를 설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/marshal.rst:61
+#: ../../c-api/marshal.rst:78
 msgid ""
 "Return a C :c:expr:`short` from the data stream in a :c:expr:`FILE*` "
 "opened for reading.  Only a 16-bit value can be read in using this "
@@ -101,14 +119,14 @@ msgstr ""
 "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 C :c:expr:`short`\\를 반환합니다. 이 함수를 "
 "사용하면 :c:expr:`short`\\의 기본 크기와 관계없이 16비트 값만 읽을 수 있습니다."
 
-#: ../../c-api/marshal.rst:71
+#: ../../c-api/marshal.rst:88
 msgid ""
 "Return a Python object from the data stream in a :c:expr:`FILE*` opened "
 "for reading."
 msgstr "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 파이썬 객체를 반환합니다."
 
-#: ../../c-api/marshal.rst:74 ../../c-api/marshal.rst:88
-#: ../../c-api/marshal.rst:97
+#: ../../c-api/marshal.rst:91 ../../c-api/marshal.rst:105
+#: ../../c-api/marshal.rst:114
 msgid ""
 "On error, sets the appropriate exception (:exc:`EOFError`, "
 ":exc:`ValueError` or :exc:`TypeError`) and returns ``NULL``."
@@ -116,14 +134,15 @@ msgstr ""
 "에러 시, 적절한 예외(:exc:`EOFError`, :exc:`ValueError` 또는 :exc:`TypeError`)를 "
 "설정하고 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/marshal.rst:80
+#: ../../c-api/marshal.rst:97
+#, fuzzy
 msgid ""
 "Return a Python object from the data stream in a :c:expr:`FILE*` opened "
 "for reading.  Unlike :c:func:`PyMarshal_ReadObjectFromFile`, this "
 "function assumes that no further objects will be read from the file, "
 "allowing it to aggressively load file data into memory so that the de-"
 "serialization can operate from data in memory rather than reading a byte "
-"at a time from the file.  Only use these variant if you are certain that "
+"at a time from the file.  Only use this variant if you are certain that "
 "you won't be reading anything else from the file."
 msgstr ""
 "읽기 위해 열린 :c:expr:`FILE*`\\의 데이터 스트림에서 파이썬 객체를 반환합니다. "
@@ -131,7 +150,7 @@ msgstr ""
 "것이라고 가정함으로써, 파일 데이터를 메모리에 적극적으로 로드 할 수 있고, 파일에서 한 바이트씩 읽는 대신 메모리에 있는 "
 "데이터에서 역 직렬화가 작동할 수 있습니다. 파일에서 어떤 것도 읽지 않을 것이라는 확신이 들 경우에만 이 변형을 사용하십시오."
 
-#: ../../c-api/marshal.rst:94
+#: ../../c-api/marshal.rst:111
 msgid ""
 "Return a Python object from the data stream in a byte buffer containing "
 "*len* bytes pointed to by *data*."

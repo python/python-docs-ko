@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/tuple.rst:6
 msgid "Tuple Objects"
@@ -52,6 +52,22 @@ msgstr "크기 *len* 인 튜플 객체나, 실패 시 예외를 설정하고 ``N
 
 #: ../../c-api/tuple.rst:42
 msgid ""
+"Create a tuple of *size* items and copy references from *array* to the "
+"new tuple."
+msgstr ""
+
+#: ../../c-api/tuple.rst:45
+msgid "*array* can be NULL if *size* is ``0``."
+msgstr ""
+
+#: ../../c-api/tuple.rst:47
+msgid ""
+"On success, return a new reference. On error, set an exception and return"
+" ``NULL``."
+msgstr ""
+
+#: ../../c-api/tuple.rst:55
+msgid ""
 "Return a new tuple object of size *n*, or ``NULL`` with an exception set "
 "on failure. The tuple values are initialized to the subsequent *n* C "
 "arguments pointing to Python objects. ``PyTuple_Pack(2, a, b)`` is "
@@ -61,17 +77,18 @@ msgstr ""
 " *n* 개의 C 인자로 초기화됩니다. ``PyTuple_Pack(2, a, b)``\\는 "
 "``Py_BuildValue(\"(OO)\", a, b)``\\와 동등합니다."
 
-#: ../../c-api/tuple.rst:50
+#: ../../c-api/tuple.rst:63
+#, fuzzy
 msgid ""
 "Take a pointer to a tuple object, and return the size of that tuple. On "
-"error, return ``-1`` and with an exception set."
+"error, return ``-1`` with an exception set."
 msgstr "튜플 객체에 대한 포인터를 받아서, 해당 튜플의 크기를 반환합니다. 에러가 발생하면, 예외를 설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/tuple.rst:56
+#: ../../c-api/tuple.rst:69
 msgid "Like :c:func:`PyTuple_Size`, but without error checking."
 msgstr ":c:func:`PyTuple_Size`\\와 비슷하지만, 에러 검사를 생략합니다."
 
-#: ../../c-api/tuple.rst:61
+#: ../../c-api/tuple.rst:74
 msgid ""
 "Return the object at position *pos* in the tuple pointed to by *p*.  If "
 "*pos* is negative or out of bounds, return ``NULL`` and set an "
@@ -80,7 +97,7 @@ msgstr ""
 "*p*\\가 가리키는 튜플의 *pos* 위치에 있는 객체를 반환합니다. *pos*\\가 음수이거나 범위를 벗어나면, "
 "``NULL``\\을 반환하고 :exc:`IndexError` 예외를 설정합니다."
 
-#: ../../c-api/tuple.rst:64
+#: ../../c-api/tuple.rst:77
 msgid ""
 "The returned reference is borrowed from the tuple *p* (that is: it is "
 "only valid as long as you hold a reference to *p*). To get a "
@@ -88,11 +105,11 @@ msgid ""
 "<Py_NewRef>` or :c:func:`PySequence_GetItem`."
 msgstr ""
 
-#: ../../c-api/tuple.rst:73
+#: ../../c-api/tuple.rst:86
 msgid "Like :c:func:`PyTuple_GetItem`, but does no checking of its arguments."
 msgstr ":c:func:`PyTuple_GetItem`\\와 비슷하지만, 인자를 확인하지 않습니다."
 
-#: ../../c-api/tuple.rst:78
+#: ../../c-api/tuple.rst:91
 msgid ""
 "Return the slice of the tuple pointed to by *p* between *low* and *high*,"
 " or ``NULL`` with an exception set on failure."
@@ -100,48 +117,56 @@ msgstr ""
 "*p*\\가 가리키는 튜플의 *low*\\와 *high* 사이의 슬라이스를 반환하거나, 실패하면 예외를 설정하고 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/tuple.rst:81
+#: ../../c-api/tuple.rst:94
 msgid ""
 "This is the equivalent of the Python expression ``p[low:high]``. Indexing"
 " from the end of the tuple is not supported."
 msgstr "이것은 파이썬 표현식 ``p[low:high]``\\와 동등합니다. 튜플 끝으로부터의 인덱싱은 지원되지 않습니다."
 
-#: ../../c-api/tuple.rst:87
+#: ../../c-api/tuple.rst:100
+#, fuzzy
 msgid ""
 "Insert a reference to object *o* at position *pos* of the tuple pointed "
 "to by *p*.  Return ``0`` on success.  If *pos* is out of bounds, return "
-"``-1`` and set an :exc:`IndexError` exception."
+"``-1`` and set an :exc:`IndexError` exception. This function should only "
+"be used to fill in brand new tuples; using it on an existing tuple is "
+"thread-unsafe."
 msgstr ""
 "*p*\\가 가리키는 튜플의 *pos* 위치에 객체 *o*\\에 대한 참조를 삽입합니다. 성공하면 ``0``\\을 반환합니다. "
 "*pos*\\가 범위를 벗어나면, ``-1``\\을 반환하고 :exc:`IndexError` 예외를 설정합니다."
 
-#: ../../c-api/tuple.rst:93
+#: ../../c-api/tuple.rst:107
+#, fuzzy
 msgid ""
-"This function \"steals\" a reference to *o* and discards a reference to "
-"an item already in the tuple at the affected position."
+"This function \":term:`steals <steal>`\" a reference to *o* and discards "
+"a reference to an item already in the tuple at the affected position "
+"(unless it was NULL)."
 msgstr ""
 "이 함수는 *o*\\에 대한 참조를 \"훔치고\" 영향을 받는 위치에서 튜플에 이미 있는 항목에 대한 참조를 "
 "버립니다(discard)."
 
-#: ../../c-api/tuple.rst:99
+#: ../../c-api/tuple.rst:114
+#, fuzzy
 msgid ""
 "Like :c:func:`PyTuple_SetItem`, but does no error checking, and should "
-"*only* be used to fill in brand new tuples."
+"*only* be used to fill in brand new tuples, using it on an existing tuple"
+" is thread-unsafe."
 msgstr ""
 ":c:func:`PyTuple_SetItem`\\과 비슷하지만, 에러 검사는 하지 않으며 새로운 튜플을 채울 때\\*만* 사용해야 "
 "합니다."
 
-#: ../../c-api/tuple.rst:102 ../../c-api/tuple.rst:224
-#: ../../c-api/tuple.rst:242
+#: ../../c-api/tuple.rst:117 ../../c-api/tuple.rst:244
+#: ../../c-api/tuple.rst:262
 msgid ""
 "Bounds checking is performed as an assertion if Python is built in "
 ":ref:`debug mode <debug-build>` or :option:`with assertions <--with-"
 "assertions>`."
 msgstr ""
 
-#: ../../c-api/tuple.rst:107
+#: ../../c-api/tuple.rst:122
+#, fuzzy
 msgid ""
-"This function \"steals\" a reference to *o*, and, unlike "
+"This function \":term:`steals <steal>`\" a reference to *o*, and, unlike "
 ":c:func:`PyTuple_SetItem`, does *not* discard a reference to any item "
 "that is being replaced; any reference in the tuple at position *pos* will"
 " be leaked."
@@ -149,14 +174,14 @@ msgstr ""
 "이 함수는 *o*\\에 대한 참조를 \"훔치고\", :c:func:`PyTuple_SetItem`\\와 달리, 교체 중인 항목에 "
 "대한 참조를 버리지 *않습니다*; *pos* 위치에서 튜플의 모든 참조는 누수됩니다."
 
-#: ../../c-api/tuple.rst:114
+#: ../../c-api/tuple.rst:129
 msgid ""
 "This macro should *only* be used on tuples that are newly created. Using "
 "this macro on a tuple that is already in use (or in other words, has a "
 "refcount > 1) could lead to undefined behavior."
 msgstr ""
 
-#: ../../c-api/tuple.rst:121
+#: ../../c-api/tuple.rst:136
 msgid ""
 "Can be used to resize a tuple.  *newsize* will be the new length of the "
 "tuple. Because tuples are *supposed* to be immutable, this should only be"
@@ -178,22 +203,25 @@ msgstr ""
 "``-1``\\을 반환하고, ``*p``\\를 ``NULL``\\로 설정하고, :exc:`MemoryError` 나 "
 ":exc:`SystemError`\\를 발생시킵니다."
 
-#: ../../c-api/tuple.rst:136
+#: ../../c-api/tuple.rst:151
 msgid "Struct Sequence Objects"
 msgstr "구조체 시퀀스 객체"
 
-#: ../../c-api/tuple.rst:138
+#: ../../c-api/tuple.rst:153
 msgid ""
-"Struct sequence objects are the C equivalent of "
-":func:`~collections.namedtuple` objects, i.e. a sequence whose items can "
-"also be accessed through attributes. To create a struct sequence, you "
-"first have to create a specific struct sequence type."
+"A struct sequence object is a :term:`named tuple`, that is, a sequence "
+"whose items can also be accessed through attributes. It is similar to "
+":func:`collections.namedtuple`, but provides a slightly different "
+"interface."
 msgstr ""
-"구조체 시퀀스(struct sequence) 객체는 :func:`~collections.namedtuple` 객체의 C "
-"등가물입니다, 즉 어트리뷰트를 통해 항목에 액세스할 수 있는 시퀀스입니다. 구조체 시퀀스를 만들려면, 먼저 특정 구조체 시퀀스 형을"
-" 만들어야 합니다."
 
-#: ../../c-api/tuple.rst:145
+#: ../../c-api/tuple.rst:158
+msgid ""
+"To create a struct sequence, you first have to create a specific struct "
+"sequence type."
+msgstr ""
+
+#: ../../c-api/tuple.rst:163
 msgid ""
 "Create a new struct sequence type from the data in *desc*, described "
 "below. Instances of the resulting type can be created with "
@@ -202,15 +230,15 @@ msgstr ""
 "아래에 설명된 *desc*\\의 데이터로 새로운 구조체 시퀀스 형을 만듭니다. 결과 형의 인스턴스는 "
 ":c:func:`PyStructSequence_New`\\로 만들 수 있습니다."
 
-#: ../../c-api/tuple.rst:148 ../../c-api/tuple.rst:217
+#: ../../c-api/tuple.rst:166 ../../c-api/tuple.rst:235
 msgid "Return ``NULL`` with an exception set on failure."
 msgstr "실패 시 예외를 설정하고 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/tuple.rst:153
+#: ../../c-api/tuple.rst:171
 msgid "Initializes a struct sequence type *type* from *desc* in place."
 msgstr "*desc*\\로 구조체 시퀀스 형 *type*\\을 재자리에서 초기화합니다."
 
-#: ../../c-api/tuple.rst:158
+#: ../../c-api/tuple.rst:176
 msgid ""
 "Like :c:func:`PyStructSequence_InitType`, but returns ``0`` on success "
 "and ``-1`` with an exception set on failure."
@@ -218,29 +246,29 @@ msgstr ""
 ":c:func:`PyStructSequence_InitType`\\와 비슷하지만, 성공하면 ``0``\\을, 실패하면 예외를 "
 "설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/tuple.rst:166
+#: ../../c-api/tuple.rst:184
 msgid "Contains the meta information of a struct sequence type to create."
 msgstr "만들 구조체 시퀀스 형의 메타 정보를 포함합니다."
 
-#: ../../c-api/tuple.rst:170
+#: ../../c-api/tuple.rst:188
 msgid ""
 "Fully qualified name of the type; null-terminated UTF-8 encoded. The name"
 " must contain the module name."
 msgstr ""
 
-#: ../../c-api/tuple.rst:175
+#: ../../c-api/tuple.rst:193
 msgid "Pointer to docstring for the type or ``NULL`` to omit."
 msgstr "해당 형에 대한 독스트링에 대한 포인터나 생략하려면 ``NULL``."
 
-#: ../../c-api/tuple.rst:179
+#: ../../c-api/tuple.rst:197
 msgid "Pointer to ``NULL``-terminated array with field names of the new type."
 msgstr "새로운 형의 필드 이름을 가진 ``NULL``\\로 끝나는 배열에 대한 포인터."
 
-#: ../../c-api/tuple.rst:183
+#: ../../c-api/tuple.rst:201
 msgid "Number of fields visible to the Python side (if used as tuple)."
 msgstr "파이썬 측에서 볼 수 있는 필드 수 (튜플로 사용된 경우)."
 
-#: ../../c-api/tuple.rst:188
+#: ../../c-api/tuple.rst:206
 msgid ""
 "Describes a field of a struct sequence. As a struct sequence is modeled "
 "as a tuple, all fields are typed as :c:expr:`PyObject*`.  The index in "
@@ -253,7 +281,7 @@ msgstr ""
 ":c:member:`~PyStructSequence_Desc.fields` 배열의 인덱스는 구조체 시퀀스의 어떤 필드가 기술되는지를"
 " 결정합니다."
 
-#: ../../c-api/tuple.rst:196
+#: ../../c-api/tuple.rst:214
 msgid ""
 "Name for the field or ``NULL`` to end the list of named fields, set to "
 ":c:data:`PyStructSequence_UnnamedField` to leave unnamed."
@@ -261,39 +289,40 @@ msgstr ""
 "필드의 이름. 또는 이름있는 필드의 목록을 끝내려면 ``NULL``, 이름이 없는 상태로 두려면 "
 ":c:data:`PyStructSequence_UnnamedField`\\로 설정합니다."
 
-#: ../../c-api/tuple.rst:201
+#: ../../c-api/tuple.rst:219
 msgid "Field docstring or ``NULL`` to omit."
 msgstr "필드 독스트링이나 생략하려면 ``NULL``."
 
-#: ../../c-api/tuple.rst:206
+#: ../../c-api/tuple.rst:224
 msgid "Special value for a field name to leave it unnamed."
 msgstr "이름 없는 상태로 남겨두기 위한 필드 이름의 특수 값."
 
-#: ../../c-api/tuple.rst:208
+#: ../../c-api/tuple.rst:226
 msgid "The type was changed from ``char *``."
 msgstr "형이 ``char *``\\에서 변경되었습니다."
 
-#: ../../c-api/tuple.rst:214
+#: ../../c-api/tuple.rst:232
 msgid ""
 "Creates an instance of *type*, which must have been created with "
 ":c:func:`PyStructSequence_NewType`."
 msgstr ":c:func:`PyStructSequence_NewType`\\으로 만든 *type*\\의 인스턴스를 만듭니다."
 
-#: ../../c-api/tuple.rst:222
+#: ../../c-api/tuple.rst:240
 msgid ""
 "Return the object at position *pos* in the struct sequence pointed to by "
-"*p*."
-msgstr "*p*\\가 가리키는 구조체 시퀀스의 위치 *pos*\\에 있는 객체를 돌려줍니다."
+"*p*. The returned reference is borrowed from the struct sequence *p* "
+"(that is: it is only valid as long as you hold a reference to *p*)."
+msgstr ""
 
-#: ../../c-api/tuple.rst:230
+#: ../../c-api/tuple.rst:250
 msgid "Alias to :c:func:`PyStructSequence_GetItem`."
 msgstr ":c:func:`PyStructSequence_GetItem`\\의 별칭."
 
-#: ../../c-api/tuple.rst:232
+#: ../../c-api/tuple.rst:252
 msgid "Now implemented as an alias to :c:func:`PyStructSequence_GetItem`."
 msgstr "이제 :c:func:`PyStructSequence_GetItem`\\의 별칭으로 구현됩니다."
 
-#: ../../c-api/tuple.rst:238
+#: ../../c-api/tuple.rst:258
 msgid ""
 "Sets the field at index *pos* of the struct sequence *p* to value *o*.  "
 "Like :c:func:`PyTuple_SET_ITEM`, this should only be used to fill in "
@@ -302,15 +331,16 @@ msgstr ""
 "구조체 시퀀스 *p*\\의 인덱스 *pos*\\에 있는 필드를 값 *o*\\로 설정합니다. "
 ":c:func:`PyTuple_SET_ITEM`\\과 마찬가지로, 이것은 새로운 인스턴스를 채울 때만 사용해야 합니다."
 
-#: ../../c-api/tuple.rst:247
-msgid "This function \"steals\" a reference to *o*."
+#: ../../c-api/tuple.rst:267
+#, fuzzy
+msgid "This function \":term:`steals <steal>`\" a reference to *o*."
 msgstr "이 함수는 *o*\\에 대한 참조를 \"훔칩니다\"."
 
-#: ../../c-api/tuple.rst:252
+#: ../../c-api/tuple.rst:272
 msgid "Alias to :c:func:`PyStructSequence_SetItem`."
 msgstr ":c:func:`PyStructSequence_SetItem`\\의 별칭."
 
-#: ../../c-api/tuple.rst:254
+#: ../../c-api/tuple.rst:274
 msgid "Now implemented as an alias to :c:func:`PyStructSequence_SetItem`."
 msgstr "이제 :c:func:`PyStructSequence_SetItem`\\의 별칭으로 구현됩니다."
 
@@ -321,4 +351,25 @@ msgstr "객체"
 #: ../../c-api/tuple.rst:8
 msgid "tuple"
 msgstr "튜플"
+
+#~ msgid ""
+#~ "Struct sequence objects are the C "
+#~ "equivalent of :func:`~collections.namedtuple` "
+#~ "objects, i.e. a sequence whose items "
+#~ "can also be accessed through attributes."
+#~ " To create a struct sequence, you "
+#~ "first have to create a specific "
+#~ "struct sequence type."
+#~ msgstr ""
+#~ "구조체 시퀀스(struct sequence) 객체는 "
+#~ ":func:`~collections.namedtuple` 객체의 C 등가물입니다, "
+#~ "즉 어트리뷰트를 통해 항목에 액세스할 수 있는 "
+#~ "시퀀스입니다. 구조체 시퀀스를 만들려면, 먼저 특정 구조체"
+#~ " 시퀀스 형을 만들어야 합니다."
+
+#~ msgid ""
+#~ "Return the object at position *pos* "
+#~ "in the struct sequence pointed to "
+#~ "by *p*."
+#~ msgstr "*p*\\가 가리키는 구조체 시퀀스의 위치 *pos*\\에 있는 객체를 돌려줍니다."
 

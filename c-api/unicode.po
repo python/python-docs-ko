@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/unicode.rst:6
 msgid "Unicode Objects and Codecs"
 msgstr "유니코드 객체와 코덱"
 
-#: ../../c-api/unicode.rst:12
+#: ../../c-api/unicode.rst:9
 msgid "Unicode Objects"
 msgstr "유니코드 객체"
 
-#: ../../c-api/unicode.rst:14
+#: ../../c-api/unicode.rst:11
 msgid ""
 "Since the implementation of :pep:`393` in Python 3.3, Unicode objects "
 "internally use a variety of representations, in order to allow handling "
@@ -37,13 +37,21 @@ msgstr ""
 "범위를 처리하면서 메모리 효율성을 유지합니다. 모든 코드 포인트가 128, 256 또는 65536 미만인 문자열에 대한 특별한 "
 "경우가 있습니다; 그렇지 않으면, 코드 포인트는 1114112 (전체 유니코드 범위) 미만이어야 합니다."
 
-#: ../../c-api/unicode.rst:20
+#: ../../c-api/unicode.rst:17
 msgid ""
 "UTF-8 representation is created on demand and cached in the Unicode "
 "object."
 msgstr ""
 
-#: ../../c-api/unicode.rst:23
+#: ../../c-api/unicode.rst:21
+msgid ""
+"The internal buffer always includes an extra trailing null character for "
+"compatibility with null terminated C strings. This extra character is not"
+" counted in :c:func:`PyUnicode_GetLength` nor in the various *size* "
+"arguments of the functions below."
+msgstr ""
+
+#: ../../c-api/unicode.rst:27
 msgid ""
 "The :c:type:`Py_UNICODE` representation has been removed since Python "
 "3.12 with deprecated APIs. See :pep:`623` for more information."
@@ -51,17 +59,17 @@ msgstr ""
 ":c:type:`Py_UNICODE` 표현은 폐지된 API와 함께 파이썬 3.12에서 제거되었습니다. 자세한 정보는 "
 ":pep:`623`\\을 참조하십시오."
 
-#: ../../c-api/unicode.rst:29
+#: ../../c-api/unicode.rst:33
 msgid "Unicode Type"
 msgstr "유니코드 형"
 
-#: ../../c-api/unicode.rst:31
+#: ../../c-api/unicode.rst:35
 msgid ""
 "These are the basic Unicode object types used for the Unicode "
 "implementation in Python:"
 msgstr "다음은 파이썬에서 유니코드 구현에 사용되는 기본 유니코드 객체 형입니다:"
 
-#: ../../c-api/unicode.rst:36
+#: ../../c-api/unicode.rst:40
 #, fuzzy
 msgid ""
 "This instance of :c:type:`PyTypeObject` represents the Python Unicode "
@@ -70,7 +78,7 @@ msgstr ""
 "이 :c:type:`PyTypeObject` 인스턴스는 파이썬 유니코드 형을 나타냅니다. 파이썬 코드에 ``str``\\로 "
 "노출됩니다."
 
-#: ../../c-api/unicode.rst:42
+#: ../../c-api/unicode.rst:46
 #, fuzzy
 msgid ""
 "This instance of :c:type:`PyTypeObject` represents the Python Unicode "
@@ -79,7 +87,7 @@ msgstr ""
 "이 :c:type:`PyTypeObject` 인스턴스는 파이썬 유니코드 형을 나타냅니다. 파이썬 코드에 ``str``\\로 "
 "노출됩니다."
 
-#: ../../c-api/unicode.rst:50
+#: ../../c-api/unicode.rst:54
 msgid ""
 "These types are typedefs for unsigned integer types wide enough to "
 "contain characters of 32 bits, 16 bits and 8 bits, respectively.  When "
@@ -88,7 +96,7 @@ msgstr ""
 "이 형들은 각각 32비트, 16비트 및 8비트의 문자를 포함하기에 충분한 부호 없는 정수 형을 위한 typedef 입니다. 단일 "
 "유니코드 문자를 처리할 때는, :c:type:`Py_UCS4`\\를 사용하십시오."
 
-#: ../../c-api/unicode.rst:61
+#: ../../c-api/unicode.rst:65
 msgid ""
 "These subtypes of :c:type:`PyObject` represent a Python Unicode object.  "
 "In almost all cases, they shouldn't be used directly, since all API "
@@ -98,7 +106,22 @@ msgstr ""
 "이 :c:type:`PyObject` 서브 형들은 파이썬 유니코드 객체를 나타냅니다. 거의 모든 경우에, 유니코드 객체를 처리하는 "
 "모든 API 함수가 :c:type:`PyObject` 포인터를 취하고 반환하므로 직접 사용해서는 안 됩니다."
 
-#: ../../c-api/unicode.rst:68
+#: ../../c-api/unicode.rst:72
+msgid ""
+"The structure of a particular object can be determined using the "
+"following macros. The macros cannot fail; their behavior is undefined if "
+"their argument is not a Python Unicode object."
+msgstr ""
+
+#: ../../c-api/unicode.rst:81
+msgid "True if *o* uses the :c:struct:`PyCompactUnicodeObject` structure."
+msgstr ""
+
+#: ../../c-api/unicode.rst:88
+msgid "True if *o* uses the :c:struct:`PyASCIIObject` structure."
+msgstr ""
+
+#: ../../c-api/unicode.rst:93
 msgid ""
 "The following APIs are C macros and static inlined functions for fast "
 "checks and access to internal read-only data of Unicode objects:"
@@ -106,19 +129,19 @@ msgstr ""
 "다음 API는 빠른 검사를 수행하고 유니코드 객체의 내부 읽기 전용 데이터에 액세스하는 데 사용할 수 있는 C 매크로와 정적 인라인"
 " 함수입니다:"
 
-#: ../../c-api/unicode.rst:73
+#: ../../c-api/unicode.rst:98
 msgid ""
 "Return true if the object *obj* is a Unicode object or an instance of a "
 "Unicode subtype.  This function always succeeds."
 msgstr "객체 *obj*\\가 유니코드 객체이거나 유니코드 서브 형의 인스턴스이면 참을 반환합니다. 이 함수는 항상 성공합니다."
 
-#: ../../c-api/unicode.rst:79
+#: ../../c-api/unicode.rst:104
 msgid ""
 "Return true if the object *obj* is a Unicode object, but not an instance "
 "of a subtype.  This function always succeeds."
 msgstr "객체 *obj*\\가 유니코드 객체이지만, 서브 형의 인스턴스가 아니면 참을 반환합니다. 이 함수는 항상 성공합니다."
 
-#: ../../c-api/unicode.rst:85
+#: ../../c-api/unicode.rst:110
 msgid ""
 "Return the length of the Unicode string, in code points.  *unicode* has "
 "to be a Unicode object in the \"canonical\" representation (not checked)."
@@ -126,7 +149,7 @@ msgstr ""
 "유니코드 문자열의 길이를 코드 포인트로 반환합니다. *unicode*\\는 \"규범적(canonical)\" 표현의 유니코드 "
 "객체여야 합니다 (검사하지 않습니다)."
 
-#: ../../c-api/unicode.rst:95
+#: ../../c-api/unicode.rst:120
 msgid ""
 "Return a pointer to the canonical representation cast to UCS1, UCS2 or "
 "UCS4 integer types for direct character access.  No checks are performed "
@@ -137,15 +160,15 @@ msgstr ""
 "반환합니다. 규범적(canonical) 표현이 올바른 문자 크기인지 검사하지 않습니다; "
 ":c:func:`PyUnicode_KIND`\\를 사용하여 올바른 함수를 선택하십시오."
 
-#: ../../c-api/unicode.rst:107
+#: ../../c-api/unicode.rst:132
 msgid "Return values of the :c:func:`PyUnicode_KIND` macro."
 msgstr ":c:func:`PyUnicode_KIND` 매크로의 값을 반환합니다."
 
-#: ../../c-api/unicode.rst:111
+#: ../../c-api/unicode.rst:136
 msgid "``PyUnicode_WCHAR_KIND`` has been removed."
 msgstr "``PyUnicode_WCHAR_KIND``\\는 제거되었습니다."
 
-#: ../../c-api/unicode.rst:117
+#: ../../c-api/unicode.rst:142
 msgid ""
 "Return one of the PyUnicode kind constants (see above) that indicate how "
 "many bytes per character this Unicode object uses to store its data.  "
@@ -156,7 +179,7 @@ msgstr ""
 "중 하나를 반환합니다. *unicode*\\는 \"규범적(canonical)\" 표현의 유니코드 객체여야 합니다 (검사하지 "
 "않습니다)."
 
-#: ../../c-api/unicode.rst:126
+#: ../../c-api/unicode.rst:151
 msgid ""
 "Return a void pointer to the raw Unicode buffer.  *unicode* has to be a "
 "Unicode object in the \"canonical\" representation (not checked)."
@@ -164,11 +187,11 @@ msgstr ""
 "원시 유니코드 버퍼에 대한 void 포인터를 반환합니다. *unicode*\\는 \"규범적(canonical)\" 표현의 유니코드 "
 "객체여야 합니다 (검사하지 않습니다)."
 
-#: ../../c-api/unicode.rst:135
+#: ../../c-api/unicode.rst:160
 msgid "Write the code point *value* to the given zero-based *index* in a string."
 msgstr ""
 
-#: ../../c-api/unicode.rst:137
+#: ../../c-api/unicode.rst:162
 msgid ""
 "The *kind* value and *data* pointer must have been obtained from a string"
 " using :c:func:`PyUnicode_KIND` and :c:func:`PyUnicode_DATA` "
@@ -177,21 +200,28 @@ msgid ""
 ":c:func:`PyUnicode_WriteChar` also apply."
 msgstr ""
 
-#: ../../c-api/unicode.rst:143
+#: ../../c-api/unicode.rst:168
 msgid ""
 "The function performs no checks for any of its requirements, and is "
 "intended for usage in loops."
 msgstr ""
 
-#: ../../c-api/unicode.rst:152
+#: ../../c-api/unicode.rst:176
+#, fuzzy
 msgid ""
 "Read a code point from a canonical representation *data* (as obtained "
-"with :c:func:`PyUnicode_DATA`).  No checks or ready calls are performed."
+"with :c:func:`PyUnicode_DATA`).  No checks are performed."
 msgstr ""
 "규범적(canonical) 표현 *data*\\(:c:func:`PyUnicode_DATA`\\로 얻은 대로)에서 코드 포인트를 "
 "읽습니다. 검사나 준비(ready) 호출이 수행되지 않습니다."
 
-#: ../../c-api/unicode.rst:160
+#: ../../c-api/unicode.rst:181 ../../c-api/unicode.rst:195
+msgid ""
+"Accept reading the trailing null character at index "
+":c:func:`PyUnicode_GetLength`."
+msgstr ""
+
+#: ../../c-api/unicode.rst:189
 msgid ""
 "Read a character from a Unicode object *unicode*, which must be in the "
 "\"canonical\" representation.  This is less efficient than "
@@ -200,7 +230,7 @@ msgstr ""
 "\"규범적(canonical)\" 표현이어야 하는, 유니코드 객체 *unicode*\\에서 문자를 읽습니다. 여러 연속 읽기를 "
 "수행한다면 :c:func:`PyUnicode_READ`\\보다 효율성이 떨어집니다."
 
-#: ../../c-api/unicode.rst:169
+#: ../../c-api/unicode.rst:203
 msgid ""
 "Return the maximum code point that is suitable for creating another "
 "string based on *unicode*, which must be in the \"canonical\" "
@@ -210,7 +240,7 @@ msgstr ""
 "\"규범적(canonical)\" 표현이어야 하는, *unicode*\\를 기반으로 다른 문자열을 만드는 데 적합한 최대 코드 "
 "포인트를 반환합니다. 이것은 항상 근사치이지만 문자열을 이터레이트 하는 것보다 효율적입니다."
 
-#: ../../c-api/unicode.rst:178
+#: ../../c-api/unicode.rst:212
 msgid ""
 "Return ``1`` if the string is a valid identifier according to the "
 "language definition, section :ref:`identifiers`. Return ``0`` otherwise."
@@ -218,23 +248,48 @@ msgstr ""
 "언어 정의에 따라 문자열이 유효한 식별자이면 ``1``\\을 반환합니다, 섹션 :ref:`identifiers`. 그렇지 않으면 "
 "``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:181
+#: ../../c-api/unicode.rst:215
 msgid ""
 "The function does not call :c:func:`Py_FatalError` anymore if the string "
 "is not ready."
 msgstr "문자열이 준비(ready)되지 않았을 때, 이 함수는 더는 :c:func:`Py_FatalError`\\를 호출하지 않습니다."
 
-#: ../../c-api/unicode.rst:188
+#: ../../c-api/unicode.rst:222
 msgid ""
 "Return true if the string only contains ASCII characters. Equivalent to "
 ":py:meth:`str.isascii`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:195
+#: ../../c-api/unicode.rst:230
+msgid ""
+"If the hash of *str*, as returned by :c:func:`PyObject_Hash`, has been "
+"cached and is immediately available, return it. Otherwise, return ``-1`` "
+"*without* setting an exception."
+msgstr ""
+
+#: ../../c-api/unicode.rst:234
+msgid ""
+"If *str* is not a string (that is, if ``PyUnicode_Check(obj)`` is false),"
+" the behavior is undefined."
+msgstr ""
+
+#: ../../c-api/unicode.rst:237
+#, fuzzy
+msgid "This function never fails with an exception."
+msgstr "이 함수는 예외를 발생시키지 않습니다."
+
+#: ../../c-api/unicode.rst:239
+msgid ""
+"Note that there are no guarantees on when an object's hash is cached, and"
+" the (non-)existence of a cached hash does not imply that the string has "
+"any other properties."
+msgstr ""
+
+#: ../../c-api/unicode.rst:245
 msgid "Unicode Character Properties"
 msgstr "유니코드 문자 속성"
 
-#: ../../c-api/unicode.rst:197
+#: ../../c-api/unicode.rst:247
 msgid ""
 "Unicode provides many different character properties. The most often "
 "needed ones are available through these macros which are mapped to C "
@@ -243,51 +298,51 @@ msgstr ""
 "유니코드는 다양한 문자 속성을 제공합니다. 가장 자주 필요한 것은 파이썬 구성에 따라 C 함수에 매핑되는 이러한 매크로를 통해 "
 "사용할 수 있습니다."
 
-#: ../../c-api/unicode.rst:204
+#: ../../c-api/unicode.rst:254
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a whitespace character."
 msgstr "*ch*\\가 공백 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:209
+#: ../../c-api/unicode.rst:259
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a lowercase character."
 msgstr "*ch*\\가 소문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:214
+#: ../../c-api/unicode.rst:264
 msgid "Return ``1`` or ``0`` depending on whether *ch* is an uppercase character."
 msgstr "*ch*\\가 대문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:219
+#: ../../c-api/unicode.rst:269
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a titlecase character."
 msgstr "*ch*\\가 제목 케이스 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:224
+#: ../../c-api/unicode.rst:274
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a linebreak character."
 msgstr "*ch*\\가 줄 바꿈 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:229
+#: ../../c-api/unicode.rst:279
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a decimal character."
 msgstr "*ch*\\가 10진수 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:234
+#: ../../c-api/unicode.rst:284
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a digit character."
 msgstr "*ch*\\가 디짓(digit) 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:239
+#: ../../c-api/unicode.rst:289
 msgid "Return ``1`` or ``0`` depending on whether *ch* is a numeric character."
 msgstr "*ch*\\가 숫자(numeric) 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:244
+#: ../../c-api/unicode.rst:294
 msgid ""
 "Return ``1`` or ``0`` depending on whether *ch* is an alphabetic "
 "character."
 msgstr "*ch*\\가 알파벳 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:249
+#: ../../c-api/unicode.rst:299
 msgid ""
 "Return ``1`` or ``0`` depending on whether *ch* is an alphanumeric "
 "character."
 msgstr "*ch*\\가 영숫자 문자인지에 따라 ``1``\\이나 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:254
+#: ../../c-api/unicode.rst:304
 msgid ""
 "Return ``1`` or ``0`` depending on whether *ch* is a printable character,"
 " in the sense of :meth:`str.isprintable`."
@@ -295,23 +350,23 @@ msgstr ""
 "*ch*\\가 :meth:`str.isprintable`\\의 의미에서 인쇄 가능한 문자인지에 따라 ``1``\\이나 "
 "``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:258
+#: ../../c-api/unicode.rst:308
 msgid "These APIs can be used for fast direct character conversions:"
 msgstr "다음 API는 빠른 직접 문자 변환에 사용할 수 있습니다:"
 
-#: ../../c-api/unicode.rst:263
+#: ../../c-api/unicode.rst:313
 msgid "Return the character *ch* converted to lower case."
 msgstr "소문자로 변환된 문자 *ch*\\를 반환합니다."
 
-#: ../../c-api/unicode.rst:268
+#: ../../c-api/unicode.rst:318
 msgid "Return the character *ch* converted to upper case."
 msgstr "대문자로 변환된 문자 *ch*\\를 반환합니다."
 
-#: ../../c-api/unicode.rst:273
+#: ../../c-api/unicode.rst:323
 msgid "Return the character *ch* converted to title case."
 msgstr "제목 케이스로 변환된 문자 *ch*\\를 반환합니다."
 
-#: ../../c-api/unicode.rst:278
+#: ../../c-api/unicode.rst:328
 msgid ""
 "Return the character *ch* converted to a decimal positive integer.  "
 "Return ``-1`` if this is not possible.  This function does not raise "
@@ -320,7 +375,7 @@ msgstr ""
 "10진 양의 정수로 변환된 문자 *ch*\\를 반환합니다. 이것이 불가능하면 ``-1``\\을 반환합니다. 이 함수는 예외를 "
 "발생시키지 않습니다."
 
-#: ../../c-api/unicode.rst:284
+#: ../../c-api/unicode.rst:334
 msgid ""
 "Return the character *ch* converted to a single digit integer. Return "
 "``-1`` if this is not possible.  This function does not raise exceptions."
@@ -328,7 +383,7 @@ msgstr ""
 "한 자리 정수로 변환된 문자 *ch*\\를 반환합니다. 이것이 불가능하면 ``-1``\\을 반환합니다. 이 함수는 예외를 발생시키지"
 " 않습니다."
 
-#: ../../c-api/unicode.rst:290
+#: ../../c-api/unicode.rst:340
 msgid ""
 "Return the character *ch* converted to a double. Return ``-1.0`` if this "
 "is not possible.  This function does not raise exceptions."
@@ -336,44 +391,57 @@ msgstr ""
 "double로 변환된 문자 *ch*\\를 반환합니다. 이것이 불가능하면 ``-1.0``\\을 반환합니다. 이 함수는 예외를 "
 "발생시키지 않습니다."
 
-#: ../../c-api/unicode.rst:294
+#: ../../c-api/unicode.rst:344
 msgid "These APIs can be used to work with surrogates:"
 msgstr "다음 API를 사용하여 서로게이트를 다룰 수 있습니다:"
 
-#: ../../c-api/unicode.rst:298
+#: ../../c-api/unicode.rst:348
 msgid "Check if *ch* is a surrogate (``0xD800 <= ch <= 0xDFFF``)."
 msgstr "*ch*\\가 서로게이트인지 확인합니다 (``0xD800 <= ch <= 0xDFFF``)."
 
-#: ../../c-api/unicode.rst:302
+#: ../../c-api/unicode.rst:352
 msgid "Check if *ch* is a high surrogate (``0xD800 <= ch <= 0xDBFF``)."
 msgstr "*ch*\\가 상위 서로게이트인지 확인합니다 (``0xD800 <= ch <= 0xDBFF``)."
 
-#: ../../c-api/unicode.rst:306
+#: ../../c-api/unicode.rst:356
 msgid "Check if *ch* is a low surrogate (``0xDC00 <= ch <= 0xDFFF``)."
 msgstr "*ch*\\가 하위 서로게이트인지 확인합니다 (``0xDC00 <= ch <= 0xDFFF``)."
 
-#: ../../c-api/unicode.rst:310
+#: ../../c-api/unicode.rst:360
+msgid ""
+"Return the high UTF-16 surrogate (``0xD800`` to ``0xDBFF``) for a Unicode"
+" code point in the range ``[0x10000; 0x10FFFF]``."
+msgstr ""
+
+#: ../../c-api/unicode.rst:365
+msgid ""
+"Return the low UTF-16 surrogate (``0xDC00`` to ``0xDFFF``) for a Unicode "
+"code point in the range ``[0x10000; 0x10FFFF]``."
+msgstr ""
+
+#: ../../c-api/unicode.rst:370
+#, fuzzy
 msgid ""
 "Join two surrogate code points and return a single :c:type:`Py_UCS4` "
 "value. *high* and *low* are respectively the leading and trailing "
-"surrogates in a surrogate pair. *high* must be in the range [0xD800; "
-"0xDBFF] and *low* must be in the range [0xDC00; 0xDFFF]."
+"surrogates in a surrogate pair. *high* must be in the range ``[0xD800; "
+"0xDBFF]`` and *low* must be in the range ``[0xDC00; 0xDFFF]``."
 msgstr ""
 "두 서로게이트 코드 포인트를 결합하고 단일 :c:type:`Py_UCS4` 값을 반환합니다. *high*\\와 *low*\\는 각각"
 " 서로게이트 쌍의 선행과 후행 서로게이트입니다. *high*\\는 [0xD800; 0xDBFF] 범위 내에 있어야 하며, "
 "*low*\\는 [0xDC00; 0xDFFF] 범위 내에 있어야 합니다."
 
-#: ../../c-api/unicode.rst:317
+#: ../../c-api/unicode.rst:377
 msgid "Creating and accessing Unicode strings"
 msgstr "유니코드 문자열 생성과 액세스"
 
-#: ../../c-api/unicode.rst:319
+#: ../../c-api/unicode.rst:379
 msgid ""
 "To create Unicode objects and access their basic sequence properties, use"
 " these APIs:"
 msgstr "유니코드 객체를 만들고 기본 시퀀스 속성에 액세스하려면 다음 API를 사용하십시오:"
 
-#: ../../c-api/unicode.rst:324
+#: ../../c-api/unicode.rst:384
 msgid ""
 "Create a new Unicode object.  *maxchar* should be the true maximum code "
 "point to be placed in the string.  As an approximation, it can be rounded"
@@ -382,11 +450,11 @@ msgstr ""
 "새 유니코드 객체를 만듭니다. *maxchar*\\은 문자열에 배치할 실제 최대 코드 포인트여야 합니다. 근삿값으로, 127, "
 "255, 65535, 1114111 시퀀스에서 가장 가까운 값으로 올림 할 수 있습니다."
 
-#: ../../c-api/unicode.rst:328
+#: ../../c-api/unicode.rst:388
 msgid "On error, set an exception and return ``NULL``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:330
+#: ../../c-api/unicode.rst:390
 msgid ""
 "After creation, the string can be filled by "
 ":c:func:`PyUnicode_WriteChar`, :c:func:`PyUnicode_CopyCharacters`, "
@@ -396,38 +464,38 @@ msgid ""
 "final contents, a string:"
 msgstr ""
 
-#: ../../c-api/unicode.rst:337
+#: ../../c-api/unicode.rst:397
 msgid "must not be hashed,"
 msgstr ""
 
-#: ../../c-api/unicode.rst:338
+#: ../../c-api/unicode.rst:398
 msgid ""
 "must not be :c:func:`converted to UTF-8 <PyUnicode_AsUTF8AndSize>`, or "
 "another non-\"canonical\" representation,"
 msgstr ""
 
-#: ../../c-api/unicode.rst:340
+#: ../../c-api/unicode.rst:400
 msgid "must not have its reference count changed,"
 msgstr ""
 
-#: ../../c-api/unicode.rst:341
+#: ../../c-api/unicode.rst:401
 msgid "must not be shared with code that might do one of the above."
 msgstr ""
 
-#: ../../c-api/unicode.rst:343
+#: ../../c-api/unicode.rst:403
 msgid ""
 "This list is not exhaustive. Avoiding these uses is your responsibility; "
 "Python does not always check these requirements."
 msgstr ""
 
-#: ../../c-api/unicode.rst:346
+#: ../../c-api/unicode.rst:406
 msgid ""
 "To avoid accidentally exposing a partially-written string object, prefer "
 "using the :c:type:`PyUnicodeWriter` API, or one of the "
 "``PyUnicode_From*`` functions below."
 msgstr ""
 
-#: ../../c-api/unicode.rst:357
+#: ../../c-api/unicode.rst:417
 msgid ""
 "Create a new Unicode object with the given *kind* (possible values are "
 ":c:macro:`PyUnicode_1BYTE_KIND` etc., as returned by "
@@ -438,7 +506,7 @@ msgstr ""
 ":c:macro:`PyUnicode_1BYTE_KIND` 등입니다)로 새로운 유니코드 객체를 만듭니다. *buffer*\\는 "
 "kind에 따라 문자 당 1, 2 또는 4바이트의 *size* 단위의 배열을 가리켜야 합니다."
 
-#: ../../c-api/unicode.rst:362
+#: ../../c-api/unicode.rst:422
 msgid ""
 "If necessary, the input *buffer* is copied and transformed into the "
 "canonical representation.  For example, if the *buffer* is a UCS4 string "
@@ -447,7 +515,14 @@ msgid ""
 "(:c:macro:`PyUnicode_1BYTE_KIND`)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:373
+#: ../../c-api/unicode.rst:428
+msgid ""
+"All characters must be in range [U+0000; U+10ffff]. If *kind* is "
+":c:macro:`PyUnicode_4BYTE_KIND` and the string contains invalid "
+"characters, the behavior is undefined."
+msgstr ""
+
+#: ../../c-api/unicode.rst:437
 msgid ""
 "Create a Unicode object from the char buffer *str*.  The bytes will be "
 "interpreted as being UTF-8 encoded.  The buffer is copied into the new "
@@ -457,29 +532,29 @@ msgstr ""
 "char 버퍼 *str*\\에서 유니코드 객체를 만듭니다. 바이트는 UTF-8로 인코딩된 것으로 해석됩니다. 버퍼는 새 객체에 "
 "복사됩니다. 반환 값은 공유 객체일 수 있습니다, 즉, 데이터 수정이 허용되지 않습니다."
 
-#: ../../c-api/unicode.rst:379
+#: ../../c-api/unicode.rst:443
 msgid "This function raises :exc:`SystemError` when:"
 msgstr "이 함수는 다음과 같은 경우에 :exc:`SystemError`\\를 발생시킵니다:"
 
-#: ../../c-api/unicode.rst:381
+#: ../../c-api/unicode.rst:445
 msgid "*size* < 0,"
 msgstr "*size* < 0,"
 
-#: ../../c-api/unicode.rst:382
+#: ../../c-api/unicode.rst:446
 msgid "*str* is ``NULL`` and *size* > 0"
 msgstr ""
 
-#: ../../c-api/unicode.rst:384
+#: ../../c-api/unicode.rst:448
 msgid "*str* == ``NULL`` with *size* > 0 is not allowed anymore."
 msgstr ""
 
-#: ../../c-api/unicode.rst:390
+#: ../../c-api/unicode.rst:454
 msgid ""
 "Create a Unicode object from a UTF-8 encoded null-terminated char buffer "
 "*str*."
 msgstr "UTF-8로 인코딩된 널-종료 char 버퍼 *str*\\에서 유니코드 객체를 만듭니다."
 
-#: ../../c-api/unicode.rst:396
+#: ../../c-api/unicode.rst:460
 msgid ""
 "Take a C :c:func:`printf`\\ -style *format* string and a variable number "
 "of arguments, calculate the size of the resulting Python Unicode string "
@@ -491,23 +566,23 @@ msgstr ""
 "크기를 계산하고 포맷된 값이 들어간 문자열을 반환합니다. 변수 인자는 C형이어야 하며 *format* ASCII 인코딩된 문자열의 "
 "포맷 문자와 정확히 일치해야 합니다."
 
-#: ../../c-api/unicode.rst:402
+#: ../../c-api/unicode.rst:466
 msgid ""
 "A conversion specifier contains two or more characters and has the "
 "following components, which must occur in this order:"
 msgstr ""
 
-#: ../../c-api/unicode.rst:405
+#: ../../c-api/unicode.rst:469
 msgid "The ``'%'`` character, which marks the start of the specifier."
 msgstr ""
 
-#: ../../c-api/unicode.rst:407
+#: ../../c-api/unicode.rst:471
 msgid ""
 "Conversion flags (optional), which affect the result of some conversion "
 "types."
 msgstr ""
 
-#: ../../c-api/unicode.rst:410
+#: ../../c-api/unicode.rst:474
 msgid ""
 "Minimum field width (optional). If specified as an ``'*'`` (asterisk), "
 "the actual width is given in the next argument, which must be of type "
@@ -515,7 +590,7 @@ msgid ""
 "width and optional precision."
 msgstr ""
 
-#: ../../c-api/unicode.rst:415
+#: ../../c-api/unicode.rst:479
 msgid ""
 "Precision (optional), given as a ``'.'`` (dot) followed by the precision."
 " If specified as ``'*'`` (an asterisk), the actual precision is given in "
@@ -523,212 +598,212 @@ msgid ""
 "convert comes after the precision."
 msgstr ""
 
-#: ../../c-api/unicode.rst:420
+#: ../../c-api/unicode.rst:484
 msgid "Length modifier (optional)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:422
+#: ../../c-api/unicode.rst:486
 msgid "Conversion type."
 msgstr ""
 
-#: ../../c-api/unicode.rst:424
+#: ../../c-api/unicode.rst:488
 msgid "The conversion flag characters are:"
 msgstr ""
 
-#: ../../c-api/unicode.rst:429
+#: ../../c-api/unicode.rst:493
 msgid "Flag"
 msgstr ""
 
-#: ../../c-api/unicode.rst:429
+#: ../../c-api/unicode.rst:493
 msgid "Meaning"
 msgstr ""
 
-#: ../../c-api/unicode.rst:431
+#: ../../c-api/unicode.rst:495
 msgid "``0``"
 msgstr "``0``"
 
-#: ../../c-api/unicode.rst:431
+#: ../../c-api/unicode.rst:495
 msgid "The conversion will be zero padded for numeric values."
 msgstr ""
 
-#: ../../c-api/unicode.rst:433
+#: ../../c-api/unicode.rst:497
 msgid "``-``"
 msgstr "``-``"
 
-#: ../../c-api/unicode.rst:433
+#: ../../c-api/unicode.rst:497
 msgid ""
 "The converted value is left adjusted (overrides the ``0`` flag if both "
 "are given)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:437
+#: ../../c-api/unicode.rst:501
 msgid ""
 "The length modifiers for following integer conversions (``d``, ``i``, "
 "``o``, ``u``, ``x``, or ``X``) specify the type of the argument "
 "(:c:expr:`int` by default):"
 msgstr ""
 
-#: ../../c-api/unicode.rst:444
+#: ../../c-api/unicode.rst:508
 msgid "Modifier"
 msgstr ""
 
-#: ../../c-api/unicode.rst:444
+#: ../../c-api/unicode.rst:508
 msgid "Types"
 msgstr "형"
 
-#: ../../c-api/unicode.rst:446
+#: ../../c-api/unicode.rst:510
 msgid "``l``"
 msgstr "``l``"
 
-#: ../../c-api/unicode.rst:446
+#: ../../c-api/unicode.rst:510
 msgid ":c:expr:`long` or :c:expr:`unsigned long`"
 msgstr ":c:expr:`long` 또는 :c:expr:`unsigned long`"
 
-#: ../../c-api/unicode.rst:448
+#: ../../c-api/unicode.rst:512
 msgid "``ll``"
 msgstr "``ll``"
 
-#: ../../c-api/unicode.rst:448
+#: ../../c-api/unicode.rst:512
 msgid ":c:expr:`long long` or :c:expr:`unsigned long long`"
 msgstr ":c:expr:`long long` 또는 :c:expr:`unsigned long long`"
 
-#: ../../c-api/unicode.rst:450
+#: ../../c-api/unicode.rst:514
 msgid "``j``"
 msgstr "``j``"
 
-#: ../../c-api/unicode.rst:450
+#: ../../c-api/unicode.rst:514
 msgid ":c:type:`intmax_t` or :c:type:`uintmax_t`"
 msgstr ":c:type:`intmax_t` 또는 :c:type:`uintmax_t`"
 
-#: ../../c-api/unicode.rst:452
+#: ../../c-api/unicode.rst:516
 msgid "``z``"
 msgstr "``z``"
 
-#: ../../c-api/unicode.rst:452
+#: ../../c-api/unicode.rst:516
 msgid ":c:type:`size_t` or :c:type:`ssize_t`"
 msgstr ":c:type:`size_t` 또는 :c:type:`ssize_t`"
 
-#: ../../c-api/unicode.rst:454
+#: ../../c-api/unicode.rst:518
 msgid "``t``"
 msgstr "``t``"
 
-#: ../../c-api/unicode.rst:454
+#: ../../c-api/unicode.rst:518
 msgid ":c:type:`ptrdiff_t`"
 msgstr ":c:type:`ptrdiff_t`"
 
-#: ../../c-api/unicode.rst:457
+#: ../../c-api/unicode.rst:521
 msgid ""
 "The length modifier ``l`` for following conversions ``s`` or ``V`` "
 "specify that the type of the argument is :c:expr:`const wchar_t*`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:460
+#: ../../c-api/unicode.rst:524
 msgid "The conversion specifiers are:"
 msgstr ""
 
-#: ../../c-api/unicode.rst:466
+#: ../../c-api/unicode.rst:530
 msgid "Conversion Specifier"
 msgstr ""
 
-#: ../../c-api/unicode.rst:467
+#: ../../c-api/unicode.rst:531
 msgid "Type"
 msgstr "형"
 
-#: ../../c-api/unicode.rst:468
+#: ../../c-api/unicode.rst:532
 msgid "Comment"
 msgstr "주석"
 
-#: ../../c-api/unicode.rst:470
+#: ../../c-api/unicode.rst:534
 msgid "``%``"
 msgstr "``%``"
 
-#: ../../c-api/unicode.rst:471
+#: ../../c-api/unicode.rst:535
 msgid "*n/a*"
 msgstr "*n/a*"
 
-#: ../../c-api/unicode.rst:472
+#: ../../c-api/unicode.rst:536
 msgid "The literal ``%`` character."
 msgstr "리터럴 ``%`` 문자."
 
-#: ../../c-api/unicode.rst:474
+#: ../../c-api/unicode.rst:538
 msgid "``d``, ``i``"
 msgstr "``d``, ``i``"
 
-#: ../../c-api/unicode.rst:475 ../../c-api/unicode.rst:479
-#: ../../c-api/unicode.rst:483 ../../c-api/unicode.rst:487
-#: ../../c-api/unicode.rst:491
+#: ../../c-api/unicode.rst:539 ../../c-api/unicode.rst:543
+#: ../../c-api/unicode.rst:547 ../../c-api/unicode.rst:551
+#: ../../c-api/unicode.rst:555
 msgid "Specified by the length modifier"
 msgstr ""
 
-#: ../../c-api/unicode.rst:476
+#: ../../c-api/unicode.rst:540
 msgid "The decimal representation of a signed C integer."
 msgstr ""
 
-#: ../../c-api/unicode.rst:478
+#: ../../c-api/unicode.rst:542
 msgid "``u``"
 msgstr "``u``"
 
-#: ../../c-api/unicode.rst:480
+#: ../../c-api/unicode.rst:544
 msgid "The decimal representation of an unsigned C integer."
 msgstr ""
 
-#: ../../c-api/unicode.rst:482
+#: ../../c-api/unicode.rst:546
 msgid "``o``"
 msgstr "``o``"
 
-#: ../../c-api/unicode.rst:484
+#: ../../c-api/unicode.rst:548
 msgid "The octal representation of an unsigned C integer."
 msgstr ""
 
-#: ../../c-api/unicode.rst:486
+#: ../../c-api/unicode.rst:550
 msgid "``x``"
 msgstr "``x``"
 
-#: ../../c-api/unicode.rst:488
+#: ../../c-api/unicode.rst:552
 msgid "The hexadecimal representation of an unsigned C integer (lowercase)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:490
+#: ../../c-api/unicode.rst:554
 msgid "``X``"
 msgstr "``X``"
 
-#: ../../c-api/unicode.rst:492
+#: ../../c-api/unicode.rst:556
 msgid "The hexadecimal representation of an unsigned C integer (uppercase)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:494
+#: ../../c-api/unicode.rst:558
 msgid "``c``"
 msgstr "``c``"
 
-#: ../../c-api/unicode.rst:495
+#: ../../c-api/unicode.rst:559
 msgid ":c:expr:`int`"
 msgstr ":c:expr:`int`"
 
-#: ../../c-api/unicode.rst:496
+#: ../../c-api/unicode.rst:560
 msgid "A single character."
 msgstr "단일 문자."
 
-#: ../../c-api/unicode.rst:498
+#: ../../c-api/unicode.rst:562
 msgid "``s``"
 msgstr "``s``"
 
-#: ../../c-api/unicode.rst:499
+#: ../../c-api/unicode.rst:563
 msgid ":c:expr:`const char*` or :c:expr:`const wchar_t*`"
 msgstr ":c:expr:`const char*` 또는 :c:expr:`const wchar_t*`"
 
-#: ../../c-api/unicode.rst:500
+#: ../../c-api/unicode.rst:564
 msgid "A null-terminated C character array."
 msgstr "널-종료 C 문자 배열."
 
-#: ../../c-api/unicode.rst:502
+#: ../../c-api/unicode.rst:566
 msgid "``p``"
 msgstr "``p``"
 
-#: ../../c-api/unicode.rst:503
+#: ../../c-api/unicode.rst:567
 msgid ":c:expr:`const void*`"
 msgstr ":c:expr:`const void*`"
 
-#: ../../c-api/unicode.rst:504
+#: ../../c-api/unicode.rst:568
 msgid ""
 "The hex representation of a C  pointer. Mostly equivalent to "
 "``printf(\"%p\")`` except that it is guaranteed to start with the literal"
@@ -737,37 +812,37 @@ msgstr ""
 "C 포인터의 16진수 표현. 플랫폼의 ``printf``\\가 산출하는 내용과 관계없이 리터럴 ``0x``\\로 시작하는 것이 "
 "보장된다는 점을 제외하면 거의 ``printf(\"%p\")``\\와 동등합니다."
 
-#: ../../c-api/unicode.rst:509
+#: ../../c-api/unicode.rst:573
 msgid "``A``"
 msgstr "``A``"
 
-#: ../../c-api/unicode.rst:510 ../../c-api/unicode.rst:514
-#: ../../c-api/unicode.rst:524 ../../c-api/unicode.rst:528
-#: ../../c-api/unicode.rst:532 ../../c-api/unicode.rst:537
+#: ../../c-api/unicode.rst:574 ../../c-api/unicode.rst:578
+#: ../../c-api/unicode.rst:588 ../../c-api/unicode.rst:592
+#: ../../c-api/unicode.rst:596 ../../c-api/unicode.rst:601
 msgid ":c:expr:`PyObject*`"
 msgstr ":c:expr:`PyObject*`"
 
-#: ../../c-api/unicode.rst:511
+#: ../../c-api/unicode.rst:575
 msgid "The result of calling :func:`ascii`."
 msgstr ":func:`ascii`\\를 호출한 결과."
 
-#: ../../c-api/unicode.rst:513
+#: ../../c-api/unicode.rst:577
 msgid "``U``"
 msgstr "``U``"
 
-#: ../../c-api/unicode.rst:515
+#: ../../c-api/unicode.rst:579
 msgid "A Unicode object."
 msgstr "유니코드 객체."
 
-#: ../../c-api/unicode.rst:517
+#: ../../c-api/unicode.rst:581
 msgid "``V``"
 msgstr "``V``"
 
-#: ../../c-api/unicode.rst:518
+#: ../../c-api/unicode.rst:582
 msgid ":c:expr:`PyObject*`, :c:expr:`const char*` or :c:expr:`const wchar_t*`"
 msgstr ":c:expr:`PyObject*`, :c:expr:`const char*` 또는 :c:expr:`const wchar_t*`"
 
-#: ../../c-api/unicode.rst:519
+#: ../../c-api/unicode.rst:583
 msgid ""
 "A Unicode object (which may be ``NULL``) and a null-terminated C "
 "character array as a second parameter (which will be used, if the first "
@@ -776,67 +851,67 @@ msgstr ""
 "유니코드 객체(``NULL``\\일 수 있습니다)와 두 번째 매개 변수로서 널-종료 C 문자 배열 (첫 번째 매개 변수가 "
 "``NULL``\\이면 사용됩니다)."
 
-#: ../../c-api/unicode.rst:523
+#: ../../c-api/unicode.rst:587
 msgid "``S``"
 msgstr "``S``"
 
-#: ../../c-api/unicode.rst:525
+#: ../../c-api/unicode.rst:589
 msgid "The result of calling :c:func:`PyObject_Str`."
 msgstr ":c:func:`PyObject_Str`\\을 호출한 결과."
 
-#: ../../c-api/unicode.rst:527
+#: ../../c-api/unicode.rst:591
 msgid "``R``"
 msgstr "``R``"
 
-#: ../../c-api/unicode.rst:529
+#: ../../c-api/unicode.rst:593
 msgid "The result of calling :c:func:`PyObject_Repr`."
 msgstr ":c:func:`PyObject_Repr`\\을 호출한 결과."
 
-#: ../../c-api/unicode.rst:531
+#: ../../c-api/unicode.rst:595
 msgid "``T``"
 msgstr "``T``"
 
-#: ../../c-api/unicode.rst:533
+#: ../../c-api/unicode.rst:597
 msgid ""
 "Get the fully qualified name of an object type; call "
 ":c:func:`PyType_GetFullyQualifiedName`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:536
+#: ../../c-api/unicode.rst:600
 msgid "``#T``"
 msgstr "``#T``"
 
-#: ../../c-api/unicode.rst:538
+#: ../../c-api/unicode.rst:602
 msgid ""
 "Similar to ``T`` format, but use a colon (``:``) as separator between the"
 " module name and the qualified name."
 msgstr ""
 
-#: ../../c-api/unicode.rst:541
+#: ../../c-api/unicode.rst:605
 msgid "``N``"
 msgstr "``N``"
 
-#: ../../c-api/unicode.rst:542 ../../c-api/unicode.rst:547
+#: ../../c-api/unicode.rst:606 ../../c-api/unicode.rst:611
 msgid ":c:expr:`PyTypeObject*`"
 msgstr ":c:expr:`PyTypeObject*`"
 
-#: ../../c-api/unicode.rst:543
+#: ../../c-api/unicode.rst:607
 msgid ""
 "Get the fully qualified name of a type; call "
 ":c:func:`PyType_GetFullyQualifiedName`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:546
+#: ../../c-api/unicode.rst:610
 msgid "``#N``"
 msgstr "``#N``"
 
-#: ../../c-api/unicode.rst:548
+#: ../../c-api/unicode.rst:612
 msgid ""
 "Similar to ``N`` format, but use a colon (``:``) as separator between the"
 " module name and the qualified name."
 msgstr ""
 
-#: ../../c-api/unicode.rst:552
+#: ../../c-api/unicode.rst:616
 #, python-format
 msgid ""
 "The width formatter unit is number of characters rather than bytes. The "
@@ -851,23 +926,23 @@ msgstr ""
 "``NULL``\\이면), ``\"%A\"``, ``\"%U\"``, ``\"%S\"``, ``\"%R\"`` 및 "
 "``\"%V\"``\\의 경우 문자 수입니다 (``PyObject*`` 인자가 ``NULL``\\이 아니면)."
 
-#: ../../c-api/unicode.rst:560
+#: ../../c-api/unicode.rst:624
 msgid ""
 "Unlike to C :c:func:`printf` the ``0`` flag has effect even when a "
 "precision is given for integer conversions (``d``, ``i``, ``u``, ``o``, "
 "``x``, or ``X``)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:564
+#: ../../c-api/unicode.rst:628
 msgid "Support for ``\"%lld\"`` and ``\"%llu\"`` added."
 msgstr "``\"%lld\"``\\와 ``\"%llu\"``\\에 대한 지원이 추가되었습니다."
 
-#: ../../c-api/unicode.rst:567
+#: ../../c-api/unicode.rst:631
 #, python-format
 msgid "Support for ``\"%li\"``, ``\"%lli\"`` and ``\"%zi\"`` added."
 msgstr "``\"%li\"``, ``\"%lli\"`` 및 ``\"%zi\"``\\에 대한 지원이 추가되었습니다."
 
-#: ../../c-api/unicode.rst:570
+#: ../../c-api/unicode.rst:634
 #, python-format
 msgid ""
 "Support width and precision formatter for ``\"%s\"``, ``\"%A\"``, "
@@ -876,7 +951,7 @@ msgstr ""
 "``\"%s\"``, ``\"%A\"``, ``\"%U\"``, ``\"%V\"``, ``\"%S\"``, ``\"%R\"``\\에"
 " 대한 너비와 정밀도 포매터 지원이 추가되었습니다."
 
-#: ../../c-api/unicode.rst:574
+#: ../../c-api/unicode.rst:638
 msgid ""
 "Support for conversion specifiers ``o`` and ``X``. Support for length "
 "modifiers ``j`` and ``t``. Length modifiers are now applied to all "
@@ -885,7 +960,7 @@ msgid ""
 "``*``. Support for flag ``-``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:582
+#: ../../c-api/unicode.rst:646
 msgid ""
 "An unrecognized format character now sets a :exc:`SystemError`. In "
 "previous versions it caused all the rest of the format string to be "
@@ -894,17 +969,17 @@ msgstr ""
 "인식할 수 없는 포맷 문자는 이제 :exc:`SystemError`\\를 설정합니다. 이전 버전에서는 나머지 포맷 문자열이 모두 "
 "결과 문자열에 그대로 복사되고, 추가 인자는 버려지도록 했습니다."
 
-#: ../../c-api/unicode.rst:586
+#: ../../c-api/unicode.rst:650
 msgid "Support for ``%T``, ``%#T``, ``%N`` and ``%#N`` formats added."
 msgstr "``%T``, ``%#T``, ``%N`` 및 ``%#N``\\에 대한 지원이 추가되었습니다."
 
-#: ../../c-api/unicode.rst:592
+#: ../../c-api/unicode.rst:656
 msgid ""
 "Identical to :c:func:`PyUnicode_FromFormat` except that it takes exactly "
 "two arguments."
 msgstr "정확히 두 개의 인자를 취한다는 점을 제외하면 :c:func:`PyUnicode_FromFormat`\\과 동일합니다."
 
-#: ../../c-api/unicode.rst:598
+#: ../../c-api/unicode.rst:662
 msgid ""
 "Copy an instance of a Unicode subtype to a new true Unicode object if "
 "necessary. If *obj* is already a true Unicode object (not a subtype), "
@@ -913,25 +988,25 @@ msgstr ""
 "필요하면 유니코드 서브 형의 인스턴스를 새로운 진짜 유니코드 객체에 복사합니다. *obj*\\가 이미 (서브 형이 아닌) 진짜 "
 "유니코드 객체이면, 객체에 대한 새로운 :term:`강한 참조 <strong reference>`\\를 반환합니다."
 
-#: ../../c-api/unicode.rst:602
+#: ../../c-api/unicode.rst:666
 msgid "Objects other than Unicode or its subtypes will cause a :exc:`TypeError`."
 msgstr "유니코드나 이의 서브 형 이외의 객체는 :exc:`TypeError`\\를 발생시킵니다."
 
-#: ../../c-api/unicode.rst:607
+#: ../../c-api/unicode.rst:671
 msgid "Create a Unicode Object from the given Unicode code point *ordinal*."
 msgstr "주어진 유니코드 코드 포인트 *ordinal*\\로 유니코드 객체를 만듭니다."
 
-#: ../../c-api/unicode.rst:609
+#: ../../c-api/unicode.rst:673
 msgid ""
 "The ordinal must be in ``range(0x110000)``. A :exc:`ValueError` is raised"
 " in the case it is not."
 msgstr ""
 
-#: ../../c-api/unicode.rst:616
+#: ../../c-api/unicode.rst:680
 msgid "Decode an encoded object *obj* to a Unicode object."
 msgstr "인코딩된 객체 *obj*\\를 유니코드 객체로 디코딩합니다."
 
-#: ../../c-api/unicode.rst:618
+#: ../../c-api/unicode.rst:682
 msgid ""
 ":class:`bytes`, :class:`bytearray` and other :term:`bytes-like objects "
 "<bytes-like object>` are decoded according to the given *encoding* and "
@@ -944,42 +1019,43 @@ msgstr ""
 "``NULL``\\이 될 수 있고, 이 경우 인터페이스는 기본값을 사용합니다 (자세한 내용은 "
 ":ref:`builtincodecs`\\를 참조하십시오)."
 
-#: ../../c-api/unicode.rst:624
+#: ../../c-api/unicode.rst:688
 msgid ""
 "All other objects, including Unicode objects, cause a :exc:`TypeError` to"
 " be set."
 msgstr "유니코드 객체를 포함한 다른 모든 객체는 :exc:`TypeError`\\가 설정되도록 합니다."
 
-#: ../../c-api/unicode.rst:627
+#: ../../c-api/unicode.rst:691
 msgid ""
 "The API returns ``NULL`` if there was an error.  The caller is "
 "responsible for decref'ing the returned objects."
 msgstr "API는 에러가 있으면 ``NULL``\\을 반환합니다. 호출자는 반환된 객체의 참조 횟수를 감소시킬 책임이 있습니다."
 
-#: ../../c-api/unicode.rst:633
+#: ../../c-api/unicode.rst:697
 msgid ""
 "Append the string *right* to the end of *p_left*. *p_left* must point to "
 "a :term:`strong reference` to a Unicode object; "
-":c:func:`!PyUnicode_Append` releases (\"steals\") this reference."
+":c:func:`!PyUnicode_Append` releases (\":term:`steals <steal>`\") this "
+"reference."
 msgstr ""
 
-#: ../../c-api/unicode.rst:637
+#: ../../c-api/unicode.rst:702
 #, fuzzy
 msgid "On error, set *\\*p_left* to ``NULL`` and set an exception."
 msgstr "에러 시, 예외를 설정하고 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:639
+#: ../../c-api/unicode.rst:704
 msgid "On success, set *\\*p_left* to a new strong reference to the result."
 msgstr ""
 
-#: ../../c-api/unicode.rst:644
+#: ../../c-api/unicode.rst:709
 msgid ""
 "The function is similar to :c:func:`PyUnicode_Append`, with the only "
 "difference being that it decrements the reference count of *right* by "
 "one."
 msgstr ""
 
-#: ../../c-api/unicode.rst:650
+#: ../../c-api/unicode.rst:715
 msgid ""
 "Return a mapping suitable for decoding a custom single-byte encoding. "
 "Given a Unicode string *string* of up to 256 characters representing an "
@@ -988,27 +1064,31 @@ msgid ""
 ":exc:`TypeError` and return ``NULL`` on invalid input."
 msgstr ""
 
-#: ../../c-api/unicode.rst:661
+#: ../../c-api/unicode.rst:726
 msgid ""
 "Return the name of the default string encoding, ``\"utf-8\"``. See "
 ":func:`sys.getdefaultencoding`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:664
+#: ../../c-api/unicode.rst:729
 msgid ""
 "The returned string does not need to be freed, and is valid until "
 "interpreter shutdown."
 msgstr ""
 
-#: ../../c-api/unicode.rst:670
+#: ../../c-api/unicode.rst:735
 msgid "Return the length of the Unicode object, in code points."
 msgstr "유니코드 객체의 길이를 코드 포인트로 반환합니다."
 
-#: ../../c-api/unicode.rst:672
+#: ../../c-api/unicode.rst:737
 msgid "On error, set an exception and return ``-1``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:683
+#: ../../c-api/unicode.rst:741
+msgid "The length does not count the trailing null character."
+msgstr ""
+
+#: ../../c-api/unicode.rst:752
 msgid ""
 "Copy characters from one Unicode object into another.  This function "
 "performs character conversion when necessary and falls back to "
@@ -1019,62 +1099,63 @@ msgstr ""
 ":c:func:`!memcpy`\\로 폴백합니다. 에러 시 ``-1``\\을 반환하고 예외를 설정합니다, 그렇지 않으면 복사된 문자"
 " 수를 반환합니다."
 
-#: ../../c-api/unicode.rst:688 ../../c-api/unicode.rst:718
-#: ../../c-api/unicode.rst:738
+#: ../../c-api/unicode.rst:757 ../../c-api/unicode.rst:787
+#: ../../c-api/unicode.rst:807
 msgid ""
 "The string must not have been “used” yet. See :c:func:`PyUnicode_New` for"
 " details."
 msgstr ""
 
-#: ../../c-api/unicode.rst:696
+#: ../../c-api/unicode.rst:765
 msgid "Resize a Unicode object *\\*unicode* to the new *length* in code points."
 msgstr ""
 
-#: ../../c-api/unicode.rst:698
+#: ../../c-api/unicode.rst:767
 msgid ""
 "Try to resize the string in place (which is usually faster than "
 "allocating a new string and copying characters), or create a new string."
 msgstr ""
 
-#: ../../c-api/unicode.rst:701
+#: ../../c-api/unicode.rst:770
 msgid ""
 "*\\*unicode* is modified to point to the new (resized) object and ``0`` "
 "is returned on success. Otherwise, ``-1`` is returned and an exception is"
 " set, and *\\*unicode* is left untouched."
 msgstr ""
 
-#: ../../c-api/unicode.rst:705
+#: ../../c-api/unicode.rst:774
 msgid ""
 "The function doesn't check string content, the result may not be a string"
 " in canonical representation."
 msgstr ""
 
-#: ../../c-api/unicode.rst:712
+#: ../../c-api/unicode.rst:781
 msgid ""
 "Fill a string with a character: write *fill_char* into "
 "``unicode[start:start+length]``."
 msgstr "문자로 문자열을 채웁니다: *fill_char*\\을 ``unicode[start:start+length]``\\에 씁니다."
 
-#: ../../c-api/unicode.rst:715
+#: ../../c-api/unicode.rst:784
 msgid ""
 "Fail if *fill_char* is bigger than the string maximum character, or if "
 "the string has more than 1 reference."
 msgstr "*fill_char*\\이 문자열 최대 문자보다 크거나, 문자열에 둘 이상의 참조가 있으면 실패합니다."
 
-#: ../../c-api/unicode.rst:721
+#: ../../c-api/unicode.rst:790
+#, fuzzy
 msgid ""
-"Return the number of written character, or return ``-1`` and raise an "
+"Return the number of written characters, or return ``-1`` and raise an "
 "exception on error."
 msgstr "기록된 문자 수를 반환하거나, 에러 시 ``-1``\\을 반환하고 예외를 발생시킵니다."
 
-#: ../../c-api/unicode.rst:730
+#: ../../c-api/unicode.rst:799
 #, fuzzy
 msgid ""
 "Write a *character* to the string *unicode* at the zero-based *index*. "
 "Return ``0`` on success, ``-1`` on error with an exception set."
 msgstr "성공 시 ``0``\\을, 에러 시 예외를 설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:733
+#: ../../c-api/unicode.rst:802
 #, fuzzy
 msgid ""
 "This function checks that *unicode* is a Unicode object, that the index "
@@ -1085,7 +1166,7 @@ msgstr ""
 "이 함수는 *unicode*\\가 유니코드 객체인지, 인덱스가 범위를 벗어났는지, 객체가 안전하게 수정될 수 있는지 (즉, 참조 "
 "횟수가 1인지) 확인합니다."
 
-#: ../../c-api/unicode.rst:746
+#: ../../c-api/unicode.rst:815
 msgid ""
 "Read a character from a string.  This function checks that *unicode* is a"
 " Unicode object and the index is not out of bounds, in contrast to "
@@ -1094,11 +1175,17 @@ msgstr ""
 "문자열에서 문자를 읽습니다. 이 함수는 에러를 검사하지 않는 :c:func:`PyUnicode_READ_CHAR`\\와 달리 "
 "*unicode*\\가 유니코드 객체이고 인덱스가 범위를 벗어났는지 확인합니다."
 
-#: ../../c-api/unicode.rst:750
+#: ../../c-api/unicode.rst:819
 msgid "Return character on success, ``-1`` on error with an exception set."
 msgstr "성공 시 문자를, 에러 시 예외를 설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:758
+#: ../../c-api/unicode.rst:823
+msgid ""
+"Do not accept reading the trailing null character at index "
+":c:func:`PyUnicode_GetLength`."
+msgstr ""
+
+#: ../../c-api/unicode.rst:832
 msgid ""
 "Return a substring of *unicode*, from character index *start* (included) "
 "to character index *end* (excluded).  Negative indices are not supported."
@@ -1107,7 +1194,7 @@ msgstr ""
 "문자 인덱스 *start*\\(포함합니다)에서 문자 인덱스 *end*\\(제외합니다)까지 *unicode*\\의 하위 문자열을 "
 "반환합니다. 음수 인덱스는 지원되지 않습니다. 에러 시, 예외를 설정하고 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:768
+#: ../../c-api/unicode.rst:842
 msgid ""
 "Copy the string *unicode* into a UCS4 buffer, including a null character,"
 " if *copy_null* is set.  Returns ``NULL`` and sets an exception on error "
@@ -1118,7 +1205,7 @@ msgstr ""
 "``NULL``\\을 반환하고 예외를 설정합니다 (특히, *buflen*\\이 *unicode*\\의 길이보다 작으면 "
 ":exc:`SystemError`). 성공하면 *buffer*\\가 반환됩니다."
 
-#: ../../c-api/unicode.rst:778
+#: ../../c-api/unicode.rst:852
 msgid ""
 "Copy the string *unicode* into a new UCS4 buffer that is allocated using "
 ":c:func:`PyMem_Malloc`.  If this fails, ``NULL`` is returned with a "
@@ -1129,17 +1216,17 @@ msgstr ""
 " 실패하면, ``NULL``\\이 반환되고 :exc:`MemoryError`\\가 설정됩니다. 반환된 버퍼에는 항상 추가 널 코드 "
 "포인트가 있습니다."
 
-#: ../../c-api/unicode.rst:787
+#: ../../c-api/unicode.rst:861
 msgid "Locale Encoding"
 msgstr "로케일 인코딩"
 
-#: ../../c-api/unicode.rst:789
+#: ../../c-api/unicode.rst:863
 msgid ""
 "The current locale encoding can be used to decode text from the operating"
 " system."
 msgstr "현재 로케일 인코딩을 사용하여 운영 체제에서 온 텍스트를 디코딩 할 수 있습니다."
 
-#: ../../c-api/unicode.rst:796
+#: ../../c-api/unicode.rst:870
 msgid ""
 "Decode a string from UTF-8 on Android and VxWorks, or from the current "
 "locale encoding on other platforms. The supported error handlers are "
@@ -1152,7 +1239,7 @@ msgstr ""
 "*errors*\\가 ``NULL``\\이면 ``\"strict\"`` 에러 처리기를 사용합니다. *str*\\은 널 문자로 끝나야"
 " 하지만 널 문자를 포함할 수 없습니다."
 
-#: ../../c-api/unicode.rst:803
+#: ../../c-api/unicode.rst:877
 msgid ""
 "Use :c:func:`PyUnicode_DecodeFSDefaultAndSize` to decode a string from "
 "the :term:`filesystem encoding and error handler`."
@@ -1160,15 +1247,15 @@ msgstr ""
 ":term:`파일시스템 인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 문자열을"
 " 디코딩하려면 :c:func:`PyUnicode_DecodeFSDefaultAndSize`\\를 사용하십시오."
 
-#: ../../c-api/unicode.rst:806 ../../c-api/unicode.rst:841
+#: ../../c-api/unicode.rst:880 ../../c-api/unicode.rst:915
 msgid "This function ignores the :ref:`Python UTF-8 Mode <utf8-mode>`."
 msgstr "이 함수는 :ref:`파이썬 UTF-8 모드 <utf8-mode>`\\를 무시합니다."
 
-#: ../../c-api/unicode.rst:810 ../../c-api/unicode.rst:926
+#: ../../c-api/unicode.rst:884 ../../c-api/unicode.rst:1002
 msgid "The :c:func:`Py_DecodeLocale` function."
 msgstr ":c:func:`Py_DecodeLocale` 함수."
 
-#: ../../c-api/unicode.rst:814
+#: ../../c-api/unicode.rst:888
 msgid ""
 "The function now also uses the current locale encoding for the "
 "``surrogateescape`` error handler, except on Android. Previously, "
@@ -1179,7 +1266,7 @@ msgstr ""
 " :c:func:`Py_DecodeLocale`\\이 ``surrogateescape``\\에 사용되었고, 현재 로케일 인코딩은 "
 "``strict``\\에 사용되었습니다."
 
-#: ../../c-api/unicode.rst:823
+#: ../../c-api/unicode.rst:897
 msgid ""
 "Similar to :c:func:`PyUnicode_DecodeLocaleAndSize`, but compute the "
 "string length using :c:func:`!strlen`."
@@ -1187,7 +1274,7 @@ msgstr ""
 ":c:func:`PyUnicode_DecodeLocaleAndSize`\\와 유사하지만, :c:func:`!strlen`\\을 "
 "사용하여 문자열 길이를 계산합니다."
 
-#: ../../c-api/unicode.rst:831
+#: ../../c-api/unicode.rst:905
 msgid ""
 "Encode a Unicode object to UTF-8 on Android and VxWorks, or to the "
 "current locale encoding on other platforms. The supported error handlers "
@@ -1200,7 +1287,7 @@ msgstr ""
 "인코더는 *errors*\\가 ``NULL``\\이면 ``\"strict\"`` 에러 처리기를 사용합니다. "
 ":class:`bytes` 객체를 반환합니다. *unicode*\\는 내장된 널 문자를 포함할 수 없습니다."
 
-#: ../../c-api/unicode.rst:838
+#: ../../c-api/unicode.rst:912
 msgid ""
 "Use :c:func:`PyUnicode_EncodeFSDefault` to encode a string to the "
 ":term:`filesystem encoding and error handler`."
@@ -1208,11 +1295,11 @@ msgstr ""
 ":term:`파일시스템 인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 문자열을"
 " 인코딩하려면 :c:func:`PyUnicode_EncodeFSDefault`\\를 사용하십시오."
 
-#: ../../c-api/unicode.rst:845 ../../c-api/unicode.rst:957
+#: ../../c-api/unicode.rst:919 ../../c-api/unicode.rst:1033
 msgid "The :c:func:`Py_EncodeLocale` function."
 msgstr ":c:func:`Py_EncodeLocale` 함수."
 
-#: ../../c-api/unicode.rst:849
+#: ../../c-api/unicode.rst:923
 msgid ""
 "The function now also uses the current locale encoding for the "
 "``surrogateescape`` error handler, except on Android. Previously, "
@@ -1223,17 +1310,17 @@ msgstr ""
 ":c:func:`Py_EncodeLocale`\\이 ``surrogateescape``\\에 사용되었고, 현재 로케일 인코딩은 "
 "``strict``\\에 사용되었습니다."
 
-#: ../../c-api/unicode.rst:858
+#: ../../c-api/unicode.rst:934
 msgid "File System Encoding"
 msgstr "파일 시스템 인코딩"
 
-#: ../../c-api/unicode.rst:860
+#: ../../c-api/unicode.rst:936
 msgid ""
 "Functions encoding to and decoding from the :term:`filesystem encoding "
 "and error handler` (:pep:`383` and :pep:`529`)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:863
+#: ../../c-api/unicode.rst:939
 msgid ""
 "To encode file names to :class:`bytes` during argument parsing, the "
 "``\"O&\"`` converter should be used, passing "
@@ -1242,7 +1329,7 @@ msgstr ""
 "인자 구문 분석 중에 파일 이름을 :class:`bytes`\\로 인코딩하려면, ``\"O&\"`` 변환기를 사용하고 "
 ":c:func:`!PyUnicode_FSConverter`\\를 변환 함수로 전달해야 합니다:"
 
-#: ../../c-api/unicode.rst:869
+#: ../../c-api/unicode.rst:945
 msgid ""
 ":ref:`PyArg_Parse\\* converter <arg-parsing>`: encode :class:`str` "
 "objects -- obtained directly or through the :class:`os.PathLike` "
@@ -1264,17 +1351,17 @@ msgstr ""
 "값(:c:macro:`Py_CLEANUP_SUPPORTED`)을 반환합니다. 결과에 내장된 널 바이트는 허용되지 않습니다. 실패 "
 "시, 예외를 설정하고 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:881
+#: ../../c-api/unicode.rst:957
 msgid ""
 "If *obj* is ``NULL``, the function releases a strong reference stored in "
 "the variable referred by *result* and returns ``1``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:886 ../../c-api/unicode.rst:913
+#: ../../c-api/unicode.rst:962 ../../c-api/unicode.rst:989
 msgid "Accepts a :term:`path-like object`."
 msgstr ":term:`경로류 객체 <path-like object>`\\를 받아들입니다."
 
-#: ../../c-api/unicode.rst:889
+#: ../../c-api/unicode.rst:965
 msgid ""
 "To decode file names to :class:`str` during argument parsing, the "
 "``\"O&\"`` converter should be used, passing "
@@ -1283,7 +1370,7 @@ msgstr ""
 "인자 구문 분석 중에 파일 이름을 :class:`str`\\로 디코딩하려면, ``\"O&\"`` 변환기를 사용하고 "
 ":c:func:`!PyUnicode_FSDecoder`\\를 변환 함수로 전달해야 합니다:"
 
-#: ../../c-api/unicode.rst:895
+#: ../../c-api/unicode.rst:971
 msgid ""
 ":ref:`PyArg_Parse\\* converter <arg-parsing>`: decode :class:`bytes` "
 "objects -- obtained either directly or indirectly through the "
@@ -1307,17 +1394,17 @@ msgstr ""
 "값(:c:macro:`Py_CLEANUP_SUPPORTED`)을 반환합니다. 결과에 내장된 널 바이트는 허용되지 않습니다. 실패 "
 "시, 예외를 설정하고 ``0``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:908
+#: ../../c-api/unicode.rst:984
 msgid ""
 "If *obj* is ``NULL``, release the strong reference to the object referred"
 " to by *result* and return ``1``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:919
+#: ../../c-api/unicode.rst:995
 msgid "Decode a string from the :term:`filesystem encoding and error handler`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:921
+#: ../../c-api/unicode.rst:997
 msgid ""
 "If you need to decode a string from the current locale encoding, use "
 ":c:func:`PyUnicode_DecodeLocaleAndSize`."
@@ -1325,14 +1412,14 @@ msgstr ""
 "현재 로케일 인코딩에서 문자열을 디코딩해야 하면, :c:func:`PyUnicode_DecodeLocaleAndSize`\\를 "
 "사용하십시오."
 
-#: ../../c-api/unicode.rst:928 ../../c-api/unicode.rst:941
-#: ../../c-api/unicode.rst:961
+#: ../../c-api/unicode.rst:1004 ../../c-api/unicode.rst:1017
+#: ../../c-api/unicode.rst:1037
 msgid ""
 "The :term:`filesystem error handler <filesystem encoding and error "
 "handler>` is now used."
 msgstr ""
 
-#: ../../c-api/unicode.rst:935
+#: ../../c-api/unicode.rst:1011
 msgid ""
 "Decode a null-terminated string from the :term:`filesystem encoding and "
 "error handler`."
@@ -1340,13 +1427,13 @@ msgstr ""
 ":term:`파일시스템 인코딩과 에러 처리기 <filesystem encoding and error handler>`\\로 널 종료"
 " 문자열을 디코딩합니다."
 
-#: ../../c-api/unicode.rst:938
+#: ../../c-api/unicode.rst:1014
 msgid ""
 "If the string length is known, use "
 ":c:func:`PyUnicode_DecodeFSDefaultAndSize`."
 msgstr "문자열 길이가 알려져 있으면, :c:func:`PyUnicode_DecodeFSDefaultAndSize`\\를 사용하십시오."
 
-#: ../../c-api/unicode.rst:948
+#: ../../c-api/unicode.rst:1024
 msgid ""
 "Encode a Unicode object to the :term:`filesystem encoding and error "
 "handler`, and return :class:`bytes`. Note that the resulting "
@@ -1356,21 +1443,21 @@ msgstr ""
 "handler>`\\로 인코딩하고, :class:`bytes`\\를 반환합니다. 결과 :class:`bytes` 객체에는 널 "
 "바이트가 포함될 수 있음에 유의하십시오."
 
-#: ../../c-api/unicode.rst:952
+#: ../../c-api/unicode.rst:1028
 msgid ""
 "If you need to encode a string to the current locale encoding, use "
 ":c:func:`PyUnicode_EncodeLocale`."
 msgstr "현재 로케일 인코딩으로 문자열을 인코딩해야 하면, :c:func:`PyUnicode_EncodeLocale`\\을 사용하십시오."
 
-#: ../../c-api/unicode.rst:966
+#: ../../c-api/unicode.rst:1042
 msgid "wchar_t Support"
 msgstr "wchar_t 지원"
 
-#: ../../c-api/unicode.rst:968
+#: ../../c-api/unicode.rst:1044
 msgid ":c:type:`wchar_t` support for platforms which support it:"
 msgstr "지원하는 플랫폼에 대한 :c:type:`wchar_t` 지원:"
 
-#: ../../c-api/unicode.rst:972
+#: ../../c-api/unicode.rst:1048
 msgid ""
 "Create a Unicode object from the :c:type:`wchar_t` buffer *wstr* of the "
 "given *size*. Passing ``-1`` as the *size* indicates that the function "
@@ -1381,7 +1468,7 @@ msgstr ""
 "*size*\\로 전달하면 함수가 :c:func:`!wcslen`\\을 사용하여 길이를 스스로 계산해야 함을 나타냅니다. 실패하면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:980
+#: ../../c-api/unicode.rst:1056
 msgid ""
 "Copy the Unicode object contents into the :c:type:`wchar_t` buffer "
 "*wstr*.  At most *size* :c:type:`wchar_t` characters are copied "
@@ -1393,13 +1480,13 @@ msgstr ""
 ":c:type:`wchar_t` 문자가 복사됩니다 (후행 널 종료 문자가 제외될 수 있습니다). 복사된 "
 ":c:type:`wchar_t` 문자 수나 에러가 발생하면 ``-1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:985
+#: ../../c-api/unicode.rst:1061
 msgid ""
 "When *wstr* is ``NULL``, instead return the *size* that would be required"
 " to store all of *unicode* including a terminating null."
 msgstr ""
 
-#: ../../c-api/unicode.rst:988
+#: ../../c-api/unicode.rst:1064
 msgid ""
 "Note that the resulting :c:expr:`wchar_t*` string may or may not be null-"
 "terminated.  It is the responsibility of the caller to make sure that the"
@@ -1413,7 +1500,7 @@ msgstr ""
 ":c:expr:`wchar_t*` 문자열에는 널 문자가 포함될 수 있으며, 이로 인해 대부분의 C 함수와 함께 사용될 때 문자열이 "
 "잘리게 됨에 유의하십시오."
 
-#: ../../c-api/unicode.rst:998
+#: ../../c-api/unicode.rst:1074
 msgid ""
 "Convert the Unicode object to a wide character string. The output string "
 "always ends with a null character. If *size* is not ``NULL``, write the "
@@ -1430,7 +1517,7 @@ msgstr ""
 "*size*\\가 ``NULL``\\이고 :c:expr:`wchar_t*` 문자열이 널 문자를 포함하면 "
 ":exc:`ValueError`\\가 발생합니다."
 
-#: ../../c-api/unicode.rst:1006
+#: ../../c-api/unicode.rst:1082
 msgid ""
 "Returns a buffer allocated by :c:macro:`PyMem_New` (use "
 ":c:func:`PyMem_Free` to free it) on success. On error, returns ``NULL`` "
@@ -1441,7 +1528,7 @@ msgstr ""
 "사용하여 해제하십시오). 에러 시, ``NULL``\\을 반환하고 *\\*size*\\는 정의되지 않습니다. 메모리 할당이 실패하면"
 " :exc:`MemoryError`\\를 발생시킵니다."
 
-#: ../../c-api/unicode.rst:1013
+#: ../../c-api/unicode.rst:1089
 msgid ""
 "Raises a :exc:`ValueError` if *size* is ``NULL`` and the "
 ":c:expr:`wchar_t*` string contains null characters."
@@ -1449,18 +1536,18 @@ msgstr ""
 "*size*\\가 ``NULL``\\이고 :c:expr:`wchar_t*` 문자열이 널 문자를 포함하면 "
 ":exc:`ValueError`\\를 발생시킵니다."
 
-#: ../../c-api/unicode.rst:1021
+#: ../../c-api/unicode.rst:1097
 msgid "Built-in Codecs"
 msgstr "내장 코덱"
 
-#: ../../c-api/unicode.rst:1023
+#: ../../c-api/unicode.rst:1099
 msgid ""
 "Python provides a set of built-in codecs which are written in C for "
 "speed. All of these codecs are directly usable via the following "
 "functions."
 msgstr "파이썬은 속도를 위해 C로 작성된 내장 코덱 집합을 제공합니다. 이러한 코덱들은 모두 다음 함수들을 통해 직접 사용할 수 있습니다."
 
-#: ../../c-api/unicode.rst:1026
+#: ../../c-api/unicode.rst:1102
 msgid ""
 "Many of the following APIs take two arguments encoding and errors, and "
 "they have the same semantics as the ones of the built-in :func:`str` "
@@ -1469,7 +1556,7 @@ msgstr ""
 "다음 API의 대부분은 두 개의 인자 encoding과 errors를 취하며, 내장 :func:`str` 문자열 객체 생성자의 "
 "것들과 같은 의미입니다."
 
-#: ../../c-api/unicode.rst:1030
+#: ../../c-api/unicode.rst:1106
 msgid ""
 "Setting encoding to ``NULL`` causes the default encoding to be used which"
 " is UTF-8.  The file system calls should use "
@@ -1480,7 +1567,7 @@ msgstr ""
 ":c:func:`PyUnicode_FSConverter`\\를 사용해야 합니다. 이것은 내부적으로 :term:`파일시스템 인코딩과 "
 "에러 처리기 <filesystem encoding and error handler>`\\를 사용합니다."
 
-#: ../../c-api/unicode.rst:1035
+#: ../../c-api/unicode.rst:1111
 msgid ""
 "Error handling is set by errors which may also be set to ``NULL`` meaning"
 " to use the default handling defined for the codec.  Default error "
@@ -1490,35 +1577,35 @@ msgstr ""
 "에러 처리는 errors로 설정되는데, 코덱에 대해 정의된 기본 처리를 사용함을 의미하는 ``NULL``\\로 설정될 수도 "
 "있습니다. 모든 내장 코덱에 대한 기본 에러 처리는 \"strict\" 입니다 (:exc:`ValueError`\\가 발생합니다)."
 
-#: ../../c-api/unicode.rst:1039
+#: ../../c-api/unicode.rst:1115
 msgid ""
 "The codecs all use a similar interface.  Only deviations from the "
 "following generic ones are documented for simplicity."
 msgstr "코덱은 모두 유사한 인터페이스를 사용합니다. 단순성을 위해 다음에 나오는 일반 코덱과의 차이만 설명합니다."
 
-#: ../../c-api/unicode.rst:1044
+#: ../../c-api/unicode.rst:1120
 msgid "Generic Codecs"
 msgstr "일반 코덱"
 
-#: ../../c-api/unicode.rst:1046
+#: ../../c-api/unicode.rst:1122
 msgid "The following macro is provided:"
 msgstr ""
 
-#: ../../c-api/unicode.rst:1051
+#: ../../c-api/unicode.rst:1127
 msgid "The Unicode code point ``U+FFFD`` (replacement character)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1053
+#: ../../c-api/unicode.rst:1129
 msgid ""
 "This Unicode character is used as the replacement character during "
 "decoding if the *errors* argument is set to \"replace\"."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1057
+#: ../../c-api/unicode.rst:1133
 msgid "These are the generic codec APIs:"
 msgstr "다음은 일반 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1063
+#: ../../c-api/unicode.rst:1139
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the encoded string "
 "*str*. *encoding* and *errors* have the same meaning as the parameters of"
@@ -1530,7 +1617,7 @@ msgstr ""
 "*errors*\\는 :func:`str` 내장 함수의 같은 이름의 매개 변수와 같은 의미입니다. 사용할 코덱은 파이썬 코덱 "
 "레지스트리를 사용하여 조회됩니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1073
+#: ../../c-api/unicode.rst:1149
 msgid ""
 "Encode a Unicode object and return the result as Python bytes object. "
 "*encoding* and *errors* have the same meaning as the parameters of the "
@@ -1542,15 +1629,15 @@ msgstr ""
 ":meth:`~str.encode` 메서드의 같은 이름의 매개 변수와 같은 의미입니다. 사용할 코덱은 파이썬 코덱 레지스트리를 "
 "사용하여 조회됩니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1081
+#: ../../c-api/unicode.rst:1157
 msgid "UTF-8 Codecs"
 msgstr "UTF-8 코덱"
 
-#: ../../c-api/unicode.rst:1083
+#: ../../c-api/unicode.rst:1159
 msgid "These are the UTF-8 codec APIs:"
 msgstr "다음은 UTF-8 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1088
+#: ../../c-api/unicode.rst:1164
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the UTF-8 encoded "
 "string *str*. Return ``NULL`` if an exception was raised by the codec."
@@ -1558,7 +1645,7 @@ msgstr ""
 "UTF-8로 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가 발생하면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1095
+#: ../../c-api/unicode.rst:1171
 msgid ""
 "If *consumed* is ``NULL``, behave like :c:func:`PyUnicode_DecodeUTF8`. If"
 " *consumed* is not ``NULL``, trailing incomplete UTF-8 byte sequences "
@@ -1569,7 +1656,7 @@ msgstr ""
 "*consumed*\\가 ``NULL``\\이 아니면, 후행 불완전한 UTF-8 바이트 시퀀스는 에러로 처리되지 않습니다. 이러한 "
 "바이트는 디코딩되지 않으며 디코딩된 바이트 수는 *consumed*\\에 저장됩니다."
 
-#: ../../c-api/unicode.rst:1103
+#: ../../c-api/unicode.rst:1179
 msgid ""
 "Encode a Unicode object using UTF-8 and return the result as Python bytes"
 " object.  Error handling is \"strict\".  Return ``NULL`` if an exception "
@@ -1578,13 +1665,13 @@ msgstr ""
 "UTF-8을 사용하여 유니코드 객체를 인코딩하고 결과를 파이썬 bytes 객체로 반환합니다. 에러 처리는 \"strict\" "
 "입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1107 ../../c-api/unicode.rst:1122
+#: ../../c-api/unicode.rst:1183 ../../c-api/unicode.rst:1198
 msgid ""
 "The function fails if the string contains surrogate code points "
 "(``U+D800`` - ``U+DFFF``)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1113
+#: ../../c-api/unicode.rst:1189
 msgid ""
 "Return a pointer to the UTF-8 encoding of the Unicode object, and store "
 "the size of the encoded representation (in bytes) in *size*.  The *size* "
@@ -1596,13 +1683,13 @@ msgstr ""
 " *size* 인자는 ``NULL``\\일 수 있습니다; 이 경우 크기가 저장되지 않습니다. 반환된 버퍼에는 다른 널 코드 포인트가"
 " 있는지에 관계없이, 항상 추가 널 바이트가 추가됩니다 (*size*\\에 포함되지 않습니다)."
 
-#: ../../c-api/unicode.rst:1119
+#: ../../c-api/unicode.rst:1195
 msgid ""
 "On error, set an exception, set *size* to ``-1`` (if it's not NULL) and "
 "return ``NULL``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1125
+#: ../../c-api/unicode.rst:1201
 msgid ""
 "This caches the UTF-8 representation of the string in the Unicode object,"
 " and subsequent calls will return a pointer to the same buffer.  The "
@@ -1614,19 +1701,20 @@ msgstr ""
 "할당 해제에 대한 책임이 없습니다. 유니코드 객체가 가비지 수거될 때 버퍼는 할당 해제되고 버퍼를 가리키는 포인터는 유효하지 않게 "
 "됩니다."
 
-#: ../../c-api/unicode.rst:1132 ../../c-api/unicode.rst:1154
-msgid "The return type is now ``const char *`` rather of ``char *``."
+#: ../../c-api/unicode.rst:1208 ../../c-api/unicode.rst:1230
+#, fuzzy
+msgid "The return type is now ``const char *`` rather than ``char *``."
 msgstr "반환형은 이제 ``char *``\\가 아니라 ``const char *``\\입니다."
 
-#: ../../c-api/unicode.rst:1135
+#: ../../c-api/unicode.rst:1211
 msgid "This function is a part of the :ref:`limited API <limited-c-api>`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1141
+#: ../../c-api/unicode.rst:1217
 msgid "As :c:func:`PyUnicode_AsUTF8AndSize`, but does not store the size."
 msgstr ":c:func:`PyUnicode_AsUTF8AndSize`\\와 같지만, 크기를 저장하지 않습니다."
 
-#: ../../c-api/unicode.rst:1145
+#: ../../c-api/unicode.rst:1221
 msgid ""
 "This function does not have any special behavior for `null characters "
 "<https://en.wikipedia.org/wiki/Null_character>`_ embedded within "
@@ -1636,15 +1724,15 @@ msgid ""
 "recommended to use :c:func:`PyUnicode_AsUTF8AndSize` instead."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1159
+#: ../../c-api/unicode.rst:1235
 msgid "UTF-32 Codecs"
 msgstr "UTF-32 코덱"
 
-#: ../../c-api/unicode.rst:1161
+#: ../../c-api/unicode.rst:1237
 msgid "These are the UTF-32 codec APIs:"
 msgstr "다음은 UTF-32 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1167
+#: ../../c-api/unicode.rst:1243
 msgid ""
 "Decode *size* bytes from a UTF-32 encoded buffer string and return the "
 "corresponding Unicode object.  *errors* (if non-``NULL``) defines the "
@@ -1653,13 +1741,13 @@ msgstr ""
 "UTF-32로 인코딩된 버퍼 문자열에서 *size* 바이트를 디코딩하고 해당 유니코드 객체를 반환합니다. "
 "*errors*\\(``NULL``\\이 아니면)는 에러 처리를 정의합니다. 기본값은 \"strict\"입니다."
 
-#: ../../c-api/unicode.rst:1171 ../../c-api/unicode.rst:1221
+#: ../../c-api/unicode.rst:1247 ../../c-api/unicode.rst:1297
 msgid ""
 "If *byteorder* is non-``NULL``, the decoder starts decoding using the "
 "given byte order::"
 msgstr "*byteorder*\\가 ``NULL``\\이 아니면, 디코더는 지정된 바이트 순서를 사용하여 디코딩을 시작합니다::"
 
-#: ../../c-api/unicode.rst:1174 ../../c-api/unicode.rst:1224
+#: ../../c-api/unicode.rst:1250 ../../c-api/unicode.rst:1300
 msgid ""
 "*byteorder == -1: little endian\n"
 "*byteorder == 0:  native order\n"
@@ -1669,7 +1757,7 @@ msgstr ""
 "*byteorder == 0:  네이티브 엔디안\n"
 "*byteorder == 1:  빅 엔디안"
 
-#: ../../c-api/unicode.rst:1178
+#: ../../c-api/unicode.rst:1254
 msgid ""
 "If ``*byteorder`` is zero, and the first four bytes of the input data are"
 " a byte order mark (BOM), the decoder switches to this byte order and the"
@@ -1680,21 +1768,21 @@ msgstr ""
 "전환되고 BOM은 결과 유니코드 문자열에 복사되지 않습니다. ``*byteorder``\\가 ``-1``\\이나 ``1``\\이면,"
 " 모든 바이트 순서 표시가 출력에 복사됩니다."
 
-#: ../../c-api/unicode.rst:1183
+#: ../../c-api/unicode.rst:1259
 msgid ""
 "After completion, *\\*byteorder* is set to the current byte order at the "
 "end of input data."
 msgstr "완료 후, *\\*byteorder*\\는 입력 데이터의 끝에서 현재 바이트 순서로 설정됩니다."
 
-#: ../../c-api/unicode.rst:1186 ../../c-api/unicode.rst:1237
+#: ../../c-api/unicode.rst:1262 ../../c-api/unicode.rst:1313
 msgid "If *byteorder* is ``NULL``, the codec starts in native order mode."
 msgstr "*byteorder*\\가 ``NULL``\\이면, 코덱은 네이티브 순서 모드로 시작합니다."
 
-#: ../../c-api/unicode.rst:1188 ../../c-api/unicode.rst:1239
+#: ../../c-api/unicode.rst:1264 ../../c-api/unicode.rst:1315
 msgid "Return ``NULL`` if an exception was raised by the codec."
 msgstr "코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1194
+#: ../../c-api/unicode.rst:1270
 msgid ""
 "If *consumed* is ``NULL``, behave like :c:func:`PyUnicode_DecodeUTF32`. "
 "If *consumed* is not ``NULL``, :c:func:`PyUnicode_DecodeUTF32Stateful` "
@@ -1708,7 +1796,7 @@ msgstr ""
 "후행 불완전 UTF-32 바이트 시퀀스(가령 4로 나누어떨어지지 않는 바이트 수)를 에러로 처리하지 않습니다. 이러한 바이트는 "
 "디코딩되지 않으며 디코딩된 바이트 수는 *consumed*\\에 저장됩니다."
 
-#: ../../c-api/unicode.rst:1203
+#: ../../c-api/unicode.rst:1279
 msgid ""
 "Return a Python byte string using the UTF-32 encoding in native byte "
 "order. The string always starts with a BOM mark.  Error handling is "
@@ -1717,15 +1805,15 @@ msgstr ""
 "네이티브 바이트 순서로 UTF-32 인코딩을 사용하여 파이썬 바이트 문자열을 반환합니다. 문자열은 항상 BOM 마크로 시작합니다. "
 "에러 처리는 \"strict\"입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1209
+#: ../../c-api/unicode.rst:1285
 msgid "UTF-16 Codecs"
 msgstr "UTF-16 코덱"
 
-#: ../../c-api/unicode.rst:1211
+#: ../../c-api/unicode.rst:1287
 msgid "These are the UTF-16 codec APIs:"
 msgstr "다음은 UTF-16 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1217
+#: ../../c-api/unicode.rst:1293
 msgid ""
 "Decode *size* bytes from a UTF-16 encoded buffer string and return the "
 "corresponding Unicode object.  *errors* (if non-``NULL``) defines the "
@@ -1734,7 +1822,7 @@ msgstr ""
 "UTF-16으로 인코딩된 버퍼 문자열에서 *size* 바이트를 디코딩하고 해당 유니코드 객체를 반환합니다. "
 "*errors*\\(``NULL``\\이 아니면)는 에러 처리를 정의합니다. 기본값은 \"strict\"입니다."
 
-#: ../../c-api/unicode.rst:1228
+#: ../../c-api/unicode.rst:1304
 msgid ""
 "If ``*byteorder`` is zero, and the first two bytes of the input data are "
 "a byte order mark (BOM), the decoder switches to this byte order and the "
@@ -1746,13 +1834,13 @@ msgstr ""
 "전환되고 BOM은 결과 유니코드 문자열에 복사되지 않습니다. ``*byteorder``\\가 ``-1``\\이나 ``1``\\이면 "
 "모든 바이트 순서 표시가 출력에 복사됩니다 (``\\ufeff``\\나 ``\\ufffe`` 문자가 됩니다)."
 
-#: ../../c-api/unicode.rst:1234
+#: ../../c-api/unicode.rst:1310
 msgid ""
 "After completion, ``*byteorder`` is set to the current byte order at the "
 "end of input data."
 msgstr "완료 후, ``*byteorder``\\는 입력 데이터의 끝에서 현재 바이트 순서로 설정됩니다."
 
-#: ../../c-api/unicode.rst:1245
+#: ../../c-api/unicode.rst:1321
 msgid ""
 "If *consumed* is ``NULL``, behave like :c:func:`PyUnicode_DecodeUTF16`. "
 "If *consumed* is not ``NULL``, :c:func:`PyUnicode_DecodeUTF16Stateful` "
@@ -1766,7 +1854,7 @@ msgstr ""
 "후행 불완전 UTF-16 바이트 시퀀스(가령 홀수 바이트 수나 분할 서로게이트 쌍)를 에러로 처리하지 않습니다. 이러한 바이트는 "
 "디코딩되지 않으며 디코딩된 바이트 수는 *consumed*\\에 저장됩니다."
 
-#: ../../c-api/unicode.rst:1254
+#: ../../c-api/unicode.rst:1330
 msgid ""
 "Return a Python byte string using the UTF-16 encoding in native byte "
 "order. The string always starts with a BOM mark.  Error handling is "
@@ -1775,15 +1863,15 @@ msgstr ""
 "네이티브 바이트 순서로 UTF-16 인코딩을 사용하여 파이썬 바이트 문자열을 반환합니다. 문자열은 항상 BOM 마크로 시작합니다. "
 "에러 처리는 \"strict\"입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1260
+#: ../../c-api/unicode.rst:1336
 msgid "UTF-7 Codecs"
 msgstr "UTF-7 코덱"
 
-#: ../../c-api/unicode.rst:1262
+#: ../../c-api/unicode.rst:1338
 msgid "These are the UTF-7 codec APIs:"
 msgstr "다음은 UTF-7 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1267
+#: ../../c-api/unicode.rst:1343
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the UTF-7 encoded "
 "string *str*.  Return ``NULL`` if an exception was raised by the codec."
@@ -1791,7 +1879,7 @@ msgstr ""
 "UTF-7로 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가 발생하면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1274
+#: ../../c-api/unicode.rst:1350
 msgid ""
 "If *consumed* is ``NULL``, behave like :c:func:`PyUnicode_DecodeUTF7`.  "
 "If *consumed* is not ``NULL``, trailing incomplete UTF-7 base-64 sections"
@@ -1802,15 +1890,15 @@ msgstr ""
 "*consumed*\\가 ``NULL``\\이 아니면, 후행 불완전한 UTF-7 base-64 섹션은 에러로 처리되지 않습니다. "
 "이러한 바이트는 디코딩되지 않으며 디코딩된 바이트 수는 *consumed*\\에 저장됩니다."
 
-#: ../../c-api/unicode.rst:1281
+#: ../../c-api/unicode.rst:1357
 msgid "Unicode-Escape Codecs"
 msgstr "유니코드 이스케이프 코덱"
 
-#: ../../c-api/unicode.rst:1283
+#: ../../c-api/unicode.rst:1359
 msgid "These are the \"Unicode Escape\" codec APIs:"
 msgstr "다음은 \"유니코드 이스케이프(Unicode Escape)\" 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1289
+#: ../../c-api/unicode.rst:1365
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the Unicode-Escape "
 "encoded string *str*.  Return ``NULL`` if an exception was raised by the "
@@ -1819,7 +1907,7 @@ msgstr ""
 "유니코드 이스케이프 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가 "
 "발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1295
+#: ../../c-api/unicode.rst:1371
 msgid ""
 "Encode a Unicode object using Unicode-Escape and return the result as a "
 "bytes object.  Error handling is \"strict\".  Return ``NULL`` if an "
@@ -1828,15 +1916,15 @@ msgstr ""
 "유니코드 이스케이프를 사용하여 유니코드 객체를 인코딩하고 결과를 bytes 객체로 반환합니다. 에러 처리는 "
 "\"strict\"입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1301
+#: ../../c-api/unicode.rst:1377
 msgid "Raw-Unicode-Escape Codecs"
 msgstr "원시 유니코드 이스케이프 코덱"
 
-#: ../../c-api/unicode.rst:1303
+#: ../../c-api/unicode.rst:1379
 msgid "These are the \"Raw Unicode Escape\" codec APIs:"
 msgstr "다음은 \"원시 유니코드 이스케이프(Raw Unicode Escape)\" 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1309
+#: ../../c-api/unicode.rst:1385
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the Raw-Unicode-"
 "Escape encoded string *str*.  Return ``NULL`` if an exception was raised "
@@ -1845,7 +1933,7 @@ msgstr ""
 "원시 유니코드 이스케이프 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가"
 " 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1315
+#: ../../c-api/unicode.rst:1391
 msgid ""
 "Encode a Unicode object using Raw-Unicode-Escape and return the result as"
 " a bytes object.  Error handling is \"strict\".  Return ``NULL`` if an "
@@ -1854,11 +1942,11 @@ msgstr ""
 "원시 유니코드 이스케이프를 사용하여 유니코드 객체를 인코딩하고 결과를 bytes 객체로 반환합니다. 에러 처리는 "
 "\"strict\"입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1321
+#: ../../c-api/unicode.rst:1397
 msgid "Latin-1 Codecs"
 msgstr "Latin-1 코덱"
 
-#: ../../c-api/unicode.rst:1323
+#: ../../c-api/unicode.rst:1399
 msgid ""
 "These are the Latin-1 codec APIs: Latin-1 corresponds to the first 256 "
 "Unicode ordinals and only these are accepted by the codecs during "
@@ -1867,7 +1955,7 @@ msgstr ""
 "다음은 Latin-1 코덱 API입니다: Latin-1은 처음 256개의 유니코드 서수에 해당하며 인코딩 중에 코덱에서 이들만 "
 "허용됩니다."
 
-#: ../../c-api/unicode.rst:1329
+#: ../../c-api/unicode.rst:1405
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the Latin-1 encoded "
 "string *str*.  Return ``NULL`` if an exception was raised by the codec."
@@ -1875,7 +1963,7 @@ msgstr ""
 "Latin-1 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가 발생하면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1335
+#: ../../c-api/unicode.rst:1411
 msgid ""
 "Encode a Unicode object using Latin-1 and return the result as Python "
 "bytes object.  Error handling is \"strict\".  Return ``NULL`` if an "
@@ -1884,17 +1972,17 @@ msgstr ""
 "Latin-1을 사용하여 유니코드 객체를 인코딩하고 결과를 파이썬 bytes 객체로 반환합니다. 에러 처리는 "
 "\"strict\"입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1341
+#: ../../c-api/unicode.rst:1417
 msgid "ASCII Codecs"
 msgstr "ASCII 코덱"
 
-#: ../../c-api/unicode.rst:1343
+#: ../../c-api/unicode.rst:1419
 msgid ""
 "These are the ASCII codec APIs.  Only 7-bit ASCII data is accepted. All "
 "other codes generate errors."
 msgstr "다음은 ASCII 코덱 API입니다. 7비트 ASCII 데이터만 허용됩니다. 다른 모든 코드는 에러를 생성합니다."
 
-#: ../../c-api/unicode.rst:1349
+#: ../../c-api/unicode.rst:1425
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the ASCII encoded "
 "string *str*.  Return ``NULL`` if an exception was raised by the codec."
@@ -1902,7 +1990,7 @@ msgstr ""
 "ASCII 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가 발생하면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1355
+#: ../../c-api/unicode.rst:1431
 msgid ""
 "Encode a Unicode object using ASCII and return the result as Python bytes"
 " object.  Error handling is \"strict\".  Return ``NULL`` if an exception "
@@ -1911,11 +1999,11 @@ msgstr ""
 "ASCII를 사용하여 유니코드 객체를 인코딩하고 결과를 파이썬 bytes 객체로 반환합니다. 에러 처리는 \"strict\"입니다."
 " 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1361
+#: ../../c-api/unicode.rst:1437
 msgid "Character Map Codecs"
 msgstr "문자 맵 코덱"
 
-#: ../../c-api/unicode.rst:1363
+#: ../../c-api/unicode.rst:1439
 msgid ""
 "This codec is special in that it can be used to implement many different "
 "codecs (and this is in fact what was done to obtain most of the standard "
@@ -1928,11 +2016,11 @@ msgstr ""
 "대부분의 표준 코덱을 얻기 위해 수행되었습니다). 코덱은 매핑을 사용하여 문자를 인코딩하고 디코딩합니다. 제공된 매핑 객체는 "
 ":meth:`~object.__getitem__` 매핑 인터페이스를 지원해야 합니다; 딕셔너리와 시퀀스가 잘 작동합니다."
 
-#: ../../c-api/unicode.rst:1369
+#: ../../c-api/unicode.rst:1445
 msgid "These are the mapping codec APIs:"
 msgstr "다음은 매핑 코덱 API입니다:"
 
-#: ../../c-api/unicode.rst:1374
+#: ../../c-api/unicode.rst:1450
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the encoded string "
 "*str* using the given *mapping* object.  Return ``NULL`` if an exception "
@@ -1941,7 +2029,7 @@ msgstr ""
 "주어진 *mapping* 객체를 사용하여 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다."
 " 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1378
+#: ../../c-api/unicode.rst:1454
 msgid ""
 "If *mapping* is ``NULL``, Latin-1 decoding will be applied.  Else "
 "*mapping* must map bytes ordinals (integers in the range from 0 to 255) "
@@ -1956,7 +2044,7 @@ msgstr ""
 " 매핑되지 않은 데이터 바이트(``None``, ``0xFFFE`` 또는 ``'\\ufffe'``\\로 매핑되는 것뿐만 아니라, "
 ":exc:`LookupError`\\를 유발하는 것)은 정의되지 않은 매핑으로 처리되어 에러를 발생시킵니다."
 
-#: ../../c-api/unicode.rst:1389
+#: ../../c-api/unicode.rst:1465
 msgid ""
 "Encode a Unicode object using the given *mapping* object and return the "
 "result as a bytes object.  Error handling is \"strict\".  Return ``NULL``"
@@ -1965,7 +2053,7 @@ msgstr ""
 "주어진 *mapping* 객체를 사용하여 유니코드 객체를 인코딩하고 결과를 bytes 객체로 반환합니다. 에러 처리는 "
 "\"strict\"입니다. 코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1393
+#: ../../c-api/unicode.rst:1469
 msgid ""
 "The *mapping* object must map Unicode ordinal integers to bytes objects, "
 "integers in the range from 0 to 255 or ``None``.  Unmapped character "
@@ -1976,11 +2064,11 @@ msgstr ""
 "합니다. ``None``\\에 매핑되는 것뿐만 아니라 매핑되지 않은 문자 서수(:exc:`LookupError`\\를 유발하는 "
 "것)는 \"정의되지 않은 매핑\"으로 처리되어 에러가 발생합니다."
 
-#: ../../c-api/unicode.rst:1399
+#: ../../c-api/unicode.rst:1475
 msgid "The following codec API is special in that maps Unicode to Unicode."
 msgstr "다음 코덱 API는 유니코드를 유니코드로 매핑한다는 점에서 특별합니다."
 
-#: ../../c-api/unicode.rst:1403
+#: ../../c-api/unicode.rst:1479
 msgid ""
 "Translate a string by applying a character mapping table to it and return"
 " the resulting Unicode object. Return ``NULL`` if an exception was raised"
@@ -1989,13 +2077,13 @@ msgstr ""
 "문자 매핑 테이블을 적용하여 문자열을 변환하고 결과 유니코드 객체를 반환합니다. 코덱에서 예외가 발생하면 ``NULL``\\을 "
 "반환합니다."
 
-#: ../../c-api/unicode.rst:1407
+#: ../../c-api/unicode.rst:1483
 msgid ""
 "The mapping table must map Unicode ordinal integers to Unicode ordinal "
 "integers or ``None`` (causing deletion of the character)."
 msgstr "매핑 테이블은 유니코드 서수 정수를 유니코드 서수 정수나 ``None``\\(문자가 삭제되도록 합니다)에 매핑해야 합니다."
 
-#: ../../c-api/unicode.rst:1410
+#: ../../c-api/unicode.rst:1486
 msgid ""
 "Mapping tables need only provide the :meth:`~object.__getitem__` "
 "interface; dictionaries and sequences work well.  Unmapped character "
@@ -2005,17 +2093,17 @@ msgstr ""
 "매핑 테이블은 :meth:`~object.__getitem__` 인터페이스 만 제공하면 됩니다; 딕셔너리와 시퀀스가 잘 작동합니다."
 " 매핑되지 않은 문자 서수(:exc:`LookupError`\\를 유발하는 것)는 건드리지 않고 그대로 복사됩니다."
 
-#: ../../c-api/unicode.rst:1414
+#: ../../c-api/unicode.rst:1490
 msgid ""
 "*errors* has the usual meaning for codecs. It may be ``NULL`` which "
 "indicates to use the default error handling."
 msgstr "*errors*\\는 코덱에서의 일반적인 의미입니다. 기본 에러 처리를 사용함을 나타내는 ``NULL``\\일 수 있습니다."
 
-#: ../../c-api/unicode.rst:1419
+#: ../../c-api/unicode.rst:1495
 msgid "MBCS codecs for Windows"
 msgstr "윈도우 용 MBCS 코덱"
 
-#: ../../c-api/unicode.rst:1421
+#: ../../c-api/unicode.rst:1497
 msgid ""
 "These are the MBCS codec APIs. They are currently only available on "
 "Windows and use the Win32 MBCS converters to implement the conversions.  "
@@ -2027,7 +2115,7 @@ msgstr ""
 "MBCS(또는 DBCS)는 단지 하나가 아니라 인코딩 클래스임에 유의하십시오. 대상 인코딩은 코덱을 실행하는 기계의 사용자 설정에 "
 "의해 정의됩니다."
 
-#: ../../c-api/unicode.rst:1428
+#: ../../c-api/unicode.rst:1504
 msgid ""
 "Create a Unicode object by decoding *size* bytes of the MBCS encoded "
 "string *str*. Return ``NULL`` if an exception was raised by the codec."
@@ -2035,7 +2123,7 @@ msgstr ""
 "MBCS 인코딩된 문자열 *str*\\의 *size* 바이트를 디코딩하여 유니코드 객체를 만듭니다. 코덱에서 예외가 발생하면 "
 "``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1435
+#: ../../c-api/unicode.rst:1511
 msgid ""
 "If *consumed* is ``NULL``, behave like :c:func:`PyUnicode_DecodeMBCS`. If"
 " *consumed* is not ``NULL``, :c:func:`PyUnicode_DecodeMBCSStateful` will "
@@ -2046,13 +2134,13 @@ msgstr ""
 "*consumed*\\가 ``NULL``\\이 아니면, :c:func:`PyUnicode_DecodeMBCSStateful` 은 "
 "후행 선행(lead) 바이트를 디코딩하지 않고 디코딩된 바이트 수가 *consumed*\\에 저장됩니다."
 
-#: ../../c-api/unicode.rst:1444
+#: ../../c-api/unicode.rst:1520
 msgid ""
 "Similar to :c:func:`PyUnicode_DecodeMBCSStateful`, except uses the code "
 "page specified by *code_page*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1450
+#: ../../c-api/unicode.rst:1526
 msgid ""
 "Encode a Unicode object using MBCS and return the result as Python bytes "
 "object.  Error handling is \"strict\".  Return ``NULL`` if an exception "
@@ -2061,7 +2149,7 @@ msgstr ""
 "MBCS를 사용하여 유니코드 객체를 인코딩하고 결과를 파이썬 bytes 객체로 반환합니다. 에러 처리는 \"strict\"입니다. "
 "코덱에서 예외가 발생하면 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1457
+#: ../../c-api/unicode.rst:1533
 msgid ""
 "Encode the Unicode object using the specified code page and return a "
 "Python bytes object.  Return ``NULL`` if an exception was raised by the "
@@ -2070,11 +2158,11 @@ msgstr ""
 "지정된 코드 페이지를 사용하여 유니코드 객체를 인코딩하고 파이썬 bytes 객체를 반환합니다. 코덱에서 예외가 발생하면 "
 "``NULL``\\을 반환합니다. :c:macro:`!CP_ACP` 코드 페이지를 사용하여 MBCS 인코더를 얻습니다."
 
-#: ../../c-api/unicode.rst:1467
+#: ../../c-api/unicode.rst:1543
 msgid "Methods and Slot Functions"
 msgstr "메서드와 슬롯 함수"
 
-#: ../../c-api/unicode.rst:1469
+#: ../../c-api/unicode.rst:1545
 msgid ""
 "The following APIs are capable of handling Unicode objects and strings on"
 " input (we refer to them as strings in the descriptions) and return "
@@ -2083,15 +2171,15 @@ msgstr ""
 "다음 API는 입력의 유니코드 객체와 문자열을 (설명에서 문자열이라고 하겠습니다) 처리할 수 있으며 적절하게 유니코드 객체나 정수를"
 " 반환합니다."
 
-#: ../../c-api/unicode.rst:1473
+#: ../../c-api/unicode.rst:1549
 msgid "They all return ``NULL`` or ``-1`` if an exception occurs."
 msgstr "예외가 발생하면 모두 ``NULL``\\이나 ``-1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1478
+#: ../../c-api/unicode.rst:1554
 msgid "Concat two strings giving a new Unicode string."
 msgstr "두 문자열을 이어붙여 하나의 새로운 유니코드 문자열을 제공합니다."
 
-#: ../../c-api/unicode.rst:1483
+#: ../../c-api/unicode.rst:1559
 msgid ""
 "Split a string giving a list of Unicode strings.  If *sep* is ``NULL``, "
 "splitting will be done at all whitespace substrings.  Otherwise, splits "
@@ -2103,26 +2191,26 @@ msgstr ""
 "수행됩니다. 그렇지 않으면, 주어진 구분자에서 분할이 일어납니다. 최대 *maxsplit* 분할이 수행됩니다. 음수이면, 제한이 "
 "설정되지 않습니다. 구분자는 결과 리스트에 포함되지 않습니다."
 
-#: ../../c-api/unicode.rst:1488 ../../c-api/unicode.rst:1498
-#: ../../c-api/unicode.rst:1519 ../../c-api/unicode.rst:1532
+#: ../../c-api/unicode.rst:1564 ../../c-api/unicode.rst:1574
+#: ../../c-api/unicode.rst:1595 ../../c-api/unicode.rst:1608
 msgid "On error, return ``NULL`` with an exception set."
 msgstr "에러 시, 예외를 설정하고 ``NULL``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1490
+#: ../../c-api/unicode.rst:1566
 msgid "Equivalent to :py:meth:`str.split`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1495
+#: ../../c-api/unicode.rst:1571
 msgid ""
 "Similar to :c:func:`PyUnicode_Split`, but splitting will be done "
 "beginning at the end of the string."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1500
+#: ../../c-api/unicode.rst:1576
 msgid "Equivalent to :py:meth:`str.rsplit`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1505
+#: ../../c-api/unicode.rst:1581
 msgid ""
 "Split a Unicode string at line breaks, returning a list of Unicode "
 "strings. CRLF is considered to be one line break.  If *keepends* is "
@@ -2132,7 +2220,7 @@ msgstr ""
 "줄 바꿈에서 유니코드 문자열을 분할하여, 유니코드 문자열 리스트를 반환합니다. CRLF는 하나의 줄 바꿈으로 간주합니다. "
 "*keepends*\\가 ``0``\\이면, 결과 문자열에 줄 바꿈 문자가 포함되지 않습니다."
 
-#: ../../c-api/unicode.rst:1512
+#: ../../c-api/unicode.rst:1588
 msgid ""
 "Split a Unicode string at the first occurrence of *sep*, and return a "
 "3-tuple containing the part before the separator, the separator itself, "
@@ -2140,32 +2228,32 @@ msgid ""
 " 3-tuple containing the string itself, followed by two empty strings."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1517 ../../c-api/unicode.rst:1530
+#: ../../c-api/unicode.rst:1593 ../../c-api/unicode.rst:1606
 msgid "*sep* must not be empty."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1521
+#: ../../c-api/unicode.rst:1597
 msgid "Equivalent to :py:meth:`str.partition`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1526
+#: ../../c-api/unicode.rst:1602
 msgid ""
 "Similar to :c:func:`PyUnicode_Partition`, but split a Unicode string at "
 "the last occurrence of *sep*. If the separator is not found, return a "
 "3-tuple containing two empty strings, followed by the string itself."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1534
+#: ../../c-api/unicode.rst:1610
 msgid "Equivalent to :py:meth:`str.rpartition`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1539
+#: ../../c-api/unicode.rst:1615
 msgid ""
 "Join a sequence of strings using the given *separator* and return the "
 "resulting Unicode string."
 msgstr "주어진 *separator*\\를 사용하여 문자열 시퀀스를 연결하고 결과 유니코드 문자열을 반환합니다."
 
-#: ../../c-api/unicode.rst:1546
+#: ../../c-api/unicode.rst:1622
 msgid ""
 "Return ``1`` if *substr* matches ``unicode[start:end]`` at the given tail"
 " end (*direction* == ``-1`` means to do a prefix match, *direction* == "
@@ -2176,7 +2264,7 @@ msgstr ""
 "*direction* == ``1``\\은 접미사 일치를 의미합니다) ``unicode[start:end]``\\와 일치하면 "
 "``1``\\을 반환합니다, 그렇지 않으면 ``0``\\을 반환합니다. 에러가 발생하면 ``-1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1554
+#: ../../c-api/unicode.rst:1630
 msgid ""
 "Return the first position of *substr* in ``unicode[start:end]`` using the"
 " given *direction* (*direction* == ``1`` means to do a forward search, "
@@ -2190,7 +2278,7 @@ msgstr ""
 "*substr*\\의 첫 번째 위치를 반환합니다. 반환 값은 첫 번째 일치의 인덱스입니다; ``-1`` 값은 일치하는 항목이 없음을"
 " 나타내고, ``-2``\\는 에러가 발생했고 예외가 설정되었음을 나타냅니다."
 
-#: ../../c-api/unicode.rst:1564
+#: ../../c-api/unicode.rst:1640
 msgid ""
 "Return the first position of the character *ch* in ``unicode[start:end]``"
 " using the given *direction* (*direction* == ``1`` means to do a forward "
@@ -2204,11 +2292,11 @@ msgstr ""
 "*ch*\\의 첫 번째 위치를 반환합니다. 반환 값은 첫 번째 일치의 인덱스입니다; ``-1`` 값은 일치하는 항목이 없음을 "
 "나타내고, ``-2``\\는 에러가 발생했고 예외가 설정되었음을 나타냅니다."
 
-#: ../../c-api/unicode.rst:1572
+#: ../../c-api/unicode.rst:1648
 msgid "*start* and *end* are now adjusted to behave like ``unicode[start:end]``."
 msgstr "*start*\\와 *end*\\는 이제 ``unicode[start:end]``\\처럼 작동하도록 조정됩니다."
 
-#: ../../c-api/unicode.rst:1579
+#: ../../c-api/unicode.rst:1655
 msgid ""
 "Return the number of non-overlapping occurrences of *substr* in "
 "``unicode[start:end]``.  Return ``-1`` if an error occurred."
@@ -2216,7 +2304,7 @@ msgstr ""
 "``unicode[start:end]``\\에서 *substr*\\이 겹치지 않게 등장하는 횟수를 반환합니다. 에러가 발생하면 "
 "``-1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1586
+#: ../../c-api/unicode.rst:1662
 msgid ""
 "Replace at most *maxcount* occurrences of *substr* in *unicode* with "
 "*replstr* and return the resulting Unicode object. *maxcount* == ``-1`` "
@@ -2225,13 +2313,13 @@ msgstr ""
 "*unicode*\\에서 *substr*\\의 최대 *maxcount* 등장을 *replstr*\\로 바꾸고 결과 유니코드 객체를 "
 "반환합니다. *maxcount* == ``-1``\\은 모든 등장을 교체함을 의미합니다."
 
-#: ../../c-api/unicode.rst:1593
+#: ../../c-api/unicode.rst:1669
 msgid ""
 "Compare two strings and return ``-1``, ``0``, ``1`` for less than, equal,"
 " and greater than, respectively."
 msgstr "두 문자열을 비교하고 각각 작음, 같음, 큼에 대해 ``-1``, ``0``, ``1``\\을 반환합니다."
 
-#: ../../c-api/unicode.rst:1596
+#: ../../c-api/unicode.rst:1672
 msgid ""
 "This function returns ``-1`` upon failure, so one should call "
 ":c:func:`PyErr_Occurred` to check for errors."
@@ -2239,45 +2327,45 @@ msgstr ""
 "이 함수는 실패 시 ``-1``\\을 반환하므로, 에러를 확인하기 위해 :c:func:`PyErr_Occurred`\\를 호출해야 "
 "합니다."
 
-#: ../../c-api/unicode.rst:1601
+#: ../../c-api/unicode.rst:1677
 #, fuzzy
 msgid "The :c:func:`PyUnicode_Equal` function."
 msgstr ":c:func:`Py_EncodeLocale` 함수."
 
-#: ../../c-api/unicode.rst:1606
+#: ../../c-api/unicode.rst:1682
 msgid "Test if two strings are equal:"
 msgstr ""
 
-#: ../../c-api/unicode.rst:1608
+#: ../../c-api/unicode.rst:1684
 msgid "Return ``1`` if *a* is equal to *b*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1609
+#: ../../c-api/unicode.rst:1685
 msgid "Return ``0`` if *a* is not equal to *b*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1610
+#: ../../c-api/unicode.rst:1686
 msgid ""
 "Set a :exc:`TypeError` exception and return ``-1`` if *a* or *b* is not a"
 " :class:`str` object."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1613
+#: ../../c-api/unicode.rst:1689
 msgid "The function always succeeds if *a* and *b* are :class:`str` objects."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1615
+#: ../../c-api/unicode.rst:1691
 msgid ""
 "The function works for :class:`str` subclasses, but does not honor custom"
 " ``__eq__()`` method."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1620
+#: ../../c-api/unicode.rst:1696
 #, fuzzy
 msgid "The :c:func:`PyUnicode_Compare` function."
 msgstr ":c:func:`Py_EncodeLocale` 함수."
 
-#: ../../c-api/unicode.rst:1627
+#: ../../c-api/unicode.rst:1703
 msgid ""
 "Compare a Unicode object with a char buffer which is interpreted as being"
 " UTF-8 or ASCII encoded and return true (``1``) if they are equal, or "
@@ -2286,11 +2374,11 @@ msgid ""
 "false (``0``) is returned."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1634 ../../c-api/unicode.rst:1655
+#: ../../c-api/unicode.rst:1710 ../../c-api/unicode.rst:1731
 msgid "This function does not raise exceptions."
 msgstr "이 함수는 예외를 발생시키지 않습니다."
 
-#: ../../c-api/unicode.rst:1641
+#: ../../c-api/unicode.rst:1717
 msgid ""
 "Similar to :c:func:`PyUnicode_EqualToUTF8AndSize`, but compute *string* "
 "length using :c:func:`!strlen`. If the Unicode object contains null "
@@ -2299,7 +2387,7 @@ msgstr ""
 ":c:func:`PyUnicode_EqualToUTF8AndSize`\\와 유사하지만, :c:func:`!strlen`\\을 "
 "사용하여 *string* 길이를 계산합니다. 유니코드 객체가 널 문자를 포함하면, 거짓(``0``)을 반환합니다."
 
-#: ../../c-api/unicode.rst:1650
+#: ../../c-api/unicode.rst:1726
 msgid ""
 "Compare a Unicode object, *unicode*, with *string* and return ``-1``, "
 "``0``, ``1`` for less than, equal, and greater than, respectively. It is "
@@ -2310,23 +2398,23 @@ msgstr ""
 "``1``\\을 반환합니다. ASCII로 인코딩된 문자열만 전달하는 것이 가장 좋지만, 비 ASCII 문자가 포함되면 함수는 입력 "
 "문자열을 ISO-8859-1로 해석합니다."
 
-#: ../../c-api/unicode.rst:1660
+#: ../../c-api/unicode.rst:1736
 msgid "Rich compare two Unicode strings and return one of the following:"
 msgstr "두 유니코드 문자열을 풍부한 비교(rich comparison) 하고 다음 중 하나를 반환합니다:"
 
-#: ../../c-api/unicode.rst:1662
+#: ../../c-api/unicode.rst:1738
 msgid "``NULL`` in case an exception was raised"
 msgstr "예외가 발생하면 ``NULL``"
 
-#: ../../c-api/unicode.rst:1663
+#: ../../c-api/unicode.rst:1739
 msgid ":c:data:`Py_True` or :c:data:`Py_False` for successful comparisons"
 msgstr "성공적인 비교는 :c:data:`Py_True`\\나 :c:data:`Py_False`"
 
-#: ../../c-api/unicode.rst:1664
+#: ../../c-api/unicode.rst:1740
 msgid ":c:data:`Py_NotImplemented` in case the type combination is unknown"
 msgstr "형 조합을 알 수 없으면 :c:data:`Py_NotImplemented`"
 
-#: ../../c-api/unicode.rst:1666
+#: ../../c-api/unicode.rst:1742
 msgid ""
 "Possible values for *op* are :c:macro:`Py_GT`, :c:macro:`Py_GE`, "
 ":c:macro:`Py_EQ`, :c:macro:`Py_NE`, :c:macro:`Py_LT`, and "
@@ -2335,25 +2423,25 @@ msgstr ""
 "*op*\\에 가능한 값은 :c:macro:`Py_GT`, :c:macro:`Py_GE`, :c:macro:`Py_EQ`, "
 ":c:macro:`Py_NE`, :c:macro:`Py_LT` 및 :c:macro:`Py_LE`\\입니다."
 
-#: ../../c-api/unicode.rst:1672
+#: ../../c-api/unicode.rst:1748
 msgid ""
 "Return a new string object from *format* and *args*; this is analogous to"
 " ``format % args``."
 msgstr "*format*\\과 *args*\\에서 새 문자열 객체를 반환합니다; 이것은 ``format % args``\\와 유사합니다."
 
-#: ../../c-api/unicode.rst:1678
+#: ../../c-api/unicode.rst:1754
 msgid ""
 "Check whether *substr* is contained in *unicode* and return true or false"
 " accordingly."
 msgstr "*substr*\\가 *unicode*\\에 포함되어 있는지 확인하고 그에 따라 참이나 거짓을 반환합니다."
 
-#: ../../c-api/unicode.rst:1681
+#: ../../c-api/unicode.rst:1757
 msgid ""
 "*substr* has to coerce to a one element Unicode string. ``-1`` is "
 "returned if there was an error."
 msgstr "*substr*\\는 단일 요소 유니코드 문자열로 강제 변환해야 합니다. 에러가 있으면 ``-1``\\이 반환됩니다."
 
-#: ../../c-api/unicode.rst:1687
+#: ../../c-api/unicode.rst:1763
 msgid ""
 "Intern the argument :c:expr:`*p_unicode` in place.  The argument must be "
 "the address of a pointer variable pointing to a Python Unicode string "
@@ -2369,7 +2457,7 @@ msgstr ""
 "대한 새로운 :term:`강한 참조 <strong reference>`\\를 만듭니다), 그렇지 않으면 "
 ":c:expr:`*p_unicode`\\만 홀로 두고 인턴 합니다."
 
-#: ../../c-api/unicode.rst:1694
+#: ../../c-api/unicode.rst:1770
 msgid ""
 "(Clarification: even though there is a lot of talk about references, "
 "think of this function as reference-neutral. You must own the object you "
@@ -2379,26 +2467,26 @@ msgstr ""
 "(설명: 참조에 대해 많은 이야기가 있지만, 이 함수를 참조 중립이라고 생각하십시오. 전달하는 객체의 소유권을 반드시 가져야 "
 "합니다; 호출 후 더는 전달된 참조를 소유하지 않지만, 결과를 새로 소유하게 됩니다.)"
 
-#: ../../c-api/unicode.rst:1699
+#: ../../c-api/unicode.rst:1775
 msgid ""
 "This function never raises an exception. On error, it leaves its argument"
 " unchanged without interning it."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1702
+#: ../../c-api/unicode.rst:1778
 msgid ""
 "Instances of subclasses of :py:class:`str` may not be interned, that is, "
 ":c:expr:`PyUnicode_CheckExact(*p_unicode)` must be true. If it is not, "
 "then -- as with any other error -- the argument is left unchanged."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1706
+#: ../../c-api/unicode.rst:1782
 msgid ""
 "Note that interned strings are not “immortal”. You must keep a reference "
 "to the result to benefit from interning."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1712
+#: ../../c-api/unicode.rst:1788
 msgid ""
 "A combination of :c:func:`PyUnicode_FromString` and "
 ":c:func:`PyUnicode_InternInPlace`, meant for statically allocated "
@@ -2407,7 +2495,7 @@ msgstr ""
 ":c:func:`PyUnicode_FromString`\\과 :c:func:`PyUnicode_InternInPlace`\\의 "
 "조합, 정적 할당된 문자열을 위한 것입니다."
 
-#: ../../c-api/unicode.rst:1715
+#: ../../c-api/unicode.rst:1791
 msgid ""
 "Return a new (\"owned\") reference to either a new Unicode string object "
 "that has been interned, or an earlier interned string object with the "
@@ -2416,7 +2504,7 @@ msgstr ""
 "인턴(intern) 된 새 유니코드 문자열 객체나, 같은 값을 가진 이전에 인턴 된 문자열 객체에 대한 새 (\"소유된\") 참조를"
 " 반환합니다."
 
-#: ../../c-api/unicode.rst:1719
+#: ../../c-api/unicode.rst:1795
 msgid ""
 "Python may keep a reference to the result, or make it :term:`immortal`, "
 "preventing it from being garbage-collected promptly. For interning an "
@@ -2425,14 +2513,14 @@ msgid ""
 ":c:func:`PyUnicode_InternInPlace` directly."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1728
+#: ../../c-api/unicode.rst:1804
 msgid ""
 "Return a non-zero value if *str* is interned, zero if not. The *str* "
 "argument must be a string; this is not checked. This function always "
 "succeeds."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1734
+#: ../../c-api/unicode.rst:1810
 msgid ""
 "A non-zero return value may carry additional information about *how* the "
 "string is interned. The meaning of such non-zero values, as well as each "
@@ -2440,181 +2528,208 @@ msgid ""
 "versions."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1741
+#: ../../c-api/unicode.rst:1817
 #, fuzzy
 msgid "PyUnicodeWriter"
 msgstr "유니코드 형"
 
-#: ../../c-api/unicode.rst:1743
+#: ../../c-api/unicode.rst:1819
 msgid ""
 "The :c:type:`PyUnicodeWriter` API can be used to create a Python "
 ":class:`str` object."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1750
+#: ../../c-api/unicode.rst:1826
 #, fuzzy
 msgid "A Unicode writer instance."
 msgstr "유니코드 객체."
 
-#: ../../c-api/unicode.rst:1752
+#: ../../c-api/unicode.rst:1828
 msgid ""
 "The instance must be destroyed by :c:func:`PyUnicodeWriter_Finish` on "
 "success, or :c:func:`PyUnicodeWriter_Discard` on error."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1757
+#: ../../c-api/unicode.rst:1831
+msgid ""
+"The API is **not thread safe**. To share a writer with multiple threads, "
+"a critical section or a lock is needed."
+msgstr ""
+
+#: ../../c-api/unicode.rst:1836
 msgid "Create a Unicode writer instance."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1759
+#: ../../c-api/unicode.rst:1838
 msgid "*length* must be greater than or equal to ``0``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1761
+#: ../../c-api/unicode.rst:1840
 msgid ""
 "If *length* is greater than ``0``, preallocate an internal buffer of "
 "*length* characters."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1764 ../../c-api/unicode.rst:1770
+#: ../../c-api/unicode.rst:1843 ../../c-api/unicode.rst:1849
 msgid "Set an exception and return ``NULL`` on error."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1768
+#: ../../c-api/unicode.rst:1847
 msgid ""
 "Return the final Python :class:`str` object and destroy the writer "
 "instance."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1772 ../../c-api/unicode.rst:1780
+#: ../../c-api/unicode.rst:1851 ../../c-api/unicode.rst:1859
 msgid "The writer instance is invalid after this call."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1776
+#: ../../c-api/unicode.rst:1855
 msgid "Discard the internal Unicode buffer and destroy the writer instance."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1778
+#: ../../c-api/unicode.rst:1857
 msgid "If *writer* is ``NULL``, no operation is performed."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1784
+#: ../../c-api/unicode.rst:1863
 msgid "Write the single Unicode character *ch* into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1786 ../../c-api/unicode.rst:1796
-#: ../../c-api/unicode.rst:1811 ../../c-api/unicode.rst:1823
-#: ../../c-api/unicode.rst:1832 ../../c-api/unicode.rst:1839
-#: ../../c-api/unicode.rst:1846 ../../c-api/unicode.rst:1857
-#: ../../c-api/unicode.rst:1864 ../../c-api/unicode.rst:1883
+#: ../../c-api/unicode.rst:1865 ../../c-api/unicode.rst:1875
+#: ../../c-api/unicode.rst:1890 ../../c-api/unicode.rst:1900
+#: ../../c-api/unicode.rst:1912 ../../c-api/unicode.rst:1919
+#: ../../c-api/unicode.rst:1932 ../../c-api/unicode.rst:1947
+#: ../../c-api/unicode.rst:1954 ../../c-api/unicode.rst:1973
 msgid ""
 "On success, return ``0``. On error, set an exception, leave the writer "
 "unchanged, and return ``-1``."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1791
+#: ../../c-api/unicode.rst:1870
 msgid ""
 "Decode the string *str* from UTF-8 in strict mode and write the output "
 "into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1793 ../../c-api/unicode.rst:1805
-#: ../../c-api/unicode.rst:1872
+#: ../../c-api/unicode.rst:1872 ../../c-api/unicode.rst:1884
+#: ../../c-api/unicode.rst:1962
 msgid ""
 "*size* is the string length in bytes. If *size* is equal to ``-1``, call "
 "``strlen(str)`` to get the string length."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1799
+#: ../../c-api/unicode.rst:1878
 msgid "See also :c:func:`PyUnicodeWriter_DecodeUTF8Stateful`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1803
+#: ../../c-api/unicode.rst:1882
 msgid "Write the ASCII string *str* into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1808
+#: ../../c-api/unicode.rst:1887
 msgid ""
 "*str* must only contain ASCII characters. The behavior is undefined if "
 "*str* contains non-ASCII characters."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1818
+#: ../../c-api/unicode.rst:1895
 msgid "Write the wide string *str* into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1820
+#: ../../c-api/unicode.rst:1897
 msgid ""
 "*size* is a number of wide characters. If *size* is equal to ``-1``, call"
 " ``wcslen(str)`` to get the string length."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1828
-msgid "Writer the UCS4 string *str* into *writer*."
+#: ../../c-api/unicode.rst:1905
+msgid "Write the UCS4 string *str* into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1830
+#: ../../c-api/unicode.rst:1907
 msgid "*size* is a number of UCS4 characters."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1837
+#: ../../c-api/unicode.rst:1909
+msgid ""
+"All characters must be in range [U+0000; U+10ffff]. If the string "
+"contains invalid characters, the behavior is undefined."
+msgstr ""
+
+#: ../../c-api/unicode.rst:1917
 msgid "Call :c:func:`PyObject_Str` on *obj* and write the output into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1844
+#: ../../c-api/unicode.rst:1922
+msgid ""
+"To write a :class:`str` subclass which overrides the "
+":meth:`~object.__str__` method, :c:func:`PyUnicode_FromObject` can be "
+"used to get the original string."
+msgstr ""
+
+#: ../../c-api/unicode.rst:1928
 msgid "Call :c:func:`PyObject_Repr` on *obj* and write the output into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1851
+#: ../../c-api/unicode.rst:1930
+msgid "If *obj* is ``NULL``, write the string ``\"<NULL>\"`` into *writer*."
+msgstr ""
+
+#: ../../c-api/unicode.rst:1937
+msgid "Added support for ``NULL``."
+msgstr ""
+
+#: ../../c-api/unicode.rst:1941
 msgid "Write the substring ``str[start:end]`` into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1853
+#: ../../c-api/unicode.rst:1943
 msgid ""
 "*str* must be Python :class:`str` object. *start* must be greater than or"
 " equal to 0, and less than or equal to *end*. *end* must be less than or "
 "equal to *str* length."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1862
+#: ../../c-api/unicode.rst:1952
 #, fuzzy
 msgid ""
 "Similar to :c:func:`PyUnicode_FromFormat`, but write the output directly "
 "into *writer*."
 msgstr "정확히 두 개의 인자를 취한다는 점을 제외하면 :c:func:`PyUnicode_FromFormat`\\과 동일합니다."
 
-#: ../../c-api/unicode.rst:1869
+#: ../../c-api/unicode.rst:1959
 msgid ""
 "Decode the string *str* from UTF-8 with *errors* error handler and write "
 "the output into *writer*."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1875
+#: ../../c-api/unicode.rst:1965
 msgid ""
 "*errors* is an :ref:`error handler <error-handlers>` name, such as "
 "``\"replace\"``. If *errors* is ``NULL``, use the strict error handler."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1878
+#: ../../c-api/unicode.rst:1968
 msgid ""
 "If *consumed* is not ``NULL``, set *\\*consumed* to the number of decoded"
 " bytes on success. If *consumed* is ``NULL``, treat trailing incomplete "
 "UTF-8 byte sequences as an error."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1886
+#: ../../c-api/unicode.rst:1976
 msgid "See also :c:func:`PyUnicodeWriter_WriteUTF8`."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1889
+#: ../../c-api/unicode.rst:1979
 msgid "Deprecated API"
 msgstr ""
 
-#: ../../c-api/unicode.rst:1891
+#: ../../c-api/unicode.rst:1981
 msgid "The following API is deprecated."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1895
+#: ../../c-api/unicode.rst:1985
 #, fuzzy
 msgid ""
 "This is a typedef of :c:type:`wchar_t`, which is a 16-bit type or 32-bit "
@@ -2622,7 +2737,7 @@ msgid ""
 "instead."
 msgstr "이것은 플랫폼에 따라 16비트 형이나 32비트 형인 :c:type:`wchar_t`\\의 typedef 입니다."
 
-#: ../../c-api/unicode.rst:1899
+#: ../../c-api/unicode.rst:1989
 msgid ""
 "In previous versions, this was a 16-bit type or a 32-bit type depending "
 "on whether you selected a \"narrow\" or \"wide\" Unicode version of "
@@ -2631,26 +2746,26 @@ msgstr ""
 "이전 버전에서, 이것은 빌드 시 파이썬의 \"내로우(narrow)\"나 \"와이드(wide)\" 유니코드 버전 중 어느 것을 "
 "선택했는지에 따라 16비트 형이나 32비트 형이었습니다."
 
-#: ../../c-api/unicode.rst:1909
+#: ../../c-api/unicode.rst:1999
 msgid ""
 "Do nothing and return ``0``. This API is kept only for backward "
 "compatibility, but there are no plans to remove it."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1915
+#: ../../c-api/unicode.rst:2005
 msgid ""
 "This API does nothing since Python 3.12. Previously, this needed to be "
 "called for each string created using the old API "
 "(:c:func:`!PyUnicode_FromUnicode` or similar)."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1923
+#: ../../c-api/unicode.rst:2013
 msgid ""
 "Do nothing and return ``1``. This API is kept only for backward "
 "compatibility, but there are no plans to remove it."
 msgstr ""
 
-#: ../../c-api/unicode.rst:1929
+#: ../../c-api/unicode.rst:2019
 msgid ""
 "This API does nothing since Python 3.12. Previously, this could be called"
 " to check if :c:func:`PyUnicode_READY` is necessary."
@@ -3583,5 +3698,16 @@ msgstr ""
 #~ msgstr "메서드와 슬롯"
 
 #~ msgid "Strings interned this way are made :term:`immortal`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Append the string *right* to the "
+#~ "end of *p_left*. *p_left* must point "
+#~ "to a :term:`strong reference` to a "
+#~ "Unicode object; :c:func:`!PyUnicode_Append` releases"
+#~ " (\"steals\") this reference."
+#~ msgstr ""
+
+#~ msgid "Writer the UCS4 string *str* into *writer*."
 #~ msgstr ""
 

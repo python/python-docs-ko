@@ -7,17 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../tutorial/stdlib2.rst:5
-msgid "Brief Tour of the Standard Library --- Part II"
+#, fuzzy
+msgid "Brief tour of the standard library --- part II"
 msgstr "표준 라이브러리 둘러보기 --- 2부"
 
 #: ../../tutorial/stdlib2.rst:7
@@ -29,7 +30,8 @@ msgstr ""
 "사용되지 않습니다."
 
 #: ../../tutorial/stdlib2.rst:14
-msgid "Output Formatting"
+#, fuzzy
+msgid "Output formatting"
 msgstr "출력 포매팅"
 
 #: ../../tutorial/stdlib2.rst:16
@@ -289,7 +291,8 @@ msgstr ""
 " 보고서 및 HTML 웹 보고서에 대한 커스텀 템플릿을 치환할 수 있습니다."
 
 #: ../../tutorial/stdlib2.rst:134
-msgid "Working with Binary Data Record Layouts"
+#, fuzzy
+msgid "Working with binary data record layouts"
 msgstr "바이너리 데이터 레코드 배치 작업"
 
 #: ../../tutorial/stdlib2.rst:136
@@ -372,19 +375,20 @@ msgstr ""
 " 있는지 보여줍니다::"
 
 #: ../../tutorial/stdlib2.rst:177
+#, fuzzy
 msgid ""
 "import threading, zipfile\n"
 "\n"
 "class AsyncZip(threading.Thread):\n"
 "    def __init__(self, infile, outfile):\n"
-"        threading.Thread.__init__(self)\n"
+"        super().__init__()\n"
 "        self.infile = infile\n"
 "        self.outfile = outfile\n"
 "\n"
 "    def run(self):\n"
-"        f = zipfile.ZipFile(self.outfile, 'w', zipfile.ZIP_DEFLATED)\n"
-"        f.write(self.infile)\n"
-"        f.close()\n"
+"        with zipfile.ZipFile(self.outfile, 'w', zipfile.ZIP_DEFLATED) as "
+"f:\n"
+"            f.write(self.infile)\n"
 "        print('Finished background zip of:', self.infile)\n"
 "\n"
 "background = AsyncZip('mydata.txt', 'myarchive.zip')\n"
@@ -415,7 +419,7 @@ msgstr ""
 "background.join()    # 백그라운드 작업이 끝날 때까지 기다립니다\n"
 "print('Main program waited until background was done.')"
 
-#: ../../tutorial/stdlib2.rst:198
+#: ../../tutorial/stdlib2.rst:197
 msgid ""
 "The principal challenge of multi-threaded applications is coordinating "
 "threads that share data or other resources.  To that end, the threading "
@@ -425,7 +429,7 @@ msgstr ""
 "다중 스레드 응용 프로그램의 가장 큰 문제점은 데이터 또는 다른 자원을 공유하는 스레드를 조정하는 것입니다. 이를 위해 "
 "threading 모듈은 록, 이벤트, 조건 변수 및 세마포어를 비롯한 많은 수의 동기화 기본 요소를 제공합니다."
 
-#: ../../tutorial/stdlib2.rst:203
+#: ../../tutorial/stdlib2.rst:202
 msgid ""
 "While those tools are powerful, minor design errors can result in "
 "problems that are difficult to reproduce.  So, the preferred approach to "
@@ -440,11 +444,11 @@ msgstr ""
 "스레드의 요청을 제공하는 것입니다. 스레드 간 통신 및 조정을 위한 :class:`~queue.Queue` 객체를 사용하는 응용 "
 "프로그램은 설계하기 쉽고, 읽기 쉽고, 신뢰성이 높습니다."
 
-#: ../../tutorial/stdlib2.rst:214
+#: ../../tutorial/stdlib2.rst:213
 msgid "Logging"
 msgstr "로깅"
 
-#: ../../tutorial/stdlib2.rst:216
+#: ../../tutorial/stdlib2.rst:215
 msgid ""
 "The :mod:`logging` module offers a full featured and flexible logging "
 "system. At its simplest, log messages are sent to a file or to "
@@ -453,7 +457,7 @@ msgstr ""
 ":mod:`logging` 모듈은 완전한 기능을 갖춘 유연한 로깅 시스템을 제공합니다. 가장 단순한 경우, 로그 메시지는 파일이나 "
 "``sys.stderr`` 로 보내집니다::"
 
-#: ../../tutorial/stdlib2.rst:219
+#: ../../tutorial/stdlib2.rst:218
 #, python-format
 msgid ""
 "import logging\n"
@@ -470,11 +474,11 @@ msgstr ""
 "logging.error('Error occurred')\n"
 "logging.critical('Critical error -- shutting down')"
 
-#: ../../tutorial/stdlib2.rst:226
+#: ../../tutorial/stdlib2.rst:225
 msgid "This produces the following output:"
 msgstr "그러면 다음과 같은 결과가 출력됩니다:"
 
-#: ../../tutorial/stdlib2.rst:228
+#: ../../tutorial/stdlib2.rst:227
 msgid ""
 "WARNING:root:Warning:config file server.conf not found\n"
 "ERROR:root:Error occurred\n"
@@ -484,7 +488,7 @@ msgstr ""
 "ERROR:root:Error occurred\n"
 "CRITICAL:root:Critical error -- shutting down"
 
-#: ../../tutorial/stdlib2.rst:234
+#: ../../tutorial/stdlib2.rst:233
 msgid ""
 "By default, informational and debugging messages are suppressed and the "
 "output is sent to standard error.  Other output options include routing "
@@ -500,7 +504,7 @@ msgstr ""
 ":const:`~logging.WARNING`, :const:`~logging.ERROR` , 그리고 "
 ":const:`~logging.CRITICAL`."
 
-#: ../../tutorial/stdlib2.rst:241
+#: ../../tutorial/stdlib2.rst:240
 msgid ""
 "The logging system can be configured directly from Python or can be "
 "loaded from a user editable configuration file for customized logging "
@@ -509,11 +513,12 @@ msgstr ""
 "로깅 시스템은 파이썬에서 직접 구성하거나, 응용 프로그램을 변경하지 않고 사용자 정의 로깅을 위해 사용자가 편집할 수 있는 설정 "
 "파일에서 로드 할 수 있습니다."
 
-#: ../../tutorial/stdlib2.rst:249
-msgid "Weak References"
+#: ../../tutorial/stdlib2.rst:248
+#, fuzzy
+msgid "Weak references"
 msgstr "약한 참조"
 
-#: ../../tutorial/stdlib2.rst:251
+#: ../../tutorial/stdlib2.rst:250
 msgid ""
 "Python does automatic memory management (reference counting for most "
 "objects and :term:`garbage collection` to eliminate cycles).  The memory "
@@ -522,7 +527,7 @@ msgstr ""
 "파이썬은 자동 메모리 관리 (대부분 객체에 대한 참조 횟수 추적 및 순환을 제거하기 위한 :term:`가비지 수거 <garbage "
 "collection>`)를 수행합니다. 메모리는 마지막 참조가 제거된 직후에 해제됩니다."
 
-#: ../../tutorial/stdlib2.rst:255
+#: ../../tutorial/stdlib2.rst:254
 msgid ""
 "This approach works fine for most applications but occasionally there is "
 "a need to track objects only as long as they are being used by something "
@@ -539,7 +544,7 @@ msgstr ""
 "자동으로 제거되고 weakref 객체에 대한 콜백이 트리거됩니다. 일반적인 응용에는 만드는 데 비용이 많이 드는 개체 캐싱이 "
 "포함됩니다::"
 
-#: ../../tutorial/stdlib2.rst:263
+#: ../../tutorial/stdlib2.rst:262
 #, fuzzy
 msgid ""
 ">>> import weakref, gc\n"
@@ -561,7 +566,7 @@ msgid ""
 "Traceback (most recent call last):\n"
 "  File \"<stdin>\", line 1, in <module>\n"
 "    d['primary']                # entry was automatically removed\n"
-"  File \"C:/python314/lib/weakref.py\", line 46, in __getitem__\n"
+"  File \"C:/python315/lib/weakref.py\", line 46, in __getitem__\n"
 "    o = self.data[key]()\n"
 "KeyError: 'primary'"
 msgstr ""
@@ -588,11 +593,12 @@ msgstr ""
 "    o = self.data[key]()\n"
 "KeyError: 'primary'"
 
-#: ../../tutorial/stdlib2.rst:290
-msgid "Tools for Working with Lists"
+#: ../../tutorial/stdlib2.rst:289
+#, fuzzy
+msgid "Tools for working with lists"
 msgstr "리스트 작업 도구"
 
-#: ../../tutorial/stdlib2.rst:292
+#: ../../tutorial/stdlib2.rst:291
 msgid ""
 "Many data structure needs can be met with the built-in list type. "
 "However, sometimes there is a need for alternative implementations with "
@@ -601,7 +607,7 @@ msgstr ""
 "내장 리스트 형으로 많은 데이터 구조 요구를 충족시킬 수 있습니다. 그러나 때로는 다른 성능 상충 관계가 있는 대안적 구현이 필요할"
 " 수도 있습니다."
 
-#: ../../tutorial/stdlib2.rst:296
+#: ../../tutorial/stdlib2.rst:295
 msgid ""
 "The :mod:`array` module provides an :class:`~array.array` object that is "
 "like a list that stores only homogeneous data and stores it more "
@@ -613,7 +619,7 @@ msgstr ""
 "보다 조밀하게 저장하는 리스트와 같습니다. 다음 예제는 파이썬 int 객체의 일반 리스트의 경우처럼 항목당 16바이트를 사용하는 "
 "대신에, 2바이트의 부호 없는 이진 숫자 (형 코드 ``\"H\"``)로 저장된 숫자 배열을 보여줍니다::"
 
-#: ../../tutorial/stdlib2.rst:302
+#: ../../tutorial/stdlib2.rst:301
 msgid ""
 ">>> from array import array\n"
 ">>> a = array('H', [4000, 10, 700, 22222])\n"
@@ -629,7 +635,7 @@ msgstr ""
 ">>> a[1:3]\n"
 "array('H', [10, 700])"
 
-#: ../../tutorial/stdlib2.rst:309
+#: ../../tutorial/stdlib2.rst:308
 msgid ""
 "The :mod:`collections` module provides a :class:`~collections.deque` "
 "object that is like a list with faster appends and pops from the left "
@@ -640,7 +646,7 @@ msgstr ""
 "더 빠르게 추가/팝하지만 중간에서의 조회는 더 느려진 리스트와 같습니다. 이 객체는 대기열 및 넓이 우선 트리 검색을 구현하는 데 "
 "적합합니다::"
 
-#: ../../tutorial/stdlib2.rst:314
+#: ../../tutorial/stdlib2.rst:313
 msgid ""
 ">>> from collections import deque\n"
 ">>> d = deque([\"task1\", \"task2\", \"task3\"])\n"
@@ -654,7 +660,7 @@ msgstr ""
 ">>> print(\"Handling\", d.popleft())\n"
 "Handling task1"
 
-#: ../../tutorial/stdlib2.rst:322
+#: ../../tutorial/stdlib2.rst:321
 msgid ""
 "unsearched = deque([starting_node])\n"
 "def breadth_first_search(unsearched):\n"
@@ -672,7 +678,7 @@ msgstr ""
 "            return m\n"
 "        unsearched.append(m)"
 
-#: ../../tutorial/stdlib2.rst:330
+#: ../../tutorial/stdlib2.rst:329
 msgid ""
 "In addition to alternative list implementations, the library also offers "
 "other tools such as the :mod:`bisect` module with functions for "
@@ -681,7 +687,7 @@ msgstr ""
 "대안적 리스트 구현 외에도 라이브러리는 정렬된 리스트를 조작하는 함수들이 있는 :mod:`bisect` 모듈과 같은 다른 도구를 "
 "제공합니다::"
 
-#: ../../tutorial/stdlib2.rst:334
+#: ../../tutorial/stdlib2.rst:333
 msgid ""
 ">>> import bisect\n"
 ">>> scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]"
@@ -699,7 +705,7 @@ msgstr ""
 "[(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, "
 "'python')]"
 
-#: ../../tutorial/stdlib2.rst:340
+#: ../../tutorial/stdlib2.rst:339
 msgid ""
 "The :mod:`heapq` module provides functions for implementing heaps based "
 "on regular lists.  The lowest valued entry is always kept at position "
@@ -709,7 +715,7 @@ msgstr ""
 ":mod:`heapq` 모듈은 일반 리스트를 기반으로 힙을 구현하는 함수를 제공합니다. 가장 값이 작은 항목은 항상 위치 0에 "
 "유지됩니다. 이것은 가장 작은 요소에 반복적으로 액세스하지만, 전체 목록 정렬을 실행하지 않으려는 응용에 유용합니다::"
 
-#: ../../tutorial/stdlib2.rst:345
+#: ../../tutorial/stdlib2.rst:344
 msgid ""
 ">>> from heapq import heapify, heappop, heappush\n"
 ">>> data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]\n"
@@ -727,11 +733,12 @@ msgstr ""
 ">>> [heappop(data) for i in range(3)]  # 가장 작은 세 개의 항목을 가져옵니다\n"
 "[-5, 0, 1]"
 
-#: ../../tutorial/stdlib2.rst:356
-msgid "Decimal Floating-Point Arithmetic"
+#: ../../tutorial/stdlib2.rst:355
+#, fuzzy
+msgid "Decimal floating-point arithmetic"
 msgstr "10진 부동 소수점 산술"
 
-#: ../../tutorial/stdlib2.rst:358
+#: ../../tutorial/stdlib2.rst:357
 msgid ""
 "The :mod:`decimal` module offers a :class:`~decimal.Decimal` datatype for"
 " decimal floating-point arithmetic.  Compared to the built-in "
@@ -741,31 +748,31 @@ msgstr ""
 ":mod:`decimal` 모듈은 10진 부동 소수점 산술을 위한 :class:`~decimal.Decimal` 데이터형을 "
 "제공합니다. 내장 :class:`float` 이진 부동 소수점 구현과 비교할 때, 클래스는 특히 다음과 같은 것들에 유용합니다"
 
-#: ../../tutorial/stdlib2.rst:362
+#: ../../tutorial/stdlib2.rst:361
 msgid ""
 "financial applications and other uses which require exact decimal "
 "representation,"
 msgstr "정확한 10진수 표현이 필요한 금융 응용 및 기타 용도,"
 
-#: ../../tutorial/stdlib2.rst:364
+#: ../../tutorial/stdlib2.rst:363
 msgid "control over precision,"
 msgstr "정밀도 제어,"
 
-#: ../../tutorial/stdlib2.rst:365
+#: ../../tutorial/stdlib2.rst:364
 msgid "control over rounding to meet legal or regulatory requirements,"
 msgstr "법적 또는 규제 요구 사항을 충족하는 반올림 제어,"
 
-#: ../../tutorial/stdlib2.rst:366
+#: ../../tutorial/stdlib2.rst:365
 msgid "tracking of significant decimal places, or"
 msgstr "유효숫자 추적, 또는"
 
-#: ../../tutorial/stdlib2.rst:367
+#: ../../tutorial/stdlib2.rst:366
 msgid ""
 "applications where the user expects the results to match calculations "
 "done by hand."
 msgstr "사용자가 결과가 손으로 계산한 것과 일치 할 것으로 기대하는 응용."
 
-#: ../../tutorial/stdlib2.rst:370
+#: ../../tutorial/stdlib2.rst:369
 msgid ""
 "For example, calculating a 5% tax on a 70 cent phone charge gives "
 "different results in decimal floating point and binary floating point. "
@@ -775,7 +782,7 @@ msgstr ""
 "예를 들어, 70센트 전화 요금에 대해 5% 세금을 계산하면, 십진 부동 소수점 및 이진 부동 소수점에 다른 결과가 나타납니다. "
 "결과를 가장 가까운 센트로 반올림하면 차이가 드러납니다::"
 
-#: ../../tutorial/stdlib2.rst:374
+#: ../../tutorial/stdlib2.rst:373
 msgid ""
 ">>> from decimal import *\n"
 ">>> round(Decimal('0.70') * Decimal('1.05'), 2)\n"
@@ -789,7 +796,7 @@ msgstr ""
 ">>> round(.70 * 1.05, 2)\n"
 "0.73"
 
-#: ../../tutorial/stdlib2.rst:380
+#: ../../tutorial/stdlib2.rst:379
 msgid ""
 "The :class:`~decimal.Decimal` result keeps a trailing zero, automatically"
 " inferring four place significance from multiplicands with two place "
@@ -801,7 +808,7 @@ msgstr ""
 "유효숫자를 자동으로 추론합니다. Decimal은 손으로 한 수학을 재현하고 이진 부동 소수점이 십진수를 정확하게 표현할 수 없을 때"
 " 발생할 수 있는 문제를 피합니다."
 
-#: ../../tutorial/stdlib2.rst:386
+#: ../../tutorial/stdlib2.rst:385
 msgid ""
 "Exact representation enables the :class:`~decimal.Decimal` class to "
 "perform modulo calculations and equality tests that are unsuitable for "
@@ -810,7 +817,7 @@ msgstr ""
 "정확한 표현은 :class:`~decimal.Decimal` 클래스가 이진 부동 소수점에 적합하지 않은 모듈로 계산과 동등성 검사를"
 " 수행할 수 있도록 합니다::"
 
-#: ../../tutorial/stdlib2.rst:390
+#: ../../tutorial/stdlib2.rst:389
 msgid ""
 ">>> Decimal('1.00') % Decimal('.10')\n"
 "Decimal('0.00')\n"
@@ -832,13 +839,13 @@ msgstr ""
 ">>> 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 == 1.0\n"
 "False"
 
-#: ../../tutorial/stdlib2.rst:400
+#: ../../tutorial/stdlib2.rst:399
 msgid ""
 "The :mod:`decimal` module provides arithmetic with as much precision as "
 "needed::"
 msgstr ":mod:`decimal` 모듈은 필요한 만큼의 정밀도로 산술을 제공합니다::"
 
-#: ../../tutorial/stdlib2.rst:402
+#: ../../tutorial/stdlib2.rst:401
 msgid ""
 ">>> getcontext().prec = 36\n"
 ">>> Decimal(1) / Decimal(7)\n"

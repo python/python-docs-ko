@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/marshal.rst:2
 msgid ":mod:`!marshal` --- Internal Python object serialization"
@@ -34,14 +34,15 @@ msgstr ""
 "형식의 세부 사항은 의도적으로 설명하지 않습니다; 파이썬 버전 간에 변경될 수 있습니다 (드물긴 하지만). [#]_"
 
 #: ../../library/marshal.rst:21
+#, fuzzy
 msgid ""
 "This is not a general \"persistence\" module.  For general persistence "
 "and transfer of Python objects through RPC calls, see the modules "
-":mod:`pickle` and :mod:`shelve`.  The :mod:`marshal` module exists mainly"
-" to support reading and writing the \"pseudo-compiled\" code for Python "
-"modules of :file:`.pyc` files. Therefore, the Python maintainers reserve "
-"the right to modify the marshal format in backward incompatible ways "
-"should the need arise. The format of code objects is not compatible "
+":mod:`pickle` and :mod:`shelve`.  The :mod:`!marshal` module exists "
+"mainly to support reading and writing the \"pseudo-compiled\" code for "
+"Python modules of :file:`.pyc` files. Therefore, the Python maintainers "
+"reserve the right to modify the marshal format in backward incompatible "
+"ways should the need arise. The format of code objects is not compatible "
 "between Python versions, even if the version of the format is the same. "
 "De-serializing a code object in the incorrect Python version has "
 "undefined behavior. If you're serializing and de-serializing Python "
@@ -58,9 +59,10 @@ msgstr ""
 "비슷하고, 버전 독립성이 보장되며, pickle은 marshal보다 훨씬 넓은 범위의 객체를 지원합니다."
 
 #: ../../library/marshal.rst:37
+#, fuzzy
 msgid ""
-"The :mod:`marshal` module is not intended to be secure against erroneous "
-"or maliciously constructed data.  Never unmarshal data received from an "
+"The :mod:`!marshal` module is not intended to be secure against erroneous"
+" or maliciously constructed data.  Never unmarshal data received from an "
 "untrusted or unauthenticated source."
 msgstr ""
 ":mod:`marshal` 모듈은 잘못되었거나 악의적으로 구성된 데이터에 대해 보안성을 갖추려는 것이 아닙니다. 신뢰할 수 없거나 "
@@ -94,44 +96,49 @@ msgstr ""
 
 #: ../../library/marshal.rst:54
 msgid ""
-"Containers: :class:`tuple`, :class:`list`, :class:`set`, "
-":class:`frozenset`, and (since :data:`version` 5), :class:`slice`. It "
+"Containers: :class:`tuple`, :class:`list`, :class:`dict`, "
+":class:`frozendict` (since :data:`version` 6), :class:`set`, "
+":class:`frozenset`, and :class:`slice` (since :data:`version` 5). It "
 "should be understood that these are supported only if the values "
 "contained therein are themselves supported. Recursive containers are "
 "supported since :data:`version` 3."
 msgstr ""
 
-#: ../../library/marshal.rst:59
+#: ../../library/marshal.rst:60
 msgid "The singletons :const:`None`, :const:`Ellipsis` and :exc:`StopIteration`."
 msgstr ""
 
-#: ../../library/marshal.rst:60
+#: ../../library/marshal.rst:61
 msgid ""
-":class:`code` objects, if *allow_code* is true. See note above about "
-"version dependence."
+":class:`code <types.CodeType>` objects, if *allow_code* is true. See note"
+" above about version dependence."
 msgstr ""
 
-#: ../../library/marshal.rst:65
+#: ../../library/marshal.rst:66
 msgid ""
 "Added format version 3, which supports marshalling recursive lists, sets "
 "and dictionaries."
 msgstr ""
 
-#: ../../library/marshal.rst:67
+#: ../../library/marshal.rst:68
 msgid ""
 "Added format version 4, which supports efficient representations of short"
 " strings."
 msgstr ""
 
-#: ../../library/marshal.rst:72
+#: ../../library/marshal.rst:73
 msgid "Added format version 5, which allows marshalling slices."
 msgstr ""
 
-#: ../../library/marshal.rst:75
+#: ../../library/marshal.rst:77
+msgid "Added format version 6, which allows marshalling :class:`frozendict`."
+msgstr ""
+
+#: ../../library/marshal.rst:80
 msgid "The module defines these functions:"
 msgstr "모듈은 다음 함수를 정의합니다:"
 
-#: ../../library/marshal.rst:80
+#: ../../library/marshal.rst:85
 msgid ""
 "Write the value on the open file.  The value must be a supported type.  "
 "The file must be a writeable :term:`binary file`."
@@ -139,7 +146,7 @@ msgstr ""
 "열린 파일에 값을 기록합니다. value는 지원되는 형이어야 합니다. 파일은 쓰기 가능한 :term:`바이너리 파일 <binary "
 "file>` 이어야 합니다."
 
-#: ../../library/marshal.rst:83
+#: ../../library/marshal.rst:88
 msgid ""
 "If the value has (or contains an object that has) an unsupported type, a "
 ":exc:`ValueError` exception is raised --- but garbage data will also be "
@@ -151,24 +158,24 @@ msgstr ""
 " --- 하지만, 찌꺼기 데이터도 파일에 기록됩니다. :func:`load`\\로 객체를 제대로 읽을 수 없습니다. :ref:`코드"
 " 객체 <code-objects>`\\는 *allow_code*\\가 참일 때만 지원됩니다."
 
-#: ../../library/marshal.rst:88
+#: ../../library/marshal.rst:93
 msgid ""
 "The *version* argument indicates the data format that ``dump`` should use"
 " (see below)."
 msgstr "*version* 인자는 ``dump``\\가 사용해야 하는 데이터 형식을 나타냅니다 (아래를 참조하십시오)."
 
-#: ../../library/marshal.rst:91 ../../library/marshal.rst:131
+#: ../../library/marshal.rst:96 ../../library/marshal.rst:136
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``marshal.dumps`` with "
 "arguments ``value``, ``version``."
 msgstr ""
 
-#: ../../library/marshal.rst:93 ../../library/marshal.rst:117
-#: ../../library/marshal.rst:133 ../../library/marshal.rst:151
+#: ../../library/marshal.rst:98 ../../library/marshal.rst:122
+#: ../../library/marshal.rst:138 ../../library/marshal.rst:156
 msgid "Added the *allow_code* parameter."
 msgstr ""
 
-#: ../../library/marshal.rst:99
+#: ../../library/marshal.rst:104
 msgid ""
 "Read one value from the open file and return it.  If no valid value is "
 "read (e.g. because the data has a different Python version's incompatible"
@@ -181,13 +188,13 @@ msgstr ""
 "발생시킵니다. :ref:`코드 객체 <code-objects>`\\는 *allow_code*\\가 참일 때만 지원됩니다. 파일은 "
 "읽을 수 있는 :term:`바이너리 파일 <binary file>` 이어야 합니다."
 
-#: ../../library/marshal.rst:105
+#: ../../library/marshal.rst:110
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``marshal.load`` with no "
 "arguments."
 msgstr ""
 
-#: ../../library/marshal.rst:109
+#: ../../library/marshal.rst:114
 msgid ""
 "If an object containing an unsupported type was marshalled with "
 ":func:`dump`, :func:`load` will substitute ``None`` for the "
@@ -196,14 +203,14 @@ msgstr ""
 "지원하지 않는 형을 포함하는 객체가 :func:`dump`\\로 마샬 되었으면, :func:`load`\\는 역 마샬이 불가능한 "
 "형을 ``None``\\으로 치환합니다."
 
-#: ../../library/marshal.rst:114
+#: ../../library/marshal.rst:119
 msgid ""
 "This call used to raise a ``code.__new__`` audit event for each code "
 "object. Now it raises a single ``marshal.load`` event for the entire load"
 " operation."
 msgstr ""
 
-#: ../../library/marshal.rst:123
+#: ../../library/marshal.rst:128
 msgid ""
 "Return the bytes object that would be written to a file by ``dump(value, "
 "file)``.  The value must be a supported type.  Raise a :exc:`ValueError` "
@@ -215,13 +222,13 @@ msgstr ""
 " value가 지원되지 않는 형이면 (또는 지원되지 않는 형의 객체를 담고 있다면) :exc:`ValueError` 예외를 "
 "발생시킵니다. :ref:`코드 객체 <code-objects>`\\는 *allow_code*\\가 참일 때만 지원됩니다."
 
-#: ../../library/marshal.rst:128
+#: ../../library/marshal.rst:133
 msgid ""
 "The *version* argument indicates the data format that ``dumps`` should "
 "use (see below)."
 msgstr "*version* 인자는 ``dumps``\\가 사용해야 하는 데이터 형식을 나타냅니다 (아래를 참조하십시오)."
 
-#: ../../library/marshal.rst:139
+#: ../../library/marshal.rst:144
 msgid ""
 "Convert the :term:`bytes-like object` to a value.  If no valid value is "
 "found, raise :exc:`EOFError`, :exc:`ValueError` or :exc:`TypeError`. "
@@ -233,103 +240,115 @@ msgstr ""
 ":ref:`코드 객체 <code-objects>`\\는 *allow_code*\\가 참일 때만 지원됩니다. 입력의 여분의 바이트는 "
 "무시됩니다."
 
-#: ../../library/marshal.rst:144
+#: ../../library/marshal.rst:149
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``marshal.loads`` with "
 "argument ``bytes``."
 msgstr ""
 
-#: ../../library/marshal.rst:148
+#: ../../library/marshal.rst:153
 msgid ""
 "This call used to raise a ``code.__new__`` audit event for each code "
 "object. Now it raises a single ``marshal.loads`` event for the entire "
 "load operation."
 msgstr ""
 
-#: ../../library/marshal.rst:155
+#: ../../library/marshal.rst:160
 msgid "In addition, the following constants are defined:"
 msgstr "또한, 다음 상수가 정의됩니다:"
 
-#: ../../library/marshal.rst:159
+#: ../../library/marshal.rst:164
 msgid ""
 "Indicates the format that the module uses. Version 0 is the historical "
 "first version; subsequent versions add new features. Generally, a new "
 "version becomes the default when it is introduced."
 msgstr ""
 
-#: ../../library/marshal.rst:165
+#: ../../library/marshal.rst:170
 msgid "Version"
 msgstr ""
 
-#: ../../library/marshal.rst:165
+#: ../../library/marshal.rst:170
 msgid "Available since"
 msgstr ""
 
-#: ../../library/marshal.rst:165
+#: ../../library/marshal.rst:170
 msgid "New features"
 msgstr ""
 
-#: ../../library/marshal.rst:167
+#: ../../library/marshal.rst:172
 msgid "1"
 msgstr ""
 
-#: ../../library/marshal.rst:167
+#: ../../library/marshal.rst:172
 msgid "Python 2.4"
 msgstr ""
 
-#: ../../library/marshal.rst:167
+#: ../../library/marshal.rst:172
 msgid "Sharing interned strings"
 msgstr ""
 
-#: ../../library/marshal.rst:169
+#: ../../library/marshal.rst:174
 msgid "2"
 msgstr ""
 
-#: ../../library/marshal.rst:169
+#: ../../library/marshal.rst:174
 msgid "Python 2.5"
 msgstr ""
 
-#: ../../library/marshal.rst:169
+#: ../../library/marshal.rst:174
 msgid "Binary representation of floats"
 msgstr ""
 
-#: ../../library/marshal.rst:171
+#: ../../library/marshal.rst:176
 msgid "3"
 msgstr ""
 
-#: ../../library/marshal.rst:171 ../../library/marshal.rst:173
+#: ../../library/marshal.rst:176 ../../library/marshal.rst:178
 msgid "Python 3.4"
 msgstr ""
 
-#: ../../library/marshal.rst:171
+#: ../../library/marshal.rst:176
 msgid "Support for object instancing and recursion"
 msgstr ""
 
-#: ../../library/marshal.rst:173
+#: ../../library/marshal.rst:178
 msgid "4"
 msgstr ""
 
-#: ../../library/marshal.rst:173
+#: ../../library/marshal.rst:178
 msgid "Efficient representation of short strings"
 msgstr ""
 
-#: ../../library/marshal.rst:175
+#: ../../library/marshal.rst:180
 msgid "5"
 msgstr ""
 
-#: ../../library/marshal.rst:175
+#: ../../library/marshal.rst:180
 msgid "Python 3.14"
 msgstr ""
 
-#: ../../library/marshal.rst:175
+#: ../../library/marshal.rst:180
 msgid "Support for :class:`slice` objects"
 msgstr ""
 
-#: ../../library/marshal.rst:180
+#: ../../library/marshal.rst:182
+msgid "6"
+msgstr ""
+
+#: ../../library/marshal.rst:182
+msgid "Python 3.15"
+msgstr ""
+
+#: ../../library/marshal.rst:182
+msgid "Support for :class:`frozendict` objects"
+msgstr ""
+
+#: ../../library/marshal.rst:187
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../../library/marshal.rst:181
+#: ../../library/marshal.rst:188
 msgid ""
 "The name of this module stems from a bit of terminology used by the "
 "designers of Modula-3 (amongst others), who use the term \"marshalling\" "
@@ -420,4 +439,21 @@ msgstr "코드 객체"
 #~ "버전 2는 부동 소수점 숫자에 바이너리 형식을 "
 #~ "사용합니다. 버전 3에서는 객체 인스턴스 화와 재귀에 "
 #~ "대한 지원이 추가되었습니다. 현재 버전은 4입니다."
+
+#~ msgid ""
+#~ "Containers: :class:`tuple`, :class:`list`, "
+#~ ":class:`set`, :class:`frozenset`, and (since "
+#~ ":data:`version` 5), :class:`slice`. It should"
+#~ " be understood that these are "
+#~ "supported only if the values contained"
+#~ " therein are themselves supported. "
+#~ "Recursive containers are supported since "
+#~ ":data:`version` 3."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":class:`code` objects, if *allow_code* is "
+#~ "true. See note above about version "
+#~ "dependence."
+#~ msgstr ""
 

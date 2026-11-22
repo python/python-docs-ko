@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/slice.rst:6
 msgid "Slice Objects"
@@ -71,29 +71,30 @@ msgstr ""
 msgid "You probably do not want to use this function."
 msgstr "이 기능을 사용하고 싶지는 않을 것입니다."
 
-#: ../../c-api/slice.rst:44 ../../c-api/slice.rst:75
+#: ../../c-api/slice.rst:44 ../../c-api/slice.rst:76
 msgid ""
 "The parameter type for the *slice* parameter was ``PySliceObject*`` "
 "before."
 msgstr "전에는 *slice* 매개 변수의 매개 변수 형이 ``PySliceObject*``\\였습니다."
 
 #: ../../c-api/slice.rst:51
+#, fuzzy
 msgid ""
 "Usable replacement for :c:func:`PySlice_GetIndices`.  Retrieve the start,"
 " stop, and step indices from the slice object *slice* assuming a sequence"
 " of length *length*, and store the length of the slice in *slicelength*."
 "  Out of bounds indices are clipped in a manner consistent with the "
-"handling of normal slices."
+"handling of normal slices. *length* must not be negative."
 msgstr ""
 ":c:func:`PySlice_GetIndices`\\를 쓸만하게 대체합니다. 길이가 *length*\\인 시퀀스를 가정하여, "
 "슬라이스 객체 *slice*\\에서 start, stop 및 step 인덱스를 가져오고, *slicelength*\\에 슬라이스의 "
 "길이를 저장합니다. 범위를 벗어난 인덱스는 일반 슬라이스의 처리와 일관된 방식으로 잘립니다."
 
-#: ../../c-api/slice.rst:57
+#: ../../c-api/slice.rst:58
 msgid "Return ``0`` on success and ``-1`` on error with an exception set."
 msgstr "성공하면 ``0``\\을 반환하고, 에러면 예외를 설정하고 ``-1``\\을 반환합니다."
 
-#: ../../c-api/slice.rst:60
+#: ../../c-api/slice.rst:61
 msgid ""
 "This function is considered not safe for resizable sequences. Its "
 "invocation should be replaced by a combination of "
@@ -103,7 +104,7 @@ msgstr ""
 ":c:func:`PySlice_Unpack`\\와 :c:func:`PySlice_AdjustIndices`\\의 조합으로 대체되어야"
 " 합니다. 즉 ::"
 
-#: ../../c-api/slice.rst:64
+#: ../../c-api/slice.rst:65
 #, python-brace-format
 msgid ""
 "if (PySlice_GetIndicesEx(slice, length, &start, &stop, &step, "
@@ -116,11 +117,11 @@ msgstr ""
 "    // 에러 반환\n"
 "}"
 
-#: ../../c-api/slice.rst:68
+#: ../../c-api/slice.rst:69
 msgid "is replaced by ::"
 msgstr "은 다음으로 대체됩니다 ::"
 
-#: ../../c-api/slice.rst:70
+#: ../../c-api/slice.rst:71
 #, python-brace-format
 msgid ""
 "if (PySlice_Unpack(slice, &start, &stop, &step) < 0) {\n"
@@ -133,7 +134,7 @@ msgstr ""
 "}\n"
 "slicelength = PySlice_AdjustIndices(length, &start, &stop, step);"
 
-#: ../../c-api/slice.rst:79
+#: ../../c-api/slice.rst:80
 msgid ""
 "If ``Py_LIMITED_API`` is not set or set to the value between "
 "``0x03050400`` and ``0x03060000`` (not including) or ``0x03060100`` or "
@@ -146,7 +147,7 @@ msgstr ""
 " :c:func:`!PySlice_Unpack`\\과 :c:func:`!PySlice_AdjustIndices`\\를 사용하는 "
 "매크로로 구현됩니다. 인자 *start*, *stop* 및 *step*\\는 여러 번 평가됩니다."
 
-#: ../../c-api/slice.rst:86
+#: ../../c-api/slice.rst:87
 msgid ""
 "If ``Py_LIMITED_API`` is set to the value less than ``0x03050400`` or "
 "between ``0x03060000`` and ``0x03060100`` (not including) "
@@ -156,7 +157,7 @@ msgstr ""
 "``0x03060100`` (포함하지 않음) 사이의 값으로 설정되었으면 "
 ":c:func:`!PySlice_GetIndicesEx`\\는 폐지된 함수입니다."
 
-#: ../../c-api/slice.rst:94
+#: ../../c-api/slice.rst:95
 msgid ""
 "Extract the start, stop and step data members from a slice object as C "
 "integers.  Silently reduce values larger than ``PY_SSIZE_T_MAX`` to "
@@ -169,11 +170,11 @@ msgstr ""
 " 값을 ``PY_SSIZE_T_MIN``\\로 조용히 높이고, ``-PY_SSIZE_T_MAX``\\보다 작은 step 값을 "
 "``-PY_SSIZE_T_MAX``\\로 조용히 높입니다."
 
-#: ../../c-api/slice.rst:100
+#: ../../c-api/slice.rst:101
 msgid "Return ``-1`` with an exception set on error, ``0`` on success."
 msgstr "에러면 예외를 설정하고 ``-1``\\을, 성공하면 ``0``\\을 반환합니다."
 
-#: ../../c-api/slice.rst:107
+#: ../../c-api/slice.rst:108
 msgid ""
 "Adjust start/end slice indices assuming a sequence of the specified "
 "length. Out of bounds indices are clipped in a manner consistent with the"
@@ -182,23 +183,29 @@ msgstr ""
 "지정된 length 길이의 시퀀스를 가정하여 start/stop 슬라이스 인덱스를 조정합니다. 범위를 벗어난 인덱스는 일반 "
 "슬라이스의 처리와 일관된 방식으로 잘립니다."
 
-#: ../../c-api/slice.rst:111
+#: ../../c-api/slice.rst:112
+msgid ""
+"*length* must not be negative. *step* must not be zero and must not be "
+"less than ``-PY_SSIZE_T_MAX``, as guaranteed by :c:func:`PySlice_Unpack`."
+msgstr ""
+
+#: ../../c-api/slice.rst:116
 msgid ""
 "Return the length of the slice.  Always successful.  Doesn't call Python "
 "code."
 msgstr "슬라이스의 길이를 반환합니다. 항상 성공합니다. 파이썬 코드를 호출하지 않습니다."
 
-#: ../../c-api/slice.rst:118
+#: ../../c-api/slice.rst:123
 msgid "Ellipsis Object"
 msgstr "Ellipsis 객체"
 
-#: ../../c-api/slice.rst:123
+#: ../../c-api/slice.rst:128
 msgid ""
 "The type of Python :const:`Ellipsis` object.  Same as "
 ":class:`types.EllipsisType` in the Python layer."
 msgstr "파이썬 :const:`Ellipsis` 객체의 형. 파이썬 계층의 :class:`types.EllipsisType`\\과 같습니다."
 
-#: ../../c-api/slice.rst:129
+#: ../../c-api/slice.rst:134
 msgid ""
 "The Python ``Ellipsis`` object.  This object has no methods.  Like "
 ":c:data:`Py_None`, it is an :term:`immortal` singleton object."
@@ -206,7 +213,7 @@ msgstr ""
 "파이썬 ``Ellipsis`` 객체. 이 객체에는 메서드가 없습니다. :c:data:`Py_None`\\과 마찬가지로, "
 ":term:`불멸 <immortal>` 싱글톤 객체입니다."
 
-#: ../../c-api/slice.rst:132
+#: ../../c-api/slice.rst:137
 msgid ":c:data:`Py_Ellipsis` is immortal."
 msgstr ":c:data:`Py_Ellipsis`\\는 불멸입니다."
 

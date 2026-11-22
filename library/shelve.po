@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/shelve.rst:2
 msgid ":mod:`!shelve` --- Python object persistence"
@@ -38,7 +38,7 @@ msgstr ""
 "모든 것입니다. 여기에는 대부분의 클래스 인스턴스, 재귀적 데이터형 및 많은 공유 서브 객체를 포함하는 객체가 포함됩니다. 키는 "
 "일반 문자열입니다."
 
-#: ../../library/shelve.rst:22
+#: ../../library/shelve.rst:23
 msgid ""
 "Open a persistent dictionary.  The filename specified is the base "
 "filename for the underlying database.  As a side-effect, an extension may"
@@ -51,7 +51,7 @@ msgstr ""
 " 있으며 여러 개의 파일이 만들어질 수 있습니다. 기본적으로, 하부 데이터베이스 파일은 읽기와 쓰기 용으로 열립니다. 선택적 "
 "*flag* 매개 변수는 :func:`dbm.open`\\의 *flag* 매개 변수와 같게 해석됩니다."
 
-#: ../../library/shelve.rst:28
+#: ../../library/shelve.rst:29
 msgid ""
 "By default, pickles created with :const:`pickle.DEFAULT_PROTOCOL` are "
 "used to serialize values.  The version of the pickle protocol can be "
@@ -60,7 +60,7 @@ msgstr ""
 "기본적으로, 값을 직렬화하는 데 :const:`pickle.DEFAULT_PROTOCOL`\\로 생성된 피클이 사용됩니다. 피클 "
 "프로토콜의 버전은 *protocol* 매개 변수로 지정할 수 있습니다."
 
-#: ../../library/shelve.rst:32
+#: ../../library/shelve.rst:33
 msgid ""
 "Because of Python semantics, a shelf cannot know when a mutable "
 "persistent-dictionary entry is modified.  By default modified objects are"
@@ -82,17 +82,51 @@ msgstr ""
 "기록하기 때문에 닫기 연산이 매우 느려질 수 있습니다 (어떤 액세스 된 항목이 가변인지, 어떤 것이 실제로 변경되었는지를 판별할 "
 "방법이 없습니다)."
 
-#: ../../library/shelve.rst:44 ../../library/shelve.rst:148
+#: ../../library/shelve.rst:45
+msgid ""
+"By default, :mod:`!shelve` uses :func:`pickle.dumps` and "
+":func:`pickle.loads` for serializing and deserializing. This can be "
+"changed by supplying *serializer* and *deserializer*, respectively."
+msgstr ""
+
+#: ../../library/shelve.rst:49
+msgid ""
+"The *serializer* argument must be a callable which takes an object "
+"``obj`` and the *protocol* as inputs and returns the representation "
+"``obj`` as a :term:`bytes-like object`; the *protocol* value may be "
+"ignored by the serializer."
+msgstr ""
+
+#: ../../library/shelve.rst:54
+msgid ""
+"The *deserializer* argument must be a callable which takes a serialized "
+"object given as a :class:`bytes` object and returns the corresponding "
+"object."
+msgstr ""
+
+#: ../../library/shelve.rst:57
+msgid ""
+"A :exc:`ShelveError` is raised if *serializer* is given but "
+"*deserializer* is not, or vice-versa."
+msgstr ""
+
+#: ../../library/shelve.rst:60 ../../library/shelve.rst:184
 msgid ""
 ":const:`pickle.DEFAULT_PROTOCOL` is now used as the default pickle "
 "protocol."
 msgstr ""
 
-#: ../../library/shelve.rst:48
+#: ../../library/shelve.rst:64
 msgid "Accepts :term:`path-like object` for filename."
 msgstr ""
 
-#: ../../library/shelve.rst:53
+#: ../../library/shelve.rst:67
+msgid ""
+"Accepts custom *serializer* and *deserializer* functions in place of "
+":func:`pickle.dumps` and :func:`pickle.loads`."
+msgstr ""
+
+#: ../../library/shelve.rst:73
 msgid ""
 "Do not rely on the shelf being closed automatically; always call "
 ":meth:`~Shelf.close` explicitly when you don't need it any more, or use "
@@ -101,7 +135,7 @@ msgstr ""
 "쉘프가 자동으로 닫히는 것에 의지하지 마십시오; 더는 필요 없을 때 :meth:`~Shelf.close`\\를 명시적으로 "
 "호출하거나, :func:`shelve.open`\\을 컨텍스트 관리자로 사용하십시오::"
 
-#: ../../library/shelve.rst:57
+#: ../../library/shelve.rst:77
 msgid ""
 "with shelve.open('spam') as db:\n"
 "    db['eggs'] = 'eggs'"
@@ -109,18 +143,20 @@ msgstr ""
 "with shelve.open('spam') as db:\n"
 "    db['eggs'] = 'eggs'"
 
-#: ../../library/shelve.rst:64
+#: ../../library/shelve.rst:84
+#, fuzzy
 msgid ""
-"Because the :mod:`shelve` module is backed by :mod:`pickle`, it is "
+"Because the :mod:`!shelve` module is backed by :mod:`pickle`, it is "
 "insecure to load a shelf from an untrusted source.  Like with pickle, "
 "loading a shelf can execute arbitrary code."
 msgstr ""
 ":mod:`shelve` 모듈은 :mod:`pickle`\\로 뒷받침되기 때문에, 신뢰할 수 없는 소스에서 쉘프를 로드하는 것은 "
 "안전하지 않습니다. 피클과 마찬가지로, 쉘프를 로드하면 임의의 코드를 실행할 수 있습니다."
 
-#: ../../library/shelve.rst:68
+#: ../../library/shelve.rst:88
+#, fuzzy
 msgid ""
-"Shelf objects support most of methods and operations supported by "
+"Shelf objects support most of the methods and operations supported by "
 "dictionaries (except copying, constructors and operators ``|`` and "
 "``|=``).  This eases the transition from dictionary based scripts to "
 "those requiring persistent storage."
@@ -128,28 +164,36 @@ msgstr ""
 "쉘프 객체는 딕셔너리에서 지원하는 대부분의 메서드와 연산을 지원합니다 (복사, 생성자 및 연산자 ``|``\\와 ``|=``\\는 "
 "제외합니다). 이것은 딕셔너리 기반 스크립트에서 영속적인 저장소를 요구하는 것으로의 전환을 쉽게 만듭니다."
 
-#: ../../library/shelve.rst:72
+#: ../../library/shelve.rst:92
 msgid "Two additional methods are supported:"
 msgstr "두 가지 추가 메서드가 지원됩니다:"
 
-#: ../../library/shelve.rst:76
+#: ../../library/shelve.rst:96
+#, fuzzy
 msgid ""
 "Write back all entries in the cache if the shelf was opened with "
 "*writeback* set to :const:`True`.  Also empty the cache and synchronize "
 "the persistent dictionary on disk, if feasible.  This is called "
-"automatically when the shelf is closed with :meth:`close`."
+"automatically when :meth:`reorganize` is called or the shelf is closed "
+"with :meth:`close`."
 msgstr ""
 "*writeback*\\을 :const:`True`\\로 설정하여 쉘프를 열었으면, 캐시의 모든 항목을 다시 기록합니다. 또한, "
 "적절하다면, 캐시를 비우고 디스크 상의 영속 딕셔너리를 동기화합니다. :meth:`close`\\로 쉘프를 닫을 때 자동으로 "
 "호출됩니다."
 
-#: ../../library/shelve.rst:83
+#: ../../library/shelve.rst:103
+msgid ""
+"Calls :meth:`sync` and attempts to shrink space used on disk by removing "
+"empty space resulting from deletions."
+msgstr ""
+
+#: ../../library/shelve.rst:110
 msgid ""
 "Synchronize and close the persistent *dict* object.  Operations on a "
 "closed shelf will fail with a :exc:`ValueError`."
 msgstr "영구 *딕셔너리* 객체를 동기화하고 닫습니다. 닫힌 쉘프에 대한 연산은 :exc:`ValueError`\\로 실패합니다."
 
-#: ../../library/shelve.rst:89
+#: ../../library/shelve.rst:116
 msgid ""
 "`Persistent dictionary recipe "
 "<https://code.activestate.com/recipes/576642-persistent-dict-with-"
@@ -160,11 +204,11 @@ msgstr ""
 "<https://code.activestate.com/recipes/576642-persistent-dict-with-"
 "multiple-standard-file-format/>`_"
 
-#: ../../library/shelve.rst:95
+#: ../../library/shelve.rst:122
 msgid "Restrictions"
 msgstr "제약 사항"
 
-#: ../../library/shelve.rst:101
+#: ../../library/shelve.rst:128
 msgid ""
 "The choice of which database package will be used (such as "
 ":mod:`dbm.ndbm` or :mod:`dbm.gnu`) depends on which interface is "
@@ -181,10 +225,11 @@ msgstr ""
 "객체(의 피클 된 표현이)가 상당히 작아야 하며, 드물긴 하지만 키 충돌로 인해 데이터베이스가 업데이트를 거부할 수 있음을 "
 "뜻합니다."
 
-#: ../../library/shelve.rst:109
+#: ../../library/shelve.rst:136
+#, fuzzy
 msgid ""
-"The :mod:`shelve` module does not support *concurrent* read/write access "
-"to shelved objects.  (Multiple simultaneous read accesses are safe.)  "
+"The :mod:`!shelve` module does not support *concurrent* read/write access"
+" to shelved objects.  (Multiple simultaneous read accesses are safe.)  "
 "When a program has a shelf open for writing, no other program should have"
 " it open for reading or writing.  Unix file locking can be used to solve "
 "this, but this differs across Unix versions and requires knowledge about "
@@ -195,20 +240,28 @@ msgstr ""
 "열지 않아야 합니다. 유닉스 파일 잠금을 이 문제를 해결하는 데 사용할 수 있지만, 이것은 유닉스 버전마다 다르며 사용된 "
 "데이터베이스 구현에 대한 지식이 필요합니다."
 
-#: ../../library/shelve.rst:116
+#: ../../library/shelve.rst:143
 msgid ""
 "On macOS :mod:`dbm.ndbm` can silently corrupt the database file on "
 "updates, which can cause hard crashes when trying to read from the "
 "database."
 msgstr ""
 
-#: ../../library/shelve.rst:122
+#: ../../library/shelve.rst:146
+msgid ""
+":meth:`Shelf.reorganize` may not be available for all database packages "
+"and may temporarily increase resource usage (especially disk space) when "
+"called. Additionally, it will never run automatically and instead needs "
+"to be called explicitly."
+msgstr ""
+
+#: ../../library/shelve.rst:155
 msgid ""
 "A subclass of :class:`collections.abc.MutableMapping` which stores "
 "pickled values in the *dict* object."
 msgstr "*dict* 객체에 피클 된 값을 저장하는 :class:`collections.abc.MutableMapping`\\의 서브 클래스."
 
-#: ../../library/shelve.rst:125
+#: ../../library/shelve.rst:158
 msgid ""
 "By default, pickles created with :const:`pickle.DEFAULT_PROTOCOL` are "
 "used to serialize values.  The version of the pickle protocol can be "
@@ -219,7 +272,7 @@ msgstr ""
 "프로토콜의 버전은 *protocol* 매개 변수로 지정할 수 있습니다. 피클 프로토콜에 대한 설명은 :mod:`pickle` "
 "설명서를 참조하십시오."
 
-#: ../../library/shelve.rst:130
+#: ../../library/shelve.rst:163
 msgid ""
 "If the *writeback* parameter is ``True``, the object will hold a cache of"
 " all entries accessed and write them back to the *dict* at sync and close"
@@ -230,13 +283,19 @@ msgstr ""
 "때 *dict*\\에 다시 씁니다. 이것은 가변 항목에 대한 자연스러운 연산을 허락하지만, 더 많은 메모리를 소비하고 sync와 "
 "close 연산이 오래 걸릴 수 있습니다."
 
-#: ../../library/shelve.rst:135
+#: ../../library/shelve.rst:168
 msgid ""
 "The *keyencoding* parameter is the encoding used to encode keys before "
 "they are used with the underlying dict."
 msgstr "*keyencoding* 매개 변수는 하부 dict에 사용되기 전에 키를 인코딩하는 데 사용되는 인코딩입니다."
 
-#: ../../library/shelve.rst:138
+#: ../../library/shelve.rst:171
+msgid ""
+"The *serializer* and *deserializer* parameters have the same "
+"interpretation as in :func:`~shelve.open`."
+msgstr ""
+
+#: ../../library/shelve.rst:174
 msgid ""
 "A :class:`Shelf` object can also be used as a context manager, in which "
 "case it will be automatically closed when the :keyword:`with` block ends."
@@ -244,17 +303,23 @@ msgstr ""
 ":class:`Shelf` 객체는 컨텍스트 관리자로 사용할 수도 있습니다. 이 경우 :keyword:`with` 블록이 끝날 때 "
 "자동으로 닫힙니다."
 
-#: ../../library/shelve.rst:141
+#: ../../library/shelve.rst:177
 msgid ""
 "Added the *keyencoding* parameter; previously, keys were always encoded "
 "in UTF-8."
 msgstr "*keyencoding* 매개 변수가 추가되었습니다; 이전에는 키가 항상 UTF-8으로 인코딩되었습니다."
 
-#: ../../library/shelve.rst:145
+#: ../../library/shelve.rst:181
 msgid "Added context manager support."
 msgstr "컨텍스트 관리자 지원 추가."
 
-#: ../../library/shelve.rst:155
+#: ../../library/shelve.rst:188 ../../library/shelve.rst:207
+#: ../../library/shelve.rst:223
+msgid "Added the *serializer* and *deserializer* parameters."
+msgstr ""
+
+#: ../../library/shelve.rst:196
+#, fuzzy
 msgid ""
 "A subclass of :class:`Shelf` which exposes :meth:`!first`, :meth:`!next`,"
 " :meth:`!previous`, :meth:`!last` and :meth:`!set_location` methods. "
@@ -263,8 +328,9 @@ msgid ""
 "database modules.  The *dict* object passed to the constructor must "
 "support those methods.  This is generally accomplished by calling one of "
 ":func:`!bsddb.hashopen`, :func:`!bsddb.btopen` or :func:`!bsddb.rnopen`."
-"  The optional *protocol*, *writeback*, and *keyencoding* parameters have"
-" the same interpretation as for the :class:`Shelf` class."
+"  The optional *protocol*, *writeback*, *keyencoding*, *serializer* and "
+"*deserializer* parameters have the same interpretation as in "
+":func:`~shelve.open`."
 msgstr ""
 ":meth:`!first`, :meth:`!next`, :meth:`!previous`, :meth:`!last` 및 "
 ":meth:`!set_location` 메서드를 노출하는 :class:`Shelf`\\의 서브 클래스. `pybsddb "
@@ -274,32 +340,33 @@ msgstr ""
 ":func:`!bsddb.rnopen` 중 하나를 호출하여 수행됩니다. 선택적 *protocol*, *writeback* 및 "
 "*keyencoding* 매개 변수는 :class:`Shelf` 클래스와 같게 해석됩니다."
 
-#: ../../library/shelve.rst:169
+#: ../../library/shelve.rst:215
+#, fuzzy
 msgid ""
 "A subclass of :class:`Shelf` which accepts a *filename* instead of a "
 "dict-like object.  The underlying file will be opened using "
 ":func:`dbm.open`.  By default, the file will be created and opened for "
 "both read and write.  The optional *flag* parameter has the same "
 "interpretation as for the :func:`.open` function.  The optional "
-"*protocol* and *writeback* parameters have the same interpretation as for"
-" the :class:`Shelf` class."
+"*protocol*, *writeback*, *serializer* and *deserializer* parameters have "
+"the same interpretation as in :func:`~shelve.open`."
 msgstr ""
 "딕셔너리류 객체 대신에 *filename*\\을 받아들이는 :class:`Shelf`\\의 서브 클래스. 하부 파일은 "
 ":func:`dbm.open`\\을 사용하여 열립니다. 기본적으로, 파일은 읽기와 쓰기가 가능하도록 만들어지고 열립니다. 선택적 "
 "*flag* 매개 변수는 :func:`.open` 기능과 같게 해석됩니다. 선택적 *protocol*\\과 *writeback* "
 "매개 변수는 :class:`Shelf` 클래스와 같게 해석됩니다."
 
-#: ../../library/shelve.rst:180
+#: ../../library/shelve.rst:230
 msgid "Example"
 msgstr "예제"
 
-#: ../../library/shelve.rst:182
+#: ../../library/shelve.rst:232
 msgid ""
 "To summarize the interface (``key`` is a string, ``data`` is an arbitrary"
 " object)::"
 msgstr "인터페이스를 요약하면 (``key``\\는 문자열입니다, ``data``\\는 임의의 객체입니다)::"
 
-#: ../../library/shelve.rst:185
+#: ../../library/shelve.rst:235
 msgid ""
 "import shelve\n"
 "\n"
@@ -365,23 +432,40 @@ msgstr ""
 "\n"
 "d.close()                  # 닫습니다"
 
-#: ../../library/shelve.rst:218
+#: ../../library/shelve.rst:267
+#, fuzzy
+msgid "Exceptions"
+msgstr "제약 사항"
+
+#: ../../library/shelve.rst:271
+msgid ""
+"Exception raised when one of the arguments *deserializer* and "
+"*serializer* is missing in the :func:`~shelve.open`, :class:`Shelf`, "
+":class:`BsdDbShelf` and :class:`DbfilenameShelf`."
+msgstr ""
+
+#: ../../library/shelve.rst:275
+msgid "The *deserializer* and *serializer* arguments must be given together."
+msgstr ""
+
+#: ../../library/shelve.rst:282
 msgid "Module :mod:`dbm`"
 msgstr "모듈 :mod:`dbm`"
 
-#: ../../library/shelve.rst:219
+#: ../../library/shelve.rst:283
 msgid "Generic interface to ``dbm``-style databases."
 msgstr "``dbm`` 스타일 데이터베이스에 대한 범용 인터페이스."
 
-#: ../../library/shelve.rst:221
+#: ../../library/shelve.rst:285
 msgid "Module :mod:`pickle`"
 msgstr "모듈 :mod:`pickle`"
 
-#: ../../library/shelve.rst:222
-msgid "Object serialization used by :mod:`shelve`."
+#: ../../library/shelve.rst:286
+#, fuzzy
+msgid "Object serialization used by :mod:`!shelve`."
 msgstr ":mod:`shelve`\\에 의해 사용되는 객체 직렬화."
 
-#: ../../library/shelve.rst:9 ../../library/shelve.rst:97
+#: ../../library/shelve.rst:9 ../../library/shelve.rst:124
 msgid "module"
 msgstr "모듈"
 
@@ -389,11 +473,11 @@ msgstr "모듈"
 msgid "pickle"
 msgstr "피클"
 
-#: ../../library/shelve.rst:97
+#: ../../library/shelve.rst:124
 msgid "dbm.ndbm"
 msgstr "dbm.ndbm"
 
-#: ../../library/shelve.rst:97
+#: ../../library/shelve.rst:124
 msgid "dbm.gnu"
 msgstr "dbm.gnu"
 

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/glob.rst:2
 msgid ":mod:`!glob` --- Unix style pathname pattern expansion"
@@ -25,42 +25,48 @@ msgid "**Source code:** :source:`Lib/glob.py`"
 msgstr "**소스 코드:** :source:`Lib/glob.py`"
 
 #: ../../library/glob.rst:21
+#, fuzzy
 msgid ""
-"The :mod:`glob` module finds all the pathnames matching a specified "
-"pattern according to the rules used by the Unix shell, although results "
-"are returned in arbitrary order.  No tilde expansion is done, but ``*``, "
-"``?``, and character ranges expressed with ``[]`` will be correctly "
-"matched.  This is done by using the :func:`os.scandir` and "
-":func:`fnmatch.fnmatch` functions in concert, and not by actually "
-"invoking a subshell."
+"The :mod:`!glob` module finds pathnames using pattern matching rules "
+"similar to the Unix shell. No tilde expansion is done, but ``*``, ``?``, "
+"and character ranges expressed with ``[]`` will be correctly matched.  "
+"This is done by using the :func:`os.scandir` and :func:`fnmatch.fnmatch` "
+"functions in concert, and not by actually invoking a subshell."
 msgstr ""
 ":mod:`glob` 모듈은 유닉스 셸이 사용하는 규칙에 따라 지정된 패턴과 일치하는 모든 경로명을 찾습니다. 하지만 결과는 임의의"
 " 순서로 반환됩니다. 물결표(tilde) 확장은 수행되지 않지만, ``*``, ``?`` 및 ``[]``\\로 표시되는 문자 범위는"
 " 올바르게 일치합니다. 이는 서브 셸을 실제로 호출하지 않고 :func:`os.scandir` 과 "
 ":func:`fnmatch.fnmatch` 함수를 사용하여 수행됩니다."
 
-#: ../../library/glob.rst:28
+#: ../../library/glob.rst:29
 msgid ""
-"Note that files beginning with a dot (``.``) can only be matched by "
+"The pathnames are returned in no particular order.  If you need a "
+"specific order, sort the results."
+msgstr ""
+
+#: ../../library/glob.rst:32
+#, fuzzy
+msgid ""
+"By default, files beginning with a dot (``.``) can only be matched by "
 "patterns that also start with a dot, unlike :func:`fnmatch.fnmatch` or "
-":func:`pathlib.Path.glob`. (For tilde and shell variable expansion, use "
-":func:`os.path.expanduser` and :func:`os.path.expandvars`.)"
+":func:`pathlib.Path.glob`. For tilde and shell variable expansion, use "
+":func:`os.path.expanduser` and :func:`os.path.expandvars`."
 msgstr ""
 ":func:`fnmatch.fnmatch`\\나 :func:`pathlib.Path.glob`\\과 달리, 점(``.``)으로 "
 "시작하는 파일은 점으로 시작하는 패턴으로만 일치시킬 수 있습니다. (물결표와 셸 변수 확장은 "
 ":func:`os.path.expanduser` 와 :func:`os.path.expandvars`\\를 사용하십시오.)"
 
-#: ../../library/glob.rst:34
+#: ../../library/glob.rst:38
 msgid ""
 "For a literal match, wrap the meta-characters in brackets. For example, "
 "``'[?]'`` matches the character ``'?'``."
 msgstr "리터럴 일치를 위해서는, 대괄호 안에 메타 문자를 넣습니다. 예를 들어, ``'[?]'``\\는 ``'?'`` 문자와 일치합니다."
 
-#: ../../library/glob.rst:37
-msgid "The :mod:`glob` module defines the following functions:"
+#: ../../library/glob.rst:41
+msgid "The :mod:`!glob` module defines the following functions:"
 msgstr ""
 
-#: ../../library/glob.rst:43
+#: ../../library/glob.rst:47
 msgid ""
 "Return a possibly empty list of path names that match *pathname*, which "
 "must be a string containing a path specification. *pathname* can be "
@@ -78,22 +84,22 @@ msgstr ""
 "깨진 심볼릭 링크가 결과에 포함됩니다 (셸과 마찬가지로). 결과가 정렬되는지는 파일 시스템에 따라 다릅니다. 이 함수 호출 중에 "
 "조건을 만족하는 파일이 제거되거나 추가되면, 해당 파일의 경로 이름이 포함될지는 지정되지 않습니다."
 
-#: ../../library/glob.rst:52
+#: ../../library/glob.rst:56
 msgid ""
 "If *root_dir* is not ``None``, it should be a :term:`path-like object` "
 "specifying the root directory for searching.  It has the same effect on "
-":func:`glob` as changing the current directory before calling it.  If "
+":func:`!glob` as changing the current directory before calling it.  If "
 "*pathname* is relative, the result will contain paths relative to "
 "*root_dir*."
 msgstr ""
 
-#: ../../library/glob.rst:58
+#: ../../library/glob.rst:62
 msgid ""
 "This function can support :ref:`paths relative to directory descriptors "
 "<dir_fd>` with the *dir_fd* parameter."
 msgstr ""
 
-#: ../../library/glob.rst:64
+#: ../../library/glob.rst:68
 msgid ""
 "If *recursive* is true, the pattern \"``**``\" will match any files and "
 "zero or more directories, subdirectories and symbolic links to "
@@ -104,13 +110,13 @@ msgstr ""
 "심볼릭 링크와 일치합니다. 패턴 다음에 :data:`os.sep`\\이나 :data:`os.altsep`\\이 오면, 파일은 "
 "일치하지 않습니다."
 
-#: ../../library/glob.rst:69
+#: ../../library/glob.rst:73
 msgid ""
-"If *include_hidden* is true, \"``**``\" pattern will match hidden "
-"directories."
+"If *include_hidden* is true, wildcards can match path segments that begin"
+" with a dot (``.``)."
 msgstr ""
 
-#: ../../library/glob.rst:71 ../../library/glob.rst:98
+#: ../../library/glob.rst:76 ../../library/glob.rst:108
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``glob.glob`` with arguments "
 "``pathname``, ``recursive``."
@@ -118,7 +124,7 @@ msgstr ""
 "``pathname``, ``recursive``\\를 인자로 :ref:`감사 이벤트(auditing event) "
 "<auditing>` ``glob.glob``\\을 발생시킵니다."
 
-#: ../../library/glob.rst:72 ../../library/glob.rst:99
+#: ../../library/glob.rst:77 ../../library/glob.rst:109
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``glob.glob/2`` with arguments"
 " ``pathname``, ``recursive``, ``root_dir``, ``dir_fd``."
@@ -126,111 +132,121 @@ msgstr ""
 "``pathname``, ``recursive``, ``root_dir``, ``dir_fd``\\를 인자로 :ref:`감사 "
 "이벤트(auditing event) <auditing>` ``glob.glob/2``\\을 발생시킵니다."
 
-#: ../../library/glob.rst:75
+#: ../../library/glob.rst:80
 msgid ""
 "Using the \"``**``\" pattern in large directory trees may consume an "
 "inordinate amount of time."
 msgstr "커다란 디렉터리 트리에서 \"``**``\" 패턴을 사용하면 과도한 시간이 걸릴 수 있습니다."
 
-#: ../../library/glob.rst:79 ../../library/glob.rst:102
+#: ../../library/glob.rst:84 ../../library/glob.rst:112
 msgid ""
 "This function may return duplicate path names if *pathname* contains "
 "multiple \"``**``\" patterns and *recursive* is true."
 msgstr ""
 
-#: ../../library/glob.rst:82 ../../library/glob.rst:105
+#: ../../library/glob.rst:88 ../../library/glob.rst:116
+msgid ""
+"Any :exc:`OSError` exceptions raised from scanning the filesystem are "
+"suppressed. This includes :exc:`PermissionError` when accessing "
+"directories without read permission."
+msgstr ""
+
+#: ../../library/glob.rst:92 ../../library/glob.rst:120
 msgid "Support for recursive globs using \"``**``\"."
 msgstr "\"``**``\" 를 사용하는 재귀적 glob 지원."
 
-#: ../../library/glob.rst:85 ../../library/glob.rst:108
+#: ../../library/glob.rst:95 ../../library/glob.rst:123
 msgid "Added the *root_dir* and *dir_fd* parameters."
 msgstr "*root_dir* 과 *dir_fd* 매개 변수를 추가했습니다."
 
-#: ../../library/glob.rst:88 ../../library/glob.rst:111
+#: ../../library/glob.rst:98 ../../library/glob.rst:126
 msgid "Added the *include_hidden* parameter."
 msgstr "*include_hidden* 매개 변수를 추가했습니다."
 
-#: ../../library/glob.rst:95
+#: ../../library/glob.rst:105
+#, fuzzy
 msgid ""
-"Return an :term:`iterator` which yields the same values as :func:`glob` "
-"without actually storing them all simultaneously."
+"Return an :term:`iterator` which yields the same values as "
+":func:`~glob.glob` without actually storing them all simultaneously."
 msgstr ""
 "실제로 동시에 저장하지 않고 :func:`glob`\\과 같은 값을 산출하는 :term:`이터레이터 <iterator>`\\를 "
 "반환합니다."
 
-#: ../../library/glob.rst:117
+#: ../../library/glob.rst:132
+#, fuzzy
 msgid ""
 "Escape all special characters (``'?'``, ``'*'`` and ``'['``). This is "
 "useful if you want to match an arbitrary literal string that may have "
 "special characters in it.  Special characters in drive/UNC sharepoints "
-"are not escaped, e.g. on Windows ``escape('//?/c:/Quo vadis?.txt')`` "
-"returns ``'//?/c:/Quo vadis[?].txt'``."
+"are not escaped, for example on Windows ``escape('//?/c:/Quo "
+"vadis?.txt')`` returns ``'//?/c:/Quo vadis[?].txt'``."
 msgstr ""
 "모든 특수 문자(``'?'``, ``'*'`` 및 ``'['``)를 이스케이프 처리합니다. 이것은 특수 문자가 들어있을 수 있는 "
 "임의의 리터럴 문자열을 일치시키려는 경우에 유용합니다. 드라이브/UNC 셰어 포인트의 특수 문자는 이스케이프 되지 않습니다, 예를 "
 "들어, 윈도우에서 ``escape('//?/c:/Quo vadis?.txt')``\\는 ``'//?/c:/Quo "
 "vadis[?].txt'``\\를 반환합니다."
 
-#: ../../library/glob.rst:128
+#: ../../library/glob.rst:143
 msgid ""
 "Convert the given path specification to a regular expression for use with"
-" :func:`re.match`. The path specification can contain shell-style "
+" :func:`re.prefixmatch`. The path specification can contain shell-style "
 "wildcards."
 msgstr ""
 
-#: ../../library/glob.rst:131
+#: ../../library/glob.rst:147
 msgid "For example:"
 msgstr "예를 들어:"
 
-#: ../../library/glob.rst:142
+#: ../../library/glob.rst:158
 msgid ""
 "Path separators and segments are meaningful to this function, unlike "
 ":func:`fnmatch.translate`. By default wildcards do not match path "
 "separators, and ``*`` pattern segments match precisely one path segment."
 msgstr ""
 
-#: ../../library/glob.rst:146
+#: ../../library/glob.rst:162
 msgid ""
 "If *recursive* is true, the pattern segment \"``**``\" will match any "
 "number of path segments."
 msgstr ""
 
-#: ../../library/glob.rst:149
+#: ../../library/glob.rst:165
 msgid ""
 "If *include_hidden* is true, wildcards can match path segments that start"
 " with a dot (``.``)."
 msgstr ""
 
-#: ../../library/glob.rst:152
+#: ../../library/glob.rst:168
 msgid ""
 "A sequence of path separators may be supplied to the *seps* argument. If "
 "not given, :data:`os.sep` and :data:`~os.altsep` (if available) are used."
 msgstr ""
 
-#: ../../library/glob.rst:157
+#: ../../library/glob.rst:173
 msgid ""
 ":meth:`pathlib.PurePath.full_match` and :meth:`pathlib.Path.glob` "
 "methods, which call this function to implement pattern matching and "
 "globbing."
 msgstr ""
 
-#: ../../library/glob.rst:165
+#: ../../library/glob.rst:181
 msgid "Examples"
 msgstr "예제"
 
-#: ../../library/glob.rst:167
+#: ../../library/glob.rst:183
+#, fuzzy
 msgid ""
 "Consider a directory containing the following files: :file:`1.gif`, "
 ":file:`2.txt`, :file:`card.gif` and a subdirectory :file:`sub` which "
-"contains only the file :file:`3.txt`.  :func:`glob` will produce the "
-"following results.  Notice how any leading components of the path are "
-"preserved. ::"
+"contains only the file :file:`3.txt`.  :func:`~glob.glob` will produce "
+"the following results.  Notice how any leading components of the path are"
+" preserved. ::"
 msgstr ""
 "다음과 같은 파일을 포함하는 디렉터리를 고려하십시오: :file:`1.gif`, :file:`2.txt`, "
 ":file:`card.gif` 및 :file:`3.txt` 파일 만 포함하는 서브 디렉터리 :file:`sub`. "
 ":func:`glob`\\은 다음과 같은 결과를 산출합니다. 경로의 선행 구성 요소가 보존되는 방법에 유의하십시오. ::"
 
-#: ../../library/glob.rst:173
+#: ../../library/glob.rst:189
 msgid ""
 ">>> import glob\n"
 ">>> glob.glob('./[0-9].*')\n"
@@ -256,7 +272,7 @@ msgstr ""
 ">>> glob.glob('./**/', recursive=True)\n"
 "['./', './sub/']"
 
-#: ../../library/glob.rst:185
+#: ../../library/glob.rst:201
 msgid ""
 "If the directory contains files starting with ``.`` they won't be matched"
 " by default. For example, consider a directory containing "
@@ -265,7 +281,7 @@ msgstr ""
 "디렉터리에 ``.``\\으로 시작하는 파일이 있으면, 기본적으로 일치하지 않습니다. 예를 들어, :file:`card.gif` 와 "
 ":file:`.card.gif`\\를 포함하는 디렉터리를 고려하십시오::"
 
-#: ../../library/glob.rst:189
+#: ../../library/glob.rst:205
 msgid ""
 ">>> import glob\n"
 ">>> glob.glob('*.gif')\n"
@@ -279,13 +295,13 @@ msgstr ""
 ">>> glob.glob('.c*')\n"
 "['.card.gif']"
 
-#: ../../library/glob.rst:196
+#: ../../library/glob.rst:212
 msgid ""
 "The :mod:`fnmatch` module offers shell-style filename (not path) "
 "expansion."
 msgstr ":mod:`fnmatch` 모듈은 셸 스타일 파일명 (경로가 아님) 확장을 제공합니다."
 
-#: ../../library/glob.rst:199
+#: ../../library/glob.rst:215
 msgid "The :mod:`pathlib` module offers high-level path objects."
 msgstr ":mod:`pathlib` 모듈은 고수준의 경로 객체를 제공합니다."
 
@@ -301,7 +317,7 @@ msgstr "경로명 확장"
 msgid "* (asterisk)"
 msgstr "* (애스터리스크)"
 
-#: ../../library/glob.rst:13 ../../library/glob.rst:61
+#: ../../library/glob.rst:13 ../../library/glob.rst:65
 msgid "in glob-style wildcards"
 msgstr "glob 스타일 와일드카드"
 
@@ -325,7 +341,33 @@ msgstr "- (마이너스)"
 msgid ". (dot)"
 msgstr ". (점)"
 
-#: ../../library/glob.rst:61
+#: ../../library/glob.rst:65
 msgid "**"
 msgstr "**"
+
+#~ msgid "The :mod:`glob` module defines the following functions:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If *root_dir* is not ``None``, it "
+#~ "should be a :term:`path-like object` "
+#~ "specifying the root directory for "
+#~ "searching.  It has the same effect "
+#~ "on :func:`glob` as changing the current"
+#~ " directory before calling it.  If "
+#~ "*pathname* is relative, the result will"
+#~ " contain paths relative to *root_dir*."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If *include_hidden* is true, \"``**``\" "
+#~ "pattern will match hidden directories."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Convert the given path specification to"
+#~ " a regular expression for use with"
+#~ " :func:`re.match`. The path specification "
+#~ "can contain shell-style wildcards."
+#~ msgstr ""
 

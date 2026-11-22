@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 23:44+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../c-api/list.rst:6
 msgid "List Objects"
@@ -91,11 +91,19 @@ msgid ""
 "reference` instead of a :term:`strong reference`."
 msgstr ""
 
-#: ../../c-api/list.rst:80
+#: ../../c-api/list.rst:79 ../../c-api/list.rst:91
+msgid ""
+"In the :term:`free-threaded build`, the returned :term:`borrowed "
+"reference` may become invalid if another thread modifies the list "
+"concurrently. Prefer :c:func:`PyList_GetItemRef`, which returns a "
+":term:`strong reference`."
+msgstr ""
+
+#: ../../c-api/list.rst:87
 msgid "Similar to :c:func:`PyList_GetItem`, but without error checking."
 msgstr ":c:func:`PyList_GetItem`\\와 유사하지만, 에러 검사가 없습니다."
 
-#: ../../c-api/list.rst:85
+#: ../../c-api/list.rst:99
 msgid ""
 "Set the item at index *index* in list to *item*.  Return ``0`` on "
 "success. If *index* is out of bounds, return ``-1`` and set an "
@@ -104,13 +112,15 @@ msgstr ""
 "리스트의 인덱스 *index*\\에 있는 항목을 *item*\\으로 설정합니다. 성공하면 ``0``\\을 반환합니다. "
 "*index*\\가 범위를 벗어나면, ``-1``\\을 반환하고 :exc:`IndexError` 예외를 설정합니다."
 
-#: ../../c-api/list.rst:91
+#: ../../c-api/list.rst:105
+#, fuzzy
 msgid ""
-"This function \"steals\" a reference to *item* and discards a reference "
-"to an item already in the list at the affected position."
+"This function \":term:`steals <steal>`\" a reference to *item*, even on "
+"error. On success, it discards a reference to an item already in the list"
+" at the affected position (unless it was ``NULL``)."
 msgstr "이 함수는 *item*\\에 대한 참조를 \"훔치고\" 영향을 받는 위치의 리스트에 이미 있는 항목에 대한 참조를 버립니다."
 
-#: ../../c-api/list.rst:97
+#: ../../c-api/list.rst:113
 msgid ""
 "Macro form of :c:func:`PyList_SetItem` without error checking. This is "
 "normally only used to fill in new lists where there is no previous "
@@ -119,16 +129,17 @@ msgstr ""
 "에러 검사 없는 :c:func:`PyList_SetItem`\\의 매크로 형식. 일반적으로 이전 내용이 없는 새 리스트를 채우는 데"
 " 사용됩니다."
 
-#: ../../c-api/list.rst:100
+#: ../../c-api/list.rst:116
 msgid ""
 "Bounds checking is performed as an assertion if Python is built in "
 ":ref:`debug mode <debug-build>` or :option:`with assertions <--with-"
 "assertions>`."
 msgstr ""
 
-#: ../../c-api/list.rst:106
+#: ../../c-api/list.rst:122
+#, fuzzy
 msgid ""
-"This macro \"steals\" a reference to *item*, and, unlike "
+"This macro \":term:`steals <steal>`\" a reference to *item*, and, unlike "
 ":c:func:`PyList_SetItem`, does *not* discard a reference to any item that"
 " is being replaced; any reference in *list* at position *i* will be "
 "leaked."
@@ -136,7 +147,15 @@ msgstr ""
 "이 매크로는 *item*\\에 대한 참조를 \"훔치고\", :c:func:`PyList_SetItem`\\과는 달리 대체되는 항목에"
 " 대한 참조를 버리지 *않습니다*; *list* 의 *i* 위치에 있는 참조는 누수를 일으킵니다."
 
-#: ../../c-api/list.rst:114
+#: ../../c-api/list.rst:129
+msgid ""
+"In the :term:`free-threaded build`, this macro has no internal "
+"synchronization. It is normally only used to fill in new lists where no "
+"other thread has a reference to the list. If the list may be shared, use "
+":c:func:`PyList_SetItem` instead, which uses a :term:`per-object lock`."
+msgstr ""
+
+#: ../../c-api/list.rst:138
 msgid ""
 "Insert the item *item* into list *list* in front of index *index*.  "
 "Return ``0`` if successful; return ``-1`` and set an exception if "
@@ -145,7 +164,7 @@ msgstr ""
 "항목 *item*\\을 리스트 *list*\\의 인덱스 *index* 앞에 삽입합니다. 성공하면 ``0``\\을 반환합니다; "
 "실패하면 ``-1``\\을 반환하고 예외를 설정합니다. ``list.insert(index, item)``\\에 해당합니다."
 
-#: ../../c-api/list.rst:121
+#: ../../c-api/list.rst:145
 msgid ""
 "Append the object *item* at the end of list *list*. Return ``0`` if "
 "successful; return ``-1`` and set an exception if unsuccessful.  "
@@ -154,7 +173,7 @@ msgstr ""
 "리스트 *list*\\의 끝에 객체 *item*\\을 추가합니다. 성공하면 ``0``\\을 반환합니다; 실패하면 ``-1``\\을 "
 "반환하고 예외를 설정합니다. ``list.append(item)``\\에 해당합니다."
 
-#: ../../c-api/list.rst:128
+#: ../../c-api/list.rst:152
 msgid ""
 "Return a list of the objects in *list* containing the objects *between* "
 "*low* and *high*.  Return ``NULL`` and set an exception if unsuccessful."
@@ -165,7 +184,7 @@ msgstr ""
 "``NULL``\\을 반환하고 예외를 설정합니다. ``list[low:high]``\\에 해당합니다. 리스트 끝에서부터의 인덱싱은 "
 "지원되지 않습니다."
 
-#: ../../c-api/list.rst:135
+#: ../../c-api/list.rst:159
 msgid ""
 "Set the slice of *list* between *low* and *high* to the contents of "
 "*itemlist*.  Analogous to ``list[low:high] = itemlist``. The *itemlist* "
@@ -178,33 +197,49 @@ msgstr ""
 " 리스트의 대입을 나타냅니다 (슬라이스 삭제). 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다. 리스트 "
 "끝에서부터의 인덱싱은 지원되지 않습니다."
 
-#: ../../c-api/list.rst:144
+#: ../../c-api/list.rst:167
+msgid ""
+"In the :term:`free-threaded build`, when *itemlist* is a :class:`list`, "
+"both *list* and *itemlist* are locked for the duration of the operation. "
+"For other iterables (or ``NULL``), only *list* is locked."
+msgstr ""
+
+#: ../../c-api/list.rst:174
 msgid ""
 "Extend *list* with the contents of *iterable*.  This is the same as "
 "``PyList_SetSlice(list, PY_SSIZE_T_MAX, PY_SSIZE_T_MAX, iterable)`` and "
 "analogous to ``list.extend(iterable)`` or ``list += iterable``."
 msgstr ""
 
-#: ../../c-api/list.rst:148
+#: ../../c-api/list.rst:178
 msgid ""
 "Raise an exception and return ``-1`` if *list* is not a :class:`list` "
 "object. Return 0 on success."
 msgstr ""
 
-#: ../../c-api/list.rst:156
+#: ../../c-api/list.rst:185
+msgid ""
+"In the :term:`free-threaded build`, when *iterable* is a :class:`list`, "
+":class:`set`, :class:`dict`, or dict view, both *list* and *iterable* (or"
+" its underlying dict) are locked for the duration of the operation. For "
+"other iterables, only *list* is locked; *iterable* may be concurrently "
+"modified by another thread."
+msgstr ""
+
+#: ../../c-api/list.rst:194
 msgid ""
 "Remove all items from *list*.  This is the same as "
 "``PyList_SetSlice(list, 0, PY_SSIZE_T_MAX, NULL)`` and analogous to "
 "``list.clear()`` or ``del list[:]``."
 msgstr ""
 
-#: ../../c-api/list.rst:160
+#: ../../c-api/list.rst:198
 msgid ""
 "Raise an exception and return ``-1`` if *list* is not a :class:`list` "
 "object.  Return 0 on success."
 msgstr ""
 
-#: ../../c-api/list.rst:168
+#: ../../c-api/list.rst:206
 msgid ""
 "Sort the items of *list* in place.  Return ``0`` on success, ``-1`` on "
 "failure.  This is equivalent to ``list.sort()``."
@@ -212,7 +247,16 @@ msgstr ""
 "*list* 항목을 제자리에서 정렬합니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다. 이것은 "
 "``list.sort()``\\와 동등합니다."
 
-#: ../../c-api/list.rst:174
+#: ../../c-api/list.rst:211
+msgid ""
+"In the :term:`free-threaded build`, element comparison via "
+":meth:`~object.__lt__` can execute arbitrary Python code, during which "
+"the :term:`per-object lock` may be temporarily released. For built-in "
+"types (:class:`str`, :class:`int`, :class:`float`), the lock is not "
+"released during comparison."
+msgstr ""
+
+#: ../../c-api/list.rst:220
 msgid ""
 "Reverse the items of *list* in place.  Return ``0`` on success, ``-1`` on"
 " failure.  This is the equivalent of ``list.reverse()``."
@@ -220,7 +264,7 @@ msgstr ""
 "*list*\\의 항목을 제자리에서 뒤집습니다. 성공하면 ``0``\\을, 실패하면 ``-1``\\을 반환합니다. 이것은 "
 "``list.reverse()``\\와 동등합니다."
 
-#: ../../c-api/list.rst:182
+#: ../../c-api/list.rst:228
 msgid ""
 "Return a new tuple object containing the contents of *list*; equivalent "
 "to ``tuple(list)``."
@@ -234,7 +278,7 @@ msgstr "객체"
 msgid "list"
 msgstr "리스트"
 
-#: ../../c-api/list.rst:51 ../../c-api/list.rst:180
+#: ../../c-api/list.rst:51 ../../c-api/list.rst:226
 msgid "built-in function"
 msgstr "내장 함수"
 
@@ -242,7 +286,7 @@ msgstr "내장 함수"
 msgid "len"
 msgstr "len"
 
-#: ../../c-api/list.rst:180
+#: ../../c-api/list.rst:226
 msgid "tuple"
 msgstr "튜플"
 

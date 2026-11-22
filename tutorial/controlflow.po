@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../tutorial/controlflow.rst:5
 msgid "More Control Flow Tools"
@@ -288,12 +288,13 @@ msgstr ""
 "원하는 시퀀스 항목들을 순서대로 돌려주는 객체이지만, 실제로 리스트를 만들지 않아서 공간을 절약합니다."
 
 #: ../../tutorial/controlflow.rst:148
+#, fuzzy
 msgid ""
 "We say such an object is :term:`iterable`, that is, suitable as a target "
 "for functions and constructs that expect something from which they can "
-"obtain successive items until the supply is exhausted.  We have seen that"
-" the :keyword:`for` statement is such a construct, while an example of a "
-"function that takes an iterable is :func:`sum`::"
+"obtain successive items until the supply is :term:`exhausted`.  We have "
+"seen that the :keyword:`for` statement is such a construct, while an "
+"example of a function that takes an iterable is :func:`sum`::"
 msgstr ""
 "이런 객체를 :term:`이터러블 <iterable>` 이라고 부릅니다. 공급이 소진될 때까지 일련의 항목들을 얻을 수 있는 "
 "무엇인가를 기대하는 함수와 구조물들의 타깃으로 적합합니다. 우리는 :keyword:`for` 문이 그런 구조물임을 보았습니다. "
@@ -308,10 +309,11 @@ msgstr ""
 "6"
 
 #: ../../tutorial/controlflow.rst:157
+#, fuzzy
 msgid ""
 "Later we will see more functions that return iterables and take iterables"
-" as arguments.  In chapter :ref:`tut-structures`, we will discuss in more"
-" detail about :func:`list`."
+" as arguments.  In chapter :ref:`tut-structures`, we will discuss "
+":func:`list` in more detail."
 msgstr ""
 "나중에 이터러블을 반환하고 이터러블을 인자로 받는 함수를 더 볼 것입니다. :ref:`tut-structures` 장에서 "
 ":func:`list`\\에 대해 더 자세히 논의할 것입니다."
@@ -874,7 +876,7 @@ msgstr ""
 #: ../../tutorial/controlflow.rst:443
 msgid ""
 "Patterns may use named constants.  These must be dotted names to prevent "
-"them from being interpreted as capture variable::"
+"them from being interpreted as capture variables::"
 msgstr ""
 
 #: ../../tutorial/controlflow.rst:446
@@ -2066,44 +2068,34 @@ msgstr ""
 
 #: ../../tutorial/controlflow.rst:1042
 msgid ""
-"The Python parser does not strip indentation from multi-line string "
-"literals in Python, so tools that process documentation have to strip "
-"indentation if desired.  This is done using the following convention. The"
-" first non-blank line *after* the first line of the string determines the"
-" amount of indentation for the entire documentation string.  (We can't "
-"use the first line since it is generally adjacent to the string's opening"
-" quotes so its indentation is not apparent in the string literal.)  "
-"Whitespace \"equivalent\" to this indentation is then stripped from the "
-"start of all lines of the string.  Lines that are indented less should "
-"not occur, but if they occur all their leading whitespace should be "
-"stripped.  Equivalence of whitespace should be tested after expansion of "
-"tabs (to 8 spaces, normally)."
+"The Python parser strips indentation from multi-line string literals when"
+" they serve as module, class, or function docstrings."
 msgstr ""
-"파이썬 파서는 여러 줄 문자열 리터럴에서 들여쓰기를 제거하지 않기 때문에, 설명서를 처리하는 도구들은 필요하면 들여쓰기를 "
-"제거합니다. 이것은 다음과 같은 관례를 사용합니다. 문자열의 첫줄 *뒤에 오는* 첫 번째 비어있지 않은 줄이 전체 도튜멘테이션 "
-"문자열의 들여쓰기 수준을 결정합니다. (우리는 첫 줄을 사용할 수 없는데, 일반적으로 문자열을 시작하는 따옴표에 붙어있어서 "
-"들여쓰기가 문자열 리터럴의 것을 반영하지 않기 때문입니다.) 이 들여쓰기와 \"동등한\" 공백이 문자열의 모든 줄의 시작 부분에서 "
-"제거됩니다. 덜 들여쓰기 된 줄이 나타나지는 말아야 하지만, 나타난다면 모든 앞부분의 공백이 제거됩니다. 공백의 동등성은 탭 확장 "
-"(보통 8개의 스페이스) 후에 검사됩니다."
 
-#: ../../tutorial/controlflow.rst:1054
+#: ../../tutorial/controlflow.rst:1045
 msgid "Here is an example of a multi-line docstring::"
 msgstr "여기 여러 줄 독스트링의 예가 있습니다::"
 
-#: ../../tutorial/controlflow.rst:1056
+#: ../../tutorial/controlflow.rst:1047
 #, fuzzy
 msgid ""
 ">>> def my_function():\n"
 "...     \"\"\"Do nothing, but document it.\n"
 "...\n"
-"...     No, really, it doesn't do anything.\n"
+"...     No, really, it doesn't do anything:\n"
+"...\n"
+"...         >>> my_function()\n"
+"...         >>>\n"
 "...     \"\"\"\n"
 "...     pass\n"
 "...\n"
 ">>> print(my_function.__doc__)\n"
 "Do nothing, but document it.\n"
 "\n"
-"No, really, it doesn't do anything."
+"No, really, it doesn't do anything:\n"
+"\n"
+"    >>> my_function()\n"
+"    >>>"
 msgstr ""
 ">>> def my_function():\n"
 "...     \"\"\"Do nothing, but document it.\n"
@@ -2117,11 +2109,11 @@ msgstr ""
 "\n"
 "    No, really, it doesn't do anything."
 
-#: ../../tutorial/controlflow.rst:1072
+#: ../../tutorial/controlflow.rst:1069
 msgid "Function Annotations"
 msgstr "함수 어노테이션"
 
-#: ../../tutorial/controlflow.rst:1080
+#: ../../tutorial/controlflow.rst:1076
 msgid ""
 ":ref:`Function annotations <function>` are completely optional metadata "
 "information about the types used by user-defined functions (see "
@@ -2130,7 +2122,7 @@ msgstr ""
 ":ref:`함수 어노테이션 <function>` 은 사용자 정의 함수가 사용하는 형들에 대한 완전히 선택적인 메타데이터 정보입니다 "
 "(자세한 내용은 :pep:`3107` 과 :pep:`484` 를 보세요)."
 
-#: ../../tutorial/controlflow.rst:1084
+#: ../../tutorial/controlflow.rst:1080
 #, fuzzy
 msgid ""
 ":term:`Annotations <function annotation>` are stored in the "
@@ -2149,7 +2141,7 @@ msgstr ""
 "뒤를 따르는 표현식으로 정의되는데, 매개변수 목록과 :keyword:`def` 문의 끝을 나타내는 콜론 사이에 놓입니다. 다음 "
 "예에서 필수 인자, 선택적 인자, 반환 값이 어노테이트 됩니다::"
 
-#: ../../tutorial/controlflow.rst:1093
+#: ../../tutorial/controlflow.rst:1089
 #, python-brace-format
 msgid ""
 ">>> def f(ham: str, eggs: str = 'eggs') -> str:\n"
@@ -2174,17 +2166,18 @@ msgstr ""
 "Arguments: spam eggs\n"
 "'spam and eggs'"
 
-#: ../../tutorial/controlflow.rst:1106
+#: ../../tutorial/controlflow.rst:1102
 msgid "Intermezzo: Coding Style"
 msgstr "막간극: 코딩 스타일"
 
-#: ../../tutorial/controlflow.rst:1111
+#: ../../tutorial/controlflow.rst:1106
+#, fuzzy
 msgid ""
 "Now that you are about to write longer, more complex pieces of Python, it"
 " is a good time to talk about *coding style*.  Most languages can be "
-"written (or more concise, *formatted*) in different styles; some are more"
-" readable than others. Making it easy for others to read your code is "
-"always a good idea, and adopting a nice coding style helps tremendously "
+"written (or more concisely, *formatted*) in different styles; some are "
+"more readable than others. Making it easy for others to read your code is"
+" always a good idea, and adopting a nice coding style helps tremendously "
 "for that."
 msgstr ""
 "이제 여러분은 파이썬의 더 길고, 더 복잡한 조각들을 작성하려고 합니다, *코딩 스타일*\\에 대해 말할 적절한 시간입니다. 대부분"
@@ -2192,7 +2185,7 @@ msgstr ""
 "다른 사람들이 여러분의 코드를 읽기 쉽게 만드는 것은 항상 좋은 생각이고, 훌륭한 코딩 스타일을 도입하는 것은 그렇게 하는 데 큰 "
 "도움을 줍니다."
 
-#: ../../tutorial/controlflow.rst:1117
+#: ../../tutorial/controlflow.rst:1112
 msgid ""
 "For Python, :pep:`8` has emerged as the style guide that most projects "
 "adhere to; it promotes a very readable and eye-pleasing coding style.  "
@@ -2203,11 +2196,11 @@ msgstr ""
 "코딩 스타일을 장려합니다. 모든 파이썬 개발자는 언젠가는 이 문서를 읽어야 합니다; 여러분을 위해 가장 중요한 부분들을 "
 "추려봤습니다::"
 
-#: ../../tutorial/controlflow.rst:1122
+#: ../../tutorial/controlflow.rst:1117
 msgid "Use 4-space indentation, and no tabs."
 msgstr "들려 쓰기에 4-스페이스를 사용하고, 탭을 사용하지 마세요."
 
-#: ../../tutorial/controlflow.rst:1124
+#: ../../tutorial/controlflow.rst:1119
 msgid ""
 "4 spaces are a good compromise between small indentation (allows greater "
 "nesting depth) and large indentation (easier to read).  Tabs introduce "
@@ -2216,31 +2209,31 @@ msgstr ""
 "4개의 스페이스는 작은 들여쓰기 (더 많은 중첩 도를 허락합니다) 와 큰 들여쓰기 (읽기 쉽습니다) 사이의 좋은 절충입니다. 탭은 "
 "혼란을 일으키고, 없애는 것이 최선입니다."
 
-#: ../../tutorial/controlflow.rst:1128
+#: ../../tutorial/controlflow.rst:1123
 msgid "Wrap lines so that they don't exceed 79 characters."
 msgstr "79자를 넘지 않도록 줄 넘김 하세요."
 
-#: ../../tutorial/controlflow.rst:1130
+#: ../../tutorial/controlflow.rst:1125
 msgid ""
 "This helps users with small displays and makes it possible to have "
 "several code files side-by-side on larger displays."
 msgstr "이것은 작은 화면을 가진 사용자를 돕고 큰 화면에서는 여러 코드 파일들을 나란히 볼 수 있게 합니다."
 
-#: ../../tutorial/controlflow.rst:1133
+#: ../../tutorial/controlflow.rst:1128
 msgid ""
 "Use blank lines to separate functions and classes, and larger blocks of "
 "code inside functions."
 msgstr "함수, 클래스, 함수 내의 큰 코드 블록 사이에 빈 줄을 넣어 분리하세요."
 
-#: ../../tutorial/controlflow.rst:1136
+#: ../../tutorial/controlflow.rst:1131
 msgid "When possible, put comments on a line of their own."
 msgstr "가능하다면, 주석은 별도의 줄로 넣으세요."
 
-#: ../../tutorial/controlflow.rst:1138
+#: ../../tutorial/controlflow.rst:1133
 msgid "Use docstrings."
 msgstr "독스트링을 사용하세요."
 
-#: ../../tutorial/controlflow.rst:1140
+#: ../../tutorial/controlflow.rst:1135
 msgid ""
 "Use spaces around operators and after commas, but not directly inside "
 "bracketing constructs: ``a = f(1, 2) + g(3, 4)``."
@@ -2248,7 +2241,7 @@ msgstr ""
 "연산자들 주변과 콤마 뒤에 스페이스를 넣고, 괄호 바로 안쪽에는 스페이스를 넣지 마세요: ``a = f(1, 2) + g(3, "
 "4)``."
 
-#: ../../tutorial/controlflow.rst:1143
+#: ../../tutorial/controlflow.rst:1138
 msgid ""
 "Name your classes and functions consistently; the convention is to use "
 "``UpperCamelCase`` for classes and ``lowercase_with_underscores`` for "
@@ -2260,7 +2253,7 @@ msgstr ""
 "``lowercase_with_underscores``\\입니다. 첫 번째 메서드 인자의 이름으로는 항상 ``self``\\를 "
 "사용하세요 (클래스와 메서드에 대한 자세한 내용은 :ref:`tut-firstclasses` 을 보세요)."
 
-#: ../../tutorial/controlflow.rst:1148
+#: ../../tutorial/controlflow.rst:1143
 msgid ""
 "Don't use fancy encodings if your code is meant to be used in "
 "international environments.  Python's default, UTF-8, or even plain ASCII"
@@ -2269,7 +2262,7 @@ msgstr ""
 "여러분의 코드를 국제적인 환경에서 사용하려고 한다면 특별한 인코딩을 사용하지 마세요. 어떤 경우에도 파이썬의 기본, UTF-8, "
 "또는 단순 ASCII조차, 이 최선입니다."
 
-#: ../../tutorial/controlflow.rst:1152
+#: ../../tutorial/controlflow.rst:1147
 msgid ""
 "Likewise, don't use non-ASCII characters in identifiers if there is only "
 "the slightest chance people speaking a different language will read or "
@@ -2278,11 +2271,11 @@ msgstr ""
 "마찬가지로, 다른 언어를 사용하는 사람이 코드를 읽거나 유지할 약간의 가능성만 있더라도, 식별자에 ASCII 이외의 문자를 사용하지"
 " 마세요."
 
-#: ../../tutorial/controlflow.rst:1158
+#: ../../tutorial/controlflow.rst:1153
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../../tutorial/controlflow.rst:1159
+#: ../../tutorial/controlflow.rst:1154
 msgid ""
 "Actually, *call by object reference* would be a better description, since"
 " if a mutable object is passed, the caller will see any changes the "
@@ -2331,31 +2324,31 @@ msgstr "함수 호출에서"
 msgid "**"
 msgstr "**"
 
-#: ../../tutorial/controlflow.rst:1075
+#: ../../tutorial/controlflow.rst:1071
 msgid "function"
 msgstr "함수"
 
-#: ../../tutorial/controlflow.rst:1075
+#: ../../tutorial/controlflow.rst:1071
 msgid "annotations"
 msgstr "어노테이션"
 
-#: ../../tutorial/controlflow.rst:1075
+#: ../../tutorial/controlflow.rst:1071
 msgid "->"
 msgstr "->"
 
-#: ../../tutorial/controlflow.rst:1075
+#: ../../tutorial/controlflow.rst:1071
 msgid "function annotations"
 msgstr "함수 어노테이션"
 
-#: ../../tutorial/controlflow.rst:1075
+#: ../../tutorial/controlflow.rst:1071
 msgid ": (colon)"
 msgstr ": (콜론)"
 
-#: ../../tutorial/controlflow.rst:1109
+#: ../../tutorial/controlflow.rst:1104
 msgid "coding"
 msgstr "코딩"
 
-#: ../../tutorial/controlflow.rst:1109
+#: ../../tutorial/controlflow.rst:1104
 msgid "style"
 msgstr "스타일"
 
@@ -2413,4 +2406,51 @@ msgstr "스타일"
 #~ " case matches, none of the branches"
 #~ " is executed."
 #~ msgstr ""
+
+#~ msgid ""
+#~ "Patterns may use named constants.  These"
+#~ " must be dotted names to prevent "
+#~ "them from being interpreted as capture"
+#~ " variable::"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Python parser does not strip "
+#~ "indentation from multi-line string "
+#~ "literals in Python, so tools that "
+#~ "process documentation have to strip "
+#~ "indentation if desired.  This is done"
+#~ " using the following convention. The "
+#~ "first non-blank line *after* the "
+#~ "first line of the string determines "
+#~ "the amount of indentation for the "
+#~ "entire documentation string.  (We can't "
+#~ "use the first line since it is "
+#~ "generally adjacent to the string's "
+#~ "opening quotes so its indentation is "
+#~ "not apparent in the string literal.)"
+#~ "  Whitespace \"equivalent\" to this "
+#~ "indentation is then stripped from the"
+#~ " start of all lines of the "
+#~ "string.  Lines that are indented less"
+#~ " should not occur, but if they "
+#~ "occur all their leading whitespace "
+#~ "should be stripped.  Equivalence of "
+#~ "whitespace should be tested after "
+#~ "expansion of tabs (to 8 spaces, "
+#~ "normally)."
+#~ msgstr ""
+#~ "파이썬 파서는 여러 줄 문자열 리터럴에서 들여쓰기를 "
+#~ "제거하지 않기 때문에, 설명서를 처리하는 도구들은 필요하면"
+#~ " 들여쓰기를 제거합니다. 이것은 다음과 같은 관례를 "
+#~ "사용합니다. 문자열의 첫줄 *뒤에 오는* 첫 번째 "
+#~ "비어있지 않은 줄이 전체 도튜멘테이션 문자열의 들여쓰기 "
+#~ "수준을 결정합니다. (우리는 첫 줄을 사용할 수 "
+#~ "없는데, 일반적으로 문자열을 시작하는 따옴표에 붙어있어서 "
+#~ "들여쓰기가 문자열 리터럴의 것을 반영하지 않기 때문입니다.)"
+#~ " 이 들여쓰기와 \"동등한\" 공백이 문자열의 모든 줄의"
+#~ " 시작 부분에서 제거됩니다. 덜 들여쓰기 된 줄이 "
+#~ "나타나지는 말아야 하지만, 나타난다면 모든 앞부분의 공백이"
+#~ " 제거됩니다. 공백의 동등성은 탭 확장 (보통 8개의"
+#~ " 스페이스) 후에 검사됩니다."
 

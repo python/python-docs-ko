@@ -7,304 +7,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Editorial (https://python.flowdas.com)\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../extending/extending.rst:8
-msgid "Extending Python with C or C++"
-msgstr "C나 C++로 파이썬 확장하기"
+msgid "Using the C API: Assorted topics"
+msgstr ""
 
 #: ../../extending/extending.rst:10
 msgid ""
-"It is quite easy to add new built-in modules to Python, if you know how "
-"to program in C.  Such :dfn:`extension modules` can do two things that "
-"can't be done directly in Python: they can implement new built-in object "
-"types, and they can call C library functions and system calls."
-msgstr ""
-"C로 프로그래밍하는 방법을 알고 있다면, 파이썬에 새로운 내장 모듈을 추가하기는 매우 쉽습니다. 그러한 :dfn:`확장 "
-"모듈(extension modules)`\\은 파이썬에서 직접 할 수 없는 두 가지 일을 할 수 있습니다: 새로운 내장 객체 형을 "
-"구현할 수 있고, C 라이브러리 함수와 시스템 호출을 호출할 수 있습니다."
-
-#: ../../extending/extending.rst:15
-msgid ""
-"To support extensions, the Python API (Application Programmers Interface)"
-" defines a set of functions, macros and variables that provide access to "
-"most aspects of the Python run-time system.  The Python API is "
-"incorporated in a C source file by including the header ``\"Python.h\"``."
-msgstr ""
-"확장을 지원하기 위해, 파이썬 API(Application Programmers Interface)는 파이썬 런타임 시스템의 대부분"
-" 측면에 액세스 할 수 있는 함수, 매크로 및 변수 집합을 정의합니다. 파이썬 API는 헤더 ``\"Python.h\"``\\를 "
-"포함해 C 소스 파일에 통합됩니다."
-
-#: ../../extending/extending.rst:20
-msgid ""
-"The compilation of an extension module depends on its intended use as "
-"well as on your system setup; details are given in later chapters."
-msgstr "확장 모듈의 컴파일은 시스템 설정뿐만 아니라 의도하는 용도에 따라 다릅니다; 자세한 내용은 다음 장에서 설명합니다."
-
-#: ../../extending/extending.rst:25
-msgid ""
-"The C extension interface is specific to CPython, and extension modules "
-"do not work on other Python implementations.  In many cases, it is "
-"possible to avoid writing C extensions and preserve portability to other "
-"implementations. For example, if your use case is calling C library "
-"functions or system calls, you should consider using the :mod:`ctypes` "
-"module or the `cffi <https://cffi.readthedocs.io/>`_ library rather than "
-"writing custom C code. These modules let you write Python code to "
-"interface with C code and are more portable between implementations of "
-"Python than writing and compiling a C extension module."
-msgstr ""
-"C 확장 인터페이스는 CPython에만 해당하며, 확장 모듈은 다른 파이썬 구현에서는 작동하지 않습니다. 많은 경우에, C 확장을 "
-"작성하지 않고 다른 구현으로의 이식성을 유지하는 것이 가능합니다. 예를 들어, 사용 사례가 C 라이브러리 함수나 시스템 호출을 "
-"호출하는 것이라면, 사용자 정의 C 코드를 작성하는 대신 :mod:`ctypes` 모듈이나 `cffi "
-"<https://cffi.readthedocs.io/>`_ 라이브러리 사용을 고려해야 합니다. 이 모듈을 사용하면 C 코드와 "
-"인터페이스 하기 위한 파이썬 코드를 작성할 수 있으며 C 확장 모듈을 작성하고 컴파일하는 것보다 파이썬 구현 간에 이식성이 더 "
-"좋습니다."
-
-#: ../../extending/extending.rst:40
-msgid "A Simple Example"
-msgstr "간단한 예"
-
-#: ../../extending/extending.rst:42
-msgid ""
-"Let's create an extension module called ``spam`` (the favorite food of "
-"Monty Python fans...) and let's say we want to create a Python interface "
-"to the C library function :c:func:`system` [#]_. This function takes a "
-"null-terminated character string as argument and returns an integer.  We "
-"want this function to be callable from Python as follows:"
-msgstr ""
-"``spam``\\(몬티 파이썬 팬들이 가장 좋아하는 음식...)이라는 확장 모듈을 만듭시다, 그리고 C 라이브러리 함수 "
-":c:func:`system`\\에 대한 파이썬 인터페이스를 만들고 싶다고 합시다 [#]_. 이 함수는 널 종료 문자열을 인자로 "
-"취하고 정수를 반환합니다. 우리는 이 함수를 다음과 같이 파이썬에서 호출할 수 있기를 원합니다:"
-
-#: ../../extending/extending.rst:48
-msgid ""
-">>> import spam\n"
-">>> status = spam.system(\"ls -l\")"
-msgstr ""
-">>> import spam\n"
-">>> status = spam.system(\"ls -l\")"
-
-#: ../../extending/extending.rst:53
-msgid ""
-"Begin by creating a file :file:`spammodule.c`.  (Historically, if a "
-"module is called ``spam``, the C file containing its implementation is "
-"called :file:`spammodule.c`; if the module name is very long, like "
-"``spammify``, the module name can be just :file:`spammify.c`.)"
-msgstr ""
-":file:`spammodule.c` 파일을 만드는 것으로 시작하십시오. (역사적으로, 모듈을 ``spam``\\이라고 하면, 해당"
-" 구현을 포함하는 C 파일은 :file:`spammodule.c`\\라고 합니다; 모듈 이름이 ``spammify``\\처럼 매우 "
-"길면, 모듈 이름은 그냥 :file:`spammify.c`\\일 수 있습니다.)"
-
-#: ../../extending/extending.rst:58
-msgid "The first two lines of our file can be::"
-msgstr "파일의 처음 두 줄은 다음과 같습니다::"
-
-#: ../../extending/extending.rst:60 ../../extending/extending.rst:706
-msgid ""
-"#define PY_SSIZE_T_CLEAN\n"
-"#include <Python.h>"
-msgstr ""
-"#define PY_SSIZE_T_CLEAN\n"
-"#include <Python.h>"
-
-#: ../../extending/extending.rst:63
-msgid ""
-"which pulls in the Python API (you can add a comment describing the "
-"purpose of the module and a copyright notice if you like)."
-msgstr "이것은 파이썬 API를 가져옵니다 (원한다면 모듈의 목적과 저작권 표시를 설명하는 주석을 추가할 수 있습니다)."
-
-#: ../../extending/extending.rst:68
-msgid ""
-"Since Python may define some pre-processor definitions which affect the "
-"standard headers on some systems, you *must* include :file:`Python.h` "
-"before any standard headers are included."
-msgstr ""
-"파이썬이 일부 시스템의 표준 헤더에 영향을 미치는 일부 전처리기 정의를 정의할 수 있어서, 표준 헤더가 포함되기 전에 *반드시* "
-":file:`Python.h`\\를 포함해야 합니다."
-
-#: ../../extending/extending.rst:72
-msgid ""
-"``#define PY_SSIZE_T_CLEAN`` was used to indicate that ``Py_ssize_t`` "
-"should be used in some APIs instead of ``int``. It is not necessary since"
-" Python 3.13, but we keep it here for backward compatibility. See :ref"
-":`arg-parsing-string-and-buffers` for a description of this macro."
+"The :ref:`tutorial <first-extension-module>` walked you through creating "
+"a C API extension module, but left many areas unexplained. This document "
+"looks at several concepts that you'll need to learn in order to write "
+"more complex extensions."
 msgstr ""
 
-#: ../../extending/extending.rst:77
-msgid ""
-"All user-visible symbols defined by :file:`Python.h` have a prefix of "
-"``Py`` or ``PY``, except those defined in standard header files."
-msgstr ""
-
-#: ../../extending/extending.rst:82
-msgid ""
-"For backward compatibility, :file:`Python.h` includes several standard "
-"header files. C extensions should include the standard headers that they "
-"use, and should not rely on these implicit includes. If using the limited"
-" C API version 3.13 or newer, the implicit includes are:"
-msgstr ""
-
-#: ../../extending/extending.rst:87
-msgid "``<assert.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:88
-msgid "``<intrin.h>`` (on Windows)"
-msgstr ""
-
-#: ../../extending/extending.rst:89
-msgid "``<inttypes.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:90
-msgid "``<limits.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:91
-msgid "``<math.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:92
-msgid "``<stdarg.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:93
-msgid "``<wchar.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:94
-msgid "``<sys/types.h>`` (if present)"
-msgstr ""
-
-#: ../../extending/extending.rst:96
-msgid ""
-"If :c:macro:`Py_LIMITED_API` is not defined, or is set to version 3.12 or"
-" older, the headers below are also included:"
-msgstr ""
-
-#: ../../extending/extending.rst:99
-msgid "``<ctype.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:100
-msgid "``<unistd.h>`` (on POSIX)"
-msgstr ""
-
-#: ../../extending/extending.rst:102
-msgid ""
-"If :c:macro:`Py_LIMITED_API` is not defined, or is set to version 3.10 or"
-" older, the headers below are also included:"
-msgstr ""
-
-#: ../../extending/extending.rst:105
-msgid "``<errno.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:106
-msgid "``<stdio.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:107
-msgid "``<stdlib.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:108
-msgid "``<string.h>``"
-msgstr ""
-
-#: ../../extending/extending.rst:110
-msgid ""
-"The next thing we add to our module file is the C function that will be "
-"called when the Python expression ``spam.system(string)`` is evaluated "
-"(we'll see shortly how it ends up being called)::"
-msgstr ""
-"다음으로 모듈 파일에 추가하는 것은 파이썬 표현식 ``spam.system(string)``\\이 평가될 때 호출될 C 함수입니다 "
-"(이것이 어떻게 호출되는지 곧 보게 될 것입니다)::"
-
-#: ../../extending/extending.rst:114
-msgid ""
-"static PyObject *\n"
-"spam_system(PyObject *self, PyObject *args)\n"
-"{\n"
-"    const char *command;\n"
-"    int sts;\n"
-"\n"
-"    if (!PyArg_ParseTuple(args, \"s\", &command))\n"
-"        return NULL;\n"
-"    sts = system(command);\n"
-"    return PyLong_FromLong(sts);\n"
-"}"
-msgstr ""
-"static PyObject *\n"
-"spam_system(PyObject *self, PyObject *args)\n"
-"{\n"
-"    const char *command;\n"
-"    int sts;\n"
-"\n"
-"    if (!PyArg_ParseTuple(args, \"s\", &command))\n"
-"        return NULL;\n"
-"    sts = system(command);\n"
-"    return PyLong_FromLong(sts);\n"
-"}"
-
-#: ../../extending/extending.rst:126
-msgid ""
-"There is a straightforward translation from the argument list in Python "
-"(for example, the single expression ``\"ls -l\"``) to the arguments "
-"passed to the C function.  The C function always has two arguments, "
-"conventionally named *self* and *args*."
-msgstr ""
-"파이썬의 인자 목록(예를 들어, 단일 표현식 ``\"ls -l\"``)에서 C 함수로 전달되는 인자로의 간단한 변환이 있습니다. C"
-" 함수에는 항상 *self*\\와 *args*\\라는 두 개의 인자가 있습니다."
-
-#: ../../extending/extending.rst:131
-msgid ""
-"The *self* argument points to the module object for module-level "
-"functions; for a method it would point to the object instance."
-msgstr "*self* 인자는 모듈 수준 함수에서 모듈 객체를 가리킵니다; 메서드의 경우 객체 인스턴스를 가리킵니다."
-
-#: ../../extending/extending.rst:134
-msgid ""
-"The *args* argument will be a pointer to a Python tuple object containing"
-" the arguments.  Each item of the tuple corresponds to an argument in the"
-" call's argument list.  The arguments are Python objects --- in order to "
-"do anything with them in our C function we have to convert them to C "
-"values.  The function :c:func:`PyArg_ParseTuple` in the Python API checks"
-" the argument types and converts them to C values.  It uses a template "
-"string to determine the required types of the arguments as well as the "
-"types of the C variables into which to store the converted values.  More "
-"about this later."
-msgstr ""
-"*args* 인자는 인자를 포함하는 파이썬 튜플 객체에 대한 포인터입니다. 튜플의 각 항목은 호출의 인자 목록에 있는 인자에 "
-"해당합니다. 인자는 파이썬 객체입니다 --- C 함수에서 무언가를 수행하려면 이들을 C 값으로 변환해야 합니다. 파이썬 API의 "
-":c:func:`PyArg_ParseTuple` 함수는 인자 형을 확인하고 C 값으로 변환합니다. 템플릿 문자열을 사용하여 필요한 "
-"인자 형과 변환된 값을 저장할 C 변수 형을 결정합니다. 나중에 이것에 대해 자세히 알아보겠습니다."
-
-#: ../../extending/extending.rst:143
-msgid ""
-":c:func:`PyArg_ParseTuple` returns true (nonzero) if all arguments have "
-"the right type and its components have been stored in the variables whose"
-" addresses are passed.  It returns false (zero) if an invalid argument "
-"list was passed.  In the latter case it also raises an appropriate "
-"exception so the calling function can return ``NULL`` immediately (as we "
-"saw in the example)."
-msgstr ""
-"모든 인자의 형이 올바르고 해당 구성 요소가 주소가 전달된 변수에 저장되면, :c:func:`PyArg_ParseTuple`\\은 "
-"참(0이 아닙니다)을 반환합니다. 유효하지 않은 인자 목록이 전달되면 거짓(0)을 반환합니다. 후자의 경우 호출 함수가  (예에서 "
-"보듯이) ``NULL``\\을 즉시 반환할 수 있도록 적절한 예외를 발생시킵니다."
-
-#: ../../extending/extending.rst:153
-msgid "Intermezzo: Errors and Exceptions"
+#: ../../extending/extending.rst:19
+#, fuzzy
+msgid "Errors and Exceptions"
 msgstr "막간극: 에러와 예외"
 
-#: ../../extending/extending.rst:155
+#: ../../extending/extending.rst:21
 msgid ""
 "An important convention throughout the Python interpreter is the "
 "following: when a function fails, it should set an exception condition "
@@ -322,13 +51,13 @@ msgstr ""
 " 물입니다. 이들은 예외 형, 예외 인스턴스, 트레이스백 객체입니다. 에러가 어떻게 전달되는지 이해하기 위해서는 이들에 대해 아는 "
 "것이 중요합니다."
 
-#: ../../extending/extending.rst:164
+#: ../../extending/extending.rst:30
 msgid ""
 "The Python API defines a number of functions to set various types of "
 "exceptions."
 msgstr "파이썬 API는 다양한 형의 예외를 설정하기 위한 여러 함수를 정의합니다."
 
-#: ../../extending/extending.rst:166
+#: ../../extending/extending.rst:32
 msgid ""
 "The most common one is :c:func:`PyErr_SetString`.  Its arguments are an "
 "exception object and a C string.  The exception object is usually a "
@@ -340,7 +69,7 @@ msgstr ""
 " :c:data:`PyExc_ZeroDivisionError`\\와 같은 미리 정의된 객체입니다. C 문자열은 에러의 원인을 "
 "나타내며 파이썬 문자열 객체로 변환되어 예외의 \"연관된 값\"으로 저장됩니다."
 
-#: ../../extending/extending.rst:172
+#: ../../extending/extending.rst:38
 msgid ""
 "Another useful function is :c:func:`PyErr_SetFromErrno`, which only takes"
 " an exception argument and constructs the associated value by inspection "
@@ -354,7 +83,7 @@ msgstr ""
 ":c:func:`PyErr_SetObject`\\이며, 예외와 관련 값인 두 개의 객체 인자를 취합니다. 이러한 함수들에 전달되는 "
 "객체를 :c:func:`Py_INCREF` 할 필요는 없습니다."
 
-#: ../../extending/extending.rst:179
+#: ../../extending/extending.rst:45
 msgid ""
 "You can test non-destructively whether an exception has been set with "
 ":c:func:`PyErr_Occurred`.  This returns the current exception object, or "
@@ -366,7 +95,7 @@ msgstr ""
 "예외가 발생하지 않았으면 ``NULL``\\을 반환합니다. 반환 값에서 알 수 있어야 해서 일반적으로 함수 호출에서 에러가 "
 "발생했는지 확인하기 위해 :c:func:`PyErr_Occurred`\\를 호출할 필요는 없습니다."
 
-#: ../../extending/extending.rst:185
+#: ../../extending/extending.rst:51
 msgid ""
 "When a function *f* that calls another function *g* detects that the "
 "latter fails, *f* should itself return an error value (usually ``NULL`` "
@@ -386,7 +115,7 @@ msgstr ""
 "일단 에러가 파이썬 인터프리터의 메인 루프에 도달하면, 현재 실행 중인 파이썬 코드를 중단하고 파이썬 프로그래머가 지정한 예외 "
 "처리기를 찾으려고 시도합니다."
 
-#: ../../extending/extending.rst:195
+#: ../../extending/extending.rst:61
 msgid ""
 "(There are situations where a module can actually give a more detailed "
 "error message by calling another ``PyErr_*`` function, and in such cases "
@@ -398,7 +127,7 @@ msgstr ""
 "그렇게 하는 것이 좋습니다. 그러나, 일반적인 규칙으로 이는 필요하지 않고, 에러가 발생하는 원인에 관한 정보를 잃어버리게 합니다:"
 " 대부분의 연산은 다양한 이유로 실패할 수 있습니다.)"
 
-#: ../../extending/extending.rst:201
+#: ../../extending/extending.rst:67
 msgid ""
 "To ignore an exception set by a function call that failed, the exception "
 "condition must be cleared explicitly by calling :c:func:`PyErr_Clear`.  "
@@ -411,7 +140,7 @@ msgstr ""
 "합니다. C 코드가 :c:func:`PyErr_Clear`\\를 호출해야 하는 유일한 때는 에러를 인터프리터에 전달하지 않고 스스로"
 " 완전히 처리하려고 하는 경우입니다 (아마 다른 것을 시도하거나, 아무것도 잘못되지 않은 척해서)."
 
-#: ../../extending/extending.rst:207
+#: ../../extending/extending.rst:73
 msgid ""
 "Every failing :c:func:`malloc` call must be turned into an exception --- "
 "the direct caller of :c:func:`malloc` (or :c:func:`realloc`) must call "
@@ -425,7 +154,7 @@ msgstr ""
 "반환해야 합니다. 모든 객체 생성 함수(예를 들어, :c:func:`PyLong_FromLong`)는 이미 이 작업을 수행하므로, "
 "이 주의는 :c:func:`malloc`\\을 직접 호출하는 호출자에게만 해당합니다."
 
-#: ../../extending/extending.rst:213
+#: ../../extending/extending.rst:79
 msgid ""
 "Also note that, with the important exception of "
 ":c:func:`PyArg_ParseTuple` and friends, functions that return an integer "
@@ -435,7 +164,7 @@ msgstr ""
 "또한 :c:func:`PyArg_ParseTuple`\\과 그 친구들의 중요한 예외를 제외하고, 정수 상태를 반환하는 함수는 유닉스"
 " 시스템 호출처럼 일반적으로 성공 시 양수 값이나 0을 반환하고, 실패 시 ``-1``\\을 반환합니다."
 
-#: ../../extending/extending.rst:217
+#: ../../extending/extending.rst:83
 msgid ""
 "Finally, be careful to clean up garbage (by making :c:func:`Py_XDECREF` "
 "or :c:func:`Py_DECREF` calls for objects you have already created) when "
@@ -444,7 +173,7 @@ msgstr ""
 "마지막으로, 에러 표시기를 반환할 때 (이미 만든 객체를 :c:func:`Py_XDECREF`\\나 "
 ":c:func:`Py_DECREF`\\를 호출하여) 가비지를 정리하십시오!"
 
-#: ../../extending/extending.rst:221
+#: ../../extending/extending.rst:87
 msgid ""
 "The choice of which exception to raise is entirely yours.  There are "
 "predeclared C objects corresponding to all built-in Python exceptions, "
@@ -465,7 +194,7 @@ msgstr ""
 " 값이 특정 범위 내에 있어야 하거나 다른 조건을 만족해야 하는 인자가 있으면, "
 ":c:data:`PyExc_ValueError`\\가 적합합니다."
 
-#: ../../extending/extending.rst:231
+#: ../../extending/extending.rst:97
 #, fuzzy
 msgid ""
 "You can also define a new exception that is unique to your module. The "
@@ -473,35 +202,35 @@ msgid ""
 "the beginning of the file::"
 msgstr "모듈에 고유한 새 예외를 정의할 수도 있습니다. 이를 위해, 일반적으로 파일 시작 부분에 정적 객체 변수를 선언합니다::"
 
-#: ../../extending/extending.rst:235
+#: ../../extending/extending.rst:101
 #, fuzzy
 msgid "static PyObject *SpamError = NULL;"
 msgstr "static PyObject *SpamError;"
 
-#: ../../extending/extending.rst:237
+#: ../../extending/extending.rst:103
 msgid ""
 "and initialize it by calling :c:func:`PyErr_NewException` in the module's"
 " :c:data:`Py_mod_exec` function (:c:func:`!spam_module_exec`)::"
 msgstr ""
 
-#: ../../extending/extending.rst:240
+#: ../../extending/extending.rst:106
 msgid "SpamError = PyErr_NewException(\"spam.error\", NULL, NULL);"
 msgstr ""
 
-#: ../../extending/extending.rst:242
+#: ../../extending/extending.rst:108
 msgid ""
 "Since :c:data:`!SpamError` is a global variable, it will be overwritten "
 "every time the module is reinitialized, when the :c:data:`Py_mod_exec` "
 "function is called."
 msgstr ""
 
-#: ../../extending/extending.rst:245
+#: ../../extending/extending.rst:111
 msgid ""
 "For now, let's avoid the issue: we will block repeated initialization by "
 "raising an :py:exc:`ImportError`::"
 msgstr ""
 
-#: ../../extending/extending.rst:248
+#: ../../extending/extending.rst:114
 msgid ""
 "static PyObject *SpamError = NULL;\n"
 "\n"
@@ -541,7 +270,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../extending/extending.rst:284
+#: ../../extending/extending.rst:150
 msgid ""
 "Note that the Python name for the exception object is :exc:`!spam.error`."
 "  The :c:func:`PyErr_NewException` function may create a class with the "
@@ -552,7 +281,7 @@ msgstr ""
 ":c:func:`PyErr_NewException` 함수는 (``NULL`` 대신 다른 클래스가 전달되지 않는 한) 베이스 클래스가"
 " (:ref:`bltin-exceptions`\\에서 설명된) :exc:`Exception`\\인 클래스를 만들 수 있습니다."
 
-#: ../../extending/extending.rst:289
+#: ../../extending/extending.rst:155
 msgid ""
 "Note also that the :c:data:`!SpamError` variable retains a reference to "
 "the newly created exception class; this is intentional!  Since the "
@@ -567,7 +296,7 @@ msgstr ""
 "매달린(dangling) 포인터가 되지 않도록 하려면, 클래스에 대한 참조를 소유할 필요가 있습니다. 매달린 포인터가 되면, 예외를"
 " 발생시키는 C 코드가 코어 덤프나 다른 의도하지 않은 부작용을 일으킬 수 있습니다."
 
-#: ../../extending/extending.rst:296
+#: ../../extending/extending.rst:162
 msgid ""
 "For now, the :c:func:`Py_DECREF` call to remove this reference is "
 "missing. Even when the Python interpreter shuts down, the global "
@@ -576,13 +305,13 @@ msgid ""
 "process."
 msgstr ""
 
-#: ../../extending/extending.rst:301
+#: ../../extending/extending.rst:167
 msgid ""
 "We discuss the use of :c:macro:`PyMODINIT_FUNC` as a function return type"
 " later in this sample."
 msgstr "이 샘플의 뒷부분에서 :c:macro:`PyMODINIT_FUNC`\\를 함수 반환형으로 사용하는 것에 관해 설명합니다."
 
-#: ../../extending/extending.rst:304
+#: ../../extending/extending.rst:170
 msgid ""
 "The :exc:`!spam.error` exception can be raised in your extension module "
 "using a call to :c:func:`PyErr_SetString` as shown below::"
@@ -590,7 +319,7 @@ msgstr ""
 "다음과 같이 :c:func:`PyErr_SetString`\\을 호출하여 확장 모듈에서 :exc:`!spam.error` 예외를 "
 "발생시킬 수 있습니다::"
 
-#: ../../extending/extending.rst:307
+#: ../../extending/extending.rst:173
 msgid ""
 "static PyObject *\n"
 "spam_system(PyObject *self, PyObject *args)\n"
@@ -624,404 +353,30 @@ msgstr ""
 "    return PyLong_FromLong(sts);\n"
 "}"
 
-#: ../../extending/extending.rst:327
-msgid "Back to the Example"
-msgstr "예제로 돌아가기"
-
-#: ../../extending/extending.rst:329
-msgid ""
-"Going back to our example function, you should now be able to understand "
-"this statement::"
-msgstr "예제 함수로 돌아가서, 이제 여러분은 이 문장을 이해할 수 있어야 합니다::"
-
-#: ../../extending/extending.rst:332
-msgid ""
-"if (!PyArg_ParseTuple(args, \"s\", &command))\n"
-"    return NULL;"
+#: ../../extending/extending.rst:193
+msgid "Embedding an extension"
 msgstr ""
-"if (!PyArg_ParseTuple(args, \"s\", &command))\n"
-"    return NULL;"
 
-#: ../../extending/extending.rst:335
-msgid ""
-"It returns ``NULL`` (the error indicator for functions returning object "
-"pointers) if an error is detected in the argument list, relying on the "
-"exception set by :c:func:`PyArg_ParseTuple`.  Otherwise the string value "
-"of the argument has been copied to the local variable :c:data:`!command`."
-"  This is a pointer assignment and you are not supposed to modify the "
-"string to which it points (so in Standard C, the variable "
-":c:data:`!command` should properly be declared as ``const char "
-"*command``)."
-msgstr ""
-"인자 목록에서 에러가 발견되면 :c:func:`PyArg_ParseTuple`\\에 의해 설정된 예외에 의존하면서 "
-"``NULL``\\(객체 포인터를 반환하는 함수의 에러 표시기)을 반환합니다. 그렇지 않으면 인자의 문자열 값이 지역 변수 "
-":c:data:`!command`\\에 복사되었습니다. 이것은 포인터 대입이며 가리키는 문자열을 수정해서는 안 됩니다 (따라서 표준"
-" C에서, 변수 :c:data:`!command`\\는 ``const char *command``\\로 올바르게 선언되어야 "
-"합니다)."
-
-#: ../../extending/extending.rst:343
-msgid ""
-"The next statement is a call to the Unix function :c:func:`system`, "
-"passing it the string we just got from :c:func:`PyArg_ParseTuple`::"
-msgstr ""
-"다음 문장은 유닉스 함수 :c:func:`system`\\을 호출인데, :c:func:`PyArg_ParseTuple`\\에서 얻은"
-" 문자열을 전달합니다::"
-
-#: ../../extending/extending.rst:346
-msgid "sts = system(command);"
-msgstr "sts = system(command);"
-
-#: ../../extending/extending.rst:348
-msgid ""
-"Our :func:`!spam.system` function must return the value of :c:data:`!sts`"
-" as a Python object.  This is done using the function "
-":c:func:`PyLong_FromLong`. ::"
-msgstr ""
-"우리의 :func:`!spam.system` 함수는 :c:data:`!sts`\\의 값을 파이썬 객체로 반환해야 합니다. 이것은 "
-":c:func:`PyLong_FromLong` 함수를 사용하여 이루어집니다. ::"
-
-#: ../../extending/extending.rst:351
-msgid "return PyLong_FromLong(sts);"
-msgstr "return PyLong_FromLong(sts);"
-
-#: ../../extending/extending.rst:353
-msgid ""
-"In this case, it will return an integer object.  (Yes, even integers are "
-"objects on the heap in Python!)"
-msgstr "이 경우, 정수 객체를 반환합니다. (예, 정수조차도 파이썬에서는 힙 상의 객체입니다!)"
-
-#: ../../extending/extending.rst:356
-msgid ""
-"If you have a C function that returns no useful argument (a function "
-"returning :c:expr:`void`), the corresponding Python function must return "
-"``None``.   You need this idiom to do so (which is implemented by the "
-":c:macro:`Py_RETURN_NONE` macro)::"
-msgstr ""
-"유용한 인자를 반환하지 않는 C 함수(:c:expr:`void`\\를 반환하는 함수)가 있으면, 해당 파이썬 함수는 "
-"``None``\\을 반환해야 합니다. 그렇게 하려면 이 관용구가 필요합니다 (:c:macro:`Py_RETURN_NONE` "
-"매크로로 구현됩니다)::"
-
-#: ../../extending/extending.rst:361
-msgid ""
-"Py_INCREF(Py_None);\n"
-"return Py_None;"
-msgstr ""
-"Py_INCREF(Py_None);\n"
-"return Py_None;"
-
-#: ../../extending/extending.rst:364
-msgid ""
-":c:data:`Py_None` is the C name for the special Python object ``None``.  "
-"It is a genuine Python object rather than a ``NULL`` pointer, which means"
-" \"error\" in most contexts, as we have seen."
-msgstr ""
-":c:data:`Py_None`\\은 특수 파이썬 객체 ``None``\\의 C 이름입니다. 앞에서 보았듯이, 대부분의 상황에서 "
-"\"에러\"를 뜻하는 ``NULL`` 포인터가 아니라 진짜 파이썬 객체입니다."
-
-#: ../../extending/extending.rst:372
-msgid "The Module's Method Table and Initialization Function"
-msgstr "모듈의 메서드 테이블과 초기화 함수"
-
-#: ../../extending/extending.rst:374
-msgid ""
-"I promised to show how :c:func:`!spam_system` is called from Python "
-"programs. First, we need to list its name and address in a \"method "
-"table\"::"
-msgstr ""
-"파이썬 프로그램에서 :c:func:`!spam_system`\\이 어떻게 호출되는지 보여 주겠다고 약속했습니다. 먼저, \"메서드 "
-"테이블\"에 이름과 주소를 나열해야 합니다::"
-
-#: ../../extending/extending.rst:377
+#: ../../extending/extending.rst:195
 #, fuzzy
 msgid ""
-"static PyMethodDef spam_methods[] = {\n"
-"    ...\n"
-"    {\"system\",  spam_system, METH_VARARGS,\n"
-"     \"Execute a shell command.\"},\n"
-"    ...\n"
-"    {NULL, NULL, 0, NULL}        /* Sentinel */\n"
-"};"
-msgstr ""
-"static PyMethodDef SpamMethods[] = {\n"
-"    ...\n"
-"    {\"system\",  spam_system, METH_VARARGS,\n"
-"     \"Execute a shell command.\"},\n"
-"    ...\n"
-"    {NULL, NULL, 0, NULL}        /* 끝 표지 */\n"
-"};"
-
-#: ../../extending/extending.rst:385
-msgid ""
-"Note the third entry (``METH_VARARGS``).  This is a flag telling the "
-"interpreter the calling convention to be used for the C function.  It "
-"should normally always be ``METH_VARARGS`` or ``METH_VARARGS | "
-"METH_KEYWORDS``; a value of ``0`` means that an obsolete variant of "
-":c:func:`PyArg_ParseTuple` is used."
-msgstr ""
-"세 번째 항목 (``METH_VARARGS``)에 유의하십시오. 이것은 인터프리터에게 C 함수에 사용될 호출 규칙을 알려주는 "
-"플래그입니다. 일반적으로 항상 ``METH_VARARGS``\\나 ``METH_VARARGS | METH_KEYWORDS``\\여야"
-" 합니다; ``0`` 값은 더는 사용되지 않는 :c:func:`PyArg_ParseTuple` 변형이 사용됨을 의미합니다."
-
-#: ../../extending/extending.rst:390
-msgid ""
-"When using only ``METH_VARARGS``, the function should expect the Python-"
-"level parameters to be passed in as a tuple acceptable for parsing via "
-":c:func:`PyArg_ParseTuple`; more information on this function is provided"
-" below."
-msgstr ""
-"``METH_VARARGS`` 만 사용할 때, 함수는 파이썬 수준 매개 변수가 :c:func:`PyArg_ParseTuple`\\을"
-" 통한 구문 분석에 허용되는 튜플로 전달될 것으로 기대해야 합니다; 이 함수에 대한 자세한 정보는 아래에 제공됩니다."
-
-#: ../../extending/extending.rst:394
-msgid ""
-"The :c:macro:`METH_KEYWORDS` bit may be set in the third field if keyword"
-" arguments should be passed to the function.  In this case, the C "
-"function should accept a third ``PyObject *`` parameter which will be a "
-"dictionary of keywords. Use :c:func:`PyArg_ParseTupleAndKeywords` to "
-"parse the arguments to such a function."
-msgstr ""
-"키워드 인자를 함수에 전달해야 하면, 세 번째 필드에서 :c:macro:`METH_KEYWORDS` 비트를 설정할 수 있습니다. 이"
-" 경우, C 함수는 키워드 딕셔너리가 될 세 번째 ``PyObject *`` 매개 변수를 받아들여야 합니다. 이러한 함수에는 "
-":c:func:`PyArg_ParseTupleAndKeywords`\\를 사용하여 인자를 구문 분석하십시오."
-
-#: ../../extending/extending.rst:400
-msgid "The method table must be referenced in the module definition structure::"
-msgstr "메서드 테이블은 모듈 정의 구조체에서 참조되어야 합니다::"
-
-#: ../../extending/extending.rst:402
-#, python-brace-format
-msgid ""
-"static struct PyModuleDef spam_module = {\n"
-"    ...\n"
-"    .m_methods = spam_methods,\n"
-"    ...\n"
-"};"
-msgstr ""
-"static struct PyModuleDef spam_module = {\n"
-"    ...\n"
-"    .m_methods = spam_methods,\n"
-"    ...\n"
-"};"
-
-#: ../../extending/extending.rst:408
-msgid ""
-"This structure, in turn, must be passed to the interpreter in the "
-"module's initialization function.  The initialization function must be "
-"named :c:func:`!PyInit_name`, where *name* is the name of the module, and"
-" should be the only non-\\ ``static`` item defined in the module file::"
-msgstr ""
-"다시, 이 구조체는 모듈의 초기화 함수에서 인터프리터로 전달되어야 합니다. 초기화 함수의 이름은 "
-":c:func:`!PyInit_name`\\이어야 합니다, 여기서 *name*\\은 모듈의 이름이며, 모듈 파일에 정의된 유일한 비"
-" ``static`` 항목이어야 합니다::"
-
-#: ../../extending/extending.rst:413
-#, python-brace-format
-msgid ""
-"PyMODINIT_FUNC\n"
-"PyInit_spam(void)\n"
-"{\n"
-"    return PyModuleDef_Init(&spam_module);\n"
-"}"
-msgstr ""
-"PyMODINIT_FUNC\n"
-"PyInit_spam(void)\n"
-"{\n"
-"    return PyModuleDef_Init(&spam_module);\n"
-"}"
-
-#: ../../extending/extending.rst:419
-msgid ""
-"Note that :c:macro:`PyMODINIT_FUNC` declares the function as ``PyObject "
-"*`` return type, declares any special linkage declarations required by "
-"the platform, and for C++ declares the function as ``extern \"C\"``."
-msgstr ""
-":c:macro:`PyMODINIT_FUNC`\\는 함수를 ``PyObject *`` 반환형으로 선언하고, 플랫폼에 필요한 특수 "
-"링크 선언을 선언하며, C++의 경우 함수를 ``extern \"C\"``\\로 선언함에 유의하십시오."
-
-#: ../../extending/extending.rst:423
-msgid ""
-":c:func:`!PyInit_spam` is called when each interpreter imports its module"
-" :mod:`!spam` for the first time.  (See below for comments about "
-"embedding Python.) A pointer to the module definition must be returned "
-"via :c:func:`PyModuleDef_Init`, so that the import machinery can create "
-"the module and store it in ``sys.modules``."
-msgstr ""
-
-#: ../../extending/extending.rst:428
-#, fuzzy
-msgid ""
-"When embedding Python, the :c:func:`!PyInit_spam` function is not called "
-"automatically unless there's an entry in the :c:data:`!PyImport_Inittab` "
-"table. To add the module to the initialization table, use "
-":c:func:`PyImport_AppendInittab`, optionally followed by an import of the"
-" module::"
-msgstr ""
-"파이썬을 내장할 때, :c:data:`PyImport_Inittab` 테이블에 항목이 없으면 "
-":c:func:`!PyInit_spam` 함수가 자동으로 호출되지 않습니다. 모듈을 초기화 테이블에 추가하려면, "
-":c:func:`PyImport_AppendInittab`\\을 사용하고, 선택적으로 그다음에 모듈을 임포트 합니다::"
-
-#: ../../extending/extending.rst:433
-msgid ""
-"#define PY_SSIZE_T_CLEAN\n"
-"#include <Python.h>\n"
-"\n"
-"int\n"
-"main(int argc, char *argv[])\n"
-"{\n"
-"    PyStatus status;\n"
-"    PyConfig config;\n"
-"    PyConfig_InitPythonConfig(&config);\n"
-"\n"
-"    /* Add a built-in module, before Py_Initialize */\n"
-"    if (PyImport_AppendInittab(\"spam\", PyInit_spam) == -1) {\n"
-"        fprintf(stderr, \"Error: could not extend in-built modules "
-"table\\n\");\n"
-"        exit(1);\n"
-"    }\n"
-"\n"
-"    /* Pass argv[0] to the Python interpreter */\n"
-"    status = PyConfig_SetBytesString(&config, &config.program_name, "
-"argv[0]);\n"
-"    if (PyStatus_Exception(status)) {\n"
-"        goto exception;\n"
-"    }\n"
-"\n"
-"    /* Initialize the Python interpreter.  Required.\n"
-"       If this step fails, it will be a fatal error. */\n"
-"    status = Py_InitializeFromConfig(&config);\n"
-"    if (PyStatus_Exception(status)) {\n"
-"        goto exception;\n"
-"    }\n"
-"    PyConfig_Clear(&config);\n"
-"\n"
-"    /* Optionally import the module; alternatively,\n"
-"       import can be deferred until the embedded script\n"
-"       imports it. */\n"
-"    PyObject *pmodule = PyImport_ImportModule(\"spam\");\n"
-"    if (!pmodule) {\n"
-"        PyErr_Print();\n"
-"        fprintf(stderr, \"Error: could not import module 'spam'\\n\");\n"
-"    }\n"
-"\n"
-"    // ... use Python C API here ...\n"
-"\n"
-"    return 0;\n"
-"\n"
-"  exception:\n"
-"     PyConfig_Clear(&config);\n"
-"     Py_ExitStatusException(status);\n"
-"}"
-msgstr ""
-"#define PY_SSIZE_T_CLEAN\n"
-"#include <Python.h>\n"
-"\n"
-"int\n"
-"main(int argc, char *argv[])\n"
-"{\n"
-"    PyStatus status;\n"
-"    PyConfig config;\n"
-"    PyConfig_InitPythonConfig(&config);\n"
-"\n"
-"    /* Py_Initialize 앞에 내장 모듈을 추가합니다 */\n"
-"    if (PyImport_AppendInittab(\"spam\", PyInit_spam) == -1) {\n"
-"        fprintf(stderr, \"Error: could not extend in-built modules "
-"table\\n\");\n"
-"        exit(1);\n"
-"    }\n"
-"\n"
-"    /* 파이썬 인터프리터로 argv[0] 을 전달합니다 */\n"
-"    status = PyConfig_SetBytesString(&config, &config.program_name, "
-"argv[0]);\n"
-"    if (PyStatus_Exception(status)) {\n"
-"        goto exception;\n"
-"    }\n"
-"\n"
-"    /* 파이썬 인터프리터를 초기화합니다. 필수.\n"
-"       이 단계가 실패하면, 치명적인 에러가 됩니다. */\n"
-"    status = Py_InitializeFromConfig(&config);\n"
-"    if (PyStatus_Exception(status)) {\n"
-"        goto exception;\n"
-"    }\n"
-"    PyConfig_Clear(&config);\n"
-"\n"
-"    /* 선택적으로 모듈을 임포트 합니다; 또는,\n"
-"       내장된 스크립트가 임포트할 때까지 임포트를\n"
-"       지연시킬 수 있습니다. */\n"
-"    PyObject *pmodule = PyImport_ImportModule(\"spam\");\n"
-"    if (!pmodule) {\n"
-"        PyErr_Print();\n"
-"        fprintf(stderr, \"Error: could not import module 'spam'\\n\");\n"
-"    }\n"
-"\n"
-"    // ... 여기서 파이썬 C API 를 사용합니다 ...\n"
-"\n"
-"    return 0;\n"
-"\n"
-"  exception:\n"
-"     PyConfig_Clear(&config);\n"
-"     Py_ExitStatusException(status);\n"
-"}"
-
-#: ../../extending/extending.rst:483
-msgid ""
-"If you declare a global variable or a local static one, the module may "
-"experience unintended side-effects on re-initialisation, for example when"
-" removing entries from ``sys.modules`` or importing compiled modules into"
-" multiple interpreters within a process (or following a :c:func:`fork` "
-"without an intervening :c:func:`exec`). If module state is not yet fully "
-":ref:`isolated <isolating-extensions-howto>`, authors should consider "
-"marking the module as having no support for subinterpreters (via "
-":c:macro:`Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED`)."
-msgstr ""
-
-#: ../../extending/extending.rst:492
-#, fuzzy
-msgid ""
-"A more substantial example module is included in the Python source "
-"distribution as :file:`Modules/xxlimited.c`.  This file may be used as a "
-"template or simply read as an example."
-msgstr ""
-"더욱 실질적인 예제 모듈이 :file:`Modules/xxmodule.c`\\로 파이썬 소스 배포판에 포함되어 있습니다. 이 파일은"
-" 템플릿으로 사용되거나 단순히 예제로 읽을 수 있습니다."
-
-#: ../../extending/extending.rst:500
-msgid "Compilation and Linkage"
-msgstr "컴파일과 링크"
-
-#: ../../extending/extending.rst:502
-msgid ""
-"There are two more things to do before you can use your new extension: "
-"compiling and linking it with the Python system.  If you use dynamic "
-"loading, the details may depend on the style of dynamic loading your "
-"system uses; see the chapters about building extension modules (chapter "
-":ref:`building`) and additional information that pertains only to "
-"building on Windows (chapter :ref:`building-on-windows`) for more "
-"information about this."
-msgstr ""
-"새로운 확장을 사용하기 전에 해야 할 두 가지 작업이 더 있습니다: 컴파일과 파이썬 시스템과의 링크. 동적 로딩을 사용하면, 세부 "
-"사항은 시스템이 사용하는 동적 로딩 스타일에 따라 달라질 수 있습니다; 확장 모듈을 빌드하는 것에 관한 "
-"장(:ref:`building` 장)과 윈도우 빌드에 대한 자세한 정보는 이에만 관련된 추가 정보(:ref:`building-on-"
-"windows` 장)를 참조하십시오."
-
-#: ../../extending/extending.rst:509
-msgid ""
-"If you can't use dynamic loading, or if you want to make your module a "
-"permanent part of the Python interpreter, you will have to change the "
-"configuration setup and rebuild the interpreter.  Luckily, this is very "
-"simple on Unix: just place your file (:file:`spammodule.c` for example) "
-"in the :file:`Modules/` directory of an unpacked source distribution, add"
-" a line to the file :file:`Modules/Setup.local` describing your file:"
+"If you want to make your module a permanent part of the Python "
+"interpreter, you will have to change the configuration setup and rebuild "
+"the interpreter.  On Unix, place your file (:file:`spammodule.c` for "
+"example) in the :file:`Modules/` directory of an unpacked source "
+"distribution, add a line to the file :file:`Modules/Setup.local` "
+"describing your file:"
 msgstr ""
 "동적 로딩을 사용할 수 없거나, 모듈을 파이썬 인터프리터의 영구적인 부분으로 만들려면, 구성 설정을 변경하고 인터프리터를 다시 "
 "빌드해야 합니다. 운 좋게도, 이것은 유닉스에서 매우 간단합니다: 압축을 푼 소스 배포의 :file:`Modules/` 디렉터리에 "
 "파일(예를 들어 :file:`spammodule.c`)을 놓고, :file:`Modules/Setup.local` 파일에 여러분의 "
 "파일을 기술하는 한 줄을 추가하십시오:"
 
-#: ../../extending/extending.rst:516
+#: ../../extending/extending.rst:202
 msgid "spam spammodule.o"
 msgstr "spam spammodule.o"
 
-#: ../../extending/extending.rst:520
+#: ../../extending/extending.rst:206
 msgid ""
 "and rebuild the interpreter by running :program:`make` in the toplevel "
 "directory.  You can also run :program:`make` in the :file:`Modules/` "
@@ -1034,23 +389,24 @@ msgstr ""
 "실행하여 :file:`Makefile`\\을 다시 빌드해야 합니다. (이것은 :file:`Setup` 파일을 변경할 때마다 "
 "필요합니다.)"
 
-#: ../../extending/extending.rst:526
+#: ../../extending/extending.rst:212
 msgid ""
 "If your module requires additional libraries to link with, these can be "
 "listed on the line in the configuration file as well, for instance:"
 msgstr "모듈에 링크할 추가 라이브러리가 필요하면, 이것도 구성 파일의 줄에 나열될 수 있습니다, 예를 들어:"
 
-#: ../../extending/extending.rst:529
+#: ../../extending/extending.rst:215
 msgid "spam spammodule.o -lX11"
 msgstr "spam spammodule.o -lX11"
 
-#: ../../extending/extending.rst:537
+#: ../../extending/extending.rst:223
 msgid "Calling Python Functions from C"
 msgstr "C에서 파이썬 함수 호출하기"
 
-#: ../../extending/extending.rst:539
+#: ../../extending/extending.rst:225
+#, fuzzy
 msgid ""
-"So far we have concentrated on making C functions callable from Python.  "
+"The tutorial concentrated on making C functions callable from Python.  "
 "The reverse is also useful: calling Python functions from C. This is "
 "especially the case for libraries that support so-called \"callback\" "
 "functions.  If a C interface makes use of callbacks, the equivalent "
@@ -1063,20 +419,19 @@ msgstr ""
 "프로그래머에게 콜백 메커니즘을 제공해야 할 필요가 있습니다; 구현은 C 콜백에서 파이썬 콜백 함수를 호출해야 합니다. 다른 용도도 "
 "상상할 수 있습니다."
 
-#: ../../extending/extending.rst:547
+#: ../../extending/extending.rst:233
+#, fuzzy
 msgid ""
 "Fortunately, the Python interpreter is easily called recursively, and "
-"there is a standard interface to call a Python function.  (I won't dwell "
-"on how to call the Python parser with a particular string as input --- if"
-" you're interested, have a look at the implementation of the :option:`-c`"
-" command line option in :file:`Modules/main.c` from the Python source "
-"code.)"
+"there is a standard interface to call a Python function.  (If you're "
+"interested in how to call the Python parser with a particular string as "
+"input, see :ref:`veryhigh`.)"
 msgstr ""
 "다행히, 파이썬 인터프리터는 재귀적으로 쉽게 호출되며, 파이썬 함수를 호출하는 표준 인터페이스가 있습니다. (특정 문자열을 입력으로"
 " 파이썬 파서를 호출하는 방법에 대해서는 다루지 않겠습니다 --- 관심이 있다면, 파이썬 소스 코드에서 "
 ":file:`Modules/main.c`\\의 :option:`-c` 명령 줄 옵션 구현을 살펴보십시오.)"
 
-#: ../../extending/extending.rst:553
+#: ../../extending/extending.rst:237
 msgid ""
 "Calling a Python function is easy.  First, the Python program must "
 "somehow pass you the Python function object.  You should provide a "
@@ -1091,7 +446,7 @@ msgstr ""
 "파이썬 함수 객체에 대한 포인터를 저장하십시오 (:c:func:`Py_INCREF`\\해야 하는 것에 주의하십시오!). 예를 들어,"
 " 다음 함수는 모듈 정의의 일부일 수 있습니다::"
 
-#: ../../extending/extending.rst:560
+#: ../../extending/extending.rst:244
 #, python-brace-format
 msgid ""
 "static PyObject *my_callback = NULL;\n"
@@ -1142,18 +497,19 @@ msgstr ""
 "    return result;\n"
 "}"
 
-#: ../../extending/extending.rst:583
+#: ../../extending/extending.rst:267
+#, fuzzy
 msgid ""
 "This function must be registered with the interpreter using the "
-":c:macro:`METH_VARARGS` flag; this is described in section "
-":ref:`methodtable`.  The :c:func:`PyArg_ParseTuple` function and its "
-"arguments are documented in section :ref:`parsetuple`."
+":c:macro:`METH_VARARGS` flag in :c:type:`PyMethodDef.ml_flags`.  The "
+":c:func:`PyArg_ParseTuple` function and its arguments are documented in "
+"section :ref:`parsetuple`."
 msgstr ""
 "이 함수는 :c:macro:`METH_VARARGS` 플래그를 사용하여 인터프리터에 등록해야 합니다; 이것은 섹션 "
 ":ref:`methodtable`\\에 설명되어 있습니다. :c:func:`PyArg_ParseTuple` 함수와 그것의 인자는 "
 ":ref:`parsetuple` 섹션에 설명되어 있습니다."
 
-#: ../../extending/extending.rst:588
+#: ../../extending/extending.rst:272
 msgid ""
 "The macros :c:func:`Py_XINCREF` and :c:func:`Py_XDECREF` "
 "increment/decrement the reference count of an object and are safe in the "
@@ -1164,7 +520,7 @@ msgstr ""
 "``NULL`` 포인터가 있을 때 안전합니다 (그러나 이 문맥에서 *temp*\\는 ``NULL``\\이 아님에 유의하십시오). "
 "섹션 :ref:`refcounts`\\에 이에 대한 자세한 정보가 있습니다."
 
-#: ../../extending/extending.rst:595
+#: ../../extending/extending.rst:279
 msgid ""
 "Later, when it is time to call the function, you call the C function "
 ":c:func:`PyObject_CallObject`.  This function has two arguments, both "
@@ -1182,7 +538,7 @@ msgstr ""
 " 단 항목 튜플을 전달하십시오. :c:func:`Py_BuildValue`\\는 포맷 문자열이 괄호 사이에 0개 이상의 포맷 코드로"
 " 구성되었을 때 튜플을 반환합니다. 예를 들면::"
 
-#: ../../extending/extending.rst:604
+#: ../../extending/extending.rst:288
 msgid ""
 "int arg;\n"
 "PyObject *arglist;\n"
@@ -1206,7 +562,7 @@ msgstr ""
 "result = PyObject_CallObject(my_callback, arglist);\n"
 "Py_DECREF(arglist);"
 
-#: ../../extending/extending.rst:615
+#: ../../extending/extending.rst:299
 msgid ""
 ":c:func:`PyObject_CallObject` returns a Python object pointer: this is "
 "the return value of the Python function.  :c:func:`PyObject_CallObject` "
@@ -1220,7 +576,7 @@ msgstr ""
 ":c:func:`PyObject_CallObject` 호출 직후 :c:func:`Py_DECREF`\\되는 인자 목록으로 사용할 새"
 " 튜플이 만들어졌습니다."
 
-#: ../../extending/extending.rst:622
+#: ../../extending/extending.rst:306
 msgid ""
 "The return value of :c:func:`PyObject_CallObject` is \"new\": either it "
 "is a brand new object, or it is an existing object whose reference count "
@@ -1232,7 +588,7 @@ msgstr ""
 "증가한 기존 객체입니다. 따라서, 전역 변수에 저장하려는 것이 아닌 한, 설사 (특히!) 그 값에 관심이 없더라도 결과를 "
 ":c:func:`Py_DECREF`\\해야 합니다."
 
-#: ../../extending/extending.rst:628
+#: ../../extending/extending.rst:312
 msgid ""
 "Before you do this, however, it is important to check that the return "
 "value isn't ``NULL``.  If it is, the Python function terminated by "
@@ -1248,7 +604,7 @@ msgstr ""
 "호출자에게 에러 표시를 반환하여, 인터프리터가 스택 트레이스를 인쇄하거나 호출하는 파이썬 코드가 예외를 처리할 수 있도록 합니다. "
 "이것이 불가능하거나 바람직하지 않으면, :c:func:`PyErr_Clear`\\를 호출하여 예외를 지워야 합니다. 예를 들면::"
 
-#: ../../extending/extending.rst:636
+#: ../../extending/extending.rst:320
 msgid ""
 "if (result == NULL)\n"
 "    return NULL; /* Pass error back */\n"
@@ -1260,7 +616,7 @@ msgstr ""
 "...use result...\n"
 "Py_DECREF(result);"
 
-#: ../../extending/extending.rst:641
+#: ../../extending/extending.rst:325
 msgid ""
 "Depending on the desired interface to the Python callback function, you "
 "may also have to provide an argument list to "
@@ -1278,11 +634,14 @@ msgstr ""
 "있습니다. 이렇게 하는 가장 간단한 방법은 :c:func:`Py_BuildValue`\\를 호출하는 것입니다. 예를 들어, 정수 "
 "이벤트 코드를 전달하려면, 다음 코드를 사용할 수 있습니다::"
 
-#: ../../extending/extending.rst:650
+#: ../../extending/extending.rst:334
+#, fuzzy
 msgid ""
 "PyObject *arglist;\n"
 "...\n"
 "arglist = Py_BuildValue(\"(l)\", eventcode);\n"
+"if (arglist == NULL)\n"
+"    return NULL;\n"
 "result = PyObject_CallObject(my_callback, arglist);\n"
 "Py_DECREF(arglist);\n"
 "if (result == NULL)\n"
@@ -1300,17 +659,13 @@ msgstr ""
 "/* 여기서 아마도 result를 사용합니다 */\n"
 "Py_DECREF(result);"
 
-#: ../../extending/extending.rst:660
+#: ../../extending/extending.rst:346
 msgid ""
 "Note the placement of ``Py_DECREF(arglist)`` immediately after the call, "
-"before the error check!  Also note that strictly speaking this code is "
-"not complete: :c:func:`Py_BuildValue` may run out of memory, and this "
-"should be checked."
+"before the error check!"
 msgstr ""
-"호출 직후, 에러 점검 전에 ``Py_DECREF(arglist)``\\의 배치에 유의하십시오! 또한 엄격하게 말하면 이 코드가 "
-"완전하지 않음에도 유의하십시오: :c:func:`Py_BuildValue`\\에 메모리가 부족할 수 있어서 확인해야 합니다."
 
-#: ../../extending/extending.rst:664
+#: ../../extending/extending.rst:349
 msgid ""
 "You may also call a function with keyword arguments by using "
 ":c:func:`PyObject_Call`, which supports arguments and keyword arguments."
@@ -1320,13 +675,21 @@ msgstr ""
 "인자와 키워드 인자를 지원하는 :c:func:`PyObject_Call`\\을 사용하여 키워드 인자가 있는 함수를 호출할 수도 "
 "있습니다. 위의 예에서와같이, :c:func:`Py_BuildValue`\\를 사용하여 딕셔너리를 구성합니다. ::"
 
-#: ../../extending/extending.rst:668
-#, python-brace-format
+#: ../../extending/extending.rst:353
+#, fuzzy, python-brace-format
 msgid ""
-"PyObject *dict;\n"
+"PyObject *arglist, *dict;\n"
 "...\n"
+"arglist = PyTuple_New(0);\n"
+"if (arglist == NULL)\n"
+"    return NULL;\n"
 "dict = Py_BuildValue(\"{s:i}\", \"name\", val);\n"
-"result = PyObject_Call(my_callback, NULL, dict);\n"
+"if (dict == NULL) {\n"
+"    Py_DECREF(arglist);\n"
+"    return NULL;\n"
+"}\n"
+"result = PyObject_Call(my_callback, arglist, dict);\n"
+"Py_DECREF(arglist);\n"
 "Py_DECREF(dict);\n"
 "if (result == NULL)\n"
 "    return NULL; /* Pass error back */\n"
@@ -1343,19 +706,31 @@ msgstr ""
 "/* 여기서 아마도 result를 사용합니다 */\n"
 "Py_DECREF(result);"
 
-#: ../../extending/extending.rst:682
+#: ../../extending/extending.rst:377
 msgid "Extracting Parameters in Extension Functions"
 msgstr "확장 함수에서 매개 변수 추출하기"
 
-#: ../../extending/extending.rst:686
-msgid "The :c:func:`PyArg_ParseTuple` function is declared as follows::"
+#: ../../extending/extending.rst:379
+msgid ""
+"The :ref:`tutorial <first-extension-module>` uses a \":c:data:`METH_O`\" "
+"function, which is limited to a single Python argument. If you want more,"
+" you can use :c:data:`METH_VARARGS` instead. With this flag, the C "
+"function will receive a :py:class:`tuple` of arguments instead of a "
+"single object."
+msgstr ""
+
+#: ../../extending/extending.rst:385
+#, fuzzy
+msgid ""
+"For unpacking the tuple, CPython provides the :c:func:`PyArg_ParseTuple` "
+"function, declared as follows::"
 msgstr ":c:func:`PyArg_ParseTuple` 함수는 다음과 같이 선언됩니다::"
 
-#: ../../extending/extending.rst:688
+#: ../../extending/extending.rst:388
 msgid "int PyArg_ParseTuple(PyObject *arg, const char *format, ...);"
 msgstr "int PyArg_ParseTuple(PyObject *arg, const char *format, ...);"
 
-#: ../../extending/extending.rst:690
+#: ../../extending/extending.rst:390
 msgid ""
 "The *arg* argument must be a tuple object containing an argument list "
 "passed from Python to a C function.  The *format* argument must be a "
@@ -1367,7 +742,32 @@ msgstr ""
 " 하며, 문법은 파이썬/C API 레퍼런스 매뉴얼의 :ref:`arg-parsing`\\에 설명되어 있습니다. 나머지 인자는 포맷 "
 "문자열에 의해 형이 결정되는 변수의 주소여야 합니다."
 
-#: ../../extending/extending.rst:696
+#: ../../extending/extending.rst:396
+msgid ""
+"For example, to receive a single Python :py:class:`str` object and turn "
+"it into a C buffer, you would use ``\"s\"`` as the format string::"
+msgstr ""
+
+#: ../../extending/extending.rst:399
+#, fuzzy, python-brace-format
+msgid ""
+"const char *command;\n"
+"if (!PyArg_ParseTuple(args, \"s\", &command)) {\n"
+"    return NULL;\n"
+"}"
+msgstr ""
+"if (!PyArg_ParseTuple(args, \"s\", &command))\n"
+"    return NULL;"
+
+#: ../../extending/extending.rst:404
+msgid ""
+"If an error is detected in the argument list, :c:func:`!PyArg_ParseTuple`"
+" returns ``NULL`` (the error indicator for functions returning object "
+"pointers); your function may return ``NULL``, relying on the exception "
+"set by :c:func:`PyArg_ParseTuple`."
+msgstr ""
+
+#: ../../extending/extending.rst:409
 msgid ""
 "Note that while :c:func:`PyArg_ParseTuple` checks that the Python "
 "arguments have the required types, it cannot check the validity of the "
@@ -1378,17 +778,21 @@ msgstr ""
 ":c:func:`PyArg_ParseTuple`\\은 파이썬 인자가 요구되는 형인지 확인하지만, 호출에 전달된 C 변수 주소의 "
 "유효성을 확인할 수는 없습니다: 실수를 하면, 코드가 충돌하거나 적어도 메모리의 임의 비트를 덮어씁니다. 그러니 조심하십시오!"
 
-#: ../../extending/extending.rst:701
+#: ../../extending/extending.rst:414
 msgid ""
 "Note that any Python object references which are provided to the caller "
 "are *borrowed* references; do not decrement their reference count!"
 msgstr "호출자에게 제공되는 모든 파이썬 객체 참조는 *빌려온(borrowed)* 참조임에 유의하십시오; 참조 횟수를 줄이지 마십시오!"
 
-#: ../../extending/extending.rst:704
+#: ../../extending/extending.rst:417
 msgid "Some example calls::"
 msgstr "몇 가지 예제 호출::"
 
-#: ../../extending/extending.rst:711
+#: ../../extending/extending.rst:419 ../../extending/extending.rst:1012
+msgid "#include <Python.h>"
+msgstr "#include <Python.h>"
+
+#: ../../extending/extending.rst:423
 msgid ""
 "int ok;\n"
 "int i, j;\n"
@@ -1408,7 +812,7 @@ msgstr ""
 "ok = PyArg_ParseTuple(args, \"\"); /* 인자가 없습니다 */\n"
 "    /* 파이썬 호출: f() */"
 
-#: ../../extending/extending.rst:722
+#: ../../extending/extending.rst:434
 msgid ""
 "ok = PyArg_ParseTuple(args, \"s\", &s); /* A string */\n"
 "    /* Possible Python call: f('whoops!') */"
@@ -1416,7 +820,7 @@ msgstr ""
 "ok = PyArg_ParseTuple(args, \"s\", &s); /* 문자열 */\n"
 "    /* 가능한 파이썬 호출: f('whoops!') */"
 
-#: ../../extending/extending.rst:727
+#: ../../extending/extending.rst:439
 msgid ""
 "ok = PyArg_ParseTuple(args, \"lls\", &k, &l, &s); /* Two longs and a "
 "string */\n"
@@ -1425,7 +829,7 @@ msgstr ""
 "ok = PyArg_ParseTuple(args, \"lls\", &k, &l, &s); /* 두 개의 long과 문자열 */\n"
 "    /* 가능한 파이썬 호출: f(1, 2, 'three') */"
 
-#: ../../extending/extending.rst:732
+#: ../../extending/extending.rst:444
 msgid ""
 "ok = PyArg_ParseTuple(args, \"(ii)s#\", &i, &j, &s, &size);\n"
 "    /* A pair of ints and a string, whose size is also returned */\n"
@@ -1435,7 +839,7 @@ msgstr ""
 "    /* int 쌍과 문자열, 문자열의 크기도 반환됩니다 */\n"
 "    /* 가능한 파이썬 호출: f((1, 2), 'three') */"
 
-#: ../../extending/extending.rst:738
+#: ../../extending/extending.rst:450
 #, python-brace-format
 msgid ""
 "{\n"
@@ -1462,7 +866,7 @@ msgstr ""
 "       f('spam', 'wb', 100000) */\n"
 "}"
 
-#: ../../extending/extending.rst:752
+#: ../../extending/extending.rst:464
 #, python-brace-format
 msgid ""
 "{\n"
@@ -1483,7 +887,7 @@ msgstr ""
 "       f(((0, 0), (400, 300)), (10, 10)) */\n"
 "}"
 
-#: ../../extending/extending.rst:763
+#: ../../extending/extending.rst:475
 #, python-brace-format
 msgid ""
 "{\n"
@@ -1500,17 +904,37 @@ msgstr ""
 "    /* 가능한 파이썬 호출: myfunction(1+2j) */\n"
 "}"
 
-#: ../../extending/extending.rst:774
+#: ../../extending/extending.rst:486
 msgid "Keyword Parameters for Extension Functions"
 msgstr "확장 함수를 위한 키워드 매개 변수"
 
-#: ../../extending/extending.rst:778
+#: ../../extending/extending.rst:488
+msgid ""
+"If you also want your function to accept :term:`keyword arguments "
+"<keyword argument>`, use the :c:data:`METH_KEYWORDS` flag in combination "
+"with :c:data:`METH_VARARGS`. (:c:data:`!METH_KEYWORDS` can also be used "
+"with other flags; see its documentation for the allowed combinations.)"
+msgstr ""
+
+#: ../../extending/extending.rst:494
+#, fuzzy
+msgid ""
+"In this case, the C function should accept a third ``PyObject *`` "
+"parameter which will be a dictionary of keywords. Use "
+":c:func:`PyArg_ParseTupleAndKeywords` to parse the arguments to such a "
+"function."
+msgstr ""
+"키워드 인자를 함수에 전달해야 하면, 세 번째 필드에서 :c:macro:`METH_KEYWORDS` 비트를 설정할 수 있습니다. 이"
+" 경우, C 함수는 키워드 딕셔너리가 될 세 번째 ``PyObject *`` 매개 변수를 받아들여야 합니다. 이러한 함수에는 "
+":c:func:`PyArg_ParseTupleAndKeywords`\\를 사용하여 인자를 구문 분석하십시오."
+
+#: ../../extending/extending.rst:501
 msgid ""
 "The :c:func:`PyArg_ParseTupleAndKeywords` function is declared as "
 "follows::"
 msgstr ":c:func:`PyArg_ParseTupleAndKeywords` 함수는 다음과 같이 선언됩니다::"
 
-#: ../../extending/extending.rst:780
+#: ../../extending/extending.rst:503
 msgid ""
 "int PyArg_ParseTupleAndKeywords(PyObject *arg, PyObject *kwdict,\n"
 "                                const char *format, char * const *kwlist,"
@@ -1520,7 +944,7 @@ msgstr ""
 "                                const char *format, char * const *kwlist,"
 " ...);"
 
-#: ../../extending/extending.rst:783
+#: ../../extending/extending.rst:506
 msgid ""
 "The *arg* and *format* parameters are identical to those of the "
 ":c:func:`PyArg_ParseTuple` function.  The *kwdict* parameter is the "
@@ -1537,7 +961,7 @@ msgstr ""
 ":c:func:`PyArg_ParseTupleAndKeywords`\\는 참을 반환하고, 그렇지 않으면 거짓을 반환하고 적절한 "
 "예외를 발생시킵니다."
 
-#: ../../extending/extending.rst:793
+#: ../../extending/extending.rst:516
 msgid ""
 "Nested tuples cannot be parsed when using keyword arguments!  Keyword "
 "parameters passed in which are not present in the *kwlist* will cause "
@@ -1546,13 +970,13 @@ msgstr ""
 "키워드 인자를 사용할 때 중첩된 튜플을 구문분석할 수 없습니다! *kwlist*\\에 없는 키워드 매개 변수가 전달되면 "
 ":exc:`TypeError`\\를 발생시킵니다."
 
-#: ../../extending/extending.rst:799
+#: ../../extending/extending.rst:522
 msgid ""
 "Here is an example module which uses keywords, based on an example by "
 "Geoff Philbrick (philbrick@hks.com)::"
 msgstr "다음은 Geoff Philbrick (philbrick@hks.com) 의 예제를 기반으로 한, 키워드를 사용하는 예제 모듈입니다::"
 
-#: ../../extending/extending.rst:802
+#: ../../extending/extending.rst:525
 #, fuzzy, python-format
 msgid ""
 "#define PY_SSIZE_T_CLEAN\n"
@@ -1590,20 +1014,7 @@ msgid ""
 "METH_VARARGS | METH_KEYWORDS,\n"
 "     \"Print a lovely skit to standard output.\"},\n"
 "    {NULL, NULL, 0, NULL}   /* sentinel */\n"
-"};\n"
-"\n"
-"static struct PyModuleDef keywdarg_module = {\n"
-"    .m_base = PyModuleDef_HEAD_INIT,\n"
-"    .m_name = \"keywdarg\",\n"
-"    .m_size = 0,\n"
-"    .m_methods = keywdarg_methods,\n"
-"};\n"
-"\n"
-"PyMODINIT_FUNC\n"
-"PyInit_keywdarg(void)\n"
-"{\n"
-"    return PyModuleDef_Init(&keywdarg_module);\n"
-"}"
+"};"
 msgstr ""
 "#define PY_SSIZE_T_CLEAN\n"
 "#include <Python.h>\n"
@@ -1656,21 +1067,21 @@ msgstr ""
 "    return PyModule_Create(&keywdargmodule);\n"
 "}"
 
-#: ../../extending/extending.rst:853
+#: ../../extending/extending.rst:563
 msgid "Building Arbitrary Values"
 msgstr "임의의 값을 구축하기"
 
-#: ../../extending/extending.rst:855
+#: ../../extending/extending.rst:565
 msgid ""
 "This function is the counterpart to :c:func:`PyArg_ParseTuple`.  It is "
 "declared as follows::"
 msgstr "이 함수는 :c:func:`PyArg_ParseTuple`\\의 반대입니다. 다음과 같이 선언됩니다::"
 
-#: ../../extending/extending.rst:858
+#: ../../extending/extending.rst:568
 msgid "PyObject *Py_BuildValue(const char *format, ...);"
 msgstr "PyObject *Py_BuildValue(const char *format, ...);"
 
-#: ../../extending/extending.rst:860
+#: ../../extending/extending.rst:570
 msgid ""
 "It recognizes a set of format units similar to the ones recognized by "
 ":c:func:`PyArg_ParseTuple`, but the arguments (which are input to the "
@@ -1682,7 +1093,7 @@ msgstr ""
 "아니라 입력입니다)는 포인터가 아니라 그냥 값이어야 합니다. 파이썬에서 호출한 C 함수에서 반환하기에 적합한 새 파이썬 객체를 "
 "반환합니다."
 
-#: ../../extending/extending.rst:865
+#: ../../extending/extending.rst:575
 msgid ""
 "One difference with :c:func:`PyArg_ParseTuple`: while the latter requires"
 " its first argument to be a tuple (since Python argument lists are always"
@@ -1699,11 +1110,11 @@ msgstr ""
 " 반환합니다; 정확히 하나의 포맷 단위를 포함하면, 그것이 무엇이건 해당 포맷 단위가 기술하는 객체를 반환합니다. 크기가 0이나 "
 "1인 튜플을 강제로 반환하도록 하려면, 포맷 문자열을 괄호로 묶으십시오."
 
-#: ../../extending/extending.rst:873
+#: ../../extending/extending.rst:583
 msgid "Examples (to the left the call, to the right the resulting Python value):"
 msgstr "예제 (왼쪽은 호출이고, 오른쪽은 결과 파이썬 값입니다):"
 
-#: ../../extending/extending.rst:875
+#: ../../extending/extending.rst:585
 #, python-brace-format
 msgid ""
 "Py_BuildValue(\"\")                        None\n"
@@ -1742,11 +1153,11 @@ msgstr ""
 "Py_BuildValue(\"((ii)(ii)) (ii)\",\n"
 "              1, 2, 3, 4, 5, 6)          (((1, 2), (3, 4)), (5, 6))"
 
-#: ../../extending/extending.rst:899
+#: ../../extending/extending.rst:609
 msgid "Reference Counts"
 msgstr "참조 횟수"
 
-#: ../../extending/extending.rst:901
+#: ../../extending/extending.rst:611
 msgid ""
 "In languages like C or C++, the programmer is responsible for dynamic "
 "allocation and deallocation of memory on the heap.  In C, this is done "
@@ -1758,7 +1169,7 @@ msgstr ""
 ":c:func:`malloc`\\과 :c:func:`free` 함수를 사용하여 이 작업을 수행합니다. C++에서는, 연산자 "
 "``new``\\와 ``delete``\\는 본질적으로 같은 의미로 사용되며 우리는 뒤따르는 논의를 C의 경우로 제한하겠습니다."
 
-#: ../../extending/extending.rst:907
+#: ../../extending/extending.rst:617
 msgid ""
 "Every block of memory allocated with :c:func:`malloc` should eventually "
 "be returned to the pool of available memory by exactly one call to "
@@ -1780,7 +1191,7 @@ msgstr ""
 ":dfn:`해제된 메모리 사용하기(using freed memory)`\\라고 합니다. 초기화되지 않은 데이터를 참조하는 것과 같은"
 " 나쁜 결과를 초래합니다 --- 코어 덤프, 잘못된 결과, 미스테리한 충돌."
 
-#: ../../extending/extending.rst:918
+#: ../../extending/extending.rst:628
 msgid ""
 "Common causes of memory leaks are unusual paths through the code.  For "
 "instance, a function may allocate a block of memory, do some calculation,"
@@ -1804,7 +1215,7 @@ msgstr ""
 "프로세스에서만 누수가 나타납니다. 따라서, 이런 종류의 에러를 코딩 규칙이나 전략을 통해 누수가 발생하지 않도록 하는 것이 "
 "중요합니다."
 
-#: ../../extending/extending.rst:931
+#: ../../extending/extending.rst:641
 msgid ""
 "Since Python makes heavy use of :c:func:`malloc` and :c:func:`free`, it "
 "needs a strategy to avoid memory leaks as well as the use of freed "
@@ -1820,11 +1231,12 @@ msgstr ""
 "원리는 간단합니다: 모든 객체에는 카운터를 포함합니다, 카운터는 객체에 대한 참조가 어딘가에 저장될 때 증가하고, 참조가 삭제될 때"
 " 감소합니다. 카운터가 0에 도달하면, 객체에 대한 마지막 참조가 삭제된 것이고 객체가 해제됩니다."
 
-#: ../../extending/extending.rst:939
+#: ../../extending/extending.rst:649
+#, fuzzy
 msgid ""
 "An alternative strategy is called :dfn:`automatic garbage collection`. "
 "(Sometimes, reference counting is also referred to as a garbage "
-"collection strategy, hence my use of \"automatic\" to distinguish the "
+"collection strategy, hence the use of \"automatic\" to distinguish the "
 "two.)  The big advantage of automatic garbage collection is that the user"
 " doesn't need to call :c:func:`free` explicitly.  (Another claimed "
 "advantage is an improvement in speed or memory usage --- this is no hard "
@@ -1843,7 +1255,7 @@ msgstr ""
 " 실제로 이식성 있는 자동 가비지 수집기가 없다는 것입니다. 언젠가 C를 위해 충분히 이식성 있는 자동 가비지 수집기를 사용할 수 "
 "있을 것입니다. 그때까지, 우리는 참조 횟수와 함께 살아야 할 것입니다."
 
-#: ../../extending/extending.rst:951
+#: ../../extending/extending.rst:661
 msgid ""
 "While Python uses the traditional reference counting implementation, it "
 "also offers a cycle detector that works to detect reference cycles.  This"
@@ -1863,7 +1275,7 @@ msgstr ""
 "횟수를 갖습니다. 일반적인 참조 횟수 세기 구현에서는 순환 자체에 대한 추가 참조가 없더라도 참조 순환의 객체에 속하는 메모리나 "
 "순환에 속한 객체에서 참조된 메모리를 회수할 수 없습니다."
 
-#: ../../extending/extending.rst:962
+#: ../../extending/extending.rst:672
 msgid ""
 "The cycle detector is able to detect garbage cycles and can reclaim them."
 " The :mod:`gc` module exposes a way to run the detector (the "
@@ -1871,11 +1283,11 @@ msgid ""
 "the ability to disable the detector at runtime."
 msgstr ""
 
-#: ../../extending/extending.rst:971
+#: ../../extending/extending.rst:681
 msgid "Reference Counting in Python"
 msgstr "파이썬에서 참조 횟수 세기"
 
-#: ../../extending/extending.rst:973
+#: ../../extending/extending.rst:683
 msgid ""
 "There are two macros, ``Py_INCREF(x)`` and ``Py_DECREF(x)``, which handle"
 " the incrementing and decrementing of the reference count. "
@@ -1890,7 +1302,7 @@ msgstr ""
 ":c:func:`free`\\를 직접 호출하지 않습니다 --- 대신, 객체의 :dfn:`형 객체(type object)`\\에 있는"
 " 함수 포인터를 통해 호출합니다. 이 목적(및 기타)을 위해 모든 객체에는 해당 형 객체에 대한 포인터도 포함됩니다."
 
-#: ../../extending/extending.rst:980
+#: ../../extending/extending.rst:690
 msgid ""
 "The big question now remains: when to use ``Py_INCREF(x)`` and "
 "``Py_DECREF(x)``? Let's first introduce some terms.  Nobody \"owns\" an "
@@ -1909,19 +1321,21 @@ msgstr ""
 "소유한 참조를 처분하는 세 가지 방법이 있습니다: 전달, 저장 및 :c:func:`Py_DECREF` 호출. 소유한 참조를 처분하지"
 " 않으면 메모리 누수가 발생합니다."
 
-#: ../../extending/extending.rst:989
+#: ../../extending/extending.rst:699
+#, fuzzy
 msgid ""
-"It is also possible to :dfn:`borrow` [#]_ a reference to an object.  The "
-"borrower of a reference should not call :c:func:`Py_DECREF`.  The "
+"It is also possible to :dfn:`borrow` [#borrow]_ a reference to an object."
+"  The borrower of a reference should not call :c:func:`Py_DECREF`.  The "
 "borrower must not hold on to the object longer than the owner from which "
 "it was borrowed. Using a borrowed reference after the owner has disposed "
-"of it risks using freed memory and should be avoided completely [#]_."
+"of it risks using freed memory and should be avoided completely [#dont-"
+"check-refcount]_."
 msgstr ""
 "객체에 대한 참조를 :dfn:`빌리는(borrow)` [#]_ 것도 가능합니다. 참조의 대여자(borrower)는 "
 ":c:func:`Py_DECREF`\\를 호출해서는 안 됩니다. 대여자는 빌린 소유자보다 더 오래 객체를 붙잡아서는 안 됩니다. "
 "소유자가 처분한 후 빌린 참조를 사용하면 해제된 메모리를 사용할 위험이 있어서 절대 피해야 합니다 [#]_."
 
-#: ../../extending/extending.rst:995
+#: ../../extending/extending.rst:705
 msgid ""
 "The advantage of borrowing over owning a reference is that you don't need"
 " to take care of disposing of the reference on all possible paths through"
@@ -1935,7 +1349,7 @@ msgstr ""
 "참조를 사용하면 조기 종료 시에 누수의 위험이 없습니다. 소유하는 것에 비해 빌리는 것의 단점은, 겉보기에는 올바른 코드지만, "
 "빌려준 소유자가 실제로는 참조를 처분한 후에 빌린 참조가 사용될 수 있는 미묘한 상황이 있다는 것입니다."
 
-#: ../../extending/extending.rst:1003
+#: ../../extending/extending.rst:713
 msgid ""
 "A borrowed reference can be changed into an owned reference by calling "
 ":c:func:`Py_INCREF`.  This does not affect the status of the owner from "
@@ -1947,18 +1361,18 @@ msgstr ""
 "상태에 영향을 미치지 않습니다 --- 새로운 소유된 참조를 만들고, 완전한 소유자 책임을 부여합니다 (이전 소유자뿐만 아니라, 새 "
 "소유자는 참조를 올바르게 처분해야 합니다)."
 
-#: ../../extending/extending.rst:1013
+#: ../../extending/extending.rst:723
 msgid "Ownership Rules"
 msgstr "소유권 규칙"
 
-#: ../../extending/extending.rst:1015
+#: ../../extending/extending.rst:725
 msgid ""
 "Whenever an object reference is passed into or out of a function, it is "
 "part of the function's interface specification whether ownership is "
 "transferred with the reference or not."
 msgstr "객체 참조가 함수 안팎으로 전달될 때마다, 소유권이 참조와 함께 전달되는지 그렇지 않은지는 함수 인터페이스 명세의 일부입니다."
 
-#: ../../extending/extending.rst:1019
+#: ../../extending/extending.rst:729
 msgid ""
 "Most functions that return a reference to an object pass on ownership "
 "with the reference.  In particular, all functions whose function it is to"
@@ -1975,7 +1389,7 @@ msgstr ""
 "소유권을 받습니다. 예를 들어, :c:func:`PyLong_FromLong`\\은 흔히 사용되는 값의 캐시를 유지하고 캐시 된 "
 "항목에 대한 참조를 반환할 수 있습니다."
 
-#: ../../extending/extending.rst:1027
+#: ../../extending/extending.rst:737
 msgid ""
 "Many functions that extract objects from other objects also transfer "
 "ownership with the reference, for instance "
@@ -1991,7 +1405,7 @@ msgstr ""
 ":c:func:`PyDict_GetItem` 및 :c:func:`PyDict_GetItemString`\\은 모두 튜플, 리스트 "
 "또는 딕셔너리에서 빌린 참조를 반환합니다."
 
-#: ../../extending/extending.rst:1034
+#: ../../extending/extending.rst:744
 msgid ""
 "The function :c:func:`PyImport_AddModule` also returns a borrowed "
 "reference, even though it may actually create the object it returns: this"
@@ -2001,7 +1415,7 @@ msgstr ""
 ":c:func:`PyImport_AddModule` 함수도 실제는 반환하는 객체를 만들 수 있지만 빌린 참조를 반환합니다: 객체에 "
 "대한 소유한 참조가 ``sys.modules``\\에 저장되어 있기 때문에 가능합니다."
 
-#: ../../extending/extending.rst:1038
+#: ../../extending/extending.rst:748
 msgid ""
 "When you pass an object reference into another function, in general, the "
 "function borrows the reference from you --- if it needs to store it, it "
@@ -2018,7 +1432,7 @@ msgstr ""
 "소유권을 취합니다 --- 설사 실패하더라도! (:c:func:`PyDict_SetItem`\\과 그 친구들은 소유권을 취하지 "
 "않습니다 --- 이들은 \"정상\" 입니다.)"
 
-#: ../../extending/extending.rst:1046
+#: ../../extending/extending.rst:756
 msgid ""
 "When a C function is called from Python, it borrows references to its "
 "arguments from the caller.  The caller owns a reference to the object, so"
@@ -2031,18 +1445,18 @@ msgstr ""
 " 참조의 수명은 함수가 반환될 때까지 보장됩니다. 이러한 빌린 참조를 저장하거나 전달해야 할 때만, "
 ":c:func:`Py_INCREF`\\를 호출하여 소유한 참조로 만들어야 합니다."
 
-#: ../../extending/extending.rst:1052
+#: ../../extending/extending.rst:762
 msgid ""
 "The object reference returned from a C function that is called from "
 "Python must be an owned reference --- ownership is transferred from the "
 "function to its caller."
 msgstr "파이썬에서 호출된 C 함수에서 반환된 객체 참조는 소유한 참조여야 합니다 --- 소유권은 함수에서 호출자로 전달됩니다."
 
-#: ../../extending/extending.rst:1060
+#: ../../extending/extending.rst:770
 msgid "Thin Ice"
 msgstr "살얼음"
 
-#: ../../extending/extending.rst:1062
+#: ../../extending/extending.rst:772
 msgid ""
 "There are a few situations where seemingly harmless use of a borrowed "
 "reference can lead to problems.  These all have to do with implicit "
@@ -2052,7 +1466,7 @@ msgstr ""
 "겉보기에 무해한 빌린 참조의 사용이 문제를 일으킬 수 있는 몇 가지 상황이 있습니다. 이것들은 모두 참조의 소유자가 참조를 "
 "처분하도록 할 수 있는 인터프리터의 묵시적 호출과 관련이 있습니다."
 
-#: ../../extending/extending.rst:1066
+#: ../../extending/extending.rst:776
 msgid ""
 "The first and most important case to know about is using "
 ":c:func:`Py_DECREF` on an unrelated object while borrowing a reference to"
@@ -2061,7 +1475,7 @@ msgstr ""
 "가장 먼저 알아야 할 가장 중요한 경우는 리스트 항목에 대한 참조를 빌리는 동안 관련이 없는 객체에서 "
 ":c:func:`Py_DECREF`\\를 사용하는 것입니다. 예를 들어::"
 
-#: ../../extending/extending.rst:1069
+#: ../../extending/extending.rst:779
 msgid ""
 "void\n"
 "bug(PyObject *list)\n"
@@ -2081,7 +1495,7 @@ msgstr ""
 "    PyObject_Print(item, stdout, 0); /* BUG! */\n"
 "}"
 
-#: ../../extending/extending.rst:1078
+#: ../../extending/extending.rst:788
 msgid ""
 "This function first borrows a reference to ``list[0]``, then replaces "
 "``list[1]`` with the value ``0``, and finally prints the borrowed "
@@ -2090,7 +1504,7 @@ msgstr ""
 "이 함수는 먼저 ``list[0]``\\에 대한 참조를 빌린 다음, ``list[1]``\\을 값 ``0``\\으로 바꾸고, "
 "마지막으로 빌린 참조를 인쇄합니다. 무해해 보이지요? 하지만 그렇지 않습니다!"
 
-#: ../../extending/extending.rst:1082
+#: ../../extending/extending.rst:792
 #, fuzzy
 msgid ""
 "Let's follow the control flow into :c:func:`PyList_SetItem`.  The list "
@@ -2112,7 +1526,7 @@ msgstr ""
 " 클래스가 :meth:`!__del__` 메서드를 정의했다고 더 가정해 봅시다. 이 클래스 인스턴스의 참조 횟수가 1일 때, 이를 "
 "처분하면 :meth:`!__del__` 메서드가 호출됩니다."
 
-#: ../../extending/extending.rst:1096
+#: ../../extending/extending.rst:806
 msgid ""
 "Since it is written in Python, the :meth:`!__del__` method can execute "
 "arbitrary Python code.  Could it perhaps do something to invalidate the "
@@ -2128,14 +1542,14 @@ msgstr ""
 "list[0]``\\의 효과를 주는 문장을 실행할 수 있으며, 이것이 해당 객체에 대한 마지막 참조라고 가정하면, 그것과 연관된 "
 "메모리를 해제하고, 그래서 ``item``\\을 무효로 합니다."
 
-#: ../../extending/extending.rst:1104
+#: ../../extending/extending.rst:814
 msgid ""
 "The solution, once you know the source of the problem, is easy: "
 "temporarily increment the reference count.  The correct version of the "
 "function reads::"
 msgstr "문제의 원인을 알고 나면, 해결 방법은 쉽습니다: 일시적으로 참조 횟수를 늘리십시오. 올바른 버전의 함수는 다음과 같습니다::"
 
-#: ../../extending/extending.rst:1107
+#: ../../extending/extending.rst:817
 #, python-brace-format
 msgid ""
 "void\n"
@@ -2160,7 +1574,7 @@ msgstr ""
 "    Py_DECREF(item);\n"
 "}"
 
-#: ../../extending/extending.rst:1118
+#: ../../extending/extending.rst:828
 msgid ""
 "This is a true story.  An older version of Python contained variants of "
 "this bug and someone spent a considerable amount of time in a C debugger "
@@ -2169,7 +1583,7 @@ msgstr ""
 "이것은 실제 이야기입니다. 이전 버전의 파이썬에는 이 버그의 변형이 포함되어 있으며 누군가 :meth:`!__del__` 메서드가 "
 "실패하는 이유를 알아내기 위해 C 디버거에서 상당한 시간을 보냈습니다..."
 
-#: ../../extending/extending.rst:1122
+#: ../../extending/extending.rst:832
 #, fuzzy
 msgid ""
 "The second case of problems with a borrowed reference is a variant "
@@ -2190,7 +1604,7 @@ msgstr ""
 "흔한데, I/O가 완료되기를 기다리는 동안 다른 스레드가 프로세서를 사용할 수 있도록 합니다. 분명히, 다음 함수는 이전 함수와 "
 "같은 문제가 있습니다::"
 
-#: ../../extending/extending.rst:1132
+#: ../../extending/extending.rst:842
 msgid ""
 "void\n"
 "bug(PyObject *list)\n"
@@ -2212,11 +1626,11 @@ msgstr ""
 "    PyObject_Print(item, stdout, 0); /* 버그! */\n"
 "}"
 
-#: ../../extending/extending.rst:1146
+#: ../../extending/extending.rst:856
 msgid "NULL Pointers"
 msgstr "NULL 포인터"
 
-#: ../../extending/extending.rst:1148
+#: ../../extending/extending.rst:858
 msgid ""
 "In general, functions that take object references as arguments do not "
 "expect you to pass them ``NULL`` pointers, and will dump core (or cause "
@@ -2232,7 +1646,7 @@ msgstr ""
 "``NULL``\\을 반환합니다. ``NULL`` 인자를 검사하지 않는 이유는 함수들이 종종 자신이 받은 객체를 다른 함수에 "
 "전달하기 때문입니다 --- 각 함수가 ``NULL``\\을 검사한다면, 중복 검사가 많이 발생하고 코드가 더 느리게 실행됩니다."
 
-#: ../../extending/extending.rst:1156
+#: ../../extending/extending.rst:866
 msgid ""
 "It is better to test for ``NULL`` only at the \"source:\" when a pointer "
 "that may be ``NULL`` is received, for example, from :c:func:`malloc` or "
@@ -2241,7 +1655,7 @@ msgstr ""
 "``NULL``\\일 수 있는 포인터가 수신될 때 \"소스\"에서만 ``NULL``\\을 검사하는 것이 좋습니다, 예를 들어, "
 ":c:func:`malloc`\\이나 예외를 발생시킬 수 있는 함수에서."
 
-#: ../../extending/extending.rst:1160
+#: ../../extending/extending.rst:870
 msgid ""
 "The macros :c:func:`Py_INCREF` and :c:func:`Py_DECREF` do not check for "
 "``NULL`` pointers --- however, their variants :c:func:`Py_XINCREF` and "
@@ -2250,7 +1664,7 @@ msgstr ""
 "매크로 :c:func:`Py_INCREF`\\와 :c:func:`Py_DECREF`\\는 ``NULL`` 포인터를 검사하지 않습니다"
 " --- 하지만, 그들의 변형 :c:func:`Py_XINCREF`\\와 :c:func:`Py_XDECREF`\\는 확인합니다."
 
-#: ../../extending/extending.rst:1164
+#: ../../extending/extending.rst:874
 msgid ""
 "The macros for checking for a particular object type (``Pytype_Check()``)"
 " don't check for ``NULL`` pointers --- again, there is much code that "
@@ -2262,26 +1676,27 @@ msgstr ""
 " 여러 기대하는 형에 대해 객체를 검사하기 위해 연속해서 이들을 여러 번 호출하는 코드가 많아서, 중복 검사가 생성됩니다. "
 "``NULL`` 검사를 하는 변형은 없습니다."
 
-#: ../../extending/extending.rst:1170
+#: ../../extending/extending.rst:880
+#, fuzzy
 msgid ""
 "The C function calling mechanism guarantees that the argument list passed"
 " to C functions (``args`` in the examples) is never ``NULL`` --- in fact "
-"it guarantees that it is always a tuple [#]_."
+"it guarantees that it is always a tuple [#old-calling-convention]_."
 msgstr ""
 "C 함수 호출 메커니즘은 C 함수에 전달된 인자 목록(예에서는 ``args``)이 절대 ``NULL``\\이 아님을 보장합니다 "
 "--- 실제로는 항상 튜플임을 보장합니다 [#]_."
 
-#: ../../extending/extending.rst:1174
+#: ../../extending/extending.rst:884
 msgid ""
 "It is a severe error to ever let a ``NULL`` pointer \"escape\" to the "
 "Python user."
 msgstr "``NULL`` 포인터를 파이썬 사용자에게 \"빠져나가게\" 만드는 것은 심각한 에러입니다."
 
-#: ../../extending/extending.rst:1185
+#: ../../extending/extending.rst:895
 msgid "Writing Extensions in C++"
 msgstr "C++로 확장 작성하기"
 
-#: ../../extending/extending.rst:1187
+#: ../../extending/extending.rst:897
 #, python-brace-format
 msgid ""
 "It is possible to write extension modules in C++.  Some restrictions "
@@ -2302,11 +1717,11 @@ msgstr ""
 "없습니다 --- ``__cplusplus`` 기호가 정의되면 (모든 최신 C++ 컴파일러가 이 기호를 정의합니다) 이미 이 형식을 "
 "사용합니다."
 
-#: ../../extending/extending.rst:1201
+#: ../../extending/extending.rst:911
 msgid "Providing a C API for an Extension Module"
 msgstr "확장 모듈을 위한 C API 제공하기"
 
-#: ../../extending/extending.rst:1206
+#: ../../extending/extending.rst:913
 msgid ""
 "Many extension modules just provide new functions and types to be used "
 "from Python, but sometimes the code in an extension module can be useful "
@@ -2322,7 +1737,7 @@ msgstr ""
 " 확장 모듈이 리스트를 만들고 조작할 수 있게 하는 C API가 있는 것처럼, 이 새로운 컬렉션 형에는 다른 확장 모듈에서 직접 "
 "조작할 수 있는 C 함수 집합이 있어야 합니다."
 
-#: ../../extending/extending.rst:1214
+#: ../../extending/extending.rst:921
 msgid ""
 "At first sight this seems easy: just write the functions (without "
 "declaring them ``static``, of course), provide an appropriate header "
@@ -2346,22 +1761,22 @@ msgstr ""
 "전략 중 선택할 수 있도록 합니다 (대부분의 유닉스). 또한 기호가 전역적으로 보이더라도, 호출하려는 함수를 가진 모듈이 아직 "
 "로드되지 않았을 수 있습니다!"
 
-#: ../../extending/extending.rst:1226
+#: ../../extending/extending.rst:933
+#, fuzzy
 msgid ""
 "Portability therefore requires not to make any assumptions about symbol "
 "visibility. This means that all symbols in extension modules should be "
 "declared ``static``, except for the module's initialization function, in "
-"order to avoid name clashes with other extension modules (as discussed in"
-" section :ref:`methodtable`). And it means that symbols that *should* be "
-"accessible from other extension modules must be exported in a different "
-"way."
+"order to avoid name clashes with other extension modules. And it means "
+"that symbols that *should* be accessible from other extension modules "
+"must be exported in a different way."
 msgstr ""
 "따라서 이식성에는 기호 가시성에 대해 가정하지 않을 것이 요구됩니다. 이것은 다른 확장 모듈과의 이름 충돌을 피하고자, 모듈의 "
 "초기화 함수를 제외한 확장 모듈의 모든 기호를 ``static``\\으로 선언해야 함을 의미합니다 (섹션 "
 ":ref:`methodtable`\\에서 설명되듯이). 그리고 이는 다른 확장 모듈에서 액세스 *해야만* 하는 기호를 다른 방식으로"
 " 노출해야 함을 의미합니다."
 
-#: ../../extending/extending.rst:1233
+#: ../../extending/extending.rst:940
 msgid ""
 "Python provides a special mechanism to pass C-level information "
 "(pointers) from one extension module to another one: Capsules. A Capsule "
@@ -2377,7 +1792,7 @@ msgstr ""
 "수 있지만, 다른 파이썬 객체처럼 전달할 수 있습니다. 특히, 확장 모듈의 이름 공간에서 이름에 대입할 수 있습니다. 다른 확장 "
 "모듈은 이 모듈을 임포트 해서, 이 이름의 값을 가져온 다음, 캡슐에서 포인터를 가져올 수 있습니다."
 
-#: ../../extending/extending.rst:1241
+#: ../../extending/extending.rst:948
 msgid ""
 "There are many ways in which Capsules can be used to export the C API of "
 "an extension module. Each function could get its own Capsule, or all C "
@@ -2390,7 +1805,7 @@ msgstr ""
 "API 포인터가 저장된 배열의 주소를 캡슐로 게시할 수 있습니다. 그리고 포인터를 저장하고 꺼내는 다양한 작업은 코드를 제공하는 "
 "모듈과 클라이언트 모듈 간에 여러 방식으로 분산될 수 있습니다."
 
-#: ../../extending/extending.rst:1247
+#: ../../extending/extending.rst:954
 msgid ""
 "Whichever method you choose, it's important to name your Capsules "
 "properly. The function :c:func:`PyCapsule_New` takes a name parameter "
@@ -2404,17 +1819,17 @@ msgstr ""
 "지정하도록 강력히 권고합니다. 적절하게 이름 붙인 캡슐은 어느 정도의 실행 시간 형 안전성을 제공합니다; 하나의 이름 없는 캡슐을 "
 "다른 캡슐과 구별할 수 있는 적절한 방법은 없습니다."
 
-#: ../../extending/extending.rst:1254
+#: ../../extending/extending.rst:961
 msgid ""
 "In particular, Capsules used to expose C APIs should be given a name "
 "following this convention::"
 msgstr "특히, C API를 공개하는 데 사용되는 캡슐에는 다음 규칙에 따라 이름을 지정해야 합니다::"
 
-#: ../../extending/extending.rst:1257
+#: ../../extending/extending.rst:964
 msgid "modulename.attributename"
 msgstr "modulename.attributename"
 
-#: ../../extending/extending.rst:1259
+#: ../../extending/extending.rst:966
 msgid ""
 "The convenience function :c:func:`PyCapsule_Import` makes it easy to load"
 " a C API provided via a Capsule, but only if the Capsule's name matches "
@@ -2425,7 +1840,7 @@ msgstr ""
 " 캡슐 이름이 이 규칙과 일치할 때만 그렇습니다. 이 동작은 C API 사용자에게 자신이 로드 한 캡슐에 올바른 C API가 "
 "포함되어 있다는 확신을 줍니다."
 
-#: ../../extending/extending.rst:1264
+#: ../../extending/extending.rst:971
 msgid ""
 "The following example demonstrates an approach that puts most of the "
 "burden on the writer of the exporting module, which is appropriate for "
@@ -2441,22 +1856,23 @@ msgstr ""
 "모듈에 해당하는 헤더 파일은 모듈을 임포트 하고 C API 포인터를 가져오는 매크로를 제공합니다; 클라이언트 모듈은 C API에 "
 "액세스하기 전에 이 매크로를 호출하기만 하면 됩니다."
 
-#: ../../extending/extending.rst:1272
+#: ../../extending/extending.rst:979
+#, fuzzy
 msgid ""
 "The exporting module is a modification of the :mod:`!spam` module from "
-"section :ref:`extending-simpleexample`. The function :func:`!spam.system`"
-" does not call the C library function :c:func:`system` directly, but a "
-"function :c:func:`!PySpam_System`, which would of course do something "
-"more complicated in reality (such as adding \"spam\" to every command). "
-"This function :c:func:`!PySpam_System` is also exported to other "
-"extension modules."
+"the :ref:`tutorial <first-extension-module>`. The function "
+":func:`!spam.system` does not call the C library function "
+":c:func:`system` directly, but a function :c:func:`!PySpam_System`, which"
+" would of course do something more complicated in reality (such as adding"
+" \"spam\" to every command). This function :c:func:`!PySpam_System` is "
+"also exported to other extension modules."
 msgstr ""
 "내보내는 모듈은 섹션 :ref:`extending-simpleexample`\\의 :mod:`!spam` 모듈을 수정한 것입니다. "
 ":func:`!spam.system` 함수는 C 라이브러리 함수 :c:func:`system`\\을 직접 호출하지는 않고, 실제로는"
 " 더 복잡한 작업을 수행하는 (가령 모든 명령에 \"spam\"을 추가하는 것과 같은) :c:func:`!PySpam_System`"
 " 함수를 호출합니다. 이 함수 :c:func:`!PySpam_System`\\도 다른 확장 모듈로 내보냅니다."
 
-#: ../../extending/extending.rst:1279
+#: ../../extending/extending.rst:987
 msgid ""
 "The function :c:func:`!PySpam_System` is a plain C function, declared "
 "``static`` like everything else::"
@@ -2464,7 +1880,7 @@ msgstr ""
 "함수 :c:func:`!PySpam_System`\\은 평범한 C 함수이며, 다른 모든 것과 같이 ``static``\\으로 "
 "선언되었습니다::"
 
-#: ../../extending/extending.rst:1282
+#: ../../extending/extending.rst:990
 #, python-brace-format
 msgid ""
 "static int\n"
@@ -2479,11 +1895,11 @@ msgstr ""
 "    return system(command);\n"
 "}"
 
-#: ../../extending/extending.rst:1288
+#: ../../extending/extending.rst:996
 msgid "The function :c:func:`!spam_system` is modified in a trivial way::"
 msgstr ":c:func:`!spam_system` 함수는 사소하게 수정됩니다::"
 
-#: ../../extending/extending.rst:1290
+#: ../../extending/extending.rst:998
 msgid ""
 "static PyObject *\n"
 "spam_system(PyObject *self, PyObject *args)\n"
@@ -2509,19 +1925,15 @@ msgstr ""
 "    return PyLong_FromLong(sts);\n"
 "}"
 
-#: ../../extending/extending.rst:1302
+#: ../../extending/extending.rst:1010
 msgid "In the beginning of the module, right after the line ::"
 msgstr "모듈의 시작 부분에서, 다음 줄 바로 다음에 ::"
 
-#: ../../extending/extending.rst:1304
-msgid "#include <Python.h>"
-msgstr "#include <Python.h>"
-
-#: ../../extending/extending.rst:1306
+#: ../../extending/extending.rst:1014
 msgid "two more lines must be added::"
 msgstr "다음 두 줄을 더 추가해야 합니다::"
 
-#: ../../extending/extending.rst:1308
+#: ../../extending/extending.rst:1016
 msgid ""
 "#define SPAM_MODULE\n"
 "#include \"spammodule.h\""
@@ -2529,7 +1941,7 @@ msgstr ""
 "#define SPAM_MODULE\n"
 "#include \"spammodule.h\""
 
-#: ../../extending/extending.rst:1311
+#: ../../extending/extending.rst:1019
 #, fuzzy
 msgid ""
 "The ``#define`` is used to tell the header file that it is being included"
@@ -2540,7 +1952,7 @@ msgstr ""
 "``#define``\\은 헤더 파일이 클라이언트 모듈이 아닌 내보내는 모듈에 포함됨을 알리는 데 사용됩니다. 마지막으로, 모듈의 "
 "초기화 함수는 C API 포인터 배열을 초기화해야 합니다::"
 
-#: ../../extending/extending.rst:1315
+#: ../../extending/extending.rst:1023
 #, fuzzy
 msgid ""
 "static int\n"
@@ -2589,21 +2001,22 @@ msgstr ""
 "    return m;\n"
 "}"
 
-#: ../../extending/extending.rst:1334
+#: ../../extending/extending.rst:1042
+#, fuzzy
 msgid ""
 "Note that ``PySpam_API`` is declared ``static``; otherwise the pointer "
-"array would disappear when :c:func:`!PyInit_spam` terminates!"
+"array would disappear when :c:func:`!spam_module_exec` terminates!"
 msgstr ""
 "``PySpam_API``\\는 ``static``\\으로 선언됩니다; 그렇지 않으면 :c:func:`!PyInit_spam`\\이"
 " 종료할 때 포인터 배열이 사라집니다!"
 
-#: ../../extending/extending.rst:1337
+#: ../../extending/extending.rst:1045
 msgid ""
 "The bulk of the work is in the header file :file:`spammodule.h`, which "
 "looks like this::"
 msgstr "작업 대부분은 헤더 파일 :file:`spammodule.h`\\에 있으며, 다음과 같습니다::"
 
-#: ../../extending/extending.rst:1340
+#: ../../extending/extending.rst:1048
 msgid ""
 "#ifndef Py_SPAMMODULE_H\n"
 "#define Py_SPAMMODULE_H\n"
@@ -2703,7 +2116,7 @@ msgstr ""
 "\n"
 "#endif /* !defined(Py_SPAMMODULE_H) */"
 
-#: ../../extending/extending.rst:1388
+#: ../../extending/extending.rst:1096
 #, fuzzy
 msgid ""
 "All that a client module must do in order to have access to the function "
@@ -2713,7 +2126,7 @@ msgstr ""
 ":c:func:`!PySpam_System` 함수에 액세스하기 위해 클라이언트 모듈이 해야 할 일은 초기화 함수에서 함수 (사실 "
 "매크로) :c:func:`!import_spam`\\을 호출하는 것이 전부입니다::"
 
-#: ../../extending/extending.rst:1392
+#: ../../extending/extending.rst:1100
 #, fuzzy
 msgid ""
 "static int\n"
@@ -2740,7 +2153,7 @@ msgstr ""
 "    return m;\n"
 "}"
 
-#: ../../extending/extending.rst:1402
+#: ../../extending/extending.rst:1110
 msgid ""
 "The main disadvantage of this approach is that the file "
 ":file:`spammodule.h` is rather complicated. However, the basic structure "
@@ -2750,38 +2163,33 @@ msgstr ""
 "이 방법의 주요 단점은 파일 :file:`spammodule.h`\\가 다소 복잡하다는 것입니다. 그러나, 기본 구조는 내보내는 "
 "함수마다 같아서, 한 번만 학습하면 됩니다."
 
-#: ../../extending/extending.rst:1406
+#: ../../extending/extending.rst:1114
+#, fuzzy
 msgid ""
 "Finally it should be mentioned that Capsules offer additional "
 "functionality, which is especially useful for memory allocation and "
 "deallocation of the pointer stored in a Capsule. The details are "
 "described in the Python/C API Reference Manual in the section "
 ":ref:`capsules` and in the implementation of Capsules (files "
-":file:`Include/pycapsule.h` and :file:`Objects/pycapsule.c` in the Python"
-" source code distribution)."
+":file:`Include/pycapsule.h` and :file:`Objects/capsule.c` in the Python "
+"source code distribution)."
 msgstr ""
 "마지막으로 캡슐은 추가 기능을 제공하며, 특히 캡슐에 저장된 포인터의 메모리 할당과 할당 해제에 유용합니다. 세부 사항은 파이썬/C"
 " API 레퍼런스 매뉴얼의 :ref:`capsules` 섹션과 캡슐 구현(파이썬 소스 코드 배포의 "
 ":file:`Include/pycapsule.h`\\와 :file:`Objects/pycapsule.c` 파일)에 설명되어 "
 "있습니다."
 
-#: ../../extending/extending.rst:1414
+#: ../../extending/extending.rst:1122
 msgid "Footnotes"
 msgstr "각주"
 
-#: ../../extending/extending.rst:1415
-msgid ""
-"An interface for this function already exists in the standard module "
-":mod:`os` --- it was chosen as a simple and straightforward example."
-msgstr "이 함수에 대한 인터페이스는 표준 모듈 :mod:`os`\\에 이미 존재합니다 --- 간단하고 단순한 예제로 선택되었습니다."
-
-#: ../../extending/extending.rst:1418
+#: ../../extending/extending.rst:1123
 msgid ""
 "The metaphor of \"borrowing\" a reference is not completely correct: the "
 "owner still has a copy of the reference."
 msgstr "참조 \"빌리기(borrowing)\" 은유는 완전히 올바르지 않습니다: 소유자는 여전히 참조 사본을 가지고 있습니다."
 
-#: ../../extending/extending.rst:1421
+#: ../../extending/extending.rst:1126
 msgid ""
 "Checking that the reference count is at least 1 **does not work** --- the"
 " reference count itself could be in freed memory and may thus be reused "
@@ -2790,25 +2198,25 @@ msgstr ""
 "참조 횟수가 1 이상인지 확인하는 것은 **작동하지 않습니다** --- 참조 횟수 자체가 해제된 메모리에 있을 수 있어서 다른 "
 "객체에 재사용될 수 있습니다!"
 
-#: ../../extending/extending.rst:1425
+#: ../../extending/extending.rst:1131
 msgid ""
 "These guarantees don't hold when you use the \"old\" style calling "
 "convention --- this is still found in much existing code."
 msgstr "\"오래된\" 스타일 호출 규칙을 사용할 때 이러한 보장은 유지되지 않습니다 --- 이것은 여전히 기존 코드에서 많이 발견됩니다."
 
-#: ../../extending/extending.rst:593
+#: ../../extending/extending.rst:277
 msgid "PyObject_CallObject (C function)"
 msgstr "PyObject_CallObject (C 함수)"
 
-#: ../../extending/extending.rst:684
+#: ../../extending/extending.rst:372
 msgid "PyArg_ParseTuple (C function)"
 msgstr "PyArg_ParseTuple (C 함수)"
 
-#: ../../extending/extending.rst:776
+#: ../../extending/extending.rst:499
 msgid "PyArg_ParseTupleAndKeywords (C function)"
 msgstr "PyArg_ParseTupleAndKeywords (C 함수)"
 
-#: ../../extending/extending.rst:797
+#: ../../extending/extending.rst:520
 msgid "Philbrick, Geoff"
 msgstr "Philbrick, Geoff"
 
@@ -3012,4 +2420,782 @@ msgstr "Philbrick, Geoff"
 #~ "``PyInit_spam``\\에서 반환되고, 모듈 생성은 임포트 절차에"
 #~ " 맡겨집니다. 다단계 초기화에 대한 자세한 내용은 "
 #~ ":PEP:`489`\\를 참조하십시오."
+
+#~ msgid "Extending Python with C or C++"
+#~ msgstr "C나 C++로 파이썬 확장하기"
+
+#~ msgid ""
+#~ "It is quite easy to add new "
+#~ "built-in modules to Python, if you"
+#~ " know how to program in C.  "
+#~ "Such :dfn:`extension modules` can do two"
+#~ " things that can't be done directly"
+#~ " in Python: they can implement new"
+#~ " built-in object types, and they "
+#~ "can call C library functions and "
+#~ "system calls."
+#~ msgstr ""
+#~ "C로 프로그래밍하는 방법을 알고 있다면, 파이썬에 새로운"
+#~ " 내장 모듈을 추가하기는 매우 쉽습니다. 그러한 "
+#~ ":dfn:`확장 모듈(extension modules)`\\은 파이썬에서 직접"
+#~ " 할 수 없는 두 가지 일을 할 수 "
+#~ "있습니다: 새로운 내장 객체 형을 구현할 수 있고,"
+#~ " C 라이브러리 함수와 시스템 호출을 호출할 수 "
+#~ "있습니다."
+
+#~ msgid ""
+#~ "To support extensions, the Python API"
+#~ " (Application Programmers Interface) defines "
+#~ "a set of functions, macros and "
+#~ "variables that provide access to most"
+#~ " aspects of the Python run-time "
+#~ "system.  The Python API is incorporated"
+#~ " in a C source file by "
+#~ "including the header ``\"Python.h\"``."
+#~ msgstr ""
+#~ "확장을 지원하기 위해, 파이썬 API(Application "
+#~ "Programmers Interface)는 파이썬 런타임 시스템의 대부분"
+#~ " 측면에 액세스 할 수 있는 함수, 매크로 및"
+#~ " 변수 집합을 정의합니다. 파이썬 API는 헤더 "
+#~ "``\"Python.h\"``\\를 포함해 C 소스 파일에 통합됩니다."
+
+#~ msgid ""
+#~ "The compilation of an extension module"
+#~ " depends on its intended use as "
+#~ "well as on your system setup; "
+#~ "details are given in later chapters."
+#~ msgstr "확장 모듈의 컴파일은 시스템 설정뿐만 아니라 의도하는 용도에 따라 다릅니다; 자세한 내용은 다음 장에서 설명합니다."
+
+#~ msgid ""
+#~ "The C extension interface is specific"
+#~ " to CPython, and extension modules do"
+#~ " not work on other Python "
+#~ "implementations.  In many cases, it is"
+#~ " possible to avoid writing C "
+#~ "extensions and preserve portability to "
+#~ "other implementations. For example, if "
+#~ "your use case is calling C library"
+#~ " functions or system calls, you "
+#~ "should consider using the :mod:`ctypes` "
+#~ "module or the `cffi "
+#~ "<https://cffi.readthedocs.io/>`_ library rather than"
+#~ " writing custom C code. These modules"
+#~ " let you write Python code to "
+#~ "interface with C code and are more"
+#~ " portable between implementations of Python"
+#~ " than writing and compiling a C "
+#~ "extension module."
+#~ msgstr ""
+#~ "C 확장 인터페이스는 CPython에만 해당하며, 확장 모듈은"
+#~ " 다른 파이썬 구현에서는 작동하지 않습니다. 많은 "
+#~ "경우에, C 확장을 작성하지 않고 다른 구현으로의 "
+#~ "이식성을 유지하는 것이 가능합니다. 예를 들어, 사용 "
+#~ "사례가 C 라이브러리 함수나 시스템 호출을 호출하는 "
+#~ "것이라면, 사용자 정의 C 코드를 작성하는 대신 "
+#~ ":mod:`ctypes` 모듈이나 `cffi "
+#~ "<https://cffi.readthedocs.io/>`_ 라이브러리 사용을 고려해야 "
+#~ "합니다. 이 모듈을 사용하면 C 코드와 인터페이스 "
+#~ "하기 위한 파이썬 코드를 작성할 수 있으며 C"
+#~ " 확장 모듈을 작성하고 컴파일하는 것보다 파이썬 구현"
+#~ " 간에 이식성이 더 좋습니다."
+
+#~ msgid "A Simple Example"
+#~ msgstr "간단한 예"
+
+#~ msgid ""
+#~ "Let's create an extension module called"
+#~ " ``spam`` (the favorite food of Monty"
+#~ " Python fans...) and let's say we "
+#~ "want to create a Python interface "
+#~ "to the C library function "
+#~ ":c:func:`system` [#]_. This function takes "
+#~ "a null-terminated character string as"
+#~ " argument and returns an integer.  We"
+#~ " want this function to be callable"
+#~ " from Python as follows:"
+#~ msgstr ""
+#~ "``spam``\\(몬티 파이썬 팬들이 가장 좋아하는 음식...)이라는"
+#~ " 확장 모듈을 만듭시다, 그리고 C 라이브러리 함수"
+#~ " :c:func:`system`\\에 대한 파이썬 인터페이스를 만들고 "
+#~ "싶다고 합시다 [#]_. 이 함수는 널 종료 "
+#~ "문자열을 인자로 취하고 정수를 반환합니다. 우리는 이 "
+#~ "함수를 다음과 같이 파이썬에서 호출할 수 있기를 "
+#~ "원합니다:"
+
+#~ msgid ""
+#~ ">>> import spam\n"
+#~ ">>> status = spam.system(\"ls -l\")"
+#~ msgstr ""
+#~ ">>> import spam\n"
+#~ ">>> status = spam.system(\"ls -l\")"
+
+#~ msgid ""
+#~ "Begin by creating a file "
+#~ ":file:`spammodule.c`.  (Historically, if a "
+#~ "module is called ``spam``, the C "
+#~ "file containing its implementation is "
+#~ "called :file:`spammodule.c`; if the module "
+#~ "name is very long, like ``spammify``,"
+#~ " the module name can be just "
+#~ ":file:`spammify.c`.)"
+#~ msgstr ""
+#~ ":file:`spammodule.c` 파일을 만드는 것으로 시작하십시오. "
+#~ "(역사적으로, 모듈을 ``spam``\\이라고 하면, 해당 구현을 "
+#~ "포함하는 C 파일은 :file:`spammodule.c`\\라고 합니다; "
+#~ "모듈 이름이 ``spammify``\\처럼 매우 길면, 모듈 "
+#~ "이름은 그냥 :file:`spammify.c`\\일 수 있습니다.)"
+
+#~ msgid "The first two lines of our file can be::"
+#~ msgstr "파일의 처음 두 줄은 다음과 같습니다::"
+
+#~ msgid ""
+#~ "#define PY_SSIZE_T_CLEAN\n"
+#~ "#include <Python.h>"
+#~ msgstr ""
+#~ "#define PY_SSIZE_T_CLEAN\n"
+#~ "#include <Python.h>"
+
+#~ msgid ""
+#~ "which pulls in the Python API (you"
+#~ " can add a comment describing the "
+#~ "purpose of the module and a "
+#~ "copyright notice if you like)."
+#~ msgstr "이것은 파이썬 API를 가져옵니다 (원한다면 모듈의 목적과 저작권 표시를 설명하는 주석을 추가할 수 있습니다)."
+
+#~ msgid ""
+#~ "Since Python may define some pre-"
+#~ "processor definitions which affect the "
+#~ "standard headers on some systems, you"
+#~ " *must* include :file:`Python.h` before any"
+#~ " standard headers are included."
+#~ msgstr ""
+#~ "파이썬이 일부 시스템의 표준 헤더에 영향을 미치는 "
+#~ "일부 전처리기 정의를 정의할 수 있어서, 표준 "
+#~ "헤더가 포함되기 전에 *반드시* :file:`Python.h`\\를 "
+#~ "포함해야 합니다."
+
+#~ msgid ""
+#~ "``#define PY_SSIZE_T_CLEAN`` was used to "
+#~ "indicate that ``Py_ssize_t`` should be "
+#~ "used in some APIs instead of "
+#~ "``int``. It is not necessary since "
+#~ "Python 3.13, but we keep it here"
+#~ " for backward compatibility. See :ref"
+#~ ":`arg-parsing-string-and-buffers` for "
+#~ "a description of this macro."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "All user-visible symbols defined by "
+#~ ":file:`Python.h` have a prefix of ``Py``"
+#~ " or ``PY``, except those defined in"
+#~ " standard header files."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "For backward compatibility, :file:`Python.h` "
+#~ "includes several standard header files. "
+#~ "C extensions should include the standard"
+#~ " headers that they use, and should"
+#~ " not rely on these implicit includes."
+#~ " If using the limited C API "
+#~ "version 3.13 or newer, the implicit "
+#~ "includes are:"
+#~ msgstr ""
+
+#~ msgid "``<assert.h>``"
+#~ msgstr ""
+
+#~ msgid "``<intrin.h>`` (on Windows)"
+#~ msgstr ""
+
+#~ msgid "``<inttypes.h>``"
+#~ msgstr ""
+
+#~ msgid "``<limits.h>``"
+#~ msgstr ""
+
+#~ msgid "``<math.h>``"
+#~ msgstr ""
+
+#~ msgid "``<stdarg.h>``"
+#~ msgstr ""
+
+#~ msgid "``<wchar.h>``"
+#~ msgstr ""
+
+#~ msgid "``<sys/types.h>`` (if present)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :c:macro:`Py_LIMITED_API` is not defined,"
+#~ " or is set to version 3.12 or"
+#~ " older, the headers below are also"
+#~ " included:"
+#~ msgstr ""
+
+#~ msgid "``<ctype.h>``"
+#~ msgstr ""
+
+#~ msgid "``<unistd.h>`` (on POSIX)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :c:macro:`Py_LIMITED_API` is not defined,"
+#~ " or is set to version 3.10 or"
+#~ " older, the headers below are also"
+#~ " included:"
+#~ msgstr ""
+
+#~ msgid "``<errno.h>``"
+#~ msgstr ""
+
+#~ msgid "``<stdio.h>``"
+#~ msgstr ""
+
+#~ msgid "``<stdlib.h>``"
+#~ msgstr ""
+
+#~ msgid "``<string.h>``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The next thing we add to our "
+#~ "module file is the C function that"
+#~ " will be called when the Python "
+#~ "expression ``spam.system(string)`` is evaluated "
+#~ "(we'll see shortly how it ends up"
+#~ " being called)::"
+#~ msgstr ""
+#~ "다음으로 모듈 파일에 추가하는 것은 파이썬 표현식 "
+#~ "``spam.system(string)``\\이 평가될 때 호출될 C "
+#~ "함수입니다 (이것이 어떻게 호출되는지 곧 보게 될 "
+#~ "것입니다)::"
+
+#~ msgid ""
+#~ "static PyObject *\n"
+#~ "spam_system(PyObject *self, PyObject *args)\n"
+#~ "{\n"
+#~ "    const char *command;\n"
+#~ "    int sts;\n"
+#~ "\n"
+#~ "    if (!PyArg_ParseTuple(args, \"s\", &command))\n"
+#~ "        return NULL;\n"
+#~ "    sts = system(command);\n"
+#~ "    return PyLong_FromLong(sts);\n"
+#~ "}"
+#~ msgstr ""
+#~ "static PyObject *\n"
+#~ "spam_system(PyObject *self, PyObject *args)\n"
+#~ "{\n"
+#~ "    const char *command;\n"
+#~ "    int sts;\n"
+#~ "\n"
+#~ "    if (!PyArg_ParseTuple(args, \"s\", &command))\n"
+#~ "        return NULL;\n"
+#~ "    sts = system(command);\n"
+#~ "    return PyLong_FromLong(sts);\n"
+#~ "}"
+
+#~ msgid ""
+#~ "There is a straightforward translation "
+#~ "from the argument list in Python "
+#~ "(for example, the single expression "
+#~ "``\"ls -l\"``) to the arguments passed"
+#~ " to the C function.  The C "
+#~ "function always has two arguments, "
+#~ "conventionally named *self* and *args*."
+#~ msgstr ""
+#~ "파이썬의 인자 목록(예를 들어, 단일 표현식 ``\"ls"
+#~ " -l\"``)에서 C 함수로 전달되는 인자로의 간단한 "
+#~ "변환이 있습니다. C 함수에는 항상 *self*\\와 "
+#~ "*args*\\라는 두 개의 인자가 있습니다."
+
+#~ msgid ""
+#~ "The *self* argument points to the "
+#~ "module object for module-level "
+#~ "functions; for a method it would "
+#~ "point to the object instance."
+#~ msgstr "*self* 인자는 모듈 수준 함수에서 모듈 객체를 가리킵니다; 메서드의 경우 객체 인스턴스를 가리킵니다."
+
+#~ msgid ""
+#~ "The *args* argument will be a "
+#~ "pointer to a Python tuple object "
+#~ "containing the arguments.  Each item of"
+#~ " the tuple corresponds to an argument"
+#~ " in the call's argument list.  The"
+#~ " arguments are Python objects --- in"
+#~ " order to do anything with them "
+#~ "in our C function we have to "
+#~ "convert them to C values.  The "
+#~ "function :c:func:`PyArg_ParseTuple` in the "
+#~ "Python API checks the argument types "
+#~ "and converts them to C values.  It"
+#~ " uses a template string to determine"
+#~ " the required types of the arguments"
+#~ " as well as the types of the"
+#~ " C variables into which to store "
+#~ "the converted values.  More about this"
+#~ " later."
+#~ msgstr ""
+#~ "*args* 인자는 인자를 포함하는 파이썬 튜플 객체에 "
+#~ "대한 포인터입니다. 튜플의 각 항목은 호출의 인자 "
+#~ "목록에 있는 인자에 해당합니다. 인자는 파이썬 객체입니다"
+#~ " --- C 함수에서 무언가를 수행하려면 이들을 C"
+#~ " 값으로 변환해야 합니다. 파이썬 API의 "
+#~ ":c:func:`PyArg_ParseTuple` 함수는 인자 형을 확인하고 "
+#~ "C 값으로 변환합니다. 템플릿 문자열을 사용하여 필요한 "
+#~ "인자 형과 변환된 값을 저장할 C 변수 형을 "
+#~ "결정합니다. 나중에 이것에 대해 자세히 알아보겠습니다."
+
+#~ msgid ""
+#~ ":c:func:`PyArg_ParseTuple` returns true (nonzero)"
+#~ " if all arguments have the right "
+#~ "type and its components have been "
+#~ "stored in the variables whose addresses"
+#~ " are passed.  It returns false (zero)"
+#~ " if an invalid argument list was "
+#~ "passed.  In the latter case it "
+#~ "also raises an appropriate exception so"
+#~ " the calling function can return "
+#~ "``NULL`` immediately (as we saw in "
+#~ "the example)."
+#~ msgstr ""
+#~ "모든 인자의 형이 올바르고 해당 구성 요소가 주소가"
+#~ " 전달된 변수에 저장되면, :c:func:`PyArg_ParseTuple`\\은 "
+#~ "참(0이 아닙니다)을 반환합니다. 유효하지 않은 인자 목록이"
+#~ " 전달되면 거짓(0)을 반환합니다. 후자의 경우 호출 "
+#~ "함수가  (예에서 보듯이) ``NULL``\\을 즉시 반환할 "
+#~ "수 있도록 적절한 예외를 발생시킵니다."
+
+#~ msgid "Back to the Example"
+#~ msgstr "예제로 돌아가기"
+
+#~ msgid ""
+#~ "Going back to our example function, "
+#~ "you should now be able to "
+#~ "understand this statement::"
+#~ msgstr "예제 함수로 돌아가서, 이제 여러분은 이 문장을 이해할 수 있어야 합니다::"
+
+#~ msgid ""
+#~ "It returns ``NULL`` (the error indicator"
+#~ " for functions returning object pointers)"
+#~ " if an error is detected in the"
+#~ " argument list, relying on the "
+#~ "exception set by :c:func:`PyArg_ParseTuple`.  "
+#~ "Otherwise the string value of the "
+#~ "argument has been copied to the "
+#~ "local variable :c:data:`!command`.  This is"
+#~ " a pointer assignment and you are "
+#~ "not supposed to modify the string "
+#~ "to which it points (so in Standard"
+#~ " C, the variable :c:data:`!command` should"
+#~ " properly be declared as ``const char"
+#~ " *command``)."
+#~ msgstr ""
+#~ "인자 목록에서 에러가 발견되면 :c:func:`PyArg_ParseTuple`\\에"
+#~ " 의해 설정된 예외에 의존하면서 ``NULL``\\(객체 포인터를"
+#~ " 반환하는 함수의 에러 표시기)을 반환합니다. 그렇지 "
+#~ "않으면 인자의 문자열 값이 지역 변수 "
+#~ ":c:data:`!command`\\에 복사되었습니다. 이것은 포인터 대입이며"
+#~ " 가리키는 문자열을 수정해서는 안 됩니다 (따라서 표준"
+#~ " C에서, 변수 :c:data:`!command`\\는 ``const char"
+#~ " *command``\\로 올바르게 선언되어야 합니다)."
+
+#~ msgid ""
+#~ "The next statement is a call to"
+#~ " the Unix function :c:func:`system`, "
+#~ "passing it the string we just got"
+#~ " from :c:func:`PyArg_ParseTuple`::"
+#~ msgstr ""
+#~ "다음 문장은 유닉스 함수 :c:func:`system`\\을 호출인데,"
+#~ " :c:func:`PyArg_ParseTuple`\\에서 얻은 문자열을 전달합니다::"
+
+#~ msgid "sts = system(command);"
+#~ msgstr "sts = system(command);"
+
+#~ msgid ""
+#~ "Our :func:`!spam.system` function must return"
+#~ " the value of :c:data:`!sts` as a "
+#~ "Python object.  This is done using "
+#~ "the function :c:func:`PyLong_FromLong`. ::"
+#~ msgstr ""
+#~ "우리의 :func:`!spam.system` 함수는 :c:data:`!sts`\\의 "
+#~ "값을 파이썬 객체로 반환해야 합니다. 이것은 "
+#~ ":c:func:`PyLong_FromLong` 함수를 사용하여 이루어집니다. ::"
+
+#~ msgid "return PyLong_FromLong(sts);"
+#~ msgstr "return PyLong_FromLong(sts);"
+
+#~ msgid ""
+#~ "In this case, it will return an"
+#~ " integer object.  (Yes, even integers "
+#~ "are objects on the heap in "
+#~ "Python!)"
+#~ msgstr "이 경우, 정수 객체를 반환합니다. (예, 정수조차도 파이썬에서는 힙 상의 객체입니다!)"
+
+#~ msgid ""
+#~ "If you have a C function that "
+#~ "returns no useful argument (a function"
+#~ " returning :c:expr:`void`), the corresponding "
+#~ "Python function must return ``None``.   "
+#~ "You need this idiom to do so "
+#~ "(which is implemented by the "
+#~ ":c:macro:`Py_RETURN_NONE` macro)::"
+#~ msgstr ""
+#~ "유용한 인자를 반환하지 않는 C 함수(:c:expr:`void`\\를"
+#~ " 반환하는 함수)가 있으면, 해당 파이썬 함수는 "
+#~ "``None``\\을 반환해야 합니다. 그렇게 하려면 이 "
+#~ "관용구가 필요합니다 (:c:macro:`Py_RETURN_NONE` 매크로로 "
+#~ "구현됩니다)::"
+
+#~ msgid ""
+#~ "Py_INCREF(Py_None);\n"
+#~ "return Py_None;"
+#~ msgstr ""
+#~ "Py_INCREF(Py_None);\n"
+#~ "return Py_None;"
+
+#~ msgid ""
+#~ ":c:data:`Py_None` is the C name for "
+#~ "the special Python object ``None``.  It"
+#~ " is a genuine Python object rather"
+#~ " than a ``NULL`` pointer, which means"
+#~ " \"error\" in most contexts, as we"
+#~ " have seen."
+#~ msgstr ""
+#~ ":c:data:`Py_None`\\은 특수 파이썬 객체 ``None``\\의 "
+#~ "C 이름입니다. 앞에서 보았듯이, 대부분의 상황에서 "
+#~ "\"에러\"를 뜻하는 ``NULL`` 포인터가 아니라 진짜 "
+#~ "파이썬 객체입니다."
+
+#~ msgid "The Module's Method Table and Initialization Function"
+#~ msgstr "모듈의 메서드 테이블과 초기화 함수"
+
+#~ msgid ""
+#~ "I promised to show how "
+#~ ":c:func:`!spam_system` is called from Python"
+#~ " programs. First, we need to list "
+#~ "its name and address in a \"method"
+#~ " table\"::"
+#~ msgstr ""
+#~ "파이썬 프로그램에서 :c:func:`!spam_system`\\이 어떻게 호출되는지"
+#~ " 보여 주겠다고 약속했습니다. 먼저, \"메서드 테이블\"에 "
+#~ "이름과 주소를 나열해야 합니다::"
+
+#~ msgid ""
+#~ "static PyMethodDef spam_methods[] = {\n"
+#~ "    ...\n"
+#~ "    {\"system\",  spam_system, METH_VARARGS,\n"
+#~ "     \"Execute a shell command.\"},\n"
+#~ "    ...\n"
+#~ "    {NULL, NULL, 0, NULL}        /* Sentinel */\n"
+#~ "};"
+#~ msgstr ""
+#~ "static PyMethodDef SpamMethods[] = {\n"
+#~ "    ...\n"
+#~ "    {\"system\",  spam_system, METH_VARARGS,\n"
+#~ "     \"Execute a shell command.\"},\n"
+#~ "    ...\n"
+#~ "    {NULL, NULL, 0, NULL}        /* 끝 표지 */\n"
+#~ "};"
+
+#~ msgid ""
+#~ "Note the third entry (``METH_VARARGS``).  "
+#~ "This is a flag telling the "
+#~ "interpreter the calling convention to be"
+#~ " used for the C function.  It "
+#~ "should normally always be ``METH_VARARGS`` "
+#~ "or ``METH_VARARGS | METH_KEYWORDS``; a "
+#~ "value of ``0`` means that an "
+#~ "obsolete variant of :c:func:`PyArg_ParseTuple` "
+#~ "is used."
+#~ msgstr ""
+#~ "세 번째 항목 (``METH_VARARGS``)에 유의하십시오. 이것은"
+#~ " 인터프리터에게 C 함수에 사용될 호출 규칙을 알려주는"
+#~ " 플래그입니다. 일반적으로 항상 ``METH_VARARGS``\\나 "
+#~ "``METH_VARARGS | METH_KEYWORDS``\\여야 합니다; "
+#~ "``0`` 값은 더는 사용되지 않는 "
+#~ ":c:func:`PyArg_ParseTuple` 변형이 사용됨을 의미합니다."
+
+#~ msgid ""
+#~ "When using only ``METH_VARARGS``, the "
+#~ "function should expect the Python-level"
+#~ " parameters to be passed in as "
+#~ "a tuple acceptable for parsing via "
+#~ ":c:func:`PyArg_ParseTuple`; more information on "
+#~ "this function is provided below."
+#~ msgstr ""
+#~ "``METH_VARARGS`` 만 사용할 때, 함수는 파이썬 "
+#~ "수준 매개 변수가 :c:func:`PyArg_ParseTuple`\\을 통한 "
+#~ "구문 분석에 허용되는 튜플로 전달될 것으로 기대해야 "
+#~ "합니다; 이 함수에 대한 자세한 정보는 아래에 "
+#~ "제공됩니다."
+
+#~ msgid ""
+#~ "The method table must be referenced "
+#~ "in the module definition structure::"
+#~ msgstr "메서드 테이블은 모듈 정의 구조체에서 참조되어야 합니다::"
+
+#~ msgid ""
+#~ "static struct PyModuleDef spam_module = {\n"
+#~ "    ...\n"
+#~ "    .m_methods = spam_methods,\n"
+#~ "    ...\n"
+#~ "};"
+#~ msgstr ""
+#~ "static struct PyModuleDef spam_module = {\n"
+#~ "    ...\n"
+#~ "    .m_methods = spam_methods,\n"
+#~ "    ...\n"
+#~ "};"
+
+#~ msgid ""
+#~ "This structure, in turn, must be "
+#~ "passed to the interpreter in the "
+#~ "module's initialization function.  The "
+#~ "initialization function must be named "
+#~ ":c:func:`!PyInit_name`, where *name* is the"
+#~ " name of the module, and should "
+#~ "be the only non-\\ ``static`` item "
+#~ "defined in the module file::"
+#~ msgstr ""
+#~ "다시, 이 구조체는 모듈의 초기화 함수에서 인터프리터로 "
+#~ "전달되어야 합니다. 초기화 함수의 이름은 "
+#~ ":c:func:`!PyInit_name`\\이어야 합니다, 여기서 *name*\\은 "
+#~ "모듈의 이름이며, 모듈 파일에 정의된 유일한 비 "
+#~ "``static`` 항목이어야 합니다::"
+
+#~ msgid ""
+#~ "PyMODINIT_FUNC\n"
+#~ "PyInit_spam(void)\n"
+#~ "{\n"
+#~ "    return PyModuleDef_Init(&spam_module);\n"
+#~ "}"
+#~ msgstr ""
+#~ "PyMODINIT_FUNC\n"
+#~ "PyInit_spam(void)\n"
+#~ "{\n"
+#~ "    return PyModuleDef_Init(&spam_module);\n"
+#~ "}"
+
+#~ msgid ""
+#~ "Note that :c:macro:`PyMODINIT_FUNC` declares "
+#~ "the function as ``PyObject *`` return"
+#~ " type, declares any special linkage "
+#~ "declarations required by the platform, "
+#~ "and for C++ declares the function "
+#~ "as ``extern \"C\"``."
+#~ msgstr ""
+#~ ":c:macro:`PyMODINIT_FUNC`\\는 함수를 ``PyObject *`` "
+#~ "반환형으로 선언하고, 플랫폼에 필요한 특수 링크 선언을 "
+#~ "선언하며, C++의 경우 함수를 ``extern \"C\"``\\로"
+#~ " 선언함에 유의하십시오."
+
+#~ msgid ""
+#~ ":c:func:`!PyInit_spam` is called when each "
+#~ "interpreter imports its module :mod:`!spam`"
+#~ " for the first time.  (See below "
+#~ "for comments about embedding Python.) A"
+#~ " pointer to the module definition "
+#~ "must be returned via "
+#~ ":c:func:`PyModuleDef_Init`, so that the import"
+#~ " machinery can create the module and"
+#~ " store it in ``sys.modules``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When embedding Python, the "
+#~ ":c:func:`!PyInit_spam` function is not called"
+#~ " automatically unless there's an entry "
+#~ "in the :c:data:`!PyImport_Inittab` table. To"
+#~ " add the module to the initialization"
+#~ " table, use :c:func:`PyImport_AppendInittab`, "
+#~ "optionally followed by an import of "
+#~ "the module::"
+#~ msgstr ""
+#~ "파이썬을 내장할 때, :c:data:`PyImport_Inittab` 테이블에"
+#~ " 항목이 없으면 :c:func:`!PyInit_spam` 함수가 자동으로"
+#~ " 호출되지 않습니다. 모듈을 초기화 테이블에 추가하려면, "
+#~ ":c:func:`PyImport_AppendInittab`\\을 사용하고, 선택적으로 그다음에"
+#~ " 모듈을 임포트 합니다::"
+
+#~ msgid ""
+#~ "#define PY_SSIZE_T_CLEAN\n"
+#~ "#include <Python.h>\n"
+#~ "\n"
+#~ "int\n"
+#~ "main(int argc, char *argv[])\n"
+#~ "{\n"
+#~ "    PyStatus status;\n"
+#~ "    PyConfig config;\n"
+#~ "    PyConfig_InitPythonConfig(&config);\n"
+#~ "\n"
+#~ "    /* Add a built-in module, before Py_Initialize */\n"
+#~ "    if (PyImport_AppendInittab(\"spam\", PyInit_spam) == -1) {\n"
+#~ "        fprintf(stderr, \"Error: could not "
+#~ "extend in-built modules table\\n\");\n"
+#~ "        exit(1);\n"
+#~ "    }\n"
+#~ "\n"
+#~ "    /* Pass argv[0] to the Python interpreter */\n"
+#~ "    status = PyConfig_SetBytesString(&config, "
+#~ "&config.program_name, argv[0]);\n"
+#~ "    if (PyStatus_Exception(status)) {\n"
+#~ "        goto exception;\n"
+#~ "    }\n"
+#~ "\n"
+#~ "    /* Initialize the Python interpreter.  Required.\n"
+#~ "       If this step fails, it will be a fatal error. */\n"
+#~ "    status = Py_InitializeFromConfig(&config);\n"
+#~ "    if (PyStatus_Exception(status)) {\n"
+#~ "        goto exception;\n"
+#~ "    }\n"
+#~ "    PyConfig_Clear(&config);\n"
+#~ "\n"
+#~ "    /* Optionally import the module; alternatively,\n"
+#~ "       import can be deferred until the embedded script\n"
+#~ "       imports it. */\n"
+#~ "    PyObject *pmodule = PyImport_ImportModule(\"spam\");\n"
+#~ "    if (!pmodule) {\n"
+#~ "        PyErr_Print();\n"
+#~ "        fprintf(stderr, \"Error: could not "
+#~ "import module 'spam'\\n\");\n"
+#~ "    }\n"
+#~ "\n"
+#~ "    // ... use Python C API here ...\n"
+#~ "\n"
+#~ "    return 0;\n"
+#~ "\n"
+#~ "  exception:\n"
+#~ "     PyConfig_Clear(&config);\n"
+#~ "     Py_ExitStatusException(status);\n"
+#~ "}"
+#~ msgstr ""
+#~ "#define PY_SSIZE_T_CLEAN\n"
+#~ "#include <Python.h>\n"
+#~ "\n"
+#~ "int\n"
+#~ "main(int argc, char *argv[])\n"
+#~ "{\n"
+#~ "    PyStatus status;\n"
+#~ "    PyConfig config;\n"
+#~ "    PyConfig_InitPythonConfig(&config);\n"
+#~ "\n"
+#~ "    /* Py_Initialize 앞에 내장 모듈을 추가합니다 */\n"
+#~ "    if (PyImport_AppendInittab(\"spam\", PyInit_spam) == -1) {\n"
+#~ "        fprintf(stderr, \"Error: could not "
+#~ "extend in-built modules table\\n\");\n"
+#~ "        exit(1);\n"
+#~ "    }\n"
+#~ "\n"
+#~ "    /* 파이썬 인터프리터로 argv[0] 을 전달합니다 */\n"
+#~ "    status = PyConfig_SetBytesString(&config, "
+#~ "&config.program_name, argv[0]);\n"
+#~ "    if (PyStatus_Exception(status)) {\n"
+#~ "        goto exception;\n"
+#~ "    }\n"
+#~ "\n"
+#~ "    /* 파이썬 인터프리터를 초기화합니다. 필수.\n"
+#~ "       이 단계가 실패하면, 치명적인 에러가 됩니다. */\n"
+#~ "    status = Py_InitializeFromConfig(&config);\n"
+#~ "    if (PyStatus_Exception(status)) {\n"
+#~ "        goto exception;\n"
+#~ "    }\n"
+#~ "    PyConfig_Clear(&config);\n"
+#~ "\n"
+#~ "    /* 선택적으로 모듈을 임포트 합니다; 또는,\n"
+#~ "       내장된 스크립트가 임포트할 때까지 임포트를\n"
+#~ "       지연시킬 수 있습니다. */\n"
+#~ "    PyObject *pmodule = PyImport_ImportModule(\"spam\");\n"
+#~ "    if (!pmodule) {\n"
+#~ "        PyErr_Print();\n"
+#~ "        fprintf(stderr, \"Error: could not "
+#~ "import module 'spam'\\n\");\n"
+#~ "    }\n"
+#~ "\n"
+#~ "    // ... 여기서 파이썬 C API 를 사용합니다 ...\n"
+#~ "\n"
+#~ "    return 0;\n"
+#~ "\n"
+#~ "  exception:\n"
+#~ "     PyConfig_Clear(&config);\n"
+#~ "     Py_ExitStatusException(status);\n"
+#~ "}"
+
+#~ msgid ""
+#~ "If you declare a global variable "
+#~ "or a local static one, the module"
+#~ " may experience unintended side-effects "
+#~ "on re-initialisation, for example when"
+#~ " removing entries from ``sys.modules`` or"
+#~ " importing compiled modules into multiple"
+#~ " interpreters within a process (or "
+#~ "following a :c:func:`fork` without an "
+#~ "intervening :c:func:`exec`). If module state"
+#~ " is not yet fully :ref:`isolated "
+#~ "<isolating-extensions-howto>`, authors should "
+#~ "consider marking the module as having"
+#~ " no support for subinterpreters (via "
+#~ ":c:macro:`Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED`)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A more substantial example module is "
+#~ "included in the Python source "
+#~ "distribution as :file:`Modules/xxlimited.c`.  This"
+#~ " file may be used as a template"
+#~ " or simply read as an example."
+#~ msgstr ""
+#~ "더욱 실질적인 예제 모듈이 :file:`Modules/xxmodule.c`\\로"
+#~ " 파이썬 소스 배포판에 포함되어 있습니다. 이 파일은"
+#~ " 템플릿으로 사용되거나 단순히 예제로 읽을 수 있습니다."
+
+#~ msgid "Compilation and Linkage"
+#~ msgstr "컴파일과 링크"
+
+#~ msgid ""
+#~ "There are two more things to do"
+#~ " before you can use your new "
+#~ "extension: compiling and linking it with"
+#~ " the Python system.  If you use "
+#~ "dynamic loading, the details may depend"
+#~ " on the style of dynamic loading "
+#~ "your system uses; see the chapters "
+#~ "about building extension modules (chapter "
+#~ ":ref:`building`) and additional information "
+#~ "that pertains only to building on "
+#~ "Windows (chapter :ref:`building-on-windows`)"
+#~ " for more information about this."
+#~ msgstr ""
+#~ "새로운 확장을 사용하기 전에 해야 할 두 가지"
+#~ " 작업이 더 있습니다: 컴파일과 파이썬 시스템과의 링크."
+#~ " 동적 로딩을 사용하면, 세부 사항은 시스템이 사용하는"
+#~ " 동적 로딩 스타일에 따라 달라질 수 있습니다; "
+#~ "확장 모듈을 빌드하는 것에 관한 장(:ref:`building` "
+#~ "장)과 윈도우 빌드에 대한 자세한 정보는 이에만 "
+#~ "관련된 추가 정보(:ref:`building-on-windows` 장)를"
+#~ " 참조하십시오."
+
+#~ msgid ""
+#~ "Note the placement of ``Py_DECREF(arglist)``"
+#~ " immediately after the call, before "
+#~ "the error check!  Also note that "
+#~ "strictly speaking this code is not "
+#~ "complete: :c:func:`Py_BuildValue` may run out"
+#~ " of memory, and this should be "
+#~ "checked."
+#~ msgstr ""
+#~ "호출 직후, 에러 점검 전에 "
+#~ "``Py_DECREF(arglist)``\\의 배치에 유의하십시오! 또한 엄격하게"
+#~ " 말하면 이 코드가 완전하지 않음에도 유의하십시오: "
+#~ ":c:func:`Py_BuildValue`\\에 메모리가 부족할 수 있어서 "
+#~ "확인해야 합니다."
+
+#~ msgid ""
+#~ "An interface for this function already"
+#~ " exists in the standard module "
+#~ ":mod:`os` --- it was chosen as a"
+#~ " simple and straightforward example."
+#~ msgstr "이 함수에 대한 인터페이스는 표준 모듈 :mod:`os`\\에 이미 존재합니다 --- 간단하고 단순한 예제로 선택되었습니다."
 

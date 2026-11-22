@@ -7,30 +7,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Python 3.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 20:40+0000\n"
+"POT-Creation-Date: 2026-11-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dong-gweon Oh <flowdas@gmail.com>\n"
 "Language-Team: Korean (https://python.flowdas.com)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/zoneinfo.rst:2
 msgid ":mod:`!zoneinfo` --- IANA time zone support"
 msgstr ":mod:`!zoneinfo` --- IANA 시간대 지원"
 
-#: ../../library/zoneinfo.rst:12
+#: ../../library/zoneinfo.rst:9
 msgid "**Source code:** :source:`Lib/zoneinfo`"
 msgstr "**소스 코드:** :source:`Lib/zoneinfo`"
 
-#: ../../library/zoneinfo.rst:16
+#: ../../library/zoneinfo.rst:13
+#, fuzzy
 msgid ""
-"The :mod:`zoneinfo` module provides a concrete time zone implementation "
+"The :mod:`!zoneinfo` module provides a concrete time zone implementation "
 "to support the IANA time zone database as originally specified in "
-":pep:`615`. By default, :mod:`zoneinfo` uses the system's time zone data "
-"if available; if no system time zone data is available, the library will "
-"fall back to using the first-party :pypi:`tzdata` package available on "
+":pep:`615`. By default, :mod:`!zoneinfo` uses the system's time zone data"
+" if available; if no system time zone data is available, the library will"
+" fall back to using the first-party :pypi:`tzdata` package available on "
 "PyPI."
 msgstr ""
 ":mod:`zoneinfo` 모듈은 원래 :pep:`615`\\에서 지정된 대로 IANA 시간대 데이터베이스를 지원하기 위한 구상 "
@@ -38,11 +39,11 @@ msgstr ""
 " 시스템 시간대 데이터가 없으면, 라이브러리는 PyPI에 있는 자사(first-party) :pypi:`tzdata` 패키지를 "
 "사용하는 것으로 대체합니다."
 
-#: ../../library/zoneinfo.rst:24
+#: ../../library/zoneinfo.rst:21
 msgid "Module: :mod:`datetime`"
 msgstr "모듈: :mod:`datetime`"
 
-#: ../../library/zoneinfo.rst:25
+#: ../../library/zoneinfo.rst:22
 msgid ""
 "Provides the :class:`~datetime.time` and :class:`~datetime.datetime` "
 "types with which the :class:`ZoneInfo` class is designed to be used."
@@ -50,11 +51,11 @@ msgstr ""
 ":class:`ZoneInfo` 클래스가 사용되도록 설계된 :class:`~datetime.time`\\과 "
 ":class:`~datetime.datetime` 형을 제공합니다."
 
-#: ../../library/zoneinfo.rst:28
+#: ../../library/zoneinfo.rst:25
 msgid "Package :pypi:`tzdata`"
 msgstr "패키지 :pypi:`tzdata`"
 
-#: ../../library/zoneinfo.rst:29
+#: ../../library/zoneinfo.rst:26
 msgid ""
 "First-party package maintained by the CPython core developers to supply "
 "time zone data via PyPI."
@@ -72,11 +73,11 @@ msgstr ""
 "이 모듈은 웹어셈블리에서 작동하지 않거나 제공되지 않습니다. 자세한 내용은 :ref:`wasm-availability`\\을 "
 "참조하세요."
 
-#: ../../library/zoneinfo.rst:35
+#: ../../library/zoneinfo.rst:32
 msgid "Using ``ZoneInfo``"
 msgstr "``ZoneInfo`` 사용하기"
 
-#: ../../library/zoneinfo.rst:37
+#: ../../library/zoneinfo.rst:34
 msgid ""
 ":class:`ZoneInfo` is a concrete implementation of the "
 ":class:`datetime.tzinfo` abstract base class, and is intended to be "
@@ -89,17 +90,18 @@ msgstr ""
 ":meth:`datetime.astimezone <datetime.datetime.astimezone>`\\을 통해 "
 "``tzinfo``\\에 연결하려는 것입니다::"
 
-#: ../../library/zoneinfo.rst:42
+#: ../../library/zoneinfo.rst:39
+#, fuzzy
 msgid ""
 ">>> from zoneinfo import ZoneInfo\n"
-">>> from datetime import datetime, timedelta\n"
+">>> import datetime as dt\n"
 "\n"
-">>> dt = datetime(2020, 10, 31, 12, "
+">>> when = dt.datetime(2020, 10, 31, 12, "
 "tzinfo=ZoneInfo(\"America/Los_Angeles\"))\n"
-">>> print(dt)\n"
+">>> print(when)\n"
 "2020-10-31 12:00:00-07:00\n"
 "\n"
-">>> dt.tzname()\n"
+">>> when.tzname()\n"
 "'PDT'"
 msgstr ""
 ">>> from zoneinfo import ZoneInfo\n"
@@ -113,21 +115,22 @@ msgstr ""
 ">>> dt.tzname()\n"
 "'PDT'"
 
-#: ../../library/zoneinfo.rst:52
+#: ../../library/zoneinfo.rst:49
 msgid ""
 "Datetimes constructed in this way are compatible with datetime arithmetic"
 " and handle daylight saving time transitions with no further "
 "intervention::"
 msgstr "이 방식으로 구성된 datetime들은 datetime 산술과 호환되며 추가 개입 없이 일광 절약 시간제 전환을 처리합니다::"
 
-#: ../../library/zoneinfo.rst:55
+#: ../../library/zoneinfo.rst:52
+#, fuzzy
 msgid ""
-">>> dt_add = dt + timedelta(days=1)\n"
+">>> when_add = when + dt.timedelta(days=1)\n"
 "\n"
-">>> print(dt_add)\n"
+">>> print(when_add)\n"
 "2020-11-01 12:00:00-08:00\n"
 "\n"
-">>> dt_add.tzname()\n"
+">>> when_add.tzname()\n"
 "'PST'"
 msgstr ""
 ">>> dt_add = dt + timedelta(days=1)\n"
@@ -138,7 +141,7 @@ msgstr ""
 ">>> dt_add.tzname()\n"
 "'PST'"
 
-#: ../../library/zoneinfo.rst:63
+#: ../../library/zoneinfo.rst:60
 msgid ""
 "These time zones also support the :attr:`~datetime.datetime.fold` "
 "attribute introduced in :pep:`495`.  During offset transitions which "
@@ -151,14 +154,15 @@ msgstr ""
 "모호한 시간을 유발하는 오프셋 전환(가령 일광 절약 시간에서 표준 시간으로의 전환) 중, 전환 *전*\\의 오프셋이 "
 "``fold=0``\\일 때 사용되며, 전환 *후*\\의 오프셋은 ``fold=1``\\일 때 사용됩니다, 예를 들어::"
 
-#: ../../library/zoneinfo.rst:69
+#: ../../library/zoneinfo.rst:66
+#, fuzzy
 msgid ""
-">>> dt = datetime(2020, 11, 1, 1, "
+">>> when = dt.datetime(2020, 11, 1, 1, "
 "tzinfo=ZoneInfo(\"America/Los_Angeles\"))\n"
-">>> print(dt)\n"
+">>> print(when)\n"
 "2020-11-01 01:00:00-07:00\n"
 "\n"
-">>> print(dt.replace(fold=1))\n"
+">>> print(when.replace(fold=1))\n"
 "2020-11-01 01:00:00-08:00"
 msgstr ""
 ">>> dt = datetime(2020, 11, 1, 1, "
@@ -169,24 +173,24 @@ msgstr ""
 ">>> print(dt.replace(fold=1))\n"
 "2020-11-01 01:00:00-08:00"
 
-#: ../../library/zoneinfo.rst:76
+#: ../../library/zoneinfo.rst:73
 msgid ""
 "When converting from another time zone, the fold will be set to the "
 "correct value::"
 msgstr "다른 시간대에서 변환할 때, fold는 올바른 값으로 설정됩니다::"
 
-#: ../../library/zoneinfo.rst:79
+#: ../../library/zoneinfo.rst:76
+#, fuzzy
 msgid ""
-">>> from datetime import timezone\n"
 ">>> LOS_ANGELES = ZoneInfo(\"America/Los_Angeles\")\n"
-">>> dt_utc = datetime(2020, 11, 1, 8, tzinfo=timezone.utc)\n"
+">>> when_utc = dt.datetime(2020, 11, 1, 8, tzinfo=dt.timezone.utc)\n"
 "\n"
 ">>> # Before the PDT -> PST transition\n"
-">>> print(dt_utc.astimezone(LOS_ANGELES))\n"
+">>> print(when_utc.astimezone(LOS_ANGELES))\n"
 "2020-11-01 01:00:00-07:00\n"
 "\n"
 ">>> # After the PDT -> PST transition\n"
-">>> print((dt_utc + timedelta(hours=1)).astimezone(LOS_ANGELES))\n"
+">>> print((when_utc + dt.timedelta(hours=1)).astimezone(LOS_ANGELES))\n"
 "2020-11-01 01:00:00-08:00"
 msgstr ""
 ">>> from datetime import timezone\n"
@@ -201,11 +205,11 @@ msgstr ""
 ">>> print((dt_utc + timedelta(hours=1)).astimezone(LOS_ANGELES))\n"
 "2020-11-01 01:00:00-08:00"
 
-#: ../../library/zoneinfo.rst:92
+#: ../../library/zoneinfo.rst:88
 msgid "Data sources"
 msgstr "데이터 소스"
 
-#: ../../library/zoneinfo.rst:94
+#: ../../library/zoneinfo.rst:90
 msgid ""
 "The ``zoneinfo`` module does not directly provide time zone data, and "
 "instead pulls time zone information from the system time zone database or"
@@ -222,11 +226,11 @@ msgstr ""
 "종속성을 선언하는 것이 좋습니다. 시스템 데이터나 tzdata를 모두 사용할 수 없으면, :class:`ZoneInfo`\\에 대한"
 " 모든 호출은 :exc:`ZoneInfoNotFoundError`\\를 발생시킵니다."
 
-#: ../../library/zoneinfo.rst:106
+#: ../../library/zoneinfo.rst:102
 msgid "Configuring the data sources"
 msgstr "데이터 소스 구성"
 
-#: ../../library/zoneinfo.rst:108
+#: ../../library/zoneinfo.rst:104
 msgid ""
 "When ``ZoneInfo(key)`` is called, the constructor first searches the "
 "directories specified in :data:`TZPATH` for a file matching ``key``, and "
@@ -237,7 +241,7 @@ msgstr ""
 "``key``\\와 일치하는 파일을 검색하고, 실패하면 tzdata 패키지에서 일치하는 것을 찾습니다. 이 동작은 세 가지 방법으로"
 " 구성할 수 있습니다:"
 
-#: ../../library/zoneinfo.rst:113
+#: ../../library/zoneinfo.rst:109
 msgid ""
 "The default :data:`TZPATH` when not otherwise specified can be configured"
 " at :ref:`compile time <zoneinfo_data_compile_time_config>`."
@@ -245,7 +249,7 @@ msgstr ""
 "달리 지정되지 않을 때의 기본 :data:`TZPATH`\\는 :ref:`컴파일 시간 "
 "<zoneinfo_data_compile_time_config>`\\에 구성할 수 있습니다."
 
-#: ../../library/zoneinfo.rst:115
+#: ../../library/zoneinfo.rst:111
 msgid ""
 ":data:`TZPATH` can be configured using :ref:`an environment variable "
 "<zoneinfo_data_environment_var>`."
@@ -253,7 +257,7 @@ msgstr ""
 ":data:`TZPATH`\\는 :ref:`환경 변수 <zoneinfo_data_environment_var>`\\를 사용하여 "
 "구성할 수 있습니다."
 
-#: ../../library/zoneinfo.rst:117
+#: ../../library/zoneinfo.rst:113
 msgid ""
 "At :ref:`runtime <zoneinfo_data_runtime_config>`, the search path can be "
 "manipulated using the :func:`reset_tzpath` function."
@@ -261,11 +265,11 @@ msgstr ""
 ":ref:`실행 시간 <zoneinfo_data_runtime_config>`\\에는, :func:`reset_tzpath` 함수를"
 " 사용하여 검색 경로를 조작할 수 있습니다."
 
-#: ../../library/zoneinfo.rst:123
+#: ../../library/zoneinfo.rst:119
 msgid "Compile-time configuration"
 msgstr "컴파일 시간 구성"
 
-#: ../../library/zoneinfo.rst:125
+#: ../../library/zoneinfo.rst:121
 msgid ""
 "The default :data:`TZPATH` includes several common deployment locations "
 "for the time zone database (except on Windows, where there are no \"well-"
@@ -282,7 +286,7 @@ msgstr ""
 " :option:`configure flag --with-tzpath <--with-tzpath>`)를 지정하여 기본 시간대 경로를"
 " 변경할 수 있습니다. :data:`os.pathsep`\\으로 구분된 문자열이어야 합니다."
 
-#: ../../library/zoneinfo.rst:134
+#: ../../library/zoneinfo.rst:130
 msgid ""
 "On all platforms, the configured value is available as the ``TZPATH`` key"
 " in :func:`sysconfig.get_config_var`."
@@ -290,11 +294,11 @@ msgstr ""
 "모든 플랫폼에서, 구성된 값은 :func:`sysconfig.get_config_var`\\에서 ``TZPATH`` 키로 사용 "
 "가능합니다."
 
-#: ../../library/zoneinfo.rst:140
+#: ../../library/zoneinfo.rst:136
 msgid "Environment configuration"
 msgstr "환경 구성"
 
-#: ../../library/zoneinfo.rst:142
+#: ../../library/zoneinfo.rst:138
 msgid ""
 "When initializing :data:`TZPATH` (either at import time or whenever "
 ":func:`reset_tzpath` is called with no arguments), the ``zoneinfo`` "
@@ -304,7 +308,7 @@ msgstr ""
 ":data:`TZPATH`\\를 초기화할 때 (임포트 시점이나 인자 없이 :func:`reset_tzpath`\\가 호출될 때마다)"
 " ``zoneinfo`` 모듈은 환경 변수 ``PYTHONTZPATH``\\(있다면)를 사용하여 검색 경로를 설정합니다."
 
-#: ../../library/zoneinfo.rst:149
+#: ../../library/zoneinfo.rst:145
 msgid ""
 "This is an :data:`os.pathsep`-separated string containing the time zone "
 "search path to use. It must consist of only absolute rather than relative"
@@ -319,7 +323,7 @@ msgstr ""
 " 동작은 구현이 정의합니다; CPython은 :exc:`InvalidTZPathWarning`\\을 발생시키지만, 다른 구현에서는 "
 "잘못된 구성 요소를 조용히 무시하거나 예외를 발생시킬 수 있습니다."
 
-#: ../../library/zoneinfo.rst:157
+#: ../../library/zoneinfo.rst:153
 msgid ""
 "To set the system to ignore the system data and use the tzdata package "
 "instead, set ``PYTHONTZPATH=\"\"``."
@@ -327,11 +331,11 @@ msgstr ""
 "시스템이 시스템 데이터를 무시하고 tzdata 패키지를 대신 사용하도록 설정하려면, ``PYTHONTZPATH=\"\"``\\를 "
 "설정하십시오."
 
-#: ../../library/zoneinfo.rst:163
+#: ../../library/zoneinfo.rst:159
 msgid "Runtime configuration"
 msgstr "실행 시간 구성"
 
-#: ../../library/zoneinfo.rst:165
+#: ../../library/zoneinfo.rst:161
 msgid ""
 "The TZ search path can also be configured at runtime using the "
 ":func:`reset_tzpath` function. This is generally not an advisable "
@@ -343,11 +347,11 @@ msgstr ""
 "작업은 아닙니다만, 특정 시간대 경로를 사용해야 하는 (또는 시스템 시간대에 대한 액세스를 비활성화해야 하는) 테스트 함수에 "
 "사용하는 것은 합리적입니다."
 
-#: ../../library/zoneinfo.rst:172
+#: ../../library/zoneinfo.rst:168
 msgid "The ``ZoneInfo`` class"
 msgstr "``ZoneInfo`` 클래스"
 
-#: ../../library/zoneinfo.rst:176
+#: ../../library/zoneinfo.rst:172
 msgid ""
 "A concrete :class:`datetime.tzinfo` subclass that represents an IANA time"
 " zone specified by the string ``key``. Calls to the primary constructor "
@@ -359,7 +363,7 @@ msgstr ""
 "생성자에 대한 호출은 항상 동일하다고 비교되는 객체를 반환합니다; 다르게 말하면, "
 ":meth:`ZoneInfo.clear_cache`\\를 통한 캐시 무효화를 방지한다면, 다음 어서션이 항상 참입니다:"
 
-#: ../../library/zoneinfo.rst:182
+#: ../../library/zoneinfo.rst:178
 msgid ""
 "a = ZoneInfo(key)\n"
 "b = ZoneInfo(key)\n"
@@ -369,7 +373,7 @@ msgstr ""
 "b = ZoneInfo(key)\n"
 "assert a is b"
 
-#: ../../library/zoneinfo.rst:188
+#: ../../library/zoneinfo.rst:184
 msgid ""
 "``key`` must be in the form of a relative, normalized POSIX path, with no"
 " up-level references. The constructor will raise :exc:`ValueError` if a "
@@ -378,17 +382,17 @@ msgstr ""
 "``key``\\는 상위 수준 참조가 없는 상대적인 정규화된 POSIX 경로의 형식이어야 합니다. 적합하지 않은 key가 전달되면 "
 "생성자가 :exc:`ValueError`\\를 발생시킵니다."
 
-#: ../../library/zoneinfo.rst:192
+#: ../../library/zoneinfo.rst:188
 msgid ""
 "If no file matching ``key`` is found, the constructor will raise "
 ":exc:`ZoneInfoNotFoundError`."
 msgstr "``key``\\와 일치하는 파일이 없으면, 생성자는 :exc:`ZoneInfoNotFoundError`\\를 발생시킵니다."
 
-#: ../../library/zoneinfo.rst:196
+#: ../../library/zoneinfo.rst:192
 msgid "The ``ZoneInfo`` class has two alternate constructors:"
 msgstr "``ZoneInfo`` 클래스에는 두 개의 대체 생성자가 있습니다:"
 
-#: ../../library/zoneinfo.rst:200
+#: ../../library/zoneinfo.rst:196
 msgid ""
 "Constructs a ``ZoneInfo`` object from a file-like object returning bytes "
 "(e.g. a file opened in binary mode or an :class:`io.BytesIO` object). "
@@ -397,7 +401,7 @@ msgstr ""
 "바이트열을 반환하는 파일류 객체(예를 들어 바이너리 모드로 열린 파일이나 :class:`io.BytesIO` 객체)에서 "
 "``ZoneInfo`` 객체를 생성합니다. 기본 생성자와 달리, 항상 새로운 객체를 생성합니다."
 
-#: ../../library/zoneinfo.rst:204
+#: ../../library/zoneinfo.rst:200
 msgid ""
 "The ``key`` parameter sets the name of the zone for the purposes of "
 ":py:meth:`~object.__str__` and :py:meth:`~object.__repr__`."
@@ -405,11 +409,17 @@ msgstr ""
 "``key`` 매개 변수는 :py:meth:`~object.__str__`\\과 "
 ":py:meth:`~object.__repr__`\\를 위해 시간대 이름을 설정합니다."
 
-#: ../../library/zoneinfo.rst:207
+#: ../../library/zoneinfo.rst:203
 msgid "Objects created via this constructor cannot be pickled (see `pickling`_)."
 msgstr "이 생성자를 통해 만들어진 객체는 피클 할 수 없습니다 (`피클 직렬화 <pickling_>`_\\를 참조하십시오)."
 
-#: ../../library/zoneinfo.rst:211
+#: ../../library/zoneinfo.rst:205
+msgid ""
+":exc:`ValueError` is raised if the data read from *file_obj* is not a "
+"valid TZif file."
+msgstr ""
+
+#: ../../library/zoneinfo.rst:210
 msgid ""
 "An alternate constructor that bypasses the constructor's cache. It is "
 "identical to the primary constructor, but returns a new object on each "
@@ -420,23 +430,23 @@ msgstr ""
 "생성자의 캐시를 우회하는 대체 생성자. 기본 생성자와 동일하지만, 호출마다 새 객체를 반환합니다. 이것은 테스트나 데모 목적으로 "
 "유용 할 수 있지만, 다른 캐시 무효화 전략을 갖는 시스템을 만드는 데 사용될 수도 있습니다."
 
-#: ../../library/zoneinfo.rst:217
+#: ../../library/zoneinfo.rst:216
 msgid ""
 "Objects created via this constructor will also bypass the cache of a "
 "deserializing process when unpickled."
 msgstr "이 생성자를 통해 만들어진 객체는 역 피클 될 때 역 직렬화 프로세스의 캐시도 우회합니다."
 
-#: ../../library/zoneinfo.rst:224
+#: ../../library/zoneinfo.rst:223
 msgid ""
 "Using this constructor may change the semantics of your datetimes in "
 "surprising ways, only use it if you know that you need to."
 msgstr "이 생성자를 사용하면 예기치 못한 방식으로 날짜 시간의 의미가 변경될 수 있기 때문에, 필요한 경우에만 사용하십시오."
 
-#: ../../library/zoneinfo.rst:227
+#: ../../library/zoneinfo.rst:226
 msgid "The following class methods are also available:"
 msgstr "다음과 같은 클래스 메서드도 사용할 수 있습니다:"
 
-#: ../../library/zoneinfo.rst:231
+#: ../../library/zoneinfo.rst:230
 msgid ""
 "A method for invalidating the cache on the ``ZoneInfo`` class. If no "
 "arguments are passed, all caches are invalidated and the next call to the"
@@ -445,7 +455,7 @@ msgstr ""
 "``ZoneInfo`` 클래스에서 캐시를 무효로 하는 메서드. 인자가 전달되지 않으면, 모든 캐시가 무효가 되고 각 키의 기본 "
 "생성자에 대한 다음 호출은 새 인스턴스를 반환합니다."
 
-#: ../../library/zoneinfo.rst:235
+#: ../../library/zoneinfo.rst:234
 msgid ""
 "If an iterable of key names is passed to the ``only_keys`` parameter, "
 "only the specified keys will be removed from the cache. Keys passed to "
@@ -454,7 +464,7 @@ msgstr ""
 "키 이름의 이터러블이 ``only_keys`` 매개 변수에 전달되면, 지정된 키만 캐시에서 제거됩니다. "
 "``only_keys``\\에 전달되었지만, 캐시에서 찾을 수 없는 키는 무시됩니다."
 
-#: ../../library/zoneinfo.rst:243
+#: ../../library/zoneinfo.rst:242
 msgid ""
 "Invoking this function may change the semantics of datetimes using "
 "``ZoneInfo`` in surprising ways; this modifies module state and thus may "
@@ -463,11 +473,11 @@ msgstr ""
 "이 함수를 호출하면 예기치 못한 방식으로 ``ZoneInfo``\\를 사용하는 날짜 시간의 의미를 변경할 수 있습니다; 이는 모듈 "
 "상태를 수정하므로 광범위한 영향을 미칠 수 있습니다. 필요한 경우에만 사용하십시오."
 
-#: ../../library/zoneinfo.rst:248
+#: ../../library/zoneinfo.rst:247
 msgid "The class has one attribute:"
 msgstr "이 클래스에는 하나의 어트리뷰트가 있습니다:"
 
-#: ../../library/zoneinfo.rst:252
+#: ../../library/zoneinfo.rst:251
 msgid ""
 "This is a read-only :term:`attribute` that returns the value of ``key`` "
 "passed to the constructor, which should be a lookup key in the IANA time "
@@ -478,13 +488,13 @@ msgstr ""
 "IANA 시간대 데이터베이스의 조회 키이어야 합니다 (예를 들어 ``America/New_York``, "
 "``Europe/Paris`` 또는 ``Asia/Tokyo``)."
 
-#: ../../library/zoneinfo.rst:257
+#: ../../library/zoneinfo.rst:256
 msgid ""
 "For zones constructed from file without specifying a ``key`` parameter, "
 "this will be set to ``None``."
 msgstr "``key`` 매개 변수를 지정하지 않고 파일에서 생성된 시간대의 경우, ``None``\\으로 설정됩니다."
 
-#: ../../library/zoneinfo.rst:262
+#: ../../library/zoneinfo.rst:261
 msgid ""
 "Although it is a somewhat common practice to expose these to end users, "
 "these values are designed to be primary keys for representing the "
@@ -496,11 +506,11 @@ msgstr ""
 " 대면 요소일 필요는 없습니다. CLDR (the Unicode Common Locale Data Repository)과 같은 "
 "프로젝트를 사용하면 이러한 키에서 더 사용자 친화적인 문자열을 얻을 수 있습니다."
 
-#: ../../library/zoneinfo.rst:269
+#: ../../library/zoneinfo.rst:268
 msgid "String representations"
 msgstr "문자열 표현"
 
-#: ../../library/zoneinfo.rst:271
+#: ../../library/zoneinfo.rst:270
 msgid ""
 "The string representation returned when calling :py:class:`str` on a "
 ":class:`ZoneInfo` object defaults to using the :attr:`ZoneInfo.key` "
@@ -509,15 +519,15 @@ msgstr ""
 ":class:`ZoneInfo` 객체에 대해 :py:class:`str`\\을 호출할 때 반환되는 문자열 표현은 기본적으로 "
 ":attr:`ZoneInfo.key` 어트리뷰트를 사용합니다 (어트리뷰트 설명서의 사용법에 관한 참고를 보십시오)::"
 
-#: ../../library/zoneinfo.rst:275
-#, python-brace-format
+#: ../../library/zoneinfo.rst:274
+#, fuzzy, python-brace-format
 msgid ""
 ">>> zone = ZoneInfo(\"Pacific/Kwajalein\")\n"
 ">>> str(zone)\n"
 "'Pacific/Kwajalein'\n"
 "\n"
-">>> dt = datetime(2020, 4, 1, 3, 15, tzinfo=zone)\n"
-">>> f\"{dt.isoformat()} [{dt.tzinfo}]\"\n"
+">>> when = dt.datetime(2020, 4, 1, 3, 15, tzinfo=zone)\n"
+">>> f\"{when.isoformat()} [{when.tzinfo}]\"\n"
 "'2020-04-01T03:15:00+12:00 [Pacific/Kwajalein]'"
 msgstr ""
 ">>> zone = ZoneInfo(\"Pacific/Kwajalein\")\n"
@@ -528,7 +538,7 @@ msgstr ""
 ">>> f\"{dt.isoformat()} [{dt.tzinfo}]\"\n"
 "'2020-04-01T03:15:00+12:00 [Pacific/Kwajalein]'"
 
-#: ../../library/zoneinfo.rst:283
+#: ../../library/zoneinfo.rst:282
 msgid ""
 "For objects constructed from a file without specifying a ``key`` "
 "parameter, ``str`` falls back to calling :func:`repr`. ``ZoneInfo``'s "
@@ -539,11 +549,11 @@ msgstr ""
 "대체됩니다. ``ZoneInfo``\\의 ``repr``\\은 구현 정의이며 버전 간에 반드시 안정적일 필요는 없지만, 유효한 "
 "``ZoneInfo`` 키가 될 수는 없음이 보장됩니다."
 
-#: ../../library/zoneinfo.rst:291
+#: ../../library/zoneinfo.rst:290
 msgid "Pickle serialization"
 msgstr "피클 직렬화"
 
-#: ../../library/zoneinfo.rst:293
+#: ../../library/zoneinfo.rst:292
 msgid ""
 "Rather than serializing all transition data, ``ZoneInfo`` objects are "
 "serialized by key, and ``ZoneInfo`` objects constructed from files (even "
@@ -552,11 +562,11 @@ msgstr ""
 "모든 전환 데이터를 직렬화하는 대신, ``ZoneInfo`` 객체는 키로 직렬화되며 파일에서 생성된 ``ZoneInfo`` 객체는 "
 "(지정된 ``key`` 값을 가진 객체조차) 피클 할 수 없습니다."
 
-#: ../../library/zoneinfo.rst:297
+#: ../../library/zoneinfo.rst:296
 msgid "The behavior of a ``ZoneInfo`` file depends on how it was constructed:"
 msgstr "``ZoneInfo`` 파일의 동작은 파일 생성 방식에 따라 다릅니다:"
 
-#: ../../library/zoneinfo.rst:299
+#: ../../library/zoneinfo.rst:298
 #, fuzzy
 msgid ""
 "``ZoneInfo(key)``: When constructed with the primary constructor, a "
@@ -572,7 +582,7 @@ msgstr ""
 "``europe_berlin_pkl``\\이 ``ZoneInfo(\"Europe/Berlin\")``\\에서 생성된 피클을 포함하는"
 " 문자열이면, 다음과 같은 동작이 예상됩니다:"
 
-#: ../../library/zoneinfo.rst:307
+#: ../../library/zoneinfo.rst:306
 msgid ""
 ">>> a = ZoneInfo(\"Europe/Berlin\")\n"
 ">>> b = pickle.loads(europe_berlin_pkl)\n"
@@ -584,7 +594,7 @@ msgstr ""
 ">>> a is b\n"
 "True"
 
-#: ../../library/zoneinfo.rst:314
+#: ../../library/zoneinfo.rst:313
 msgid ""
 "``ZoneInfo.no_cache(key)``: When constructed from the cache-bypassing "
 "constructor, the ``ZoneInfo`` object is also serialized by key, but when "
@@ -598,7 +608,7 @@ msgstr ""
 "``europe_berlin_pkl_nc``\\가 ``ZoneInfo.no_cache(\"Europe/Berlin\")``\\에서 "
 "생성된 피클을 포함하는 문자열이면, 다음과 같은 동작이 예상됩니다:"
 
-#: ../../library/zoneinfo.rst:321
+#: ../../library/zoneinfo.rst:320
 msgid ""
 ">>> a = ZoneInfo(\"Europe/Berlin\")\n"
 ">>> b = pickle.loads(europe_berlin_pkl_nc)\n"
@@ -610,7 +620,7 @@ msgstr ""
 ">>> a is b\n"
 "False"
 
-#: ../../library/zoneinfo.rst:328
+#: ../../library/zoneinfo.rst:327
 #, fuzzy
 msgid ""
 "``ZoneInfo.from_file(file_obj, /, key=None)``: When constructed from a "
@@ -624,7 +634,7 @@ msgstr ""
 "피클 하려고 하면 예외를 발생시킵니다. 최종 사용자가 파일에서 생성된 ``ZoneInfo``\\를 피클 하길 원하면, 래퍼 형이나 "
 "사용자 정의 직렬화 함수를 사용하는 것이 좋습니다: 키로 직렬화하거나 파일 객체의 내용을 저장하고 직렬화합니다."
 
-#: ../../library/zoneinfo.rst:334
+#: ../../library/zoneinfo.rst:333
 msgid ""
 "This method of serialization requires that the time zone data for the "
 "required key be available on both the serializing and deserializing side,"
@@ -638,11 +648,11 @@ msgstr ""
 "직렬화 측 모두에서 필요한 키의 시간대 데이터를 사용할 수 있어야 합니다. 또한 다른 버전의 시간대 데이터가 있는 환경에서 피클링 "
 "된 ``ZoneInfo``\\를 역 피클링 할 때 결과의 일관성에 대해 보장되지 않습니다."
 
-#: ../../library/zoneinfo.rst:342
+#: ../../library/zoneinfo.rst:341
 msgid "Functions"
 msgstr "함수"
 
-#: ../../library/zoneinfo.rst:346
+#: ../../library/zoneinfo.rst:345
 msgid ""
 "Get a set containing all the valid keys for IANA time zones available "
 "anywhere on the time zone path. This is recalculated on every call to the"
@@ -651,16 +661,17 @@ msgstr ""
 "시간대 경로의 어느 곳에서건 사용 가능한 IANA 시간대에 유효한 모든 키가 포함된 집합을 가져옵니다. 이것은 함수를 호출할 때마다"
 " 다시 계산됩니다."
 
-#: ../../library/zoneinfo.rst:350
+#: ../../library/zoneinfo.rst:349
+#, fuzzy
 msgid ""
 "This function only includes canonical zone names and does not include "
 "\"special\" zones such as those under the ``posix/`` and ``right/`` "
-"directories, or the ``posixrules`` zone."
+"directories, the ``posixrules``  or the ``localtime`` zone."
 msgstr ""
 "이 함수는 규범적(canonical) 시간대 이름 만 포함하고 ``posix/``\\와 ``right/`` 디렉터리에 있는 것이나 "
 "``posixrules`` 시간대와 같은 \"특수\" 시간대는 포함하지 않습니다."
 
-#: ../../library/zoneinfo.rst:356
+#: ../../library/zoneinfo.rst:355
 msgid ""
 "This function may open a large number of files, as the best way to "
 "determine if a file on the time zone path is a valid time zone is to read"
@@ -669,7 +680,7 @@ msgstr ""
 "시간대 경로에 있는 파일이 유효한 시간대인지 확인하는 가장 좋은 방법은 시작 부분에 나오는 \"매직 문자열\"을 읽는 것이라서, 이"
 " 함수는 많은 파일을 열 수 있습니다."
 
-#: ../../library/zoneinfo.rst:362
+#: ../../library/zoneinfo.rst:361
 msgid ""
 "These values are not designed to be exposed to end-users; for user facing"
 " elements, applications should use something like CLDR (the Unicode "
@@ -680,7 +691,7 @@ msgstr ""
 " Common Locale Data Repository)과 같은 것을 사용하여 더 사용자 친화적인 문자열을 가져와야 합니다. "
 ":attr:`ZoneInfo.key`\\에 있는 주의 사항도 참조하십시오."
 
-#: ../../library/zoneinfo.rst:369
+#: ../../library/zoneinfo.rst:368
 msgid ""
 "Sets or resets the time zone search path (:data:`TZPATH`) for the module."
 " When called with no arguments, :data:`TZPATH` is set to the default "
@@ -689,7 +700,7 @@ msgstr ""
 "모듈의 시간대 검색 경로(:data:`TZPATH`)를 설정하거나 재설정합니다. 인자 없이 호출하면, "
 ":data:`TZPATH`\\가 기본값으로 설정됩니다."
 
-#: ../../library/zoneinfo.rst:372
+#: ../../library/zoneinfo.rst:371
 msgid ""
 "Calling ``reset_tzpath`` will not invalidate the :class:`ZoneInfo` cache,"
 " and so calls to the primary ``ZoneInfo`` constructor will only use the "
@@ -698,7 +709,7 @@ msgstr ""
 "``reset_tzpath``\\를 호출해도 :class:`ZoneInfo` 캐시가 무효가 되지 않아서, 기본 "
 "``ZoneInfo`` 생성자에 대한 호출은 캐시 누락의 경우에만 새 ``TZPATH``\\를 사용합니다."
 
-#: ../../library/zoneinfo.rst:376
+#: ../../library/zoneinfo.rst:375
 msgid ""
 "The ``to`` parameter must be a :term:`sequence` of strings or "
 ":class:`os.PathLike` and not a string, all of which must be absolute "
@@ -709,11 +720,11 @@ msgstr ""
 "하며 문자열이 아닙니다. 모두 절대 경로여야 합니다. 절대 경로 이외의 것이 전달되면 :exc:`ValueError`\\가 "
 "발생합니다."
 
-#: ../../library/zoneinfo.rst:382
+#: ../../library/zoneinfo.rst:381
 msgid "Globals"
 msgstr "전역"
 
-#: ../../library/zoneinfo.rst:386
+#: ../../library/zoneinfo.rst:385
 msgid ""
 "A read-only sequence representing the time zone search path -- when "
 "constructing a ``ZoneInfo`` from a key, the key is joined to each entry "
@@ -722,13 +733,13 @@ msgstr ""
 "시간대 검색 경로를 나타내는 읽기 전용 시퀀스 -- 키에서 ``ZoneInfo``\\를 생성할 때, 키는 ``TZPATH``\\의 "
 "각 항목에 결합하며, 발견된 첫 번째 파일이 사용됩니다."
 
-#: ../../library/zoneinfo.rst:390
+#: ../../library/zoneinfo.rst:389
 msgid ""
 "``TZPATH`` may contain only absolute paths, never relative paths, "
 "regardless of how it is configured."
 msgstr "``TZPATH``\\는 구성 방법과 관계없이 절대 경로만 포함할 수 있고, 상대 경로는 절대 포함하지 않습니다."
 
-#: ../../library/zoneinfo.rst:393
+#: ../../library/zoneinfo.rst:392
 msgid ""
 "The object that ``zoneinfo.TZPATH`` points to may change in response to a"
 " call to :func:`reset_tzpath`, so it is recommended to use "
@@ -739,17 +750,17 @@ msgstr ""
 "있어서, ``zoneinfo``\\에서 ``TZPATH``\\를 임포트 하거나 수명이 긴 변수에 "
 "``zoneinfo.TZPATH``\\를 대입하는 대신 ``zoneinfo.TZPATH``\\를 사용하는 것이 좋습니다."
 
-#: ../../library/zoneinfo.rst:398
+#: ../../library/zoneinfo.rst:397
 msgid ""
 "For more information on configuring the time zone search path, see "
 ":ref:`zoneinfo_data_configuration`."
 msgstr "시간대 검색 경로 구성에 대한 자세한 정보는 :ref:`zoneinfo_data_configuration`\\을 참조하십시오."
 
-#: ../../library/zoneinfo.rst:402
+#: ../../library/zoneinfo.rst:401
 msgid "Exceptions and warnings"
 msgstr "예외와 경고"
 
-#: ../../library/zoneinfo.rst:406
+#: ../../library/zoneinfo.rst:405
 msgid ""
 "Raised when construction of a :class:`ZoneInfo` object fails because the "
 "specified key could not be found on the system. This is a subclass of "
@@ -758,7 +769,7 @@ msgstr ""
 "지정된 키를 시스템에서 찾을 수 없어서 :class:`ZoneInfo` 객체 생성에 실패할 때 발생합니다. 이것은 "
 ":exc:`KeyError`\\의 서브 클래스입니다."
 
-#: ../../library/zoneinfo.rst:412
+#: ../../library/zoneinfo.rst:411
 msgid ""
 "Raised when :envvar:`PYTHONTZPATH` contains an invalid component that "
 "will be filtered out, such as a relative path."
